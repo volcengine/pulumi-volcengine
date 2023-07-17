@@ -5,11 +5,14 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./acl";
-export * from "./aclEntry";
-export * from "./acls";
-export * from "./certificates";
-export * from "./gateways";
+export * from "./ipv6AddressBandwidth";
+export * from "./ipv6AddressBandwidths";
+export * from "./ipv6Addresses";
+export * from "./ipv6Gateway";
+export * from "./ipv6Gateways";
+export * from "./networkAcl";
+export * from "./networkAclAssociate";
+export * from "./networkAcls";
 export * from "./networkInterface";
 export * from "./networkInterfaceAttach";
 export * from "./networkInterfaces";
@@ -20,17 +23,18 @@ export * from "./routeTableAssociate";
 export * from "./routeTables";
 export * from "./securityGroup";
 export * from "./securityGroupRule";
+export * from "./securityGroupRules";
 export * from "./securityGroups";
-export * from "./snatEntries";
 export * from "./subnet";
 export * from "./subnets";
 export * from "./vpc";
 export * from "./vpcs";
-export * from "./zones";
 
 // Import resources to register:
-import { Acl } from "./acl";
-import { AclEntry } from "./aclEntry";
+import { Ipv6AddressBandwidth } from "./ipv6AddressBandwidth";
+import { Ipv6Gateway } from "./ipv6Gateway";
+import { NetworkAcl } from "./networkAcl";
+import { NetworkAclAssociate } from "./networkAclAssociate";
 import { NetworkInterface } from "./networkInterface";
 import { NetworkInterfaceAttach } from "./networkInterfaceAttach";
 import { RouteEntry } from "./routeEntry";
@@ -45,41 +49,47 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "volcengine:Vpc/acl:Acl":
-                return new Acl(name, <any>undefined, { urn })
-            case "volcengine:Vpc/aclEntry:AclEntry":
-                return new AclEntry(name, <any>undefined, { urn })
-            case "volcengine:Vpc/networkInterface:NetworkInterface":
+            case "volcengine:vpc/ipv6AddressBandwidth:Ipv6AddressBandwidth":
+                return new Ipv6AddressBandwidth(name, <any>undefined, { urn })
+            case "volcengine:vpc/ipv6Gateway:Ipv6Gateway":
+                return new Ipv6Gateway(name, <any>undefined, { urn })
+            case "volcengine:vpc/networkAcl:NetworkAcl":
+                return new NetworkAcl(name, <any>undefined, { urn })
+            case "volcengine:vpc/networkAclAssociate:NetworkAclAssociate":
+                return new NetworkAclAssociate(name, <any>undefined, { urn })
+            case "volcengine:vpc/networkInterface:NetworkInterface":
                 return new NetworkInterface(name, <any>undefined, { urn })
-            case "volcengine:Vpc/networkInterfaceAttach:NetworkInterfaceAttach":
+            case "volcengine:vpc/networkInterfaceAttach:NetworkInterfaceAttach":
                 return new NetworkInterfaceAttach(name, <any>undefined, { urn })
-            case "volcengine:Vpc/routeEntry:RouteEntry":
+            case "volcengine:vpc/routeEntry:RouteEntry":
                 return new RouteEntry(name, <any>undefined, { urn })
-            case "volcengine:Vpc/routeTable:RouteTable":
+            case "volcengine:vpc/routeTable:RouteTable":
                 return new RouteTable(name, <any>undefined, { urn })
-            case "volcengine:Vpc/routeTableAssociate:RouteTableAssociate":
+            case "volcengine:vpc/routeTableAssociate:RouteTableAssociate":
                 return new RouteTableAssociate(name, <any>undefined, { urn })
-            case "volcengine:Vpc/securityGroup:SecurityGroup":
+            case "volcengine:vpc/securityGroup:SecurityGroup":
                 return new SecurityGroup(name, <any>undefined, { urn })
-            case "volcengine:Vpc/securityGroupRule:SecurityGroupRule":
+            case "volcengine:vpc/securityGroupRule:SecurityGroupRule":
                 return new SecurityGroupRule(name, <any>undefined, { urn })
-            case "volcengine:Vpc/subnet:Subnet":
+            case "volcengine:vpc/subnet:Subnet":
                 return new Subnet(name, <any>undefined, { urn })
-            case "volcengine:Vpc/vpc:Vpc":
+            case "volcengine:vpc/vpc:Vpc":
                 return new Vpc(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
-pulumi.runtime.registerResourceModule("volcengine", "Vpc/acl", _module)
-pulumi.runtime.registerResourceModule("volcengine", "Vpc/aclEntry", _module)
-pulumi.runtime.registerResourceModule("volcengine", "Vpc/networkInterface", _module)
-pulumi.runtime.registerResourceModule("volcengine", "Vpc/networkInterfaceAttach", _module)
-pulumi.runtime.registerResourceModule("volcengine", "Vpc/routeEntry", _module)
-pulumi.runtime.registerResourceModule("volcengine", "Vpc/routeTable", _module)
-pulumi.runtime.registerResourceModule("volcengine", "Vpc/routeTableAssociate", _module)
-pulumi.runtime.registerResourceModule("volcengine", "Vpc/securityGroup", _module)
-pulumi.runtime.registerResourceModule("volcengine", "Vpc/securityGroupRule", _module)
-pulumi.runtime.registerResourceModule("volcengine", "Vpc/subnet", _module)
-pulumi.runtime.registerResourceModule("volcengine", "Vpc/vpc", _module)
+pulumi.runtime.registerResourceModule("volcengine", "vpc/ipv6AddressBandwidth", _module)
+pulumi.runtime.registerResourceModule("volcengine", "vpc/ipv6Gateway", _module)
+pulumi.runtime.registerResourceModule("volcengine", "vpc/networkAcl", _module)
+pulumi.runtime.registerResourceModule("volcengine", "vpc/networkAclAssociate", _module)
+pulumi.runtime.registerResourceModule("volcengine", "vpc/networkInterface", _module)
+pulumi.runtime.registerResourceModule("volcengine", "vpc/networkInterfaceAttach", _module)
+pulumi.runtime.registerResourceModule("volcengine", "vpc/routeEntry", _module)
+pulumi.runtime.registerResourceModule("volcengine", "vpc/routeTable", _module)
+pulumi.runtime.registerResourceModule("volcengine", "vpc/routeTableAssociate", _module)
+pulumi.runtime.registerResourceModule("volcengine", "vpc/securityGroup", _module)
+pulumi.runtime.registerResourceModule("volcengine", "vpc/securityGroupRule", _module)
+pulumi.runtime.registerResourceModule("volcengine", "vpc/subnet", _module)
+pulumi.runtime.registerResourceModule("volcengine", "vpc/vpc", _module)

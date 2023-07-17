@@ -40,7 +40,7 @@ namespace Pulumi.Volcengine.Clb
         /// {{% /examples %}}
         /// </summary>
         public static Task<ClbsResult> InvokeAsync(ClbsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<ClbsResult>("volcengine:Clb/clbs:Clbs", args ?? new ClbsArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.InvokeAsync<ClbsResult>("volcengine:clb/clbs:Clbs", args ?? new ClbsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of clbs
@@ -71,7 +71,7 @@ namespace Pulumi.Volcengine.Clb
         /// {{% /examples %}}
         /// </summary>
         public static Output<ClbsResult> Invoke(ClbsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<ClbsResult>("volcengine:Clb/clbs:Clbs", args ?? new ClbsInvokeArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.Invoke<ClbsResult>("volcengine:clb/clbs:Clbs", args ?? new ClbsInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -112,6 +112,24 @@ namespace Pulumi.Volcengine.Clb
         /// </summary>
         [Input("outputFile")]
         public string? OutputFile { get; set; }
+
+        /// <summary>
+        /// The ProjectName of Clb.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
+
+        [Input("tags")]
+        private List<Inputs.ClbsTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.ClbsTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.ClbsTagArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The id of the VPC.
@@ -163,6 +181,24 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? OutputFile { get; set; }
 
         /// <summary>
+        /// The ProjectName of Clb.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.ClbsTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.ClbsTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.ClbsTagInputArgs>());
+            set => _tags = value;
+        }
+
+        /// <summary>
         /// The id of the VPC.
         /// </summary>
         [Input("vpcId")]
@@ -197,6 +233,14 @@ namespace Pulumi.Volcengine.Clb
         public readonly string? NameRegex;
         public readonly string? OutputFile;
         /// <summary>
+        /// The ProjectName of the Clb.
+        /// </summary>
+        public readonly string? ProjectName;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.ClbsTagResult> Tags;
+        /// <summary>
         /// The total count of Clb query.
         /// </summary>
         public readonly int TotalCount;
@@ -221,6 +265,10 @@ namespace Pulumi.Volcengine.Clb
 
             string? outputFile,
 
+            string? projectName,
+
+            ImmutableArray<Outputs.ClbsTagResult> tags,
+
             int totalCount,
 
             string? vpcId)
@@ -232,6 +280,8 @@ namespace Pulumi.Volcengine.Clb
             LoadBalancerName = loadBalancerName;
             NameRegex = nameRegex;
             OutputFile = outputFile;
+            ProjectName = projectName;
+            Tags = tags;
             TotalCount = totalCount;
             VpcId = vpcId;
         }

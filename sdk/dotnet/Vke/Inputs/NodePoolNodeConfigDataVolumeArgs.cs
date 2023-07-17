@@ -13,13 +13,19 @@ namespace Pulumi.Volcengine.Vke.Inputs
     public sealed class NodePoolNodeConfigDataVolumeArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The Size of DataVolumes.
+        /// The target mount directory of the disk. Must start with `/`.
+        /// </summary>
+        [Input("mountPoint")]
+        public Input<string>? MountPoint { get; set; }
+
+        /// <summary>
+        /// The Size of DataVolumes, the value range in 20~32768.
         /// </summary>
         [Input("size")]
         public Input<int>? Size { get; set; }
 
         /// <summary>
-        /// The Type of DataVolumes.
+        /// The Type of DataVolumes, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

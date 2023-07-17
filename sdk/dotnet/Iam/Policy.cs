@@ -37,10 +37,10 @@ namespace Pulumi.Volcengine.Iam
     /// Iam policy can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:Iam/policy:Policy default TerraformTestPolicy
+    ///  $ pulumi import volcengine:iam/policy:Policy default TerraformTestPolicy
     /// ```
     /// </summary>
-    [VolcengineResourceType("volcengine:Iam/policy:Policy")]
+    [VolcengineResourceType("volcengine:iam/policy:Policy")]
     public partial class Policy : Pulumi.CustomResource
     {
         /// <summary>
@@ -94,12 +94,12 @@ namespace Pulumi.Volcengine.Iam
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Policy(string name, PolicyArgs args, CustomResourceOptions? options = null)
-            : base("volcengine:Iam/policy:Policy", name, args ?? new PolicyArgs(), MakeResourceOptions(options, ""))
+            : base("volcengine:iam/policy:Policy", name, args ?? new PolicyArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private Policy(string name, Input<string> id, PolicyState? state = null, CustomResourceOptions? options = null)
-            : base("volcengine:Iam/policy:Policy", name, state, MakeResourceOptions(options, id))
+            : base("volcengine:iam/policy:Policy", name, state, MakeResourceOptions(options, id))
         {
         }
 

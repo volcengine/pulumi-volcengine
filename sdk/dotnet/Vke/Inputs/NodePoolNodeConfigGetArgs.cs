@@ -18,6 +18,18 @@ namespace Pulumi.Volcengine.Vke.Inputs
         [Input("additionalContainerStorageEnabled")]
         public Input<bool>? AdditionalContainerStorageEnabled { get; set; }
 
+        /// <summary>
+        /// Is AutoRenew of PrePaid instance of NodeConfig. Valid values: true, false. when InstanceChargeType is PrePaid, default value is true.
+        /// </summary>
+        [Input("autoRenew")]
+        public Input<bool>? AutoRenew { get; set; }
+
+        /// <summary>
+        /// The AutoRenewPeriod of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 6, 12. Unit: month. when InstanceChargeType is PrePaid and AutoRenew enable, default value is 1.
+        /// </summary>
+        [Input("autoRenewPeriod")]
+        public Input<int>? AutoRenewPeriod { get; set; }
+
         [Input("dataVolumes")]
         private InputList<Inputs.NodePoolNodeConfigDataVolumeGetArgs>? _dataVolumes;
 
@@ -30,13 +42,49 @@ namespace Pulumi.Volcengine.Vke.Inputs
             set => _dataVolumes = value;
         }
 
+        [Input("ecsTags")]
+        private InputList<Inputs.NodePoolNodeConfigEcsTagGetArgs>? _ecsTags;
+
+        /// <summary>
+        /// Tags for Ecs.
+        /// </summary>
+        public InputList<Inputs.NodePoolNodeConfigEcsTagGetArgs> EcsTags
+        {
+            get => _ecsTags ?? (_ecsTags = new InputList<Inputs.NodePoolNodeConfigEcsTagGetArgs>());
+            set => _ecsTags = value;
+        }
+
+        [Input("hpcClusterIds")]
+        private InputList<string>? _hpcClusterIds;
+
+        /// <summary>
+        /// The IDs of HpcCluster, only one ID is supported currently.
+        /// </summary>
+        public InputList<string> HpcClusterIds
+        {
+            get => _hpcClusterIds ?? (_hpcClusterIds = new InputList<string>());
+            set => _hpcClusterIds = value;
+        }
+
+        /// <summary>
+        /// The ImageId of NodeConfig.
+        /// </summary>
+        [Input("imageId")]
+        public Input<string>? ImageId { get; set; }
+
         /// <summary>
         /// The initializeScript of NodeConfig.
         /// </summary>
         [Input("initializeScript")]
         public Input<string>? InitializeScript { get; set; }
 
-        [Input("instanceTypeIds")]
+        /// <summary>
+        /// The InstanceChargeType of PrePaid instance of NodeConfig. Valid values: PostPaid, PrePaid. Default value: PostPaid.
+        /// </summary>
+        [Input("instanceChargeType")]
+        public Input<string>? InstanceChargeType { get; set; }
+
+        [Input("instanceTypeIds", required: true)]
         private InputList<string>? _instanceTypeIds;
 
         /// <summary>
@@ -49,12 +97,24 @@ namespace Pulumi.Volcengine.Vke.Inputs
         }
 
         /// <summary>
+        /// The NamePrefix of NodeConfig.
+        /// </summary>
+        [Input("namePrefix")]
+        public Input<string>? NamePrefix { get; set; }
+
+        /// <summary>
+        /// The Period of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36. Unit: month. when InstanceChargeType is PrePaid, default value is 12.
+        /// </summary>
+        [Input("period")]
+        public Input<int>? Period { get; set; }
+
+        /// <summary>
         /// The Security of NodeConfig.
         /// </summary>
-        [Input("security")]
-        public Input<Inputs.NodePoolNodeConfigSecurityGetArgs>? Security { get; set; }
+        [Input("security", required: true)]
+        public Input<Inputs.NodePoolNodeConfigSecurityGetArgs> Security { get; set; } = null!;
 
-        [Input("subnetIds")]
+        [Input("subnetIds", required: true)]
         private InputList<string>? _subnetIds;
 
         /// <summary>

@@ -12,7 +12,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = new volcengine.Eip.Associate("foo", {
+ * const foo = new volcengine.eip.Associate("foo", {
  *     allocationId: "eip-273ybrd0oeo007fap8t0nggtx",
  *     instanceId: "i-cm9tjw9zp9j942mfkczp",
  *     instanceType: "EcsInstance",
@@ -24,7 +24,7 @@ import * as utilities from "../utilities";
  * Eip associate can be imported using the eip allocation_id:instance_id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:Eip/associate:Associate default eip-274oj9a8rs9a87fap8sf9515b:i-cm9t9ug9lggu79yr5tcw
+ *  $ pulumi import volcengine:eip/associate:Associate default eip-274oj9a8rs9a87fap8sf9515b:i-cm9t9ug9lggu79yr5tcw
  * ```
  */
 export class Associate extends pulumi.CustomResource {
@@ -42,7 +42,7 @@ export class Associate extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'volcengine:Eip/associate:Associate';
+    public static readonly __pulumiType = 'volcengine:eip/associate:Associate';
 
     /**
      * Returns true if the given object is an instance of Associate.  This is designed to work even
@@ -64,7 +64,7 @@ export class Associate extends pulumi.CustomResource {
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
-     * The type of the associated instance.
+     * The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
      */
     public readonly instanceType!: pulumi.Output<string>;
     /**
@@ -123,7 +123,7 @@ export interface AssociateState {
      */
     instanceId?: pulumi.Input<string>;
     /**
-     * The type of the associated instance.
+     * The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
      */
     instanceType?: pulumi.Input<string>;
     /**
@@ -145,7 +145,7 @@ export interface AssociateArgs {
      */
     instanceId: pulumi.Input<string>;
     /**
-     * The type of the associated instance.
+     * The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
      */
     instanceType: pulumi.Input<string>;
     /**

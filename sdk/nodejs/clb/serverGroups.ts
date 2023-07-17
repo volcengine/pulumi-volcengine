@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultServerGroups = pulumi.output(volcengine.Clb.ServerGroups({
+ * const defaultServerGroups = pulumi.output(volcengine.clb.ServerGroups({
  *     ids: [
  *         "rsp-273yv0kir1vk07fap8tt9jtwg",
  *         "rsp-273yxuqfova4g7fap8tyemn6t",
@@ -29,7 +29,7 @@ export function serverGroups(args?: ServerGroupsArgs, opts?: pulumi.InvokeOption
     }
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-    return pulumi.runtime.invoke("volcengine:Clb/serverGroups:ServerGroups", {
+    return pulumi.runtime.invoke("volcengine:clb/serverGroups:ServerGroups", {
         "ids": args.ids,
         "loadBalancerId": args.loadBalancerId,
         "nameRegex": args.nameRegex,
@@ -71,7 +71,7 @@ export interface ServerGroupsResult {
     /**
      * The collection of ServerGroup query.
      */
-    readonly groups: outputs.Clb.ServerGroupsGroup[];
+    readonly groups: outputs.clb.ServerGroupsGroup[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */

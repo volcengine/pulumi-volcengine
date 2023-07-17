@@ -32,7 +32,7 @@ class ListenerArgs:
         """
         The set of arguments for constructing a Listener resource.
         :param pulumi.Input[str] load_balancer_id: The region of the request.
-        :param pulumi.Input[int] port: The port receiving request of the Listener.
+        :param pulumi.Input[int] port: The port receiving request of the Listener, the value range in 1~65535.
         :param pulumi.Input[str] protocol: The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
         :param pulumi.Input[str] server_group_id: The server group id associated with the listener.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] acl_ids: The id list of the Acl.
@@ -87,7 +87,7 @@ class ListenerArgs:
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
         """
-        The port receiving request of the Listener.
+        The port receiving request of the Listener, the value range in 1~65535.
         """
         return pulumi.get(self, "port")
 
@@ -271,7 +271,7 @@ class _ListenerState:
         :param pulumi.Input[str] listener_id: The ID of the Listener.
         :param pulumi.Input[str] listener_name: The name of the Listener.
         :param pulumi.Input[str] load_balancer_id: The region of the request.
-        :param pulumi.Input[int] port: The port receiving request of the Listener.
+        :param pulumi.Input[int] port: The port receiving request of the Listener, the value range in 1~65535.
         :param pulumi.Input[str] protocol: The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
         :param pulumi.Input[str] scheduler: The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
         :param pulumi.Input[str] server_group_id: The server group id associated with the listener.
@@ -443,7 +443,7 @@ class _ListenerState:
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
         """
-        The port receiving request of the Listener.
+        The port receiving request of the Listener, the value range in 1~65535.
         """
         return pulumi.get(self, "port")
 
@@ -519,7 +519,7 @@ class Listener(pulumi.CustomResource):
         foo = volcengine.clb.Listener("foo",
             enabled="on",
             health_check=volcengine.clb.ListenerHealthCheckArgs(
-                domain="github.com",
+                domain="volcengine.com",
                 enabled="on",
                 healthy_threshold=5,
                 http_code="http_2xx",
@@ -530,10 +530,42 @@ class Listener(pulumi.CustomResource):
                 uri="/",
             ),
             listener_name="Demo-HTTP-90",
-            load_balancer_id="clb-273ylkl0a3i807fap8t4unbsq",
+            load_balancer_id="clb-274xltt3rfmyo7fap8sv1jq39",
             port=90,
             protocol="HTTP",
-            server_group_id="rsp-273yv0kir1vk07fap8tt9jtwg")
+            server_group_id="rsp-274xltv2sjoxs7fap8tlv3q3s")
+        bar = volcengine.clb.Listener("bar",
+            enabled="on",
+            health_check=volcengine.clb.ListenerHealthCheckArgs(
+                domain="volcengine.com",
+                enabled="on",
+                healthy_threshold=5,
+                http_code="http_2xx",
+                interval=10,
+                method="GET",
+                timeout=3,
+                un_healthy_threshold=2,
+                uri="/",
+            ),
+            listener_name="Demo-HTTP-91",
+            load_balancer_id="clb-274xltt3rfmyo7fap8sv1jq39",
+            port=91,
+            protocol="HTTP",
+            server_group_id="rsp-274xltv2sjoxs7fap8tlv3q3s")
+        demo = volcengine.clb.Listener("demo",
+            enabled="on",
+            established_timeout=10,
+            health_check=volcengine.clb.ListenerHealthCheckArgs(
+                enabled="on",
+                healthy_threshold=5,
+                interval=10,
+                timeout=3,
+                un_healthy_threshold=2,
+            ),
+            load_balancer_id="clb-274xltt3rfmyo7fap8sv1jq39",
+            port=92,
+            protocol="TCP",
+            server_group_id="rsp-274xltv2sjoxs7fap8tlv3q3s")
         ```
 
         ## Import
@@ -541,7 +573,7 @@ class Listener(pulumi.CustomResource):
         Listener can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Clb/listener:Listener default lsn-273yv0mhs5xj47fap8sehiiso
+         $ pulumi import volcengine:clb/listener:Listener default lsn-273yv0mhs5xj47fap8sehiiso
         ```
 
         :param str resource_name: The name of the resource.
@@ -556,7 +588,7 @@ class Listener(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['ListenerHealthCheckArgs']] health_check: The config of health check.
         :param pulumi.Input[str] listener_name: The name of the Listener.
         :param pulumi.Input[str] load_balancer_id: The region of the request.
-        :param pulumi.Input[int] port: The port receiving request of the Listener.
+        :param pulumi.Input[int] port: The port receiving request of the Listener, the value range in 1~65535.
         :param pulumi.Input[str] protocol: The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
         :param pulumi.Input[str] scheduler: The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
         :param pulumi.Input[str] server_group_id: The server group id associated with the listener.
@@ -578,7 +610,7 @@ class Listener(pulumi.CustomResource):
         foo = volcengine.clb.Listener("foo",
             enabled="on",
             health_check=volcengine.clb.ListenerHealthCheckArgs(
-                domain="github.com",
+                domain="volcengine.com",
                 enabled="on",
                 healthy_threshold=5,
                 http_code="http_2xx",
@@ -589,10 +621,42 @@ class Listener(pulumi.CustomResource):
                 uri="/",
             ),
             listener_name="Demo-HTTP-90",
-            load_balancer_id="clb-273ylkl0a3i807fap8t4unbsq",
+            load_balancer_id="clb-274xltt3rfmyo7fap8sv1jq39",
             port=90,
             protocol="HTTP",
-            server_group_id="rsp-273yv0kir1vk07fap8tt9jtwg")
+            server_group_id="rsp-274xltv2sjoxs7fap8tlv3q3s")
+        bar = volcengine.clb.Listener("bar",
+            enabled="on",
+            health_check=volcengine.clb.ListenerHealthCheckArgs(
+                domain="volcengine.com",
+                enabled="on",
+                healthy_threshold=5,
+                http_code="http_2xx",
+                interval=10,
+                method="GET",
+                timeout=3,
+                un_healthy_threshold=2,
+                uri="/",
+            ),
+            listener_name="Demo-HTTP-91",
+            load_balancer_id="clb-274xltt3rfmyo7fap8sv1jq39",
+            port=91,
+            protocol="HTTP",
+            server_group_id="rsp-274xltv2sjoxs7fap8tlv3q3s")
+        demo = volcengine.clb.Listener("demo",
+            enabled="on",
+            established_timeout=10,
+            health_check=volcengine.clb.ListenerHealthCheckArgs(
+                enabled="on",
+                healthy_threshold=5,
+                interval=10,
+                timeout=3,
+                un_healthy_threshold=2,
+            ),
+            load_balancer_id="clb-274xltt3rfmyo7fap8sv1jq39",
+            port=92,
+            protocol="TCP",
+            server_group_id="rsp-274xltv2sjoxs7fap8tlv3q3s")
         ```
 
         ## Import
@@ -600,7 +664,7 @@ class Listener(pulumi.CustomResource):
         Listener can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Clb/listener:Listener default lsn-273yv0mhs5xj47fap8sehiiso
+         $ pulumi import volcengine:clb/listener:Listener default lsn-273yv0mhs5xj47fap8sehiiso
         ```
 
         :param str resource_name: The name of the resource.
@@ -668,7 +732,7 @@ class Listener(pulumi.CustomResource):
             __props__.__dict__["server_group_id"] = server_group_id
             __props__.__dict__["listener_id"] = None
         super(Listener, __self__).__init__(
-            'volcengine:Clb/listener:Listener',
+            'volcengine:clb/listener:Listener',
             resource_name,
             __props__,
             opts)
@@ -710,7 +774,7 @@ class Listener(pulumi.CustomResource):
         :param pulumi.Input[str] listener_id: The ID of the Listener.
         :param pulumi.Input[str] listener_name: The name of the Listener.
         :param pulumi.Input[str] load_balancer_id: The region of the request.
-        :param pulumi.Input[int] port: The port receiving request of the Listener.
+        :param pulumi.Input[int] port: The port receiving request of the Listener, the value range in 1~65535.
         :param pulumi.Input[str] protocol: The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
         :param pulumi.Input[str] scheduler: The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
         :param pulumi.Input[str] server_group_id: The server group id associated with the listener.
@@ -828,7 +892,7 @@ class Listener(pulumi.CustomResource):
     @pulumi.getter
     def port(self) -> pulumi.Output[int]:
         """
-        The port receiving request of the Listener.
+        The port receiving request of the Listener, the value range in 1~65535.
         """
         return pulumi.get(self, "port")
 

@@ -62,11 +62,23 @@ namespace Pulumi.Volcengine.Vpc.Outputs
         /// </summary>
         public readonly string PrimaryIpAddress;
         /// <summary>
+        /// The IP address of secondary private network interface.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.NetworkInterfacesNetworkInterfacePrivateIpSetResult> PrivateIpSets;
+        /// <summary>
+        /// The ProjectName of the ENI.
+        /// </summary>
+        public readonly string ProjectName;
+        /// <summary>
         /// The list of the security group id to which the secondary ENI belongs.
         /// </summary>
         public readonly ImmutableArray<string> SecurityGroupIds;
         /// <summary>
-        /// A status of ENI.
+        /// Whether the network card has been authorized to be used by other account services.
+        /// </summary>
+        public readonly bool ServiceManaged;
+        /// <summary>
+        /// A status of ENI, Optional choice contains `Creating`, `Available`, `Attaching`, `InUse`, `Detaching`, `Deleting`.
         /// </summary>
         public readonly string Status;
         /// <summary>
@@ -74,7 +86,11 @@ namespace Pulumi.Volcengine.Vpc.Outputs
         /// </summary>
         public readonly string SubnetId;
         /// <summary>
-        /// A type of ENI.
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.NetworkInterfacesNetworkInterfaceTagResult> Tags;
+        /// <summary>
+        /// A type of ENI, Optional choice contains `primary`, `secondary`.
         /// </summary>
         public readonly string Type;
         /// <summary>
@@ -90,7 +106,7 @@ namespace Pulumi.Volcengine.Vpc.Outputs
         /// </summary>
         public readonly string VpcName;
         /// <summary>
-        /// The zone id of the ENI.
+        /// The zone ID.
         /// </summary>
         public readonly string ZoneId;
 
@@ -120,11 +136,19 @@ namespace Pulumi.Volcengine.Vpc.Outputs
 
             string primaryIpAddress,
 
+            ImmutableArray<Outputs.NetworkInterfacesNetworkInterfacePrivateIpSetResult> privateIpSets,
+
+            string projectName,
+
             ImmutableArray<string> securityGroupIds,
+
+            bool serviceManaged,
 
             string status,
 
             string subnetId,
+
+            ImmutableArray<Outputs.NetworkInterfacesNetworkInterfaceTagResult> tags,
 
             string type,
 
@@ -148,9 +172,13 @@ namespace Pulumi.Volcengine.Vpc.Outputs
             NetworkInterfaceName = networkInterfaceName;
             PortSecurityEnabled = portSecurityEnabled;
             PrimaryIpAddress = primaryIpAddress;
+            PrivateIpSets = privateIpSets;
+            ProjectName = projectName;
             SecurityGroupIds = securityGroupIds;
+            ServiceManaged = serviceManaged;
             Status = status;
             SubnetId = subnetId;
+            Tags = tags;
             Type = type;
             UpdatedAt = updatedAt;
             VpcId = vpcId;

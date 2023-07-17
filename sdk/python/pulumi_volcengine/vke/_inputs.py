@@ -9,27 +9,94 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
+    'AddonsStatusArgs',
     'ClusterClusterConfigArgs',
     'ClusterClusterConfigApiServerPublicAccessConfigArgs',
     'ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs',
+    'ClusterLoggingConfigArgs',
+    'ClusterLoggingConfigLogSetupArgs',
     'ClusterPodsConfigArgs',
     'ClusterPodsConfigFlannelConfigArgs',
     'ClusterPodsConfigVpcCniConfigArgs',
     'ClusterServicesConfigArgs',
+    'ClusterTagArgs',
     'ClustersStatusArgs',
+    'ClustersTagArgs',
+    'DefaultNodePoolBatchAttachInstanceArgs',
+    'DefaultNodePoolBatchAttachKubernetesConfigArgs',
+    'DefaultNodePoolBatchAttachKubernetesConfigLabelArgs',
+    'DefaultNodePoolBatchAttachKubernetesConfigTaintArgs',
+    'DefaultNodePoolBatchAttachNodeConfigArgs',
+    'DefaultNodePoolBatchAttachNodeConfigEcsTagArgs',
+    'DefaultNodePoolBatchAttachNodeConfigSecurityArgs',
+    'DefaultNodePoolBatchAttachNodeConfigSecurityLoginArgs',
+    'DefaultNodePoolBatchAttachTagArgs',
+    'DefaultNodePoolInstanceArgs',
+    'DefaultNodePoolKubernetesConfigArgs',
+    'DefaultNodePoolKubernetesConfigLabelArgs',
+    'DefaultNodePoolKubernetesConfigTaintArgs',
+    'DefaultNodePoolNodeConfigArgs',
+    'DefaultNodePoolNodeConfigEcsTagArgs',
+    'DefaultNodePoolNodeConfigSecurityArgs',
+    'DefaultNodePoolNodeConfigSecurityLoginArgs',
+    'DefaultNodePoolTagArgs',
+    'NodeKubernetesConfigArgs',
+    'NodeKubernetesConfigLabelArgs',
+    'NodeKubernetesConfigTaintArgs',
     'NodePoolAutoScalingArgs',
     'NodePoolKubernetesConfigArgs',
     'NodePoolKubernetesConfigLabelArgs',
     'NodePoolKubernetesConfigTaintArgs',
     'NodePoolNodeConfigArgs',
     'NodePoolNodeConfigDataVolumeArgs',
+    'NodePoolNodeConfigEcsTagArgs',
     'NodePoolNodeConfigSecurityArgs',
     'NodePoolNodeConfigSecurityLoginArgs',
     'NodePoolNodeConfigSystemVolumeArgs',
-    'NodePoolStatusArgs',
+    'NodePoolTagArgs',
     'NodePoolsStatusArgs',
+    'NodePoolsTagArgs',
     'NodesStatusArgs',
 ]
+
+@pulumi.input_type
+class AddonsStatusArgs:
+    def __init__(__self__, *,
+                 conditions_type: Optional[str] = None,
+                 phase: Optional[str] = None):
+        """
+        :param str conditions_type: The state condition in the current main state of the addon, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`,`Unknown`, `ClusterNotRunning`, `CrashLoopBackOff`, `SchedulingFailed`, `NameConflict`, `ResourceCleanupFailed`, `ClusterVersionUpgrading`.
+        :param str phase: The status of addon. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Failed`.
+        """
+        if conditions_type is not None:
+            pulumi.set(__self__, "conditions_type", conditions_type)
+        if phase is not None:
+            pulumi.set(__self__, "phase", phase)
+
+    @property
+    @pulumi.getter(name="conditionsType")
+    def conditions_type(self) -> Optional[str]:
+        """
+        The state condition in the current main state of the addon, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`,`Unknown`, `ClusterNotRunning`, `CrashLoopBackOff`, `SchedulingFailed`, `NameConflict`, `ResourceCleanupFailed`, `ClusterVersionUpgrading`.
+        """
+        return pulumi.get(self, "conditions_type")
+
+    @conditions_type.setter
+    def conditions_type(self, value: Optional[str]):
+        pulumi.set(self, "conditions_type", value)
+
+    @property
+    @pulumi.getter
+    def phase(self) -> Optional[str]:
+        """
+        The status of addon. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Failed`.
+        """
+        return pulumi.get(self, "phase")
+
+    @phase.setter
+    def phase(self, value: Optional[str]):
+        pulumi.set(self, "phase", value)
+
 
 @pulumi.input_type
 class ClusterClusterConfigArgs:
@@ -164,6 +231,99 @@ class ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigAr
 
 
 @pulumi.input_type
+class ClusterLoggingConfigArgs:
+    def __init__(__self__, *,
+                 log_project_id: Optional[pulumi.Input[str]] = None,
+                 log_setups: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterLoggingConfigLogSetupArgs']]]] = None):
+        """
+        :param pulumi.Input[str] log_project_id: The TLS log item ID of the collection target.
+        :param pulumi.Input[Sequence[pulumi.Input['ClusterLoggingConfigLogSetupArgs']]] log_setups: Cluster logging options. This structure can only be modified and added, and cannot be deleted. When encountering a `cannot be deleted` error, please query the log setups of the current cluster and fill in the current `tf` file.
+        """
+        if log_project_id is not None:
+            pulumi.set(__self__, "log_project_id", log_project_id)
+        if log_setups is not None:
+            pulumi.set(__self__, "log_setups", log_setups)
+
+    @property
+    @pulumi.getter(name="logProjectId")
+    def log_project_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The TLS log item ID of the collection target.
+        """
+        return pulumi.get(self, "log_project_id")
+
+    @log_project_id.setter
+    def log_project_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "log_project_id", value)
+
+    @property
+    @pulumi.getter(name="logSetups")
+    def log_setups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterLoggingConfigLogSetupArgs']]]]:
+        """
+        Cluster logging options. This structure can only be modified and added, and cannot be deleted. When encountering a `cannot be deleted` error, please query the log setups of the current cluster and fill in the current `tf` file.
+        """
+        return pulumi.get(self, "log_setups")
+
+    @log_setups.setter
+    def log_setups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterLoggingConfigLogSetupArgs']]]]):
+        pulumi.set(self, "log_setups", value)
+
+
+@pulumi.input_type
+class ClusterLoggingConfigLogSetupArgs:
+    def __init__(__self__, *,
+                 log_type: pulumi.Input[str],
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 log_ttl: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] log_type: The currently enabled log type.
+        :param pulumi.Input[bool] enabled: Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
+        :param pulumi.Input[int] log_ttl: The storage time of logs in Log Service. After the specified log storage time is exceeded, the expired logs in this log topic will be automatically cleared. The unit is days, and the default is 30 days. The value range is 1 to 3650, specifying 3650 days means permanent storage.
+        """
+        pulumi.set(__self__, "log_type", log_type)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if log_ttl is not None:
+            pulumi.set(__self__, "log_ttl", log_ttl)
+
+    @property
+    @pulumi.getter(name="logType")
+    def log_type(self) -> pulumi.Input[str]:
+        """
+        The currently enabled log type.
+        """
+        return pulumi.get(self, "log_type")
+
+    @log_type.setter
+    def log_type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "log_type", value)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter(name="logTtl")
+    def log_ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The storage time of logs in Log Service. After the specified log storage time is exceeded, the expired logs in this log topic will be automatically cleared. The unit is days, and the default is 30 days. The value range is 1 to 3650, specifying 3650 days means permanent storage.
+        """
+        return pulumi.get(self, "log_ttl")
+
+    @log_ttl.setter
+    def log_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "log_ttl", value)
+
+
+@pulumi.input_type
 class ClusterPodsConfigArgs:
     def __init__(__self__, *,
                  pod_network_mode: pulumi.Input[str],
@@ -223,7 +383,7 @@ class ClusterPodsConfigFlannelConfigArgs:
                  max_pods_per_node: Optional[pulumi.Input[int]] = None,
                  pod_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[int] max_pods_per_node: The maximum number of single-node Pod instances for a Flannel container network.
+        :param pulumi.Input[int] max_pods_per_node: The maximum number of single-node Pod instances for a Flannel container network, the value can be `16` or `32` or `64` or `128` or `256`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] pod_cidrs: Pod CIDR for the Flannel container network.
         """
         if max_pods_per_node is not None:
@@ -235,7 +395,7 @@ class ClusterPodsConfigFlannelConfigArgs:
     @pulumi.getter(name="maxPodsPerNode")
     def max_pods_per_node(self) -> Optional[pulumi.Input[int]]:
         """
-        The maximum number of single-node Pod instances for a Flannel container network.
+        The maximum number of single-node Pod instances for a Flannel container network, the value can be `16` or `32` or `64` or `128` or `256`.
         """
         return pulumi.get(self, "max_pods_per_node")
 
@@ -318,12 +478,49 @@ class ClusterServicesConfigArgs:
 
 
 @pulumi.input_type
+class ClusterTagArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
 class ClustersStatusArgs:
     def __init__(__self__, *,
                  conditions_type: Optional[str] = None,
                  phase: Optional[str] = None):
         """
-        :param str conditions_type: The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Balance`, `CreateError`, `ResourceCleanupFailed`, `Unknown`.
+        :param str conditions_type: The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`, `SetByProvider`, `Balance`, `Security`, `CreateError`, `ResourceCleanupFailed`, `LimitedByQuota`, `StockOut`,`Unknown`.
         :param str phase: The status of cluster. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Stopped`, `Failed`.
         """
         if conditions_type is not None:
@@ -335,7 +532,7 @@ class ClustersStatusArgs:
     @pulumi.getter(name="conditionsType")
     def conditions_type(self) -> Optional[str]:
         """
-        The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Balance`, `CreateError`, `ResourceCleanupFailed`, `Unknown`.
+        The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`, `SetByProvider`, `Balance`, `Security`, `CreateError`, `ResourceCleanupFailed`, `LimitedByQuota`, `StockOut`,`Unknown`.
         """
         return pulumi.get(self, "conditions_type")
 
@@ -357,19 +554,1212 @@ class ClustersStatusArgs:
 
 
 @pulumi.input_type
+class ClustersTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class DefaultNodePoolBatchAttachInstanceArgs:
+    def __init__(__self__, *,
+                 instance_id: pulumi.Input[str],
+                 additional_container_storage_enabled: Optional[pulumi.Input[bool]] = None,
+                 container_storage_path: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None,
+                 image_id: Optional[pulumi.Input[str]] = None,
+                 keep_instance_name: Optional[pulumi.Input[bool]] = None,
+                 phase: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] instance_id: The instance id.
+        :param pulumi.Input[bool] additional_container_storage_enabled: The flag of additional container storage enable, the value is `true` or `false`..Default is `false`.
+        :param pulumi.Input[str] container_storage_path: The container storage path.When additional_container_storage_enabled is `false` will ignore.
+        :param pulumi.Input[str] id: ID of the resource.
+        :param pulumi.Input[str] image_id: The Image Id to the ECS Instance.
+        :param pulumi.Input[bool] keep_instance_name: The flag of keep instance name, the value is `true` or `false`.Default is `false`.
+        """
+        pulumi.set(__self__, "instance_id", instance_id)
+        if additional_container_storage_enabled is not None:
+            pulumi.set(__self__, "additional_container_storage_enabled", additional_container_storage_enabled)
+        if container_storage_path is not None:
+            pulumi.set(__self__, "container_storage_path", container_storage_path)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if image_id is not None:
+            pulumi.set(__self__, "image_id", image_id)
+        if keep_instance_name is not None:
+            pulumi.set(__self__, "keep_instance_name", keep_instance_name)
+        if phase is not None:
+            pulumi.set(__self__, "phase", phase)
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> pulumi.Input[str]:
+        """
+        The instance id.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @instance_id.setter
+    def instance_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "instance_id", value)
+
+    @property
+    @pulumi.getter(name="additionalContainerStorageEnabled")
+    def additional_container_storage_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        The flag of additional container storage enable, the value is `true` or `false`..Default is `false`.
+        """
+        return pulumi.get(self, "additional_container_storage_enabled")
+
+    @additional_container_storage_enabled.setter
+    def additional_container_storage_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "additional_container_storage_enabled", value)
+
+    @property
+    @pulumi.getter(name="containerStoragePath")
+    def container_storage_path(self) -> Optional[pulumi.Input[str]]:
+        """
+        The container storage path.When additional_container_storage_enabled is `false` will ignore.
+        """
+        return pulumi.get(self, "container_storage_path")
+
+    @container_storage_path.setter
+    def container_storage_path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "container_storage_path", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the resource.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter(name="imageId")
+    def image_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Image Id to the ECS Instance.
+        """
+        return pulumi.get(self, "image_id")
+
+    @image_id.setter
+    def image_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "image_id", value)
+
+    @property
+    @pulumi.getter(name="keepInstanceName")
+    def keep_instance_name(self) -> Optional[pulumi.Input[bool]]:
+        """
+        The flag of keep instance name, the value is `true` or `false`.Default is `false`.
+        """
+        return pulumi.get(self, "keep_instance_name")
+
+    @keep_instance_name.setter
+    def keep_instance_name(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "keep_instance_name", value)
+
+    @property
+    @pulumi.getter
+    def phase(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "phase")
+
+    @phase.setter
+    def phase(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "phase", value)
+
+
+@pulumi.input_type
+class DefaultNodePoolBatchAttachKubernetesConfigArgs:
+    def __init__(__self__, *,
+                 cordon: Optional[pulumi.Input[bool]] = None,
+                 labels: Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachKubernetesConfigLabelArgs']]]] = None,
+                 taints: Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachKubernetesConfigTaintArgs']]]] = None):
+        """
+        :param pulumi.Input[bool] cordon: The Cordon of KubernetesConfig.
+        :param pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachKubernetesConfigLabelArgs']]] labels: The Labels of KubernetesConfig.
+        :param pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachKubernetesConfigTaintArgs']]] taints: The Taints of KubernetesConfig.
+        """
+        if cordon is not None:
+            pulumi.set(__self__, "cordon", cordon)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+        if taints is not None:
+            pulumi.set(__self__, "taints", taints)
+
+    @property
+    @pulumi.getter
+    def cordon(self) -> Optional[pulumi.Input[bool]]:
+        """
+        The Cordon of KubernetesConfig.
+        """
+        return pulumi.get(self, "cordon")
+
+    @cordon.setter
+    def cordon(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "cordon", value)
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachKubernetesConfigLabelArgs']]]]:
+        """
+        The Labels of KubernetesConfig.
+        """
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachKubernetesConfigLabelArgs']]]]):
+        pulumi.set(self, "labels", value)
+
+    @property
+    @pulumi.getter
+    def taints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachKubernetesConfigTaintArgs']]]]:
+        """
+        The Taints of KubernetesConfig.
+        """
+        return pulumi.get(self, "taints")
+
+    @taints.setter
+    def taints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachKubernetesConfigTaintArgs']]]]):
+        pulumi.set(self, "taints", value)
+
+
+@pulumi.input_type
+class DefaultNodePoolBatchAttachKubernetesConfigLabelArgs:
+    def __init__(__self__, *,
+                 key: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class DefaultNodePoolBatchAttachKubernetesConfigTaintArgs:
+    def __init__(__self__, *,
+                 effect: Optional[pulumi.Input[str]] = None,
+                 key: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] effect: The Effect of Taints.
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
+        """
+        if effect is not None:
+            pulumi.set(__self__, "effect", effect)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def effect(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Effect of Taints.
+        """
+        return pulumi.get(self, "effect")
+
+    @effect.setter
+    def effect(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "effect", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class DefaultNodePoolBatchAttachNodeConfigArgs:
+    def __init__(__self__, *,
+                 ecs_tags: Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachNodeConfigEcsTagArgs']]]] = None,
+                 initialize_script: Optional[pulumi.Input[str]] = None,
+                 name_prefix: Optional[pulumi.Input[str]] = None,
+                 securities: Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachNodeConfigSecurityArgs']]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachNodeConfigEcsTagArgs']]] ecs_tags: Tags for Ecs.
+        :param pulumi.Input[str] initialize_script: The initializeScript of NodeConfig.
+        :param pulumi.Input[str] name_prefix: The NamePrefix of NodeConfig.
+        :param pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachNodeConfigSecurityArgs']]] securities: The Security of NodeConfig.
+        """
+        if ecs_tags is not None:
+            pulumi.set(__self__, "ecs_tags", ecs_tags)
+        if initialize_script is not None:
+            pulumi.set(__self__, "initialize_script", initialize_script)
+        if name_prefix is not None:
+            pulumi.set(__self__, "name_prefix", name_prefix)
+        if securities is not None:
+            pulumi.set(__self__, "securities", securities)
+
+    @property
+    @pulumi.getter(name="ecsTags")
+    def ecs_tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachNodeConfigEcsTagArgs']]]]:
+        """
+        Tags for Ecs.
+        """
+        return pulumi.get(self, "ecs_tags")
+
+    @ecs_tags.setter
+    def ecs_tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachNodeConfigEcsTagArgs']]]]):
+        pulumi.set(self, "ecs_tags", value)
+
+    @property
+    @pulumi.getter(name="initializeScript")
+    def initialize_script(self) -> Optional[pulumi.Input[str]]:
+        """
+        The initializeScript of NodeConfig.
+        """
+        return pulumi.get(self, "initialize_script")
+
+    @initialize_script.setter
+    def initialize_script(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "initialize_script", value)
+
+    @property
+    @pulumi.getter(name="namePrefix")
+    def name_prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        The NamePrefix of NodeConfig.
+        """
+        return pulumi.get(self, "name_prefix")
+
+    @name_prefix.setter
+    def name_prefix(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name_prefix", value)
+
+    @property
+    @pulumi.getter
+    def securities(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachNodeConfigSecurityArgs']]]]:
+        """
+        The Security of NodeConfig.
+        """
+        return pulumi.get(self, "securities")
+
+    @securities.setter
+    def securities(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachNodeConfigSecurityArgs']]]]):
+        pulumi.set(self, "securities", value)
+
+
+@pulumi.input_type
+class DefaultNodePoolBatchAttachNodeConfigEcsTagArgs:
+    def __init__(__self__, *,
+                 key: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class DefaultNodePoolBatchAttachNodeConfigSecurityArgs:
+    def __init__(__self__, *,
+                 logins: Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachNodeConfigSecurityLoginArgs']]]] = None,
+                 security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 security_strategies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachNodeConfigSecurityLoginArgs']]] logins: The Login of Security.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The SecurityGroupIds of Security.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_strategies: The SecurityStrategies of Security.
+        """
+        if logins is not None:
+            pulumi.set(__self__, "logins", logins)
+        if security_group_ids is not None:
+            pulumi.set(__self__, "security_group_ids", security_group_ids)
+        if security_strategies is not None:
+            pulumi.set(__self__, "security_strategies", security_strategies)
+
+    @property
+    @pulumi.getter
+    def logins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachNodeConfigSecurityLoginArgs']]]]:
+        """
+        The Login of Security.
+        """
+        return pulumi.get(self, "logins")
+
+    @logins.setter
+    def logins(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachNodeConfigSecurityLoginArgs']]]]):
+        pulumi.set(self, "logins", value)
+
+    @property
+    @pulumi.getter(name="securityGroupIds")
+    def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The SecurityGroupIds of Security.
+        """
+        return pulumi.get(self, "security_group_ids")
+
+    @security_group_ids.setter
+    def security_group_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "security_group_ids", value)
+
+    @property
+    @pulumi.getter(name="securityStrategies")
+    def security_strategies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The SecurityStrategies of Security.
+        """
+        return pulumi.get(self, "security_strategies")
+
+    @security_strategies.setter
+    def security_strategies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "security_strategies", value)
+
+
+@pulumi.input_type
+class DefaultNodePoolBatchAttachNodeConfigSecurityLoginArgs:
+    def __init__(__self__, *,
+                 password: Optional[pulumi.Input[str]] = None,
+                 ssh_key_pair_name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] password: The Password of Security.
+        :param pulumi.Input[str] ssh_key_pair_name: The SshKeyPairName of Security.
+        """
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if ssh_key_pair_name is not None:
+            pulumi.set(__self__, "ssh_key_pair_name", ssh_key_pair_name)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Password of Security.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter(name="sshKeyPairName")
+    def ssh_key_pair_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The SshKeyPairName of Security.
+        """
+        return pulumi.get(self, "ssh_key_pair_name")
+
+    @ssh_key_pair_name.setter
+    def ssh_key_pair_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssh_key_pair_name", value)
+
+
+@pulumi.input_type
+class DefaultNodePoolBatchAttachTagArgs:
+    def __init__(__self__, *,
+                 key: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class DefaultNodePoolInstanceArgs:
+    def __init__(__self__, *,
+                 instance_id: pulumi.Input[str],
+                 additional_container_storage_enabled: Optional[pulumi.Input[bool]] = None,
+                 container_storage_path: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None,
+                 image_id: Optional[pulumi.Input[str]] = None,
+                 keep_instance_name: Optional[pulumi.Input[bool]] = None,
+                 phase: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] instance_id: The instance id.
+        :param pulumi.Input[bool] additional_container_storage_enabled: The flag of additional container storage enable, the value is `true` or `false`..Default is `false`.
+        :param pulumi.Input[str] container_storage_path: The container storage path.When additional_container_storage_enabled is `false` will ignore.
+        :param pulumi.Input[str] id: ID of the resource.
+        :param pulumi.Input[str] image_id: The Image Id to the ECS Instance.
+        :param pulumi.Input[bool] keep_instance_name: The flag of keep instance name, the value is `true` or `false`.Default is `false`.
+        """
+        pulumi.set(__self__, "instance_id", instance_id)
+        if additional_container_storage_enabled is not None:
+            pulumi.set(__self__, "additional_container_storage_enabled", additional_container_storage_enabled)
+        if container_storage_path is not None:
+            pulumi.set(__self__, "container_storage_path", container_storage_path)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if image_id is not None:
+            pulumi.set(__self__, "image_id", image_id)
+        if keep_instance_name is not None:
+            pulumi.set(__self__, "keep_instance_name", keep_instance_name)
+        if phase is not None:
+            pulumi.set(__self__, "phase", phase)
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> pulumi.Input[str]:
+        """
+        The instance id.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @instance_id.setter
+    def instance_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "instance_id", value)
+
+    @property
+    @pulumi.getter(name="additionalContainerStorageEnabled")
+    def additional_container_storage_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        The flag of additional container storage enable, the value is `true` or `false`..Default is `false`.
+        """
+        return pulumi.get(self, "additional_container_storage_enabled")
+
+    @additional_container_storage_enabled.setter
+    def additional_container_storage_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "additional_container_storage_enabled", value)
+
+    @property
+    @pulumi.getter(name="containerStoragePath")
+    def container_storage_path(self) -> Optional[pulumi.Input[str]]:
+        """
+        The container storage path.When additional_container_storage_enabled is `false` will ignore.
+        """
+        return pulumi.get(self, "container_storage_path")
+
+    @container_storage_path.setter
+    def container_storage_path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "container_storage_path", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the resource.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter(name="imageId")
+    def image_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Image Id to the ECS Instance.
+        """
+        return pulumi.get(self, "image_id")
+
+    @image_id.setter
+    def image_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "image_id", value)
+
+    @property
+    @pulumi.getter(name="keepInstanceName")
+    def keep_instance_name(self) -> Optional[pulumi.Input[bool]]:
+        """
+        The flag of keep instance name, the value is `true` or `false`.Default is `false`.
+        """
+        return pulumi.get(self, "keep_instance_name")
+
+    @keep_instance_name.setter
+    def keep_instance_name(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "keep_instance_name", value)
+
+    @property
+    @pulumi.getter
+    def phase(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "phase")
+
+    @phase.setter
+    def phase(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "phase", value)
+
+
+@pulumi.input_type
+class DefaultNodePoolKubernetesConfigArgs:
+    def __init__(__self__, *,
+                 cordon: pulumi.Input[bool],
+                 labels: Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolKubernetesConfigLabelArgs']]]] = None,
+                 taints: Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolKubernetesConfigTaintArgs']]]] = None):
+        """
+        :param pulumi.Input[bool] cordon: The Cordon of KubernetesConfig.
+        :param pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolKubernetesConfigLabelArgs']]] labels: The Labels of KubernetesConfig.
+        :param pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolKubernetesConfigTaintArgs']]] taints: The Taints of KubernetesConfig.
+        """
+        pulumi.set(__self__, "cordon", cordon)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+        if taints is not None:
+            pulumi.set(__self__, "taints", taints)
+
+    @property
+    @pulumi.getter
+    def cordon(self) -> pulumi.Input[bool]:
+        """
+        The Cordon of KubernetesConfig.
+        """
+        return pulumi.get(self, "cordon")
+
+    @cordon.setter
+    def cordon(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "cordon", value)
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolKubernetesConfigLabelArgs']]]]:
+        """
+        The Labels of KubernetesConfig.
+        """
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolKubernetesConfigLabelArgs']]]]):
+        pulumi.set(self, "labels", value)
+
+    @property
+    @pulumi.getter
+    def taints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolKubernetesConfigTaintArgs']]]]:
+        """
+        The Taints of KubernetesConfig.
+        """
+        return pulumi.get(self, "taints")
+
+    @taints.setter
+    def taints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolKubernetesConfigTaintArgs']]]]):
+        pulumi.set(self, "taints", value)
+
+
+@pulumi.input_type
+class DefaultNodePoolKubernetesConfigLabelArgs:
+    def __init__(__self__, *,
+                 key: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] key: The Key of Labels.
+        :param pulumi.Input[str] value: The Value of Labels.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Key of Labels.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Value of Labels.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class DefaultNodePoolKubernetesConfigTaintArgs:
+    def __init__(__self__, *,
+                 effect: Optional[pulumi.Input[str]] = None,
+                 key: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] effect: The Effect of Taints.
+        :param pulumi.Input[str] key: The Key of Taints.
+        :param pulumi.Input[str] value: The Value of Taints.
+        """
+        if effect is not None:
+            pulumi.set(__self__, "effect", effect)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def effect(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Effect of Taints.
+        """
+        return pulumi.get(self, "effect")
+
+    @effect.setter
+    def effect(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "effect", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Key of Taints.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Value of Taints.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class DefaultNodePoolNodeConfigArgs:
+    def __init__(__self__, *,
+                 security: pulumi.Input['DefaultNodePoolNodeConfigSecurityArgs'],
+                 ecs_tags: Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolNodeConfigEcsTagArgs']]]] = None,
+                 initialize_script: Optional[pulumi.Input[str]] = None,
+                 name_prefix: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input['DefaultNodePoolNodeConfigSecurityArgs'] security: The Security of NodeConfig.
+        :param pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolNodeConfigEcsTagArgs']]] ecs_tags: Tags for Ecs.
+        :param pulumi.Input[str] initialize_script: The initializeScript of NodeConfig.
+        :param pulumi.Input[str] name_prefix: The NamePrefix of NodeConfig.
+        """
+        pulumi.set(__self__, "security", security)
+        if ecs_tags is not None:
+            pulumi.set(__self__, "ecs_tags", ecs_tags)
+        if initialize_script is not None:
+            pulumi.set(__self__, "initialize_script", initialize_script)
+        if name_prefix is not None:
+            pulumi.set(__self__, "name_prefix", name_prefix)
+
+    @property
+    @pulumi.getter
+    def security(self) -> pulumi.Input['DefaultNodePoolNodeConfigSecurityArgs']:
+        """
+        The Security of NodeConfig.
+        """
+        return pulumi.get(self, "security")
+
+    @security.setter
+    def security(self, value: pulumi.Input['DefaultNodePoolNodeConfigSecurityArgs']):
+        pulumi.set(self, "security", value)
+
+    @property
+    @pulumi.getter(name="ecsTags")
+    def ecs_tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolNodeConfigEcsTagArgs']]]]:
+        """
+        Tags for Ecs.
+        """
+        return pulumi.get(self, "ecs_tags")
+
+    @ecs_tags.setter
+    def ecs_tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolNodeConfigEcsTagArgs']]]]):
+        pulumi.set(self, "ecs_tags", value)
+
+    @property
+    @pulumi.getter(name="initializeScript")
+    def initialize_script(self) -> Optional[pulumi.Input[str]]:
+        """
+        The initializeScript of NodeConfig.
+        """
+        return pulumi.get(self, "initialize_script")
+
+    @initialize_script.setter
+    def initialize_script(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "initialize_script", value)
+
+    @property
+    @pulumi.getter(name="namePrefix")
+    def name_prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        The NamePrefix of NodeConfig.
+        """
+        return pulumi.get(self, "name_prefix")
+
+    @name_prefix.setter
+    def name_prefix(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name_prefix", value)
+
+
+@pulumi.input_type
+class DefaultNodePoolNodeConfigEcsTagArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class DefaultNodePoolNodeConfigSecurityArgs:
+    def __init__(__self__, *,
+                 login: pulumi.Input['DefaultNodePoolNodeConfigSecurityLoginArgs'],
+                 security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 security_strategies: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input['DefaultNodePoolNodeConfigSecurityLoginArgs'] login: The Login of Security.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The SecurityGroupIds of Security.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_strategies: The SecurityStrategies of Security.
+        """
+        pulumi.set(__self__, "login", login)
+        if security_group_ids is not None:
+            pulumi.set(__self__, "security_group_ids", security_group_ids)
+        if security_strategies is not None:
+            pulumi.set(__self__, "security_strategies", security_strategies)
+
+    @property
+    @pulumi.getter
+    def login(self) -> pulumi.Input['DefaultNodePoolNodeConfigSecurityLoginArgs']:
+        """
+        The Login of Security.
+        """
+        return pulumi.get(self, "login")
+
+    @login.setter
+    def login(self, value: pulumi.Input['DefaultNodePoolNodeConfigSecurityLoginArgs']):
+        pulumi.set(self, "login", value)
+
+    @property
+    @pulumi.getter(name="securityGroupIds")
+    def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The SecurityGroupIds of Security.
+        """
+        return pulumi.get(self, "security_group_ids")
+
+    @security_group_ids.setter
+    def security_group_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "security_group_ids", value)
+
+    @property
+    @pulumi.getter(name="securityStrategies")
+    def security_strategies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The SecurityStrategies of Security.
+        """
+        return pulumi.get(self, "security_strategies")
+
+    @security_strategies.setter
+    def security_strategies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "security_strategies", value)
+
+
+@pulumi.input_type
+class DefaultNodePoolNodeConfigSecurityLoginArgs:
+    def __init__(__self__, *,
+                 password: Optional[pulumi.Input[str]] = None,
+                 ssh_key_pair_name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] password: The Password of Security.
+        :param pulumi.Input[str] ssh_key_pair_name: The SshKeyPairName of Security.
+        """
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if ssh_key_pair_name is not None:
+            pulumi.set(__self__, "ssh_key_pair_name", ssh_key_pair_name)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Password of Security.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter(name="sshKeyPairName")
+    def ssh_key_pair_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The SshKeyPairName of Security.
+        """
+        return pulumi.get(self, "ssh_key_pair_name")
+
+    @ssh_key_pair_name.setter
+    def ssh_key_pair_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssh_key_pair_name", value)
+
+
+@pulumi.input_type
+class DefaultNodePoolTagArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class NodeKubernetesConfigArgs:
+    def __init__(__self__, *,
+                 cordon: Optional[pulumi.Input[bool]] = None,
+                 labels: Optional[pulumi.Input[Sequence[pulumi.Input['NodeKubernetesConfigLabelArgs']]]] = None,
+                 taints: Optional[pulumi.Input[Sequence[pulumi.Input['NodeKubernetesConfigTaintArgs']]]] = None):
+        """
+        :param pulumi.Input[bool] cordon: The Cordon of KubernetesConfig.
+        :param pulumi.Input[Sequence[pulumi.Input['NodeKubernetesConfigLabelArgs']]] labels: The Labels of KubernetesConfig.
+        :param pulumi.Input[Sequence[pulumi.Input['NodeKubernetesConfigTaintArgs']]] taints: The Taints of KubernetesConfig.
+        """
+        if cordon is not None:
+            pulumi.set(__self__, "cordon", cordon)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+        if taints is not None:
+            pulumi.set(__self__, "taints", taints)
+
+    @property
+    @pulumi.getter
+    def cordon(self) -> Optional[pulumi.Input[bool]]:
+        """
+        The Cordon of KubernetesConfig.
+        """
+        return pulumi.get(self, "cordon")
+
+    @cordon.setter
+    def cordon(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "cordon", value)
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NodeKubernetesConfigLabelArgs']]]]:
+        """
+        The Labels of KubernetesConfig.
+        """
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NodeKubernetesConfigLabelArgs']]]]):
+        pulumi.set(self, "labels", value)
+
+    @property
+    @pulumi.getter
+    def taints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NodeKubernetesConfigTaintArgs']]]]:
+        """
+        The Taints of KubernetesConfig.
+        """
+        return pulumi.get(self, "taints")
+
+    @taints.setter
+    def taints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NodeKubernetesConfigTaintArgs']]]]):
+        pulumi.set(self, "taints", value)
+
+
+@pulumi.input_type
+class NodeKubernetesConfigLabelArgs:
+    def __init__(__self__, *,
+                 key: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] key: The Key of Labels.
+        :param pulumi.Input[str] value: The Value of Labels.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Key of Labels.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Value of Labels.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class NodeKubernetesConfigTaintArgs:
+    def __init__(__self__, *,
+                 effect: Optional[pulumi.Input[str]] = None,
+                 key: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] effect: The Effect of Taints, the value can be `NoSchedule` or `NoExecute` or `PreferNoSchedule`.
+        :param pulumi.Input[str] key: The Key of Taints.
+        :param pulumi.Input[str] value: The Value of Taints.
+        """
+        if effect is not None:
+            pulumi.set(__self__, "effect", effect)
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def effect(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Effect of Taints, the value can be `NoSchedule` or `NoExecute` or `PreferNoSchedule`.
+        """
+        return pulumi.get(self, "effect")
+
+    @effect.setter
+    def effect(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "effect", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Key of Taints.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Value of Taints.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
 class NodePoolAutoScalingArgs:
     def __init__(__self__, *,
                  desired_replicas: Optional[pulumi.Input[int]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  max_replicas: Optional[pulumi.Input[int]] = None,
                  min_replicas: Optional[pulumi.Input[int]] = None,
-                 priority: Optional[pulumi.Input[int]] = None):
+                 priority: Optional[pulumi.Input[int]] = None,
+                 subnet_policy: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[int] desired_replicas: The DesiredReplicas of AutoScaling.
+        :param pulumi.Input[int] desired_replicas: The DesiredReplicas of AutoScaling, default 0, range in min_replicas to max_replicas.
         :param pulumi.Input[bool] enabled: Is Enabled of AutoScaling.
-        :param pulumi.Input[int] max_replicas: The MaxReplicas of AutoScaling.
-        :param pulumi.Input[int] min_replicas: The MinReplicas of AutoScaling.
-        :param pulumi.Input[int] priority: The Priority of AutoScaling.
+        :param pulumi.Input[int] max_replicas: The MaxReplicas of AutoScaling, default 10, range in 1~2000.
+        :param pulumi.Input[int] min_replicas: The MinReplicas of AutoScaling, default 0.
+        :param pulumi.Input[int] priority: The Priority of AutoScaling, default 10, rang in 0~100.
+        :param pulumi.Input[str] subnet_policy: Multi-subnet scheduling strategy for nodes. The value can be `ZoneBalance` or `Priority`.
         """
         if desired_replicas is not None:
             pulumi.set(__self__, "desired_replicas", desired_replicas)
@@ -381,12 +1771,14 @@ class NodePoolAutoScalingArgs:
             pulumi.set(__self__, "min_replicas", min_replicas)
         if priority is not None:
             pulumi.set(__self__, "priority", priority)
+        if subnet_policy is not None:
+            pulumi.set(__self__, "subnet_policy", subnet_policy)
 
     @property
     @pulumi.getter(name="desiredReplicas")
     def desired_replicas(self) -> Optional[pulumi.Input[int]]:
         """
-        The DesiredReplicas of AutoScaling.
+        The DesiredReplicas of AutoScaling, default 0, range in min_replicas to max_replicas.
         """
         return pulumi.get(self, "desired_replicas")
 
@@ -410,7 +1802,7 @@ class NodePoolAutoScalingArgs:
     @pulumi.getter(name="maxReplicas")
     def max_replicas(self) -> Optional[pulumi.Input[int]]:
         """
-        The MaxReplicas of AutoScaling.
+        The MaxReplicas of AutoScaling, default 10, range in 1~2000.
         """
         return pulumi.get(self, "max_replicas")
 
@@ -422,7 +1814,7 @@ class NodePoolAutoScalingArgs:
     @pulumi.getter(name="minReplicas")
     def min_replicas(self) -> Optional[pulumi.Input[int]]:
         """
-        The MinReplicas of AutoScaling.
+        The MinReplicas of AutoScaling, default 0.
         """
         return pulumi.get(self, "min_replicas")
 
@@ -434,7 +1826,7 @@ class NodePoolAutoScalingArgs:
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[int]]:
         """
-        The Priority of AutoScaling.
+        The Priority of AutoScaling, default 10, rang in 0~100.
         """
         return pulumi.get(self, "priority")
 
@@ -442,11 +1834,23 @@ class NodePoolAutoScalingArgs:
     def priority(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "priority", value)
 
+    @property
+    @pulumi.getter(name="subnetPolicy")
+    def subnet_policy(self) -> Optional[pulumi.Input[str]]:
+        """
+        Multi-subnet scheduling strategy for nodes. The value can be `ZoneBalance` or `Priority`.
+        """
+        return pulumi.get(self, "subnet_policy")
+
+    @subnet_policy.setter
+    def subnet_policy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "subnet_policy", value)
+
 
 @pulumi.input_type
 class NodePoolKubernetesConfigArgs:
     def __init__(__self__, *,
-                 cordon: Optional[pulumi.Input[bool]] = None,
+                 cordon: pulumi.Input[bool],
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolKubernetesConfigLabelArgs']]]] = None,
                  taints: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolKubernetesConfigTaintArgs']]]] = None):
         """
@@ -454,8 +1858,7 @@ class NodePoolKubernetesConfigArgs:
         :param pulumi.Input[Sequence[pulumi.Input['NodePoolKubernetesConfigLabelArgs']]] labels: The Labels of KubernetesConfig.
         :param pulumi.Input[Sequence[pulumi.Input['NodePoolKubernetesConfigTaintArgs']]] taints: The Taints of KubernetesConfig.
         """
-        if cordon is not None:
-            pulumi.set(__self__, "cordon", cordon)
+        pulumi.set(__self__, "cordon", cordon)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if taints is not None:
@@ -463,14 +1866,14 @@ class NodePoolKubernetesConfigArgs:
 
     @property
     @pulumi.getter
-    def cordon(self) -> Optional[pulumi.Input[bool]]:
+    def cordon(self) -> pulumi.Input[bool]:
         """
         The Cordon of KubernetesConfig.
         """
         return pulumi.get(self, "cordon")
 
     @cordon.setter
-    def cordon(self, value: Optional[pulumi.Input[bool]]):
+    def cordon(self, value: pulumi.Input[bool]):
         pulumi.set(self, "cordon", value)
 
     @property
@@ -544,7 +1947,7 @@ class NodePoolKubernetesConfigTaintArgs:
                  key: Optional[pulumi.Input[str]] = None,
                  value: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] effect: The Effect of Taints.
+        :param pulumi.Input[str] effect: The Effect of Taints, the value can be `NoSchedule` or `NoExecute` or `PreferNoSchedule`.
         :param pulumi.Input[str] key: The Key of Taints.
         :param pulumi.Input[str] value: The Value of Taints.
         """
@@ -559,7 +1962,7 @@ class NodePoolKubernetesConfigTaintArgs:
     @pulumi.getter
     def effect(self) -> Optional[pulumi.Input[str]]:
         """
-        The Effect of Taints.
+        The Effect of Taints, the value can be `NoSchedule` or `NoExecute` or `PreferNoSchedule`.
         """
         return pulumi.get(self, "effect")
 
@@ -595,36 +1998,101 @@ class NodePoolKubernetesConfigTaintArgs:
 @pulumi.input_type
 class NodePoolNodeConfigArgs:
     def __init__(__self__, *,
+                 instance_type_ids: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 security: pulumi.Input['NodePoolNodeConfigSecurityArgs'],
+                 subnet_ids: pulumi.Input[Sequence[pulumi.Input[str]]],
                  additional_container_storage_enabled: Optional[pulumi.Input[bool]] = None,
+                 auto_renew: Optional[pulumi.Input[bool]] = None,
+                 auto_renew_period: Optional[pulumi.Input[int]] = None,
                  data_volumes: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolNodeConfigDataVolumeArgs']]]] = None,
+                 ecs_tags: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolNodeConfigEcsTagArgs']]]] = None,
+                 hpc_cluster_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 image_id: Optional[pulumi.Input[str]] = None,
                  initialize_script: Optional[pulumi.Input[str]] = None,
-                 instance_type_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 security: Optional[pulumi.Input['NodePoolNodeConfigSecurityArgs']] = None,
-                 subnet_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 instance_charge_type: Optional[pulumi.Input[str]] = None,
+                 name_prefix: Optional[pulumi.Input[str]] = None,
+                 period: Optional[pulumi.Input[int]] = None,
                  system_volume: Optional[pulumi.Input['NodePoolNodeConfigSystemVolumeArgs']] = None):
         """
-        :param pulumi.Input[bool] additional_container_storage_enabled: The AdditionalContainerStorageEnabled of NodeConfig.
-        :param pulumi.Input[Sequence[pulumi.Input['NodePoolNodeConfigDataVolumeArgs']]] data_volumes: The DataVolumes of NodeConfig.
-        :param pulumi.Input[str] initialize_script: The initializeScript of NodeConfig.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_type_ids: The InstanceTypeIds of NodeConfig.
         :param pulumi.Input['NodePoolNodeConfigSecurityArgs'] security: The Security of NodeConfig.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] subnet_ids: The SubnetIds of NodeConfig.
+        :param pulumi.Input[bool] additional_container_storage_enabled: The AdditionalContainerStorageEnabled of NodeConfig.
+        :param pulumi.Input[bool] auto_renew: Is AutoRenew of PrePaid instance of NodeConfig. Valid values: true, false. when InstanceChargeType is PrePaid, default value is true.
+        :param pulumi.Input[int] auto_renew_period: The AutoRenewPeriod of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 6, 12. Unit: month. when InstanceChargeType is PrePaid and AutoRenew enable, default value is 1.
+        :param pulumi.Input[Sequence[pulumi.Input['NodePoolNodeConfigDataVolumeArgs']]] data_volumes: The DataVolumes of NodeConfig.
+        :param pulumi.Input[Sequence[pulumi.Input['NodePoolNodeConfigEcsTagArgs']]] ecs_tags: Tags for Ecs.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] hpc_cluster_ids: The IDs of HpcCluster, only one ID is supported currently.
+        :param pulumi.Input[str] image_id: The ImageId of NodeConfig.
+        :param pulumi.Input[str] initialize_script: The initializeScript of NodeConfig.
+        :param pulumi.Input[str] instance_charge_type: The InstanceChargeType of PrePaid instance of NodeConfig. Valid values: PostPaid, PrePaid. Default value: PostPaid.
+        :param pulumi.Input[str] name_prefix: The NamePrefix of NodeConfig.
+        :param pulumi.Input[int] period: The Period of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36. Unit: month. when InstanceChargeType is PrePaid, default value is 12.
         :param pulumi.Input['NodePoolNodeConfigSystemVolumeArgs'] system_volume: The SystemVolume of NodeConfig.
         """
+        pulumi.set(__self__, "instance_type_ids", instance_type_ids)
+        pulumi.set(__self__, "security", security)
+        pulumi.set(__self__, "subnet_ids", subnet_ids)
         if additional_container_storage_enabled is not None:
             pulumi.set(__self__, "additional_container_storage_enabled", additional_container_storage_enabled)
+        if auto_renew is not None:
+            pulumi.set(__self__, "auto_renew", auto_renew)
+        if auto_renew_period is not None:
+            pulumi.set(__self__, "auto_renew_period", auto_renew_period)
         if data_volumes is not None:
             pulumi.set(__self__, "data_volumes", data_volumes)
+        if ecs_tags is not None:
+            pulumi.set(__self__, "ecs_tags", ecs_tags)
+        if hpc_cluster_ids is not None:
+            pulumi.set(__self__, "hpc_cluster_ids", hpc_cluster_ids)
+        if image_id is not None:
+            pulumi.set(__self__, "image_id", image_id)
         if initialize_script is not None:
             pulumi.set(__self__, "initialize_script", initialize_script)
-        if instance_type_ids is not None:
-            pulumi.set(__self__, "instance_type_ids", instance_type_ids)
-        if security is not None:
-            pulumi.set(__self__, "security", security)
-        if subnet_ids is not None:
-            pulumi.set(__self__, "subnet_ids", subnet_ids)
+        if instance_charge_type is not None:
+            pulumi.set(__self__, "instance_charge_type", instance_charge_type)
+        if name_prefix is not None:
+            pulumi.set(__self__, "name_prefix", name_prefix)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
         if system_volume is not None:
             pulumi.set(__self__, "system_volume", system_volume)
+
+    @property
+    @pulumi.getter(name="instanceTypeIds")
+    def instance_type_ids(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        The InstanceTypeIds of NodeConfig.
+        """
+        return pulumi.get(self, "instance_type_ids")
+
+    @instance_type_ids.setter
+    def instance_type_ids(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "instance_type_ids", value)
+
+    @property
+    @pulumi.getter
+    def security(self) -> pulumi.Input['NodePoolNodeConfigSecurityArgs']:
+        """
+        The Security of NodeConfig.
+        """
+        return pulumi.get(self, "security")
+
+    @security.setter
+    def security(self, value: pulumi.Input['NodePoolNodeConfigSecurityArgs']):
+        pulumi.set(self, "security", value)
+
+    @property
+    @pulumi.getter(name="subnetIds")
+    def subnet_ids(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        The SubnetIds of NodeConfig.
+        """
+        return pulumi.get(self, "subnet_ids")
+
+    @subnet_ids.setter
+    def subnet_ids(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "subnet_ids", value)
 
     @property
     @pulumi.getter(name="additionalContainerStorageEnabled")
@@ -639,6 +2107,30 @@ class NodePoolNodeConfigArgs:
         pulumi.set(self, "additional_container_storage_enabled", value)
 
     @property
+    @pulumi.getter(name="autoRenew")
+    def auto_renew(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Is AutoRenew of PrePaid instance of NodeConfig. Valid values: true, false. when InstanceChargeType is PrePaid, default value is true.
+        """
+        return pulumi.get(self, "auto_renew")
+
+    @auto_renew.setter
+    def auto_renew(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "auto_renew", value)
+
+    @property
+    @pulumi.getter(name="autoRenewPeriod")
+    def auto_renew_period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The AutoRenewPeriod of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 6, 12. Unit: month. when InstanceChargeType is PrePaid and AutoRenew enable, default value is 1.
+        """
+        return pulumi.get(self, "auto_renew_period")
+
+    @auto_renew_period.setter
+    def auto_renew_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "auto_renew_period", value)
+
+    @property
     @pulumi.getter(name="dataVolumes")
     def data_volumes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolNodeConfigDataVolumeArgs']]]]:
         """
@@ -649,6 +2141,42 @@ class NodePoolNodeConfigArgs:
     @data_volumes.setter
     def data_volumes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolNodeConfigDataVolumeArgs']]]]):
         pulumi.set(self, "data_volumes", value)
+
+    @property
+    @pulumi.getter(name="ecsTags")
+    def ecs_tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolNodeConfigEcsTagArgs']]]]:
+        """
+        Tags for Ecs.
+        """
+        return pulumi.get(self, "ecs_tags")
+
+    @ecs_tags.setter
+    def ecs_tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolNodeConfigEcsTagArgs']]]]):
+        pulumi.set(self, "ecs_tags", value)
+
+    @property
+    @pulumi.getter(name="hpcClusterIds")
+    def hpc_cluster_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The IDs of HpcCluster, only one ID is supported currently.
+        """
+        return pulumi.get(self, "hpc_cluster_ids")
+
+    @hpc_cluster_ids.setter
+    def hpc_cluster_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "hpc_cluster_ids", value)
+
+    @property
+    @pulumi.getter(name="imageId")
+    def image_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ImageId of NodeConfig.
+        """
+        return pulumi.get(self, "image_id")
+
+    @image_id.setter
+    def image_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "image_id", value)
 
     @property
     @pulumi.getter(name="initializeScript")
@@ -663,40 +2191,40 @@ class NodePoolNodeConfigArgs:
         pulumi.set(self, "initialize_script", value)
 
     @property
-    @pulumi.getter(name="instanceTypeIds")
-    def instance_type_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+    @pulumi.getter(name="instanceChargeType")
+    def instance_charge_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The InstanceTypeIds of NodeConfig.
+        The InstanceChargeType of PrePaid instance of NodeConfig. Valid values: PostPaid, PrePaid. Default value: PostPaid.
         """
-        return pulumi.get(self, "instance_type_ids")
+        return pulumi.get(self, "instance_charge_type")
 
-    @instance_type_ids.setter
-    def instance_type_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "instance_type_ids", value)
+    @instance_charge_type.setter
+    def instance_charge_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "instance_charge_type", value)
+
+    @property
+    @pulumi.getter(name="namePrefix")
+    def name_prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        The NamePrefix of NodeConfig.
+        """
+        return pulumi.get(self, "name_prefix")
+
+    @name_prefix.setter
+    def name_prefix(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name_prefix", value)
 
     @property
     @pulumi.getter
-    def security(self) -> Optional[pulumi.Input['NodePoolNodeConfigSecurityArgs']]:
+    def period(self) -> Optional[pulumi.Input[int]]:
         """
-        The Security of NodeConfig.
+        The Period of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36. Unit: month. when InstanceChargeType is PrePaid, default value is 12.
         """
-        return pulumi.get(self, "security")
+        return pulumi.get(self, "period")
 
-    @security.setter
-    def security(self, value: Optional[pulumi.Input['NodePoolNodeConfigSecurityArgs']]):
-        pulumi.set(self, "security", value)
-
-    @property
-    @pulumi.getter(name="subnetIds")
-    def subnet_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        The SubnetIds of NodeConfig.
-        """
-        return pulumi.get(self, "subnet_ids")
-
-    @subnet_ids.setter
-    def subnet_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "subnet_ids", value)
+    @period.setter
+    def period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "period", value)
 
     @property
     @pulumi.getter(name="systemVolume")
@@ -714,22 +2242,38 @@ class NodePoolNodeConfigArgs:
 @pulumi.input_type
 class NodePoolNodeConfigDataVolumeArgs:
     def __init__(__self__, *,
+                 mount_point: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[int] size: The Size of DataVolumes.
-        :param pulumi.Input[str] type: The Type of DataVolumes.
+        :param pulumi.Input[str] mount_point: The target mount directory of the disk. Must start with `/`.
+        :param pulumi.Input[int] size: The Size of DataVolumes, the value range in 20~32768.
+        :param pulumi.Input[str] type: The Type of DataVolumes, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`.
         """
+        if mount_point is not None:
+            pulumi.set(__self__, "mount_point", mount_point)
         if size is not None:
             pulumi.set(__self__, "size", size)
         if type is not None:
             pulumi.set(__self__, "type", type)
 
     @property
+    @pulumi.getter(name="mountPoint")
+    def mount_point(self) -> Optional[pulumi.Input[str]]:
+        """
+        The target mount directory of the disk. Must start with `/`.
+        """
+        return pulumi.get(self, "mount_point")
+
+    @mount_point.setter
+    def mount_point(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mount_point", value)
+
+    @property
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[int]]:
         """
-        The Size of DataVolumes.
+        The Size of DataVolumes, the value range in 20~32768.
         """
         return pulumi.get(self, "size")
 
@@ -741,13 +2285,50 @@ class NodePoolNodeConfigDataVolumeArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The Type of DataVolumes.
+        The Type of DataVolumes, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`.
         """
         return pulumi.get(self, "type")
 
     @type.setter
     def type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "type", value)
+
+
+@pulumi.input_type
+class NodePoolNodeConfigEcsTagArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
 
 
 @pulumi.input_type
@@ -759,7 +2340,7 @@ class NodePoolNodeConfigSecurityArgs:
         """
         :param pulumi.Input['NodePoolNodeConfigSecurityLoginArgs'] login: The Login of Security.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The SecurityGroupIds of Security.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_strategies: The SecurityStrategies of Security.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_strategies: The SecurityStrategies of Security, the value can be empty or `Hids`.
         """
         if login is not None:
             pulumi.set(__self__, "login", login)
@@ -796,7 +2377,7 @@ class NodePoolNodeConfigSecurityArgs:
     @pulumi.getter(name="securityStrategies")
     def security_strategies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The SecurityStrategies of Security.
+        The SecurityStrategies of Security, the value can be empty or `Hids`.
         """
         return pulumi.get(self, "security_strategies")
 
@@ -811,7 +2392,7 @@ class NodePoolNodeConfigSecurityLoginArgs:
                  password: Optional[pulumi.Input[str]] = None,
                  ssh_key_pair_name: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] password: The Password of Security.
+        :param pulumi.Input[str] password: The Password of Security, this field must be encoded with base64.
         :param pulumi.Input[str] ssh_key_pair_name: The SshKeyPairName of Security.
         """
         if password is not None:
@@ -823,7 +2404,7 @@ class NodePoolNodeConfigSecurityLoginArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
         """
-        The Password of Security.
+        The Password of Security, this field must be encoded with base64.
         """
         return pulumi.get(self, "password")
 
@@ -850,8 +2431,8 @@ class NodePoolNodeConfigSystemVolumeArgs:
                  size: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[int] size: The Size of SystemVolume.
-        :param pulumi.Input[str] type: The Type of SystemVolume.
+        :param pulumi.Input[int] size: The Size of SystemVolume, the value range in 20~2048.
+        :param pulumi.Input[str] type: The Type of SystemVolume, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`.
         """
         if size is not None:
             pulumi.set(__self__, "size", size)
@@ -862,7 +2443,7 @@ class NodePoolNodeConfigSystemVolumeArgs:
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[int]]:
         """
-        The Size of SystemVolume.
+        The Size of SystemVolume, the value range in 20~2048.
         """
         return pulumi.get(self, "size")
 
@@ -874,7 +2455,7 @@ class NodePoolNodeConfigSystemVolumeArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The Type of SystemVolume.
+        The Type of SystemVolume, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`.
         """
         return pulumi.get(self, "type")
 
@@ -884,42 +2465,40 @@ class NodePoolNodeConfigSystemVolumeArgs:
 
 
 @pulumi.input_type
-class NodePoolStatusArgs:
+class NodePoolTagArgs:
     def __init__(__self__, *,
-                 conditions_type: Optional[pulumi.Input[str]] = None,
-                 phase: Optional[pulumi.Input[str]] = None):
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] conditions_type: Indicates the status condition of the node pool in the active state.
-        :param pulumi.Input[str] phase: The Phase of Status.
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
         """
-        if conditions_type is not None:
-            pulumi.set(__self__, "conditions_type", conditions_type)
-        if phase is not None:
-            pulumi.set(__self__, "phase", phase)
-
-    @property
-    @pulumi.getter(name="conditionsType")
-    def conditions_type(self) -> Optional[pulumi.Input[str]]:
-        """
-        Indicates the status condition of the node pool in the active state.
-        """
-        return pulumi.get(self, "conditions_type")
-
-    @conditions_type.setter
-    def conditions_type(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "conditions_type", value)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
-    def phase(self) -> Optional[pulumi.Input[str]]:
+    def key(self) -> pulumi.Input[str]:
         """
-        The Phase of Status.
+        The Key of Tags.
         """
-        return pulumi.get(self, "phase")
+        return pulumi.get(self, "key")
 
-    @phase.setter
-    def phase(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "phase", value)
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
 
 
 @pulumi.input_type
@@ -928,8 +2507,8 @@ class NodePoolsStatusArgs:
                  conditions_type: Optional[str] = None,
                  phase: Optional[str] = None):
         """
-        :param str conditions_type: Indicates the status condition of the node pool in the active state.
-        :param str phase: The Phase of Status.
+        :param str conditions_type: Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
+        :param str phase: The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
         """
         if conditions_type is not None:
             pulumi.set(__self__, "conditions_type", conditions_type)
@@ -940,7 +2519,7 @@ class NodePoolsStatusArgs:
     @pulumi.getter(name="conditionsType")
     def conditions_type(self) -> Optional[str]:
         """
-        Indicates the status condition of the node pool in the active state.
+        Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
         """
         return pulumi.get(self, "conditions_type")
 
@@ -952,7 +2531,7 @@ class NodePoolsStatusArgs:
     @pulumi.getter
     def phase(self) -> Optional[str]:
         """
-        The Phase of Status.
+        The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
         """
         return pulumi.get(self, "phase")
 
@@ -962,13 +2541,50 @@ class NodePoolsStatusArgs:
 
 
 @pulumi.input_type
+class NodePoolsTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
 class NodesStatusArgs:
     def __init__(__self__, *,
                  conditions_type: Optional[str] = None,
                  phase: Optional[str] = None):
         """
         :param str conditions_type: The Type of Node Condition, the value is `Progressing` or `Ok` or `Unschedulable` or `InitilizeFailed` or `Unknown` or `NotReady` or `Security` or `Balance` or `ResourceCleanupFailed`.
-        :param str phase: The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed`.
+        :param str phase: The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
         """
         if conditions_type is not None:
             pulumi.set(__self__, "conditions_type", conditions_type)
@@ -991,7 +2607,7 @@ class NodesStatusArgs:
     @pulumi.getter
     def phase(self) -> Optional[str]:
         """
-        The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed`.
+        The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
         """
         return pulumi.get(self, "phase")
 

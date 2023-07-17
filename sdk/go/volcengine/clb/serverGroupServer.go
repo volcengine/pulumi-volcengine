@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -17,27 +18,29 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Clb"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/clb"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Clb.NewServerGroupServer(ctx, "foo", &Clb.ServerGroupServerArgs{
-// 			Description:   pulumi.String("This is a server"),
-// 			InstanceId:    pulumi.String("i-72q1zvko6i5lnawvg940"),
-// 			Ip:            pulumi.String("192.168.100.99"),
-// 			Port:          pulumi.Int(80),
-// 			ServerGroupId: pulumi.String("rsp-273zn4ewlhkw07fap8tig9ujz"),
-// 			Type:          pulumi.String("ecs"),
-// 			Weight:        pulumi.Int(100),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := clb.NewServerGroupServer(ctx, "foo", &clb.ServerGroupServerArgs{
+//				Description:   pulumi.String("This is a server"),
+//				InstanceId:    pulumi.String("i-ybp1scasbe72q1vq35wv"),
+//				Port:          pulumi.Int(80),
+//				ServerGroupId: pulumi.String("rsp-274xltv2sjoxs7fap8tlv3q3s"),
+//				Type:          pulumi.String("ecs"),
+//				Weight:        pulumi.Int(100),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -45,7 +48,9 @@ import (
 // ServerGroupServer can be imported using the id, e.g.
 //
 // ```sh
-//  $ pulumi import volcengine:Clb/serverGroupServer:ServerGroupServer default rs-3ciynux6i1x4w****rszh49sj
+//
+//	$ pulumi import volcengine:clb/serverGroupServer:ServerGroupServer default rsp-274xltv2*****8tlv3q3s:rs-3ciynux6i1x4w****rszh49sj
+//
 // ```
 type ServerGroupServer struct {
 	pulumi.CustomResourceState
@@ -53,18 +58,18 @@ type ServerGroupServer struct {
 	// The description of the instance.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The ID of ecs instance or the network card bound to ecs instance.
-	InstanceId pulumi.StringPtrOutput `pulumi:"instanceId"`
+	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// The private ip of the instance.
-	Ip pulumi.StringPtrOutput `pulumi:"ip"`
+	Ip pulumi.StringOutput `pulumi:"ip"`
 	// The port receiving request.
-	Port pulumi.IntPtrOutput `pulumi:"port"`
+	Port pulumi.IntOutput `pulumi:"port"`
 	// The ID of the ServerGroup.
-	ServerGroupId pulumi.StringPtrOutput `pulumi:"serverGroupId"`
+	ServerGroupId pulumi.StringOutput `pulumi:"serverGroupId"`
 	// The server id of instance in ServerGroup.
 	ServerId pulumi.StringOutput `pulumi:"serverId"`
 	// The type of instance. Optional choice contains `ecs`, `eni`.
-	Type pulumi.StringPtrOutput `pulumi:"type"`
-	// The weight of the instance.
+	Type pulumi.StringOutput `pulumi:"type"`
+	// The weight of the instance, range in 0~100.
 	Weight pulumi.IntPtrOutput `pulumi:"weight"`
 }
 
@@ -72,11 +77,23 @@ type ServerGroupServer struct {
 func NewServerGroupServer(ctx *pulumi.Context,
 	name string, args *ServerGroupServerArgs, opts ...pulumi.ResourceOption) (*ServerGroupServer, error) {
 	if args == nil {
-		args = &ServerGroupServerArgs{}
+		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.InstanceId == nil {
+		return nil, errors.New("invalid value for required argument 'InstanceId'")
+	}
+	if args.Port == nil {
+		return nil, errors.New("invalid value for required argument 'Port'")
+	}
+	if args.ServerGroupId == nil {
+		return nil, errors.New("invalid value for required argument 'ServerGroupId'")
+	}
+	if args.Type == nil {
+		return nil, errors.New("invalid value for required argument 'Type'")
+	}
 	var resource ServerGroupServer
-	err := ctx.RegisterResource("volcengine:Clb/serverGroupServer:ServerGroupServer", name, args, &resource, opts...)
+	err := ctx.RegisterResource("volcengine:clb/serverGroupServer:ServerGroupServer", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -88,7 +105,7 @@ func NewServerGroupServer(ctx *pulumi.Context,
 func GetServerGroupServer(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *ServerGroupServerState, opts ...pulumi.ResourceOption) (*ServerGroupServer, error) {
 	var resource ServerGroupServer
-	err := ctx.ReadResource("volcengine:Clb/serverGroupServer:ServerGroupServer", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("volcengine:clb/serverGroupServer:ServerGroupServer", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -111,7 +128,7 @@ type serverGroupServerState struct {
 	ServerId *string `pulumi:"serverId"`
 	// The type of instance. Optional choice contains `ecs`, `eni`.
 	Type *string `pulumi:"type"`
-	// The weight of the instance.
+	// The weight of the instance, range in 0~100.
 	Weight *int `pulumi:"weight"`
 }
 
@@ -130,7 +147,7 @@ type ServerGroupServerState struct {
 	ServerId pulumi.StringPtrInput
 	// The type of instance. Optional choice contains `ecs`, `eni`.
 	Type pulumi.StringPtrInput
-	// The weight of the instance.
+	// The weight of the instance, range in 0~100.
 	Weight pulumi.IntPtrInput
 }
 
@@ -142,16 +159,16 @@ type serverGroupServerArgs struct {
 	// The description of the instance.
 	Description *string `pulumi:"description"`
 	// The ID of ecs instance or the network card bound to ecs instance.
-	InstanceId *string `pulumi:"instanceId"`
+	InstanceId string `pulumi:"instanceId"`
 	// The private ip of the instance.
 	Ip *string `pulumi:"ip"`
 	// The port receiving request.
-	Port *int `pulumi:"port"`
+	Port int `pulumi:"port"`
 	// The ID of the ServerGroup.
-	ServerGroupId *string `pulumi:"serverGroupId"`
+	ServerGroupId string `pulumi:"serverGroupId"`
 	// The type of instance. Optional choice contains `ecs`, `eni`.
-	Type *string `pulumi:"type"`
-	// The weight of the instance.
+	Type string `pulumi:"type"`
+	// The weight of the instance, range in 0~100.
 	Weight *int `pulumi:"weight"`
 }
 
@@ -160,16 +177,16 @@ type ServerGroupServerArgs struct {
 	// The description of the instance.
 	Description pulumi.StringPtrInput
 	// The ID of ecs instance or the network card bound to ecs instance.
-	InstanceId pulumi.StringPtrInput
+	InstanceId pulumi.StringInput
 	// The private ip of the instance.
 	Ip pulumi.StringPtrInput
 	// The port receiving request.
-	Port pulumi.IntPtrInput
+	Port pulumi.IntInput
 	// The ID of the ServerGroup.
-	ServerGroupId pulumi.StringPtrInput
+	ServerGroupId pulumi.StringInput
 	// The type of instance. Optional choice contains `ecs`, `eni`.
-	Type pulumi.StringPtrInput
-	// The weight of the instance.
+	Type pulumi.StringInput
+	// The weight of the instance, range in 0~100.
 	Weight pulumi.IntPtrInput
 }
 
@@ -199,7 +216,7 @@ func (i *ServerGroupServer) ToServerGroupServerOutputWithContext(ctx context.Con
 // ServerGroupServerArrayInput is an input type that accepts ServerGroupServerArray and ServerGroupServerArrayOutput values.
 // You can construct a concrete instance of `ServerGroupServerArrayInput` via:
 //
-//          ServerGroupServerArray{ ServerGroupServerArgs{...} }
+//	ServerGroupServerArray{ ServerGroupServerArgs{...} }
 type ServerGroupServerArrayInput interface {
 	pulumi.Input
 
@@ -224,7 +241,7 @@ func (i ServerGroupServerArray) ToServerGroupServerArrayOutputWithContext(ctx co
 // ServerGroupServerMapInput is an input type that accepts ServerGroupServerMap and ServerGroupServerMapOutput values.
 // You can construct a concrete instance of `ServerGroupServerMapInput` via:
 //
-//          ServerGroupServerMap{ "key": ServerGroupServerArgs{...} }
+//	ServerGroupServerMap{ "key": ServerGroupServerArgs{...} }
 type ServerGroupServerMapInput interface {
 	pulumi.Input
 
@@ -266,23 +283,23 @@ func (o ServerGroupServerOutput) Description() pulumi.StringPtrOutput {
 }
 
 // The ID of ecs instance or the network card bound to ecs instance.
-func (o ServerGroupServerOutput) InstanceId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ServerGroupServer) pulumi.StringPtrOutput { return v.InstanceId }).(pulumi.StringPtrOutput)
+func (o ServerGroupServerOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServerGroupServer) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }
 
 // The private ip of the instance.
-func (o ServerGroupServerOutput) Ip() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ServerGroupServer) pulumi.StringPtrOutput { return v.Ip }).(pulumi.StringPtrOutput)
+func (o ServerGroupServerOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServerGroupServer) pulumi.StringOutput { return v.Ip }).(pulumi.StringOutput)
 }
 
 // The port receiving request.
-func (o ServerGroupServerOutput) Port() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *ServerGroupServer) pulumi.IntPtrOutput { return v.Port }).(pulumi.IntPtrOutput)
+func (o ServerGroupServerOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v *ServerGroupServer) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
 }
 
 // The ID of the ServerGroup.
-func (o ServerGroupServerOutput) ServerGroupId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ServerGroupServer) pulumi.StringPtrOutput { return v.ServerGroupId }).(pulumi.StringPtrOutput)
+func (o ServerGroupServerOutput) ServerGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServerGroupServer) pulumi.StringOutput { return v.ServerGroupId }).(pulumi.StringOutput)
 }
 
 // The server id of instance in ServerGroup.
@@ -291,11 +308,11 @@ func (o ServerGroupServerOutput) ServerId() pulumi.StringOutput {
 }
 
 // The type of instance. Optional choice contains `ecs`, `eni`.
-func (o ServerGroupServerOutput) Type() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ServerGroupServer) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
+func (o ServerGroupServerOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServerGroupServer) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
-// The weight of the instance.
+// The weight of the instance, range in 0~100.
 func (o ServerGroupServerOutput) Weight() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ServerGroupServer) pulumi.IntPtrOutput { return v.Weight }).(pulumi.IntPtrOutput)
 }

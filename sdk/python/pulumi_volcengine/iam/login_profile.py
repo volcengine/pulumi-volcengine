@@ -182,7 +182,7 @@ class LoginProfile(pulumi.CustomResource):
         Login profile can be imported using the UserName, e.g.
 
         ```sh
-         $ pulumi import volcengine:Iam/loginProfile:LoginProfile default user_name
+         $ pulumi import volcengine:iam/loginProfile:LoginProfile default user_name
         ```
 
         :param str resource_name: The name of the resource.
@@ -218,7 +218,7 @@ class LoginProfile(pulumi.CustomResource):
         Login profile can be imported using the UserName, e.g.
 
         ```sh
-         $ pulumi import volcengine:Iam/loginProfile:LoginProfile default user_name
+         $ pulumi import volcengine:iam/loginProfile:LoginProfile default user_name
         ```
 
         :param str resource_name: The name of the resource.
@@ -261,7 +261,7 @@ class LoginProfile(pulumi.CustomResource):
                 raise TypeError("Missing required property 'user_name'")
             __props__.__dict__["user_name"] = user_name
         super(LoginProfile, __self__).__init__(
-            'volcengine:Iam/loginProfile:LoginProfile',
+            'volcengine:iam/loginProfile:LoginProfile',
             resource_name,
             __props__,
             opts)

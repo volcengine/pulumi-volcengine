@@ -37,10 +37,10 @@ namespace Pulumi.Volcengine.Eip
     /// Eip associate can be imported using the eip allocation_id:instance_id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:Eip/associate:Associate default eip-274oj9a8rs9a87fap8sf9515b:i-cm9t9ug9lggu79yr5tcw
+    ///  $ pulumi import volcengine:eip/associate:Associate default eip-274oj9a8rs9a87fap8sf9515b:i-cm9t9ug9lggu79yr5tcw
     /// ```
     /// </summary>
-    [VolcengineResourceType("volcengine:Eip/associate:Associate")]
+    [VolcengineResourceType("volcengine:eip/associate:Associate")]
     public partial class Associate : Pulumi.CustomResource
     {
         /// <summary>
@@ -56,7 +56,7 @@ namespace Pulumi.Volcengine.Eip
         public Output<string> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// The type of the associated instance.
+        /// The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
         /// </summary>
         [Output("instanceType")]
         public Output<string> InstanceType { get; private set; } = null!;
@@ -76,12 +76,12 @@ namespace Pulumi.Volcengine.Eip
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Associate(string name, AssociateArgs args, CustomResourceOptions? options = null)
-            : base("volcengine:Eip/associate:Associate", name, args ?? new AssociateArgs(), MakeResourceOptions(options, ""))
+            : base("volcengine:eip/associate:Associate", name, args ?? new AssociateArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private Associate(string name, Input<string> id, AssociateState? state = null, CustomResourceOptions? options = null)
-            : base("volcengine:Eip/associate:Associate", name, state, MakeResourceOptions(options, id))
+            : base("volcengine:eip/associate:Associate", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -126,7 +126,7 @@ namespace Pulumi.Volcengine.Eip
         public Input<string> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// The type of the associated instance.
+        /// The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
         /// </summary>
         [Input("instanceType", required: true)]
         public Input<string> InstanceType { get; set; } = null!;
@@ -157,7 +157,7 @@ namespace Pulumi.Volcengine.Eip
         public Input<string>? InstanceId { get; set; }
 
         /// <summary>
-        /// The type of the associated instance.
+        /// The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
         /// </summary>
         [Input("instanceType")]
         public Input<string>? InstanceType { get; set; }

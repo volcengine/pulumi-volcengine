@@ -12,7 +12,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = new volcengine.Iam.User("foo", {
+ * const foo = new volcengine.iam.User("foo", {
  *     description: "test",
  *     displayName: "name",
  *     userName: "tf-test",
@@ -24,7 +24,7 @@ import * as utilities from "../utilities";
  * Iam user can be imported using the UserName, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:Iam/user:User default user_name
+ *  $ pulumi import volcengine:iam/user:User default user_name
  * ```
  */
 export class User extends pulumi.CustomResource {
@@ -42,7 +42,7 @@ export class User extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'volcengine:Iam/user:User';
+    public static readonly __pulumiType = 'volcengine:iam/user:User';
 
     /**
      * Returns true if the given object is an instance of User.  This is designed to work even

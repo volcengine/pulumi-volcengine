@@ -41,7 +41,7 @@ namespace Pulumi.Volcengine.Vke
         /// {{% /examples %}}
         /// </summary>
         public static Task<NodePoolsResult> InvokeAsync(NodePoolsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<NodePoolsResult>("volcengine:Vke/nodePools:NodePools", args ?? new NodePoolsArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.InvokeAsync<NodePoolsResult>("volcengine:vke/nodePools:NodePools", args ?? new NodePoolsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of vke node pools
@@ -73,7 +73,7 @@ namespace Pulumi.Volcengine.Vke
         /// {{% /examples %}}
         /// </summary>
         public static Output<NodePoolsResult> Invoke(NodePoolsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<NodePoolsResult>("volcengine:Vke/nodePools:NodePools", args ?? new NodePoolsInvokeArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.Invoke<NodePoolsResult>("volcengine:vke/nodePools:NodePools", args ?? new NodePoolsInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -149,6 +149,18 @@ namespace Pulumi.Volcengine.Vke
         {
             get => _statuses ?? (_statuses = new List<Inputs.NodePoolsStatusArgs>());
             set => _statuses = value;
+        }
+
+        [Input("tags")]
+        private List<Inputs.NodePoolsTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.NodePoolsTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.NodePoolsTagArgs>());
+            set => _tags = value;
         }
 
         /// <summary>
@@ -236,6 +248,18 @@ namespace Pulumi.Volcengine.Vke
             set => _statuses = value;
         }
 
+        [Input("tags")]
+        private InputList<Inputs.NodePoolsTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.NodePoolsTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.NodePoolsTagInputArgs>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// The ClientToken when last update was successful.
         /// </summary>
@@ -278,6 +302,10 @@ namespace Pulumi.Volcengine.Vke
         public readonly string? OutputFile;
         public readonly ImmutableArray<Outputs.NodePoolsStatusResult> Statuses;
         /// <summary>
+        /// Tags of the NodePool.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.NodePoolsTagResult> Tags;
+        /// <summary>
         /// Returns the total amount of the data list.
         /// </summary>
         public readonly int TotalCount;
@@ -310,6 +338,8 @@ namespace Pulumi.Volcengine.Vke
 
             ImmutableArray<Outputs.NodePoolsStatusResult> statuses,
 
+            ImmutableArray<Outputs.NodePoolsTagResult> tags,
+
             int totalCount,
 
             string? updateClientToken)
@@ -325,6 +355,7 @@ namespace Pulumi.Volcengine.Vke
             NodePools = nodePools;
             OutputFile = outputFile;
             Statuses = statuses;
+            Tags = tags;
             TotalCount = totalCount;
             UpdateClientToken = updateClientToken;
         }

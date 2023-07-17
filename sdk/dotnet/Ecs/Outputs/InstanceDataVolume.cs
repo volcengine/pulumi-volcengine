@@ -22,7 +22,7 @@ namespace Pulumi.Volcengine.Ecs.Outputs
         /// </summary>
         public readonly int Size;
         /// <summary>
-        /// The type of volume.
+        /// The type of volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         /// </summary>
         public readonly string VolumeType;
 

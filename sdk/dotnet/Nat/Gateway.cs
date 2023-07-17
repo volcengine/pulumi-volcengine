@@ -10,7 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Volcengine.Nat
 {
     /// <summary>
-    /// Provides a resource to manage nat gateway
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -25,9 +24,10 @@ namespace Pulumi.Volcengine.Nat
     ///         {
     ///             Description = "This nat gateway auto-created by terraform. ",
     ///             NatGatewayName = "tf-auto-demo-1",
+    ///             ProjectName = "default",
     ///             Spec = "Medium",
-    ///             SubnetId = "subnet-2740cym8mv9q87fap8u3hfx4i",
-    ///             VpcId = "vpc-2740cxyk9im0w7fap8u013dfe",
+    ///             SubnetId = "subnet-im67x70vxla88gbssz1hy1z2",
+    ///             VpcId = "vpc-im67wjcikxkw8gbssx8ufpj8",
     ///         });
     ///     }
     /// 
@@ -39,14 +39,14 @@ namespace Pulumi.Volcengine.Nat
     /// NatGateway can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:Nat/gateway:Gateway default ngw-vv3t043k05sm****
+    ///  $ pulumi import volcengine:nat/gateway:Gateway default ngw-vv3t043k05sm****
     /// ```
     /// </summary>
-    [VolcengineResourceType("volcengine:Nat/gateway:Gateway")]
+    [VolcengineResourceType("volcengine:nat/gateway:Gateway")]
     public partial class Gateway : Pulumi.CustomResource
     {
         /// <summary>
-        /// The billing type of the NatGateway.
+        /// The billing type of the NatGateway, the value is `PostPaid`.
         /// </summary>
         [Output("billingType")]
         public Output<string?> BillingType { get; private set; } = null!;
@@ -64,6 +64,12 @@ namespace Pulumi.Volcengine.Nat
         public Output<string?> NatGatewayName { get; private set; } = null!;
 
         /// <summary>
+        /// The ProjectName of the NatGateway.
+        /// </summary>
+        [Output("projectName")]
+        public Output<string?> ProjectName { get; private set; } = null!;
+
+        /// <summary>
         /// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
         /// </summary>
         [Output("spec")]
@@ -74,6 +80,12 @@ namespace Pulumi.Volcengine.Nat
         /// </summary>
         [Output("subnetId")]
         public Output<string> SubnetId { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.GatewayTag>> Tags { get; private set; } = null!;
 
         /// <summary>
         /// The ID of the VPC.
@@ -90,12 +102,12 @@ namespace Pulumi.Volcengine.Nat
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Gateway(string name, GatewayArgs args, CustomResourceOptions? options = null)
-            : base("volcengine:Nat/gateway:Gateway", name, args ?? new GatewayArgs(), MakeResourceOptions(options, ""))
+            : base("volcengine:nat/gateway:Gateway", name, args ?? new GatewayArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private Gateway(string name, Input<string> id, GatewayState? state = null, CustomResourceOptions? options = null)
-            : base("volcengine:Nat/gateway:Gateway", name, state, MakeResourceOptions(options, id))
+            : base("volcengine:nat/gateway:Gateway", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -128,7 +140,7 @@ namespace Pulumi.Volcengine.Nat
     public sealed class GatewayArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The billing type of the NatGateway.
+        /// The billing type of the NatGateway, the value is `PostPaid`.
         /// </summary>
         [Input("billingType")]
         public Input<string>? BillingType { get; set; }
@@ -146,6 +158,12 @@ namespace Pulumi.Volcengine.Nat
         public Input<string>? NatGatewayName { get; set; }
 
         /// <summary>
+        /// The ProjectName of the NatGateway.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
         /// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
         /// </summary>
         [Input("spec")]
@@ -156,6 +174,18 @@ namespace Pulumi.Volcengine.Nat
         /// </summary>
         [Input("subnetId", required: true)]
         public Input<string> SubnetId { get; set; } = null!;
+
+        [Input("tags")]
+        private InputList<Inputs.GatewayTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.GatewayTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.GatewayTagArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The ID of the VPC.
@@ -171,7 +201,7 @@ namespace Pulumi.Volcengine.Nat
     public sealed class GatewayState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The billing type of the NatGateway.
+        /// The billing type of the NatGateway, the value is `PostPaid`.
         /// </summary>
         [Input("billingType")]
         public Input<string>? BillingType { get; set; }
@@ -189,6 +219,12 @@ namespace Pulumi.Volcengine.Nat
         public Input<string>? NatGatewayName { get; set; }
 
         /// <summary>
+        /// The ProjectName of the NatGateway.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
         /// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
         /// </summary>
         [Input("spec")]
@@ -199,6 +235,18 @@ namespace Pulumi.Volcengine.Nat
         /// </summary>
         [Input("subnetId")]
         public Input<string>? SubnetId { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.GatewayTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.GatewayTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.GatewayTagGetArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The ID of the VPC.

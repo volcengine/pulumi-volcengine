@@ -10,146 +10,554 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-type ClbRulesRule struct {
-	// The Description of Rule.
+type AclAclEntry struct {
+	// The description of the AclEntry.
+	Description *string `pulumi:"description"`
+	// The content of the AclEntry.
+	Entry string `pulumi:"entry"`
+}
+
+// AclAclEntryInput is an input type that accepts AclAclEntryArgs and AclAclEntryOutput values.
+// You can construct a concrete instance of `AclAclEntryInput` via:
+//
+//	AclAclEntryArgs{...}
+type AclAclEntryInput interface {
+	pulumi.Input
+
+	ToAclAclEntryOutput() AclAclEntryOutput
+	ToAclAclEntryOutputWithContext(context.Context) AclAclEntryOutput
+}
+
+type AclAclEntryArgs struct {
+	// The description of the AclEntry.
+	Description pulumi.StringPtrInput `pulumi:"description"`
+	// The content of the AclEntry.
+	Entry pulumi.StringInput `pulumi:"entry"`
+}
+
+func (AclAclEntryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AclAclEntry)(nil)).Elem()
+}
+
+func (i AclAclEntryArgs) ToAclAclEntryOutput() AclAclEntryOutput {
+	return i.ToAclAclEntryOutputWithContext(context.Background())
+}
+
+func (i AclAclEntryArgs) ToAclAclEntryOutputWithContext(ctx context.Context) AclAclEntryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AclAclEntryOutput)
+}
+
+// AclAclEntryArrayInput is an input type that accepts AclAclEntryArray and AclAclEntryArrayOutput values.
+// You can construct a concrete instance of `AclAclEntryArrayInput` via:
+//
+//	AclAclEntryArray{ AclAclEntryArgs{...} }
+type AclAclEntryArrayInput interface {
+	pulumi.Input
+
+	ToAclAclEntryArrayOutput() AclAclEntryArrayOutput
+	ToAclAclEntryArrayOutputWithContext(context.Context) AclAclEntryArrayOutput
+}
+
+type AclAclEntryArray []AclAclEntryInput
+
+func (AclAclEntryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AclAclEntry)(nil)).Elem()
+}
+
+func (i AclAclEntryArray) ToAclAclEntryArrayOutput() AclAclEntryArrayOutput {
+	return i.ToAclAclEntryArrayOutputWithContext(context.Background())
+}
+
+func (i AclAclEntryArray) ToAclAclEntryArrayOutputWithContext(ctx context.Context) AclAclEntryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AclAclEntryArrayOutput)
+}
+
+type AclAclEntryOutput struct{ *pulumi.OutputState }
+
+func (AclAclEntryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AclAclEntry)(nil)).Elem()
+}
+
+func (o AclAclEntryOutput) ToAclAclEntryOutput() AclAclEntryOutput {
+	return o
+}
+
+func (o AclAclEntryOutput) ToAclAclEntryOutputWithContext(ctx context.Context) AclAclEntryOutput {
+	return o
+}
+
+// The description of the AclEntry.
+func (o AclAclEntryOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AclAclEntry) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// The content of the AclEntry.
+func (o AclAclEntryOutput) Entry() pulumi.StringOutput {
+	return o.ApplyT(func(v AclAclEntry) string { return v.Entry }).(pulumi.StringOutput)
+}
+
+type AclAclEntryArrayOutput struct{ *pulumi.OutputState }
+
+func (AclAclEntryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AclAclEntry)(nil)).Elem()
+}
+
+func (o AclAclEntryArrayOutput) ToAclAclEntryArrayOutput() AclAclEntryArrayOutput {
+	return o
+}
+
+func (o AclAclEntryArrayOutput) ToAclAclEntryArrayOutputWithContext(ctx context.Context) AclAclEntryArrayOutput {
+	return o
+}
+
+func (o AclAclEntryArrayOutput) Index(i pulumi.IntInput) AclAclEntryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AclAclEntry {
+		return vs[0].([]AclAclEntry)[vs[1].(int)]
+	}).(AclAclEntryOutput)
+}
+
+type AclsAcl struct {
+	// The count of acl entry.
+	AclEntryCount int `pulumi:"aclEntryCount"`
+	// The ID of Acl.
+	AclId string `pulumi:"aclId"`
+	// The name of acl.
+	AclName string `pulumi:"aclName"`
+	// Creation time of Acl.
+	CreateTime string `pulumi:"createTime"`
+	// The description of Acl.
 	Description string `pulumi:"description"`
-	// The Domain of Rule.
-	Domain string `pulumi:"domain"`
-	// The Id of Rule.
+	// The ID of Acl.
 	Id string `pulumi:"id"`
-	// The Id of Rule.
-	RuleId string `pulumi:"ruleId"`
-	// The Id of Server Group.
-	ServerGroupId string `pulumi:"serverGroupId"`
-	// The Url of Rule.
-	Url string `pulumi:"url"`
+	// The listeners of Acl.
+	Listeners []string `pulumi:"listeners"`
+	// The ProjectName of Acl.
+	ProjectName string `pulumi:"projectName"`
+	// Update time of Acl.
+	UpdateTime string `pulumi:"updateTime"`
 }
 
-// ClbRulesRuleInput is an input type that accepts ClbRulesRuleArgs and ClbRulesRuleOutput values.
-// You can construct a concrete instance of `ClbRulesRuleInput` via:
+// AclsAclInput is an input type that accepts AclsAclArgs and AclsAclOutput values.
+// You can construct a concrete instance of `AclsAclInput` via:
 //
-//          ClbRulesRuleArgs{...}
-type ClbRulesRuleInput interface {
+//	AclsAclArgs{...}
+type AclsAclInput interface {
 	pulumi.Input
 
-	ToClbRulesRuleOutput() ClbRulesRuleOutput
-	ToClbRulesRuleOutputWithContext(context.Context) ClbRulesRuleOutput
+	ToAclsAclOutput() AclsAclOutput
+	ToAclsAclOutputWithContext(context.Context) AclsAclOutput
 }
 
-type ClbRulesRuleArgs struct {
-	// The Description of Rule.
+type AclsAclArgs struct {
+	// The count of acl entry.
+	AclEntryCount pulumi.IntInput `pulumi:"aclEntryCount"`
+	// The ID of Acl.
+	AclId pulumi.StringInput `pulumi:"aclId"`
+	// The name of acl.
+	AclName pulumi.StringInput `pulumi:"aclName"`
+	// Creation time of Acl.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The description of Acl.
 	Description pulumi.StringInput `pulumi:"description"`
-	// The Domain of Rule.
-	Domain pulumi.StringInput `pulumi:"domain"`
-	// The Id of Rule.
+	// The ID of Acl.
 	Id pulumi.StringInput `pulumi:"id"`
-	// The Id of Rule.
-	RuleId pulumi.StringInput `pulumi:"ruleId"`
-	// The Id of Server Group.
-	ServerGroupId pulumi.StringInput `pulumi:"serverGroupId"`
-	// The Url of Rule.
-	Url pulumi.StringInput `pulumi:"url"`
+	// The listeners of Acl.
+	Listeners pulumi.StringArrayInput `pulumi:"listeners"`
+	// The ProjectName of Acl.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// Update time of Acl.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
 }
 
-func (ClbRulesRuleArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClbRulesRule)(nil)).Elem()
+func (AclsAclArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AclsAcl)(nil)).Elem()
 }
 
-func (i ClbRulesRuleArgs) ToClbRulesRuleOutput() ClbRulesRuleOutput {
-	return i.ToClbRulesRuleOutputWithContext(context.Background())
+func (i AclsAclArgs) ToAclsAclOutput() AclsAclOutput {
+	return i.ToAclsAclOutputWithContext(context.Background())
 }
 
-func (i ClbRulesRuleArgs) ToClbRulesRuleOutputWithContext(ctx context.Context) ClbRulesRuleOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClbRulesRuleOutput)
+func (i AclsAclArgs) ToAclsAclOutputWithContext(ctx context.Context) AclsAclOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AclsAclOutput)
 }
 
-// ClbRulesRuleArrayInput is an input type that accepts ClbRulesRuleArray and ClbRulesRuleArrayOutput values.
-// You can construct a concrete instance of `ClbRulesRuleArrayInput` via:
+// AclsAclArrayInput is an input type that accepts AclsAclArray and AclsAclArrayOutput values.
+// You can construct a concrete instance of `AclsAclArrayInput` via:
 //
-//          ClbRulesRuleArray{ ClbRulesRuleArgs{...} }
-type ClbRulesRuleArrayInput interface {
+//	AclsAclArray{ AclsAclArgs{...} }
+type AclsAclArrayInput interface {
 	pulumi.Input
 
-	ToClbRulesRuleArrayOutput() ClbRulesRuleArrayOutput
-	ToClbRulesRuleArrayOutputWithContext(context.Context) ClbRulesRuleArrayOutput
+	ToAclsAclArrayOutput() AclsAclArrayOutput
+	ToAclsAclArrayOutputWithContext(context.Context) AclsAclArrayOutput
 }
 
-type ClbRulesRuleArray []ClbRulesRuleInput
+type AclsAclArray []AclsAclInput
 
-func (ClbRulesRuleArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ClbRulesRule)(nil)).Elem()
+func (AclsAclArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AclsAcl)(nil)).Elem()
 }
 
-func (i ClbRulesRuleArray) ToClbRulesRuleArrayOutput() ClbRulesRuleArrayOutput {
-	return i.ToClbRulesRuleArrayOutputWithContext(context.Background())
+func (i AclsAclArray) ToAclsAclArrayOutput() AclsAclArrayOutput {
+	return i.ToAclsAclArrayOutputWithContext(context.Background())
 }
 
-func (i ClbRulesRuleArray) ToClbRulesRuleArrayOutputWithContext(ctx context.Context) ClbRulesRuleArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClbRulesRuleArrayOutput)
+func (i AclsAclArray) ToAclsAclArrayOutputWithContext(ctx context.Context) AclsAclArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AclsAclArrayOutput)
 }
 
-type ClbRulesRuleOutput struct{ *pulumi.OutputState }
+type AclsAclOutput struct{ *pulumi.OutputState }
 
-func (ClbRulesRuleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ClbRulesRule)(nil)).Elem()
+func (AclsAclOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AclsAcl)(nil)).Elem()
 }
 
-func (o ClbRulesRuleOutput) ToClbRulesRuleOutput() ClbRulesRuleOutput {
+func (o AclsAclOutput) ToAclsAclOutput() AclsAclOutput {
 	return o
 }
 
-func (o ClbRulesRuleOutput) ToClbRulesRuleOutputWithContext(ctx context.Context) ClbRulesRuleOutput {
+func (o AclsAclOutput) ToAclsAclOutputWithContext(ctx context.Context) AclsAclOutput {
 	return o
 }
 
-// The Description of Rule.
-func (o ClbRulesRuleOutput) Description() pulumi.StringOutput {
-	return o.ApplyT(func(v ClbRulesRule) string { return v.Description }).(pulumi.StringOutput)
+// The count of acl entry.
+func (o AclsAclOutput) AclEntryCount() pulumi.IntOutput {
+	return o.ApplyT(func(v AclsAcl) int { return v.AclEntryCount }).(pulumi.IntOutput)
 }
 
-// The Domain of Rule.
-func (o ClbRulesRuleOutput) Domain() pulumi.StringOutput {
-	return o.ApplyT(func(v ClbRulesRule) string { return v.Domain }).(pulumi.StringOutput)
+// The ID of Acl.
+func (o AclsAclOutput) AclId() pulumi.StringOutput {
+	return o.ApplyT(func(v AclsAcl) string { return v.AclId }).(pulumi.StringOutput)
 }
 
-// The Id of Rule.
-func (o ClbRulesRuleOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v ClbRulesRule) string { return v.Id }).(pulumi.StringOutput)
+// The name of acl.
+func (o AclsAclOutput) AclName() pulumi.StringOutput {
+	return o.ApplyT(func(v AclsAcl) string { return v.AclName }).(pulumi.StringOutput)
 }
 
-// The Id of Rule.
-func (o ClbRulesRuleOutput) RuleId() pulumi.StringOutput {
-	return o.ApplyT(func(v ClbRulesRule) string { return v.RuleId }).(pulumi.StringOutput)
+// Creation time of Acl.
+func (o AclsAclOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v AclsAcl) string { return v.CreateTime }).(pulumi.StringOutput)
 }
 
-// The Id of Server Group.
-func (o ClbRulesRuleOutput) ServerGroupId() pulumi.StringOutput {
-	return o.ApplyT(func(v ClbRulesRule) string { return v.ServerGroupId }).(pulumi.StringOutput)
+// The description of Acl.
+func (o AclsAclOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v AclsAcl) string { return v.Description }).(pulumi.StringOutput)
 }
 
-// The Url of Rule.
-func (o ClbRulesRuleOutput) Url() pulumi.StringOutput {
-	return o.ApplyT(func(v ClbRulesRule) string { return v.Url }).(pulumi.StringOutput)
+// The ID of Acl.
+func (o AclsAclOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v AclsAcl) string { return v.Id }).(pulumi.StringOutput)
 }
 
-type ClbRulesRuleArrayOutput struct{ *pulumi.OutputState }
-
-func (ClbRulesRuleArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ClbRulesRule)(nil)).Elem()
+// The listeners of Acl.
+func (o AclsAclOutput) Listeners() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AclsAcl) []string { return v.Listeners }).(pulumi.StringArrayOutput)
 }
 
-func (o ClbRulesRuleArrayOutput) ToClbRulesRuleArrayOutput() ClbRulesRuleArrayOutput {
+// The ProjectName of Acl.
+func (o AclsAclOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v AclsAcl) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// Update time of Acl.
+func (o AclsAclOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v AclsAcl) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+type AclsAclArrayOutput struct{ *pulumi.OutputState }
+
+func (AclsAclArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AclsAcl)(nil)).Elem()
+}
+
+func (o AclsAclArrayOutput) ToAclsAclArrayOutput() AclsAclArrayOutput {
 	return o
 }
 
-func (o ClbRulesRuleArrayOutput) ToClbRulesRuleArrayOutputWithContext(ctx context.Context) ClbRulesRuleArrayOutput {
+func (o AclsAclArrayOutput) ToAclsAclArrayOutputWithContext(ctx context.Context) AclsAclArrayOutput {
 	return o
 }
 
-func (o ClbRulesRuleArrayOutput) Index(i pulumi.IntInput) ClbRulesRuleOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClbRulesRule {
-		return vs[0].([]ClbRulesRule)[vs[1].(int)]
-	}).(ClbRulesRuleOutput)
+func (o AclsAclArrayOutput) Index(i pulumi.IntInput) AclsAclOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AclsAcl {
+		return vs[0].([]AclsAcl)[vs[1].(int)]
+	}).(AclsAclOutput)
+}
+
+type CertificatesCertificate struct {
+	// The ID of the Certificate.
+	CertificateId string `pulumi:"certificateId"`
+	// The name of the Certificate.
+	CertificateName string `pulumi:"certificateName"`
+	// The create time of the Certificate.
+	CreateTime string `pulumi:"createTime"`
+	// The description of the Certificate.
+	Description string `pulumi:"description"`
+	// The domain name of the Certificate.
+	DomainName string `pulumi:"domainName"`
+	// The expire time of the Certificate.
+	ExpiredAt string `pulumi:"expiredAt"`
+	// The ID of the Certificate.
+	Id string `pulumi:"id"`
+	// The ID list of the Listener.
+	Listeners []string `pulumi:"listeners"`
+	// The ProjectName of Certificate.
+	ProjectName string `pulumi:"projectName"`
+}
+
+// CertificatesCertificateInput is an input type that accepts CertificatesCertificateArgs and CertificatesCertificateOutput values.
+// You can construct a concrete instance of `CertificatesCertificateInput` via:
+//
+//	CertificatesCertificateArgs{...}
+type CertificatesCertificateInput interface {
+	pulumi.Input
+
+	ToCertificatesCertificateOutput() CertificatesCertificateOutput
+	ToCertificatesCertificateOutputWithContext(context.Context) CertificatesCertificateOutput
+}
+
+type CertificatesCertificateArgs struct {
+	// The ID of the Certificate.
+	CertificateId pulumi.StringInput `pulumi:"certificateId"`
+	// The name of the Certificate.
+	CertificateName pulumi.StringInput `pulumi:"certificateName"`
+	// The create time of the Certificate.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The description of the Certificate.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The domain name of the Certificate.
+	DomainName pulumi.StringInput `pulumi:"domainName"`
+	// The expire time of the Certificate.
+	ExpiredAt pulumi.StringInput `pulumi:"expiredAt"`
+	// The ID of the Certificate.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The ID list of the Listener.
+	Listeners pulumi.StringArrayInput `pulumi:"listeners"`
+	// The ProjectName of Certificate.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+}
+
+func (CertificatesCertificateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CertificatesCertificate)(nil)).Elem()
+}
+
+func (i CertificatesCertificateArgs) ToCertificatesCertificateOutput() CertificatesCertificateOutput {
+	return i.ToCertificatesCertificateOutputWithContext(context.Background())
+}
+
+func (i CertificatesCertificateArgs) ToCertificatesCertificateOutputWithContext(ctx context.Context) CertificatesCertificateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CertificatesCertificateOutput)
+}
+
+// CertificatesCertificateArrayInput is an input type that accepts CertificatesCertificateArray and CertificatesCertificateArrayOutput values.
+// You can construct a concrete instance of `CertificatesCertificateArrayInput` via:
+//
+//	CertificatesCertificateArray{ CertificatesCertificateArgs{...} }
+type CertificatesCertificateArrayInput interface {
+	pulumi.Input
+
+	ToCertificatesCertificateArrayOutput() CertificatesCertificateArrayOutput
+	ToCertificatesCertificateArrayOutputWithContext(context.Context) CertificatesCertificateArrayOutput
+}
+
+type CertificatesCertificateArray []CertificatesCertificateInput
+
+func (CertificatesCertificateArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CertificatesCertificate)(nil)).Elem()
+}
+
+func (i CertificatesCertificateArray) ToCertificatesCertificateArrayOutput() CertificatesCertificateArrayOutput {
+	return i.ToCertificatesCertificateArrayOutputWithContext(context.Background())
+}
+
+func (i CertificatesCertificateArray) ToCertificatesCertificateArrayOutputWithContext(ctx context.Context) CertificatesCertificateArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CertificatesCertificateArrayOutput)
+}
+
+type CertificatesCertificateOutput struct{ *pulumi.OutputState }
+
+func (CertificatesCertificateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CertificatesCertificate)(nil)).Elem()
+}
+
+func (o CertificatesCertificateOutput) ToCertificatesCertificateOutput() CertificatesCertificateOutput {
+	return o
+}
+
+func (o CertificatesCertificateOutput) ToCertificatesCertificateOutputWithContext(ctx context.Context) CertificatesCertificateOutput {
+	return o
+}
+
+// The ID of the Certificate.
+func (o CertificatesCertificateOutput) CertificateId() pulumi.StringOutput {
+	return o.ApplyT(func(v CertificatesCertificate) string { return v.CertificateId }).(pulumi.StringOutput)
+}
+
+// The name of the Certificate.
+func (o CertificatesCertificateOutput) CertificateName() pulumi.StringOutput {
+	return o.ApplyT(func(v CertificatesCertificate) string { return v.CertificateName }).(pulumi.StringOutput)
+}
+
+// The create time of the Certificate.
+func (o CertificatesCertificateOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v CertificatesCertificate) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The description of the Certificate.
+func (o CertificatesCertificateOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v CertificatesCertificate) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The domain name of the Certificate.
+func (o CertificatesCertificateOutput) DomainName() pulumi.StringOutput {
+	return o.ApplyT(func(v CertificatesCertificate) string { return v.DomainName }).(pulumi.StringOutput)
+}
+
+// The expire time of the Certificate.
+func (o CertificatesCertificateOutput) ExpiredAt() pulumi.StringOutput {
+	return o.ApplyT(func(v CertificatesCertificate) string { return v.ExpiredAt }).(pulumi.StringOutput)
+}
+
+// The ID of the Certificate.
+func (o CertificatesCertificateOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v CertificatesCertificate) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The ID list of the Listener.
+func (o CertificatesCertificateOutput) Listeners() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v CertificatesCertificate) []string { return v.Listeners }).(pulumi.StringArrayOutput)
+}
+
+// The ProjectName of Certificate.
+func (o CertificatesCertificateOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v CertificatesCertificate) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+type CertificatesCertificateArrayOutput struct{ *pulumi.OutputState }
+
+func (CertificatesCertificateArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CertificatesCertificate)(nil)).Elem()
+}
+
+func (o CertificatesCertificateArrayOutput) ToCertificatesCertificateArrayOutput() CertificatesCertificateArrayOutput {
+	return o
+}
+
+func (o CertificatesCertificateArrayOutput) ToCertificatesCertificateArrayOutputWithContext(ctx context.Context) CertificatesCertificateArrayOutput {
+	return o
+}
+
+func (o CertificatesCertificateArrayOutput) Index(i pulumi.IntInput) CertificatesCertificateOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CertificatesCertificate {
+		return vs[0].([]CertificatesCertificate)[vs[1].(int)]
+	}).(CertificatesCertificateOutput)
+}
+
+type ClbTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// ClbTagInput is an input type that accepts ClbTagArgs and ClbTagOutput values.
+// You can construct a concrete instance of `ClbTagInput` via:
+//
+//	ClbTagArgs{...}
+type ClbTagInput interface {
+	pulumi.Input
+
+	ToClbTagOutput() ClbTagOutput
+	ToClbTagOutputWithContext(context.Context) ClbTagOutput
+}
+
+type ClbTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (ClbTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClbTag)(nil)).Elem()
+}
+
+func (i ClbTagArgs) ToClbTagOutput() ClbTagOutput {
+	return i.ToClbTagOutputWithContext(context.Background())
+}
+
+func (i ClbTagArgs) ToClbTagOutputWithContext(ctx context.Context) ClbTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClbTagOutput)
+}
+
+// ClbTagArrayInput is an input type that accepts ClbTagArray and ClbTagArrayOutput values.
+// You can construct a concrete instance of `ClbTagArrayInput` via:
+//
+//	ClbTagArray{ ClbTagArgs{...} }
+type ClbTagArrayInput interface {
+	pulumi.Input
+
+	ToClbTagArrayOutput() ClbTagArrayOutput
+	ToClbTagArrayOutputWithContext(context.Context) ClbTagArrayOutput
+}
+
+type ClbTagArray []ClbTagInput
+
+func (ClbTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClbTag)(nil)).Elem()
+}
+
+func (i ClbTagArray) ToClbTagArrayOutput() ClbTagArrayOutput {
+	return i.ToClbTagArrayOutputWithContext(context.Background())
+}
+
+func (i ClbTagArray) ToClbTagArrayOutputWithContext(ctx context.Context) ClbTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClbTagArrayOutput)
+}
+
+type ClbTagOutput struct{ *pulumi.OutputState }
+
+func (ClbTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClbTag)(nil)).Elem()
+}
+
+func (o ClbTagOutput) ToClbTagOutput() ClbTagOutput {
+	return o
+}
+
+func (o ClbTagOutput) ToClbTagOutputWithContext(ctx context.Context) ClbTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o ClbTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v ClbTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o ClbTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v ClbTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type ClbTagArrayOutput struct{ *pulumi.OutputState }
+
+func (ClbTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClbTag)(nil)).Elem()
+}
+
+func (o ClbTagArrayOutput) ToClbTagArrayOutput() ClbTagArrayOutput {
+	return o
+}
+
+func (o ClbTagArrayOutput) ToClbTagArrayOutputWithContext(ctx context.Context) ClbTagArrayOutput {
+	return o
+}
+
+func (o ClbTagArrayOutput) Index(i pulumi.IntInput) ClbTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClbTag {
+		return vs[0].([]ClbTag)[vs[1].(int)]
+	}).(ClbTagOutput)
 }
 
 type ClbsClb struct {
@@ -181,16 +589,24 @@ type ClbsClb struct {
 	LoadBalancerSpec string `pulumi:"loadBalancerSpec"`
 	// The reason why Clb is locked.
 	LockReason string `pulumi:"lockReason"`
+	// The master zone ID of the CLB.
+	MasterZoneId string `pulumi:"masterZoneId"`
 	// The modification protection reason of the Clb.
 	ModificationProtectionReason string `pulumi:"modificationProtectionReason"`
 	// The modification protection status of the Clb.
 	ModificationProtectionStatus string `pulumi:"modificationProtectionStatus"`
 	// The overdue time of the Clb.
 	OverdueTime string `pulumi:"overdueTime"`
+	// The ProjectName of Clb.
+	ProjectName string `pulumi:"projectName"`
+	// The slave zone ID of the CLB.
+	SlaveZoneId string `pulumi:"slaveZoneId"`
 	// The status of the Clb.
 	Status string `pulumi:"status"`
 	// The subnet ID of the Clb.
 	SubnetId string `pulumi:"subnetId"`
+	// Tags.
+	Tags []ClbsClbTag `pulumi:"tags"`
 	// The type of the Clb.
 	Type string `pulumi:"type"`
 	// The update time of the Clb.
@@ -202,7 +618,7 @@ type ClbsClb struct {
 // ClbsClbInput is an input type that accepts ClbsClbArgs and ClbsClbOutput values.
 // You can construct a concrete instance of `ClbsClbInput` via:
 //
-//          ClbsClbArgs{...}
+//	ClbsClbArgs{...}
 type ClbsClbInput interface {
 	pulumi.Input
 
@@ -239,16 +655,24 @@ type ClbsClbArgs struct {
 	LoadBalancerSpec pulumi.StringInput `pulumi:"loadBalancerSpec"`
 	// The reason why Clb is locked.
 	LockReason pulumi.StringInput `pulumi:"lockReason"`
+	// The master zone ID of the CLB.
+	MasterZoneId pulumi.StringInput `pulumi:"masterZoneId"`
 	// The modification protection reason of the Clb.
 	ModificationProtectionReason pulumi.StringInput `pulumi:"modificationProtectionReason"`
 	// The modification protection status of the Clb.
 	ModificationProtectionStatus pulumi.StringInput `pulumi:"modificationProtectionStatus"`
 	// The overdue time of the Clb.
 	OverdueTime pulumi.StringInput `pulumi:"overdueTime"`
+	// The ProjectName of Clb.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The slave zone ID of the CLB.
+	SlaveZoneId pulumi.StringInput `pulumi:"slaveZoneId"`
 	// The status of the Clb.
 	Status pulumi.StringInput `pulumi:"status"`
 	// The subnet ID of the Clb.
 	SubnetId pulumi.StringInput `pulumi:"subnetId"`
+	// Tags.
+	Tags ClbsClbTagArrayInput `pulumi:"tags"`
 	// The type of the Clb.
 	Type pulumi.StringInput `pulumi:"type"`
 	// The update time of the Clb.
@@ -272,7 +696,7 @@ func (i ClbsClbArgs) ToClbsClbOutputWithContext(ctx context.Context) ClbsClbOutp
 // ClbsClbArrayInput is an input type that accepts ClbsClbArray and ClbsClbArrayOutput values.
 // You can construct a concrete instance of `ClbsClbArrayInput` via:
 //
-//          ClbsClbArray{ ClbsClbArgs{...} }
+//	ClbsClbArray{ ClbsClbArgs{...} }
 type ClbsClbArrayInput interface {
 	pulumi.Input
 
@@ -378,6 +802,11 @@ func (o ClbsClbOutput) LockReason() pulumi.StringOutput {
 	return o.ApplyT(func(v ClbsClb) string { return v.LockReason }).(pulumi.StringOutput)
 }
 
+// The master zone ID of the CLB.
+func (o ClbsClbOutput) MasterZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v ClbsClb) string { return v.MasterZoneId }).(pulumi.StringOutput)
+}
+
 // The modification protection reason of the Clb.
 func (o ClbsClbOutput) ModificationProtectionReason() pulumi.StringOutput {
 	return o.ApplyT(func(v ClbsClb) string { return v.ModificationProtectionReason }).(pulumi.StringOutput)
@@ -393,6 +822,16 @@ func (o ClbsClbOutput) OverdueTime() pulumi.StringOutput {
 	return o.ApplyT(func(v ClbsClb) string { return v.OverdueTime }).(pulumi.StringOutput)
 }
 
+// The ProjectName of Clb.
+func (o ClbsClbOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v ClbsClb) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The slave zone ID of the CLB.
+func (o ClbsClbOutput) SlaveZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v ClbsClb) string { return v.SlaveZoneId }).(pulumi.StringOutput)
+}
+
 // The status of the Clb.
 func (o ClbsClbOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v ClbsClb) string { return v.Status }).(pulumi.StringOutput)
@@ -401,6 +840,11 @@ func (o ClbsClbOutput) Status() pulumi.StringOutput {
 // The subnet ID of the Clb.
 func (o ClbsClbOutput) SubnetId() pulumi.StringOutput {
 	return o.ApplyT(func(v ClbsClb) string { return v.SubnetId }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o ClbsClbOutput) Tags() ClbsClbTagArrayOutput {
+	return o.ApplyT(func(v ClbsClb) []ClbsClbTag { return v.Tags }).(ClbsClbTagArrayOutput)
 }
 
 // The type of the Clb.
@@ -438,22 +882,234 @@ func (o ClbsClbArrayOutput) Index(i pulumi.IntInput) ClbsClbOutput {
 	}).(ClbsClbOutput)
 }
 
+type ClbsClbTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// ClbsClbTagInput is an input type that accepts ClbsClbTagArgs and ClbsClbTagOutput values.
+// You can construct a concrete instance of `ClbsClbTagInput` via:
+//
+//	ClbsClbTagArgs{...}
+type ClbsClbTagInput interface {
+	pulumi.Input
+
+	ToClbsClbTagOutput() ClbsClbTagOutput
+	ToClbsClbTagOutputWithContext(context.Context) ClbsClbTagOutput
+}
+
+type ClbsClbTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (ClbsClbTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClbsClbTag)(nil)).Elem()
+}
+
+func (i ClbsClbTagArgs) ToClbsClbTagOutput() ClbsClbTagOutput {
+	return i.ToClbsClbTagOutputWithContext(context.Background())
+}
+
+func (i ClbsClbTagArgs) ToClbsClbTagOutputWithContext(ctx context.Context) ClbsClbTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClbsClbTagOutput)
+}
+
+// ClbsClbTagArrayInput is an input type that accepts ClbsClbTagArray and ClbsClbTagArrayOutput values.
+// You can construct a concrete instance of `ClbsClbTagArrayInput` via:
+//
+//	ClbsClbTagArray{ ClbsClbTagArgs{...} }
+type ClbsClbTagArrayInput interface {
+	pulumi.Input
+
+	ToClbsClbTagArrayOutput() ClbsClbTagArrayOutput
+	ToClbsClbTagArrayOutputWithContext(context.Context) ClbsClbTagArrayOutput
+}
+
+type ClbsClbTagArray []ClbsClbTagInput
+
+func (ClbsClbTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClbsClbTag)(nil)).Elem()
+}
+
+func (i ClbsClbTagArray) ToClbsClbTagArrayOutput() ClbsClbTagArrayOutput {
+	return i.ToClbsClbTagArrayOutputWithContext(context.Background())
+}
+
+func (i ClbsClbTagArray) ToClbsClbTagArrayOutputWithContext(ctx context.Context) ClbsClbTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClbsClbTagArrayOutput)
+}
+
+type ClbsClbTagOutput struct{ *pulumi.OutputState }
+
+func (ClbsClbTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClbsClbTag)(nil)).Elem()
+}
+
+func (o ClbsClbTagOutput) ToClbsClbTagOutput() ClbsClbTagOutput {
+	return o
+}
+
+func (o ClbsClbTagOutput) ToClbsClbTagOutputWithContext(ctx context.Context) ClbsClbTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o ClbsClbTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v ClbsClbTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o ClbsClbTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v ClbsClbTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type ClbsClbTagArrayOutput struct{ *pulumi.OutputState }
+
+func (ClbsClbTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClbsClbTag)(nil)).Elem()
+}
+
+func (o ClbsClbTagArrayOutput) ToClbsClbTagArrayOutput() ClbsClbTagArrayOutput {
+	return o
+}
+
+func (o ClbsClbTagArrayOutput) ToClbsClbTagArrayOutputWithContext(ctx context.Context) ClbsClbTagArrayOutput {
+	return o
+}
+
+func (o ClbsClbTagArrayOutput) Index(i pulumi.IntInput) ClbsClbTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClbsClbTag {
+		return vs[0].([]ClbsClbTag)[vs[1].(int)]
+	}).(ClbsClbTagOutput)
+}
+
+type ClbsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// ClbsTagInput is an input type that accepts ClbsTagArgs and ClbsTagOutput values.
+// You can construct a concrete instance of `ClbsTagInput` via:
+//
+//	ClbsTagArgs{...}
+type ClbsTagInput interface {
+	pulumi.Input
+
+	ToClbsTagOutput() ClbsTagOutput
+	ToClbsTagOutputWithContext(context.Context) ClbsTagOutput
+}
+
+type ClbsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (ClbsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClbsTag)(nil)).Elem()
+}
+
+func (i ClbsTagArgs) ToClbsTagOutput() ClbsTagOutput {
+	return i.ToClbsTagOutputWithContext(context.Background())
+}
+
+func (i ClbsTagArgs) ToClbsTagOutputWithContext(ctx context.Context) ClbsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClbsTagOutput)
+}
+
+// ClbsTagArrayInput is an input type that accepts ClbsTagArray and ClbsTagArrayOutput values.
+// You can construct a concrete instance of `ClbsTagArrayInput` via:
+//
+//	ClbsTagArray{ ClbsTagArgs{...} }
+type ClbsTagArrayInput interface {
+	pulumi.Input
+
+	ToClbsTagArrayOutput() ClbsTagArrayOutput
+	ToClbsTagArrayOutputWithContext(context.Context) ClbsTagArrayOutput
+}
+
+type ClbsTagArray []ClbsTagInput
+
+func (ClbsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClbsTag)(nil)).Elem()
+}
+
+func (i ClbsTagArray) ToClbsTagArrayOutput() ClbsTagArrayOutput {
+	return i.ToClbsTagArrayOutputWithContext(context.Background())
+}
+
+func (i ClbsTagArray) ToClbsTagArrayOutputWithContext(ctx context.Context) ClbsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClbsTagArrayOutput)
+}
+
+type ClbsTagOutput struct{ *pulumi.OutputState }
+
+func (ClbsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClbsTag)(nil)).Elem()
+}
+
+func (o ClbsTagOutput) ToClbsTagOutput() ClbsTagOutput {
+	return o
+}
+
+func (o ClbsTagOutput) ToClbsTagOutputWithContext(ctx context.Context) ClbsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o ClbsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v ClbsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o ClbsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v ClbsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type ClbsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (ClbsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClbsTag)(nil)).Elem()
+}
+
+func (o ClbsTagArrayOutput) ToClbsTagArrayOutput() ClbsTagArrayOutput {
+	return o
+}
+
+func (o ClbsTagArrayOutput) ToClbsTagArrayOutputWithContext(ctx context.Context) ClbsTagArrayOutput {
+	return o
+}
+
+func (o ClbsTagArrayOutput) Index(i pulumi.IntInput) ClbsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClbsTag {
+		return vs[0].([]ClbsTag)[vs[1].(int)]
+	}).(ClbsTagOutput)
+}
+
 type ListenerHealthCheck struct {
 	// The domain of health check.
 	Domain *string `pulumi:"domain"`
 	// The enable status of health check function. Optional choice contains `on`, `off`.
 	Enabled *string `pulumi:"enabled"`
-	// The healthy threshold of health check.
+	// The healthy threshold of health check, default 3, range in 2~10.
 	HealthyThreshold *int `pulumi:"healthyThreshold"`
-	// The normal http status code of health check.
+	// The normal http status code of health check, the value can be `http2xx` or `http3xx` or `http4xx` or `http5xx`.
 	HttpCode *string `pulumi:"httpCode"`
-	// The interval executing health check.
+	// The interval executing health check, default 2, range in 1~300.
 	Interval *int `pulumi:"interval"`
-	// The method of health check.
+	// The method of health check, the value can be `GET` or `HEAD`.
 	Method *string `pulumi:"method"`
-	// The response timeout of health check.
+	// The response timeout of health check, default 2, range in 1~60..
 	Timeout *int `pulumi:"timeout"`
-	// The unhealthy threshold of health check.
+	// The unhealthy threshold of health check, default 3, range in 2~10.
 	UnHealthyThreshold *int `pulumi:"unHealthyThreshold"`
 	// The uri of health check.
 	Uri *string `pulumi:"uri"`
@@ -462,7 +1118,7 @@ type ListenerHealthCheck struct {
 // ListenerHealthCheckInput is an input type that accepts ListenerHealthCheckArgs and ListenerHealthCheckOutput values.
 // You can construct a concrete instance of `ListenerHealthCheckInput` via:
 //
-//          ListenerHealthCheckArgs{...}
+//	ListenerHealthCheckArgs{...}
 type ListenerHealthCheckInput interface {
 	pulumi.Input
 
@@ -475,17 +1131,17 @@ type ListenerHealthCheckArgs struct {
 	Domain pulumi.StringPtrInput `pulumi:"domain"`
 	// The enable status of health check function. Optional choice contains `on`, `off`.
 	Enabled pulumi.StringPtrInput `pulumi:"enabled"`
-	// The healthy threshold of health check.
+	// The healthy threshold of health check, default 3, range in 2~10.
 	HealthyThreshold pulumi.IntPtrInput `pulumi:"healthyThreshold"`
-	// The normal http status code of health check.
+	// The normal http status code of health check, the value can be `http2xx` or `http3xx` or `http4xx` or `http5xx`.
 	HttpCode pulumi.StringPtrInput `pulumi:"httpCode"`
-	// The interval executing health check.
+	// The interval executing health check, default 2, range in 1~300.
 	Interval pulumi.IntPtrInput `pulumi:"interval"`
-	// The method of health check.
+	// The method of health check, the value can be `GET` or `HEAD`.
 	Method pulumi.StringPtrInput `pulumi:"method"`
-	// The response timeout of health check.
+	// The response timeout of health check, default 2, range in 1~60..
 	Timeout pulumi.IntPtrInput `pulumi:"timeout"`
-	// The unhealthy threshold of health check.
+	// The unhealthy threshold of health check, default 3, range in 2~10.
 	UnHealthyThreshold pulumi.IntPtrInput `pulumi:"unHealthyThreshold"`
 	// The uri of health check.
 	Uri pulumi.StringPtrInput `pulumi:"uri"`
@@ -514,11 +1170,11 @@ func (i ListenerHealthCheckArgs) ToListenerHealthCheckPtrOutputWithContext(ctx c
 // ListenerHealthCheckPtrInput is an input type that accepts ListenerHealthCheckArgs, ListenerHealthCheckPtr and ListenerHealthCheckPtrOutput values.
 // You can construct a concrete instance of `ListenerHealthCheckPtrInput` via:
 //
-//          ListenerHealthCheckArgs{...}
+//	        ListenerHealthCheckArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type ListenerHealthCheckPtrInput interface {
 	pulumi.Input
 
@@ -578,32 +1234,32 @@ func (o ListenerHealthCheckOutput) Enabled() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ListenerHealthCheck) *string { return v.Enabled }).(pulumi.StringPtrOutput)
 }
 
-// The healthy threshold of health check.
+// The healthy threshold of health check, default 3, range in 2~10.
 func (o ListenerHealthCheckOutput) HealthyThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ListenerHealthCheck) *int { return v.HealthyThreshold }).(pulumi.IntPtrOutput)
 }
 
-// The normal http status code of health check.
+// The normal http status code of health check, the value can be `http2xx` or `http3xx` or `http4xx` or `http5xx`.
 func (o ListenerHealthCheckOutput) HttpCode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ListenerHealthCheck) *string { return v.HttpCode }).(pulumi.StringPtrOutput)
 }
 
-// The interval executing health check.
+// The interval executing health check, default 2, range in 1~300.
 func (o ListenerHealthCheckOutput) Interval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ListenerHealthCheck) *int { return v.Interval }).(pulumi.IntPtrOutput)
 }
 
-// The method of health check.
+// The method of health check, the value can be `GET` or `HEAD`.
 func (o ListenerHealthCheckOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ListenerHealthCheck) *string { return v.Method }).(pulumi.StringPtrOutput)
 }
 
-// The response timeout of health check.
+// The response timeout of health check, default 2, range in 1~60..
 func (o ListenerHealthCheckOutput) Timeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ListenerHealthCheck) *int { return v.Timeout }).(pulumi.IntPtrOutput)
 }
 
-// The unhealthy threshold of health check.
+// The unhealthy threshold of health check, default 3, range in 2~10.
 func (o ListenerHealthCheckOutput) UnHealthyThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ListenerHealthCheck) *int { return v.UnHealthyThreshold }).(pulumi.IntPtrOutput)
 }
@@ -657,7 +1313,7 @@ func (o ListenerHealthCheckPtrOutput) Enabled() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The healthy threshold of health check.
+// The healthy threshold of health check, default 3, range in 2~10.
 func (o ListenerHealthCheckPtrOutput) HealthyThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ListenerHealthCheck) *int {
 		if v == nil {
@@ -667,7 +1323,7 @@ func (o ListenerHealthCheckPtrOutput) HealthyThreshold() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// The normal http status code of health check.
+// The normal http status code of health check, the value can be `http2xx` or `http3xx` or `http4xx` or `http5xx`.
 func (o ListenerHealthCheckPtrOutput) HttpCode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ListenerHealthCheck) *string {
 		if v == nil {
@@ -677,7 +1333,7 @@ func (o ListenerHealthCheckPtrOutput) HttpCode() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The interval executing health check.
+// The interval executing health check, default 2, range in 1~300.
 func (o ListenerHealthCheckPtrOutput) Interval() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ListenerHealthCheck) *int {
 		if v == nil {
@@ -687,7 +1343,7 @@ func (o ListenerHealthCheckPtrOutput) Interval() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// The method of health check.
+// The method of health check, the value can be `GET` or `HEAD`.
 func (o ListenerHealthCheckPtrOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ListenerHealthCheck) *string {
 		if v == nil {
@@ -697,7 +1353,7 @@ func (o ListenerHealthCheckPtrOutput) Method() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The response timeout of health check.
+// The response timeout of health check, default 2, range in 1~60..
 func (o ListenerHealthCheckPtrOutput) Timeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ListenerHealthCheck) *int {
 		if v == nil {
@@ -707,7 +1363,7 @@ func (o ListenerHealthCheckPtrOutput) Timeout() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// The unhealthy threshold of health check.
+// The unhealthy threshold of health check, default 3, range in 2~10.
 func (o ListenerHealthCheckPtrOutput) UnHealthyThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ListenerHealthCheck) *int {
 		if v == nil {
@@ -754,6 +1410,10 @@ type ListenersListener struct {
 	HealthCheckMethod string `pulumi:"healthCheckMethod"`
 	// The response timeout of health check.
 	HealthCheckTimeout int `pulumi:"healthCheckTimeout"`
+	// The expected response string for the health check.
+	HealthCheckUdpExpect string `pulumi:"healthCheckUdpExpect"`
+	// A request string to perform a health check.
+	HealthCheckUdpRequest string `pulumi:"healthCheckUdpRequest"`
 	// The unhealthy threshold of health check.
 	HealthCheckUnHealthyThreshold int `pulumi:"healthCheckUnHealthyThreshold"`
 	// The uri of health check.
@@ -779,7 +1439,7 @@ type ListenersListener struct {
 // ListenersListenerInput is an input type that accepts ListenersListenerArgs and ListenersListenerOutput values.
 // You can construct a concrete instance of `ListenersListenerInput` via:
 //
-//          ListenersListenerArgs{...}
+//	ListenersListenerArgs{...}
 type ListenersListenerInput interface {
 	pulumi.Input
 
@@ -814,6 +1474,10 @@ type ListenersListenerArgs struct {
 	HealthCheckMethod pulumi.StringInput `pulumi:"healthCheckMethod"`
 	// The response timeout of health check.
 	HealthCheckTimeout pulumi.IntInput `pulumi:"healthCheckTimeout"`
+	// The expected response string for the health check.
+	HealthCheckUdpExpect pulumi.StringInput `pulumi:"healthCheckUdpExpect"`
+	// A request string to perform a health check.
+	HealthCheckUdpRequest pulumi.StringInput `pulumi:"healthCheckUdpRequest"`
 	// The unhealthy threshold of health check.
 	HealthCheckUnHealthyThreshold pulumi.IntInput `pulumi:"healthCheckUnHealthyThreshold"`
 	// The uri of health check.
@@ -851,7 +1515,7 @@ func (i ListenersListenerArgs) ToListenersListenerOutputWithContext(ctx context.
 // ListenersListenerArrayInput is an input type that accepts ListenersListenerArray and ListenersListenerArrayOutput values.
 // You can construct a concrete instance of `ListenersListenerArrayInput` via:
 //
-//          ListenersListenerArray{ ListenersListenerArgs{...} }
+//	ListenersListenerArray{ ListenersListenerArgs{...} }
 type ListenersListenerArrayInput interface {
 	pulumi.Input
 
@@ -952,6 +1616,16 @@ func (o ListenersListenerOutput) HealthCheckTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v ListenersListener) int { return v.HealthCheckTimeout }).(pulumi.IntOutput)
 }
 
+// The expected response string for the health check.
+func (o ListenersListenerOutput) HealthCheckUdpExpect() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenersListener) string { return v.HealthCheckUdpExpect }).(pulumi.StringOutput)
+}
+
+// A request string to perform a health check.
+func (o ListenersListenerOutput) HealthCheckUdpRequest() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenersListener) string { return v.HealthCheckUdpRequest }).(pulumi.StringOutput)
+}
+
 // The unhealthy threshold of health check.
 func (o ListenersListenerOutput) HealthCheckUnHealthyThreshold() pulumi.IntOutput {
 	return o.ApplyT(func(v ListenersListener) int { return v.HealthCheckUnHealthyThreshold }).(pulumi.IntOutput)
@@ -1022,6 +1696,148 @@ func (o ListenersListenerArrayOutput) Index(i pulumi.IntInput) ListenersListener
 	}).(ListenersListenerOutput)
 }
 
+type RulesRule struct {
+	// The Description of Rule.
+	Description string `pulumi:"description"`
+	// The Domain of Rule.
+	Domain string `pulumi:"domain"`
+	// The Id of Rule.
+	Id string `pulumi:"id"`
+	// The Id of Rule.
+	RuleId string `pulumi:"ruleId"`
+	// The Id of Server Group.
+	ServerGroupId string `pulumi:"serverGroupId"`
+	// The Url of Rule.
+	Url string `pulumi:"url"`
+}
+
+// RulesRuleInput is an input type that accepts RulesRuleArgs and RulesRuleOutput values.
+// You can construct a concrete instance of `RulesRuleInput` via:
+//
+//	RulesRuleArgs{...}
+type RulesRuleInput interface {
+	pulumi.Input
+
+	ToRulesRuleOutput() RulesRuleOutput
+	ToRulesRuleOutputWithContext(context.Context) RulesRuleOutput
+}
+
+type RulesRuleArgs struct {
+	// The Description of Rule.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The Domain of Rule.
+	Domain pulumi.StringInput `pulumi:"domain"`
+	// The Id of Rule.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The Id of Rule.
+	RuleId pulumi.StringInput `pulumi:"ruleId"`
+	// The Id of Server Group.
+	ServerGroupId pulumi.StringInput `pulumi:"serverGroupId"`
+	// The Url of Rule.
+	Url pulumi.StringInput `pulumi:"url"`
+}
+
+func (RulesRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRule)(nil)).Elem()
+}
+
+func (i RulesRuleArgs) ToRulesRuleOutput() RulesRuleOutput {
+	return i.ToRulesRuleOutputWithContext(context.Background())
+}
+
+func (i RulesRuleArgs) ToRulesRuleOutputWithContext(ctx context.Context) RulesRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleOutput)
+}
+
+// RulesRuleArrayInput is an input type that accepts RulesRuleArray and RulesRuleArrayOutput values.
+// You can construct a concrete instance of `RulesRuleArrayInput` via:
+//
+//	RulesRuleArray{ RulesRuleArgs{...} }
+type RulesRuleArrayInput interface {
+	pulumi.Input
+
+	ToRulesRuleArrayOutput() RulesRuleArrayOutput
+	ToRulesRuleArrayOutputWithContext(context.Context) RulesRuleArrayOutput
+}
+
+type RulesRuleArray []RulesRuleInput
+
+func (RulesRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRule)(nil)).Elem()
+}
+
+func (i RulesRuleArray) ToRulesRuleArrayOutput() RulesRuleArrayOutput {
+	return i.ToRulesRuleArrayOutputWithContext(context.Background())
+}
+
+func (i RulesRuleArray) ToRulesRuleArrayOutputWithContext(ctx context.Context) RulesRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RulesRuleArrayOutput)
+}
+
+type RulesRuleOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RulesRule)(nil)).Elem()
+}
+
+func (o RulesRuleOutput) ToRulesRuleOutput() RulesRuleOutput {
+	return o
+}
+
+func (o RulesRuleOutput) ToRulesRuleOutputWithContext(ctx context.Context) RulesRuleOutput {
+	return o
+}
+
+// The Description of Rule.
+func (o RulesRuleOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v RulesRule) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The Domain of Rule.
+func (o RulesRuleOutput) Domain() pulumi.StringOutput {
+	return o.ApplyT(func(v RulesRule) string { return v.Domain }).(pulumi.StringOutput)
+}
+
+// The Id of Rule.
+func (o RulesRuleOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v RulesRule) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The Id of Rule.
+func (o RulesRuleOutput) RuleId() pulumi.StringOutput {
+	return o.ApplyT(func(v RulesRule) string { return v.RuleId }).(pulumi.StringOutput)
+}
+
+// The Id of Server Group.
+func (o RulesRuleOutput) ServerGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v RulesRule) string { return v.ServerGroupId }).(pulumi.StringOutput)
+}
+
+// The Url of Rule.
+func (o RulesRuleOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v RulesRule) string { return v.Url }).(pulumi.StringOutput)
+}
+
+type RulesRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (RulesRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RulesRule)(nil)).Elem()
+}
+
+func (o RulesRuleArrayOutput) ToRulesRuleArrayOutput() RulesRuleArrayOutput {
+	return o
+}
+
+func (o RulesRuleArrayOutput) ToRulesRuleArrayOutputWithContext(ctx context.Context) RulesRuleArrayOutput {
+	return o
+}
+
+func (o RulesRuleArrayOutput) Index(i pulumi.IntInput) RulesRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RulesRule {
+		return vs[0].([]RulesRule)[vs[1].(int)]
+	}).(RulesRuleOutput)
+}
+
 type ServerGroupServersServer struct {
 	// The description of the instance.
 	Description string `pulumi:"description"`
@@ -1044,7 +1860,7 @@ type ServerGroupServersServer struct {
 // ServerGroupServersServerInput is an input type that accepts ServerGroupServersServerArgs and ServerGroupServersServerOutput values.
 // You can construct a concrete instance of `ServerGroupServersServerInput` via:
 //
-//          ServerGroupServersServerArgs{...}
+//	ServerGroupServersServerArgs{...}
 type ServerGroupServersServerInput interface {
 	pulumi.Input
 
@@ -1086,7 +1902,7 @@ func (i ServerGroupServersServerArgs) ToServerGroupServersServerOutputWithContex
 // ServerGroupServersServerArrayInput is an input type that accepts ServerGroupServersServerArray and ServerGroupServersServerArrayOutput values.
 // You can construct a concrete instance of `ServerGroupServersServerArrayInput` via:
 //
-//          ServerGroupServersServerArray{ ServerGroupServersServerArgs{...} }
+//	ServerGroupServersServerArray{ ServerGroupServersServerArgs{...} }
 type ServerGroupServersServerArrayInput interface {
 	pulumi.Input
 
@@ -1200,7 +2016,7 @@ type ServerGroupsGroup struct {
 // ServerGroupsGroupInput is an input type that accepts ServerGroupsGroupArgs and ServerGroupsGroupOutput values.
 // You can construct a concrete instance of `ServerGroupsGroupInput` via:
 //
-//          ServerGroupsGroupArgs{...}
+//	ServerGroupsGroupArgs{...}
 type ServerGroupsGroupInput interface {
 	pulumi.Input
 
@@ -1238,7 +2054,7 @@ func (i ServerGroupsGroupArgs) ToServerGroupsGroupOutputWithContext(ctx context.
 // ServerGroupsGroupArrayInput is an input type that accepts ServerGroupsGroupArray and ServerGroupsGroupArrayOutput values.
 // You can construct a concrete instance of `ServerGroupsGroupArrayInput` via:
 //
-//          ServerGroupsGroupArray{ ServerGroupsGroupArgs{...} }
+//	ServerGroupsGroupArray{ ServerGroupsGroupArgs{...} }
 type ServerGroupsGroupArrayInput interface {
 	pulumi.Input
 
@@ -1324,29 +2140,264 @@ func (o ServerGroupsGroupArrayOutput) Index(i pulumi.IntInput) ServerGroupsGroup
 	}).(ServerGroupsGroupOutput)
 }
 
+type ZonesMasterZone struct {
+	// The slave zones list.
+	SlaveZones []ZonesMasterZoneSlaveZone `pulumi:"slaveZones"`
+	// The master zone id.
+	ZoneId string `pulumi:"zoneId"`
+}
+
+// ZonesMasterZoneInput is an input type that accepts ZonesMasterZoneArgs and ZonesMasterZoneOutput values.
+// You can construct a concrete instance of `ZonesMasterZoneInput` via:
+//
+//	ZonesMasterZoneArgs{...}
+type ZonesMasterZoneInput interface {
+	pulumi.Input
+
+	ToZonesMasterZoneOutput() ZonesMasterZoneOutput
+	ToZonesMasterZoneOutputWithContext(context.Context) ZonesMasterZoneOutput
+}
+
+type ZonesMasterZoneArgs struct {
+	// The slave zones list.
+	SlaveZones ZonesMasterZoneSlaveZoneArrayInput `pulumi:"slaveZones"`
+	// The master zone id.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+}
+
+func (ZonesMasterZoneArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ZonesMasterZone)(nil)).Elem()
+}
+
+func (i ZonesMasterZoneArgs) ToZonesMasterZoneOutput() ZonesMasterZoneOutput {
+	return i.ToZonesMasterZoneOutputWithContext(context.Background())
+}
+
+func (i ZonesMasterZoneArgs) ToZonesMasterZoneOutputWithContext(ctx context.Context) ZonesMasterZoneOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ZonesMasterZoneOutput)
+}
+
+// ZonesMasterZoneArrayInput is an input type that accepts ZonesMasterZoneArray and ZonesMasterZoneArrayOutput values.
+// You can construct a concrete instance of `ZonesMasterZoneArrayInput` via:
+//
+//	ZonesMasterZoneArray{ ZonesMasterZoneArgs{...} }
+type ZonesMasterZoneArrayInput interface {
+	pulumi.Input
+
+	ToZonesMasterZoneArrayOutput() ZonesMasterZoneArrayOutput
+	ToZonesMasterZoneArrayOutputWithContext(context.Context) ZonesMasterZoneArrayOutput
+}
+
+type ZonesMasterZoneArray []ZonesMasterZoneInput
+
+func (ZonesMasterZoneArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ZonesMasterZone)(nil)).Elem()
+}
+
+func (i ZonesMasterZoneArray) ToZonesMasterZoneArrayOutput() ZonesMasterZoneArrayOutput {
+	return i.ToZonesMasterZoneArrayOutputWithContext(context.Background())
+}
+
+func (i ZonesMasterZoneArray) ToZonesMasterZoneArrayOutputWithContext(ctx context.Context) ZonesMasterZoneArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ZonesMasterZoneArrayOutput)
+}
+
+type ZonesMasterZoneOutput struct{ *pulumi.OutputState }
+
+func (ZonesMasterZoneOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ZonesMasterZone)(nil)).Elem()
+}
+
+func (o ZonesMasterZoneOutput) ToZonesMasterZoneOutput() ZonesMasterZoneOutput {
+	return o
+}
+
+func (o ZonesMasterZoneOutput) ToZonesMasterZoneOutputWithContext(ctx context.Context) ZonesMasterZoneOutput {
+	return o
+}
+
+// The slave zones list.
+func (o ZonesMasterZoneOutput) SlaveZones() ZonesMasterZoneSlaveZoneArrayOutput {
+	return o.ApplyT(func(v ZonesMasterZone) []ZonesMasterZoneSlaveZone { return v.SlaveZones }).(ZonesMasterZoneSlaveZoneArrayOutput)
+}
+
+// The master zone id.
+func (o ZonesMasterZoneOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v ZonesMasterZone) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+type ZonesMasterZoneArrayOutput struct{ *pulumi.OutputState }
+
+func (ZonesMasterZoneArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ZonesMasterZone)(nil)).Elem()
+}
+
+func (o ZonesMasterZoneArrayOutput) ToZonesMasterZoneArrayOutput() ZonesMasterZoneArrayOutput {
+	return o
+}
+
+func (o ZonesMasterZoneArrayOutput) ToZonesMasterZoneArrayOutputWithContext(ctx context.Context) ZonesMasterZoneArrayOutput {
+	return o
+}
+
+func (o ZonesMasterZoneArrayOutput) Index(i pulumi.IntInput) ZonesMasterZoneOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ZonesMasterZone {
+		return vs[0].([]ZonesMasterZone)[vs[1].(int)]
+	}).(ZonesMasterZoneOutput)
+}
+
+type ZonesMasterZoneSlaveZone struct {
+	// The master zone id.
+	ZoneId string `pulumi:"zoneId"`
+}
+
+// ZonesMasterZoneSlaveZoneInput is an input type that accepts ZonesMasterZoneSlaveZoneArgs and ZonesMasterZoneSlaveZoneOutput values.
+// You can construct a concrete instance of `ZonesMasterZoneSlaveZoneInput` via:
+//
+//	ZonesMasterZoneSlaveZoneArgs{...}
+type ZonesMasterZoneSlaveZoneInput interface {
+	pulumi.Input
+
+	ToZonesMasterZoneSlaveZoneOutput() ZonesMasterZoneSlaveZoneOutput
+	ToZonesMasterZoneSlaveZoneOutputWithContext(context.Context) ZonesMasterZoneSlaveZoneOutput
+}
+
+type ZonesMasterZoneSlaveZoneArgs struct {
+	// The master zone id.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+}
+
+func (ZonesMasterZoneSlaveZoneArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ZonesMasterZoneSlaveZone)(nil)).Elem()
+}
+
+func (i ZonesMasterZoneSlaveZoneArgs) ToZonesMasterZoneSlaveZoneOutput() ZonesMasterZoneSlaveZoneOutput {
+	return i.ToZonesMasterZoneSlaveZoneOutputWithContext(context.Background())
+}
+
+func (i ZonesMasterZoneSlaveZoneArgs) ToZonesMasterZoneSlaveZoneOutputWithContext(ctx context.Context) ZonesMasterZoneSlaveZoneOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ZonesMasterZoneSlaveZoneOutput)
+}
+
+// ZonesMasterZoneSlaveZoneArrayInput is an input type that accepts ZonesMasterZoneSlaveZoneArray and ZonesMasterZoneSlaveZoneArrayOutput values.
+// You can construct a concrete instance of `ZonesMasterZoneSlaveZoneArrayInput` via:
+//
+//	ZonesMasterZoneSlaveZoneArray{ ZonesMasterZoneSlaveZoneArgs{...} }
+type ZonesMasterZoneSlaveZoneArrayInput interface {
+	pulumi.Input
+
+	ToZonesMasterZoneSlaveZoneArrayOutput() ZonesMasterZoneSlaveZoneArrayOutput
+	ToZonesMasterZoneSlaveZoneArrayOutputWithContext(context.Context) ZonesMasterZoneSlaveZoneArrayOutput
+}
+
+type ZonesMasterZoneSlaveZoneArray []ZonesMasterZoneSlaveZoneInput
+
+func (ZonesMasterZoneSlaveZoneArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ZonesMasterZoneSlaveZone)(nil)).Elem()
+}
+
+func (i ZonesMasterZoneSlaveZoneArray) ToZonesMasterZoneSlaveZoneArrayOutput() ZonesMasterZoneSlaveZoneArrayOutput {
+	return i.ToZonesMasterZoneSlaveZoneArrayOutputWithContext(context.Background())
+}
+
+func (i ZonesMasterZoneSlaveZoneArray) ToZonesMasterZoneSlaveZoneArrayOutputWithContext(ctx context.Context) ZonesMasterZoneSlaveZoneArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ZonesMasterZoneSlaveZoneArrayOutput)
+}
+
+type ZonesMasterZoneSlaveZoneOutput struct{ *pulumi.OutputState }
+
+func (ZonesMasterZoneSlaveZoneOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ZonesMasterZoneSlaveZone)(nil)).Elem()
+}
+
+func (o ZonesMasterZoneSlaveZoneOutput) ToZonesMasterZoneSlaveZoneOutput() ZonesMasterZoneSlaveZoneOutput {
+	return o
+}
+
+func (o ZonesMasterZoneSlaveZoneOutput) ToZonesMasterZoneSlaveZoneOutputWithContext(ctx context.Context) ZonesMasterZoneSlaveZoneOutput {
+	return o
+}
+
+// The master zone id.
+func (o ZonesMasterZoneSlaveZoneOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v ZonesMasterZoneSlaveZone) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+type ZonesMasterZoneSlaveZoneArrayOutput struct{ *pulumi.OutputState }
+
+func (ZonesMasterZoneSlaveZoneArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ZonesMasterZoneSlaveZone)(nil)).Elem()
+}
+
+func (o ZonesMasterZoneSlaveZoneArrayOutput) ToZonesMasterZoneSlaveZoneArrayOutput() ZonesMasterZoneSlaveZoneArrayOutput {
+	return o
+}
+
+func (o ZonesMasterZoneSlaveZoneArrayOutput) ToZonesMasterZoneSlaveZoneArrayOutputWithContext(ctx context.Context) ZonesMasterZoneSlaveZoneArrayOutput {
+	return o
+}
+
+func (o ZonesMasterZoneSlaveZoneArrayOutput) Index(i pulumi.IntInput) ZonesMasterZoneSlaveZoneOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ZonesMasterZoneSlaveZone {
+		return vs[0].([]ZonesMasterZoneSlaveZone)[vs[1].(int)]
+	}).(ZonesMasterZoneSlaveZoneOutput)
+}
+
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*ClbRulesRuleInput)(nil)).Elem(), ClbRulesRuleArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ClbRulesRuleArrayInput)(nil)).Elem(), ClbRulesRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AclAclEntryInput)(nil)).Elem(), AclAclEntryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AclAclEntryArrayInput)(nil)).Elem(), AclAclEntryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AclsAclInput)(nil)).Elem(), AclsAclArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AclsAclArrayInput)(nil)).Elem(), AclsAclArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CertificatesCertificateInput)(nil)).Elem(), CertificatesCertificateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CertificatesCertificateArrayInput)(nil)).Elem(), CertificatesCertificateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClbTagInput)(nil)).Elem(), ClbTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClbTagArrayInput)(nil)).Elem(), ClbTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClbsClbInput)(nil)).Elem(), ClbsClbArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClbsClbArrayInput)(nil)).Elem(), ClbsClbArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClbsClbTagInput)(nil)).Elem(), ClbsClbTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClbsClbTagArrayInput)(nil)).Elem(), ClbsClbTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClbsTagInput)(nil)).Elem(), ClbsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClbsTagArrayInput)(nil)).Elem(), ClbsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ListenerHealthCheckInput)(nil)).Elem(), ListenerHealthCheckArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ListenerHealthCheckPtrInput)(nil)).Elem(), ListenerHealthCheckArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ListenersListenerInput)(nil)).Elem(), ListenersListenerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ListenersListenerArrayInput)(nil)).Elem(), ListenersListenerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleInput)(nil)).Elem(), RulesRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RulesRuleArrayInput)(nil)).Elem(), RulesRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerGroupServersServerInput)(nil)).Elem(), ServerGroupServersServerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerGroupServersServerArrayInput)(nil)).Elem(), ServerGroupServersServerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerGroupsGroupInput)(nil)).Elem(), ServerGroupsGroupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerGroupsGroupArrayInput)(nil)).Elem(), ServerGroupsGroupArray{})
-	pulumi.RegisterOutputType(ClbRulesRuleOutput{})
-	pulumi.RegisterOutputType(ClbRulesRuleArrayOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ZonesMasterZoneInput)(nil)).Elem(), ZonesMasterZoneArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ZonesMasterZoneArrayInput)(nil)).Elem(), ZonesMasterZoneArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ZonesMasterZoneSlaveZoneInput)(nil)).Elem(), ZonesMasterZoneSlaveZoneArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ZonesMasterZoneSlaveZoneArrayInput)(nil)).Elem(), ZonesMasterZoneSlaveZoneArray{})
+	pulumi.RegisterOutputType(AclAclEntryOutput{})
+	pulumi.RegisterOutputType(AclAclEntryArrayOutput{})
+	pulumi.RegisterOutputType(AclsAclOutput{})
+	pulumi.RegisterOutputType(AclsAclArrayOutput{})
+	pulumi.RegisterOutputType(CertificatesCertificateOutput{})
+	pulumi.RegisterOutputType(CertificatesCertificateArrayOutput{})
+	pulumi.RegisterOutputType(ClbTagOutput{})
+	pulumi.RegisterOutputType(ClbTagArrayOutput{})
 	pulumi.RegisterOutputType(ClbsClbOutput{})
 	pulumi.RegisterOutputType(ClbsClbArrayOutput{})
+	pulumi.RegisterOutputType(ClbsClbTagOutput{})
+	pulumi.RegisterOutputType(ClbsClbTagArrayOutput{})
+	pulumi.RegisterOutputType(ClbsTagOutput{})
+	pulumi.RegisterOutputType(ClbsTagArrayOutput{})
 	pulumi.RegisterOutputType(ListenerHealthCheckOutput{})
 	pulumi.RegisterOutputType(ListenerHealthCheckPtrOutput{})
 	pulumi.RegisterOutputType(ListenersListenerOutput{})
 	pulumi.RegisterOutputType(ListenersListenerArrayOutput{})
+	pulumi.RegisterOutputType(RulesRuleOutput{})
+	pulumi.RegisterOutputType(RulesRuleArrayOutput{})
 	pulumi.RegisterOutputType(ServerGroupServersServerOutput{})
 	pulumi.RegisterOutputType(ServerGroupServersServerArrayOutput{})
 	pulumi.RegisterOutputType(ServerGroupsGroupOutput{})
 	pulumi.RegisterOutputType(ServerGroupsGroupArrayOutput{})
+	pulumi.RegisterOutputType(ZonesMasterZoneOutput{})
+	pulumi.RegisterOutputType(ZonesMasterZoneArrayOutput{})
+	pulumi.RegisterOutputType(ZonesMasterZoneSlaveZoneOutput{})
+	pulumi.RegisterOutputType(ZonesMasterZoneSlaveZoneArrayOutput{})
 }

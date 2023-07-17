@@ -17,23 +17,26 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Iam"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/iam"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Iam.NewAccessKey(ctx, "foo", &Iam.AccessKeyArgs{
-// 			SecretFile: pulumi.String("./sk"),
-// 			Status:     pulumi.String("active"),
-// 			UserName:   pulumi.String(""),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := iam.NewAccessKey(ctx, "foo", &iam.AccessKeyArgs{
+//				SecretFile: pulumi.String("./sk"),
+//				Status:     pulumi.String("active"),
+//				UserName:   pulumi.String(""),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -54,7 +57,7 @@ type AccessKey struct {
 	Secret pulumi.StringOutput `pulumi:"secret"`
 	// The file to save the access id and secret. Strongly suggest you to specified it when you creating access key, otherwise, you wouldn't get its secret ever.
 	SecretFile pulumi.StringPtrOutput `pulumi:"secretFile"`
-	// The status of the access key.
+	// The status of the access key, Optional choice contains `active` or `inactive`.
 	Status pulumi.StringPtrOutput `pulumi:"status"`
 	// The user name.
 	UserName pulumi.StringOutput `pulumi:"userName"`
@@ -68,7 +71,7 @@ func NewAccessKey(ctx *pulumi.Context,
 	}
 
 	var resource AccessKey
-	err := ctx.RegisterResource("volcengine:Iam/accessKey:AccessKey", name, args, &resource, opts...)
+	err := ctx.RegisterResource("volcengine:iam/accessKey:AccessKey", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -80,7 +83,7 @@ func NewAccessKey(ctx *pulumi.Context,
 func GetAccessKey(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *AccessKeyState, opts ...pulumi.ResourceOption) (*AccessKey, error) {
 	var resource AccessKey
-	err := ctx.ReadResource("volcengine:Iam/accessKey:AccessKey", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("volcengine:iam/accessKey:AccessKey", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -101,7 +104,7 @@ type accessKeyState struct {
 	Secret *string `pulumi:"secret"`
 	// The file to save the access id and secret. Strongly suggest you to specified it when you creating access key, otherwise, you wouldn't get its secret ever.
 	SecretFile *string `pulumi:"secretFile"`
-	// The status of the access key.
+	// The status of the access key, Optional choice contains `active` or `inactive`.
 	Status *string `pulumi:"status"`
 	// The user name.
 	UserName *string `pulumi:"userName"`
@@ -120,7 +123,7 @@ type AccessKeyState struct {
 	Secret pulumi.StringPtrInput
 	// The file to save the access id and secret. Strongly suggest you to specified it when you creating access key, otherwise, you wouldn't get its secret ever.
 	SecretFile pulumi.StringPtrInput
-	// The status of the access key.
+	// The status of the access key, Optional choice contains `active` or `inactive`.
 	Status pulumi.StringPtrInput
 	// The user name.
 	UserName pulumi.StringPtrInput
@@ -135,7 +138,7 @@ type accessKeyArgs struct {
 	PgpKey *string `pulumi:"pgpKey"`
 	// The file to save the access id and secret. Strongly suggest you to specified it when you creating access key, otherwise, you wouldn't get its secret ever.
 	SecretFile *string `pulumi:"secretFile"`
-	// The status of the access key.
+	// The status of the access key, Optional choice contains `active` or `inactive`.
 	Status *string `pulumi:"status"`
 	// The user name.
 	UserName *string `pulumi:"userName"`
@@ -147,7 +150,7 @@ type AccessKeyArgs struct {
 	PgpKey pulumi.StringPtrInput
 	// The file to save the access id and secret. Strongly suggest you to specified it when you creating access key, otherwise, you wouldn't get its secret ever.
 	SecretFile pulumi.StringPtrInput
-	// The status of the access key.
+	// The status of the access key, Optional choice contains `active` or `inactive`.
 	Status pulumi.StringPtrInput
 	// The user name.
 	UserName pulumi.StringPtrInput
@@ -179,7 +182,7 @@ func (i *AccessKey) ToAccessKeyOutputWithContext(ctx context.Context) AccessKeyO
 // AccessKeyArrayInput is an input type that accepts AccessKeyArray and AccessKeyArrayOutput values.
 // You can construct a concrete instance of `AccessKeyArrayInput` via:
 //
-//          AccessKeyArray{ AccessKeyArgs{...} }
+//	AccessKeyArray{ AccessKeyArgs{...} }
 type AccessKeyArrayInput interface {
 	pulumi.Input
 
@@ -204,7 +207,7 @@ func (i AccessKeyArray) ToAccessKeyArrayOutputWithContext(ctx context.Context) A
 // AccessKeyMapInput is an input type that accepts AccessKeyMap and AccessKeyMapOutput values.
 // You can construct a concrete instance of `AccessKeyMapInput` via:
 //
-//          AccessKeyMap{ "key": AccessKeyArgs{...} }
+//	AccessKeyMap{ "key": AccessKeyArgs{...} }
 type AccessKeyMapInput interface {
 	pulumi.Input
 
@@ -270,7 +273,7 @@ func (o AccessKeyOutput) SecretFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AccessKey) pulumi.StringPtrOutput { return v.SecretFile }).(pulumi.StringPtrOutput)
 }
 
-// The status of the access key.
+// The status of the access key, Optional choice contains `active` or `inactive`.
 func (o AccessKeyOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AccessKey) pulumi.StringPtrOutput { return v.Status }).(pulumi.StringPtrOutput)
 }

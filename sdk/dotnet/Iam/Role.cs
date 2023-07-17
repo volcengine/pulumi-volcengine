@@ -39,10 +39,10 @@ namespace Pulumi.Volcengine.Iam
     /// Iam role can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:Iam/role:Role default TerraformTestRole
+    ///  $ pulumi import volcengine:iam/role:Role default TerraformTestRole
     /// ```
     /// </summary>
-    [VolcengineResourceType("volcengine:Iam/role:Role")]
+    [VolcengineResourceType("volcengine:iam/role:Role")]
     public partial class Role : Pulumi.CustomResource
     {
         /// <summary>
@@ -90,12 +90,12 @@ namespace Pulumi.Volcengine.Iam
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Role(string name, RoleArgs args, CustomResourceOptions? options = null)
-            : base("volcengine:Iam/role:Role", name, args ?? new RoleArgs(), MakeResourceOptions(options, ""))
+            : base("volcengine:iam/role:Role", name, args ?? new RoleArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private Role(string name, Input<string> id, RoleState? state = null, CustomResourceOptions? options = null)
-            : base("volcengine:Iam/role:Role", name, state, MakeResourceOptions(options, id))
+            : base("volcengine:iam/role:Role", name, state, MakeResourceOptions(options, id))
         {
         }
 

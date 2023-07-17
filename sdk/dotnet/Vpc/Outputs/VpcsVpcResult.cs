@@ -42,9 +42,17 @@ namespace Pulumi.Volcengine.Vpc.Outputs
         /// </summary>
         public readonly ImmutableArray<string> DnsServers;
         /// <summary>
+        /// The IPv6 CIDR block of the VPC.
+        /// </summary>
+        public readonly string Ipv6CidrBlock;
+        /// <summary>
         /// The nat gateway ID list of VPC.
         /// </summary>
         public readonly ImmutableArray<string> NatGatewayIds;
+        /// <summary>
+        /// The ProjectName of the VPC.
+        /// </summary>
+        public readonly string ProjectName;
         /// <summary>
         /// The route table ID list of VPC.
         /// </summary>
@@ -62,6 +70,10 @@ namespace Pulumi.Volcengine.Vpc.Outputs
         /// </summary>
         public readonly ImmutableArray<string> SubnetIds;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.VpcsVpcTagResult> Tags;
+        /// <summary>
         /// The update time of VPC.
         /// </summary>
         public readonly string UpdateTime;
@@ -70,7 +82,7 @@ namespace Pulumi.Volcengine.Vpc.Outputs
         /// </summary>
         public readonly string VpcId;
         /// <summary>
-        /// The name of VPC.
+        /// The vpc name to query.
         /// </summary>
         public readonly string VpcName;
 
@@ -90,7 +102,11 @@ namespace Pulumi.Volcengine.Vpc.Outputs
 
             ImmutableArray<string> dnsServers,
 
+            string ipv6CidrBlock,
+
             ImmutableArray<string> natGatewayIds,
+
+            string projectName,
 
             ImmutableArray<string> routeTableIds,
 
@@ -99,6 +115,8 @@ namespace Pulumi.Volcengine.Vpc.Outputs
             string status,
 
             ImmutableArray<string> subnetIds,
+
+            ImmutableArray<Outputs.VpcsVpcTagResult> tags,
 
             string updateTime,
 
@@ -113,11 +131,14 @@ namespace Pulumi.Volcengine.Vpc.Outputs
             CreationTime = creationTime;
             Description = description;
             DnsServers = dnsServers;
+            Ipv6CidrBlock = ipv6CidrBlock;
             NatGatewayIds = natGatewayIds;
+            ProjectName = projectName;
             RouteTableIds = routeTableIds;
             SecurityGroupIds = securityGroupIds;
             Status = status;
             SubnetIds = subnetIds;
+            Tags = tags;
             UpdateTime = updateTime;
             VpcId = vpcId;
             VpcName = vpcName;

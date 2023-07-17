@@ -13,10 +13,10 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = new volcengine.Clb.Listener("foo", {
+ * const foo = new volcengine.clb.Listener("foo", {
  *     enabled: "on",
  *     healthCheck: {
- *         domain: "github.com",
+ *         domain: "volcengine.com",
  *         enabled: "on",
  *         healthyThreshold: 5,
  *         httpCode: "http_2xx",
@@ -27,10 +27,44 @@ import * as utilities from "../utilities";
  *         uri: "/",
  *     },
  *     listenerName: "Demo-HTTP-90",
- *     loadBalancerId: "clb-273ylkl0a3i807fap8t4unbsq",
+ *     loadBalancerId: "clb-274xltt3rfmyo7fap8sv1jq39",
  *     port: 90,
  *     protocol: "HTTP",
- *     serverGroupId: "rsp-273yv0kir1vk07fap8tt9jtwg",
+ *     serverGroupId: "rsp-274xltv2sjoxs7fap8tlv3q3s",
+ * });
+ * const bar = new volcengine.clb.Listener("bar", {
+ *     enabled: "on",
+ *     healthCheck: {
+ *         domain: "volcengine.com",
+ *         enabled: "on",
+ *         healthyThreshold: 5,
+ *         httpCode: "http_2xx",
+ *         interval: 10,
+ *         method: "GET",
+ *         timeout: 3,
+ *         unHealthyThreshold: 2,
+ *         uri: "/",
+ *     },
+ *     listenerName: "Demo-HTTP-91",
+ *     loadBalancerId: "clb-274xltt3rfmyo7fap8sv1jq39",
+ *     port: 91,
+ *     protocol: "HTTP",
+ *     serverGroupId: "rsp-274xltv2sjoxs7fap8tlv3q3s",
+ * });
+ * const demo = new volcengine.clb.Listener("demo", {
+ *     enabled: "on",
+ *     establishedTimeout: 10,
+ *     healthCheck: {
+ *         enabled: "on",
+ *         healthyThreshold: 5,
+ *         interval: 10,
+ *         timeout: 3,
+ *         unHealthyThreshold: 2,
+ *     },
+ *     loadBalancerId: "clb-274xltt3rfmyo7fap8sv1jq39",
+ *     port: 92,
+ *     protocol: "TCP",
+ *     serverGroupId: "rsp-274xltv2sjoxs7fap8tlv3q3s",
  * });
  * ```
  *
@@ -39,7 +73,7 @@ import * as utilities from "../utilities";
  * Listener can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:Clb/listener:Listener default lsn-273yv0mhs5xj47fap8sehiiso
+ *  $ pulumi import volcengine:clb/listener:Listener default lsn-273yv0mhs5xj47fap8sehiiso
  * ```
  */
 export class Listener extends pulumi.CustomResource {
@@ -57,7 +91,7 @@ export class Listener extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'volcengine:Clb/listener:Listener';
+    public static readonly __pulumiType = 'volcengine:clb/listener:Listener';
 
     /**
      * Returns true if the given object is an instance of Listener.  This is designed to work even
@@ -101,7 +135,7 @@ export class Listener extends pulumi.CustomResource {
     /**
      * The config of health check.
      */
-    public readonly healthCheck!: pulumi.Output<outputs.Clb.ListenerHealthCheck>;
+    public readonly healthCheck!: pulumi.Output<outputs.clb.ListenerHealthCheck>;
     /**
      * The ID of the Listener.
      */
@@ -115,7 +149,7 @@ export class Listener extends pulumi.CustomResource {
      */
     public readonly loadBalancerId!: pulumi.Output<string>;
     /**
-     * The port receiving request of the Listener.
+     * The port receiving request of the Listener, the value range in 1~65535.
      */
     public readonly port!: pulumi.Output<number>;
     /**
@@ -229,7 +263,7 @@ export interface ListenerState {
     /**
      * The config of health check.
      */
-    healthCheck?: pulumi.Input<inputs.Clb.ListenerHealthCheck>;
+    healthCheck?: pulumi.Input<inputs.clb.ListenerHealthCheck>;
     /**
      * The ID of the Listener.
      */
@@ -243,7 +277,7 @@ export interface ListenerState {
      */
     loadBalancerId?: pulumi.Input<string>;
     /**
-     * The port receiving request of the Listener.
+     * The port receiving request of the Listener, the value range in 1~65535.
      */
     port?: pulumi.Input<number>;
     /**
@@ -295,7 +329,7 @@ export interface ListenerArgs {
     /**
      * The config of health check.
      */
-    healthCheck?: pulumi.Input<inputs.Clb.ListenerHealthCheck>;
+    healthCheck?: pulumi.Input<inputs.clb.ListenerHealthCheck>;
     /**
      * The name of the Listener.
      */
@@ -305,7 +339,7 @@ export interface ListenerArgs {
      */
     loadBalancerId: pulumi.Input<string>;
     /**
-     * The port receiving request of the Listener.
+     * The port receiving request of the Listener, the value range in 1~65535.
      */
     port: pulumi.Input<number>;
     /**

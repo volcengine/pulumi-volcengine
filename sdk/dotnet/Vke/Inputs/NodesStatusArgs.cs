@@ -19,7 +19,7 @@ namespace Pulumi.Volcengine.Vke.Inputs
         public Input<string>? ConditionsType { get; set; }
 
         /// <summary>
-        /// The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed`.
+        /// The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
         /// </summary>
         [Input("phase")]
         public Input<string>? Phase { get; set; }

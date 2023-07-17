@@ -30,6 +30,10 @@ namespace Pulumi.Volcengine.Vpc.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// The ProjectName of the route table.
+        /// </summary>
+        public readonly string ProjectName;
+        /// <summary>
         /// The id of the route table.
         /// </summary>
         public readonly string RouteTableId;
@@ -68,6 +72,8 @@ namespace Pulumi.Volcengine.Vpc.Outputs
 
             string id,
 
+            string projectName,
+
             string routeTableId,
 
             string routeTableName,
@@ -86,6 +92,7 @@ namespace Pulumi.Volcengine.Vpc.Outputs
             CreationTime = creationTime;
             Description = description;
             Id = id;
+            ProjectName = projectName;
             RouteTableId = routeTableId;
             RouteTableName = routeTableName;
             RouteTableType = routeTableType;

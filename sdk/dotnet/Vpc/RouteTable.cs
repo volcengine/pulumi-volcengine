@@ -24,8 +24,9 @@ namespace Pulumi.Volcengine.Vpc
     ///         var foo = new Volcengine.Vpc.RouteTable("foo", new Volcengine.Vpc.RouteTableArgs
     ///         {
     ///             Description = "tf-test1",
-    ///             RouteTableName = "tf-test1",
-    ///             VpcId = "vpc-2744hsjr475s07fap8t4jbl1c",
+    ///             ProjectName = "yuwao",
+    ///             RouteTableName = "tf-project-1",
+    ///             VpcId = "vpc-2feppmy1ugt1c59gp688n1fld",
     ///         });
     ///     }
     /// 
@@ -37,10 +38,10 @@ namespace Pulumi.Volcengine.Vpc
     /// Route table can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:Vpc/routeTable:RouteTable default vtb-274e0syt9av407fap8tle16kb
+    ///  $ pulumi import volcengine:vpc/routeTable:RouteTable default vtb-274e0syt9av407fap8tle16kb
     /// ```
     /// </summary>
-    [VolcengineResourceType("volcengine:Vpc/routeTable:RouteTable")]
+    [VolcengineResourceType("volcengine:vpc/routeTable:RouteTable")]
     public partial class RouteTable : Pulumi.CustomResource
     {
         /// <summary>
@@ -48,6 +49,12 @@ namespace Pulumi.Volcengine.Vpc
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
+
+        /// <summary>
+        /// The ProjectName of the route table.
+        /// </summary>
+        [Output("projectName")]
+        public Output<string?> ProjectName { get; private set; } = null!;
 
         /// <summary>
         /// The name of the route table.
@@ -70,12 +77,12 @@ namespace Pulumi.Volcengine.Vpc
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public RouteTable(string name, RouteTableArgs args, CustomResourceOptions? options = null)
-            : base("volcengine:Vpc/routeTable:RouteTable", name, args ?? new RouteTableArgs(), MakeResourceOptions(options, ""))
+            : base("volcengine:vpc/routeTable:RouteTable", name, args ?? new RouteTableArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private RouteTable(string name, Input<string> id, RouteTableState? state = null, CustomResourceOptions? options = null)
-            : base("volcengine:Vpc/routeTable:RouteTable", name, state, MakeResourceOptions(options, id))
+            : base("volcengine:vpc/routeTable:RouteTable", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -114,6 +121,12 @@ namespace Pulumi.Volcengine.Vpc
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// The ProjectName of the route table.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
         /// The name of the route table.
         /// </summary>
         [Input("routeTableName")]
@@ -137,6 +150,12 @@ namespace Pulumi.Volcengine.Vpc
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// The ProjectName of the route table.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
 
         /// <summary>
         /// The name of the route table.

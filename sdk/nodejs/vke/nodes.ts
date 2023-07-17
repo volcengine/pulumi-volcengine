@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultNodes = pulumi.output(volcengine.Vke.Nodes({
+ * const defaultNodes = pulumi.output(volcengine.vke.Nodes({
  *     clusterIds: [
  *         "c123",
  *         "c456",
@@ -39,7 +39,7 @@ export function nodes(args?: NodesArgs, opts?: pulumi.InvokeOptions): Promise<No
     }
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-    return pulumi.runtime.invoke("volcengine:Vke/nodes:Nodes", {
+    return pulumi.runtime.invoke("volcengine:vke/nodes:Nodes", {
         "clusterIds": args.clusterIds,
         "createClientToken": args.createClientToken,
         "ids": args.ids,
@@ -48,6 +48,7 @@ export function nodes(args?: NodesArgs, opts?: pulumi.InvokeOptions): Promise<No
         "nodePoolIds": args.nodePoolIds,
         "outputFile": args.outputFile,
         "statuses": args.statuses,
+        "zoneIds": args.zoneIds,
     }, opts);
 }
 
@@ -86,7 +87,11 @@ export interface NodesArgs {
     /**
      * The Status of filter.
      */
-    statuses?: inputs.Vke.NodesStatus[];
+    statuses?: inputs.vke.NodesStatus[];
+    /**
+     * The Zone IDs.
+     */
+    zoneIds?: string[];
 }
 
 /**
@@ -112,13 +117,14 @@ export interface NodesResult {
     /**
      * The collection of Node query.
      */
-    readonly nodes: outputs.Vke.NodesNode[];
+    readonly nodes: outputs.vke.NodesNode[];
     readonly outputFile?: string;
-    readonly statuses?: outputs.Vke.NodesStatus[];
+    readonly statuses?: outputs.vke.NodesStatus[];
     /**
      * The total count of Node query.
      */
     readonly totalCount: number;
+    readonly zoneIds?: string[];
 }
 
 export function nodesOutput(args?: NodesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<NodesResult> {
@@ -160,5 +166,9 @@ export interface NodesOutputArgs {
     /**
      * The Status of filter.
      */
-    statuses?: pulumi.Input<pulumi.Input<inputs.Vke.NodesStatusArgs>[]>;
+    statuses?: pulumi.Input<pulumi.Input<inputs.vke.NodesStatusArgs>[]>;
+    /**
+     * The Zone IDs.
+     */
+    zoneIds?: pulumi.Input<pulumi.Input<string>[]>;
 }

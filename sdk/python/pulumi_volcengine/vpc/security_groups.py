@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'SecurityGroupsResult',
@@ -21,7 +22,7 @@ class SecurityGroupsResult:
     """
     A collection of values returned by SecurityGroups.
     """
-    def __init__(__self__, id=None, ids=None, name_regex=None, output_file=None, security_groups=None, total_count=None):
+    def __init__(__self__, id=None, ids=None, name_regex=None, output_file=None, project_name=None, security_group_names=None, security_groups=None, tags=None, total_count=None, vpc_id=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -34,12 +35,24 @@ class SecurityGroupsResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if project_name and not isinstance(project_name, str):
+            raise TypeError("Expected argument 'project_name' to be a str")
+        pulumi.set(__self__, "project_name", project_name)
+        if security_group_names and not isinstance(security_group_names, list):
+            raise TypeError("Expected argument 'security_group_names' to be a list")
+        pulumi.set(__self__, "security_group_names", security_group_names)
         if security_groups and not isinstance(security_groups, list):
             raise TypeError("Expected argument 'security_groups' to be a list")
         pulumi.set(__self__, "security_groups", security_groups)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
+        if vpc_id and not isinstance(vpc_id, str):
+            raise TypeError("Expected argument 'vpc_id' to be a str")
+        pulumi.set(__self__, "vpc_id", vpc_id)
 
     @property
     @pulumi.getter
@@ -65,6 +78,19 @@ class SecurityGroupsResult:
         return pulumi.get(self, "output_file")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[str]:
+        """
+        The ProjectName of SecurityGroup.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="securityGroupNames")
+    def security_group_names(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "security_group_names")
+
+    @property
     @pulumi.getter(name="securityGroups")
     def security_groups(self) -> Sequence['outputs.SecurityGroupsSecurityGroupResult']:
         """
@@ -73,12 +99,28 @@ class SecurityGroupsResult:
         return pulumi.get(self, "security_groups")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.SecurityGroupsTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
         """
         The total count of SecurityGroup query.
         """
         return pulumi.get(self, "total_count")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> Optional[str]:
+        """
+        The ID of Vpc.
+        """
+        return pulumi.get(self, "vpc_id")
 
 
 class AwaitableSecurityGroupsResult(SecurityGroupsResult):
@@ -91,13 +133,21 @@ class AwaitableSecurityGroupsResult(SecurityGroupsResult):
             ids=self.ids,
             name_regex=self.name_regex,
             output_file=self.output_file,
+            project_name=self.project_name,
+            security_group_names=self.security_group_names,
             security_groups=self.security_groups,
-            total_count=self.total_count)
+            tags=self.tags,
+            total_count=self.total_count,
+            vpc_id=self.vpc_id)
 
 
 def security_groups(ids: Optional[Sequence[str]] = None,
                     name_regex: Optional[str] = None,
                     output_file: Optional[str] = None,
+                    project_name: Optional[str] = None,
+                    security_group_names: Optional[Sequence[str]] = None,
+                    tags: Optional[Sequence[pulumi.InputType['SecurityGroupsTagArgs']]] = None,
+                    vpc_id: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableSecurityGroupsResult:
     """
     Use this data source to query detailed information of security groups
@@ -107,37 +157,53 @@ def security_groups(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.Vpc.security_groups(ids=["sg-273ycgql3ig3k7fap8t3dyvqx"])
+    default = volcengine.vpc.security_groups(ids=["sg-273ycgql3ig3k7fap8t3dyvqx"])
     ```
 
 
     :param Sequence[str] ids: A list of SecurityGroup IDs.
     :param str name_regex: A Name Regex of SecurityGroup.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The ProjectName of SecurityGroup.
+    :param Sequence[str] security_group_names: The list of security group name to query.
+    :param Sequence[pulumi.InputType['SecurityGroupsTagArgs']] tags: Tags.
+    :param str vpc_id: The ID of vpc where security group is located.
     """
     __args__ = dict()
     __args__['ids'] = ids
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
+    __args__['projectName'] = project_name
+    __args__['securityGroupNames'] = security_group_names
+    __args__['tags'] = tags
+    __args__['vpcId'] = vpc_id
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('volcengine:Vpc/securityGroups:SecurityGroups', __args__, opts=opts, typ=SecurityGroupsResult).value
+    __ret__ = pulumi.runtime.invoke('volcengine:vpc/securityGroups:SecurityGroups', __args__, opts=opts, typ=SecurityGroupsResult).value
 
     return AwaitableSecurityGroupsResult(
         id=__ret__.id,
         ids=__ret__.ids,
         name_regex=__ret__.name_regex,
         output_file=__ret__.output_file,
+        project_name=__ret__.project_name,
+        security_group_names=__ret__.security_group_names,
         security_groups=__ret__.security_groups,
-        total_count=__ret__.total_count)
+        tags=__ret__.tags,
+        total_count=__ret__.total_count,
+        vpc_id=__ret__.vpc_id)
 
 
 @_utilities.lift_output_func(security_groups)
 def security_groups_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                            name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                            output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                           project_name: Optional[pulumi.Input[Optional[str]]] = None,
+                           security_group_names: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                           tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['SecurityGroupsTagArgs']]]]] = None,
+                           vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[SecurityGroupsResult]:
     """
     Use this data source to query detailed information of security groups
@@ -147,12 +213,16 @@ def security_groups_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] 
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.Vpc.security_groups(ids=["sg-273ycgql3ig3k7fap8t3dyvqx"])
+    default = volcengine.vpc.security_groups(ids=["sg-273ycgql3ig3k7fap8t3dyvqx"])
     ```
 
 
     :param Sequence[str] ids: A list of SecurityGroup IDs.
     :param str name_regex: A Name Regex of SecurityGroup.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The ProjectName of SecurityGroup.
+    :param Sequence[str] security_group_names: The list of security group name to query.
+    :param Sequence[pulumi.InputType['SecurityGroupsTagArgs']] tags: Tags.
+    :param str vpc_id: The ID of vpc where security group is located.
     """
     ...

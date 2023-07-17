@@ -23,7 +23,8 @@ namespace Pulumi.Volcengine.Vpc
     ///     {
     ///         var g1test1 = new Volcengine.Vpc.SecurityGroup("g1test1", new Volcengine.Vpc.SecurityGroupArgs
     ///         {
-    ///             VpcId = "sg-273ycgql3ig3k7fap8t3dyvqx",
+    ///             ProjectName = "yuwenhao",
+    ///             VpcId = "vpc-2feppmy1ugt1c59gp688n1fld",
     ///         });
     ///     }
     /// 
@@ -35,10 +36,10 @@ namespace Pulumi.Volcengine.Vpc
     /// SecurityGroup can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:Vpc/securityGroup:SecurityGroup default sg-273ycgql3ig3k7fap8t3dyvqx
+    ///  $ pulumi import volcengine:vpc/securityGroup:SecurityGroup default sg-273ycgql3ig3k7fap8t3dyvqx
     /// ```
     /// </summary>
-    [VolcengineResourceType("volcengine:Vpc/securityGroup:SecurityGroup")]
+    [VolcengineResourceType("volcengine:vpc/securityGroup:SecurityGroup")]
     public partial class SecurityGroup : Pulumi.CustomResource
     {
         /// <summary>
@@ -54,6 +55,12 @@ namespace Pulumi.Volcengine.Vpc
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// The ProjectName of SecurityGroup.
+        /// </summary>
+        [Output("projectName")]
+        public Output<string?> ProjectName { get; private set; } = null!;
+
+        /// <summary>
         /// Name of SecurityGroup.
         /// </summary>
         [Output("securityGroupName")]
@@ -64,6 +71,12 @@ namespace Pulumi.Volcengine.Vpc
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.SecurityGroupTag>> Tags { get; private set; } = null!;
 
         /// <summary>
         /// Id of the VPC.
@@ -80,12 +93,12 @@ namespace Pulumi.Volcengine.Vpc
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public SecurityGroup(string name, SecurityGroupArgs args, CustomResourceOptions? options = null)
-            : base("volcengine:Vpc/securityGroup:SecurityGroup", name, args ?? new SecurityGroupArgs(), MakeResourceOptions(options, ""))
+            : base("volcengine:vpc/securityGroup:SecurityGroup", name, args ?? new SecurityGroupArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private SecurityGroup(string name, Input<string> id, SecurityGroupState? state = null, CustomResourceOptions? options = null)
-            : base("volcengine:Vpc/securityGroup:SecurityGroup", name, state, MakeResourceOptions(options, id))
+            : base("volcengine:vpc/securityGroup:SecurityGroup", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -124,10 +137,28 @@ namespace Pulumi.Volcengine.Vpc
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// The ProjectName of SecurityGroup.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
         /// Name of SecurityGroup.
         /// </summary>
         [Input("securityGroupName")]
         public Input<string>? SecurityGroupName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.SecurityGroupTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.SecurityGroupTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.SecurityGroupTagArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// Id of the VPC.
@@ -155,6 +186,12 @@ namespace Pulumi.Volcengine.Vpc
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// The ProjectName of SecurityGroup.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
         /// Name of SecurityGroup.
         /// </summary>
         [Input("securityGroupName")]
@@ -165,6 +202,18 @@ namespace Pulumi.Volcengine.Vpc
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.SecurityGroupTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.SecurityGroupTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.SecurityGroupTagGetArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// Id of the VPC.

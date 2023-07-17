@@ -13,7 +13,7 @@ namespace Pulumi.Volcengine.Vke.Inputs
     public sealed class NodePoolKubernetesConfigTaintArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The Effect of Taints.
+        /// The Effect of Taints, the value can be `NoSchedule` or `NoExecute` or `PreferNoSchedule`.
         /// </summary>
         [Input("effect")]
         public Input<string>? Effect { get; set; }

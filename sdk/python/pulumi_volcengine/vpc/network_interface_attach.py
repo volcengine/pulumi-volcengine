@@ -114,7 +114,7 @@ class NetworkInterfaceAttach(pulumi.CustomResource):
         Network interface attach can be imported using the network_interface_id:instance_id.
 
         ```sh
-         $ pulumi import volcengine:Vpc/networkInterfaceAttach:NetworkInterfaceAttach default eni-bp1fg655nh68xyz9***:i-wijfn35c****
+         $ pulumi import volcengine:vpc/networkInterfaceAttach:NetworkInterfaceAttach default eni-bp1fg655nh68xyz9***:i-wijfn35c****
         ```
 
         :param str resource_name: The name of the resource.
@@ -146,7 +146,7 @@ class NetworkInterfaceAttach(pulumi.CustomResource):
         Network interface attach can be imported using the network_interface_id:instance_id.
 
         ```sh
-         $ pulumi import volcengine:Vpc/networkInterfaceAttach:NetworkInterfaceAttach default eni-bp1fg655nh68xyz9***:i-wijfn35c****
+         $ pulumi import volcengine:vpc/networkInterfaceAttach:NetworkInterfaceAttach default eni-bp1fg655nh68xyz9***:i-wijfn35c****
         ```
 
         :param str resource_name: The name of the resource.
@@ -185,7 +185,7 @@ class NetworkInterfaceAttach(pulumi.CustomResource):
                 raise TypeError("Missing required property 'network_interface_id'")
             __props__.__dict__["network_interface_id"] = network_interface_id
         super(NetworkInterfaceAttach, __self__).__init__(
-            'volcengine:Vpc/networkInterfaceAttach:NetworkInterfaceAttach',
+            'volcengine:vpc/networkInterfaceAttach:NetworkInterfaceAttach',
             resource_name,
             __props__,
             opts)

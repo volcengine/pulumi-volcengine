@@ -107,7 +107,7 @@ def users(name_regex: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.Iam.users()
+    default = volcengine.iam.users()
     ```
 
 
@@ -123,7 +123,7 @@ def users(name_regex: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('volcengine:Iam/users:Users', __args__, opts=opts, typ=UsersResult).value
+    __ret__ = pulumi.runtime.invoke('volcengine:iam/users:Users', __args__, opts=opts, typ=UsersResult).value
 
     return AwaitableUsersResult(
         id=__ret__.id,
@@ -147,7 +147,7 @@ def users_output(name_regex: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.Iam.users()
+    default = volcengine.iam.users()
     ```
 
 

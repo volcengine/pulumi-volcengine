@@ -5,5 +5,11 @@
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .dnat_entries import *
+from .dnat_entry import *
 from .gateway import *
+from .gateways import *
+from .snat_entries import *
 from .snat_entry import *
+from ._inputs import *
+from . import outputs

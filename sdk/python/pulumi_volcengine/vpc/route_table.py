@@ -15,16 +15,20 @@ class RouteTableArgs:
     def __init__(__self__, *,
                  vpc_id: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  route_table_name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a RouteTable resource.
         :param pulumi.Input[str] vpc_id: The id of the VPC.
         :param pulumi.Input[str] description: The description of the route table.
+        :param pulumi.Input[str] project_name: The ProjectName of the route table.
         :param pulumi.Input[str] route_table_name: The name of the route table.
         """
         pulumi.set(__self__, "vpc_id", vpc_id)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if route_table_name is not None:
             pulumi.set(__self__, "route_table_name", route_table_name)
 
@@ -53,6 +57,18 @@ class RouteTableArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of the route table.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
     @pulumi.getter(name="routeTableName")
     def route_table_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -69,16 +85,20 @@ class RouteTableArgs:
 class _RouteTableState:
     def __init__(__self__, *,
                  description: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  route_table_name: Optional[pulumi.Input[str]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering RouteTable resources.
         :param pulumi.Input[str] description: The description of the route table.
+        :param pulumi.Input[str] project_name: The ProjectName of the route table.
         :param pulumi.Input[str] route_table_name: The name of the route table.
         :param pulumi.Input[str] vpc_id: The id of the VPC.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if route_table_name is not None:
             pulumi.set(__self__, "route_table_name", route_table_name)
         if vpc_id is not None:
@@ -95,6 +115,18 @@ class _RouteTableState:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of the route table.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
 
     @property
     @pulumi.getter(name="routeTableName")
@@ -127,6 +159,7 @@ class RouteTable(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  route_table_name: Optional[pulumi.Input[str]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -140,8 +173,9 @@ class RouteTable(pulumi.CustomResource):
 
         foo = volcengine.vpc.RouteTable("foo",
             description="tf-test1",
-            route_table_name="tf-test1",
-            vpc_id="vpc-2744hsjr475s07fap8t4jbl1c")
+            project_name="yuwao",
+            route_table_name="tf-project-1",
+            vpc_id="vpc-2feppmy1ugt1c59gp688n1fld")
         ```
 
         ## Import
@@ -149,12 +183,13 @@ class RouteTable(pulumi.CustomResource):
         Route table can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Vpc/routeTable:RouteTable default vtb-274e0syt9av407fap8tle16kb
+         $ pulumi import volcengine:vpc/routeTable:RouteTable default vtb-274e0syt9av407fap8tle16kb
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the route table.
+        :param pulumi.Input[str] project_name: The ProjectName of the route table.
         :param pulumi.Input[str] route_table_name: The name of the route table.
         :param pulumi.Input[str] vpc_id: The id of the VPC.
         """
@@ -174,8 +209,9 @@ class RouteTable(pulumi.CustomResource):
 
         foo = volcengine.vpc.RouteTable("foo",
             description="tf-test1",
-            route_table_name="tf-test1",
-            vpc_id="vpc-2744hsjr475s07fap8t4jbl1c")
+            project_name="yuwao",
+            route_table_name="tf-project-1",
+            vpc_id="vpc-2feppmy1ugt1c59gp688n1fld")
         ```
 
         ## Import
@@ -183,7 +219,7 @@ class RouteTable(pulumi.CustomResource):
         Route table can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Vpc/routeTable:RouteTable default vtb-274e0syt9av407fap8tle16kb
+         $ pulumi import volcengine:vpc/routeTable:RouteTable default vtb-274e0syt9av407fap8tle16kb
         ```
 
         :param str resource_name: The name of the resource.
@@ -202,6 +238,7 @@ class RouteTable(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  route_table_name: Optional[pulumi.Input[str]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -217,12 +254,13 @@ class RouteTable(pulumi.CustomResource):
             __props__ = RouteTableArgs.__new__(RouteTableArgs)
 
             __props__.__dict__["description"] = description
+            __props__.__dict__["project_name"] = project_name
             __props__.__dict__["route_table_name"] = route_table_name
             if vpc_id is None and not opts.urn:
                 raise TypeError("Missing required property 'vpc_id'")
             __props__.__dict__["vpc_id"] = vpc_id
         super(RouteTable, __self__).__init__(
-            'volcengine:Vpc/routeTable:RouteTable',
+            'volcengine:vpc/routeTable:RouteTable',
             resource_name,
             __props__,
             opts)
@@ -232,6 +270,7 @@ class RouteTable(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             description: Optional[pulumi.Input[str]] = None,
+            project_name: Optional[pulumi.Input[str]] = None,
             route_table_name: Optional[pulumi.Input[str]] = None,
             vpc_id: Optional[pulumi.Input[str]] = None) -> 'RouteTable':
         """
@@ -242,6 +281,7 @@ class RouteTable(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the route table.
+        :param pulumi.Input[str] project_name: The ProjectName of the route table.
         :param pulumi.Input[str] route_table_name: The name of the route table.
         :param pulumi.Input[str] vpc_id: The id of the VPC.
         """
@@ -250,6 +290,7 @@ class RouteTable(pulumi.CustomResource):
         __props__ = _RouteTableState.__new__(_RouteTableState)
 
         __props__.__dict__["description"] = description
+        __props__.__dict__["project_name"] = project_name
         __props__.__dict__["route_table_name"] = route_table_name
         __props__.__dict__["vpc_id"] = vpc_id
         return RouteTable(resource_name, opts=opts, __props__=__props__)
@@ -261,6 +302,14 @@ class RouteTable(pulumi.CustomResource):
         The description of the route table.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        The ProjectName of the route table.
+        """
+        return pulumi.get(self, "project_name")
 
     @property
     @pulumi.getter(name="routeTableName")

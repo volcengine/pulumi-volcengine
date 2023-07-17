@@ -25,7 +25,7 @@ namespace Pulumi.Volcengine.Ecs.Inputs
         public Input<int> Size { get; set; } = null!;
 
         /// <summary>
-        /// The type of volume.
+        /// The type of volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         /// </summary>
         [Input("volumeType", required: true)]
         public Input<string> VolumeType { get; set; } = null!;

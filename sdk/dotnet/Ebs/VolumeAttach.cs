@@ -36,10 +36,10 @@ namespace Pulumi.Volcengine.Ebs
     /// VolumeAttach can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:Ebs/volumeAttach:VolumeAttach default vol-abc12345:i-abc12345
+    ///  $ pulumi import volcengine:ebs/volumeAttach:VolumeAttach default vol-abc12345:i-abc12345
     /// ```
     /// </summary>
-    [VolcengineResourceType("volcengine:Ebs/volumeAttach:VolumeAttach")]
+    [VolcengineResourceType("volcengine:ebs/volumeAttach:VolumeAttach")]
     public partial class VolumeAttach : Pulumi.CustomResource
     {
         /// <summary>
@@ -87,12 +87,12 @@ namespace Pulumi.Volcengine.Ebs
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public VolumeAttach(string name, VolumeAttachArgs args, CustomResourceOptions? options = null)
-            : base("volcengine:Ebs/volumeAttach:VolumeAttach", name, args ?? new VolumeAttachArgs(), MakeResourceOptions(options, ""))
+            : base("volcengine:ebs/volumeAttach:VolumeAttach", name, args ?? new VolumeAttachArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private VolumeAttach(string name, Input<string> id, VolumeAttachState? state = null, CustomResourceOptions? options = null)
-            : base("volcengine:Ebs/volumeAttach:VolumeAttach", name, state, MakeResourceOptions(options, id))
+            : base("volcengine:ebs/volumeAttach:VolumeAttach", name, state, MakeResourceOptions(options, id))
         {
         }
 

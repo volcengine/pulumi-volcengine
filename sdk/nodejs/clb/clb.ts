@@ -2,21 +2,22 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
- * Provides a resource to manage clb
  * ## Example Usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = new volcengine.Clb.Clb("foo", {
+ * const foo = new volcengine.clb.Clb("foo", {
  *     description: "Demo",
+ *     loadBalancerName: "terraform-auto-create",
  *     loadBalancerSpec: "small_1",
- *     regionId: "cn-north-3",
- *     subnetId: "subnet-2744i7u9alnnk7fap8tkq8aft",
+ *     projectName: "yyy",
+ *     subnetId: "subnet-mj92ij84m5fk5smt1arvwrtw",
  *     type: "public",
  * });
  * ```
@@ -26,7 +27,7 @@ import * as utilities from "../utilities";
  * CLB can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:Clb/clb:Clb default clb-273y2ok6ets007fap8txvf6us
+ *  $ pulumi import volcengine:clb/clb:Clb default clb-273y2ok6ets007fap8txvf6us
  * ```
  */
 export class Clb extends pulumi.CustomResource {
@@ -44,7 +45,7 @@ export class Clb extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'volcengine:Clb/clb:Clb';
+    public static readonly __pulumiType = 'volcengine:clb/clb:Clb';
 
     /**
      * Returns true if the given object is an instance of Clb.  This is designed to work even
@@ -66,7 +67,7 @@ export class Clb extends pulumi.CustomResource {
      */
     public readonly eniAddress!: pulumi.Output<string>;
     /**
-     * The billing type of the CLB.
+     * The billing type of the CLB, the value can be `PostPaid`.
      */
     public readonly loadBalancerBillingType!: pulumi.Output<string>;
     /**
@@ -74,25 +75,41 @@ export class Clb extends pulumi.CustomResource {
      */
     public readonly loadBalancerName!: pulumi.Output<string>;
     /**
-     * The specification of the CLB.
+     * The specification of the CLB, the value can be `small1`, `small2`, `medium1`, `medium2`, `large1`, `large2`.
      */
     public readonly loadBalancerSpec!: pulumi.Output<string>;
+    /**
+     * The master zone ID of the CLB.
+     */
+    public readonly masterZoneId!: pulumi.Output<string>;
     /**
      * The reason of the console modification protection.
      */
     public readonly modificationProtectionReason!: pulumi.Output<string | undefined>;
     /**
-     * The status of the console modification protection.
+     * The status of the console modification protection, the value can be `NonProtection` or `ConsoleProtection`.
      */
     public readonly modificationProtectionStatus!: pulumi.Output<string | undefined>;
+    /**
+     * The ProjectName of the CLB.
+     */
+    public readonly projectName!: pulumi.Output<string | undefined>;
     /**
      * The region of the request.
      */
     public readonly regionId!: pulumi.Output<string>;
     /**
+     * The slave zone ID of the CLB.
+     */
+    public readonly slaveZoneId!: pulumi.Output<string>;
+    /**
      * The id of the Subnet.
      */
     public readonly subnetId!: pulumi.Output<string>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.clb.ClbTag[] | undefined>;
     /**
      * The type of the CLB. And optional choice contains `public` or `private`.
      */
@@ -120,19 +137,20 @@ export class Clb extends pulumi.CustomResource {
             resourceInputs["loadBalancerBillingType"] = state ? state.loadBalancerBillingType : undefined;
             resourceInputs["loadBalancerName"] = state ? state.loadBalancerName : undefined;
             resourceInputs["loadBalancerSpec"] = state ? state.loadBalancerSpec : undefined;
+            resourceInputs["masterZoneId"] = state ? state.masterZoneId : undefined;
             resourceInputs["modificationProtectionReason"] = state ? state.modificationProtectionReason : undefined;
             resourceInputs["modificationProtectionStatus"] = state ? state.modificationProtectionStatus : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["regionId"] = state ? state.regionId : undefined;
+            resourceInputs["slaveZoneId"] = state ? state.slaveZoneId : undefined;
             resourceInputs["subnetId"] = state ? state.subnetId : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["vpcId"] = state ? state.vpcId : undefined;
         } else {
             const args = argsOrState as ClbArgs | undefined;
             if ((!args || args.loadBalancerSpec === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'loadBalancerSpec'");
-            }
-            if ((!args || args.regionId === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'regionId'");
             }
             if ((!args || args.subnetId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'subnetId'");
@@ -145,10 +163,14 @@ export class Clb extends pulumi.CustomResource {
             resourceInputs["loadBalancerBillingType"] = args ? args.loadBalancerBillingType : undefined;
             resourceInputs["loadBalancerName"] = args ? args.loadBalancerName : undefined;
             resourceInputs["loadBalancerSpec"] = args ? args.loadBalancerSpec : undefined;
+            resourceInputs["masterZoneId"] = args ? args.masterZoneId : undefined;
             resourceInputs["modificationProtectionReason"] = args ? args.modificationProtectionReason : undefined;
             resourceInputs["modificationProtectionStatus"] = args ? args.modificationProtectionStatus : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["regionId"] = args ? args.regionId : undefined;
+            resourceInputs["slaveZoneId"] = args ? args.slaveZoneId : undefined;
             resourceInputs["subnetId"] = args ? args.subnetId : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["vpcId"] = args ? args.vpcId : undefined;
         }
@@ -170,7 +192,7 @@ export interface ClbState {
      */
     eniAddress?: pulumi.Input<string>;
     /**
-     * The billing type of the CLB.
+     * The billing type of the CLB, the value can be `PostPaid`.
      */
     loadBalancerBillingType?: pulumi.Input<string>;
     /**
@@ -178,25 +200,41 @@ export interface ClbState {
      */
     loadBalancerName?: pulumi.Input<string>;
     /**
-     * The specification of the CLB.
+     * The specification of the CLB, the value can be `small1`, `small2`, `medium1`, `medium2`, `large1`, `large2`.
      */
     loadBalancerSpec?: pulumi.Input<string>;
+    /**
+     * The master zone ID of the CLB.
+     */
+    masterZoneId?: pulumi.Input<string>;
     /**
      * The reason of the console modification protection.
      */
     modificationProtectionReason?: pulumi.Input<string>;
     /**
-     * The status of the console modification protection.
+     * The status of the console modification protection, the value can be `NonProtection` or `ConsoleProtection`.
      */
     modificationProtectionStatus?: pulumi.Input<string>;
+    /**
+     * The ProjectName of the CLB.
+     */
+    projectName?: pulumi.Input<string>;
     /**
      * The region of the request.
      */
     regionId?: pulumi.Input<string>;
     /**
+     * The slave zone ID of the CLB.
+     */
+    slaveZoneId?: pulumi.Input<string>;
+    /**
      * The id of the Subnet.
      */
     subnetId?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.clb.ClbTag>[]>;
     /**
      * The type of the CLB. And optional choice contains `public` or `private`.
      */
@@ -220,7 +258,7 @@ export interface ClbArgs {
      */
     eniAddress?: pulumi.Input<string>;
     /**
-     * The billing type of the CLB.
+     * The billing type of the CLB, the value can be `PostPaid`.
      */
     loadBalancerBillingType?: pulumi.Input<string>;
     /**
@@ -228,25 +266,41 @@ export interface ClbArgs {
      */
     loadBalancerName?: pulumi.Input<string>;
     /**
-     * The specification of the CLB.
+     * The specification of the CLB, the value can be `small1`, `small2`, `medium1`, `medium2`, `large1`, `large2`.
      */
     loadBalancerSpec: pulumi.Input<string>;
+    /**
+     * The master zone ID of the CLB.
+     */
+    masterZoneId?: pulumi.Input<string>;
     /**
      * The reason of the console modification protection.
      */
     modificationProtectionReason?: pulumi.Input<string>;
     /**
-     * The status of the console modification protection.
+     * The status of the console modification protection, the value can be `NonProtection` or `ConsoleProtection`.
      */
     modificationProtectionStatus?: pulumi.Input<string>;
     /**
+     * The ProjectName of the CLB.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * The region of the request.
      */
-    regionId: pulumi.Input<string>;
+    regionId?: pulumi.Input<string>;
+    /**
+     * The slave zone ID of the CLB.
+     */
+    slaveZoneId?: pulumi.Input<string>;
     /**
      * The id of the Subnet.
      */
     subnetId: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.clb.ClbTag>[]>;
     /**
      * The type of the CLB. And optional choice contains `public` or `private`.
      */

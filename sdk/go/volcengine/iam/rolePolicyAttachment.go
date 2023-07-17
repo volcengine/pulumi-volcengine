@@ -18,41 +18,44 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Iam"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/iam"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		role, err := Iam.NewRole(ctx, "role", &Iam.RoleArgs{
-// 			RoleName:            pulumi.String("TerraformTestRole"),
-// 			DisplayName:         pulumi.String("terraform role"),
-// 			TrustPolicyDocument: pulumi.String("{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"auto_scaling\"]}}]}"),
-// 			Description:         pulumi.String("created by terraform"),
-// 			MaxSessionDuration:  pulumi.Int(43200),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		policy, err := Iam.NewPolicy(ctx, "policy", &Iam.PolicyArgs{
-// 			PolicyName:     pulumi.String("TerraformResourceTest1"),
-// 			Description:    pulumi.String("created by terraform 1"),
-// 			PolicyDocument: pulumi.String("{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = Iam.NewRolePolicyAttachment(ctx, "foo", &Iam.RolePolicyAttachmentArgs{
-// 			RoleName:   role.ID(),
-// 			PolicyName: policy.ID(),
-// 			PolicyType: policy.PolicyType,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			role, err := iam.NewRole(ctx, "role", &iam.RoleArgs{
+//				RoleName:            pulumi.String("TerraformTestRole"),
+//				DisplayName:         pulumi.String("terraform role"),
+//				TrustPolicyDocument: pulumi.String("{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"auto_scaling\"]}}]}"),
+//				Description:         pulumi.String("created by terraform"),
+//				MaxSessionDuration:  pulumi.Int(43200),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			policy, err := iam.NewPolicy(ctx, "policy", &iam.PolicyArgs{
+//				PolicyName:     pulumi.String("TerraformResourceTest1"),
+//				Description:    pulumi.String("created by terraform 1"),
+//				PolicyDocument: pulumi.String("{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = iam.NewRolePolicyAttachment(ctx, "foo", &iam.RolePolicyAttachmentArgs{
+//				RoleName:   role.ID(),
+//				PolicyName: policy.ID(),
+//				PolicyType: policy.PolicyType,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -60,7 +63,9 @@ import (
 // Iam role policy attachment can be imported using the id, e.g.
 //
 // ```sh
-//  $ pulumi import volcengine:Iam/rolePolicyAttachment:RolePolicyAttachment default TerraformTestRole:TerraformTestPolicy:Custom
+//
+//	$ pulumi import volcengine:iam/rolePolicyAttachment:RolePolicyAttachment default TerraformTestRole:TerraformTestPolicy:Custom
+//
 // ```
 type RolePolicyAttachment struct {
 	pulumi.CustomResourceState
@@ -90,7 +95,7 @@ func NewRolePolicyAttachment(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'RoleName'")
 	}
 	var resource RolePolicyAttachment
-	err := ctx.RegisterResource("volcengine:Iam/rolePolicyAttachment:RolePolicyAttachment", name, args, &resource, opts...)
+	err := ctx.RegisterResource("volcengine:iam/rolePolicyAttachment:RolePolicyAttachment", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -102,7 +107,7 @@ func NewRolePolicyAttachment(ctx *pulumi.Context,
 func GetRolePolicyAttachment(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *RolePolicyAttachmentState, opts ...pulumi.ResourceOption) (*RolePolicyAttachment, error) {
 	var resource RolePolicyAttachment
-	err := ctx.ReadResource("volcengine:Iam/rolePolicyAttachment:RolePolicyAttachment", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("volcengine:iam/rolePolicyAttachment:RolePolicyAttachment", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -177,7 +182,7 @@ func (i *RolePolicyAttachment) ToRolePolicyAttachmentOutputWithContext(ctx conte
 // RolePolicyAttachmentArrayInput is an input type that accepts RolePolicyAttachmentArray and RolePolicyAttachmentArrayOutput values.
 // You can construct a concrete instance of `RolePolicyAttachmentArrayInput` via:
 //
-//          RolePolicyAttachmentArray{ RolePolicyAttachmentArgs{...} }
+//	RolePolicyAttachmentArray{ RolePolicyAttachmentArgs{...} }
 type RolePolicyAttachmentArrayInput interface {
 	pulumi.Input
 
@@ -202,7 +207,7 @@ func (i RolePolicyAttachmentArray) ToRolePolicyAttachmentArrayOutputWithContext(
 // RolePolicyAttachmentMapInput is an input type that accepts RolePolicyAttachmentMap and RolePolicyAttachmentMapOutput values.
 // You can construct a concrete instance of `RolePolicyAttachmentMapInput` via:
 //
-//          RolePolicyAttachmentMap{ "key": RolePolicyAttachmentArgs{...} }
+//	RolePolicyAttachmentMap{ "key": RolePolicyAttachmentArgs{...} }
 type RolePolicyAttachmentMapInput interface {
 	pulumi.Input
 

@@ -38,10 +38,10 @@ namespace Pulumi.Volcengine.Iam
     /// Login profile can be imported using the UserName, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:Iam/loginProfile:LoginProfile default user_name
+    ///  $ pulumi import volcengine:iam/loginProfile:LoginProfile default user_name
     /// ```
     /// </summary>
-    [VolcengineResourceType("volcengine:Iam/loginProfile:LoginProfile")]
+    [VolcengineResourceType("volcengine:iam/loginProfile:LoginProfile")]
     public partial class LoginProfile : Pulumi.CustomResource
     {
         /// <summary>
@@ -77,12 +77,12 @@ namespace Pulumi.Volcengine.Iam
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public LoginProfile(string name, LoginProfileArgs args, CustomResourceOptions? options = null)
-            : base("volcengine:Iam/loginProfile:LoginProfile", name, args ?? new LoginProfileArgs(), MakeResourceOptions(options, ""))
+            : base("volcengine:iam/loginProfile:LoginProfile", name, args ?? new LoginProfileArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private LoginProfile(string name, Input<string> id, LoginProfileState? state = null, CustomResourceOptions? options = null)
-            : base("volcengine:Iam/loginProfile:LoginProfile", name, state, MakeResourceOptions(options, id))
+            : base("volcengine:iam/loginProfile:LoginProfile", name, state, MakeResourceOptions(options, id))
         {
         }
 

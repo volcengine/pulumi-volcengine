@@ -18,23 +18,26 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Clb"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/clb"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Clb.NewServerGroup(ctx, "foo", &Clb.ServerGroupArgs{
-// 			Description:     pulumi.String("hello demo11"),
-// 			LoadBalancerId:  pulumi.String("clb-273z7d4r8tvk07fap8tsniyfe"),
-// 			ServerGroupName: pulumi.String("demo-demo11"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := clb.NewServerGroup(ctx, "foo", &clb.ServerGroupArgs{
+//				Description:     pulumi.String("hello demo11"),
+//				LoadBalancerId:  pulumi.String("clb-273z7d4r8tvk07fap8tsniyfe"),
+//				ServerGroupName: pulumi.String("demo-demo11"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -42,7 +45,9 @@ import (
 // ServerGroup can be imported using the id, e.g.
 //
 // ```sh
-//  $ pulumi import volcengine:Clb/serverGroup:ServerGroup default rsp-273yv0kir1vk07fap8tt9jtwg
+//
+//	$ pulumi import volcengine:clb/serverGroup:ServerGroup default rsp-273yv0kir1vk07fap8tt9jtwg
+//
 // ```
 type ServerGroup struct {
 	pulumi.CustomResourceState
@@ -68,7 +73,7 @@ func NewServerGroup(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'LoadBalancerId'")
 	}
 	var resource ServerGroup
-	err := ctx.RegisterResource("volcengine:Clb/serverGroup:ServerGroup", name, args, &resource, opts...)
+	err := ctx.RegisterResource("volcengine:clb/serverGroup:ServerGroup", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -80,7 +85,7 @@ func NewServerGroup(ctx *pulumi.Context,
 func GetServerGroup(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *ServerGroupState, opts ...pulumi.ResourceOption) (*ServerGroup, error) {
 	var resource ServerGroup
-	err := ctx.ReadResource("volcengine:Clb/serverGroup:ServerGroup", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("volcengine:clb/serverGroup:ServerGroup", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -163,7 +168,7 @@ func (i *ServerGroup) ToServerGroupOutputWithContext(ctx context.Context) Server
 // ServerGroupArrayInput is an input type that accepts ServerGroupArray and ServerGroupArrayOutput values.
 // You can construct a concrete instance of `ServerGroupArrayInput` via:
 //
-//          ServerGroupArray{ ServerGroupArgs{...} }
+//	ServerGroupArray{ ServerGroupArgs{...} }
 type ServerGroupArrayInput interface {
 	pulumi.Input
 
@@ -188,7 +193,7 @@ func (i ServerGroupArray) ToServerGroupArrayOutputWithContext(ctx context.Contex
 // ServerGroupMapInput is an input type that accepts ServerGroupMap and ServerGroupMapOutput values.
 // You can construct a concrete instance of `ServerGroupMapInput` via:
 //
-//          ServerGroupMap{ "key": ServerGroupArgs{...} }
+//	ServerGroupMap{ "key": ServerGroupArgs{...} }
 type ServerGroupMapInput interface {
 	pulumi.Input
 

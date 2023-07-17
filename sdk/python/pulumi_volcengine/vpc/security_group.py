@@ -7,6 +7,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['SecurityGroupArgs', 'SecurityGroup']
 
@@ -15,18 +17,26 @@ class SecurityGroupArgs:
     def __init__(__self__, *,
                  vpc_id: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
-                 security_group_name: Optional[pulumi.Input[str]] = None):
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 security_group_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityGroupTagArgs']]]] = None):
         """
         The set of arguments for constructing a SecurityGroup resource.
         :param pulumi.Input[str] vpc_id: Id of the VPC.
         :param pulumi.Input[str] description: Description of SecurityGroup.
+        :param pulumi.Input[str] project_name: The ProjectName of SecurityGroup.
         :param pulumi.Input[str] security_group_name: Name of SecurityGroup.
+        :param pulumi.Input[Sequence[pulumi.Input['SecurityGroupTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "vpc_id", vpc_id)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if security_group_name is not None:
             pulumi.set(__self__, "security_group_name", security_group_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="vpcId")
@@ -53,6 +63,18 @@ class SecurityGroupArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of SecurityGroup.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
     @pulumi.getter(name="securityGroupName")
     def security_group_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -64,31 +86,51 @@ class SecurityGroupArgs:
     def security_group_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "security_group_name", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecurityGroupTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityGroupTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _SecurityGroupState:
     def __init__(__self__, *,
                  creation_time: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  security_group_name: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityGroupTagArgs']]]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SecurityGroup resources.
         :param pulumi.Input[str] creation_time: Creation time of SecurityGroup.
         :param pulumi.Input[str] description: Description of SecurityGroup.
+        :param pulumi.Input[str] project_name: The ProjectName of SecurityGroup.
         :param pulumi.Input[str] security_group_name: Name of SecurityGroup.
         :param pulumi.Input[str] status: Status of SecurityGroup.
+        :param pulumi.Input[Sequence[pulumi.Input['SecurityGroupTagArgs']]] tags: Tags.
         :param pulumi.Input[str] vpc_id: Id of the VPC.
         """
         if creation_time is not None:
             pulumi.set(__self__, "creation_time", creation_time)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if security_group_name is not None:
             pulumi.set(__self__, "security_group_name", security_group_name)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if vpc_id is not None:
             pulumi.set(__self__, "vpc_id", vpc_id)
 
@@ -117,6 +159,18 @@ class _SecurityGroupState:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of SecurityGroup.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
     @pulumi.getter(name="securityGroupName")
     def security_group_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -141,6 +195,18 @@ class _SecurityGroupState:
         pulumi.set(self, "status", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecurityGroupTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecurityGroupTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -159,7 +225,9 @@ class SecurityGroup(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  security_group_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecurityGroupTagArgs']]]]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -170,7 +238,9 @@ class SecurityGroup(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        g1test1 = volcengine.vpc.SecurityGroup("g1test1", vpc_id="sg-273ycgql3ig3k7fap8t3dyvqx")
+        g1test1 = volcengine.vpc.SecurityGroup("g1test1",
+            project_name="yuwenhao",
+            vpc_id="vpc-2feppmy1ugt1c59gp688n1fld")
         ```
 
         ## Import
@@ -178,13 +248,15 @@ class SecurityGroup(pulumi.CustomResource):
         SecurityGroup can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Vpc/securityGroup:SecurityGroup default sg-273ycgql3ig3k7fap8t3dyvqx
+         $ pulumi import volcengine:vpc/securityGroup:SecurityGroup default sg-273ycgql3ig3k7fap8t3dyvqx
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Description of SecurityGroup.
+        :param pulumi.Input[str] project_name: The ProjectName of SecurityGroup.
         :param pulumi.Input[str] security_group_name: Name of SecurityGroup.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecurityGroupTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] vpc_id: Id of the VPC.
         """
         ...
@@ -201,7 +273,9 @@ class SecurityGroup(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        g1test1 = volcengine.vpc.SecurityGroup("g1test1", vpc_id="sg-273ycgql3ig3k7fap8t3dyvqx")
+        g1test1 = volcengine.vpc.SecurityGroup("g1test1",
+            project_name="yuwenhao",
+            vpc_id="vpc-2feppmy1ugt1c59gp688n1fld")
         ```
 
         ## Import
@@ -209,7 +283,7 @@ class SecurityGroup(pulumi.CustomResource):
         SecurityGroup can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Vpc/securityGroup:SecurityGroup default sg-273ycgql3ig3k7fap8t3dyvqx
+         $ pulumi import volcengine:vpc/securityGroup:SecurityGroup default sg-273ycgql3ig3k7fap8t3dyvqx
         ```
 
         :param str resource_name: The name of the resource.
@@ -228,7 +302,9 @@ class SecurityGroup(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  security_group_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecurityGroupTagArgs']]]]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
@@ -243,14 +319,16 @@ class SecurityGroup(pulumi.CustomResource):
             __props__ = SecurityGroupArgs.__new__(SecurityGroupArgs)
 
             __props__.__dict__["description"] = description
+            __props__.__dict__["project_name"] = project_name
             __props__.__dict__["security_group_name"] = security_group_name
+            __props__.__dict__["tags"] = tags
             if vpc_id is None and not opts.urn:
                 raise TypeError("Missing required property 'vpc_id'")
             __props__.__dict__["vpc_id"] = vpc_id
             __props__.__dict__["creation_time"] = None
             __props__.__dict__["status"] = None
         super(SecurityGroup, __self__).__init__(
-            'volcengine:Vpc/securityGroup:SecurityGroup',
+            'volcengine:vpc/securityGroup:SecurityGroup',
             resource_name,
             __props__,
             opts)
@@ -261,8 +339,10 @@ class SecurityGroup(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             creation_time: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            project_name: Optional[pulumi.Input[str]] = None,
             security_group_name: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecurityGroupTagArgs']]]]] = None,
             vpc_id: Optional[pulumi.Input[str]] = None) -> 'SecurityGroup':
         """
         Get an existing SecurityGroup resource's state with the given name, id, and optional extra
@@ -273,8 +353,10 @@ class SecurityGroup(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] creation_time: Creation time of SecurityGroup.
         :param pulumi.Input[str] description: Description of SecurityGroup.
+        :param pulumi.Input[str] project_name: The ProjectName of SecurityGroup.
         :param pulumi.Input[str] security_group_name: Name of SecurityGroup.
         :param pulumi.Input[str] status: Status of SecurityGroup.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SecurityGroupTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] vpc_id: Id of the VPC.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -283,8 +365,10 @@ class SecurityGroup(pulumi.CustomResource):
 
         __props__.__dict__["creation_time"] = creation_time
         __props__.__dict__["description"] = description
+        __props__.__dict__["project_name"] = project_name
         __props__.__dict__["security_group_name"] = security_group_name
         __props__.__dict__["status"] = status
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["vpc_id"] = vpc_id
         return SecurityGroup(resource_name, opts=opts, __props__=__props__)
 
@@ -305,6 +389,14 @@ class SecurityGroup(pulumi.CustomResource):
         return pulumi.get(self, "description")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        The ProjectName of SecurityGroup.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="securityGroupName")
     def security_group_name(self) -> pulumi.Output[str]:
         """
@@ -319,6 +411,14 @@ class SecurityGroup(pulumi.CustomResource):
         Status of SecurityGroup.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.SecurityGroupTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcId")

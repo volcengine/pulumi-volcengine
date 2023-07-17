@@ -157,7 +157,7 @@ class RolePolicyAttachment(pulumi.CustomResource):
         Iam role policy attachment can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Iam/rolePolicyAttachment:RolePolicyAttachment default TerraformTestRole:TerraformTestPolicy:Custom
+         $ pulumi import volcengine:iam/rolePolicyAttachment:RolePolicyAttachment default TerraformTestRole:TerraformTestPolicy:Custom
         ```
 
         :param str resource_name: The name of the resource.
@@ -201,7 +201,7 @@ class RolePolicyAttachment(pulumi.CustomResource):
         Iam role policy attachment can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Iam/rolePolicyAttachment:RolePolicyAttachment default TerraformTestRole:TerraformTestPolicy:Custom
+         $ pulumi import volcengine:iam/rolePolicyAttachment:RolePolicyAttachment default TerraformTestRole:TerraformTestPolicy:Custom
         ```
 
         :param str resource_name: The name of the resource.
@@ -244,7 +244,7 @@ class RolePolicyAttachment(pulumi.CustomResource):
                 raise TypeError("Missing required property 'role_name'")
             __props__.__dict__["role_name"] = role_name
         super(RolePolicyAttachment, __self__).__init__(
-            'volcengine:Iam/rolePolicyAttachment:RolePolicyAttachment',
+            'volcengine:iam/rolePolicyAttachment:RolePolicyAttachment',
             resource_name,
             __props__,
             opts)

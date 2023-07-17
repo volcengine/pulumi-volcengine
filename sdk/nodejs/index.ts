@@ -8,28 +8,58 @@ import * as utilities from "./utilities";
 export * from "./provider";
 
 // Export sub-modules:
+import * as autoscaling from "./autoscaling";
+import * as bioos from "./bioos";
+import * as cen from "./cen";
 import * as clb from "./clb";
 import * as config from "./config";
+import * as cr from "./cr";
 import * as ebs from "./ebs";
 import * as ecs from "./ecs";
 import * as eip from "./eip";
+import * as escloud from "./escloud";
 import * as iam from "./iam";
+import * as mongodb from "./mongodb";
 import * as nat from "./nat";
+import * as privatelink from "./privatelink";
+import * as rds from "./rds";
+import * as rds_mysql from "./rds_mysql";
+import * as rds_v2 from "./rds_v2";
+import * as redis from "./redis";
+import * as tls from "./tls";
+import * as tos from "./tos";
 import * as types from "./types";
+import * as veenedge from "./veenedge";
 import * as vke from "./vke";
 import * as vpc from "./vpc";
+import * as vpn from "./vpn";
 
 export {
+    autoscaling,
+    bioos,
+    cen,
     clb,
     config,
+    cr,
     ebs,
     ecs,
     eip,
+    escloud,
     iam,
+    mongodb,
     nat,
+    privatelink,
+    rds,
+    rds_mysql,
+    rds_v2,
+    redis,
+    tls,
+    tos,
     types,
+    veenedge,
     vke,
     vpc,
+    vpn,
 };
 
 import { Provider } from "./provider";

@@ -26,12 +26,17 @@ namespace Pulumi.Volcengine.Vpc
     ///             Description = "tf-test-up",
     ///             NetworkInterfaceName = "tf-test-up",
     ///             PortSecurityEnabled = false,
-    ///             PrimaryIpAddress = "192.168.0.253",
+    ///             PrimaryIpAddress = "192.168.5.253",
+    ///             PrivateIpAddresses = 
+    ///             {
+    ///                 "192.168.5.2",
+    ///             },
+    ///             ProjectName = "default",
     ///             SecurityGroupIds = 
     ///             {
-    ///                 "sg-2744hspo7jbpc7fap8t7lef1p",
+    ///                 "sg-2fepz3c793g1s59gp67y21r34",
     ///             },
-    ///             SubnetId = "subnet-2744ht7fhjthc7fap8tm10eqg",
+    ///             SubnetId = "subnet-2fe79j7c8o5c059gp68ksxr93",
     ///         });
     ///     }
     /// 
@@ -43,10 +48,10 @@ namespace Pulumi.Volcengine.Vpc
     /// Network interface can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:Vpc/networkInterface:NetworkInterface default eni-bp1fgnh68xyz9****
+    ///  $ pulumi import volcengine:vpc/networkInterface:NetworkInterface default eni-bp1fgnh68xyz9****
     /// ```
     /// </summary>
-    [VolcengineResourceType("volcengine:Vpc/networkInterface:NetworkInterface")]
+    [VolcengineResourceType("volcengine:vpc/networkInterface:NetworkInterface")]
     public partial class NetworkInterface : Pulumi.CustomResource
     {
         /// <summary>
@@ -74,6 +79,24 @@ namespace Pulumi.Volcengine.Vpc
         public Output<string> PrimaryIpAddress { get; private set; } = null!;
 
         /// <summary>
+        /// The list of private ip address. This field conflicts with `secondary_private_ip_address_count`.
+        /// </summary>
+        [Output("privateIpAddresses")]
+        public Output<ImmutableArray<string>> PrivateIpAddresses { get; private set; } = null!;
+
+        /// <summary>
+        /// The ProjectName of the ENI.
+        /// </summary>
+        [Output("projectName")]
+        public Output<string?> ProjectName { get; private set; } = null!;
+
+        /// <summary>
+        /// The count of secondary private ip address. This field conflicts with `private_ip_address`.
+        /// </summary>
+        [Output("secondaryPrivateIpAddressCount")]
+        public Output<int> SecondaryPrivateIpAddressCount { get; private set; } = null!;
+
+        /// <summary>
         /// The list of the security group id to which the secondary ENI belongs.
         /// </summary>
         [Output("securityGroupIds")]
@@ -91,6 +114,12 @@ namespace Pulumi.Volcengine.Vpc
         [Output("subnetId")]
         public Output<string> SubnetId { get; private set; } = null!;
 
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.NetworkInterfaceTag>> Tags { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a NetworkInterface resource with the given unique name, arguments, and options.
@@ -100,12 +129,12 @@ namespace Pulumi.Volcengine.Vpc
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public NetworkInterface(string name, NetworkInterfaceArgs args, CustomResourceOptions? options = null)
-            : base("volcengine:Vpc/networkInterface:NetworkInterface", name, args ?? new NetworkInterfaceArgs(), MakeResourceOptions(options, ""))
+            : base("volcengine:vpc/networkInterface:NetworkInterface", name, args ?? new NetworkInterfaceArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private NetworkInterface(string name, Input<string> id, NetworkInterfaceState? state = null, CustomResourceOptions? options = null)
-            : base("volcengine:Vpc/networkInterface:NetworkInterface", name, state, MakeResourceOptions(options, id))
+            : base("volcengine:vpc/networkInterface:NetworkInterface", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -161,6 +190,30 @@ namespace Pulumi.Volcengine.Vpc
         [Input("primaryIpAddress")]
         public Input<string>? PrimaryIpAddress { get; set; }
 
+        [Input("privateIpAddresses")]
+        private InputList<string>? _privateIpAddresses;
+
+        /// <summary>
+        /// The list of private ip address. This field conflicts with `secondary_private_ip_address_count`.
+        /// </summary>
+        public InputList<string> PrivateIpAddresses
+        {
+            get => _privateIpAddresses ?? (_privateIpAddresses = new InputList<string>());
+            set => _privateIpAddresses = value;
+        }
+
+        /// <summary>
+        /// The ProjectName of the ENI.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
+        /// The count of secondary private ip address. This field conflicts with `private_ip_address`.
+        /// </summary>
+        [Input("secondaryPrivateIpAddressCount")]
+        public Input<int>? SecondaryPrivateIpAddressCount { get; set; }
+
         [Input("securityGroupIds", required: true)]
         private InputList<string>? _securityGroupIds;
 
@@ -178,6 +231,18 @@ namespace Pulumi.Volcengine.Vpc
         /// </summary>
         [Input("subnetId", required: true)]
         public Input<string> SubnetId { get; set; } = null!;
+
+        [Input("tags")]
+        private InputList<Inputs.NetworkInterfaceTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.NetworkInterfaceTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.NetworkInterfaceTagArgs>());
+            set => _tags = value;
+        }
 
         public NetworkInterfaceArgs()
         {
@@ -210,6 +275,30 @@ namespace Pulumi.Volcengine.Vpc
         [Input("primaryIpAddress")]
         public Input<string>? PrimaryIpAddress { get; set; }
 
+        [Input("privateIpAddresses")]
+        private InputList<string>? _privateIpAddresses;
+
+        /// <summary>
+        /// The list of private ip address. This field conflicts with `secondary_private_ip_address_count`.
+        /// </summary>
+        public InputList<string> PrivateIpAddresses
+        {
+            get => _privateIpAddresses ?? (_privateIpAddresses = new InputList<string>());
+            set => _privateIpAddresses = value;
+        }
+
+        /// <summary>
+        /// The ProjectName of the ENI.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
+        /// The count of secondary private ip address. This field conflicts with `private_ip_address`.
+        /// </summary>
+        [Input("secondaryPrivateIpAddressCount")]
+        public Input<int>? SecondaryPrivateIpAddressCount { get; set; }
+
         [Input("securityGroupIds")]
         private InputList<string>? _securityGroupIds;
 
@@ -233,6 +322,18 @@ namespace Pulumi.Volcengine.Vpc
         /// </summary>
         [Input("subnetId")]
         public Input<string>? SubnetId { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.NetworkInterfaceTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.NetworkInterfaceTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.NetworkInterfaceTagGetArgs>());
+            set => _tags = value;
+        }
 
         public NetworkInterfaceState()
         {

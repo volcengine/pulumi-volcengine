@@ -9,316 +9,1105 @@ from .provider import *
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
+    import pulumi_volcengine.autoscaling as __autoscaling
+    autoscaling = __autoscaling
+    import pulumi_volcengine.bioos as __bioos
+    bioos = __bioos
+    import pulumi_volcengine.cen as __cen
+    cen = __cen
     import pulumi_volcengine.clb as __clb
     clb = __clb
     import pulumi_volcengine.config as __config
     config = __config
+    import pulumi_volcengine.cr as __cr
+    cr = __cr
     import pulumi_volcengine.ebs as __ebs
     ebs = __ebs
     import pulumi_volcengine.ecs as __ecs
     ecs = __ecs
     import pulumi_volcengine.eip as __eip
     eip = __eip
+    import pulumi_volcengine.escloud as __escloud
+    escloud = __escloud
     import pulumi_volcengine.iam as __iam
     iam = __iam
+    import pulumi_volcengine.mongodb as __mongodb
+    mongodb = __mongodb
     import pulumi_volcengine.nat as __nat
     nat = __nat
+    import pulumi_volcengine.privatelink as __privatelink
+    privatelink = __privatelink
+    import pulumi_volcengine.rds as __rds
+    rds = __rds
+    import pulumi_volcengine.rds_mysql as __rds_mysql
+    rds_mysql = __rds_mysql
+    import pulumi_volcengine.rds_v2 as __rds_v2
+    rds_v2 = __rds_v2
+    import pulumi_volcengine.redis as __redis
+    redis = __redis
+    import pulumi_volcengine.tls as __tls
+    tls = __tls
+    import pulumi_volcengine.tos as __tos
+    tos = __tos
+    import pulumi_volcengine.veenedge as __veenedge
+    veenedge = __veenedge
     import pulumi_volcengine.vke as __vke
     vke = __vke
     import pulumi_volcengine.vpc as __vpc
     vpc = __vpc
+    import pulumi_volcengine.vpn as __vpn
+    vpn = __vpn
 else:
+    autoscaling = _utilities.lazy_import('pulumi_volcengine.autoscaling')
+    bioos = _utilities.lazy_import('pulumi_volcengine.bioos')
+    cen = _utilities.lazy_import('pulumi_volcengine.cen')
     clb = _utilities.lazy_import('pulumi_volcengine.clb')
     config = _utilities.lazy_import('pulumi_volcengine.config')
+    cr = _utilities.lazy_import('pulumi_volcengine.cr')
     ebs = _utilities.lazy_import('pulumi_volcengine.ebs')
     ecs = _utilities.lazy_import('pulumi_volcengine.ecs')
     eip = _utilities.lazy_import('pulumi_volcengine.eip')
+    escloud = _utilities.lazy_import('pulumi_volcengine.escloud')
     iam = _utilities.lazy_import('pulumi_volcengine.iam')
+    mongodb = _utilities.lazy_import('pulumi_volcengine.mongodb')
     nat = _utilities.lazy_import('pulumi_volcengine.nat')
+    privatelink = _utilities.lazy_import('pulumi_volcengine.privatelink')
+    rds = _utilities.lazy_import('pulumi_volcengine.rds')
+    rds_mysql = _utilities.lazy_import('pulumi_volcengine.rds_mysql')
+    rds_v2 = _utilities.lazy_import('pulumi_volcengine.rds_v2')
+    redis = _utilities.lazy_import('pulumi_volcengine.redis')
+    tls = _utilities.lazy_import('pulumi_volcengine.tls')
+    tos = _utilities.lazy_import('pulumi_volcengine.tos')
+    veenedge = _utilities.lazy_import('pulumi_volcengine.veenedge')
     vke = _utilities.lazy_import('pulumi_volcengine.vke')
     vpc = _utilities.lazy_import('pulumi_volcengine.vpc')
+    vpn = _utilities.lazy_import('pulumi_volcengine.vpn')
 
 _utilities.register(
     resource_modules="""
 [
  {
   "pkg": "volcengine",
-  "mod": "Clb/certificate",
-  "fqn": "pulumi_volcengine.clb",
+  "mod": "autoscaling/scalingConfiguration",
+  "fqn": "pulumi_volcengine.autoscaling",
   "classes": {
-   "volcengine:Clb/certificate:Certificate": "Certificate"
+   "volcengine:autoscaling/scalingConfiguration:ScalingConfiguration": "ScalingConfiguration"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Clb/clb",
-  "fqn": "pulumi_volcengine.clb",
+  "mod": "autoscaling/scalingConfigurationAttachment",
+  "fqn": "pulumi_volcengine.autoscaling",
   "classes": {
-   "volcengine:Clb/clb:Clb": "Clb"
+   "volcengine:autoscaling/scalingConfigurationAttachment:ScalingConfigurationAttachment": "ScalingConfigurationAttachment"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Clb/clbRule",
-  "fqn": "pulumi_volcengine.clb",
+  "mod": "autoscaling/scalingGroup",
+  "fqn": "pulumi_volcengine.autoscaling",
   "classes": {
-   "volcengine:Clb/clbRule:ClbRule": "ClbRule"
+   "volcengine:autoscaling/scalingGroup:ScalingGroup": "ScalingGroup"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Clb/listener",
-  "fqn": "pulumi_volcengine.clb",
+  "mod": "autoscaling/scalingGroupEnabler",
+  "fqn": "pulumi_volcengine.autoscaling",
   "classes": {
-   "volcengine:Clb/listener:Listener": "Listener"
+   "volcengine:autoscaling/scalingGroupEnabler:ScalingGroupEnabler": "ScalingGroupEnabler"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Clb/serverGroup",
-  "fqn": "pulumi_volcengine.clb",
+  "mod": "autoscaling/scalingInstanceAttachment",
+  "fqn": "pulumi_volcengine.autoscaling",
   "classes": {
-   "volcengine:Clb/serverGroup:ServerGroup": "ServerGroup"
+   "volcengine:autoscaling/scalingInstanceAttachment:ScalingInstanceAttachment": "ScalingInstanceAttachment"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Clb/serverGroupServer",
-  "fqn": "pulumi_volcengine.clb",
+  "mod": "autoscaling/scalingLifecycleHook",
+  "fqn": "pulumi_volcengine.autoscaling",
   "classes": {
-   "volcengine:Clb/serverGroupServer:ServerGroupServer": "ServerGroupServer"
+   "volcengine:autoscaling/scalingLifecycleHook:ScalingLifecycleHook": "ScalingLifecycleHook"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Ebs/volume",
+  "mod": "autoscaling/scalingPolicy",
+  "fqn": "pulumi_volcengine.autoscaling",
+  "classes": {
+   "volcengine:autoscaling/scalingPolicy:ScalingPolicy": "ScalingPolicy"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "bioos/cluster",
+  "fqn": "pulumi_volcengine.bioos",
+  "classes": {
+   "volcengine:bioos/cluster:Cluster": "Cluster"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "bioos/clusterBind",
+  "fqn": "pulumi_volcengine.bioos",
+  "classes": {
+   "volcengine:bioos/clusterBind:ClusterBind": "ClusterBind"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "bioos/workspace",
+  "fqn": "pulumi_volcengine.bioos",
+  "classes": {
+   "volcengine:bioos/workspace:Workspace": "Workspace"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cen/attachInstance",
+  "fqn": "pulumi_volcengine.cen",
+  "classes": {
+   "volcengine:cen/attachInstance:AttachInstance": "AttachInstance"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cen/bandwidthPackage",
+  "fqn": "pulumi_volcengine.cen",
+  "classes": {
+   "volcengine:cen/bandwidthPackage:BandwidthPackage": "BandwidthPackage"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cen/bandwidthPackageAssociate",
+  "fqn": "pulumi_volcengine.cen",
+  "classes": {
+   "volcengine:cen/bandwidthPackageAssociate:BandwidthPackageAssociate": "BandwidthPackageAssociate"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cen/cen",
+  "fqn": "pulumi_volcengine.cen",
+  "classes": {
+   "volcengine:cen/cen:Cen": "Cen"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cen/grantInstance",
+  "fqn": "pulumi_volcengine.cen",
+  "classes": {
+   "volcengine:cen/grantInstance:GrantInstance": "GrantInstance"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cen/interRegionBandwidth",
+  "fqn": "pulumi_volcengine.cen",
+  "classes": {
+   "volcengine:cen/interRegionBandwidth:InterRegionBandwidth": "InterRegionBandwidth"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "clb/acl",
+  "fqn": "pulumi_volcengine.clb",
+  "classes": {
+   "volcengine:clb/acl:Acl": "Acl"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "clb/aclEntry",
+  "fqn": "pulumi_volcengine.clb",
+  "classes": {
+   "volcengine:clb/aclEntry:AclEntry": "AclEntry"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "clb/certificate",
+  "fqn": "pulumi_volcengine.clb",
+  "classes": {
+   "volcengine:clb/certificate:Certificate": "Certificate"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "clb/clb",
+  "fqn": "pulumi_volcengine.clb",
+  "classes": {
+   "volcengine:clb/clb:Clb": "Clb"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "clb/listener",
+  "fqn": "pulumi_volcengine.clb",
+  "classes": {
+   "volcengine:clb/listener:Listener": "Listener"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "clb/rule",
+  "fqn": "pulumi_volcengine.clb",
+  "classes": {
+   "volcengine:clb/rule:Rule": "Rule"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "clb/serverGroup",
+  "fqn": "pulumi_volcengine.clb",
+  "classes": {
+   "volcengine:clb/serverGroup:ServerGroup": "ServerGroup"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "clb/serverGroupServer",
+  "fqn": "pulumi_volcengine.clb",
+  "classes": {
+   "volcengine:clb/serverGroupServer:ServerGroupServer": "ServerGroupServer"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cr/endpoint",
+  "fqn": "pulumi_volcengine.cr",
+  "classes": {
+   "volcengine:cr/endpoint:Endpoint": "Endpoint"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cr/namespace",
+  "fqn": "pulumi_volcengine.cr",
+  "classes": {
+   "volcengine:cr/namespace:Namespace": "Namespace"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cr/registry",
+  "fqn": "pulumi_volcengine.cr",
+  "classes": {
+   "volcengine:cr/registry:Registry": "Registry"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cr/repository",
+  "fqn": "pulumi_volcengine.cr",
+  "classes": {
+   "volcengine:cr/repository:Repository": "Repository"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cr/state",
+  "fqn": "pulumi_volcengine.cr",
+  "classes": {
+   "volcengine:cr/state:State": "State"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cr/tag",
+  "fqn": "pulumi_volcengine.cr",
+  "classes": {
+   "volcengine:cr/tag:Tag": "Tag"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cr/vpcEndpoint",
+  "fqn": "pulumi_volcengine.cr",
+  "classes": {
+   "volcengine:cr/vpcEndpoint:VpcEndpoint": "VpcEndpoint"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "ebs/volume",
   "fqn": "pulumi_volcengine.ebs",
   "classes": {
-   "volcengine:Ebs/volume:Volume": "Volume"
+   "volcengine:ebs/volume:Volume": "Volume"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Ebs/volumeAttach",
+  "mod": "ebs/volumeAttach",
   "fqn": "pulumi_volcengine.ebs",
   "classes": {
-   "volcengine:Ebs/volumeAttach:VolumeAttach": "VolumeAttach"
+   "volcengine:ebs/volumeAttach:VolumeAttach": "VolumeAttach"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Ecs/instance",
+  "mod": "ecs/deploymentSet",
   "fqn": "pulumi_volcengine.ecs",
   "classes": {
-   "volcengine:Ecs/instance:Instance": "Instance"
+   "volcengine:ecs/deploymentSet:DeploymentSet": "DeploymentSet"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Ecs/state",
+  "mod": "ecs/deploymentSetAssociate",
   "fqn": "pulumi_volcengine.ecs",
   "classes": {
-   "volcengine:Ecs/state:State": "State"
+   "volcengine:ecs/deploymentSetAssociate:DeploymentSetAssociate": "DeploymentSetAssociate"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Eip/address",
+  "mod": "ecs/instance",
+  "fqn": "pulumi_volcengine.ecs",
+  "classes": {
+   "volcengine:ecs/instance:Instance": "Instance"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "ecs/keyPair",
+  "fqn": "pulumi_volcengine.ecs",
+  "classes": {
+   "volcengine:ecs/keyPair:KeyPair": "KeyPair"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "ecs/keyPairAssociate",
+  "fqn": "pulumi_volcengine.ecs",
+  "classes": {
+   "volcengine:ecs/keyPairAssociate:KeyPairAssociate": "KeyPairAssociate"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "ecs/launchTemplate",
+  "fqn": "pulumi_volcengine.ecs",
+  "classes": {
+   "volcengine:ecs/launchTemplate:LaunchTemplate": "LaunchTemplate"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "ecs/state",
+  "fqn": "pulumi_volcengine.ecs",
+  "classes": {
+   "volcengine:ecs/state:State": "State"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "eip/address",
   "fqn": "pulumi_volcengine.eip",
   "classes": {
-   "volcengine:Eip/address:Address": "Address"
+   "volcengine:eip/address:Address": "Address"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Eip/associate",
+  "mod": "eip/associate",
   "fqn": "pulumi_volcengine.eip",
   "classes": {
-   "volcengine:Eip/associate:Associate": "Associate"
+   "volcengine:eip/associate:Associate": "Associate"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Iam/accessKey",
+  "mod": "escloud/instance",
+  "fqn": "pulumi_volcengine.escloud",
+  "classes": {
+   "volcengine:escloud/instance:Instance": "Instance"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "iam/accessKey",
   "fqn": "pulumi_volcengine.iam",
   "classes": {
-   "volcengine:Iam/accessKey:AccessKey": "AccessKey"
+   "volcengine:iam/accessKey:AccessKey": "AccessKey"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Iam/loginProfile",
+  "mod": "iam/loginProfile",
   "fqn": "pulumi_volcengine.iam",
   "classes": {
-   "volcengine:Iam/loginProfile:LoginProfile": "LoginProfile"
+   "volcengine:iam/loginProfile:LoginProfile": "LoginProfile"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Iam/policy",
+  "mod": "iam/policy",
   "fqn": "pulumi_volcengine.iam",
   "classes": {
-   "volcengine:Iam/policy:Policy": "Policy"
+   "volcengine:iam/policy:Policy": "Policy"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Iam/role",
+  "mod": "iam/role",
   "fqn": "pulumi_volcengine.iam",
   "classes": {
-   "volcengine:Iam/role:Role": "Role"
+   "volcengine:iam/role:Role": "Role"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Iam/rolePolicyAttachment",
+  "mod": "iam/rolePolicyAttachment",
   "fqn": "pulumi_volcengine.iam",
   "classes": {
-   "volcengine:Iam/rolePolicyAttachment:RolePolicyAttachment": "RolePolicyAttachment"
+   "volcengine:iam/rolePolicyAttachment:RolePolicyAttachment": "RolePolicyAttachment"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Iam/user",
+  "mod": "iam/user",
   "fqn": "pulumi_volcengine.iam",
   "classes": {
-   "volcengine:Iam/user:User": "User"
+   "volcengine:iam/user:User": "User"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Iam/userPolicyAttachment",
+  "mod": "iam/userPolicyAttachment",
   "fqn": "pulumi_volcengine.iam",
   "classes": {
-   "volcengine:Iam/userPolicyAttachment:UserPolicyAttachment": "UserPolicyAttachment"
+   "volcengine:iam/userPolicyAttachment:UserPolicyAttachment": "UserPolicyAttachment"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Nat/gateway",
+  "mod": "mongodb/endpoint",
+  "fqn": "pulumi_volcengine.mongodb",
+  "classes": {
+   "volcengine:mongodb/endpoint:Endpoint": "Endpoint"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "mongodb/instance",
+  "fqn": "pulumi_volcengine.mongodb",
+  "classes": {
+   "volcengine:mongodb/instance:Instance": "Instance"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "mongodb/instanceParameter",
+  "fqn": "pulumi_volcengine.mongodb",
+  "classes": {
+   "volcengine:mongodb/instanceParameter:InstanceParameter": "InstanceParameter"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "mongodb/mongoAllowList",
+  "fqn": "pulumi_volcengine.mongodb",
+  "classes": {
+   "volcengine:mongodb/mongoAllowList:MongoAllowList": "MongoAllowList"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "mongodb/mongoAllowListAssociate",
+  "fqn": "pulumi_volcengine.mongodb",
+  "classes": {
+   "volcengine:mongodb/mongoAllowListAssociate:MongoAllowListAssociate": "MongoAllowListAssociate"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "mongodb/sslState",
+  "fqn": "pulumi_volcengine.mongodb",
+  "classes": {
+   "volcengine:mongodb/sslState:SslState": "SslState"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "nat/dnatEntry",
   "fqn": "pulumi_volcengine.nat",
   "classes": {
-   "volcengine:Nat/gateway:Gateway": "Gateway"
+   "volcengine:nat/dnatEntry:DnatEntry": "DnatEntry"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Nat/snatEntry",
+  "mod": "nat/gateway",
   "fqn": "pulumi_volcengine.nat",
   "classes": {
-   "volcengine:Nat/snatEntry:SnatEntry": "SnatEntry"
+   "volcengine:nat/gateway:Gateway": "Gateway"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Vke/cluster",
+  "mod": "nat/snatEntry",
+  "fqn": "pulumi_volcengine.nat",
+  "classes": {
+   "volcengine:nat/snatEntry:SnatEntry": "SnatEntry"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "privatelink/securityGroup",
+  "fqn": "pulumi_volcengine.privatelink",
+  "classes": {
+   "volcengine:privatelink/securityGroup:SecurityGroup": "SecurityGroup"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "privatelink/vpcEndpoint",
+  "fqn": "pulumi_volcengine.privatelink",
+  "classes": {
+   "volcengine:privatelink/vpcEndpoint:VpcEndpoint": "VpcEndpoint"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "privatelink/vpcEndpointConnection",
+  "fqn": "pulumi_volcengine.privatelink",
+  "classes": {
+   "volcengine:privatelink/vpcEndpointConnection:VpcEndpointConnection": "VpcEndpointConnection"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "privatelink/vpcEndpointService",
+  "fqn": "pulumi_volcengine.privatelink",
+  "classes": {
+   "volcengine:privatelink/vpcEndpointService:VpcEndpointService": "VpcEndpointService"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "privatelink/vpcEndpointServicePermission",
+  "fqn": "pulumi_volcengine.privatelink",
+  "classes": {
+   "volcengine:privatelink/vpcEndpointServicePermission:VpcEndpointServicePermission": "VpcEndpointServicePermission"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "privatelink/vpcEndpointServiceResource",
+  "fqn": "pulumi_volcengine.privatelink",
+  "classes": {
+   "volcengine:privatelink/vpcEndpointServiceResource:VpcEndpointServiceResource": "VpcEndpointServiceResource"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "privatelink/vpcEndpointZone",
+  "fqn": "pulumi_volcengine.privatelink",
+  "classes": {
+   "volcengine:privatelink/vpcEndpointZone:VpcEndpointZone": "VpcEndpointZone"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds/account",
+  "fqn": "pulumi_volcengine.rds",
+  "classes": {
+   "volcengine:rds/account:Account": "Account"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds/accountPrivilege",
+  "fqn": "pulumi_volcengine.rds",
+  "classes": {
+   "volcengine:rds/accountPrivilege:AccountPrivilege": "AccountPrivilege"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds/database",
+  "fqn": "pulumi_volcengine.rds",
+  "classes": {
+   "volcengine:rds/database:Database": "Database"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds/instance",
+  "fqn": "pulumi_volcengine.rds",
+  "classes": {
+   "volcengine:rds/instance:Instance": "Instance"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds/ipList",
+  "fqn": "pulumi_volcengine.rds",
+  "classes": {
+   "volcengine:rds/ipList:IpList": "IpList"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds/parameterTemplate",
+  "fqn": "pulumi_volcengine.rds",
+  "classes": {
+   "volcengine:rds/parameterTemplate:ParameterTemplate": "ParameterTemplate"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds_mysql/account",
+  "fqn": "pulumi_volcengine.rds_mysql",
+  "classes": {
+   "volcengine:rds_mysql/account:Account": "Account"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds_mysql/allowlist",
+  "fqn": "pulumi_volcengine.rds_mysql",
+  "classes": {
+   "volcengine:rds_mysql/allowlist:Allowlist": "Allowlist"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds_mysql/allowlistAssociate",
+  "fqn": "pulumi_volcengine.rds_mysql",
+  "classes": {
+   "volcengine:rds_mysql/allowlistAssociate:AllowlistAssociate": "AllowlistAssociate"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds_mysql/database",
+  "fqn": "pulumi_volcengine.rds_mysql",
+  "classes": {
+   "volcengine:rds_mysql/database:Database": "Database"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds_mysql/instance",
+  "fqn": "pulumi_volcengine.rds_mysql",
+  "classes": {
+   "volcengine:rds_mysql/instance:Instance": "Instance"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds_mysql/instanceReadonlyNode",
+  "fqn": "pulumi_volcengine.rds_mysql",
+  "classes": {
+   "volcengine:rds_mysql/instanceReadonlyNode:InstanceReadonlyNode": "InstanceReadonlyNode"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds_v2/rdsInstanceV2",
+  "fqn": "pulumi_volcengine.rds_v2",
+  "classes": {
+   "volcengine:rds_v2/rdsInstanceV2:RdsInstanceV2": "RdsInstanceV2"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "redis/account",
+  "fqn": "pulumi_volcengine.redis",
+  "classes": {
+   "volcengine:redis/account:Account": "Account"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "redis/allowList",
+  "fqn": "pulumi_volcengine.redis",
+  "classes": {
+   "volcengine:redis/allowList:AllowList": "AllowList"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "redis/allowListAssociate",
+  "fqn": "pulumi_volcengine.redis",
+  "classes": {
+   "volcengine:redis/allowListAssociate:AllowListAssociate": "AllowListAssociate"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "redis/backup",
+  "fqn": "pulumi_volcengine.redis",
+  "classes": {
+   "volcengine:redis/backup:Backup": "Backup"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "redis/backupRestore",
+  "fqn": "pulumi_volcengine.redis",
+  "classes": {
+   "volcengine:redis/backupRestore:BackupRestore": "BackupRestore"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "redis/continuousBackup",
+  "fqn": "pulumi_volcengine.redis",
+  "classes": {
+   "volcengine:redis/continuousBackup:ContinuousBackup": "ContinuousBackup"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "redis/endpoint",
+  "fqn": "pulumi_volcengine.redis",
+  "classes": {
+   "volcengine:redis/endpoint:Endpoint": "Endpoint"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "redis/instance",
+  "fqn": "pulumi_volcengine.redis",
+  "classes": {
+   "volcengine:redis/instance:Instance": "Instance"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "redis/state",
+  "fqn": "pulumi_volcengine.redis",
+  "classes": {
+   "volcengine:redis/state:State": "State"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tls/alarm",
+  "fqn": "pulumi_volcengine.tls",
+  "classes": {
+   "volcengine:tls/alarm:Alarm": "Alarm"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tls/alarmNotifyGroup",
+  "fqn": "pulumi_volcengine.tls",
+  "classes": {
+   "volcengine:tls/alarmNotifyGroup:AlarmNotifyGroup": "AlarmNotifyGroup"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tls/host",
+  "fqn": "pulumi_volcengine.tls",
+  "classes": {
+   "volcengine:tls/host:Host": "Host"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tls/hostGroup",
+  "fqn": "pulumi_volcengine.tls",
+  "classes": {
+   "volcengine:tls/hostGroup:HostGroup": "HostGroup"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tls/index",
+  "fqn": "pulumi_volcengine.tls",
+  "classes": {
+   "volcengine:tls/index:Index": "Index"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tls/kafkaConsumer",
+  "fqn": "pulumi_volcengine.tls",
+  "classes": {
+   "volcengine:tls/kafkaConsumer:KafkaConsumer": "KafkaConsumer"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tls/project",
+  "fqn": "pulumi_volcengine.tls",
+  "classes": {
+   "volcengine:tls/project:Project": "Project"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tls/rule",
+  "fqn": "pulumi_volcengine.tls",
+  "classes": {
+   "volcengine:tls/rule:Rule": "Rule"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tls/ruleApplier",
+  "fqn": "pulumi_volcengine.tls",
+  "classes": {
+   "volcengine:tls/ruleApplier:RuleApplier": "RuleApplier"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tls/topic",
+  "fqn": "pulumi_volcengine.tls",
+  "classes": {
+   "volcengine:tls/topic:Topic": "Topic"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tos/bucket",
+  "fqn": "pulumi_volcengine.tos",
+  "classes": {
+   "volcengine:tos/bucket:Bucket": "Bucket"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tos/bucketObject",
+  "fqn": "pulumi_volcengine.tos",
+  "classes": {
+   "volcengine:tos/bucketObject:BucketObject": "BucketObject"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "tos/bucketPolicy",
+  "fqn": "pulumi_volcengine.tos",
+  "classes": {
+   "volcengine:tos/bucketPolicy:BucketPolicy": "BucketPolicy"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "veenedge/cloudServer",
+  "fqn": "pulumi_volcengine.veenedge",
+  "classes": {
+   "volcengine:veenedge/cloudServer:CloudServer": "CloudServer"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "veenedge/instance",
+  "fqn": "pulumi_volcengine.veenedge",
+  "classes": {
+   "volcengine:veenedge/instance:Instance": "Instance"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "veenedge/vpc",
+  "fqn": "pulumi_volcengine.veenedge",
+  "classes": {
+   "volcengine:veenedge/vpc:Vpc": "Vpc"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vke/addon",
   "fqn": "pulumi_volcengine.vke",
   "classes": {
-   "volcengine:Vke/cluster:Cluster": "Cluster"
+   "volcengine:vke/addon:Addon": "Addon"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Vke/node",
+  "mod": "vke/cluster",
   "fqn": "pulumi_volcengine.vke",
   "classes": {
-   "volcengine:Vke/node:Node": "Node"
+   "volcengine:vke/cluster:Cluster": "Cluster"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Vke/nodePool",
+  "mod": "vke/defaultNodePool",
   "fqn": "pulumi_volcengine.vke",
   "classes": {
-   "volcengine:Vke/nodePool:NodePool": "NodePool"
+   "volcengine:vke/defaultNodePool:DefaultNodePool": "DefaultNodePool"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Vpc/acl",
-  "fqn": "pulumi_volcengine.vpc",
+  "mod": "vke/defaultNodePoolBatchAttach",
+  "fqn": "pulumi_volcengine.vke",
   "classes": {
-   "volcengine:Vpc/acl:Acl": "Acl"
+   "volcengine:vke/defaultNodePoolBatchAttach:DefaultNodePoolBatchAttach": "DefaultNodePoolBatchAttach"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Vpc/aclEntry",
-  "fqn": "pulumi_volcengine.vpc",
+  "mod": "vke/kubeconfig",
+  "fqn": "pulumi_volcengine.vke",
   "classes": {
-   "volcengine:Vpc/aclEntry:AclEntry": "AclEntry"
+   "volcengine:vke/kubeconfig:Kubeconfig": "Kubeconfig"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Vpc/networkInterface",
-  "fqn": "pulumi_volcengine.vpc",
+  "mod": "vke/node",
+  "fqn": "pulumi_volcengine.vke",
   "classes": {
-   "volcengine:Vpc/networkInterface:NetworkInterface": "NetworkInterface"
+   "volcengine:vke/node:Node": "Node"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Vpc/networkInterfaceAttach",
-  "fqn": "pulumi_volcengine.vpc",
+  "mod": "vke/nodePool",
+  "fqn": "pulumi_volcengine.vke",
   "classes": {
-   "volcengine:Vpc/networkInterfaceAttach:NetworkInterfaceAttach": "NetworkInterfaceAttach"
+   "volcengine:vke/nodePool:NodePool": "NodePool"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Vpc/routeEntry",
+  "mod": "vpc/ipv6AddressBandwidth",
   "fqn": "pulumi_volcengine.vpc",
   "classes": {
-   "volcengine:Vpc/routeEntry:RouteEntry": "RouteEntry"
+   "volcengine:vpc/ipv6AddressBandwidth:Ipv6AddressBandwidth": "Ipv6AddressBandwidth"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Vpc/routeTable",
+  "mod": "vpc/ipv6Gateway",
   "fqn": "pulumi_volcengine.vpc",
   "classes": {
-   "volcengine:Vpc/routeTable:RouteTable": "RouteTable"
+   "volcengine:vpc/ipv6Gateway:Ipv6Gateway": "Ipv6Gateway"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Vpc/routeTableAssociate",
+  "mod": "vpc/networkAcl",
   "fqn": "pulumi_volcengine.vpc",
   "classes": {
-   "volcengine:Vpc/routeTableAssociate:RouteTableAssociate": "RouteTableAssociate"
+   "volcengine:vpc/networkAcl:NetworkAcl": "NetworkAcl"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Vpc/securityGroup",
+  "mod": "vpc/networkAclAssociate",
   "fqn": "pulumi_volcengine.vpc",
   "classes": {
-   "volcengine:Vpc/securityGroup:SecurityGroup": "SecurityGroup"
+   "volcengine:vpc/networkAclAssociate:NetworkAclAssociate": "NetworkAclAssociate"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Vpc/securityGroupRule",
+  "mod": "vpc/networkInterface",
   "fqn": "pulumi_volcengine.vpc",
   "classes": {
-   "volcengine:Vpc/securityGroupRule:SecurityGroupRule": "SecurityGroupRule"
+   "volcengine:vpc/networkInterface:NetworkInterface": "NetworkInterface"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Vpc/subnet",
+  "mod": "vpc/networkInterfaceAttach",
   "fqn": "pulumi_volcengine.vpc",
   "classes": {
-   "volcengine:Vpc/subnet:Subnet": "Subnet"
+   "volcengine:vpc/networkInterfaceAttach:NetworkInterfaceAttach": "NetworkInterfaceAttach"
   }
  },
  {
   "pkg": "volcengine",
-  "mod": "Vpc/vpc",
+  "mod": "vpc/routeEntry",
   "fqn": "pulumi_volcengine.vpc",
   "classes": {
-   "volcengine:Vpc/vpc:Vpc": "Vpc"
+   "volcengine:vpc/routeEntry:RouteEntry": "RouteEntry"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vpc/routeTable",
+  "fqn": "pulumi_volcengine.vpc",
+  "classes": {
+   "volcengine:vpc/routeTable:RouteTable": "RouteTable"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vpc/routeTableAssociate",
+  "fqn": "pulumi_volcengine.vpc",
+  "classes": {
+   "volcengine:vpc/routeTableAssociate:RouteTableAssociate": "RouteTableAssociate"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vpc/securityGroup",
+  "fqn": "pulumi_volcengine.vpc",
+  "classes": {
+   "volcengine:vpc/securityGroup:SecurityGroup": "SecurityGroup"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vpc/securityGroupRule",
+  "fqn": "pulumi_volcengine.vpc",
+  "classes": {
+   "volcengine:vpc/securityGroupRule:SecurityGroupRule": "SecurityGroupRule"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vpc/subnet",
+  "fqn": "pulumi_volcengine.vpc",
+  "classes": {
+   "volcengine:vpc/subnet:Subnet": "Subnet"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vpc/vpc",
+  "fqn": "pulumi_volcengine.vpc",
+  "classes": {
+   "volcengine:vpc/vpc:Vpc": "Vpc"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vpn/connection",
+  "fqn": "pulumi_volcengine.vpn",
+  "classes": {
+   "volcengine:vpn/connection:Connection": "Connection"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vpn/customerGateway",
+  "fqn": "pulumi_volcengine.vpn",
+  "classes": {
+   "volcengine:vpn/customerGateway:CustomerGateway": "CustomerGateway"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vpn/gateway",
+  "fqn": "pulumi_volcengine.vpn",
+  "classes": {
+   "volcengine:vpn/gateway:Gateway": "Gateway"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vpn/gatewayRoute",
+  "fqn": "pulumi_volcengine.vpn",
+  "classes": {
+   "volcengine:vpn/gatewayRoute:GatewayRoute": "GatewayRoute"
   }
  }
 ]

@@ -11,31 +11,34 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a resource to manage eip address
 // ## Example Usage
 //
 // ```go
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Eip"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/eip"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Eip.NewAddress(ctx, "foo", &Eip.AddressArgs{
-// 			Bandwidth:   pulumi.Int(1),
-// 			BillingType: pulumi.String("PostPaidByBandwidth"),
-// 			Description: pulumi.String("tf-test"),
-// 			Isp:         pulumi.String("BGP"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := eip.NewAddress(ctx, "foo", &eip.AddressArgs{
+//				Bandwidth:   pulumi.Int(1),
+//				BillingType: pulumi.String("PostPaidByBandwidth"),
+//				Description: pulumi.String("tf-test"),
+//				Isp:         pulumi.String("ChinaUnicom"),
+//				ProjectName: pulumi.String("yuwenhao"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -43,12 +46,14 @@ import (
 // Eip address can be imported using the id, e.g.
 //
 // ```sh
-//  $ pulumi import volcengine:Eip/address:Address default eip-274oj9a8rs9a87fap8sf9515b
+//
+//	$ pulumi import volcengine:eip/address:Address default eip-274oj9a8rs9a87fap8sf9515b
+//
 // ```
 type Address struct {
 	pulumi.CustomResourceState
 
-	// The peek bandwidth of the EIP.
+	// The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
 	Bandwidth pulumi.IntOutput `pulumi:"bandwidth"`
 	// The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
 	BillingType pulumi.StringOutput `pulumi:"billingType"`
@@ -56,12 +61,16 @@ type Address struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The ip address of the EIP.
 	EipAddress pulumi.StringOutput `pulumi:"eipAddress"`
-	// The ISP of the EIP.
+	// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
 	Isp pulumi.StringOutput `pulumi:"isp"`
 	// The name of the EIP Address.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The ProjectName of the EIP.
+	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
 	// The status of the EIP.
 	Status pulumi.StringOutput `pulumi:"status"`
+	// Tags.
+	Tags AddressTagArrayOutput `pulumi:"tags"`
 }
 
 // NewAddress registers a new resource with the given unique name, arguments, and options.
@@ -75,7 +84,7 @@ func NewAddress(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'BillingType'")
 	}
 	var resource Address
-	err := ctx.RegisterResource("volcengine:Eip/address:Address", name, args, &resource, opts...)
+	err := ctx.RegisterResource("volcengine:eip/address:Address", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -87,7 +96,7 @@ func NewAddress(ctx *pulumi.Context,
 func GetAddress(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *AddressState, opts ...pulumi.ResourceOption) (*Address, error) {
 	var resource Address
-	err := ctx.ReadResource("volcengine:Eip/address:Address", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("volcengine:eip/address:Address", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -96,7 +105,7 @@ func GetAddress(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Address resources.
 type addressState struct {
-	// The peek bandwidth of the EIP.
+	// The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
 	Bandwidth *int `pulumi:"bandwidth"`
 	// The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
 	BillingType *string `pulumi:"billingType"`
@@ -104,16 +113,20 @@ type addressState struct {
 	Description *string `pulumi:"description"`
 	// The ip address of the EIP.
 	EipAddress *string `pulumi:"eipAddress"`
-	// The ISP of the EIP.
+	// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
 	Isp *string `pulumi:"isp"`
 	// The name of the EIP Address.
 	Name *string `pulumi:"name"`
+	// The ProjectName of the EIP.
+	ProjectName *string `pulumi:"projectName"`
 	// The status of the EIP.
 	Status *string `pulumi:"status"`
+	// Tags.
+	Tags []AddressTag `pulumi:"tags"`
 }
 
 type AddressState struct {
-	// The peek bandwidth of the EIP.
+	// The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
 	Bandwidth pulumi.IntPtrInput
 	// The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
 	BillingType pulumi.StringPtrInput
@@ -121,12 +134,16 @@ type AddressState struct {
 	Description pulumi.StringPtrInput
 	// The ip address of the EIP.
 	EipAddress pulumi.StringPtrInput
-	// The ISP of the EIP.
+	// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
 	Isp pulumi.StringPtrInput
 	// The name of the EIP Address.
 	Name pulumi.StringPtrInput
+	// The ProjectName of the EIP.
+	ProjectName pulumi.StringPtrInput
 	// The status of the EIP.
 	Status pulumi.StringPtrInput
+	// Tags.
+	Tags AddressTagArrayInput
 }
 
 func (AddressState) ElementType() reflect.Type {
@@ -134,30 +151,38 @@ func (AddressState) ElementType() reflect.Type {
 }
 
 type addressArgs struct {
-	// The peek bandwidth of the EIP.
+	// The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
 	Bandwidth *int `pulumi:"bandwidth"`
 	// The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
 	BillingType string `pulumi:"billingType"`
 	// The description of the EIP.
 	Description *string `pulumi:"description"`
-	// The ISP of the EIP.
+	// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
 	Isp *string `pulumi:"isp"`
 	// The name of the EIP Address.
 	Name *string `pulumi:"name"`
+	// The ProjectName of the EIP.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []AddressTag `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a Address resource.
 type AddressArgs struct {
-	// The peek bandwidth of the EIP.
+	// The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
 	Bandwidth pulumi.IntPtrInput
 	// The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
 	BillingType pulumi.StringInput
 	// The description of the EIP.
 	Description pulumi.StringPtrInput
-	// The ISP of the EIP.
+	// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
 	Isp pulumi.StringPtrInput
 	// The name of the EIP Address.
 	Name pulumi.StringPtrInput
+	// The ProjectName of the EIP.
+	ProjectName pulumi.StringPtrInput
+	// Tags.
+	Tags AddressTagArrayInput
 }
 
 func (AddressArgs) ElementType() reflect.Type {
@@ -186,7 +211,7 @@ func (i *Address) ToAddressOutputWithContext(ctx context.Context) AddressOutput 
 // AddressArrayInput is an input type that accepts AddressArray and AddressArrayOutput values.
 // You can construct a concrete instance of `AddressArrayInput` via:
 //
-//          AddressArray{ AddressArgs{...} }
+//	AddressArray{ AddressArgs{...} }
 type AddressArrayInput interface {
 	pulumi.Input
 
@@ -211,7 +236,7 @@ func (i AddressArray) ToAddressArrayOutputWithContext(ctx context.Context) Addre
 // AddressMapInput is an input type that accepts AddressMap and AddressMapOutput values.
 // You can construct a concrete instance of `AddressMapInput` via:
 //
-//          AddressMap{ "key": AddressArgs{...} }
+//	AddressMap{ "key": AddressArgs{...} }
 type AddressMapInput interface {
 	pulumi.Input
 
@@ -247,7 +272,7 @@ func (o AddressOutput) ToAddressOutputWithContext(ctx context.Context) AddressOu
 	return o
 }
 
-// The peek bandwidth of the EIP.
+// The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
 func (o AddressOutput) Bandwidth() pulumi.IntOutput {
 	return o.ApplyT(func(v *Address) pulumi.IntOutput { return v.Bandwidth }).(pulumi.IntOutput)
 }
@@ -267,7 +292,7 @@ func (o AddressOutput) EipAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v *Address) pulumi.StringOutput { return v.EipAddress }).(pulumi.StringOutput)
 }
 
-// The ISP of the EIP.
+// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
 func (o AddressOutput) Isp() pulumi.StringOutput {
 	return o.ApplyT(func(v *Address) pulumi.StringOutput { return v.Isp }).(pulumi.StringOutput)
 }
@@ -277,9 +302,19 @@ func (o AddressOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Address) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// The ProjectName of the EIP.
+func (o AddressOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Address) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
 // The status of the EIP.
 func (o AddressOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *Address) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o AddressOutput) Tags() AddressTagArrayOutput {
+	return o.ApplyT(func(v *Address) AddressTagArrayOutput { return v.Tags }).(AddressTagArrayOutput)
 }
 
 type AddressArrayOutput struct{ *pulumi.OutputState }

@@ -7,10 +7,43 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
 
 __all__ = [
+    'AddressTag',
     'AddressesAddressResult',
+    'AddressesAddressTagResult',
+    'AddressesTagResult',
 ]
+
+@pulumi.output_type
+class AddressTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
 
 @pulumi.output_type
 class AddressesAddressResult(dict):
@@ -31,7 +64,9 @@ class AddressesAddressResult(dict):
                  lock_reason: str,
                  name: str,
                  overdue_time: str,
+                 project_name: str,
                  status: str,
+                 tags: Sequence['outputs.AddressesAddressTagResult'],
                  updated_at: str):
         """
         :param str allocation_id: The id of the EIP address.
@@ -46,11 +81,13 @@ class AddressesAddressResult(dict):
         :param str id: The id of the EIP address.
         :param str instance_id: The instance id which be associated to the EIP.
         :param str instance_type: The type of the associated instance.
-        :param str isp: An ISP of EIP Address.
+        :param str isp: An ISP of EIP Address, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
         :param str lock_reason: The lock reason of the EIP.
         :param str name: A name of EIP.
         :param str overdue_time: The overdue time of the EIP.
-        :param str status: A status of EIP.
+        :param str project_name: The ProjectName of EIP.
+        :param str status: A status of EIP, the value can be `Attaching` or `Detaching` or `Attached` or `Available`.
+        :param Sequence['AddressesAddressTagArgs'] tags: Tags.
         :param str updated_at: The last update time of the EIP.
         """
         pulumi.set(__self__, "allocation_id", allocation_id)
@@ -69,7 +106,9 @@ class AddressesAddressResult(dict):
         pulumi.set(__self__, "lock_reason", lock_reason)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "overdue_time", overdue_time)
+        pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "updated_at", updated_at)
 
     @property
@@ -172,7 +211,7 @@ class AddressesAddressResult(dict):
     @pulumi.getter
     def isp(self) -> str:
         """
-        An ISP of EIP Address.
+        An ISP of EIP Address, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
         """
         return pulumi.get(self, "isp")
 
@@ -201,12 +240,28 @@ class AddressesAddressResult(dict):
         return pulumi.get(self, "overdue_time")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The ProjectName of EIP.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter
     def status(self) -> str:
         """
-        A status of EIP.
+        A status of EIP, the value can be `Attaching` or `Detaching` or `Attached` or `Available`.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.AddressesAddressTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="updatedAt")
@@ -215,5 +270,63 @@ class AddressesAddressResult(dict):
         The last update time of the EIP.
         """
         return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class AddressesAddressTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class AddressesTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 

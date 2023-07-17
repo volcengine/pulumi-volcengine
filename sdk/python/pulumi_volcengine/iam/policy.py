@@ -212,7 +212,7 @@ class Policy(pulumi.CustomResource):
         Iam policy can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Iam/policy:Policy default TerraformTestPolicy
+         $ pulumi import volcengine:iam/policy:Policy default TerraformTestPolicy
         ```
 
         :param str resource_name: The name of the resource.
@@ -246,7 +246,7 @@ class Policy(pulumi.CustomResource):
         Iam policy can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Iam/policy:Policy default TerraformTestPolicy
+         $ pulumi import volcengine:iam/policy:Policy default TerraformTestPolicy
         ```
 
         :param str resource_name: The name of the resource.
@@ -291,7 +291,7 @@ class Policy(pulumi.CustomResource):
             __props__.__dict__["policy_type"] = None
             __props__.__dict__["update_date"] = None
         super(Policy, __self__).__init__(
-            'volcengine:Iam/policy:Policy',
+            'volcengine:iam/policy:Policy',
             resource_name,
             __props__,
             opts)

@@ -7,6 +7,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['NetworkInterfaceArgs', 'NetworkInterface']
 
@@ -18,7 +20,11 @@ class NetworkInterfaceArgs:
                  description: Optional[pulumi.Input[str]] = None,
                  network_interface_name: Optional[pulumi.Input[str]] = None,
                  port_security_enabled: Optional[pulumi.Input[bool]] = None,
-                 primary_ip_address: Optional[pulumi.Input[str]] = None):
+                 primary_ip_address: Optional[pulumi.Input[str]] = None,
+                 private_ip_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 secondary_private_ip_address_count: Optional[pulumi.Input[int]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['NetworkInterfaceTagArgs']]]] = None):
         """
         The set of arguments for constructing a NetworkInterface resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The list of the security group id to which the secondary ENI belongs.
@@ -27,6 +33,10 @@ class NetworkInterfaceArgs:
         :param pulumi.Input[str] network_interface_name: The name of the ENI.
         :param pulumi.Input[bool] port_security_enabled: Set port security enable or disable.
         :param pulumi.Input[str] primary_ip_address: The primary IP address of the ENI.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] private_ip_addresses: The list of private ip address. This field conflicts with `secondary_private_ip_address_count`.
+        :param pulumi.Input[str] project_name: The ProjectName of the ENI.
+        :param pulumi.Input[int] secondary_private_ip_address_count: The count of secondary private ip address. This field conflicts with `private_ip_address`.
+        :param pulumi.Input[Sequence[pulumi.Input['NetworkInterfaceTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "security_group_ids", security_group_ids)
         pulumi.set(__self__, "subnet_id", subnet_id)
@@ -38,6 +48,14 @@ class NetworkInterfaceArgs:
             pulumi.set(__self__, "port_security_enabled", port_security_enabled)
         if primary_ip_address is not None:
             pulumi.set(__self__, "primary_ip_address", primary_ip_address)
+        if private_ip_addresses is not None:
+            pulumi.set(__self__, "private_ip_addresses", private_ip_addresses)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
+        if secondary_private_ip_address_count is not None:
+            pulumi.set(__self__, "secondary_private_ip_address_count", secondary_private_ip_address_count)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="securityGroupIds")
@@ -111,6 +129,54 @@ class NetworkInterfaceArgs:
     def primary_ip_address(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "primary_ip_address", value)
 
+    @property
+    @pulumi.getter(name="privateIpAddresses")
+    def private_ip_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The list of private ip address. This field conflicts with `secondary_private_ip_address_count`.
+        """
+        return pulumi.get(self, "private_ip_addresses")
+
+    @private_ip_addresses.setter
+    def private_ip_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "private_ip_addresses", value)
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of the ENI.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
+    @pulumi.getter(name="secondaryPrivateIpAddressCount")
+    def secondary_private_ip_address_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        The count of secondary private ip address. This field conflicts with `private_ip_address`.
+        """
+        return pulumi.get(self, "secondary_private_ip_address_count")
+
+    @secondary_private_ip_address_count.setter
+    def secondary_private_ip_address_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "secondary_private_ip_address_count", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NetworkInterfaceTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NetworkInterfaceTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _NetworkInterfaceState:
@@ -119,18 +185,26 @@ class _NetworkInterfaceState:
                  network_interface_name: Optional[pulumi.Input[str]] = None,
                  port_security_enabled: Optional[pulumi.Input[bool]] = None,
                  primary_ip_address: Optional[pulumi.Input[str]] = None,
+                 private_ip_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 secondary_private_ip_address_count: Optional[pulumi.Input[int]] = None,
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
-                 subnet_id: Optional[pulumi.Input[str]] = None):
+                 subnet_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['NetworkInterfaceTagArgs']]]] = None):
         """
         Input properties used for looking up and filtering NetworkInterface resources.
         :param pulumi.Input[str] description: The description of the ENI.
         :param pulumi.Input[str] network_interface_name: The name of the ENI.
         :param pulumi.Input[bool] port_security_enabled: Set port security enable or disable.
         :param pulumi.Input[str] primary_ip_address: The primary IP address of the ENI.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] private_ip_addresses: The list of private ip address. This field conflicts with `secondary_private_ip_address_count`.
+        :param pulumi.Input[str] project_name: The ProjectName of the ENI.
+        :param pulumi.Input[int] secondary_private_ip_address_count: The count of secondary private ip address. This field conflicts with `private_ip_address`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The list of the security group id to which the secondary ENI belongs.
         :param pulumi.Input[str] status: The status of the ENI.
         :param pulumi.Input[str] subnet_id: The id of the subnet to which the ENI is connected.
+        :param pulumi.Input[Sequence[pulumi.Input['NetworkInterfaceTagArgs']]] tags: Tags.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -140,12 +214,20 @@ class _NetworkInterfaceState:
             pulumi.set(__self__, "port_security_enabled", port_security_enabled)
         if primary_ip_address is not None:
             pulumi.set(__self__, "primary_ip_address", primary_ip_address)
+        if private_ip_addresses is not None:
+            pulumi.set(__self__, "private_ip_addresses", private_ip_addresses)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
+        if secondary_private_ip_address_count is not None:
+            pulumi.set(__self__, "secondary_private_ip_address_count", secondary_private_ip_address_count)
         if security_group_ids is not None:
             pulumi.set(__self__, "security_group_ids", security_group_ids)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if subnet_id is not None:
             pulumi.set(__self__, "subnet_id", subnet_id)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter
@@ -196,6 +278,42 @@ class _NetworkInterfaceState:
         pulumi.set(self, "primary_ip_address", value)
 
     @property
+    @pulumi.getter(name="privateIpAddresses")
+    def private_ip_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The list of private ip address. This field conflicts with `secondary_private_ip_address_count`.
+        """
+        return pulumi.get(self, "private_ip_addresses")
+
+    @private_ip_addresses.setter
+    def private_ip_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "private_ip_addresses", value)
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of the ENI.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
+    @pulumi.getter(name="secondaryPrivateIpAddressCount")
+    def secondary_private_ip_address_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        The count of secondary private ip address. This field conflicts with `private_ip_address`.
+        """
+        return pulumi.get(self, "secondary_private_ip_address_count")
+
+    @secondary_private_ip_address_count.setter
+    def secondary_private_ip_address_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "secondary_private_ip_address_count", value)
+
+    @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -231,6 +349,18 @@ class _NetworkInterfaceState:
     def subnet_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "subnet_id", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NetworkInterfaceTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NetworkInterfaceTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 class NetworkInterface(pulumi.CustomResource):
     @overload
@@ -241,8 +371,12 @@ class NetworkInterface(pulumi.CustomResource):
                  network_interface_name: Optional[pulumi.Input[str]] = None,
                  port_security_enabled: Optional[pulumi.Input[bool]] = None,
                  primary_ip_address: Optional[pulumi.Input[str]] = None,
+                 private_ip_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 secondary_private_ip_address_count: Optional[pulumi.Input[int]] = None,
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NetworkInterfaceTagArgs']]]]] = None,
                  __props__=None):
         """
         Provides a resource to manage network interface
@@ -256,9 +390,11 @@ class NetworkInterface(pulumi.CustomResource):
             description="tf-test-up",
             network_interface_name="tf-test-up",
             port_security_enabled=False,
-            primary_ip_address="192.168.0.253",
-            security_group_ids=["sg-2744hspo7jbpc7fap8t7lef1p"],
-            subnet_id="subnet-2744ht7fhjthc7fap8tm10eqg")
+            primary_ip_address="192.168.5.253",
+            private_ip_addresses=["192.168.5.2"],
+            project_name="default",
+            security_group_ids=["sg-2fepz3c793g1s59gp67y21r34"],
+            subnet_id="subnet-2fe79j7c8o5c059gp68ksxr93")
         ```
 
         ## Import
@@ -266,7 +402,7 @@ class NetworkInterface(pulumi.CustomResource):
         Network interface can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Vpc/networkInterface:NetworkInterface default eni-bp1fgnh68xyz9****
+         $ pulumi import volcengine:vpc/networkInterface:NetworkInterface default eni-bp1fgnh68xyz9****
         ```
 
         :param str resource_name: The name of the resource.
@@ -275,8 +411,12 @@ class NetworkInterface(pulumi.CustomResource):
         :param pulumi.Input[str] network_interface_name: The name of the ENI.
         :param pulumi.Input[bool] port_security_enabled: Set port security enable or disable.
         :param pulumi.Input[str] primary_ip_address: The primary IP address of the ENI.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] private_ip_addresses: The list of private ip address. This field conflicts with `secondary_private_ip_address_count`.
+        :param pulumi.Input[str] project_name: The ProjectName of the ENI.
+        :param pulumi.Input[int] secondary_private_ip_address_count: The count of secondary private ip address. This field conflicts with `private_ip_address`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The list of the security group id to which the secondary ENI belongs.
         :param pulumi.Input[str] subnet_id: The id of the subnet to which the ENI is connected.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NetworkInterfaceTagArgs']]]] tags: Tags.
         """
         ...
     @overload
@@ -296,9 +436,11 @@ class NetworkInterface(pulumi.CustomResource):
             description="tf-test-up",
             network_interface_name="tf-test-up",
             port_security_enabled=False,
-            primary_ip_address="192.168.0.253",
-            security_group_ids=["sg-2744hspo7jbpc7fap8t7lef1p"],
-            subnet_id="subnet-2744ht7fhjthc7fap8tm10eqg")
+            primary_ip_address="192.168.5.253",
+            private_ip_addresses=["192.168.5.2"],
+            project_name="default",
+            security_group_ids=["sg-2fepz3c793g1s59gp67y21r34"],
+            subnet_id="subnet-2fe79j7c8o5c059gp68ksxr93")
         ```
 
         ## Import
@@ -306,7 +448,7 @@ class NetworkInterface(pulumi.CustomResource):
         Network interface can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Vpc/networkInterface:NetworkInterface default eni-bp1fgnh68xyz9****
+         $ pulumi import volcengine:vpc/networkInterface:NetworkInterface default eni-bp1fgnh68xyz9****
         ```
 
         :param str resource_name: The name of the resource.
@@ -328,8 +470,12 @@ class NetworkInterface(pulumi.CustomResource):
                  network_interface_name: Optional[pulumi.Input[str]] = None,
                  port_security_enabled: Optional[pulumi.Input[bool]] = None,
                  primary_ip_address: Optional[pulumi.Input[str]] = None,
+                 private_ip_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 secondary_private_ip_address_count: Optional[pulumi.Input[int]] = None,
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NetworkInterfaceTagArgs']]]]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -346,15 +492,19 @@ class NetworkInterface(pulumi.CustomResource):
             __props__.__dict__["network_interface_name"] = network_interface_name
             __props__.__dict__["port_security_enabled"] = port_security_enabled
             __props__.__dict__["primary_ip_address"] = primary_ip_address
+            __props__.__dict__["private_ip_addresses"] = private_ip_addresses
+            __props__.__dict__["project_name"] = project_name
+            __props__.__dict__["secondary_private_ip_address_count"] = secondary_private_ip_address_count
             if security_group_ids is None and not opts.urn:
                 raise TypeError("Missing required property 'security_group_ids'")
             __props__.__dict__["security_group_ids"] = security_group_ids
             if subnet_id is None and not opts.urn:
                 raise TypeError("Missing required property 'subnet_id'")
             __props__.__dict__["subnet_id"] = subnet_id
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["status"] = None
         super(NetworkInterface, __self__).__init__(
-            'volcengine:Vpc/networkInterface:NetworkInterface',
+            'volcengine:vpc/networkInterface:NetworkInterface',
             resource_name,
             __props__,
             opts)
@@ -367,9 +517,13 @@ class NetworkInterface(pulumi.CustomResource):
             network_interface_name: Optional[pulumi.Input[str]] = None,
             port_security_enabled: Optional[pulumi.Input[bool]] = None,
             primary_ip_address: Optional[pulumi.Input[str]] = None,
+            private_ip_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            project_name: Optional[pulumi.Input[str]] = None,
+            secondary_private_ip_address_count: Optional[pulumi.Input[int]] = None,
             security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             status: Optional[pulumi.Input[str]] = None,
-            subnet_id: Optional[pulumi.Input[str]] = None) -> 'NetworkInterface':
+            subnet_id: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NetworkInterfaceTagArgs']]]]] = None) -> 'NetworkInterface':
         """
         Get an existing NetworkInterface resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -381,9 +535,13 @@ class NetworkInterface(pulumi.CustomResource):
         :param pulumi.Input[str] network_interface_name: The name of the ENI.
         :param pulumi.Input[bool] port_security_enabled: Set port security enable or disable.
         :param pulumi.Input[str] primary_ip_address: The primary IP address of the ENI.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] private_ip_addresses: The list of private ip address. This field conflicts with `secondary_private_ip_address_count`.
+        :param pulumi.Input[str] project_name: The ProjectName of the ENI.
+        :param pulumi.Input[int] secondary_private_ip_address_count: The count of secondary private ip address. This field conflicts with `private_ip_address`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The list of the security group id to which the secondary ENI belongs.
         :param pulumi.Input[str] status: The status of the ENI.
         :param pulumi.Input[str] subnet_id: The id of the subnet to which the ENI is connected.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NetworkInterfaceTagArgs']]]] tags: Tags.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -393,9 +551,13 @@ class NetworkInterface(pulumi.CustomResource):
         __props__.__dict__["network_interface_name"] = network_interface_name
         __props__.__dict__["port_security_enabled"] = port_security_enabled
         __props__.__dict__["primary_ip_address"] = primary_ip_address
+        __props__.__dict__["private_ip_addresses"] = private_ip_addresses
+        __props__.__dict__["project_name"] = project_name
+        __props__.__dict__["secondary_private_ip_address_count"] = secondary_private_ip_address_count
         __props__.__dict__["security_group_ids"] = security_group_ids
         __props__.__dict__["status"] = status
         __props__.__dict__["subnet_id"] = subnet_id
+        __props__.__dict__["tags"] = tags
         return NetworkInterface(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -431,6 +593,30 @@ class NetworkInterface(pulumi.CustomResource):
         return pulumi.get(self, "primary_ip_address")
 
     @property
+    @pulumi.getter(name="privateIpAddresses")
+    def private_ip_addresses(self) -> pulumi.Output[Sequence[str]]:
+        """
+        The list of private ip address. This field conflicts with `secondary_private_ip_address_count`.
+        """
+        return pulumi.get(self, "private_ip_addresses")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        The ProjectName of the ENI.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="secondaryPrivateIpAddressCount")
+    def secondary_private_ip_address_count(self) -> pulumi.Output[int]:
+        """
+        The count of secondary private ip address. This field conflicts with `private_ip_address`.
+        """
+        return pulumi.get(self, "secondary_private_ip_address_count")
+
+    @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> pulumi.Output[Sequence[str]]:
         """
@@ -453,4 +639,12 @@ class NetworkInterface(pulumi.CustomResource):
         The id of the subnet to which the ENI is connected.
         """
         return pulumi.get(self, "subnet_id")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.NetworkInterfaceTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 

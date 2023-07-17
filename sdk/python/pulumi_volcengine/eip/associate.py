@@ -21,7 +21,7 @@ class AssociateArgs:
         The set of arguments for constructing a Associate resource.
         :param pulumi.Input[str] allocation_id: The allocation id of the EIP.
         :param pulumi.Input[str] instance_id: The instance id which be associated to the EIP.
-        :param pulumi.Input[str] instance_type: The type of the associated instance.
+        :param pulumi.Input[str] instance_type: The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
         :param pulumi.Input[str] private_ip_address: The private IP address of the instance will be associated to the EIP.
         """
         pulumi.set(__self__, "allocation_id", allocation_id)
@@ -58,7 +58,7 @@ class AssociateArgs:
     @pulumi.getter(name="instanceType")
     def instance_type(self) -> pulumi.Input[str]:
         """
-        The type of the associated instance.
+        The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
         """
         return pulumi.get(self, "instance_type")
 
@@ -90,7 +90,7 @@ class _AssociateState:
         Input properties used for looking up and filtering Associate resources.
         :param pulumi.Input[str] allocation_id: The allocation id of the EIP.
         :param pulumi.Input[str] instance_id: The instance id which be associated to the EIP.
-        :param pulumi.Input[str] instance_type: The type of the associated instance.
+        :param pulumi.Input[str] instance_type: The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
         :param pulumi.Input[str] private_ip_address: The private IP address of the instance will be associated to the EIP.
         """
         if allocation_id is not None:
@@ -130,7 +130,7 @@ class _AssociateState:
     @pulumi.getter(name="instanceType")
     def instance_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of the associated instance.
+        The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
         """
         return pulumi.get(self, "instance_type")
 
@@ -180,14 +180,14 @@ class Associate(pulumi.CustomResource):
         Eip associate can be imported using the eip allocation_id:instance_id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Eip/associate:Associate default eip-274oj9a8rs9a87fap8sf9515b:i-cm9t9ug9lggu79yr5tcw
+         $ pulumi import volcengine:eip/associate:Associate default eip-274oj9a8rs9a87fap8sf9515b:i-cm9t9ug9lggu79yr5tcw
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] allocation_id: The allocation id of the EIP.
         :param pulumi.Input[str] instance_id: The instance id which be associated to the EIP.
-        :param pulumi.Input[str] instance_type: The type of the associated instance.
+        :param pulumi.Input[str] instance_type: The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
         :param pulumi.Input[str] private_ip_address: The private IP address of the instance will be associated to the EIP.
         """
         ...
@@ -215,7 +215,7 @@ class Associate(pulumi.CustomResource):
         Eip associate can be imported using the eip allocation_id:instance_id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Eip/associate:Associate default eip-274oj9a8rs9a87fap8sf9515b:i-cm9t9ug9lggu79yr5tcw
+         $ pulumi import volcengine:eip/associate:Associate default eip-274oj9a8rs9a87fap8sf9515b:i-cm9t9ug9lggu79yr5tcw
         ```
 
         :param str resource_name: The name of the resource.
@@ -260,7 +260,7 @@ class Associate(pulumi.CustomResource):
             __props__.__dict__["instance_type"] = instance_type
             __props__.__dict__["private_ip_address"] = private_ip_address
         super(Associate, __self__).__init__(
-            'volcengine:Eip/associate:Associate',
+            'volcengine:eip/associate:Associate',
             resource_name,
             __props__,
             opts)
@@ -282,7 +282,7 @@ class Associate(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] allocation_id: The allocation id of the EIP.
         :param pulumi.Input[str] instance_id: The instance id which be associated to the EIP.
-        :param pulumi.Input[str] instance_type: The type of the associated instance.
+        :param pulumi.Input[str] instance_type: The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
         :param pulumi.Input[str] private_ip_address: The private IP address of the instance will be associated to the EIP.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -315,7 +315,7 @@ class Associate(pulumi.CustomResource):
     @pulumi.getter(name="instanceType")
     def instance_type(self) -> pulumi.Output[str]:
         """
-        The type of the associated instance.
+        The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
         """
         return pulumi.get(self, "instance_type")
 

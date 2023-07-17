@@ -17,29 +17,32 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Vpc"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/vpc"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Vpc.RouteTables(ctx, &vpc.RouteTablesArgs{
-// 			Ids: []string{
-// 				"vtb-274e19skkuhog7fap8u4i8ird",
-// 				"vtb-2744hslq5b7r47fap8tjomgnj",
-// 			},
-// 			RouteTableName: pulumi.StringRef("vpc-fast"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vpc.RouteTables(ctx, &vpc.RouteTablesArgs{
+//				Ids: []string{
+//					"vtb-274e19skkuhog7fap8u4i8ird",
+//					"vtb-2744hslq5b7r47fap8tjomgnj",
+//				},
+//				RouteTableName: pulumi.StringRef("vpc-fast"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func RouteTables(ctx *pulumi.Context, args *RouteTablesArgs, opts ...pulumi.InvokeOption) (*RouteTablesResult, error) {
 	var rv RouteTablesResult
-	err := ctx.Invoke("volcengine:Vpc/routeTables:RouteTables", args, &rv, opts...)
+	err := ctx.Invoke("volcengine:vpc/routeTables:RouteTables", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -52,6 +55,8 @@ type RouteTablesArgs struct {
 	Ids []string `pulumi:"ids"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The ProjectName of the route table.
+	ProjectName *string `pulumi:"projectName"`
 	// A name of route table.
 	RouteTableName *string `pulumi:"routeTableName"`
 	// An id of VPC.
@@ -64,6 +69,8 @@ type RouteTablesResult struct {
 	Id         string   `pulumi:"id"`
 	Ids        []string `pulumi:"ids"`
 	OutputFile *string  `pulumi:"outputFile"`
+	// The ProjectName of the route table.
+	ProjectName *string `pulumi:"projectName"`
 	// The name of the route table.
 	RouteTableName *string `pulumi:"routeTableName"`
 	// The collection of route tables.
@@ -93,6 +100,8 @@ type RouteTablesOutputArgs struct {
 	Ids pulumi.StringArrayInput `pulumi:"ids"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The ProjectName of the route table.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
 	// A name of route table.
 	RouteTableName pulumi.StringPtrInput `pulumi:"routeTableName"`
 	// An id of VPC.
@@ -129,6 +138,11 @@ func (o RouteTablesResultOutput) Ids() pulumi.StringArrayOutput {
 
 func (o RouteTablesResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RouteTablesResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
+}
+
+// The ProjectName of the route table.
+func (o RouteTablesResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RouteTablesResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
 }
 
 // The name of the route table.

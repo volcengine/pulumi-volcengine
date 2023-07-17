@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultVpcs = pulumi.output(volcengine.Vpc.Vpcs({
+ * const defaultVpcs = pulumi.output(volcengine.vpc.Vpcs({
  *     ids: ["vpc-mizl7m1kqccg5smt1bdpijuj"],
  * }));
  * ```
@@ -25,10 +25,13 @@ export function vpcs(args?: VpcsArgs, opts?: pulumi.InvokeOptions): Promise<Vpcs
     }
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-    return pulumi.runtime.invoke("volcengine:Vpc/vpcs:Vpcs", {
+    return pulumi.runtime.invoke("volcengine:vpc/vpcs:Vpcs", {
         "ids": args.ids,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
+        "projectName": args.projectName,
+        "tags": args.tags,
+        "vpcName": args.vpcName,
     }, opts);
 }
 
@@ -48,6 +51,18 @@ export interface VpcsArgs {
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * The ProjectName of the VPC.
+     */
+    projectName?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.vpc.VpcsTag[];
+    /**
+     * The vpc name to query.
+     */
+    vpcName?: string;
 }
 
 /**
@@ -62,13 +77,25 @@ export interface VpcsResult {
     readonly nameRegex?: string;
     readonly outputFile?: string;
     /**
+     * The ProjectName of the VPC.
+     */
+    readonly projectName?: string;
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.vpc.VpcsTag[];
+    /**
      * The total count of Vpc query.
      */
     readonly totalCount: number;
     /**
+     * The name of VPC.
+     */
+    readonly vpcName?: string;
+    /**
      * The collection of Vpc query.
      */
-    readonly vpcs: outputs.Vpc.VpcsVpc[];
+    readonly vpcs: outputs.vpc.VpcsVpc[];
 }
 
 export function vpcsOutput(args?: VpcsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<VpcsResult> {
@@ -91,4 +118,16 @@ export interface VpcsOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The ProjectName of the VPC.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpc.VpcsTagArgs>[]>;
+    /**
+     * The vpc name to query.
+     */
+    vpcName?: pulumi.Input<string>;
 }

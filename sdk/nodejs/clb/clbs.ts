@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultClbs = pulumi.output(volcengine.Clb.Clbs({
+ * const defaultClbs = pulumi.output(volcengine.clb.Clbs({
  *     ids: ["clb-273y2ok6ets007fap8txvf6us"],
  * }));
  * ```
@@ -25,12 +25,14 @@ export function clbs(args?: ClbsArgs, opts?: pulumi.InvokeOptions): Promise<Clbs
     }
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-    return pulumi.runtime.invoke("volcengine:Clb/clbs:Clbs", {
+    return pulumi.runtime.invoke("volcengine:clb/clbs:Clbs", {
         "eniAddress": args.eniAddress,
         "ids": args.ids,
         "loadBalancerName": args.loadBalancerName,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
+        "projectName": args.projectName,
+        "tags": args.tags,
         "vpcId": args.vpcId,
     }, opts);
 }
@@ -60,6 +62,14 @@ export interface ClbsArgs {
      */
     outputFile?: string;
     /**
+     * The ProjectName of Clb.
+     */
+    projectName?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.clb.ClbsTag[];
+    /**
      * The id of the VPC.
      */
     vpcId?: string;
@@ -72,7 +82,7 @@ export interface ClbsResult {
     /**
      * The collection of Clb query.
      */
-    readonly clbs: outputs.Clb.ClbsClb[];
+    readonly clbs: outputs.clb.ClbsClb[];
     /**
      * The Eni address of the Clb.
      */
@@ -88,6 +98,14 @@ export interface ClbsResult {
     readonly loadBalancerName?: string;
     readonly nameRegex?: string;
     readonly outputFile?: string;
+    /**
+     * The ProjectName of the Clb.
+     */
+    readonly projectName?: string;
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.clb.ClbsTag[];
     /**
      * The total count of Clb query.
      */
@@ -126,6 +144,14 @@ export interface ClbsOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The ProjectName of Clb.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.clb.ClbsTagArgs>[]>;
     /**
      * The id of the VPC.
      */

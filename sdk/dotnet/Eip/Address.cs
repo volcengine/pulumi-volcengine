@@ -10,7 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Volcengine.Eip
 {
     /// <summary>
-    /// Provides a resource to manage eip address
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -26,7 +25,8 @@ namespace Pulumi.Volcengine.Eip
     ///             Bandwidth = 1,
     ///             BillingType = "PostPaidByBandwidth",
     ///             Description = "tf-test",
-    ///             Isp = "BGP",
+    ///             Isp = "ChinaUnicom",
+    ///             ProjectName = "yuwenhao",
     ///         });
     ///     }
     /// 
@@ -38,14 +38,14 @@ namespace Pulumi.Volcengine.Eip
     /// Eip address can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:Eip/address:Address default eip-274oj9a8rs9a87fap8sf9515b
+    ///  $ pulumi import volcengine:eip/address:Address default eip-274oj9a8rs9a87fap8sf9515b
     /// ```
     /// </summary>
-    [VolcengineResourceType("volcengine:Eip/address:Address")]
+    [VolcengineResourceType("volcengine:eip/address:Address")]
     public partial class Address : Pulumi.CustomResource
     {
         /// <summary>
-        /// The peek bandwidth of the EIP.
+        /// The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
         /// </summary>
         [Output("bandwidth")]
         public Output<int> Bandwidth { get; private set; } = null!;
@@ -69,7 +69,7 @@ namespace Pulumi.Volcengine.Eip
         public Output<string> EipAddress { get; private set; } = null!;
 
         /// <summary>
-        /// The ISP of the EIP.
+        /// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
         /// </summary>
         [Output("isp")]
         public Output<string> Isp { get; private set; } = null!;
@@ -81,10 +81,22 @@ namespace Pulumi.Volcengine.Eip
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// The ProjectName of the EIP.
+        /// </summary>
+        [Output("projectName")]
+        public Output<string?> ProjectName { get; private set; } = null!;
+
+        /// <summary>
         /// The status of the EIP.
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.AddressTag>> Tags { get; private set; } = null!;
 
 
         /// <summary>
@@ -95,12 +107,12 @@ namespace Pulumi.Volcengine.Eip
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Address(string name, AddressArgs args, CustomResourceOptions? options = null)
-            : base("volcengine:Eip/address:Address", name, args ?? new AddressArgs(), MakeResourceOptions(options, ""))
+            : base("volcengine:eip/address:Address", name, args ?? new AddressArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private Address(string name, Input<string> id, AddressState? state = null, CustomResourceOptions? options = null)
-            : base("volcengine:Eip/address:Address", name, state, MakeResourceOptions(options, id))
+            : base("volcengine:eip/address:Address", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -133,7 +145,7 @@ namespace Pulumi.Volcengine.Eip
     public sealed class AddressArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The peek bandwidth of the EIP.
+        /// The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
         /// </summary>
         [Input("bandwidth")]
         public Input<int>? Bandwidth { get; set; }
@@ -151,7 +163,7 @@ namespace Pulumi.Volcengine.Eip
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The ISP of the EIP.
+        /// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
         /// </summary>
         [Input("isp")]
         public Input<string>? Isp { get; set; }
@@ -162,6 +174,24 @@ namespace Pulumi.Volcengine.Eip
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The ProjectName of the EIP.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.AddressTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.AddressTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.AddressTagArgs>());
+            set => _tags = value;
+        }
+
         public AddressArgs()
         {
         }
@@ -170,7 +200,7 @@ namespace Pulumi.Volcengine.Eip
     public sealed class AddressState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The peek bandwidth of the EIP.
+        /// The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
         /// </summary>
         [Input("bandwidth")]
         public Input<int>? Bandwidth { get; set; }
@@ -194,7 +224,7 @@ namespace Pulumi.Volcengine.Eip
         public Input<string>? EipAddress { get; set; }
 
         /// <summary>
-        /// The ISP of the EIP.
+        /// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
         /// </summary>
         [Input("isp")]
         public Input<string>? Isp { get; set; }
@@ -206,10 +236,28 @@ namespace Pulumi.Volcengine.Eip
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The ProjectName of the EIP.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
         /// The status of the EIP.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.AddressTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.AddressTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.AddressTagGetArgs>());
+            set => _tags = value;
+        }
 
         public AddressState()
         {

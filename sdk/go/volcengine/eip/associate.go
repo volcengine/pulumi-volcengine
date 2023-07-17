@@ -18,23 +18,26 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Eip"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/eip"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Eip.NewAssociate(ctx, "foo", &Eip.AssociateArgs{
-// 			AllocationId: pulumi.String("eip-273ybrd0oeo007fap8t0nggtx"),
-// 			InstanceId:   pulumi.String("i-cm9tjw9zp9j942mfkczp"),
-// 			InstanceType: pulumi.String("EcsInstance"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := eip.NewAssociate(ctx, "foo", &eip.AssociateArgs{
+//				AllocationId: pulumi.String("eip-273ybrd0oeo007fap8t0nggtx"),
+//				InstanceId:   pulumi.String("i-cm9tjw9zp9j942mfkczp"),
+//				InstanceType: pulumi.String("EcsInstance"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -42,7 +45,9 @@ import (
 // Eip associate can be imported using the eip allocation_id:instance_id, e.g.
 //
 // ```sh
-//  $ pulumi import volcengine:Eip/associate:Associate default eip-274oj9a8rs9a87fap8sf9515b:i-cm9t9ug9lggu79yr5tcw
+//
+//	$ pulumi import volcengine:eip/associate:Associate default eip-274oj9a8rs9a87fap8sf9515b:i-cm9t9ug9lggu79yr5tcw
+//
 // ```
 type Associate struct {
 	pulumi.CustomResourceState
@@ -51,7 +56,7 @@ type Associate struct {
 	AllocationId pulumi.StringOutput `pulumi:"allocationId"`
 	// The instance id which be associated to the EIP.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
-	// The type of the associated instance.
+	// The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
 	InstanceType pulumi.StringOutput `pulumi:"instanceType"`
 	// The private IP address of the instance will be associated to the EIP.
 	PrivateIpAddress pulumi.StringOutput `pulumi:"privateIpAddress"`
@@ -74,7 +79,7 @@ func NewAssociate(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'InstanceType'")
 	}
 	var resource Associate
-	err := ctx.RegisterResource("volcengine:Eip/associate:Associate", name, args, &resource, opts...)
+	err := ctx.RegisterResource("volcengine:eip/associate:Associate", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -86,7 +91,7 @@ func NewAssociate(ctx *pulumi.Context,
 func GetAssociate(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *AssociateState, opts ...pulumi.ResourceOption) (*Associate, error) {
 	var resource Associate
-	err := ctx.ReadResource("volcengine:Eip/associate:Associate", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("volcengine:eip/associate:Associate", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -99,7 +104,7 @@ type associateState struct {
 	AllocationId *string `pulumi:"allocationId"`
 	// The instance id which be associated to the EIP.
 	InstanceId *string `pulumi:"instanceId"`
-	// The type of the associated instance.
+	// The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
 	InstanceType *string `pulumi:"instanceType"`
 	// The private IP address of the instance will be associated to the EIP.
 	PrivateIpAddress *string `pulumi:"privateIpAddress"`
@@ -110,7 +115,7 @@ type AssociateState struct {
 	AllocationId pulumi.StringPtrInput
 	// The instance id which be associated to the EIP.
 	InstanceId pulumi.StringPtrInput
-	// The type of the associated instance.
+	// The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
 	InstanceType pulumi.StringPtrInput
 	// The private IP address of the instance will be associated to the EIP.
 	PrivateIpAddress pulumi.StringPtrInput
@@ -125,7 +130,7 @@ type associateArgs struct {
 	AllocationId string `pulumi:"allocationId"`
 	// The instance id which be associated to the EIP.
 	InstanceId string `pulumi:"instanceId"`
-	// The type of the associated instance.
+	// The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
 	InstanceType string `pulumi:"instanceType"`
 	// The private IP address of the instance will be associated to the EIP.
 	PrivateIpAddress *string `pulumi:"privateIpAddress"`
@@ -137,7 +142,7 @@ type AssociateArgs struct {
 	AllocationId pulumi.StringInput
 	// The instance id which be associated to the EIP.
 	InstanceId pulumi.StringInput
-	// The type of the associated instance.
+	// The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
 	InstanceType pulumi.StringInput
 	// The private IP address of the instance will be associated to the EIP.
 	PrivateIpAddress pulumi.StringPtrInput
@@ -169,7 +174,7 @@ func (i *Associate) ToAssociateOutputWithContext(ctx context.Context) AssociateO
 // AssociateArrayInput is an input type that accepts AssociateArray and AssociateArrayOutput values.
 // You can construct a concrete instance of `AssociateArrayInput` via:
 //
-//          AssociateArray{ AssociateArgs{...} }
+//	AssociateArray{ AssociateArgs{...} }
 type AssociateArrayInput interface {
 	pulumi.Input
 
@@ -194,7 +199,7 @@ func (i AssociateArray) ToAssociateArrayOutputWithContext(ctx context.Context) A
 // AssociateMapInput is an input type that accepts AssociateMap and AssociateMapOutput values.
 // You can construct a concrete instance of `AssociateMapInput` via:
 //
-//          AssociateMap{ "key": AssociateArgs{...} }
+//	AssociateMap{ "key": AssociateArgs{...} }
 type AssociateMapInput interface {
 	pulumi.Input
 
@@ -240,7 +245,7 @@ func (o AssociateOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Associate) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }
 
-// The type of the associated instance.
+// The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
 func (o AssociateOutput) InstanceType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Associate) pulumi.StringOutput { return v.InstanceType }).(pulumi.StringOutput)
 }

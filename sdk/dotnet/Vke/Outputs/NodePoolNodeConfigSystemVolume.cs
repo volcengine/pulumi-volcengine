@@ -14,11 +14,11 @@ namespace Pulumi.Volcengine.Vke.Outputs
     public sealed class NodePoolNodeConfigSystemVolume
     {
         /// <summary>
-        /// The Size of SystemVolume.
+        /// The Size of SystemVolume, the value range in 20~2048.
         /// </summary>
         public readonly int? Size;
         /// <summary>
-        /// The Type of SystemVolume.
+        /// The Type of SystemVolume, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`.
         /// </summary>
         public readonly string? Type;
 

@@ -21,27 +21,31 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
-	case "volcengine:Vpc/acl:Acl":
-		r = &Acl{}
-	case "volcengine:Vpc/aclEntry:AclEntry":
-		r = &AclEntry{}
-	case "volcengine:Vpc/networkInterface:NetworkInterface":
+	case "volcengine:vpc/ipv6AddressBandwidth:Ipv6AddressBandwidth":
+		r = &Ipv6AddressBandwidth{}
+	case "volcengine:vpc/ipv6Gateway:Ipv6Gateway":
+		r = &Ipv6Gateway{}
+	case "volcengine:vpc/networkAcl:NetworkAcl":
+		r = &NetworkAcl{}
+	case "volcengine:vpc/networkAclAssociate:NetworkAclAssociate":
+		r = &NetworkAclAssociate{}
+	case "volcengine:vpc/networkInterface:NetworkInterface":
 		r = &NetworkInterface{}
-	case "volcengine:Vpc/networkInterfaceAttach:NetworkInterfaceAttach":
+	case "volcengine:vpc/networkInterfaceAttach:NetworkInterfaceAttach":
 		r = &NetworkInterfaceAttach{}
-	case "volcengine:Vpc/routeEntry:RouteEntry":
+	case "volcengine:vpc/routeEntry:RouteEntry":
 		r = &RouteEntry{}
-	case "volcengine:Vpc/routeTable:RouteTable":
+	case "volcengine:vpc/routeTable:RouteTable":
 		r = &RouteTable{}
-	case "volcengine:Vpc/routeTableAssociate:RouteTableAssociate":
+	case "volcengine:vpc/routeTableAssociate:RouteTableAssociate":
 		r = &RouteTableAssociate{}
-	case "volcengine:Vpc/securityGroup:SecurityGroup":
+	case "volcengine:vpc/securityGroup:SecurityGroup":
 		r = &SecurityGroup{}
-	case "volcengine:Vpc/securityGroupRule:SecurityGroupRule":
+	case "volcengine:vpc/securityGroupRule:SecurityGroupRule":
 		r = &SecurityGroupRule{}
-	case "volcengine:Vpc/subnet:Subnet":
+	case "volcengine:vpc/subnet:Subnet":
 		r = &Subnet{}
-	case "volcengine:Vpc/vpc:Vpc":
+	case "volcengine:vpc/vpc:Vpc":
 		r = &Vpc{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
@@ -58,57 +62,67 @@ func init() {
 	}
 	pulumi.RegisterResourceModule(
 		"volcengine",
-		"Vpc/acl",
+		"vpc/ipv6AddressBandwidth",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
-		"Vpc/aclEntry",
+		"vpc/ipv6Gateway",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
-		"Vpc/networkInterface",
+		"vpc/networkAcl",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
-		"Vpc/networkInterfaceAttach",
+		"vpc/networkAclAssociate",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
-		"Vpc/routeEntry",
+		"vpc/networkInterface",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
-		"Vpc/routeTable",
+		"vpc/networkInterfaceAttach",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
-		"Vpc/routeTableAssociate",
+		"vpc/routeEntry",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
-		"Vpc/securityGroup",
+		"vpc/routeTable",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
-		"Vpc/securityGroupRule",
+		"vpc/routeTableAssociate",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
-		"Vpc/subnet",
+		"vpc/securityGroup",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
-		"Vpc/vpc",
+		"vpc/securityGroupRule",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"vpc/subnet",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"vpc/vpc",
 		&module{version},
 	)
 }

@@ -12,12 +12,11 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = new volcengine.Clb.ServerGroupServer("foo", {
+ * const foo = new volcengine.clb.ServerGroupServer("foo", {
  *     description: "This is a server",
- *     instanceId: "i-72q1zvko6i5lnawvg940",
- *     ip: "192.168.100.99",
+ *     instanceId: "i-ybp1scasbe72q1vq35wv",
  *     port: 80,
- *     serverGroupId: "rsp-273zn4ewlhkw07fap8tig9ujz",
+ *     serverGroupId: "rsp-274xltv2sjoxs7fap8tlv3q3s",
  *     type: "ecs",
  *     weight: 100,
  * });
@@ -28,7 +27,7 @@ import * as utilities from "../utilities";
  * ServerGroupServer can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:Clb/serverGroupServer:ServerGroupServer default rs-3ciynux6i1x4w****rszh49sj
+ *  $ pulumi import volcengine:clb/serverGroupServer:ServerGroupServer default rsp-274xltv2*****8tlv3q3s:rs-3ciynux6i1x4w****rszh49sj
  * ```
  */
 export class ServerGroupServer extends pulumi.CustomResource {
@@ -46,7 +45,7 @@ export class ServerGroupServer extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'volcengine:Clb/serverGroupServer:ServerGroupServer';
+    public static readonly __pulumiType = 'volcengine:clb/serverGroupServer:ServerGroupServer';
 
     /**
      * Returns true if the given object is an instance of ServerGroupServer.  This is designed to work even
@@ -66,19 +65,19 @@ export class ServerGroupServer extends pulumi.CustomResource {
     /**
      * The ID of ecs instance or the network card bound to ecs instance.
      */
-    public readonly instanceId!: pulumi.Output<string | undefined>;
+    public readonly instanceId!: pulumi.Output<string>;
     /**
      * The private ip of the instance.
      */
-    public readonly ip!: pulumi.Output<string | undefined>;
+    public readonly ip!: pulumi.Output<string>;
     /**
      * The port receiving request.
      */
-    public readonly port!: pulumi.Output<number | undefined>;
+    public readonly port!: pulumi.Output<number>;
     /**
      * The ID of the ServerGroup.
      */
-    public readonly serverGroupId!: pulumi.Output<string | undefined>;
+    public readonly serverGroupId!: pulumi.Output<string>;
     /**
      * The server id of instance in ServerGroup.
      */
@@ -86,9 +85,9 @@ export class ServerGroupServer extends pulumi.CustomResource {
     /**
      * The type of instance. Optional choice contains `ecs`, `eni`.
      */
-    public readonly type!: pulumi.Output<string | undefined>;
+    public readonly type!: pulumi.Output<string>;
     /**
-     * The weight of the instance.
+     * The weight of the instance, range in 0~100.
      */
     public readonly weight!: pulumi.Output<number | undefined>;
 
@@ -99,7 +98,7 @@ export class ServerGroupServer extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: ServerGroupServerArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args: ServerGroupServerArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ServerGroupServerArgs | ServerGroupServerState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -115,6 +114,18 @@ export class ServerGroupServer extends pulumi.CustomResource {
             resourceInputs["weight"] = state ? state.weight : undefined;
         } else {
             const args = argsOrState as ServerGroupServerArgs | undefined;
+            if ((!args || args.instanceId === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'instanceId'");
+            }
+            if ((!args || args.port === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'port'");
+            }
+            if ((!args || args.serverGroupId === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'serverGroupId'");
+            }
+            if ((!args || args.type === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'type'");
+            }
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
             resourceInputs["ip"] = args ? args.ip : undefined;
@@ -162,7 +173,7 @@ export interface ServerGroupServerState {
      */
     type?: pulumi.Input<string>;
     /**
-     * The weight of the instance.
+     * The weight of the instance, range in 0~100.
      */
     weight?: pulumi.Input<number>;
 }
@@ -178,7 +189,7 @@ export interface ServerGroupServerArgs {
     /**
      * The ID of ecs instance or the network card bound to ecs instance.
      */
-    instanceId?: pulumi.Input<string>;
+    instanceId: pulumi.Input<string>;
     /**
      * The private ip of the instance.
      */
@@ -186,17 +197,17 @@ export interface ServerGroupServerArgs {
     /**
      * The port receiving request.
      */
-    port?: pulumi.Input<number>;
+    port: pulumi.Input<number>;
     /**
      * The ID of the ServerGroup.
      */
-    serverGroupId?: pulumi.Input<string>;
+    serverGroupId: pulumi.Input<string>;
     /**
      * The type of instance. Optional choice contains `ecs`, `eni`.
      */
-    type?: pulumi.Input<string>;
+    type: pulumi.Input<string>;
     /**
-     * The weight of the instance.
+     * The weight of the instance, range in 0~100.
      */
     weight?: pulumi.Input<number>;
 }

@@ -17,28 +17,31 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Clb"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/clb"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Clb.ServerGroupServers(ctx, &clb.ServerGroupServersArgs{
-// 			Ids: []string{
-// 				"rs-273z9pv8mtfcw7fap8sp6ie8k",
-// 			},
-// 			ServerGroupId: "rsp-273z9pt9lpdds7fap8sqdvfrf",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := clb.ServerGroupServers(ctx, &clb.ServerGroupServersArgs{
+//				Ids: []string{
+//					"rs-273z9pv8mtfcw7fap8sp6ie8k",
+//				},
+//				ServerGroupId: "rsp-273z9pt9lpdds7fap8sqdvfrf",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func ServerGroupServers(ctx *pulumi.Context, args *ServerGroupServersArgs, opts ...pulumi.InvokeOption) (*ServerGroupServersResult, error) {
 	var rv ServerGroupServersResult
-	err := ctx.Invoke("volcengine:Clb/serverGroupServers:ServerGroupServers", args, &rv, opts...)
+	err := ctx.Invoke("volcengine:clb/serverGroupServers:ServerGroupServers", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}

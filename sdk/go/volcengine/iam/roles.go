@@ -17,23 +17,26 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Iam"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/iam"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Iam.Roles(ctx, nil, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := iam.Roles(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func Roles(ctx *pulumi.Context, args *RolesArgs, opts ...pulumi.InvokeOption) (*RolesResult, error) {
 	var rv RolesResult
-	err := ctx.Invoke("volcengine:Iam/roles:Roles", args, &rv, opts...)
+	err := ctx.Invoke("volcengine:iam/roles:Roles", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}

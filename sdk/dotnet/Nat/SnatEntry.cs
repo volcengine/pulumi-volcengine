@@ -38,10 +38,10 @@ namespace Pulumi.Volcengine.Nat
     /// Snat entry can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:Nat/snatEntry:SnatEntry default snat-3fvhk47kf56****
+    ///  $ pulumi import volcengine:nat/snatEntry:SnatEntry default snat-3fvhk47kf56****
     /// ```
     /// </summary>
-    [VolcengineResourceType("volcengine:Nat/snatEntry:SnatEntry")]
+    [VolcengineResourceType("volcengine:nat/snatEntry:SnatEntry")]
     public partial class SnatEntry : Pulumi.CustomResource
     {
         /// <summary>
@@ -63,16 +63,22 @@ namespace Pulumi.Volcengine.Nat
         public Output<string> SnatEntryName { get; private set; } = null!;
 
         /// <summary>
+        /// The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
+        /// </summary>
+        [Output("sourceCidr")]
+        public Output<string?> SourceCidr { get; private set; } = null!;
+
+        /// <summary>
         /// The status of the SNAT entry.
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
-        /// The id of the subnet that is required to access the internet.
+        /// The id of the subnet that is required to access the internet. Only one of `subnet_id,source_cidr` can be specified.
         /// </summary>
         [Output("subnetId")]
-        public Output<string> SubnetId { get; private set; } = null!;
+        public Output<string?> SubnetId { get; private set; } = null!;
 
 
         /// <summary>
@@ -83,12 +89,12 @@ namespace Pulumi.Volcengine.Nat
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public SnatEntry(string name, SnatEntryArgs args, CustomResourceOptions? options = null)
-            : base("volcengine:Nat/snatEntry:SnatEntry", name, args ?? new SnatEntryArgs(), MakeResourceOptions(options, ""))
+            : base("volcengine:nat/snatEntry:SnatEntry", name, args ?? new SnatEntryArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private SnatEntry(string name, Input<string> id, SnatEntryState? state = null, CustomResourceOptions? options = null)
-            : base("volcengine:Nat/snatEntry:SnatEntry", name, state, MakeResourceOptions(options, id))
+            : base("volcengine:nat/snatEntry:SnatEntry", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -139,10 +145,16 @@ namespace Pulumi.Volcengine.Nat
         public Input<string>? SnatEntryName { get; set; }
 
         /// <summary>
-        /// The id of the subnet that is required to access the internet.
+        /// The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
         /// </summary>
-        [Input("subnetId", required: true)]
-        public Input<string> SubnetId { get; set; } = null!;
+        [Input("sourceCidr")]
+        public Input<string>? SourceCidr { get; set; }
+
+        /// <summary>
+        /// The id of the subnet that is required to access the internet. Only one of `subnet_id,source_cidr` can be specified.
+        /// </summary>
+        [Input("subnetId")]
+        public Input<string>? SubnetId { get; set; }
 
         public SnatEntryArgs()
         {
@@ -170,13 +182,19 @@ namespace Pulumi.Volcengine.Nat
         public Input<string>? SnatEntryName { get; set; }
 
         /// <summary>
+        /// The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
+        /// </summary>
+        [Input("sourceCidr")]
+        public Input<string>? SourceCidr { get; set; }
+
+        /// <summary>
         /// The status of the SNAT entry.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 
         /// <summary>
-        /// The id of the subnet that is required to access the internet.
+        /// The id of the subnet that is required to access the internet. Only one of `subnet_id,source_cidr` can be specified.
         /// </summary>
         [Input("subnetId")]
         public Input<string>? SubnetId { get; set; }

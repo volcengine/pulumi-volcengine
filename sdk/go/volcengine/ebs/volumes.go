@@ -17,27 +17,30 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Ebs"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/ebs"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Ebs.Volumes(ctx, &ebs.VolumesArgs{
-// 			Ids: []string{
-// 				"vol-3tzg6y5imn3b9fchkedb",
-// 			},
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := ebs.Volumes(ctx, &ebs.VolumesArgs{
+//				Ids: []string{
+//					"vol-3tzg6y5imn3b9fchkedb",
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func Volumes(ctx *pulumi.Context, args *VolumesArgs, opts ...pulumi.InvokeOption) (*VolumesResult, error) {
 	var rv VolumesResult
-	err := ctx.Invoke("volcengine:Ebs/volumes:Volumes", args, &rv, opts...)
+	err := ctx.Invoke("volcengine:ebs/volumes:Volumes", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -58,7 +61,7 @@ type VolumesArgs struct {
 	OutputFile *string `pulumi:"outputFile"`
 	// The name of Volume.
 	VolumeName *string `pulumi:"volumeName"`
-	// The Status of Volume.
+	// The Status of Volume, the value can be `available` or `attaching` or `attached` or `detaching` or `creating` or `deleting` or `error` or `extending`.
 	VolumeStatus *string `pulumi:"volumeStatus"`
 	// The type of Volume.
 	VolumeType *string `pulumi:"volumeType"`
@@ -112,7 +115,7 @@ type VolumesOutputArgs struct {
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
 	// The name of Volume.
 	VolumeName pulumi.StringPtrInput `pulumi:"volumeName"`
-	// The Status of Volume.
+	// The Status of Volume, the value can be `available` or `attaching` or `attached` or `detaching` or `creating` or `deleting` or `error` or `extending`.
 	VolumeStatus pulumi.StringPtrInput `pulumi:"volumeStatus"`
 	// The type of Volume.
 	VolumeType pulumi.StringPtrInput `pulumi:"volumeType"`

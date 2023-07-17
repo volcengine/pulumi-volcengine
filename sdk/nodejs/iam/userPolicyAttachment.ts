@@ -33,7 +33,7 @@ import * as utilities from "../utilities";
  * Iam user policy attachment can be imported using the UserName:PolicyName:PolicyType, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:Iam/userPolicyAttachment:UserPolicyAttachment default TerraformTestUser:TerraformTestPolicy:Custom
+ *  $ pulumi import volcengine:iam/userPolicyAttachment:UserPolicyAttachment default TerraformTestUser:TerraformTestPolicy:Custom
  * ```
  */
 export class UserPolicyAttachment extends pulumi.CustomResource {
@@ -51,7 +51,7 @@ export class UserPolicyAttachment extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'volcengine:Iam/userPolicyAttachment:UserPolicyAttachment';
+    public static readonly __pulumiType = 'volcengine:iam/userPolicyAttachment:UserPolicyAttachment';
 
     /**
      * Returns true if the given object is an instance of UserPolicyAttachment.  This is designed to work even

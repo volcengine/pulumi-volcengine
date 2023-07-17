@@ -5,19 +5,33 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Provides a resource to manage volume
  * ## Example Usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = new volcengine.Ebs.Volume("foo", {
+ * const fooVolume = new volcengine.ebs.Volume("fooVolume", {
+ *     volumeName: "terraform-test",
+ *     zoneId: "cn-xx-a",
+ *     volumeType: "ESSD_PL0",
  *     kind: "data",
  *     size: 40,
- *     volumeName: "terraform-test",
- *     volumeType: "PTSSD",
- *     zoneId: "cn-lingqiu-a",
+ *     volumeChargeType: "PostPaid",
+ *     projectName: "default",
+ * });
+ * const fooVolumeAttach = new volcengine.ebs.VolumeAttach("fooVolumeAttach", {
+ *     volumeId: fooVolume.id,
+ *     instanceId: "i-yc8pfhbafwijutv6s1fv",
+ * });
+ * const foo2 = new volcengine.ebs.Volume("foo2", {
+ *     volumeName: "terraform-test3",
+ *     zoneId: "cn-beijing-b",
+ *     volumeType: "ESSD_PL0",
+ *     kind: "data",
+ *     size: 40,
+ *     volumeChargeType: "PrePaid",
+ *     instanceId: "i-yc8pfhbafwijutv6s1fv",
  * });
  * ```
  *
@@ -26,7 +40,7 @@ import * as utilities from "../utilities";
  * Volume can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:Ebs/volume:Volume default vol-mizl7m1kqccg5smt1bdpijuj
+ *  $ pulumi import volcengine:ebs/volume:Volume default vol-mizl7m1kqccg5smt1bdpijuj
  * ```
  */
 export class Volume extends pulumi.CustomResource {
@@ -44,7 +58,7 @@ export class Volume extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'volcengine:Ebs/volume:Volume';
+    public static readonly __pulumiType = 'volcengine:ebs/volume:Volume';
 
     /**
      * Returns true if the given object is an instance of Volume.  This is designed to work even
@@ -58,10 +72,6 @@ export class Volume extends pulumi.CustomResource {
     }
 
     /**
-     * Billing type of Volume.
-     */
-    public /*out*/ readonly billingType!: pulumi.Output<number>;
-    /**
      * Creation time of Volume.
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
@@ -74,13 +84,17 @@ export class Volume extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * The kind of Volume.
+     * The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+     */
+    public readonly instanceId!: pulumi.Output<string>;
+    /**
+     * The kind of Volume, the value is `data`.
      */
     public readonly kind!: pulumi.Output<string>;
     /**
-     * Pay type of Volume.
+     * The ProjectName of the Volume.
      */
-    public /*out*/ readonly payType!: pulumi.Output<string>;
+    public readonly projectName!: pulumi.Output<string | undefined>;
     /**
      * The size of Volume.
      */
@@ -94,7 +108,7 @@ export class Volume extends pulumi.CustomResource {
      */
     public /*out*/ readonly tradeStatus!: pulumi.Output<number>;
     /**
-     * The charge type of the Volume.
+     * The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
      */
     public readonly volumeChargeType!: pulumi.Output<string | undefined>;
     /**
@@ -102,7 +116,7 @@ export class Volume extends pulumi.CustomResource {
      */
     public readonly volumeName!: pulumi.Output<string>;
     /**
-     * The type of Volume.
+     * The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
      */
     public readonly volumeType!: pulumi.Output<string>;
     /**
@@ -123,12 +137,12 @@ export class Volume extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VolumeState | undefined;
-            resourceInputs["billingType"] = state ? state.billingType : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["deleteWithInstance"] = state ? state.deleteWithInstance : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["kind"] = state ? state.kind : undefined;
-            resourceInputs["payType"] = state ? state.payType : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["size"] = state ? state.size : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["tradeStatus"] = state ? state.tradeStatus : undefined;
@@ -155,15 +169,15 @@ export class Volume extends pulumi.CustomResource {
             }
             resourceInputs["deleteWithInstance"] = args ? args.deleteWithInstance : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
             resourceInputs["kind"] = args ? args.kind : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["size"] = args ? args.size : undefined;
             resourceInputs["volumeChargeType"] = args ? args.volumeChargeType : undefined;
             resourceInputs["volumeName"] = args ? args.volumeName : undefined;
             resourceInputs["volumeType"] = args ? args.volumeType : undefined;
             resourceInputs["zoneId"] = args ? args.zoneId : undefined;
-            resourceInputs["billingType"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
-            resourceInputs["payType"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["tradeStatus"] = undefined /*out*/;
         }
@@ -177,10 +191,6 @@ export class Volume extends pulumi.CustomResource {
  */
 export interface VolumeState {
     /**
-     * Billing type of Volume.
-     */
-    billingType?: pulumi.Input<number>;
-    /**
      * Creation time of Volume.
      */
     createdAt?: pulumi.Input<string>;
@@ -193,13 +203,17 @@ export interface VolumeState {
      */
     description?: pulumi.Input<string>;
     /**
-     * The kind of Volume.
+     * The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+     */
+    instanceId?: pulumi.Input<string>;
+    /**
+     * The kind of Volume, the value is `data`.
      */
     kind?: pulumi.Input<string>;
     /**
-     * Pay type of Volume.
+     * The ProjectName of the Volume.
      */
-    payType?: pulumi.Input<string>;
+    projectName?: pulumi.Input<string>;
     /**
      * The size of Volume.
      */
@@ -213,7 +227,7 @@ export interface VolumeState {
      */
     tradeStatus?: pulumi.Input<number>;
     /**
-     * The charge type of the Volume.
+     * The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
      */
     volumeChargeType?: pulumi.Input<string>;
     /**
@@ -221,7 +235,7 @@ export interface VolumeState {
      */
     volumeName?: pulumi.Input<string>;
     /**
-     * The type of Volume.
+     * The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
      */
     volumeType?: pulumi.Input<string>;
     /**
@@ -243,15 +257,23 @@ export interface VolumeArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * The kind of Volume.
+     * The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+     */
+    instanceId?: pulumi.Input<string>;
+    /**
+     * The kind of Volume, the value is `data`.
      */
     kind: pulumi.Input<string>;
+    /**
+     * The ProjectName of the Volume.
+     */
+    projectName?: pulumi.Input<string>;
     /**
      * The size of Volume.
      */
     size: pulumi.Input<number>;
     /**
-     * The charge type of the Volume.
+     * The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
      */
     volumeChargeType?: pulumi.Input<string>;
     /**
@@ -259,7 +281,7 @@ export interface VolumeArgs {
      */
     volumeName: pulumi.Input<string>;
     /**
-     * The type of Volume.
+     * The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
      */
     volumeType: pulumi.Input<string>;
     /**

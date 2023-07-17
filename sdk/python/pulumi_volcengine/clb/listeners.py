@@ -130,7 +130,7 @@ def listeners(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.Clb.listeners(ids=[
+    default = volcengine.clb.listeners(ids=[
         "lsn-273yv0mhs5xj47fap8sehiiso",
         "lsn-273yw6zps6pz47fap8swa0q2z",
     ])
@@ -153,7 +153,7 @@ def listeners(ids: Optional[Sequence[str]] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('volcengine:Clb/listeners:Listeners', __args__, opts=opts, typ=ListenersResult).value
+    __ret__ = pulumi.runtime.invoke('volcengine:clb/listeners:Listeners', __args__, opts=opts, typ=ListenersResult).value
 
     return AwaitableListenersResult(
         id=__ret__.id,
@@ -181,7 +181,7 @@ def listeners_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.Clb.listeners(ids=[
+    default = volcengine.clb.listeners(ids=[
         "lsn-273yv0mhs5xj47fap8sehiiso",
         "lsn-273yw6zps6pz47fap8swa0q2z",
     ])

@@ -17,31 +17,34 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Vke"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/vke"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Vke.Clusters(ctx, &vke.ClustersArgs{
-// 			PodsConfigPodNetworkMode: pulumi.StringRef("VpcCniShared"),
-// 			Statuses: []vke.ClustersStatus{
-// 				vke.ClustersStatus{
-// 					ConditionsType: pulumi.StringRef("Progressing"),
-// 					Phase:          pulumi.StringRef("Creating"),
-// 				},
-// 			},
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vke.Clusters(ctx, &vke.ClustersArgs{
+//				PodsConfigPodNetworkMode: pulumi.StringRef("VpcCniShared"),
+//				Statuses: []vke.ClustersStatus{
+//					vke.ClustersStatus{
+//						ConditionsType: pulumi.StringRef("Progressing"),
+//						Phase:          pulumi.StringRef("Creating"),
+//					},
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func Clusters(ctx *pulumi.Context, args *ClustersArgs, opts ...pulumi.InvokeOption) (*ClustersResult, error) {
 	var rv ClustersResult
-	err := ctx.Invoke("volcengine:Vke/clusters:Clusters", args, &rv, opts...)
+	err := ctx.Invoke("volcengine:vke/clusters:Clusters", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -70,6 +73,8 @@ type ClustersArgs struct {
 	PodsConfigPodNetworkMode *string `pulumi:"podsConfigPodNetworkMode"`
 	// Array of cluster states to filter. (The elements of the array are logically ORed. A maximum of 15 state array elements can be filled at a time).
 	Statuses []ClustersStatus `pulumi:"statuses"`
+	// Tags.
+	Tags []ClustersTag `pulumi:"tags"`
 	// The ClientToken when the last cluster update succeeded. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
 	UpdateClientToken *string `pulumi:"updateClientToken"`
 }
@@ -92,6 +97,8 @@ type ClustersResult struct {
 	PageSize                 int              `pulumi:"pageSize"`
 	PodsConfigPodNetworkMode *string          `pulumi:"podsConfigPodNetworkMode"`
 	Statuses                 []ClustersStatus `pulumi:"statuses"`
+	// Tags of the Cluster.
+	Tags []ClustersTag `pulumi:"tags"`
 	// The total count of Cluster query.
 	TotalCount        int     `pulumi:"totalCount"`
 	UpdateClientToken *string `pulumi:"updateClientToken"`
@@ -132,6 +139,8 @@ type ClustersOutputArgs struct {
 	PodsConfigPodNetworkMode pulumi.StringPtrInput `pulumi:"podsConfigPodNetworkMode"`
 	// Array of cluster states to filter. (The elements of the array are logically ORed. A maximum of 15 state array elements can be filled at a time).
 	Statuses ClustersStatusArrayInput `pulumi:"statuses"`
+	// Tags.
+	Tags ClustersTagArrayInput `pulumi:"tags"`
 	// The ClientToken when the last cluster update succeeded. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
 	UpdateClientToken pulumi.StringPtrInput `pulumi:"updateClientToken"`
 }
@@ -205,6 +214,11 @@ func (o ClustersResultOutput) PodsConfigPodNetworkMode() pulumi.StringPtrOutput 
 
 func (o ClustersResultOutput) Statuses() ClustersStatusArrayOutput {
 	return o.ApplyT(func(v ClustersResult) []ClustersStatus { return v.Statuses }).(ClustersStatusArrayOutput)
+}
+
+// Tags of the Cluster.
+func (o ClustersResultOutput) Tags() ClustersTagArrayOutput {
+	return o.ApplyT(func(v ClustersResult) []ClustersTag { return v.Tags }).(ClustersTagArrayOutput)
 }
 
 // The total count of Cluster query.

@@ -18,21 +18,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Vpc"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/vpc"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Vpc.NewSecurityGroup(ctx, "g1test1", &Vpc.SecurityGroupArgs{
-// 			VpcId: pulumi.String("sg-273ycgql3ig3k7fap8t3dyvqx"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vpc.NewSecurityGroup(ctx, "g1test1", &vpc.SecurityGroupArgs{
+//				ProjectName: pulumi.String("yuwenhao"),
+//				VpcId:       pulumi.String("vpc-2feppmy1ugt1c59gp688n1fld"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -40,7 +44,9 @@ import (
 // SecurityGroup can be imported using the id, e.g.
 //
 // ```sh
-//  $ pulumi import volcengine:Vpc/securityGroup:SecurityGroup default sg-273ycgql3ig3k7fap8t3dyvqx
+//
+//	$ pulumi import volcengine:vpc/securityGroup:SecurityGroup default sg-273ycgql3ig3k7fap8t3dyvqx
+//
 // ```
 type SecurityGroup struct {
 	pulumi.CustomResourceState
@@ -49,10 +55,14 @@ type SecurityGroup struct {
 	CreationTime pulumi.StringOutput `pulumi:"creationTime"`
 	// Description of SecurityGroup.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// The ProjectName of SecurityGroup.
+	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
 	// Name of SecurityGroup.
 	SecurityGroupName pulumi.StringOutput `pulumi:"securityGroupName"`
 	// Status of SecurityGroup.
 	Status pulumi.StringOutput `pulumi:"status"`
+	// Tags.
+	Tags SecurityGroupTagArrayOutput `pulumi:"tags"`
 	// Id of the VPC.
 	VpcId pulumi.StringOutput `pulumi:"vpcId"`
 }
@@ -68,7 +78,7 @@ func NewSecurityGroup(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'VpcId'")
 	}
 	var resource SecurityGroup
-	err := ctx.RegisterResource("volcengine:Vpc/securityGroup:SecurityGroup", name, args, &resource, opts...)
+	err := ctx.RegisterResource("volcengine:vpc/securityGroup:SecurityGroup", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -80,7 +90,7 @@ func NewSecurityGroup(ctx *pulumi.Context,
 func GetSecurityGroup(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *SecurityGroupState, opts ...pulumi.ResourceOption) (*SecurityGroup, error) {
 	var resource SecurityGroup
-	err := ctx.ReadResource("volcengine:Vpc/securityGroup:SecurityGroup", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("volcengine:vpc/securityGroup:SecurityGroup", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -93,10 +103,14 @@ type securityGroupState struct {
 	CreationTime *string `pulumi:"creationTime"`
 	// Description of SecurityGroup.
 	Description *string `pulumi:"description"`
+	// The ProjectName of SecurityGroup.
+	ProjectName *string `pulumi:"projectName"`
 	// Name of SecurityGroup.
 	SecurityGroupName *string `pulumi:"securityGroupName"`
 	// Status of SecurityGroup.
 	Status *string `pulumi:"status"`
+	// Tags.
+	Tags []SecurityGroupTag `pulumi:"tags"`
 	// Id of the VPC.
 	VpcId *string `pulumi:"vpcId"`
 }
@@ -106,10 +120,14 @@ type SecurityGroupState struct {
 	CreationTime pulumi.StringPtrInput
 	// Description of SecurityGroup.
 	Description pulumi.StringPtrInput
+	// The ProjectName of SecurityGroup.
+	ProjectName pulumi.StringPtrInput
 	// Name of SecurityGroup.
 	SecurityGroupName pulumi.StringPtrInput
 	// Status of SecurityGroup.
 	Status pulumi.StringPtrInput
+	// Tags.
+	Tags SecurityGroupTagArrayInput
 	// Id of the VPC.
 	VpcId pulumi.StringPtrInput
 }
@@ -121,8 +139,12 @@ func (SecurityGroupState) ElementType() reflect.Type {
 type securityGroupArgs struct {
 	// Description of SecurityGroup.
 	Description *string `pulumi:"description"`
+	// The ProjectName of SecurityGroup.
+	ProjectName *string `pulumi:"projectName"`
 	// Name of SecurityGroup.
 	SecurityGroupName *string `pulumi:"securityGroupName"`
+	// Tags.
+	Tags []SecurityGroupTag `pulumi:"tags"`
 	// Id of the VPC.
 	VpcId string `pulumi:"vpcId"`
 }
@@ -131,8 +153,12 @@ type securityGroupArgs struct {
 type SecurityGroupArgs struct {
 	// Description of SecurityGroup.
 	Description pulumi.StringPtrInput
+	// The ProjectName of SecurityGroup.
+	ProjectName pulumi.StringPtrInput
 	// Name of SecurityGroup.
 	SecurityGroupName pulumi.StringPtrInput
+	// Tags.
+	Tags SecurityGroupTagArrayInput
 	// Id of the VPC.
 	VpcId pulumi.StringInput
 }
@@ -163,7 +189,7 @@ func (i *SecurityGroup) ToSecurityGroupOutputWithContext(ctx context.Context) Se
 // SecurityGroupArrayInput is an input type that accepts SecurityGroupArray and SecurityGroupArrayOutput values.
 // You can construct a concrete instance of `SecurityGroupArrayInput` via:
 //
-//          SecurityGroupArray{ SecurityGroupArgs{...} }
+//	SecurityGroupArray{ SecurityGroupArgs{...} }
 type SecurityGroupArrayInput interface {
 	pulumi.Input
 
@@ -188,7 +214,7 @@ func (i SecurityGroupArray) ToSecurityGroupArrayOutputWithContext(ctx context.Co
 // SecurityGroupMapInput is an input type that accepts SecurityGroupMap and SecurityGroupMapOutput values.
 // You can construct a concrete instance of `SecurityGroupMapInput` via:
 //
-//          SecurityGroupMap{ "key": SecurityGroupArgs{...} }
+//	SecurityGroupMap{ "key": SecurityGroupArgs{...} }
 type SecurityGroupMapInput interface {
 	pulumi.Input
 
@@ -234,6 +260,11 @@ func (o SecurityGroupOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecurityGroup) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// The ProjectName of SecurityGroup.
+func (o SecurityGroupOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecurityGroup) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
 // Name of SecurityGroup.
 func (o SecurityGroupOutput) SecurityGroupName() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecurityGroup) pulumi.StringOutput { return v.SecurityGroupName }).(pulumi.StringOutput)
@@ -242,6 +273,11 @@ func (o SecurityGroupOutput) SecurityGroupName() pulumi.StringOutput {
 // Status of SecurityGroup.
 func (o SecurityGroupOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecurityGroup) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o SecurityGroupOutput) Tags() SecurityGroupTagArrayOutput {
+	return o.ApplyT(func(v *SecurityGroup) SecurityGroupTagArrayOutput { return v.Tags }).(SecurityGroupTagArrayOutput)
 }
 
 // Id of the VPC.

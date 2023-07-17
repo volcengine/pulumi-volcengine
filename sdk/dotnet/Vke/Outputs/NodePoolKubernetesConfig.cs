@@ -16,7 +16,7 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// <summary>
         /// The Cordon of KubernetesConfig.
         /// </summary>
-        public readonly bool? Cordon;
+        public readonly bool Cordon;
         /// <summary>
         /// The Labels of KubernetesConfig.
         /// </summary>
@@ -28,7 +28,7 @@ namespace Pulumi.Volcengine.Vke.Outputs
 
         [OutputConstructor]
         private NodePoolKubernetesConfig(
-            bool? cordon,
+            bool cordon,
 
             ImmutableArray<Outputs.NodePoolKubernetesConfigLabel> labels,
 

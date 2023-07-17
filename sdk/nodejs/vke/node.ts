@@ -2,6 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -12,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = new volcengine.Vke.Node("foo", {
+ * const foo = new volcengine.vke.Node("foo", {
  *     additionalContainerStorageEnabled: false,
  *     clusterId: "ccahbr0nqtofhiuuuajn0",
  *     containerStoragePath: "",
@@ -26,7 +27,7 @@ import * as utilities from "../utilities";
  * VKE node can be imported using the node id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:Vke/node:Node default nc5t5epmrsf****
+ *  $ pulumi import volcengine:vke/node:Node default nc5t5epmrsf****
  * ```
  */
 export class Node extends pulumi.CustomResource {
@@ -44,7 +45,7 @@ export class Node extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'volcengine:Vke/node:Node';
+    public static readonly __pulumiType = 'volcengine:vke/node:Node';
 
     /**
      * Returns true if the given object is an instance of Node.  This is designed to work even
@@ -74,6 +75,14 @@ export class Node extends pulumi.CustomResource {
      */
     public readonly containerStoragePath!: pulumi.Output<string>;
     /**
+     * The ImageId of NodeConfig.
+     */
+    public readonly imageId!: pulumi.Output<string>;
+    /**
+     * The initializeScript of Node.
+     */
+    public readonly initializeScript!: pulumi.Output<string | undefined>;
+    /**
      * The instance id.
      */
     public readonly instanceId!: pulumi.Output<string>;
@@ -81,6 +90,10 @@ export class Node extends pulumi.CustomResource {
      * The flag of keep instance name, the value is `true` or `false`.
      */
     public readonly keepInstanceName!: pulumi.Output<boolean | undefined>;
+    /**
+     * The KubernetesConfig of Node.
+     */
+    public readonly kubernetesConfig!: pulumi.Output<outputs.vke.NodeKubernetesConfig | undefined>;
     /**
      * The node pool id.
      */
@@ -103,8 +116,11 @@ export class Node extends pulumi.CustomResource {
             resourceInputs["clientToken"] = state ? state.clientToken : undefined;
             resourceInputs["clusterId"] = state ? state.clusterId : undefined;
             resourceInputs["containerStoragePath"] = state ? state.containerStoragePath : undefined;
+            resourceInputs["imageId"] = state ? state.imageId : undefined;
+            resourceInputs["initializeScript"] = state ? state.initializeScript : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["keepInstanceName"] = state ? state.keepInstanceName : undefined;
+            resourceInputs["kubernetesConfig"] = state ? state.kubernetesConfig : undefined;
             resourceInputs["nodePoolId"] = state ? state.nodePoolId : undefined;
         } else {
             const args = argsOrState as NodeArgs | undefined;
@@ -118,8 +134,11 @@ export class Node extends pulumi.CustomResource {
             resourceInputs["clientToken"] = args ? args.clientToken : undefined;
             resourceInputs["clusterId"] = args ? args.clusterId : undefined;
             resourceInputs["containerStoragePath"] = args ? args.containerStoragePath : undefined;
+            resourceInputs["imageId"] = args ? args.imageId : undefined;
+            resourceInputs["initializeScript"] = args ? args.initializeScript : undefined;
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
             resourceInputs["keepInstanceName"] = args ? args.keepInstanceName : undefined;
+            resourceInputs["kubernetesConfig"] = args ? args.kubernetesConfig : undefined;
             resourceInputs["nodePoolId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -148,6 +167,14 @@ export interface NodeState {
      */
     containerStoragePath?: pulumi.Input<string>;
     /**
+     * The ImageId of NodeConfig.
+     */
+    imageId?: pulumi.Input<string>;
+    /**
+     * The initializeScript of Node.
+     */
+    initializeScript?: pulumi.Input<string>;
+    /**
      * The instance id.
      */
     instanceId?: pulumi.Input<string>;
@@ -155,6 +182,10 @@ export interface NodeState {
      * The flag of keep instance name, the value is `true` or `false`.
      */
     keepInstanceName?: pulumi.Input<boolean>;
+    /**
+     * The KubernetesConfig of Node.
+     */
+    kubernetesConfig?: pulumi.Input<inputs.vke.NodeKubernetesConfig>;
     /**
      * The node pool id.
      */
@@ -182,6 +213,14 @@ export interface NodeArgs {
      */
     containerStoragePath?: pulumi.Input<string>;
     /**
+     * The ImageId of NodeConfig.
+     */
+    imageId?: pulumi.Input<string>;
+    /**
+     * The initializeScript of Node.
+     */
+    initializeScript?: pulumi.Input<string>;
+    /**
      * The instance id.
      */
     instanceId: pulumi.Input<string>;
@@ -189,4 +228,8 @@ export interface NodeArgs {
      * The flag of keep instance name, the value is `true` or `false`.
      */
     keepInstanceName?: pulumi.Input<boolean>;
+    /**
+     * The KubernetesConfig of Node.
+     */
+    kubernetesConfig?: pulumi.Input<inputs.vke.NodeKubernetesConfig>;
 }

@@ -21,11 +21,19 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
-	case "volcengine:Vke/cluster:Cluster":
+	case "volcengine:vke/addon:Addon":
+		r = &Addon{}
+	case "volcengine:vke/cluster:Cluster":
 		r = &Cluster{}
-	case "volcengine:Vke/node:Node":
+	case "volcengine:vke/defaultNodePool:DefaultNodePool":
+		r = &DefaultNodePool{}
+	case "volcengine:vke/defaultNodePoolBatchAttach:DefaultNodePoolBatchAttach":
+		r = &DefaultNodePoolBatchAttach{}
+	case "volcengine:vke/kubeconfig:Kubeconfig":
+		r = &Kubeconfig{}
+	case "volcengine:vke/node:Node":
 		r = &Node{}
-	case "volcengine:Vke/nodePool:NodePool":
+	case "volcengine:vke/nodePool:NodePool":
 		r = &NodePool{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
@@ -42,17 +50,37 @@ func init() {
 	}
 	pulumi.RegisterResourceModule(
 		"volcengine",
-		"Vke/cluster",
+		"vke/addon",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
-		"Vke/node",
+		"vke/cluster",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
-		"Vke/nodePool",
+		"vke/defaultNodePool",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"vke/defaultNodePoolBatchAttach",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"vke/kubeconfig",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"vke/node",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"vke/nodePool",
 		&module{version},
 	)
 }

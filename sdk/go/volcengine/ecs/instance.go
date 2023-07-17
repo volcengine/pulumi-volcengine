@@ -11,96 +11,105 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a resource to manage ecs instance
 // ## Example Usage
 //
 // ```go
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Ecs"
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Vpc"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/ecs"
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/vpc"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		foo, err := Vpc.NewVpc(ctx, "foo", &Vpc.VpcArgs{
-// 			VpcName:   pulumi.String("tf-test-2"),
-// 			CidrBlock: pulumi.String("172.16.0.0/16"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		foo1Subnet, err := Vpc.NewSubnet(ctx, "foo1Subnet", &Vpc.SubnetArgs{
-// 			SubnetName: pulumi.String("subnet-test-1"),
-// 			CidrBlock:  pulumi.String("172.16.1.0/24"),
-// 			ZoneId:     pulumi.String("cn-beijing-a"),
-// 			VpcId:      foo.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		foo1SecurityGroup, err := Vpc.NewSecurityGroup(ctx, "foo1SecurityGroup", &Vpc.SecurityGroupArgs{
-// 			VpcId: foo.ID(),
-// 		}, pulumi.DependsOn([]pulumi.Resource{
-// 			foo1Subnet,
-// 		}))
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = Ecs.NewInstance(ctx, "default", &Ecs.InstanceArgs{
-// 			ZoneId:             pulumi.String("cn-beijing-a"),
-// 			ImageId:            pulumi.String("image-aagd56zrw2jtdro3bnrl"),
-// 			InstanceType:       pulumi.String("ecs.g1.large"),
-// 			InstanceName:       pulumi.String("xym-tf-test-2"),
-// 			Description:        pulumi.String("xym-tf-test-desc-1"),
-// 			Password:           pulumi.String("93f0cb0614Aab12"),
-// 			InstanceChargeType: pulumi.String("PostPaid"),
-// 			SystemVolumeType:   pulumi.String("PTSSD"),
-// 			SystemVolumeSize:   pulumi.Int(60),
-// 			SubnetId:           foo1Subnet.ID(),
-// 			SecurityGroupIds: pulumi.StringArray{
-// 				foo1SecurityGroup.ID(),
-// 			},
-// 			DataVolumes: ecs.InstanceDataVolumeArray{
-// 				&ecs.InstanceDataVolumeArgs{
-// 					VolumeType:         pulumi.String("PTSSD"),
-// 					Size:               pulumi.Int(100),
-// 					DeleteWithInstance: pulumi.Bool(true),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			foo, err := vpc.NewVpc(ctx, "foo", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("tf-test-2"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			foo1Subnet, err := vpc.NewSubnet(ctx, "foo1Subnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("subnet-test-1"),
+//				CidrBlock:  pulumi.String("172.16.1.0/24"),
+//				ZoneId:     pulumi.String("cn-beijing-a"),
+//				VpcId:      foo.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			foo1SecurityGroup, err := vpc.NewSecurityGroup(ctx, "foo1SecurityGroup", &vpc.SecurityGroupArgs{
+//				VpcId: foo.ID(),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				foo1Subnet,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ecs.NewInstance(ctx, "default", &ecs.InstanceArgs{
+//				ImageId:            pulumi.String("image-aagd56zrw2jtdro3bnrl"),
+//				InstanceType:       pulumi.String("ecs.g1.large"),
+//				InstanceName:       pulumi.String("xym-tf-test-2"),
+//				Description:        pulumi.String("xym-tf-test-desc-1"),
+//				Password:           pulumi.String("93f0cb0614Aab12"),
+//				InstanceChargeType: pulumi.String("PostPaid"),
+//				SystemVolumeType:   pulumi.String("PTSSD"),
+//				SystemVolumeSize:   pulumi.Int(60),
+//				SubnetId:           foo1Subnet.ID(),
+//				SecurityGroupIds: pulumi.StringArray{
+//					foo1SecurityGroup.ID(),
+//				},
+//				DataVolumes: ecs.InstanceDataVolumeArray{
+//					&ecs.InstanceDataVolumeArgs{
+//						VolumeType:         pulumi.String("PTSSD"),
+//						Size:               pulumi.Int(100),
+//						DeleteWithInstance: pulumi.Bool(true),
+//					},
+//				},
+//				DeploymentSetId:  pulumi.String(""),
+//				Ipv6AddressCount: pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
 //
-// ECS Instance can be imported using the id, e.g.
+// ECS Instance can be imported using the id, e.g. If Import,The data_volumes is sort by volume name
 //
 // ```sh
-//  $ pulumi import volcengine:Ecs/instance:Instance default i-mizl7m1kqccg5smt1bdpijuj
+//
+//	$ pulumi import volcengine:ecs/instance:Instance default i-mizl7m1kqccg5smt1bdpijuj
+//
 // ```
 type Instance struct {
 	pulumi.CustomResourceState
 
-	// The auto renew flag of ECS instance.Only effective when instanceChargeType is PrePaid. Default is true.
+	// The auto renew flag of ECS instance.Only effective when instanceChargeType is PrePaid. Default is true.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	AutoRenew pulumi.BoolPtrOutput `pulumi:"autoRenew"`
-	// The auto renew period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 1.
+	// The auto renew period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	AutoRenewPeriod pulumi.IntPtrOutput `pulumi:"autoRenewPeriod"`
 	// The number of ECS instance CPU cores.
 	Cpus pulumi.IntOutput `pulumi:"cpus"`
 	// The create time of ECS instance.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// The data volume collection of  ECS instance.
+	// The data volumes collection of  ECS instance.
 	DataVolumes InstanceDataVolumeArrayOutput `pulumi:"dataVolumes"`
+	// The ID of Ecs Deployment Set.
+	DeploymentSetId pulumi.StringPtrOutput `pulumi:"deploymentSetId"`
 	// The description of ECS instance.
 	Description pulumi.StringOutput `pulumi:"description"`
+	// The GPU device info of Instance.
+	GpuDevices InstanceGpuDeviceArrayOutput `pulumi:"gpuDevices"`
 	// The host name of ECS instance.
 	HostName pulumi.StringOutput `pulumi:"hostName"`
 	// The hpc cluster ID of ECS instance.
@@ -109,7 +118,7 @@ type Instance struct {
 	ImageId pulumi.StringOutput `pulumi:"imageId"`
 	// The include data volumes flag of ECS instance.Only effective when change instance charge type.include_data_volumes.
 	IncludeDataVolumes pulumi.BoolPtrOutput `pulumi:"includeDataVolumes"`
-	// The charge type of ECS instance.
+	// The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
 	InstanceChargeType pulumi.StringOutput `pulumi:"instanceChargeType"`
 	// The ID of ECS instance.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
@@ -117,6 +126,17 @@ type Instance struct {
 	InstanceName pulumi.StringOutput `pulumi:"instanceName"`
 	// The instance type of ECS instance.
 	InstanceType pulumi.StringOutput `pulumi:"instanceType"`
+	// The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 1 to 10.
+	Ipv6AddressCount pulumi.IntOutput `pulumi:"ipv6AddressCount"`
+	// One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+	// You cannot specify both the ipv6Addresses and ipv6AddressCount parameters.
+	Ipv6Addresses pulumi.StringArrayOutput `pulumi:"ipv6Addresses"`
+	// The Flag of GPU instance.If the instance is GPU,The flag is true.
+	IsGpu pulumi.BoolOutput `pulumi:"isGpu"`
+	// Whether to keep the mirror settings. Only custom images and shared images support this field.
+	// When the value of this field is true, the Password and KeyPairName cannot be specified.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	KeepImageCredential pulumi.BoolPtrOutput `pulumi:"keepImageCredential"`
 	// The ssh key ID of ECS instance.
 	KeyPairId pulumi.StringOutput `pulumi:"keyPairId"`
 	// The ssh key name of ECS instance.
@@ -133,12 +153,18 @@ type Instance struct {
 	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// The period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 12. Unit is Month.
 	Period pulumi.IntPtrOutput `pulumi:"period"`
+	// The private ip address of primary networkInterface.
+	PrimaryIpAddress pulumi.StringOutput `pulumi:"primaryIpAddress"`
+	// The ProjectName of the ecs instance.
+	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
 	// The secondary networkInterface detail collection of ECS instance.
 	SecondaryNetworkInterfaces InstanceSecondaryNetworkInterfaceArrayOutput `pulumi:"secondaryNetworkInterfaces"`
-	// The security enhancement strategy of ECS instance.Default is true.
+	// The security enhancement strategy of ECS instance. The value can be Active or InActive. Default is Active.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	SecurityEnhancementStrategy pulumi.StringPtrOutput `pulumi:"securityEnhancementStrategy"`
 	// The security group ID set of primary networkInterface.
 	SecurityGroupIds pulumi.StringArrayOutput `pulumi:"securityGroupIds"`
+	// The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
+	SpotStrategy pulumi.StringOutput `pulumi:"spotStrategy"`
 	// The status of ECS instance.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The stop mode of ECS instance.
@@ -149,11 +175,13 @@ type Instance struct {
 	SystemVolumeId pulumi.StringOutput `pulumi:"systemVolumeId"`
 	// The size of system volume.
 	SystemVolumeSize pulumi.IntOutput `pulumi:"systemVolumeSize"`
-	// The type of system volume.
+	// The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
 	SystemVolumeType pulumi.StringOutput `pulumi:"systemVolumeType"`
+	// Tags.
+	Tags InstanceTagArrayOutput `pulumi:"tags"`
 	// The update time of ECS instance.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
-	// The user data of ECS instance.
+	// The user data of ECS instance, this field must be encrypted with base64.
 	UserData pulumi.StringOutput `pulumi:"userData"`
 	// The VPC ID of ECS instance.
 	VpcId pulumi.StringOutput `pulumi:"vpcId"`
@@ -186,11 +214,8 @@ func NewInstance(ctx *pulumi.Context,
 	if args.SystemVolumeType == nil {
 		return nil, errors.New("invalid value for required argument 'SystemVolumeType'")
 	}
-	if args.ZoneId == nil {
-		return nil, errors.New("invalid value for required argument 'ZoneId'")
-	}
 	var resource Instance
-	err := ctx.RegisterResource("volcengine:Ecs/instance:Instance", name, args, &resource, opts...)
+	err := ctx.RegisterResource("volcengine:ecs/instance:Instance", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -202,7 +227,7 @@ func NewInstance(ctx *pulumi.Context,
 func GetInstance(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *InstanceState, opts ...pulumi.ResourceOption) (*Instance, error) {
 	var resource Instance
-	err := ctx.ReadResource("volcengine:Ecs/instance:Instance", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("volcengine:ecs/instance:Instance", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -211,18 +236,22 @@ func GetInstance(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Instance resources.
 type instanceState struct {
-	// The auto renew flag of ECS instance.Only effective when instanceChargeType is PrePaid. Default is true.
+	// The auto renew flag of ECS instance.Only effective when instanceChargeType is PrePaid. Default is true.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	AutoRenew *bool `pulumi:"autoRenew"`
-	// The auto renew period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 1.
+	// The auto renew period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	AutoRenewPeriod *int `pulumi:"autoRenewPeriod"`
 	// The number of ECS instance CPU cores.
 	Cpus *int `pulumi:"cpus"`
 	// The create time of ECS instance.
 	CreatedAt *string `pulumi:"createdAt"`
-	// The data volume collection of  ECS instance.
+	// The data volumes collection of  ECS instance.
 	DataVolumes []InstanceDataVolume `pulumi:"dataVolumes"`
+	// The ID of Ecs Deployment Set.
+	DeploymentSetId *string `pulumi:"deploymentSetId"`
 	// The description of ECS instance.
 	Description *string `pulumi:"description"`
+	// The GPU device info of Instance.
+	GpuDevices []InstanceGpuDevice `pulumi:"gpuDevices"`
 	// The host name of ECS instance.
 	HostName *string `pulumi:"hostName"`
 	// The hpc cluster ID of ECS instance.
@@ -231,7 +260,7 @@ type instanceState struct {
 	ImageId *string `pulumi:"imageId"`
 	// The include data volumes flag of ECS instance.Only effective when change instance charge type.include_data_volumes.
 	IncludeDataVolumes *bool `pulumi:"includeDataVolumes"`
-	// The charge type of ECS instance.
+	// The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
 	InstanceChargeType *string `pulumi:"instanceChargeType"`
 	// The ID of ECS instance.
 	InstanceId *string `pulumi:"instanceId"`
@@ -239,6 +268,17 @@ type instanceState struct {
 	InstanceName *string `pulumi:"instanceName"`
 	// The instance type of ECS instance.
 	InstanceType *string `pulumi:"instanceType"`
+	// The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 1 to 10.
+	Ipv6AddressCount *int `pulumi:"ipv6AddressCount"`
+	// One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+	// You cannot specify both the ipv6Addresses and ipv6AddressCount parameters.
+	Ipv6Addresses []string `pulumi:"ipv6Addresses"`
+	// The Flag of GPU instance.If the instance is GPU,The flag is true.
+	IsGpu *bool `pulumi:"isGpu"`
+	// Whether to keep the mirror settings. Only custom images and shared images support this field.
+	// When the value of this field is true, the Password and KeyPairName cannot be specified.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	KeepImageCredential *bool `pulumi:"keepImageCredential"`
 	// The ssh key ID of ECS instance.
 	KeyPairId *string `pulumi:"keyPairId"`
 	// The ssh key name of ECS instance.
@@ -255,12 +295,18 @@ type instanceState struct {
 	Password *string `pulumi:"password"`
 	// The period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 12. Unit is Month.
 	Period *int `pulumi:"period"`
+	// The private ip address of primary networkInterface.
+	PrimaryIpAddress *string `pulumi:"primaryIpAddress"`
+	// The ProjectName of the ecs instance.
+	ProjectName *string `pulumi:"projectName"`
 	// The secondary networkInterface detail collection of ECS instance.
 	SecondaryNetworkInterfaces []InstanceSecondaryNetworkInterface `pulumi:"secondaryNetworkInterfaces"`
-	// The security enhancement strategy of ECS instance.Default is true.
+	// The security enhancement strategy of ECS instance. The value can be Active or InActive. Default is Active.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	SecurityEnhancementStrategy *string `pulumi:"securityEnhancementStrategy"`
 	// The security group ID set of primary networkInterface.
 	SecurityGroupIds []string `pulumi:"securityGroupIds"`
+	// The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
+	SpotStrategy *string `pulumi:"spotStrategy"`
 	// The status of ECS instance.
 	Status *string `pulumi:"status"`
 	// The stop mode of ECS instance.
@@ -271,11 +317,13 @@ type instanceState struct {
 	SystemVolumeId *string `pulumi:"systemVolumeId"`
 	// The size of system volume.
 	SystemVolumeSize *int `pulumi:"systemVolumeSize"`
-	// The type of system volume.
+	// The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
 	SystemVolumeType *string `pulumi:"systemVolumeType"`
+	// Tags.
+	Tags []InstanceTag `pulumi:"tags"`
 	// The update time of ECS instance.
 	UpdatedAt *string `pulumi:"updatedAt"`
-	// The user data of ECS instance.
+	// The user data of ECS instance, this field must be encrypted with base64.
 	UserData *string `pulumi:"userData"`
 	// The VPC ID of ECS instance.
 	VpcId *string `pulumi:"vpcId"`
@@ -284,18 +332,22 @@ type instanceState struct {
 }
 
 type InstanceState struct {
-	// The auto renew flag of ECS instance.Only effective when instanceChargeType is PrePaid. Default is true.
+	// The auto renew flag of ECS instance.Only effective when instanceChargeType is PrePaid. Default is true.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	AutoRenew pulumi.BoolPtrInput
-	// The auto renew period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 1.
+	// The auto renew period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	AutoRenewPeriod pulumi.IntPtrInput
 	// The number of ECS instance CPU cores.
 	Cpus pulumi.IntPtrInput
 	// The create time of ECS instance.
 	CreatedAt pulumi.StringPtrInput
-	// The data volume collection of  ECS instance.
+	// The data volumes collection of  ECS instance.
 	DataVolumes InstanceDataVolumeArrayInput
+	// The ID of Ecs Deployment Set.
+	DeploymentSetId pulumi.StringPtrInput
 	// The description of ECS instance.
 	Description pulumi.StringPtrInput
+	// The GPU device info of Instance.
+	GpuDevices InstanceGpuDeviceArrayInput
 	// The host name of ECS instance.
 	HostName pulumi.StringPtrInput
 	// The hpc cluster ID of ECS instance.
@@ -304,7 +356,7 @@ type InstanceState struct {
 	ImageId pulumi.StringPtrInput
 	// The include data volumes flag of ECS instance.Only effective when change instance charge type.include_data_volumes.
 	IncludeDataVolumes pulumi.BoolPtrInput
-	// The charge type of ECS instance.
+	// The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
 	InstanceChargeType pulumi.StringPtrInput
 	// The ID of ECS instance.
 	InstanceId pulumi.StringPtrInput
@@ -312,6 +364,17 @@ type InstanceState struct {
 	InstanceName pulumi.StringPtrInput
 	// The instance type of ECS instance.
 	InstanceType pulumi.StringPtrInput
+	// The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 1 to 10.
+	Ipv6AddressCount pulumi.IntPtrInput
+	// One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+	// You cannot specify both the ipv6Addresses and ipv6AddressCount parameters.
+	Ipv6Addresses pulumi.StringArrayInput
+	// The Flag of GPU instance.If the instance is GPU,The flag is true.
+	IsGpu pulumi.BoolPtrInput
+	// Whether to keep the mirror settings. Only custom images and shared images support this field.
+	// When the value of this field is true, the Password and KeyPairName cannot be specified.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	KeepImageCredential pulumi.BoolPtrInput
 	// The ssh key ID of ECS instance.
 	KeyPairId pulumi.StringPtrInput
 	// The ssh key name of ECS instance.
@@ -328,12 +391,18 @@ type InstanceState struct {
 	Password pulumi.StringPtrInput
 	// The period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 12. Unit is Month.
 	Period pulumi.IntPtrInput
+	// The private ip address of primary networkInterface.
+	PrimaryIpAddress pulumi.StringPtrInput
+	// The ProjectName of the ecs instance.
+	ProjectName pulumi.StringPtrInput
 	// The secondary networkInterface detail collection of ECS instance.
 	SecondaryNetworkInterfaces InstanceSecondaryNetworkInterfaceArrayInput
-	// The security enhancement strategy of ECS instance.Default is true.
+	// The security enhancement strategy of ECS instance. The value can be Active or InActive. Default is Active.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	SecurityEnhancementStrategy pulumi.StringPtrInput
 	// The security group ID set of primary networkInterface.
 	SecurityGroupIds pulumi.StringArrayInput
+	// The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
+	SpotStrategy pulumi.StringPtrInput
 	// The status of ECS instance.
 	Status pulumi.StringPtrInput
 	// The stop mode of ECS instance.
@@ -344,11 +413,13 @@ type InstanceState struct {
 	SystemVolumeId pulumi.StringPtrInput
 	// The size of system volume.
 	SystemVolumeSize pulumi.IntPtrInput
-	// The type of system volume.
+	// The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
 	SystemVolumeType pulumi.StringPtrInput
+	// Tags.
+	Tags InstanceTagArrayInput
 	// The update time of ECS instance.
 	UpdatedAt pulumi.StringPtrInput
-	// The user data of ECS instance.
+	// The user data of ECS instance, this field must be encrypted with base64.
 	UserData pulumi.StringPtrInput
 	// The VPC ID of ECS instance.
 	VpcId pulumi.StringPtrInput
@@ -361,12 +432,14 @@ func (InstanceState) ElementType() reflect.Type {
 }
 
 type instanceArgs struct {
-	// The auto renew flag of ECS instance.Only effective when instanceChargeType is PrePaid. Default is true.
+	// The auto renew flag of ECS instance.Only effective when instanceChargeType is PrePaid. Default is true.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	AutoRenew *bool `pulumi:"autoRenew"`
-	// The auto renew period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 1.
+	// The auto renew period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	AutoRenewPeriod *int `pulumi:"autoRenewPeriod"`
-	// The data volume collection of  ECS instance.
+	// The data volumes collection of  ECS instance.
 	DataVolumes []InstanceDataVolume `pulumi:"dataVolumes"`
+	// The ID of Ecs Deployment Set.
+	DeploymentSetId *string `pulumi:"deploymentSetId"`
 	// The description of ECS instance.
 	Description *string `pulumi:"description"`
 	// The host name of ECS instance.
@@ -377,44 +450,61 @@ type instanceArgs struct {
 	ImageId string `pulumi:"imageId"`
 	// The include data volumes flag of ECS instance.Only effective when change instance charge type.include_data_volumes.
 	IncludeDataVolumes *bool `pulumi:"includeDataVolumes"`
-	// The charge type of ECS instance.
+	// The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
 	InstanceChargeType *string `pulumi:"instanceChargeType"`
 	// The name of ECS instance.
 	InstanceName *string `pulumi:"instanceName"`
 	// The instance type of ECS instance.
 	InstanceType string `pulumi:"instanceType"`
+	// The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 1 to 10.
+	Ipv6AddressCount *int `pulumi:"ipv6AddressCount"`
+	// One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+	// You cannot specify both the ipv6Addresses and ipv6AddressCount parameters.
+	Ipv6Addresses []string `pulumi:"ipv6Addresses"`
+	// Whether to keep the mirror settings. Only custom images and shared images support this field.
+	// When the value of this field is true, the Password and KeyPairName cannot be specified.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	KeepImageCredential *bool `pulumi:"keepImageCredential"`
 	// The ssh key name of ECS instance.
 	KeyPairName *string `pulumi:"keyPairName"`
 	// The password of ECS instance.
 	Password *string `pulumi:"password"`
 	// The period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 12. Unit is Month.
 	Period *int `pulumi:"period"`
+	// The ProjectName of the ecs instance.
+	ProjectName *string `pulumi:"projectName"`
 	// The secondary networkInterface detail collection of ECS instance.
 	SecondaryNetworkInterfaces []InstanceSecondaryNetworkInterface `pulumi:"secondaryNetworkInterfaces"`
-	// The security enhancement strategy of ECS instance.Default is true.
+	// The security enhancement strategy of ECS instance. The value can be Active or InActive. Default is Active.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	SecurityEnhancementStrategy *string `pulumi:"securityEnhancementStrategy"`
 	// The security group ID set of primary networkInterface.
 	SecurityGroupIds []string `pulumi:"securityGroupIds"`
+	// The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
+	SpotStrategy *string `pulumi:"spotStrategy"`
 	// The subnet ID of primary networkInterface.
 	SubnetId string `pulumi:"subnetId"`
 	// The size of system volume.
 	SystemVolumeSize int `pulumi:"systemVolumeSize"`
-	// The type of system volume.
+	// The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
 	SystemVolumeType string `pulumi:"systemVolumeType"`
-	// The user data of ECS instance.
+	// Tags.
+	Tags []InstanceTag `pulumi:"tags"`
+	// The user data of ECS instance, this field must be encrypted with base64.
 	UserData *string `pulumi:"userData"`
 	// The available zone ID of ECS instance.
-	ZoneId string `pulumi:"zoneId"`
+	ZoneId *string `pulumi:"zoneId"`
 }
 
 // The set of arguments for constructing a Instance resource.
 type InstanceArgs struct {
-	// The auto renew flag of ECS instance.Only effective when instanceChargeType is PrePaid. Default is true.
+	// The auto renew flag of ECS instance.Only effective when instanceChargeType is PrePaid. Default is true.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	AutoRenew pulumi.BoolPtrInput
-	// The auto renew period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 1.
+	// The auto renew period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	AutoRenewPeriod pulumi.IntPtrInput
-	// The data volume collection of  ECS instance.
+	// The data volumes collection of  ECS instance.
 	DataVolumes InstanceDataVolumeArrayInput
+	// The ID of Ecs Deployment Set.
+	DeploymentSetId pulumi.StringPtrInput
 	// The description of ECS instance.
 	Description pulumi.StringPtrInput
 	// The host name of ECS instance.
@@ -425,34 +515,49 @@ type InstanceArgs struct {
 	ImageId pulumi.StringInput
 	// The include data volumes flag of ECS instance.Only effective when change instance charge type.include_data_volumes.
 	IncludeDataVolumes pulumi.BoolPtrInput
-	// The charge type of ECS instance.
+	// The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
 	InstanceChargeType pulumi.StringPtrInput
 	// The name of ECS instance.
 	InstanceName pulumi.StringPtrInput
 	// The instance type of ECS instance.
 	InstanceType pulumi.StringInput
+	// The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 1 to 10.
+	Ipv6AddressCount pulumi.IntPtrInput
+	// One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+	// You cannot specify both the ipv6Addresses and ipv6AddressCount parameters.
+	Ipv6Addresses pulumi.StringArrayInput
+	// Whether to keep the mirror settings. Only custom images and shared images support this field.
+	// When the value of this field is true, the Password and KeyPairName cannot be specified.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	KeepImageCredential pulumi.BoolPtrInput
 	// The ssh key name of ECS instance.
 	KeyPairName pulumi.StringPtrInput
 	// The password of ECS instance.
 	Password pulumi.StringPtrInput
 	// The period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 12. Unit is Month.
 	Period pulumi.IntPtrInput
+	// The ProjectName of the ecs instance.
+	ProjectName pulumi.StringPtrInput
 	// The secondary networkInterface detail collection of ECS instance.
 	SecondaryNetworkInterfaces InstanceSecondaryNetworkInterfaceArrayInput
-	// The security enhancement strategy of ECS instance.Default is true.
+	// The security enhancement strategy of ECS instance. The value can be Active or InActive. Default is Active.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	SecurityEnhancementStrategy pulumi.StringPtrInput
 	// The security group ID set of primary networkInterface.
 	SecurityGroupIds pulumi.StringArrayInput
+	// The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
+	SpotStrategy pulumi.StringPtrInput
 	// The subnet ID of primary networkInterface.
 	SubnetId pulumi.StringInput
 	// The size of system volume.
 	SystemVolumeSize pulumi.IntInput
-	// The type of system volume.
+	// The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
 	SystemVolumeType pulumi.StringInput
-	// The user data of ECS instance.
+	// Tags.
+	Tags InstanceTagArrayInput
+	// The user data of ECS instance, this field must be encrypted with base64.
 	UserData pulumi.StringPtrInput
 	// The available zone ID of ECS instance.
-	ZoneId pulumi.StringInput
+	ZoneId pulumi.StringPtrInput
 }
 
 func (InstanceArgs) ElementType() reflect.Type {
@@ -481,7 +586,7 @@ func (i *Instance) ToInstanceOutputWithContext(ctx context.Context) InstanceOutp
 // InstanceArrayInput is an input type that accepts InstanceArray and InstanceArrayOutput values.
 // You can construct a concrete instance of `InstanceArrayInput` via:
 //
-//          InstanceArray{ InstanceArgs{...} }
+//	InstanceArray{ InstanceArgs{...} }
 type InstanceArrayInput interface {
 	pulumi.Input
 
@@ -506,7 +611,7 @@ func (i InstanceArray) ToInstanceArrayOutputWithContext(ctx context.Context) Ins
 // InstanceMapInput is an input type that accepts InstanceMap and InstanceMapOutput values.
 // You can construct a concrete instance of `InstanceMapInput` via:
 //
-//          InstanceMap{ "key": InstanceArgs{...} }
+//	InstanceMap{ "key": InstanceArgs{...} }
 type InstanceMapInput interface {
 	pulumi.Input
 
@@ -542,12 +647,12 @@ func (o InstanceOutput) ToInstanceOutputWithContext(ctx context.Context) Instanc
 	return o
 }
 
-// The auto renew flag of ECS instance.Only effective when instanceChargeType is PrePaid. Default is true.
+// The auto renew flag of ECS instance.Only effective when instanceChargeType is PrePaid. Default is true.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 func (o InstanceOutput) AutoRenew() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Instance) pulumi.BoolPtrOutput { return v.AutoRenew }).(pulumi.BoolPtrOutput)
 }
 
-// The auto renew period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 1.
+// The auto renew period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 func (o InstanceOutput) AutoRenewPeriod() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Instance) pulumi.IntPtrOutput { return v.AutoRenewPeriod }).(pulumi.IntPtrOutput)
 }
@@ -562,14 +667,24 @@ func (o InstanceOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The data volume collection of  ECS instance.
+// The data volumes collection of  ECS instance.
 func (o InstanceOutput) DataVolumes() InstanceDataVolumeArrayOutput {
 	return o.ApplyT(func(v *Instance) InstanceDataVolumeArrayOutput { return v.DataVolumes }).(InstanceDataVolumeArrayOutput)
+}
+
+// The ID of Ecs Deployment Set.
+func (o InstanceOutput) DeploymentSetId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.DeploymentSetId }).(pulumi.StringPtrOutput)
 }
 
 // The description of ECS instance.
 func (o InstanceOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+// The GPU device info of Instance.
+func (o InstanceOutput) GpuDevices() InstanceGpuDeviceArrayOutput {
+	return o.ApplyT(func(v *Instance) InstanceGpuDeviceArrayOutput { return v.GpuDevices }).(InstanceGpuDeviceArrayOutput)
 }
 
 // The host name of ECS instance.
@@ -592,7 +707,7 @@ func (o InstanceOutput) IncludeDataVolumes() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Instance) pulumi.BoolPtrOutput { return v.IncludeDataVolumes }).(pulumi.BoolPtrOutput)
 }
 
-// The charge type of ECS instance.
+// The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
 func (o InstanceOutput) InstanceChargeType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.InstanceChargeType }).(pulumi.StringOutput)
 }
@@ -610,6 +725,29 @@ func (o InstanceOutput) InstanceName() pulumi.StringOutput {
 // The instance type of ECS instance.
 func (o InstanceOutput) InstanceType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.InstanceType }).(pulumi.StringOutput)
+}
+
+// The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 1 to 10.
+func (o InstanceOutput) Ipv6AddressCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.Ipv6AddressCount }).(pulumi.IntOutput)
+}
+
+// One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+// You cannot specify both the ipv6Addresses and ipv6AddressCount parameters.
+func (o InstanceOutput) Ipv6Addresses() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringArrayOutput { return v.Ipv6Addresses }).(pulumi.StringArrayOutput)
+}
+
+// The Flag of GPU instance.If the instance is GPU,The flag is true.
+func (o InstanceOutput) IsGpu() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Instance) pulumi.BoolOutput { return v.IsGpu }).(pulumi.BoolOutput)
+}
+
+// Whether to keep the mirror settings. Only custom images and shared images support this field.
+// When the value of this field is true, the Password and KeyPairName cannot be specified.
+// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+func (o InstanceOutput) KeepImageCredential() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Instance) pulumi.BoolPtrOutput { return v.KeepImageCredential }).(pulumi.BoolPtrOutput)
 }
 
 // The ssh key ID of ECS instance.
@@ -652,12 +790,22 @@ func (o InstanceOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Instance) pulumi.IntPtrOutput { return v.Period }).(pulumi.IntPtrOutput)
 }
 
+// The private ip address of primary networkInterface.
+func (o InstanceOutput) PrimaryIpAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.PrimaryIpAddress }).(pulumi.StringOutput)
+}
+
+// The ProjectName of the ecs instance.
+func (o InstanceOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
 // The secondary networkInterface detail collection of ECS instance.
 func (o InstanceOutput) SecondaryNetworkInterfaces() InstanceSecondaryNetworkInterfaceArrayOutput {
 	return o.ApplyT(func(v *Instance) InstanceSecondaryNetworkInterfaceArrayOutput { return v.SecondaryNetworkInterfaces }).(InstanceSecondaryNetworkInterfaceArrayOutput)
 }
 
-// The security enhancement strategy of ECS instance.Default is true.
+// The security enhancement strategy of ECS instance. The value can be Active or InActive. Default is Active.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 func (o InstanceOutput) SecurityEnhancementStrategy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.SecurityEnhancementStrategy }).(pulumi.StringPtrOutput)
 }
@@ -665,6 +813,11 @@ func (o InstanceOutput) SecurityEnhancementStrategy() pulumi.StringPtrOutput {
 // The security group ID set of primary networkInterface.
 func (o InstanceOutput) SecurityGroupIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringArrayOutput { return v.SecurityGroupIds }).(pulumi.StringArrayOutput)
+}
+
+// The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
+func (o InstanceOutput) SpotStrategy() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.SpotStrategy }).(pulumi.StringOutput)
 }
 
 // The status of ECS instance.
@@ -692,9 +845,14 @@ func (o InstanceOutput) SystemVolumeSize() pulumi.IntOutput {
 	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.SystemVolumeSize }).(pulumi.IntOutput)
 }
 
-// The type of system volume.
+// The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
 func (o InstanceOutput) SystemVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.SystemVolumeType }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o InstanceOutput) Tags() InstanceTagArrayOutput {
+	return o.ApplyT(func(v *Instance) InstanceTagArrayOutput { return v.Tags }).(InstanceTagArrayOutput)
 }
 
 // The update time of ECS instance.
@@ -702,7 +860,7 @@ func (o InstanceOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
-// The user data of ECS instance.
+// The user data of ECS instance, this field must be encrypted with base64.
 func (o InstanceOutput) UserData() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.UserData }).(pulumi.StringOutput)
 }

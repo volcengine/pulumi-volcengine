@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultServerGroupServers = pulumi.output(volcengine.Clb.ServerGroupServers({
+ * const defaultServerGroupServers = pulumi.output(volcengine.clb.ServerGroupServers({
  *     ids: ["rs-273z9pv8mtfcw7fap8sp6ie8k"],
  *     serverGroupId: "rsp-273z9pt9lpdds7fap8sqdvfrf",
  * }));
@@ -25,7 +25,7 @@ export function serverGroupServers(args: ServerGroupServersArgs, opts?: pulumi.I
     }
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-    return pulumi.runtime.invoke("volcengine:Clb/serverGroupServers:ServerGroupServers", {
+    return pulumi.runtime.invoke("volcengine:clb/serverGroupServers:ServerGroupServers", {
         "ids": args.ids,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
@@ -70,7 +70,7 @@ export interface ServerGroupServersResult {
     /**
      * The server list of ServerGroup.
      */
-    readonly servers: outputs.Clb.ServerGroupServersServer[];
+    readonly servers: outputs.clb.ServerGroupServersServer[];
     /**
      * The total count of ServerGroupServer query.
      */

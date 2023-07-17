@@ -70,6 +70,10 @@ namespace Pulumi.Volcengine.Clb.Outputs
         /// </summary>
         public readonly string LockReason;
         /// <summary>
+        /// The master zone ID of the CLB.
+        /// </summary>
+        public readonly string MasterZoneId;
+        /// <summary>
         /// The modification protection reason of the Clb.
         /// </summary>
         public readonly string ModificationProtectionReason;
@@ -82,6 +86,14 @@ namespace Pulumi.Volcengine.Clb.Outputs
         /// </summary>
         public readonly string OverdueTime;
         /// <summary>
+        /// The ProjectName of Clb.
+        /// </summary>
+        public readonly string ProjectName;
+        /// <summary>
+        /// The slave zone ID of the CLB.
+        /// </summary>
+        public readonly string SlaveZoneId;
+        /// <summary>
         /// The status of the Clb.
         /// </summary>
         public readonly string Status;
@@ -89,6 +101,10 @@ namespace Pulumi.Volcengine.Clb.Outputs
         /// The subnet ID of the Clb.
         /// </summary>
         public readonly string SubnetId;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.ClbsClbTagResult> Tags;
         /// <summary>
         /// The type of the Clb.
         /// </summary>
@@ -132,15 +148,23 @@ namespace Pulumi.Volcengine.Clb.Outputs
 
             string lockReason,
 
+            string masterZoneId,
+
             string modificationProtectionReason,
 
             string modificationProtectionStatus,
 
             string overdueTime,
 
+            string projectName,
+
+            string slaveZoneId,
+
             string status,
 
             string subnetId,
+
+            ImmutableArray<Outputs.ClbsClbTagResult> tags,
 
             string type,
 
@@ -162,11 +186,15 @@ namespace Pulumi.Volcengine.Clb.Outputs
             LoadBalancerName = loadBalancerName;
             LoadBalancerSpec = loadBalancerSpec;
             LockReason = lockReason;
+            MasterZoneId = masterZoneId;
             ModificationProtectionReason = modificationProtectionReason;
             ModificationProtectionStatus = modificationProtectionStatus;
             OverdueTime = overdueTime;
+            ProjectName = projectName;
+            SlaveZoneId = slaveZoneId;
             Status = status;
             SubnetId = subnetId;
+            Tags = tags;
             Type = type;
             UpdateTime = updateTime;
             VpcId = vpcId;

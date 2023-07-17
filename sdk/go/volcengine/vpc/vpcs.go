@@ -17,27 +17,30 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Vpc"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/vpc"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Vpc.Vpcs(ctx, &vpc.VpcsArgs{
-// 			Ids: []string{
-// 				"vpc-mizl7m1kqccg5smt1bdpijuj",
-// 			},
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vpc.Vpcs(ctx, &vpc.VpcsArgs{
+//				Ids: []string{
+//					"vpc-mizl7m1kqccg5smt1bdpijuj",
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func Vpcs(ctx *pulumi.Context, args *VpcsArgs, opts ...pulumi.InvokeOption) (*VpcsResult, error) {
 	var rv VpcsResult
-	err := ctx.Invoke("volcengine:Vpc/vpcs:Vpcs", args, &rv, opts...)
+	err := ctx.Invoke("volcengine:vpc/vpcs:Vpcs", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -52,6 +55,12 @@ type VpcsArgs struct {
 	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The ProjectName of the VPC.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []VpcsTag `pulumi:"tags"`
+	// The vpc name to query.
+	VpcName *string `pulumi:"vpcName"`
 }
 
 // A collection of values returned by Vpcs.
@@ -61,8 +70,14 @@ type VpcsResult struct {
 	Ids        []string `pulumi:"ids"`
 	NameRegex  *string  `pulumi:"nameRegex"`
 	OutputFile *string  `pulumi:"outputFile"`
+	// The ProjectName of the VPC.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []VpcsTag `pulumi:"tags"`
 	// The total count of Vpc query.
 	TotalCount int `pulumi:"totalCount"`
+	// The name of VPC.
+	VpcName *string `pulumi:"vpcName"`
 	// The collection of Vpc query.
 	Vpcs []VpcsVpc `pulumi:"vpcs"`
 }
@@ -88,6 +103,12 @@ type VpcsOutputArgs struct {
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The ProjectName of the VPC.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
+	// Tags.
+	Tags VpcsTagArrayInput `pulumi:"tags"`
+	// The vpc name to query.
+	VpcName pulumi.StringPtrInput `pulumi:"vpcName"`
 }
 
 func (VpcsOutputArgs) ElementType() reflect.Type {
@@ -126,9 +147,24 @@ func (o VpcsResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VpcsResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
 }
 
+// The ProjectName of the VPC.
+func (o VpcsResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpcsResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o VpcsResultOutput) Tags() VpcsTagArrayOutput {
+	return o.ApplyT(func(v VpcsResult) []VpcsTag { return v.Tags }).(VpcsTagArrayOutput)
+}
+
 // The total count of Vpc query.
 func (o VpcsResultOutput) TotalCount() pulumi.IntOutput {
 	return o.ApplyT(func(v VpcsResult) int { return v.TotalCount }).(pulumi.IntOutput)
+}
+
+// The name of VPC.
+func (o VpcsResultOutput) VpcName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpcsResult) *string { return v.VpcName }).(pulumi.StringPtrOutput)
 }
 
 // The collection of Vpc query.

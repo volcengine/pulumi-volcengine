@@ -10,7 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Volcengine.Clb
 {
     /// <summary>
-    /// Provides a resource to manage clb
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -24,9 +23,10 @@ namespace Pulumi.Volcengine.Clb
     ///         var foo = new Volcengine.Clb.Clb("foo", new Volcengine.Clb.ClbArgs
     ///         {
     ///             Description = "Demo",
+    ///             LoadBalancerName = "terraform-auto-create",
     ///             LoadBalancerSpec = "small_1",
-    ///             RegionId = "cn-north-3",
-    ///             SubnetId = "subnet-2744i7u9alnnk7fap8tkq8aft",
+    ///             ProjectName = "yyy",
+    ///             SubnetId = "subnet-mj92ij84m5fk5smt1arvwrtw",
     ///             Type = "public",
     ///         });
     ///     }
@@ -39,10 +39,10 @@ namespace Pulumi.Volcengine.Clb
     /// CLB can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:Clb/clb:Clb default clb-273y2ok6ets007fap8txvf6us
+    ///  $ pulumi import volcengine:clb/clb:Clb default clb-273y2ok6ets007fap8txvf6us
     /// ```
     /// </summary>
-    [VolcengineResourceType("volcengine:Clb/clb:Clb")]
+    [VolcengineResourceType("volcengine:clb/clb:Clb")]
     public partial class Clb : Pulumi.CustomResource
     {
         /// <summary>
@@ -58,7 +58,7 @@ namespace Pulumi.Volcengine.Clb
         public Output<string> EniAddress { get; private set; } = null!;
 
         /// <summary>
-        /// The billing type of the CLB.
+        /// The billing type of the CLB, the value can be `PostPaid`.
         /// </summary>
         [Output("loadBalancerBillingType")]
         public Output<string> LoadBalancerBillingType { get; private set; } = null!;
@@ -70,10 +70,16 @@ namespace Pulumi.Volcengine.Clb
         public Output<string> LoadBalancerName { get; private set; } = null!;
 
         /// <summary>
-        /// The specification of the CLB.
+        /// The specification of the CLB, the value can be `small_1`, `small_2`, `medium_1`, `medium_2`, `large_1`, `large_2`.
         /// </summary>
         [Output("loadBalancerSpec")]
         public Output<string> LoadBalancerSpec { get; private set; } = null!;
+
+        /// <summary>
+        /// The master zone ID of the CLB.
+        /// </summary>
+        [Output("masterZoneId")]
+        public Output<string> MasterZoneId { get; private set; } = null!;
 
         /// <summary>
         /// The reason of the console modification protection.
@@ -82,10 +88,16 @@ namespace Pulumi.Volcengine.Clb
         public Output<string?> ModificationProtectionReason { get; private set; } = null!;
 
         /// <summary>
-        /// The status of the console modification protection.
+        /// The status of the console modification protection, the value can be `NonProtection` or `ConsoleProtection`.
         /// </summary>
         [Output("modificationProtectionStatus")]
         public Output<string?> ModificationProtectionStatus { get; private set; } = null!;
+
+        /// <summary>
+        /// The ProjectName of the CLB.
+        /// </summary>
+        [Output("projectName")]
+        public Output<string?> ProjectName { get; private set; } = null!;
 
         /// <summary>
         /// The region of the request.
@@ -94,10 +106,22 @@ namespace Pulumi.Volcengine.Clb
         public Output<string> RegionId { get; private set; } = null!;
 
         /// <summary>
+        /// The slave zone ID of the CLB.
+        /// </summary>
+        [Output("slaveZoneId")]
+        public Output<string> SlaveZoneId { get; private set; } = null!;
+
+        /// <summary>
         /// The id of the Subnet.
         /// </summary>
         [Output("subnetId")]
         public Output<string> SubnetId { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.ClbTag>> Tags { get; private set; } = null!;
 
         /// <summary>
         /// The type of the CLB. And optional choice contains `public` or `private`.
@@ -120,12 +144,12 @@ namespace Pulumi.Volcengine.Clb
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Clb(string name, ClbArgs args, CustomResourceOptions? options = null)
-            : base("volcengine:Clb/clb:Clb", name, args ?? new ClbArgs(), MakeResourceOptions(options, ""))
+            : base("volcengine:clb/clb:Clb", name, args ?? new ClbArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private Clb(string name, Input<string> id, ClbState? state = null, CustomResourceOptions? options = null)
-            : base("volcengine:Clb/clb:Clb", name, state, MakeResourceOptions(options, id))
+            : base("volcengine:clb/clb:Clb", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -170,7 +194,7 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? EniAddress { get; set; }
 
         /// <summary>
-        /// The billing type of the CLB.
+        /// The billing type of the CLB, the value can be `PostPaid`.
         /// </summary>
         [Input("loadBalancerBillingType")]
         public Input<string>? LoadBalancerBillingType { get; set; }
@@ -182,10 +206,16 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? LoadBalancerName { get; set; }
 
         /// <summary>
-        /// The specification of the CLB.
+        /// The specification of the CLB, the value can be `small_1`, `small_2`, `medium_1`, `medium_2`, `large_1`, `large_2`.
         /// </summary>
         [Input("loadBalancerSpec", required: true)]
         public Input<string> LoadBalancerSpec { get; set; } = null!;
+
+        /// <summary>
+        /// The master zone ID of the CLB.
+        /// </summary>
+        [Input("masterZoneId")]
+        public Input<string>? MasterZoneId { get; set; }
 
         /// <summary>
         /// The reason of the console modification protection.
@@ -194,22 +224,46 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? ModificationProtectionReason { get; set; }
 
         /// <summary>
-        /// The status of the console modification protection.
+        /// The status of the console modification protection, the value can be `NonProtection` or `ConsoleProtection`.
         /// </summary>
         [Input("modificationProtectionStatus")]
         public Input<string>? ModificationProtectionStatus { get; set; }
 
         /// <summary>
+        /// The ProjectName of the CLB.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
         /// The region of the request.
         /// </summary>
-        [Input("regionId", required: true)]
-        public Input<string> RegionId { get; set; } = null!;
+        [Input("regionId")]
+        public Input<string>? RegionId { get; set; }
+
+        /// <summary>
+        /// The slave zone ID of the CLB.
+        /// </summary>
+        [Input("slaveZoneId")]
+        public Input<string>? SlaveZoneId { get; set; }
 
         /// <summary>
         /// The id of the Subnet.
         /// </summary>
         [Input("subnetId", required: true)]
         public Input<string> SubnetId { get; set; } = null!;
+
+        [Input("tags")]
+        private InputList<Inputs.ClbTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.ClbTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.ClbTagArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The type of the CLB. And optional choice contains `public` or `private`.
@@ -243,7 +297,7 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? EniAddress { get; set; }
 
         /// <summary>
-        /// The billing type of the CLB.
+        /// The billing type of the CLB, the value can be `PostPaid`.
         /// </summary>
         [Input("loadBalancerBillingType")]
         public Input<string>? LoadBalancerBillingType { get; set; }
@@ -255,10 +309,16 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? LoadBalancerName { get; set; }
 
         /// <summary>
-        /// The specification of the CLB.
+        /// The specification of the CLB, the value can be `small_1`, `small_2`, `medium_1`, `medium_2`, `large_1`, `large_2`.
         /// </summary>
         [Input("loadBalancerSpec")]
         public Input<string>? LoadBalancerSpec { get; set; }
+
+        /// <summary>
+        /// The master zone ID of the CLB.
+        /// </summary>
+        [Input("masterZoneId")]
+        public Input<string>? MasterZoneId { get; set; }
 
         /// <summary>
         /// The reason of the console modification protection.
@@ -267,10 +327,16 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? ModificationProtectionReason { get; set; }
 
         /// <summary>
-        /// The status of the console modification protection.
+        /// The status of the console modification protection, the value can be `NonProtection` or `ConsoleProtection`.
         /// </summary>
         [Input("modificationProtectionStatus")]
         public Input<string>? ModificationProtectionStatus { get; set; }
+
+        /// <summary>
+        /// The ProjectName of the CLB.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
 
         /// <summary>
         /// The region of the request.
@@ -279,10 +345,28 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? RegionId { get; set; }
 
         /// <summary>
+        /// The slave zone ID of the CLB.
+        /// </summary>
+        [Input("slaveZoneId")]
+        public Input<string>? SlaveZoneId { get; set; }
+
+        /// <summary>
         /// The id of the Subnet.
         /// </summary>
         [Input("subnetId")]
         public Input<string>? SubnetId { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.ClbTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.ClbTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.ClbTagGetArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The type of the CLB. And optional choice contains `public` or `private`.

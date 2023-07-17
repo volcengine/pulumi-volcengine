@@ -7,6 +7,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['AddressArgs', 'Address']
 
@@ -17,14 +19,18 @@ class AddressArgs:
                  bandwidth: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  isp: Optional[pulumi.Input[str]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
+                 name: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['AddressTagArgs']]]] = None):
         """
         The set of arguments for constructing a Address resource.
         :param pulumi.Input[str] billing_type: The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
-        :param pulumi.Input[int] bandwidth: The peek bandwidth of the EIP.
+        :param pulumi.Input[int] bandwidth: The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
         :param pulumi.Input[str] description: The description of the EIP.
-        :param pulumi.Input[str] isp: The ISP of the EIP.
+        :param pulumi.Input[str] isp: The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
         :param pulumi.Input[str] name: The name of the EIP Address.
+        :param pulumi.Input[str] project_name: The ProjectName of the EIP.
+        :param pulumi.Input[Sequence[pulumi.Input['AddressTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "billing_type", billing_type)
         if bandwidth is not None:
@@ -35,6 +41,10 @@ class AddressArgs:
             pulumi.set(__self__, "isp", isp)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="billingType")
@@ -52,7 +62,7 @@ class AddressArgs:
     @pulumi.getter
     def bandwidth(self) -> Optional[pulumi.Input[int]]:
         """
-        The peek bandwidth of the EIP.
+        The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
         """
         return pulumi.get(self, "bandwidth")
 
@@ -76,7 +86,7 @@ class AddressArgs:
     @pulumi.getter
     def isp(self) -> Optional[pulumi.Input[str]]:
         """
-        The ISP of the EIP.
+        The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
         """
         return pulumi.get(self, "isp")
 
@@ -96,6 +106,30 @@ class AddressArgs:
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of the EIP.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AddressTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AddressTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _AddressState:
@@ -106,16 +140,20 @@ class _AddressState:
                  eip_address: Optional[pulumi.Input[str]] = None,
                  isp: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 status: Optional[pulumi.Input[str]] = None):
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 status: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['AddressTagArgs']]]] = None):
         """
         Input properties used for looking up and filtering Address resources.
-        :param pulumi.Input[int] bandwidth: The peek bandwidth of the EIP.
+        :param pulumi.Input[int] bandwidth: The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
         :param pulumi.Input[str] billing_type: The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
         :param pulumi.Input[str] description: The description of the EIP.
         :param pulumi.Input[str] eip_address: The ip address of the EIP.
-        :param pulumi.Input[str] isp: The ISP of the EIP.
+        :param pulumi.Input[str] isp: The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
         :param pulumi.Input[str] name: The name of the EIP Address.
+        :param pulumi.Input[str] project_name: The ProjectName of the EIP.
         :param pulumi.Input[str] status: The status of the EIP.
+        :param pulumi.Input[Sequence[pulumi.Input['AddressTagArgs']]] tags: Tags.
         """
         if bandwidth is not None:
             pulumi.set(__self__, "bandwidth", bandwidth)
@@ -129,14 +167,18 @@ class _AddressState:
             pulumi.set(__self__, "isp", isp)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter
     def bandwidth(self) -> Optional[pulumi.Input[int]]:
         """
-        The peek bandwidth of the EIP.
+        The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
         """
         return pulumi.get(self, "bandwidth")
 
@@ -184,7 +226,7 @@ class _AddressState:
     @pulumi.getter
     def isp(self) -> Optional[pulumi.Input[str]]:
         """
-        The ISP of the EIP.
+        The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
         """
         return pulumi.get(self, "isp")
 
@@ -205,6 +247,18 @@ class _AddressState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of the EIP.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
@@ -215,6 +269,18 @@ class _AddressState:
     @status.setter
     def status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AddressTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AddressTagArgs']]]]):
+        pulumi.set(self, "tags", value)
 
 
 class Address(pulumi.CustomResource):
@@ -227,9 +293,10 @@ class Address(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  isp: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressTagArgs']]]]] = None,
                  __props__=None):
         """
-        Provides a resource to manage eip address
         ## Example Usage
 
         ```python
@@ -240,7 +307,8 @@ class Address(pulumi.CustomResource):
             bandwidth=1,
             billing_type="PostPaidByBandwidth",
             description="tf-test",
-            isp="BGP")
+            isp="ChinaUnicom",
+            project_name="yuwenhao")
         ```
 
         ## Import
@@ -248,16 +316,18 @@ class Address(pulumi.CustomResource):
         Eip address can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Eip/address:Address default eip-274oj9a8rs9a87fap8sf9515b
+         $ pulumi import volcengine:eip/address:Address default eip-274oj9a8rs9a87fap8sf9515b
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] bandwidth: The peek bandwidth of the EIP.
+        :param pulumi.Input[int] bandwidth: The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
         :param pulumi.Input[str] billing_type: The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
         :param pulumi.Input[str] description: The description of the EIP.
-        :param pulumi.Input[str] isp: The ISP of the EIP.
+        :param pulumi.Input[str] isp: The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
         :param pulumi.Input[str] name: The name of the EIP Address.
+        :param pulumi.Input[str] project_name: The ProjectName of the EIP.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressTagArgs']]]] tags: Tags.
         """
         ...
     @overload
@@ -266,7 +336,6 @@ class Address(pulumi.CustomResource):
                  args: AddressArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Provides a resource to manage eip address
         ## Example Usage
 
         ```python
@@ -277,7 +346,8 @@ class Address(pulumi.CustomResource):
             bandwidth=1,
             billing_type="PostPaidByBandwidth",
             description="tf-test",
-            isp="BGP")
+            isp="ChinaUnicom",
+            project_name="yuwenhao")
         ```
 
         ## Import
@@ -285,7 +355,7 @@ class Address(pulumi.CustomResource):
         Eip address can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Eip/address:Address default eip-274oj9a8rs9a87fap8sf9515b
+         $ pulumi import volcengine:eip/address:Address default eip-274oj9a8rs9a87fap8sf9515b
         ```
 
         :param str resource_name: The name of the resource.
@@ -308,6 +378,8 @@ class Address(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  isp: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressTagArgs']]]]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -327,10 +399,12 @@ class Address(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["isp"] = isp
             __props__.__dict__["name"] = name
+            __props__.__dict__["project_name"] = project_name
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["eip_address"] = None
             __props__.__dict__["status"] = None
         super(Address, __self__).__init__(
-            'volcengine:Eip/address:Address',
+            'volcengine:eip/address:Address',
             resource_name,
             __props__,
             opts)
@@ -345,7 +419,9 @@ class Address(pulumi.CustomResource):
             eip_address: Optional[pulumi.Input[str]] = None,
             isp: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            status: Optional[pulumi.Input[str]] = None) -> 'Address':
+            project_name: Optional[pulumi.Input[str]] = None,
+            status: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressTagArgs']]]]] = None) -> 'Address':
         """
         Get an existing Address resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -353,13 +429,15 @@ class Address(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] bandwidth: The peek bandwidth of the EIP.
+        :param pulumi.Input[int] bandwidth: The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
         :param pulumi.Input[str] billing_type: The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
         :param pulumi.Input[str] description: The description of the EIP.
         :param pulumi.Input[str] eip_address: The ip address of the EIP.
-        :param pulumi.Input[str] isp: The ISP of the EIP.
+        :param pulumi.Input[str] isp: The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
         :param pulumi.Input[str] name: The name of the EIP Address.
+        :param pulumi.Input[str] project_name: The ProjectName of the EIP.
         :param pulumi.Input[str] status: The status of the EIP.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressTagArgs']]]] tags: Tags.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -371,14 +449,16 @@ class Address(pulumi.CustomResource):
         __props__.__dict__["eip_address"] = eip_address
         __props__.__dict__["isp"] = isp
         __props__.__dict__["name"] = name
+        __props__.__dict__["project_name"] = project_name
         __props__.__dict__["status"] = status
+        __props__.__dict__["tags"] = tags
         return Address(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter
     def bandwidth(self) -> pulumi.Output[int]:
         """
-        The peek bandwidth of the EIP.
+        The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
         """
         return pulumi.get(self, "bandwidth")
 
@@ -410,7 +490,7 @@ class Address(pulumi.CustomResource):
     @pulumi.getter
     def isp(self) -> pulumi.Output[str]:
         """
-        The ISP of the EIP.
+        The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
         """
         return pulumi.get(self, "isp")
 
@@ -423,10 +503,26 @@ class Address(pulumi.CustomResource):
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        The ProjectName of the EIP.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
         """
         The status of the EIP.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.AddressTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 

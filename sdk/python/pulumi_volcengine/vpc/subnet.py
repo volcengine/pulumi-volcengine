@@ -17,6 +17,8 @@ class SubnetArgs:
                  vpc_id: pulumi.Input[str],
                  zone_id: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
+                 enable_ipv6: Optional[pulumi.Input[bool]] = None,
+                 ipv6_cidr_block: Optional[pulumi.Input[int]] = None,
                  subnet_name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Subnet resource.
@@ -24,6 +26,8 @@ class SubnetArgs:
         :param pulumi.Input[str] vpc_id: Id of the VPC.
         :param pulumi.Input[str] zone_id: Id of the Zone.
         :param pulumi.Input[str] description: The description of the Subnet.
+        :param pulumi.Input[bool] enable_ipv6: Specifies whether to enable the IPv6 CIDR block of the Subnet. This field is only valid when modifying the Subnet.
+        :param pulumi.Input[int] ipv6_cidr_block: The last eight bits of the IPv6 CIDR block of the Subnet. Valid values: 0 - 255.
         :param pulumi.Input[str] subnet_name: The name of the Subnet.
         """
         pulumi.set(__self__, "cidr_block", cidr_block)
@@ -31,6 +35,10 @@ class SubnetArgs:
         pulumi.set(__self__, "zone_id", zone_id)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if enable_ipv6 is not None:
+            pulumi.set(__self__, "enable_ipv6", enable_ipv6)
+        if ipv6_cidr_block is not None:
+            pulumi.set(__self__, "ipv6_cidr_block", ipv6_cidr_block)
         if subnet_name is not None:
             pulumi.set(__self__, "subnet_name", subnet_name)
 
@@ -83,6 +91,30 @@ class SubnetArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="enableIpv6")
+    def enable_ipv6(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies whether to enable the IPv6 CIDR block of the Subnet. This field is only valid when modifying the Subnet.
+        """
+        return pulumi.get(self, "enable_ipv6")
+
+    @enable_ipv6.setter
+    def enable_ipv6(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_ipv6", value)
+
+    @property
+    @pulumi.getter(name="ipv6CidrBlock")
+    def ipv6_cidr_block(self) -> Optional[pulumi.Input[int]]:
+        """
+        The last eight bits of the IPv6 CIDR block of the Subnet. Valid values: 0 - 255.
+        """
+        return pulumi.get(self, "ipv6_cidr_block")
+
+    @ipv6_cidr_block.setter
+    def ipv6_cidr_block(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ipv6_cidr_block", value)
+
+    @property
     @pulumi.getter(name="subnetName")
     def subnet_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -101,6 +133,8 @@ class _SubnetState:
                  cidr_block: Optional[pulumi.Input[str]] = None,
                  creation_time: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 enable_ipv6: Optional[pulumi.Input[bool]] = None,
+                 ipv6_cidr_block: Optional[pulumi.Input[int]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  subnet_name: Optional[pulumi.Input[str]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
@@ -110,6 +144,8 @@ class _SubnetState:
         :param pulumi.Input[str] cidr_block: A network address block which should be a subnet of the three internal network segments (10.0.0.0/16, 172.16.0.0/12 and 192.168.0.0/16).
         :param pulumi.Input[str] creation_time: Creation time of Subnet.
         :param pulumi.Input[str] description: The description of the Subnet.
+        :param pulumi.Input[bool] enable_ipv6: Specifies whether to enable the IPv6 CIDR block of the Subnet. This field is only valid when modifying the Subnet.
+        :param pulumi.Input[int] ipv6_cidr_block: The last eight bits of the IPv6 CIDR block of the Subnet. Valid values: 0 - 255.
         :param pulumi.Input[str] status: Status of Subnet.
         :param pulumi.Input[str] subnet_name: The name of the Subnet.
         :param pulumi.Input[str] vpc_id: Id of the VPC.
@@ -121,6 +157,10 @@ class _SubnetState:
             pulumi.set(__self__, "creation_time", creation_time)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if enable_ipv6 is not None:
+            pulumi.set(__self__, "enable_ipv6", enable_ipv6)
+        if ipv6_cidr_block is not None:
+            pulumi.set(__self__, "ipv6_cidr_block", ipv6_cidr_block)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if subnet_name is not None:
@@ -165,6 +205,30 @@ class _SubnetState:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="enableIpv6")
+    def enable_ipv6(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies whether to enable the IPv6 CIDR block of the Subnet. This field is only valid when modifying the Subnet.
+        """
+        return pulumi.get(self, "enable_ipv6")
+
+    @enable_ipv6.setter
+    def enable_ipv6(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_ipv6", value)
+
+    @property
+    @pulumi.getter(name="ipv6CidrBlock")
+    def ipv6_cidr_block(self) -> Optional[pulumi.Input[int]]:
+        """
+        The last eight bits of the IPv6 CIDR block of the Subnet. Valid values: 0 - 255.
+        """
+        return pulumi.get(self, "ipv6_cidr_block")
+
+    @ipv6_cidr_block.setter
+    def ipv6_cidr_block(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ipv6_cidr_block", value)
 
     @property
     @pulumi.getter
@@ -222,6 +286,8 @@ class Subnet(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cidr_block: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 enable_ipv6: Optional[pulumi.Input[bool]] = None,
+                 ipv6_cidr_block: Optional[pulumi.Input[int]] = None,
                  subnet_name: Optional[pulumi.Input[str]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  zone_id: Optional[pulumi.Input[str]] = None,
@@ -246,13 +312,15 @@ class Subnet(pulumi.CustomResource):
         Subnet can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Vpc/subnet:Subnet default subnet-274oj9a8rs9a87fap8sf9515b
+         $ pulumi import volcengine:vpc/subnet:Subnet default subnet-274oj9a8rs9a87fap8sf9515b
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cidr_block: A network address block which should be a subnet of the three internal network segments (10.0.0.0/16, 172.16.0.0/12 and 192.168.0.0/16).
         :param pulumi.Input[str] description: The description of the Subnet.
+        :param pulumi.Input[bool] enable_ipv6: Specifies whether to enable the IPv6 CIDR block of the Subnet. This field is only valid when modifying the Subnet.
+        :param pulumi.Input[int] ipv6_cidr_block: The last eight bits of the IPv6 CIDR block of the Subnet. Valid values: 0 - 255.
         :param pulumi.Input[str] subnet_name: The name of the Subnet.
         :param pulumi.Input[str] vpc_id: Id of the VPC.
         :param pulumi.Input[str] zone_id: Id of the Zone.
@@ -283,7 +351,7 @@ class Subnet(pulumi.CustomResource):
         Subnet can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Vpc/subnet:Subnet default subnet-274oj9a8rs9a87fap8sf9515b
+         $ pulumi import volcengine:vpc/subnet:Subnet default subnet-274oj9a8rs9a87fap8sf9515b
         ```
 
         :param str resource_name: The name of the resource.
@@ -303,6 +371,8 @@ class Subnet(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cidr_block: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 enable_ipv6: Optional[pulumi.Input[bool]] = None,
+                 ipv6_cidr_block: Optional[pulumi.Input[int]] = None,
                  subnet_name: Optional[pulumi.Input[str]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  zone_id: Optional[pulumi.Input[str]] = None,
@@ -322,6 +392,8 @@ class Subnet(pulumi.CustomResource):
                 raise TypeError("Missing required property 'cidr_block'")
             __props__.__dict__["cidr_block"] = cidr_block
             __props__.__dict__["description"] = description
+            __props__.__dict__["enable_ipv6"] = enable_ipv6
+            __props__.__dict__["ipv6_cidr_block"] = ipv6_cidr_block
             __props__.__dict__["subnet_name"] = subnet_name
             if vpc_id is None and not opts.urn:
                 raise TypeError("Missing required property 'vpc_id'")
@@ -332,7 +404,7 @@ class Subnet(pulumi.CustomResource):
             __props__.__dict__["creation_time"] = None
             __props__.__dict__["status"] = None
         super(Subnet, __self__).__init__(
-            'volcengine:Vpc/subnet:Subnet',
+            'volcengine:vpc/subnet:Subnet',
             resource_name,
             __props__,
             opts)
@@ -344,6 +416,8 @@ class Subnet(pulumi.CustomResource):
             cidr_block: Optional[pulumi.Input[str]] = None,
             creation_time: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            enable_ipv6: Optional[pulumi.Input[bool]] = None,
+            ipv6_cidr_block: Optional[pulumi.Input[int]] = None,
             status: Optional[pulumi.Input[str]] = None,
             subnet_name: Optional[pulumi.Input[str]] = None,
             vpc_id: Optional[pulumi.Input[str]] = None,
@@ -358,6 +432,8 @@ class Subnet(pulumi.CustomResource):
         :param pulumi.Input[str] cidr_block: A network address block which should be a subnet of the three internal network segments (10.0.0.0/16, 172.16.0.0/12 and 192.168.0.0/16).
         :param pulumi.Input[str] creation_time: Creation time of Subnet.
         :param pulumi.Input[str] description: The description of the Subnet.
+        :param pulumi.Input[bool] enable_ipv6: Specifies whether to enable the IPv6 CIDR block of the Subnet. This field is only valid when modifying the Subnet.
+        :param pulumi.Input[int] ipv6_cidr_block: The last eight bits of the IPv6 CIDR block of the Subnet. Valid values: 0 - 255.
         :param pulumi.Input[str] status: Status of Subnet.
         :param pulumi.Input[str] subnet_name: The name of the Subnet.
         :param pulumi.Input[str] vpc_id: Id of the VPC.
@@ -370,6 +446,8 @@ class Subnet(pulumi.CustomResource):
         __props__.__dict__["cidr_block"] = cidr_block
         __props__.__dict__["creation_time"] = creation_time
         __props__.__dict__["description"] = description
+        __props__.__dict__["enable_ipv6"] = enable_ipv6
+        __props__.__dict__["ipv6_cidr_block"] = ipv6_cidr_block
         __props__.__dict__["status"] = status
         __props__.__dict__["subnet_name"] = subnet_name
         __props__.__dict__["vpc_id"] = vpc_id
@@ -399,6 +477,22 @@ class Subnet(pulumi.CustomResource):
         The description of the Subnet.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="enableIpv6")
+    def enable_ipv6(self) -> pulumi.Output[bool]:
+        """
+        Specifies whether to enable the IPv6 CIDR block of the Subnet. This field is only valid when modifying the Subnet.
+        """
+        return pulumi.get(self, "enable_ipv6")
+
+    @property
+    @pulumi.getter(name="ipv6CidrBlock")
+    def ipv6_cidr_block(self) -> pulumi.Output[int]:
+        """
+        The last eight bits of the IPv6 CIDR block of the Subnet. Valid values: 0 - 255.
+        """
+        return pulumi.get(self, "ipv6_cidr_block")
 
     @property
     @pulumi.getter

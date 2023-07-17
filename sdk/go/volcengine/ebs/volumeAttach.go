@@ -18,22 +18,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Ebs"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/ebs"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Ebs.NewVolumeAttach(ctx, "foo", &Ebs.VolumeAttachArgs{
-// 			InstanceId: pulumi.String("i-4ay59ww7dq8dt9c29hd4"),
-// 			VolumeId:   pulumi.String("vol-3tzl52wubz3b9fciw7ev"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := ebs.NewVolumeAttach(ctx, "foo", &ebs.VolumeAttachArgs{
+//				InstanceId: pulumi.String("i-4ay59ww7dq8dt9c29hd4"),
+//				VolumeId:   pulumi.String("vol-3tzl52wubz3b9fciw7ev"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -41,7 +44,9 @@ import (
 // VolumeAttach can be imported using the id, e.g.
 //
 // ```sh
-//  $ pulumi import volcengine:Ebs/volumeAttach:VolumeAttach default vol-abc12345:i-abc12345
+//
+//	$ pulumi import volcengine:ebs/volumeAttach:VolumeAttach default vol-abc12345:i-abc12345
+//
 // ```
 type VolumeAttach struct {
 	pulumi.CustomResourceState
@@ -74,7 +79,7 @@ func NewVolumeAttach(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'VolumeId'")
 	}
 	var resource VolumeAttach
-	err := ctx.RegisterResource("volcengine:Ebs/volumeAttach:VolumeAttach", name, args, &resource, opts...)
+	err := ctx.RegisterResource("volcengine:ebs/volumeAttach:VolumeAttach", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -86,7 +91,7 @@ func NewVolumeAttach(ctx *pulumi.Context,
 func GetVolumeAttach(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *VolumeAttachState, opts ...pulumi.ResourceOption) (*VolumeAttach, error) {
 	var resource VolumeAttach
-	err := ctx.ReadResource("volcengine:Ebs/volumeAttach:VolumeAttach", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("volcengine:ebs/volumeAttach:VolumeAttach", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -173,7 +178,7 @@ func (i *VolumeAttach) ToVolumeAttachOutputWithContext(ctx context.Context) Volu
 // VolumeAttachArrayInput is an input type that accepts VolumeAttachArray and VolumeAttachArrayOutput values.
 // You can construct a concrete instance of `VolumeAttachArrayInput` via:
 //
-//          VolumeAttachArray{ VolumeAttachArgs{...} }
+//	VolumeAttachArray{ VolumeAttachArgs{...} }
 type VolumeAttachArrayInput interface {
 	pulumi.Input
 
@@ -198,7 +203,7 @@ func (i VolumeAttachArray) ToVolumeAttachArrayOutputWithContext(ctx context.Cont
 // VolumeAttachMapInput is an input type that accepts VolumeAttachMap and VolumeAttachMapOutput values.
 // You can construct a concrete instance of `VolumeAttachMapInput` via:
 //
-//          VolumeAttachMap{ "key": VolumeAttachArgs{...} }
+//	VolumeAttachMap{ "key": VolumeAttachArgs{...} }
 type VolumeAttachMapInput interface {
 	pulumi.Input
 

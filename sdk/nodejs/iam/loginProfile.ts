@@ -12,7 +12,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = new volcengine.Iam.LoginProfile("foo", {
+ * const foo = new volcengine.iam.LoginProfile("foo", {
  *     loginAllowed: true,
  *     password: "******",
  *     passwordResetRequired: false,
@@ -25,7 +25,7 @@ import * as utilities from "../utilities";
  * Login profile can be imported using the UserName, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:Iam/loginProfile:LoginProfile default user_name
+ *  $ pulumi import volcengine:iam/loginProfile:LoginProfile default user_name
  * ```
  */
 export class LoginProfile extends pulumi.CustomResource {
@@ -43,7 +43,7 @@ export class LoginProfile extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'volcengine:Iam/loginProfile:LoginProfile';
+    public static readonly __pulumiType = 'volcengine:iam/loginProfile:LoginProfile';
 
     /**
      * Returns true if the given object is an instance of LoginProfile.  This is designed to work even

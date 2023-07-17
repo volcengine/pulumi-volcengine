@@ -9,46 +9,417 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
-    'AclAclEntryArgs',
+    'NetworkAclEgressAclEntryArgs',
+    'NetworkAclIngressAclEntryArgs',
+    'NetworkInterfaceTagArgs',
+    'NetworkInterfacesTagArgs',
+    'SecurityGroupTagArgs',
+    'SecurityGroupsTagArgs',
     'VpcAssociateCenArgs',
+    'VpcTagArgs',
+    'VpcsTagArgs',
 ]
 
 @pulumi.input_type
-class AclAclEntryArgs:
+class NetworkAclEgressAclEntryArgs:
     def __init__(__self__, *,
-                 entry: pulumi.Input[str],
-                 description: Optional[pulumi.Input[str]] = None):
+                 description: Optional[pulumi.Input[str]] = None,
+                 destination_cidr_ip: Optional[pulumi.Input[str]] = None,
+                 network_acl_entry_id: Optional[pulumi.Input[str]] = None,
+                 network_acl_entry_name: Optional[pulumi.Input[str]] = None,
+                 policy: Optional[pulumi.Input[str]] = None,
+                 port: Optional[pulumi.Input[str]] = None,
+                 priority: Optional[pulumi.Input[int]] = None,
+                 protocol: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] entry: The content of the AclEntry.
-        :param pulumi.Input[str] description: The description of the AclEntry.
+        :param pulumi.Input[str] description: The description of entry.
+        :param pulumi.Input[str] destination_cidr_ip: The DestinationCidrIp of entry.
+        :param pulumi.Input[str] network_acl_entry_name: The name of entry.
+        :param pulumi.Input[str] policy: The policy of entry.
+        :param pulumi.Input[str] port: The port of entry.
+        :param pulumi.Input[str] protocol: The protocol of entry.
         """
-        pulumi.set(__self__, "entry", entry)
         if description is not None:
             pulumi.set(__self__, "description", description)
-
-    @property
-    @pulumi.getter
-    def entry(self) -> pulumi.Input[str]:
-        """
-        The content of the AclEntry.
-        """
-        return pulumi.get(self, "entry")
-
-    @entry.setter
-    def entry(self, value: pulumi.Input[str]):
-        pulumi.set(self, "entry", value)
+        if destination_cidr_ip is not None:
+            pulumi.set(__self__, "destination_cidr_ip", destination_cidr_ip)
+        if network_acl_entry_id is not None:
+            pulumi.set(__self__, "network_acl_entry_id", network_acl_entry_id)
+        if network_acl_entry_name is not None:
+            pulumi.set(__self__, "network_acl_entry_name", network_acl_entry_name)
+        if policy is not None:
+            pulumi.set(__self__, "policy", policy)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
 
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        The description of the AclEntry.
+        The description of entry.
         """
         return pulumi.get(self, "description")
 
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="destinationCidrIp")
+    def destination_cidr_ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        The DestinationCidrIp of entry.
+        """
+        return pulumi.get(self, "destination_cidr_ip")
+
+    @destination_cidr_ip.setter
+    def destination_cidr_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "destination_cidr_ip", value)
+
+    @property
+    @pulumi.getter(name="networkAclEntryId")
+    def network_acl_entry_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "network_acl_entry_id")
+
+    @network_acl_entry_id.setter
+    def network_acl_entry_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "network_acl_entry_id", value)
+
+    @property
+    @pulumi.getter(name="networkAclEntryName")
+    def network_acl_entry_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of entry.
+        """
+        return pulumi.get(self, "network_acl_entry_name")
+
+    @network_acl_entry_name.setter
+    def network_acl_entry_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "network_acl_entry_name", value)
+
+    @property
+    @pulumi.getter
+    def policy(self) -> Optional[pulumi.Input[str]]:
+        """
+        The policy of entry.
+        """
+        return pulumi.get(self, "policy")
+
+    @policy.setter
+    def policy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "policy", value)
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[str]]:
+        """
+        The port of entry.
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "port", value)
+
+    @property
+    @pulumi.getter
+    def priority(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "priority")
+
+    @priority.setter
+    def priority(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "priority", value)
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        The protocol of entry.
+        """
+        return pulumi.get(self, "protocol")
+
+    @protocol.setter
+    def protocol(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "protocol", value)
+
+
+@pulumi.input_type
+class NetworkAclIngressAclEntryArgs:
+    def __init__(__self__, *,
+                 description: Optional[pulumi.Input[str]] = None,
+                 network_acl_entry_id: Optional[pulumi.Input[str]] = None,
+                 network_acl_entry_name: Optional[pulumi.Input[str]] = None,
+                 policy: Optional[pulumi.Input[str]] = None,
+                 port: Optional[pulumi.Input[str]] = None,
+                 priority: Optional[pulumi.Input[int]] = None,
+                 protocol: Optional[pulumi.Input[str]] = None,
+                 source_cidr_ip: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] description: The description of entry.
+        :param pulumi.Input[str] network_acl_entry_name: The name of entry.
+        :param pulumi.Input[str] policy: The policy of entry.
+        :param pulumi.Input[str] port: The port of entry.
+        :param pulumi.Input[str] protocol: The protocol of entry.
+        :param pulumi.Input[str] source_cidr_ip: The SourceCidrIp of entry.
+        """
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if network_acl_entry_id is not None:
+            pulumi.set(__self__, "network_acl_entry_id", network_acl_entry_id)
+        if network_acl_entry_name is not None:
+            pulumi.set(__self__, "network_acl_entry_name", network_acl_entry_name)
+        if policy is not None:
+            pulumi.set(__self__, "policy", policy)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+        if source_cidr_ip is not None:
+            pulumi.set(__self__, "source_cidr_ip", source_cidr_ip)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        The description of entry.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="networkAclEntryId")
+    def network_acl_entry_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "network_acl_entry_id")
+
+    @network_acl_entry_id.setter
+    def network_acl_entry_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "network_acl_entry_id", value)
+
+    @property
+    @pulumi.getter(name="networkAclEntryName")
+    def network_acl_entry_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of entry.
+        """
+        return pulumi.get(self, "network_acl_entry_name")
+
+    @network_acl_entry_name.setter
+    def network_acl_entry_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "network_acl_entry_name", value)
+
+    @property
+    @pulumi.getter
+    def policy(self) -> Optional[pulumi.Input[str]]:
+        """
+        The policy of entry.
+        """
+        return pulumi.get(self, "policy")
+
+    @policy.setter
+    def policy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "policy", value)
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[str]]:
+        """
+        The port of entry.
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "port", value)
+
+    @property
+    @pulumi.getter
+    def priority(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "priority")
+
+    @priority.setter
+    def priority(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "priority", value)
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        The protocol of entry.
+        """
+        return pulumi.get(self, "protocol")
+
+    @protocol.setter
+    def protocol(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "protocol", value)
+
+    @property
+    @pulumi.getter(name="sourceCidrIp")
+    def source_cidr_ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        The SourceCidrIp of entry.
+        """
+        return pulumi.get(self, "source_cidr_ip")
+
+    @source_cidr_ip.setter
+    def source_cidr_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source_cidr_ip", value)
+
+
+@pulumi.input_type
+class NetworkInterfaceTagArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class NetworkInterfacesTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class SecurityGroupTagArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class SecurityGroupsTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
 
 
 @pulumi.input_type
@@ -104,5 +475,79 @@ class VpcAssociateCenArgs:
     @cen_status.setter
     def cen_status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "cen_status", value)
+
+
+@pulumi.input_type
+class VpcTagArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class VpcsTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
 
 

@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultPolicies = pulumi.output(volcengine.Iam.Policies({
+ * const defaultPolicies = pulumi.output(volcengine.iam.Policies({
  *     query: "AdministratorAccess",
  * }));
  * ```
@@ -25,12 +25,14 @@ export function policies(args?: PoliciesArgs, opts?: pulumi.InvokeOptions): Prom
     }
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-    return pulumi.runtime.invoke("volcengine:Iam/policies:Policies", {
+    return pulumi.runtime.invoke("volcengine:iam/policies:Policies", {
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
         "query": args.query,
+        "roleName": args.roleName,
         "scope": args.scope,
         "status": args.status,
+        "userName": args.userName,
     }, opts);
 }
 
@@ -51,6 +53,10 @@ export interface PoliciesArgs {
      */
     query?: string;
     /**
+     * The name of the IAM role.
+     */
+    roleName?: string;
+    /**
      * The scope of the Policy.
      */
     scope?: string;
@@ -58,6 +64,10 @@ export interface PoliciesArgs {
      * The status of policy.
      */
     status?: string;
+    /**
+     * The name of the IAM user.
+     */
+    userName?: string;
 }
 
 /**
@@ -73,14 +83,22 @@ export interface PoliciesResult {
     /**
      * The collection of Policy query.
      */
-    readonly policies: outputs.Iam.PoliciesPolicy[];
+    readonly policies: outputs.iam.PoliciesPolicy[];
     readonly query?: string;
+    /**
+     * The name of the IAM role.The data show only query with role_name.
+     */
+    readonly roleName?: string;
     readonly scope?: string;
     readonly status?: string;
     /**
      * The total count of Policy query.
      */
     readonly totalCount: number;
+    /**
+     * The name of the IAM user.The data show only query with user_name.
+     */
+    readonly userName?: string;
 }
 
 export function policiesOutput(args?: PoliciesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<PoliciesResult> {
@@ -104,6 +122,10 @@ export interface PoliciesOutputArgs {
      */
     query?: pulumi.Input<string>;
     /**
+     * The name of the IAM role.
+     */
+    roleName?: pulumi.Input<string>;
+    /**
      * The scope of the Policy.
      */
     scope?: pulumi.Input<string>;
@@ -111,4 +133,8 @@ export interface PoliciesOutputArgs {
      * The status of policy.
      */
     status?: pulumi.Input<string>;
+    /**
+     * The name of the IAM user.
+     */
+    userName?: pulumi.Input<string>;
 }

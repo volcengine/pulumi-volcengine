@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultRouteTables = pulumi.output(volcengine.Vpc.RouteTables({
+ * const defaultRouteTables = pulumi.output(volcengine.vpc.RouteTables({
  *     ids: [
  *         "vtb-274e19skkuhog7fap8u4i8ird",
  *         "vtb-2744hslq5b7r47fap8tjomgnj",
@@ -29,9 +29,10 @@ export function routeTables(args?: RouteTablesArgs, opts?: pulumi.InvokeOptions)
     }
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-    return pulumi.runtime.invoke("volcengine:Vpc/routeTables:RouteTables", {
+    return pulumi.runtime.invoke("volcengine:vpc/routeTables:RouteTables", {
         "ids": args.ids,
         "outputFile": args.outputFile,
+        "projectName": args.projectName,
         "routeTableName": args.routeTableName,
         "vpcId": args.vpcId,
     }, opts);
@@ -49,6 +50,10 @@ export interface RouteTablesArgs {
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * The ProjectName of the route table.
+     */
+    projectName?: string;
     /**
      * A name of route table.
      */
@@ -70,13 +75,17 @@ export interface RouteTablesResult {
     readonly ids?: string[];
     readonly outputFile?: string;
     /**
+     * The ProjectName of the route table.
+     */
+    readonly projectName?: string;
+    /**
      * The name of the route table.
      */
     readonly routeTableName?: string;
     /**
      * The collection of route tables.
      */
-    readonly routeTables: outputs.Vpc.RouteTablesRouteTable[];
+    readonly routeTables: outputs.vpc.RouteTablesRouteTable[];
     /**
      * The total count of route table query.
      */
@@ -103,6 +112,10 @@ export interface RouteTablesOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The ProjectName of the route table.
+     */
+    projectName?: pulumi.Input<string>;
     /**
      * A name of route table.
      */

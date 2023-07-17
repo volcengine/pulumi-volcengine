@@ -22,9 +22,17 @@ namespace Pulumi.Volcengine.Ecs.Outputs
         /// </summary>
         public readonly string CreatedAt;
         /// <summary>
+        /// The ID of DeploymentSet.
+        /// </summary>
+        public readonly string DeploymentSetId;
+        /// <summary>
         /// The description of ECS instance.
         /// </summary>
         public readonly string Description;
+        /// <summary>
+        /// The GPU device info of Instance.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.InstancesInstanceGpuDeviceResult> GpuDevices;
         /// <summary>
         /// The host name of ECS instance.
         /// </summary>
@@ -50,6 +58,18 @@ namespace Pulumi.Volcengine.Ecs.Outputs
         /// </summary>
         public readonly string InstanceType;
         /// <summary>
+        /// The number of IPv6 addresses of the ECS instance.
+        /// </summary>
+        public readonly int Ipv6AddressCount;
+        /// <summary>
+        /// The  IPv6 address list of the ECS instance.
+        /// </summary>
+        public readonly ImmutableArray<string> Ipv6Addresses;
+        /// <summary>
+        /// The Flag of GPU instance.If the instance is GPU,The flag is true.
+        /// </summary>
+        public readonly bool IsGpu;
+        /// <summary>
         /// The ssh key ID of ECS instance.
         /// </summary>
         public readonly string KeyPairId;
@@ -74,6 +94,14 @@ namespace Pulumi.Volcengine.Ecs.Outputs
         /// </summary>
         public readonly string OsType;
         /// <summary>
+        /// The ProjectName of ECS instance.
+        /// </summary>
+        public readonly string ProjectName;
+        /// <summary>
+        /// The spot strategy of ECS instance.
+        /// </summary>
+        public readonly string SpotStrategy;
+        /// <summary>
         /// The status of ECS instance.
         /// </summary>
         public readonly string Status;
@@ -81,6 +109,10 @@ namespace Pulumi.Volcengine.Ecs.Outputs
         /// The stop mode of ECS instance.
         /// </summary>
         public readonly string StoppedMode;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.InstancesInstanceTagResult> Tags;
         /// <summary>
         /// The update time of ECS instance.
         /// </summary>
@@ -104,7 +136,11 @@ namespace Pulumi.Volcengine.Ecs.Outputs
 
             string createdAt,
 
+            string deploymentSetId,
+
             string description,
+
+            ImmutableArray<Outputs.InstancesInstanceGpuDeviceResult> gpuDevices,
 
             string hostName,
 
@@ -118,6 +154,12 @@ namespace Pulumi.Volcengine.Ecs.Outputs
 
             string instanceType,
 
+            int ipv6AddressCount,
+
+            ImmutableArray<string> ipv6Addresses,
+
+            bool isGpu,
+
             string keyPairId,
 
             string keyPairName,
@@ -130,9 +172,15 @@ namespace Pulumi.Volcengine.Ecs.Outputs
 
             string osType,
 
+            string projectName,
+
+            string spotStrategy,
+
             string status,
 
             string stoppedMode,
+
+            ImmutableArray<Outputs.InstancesInstanceTagResult> tags,
 
             string updatedAt,
 
@@ -144,21 +192,29 @@ namespace Pulumi.Volcengine.Ecs.Outputs
         {
             Cpus = cpus;
             CreatedAt = createdAt;
+            DeploymentSetId = deploymentSetId;
             Description = description;
+            GpuDevices = gpuDevices;
             HostName = hostName;
             ImageId = imageId;
             InstanceChargeType = instanceChargeType;
             InstanceId = instanceId;
             InstanceName = instanceName;
             InstanceType = instanceType;
+            Ipv6AddressCount = ipv6AddressCount;
+            Ipv6Addresses = ipv6Addresses;
+            IsGpu = isGpu;
             KeyPairId = keyPairId;
             KeyPairName = keyPairName;
             MemorySize = memorySize;
             NetworkInterfaces = networkInterfaces;
             OsName = osName;
             OsType = osType;
+            ProjectName = projectName;
+            SpotStrategy = spotStrategy;
             Status = status;
             StoppedMode = stoppedMode;
+            Tags = tags;
             UpdatedAt = updatedAt;
             Volumes = volumes;
             VpcId = vpcId;

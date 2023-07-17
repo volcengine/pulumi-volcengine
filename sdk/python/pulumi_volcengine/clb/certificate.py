@@ -16,13 +16,15 @@ class CertificateArgs:
                  private_key: pulumi.Input[str],
                  public_key: pulumi.Input[str],
                  certificate_name: Optional[pulumi.Input[str]] = None,
-                 description: Optional[pulumi.Input[str]] = None):
+                 description: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Certificate resource.
-        :param pulumi.Input[str] private_key: The private key of the Certificate.
-        :param pulumi.Input[str] public_key: The public key of the Certificate.
+        :param pulumi.Input[str] private_key: The private key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[str] public_key: The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] certificate_name: The name of the Certificate.
         :param pulumi.Input[str] description: The description of the Certificate.
+        :param pulumi.Input[str] project_name: The ProjectName of the Certificate.
         """
         pulumi.set(__self__, "private_key", private_key)
         pulumi.set(__self__, "public_key", public_key)
@@ -30,12 +32,14 @@ class CertificateArgs:
             pulumi.set(__self__, "certificate_name", certificate_name)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
 
     @property
     @pulumi.getter(name="privateKey")
     def private_key(self) -> pulumi.Input[str]:
         """
-        The private key of the Certificate.
+        The private key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         return pulumi.get(self, "private_key")
 
@@ -47,7 +51,7 @@ class CertificateArgs:
     @pulumi.getter(name="publicKey")
     def public_key(self) -> pulumi.Input[str]:
         """
-        The public key of the Certificate.
+        The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         return pulumi.get(self, "public_key")
 
@@ -79,6 +83,18 @@ class CertificateArgs:
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
 
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of the Certificate.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
 
 @pulumi.input_type
 class _CertificateState:
@@ -86,13 +102,15 @@ class _CertificateState:
                  certificate_name: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  public_key: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Certificate resources.
         :param pulumi.Input[str] certificate_name: The name of the Certificate.
         :param pulumi.Input[str] description: The description of the Certificate.
-        :param pulumi.Input[str] private_key: The private key of the Certificate.
-        :param pulumi.Input[str] public_key: The public key of the Certificate.
+        :param pulumi.Input[str] private_key: The private key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[str] project_name: The ProjectName of the Certificate.
+        :param pulumi.Input[str] public_key: The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         if certificate_name is not None:
             pulumi.set(__self__, "certificate_name", certificate_name)
@@ -100,6 +118,8 @@ class _CertificateState:
             pulumi.set(__self__, "description", description)
         if private_key is not None:
             pulumi.set(__self__, "private_key", private_key)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if public_key is not None:
             pulumi.set(__self__, "public_key", public_key)
 
@@ -131,7 +151,7 @@ class _CertificateState:
     @pulumi.getter(name="privateKey")
     def private_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The private key of the Certificate.
+        The private key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         return pulumi.get(self, "private_key")
 
@@ -140,10 +160,22 @@ class _CertificateState:
         pulumi.set(self, "private_key", value)
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of the Certificate.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The public key of the Certificate.
+        The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         return pulumi.get(self, "public_key")
 
@@ -160,6 +192,7 @@ class Certificate(pulumi.CustomResource):
                  certificate_name: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  public_key: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -182,15 +215,16 @@ class Certificate(pulumi.CustomResource):
         Certificate can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Clb/certificate:Certificate default cert-2fe5k****c16o5oxruvtk3qf5
+         $ pulumi import volcengine:clb/certificate:Certificate default cert-2fe5k****c16o5oxruvtk3qf5
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] certificate_name: The name of the Certificate.
         :param pulumi.Input[str] description: The description of the Certificate.
-        :param pulumi.Input[str] private_key: The private key of the Certificate.
-        :param pulumi.Input[str] public_key: The public key of the Certificate.
+        :param pulumi.Input[str] private_key: The private key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[str] project_name: The ProjectName of the Certificate.
+        :param pulumi.Input[str] public_key: The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         ...
     @overload
@@ -218,7 +252,7 @@ class Certificate(pulumi.CustomResource):
         Certificate can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Clb/certificate:Certificate default cert-2fe5k****c16o5oxruvtk3qf5
+         $ pulumi import volcengine:clb/certificate:Certificate default cert-2fe5k****c16o5oxruvtk3qf5
         ```
 
         :param str resource_name: The name of the resource.
@@ -239,6 +273,7 @@ class Certificate(pulumi.CustomResource):
                  certificate_name: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  public_key: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
@@ -257,11 +292,12 @@ class Certificate(pulumi.CustomResource):
             if private_key is None and not opts.urn:
                 raise TypeError("Missing required property 'private_key'")
             __props__.__dict__["private_key"] = private_key
+            __props__.__dict__["project_name"] = project_name
             if public_key is None and not opts.urn:
                 raise TypeError("Missing required property 'public_key'")
             __props__.__dict__["public_key"] = public_key
         super(Certificate, __self__).__init__(
-            'volcengine:Clb/certificate:Certificate',
+            'volcengine:clb/certificate:Certificate',
             resource_name,
             __props__,
             opts)
@@ -273,6 +309,7 @@ class Certificate(pulumi.CustomResource):
             certificate_name: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             private_key: Optional[pulumi.Input[str]] = None,
+            project_name: Optional[pulumi.Input[str]] = None,
             public_key: Optional[pulumi.Input[str]] = None) -> 'Certificate':
         """
         Get an existing Certificate resource's state with the given name, id, and optional extra
@@ -283,8 +320,9 @@ class Certificate(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] certificate_name: The name of the Certificate.
         :param pulumi.Input[str] description: The description of the Certificate.
-        :param pulumi.Input[str] private_key: The private key of the Certificate.
-        :param pulumi.Input[str] public_key: The public key of the Certificate.
+        :param pulumi.Input[str] private_key: The private key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[str] project_name: The ProjectName of the Certificate.
+        :param pulumi.Input[str] public_key: The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -293,6 +331,7 @@ class Certificate(pulumi.CustomResource):
         __props__.__dict__["certificate_name"] = certificate_name
         __props__.__dict__["description"] = description
         __props__.__dict__["private_key"] = private_key
+        __props__.__dict__["project_name"] = project_name
         __props__.__dict__["public_key"] = public_key
         return Certificate(resource_name, opts=opts, __props__=__props__)
 
@@ -316,15 +355,23 @@ class Certificate(pulumi.CustomResource):
     @pulumi.getter(name="privateKey")
     def private_key(self) -> pulumi.Output[str]:
         """
-        The private key of the Certificate.
+        The private key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         return pulumi.get(self, "private_key")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        The ProjectName of the Certificate.
+        """
+        return pulumi.get(self, "project_name")
 
     @property
     @pulumi.getter(name="publicKey")
     def public_key(self) -> pulumi.Output[str]:
         """
-        The public key of the Certificate.
+        The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         return pulumi.get(self, "public_key")
 

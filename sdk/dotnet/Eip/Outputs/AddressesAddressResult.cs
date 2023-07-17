@@ -62,7 +62,7 @@ namespace Pulumi.Volcengine.Eip.Outputs
         /// </summary>
         public readonly string InstanceType;
         /// <summary>
-        /// An ISP of EIP Address.
+        /// An ISP of EIP Address, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
         /// </summary>
         public readonly string Isp;
         /// <summary>
@@ -78,9 +78,17 @@ namespace Pulumi.Volcengine.Eip.Outputs
         /// </summary>
         public readonly string OverdueTime;
         /// <summary>
-        /// A status of EIP.
+        /// The ProjectName of EIP.
+        /// </summary>
+        public readonly string ProjectName;
+        /// <summary>
+        /// A status of EIP, the value can be `Attaching` or `Detaching` or `Attached` or `Available`.
         /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.AddressesAddressTagResult> Tags;
         /// <summary>
         /// The last update time of the EIP.
         /// </summary>
@@ -120,7 +128,11 @@ namespace Pulumi.Volcengine.Eip.Outputs
 
             string overdueTime,
 
+            string projectName,
+
             string status,
+
+            ImmutableArray<Outputs.AddressesAddressTagResult> tags,
 
             string updatedAt)
         {
@@ -140,7 +152,9 @@ namespace Pulumi.Volcengine.Eip.Outputs
             LockReason = lockReason;
             Name = name;
             OverdueTime = overdueTime;
+            ProjectName = projectName;
             Status = status;
+            Tags = tags;
             UpdatedAt = updatedAt;
         }
     }

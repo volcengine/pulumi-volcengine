@@ -17,26 +17,29 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Vpc"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/vpc"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Vpc.RouteEntries(ctx, &vpc.RouteEntriesArgs{
-// 			Ids:          []interface{}{},
-// 			RouteTableId: "vtb-274e19skkuhog7fap8u4i8ird",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vpc.RouteEntries(ctx, &vpc.RouteEntriesArgs{
+//				Ids:          []interface{}{},
+//				RouteTableId: "vtb-274e19skkuhog7fap8u4i8ird",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func RouteEntries(ctx *pulumi.Context, args *RouteEntriesArgs, opts ...pulumi.InvokeOption) (*RouteEntriesResult, error) {
 	var rv RouteEntriesResult
-	err := ctx.Invoke("volcengine:Vpc/routeEntries:RouteEntries", args, &rv, opts...)
+	err := ctx.Invoke("volcengine:vpc/routeEntries:RouteEntries", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -51,7 +54,7 @@ type RouteEntriesArgs struct {
 	Ids []string `pulumi:"ids"`
 	// An id of next hop.
 	NextHopId *string `pulumi:"nextHopId"`
-	// A type of next hop.
+	// A type of next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`.
 	NextHopType *string `pulumi:"nextHopType"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
@@ -107,7 +110,7 @@ type RouteEntriesOutputArgs struct {
 	Ids pulumi.StringArrayInput `pulumi:"ids"`
 	// An id of next hop.
 	NextHopId pulumi.StringPtrInput `pulumi:"nextHopId"`
-	// A type of next hop.
+	// A type of next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`.
 	NextHopType pulumi.StringPtrInput `pulumi:"nextHopType"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`

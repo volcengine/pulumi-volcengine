@@ -18,24 +18,27 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Iam"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/iam"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Iam.NewLoginProfile(ctx, "foo", &Iam.LoginProfileArgs{
-// 			LoginAllowed:          pulumi.Bool(true),
-// 			Password:              pulumi.String("******"),
-// 			PasswordResetRequired: pulumi.Bool(false),
-// 			UserName:              pulumi.String("tf-test"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := iam.NewLoginProfile(ctx, "foo", &iam.LoginProfileArgs{
+//				LoginAllowed:          pulumi.Bool(true),
+//				Password:              pulumi.String("******"),
+//				PasswordResetRequired: pulumi.Bool(false),
+//				UserName:              pulumi.String("tf-test"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -43,7 +46,9 @@ import (
 // Login profile can be imported using the UserName, e.g.
 //
 // ```sh
-//  $ pulumi import volcengine:Iam/loginProfile:LoginProfile default user_name
+//
+//	$ pulumi import volcengine:iam/loginProfile:LoginProfile default user_name
+//
 // ```
 type LoginProfile struct {
 	pulumi.CustomResourceState
@@ -72,7 +77,7 @@ func NewLoginProfile(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'UserName'")
 	}
 	var resource LoginProfile
-	err := ctx.RegisterResource("volcengine:Iam/loginProfile:LoginProfile", name, args, &resource, opts...)
+	err := ctx.RegisterResource("volcengine:iam/loginProfile:LoginProfile", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -84,7 +89,7 @@ func NewLoginProfile(ctx *pulumi.Context,
 func GetLoginProfile(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *LoginProfileState, opts ...pulumi.ResourceOption) (*LoginProfile, error) {
 	var resource LoginProfile
-	err := ctx.ReadResource("volcengine:Iam/loginProfile:LoginProfile", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("volcengine:iam/loginProfile:LoginProfile", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -167,7 +172,7 @@ func (i *LoginProfile) ToLoginProfileOutputWithContext(ctx context.Context) Logi
 // LoginProfileArrayInput is an input type that accepts LoginProfileArray and LoginProfileArrayOutput values.
 // You can construct a concrete instance of `LoginProfileArrayInput` via:
 //
-//          LoginProfileArray{ LoginProfileArgs{...} }
+//	LoginProfileArray{ LoginProfileArgs{...} }
 type LoginProfileArrayInput interface {
 	pulumi.Input
 
@@ -192,7 +197,7 @@ func (i LoginProfileArray) ToLoginProfileArrayOutputWithContext(ctx context.Cont
 // LoginProfileMapInput is an input type that accepts LoginProfileMap and LoginProfileMapOutput values.
 // You can construct a concrete instance of `LoginProfileMapInput` via:
 //
-//          LoginProfileMap{ "key": LoginProfileArgs{...} }
+//	LoginProfileMap{ "key": LoginProfileArgs{...} }
 type LoginProfileMapInput interface {
 	pulumi.Input
 

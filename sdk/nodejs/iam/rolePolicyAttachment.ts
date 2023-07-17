@@ -36,7 +36,7 @@ import * as utilities from "../utilities";
  * Iam role policy attachment can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:Iam/rolePolicyAttachment:RolePolicyAttachment default TerraformTestRole:TerraformTestPolicy:Custom
+ *  $ pulumi import volcengine:iam/rolePolicyAttachment:RolePolicyAttachment default TerraformTestRole:TerraformTestPolicy:Custom
  * ```
  */
 export class RolePolicyAttachment extends pulumi.CustomResource {
@@ -54,7 +54,7 @@ export class RolePolicyAttachment extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'volcengine:Iam/rolePolicyAttachment:RolePolicyAttachment';
+    public static readonly __pulumiType = 'volcengine:iam/rolePolicyAttachment:RolePolicyAttachment';
 
     /**
      * Returns true if the given object is an instance of RolePolicyAttachment.  This is designed to work even

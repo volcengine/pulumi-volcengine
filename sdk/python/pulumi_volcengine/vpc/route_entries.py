@@ -172,7 +172,7 @@ def route_entries(destination_cidr_block: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.Vpc.route_entries(ids=[],
+    default = volcengine.vpc.route_entries(ids=[],
         route_table_id="vtb-274e19skkuhog7fap8u4i8ird")
     ```
 
@@ -180,7 +180,7 @@ def route_entries(destination_cidr_block: Optional[str] = None,
     :param str destination_cidr_block: A destination CIDR block of route entry.
     :param Sequence[str] ids: A list of route entry ids.
     :param str next_hop_id: An id of next hop.
-    :param str next_hop_type: A type of next hop.
+    :param str next_hop_type: A type of next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`.
     :param str output_file: File name where to save data source results.
     :param str route_entry_name: A name of route entry.
     :param str route_entry_type: A type of route entry.
@@ -199,7 +199,7 @@ def route_entries(destination_cidr_block: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('volcengine:Vpc/routeEntries:RouteEntries', __args__, opts=opts, typ=RouteEntriesResult).value
+    __ret__ = pulumi.runtime.invoke('volcengine:vpc/routeEntries:RouteEntries', __args__, opts=opts, typ=RouteEntriesResult).value
 
     return AwaitableRouteEntriesResult(
         destination_cidr_block=__ret__.destination_cidr_block,
@@ -233,7 +233,7 @@ def route_entries_output(destination_cidr_block: Optional[pulumi.Input[Optional[
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.Vpc.route_entries(ids=[],
+    default = volcengine.vpc.route_entries(ids=[],
         route_table_id="vtb-274e19skkuhog7fap8u4i8ird")
     ```
 
@@ -241,7 +241,7 @@ def route_entries_output(destination_cidr_block: Optional[pulumi.Input[Optional[
     :param str destination_cidr_block: A destination CIDR block of route entry.
     :param Sequence[str] ids: A list of route entry ids.
     :param str next_hop_id: An id of next hop.
-    :param str next_hop_type: A type of next hop.
+    :param str next_hop_type: A type of next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`.
     :param str output_file: File name where to save data source results.
     :param str route_entry_name: A name of route entry.
     :param str route_entry_type: A type of route entry.

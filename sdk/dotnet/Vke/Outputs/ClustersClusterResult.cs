@@ -42,17 +42,21 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Kubeconfig data with private network access, returned in BASE64 encoding.
+        /// Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.
         /// </summary>
         public readonly string KubeconfigPrivate;
         /// <summary>
-        /// Kubeconfig data with public network access, returned in BASE64 encoding.
+        /// Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.
         /// </summary>
         public readonly string KubeconfigPublic;
         /// <summary>
         /// The Kubernetes version information corresponding to the cluster, specific to the patch version.
         /// </summary>
         public readonly string KubernetesVersion;
+        /// <summary>
+        /// Cluster log configuration information.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.ClustersClusterLoggingConfigResult> LoggingConfigs;
         /// <summary>
         /// The name of the cluster.
         /// </summary>
@@ -73,6 +77,10 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// The status of the cluster.
         /// </summary>
         public readonly Outputs.ClustersClusterStatusResult Status;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.ClustersClusterTagResult> Tags;
         /// <summary>
         /// The ClientToken when the last cluster update succeeded. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
         /// </summary>
@@ -104,6 +112,8 @@ namespace Pulumi.Volcengine.Vke.Outputs
 
             string kubernetesVersion,
 
+            ImmutableArray<Outputs.ClustersClusterLoggingConfigResult> loggingConfigs,
+
             string name,
 
             Outputs.ClustersClusterNodeStatisticsResult nodeStatistics,
@@ -113,6 +123,8 @@ namespace Pulumi.Volcengine.Vke.Outputs
             Outputs.ClustersClusterServicesConfigResult servicesConfig,
 
             Outputs.ClustersClusterStatusResult status,
+
+            ImmutableArray<Outputs.ClustersClusterTagResult> tags,
 
             string? updateClientToken,
 
@@ -128,11 +140,13 @@ namespace Pulumi.Volcengine.Vke.Outputs
             KubeconfigPrivate = kubeconfigPrivate;
             KubeconfigPublic = kubeconfigPublic;
             KubernetesVersion = kubernetesVersion;
+            LoggingConfigs = loggingConfigs;
             Name = name;
             NodeStatistics = nodeStatistics;
             PodsConfig = podsConfig;
             ServicesConfig = servicesConfig;
             Status = status;
+            Tags = tags;
             UpdateClientToken = updateClientToken;
             UpdateTime = updateTime;
         }

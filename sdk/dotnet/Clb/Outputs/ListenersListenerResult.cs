@@ -66,6 +66,14 @@ namespace Pulumi.Volcengine.Clb.Outputs
         /// </summary>
         public readonly int HealthCheckTimeout;
         /// <summary>
+        /// The expected response string for the health check.
+        /// </summary>
+        public readonly string HealthCheckUdpExpect;
+        /// <summary>
+        /// A request string to perform a health check.
+        /// </summary>
+        public readonly string HealthCheckUdpRequest;
+        /// <summary>
         /// The unhealthy threshold of health check.
         /// </summary>
         public readonly int HealthCheckUnHealthyThreshold;
@@ -134,6 +142,10 @@ namespace Pulumi.Volcengine.Clb.Outputs
 
             int healthCheckTimeout,
 
+            string healthCheckUdpExpect,
+
+            string healthCheckUdpRequest,
+
             int healthCheckUnHealthyThreshold,
 
             string healthCheckUri,
@@ -167,6 +179,8 @@ namespace Pulumi.Volcengine.Clb.Outputs
             HealthCheckInterval = healthCheckInterval;
             HealthCheckMethod = healthCheckMethod;
             HealthCheckTimeout = healthCheckTimeout;
+            HealthCheckUdpExpect = healthCheckUdpExpect;
+            HealthCheckUdpRequest = healthCheckUdpRequest;
             HealthCheckUnHealthyThreshold = healthCheckUnHealthyThreshold;
             HealthCheckUri = healthCheckUri;
             Id = id;

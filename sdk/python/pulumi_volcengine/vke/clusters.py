@@ -22,7 +22,7 @@ class ClustersResult:
     """
     A collection of values returned by Clusters.
     """
-    def __init__(__self__, clusters=None, create_client_token=None, delete_protection_enabled=None, id=None, ids=None, name=None, name_regex=None, output_file=None, page_number=None, page_size=None, pods_config_pod_network_mode=None, statuses=None, total_count=None, update_client_token=None):
+    def __init__(__self__, clusters=None, create_client_token=None, delete_protection_enabled=None, id=None, ids=None, name=None, name_regex=None, output_file=None, page_number=None, page_size=None, pods_config_pod_network_mode=None, statuses=None, tags=None, total_count=None, update_client_token=None):
         if clusters and not isinstance(clusters, list):
             raise TypeError("Expected argument 'clusters' to be a list")
         pulumi.set(__self__, "clusters", clusters)
@@ -59,6 +59,9 @@ class ClustersResult:
         if statuses and not isinstance(statuses, list):
             raise TypeError("Expected argument 'statuses' to be a list")
         pulumi.set(__self__, "statuses", statuses)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -139,6 +142,14 @@ class ClustersResult:
         return pulumi.get(self, "statuses")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.ClustersTagResult']]:
+        """
+        Tags of the Cluster.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
         """
@@ -170,6 +181,7 @@ class AwaitableClustersResult(ClustersResult):
             page_size=self.page_size,
             pods_config_pod_network_mode=self.pods_config_pod_network_mode,
             statuses=self.statuses,
+            tags=self.tags,
             total_count=self.total_count,
             update_client_token=self.update_client_token)
 
@@ -184,6 +196,7 @@ def clusters(create_client_token: Optional[str] = None,
              page_size: Optional[int] = None,
              pods_config_pod_network_mode: Optional[str] = None,
              statuses: Optional[Sequence[pulumi.InputType['ClustersStatusArgs']]] = None,
+             tags: Optional[Sequence[pulumi.InputType['ClustersTagArgs']]] = None,
              update_client_token: Optional[str] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableClustersResult:
     """
@@ -194,7 +207,7 @@ def clusters(create_client_token: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.Vke.clusters(pods_config_pod_network_mode="VpcCniShared",
+    default = volcengine.vke.clusters(pods_config_pod_network_mode="VpcCniShared",
         statuses=[volcengine.vke.ClustersStatusArgs(
             conditions_type="Progressing",
             phase="Creating",
@@ -212,6 +225,7 @@ def clusters(create_client_token: Optional[str] = None,
     :param int page_size: The page size of clusters query.
     :param str pods_config_pod_network_mode: The container network model of the cluster, the value is `Flannel` or `VpcCniShared`. Flannel: Flannel network model, an independent Underlay container network solution, combined with the global routing capability of VPC, to achieve a high-performance network experience for the cluster. VpcCniShared: VPC-CNI network model, an Underlay container network solution based on the ENI of the private network elastic network card, with high network communication performance.
     :param Sequence[pulumi.InputType['ClustersStatusArgs']] statuses: Array of cluster states to filter. (The elements of the array are logically ORed. A maximum of 15 state array elements can be filled at a time).
+    :param Sequence[pulumi.InputType['ClustersTagArgs']] tags: Tags.
     :param str update_client_token: The ClientToken when the last cluster update succeeded. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
     """
     __args__ = dict()
@@ -225,12 +239,13 @@ def clusters(create_client_token: Optional[str] = None,
     __args__['pageSize'] = page_size
     __args__['podsConfigPodNetworkMode'] = pods_config_pod_network_mode
     __args__['statuses'] = statuses
+    __args__['tags'] = tags
     __args__['updateClientToken'] = update_client_token
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('volcengine:Vke/clusters:Clusters', __args__, opts=opts, typ=ClustersResult).value
+    __ret__ = pulumi.runtime.invoke('volcengine:vke/clusters:Clusters', __args__, opts=opts, typ=ClustersResult).value
 
     return AwaitableClustersResult(
         clusters=__ret__.clusters,
@@ -245,6 +260,7 @@ def clusters(create_client_token: Optional[str] = None,
         page_size=__ret__.page_size,
         pods_config_pod_network_mode=__ret__.pods_config_pod_network_mode,
         statuses=__ret__.statuses,
+        tags=__ret__.tags,
         total_count=__ret__.total_count,
         update_client_token=__ret__.update_client_token)
 
@@ -260,6 +276,7 @@ def clusters_output(create_client_token: Optional[pulumi.Input[Optional[str]]] =
                     page_size: Optional[pulumi.Input[Optional[int]]] = None,
                     pods_config_pod_network_mode: Optional[pulumi.Input[Optional[str]]] = None,
                     statuses: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['ClustersStatusArgs']]]]] = None,
+                    tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['ClustersTagArgs']]]]] = None,
                     update_client_token: Optional[pulumi.Input[Optional[str]]] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ClustersResult]:
     """
@@ -270,7 +287,7 @@ def clusters_output(create_client_token: Optional[pulumi.Input[Optional[str]]] =
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.Vke.clusters(pods_config_pod_network_mode="VpcCniShared",
+    default = volcengine.vke.clusters(pods_config_pod_network_mode="VpcCniShared",
         statuses=[volcengine.vke.ClustersStatusArgs(
             conditions_type="Progressing",
             phase="Creating",
@@ -288,6 +305,7 @@ def clusters_output(create_client_token: Optional[pulumi.Input[Optional[str]]] =
     :param int page_size: The page size of clusters query.
     :param str pods_config_pod_network_mode: The container network model of the cluster, the value is `Flannel` or `VpcCniShared`. Flannel: Flannel network model, an independent Underlay container network solution, combined with the global routing capability of VPC, to achieve a high-performance network experience for the cluster. VpcCniShared: VPC-CNI network model, an Underlay container network solution based on the ENI of the private network elastic network card, with high network communication performance.
     :param Sequence[pulumi.InputType['ClustersStatusArgs']] statuses: Array of cluster states to filter. (The elements of the array are logically ORed. A maximum of 15 state array elements can be filled at a time).
+    :param Sequence[pulumi.InputType['ClustersTagArgs']] tags: Tags.
     :param str update_client_token: The ClientToken when the last cluster update succeeded. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
     """
     ...

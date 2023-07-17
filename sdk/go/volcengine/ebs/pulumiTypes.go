@@ -41,7 +41,7 @@ type VolumesVolume struct {
 // VolumesVolumeInput is an input type that accepts VolumesVolumeArgs and VolumesVolumeOutput values.
 // You can construct a concrete instance of `VolumesVolumeInput` via:
 //
-//          VolumesVolumeArgs{...}
+//	VolumesVolumeArgs{...}
 type VolumesVolumeInput interface {
 	pulumi.Input
 
@@ -92,7 +92,7 @@ func (i VolumesVolumeArgs) ToVolumesVolumeOutputWithContext(ctx context.Context)
 // VolumesVolumeArrayInput is an input type that accepts VolumesVolumeArray and VolumesVolumeArrayOutput values.
 // You can construct a concrete instance of `VolumesVolumeArrayInput` via:
 //
-//          VolumesVolumeArray{ VolumesVolumeArgs{...} }
+//	VolumesVolumeArray{ VolumesVolumeArgs{...} }
 type VolumesVolumeArrayInput interface {
 	pulumi.Input
 

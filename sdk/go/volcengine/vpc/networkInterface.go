@@ -18,28 +18,35 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Vpc"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/vpc"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Vpc.NewNetworkInterface(ctx, "foo", &Vpc.NetworkInterfaceArgs{
-// 			Description:          pulumi.String("tf-test-up"),
-// 			NetworkInterfaceName: pulumi.String("tf-test-up"),
-// 			PortSecurityEnabled:  pulumi.Bool(false),
-// 			PrimaryIpAddress:     pulumi.String("192.168.0.253"),
-// 			SecurityGroupIds: pulumi.StringArray{
-// 				pulumi.String("sg-2744hspo7jbpc7fap8t7lef1p"),
-// 			},
-// 			SubnetId: pulumi.String("subnet-2744ht7fhjthc7fap8tm10eqg"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vpc.NewNetworkInterface(ctx, "foo", &vpc.NetworkInterfaceArgs{
+//				Description:          pulumi.String("tf-test-up"),
+//				NetworkInterfaceName: pulumi.String("tf-test-up"),
+//				PortSecurityEnabled:  pulumi.Bool(false),
+//				PrimaryIpAddress:     pulumi.String("192.168.5.253"),
+//				PrivateIpAddresses: pulumi.StringArray{
+//					pulumi.String("192.168.5.2"),
+//				},
+//				ProjectName: pulumi.String("default"),
+//				SecurityGroupIds: pulumi.StringArray{
+//					pulumi.String("sg-2fepz3c793g1s59gp67y21r34"),
+//				},
+//				SubnetId: pulumi.String("subnet-2fe79j7c8o5c059gp68ksxr93"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -47,7 +54,9 @@ import (
 // Network interface can be imported using the id, e.g.
 //
 // ```sh
-//  $ pulumi import volcengine:Vpc/networkInterface:NetworkInterface default eni-bp1fgnh68xyz9****
+//
+//	$ pulumi import volcengine:vpc/networkInterface:NetworkInterface default eni-bp1fgnh68xyz9****
+//
 // ```
 type NetworkInterface struct {
 	pulumi.CustomResourceState
@@ -60,12 +69,20 @@ type NetworkInterface struct {
 	PortSecurityEnabled pulumi.BoolOutput `pulumi:"portSecurityEnabled"`
 	// The primary IP address of the ENI.
 	PrimaryIpAddress pulumi.StringOutput `pulumi:"primaryIpAddress"`
+	// The list of private ip address. This field conflicts with `secondaryPrivateIpAddressCount`.
+	PrivateIpAddresses pulumi.StringArrayOutput `pulumi:"privateIpAddresses"`
+	// The ProjectName of the ENI.
+	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
+	// The count of secondary private ip address. This field conflicts with `privateIpAddress`.
+	SecondaryPrivateIpAddressCount pulumi.IntOutput `pulumi:"secondaryPrivateIpAddressCount"`
 	// The list of the security group id to which the secondary ENI belongs.
 	SecurityGroupIds pulumi.StringArrayOutput `pulumi:"securityGroupIds"`
 	// The status of the ENI.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The id of the subnet to which the ENI is connected.
 	SubnetId pulumi.StringOutput `pulumi:"subnetId"`
+	// Tags.
+	Tags NetworkInterfaceTagArrayOutput `pulumi:"tags"`
 }
 
 // NewNetworkInterface registers a new resource with the given unique name, arguments, and options.
@@ -82,7 +99,7 @@ func NewNetworkInterface(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'SubnetId'")
 	}
 	var resource NetworkInterface
-	err := ctx.RegisterResource("volcengine:Vpc/networkInterface:NetworkInterface", name, args, &resource, opts...)
+	err := ctx.RegisterResource("volcengine:vpc/networkInterface:NetworkInterface", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -94,7 +111,7 @@ func NewNetworkInterface(ctx *pulumi.Context,
 func GetNetworkInterface(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *NetworkInterfaceState, opts ...pulumi.ResourceOption) (*NetworkInterface, error) {
 	var resource NetworkInterface
-	err := ctx.ReadResource("volcengine:Vpc/networkInterface:NetworkInterface", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("volcengine:vpc/networkInterface:NetworkInterface", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -111,12 +128,20 @@ type networkInterfaceState struct {
 	PortSecurityEnabled *bool `pulumi:"portSecurityEnabled"`
 	// The primary IP address of the ENI.
 	PrimaryIpAddress *string `pulumi:"primaryIpAddress"`
+	// The list of private ip address. This field conflicts with `secondaryPrivateIpAddressCount`.
+	PrivateIpAddresses []string `pulumi:"privateIpAddresses"`
+	// The ProjectName of the ENI.
+	ProjectName *string `pulumi:"projectName"`
+	// The count of secondary private ip address. This field conflicts with `privateIpAddress`.
+	SecondaryPrivateIpAddressCount *int `pulumi:"secondaryPrivateIpAddressCount"`
 	// The list of the security group id to which the secondary ENI belongs.
 	SecurityGroupIds []string `pulumi:"securityGroupIds"`
 	// The status of the ENI.
 	Status *string `pulumi:"status"`
 	// The id of the subnet to which the ENI is connected.
 	SubnetId *string `pulumi:"subnetId"`
+	// Tags.
+	Tags []NetworkInterfaceTag `pulumi:"tags"`
 }
 
 type NetworkInterfaceState struct {
@@ -128,12 +153,20 @@ type NetworkInterfaceState struct {
 	PortSecurityEnabled pulumi.BoolPtrInput
 	// The primary IP address of the ENI.
 	PrimaryIpAddress pulumi.StringPtrInput
+	// The list of private ip address. This field conflicts with `secondaryPrivateIpAddressCount`.
+	PrivateIpAddresses pulumi.StringArrayInput
+	// The ProjectName of the ENI.
+	ProjectName pulumi.StringPtrInput
+	// The count of secondary private ip address. This field conflicts with `privateIpAddress`.
+	SecondaryPrivateIpAddressCount pulumi.IntPtrInput
 	// The list of the security group id to which the secondary ENI belongs.
 	SecurityGroupIds pulumi.StringArrayInput
 	// The status of the ENI.
 	Status pulumi.StringPtrInput
 	// The id of the subnet to which the ENI is connected.
 	SubnetId pulumi.StringPtrInput
+	// Tags.
+	Tags NetworkInterfaceTagArrayInput
 }
 
 func (NetworkInterfaceState) ElementType() reflect.Type {
@@ -149,10 +182,18 @@ type networkInterfaceArgs struct {
 	PortSecurityEnabled *bool `pulumi:"portSecurityEnabled"`
 	// The primary IP address of the ENI.
 	PrimaryIpAddress *string `pulumi:"primaryIpAddress"`
+	// The list of private ip address. This field conflicts with `secondaryPrivateIpAddressCount`.
+	PrivateIpAddresses []string `pulumi:"privateIpAddresses"`
+	// The ProjectName of the ENI.
+	ProjectName *string `pulumi:"projectName"`
+	// The count of secondary private ip address. This field conflicts with `privateIpAddress`.
+	SecondaryPrivateIpAddressCount *int `pulumi:"secondaryPrivateIpAddressCount"`
 	// The list of the security group id to which the secondary ENI belongs.
 	SecurityGroupIds []string `pulumi:"securityGroupIds"`
 	// The id of the subnet to which the ENI is connected.
 	SubnetId string `pulumi:"subnetId"`
+	// Tags.
+	Tags []NetworkInterfaceTag `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a NetworkInterface resource.
@@ -165,10 +206,18 @@ type NetworkInterfaceArgs struct {
 	PortSecurityEnabled pulumi.BoolPtrInput
 	// The primary IP address of the ENI.
 	PrimaryIpAddress pulumi.StringPtrInput
+	// The list of private ip address. This field conflicts with `secondaryPrivateIpAddressCount`.
+	PrivateIpAddresses pulumi.StringArrayInput
+	// The ProjectName of the ENI.
+	ProjectName pulumi.StringPtrInput
+	// The count of secondary private ip address. This field conflicts with `privateIpAddress`.
+	SecondaryPrivateIpAddressCount pulumi.IntPtrInput
 	// The list of the security group id to which the secondary ENI belongs.
 	SecurityGroupIds pulumi.StringArrayInput
 	// The id of the subnet to which the ENI is connected.
 	SubnetId pulumi.StringInput
+	// Tags.
+	Tags NetworkInterfaceTagArrayInput
 }
 
 func (NetworkInterfaceArgs) ElementType() reflect.Type {
@@ -197,7 +246,7 @@ func (i *NetworkInterface) ToNetworkInterfaceOutputWithContext(ctx context.Conte
 // NetworkInterfaceArrayInput is an input type that accepts NetworkInterfaceArray and NetworkInterfaceArrayOutput values.
 // You can construct a concrete instance of `NetworkInterfaceArrayInput` via:
 //
-//          NetworkInterfaceArray{ NetworkInterfaceArgs{...} }
+//	NetworkInterfaceArray{ NetworkInterfaceArgs{...} }
 type NetworkInterfaceArrayInput interface {
 	pulumi.Input
 
@@ -222,7 +271,7 @@ func (i NetworkInterfaceArray) ToNetworkInterfaceArrayOutputWithContext(ctx cont
 // NetworkInterfaceMapInput is an input type that accepts NetworkInterfaceMap and NetworkInterfaceMapOutput values.
 // You can construct a concrete instance of `NetworkInterfaceMapInput` via:
 //
-//          NetworkInterfaceMap{ "key": NetworkInterfaceArgs{...} }
+//	NetworkInterfaceMap{ "key": NetworkInterfaceArgs{...} }
 type NetworkInterfaceMapInput interface {
 	pulumi.Input
 
@@ -278,6 +327,21 @@ func (o NetworkInterfaceOutput) PrimaryIpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v *NetworkInterface) pulumi.StringOutput { return v.PrimaryIpAddress }).(pulumi.StringOutput)
 }
 
+// The list of private ip address. This field conflicts with `secondaryPrivateIpAddressCount`.
+func (o NetworkInterfaceOutput) PrivateIpAddresses() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *NetworkInterface) pulumi.StringArrayOutput { return v.PrivateIpAddresses }).(pulumi.StringArrayOutput)
+}
+
+// The ProjectName of the ENI.
+func (o NetworkInterfaceOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NetworkInterface) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
+// The count of secondary private ip address. This field conflicts with `privateIpAddress`.
+func (o NetworkInterfaceOutput) SecondaryPrivateIpAddressCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *NetworkInterface) pulumi.IntOutput { return v.SecondaryPrivateIpAddressCount }).(pulumi.IntOutput)
+}
+
 // The list of the security group id to which the secondary ENI belongs.
 func (o NetworkInterfaceOutput) SecurityGroupIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *NetworkInterface) pulumi.StringArrayOutput { return v.SecurityGroupIds }).(pulumi.StringArrayOutput)
@@ -291,6 +355,11 @@ func (o NetworkInterfaceOutput) Status() pulumi.StringOutput {
 // The id of the subnet to which the ENI is connected.
 func (o NetworkInterfaceOutput) SubnetId() pulumi.StringOutput {
 	return o.ApplyT(func(v *NetworkInterface) pulumi.StringOutput { return v.SubnetId }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o NetworkInterfaceOutput) Tags() NetworkInterfaceTagArrayOutput {
+	return o.ApplyT(func(v *NetworkInterface) NetworkInterfaceTagArrayOutput { return v.Tags }).(NetworkInterfaceTagArrayOutput)
 }
 
 type NetworkInterfaceArrayOutput struct{ *pulumi.OutputState }

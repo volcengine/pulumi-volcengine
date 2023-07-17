@@ -13,9 +13,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const vkeTest = new volcengine.Vke.NodePool("vke_test", {
- *     clusterId: "ccah01nnqtofnluts98j0",
+ * const vkeTest = new volcengine.vke.NodePool("vke_test", {
+ *     autoScaling: {
+ *         enabled: true,
+ *         subnetPolicy: "ZoneBalance",
+ *     },
+ *     clusterId: "ccgd6066rsfegs2dkhlog",
  *     kubernetesConfig: {
+ *         cordon: false,
  *         labels: [
  *             {
  *                 key: "aa",
@@ -32,15 +37,29 @@ import * as utilities from "../utilities";
  *             size: 60,
  *             type: "ESSD_PL0",
  *         }],
- *         instanceTypeIds: ["ecs.r1.large"],
+ *         ecsTags: [{
+ *             key: "ecs_k1",
+ *             value: "ecs_v1",
+ *         }],
+ *         instanceChargeType: "PostPaid",
+ *         instanceTypeIds: ["ecs.g1ie.xlarge"],
+ *         period: 1,
  *         security: {
  *             login: {
  *                 //      ssh_key_pair_name = "ssh-6fbl66fxqm"
  *                 password: "UHdkMTIzNDU2",
  *             },
+ *             securityGroupIds: [
+ *                 "sg-13fbyz0sok3y83n6nu4hv1q10",
+ *                 "sg-mj1e9tbztgqo5smt1ah8l4bh",
+ *             ],
  *         },
- *         subnetIds: ["subnet-3recgzi7hfim85zsk2i8l9ve7"],
+ *         subnetIds: ["subnet-mj1e9jgu96v45smt1a674x3h"],
  *     },
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
  * ```
  *
@@ -49,7 +68,7 @@ import * as utilities from "../utilities";
  * NodePool can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:Vke/nodePool:NodePool default pcabe57vqtofgrbln3dp0
+ *  $ pulumi import volcengine:vke/nodePool:NodePool default pcabe57vqtofgrbln3dp0
  * ```
  */
 export class NodePool extends pulumi.CustomResource {
@@ -67,7 +86,7 @@ export class NodePool extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'volcengine:Vke/nodePool:NodePool';
+    public static readonly __pulumiType = 'volcengine:vke/nodePool:NodePool';
 
     /**
      * Returns true if the given object is an instance of NodePool.  This is designed to work even
@@ -83,11 +102,7 @@ export class NodePool extends pulumi.CustomResource {
     /**
      * The node pool elastic scaling configuration information.
      */
-    public readonly autoScaling!: pulumi.Output<outputs.Vke.NodePoolAutoScaling | undefined>;
-    /**
-     * Is enabled of AutoScaling.
-     */
-    public readonly autoScalingEnabled!: pulumi.Output<boolean | undefined>;
+    public readonly autoScaling!: pulumi.Output<outputs.vke.NodePoolAutoScaling>;
     /**
      * The ClientToken of NodePool.
      */
@@ -97,21 +112,9 @@ export class NodePool extends pulumi.CustomResource {
      */
     public readonly clusterId!: pulumi.Output<string | undefined>;
     /**
-     * The ClusterIds of NodePool.
-     */
-    public readonly clusterIds!: pulumi.Output<string[] | undefined>;
-    /**
-     * The CreateClientToken of NodePool.
-     */
-    public /*out*/ readonly createClientToken!: pulumi.Output<string>;
-    /**
-     * The IDs of NodePool.
-     */
-    public readonly ids!: pulumi.Output<string[] | undefined>;
-    /**
      * The KubernetesConfig of NodeConfig.
      */
-    public readonly kubernetesConfig!: pulumi.Output<outputs.Vke.NodePoolKubernetesConfig | undefined>;
+    public readonly kubernetesConfig!: pulumi.Output<outputs.vke.NodePoolKubernetesConfig>;
     /**
      * The Name of NodePool.
      */
@@ -119,15 +122,11 @@ export class NodePool extends pulumi.CustomResource {
     /**
      * The Config of NodePool.
      */
-    public readonly nodeConfig!: pulumi.Output<outputs.Vke.NodePoolNodeConfig | undefined>;
+    public readonly nodeConfig!: pulumi.Output<outputs.vke.NodePoolNodeConfig>;
     /**
-     * The Status of NodePool.
+     * Tags.
      */
-    public readonly statuses!: pulumi.Output<outputs.Vke.NodePoolStatus[] | undefined>;
-    /**
-     * The UpdateClientToken of NodePool.
-     */
-    public /*out*/ readonly updateClientToken!: pulumi.Output<string>;
+    public readonly tags!: pulumi.Output<outputs.vke.NodePoolTag[] | undefined>;
 
     /**
      * Create a NodePool resource with the given unique name, arguments, and options.
@@ -136,38 +135,34 @@ export class NodePool extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: NodePoolArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args: NodePoolArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: NodePoolArgs | NodePoolState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as NodePoolState | undefined;
             resourceInputs["autoScaling"] = state ? state.autoScaling : undefined;
-            resourceInputs["autoScalingEnabled"] = state ? state.autoScalingEnabled : undefined;
             resourceInputs["clientToken"] = state ? state.clientToken : undefined;
             resourceInputs["clusterId"] = state ? state.clusterId : undefined;
-            resourceInputs["clusterIds"] = state ? state.clusterIds : undefined;
-            resourceInputs["createClientToken"] = state ? state.createClientToken : undefined;
-            resourceInputs["ids"] = state ? state.ids : undefined;
             resourceInputs["kubernetesConfig"] = state ? state.kubernetesConfig : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["nodeConfig"] = state ? state.nodeConfig : undefined;
-            resourceInputs["statuses"] = state ? state.statuses : undefined;
-            resourceInputs["updateClientToken"] = state ? state.updateClientToken : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
         } else {
             const args = argsOrState as NodePoolArgs | undefined;
+            if ((!args || args.kubernetesConfig === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'kubernetesConfig'");
+            }
+            if ((!args || args.nodeConfig === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'nodeConfig'");
+            }
             resourceInputs["autoScaling"] = args ? args.autoScaling : undefined;
-            resourceInputs["autoScalingEnabled"] = args ? args.autoScalingEnabled : undefined;
             resourceInputs["clientToken"] = args ? args.clientToken : undefined;
             resourceInputs["clusterId"] = args ? args.clusterId : undefined;
-            resourceInputs["clusterIds"] = args ? args.clusterIds : undefined;
-            resourceInputs["ids"] = args ? args.ids : undefined;
             resourceInputs["kubernetesConfig"] = args ? args.kubernetesConfig : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["nodeConfig"] = args ? args.nodeConfig : undefined;
-            resourceInputs["statuses"] = args ? args.statuses : undefined;
-            resourceInputs["createClientToken"] = undefined /*out*/;
-            resourceInputs["updateClientToken"] = undefined /*out*/;
+            resourceInputs["tags"] = args ? args.tags : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(NodePool.__pulumiType, name, resourceInputs, opts);
@@ -181,11 +176,7 @@ export interface NodePoolState {
     /**
      * The node pool elastic scaling configuration information.
      */
-    autoScaling?: pulumi.Input<inputs.Vke.NodePoolAutoScaling>;
-    /**
-     * Is enabled of AutoScaling.
-     */
-    autoScalingEnabled?: pulumi.Input<boolean>;
+    autoScaling?: pulumi.Input<inputs.vke.NodePoolAutoScaling>;
     /**
      * The ClientToken of NodePool.
      */
@@ -195,21 +186,9 @@ export interface NodePoolState {
      */
     clusterId?: pulumi.Input<string>;
     /**
-     * The ClusterIds of NodePool.
-     */
-    clusterIds?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The CreateClientToken of NodePool.
-     */
-    createClientToken?: pulumi.Input<string>;
-    /**
-     * The IDs of NodePool.
-     */
-    ids?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
      * The KubernetesConfig of NodeConfig.
      */
-    kubernetesConfig?: pulumi.Input<inputs.Vke.NodePoolKubernetesConfig>;
+    kubernetesConfig?: pulumi.Input<inputs.vke.NodePoolKubernetesConfig>;
     /**
      * The Name of NodePool.
      */
@@ -217,15 +196,11 @@ export interface NodePoolState {
     /**
      * The Config of NodePool.
      */
-    nodeConfig?: pulumi.Input<inputs.Vke.NodePoolNodeConfig>;
+    nodeConfig?: pulumi.Input<inputs.vke.NodePoolNodeConfig>;
     /**
-     * The Status of NodePool.
+     * Tags.
      */
-    statuses?: pulumi.Input<pulumi.Input<inputs.Vke.NodePoolStatus>[]>;
-    /**
-     * The UpdateClientToken of NodePool.
-     */
-    updateClientToken?: pulumi.Input<string>;
+    tags?: pulumi.Input<pulumi.Input<inputs.vke.NodePoolTag>[]>;
 }
 
 /**
@@ -235,11 +210,7 @@ export interface NodePoolArgs {
     /**
      * The node pool elastic scaling configuration information.
      */
-    autoScaling?: pulumi.Input<inputs.Vke.NodePoolAutoScaling>;
-    /**
-     * Is enabled of AutoScaling.
-     */
-    autoScalingEnabled?: pulumi.Input<boolean>;
+    autoScaling?: pulumi.Input<inputs.vke.NodePoolAutoScaling>;
     /**
      * The ClientToken of NodePool.
      */
@@ -249,17 +220,9 @@ export interface NodePoolArgs {
      */
     clusterId?: pulumi.Input<string>;
     /**
-     * The ClusterIds of NodePool.
-     */
-    clusterIds?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The IDs of NodePool.
-     */
-    ids?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
      * The KubernetesConfig of NodeConfig.
      */
-    kubernetesConfig?: pulumi.Input<inputs.Vke.NodePoolKubernetesConfig>;
+    kubernetesConfig: pulumi.Input<inputs.vke.NodePoolKubernetesConfig>;
     /**
      * The Name of NodePool.
      */
@@ -267,9 +230,9 @@ export interface NodePoolArgs {
     /**
      * The Config of NodePool.
      */
-    nodeConfig?: pulumi.Input<inputs.Vke.NodePoolNodeConfig>;
+    nodeConfig: pulumi.Input<inputs.vke.NodePoolNodeConfig>;
     /**
-     * The Status of NodePool.
+     * Tags.
      */
-    statuses?: pulumi.Input<pulumi.Input<inputs.Vke.NodePoolStatus>[]>;
+    tags?: pulumi.Input<pulumi.Input<inputs.vke.NodePoolTag>[]>;
 }

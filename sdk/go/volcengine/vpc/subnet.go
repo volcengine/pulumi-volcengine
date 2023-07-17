@@ -18,24 +18,27 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Vpc"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/vpc"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Vpc.NewSubnet(ctx, "foo", &Vpc.SubnetArgs{
-// 			CidrBlock:  pulumi.String("192.168.1.0/24"),
-// 			SubnetName: pulumi.String("subnet-test-2"),
-// 			VpcId:      pulumi.String("vpc-2749wnlhro3y87fap8u5ztvt5"),
-// 			ZoneId:     pulumi.String("cn-beijing"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vpc.NewSubnet(ctx, "foo", &vpc.SubnetArgs{
+//				CidrBlock:  pulumi.String("192.168.1.0/24"),
+//				SubnetName: pulumi.String("subnet-test-2"),
+//				VpcId:      pulumi.String("vpc-2749wnlhro3y87fap8u5ztvt5"),
+//				ZoneId:     pulumi.String("cn-beijing"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -43,7 +46,9 @@ import (
 // Subnet can be imported using the id, e.g.
 //
 // ```sh
-//  $ pulumi import volcengine:Vpc/subnet:Subnet default subnet-274oj9a8rs9a87fap8sf9515b
+//
+//	$ pulumi import volcengine:vpc/subnet:Subnet default subnet-274oj9a8rs9a87fap8sf9515b
+//
 // ```
 type Subnet struct {
 	pulumi.CustomResourceState
@@ -54,6 +59,10 @@ type Subnet struct {
 	CreationTime pulumi.StringOutput `pulumi:"creationTime"`
 	// The description of the Subnet.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Specifies whether to enable the IPv6 CIDR block of the Subnet. This field is only valid when modifying the Subnet.
+	EnableIpv6 pulumi.BoolOutput `pulumi:"enableIpv6"`
+	// The last eight bits of the IPv6 CIDR block of the Subnet. Valid values: 0 - 255.
+	Ipv6CidrBlock pulumi.IntOutput `pulumi:"ipv6CidrBlock"`
 	// Status of Subnet.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The name of the Subnet.
@@ -81,7 +90,7 @@ func NewSubnet(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'ZoneId'")
 	}
 	var resource Subnet
-	err := ctx.RegisterResource("volcengine:Vpc/subnet:Subnet", name, args, &resource, opts...)
+	err := ctx.RegisterResource("volcengine:vpc/subnet:Subnet", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -93,7 +102,7 @@ func NewSubnet(ctx *pulumi.Context,
 func GetSubnet(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *SubnetState, opts ...pulumi.ResourceOption) (*Subnet, error) {
 	var resource Subnet
-	err := ctx.ReadResource("volcengine:Vpc/subnet:Subnet", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("volcengine:vpc/subnet:Subnet", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -108,6 +117,10 @@ type subnetState struct {
 	CreationTime *string `pulumi:"creationTime"`
 	// The description of the Subnet.
 	Description *string `pulumi:"description"`
+	// Specifies whether to enable the IPv6 CIDR block of the Subnet. This field is only valid when modifying the Subnet.
+	EnableIpv6 *bool `pulumi:"enableIpv6"`
+	// The last eight bits of the IPv6 CIDR block of the Subnet. Valid values: 0 - 255.
+	Ipv6CidrBlock *int `pulumi:"ipv6CidrBlock"`
 	// Status of Subnet.
 	Status *string `pulumi:"status"`
 	// The name of the Subnet.
@@ -125,6 +138,10 @@ type SubnetState struct {
 	CreationTime pulumi.StringPtrInput
 	// The description of the Subnet.
 	Description pulumi.StringPtrInput
+	// Specifies whether to enable the IPv6 CIDR block of the Subnet. This field is only valid when modifying the Subnet.
+	EnableIpv6 pulumi.BoolPtrInput
+	// The last eight bits of the IPv6 CIDR block of the Subnet. Valid values: 0 - 255.
+	Ipv6CidrBlock pulumi.IntPtrInput
 	// Status of Subnet.
 	Status pulumi.StringPtrInput
 	// The name of the Subnet.
@@ -144,6 +161,10 @@ type subnetArgs struct {
 	CidrBlock string `pulumi:"cidrBlock"`
 	// The description of the Subnet.
 	Description *string `pulumi:"description"`
+	// Specifies whether to enable the IPv6 CIDR block of the Subnet. This field is only valid when modifying the Subnet.
+	EnableIpv6 *bool `pulumi:"enableIpv6"`
+	// The last eight bits of the IPv6 CIDR block of the Subnet. Valid values: 0 - 255.
+	Ipv6CidrBlock *int `pulumi:"ipv6CidrBlock"`
 	// The name of the Subnet.
 	SubnetName *string `pulumi:"subnetName"`
 	// Id of the VPC.
@@ -158,6 +179,10 @@ type SubnetArgs struct {
 	CidrBlock pulumi.StringInput
 	// The description of the Subnet.
 	Description pulumi.StringPtrInput
+	// Specifies whether to enable the IPv6 CIDR block of the Subnet. This field is only valid when modifying the Subnet.
+	EnableIpv6 pulumi.BoolPtrInput
+	// The last eight bits of the IPv6 CIDR block of the Subnet. Valid values: 0 - 255.
+	Ipv6CidrBlock pulumi.IntPtrInput
 	// The name of the Subnet.
 	SubnetName pulumi.StringPtrInput
 	// Id of the VPC.
@@ -192,7 +217,7 @@ func (i *Subnet) ToSubnetOutputWithContext(ctx context.Context) SubnetOutput {
 // SubnetArrayInput is an input type that accepts SubnetArray and SubnetArrayOutput values.
 // You can construct a concrete instance of `SubnetArrayInput` via:
 //
-//          SubnetArray{ SubnetArgs{...} }
+//	SubnetArray{ SubnetArgs{...} }
 type SubnetArrayInput interface {
 	pulumi.Input
 
@@ -217,7 +242,7 @@ func (i SubnetArray) ToSubnetArrayOutputWithContext(ctx context.Context) SubnetA
 // SubnetMapInput is an input type that accepts SubnetMap and SubnetMapOutput values.
 // You can construct a concrete instance of `SubnetMapInput` via:
 //
-//          SubnetMap{ "key": SubnetArgs{...} }
+//	SubnetMap{ "key": SubnetArgs{...} }
 type SubnetMapInput interface {
 	pulumi.Input
 
@@ -266,6 +291,16 @@ func (o SubnetOutput) CreationTime() pulumi.StringOutput {
 // The description of the Subnet.
 func (o SubnetOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Subnet) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// Specifies whether to enable the IPv6 CIDR block of the Subnet. This field is only valid when modifying the Subnet.
+func (o SubnetOutput) EnableIpv6() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Subnet) pulumi.BoolOutput { return v.EnableIpv6 }).(pulumi.BoolOutput)
+}
+
+// The last eight bits of the IPv6 CIDR block of the Subnet. Valid values: 0 - 255.
+func (o SubnetOutput) Ipv6CidrBlock() pulumi.IntOutput {
+	return o.ApplyT(func(v *Subnet) pulumi.IntOutput { return v.Ipv6CidrBlock }).(pulumi.IntOutput)
 }
 
 // Status of Subnet.

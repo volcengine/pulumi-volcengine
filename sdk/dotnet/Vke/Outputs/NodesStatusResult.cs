@@ -18,7 +18,7 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// </summary>
         public readonly string? ConditionsType;
         /// <summary>
-        /// The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed`.
+        /// The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
         /// </summary>
         public readonly string? Phase;
 

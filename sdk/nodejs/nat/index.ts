@@ -5,10 +5,15 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export * from "./dnatEntries";
+export * from "./dnatEntry";
 export * from "./gateway";
+export * from "./gateways";
+export * from "./snatEntries";
 export * from "./snatEntry";
 
 // Import resources to register:
+import { DnatEntry } from "./dnatEntry";
 import { Gateway } from "./gateway";
 import { SnatEntry } from "./snatEntry";
 
@@ -16,14 +21,17 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "volcengine:Nat/gateway:Gateway":
+            case "volcengine:nat/dnatEntry:DnatEntry":
+                return new DnatEntry(name, <any>undefined, { urn })
+            case "volcengine:nat/gateway:Gateway":
                 return new Gateway(name, <any>undefined, { urn })
-            case "volcengine:Nat/snatEntry:SnatEntry":
+            case "volcengine:nat/snatEntry:SnatEntry":
                 return new SnatEntry(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
-pulumi.runtime.registerResourceModule("volcengine", "Nat/gateway", _module)
-pulumi.runtime.registerResourceModule("volcengine", "Nat/snatEntry", _module)
+pulumi.runtime.registerResourceModule("volcengine", "nat/dnatEntry", _module)
+pulumi.runtime.registerResourceModule("volcengine", "nat/gateway", _module)
+pulumi.runtime.registerResourceModule("volcengine", "nat/snatEntry", _module)

@@ -37,27 +37,33 @@ namespace Pulumi.Volcengine.Vke
     ///                 ResourcePublicAccessDefaultEnabled = true,
     ///                 SubnetIds = 
     ///                 {
-    ///                     "subnet-2bzud0pbor8qo2dx0ee884y6h",
+    ///                     "subnet-rrqvkt2nq1hcv0x57ccqf3x",
     ///                 },
     ///             },
     ///             DeleteProtectionEnabled = false,
     ///             Description = "created by terraform",
-    ///             PodsConfig = new Volcengine.Vke.Inputs.ClusterPodsConfigArgs
+    ///             LoggingConfig = new Volcengine.Vke.Inputs.ClusterLoggingConfigArgs
     ///             {
-    ///                 FlannelConfig = new Volcengine.Vke.Inputs.ClusterPodsConfigFlannelConfigArgs
+    ///                 LogSetups = 
     ///                 {
-    ///                     MaxPodsPerNode = 64,
-    ///                     PodCidrs = 
+    ///                     new Volcengine.Vke.Inputs.ClusterLoggingConfigLogSetupArgs
     ///                     {
-    ///                         "172.27.224.0/19",
+    ///                         Enabled = false,
+    ///                         LogTtl = 30,
+    ///                         LogType = "Audit",
     ///                     },
     ///                 },
-    ///                 PodNetworkMode = "Flannel",
+    ///             },
+    ///             PodsConfig = new Volcengine.Vke.Inputs.ClusterPodsConfigArgs
+    ///             {
+    ///                 PodNetworkMode = "VpcCniShared",
     ///                 VpcCniConfig = new Volcengine.Vke.Inputs.ClusterPodsConfigVpcCniConfigArgs
     ///                 {
     ///                     SubnetIds = 
     ///                     {
-    ///                         "subnet-2bzud0pbor8qo2dx0ee884y6h",
+    ///                         "subnet-rrqvkt2nq1hcv0x57ccqf3x",
+    ///                         "subnet-miklcqh75vcw5smt1amo4ik5",
+    ///                         "subnet-13g0x0ytpm0hs3n6nu5j591lv",
     ///                     },
     ///                 },
     ///             },
@@ -65,7 +71,15 @@ namespace Pulumi.Volcengine.Vke
     ///             {
     ///                 ServiceCidrsv4s = 
     ///                 {
-    ///                     "172.30.0.0/17",
+    ///                     "172.30.0.0/18",
+    ///                 },
+    ///             },
+    ///             Tags = 
+    ///             {
+    ///                 new Volcengine.Vke.Inputs.ClusterTagArgs
+    ///                 {
+    ///                     Key = "k1",
+    ///                     Value = "v1",
     ///                 },
     ///             },
     ///         });
@@ -79,10 +93,10 @@ namespace Pulumi.Volcengine.Vke
     /// VkeCluster can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:Vke/cluster:Cluster default cc9l74mvqtofjnoj5****
+    ///  $ pulumi import volcengine:vke/cluster:Cluster default cc9l74mvqtofjnoj5****
     /// ```
     /// </summary>
-    [VolcengineResourceType("volcengine:Vke/cluster:Cluster")]
+    [VolcengineResourceType("volcengine:vke/cluster:Cluster")]
     public partial class Cluster : Pulumi.CustomResource
     {
         /// <summary>
@@ -116,13 +130,13 @@ namespace Pulumi.Volcengine.Vke
         public Output<string> EipAllocationId { get; private set; } = null!;
 
         /// <summary>
-        /// Kubeconfig data with private network access, returned in BASE64 encoding.
+        /// Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.
         /// </summary>
         [Output("kubeconfigPrivate")]
         public Output<string> KubeconfigPrivate { get; private set; } = null!;
 
         /// <summary>
-        /// Kubeconfig data with public network access, returned in BASE64 encoding.
+        /// Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.
         /// </summary>
         [Output("kubeconfigPublic")]
         public Output<string> KubeconfigPublic { get; private set; } = null!;
@@ -132,6 +146,12 @@ namespace Pulumi.Volcengine.Vke
         /// </summary>
         [Output("kubernetesVersion")]
         public Output<string> KubernetesVersion { get; private set; } = null!;
+
+        /// <summary>
+        /// Cluster log configuration information.
+        /// </summary>
+        [Output("loggingConfig")]
+        public Output<Outputs.ClusterLoggingConfig?> LoggingConfig { get; private set; } = null!;
 
         /// <summary>
         /// The name of the cluster.
@@ -151,6 +171,12 @@ namespace Pulumi.Volcengine.Vke
         [Output("servicesConfig")]
         public Output<Outputs.ClusterServicesConfig> ServicesConfig { get; private set; } = null!;
 
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.ClusterTag>> Tags { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a Cluster resource with the given unique name, arguments, and options.
@@ -160,12 +186,12 @@ namespace Pulumi.Volcengine.Vke
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Cluster(string name, ClusterArgs args, CustomResourceOptions? options = null)
-            : base("volcengine:Vke/cluster:Cluster", name, args ?? new ClusterArgs(), MakeResourceOptions(options, ""))
+            : base("volcengine:vke/cluster:Cluster", name, args ?? new ClusterArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private Cluster(string name, Input<string> id, ClusterState? state = null, CustomResourceOptions? options = null)
-            : base("volcengine:Vke/cluster:Cluster", name, state, MakeResourceOptions(options, id))
+            : base("volcengine:vke/cluster:Cluster", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -228,6 +254,12 @@ namespace Pulumi.Volcengine.Vke
         public Input<string>? KubernetesVersion { get; set; }
 
         /// <summary>
+        /// Cluster log configuration information.
+        /// </summary>
+        [Input("loggingConfig")]
+        public Input<Inputs.ClusterLoggingConfigArgs>? LoggingConfig { get; set; }
+
+        /// <summary>
         /// The name of the cluster.
         /// </summary>
         [Input("name")]
@@ -244,6 +276,18 @@ namespace Pulumi.Volcengine.Vke
         /// </summary>
         [Input("servicesConfig", required: true)]
         public Input<Inputs.ClusterServicesConfigArgs> ServicesConfig { get; set; } = null!;
+
+        [Input("tags")]
+        private InputList<Inputs.ClusterTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.ClusterTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.ClusterTagArgs>());
+            set => _tags = value;
+        }
 
         public ClusterArgs()
         {
@@ -283,13 +327,13 @@ namespace Pulumi.Volcengine.Vke
         public Input<string>? EipAllocationId { get; set; }
 
         /// <summary>
-        /// Kubeconfig data with private network access, returned in BASE64 encoding.
+        /// Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.
         /// </summary>
         [Input("kubeconfigPrivate")]
         public Input<string>? KubeconfigPrivate { get; set; }
 
         /// <summary>
-        /// Kubeconfig data with public network access, returned in BASE64 encoding.
+        /// Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.
         /// </summary>
         [Input("kubeconfigPublic")]
         public Input<string>? KubeconfigPublic { get; set; }
@@ -299,6 +343,12 @@ namespace Pulumi.Volcengine.Vke
         /// </summary>
         [Input("kubernetesVersion")]
         public Input<string>? KubernetesVersion { get; set; }
+
+        /// <summary>
+        /// Cluster log configuration information.
+        /// </summary>
+        [Input("loggingConfig")]
+        public Input<Inputs.ClusterLoggingConfigGetArgs>? LoggingConfig { get; set; }
 
         /// <summary>
         /// The name of the cluster.
@@ -317,6 +367,18 @@ namespace Pulumi.Volcengine.Vke
         /// </summary>
         [Input("servicesConfig")]
         public Input<Inputs.ClusterServicesConfigGetArgs>? ServicesConfig { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.ClusterTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.ClusterTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.ClusterTagGetArgs>());
+            set => _tags = value;
+        }
 
         public ClusterState()
         {

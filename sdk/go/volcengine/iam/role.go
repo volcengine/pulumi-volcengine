@@ -18,25 +18,28 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Iam"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/iam"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Iam.NewRole(ctx, "foo", &Iam.RoleArgs{
-// 			Description:         pulumi.String("created by terraform"),
-// 			DisplayName:         pulumi.String("terraform role"),
-// 			MaxSessionDuration:  pulumi.Int(43200),
-// 			RoleName:            pulumi.String("TerraformTestRole"),
-// 			TrustPolicyDocument: pulumi.String("{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"auto_scaling\"]}}]}"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := iam.NewRole(ctx, "foo", &iam.RoleArgs{
+//				Description:         pulumi.String("created by terraform"),
+//				DisplayName:         pulumi.String("terraform role"),
+//				MaxSessionDuration:  pulumi.Int(43200),
+//				RoleName:            pulumi.String("TerraformTestRole"),
+//				TrustPolicyDocument: pulumi.String("{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"auto_scaling\"]}}]}"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -44,7 +47,9 @@ import (
 // Iam role can be imported using the id, e.g.
 //
 // ```sh
-//  $ pulumi import volcengine:Iam/role:Role default TerraformTestRole
+//
+//	$ pulumi import volcengine:iam/role:Role default TerraformTestRole
+//
 // ```
 type Role struct {
 	pulumi.CustomResourceState
@@ -80,7 +85,7 @@ func NewRole(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'TrustPolicyDocument'")
 	}
 	var resource Role
-	err := ctx.RegisterResource("volcengine:Iam/role:Role", name, args, &resource, opts...)
+	err := ctx.RegisterResource("volcengine:iam/role:Role", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -92,7 +97,7 @@ func NewRole(ctx *pulumi.Context,
 func GetRole(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *RoleState, opts ...pulumi.ResourceOption) (*Role, error) {
 	var resource Role
-	err := ctx.ReadResource("volcengine:Iam/role:Role", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("volcengine:iam/role:Role", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -187,7 +192,7 @@ func (i *Role) ToRoleOutputWithContext(ctx context.Context) RoleOutput {
 // RoleArrayInput is an input type that accepts RoleArray and RoleArrayOutput values.
 // You can construct a concrete instance of `RoleArrayInput` via:
 //
-//          RoleArray{ RoleArgs{...} }
+//	RoleArray{ RoleArgs{...} }
 type RoleArrayInput interface {
 	pulumi.Input
 
@@ -212,7 +217,7 @@ func (i RoleArray) ToRoleArrayOutputWithContext(ctx context.Context) RoleArrayOu
 // RoleMapInput is an input type that accepts RoleMap and RoleMapOutput values.
 // You can construct a concrete instance of `RoleMapInput` via:
 //
-//          RoleMap{ "key": RoleArgs{...} }
+//	RoleMap{ "key": RoleArgs{...} }
 type RoleMapInput interface {
 	pulumi.Input
 

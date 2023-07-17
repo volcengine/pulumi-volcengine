@@ -24,11 +24,55 @@ namespace Pulumi.Volcengine.Vpc
     ///         var g1test3 = new Volcengine.Vpc.SecurityGroupRule("g1test3", new Volcengine.Vpc.SecurityGroupRuleArgs
     ///         {
     ///             CidrIp = "10.0.0.0/8",
+    ///             Description = "tft1234",
     ///             Direction = "egress",
     ///             PortEnd = 9003,
     ///             PortStart = 8000,
     ///             Protocol = "tcp",
-    ///             SecurityGroupId = "sg-273ycgql3ig3k7fap8t3dyvqx",
+    ///             SecurityGroupId = "sg-2d6722jpp55og58ozfd1sqtdb",
+    ///         });
+    ///         var g1test2 = new Volcengine.Vpc.SecurityGroupRule("g1test2", new Volcengine.Vpc.SecurityGroupRuleArgs
+    ///         {
+    ///             CidrIp = "10.0.0.0/24",
+    ///             Direction = "egress",
+    ///             PortEnd = 9003,
+    ///             PortStart = 8000,
+    ///             Protocol = "tcp",
+    ///             SecurityGroupId = "sg-2d6722jpp55og58ozfd1sqtdb",
+    ///         });
+    ///         var g1test1 = new Volcengine.Vpc.SecurityGroupRule("g1test1", new Volcengine.Vpc.SecurityGroupRuleArgs
+    ///         {
+    ///             CidrIp = "10.0.0.0/24",
+    ///             Direction = "egress",
+    ///             PortEnd = 9003,
+    ///             PortStart = 8000,
+    ///             Priority = 2,
+    ///             Protocol = "tcp",
+    ///             SecurityGroupId = "sg-2d6722jpp55og58ozfd1sqtdb",
+    ///         });
+    ///         var g1test0 = new Volcengine.Vpc.SecurityGroupRule("g1test0", new Volcengine.Vpc.SecurityGroupRuleArgs
+    ///         {
+    ///             CidrIp = "10.0.0.0/24",
+    ///             Description = "tft",
+    ///             Direction = "ingress",
+    ///             Policy = "drop",
+    ///             PortEnd = 80,
+    ///             PortStart = 80,
+    ///             Priority = 2,
+    ///             Protocol = "tcp",
+    ///             SecurityGroupId = "sg-2d6722jpp55og58ozfd1sqtdb",
+    ///         });
+    ///         var g1test06 = new Volcengine.Vpc.SecurityGroupRule("g1test06", new Volcengine.Vpc.SecurityGroupRuleArgs
+    ///         {
+    ///             Description = "tft",
+    ///             Direction = "ingress",
+    ///             Policy = "drop",
+    ///             PortEnd = 9003,
+    ///             PortStart = 8000,
+    ///             Priority = 2,
+    ///             Protocol = "tcp",
+    ///             SecurityGroupId = "sg-2d6722jpp55og58ozfd1sqtdb",
+    ///             SourceGroupId = "sg-3rfe5j4xdnklc5zsk2hcw5c6q",
     ///         });
     ///     }
     /// 
@@ -40,10 +84,10 @@ namespace Pulumi.Volcengine.Vpc
     /// SecurityGroupRule can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:Vpc/securityGroupRule:SecurityGroupRule default ID is a string concatenated with colons(SecurityGroupId:Protocol:PortStart:PortEnd:CidrIp)
+    ///  $ pulumi import volcengine:vpc/securityGroupRule:SecurityGroupRule default ID is a string concatenated with colons(SecurityGroupId:Protocol:PortStart:PortEnd:CidrIp:SourceGroupId:Direction:Policy:Priority)
     /// ```
     /// </summary>
-    [VolcengineResourceType("volcengine:Vpc/securityGroupRule:SecurityGroupRule")]
+    [VolcengineResourceType("volcengine:vpc/securityGroupRule:SecurityGroupRule")]
     public partial class SecurityGroupRule : Pulumi.CustomResource
     {
         /// <summary>
@@ -89,7 +133,7 @@ namespace Pulumi.Volcengine.Vpc
         public Output<int?> Priority { get; private set; } = null!;
 
         /// <summary>
-        /// Protocol of the SecurityGroup.
+        /// Protocol of the SecurityGroup, the value can be `tcp` or `udp` or `icmp` or `all` or `icmpv6`.
         /// </summary>
         [Output("protocol")]
         public Output<string> Protocol { get; private set; } = null!;
@@ -121,12 +165,12 @@ namespace Pulumi.Volcengine.Vpc
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public SecurityGroupRule(string name, SecurityGroupRuleArgs args, CustomResourceOptions? options = null)
-            : base("volcengine:Vpc/securityGroupRule:SecurityGroupRule", name, args ?? new SecurityGroupRuleArgs(), MakeResourceOptions(options, ""))
+            : base("volcengine:vpc/securityGroupRule:SecurityGroupRule", name, args ?? new SecurityGroupRuleArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private SecurityGroupRule(string name, Input<string> id, SecurityGroupRuleState? state = null, CustomResourceOptions? options = null)
-            : base("volcengine:Vpc/securityGroupRule:SecurityGroupRule", name, state, MakeResourceOptions(options, id))
+            : base("volcengine:vpc/securityGroupRule:SecurityGroupRule", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -201,7 +245,7 @@ namespace Pulumi.Volcengine.Vpc
         public Input<int>? Priority { get; set; }
 
         /// <summary>
-        /// Protocol of the SecurityGroup.
+        /// Protocol of the SecurityGroup, the value can be `tcp` or `udp` or `icmp` or `all` or `icmpv6`.
         /// </summary>
         [Input("protocol", required: true)]
         public Input<string> Protocol { get; set; } = null!;
@@ -268,7 +312,7 @@ namespace Pulumi.Volcengine.Vpc
         public Input<int>? Priority { get; set; }
 
         /// <summary>
-        /// Protocol of the SecurityGroup.
+        /// Protocol of the SecurityGroup, the value can be `tcp` or `udp` or `icmp` or `all` or `icmpv6`.
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }

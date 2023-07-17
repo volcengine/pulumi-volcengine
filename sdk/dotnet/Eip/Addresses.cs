@@ -40,7 +40,7 @@ namespace Pulumi.Volcengine.Eip
         /// {{% /examples %}}
         /// </summary>
         public static Task<AddressesResult> InvokeAsync(AddressesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<AddressesResult>("volcengine:Eip/addresses:Addresses", args ?? new AddressesArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.InvokeAsync<AddressesResult>("volcengine:eip/addresses:Addresses", args ?? new AddressesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of eip addresses
@@ -71,7 +71,7 @@ namespace Pulumi.Volcengine.Eip
         /// {{% /examples %}}
         /// </summary>
         public static Output<AddressesResult> Invoke(AddressesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<AddressesResult>("volcengine:Eip/addresses:Addresses", args ?? new AddressesInvokeArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.Invoke<AddressesResult>("volcengine:eip/addresses:Addresses", args ?? new AddressesInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -84,7 +84,7 @@ namespace Pulumi.Volcengine.Eip
         public string? AssociatedInstanceId { get; set; }
 
         /// <summary>
-        /// A type of associated instance.
+        /// A type of associated instance, the value can be `Nat`, `NetworkInterface`, `ClbInstance` or `EcsInstance`.
         /// </summary>
         [Input("associatedInstanceType")]
         public string? AssociatedInstanceType { get; set; }
@@ -114,7 +114,7 @@ namespace Pulumi.Volcengine.Eip
         }
 
         /// <summary>
-        /// An ISP of EIP Address.
+        /// An ISP of EIP Address, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
         /// </summary>
         [Input("isp")]
         public string? Isp { get; set; }
@@ -132,10 +132,28 @@ namespace Pulumi.Volcengine.Eip
         public string? OutputFile { get; set; }
 
         /// <summary>
-        /// A status of EIP.
+        /// The ProjectName of EIP.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
+
+        /// <summary>
+        /// A status of EIP, the value can be `Attaching` or `Detaching` or `Attached` or `Available`.
         /// </summary>
         [Input("status")]
         public string? Status { get; set; }
+
+        [Input("tags")]
+        private List<Inputs.AddressesTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.AddressesTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.AddressesTagArgs>());
+            set => _tags = value;
+        }
 
         public AddressesArgs()
         {
@@ -151,7 +169,7 @@ namespace Pulumi.Volcengine.Eip
         public Input<string>? AssociatedInstanceId { get; set; }
 
         /// <summary>
-        /// A type of associated instance.
+        /// A type of associated instance, the value can be `Nat`, `NetworkInterface`, `ClbInstance` or `EcsInstance`.
         /// </summary>
         [Input("associatedInstanceType")]
         public Input<string>? AssociatedInstanceType { get; set; }
@@ -181,7 +199,7 @@ namespace Pulumi.Volcengine.Eip
         }
 
         /// <summary>
-        /// An ISP of EIP Address.
+        /// An ISP of EIP Address, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
         /// </summary>
         [Input("isp")]
         public Input<string>? Isp { get; set; }
@@ -199,10 +217,28 @@ namespace Pulumi.Volcengine.Eip
         public Input<string>? OutputFile { get; set; }
 
         /// <summary>
-        /// A status of EIP.
+        /// The ProjectName of EIP.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
+        /// A status of EIP, the value can be `Attaching` or `Detaching` or `Attached` or `Available`.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.AddressesTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.AddressesTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.AddressesTagInputArgs>());
+            set => _tags = value;
+        }
 
         public AddressesInvokeArgs()
         {
@@ -235,9 +271,17 @@ namespace Pulumi.Volcengine.Eip
         public readonly string? Name;
         public readonly string? OutputFile;
         /// <summary>
+        /// The ProjectName of the EIP.
+        /// </summary>
+        public readonly string? ProjectName;
+        /// <summary>
         /// The status of the EIP.
         /// </summary>
         public readonly string? Status;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.AddressesTagResult> Tags;
         /// <summary>
         /// The total count of EIP addresses query.
         /// </summary>
@@ -263,7 +307,11 @@ namespace Pulumi.Volcengine.Eip
 
             string? outputFile,
 
+            string? projectName,
+
             string? status,
+
+            ImmutableArray<Outputs.AddressesTagResult> tags,
 
             int totalCount)
         {
@@ -276,7 +324,9 @@ namespace Pulumi.Volcengine.Eip
             Isp = isp;
             Name = name;
             OutputFile = outputFile;
+            ProjectName = projectName;
             Status = status;
+            Tags = tags;
             TotalCount = totalCount;
         }
     }

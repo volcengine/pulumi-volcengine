@@ -26,7 +26,7 @@ namespace Pulumi.Volcengine.Clb
     ///             Enabled = "on",
     ///             HealthCheck = new Volcengine.Clb.Inputs.ListenerHealthCheckArgs
     ///             {
-    ///                 Domain = "github.com",
+    ///                 Domain = "volcengine.com",
     ///                 Enabled = "on",
     ///                 HealthyThreshold = 5,
     ///                 HttpCode = "http_2xx",
@@ -37,10 +37,48 @@ namespace Pulumi.Volcengine.Clb
     ///                 Uri = "/",
     ///             },
     ///             ListenerName = "Demo-HTTP-90",
-    ///             LoadBalancerId = "clb-273ylkl0a3i807fap8t4unbsq",
+    ///             LoadBalancerId = "clb-274xltt3rfmyo7fap8sv1jq39",
     ///             Port = 90,
     ///             Protocol = "HTTP",
-    ///             ServerGroupId = "rsp-273yv0kir1vk07fap8tt9jtwg",
+    ///             ServerGroupId = "rsp-274xltv2sjoxs7fap8tlv3q3s",
+    ///         });
+    ///         var bar = new Volcengine.Clb.Listener("bar", new Volcengine.Clb.ListenerArgs
+    ///         {
+    ///             Enabled = "on",
+    ///             HealthCheck = new Volcengine.Clb.Inputs.ListenerHealthCheckArgs
+    ///             {
+    ///                 Domain = "volcengine.com",
+    ///                 Enabled = "on",
+    ///                 HealthyThreshold = 5,
+    ///                 HttpCode = "http_2xx",
+    ///                 Interval = 10,
+    ///                 Method = "GET",
+    ///                 Timeout = 3,
+    ///                 UnHealthyThreshold = 2,
+    ///                 Uri = "/",
+    ///             },
+    ///             ListenerName = "Demo-HTTP-91",
+    ///             LoadBalancerId = "clb-274xltt3rfmyo7fap8sv1jq39",
+    ///             Port = 91,
+    ///             Protocol = "HTTP",
+    ///             ServerGroupId = "rsp-274xltv2sjoxs7fap8tlv3q3s",
+    ///         });
+    ///         var demo = new Volcengine.Clb.Listener("demo", new Volcengine.Clb.ListenerArgs
+    ///         {
+    ///             Enabled = "on",
+    ///             EstablishedTimeout = 10,
+    ///             HealthCheck = new Volcengine.Clb.Inputs.ListenerHealthCheckArgs
+    ///             {
+    ///                 Enabled = "on",
+    ///                 HealthyThreshold = 5,
+    ///                 Interval = 10,
+    ///                 Timeout = 3,
+    ///                 UnHealthyThreshold = 2,
+    ///             },
+    ///             LoadBalancerId = "clb-274xltt3rfmyo7fap8sv1jq39",
+    ///             Port = 92,
+    ///             Protocol = "TCP",
+    ///             ServerGroupId = "rsp-274xltv2sjoxs7fap8tlv3q3s",
     ///         });
     ///     }
     /// 
@@ -52,10 +90,10 @@ namespace Pulumi.Volcengine.Clb
     /// Listener can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:Clb/listener:Listener default lsn-273yv0mhs5xj47fap8sehiiso
+    ///  $ pulumi import volcengine:clb/listener:Listener default lsn-273yv0mhs5xj47fap8sehiiso
     /// ```
     /// </summary>
-    [VolcengineResourceType("volcengine:Clb/listener:Listener")]
+    [VolcengineResourceType("volcengine:clb/listener:Listener")]
     public partial class Listener : Pulumi.CustomResource
     {
         /// <summary>
@@ -125,7 +163,7 @@ namespace Pulumi.Volcengine.Clb
         public Output<string> LoadBalancerId { get; private set; } = null!;
 
         /// <summary>
-        /// The port receiving request of the Listener.
+        /// The port receiving request of the Listener, the value range in 1~65535.
         /// </summary>
         [Output("port")]
         public Output<int> Port { get; private set; } = null!;
@@ -157,12 +195,12 @@ namespace Pulumi.Volcengine.Clb
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Listener(string name, ListenerArgs args, CustomResourceOptions? options = null)
-            : base("volcengine:Clb/listener:Listener", name, args ?? new ListenerArgs(), MakeResourceOptions(options, ""))
+            : base("volcengine:clb/listener:Listener", name, args ?? new ListenerArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private Listener(string name, Input<string> id, ListenerState? state = null, CustomResourceOptions? options = null)
-            : base("volcengine:Clb/listener:Listener", name, state, MakeResourceOptions(options, id))
+            : base("volcengine:clb/listener:Listener", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -261,7 +299,7 @@ namespace Pulumi.Volcengine.Clb
         public Input<string> LoadBalancerId { get; set; } = null!;
 
         /// <summary>
-        /// The port receiving request of the Listener.
+        /// The port receiving request of the Listener, the value range in 1~65535.
         /// </summary>
         [Input("port", required: true)]
         public Input<int> Port { get; set; } = null!;
@@ -364,7 +402,7 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? LoadBalancerId { get; set; }
 
         /// <summary>
-        /// The port receiving request of the Listener.
+        /// The port receiving request of the Listener, the value range in 1~65535.
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }

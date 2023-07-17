@@ -34,7 +34,7 @@ namespace Pulumi.Volcengine.Vke.Inputs
         private InputList<string>? _securityStrategies;
 
         /// <summary>
-        /// The SecurityStrategies of Security.
+        /// The SecurityStrategies of Security, the value can be empty or `Hids`.
         /// </summary>
         public InputList<string> SecurityStrategies
         {

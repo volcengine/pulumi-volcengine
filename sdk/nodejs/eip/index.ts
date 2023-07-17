@@ -17,14 +17,14 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "volcengine:Eip/address:Address":
+            case "volcengine:eip/address:Address":
                 return new Address(name, <any>undefined, { urn })
-            case "volcengine:Eip/associate:Associate":
+            case "volcengine:eip/associate:Associate":
                 return new Associate(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
-pulumi.runtime.registerResourceModule("volcengine", "Eip/address", _module)
-pulumi.runtime.registerResourceModule("volcengine", "Eip/associate", _module)
+pulumi.runtime.registerResourceModule("volcengine", "eip/address", _module)
+pulumi.runtime.registerResourceModule("volcengine", "eip/associate", _module)

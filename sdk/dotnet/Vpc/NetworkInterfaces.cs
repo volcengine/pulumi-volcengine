@@ -40,7 +40,7 @@ namespace Pulumi.Volcengine.Vpc
         /// {{% /examples %}}
         /// </summary>
         public static Task<NetworkInterfacesResult> InvokeAsync(NetworkInterfacesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<NetworkInterfacesResult>("volcengine:Vpc/networkInterfaces:NetworkInterfaces", args ?? new NetworkInterfacesArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.InvokeAsync<NetworkInterfacesResult>("volcengine:vpc/networkInterfaces:NetworkInterfaces", args ?? new NetworkInterfacesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of network interfaces
@@ -71,7 +71,7 @@ namespace Pulumi.Volcengine.Vpc
         /// {{% /examples %}}
         /// </summary>
         public static Output<NetworkInterfacesResult> Invoke(NetworkInterfacesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<NetworkInterfacesResult>("volcengine:Vpc/networkInterfaces:NetworkInterfaces", args ?? new NetworkInterfacesInvokeArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.Invoke<NetworkInterfacesResult>("volcengine:vpc/networkInterfaces:NetworkInterfaces", args ?? new NetworkInterfacesInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -94,6 +94,18 @@ namespace Pulumi.Volcengine.Vpc
         /// </summary>
         [Input("instanceId")]
         public string? InstanceId { get; set; }
+
+        [Input("networkInterfaceIds")]
+        private List<string>? _networkInterfaceIds;
+
+        /// <summary>
+        /// A list of network interface ids.
+        /// </summary>
+        public List<string> NetworkInterfaceIds
+        {
+            get => _networkInterfaceIds ?? (_networkInterfaceIds = new List<string>());
+            set => _networkInterfaceIds = value;
+        }
 
         /// <summary>
         /// A name of ENI.
@@ -119,6 +131,24 @@ namespace Pulumi.Volcengine.Vpc
             set => _primaryIpAddresses = value;
         }
 
+        [Input("privateIpAddresses")]
+        private List<string>? _privateIpAddresses;
+
+        /// <summary>
+        /// A list of private IP addresses.
+        /// </summary>
+        public List<string> PrivateIpAddresses
+        {
+            get => _privateIpAddresses ?? (_privateIpAddresses = new List<string>());
+            set => _privateIpAddresses = value;
+        }
+
+        /// <summary>
+        /// The ProjectName of the ENI.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
+
         /// <summary>
         /// An id of the security group to which the secondary ENI belongs.
         /// </summary>
@@ -126,7 +156,7 @@ namespace Pulumi.Volcengine.Vpc
         public string? SecurityGroupId { get; set; }
 
         /// <summary>
-        /// A status of ENI.
+        /// A status of ENI, Optional choice contains `Creating`, `Available`, `Attaching`, `InUse`, `Detaching`, `Deleting`.
         /// </summary>
         [Input("status")]
         public string? Status { get; set; }
@@ -137,8 +167,20 @@ namespace Pulumi.Volcengine.Vpc
         [Input("subnetId")]
         public string? SubnetId { get; set; }
 
+        [Input("tags")]
+        private List<Inputs.NetworkInterfacesTagArgs>? _tags;
+
         /// <summary>
-        /// A type of ENI.
+        /// Tags.
+        /// </summary>
+        public List<Inputs.NetworkInterfacesTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.NetworkInterfacesTagArgs>());
+            set => _tags = value;
+        }
+
+        /// <summary>
+        /// A type of ENI, Optional choice contains `primary`, `secondary`.
         /// </summary>
         [Input("type")]
         public string? Type { get; set; }
@@ -148,6 +190,12 @@ namespace Pulumi.Volcengine.Vpc
         /// </summary>
         [Input("vpcId")]
         public string? VpcId { get; set; }
+
+        /// <summary>
+        /// The zone ID.
+        /// </summary>
+        [Input("zoneId")]
+        public string? ZoneId { get; set; }
 
         public NetworkInterfacesArgs()
         {
@@ -174,6 +222,18 @@ namespace Pulumi.Volcengine.Vpc
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
 
+        [Input("networkInterfaceIds")]
+        private InputList<string>? _networkInterfaceIds;
+
+        /// <summary>
+        /// A list of network interface ids.
+        /// </summary>
+        public InputList<string> NetworkInterfaceIds
+        {
+            get => _networkInterfaceIds ?? (_networkInterfaceIds = new InputList<string>());
+            set => _networkInterfaceIds = value;
+        }
+
         /// <summary>
         /// A name of ENI.
         /// </summary>
@@ -198,6 +258,24 @@ namespace Pulumi.Volcengine.Vpc
             set => _primaryIpAddresses = value;
         }
 
+        [Input("privateIpAddresses")]
+        private InputList<string>? _privateIpAddresses;
+
+        /// <summary>
+        /// A list of private IP addresses.
+        /// </summary>
+        public InputList<string> PrivateIpAddresses
+        {
+            get => _privateIpAddresses ?? (_privateIpAddresses = new InputList<string>());
+            set => _privateIpAddresses = value;
+        }
+
+        /// <summary>
+        /// The ProjectName of the ENI.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
         /// <summary>
         /// An id of the security group to which the secondary ENI belongs.
         /// </summary>
@@ -205,7 +283,7 @@ namespace Pulumi.Volcengine.Vpc
         public Input<string>? SecurityGroupId { get; set; }
 
         /// <summary>
-        /// A status of ENI.
+        /// A status of ENI, Optional choice contains `Creating`, `Available`, `Attaching`, `InUse`, `Detaching`, `Deleting`.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
@@ -216,8 +294,20 @@ namespace Pulumi.Volcengine.Vpc
         [Input("subnetId")]
         public Input<string>? SubnetId { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.NetworkInterfacesTagInputArgs>? _tags;
+
         /// <summary>
-        /// A type of ENI.
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.NetworkInterfacesTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.NetworkInterfacesTagInputArgs>());
+            set => _tags = value;
+        }
+
+        /// <summary>
+        /// A type of ENI, Optional choice contains `primary`, `secondary`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -227,6 +317,12 @@ namespace Pulumi.Volcengine.Vpc
         /// </summary>
         [Input("vpcId")]
         public Input<string>? VpcId { get; set; }
+
+        /// <summary>
+        /// The zone ID.
+        /// </summary>
+        [Input("zoneId")]
+        public Input<string>? ZoneId { get; set; }
 
         public NetworkInterfacesInvokeArgs()
         {
@@ -243,6 +339,7 @@ namespace Pulumi.Volcengine.Vpc
         public readonly string Id;
         public readonly ImmutableArray<string> Ids;
         public readonly string? InstanceId;
+        public readonly ImmutableArray<string> NetworkInterfaceIds;
         /// <summary>
         /// The name of the ENI.
         /// </summary>
@@ -253,6 +350,11 @@ namespace Pulumi.Volcengine.Vpc
         public readonly ImmutableArray<Outputs.NetworkInterfacesNetworkInterfaceResult> NetworkInterfaces;
         public readonly string? OutputFile;
         public readonly ImmutableArray<string> PrimaryIpAddresses;
+        public readonly ImmutableArray<string> PrivateIpAddresses;
+        /// <summary>
+        /// The ProjectName of the ENI.
+        /// </summary>
+        public readonly string? ProjectName;
         public readonly string? SecurityGroupId;
         /// <summary>
         /// The status of the ENI.
@@ -262,6 +364,10 @@ namespace Pulumi.Volcengine.Vpc
         /// The id of the subnet to which the ENI is connected.
         /// </summary>
         public readonly string? SubnetId;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.NetworkInterfacesTagResult> Tags;
         /// <summary>
         /// The total count of ENI query.
         /// </summary>
@@ -274,6 +380,10 @@ namespace Pulumi.Volcengine.Vpc
         /// The id of the virtual private cloud (VPC) to which the ENI belongs.
         /// </summary>
         public readonly string? VpcId;
+        /// <summary>
+        /// The zone id of the ENI.
+        /// </summary>
+        public readonly string? ZoneId;
 
         [OutputConstructor]
         private NetworkInterfacesResult(
@@ -283,6 +393,8 @@ namespace Pulumi.Volcengine.Vpc
 
             string? instanceId,
 
+            ImmutableArray<string> networkInterfaceIds,
+
             string? networkInterfaceName,
 
             ImmutableArray<Outputs.NetworkInterfacesNetworkInterfaceResult> networkInterfaces,
@@ -291,31 +403,44 @@ namespace Pulumi.Volcengine.Vpc
 
             ImmutableArray<string> primaryIpAddresses,
 
+            ImmutableArray<string> privateIpAddresses,
+
+            string? projectName,
+
             string? securityGroupId,
 
             string? status,
 
             string? subnetId,
 
+            ImmutableArray<Outputs.NetworkInterfacesTagResult> tags,
+
             int totalCount,
 
             string? type,
 
-            string? vpcId)
+            string? vpcId,
+
+            string? zoneId)
         {
             Id = id;
             Ids = ids;
             InstanceId = instanceId;
+            NetworkInterfaceIds = networkInterfaceIds;
             NetworkInterfaceName = networkInterfaceName;
             NetworkInterfaces = networkInterfaces;
             OutputFile = outputFile;
             PrimaryIpAddresses = primaryIpAddresses;
+            PrivateIpAddresses = privateIpAddresses;
+            ProjectName = projectName;
             SecurityGroupId = securityGroupId;
             Status = status;
             SubnetId = subnetId;
+            Tags = tags;
             TotalCount = totalCount;
             Type = type;
             VpcId = vpcId;
+            ZoneId = zoneId;
         }
     }
 }

@@ -24,10 +24,9 @@ namespace Pulumi.Volcengine.Clb
     ///         var foo = new Volcengine.Clb.ServerGroupServer("foo", new Volcengine.Clb.ServerGroupServerArgs
     ///         {
     ///             Description = "This is a server",
-    ///             InstanceId = "i-72q1zvko6i5lnawvg940",
-    ///             Ip = "192.168.100.99",
+    ///             InstanceId = "i-ybp1scasbe72q1vq35wv",
     ///             Port = 80,
-    ///             ServerGroupId = "rsp-273zn4ewlhkw07fap8tig9ujz",
+    ///             ServerGroupId = "rsp-274xltv2sjoxs7fap8tlv3q3s",
     ///             Type = "ecs",
     ///             Weight = 100,
     ///         });
@@ -41,10 +40,10 @@ namespace Pulumi.Volcengine.Clb
     /// ServerGroupServer can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:Clb/serverGroupServer:ServerGroupServer default rs-3ciynux6i1x4w****rszh49sj
+    ///  $ pulumi import volcengine:clb/serverGroupServer:ServerGroupServer default rsp-274xltv2*****8tlv3q3s:rs-3ciynux6i1x4w****rszh49sj
     /// ```
     /// </summary>
-    [VolcengineResourceType("volcengine:Clb/serverGroupServer:ServerGroupServer")]
+    [VolcengineResourceType("volcengine:clb/serverGroupServer:ServerGroupServer")]
     public partial class ServerGroupServer : Pulumi.CustomResource
     {
         /// <summary>
@@ -57,25 +56,25 @@ namespace Pulumi.Volcengine.Clb
         /// The ID of ecs instance or the network card bound to ecs instance.
         /// </summary>
         [Output("instanceId")]
-        public Output<string?> InstanceId { get; private set; } = null!;
+        public Output<string> InstanceId { get; private set; } = null!;
 
         /// <summary>
         /// The private ip of the instance.
         /// </summary>
         [Output("ip")]
-        public Output<string?> Ip { get; private set; } = null!;
+        public Output<string> Ip { get; private set; } = null!;
 
         /// <summary>
         /// The port receiving request.
         /// </summary>
         [Output("port")]
-        public Output<int?> Port { get; private set; } = null!;
+        public Output<int> Port { get; private set; } = null!;
 
         /// <summary>
         /// The ID of the ServerGroup.
         /// </summary>
         [Output("serverGroupId")]
-        public Output<string?> ServerGroupId { get; private set; } = null!;
+        public Output<string> ServerGroupId { get; private set; } = null!;
 
         /// <summary>
         /// The server id of instance in ServerGroup.
@@ -87,10 +86,10 @@ namespace Pulumi.Volcengine.Clb
         /// The type of instance. Optional choice contains `ecs`, `eni`.
         /// </summary>
         [Output("type")]
-        public Output<string?> Type { get; private set; } = null!;
+        public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// The weight of the instance.
+        /// The weight of the instance, range in 0~100.
         /// </summary>
         [Output("weight")]
         public Output<int?> Weight { get; private set; } = null!;
@@ -103,13 +102,13 @@ namespace Pulumi.Volcengine.Clb
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public ServerGroupServer(string name, ServerGroupServerArgs? args = null, CustomResourceOptions? options = null)
-            : base("volcengine:Clb/serverGroupServer:ServerGroupServer", name, args ?? new ServerGroupServerArgs(), MakeResourceOptions(options, ""))
+        public ServerGroupServer(string name, ServerGroupServerArgs args, CustomResourceOptions? options = null)
+            : base("volcengine:clb/serverGroupServer:ServerGroupServer", name, args ?? new ServerGroupServerArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private ServerGroupServer(string name, Input<string> id, ServerGroupServerState? state = null, CustomResourceOptions? options = null)
-            : base("volcengine:Clb/serverGroupServer:ServerGroupServer", name, state, MakeResourceOptions(options, id))
+            : base("volcengine:clb/serverGroupServer:ServerGroupServer", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -150,8 +149,8 @@ namespace Pulumi.Volcengine.Clb
         /// <summary>
         /// The ID of ecs instance or the network card bound to ecs instance.
         /// </summary>
-        [Input("instanceId")]
-        public Input<string>? InstanceId { get; set; }
+        [Input("instanceId", required: true)]
+        public Input<string> InstanceId { get; set; } = null!;
 
         /// <summary>
         /// The private ip of the instance.
@@ -162,23 +161,23 @@ namespace Pulumi.Volcengine.Clb
         /// <summary>
         /// The port receiving request.
         /// </summary>
-        [Input("port")]
-        public Input<int>? Port { get; set; }
+        [Input("port", required: true)]
+        public Input<int> Port { get; set; } = null!;
 
         /// <summary>
         /// The ID of the ServerGroup.
         /// </summary>
-        [Input("serverGroupId")]
-        public Input<string>? ServerGroupId { get; set; }
+        [Input("serverGroupId", required: true)]
+        public Input<string> ServerGroupId { get; set; } = null!;
 
         /// <summary>
         /// The type of instance. Optional choice contains `ecs`, `eni`.
         /// </summary>
-        [Input("type")]
-        public Input<string>? Type { get; set; }
+        [Input("type", required: true)]
+        public Input<string> Type { get; set; } = null!;
 
         /// <summary>
-        /// The weight of the instance.
+        /// The weight of the instance, range in 0~100.
         /// </summary>
         [Input("weight")]
         public Input<int>? Weight { get; set; }
@@ -233,7 +232,7 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// The weight of the instance.
+        /// The weight of the instance, range in 0~100.
         /// </summary>
         [Input("weight")]
         public Input<int>? Weight { get; set; }

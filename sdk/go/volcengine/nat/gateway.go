@@ -11,32 +11,35 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a resource to manage nat gateway
 // ## Example Usage
 //
 // ```go
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Nat"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/nat"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Nat.NewGateway(ctx, "foo", &Nat.GatewayArgs{
-// 			Description:    pulumi.String("This nat gateway auto-created by terraform. "),
-// 			NatGatewayName: pulumi.String("tf-auto-demo-1"),
-// 			Spec:           pulumi.String("Medium"),
-// 			SubnetId:       pulumi.String("subnet-2740cym8mv9q87fap8u3hfx4i"),
-// 			VpcId:          pulumi.String("vpc-2740cxyk9im0w7fap8u013dfe"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := nat.NewGateway(ctx, "foo", &nat.GatewayArgs{
+//				Description:    pulumi.String("This nat gateway auto-created by terraform. "),
+//				NatGatewayName: pulumi.String("tf-auto-demo-1"),
+//				ProjectName:    pulumi.String("default"),
+//				Spec:           pulumi.String("Medium"),
+//				SubnetId:       pulumi.String("subnet-im67x70vxla88gbssz1hy1z2"),
+//				VpcId:          pulumi.String("vpc-im67wjcikxkw8gbssx8ufpj8"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -44,21 +47,27 @@ import (
 // NatGateway can be imported using the id, e.g.
 //
 // ```sh
-//  $ pulumi import volcengine:Nat/gateway:Gateway default ngw-vv3t043k05sm****
+//
+//	$ pulumi import volcengine:nat/gateway:Gateway default ngw-vv3t043k05sm****
+//
 // ```
 type Gateway struct {
 	pulumi.CustomResourceState
 
-	// The billing type of the NatGateway.
+	// The billing type of the NatGateway, the value is `PostPaid`.
 	BillingType pulumi.StringPtrOutput `pulumi:"billingType"`
 	// The description of the NatGateway.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The name of the NatGateway.
 	NatGatewayName pulumi.StringPtrOutput `pulumi:"natGatewayName"`
+	// The ProjectName of the NatGateway.
+	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
 	// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
 	Spec pulumi.StringPtrOutput `pulumi:"spec"`
 	// The ID of the Subnet.
 	SubnetId pulumi.StringOutput `pulumi:"subnetId"`
+	// Tags.
+	Tags GatewayTagArrayOutput `pulumi:"tags"`
 	// The ID of the VPC.
 	VpcId pulumi.StringOutput `pulumi:"vpcId"`
 }
@@ -77,7 +86,7 @@ func NewGateway(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'VpcId'")
 	}
 	var resource Gateway
-	err := ctx.RegisterResource("volcengine:Nat/gateway:Gateway", name, args, &resource, opts...)
+	err := ctx.RegisterResource("volcengine:nat/gateway:Gateway", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -89,7 +98,7 @@ func NewGateway(ctx *pulumi.Context,
 func GetGateway(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *GatewayState, opts ...pulumi.ResourceOption) (*Gateway, error) {
 	var resource Gateway
-	err := ctx.ReadResource("volcengine:Nat/gateway:Gateway", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("volcengine:nat/gateway:Gateway", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -98,31 +107,39 @@ func GetGateway(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Gateway resources.
 type gatewayState struct {
-	// The billing type of the NatGateway.
+	// The billing type of the NatGateway, the value is `PostPaid`.
 	BillingType *string `pulumi:"billingType"`
 	// The description of the NatGateway.
 	Description *string `pulumi:"description"`
 	// The name of the NatGateway.
 	NatGatewayName *string `pulumi:"natGatewayName"`
+	// The ProjectName of the NatGateway.
+	ProjectName *string `pulumi:"projectName"`
 	// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
 	Spec *string `pulumi:"spec"`
 	// The ID of the Subnet.
 	SubnetId *string `pulumi:"subnetId"`
+	// Tags.
+	Tags []GatewayTag `pulumi:"tags"`
 	// The ID of the VPC.
 	VpcId *string `pulumi:"vpcId"`
 }
 
 type GatewayState struct {
-	// The billing type of the NatGateway.
+	// The billing type of the NatGateway, the value is `PostPaid`.
 	BillingType pulumi.StringPtrInput
 	// The description of the NatGateway.
 	Description pulumi.StringPtrInput
 	// The name of the NatGateway.
 	NatGatewayName pulumi.StringPtrInput
+	// The ProjectName of the NatGateway.
+	ProjectName pulumi.StringPtrInput
 	// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
 	Spec pulumi.StringPtrInput
 	// The ID of the Subnet.
 	SubnetId pulumi.StringPtrInput
+	// Tags.
+	Tags GatewayTagArrayInput
 	// The ID of the VPC.
 	VpcId pulumi.StringPtrInput
 }
@@ -132,32 +149,40 @@ func (GatewayState) ElementType() reflect.Type {
 }
 
 type gatewayArgs struct {
-	// The billing type of the NatGateway.
+	// The billing type of the NatGateway, the value is `PostPaid`.
 	BillingType *string `pulumi:"billingType"`
 	// The description of the NatGateway.
 	Description *string `pulumi:"description"`
 	// The name of the NatGateway.
 	NatGatewayName *string `pulumi:"natGatewayName"`
+	// The ProjectName of the NatGateway.
+	ProjectName *string `pulumi:"projectName"`
 	// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
 	Spec *string `pulumi:"spec"`
 	// The ID of the Subnet.
 	SubnetId string `pulumi:"subnetId"`
+	// Tags.
+	Tags []GatewayTag `pulumi:"tags"`
 	// The ID of the VPC.
 	VpcId string `pulumi:"vpcId"`
 }
 
 // The set of arguments for constructing a Gateway resource.
 type GatewayArgs struct {
-	// The billing type of the NatGateway.
+	// The billing type of the NatGateway, the value is `PostPaid`.
 	BillingType pulumi.StringPtrInput
 	// The description of the NatGateway.
 	Description pulumi.StringPtrInput
 	// The name of the NatGateway.
 	NatGatewayName pulumi.StringPtrInput
+	// The ProjectName of the NatGateway.
+	ProjectName pulumi.StringPtrInput
 	// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
 	Spec pulumi.StringPtrInput
 	// The ID of the Subnet.
 	SubnetId pulumi.StringInput
+	// Tags.
+	Tags GatewayTagArrayInput
 	// The ID of the VPC.
 	VpcId pulumi.StringInput
 }
@@ -188,7 +213,7 @@ func (i *Gateway) ToGatewayOutputWithContext(ctx context.Context) GatewayOutput 
 // GatewayArrayInput is an input type that accepts GatewayArray and GatewayArrayOutput values.
 // You can construct a concrete instance of `GatewayArrayInput` via:
 //
-//          GatewayArray{ GatewayArgs{...} }
+//	GatewayArray{ GatewayArgs{...} }
 type GatewayArrayInput interface {
 	pulumi.Input
 
@@ -213,7 +238,7 @@ func (i GatewayArray) ToGatewayArrayOutputWithContext(ctx context.Context) Gatew
 // GatewayMapInput is an input type that accepts GatewayMap and GatewayMapOutput values.
 // You can construct a concrete instance of `GatewayMapInput` via:
 //
-//          GatewayMap{ "key": GatewayArgs{...} }
+//	GatewayMap{ "key": GatewayArgs{...} }
 type GatewayMapInput interface {
 	pulumi.Input
 
@@ -249,7 +274,7 @@ func (o GatewayOutput) ToGatewayOutputWithContext(ctx context.Context) GatewayOu
 	return o
 }
 
-// The billing type of the NatGateway.
+// The billing type of the NatGateway, the value is `PostPaid`.
 func (o GatewayOutput) BillingType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.StringPtrOutput { return v.BillingType }).(pulumi.StringPtrOutput)
 }
@@ -264,6 +289,11 @@ func (o GatewayOutput) NatGatewayName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.StringPtrOutput { return v.NatGatewayName }).(pulumi.StringPtrOutput)
 }
 
+// The ProjectName of the NatGateway.
+func (o GatewayOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Gateway) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
 // The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
 func (o GatewayOutput) Spec() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.StringPtrOutput { return v.Spec }).(pulumi.StringPtrOutput)
@@ -272,6 +302,11 @@ func (o GatewayOutput) Spec() pulumi.StringPtrOutput {
 // The ID of the Subnet.
 func (o GatewayOutput) SubnetId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.StringOutput { return v.SubnetId }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o GatewayOutput) Tags() GatewayTagArrayOutput {
+	return o.ApplyT(func(v *Gateway) GatewayTagArrayOutput { return v.Tags }).(GatewayTagArrayOutput)
 }
 
 // The ID of the VPC.

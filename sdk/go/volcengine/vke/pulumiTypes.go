@@ -10,6 +10,457 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+type AddonsAddon struct {
+	// The ID of the Cluster.
+	ClusterId string `pulumi:"clusterId"`
+	// The config of addon.
+	Config string `pulumi:"config"`
+	// ClientToken when the addon is created successfully. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+	CreateClientToken *string `pulumi:"createClientToken"`
+	// Addon creation time. UTC+0 time in standard RFC3339 format.
+	CreateTime string `pulumi:"createTime"`
+	// The deploy mode.
+	DeployMode string `pulumi:"deployMode"`
+	// The deploy node type.
+	DeployNodeType string `pulumi:"deployNodeType"`
+	// The name of the cluster.
+	Name string `pulumi:"name"`
+	// The status of the addon.
+	Status AddonsAddonStatus `pulumi:"status"`
+	// The ClientToken when the last addon update succeeded. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+	UpdateClientToken *string `pulumi:"updateClientToken"`
+	// The last time a request was accepted by the addon and executed or completed. UTC+0 time in standard RFC3339 format.
+	UpdateTime string `pulumi:"updateTime"`
+	// The name of the cluster.
+	Version string `pulumi:"version"`
+}
+
+// AddonsAddonInput is an input type that accepts AddonsAddonArgs and AddonsAddonOutput values.
+// You can construct a concrete instance of `AddonsAddonInput` via:
+//
+//	AddonsAddonArgs{...}
+type AddonsAddonInput interface {
+	pulumi.Input
+
+	ToAddonsAddonOutput() AddonsAddonOutput
+	ToAddonsAddonOutputWithContext(context.Context) AddonsAddonOutput
+}
+
+type AddonsAddonArgs struct {
+	// The ID of the Cluster.
+	ClusterId pulumi.StringInput `pulumi:"clusterId"`
+	// The config of addon.
+	Config pulumi.StringInput `pulumi:"config"`
+	// ClientToken when the addon is created successfully. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+	CreateClientToken pulumi.StringPtrInput `pulumi:"createClientToken"`
+	// Addon creation time. UTC+0 time in standard RFC3339 format.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The deploy mode.
+	DeployMode pulumi.StringInput `pulumi:"deployMode"`
+	// The deploy node type.
+	DeployNodeType pulumi.StringInput `pulumi:"deployNodeType"`
+	// The name of the cluster.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The status of the addon.
+	Status AddonsAddonStatusInput `pulumi:"status"`
+	// The ClientToken when the last addon update succeeded. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+	UpdateClientToken pulumi.StringPtrInput `pulumi:"updateClientToken"`
+	// The last time a request was accepted by the addon and executed or completed. UTC+0 time in standard RFC3339 format.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+	// The name of the cluster.
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (AddonsAddonArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AddonsAddon)(nil)).Elem()
+}
+
+func (i AddonsAddonArgs) ToAddonsAddonOutput() AddonsAddonOutput {
+	return i.ToAddonsAddonOutputWithContext(context.Background())
+}
+
+func (i AddonsAddonArgs) ToAddonsAddonOutputWithContext(ctx context.Context) AddonsAddonOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AddonsAddonOutput)
+}
+
+// AddonsAddonArrayInput is an input type that accepts AddonsAddonArray and AddonsAddonArrayOutput values.
+// You can construct a concrete instance of `AddonsAddonArrayInput` via:
+//
+//	AddonsAddonArray{ AddonsAddonArgs{...} }
+type AddonsAddonArrayInput interface {
+	pulumi.Input
+
+	ToAddonsAddonArrayOutput() AddonsAddonArrayOutput
+	ToAddonsAddonArrayOutputWithContext(context.Context) AddonsAddonArrayOutput
+}
+
+type AddonsAddonArray []AddonsAddonInput
+
+func (AddonsAddonArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AddonsAddon)(nil)).Elem()
+}
+
+func (i AddonsAddonArray) ToAddonsAddonArrayOutput() AddonsAddonArrayOutput {
+	return i.ToAddonsAddonArrayOutputWithContext(context.Background())
+}
+
+func (i AddonsAddonArray) ToAddonsAddonArrayOutputWithContext(ctx context.Context) AddonsAddonArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AddonsAddonArrayOutput)
+}
+
+type AddonsAddonOutput struct{ *pulumi.OutputState }
+
+func (AddonsAddonOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AddonsAddon)(nil)).Elem()
+}
+
+func (o AddonsAddonOutput) ToAddonsAddonOutput() AddonsAddonOutput {
+	return o
+}
+
+func (o AddonsAddonOutput) ToAddonsAddonOutputWithContext(ctx context.Context) AddonsAddonOutput {
+	return o
+}
+
+// The ID of the Cluster.
+func (o AddonsAddonOutput) ClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v AddonsAddon) string { return v.ClusterId }).(pulumi.StringOutput)
+}
+
+// The config of addon.
+func (o AddonsAddonOutput) Config() pulumi.StringOutput {
+	return o.ApplyT(func(v AddonsAddon) string { return v.Config }).(pulumi.StringOutput)
+}
+
+// ClientToken when the addon is created successfully. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+func (o AddonsAddonOutput) CreateClientToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AddonsAddon) *string { return v.CreateClientToken }).(pulumi.StringPtrOutput)
+}
+
+// Addon creation time. UTC+0 time in standard RFC3339 format.
+func (o AddonsAddonOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v AddonsAddon) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The deploy mode.
+func (o AddonsAddonOutput) DeployMode() pulumi.StringOutput {
+	return o.ApplyT(func(v AddonsAddon) string { return v.DeployMode }).(pulumi.StringOutput)
+}
+
+// The deploy node type.
+func (o AddonsAddonOutput) DeployNodeType() pulumi.StringOutput {
+	return o.ApplyT(func(v AddonsAddon) string { return v.DeployNodeType }).(pulumi.StringOutput)
+}
+
+// The name of the cluster.
+func (o AddonsAddonOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v AddonsAddon) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The status of the addon.
+func (o AddonsAddonOutput) Status() AddonsAddonStatusOutput {
+	return o.ApplyT(func(v AddonsAddon) AddonsAddonStatus { return v.Status }).(AddonsAddonStatusOutput)
+}
+
+// The ClientToken when the last addon update succeeded. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
+func (o AddonsAddonOutput) UpdateClientToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AddonsAddon) *string { return v.UpdateClientToken }).(pulumi.StringPtrOutput)
+}
+
+// The last time a request was accepted by the addon and executed or completed. UTC+0 time in standard RFC3339 format.
+func (o AddonsAddonOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v AddonsAddon) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+// The name of the cluster.
+func (o AddonsAddonOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v AddonsAddon) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type AddonsAddonArrayOutput struct{ *pulumi.OutputState }
+
+func (AddonsAddonArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AddonsAddon)(nil)).Elem()
+}
+
+func (o AddonsAddonArrayOutput) ToAddonsAddonArrayOutput() AddonsAddonArrayOutput {
+	return o
+}
+
+func (o AddonsAddonArrayOutput) ToAddonsAddonArrayOutputWithContext(ctx context.Context) AddonsAddonArrayOutput {
+	return o
+}
+
+func (o AddonsAddonArrayOutput) Index(i pulumi.IntInput) AddonsAddonOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AddonsAddon {
+		return vs[0].([]AddonsAddon)[vs[1].(int)]
+	}).(AddonsAddonOutput)
+}
+
+type AddonsAddonStatus struct {
+	// The state condition in the current primary state of the cluster, that is, the reason for entering the primary state.
+	Conditions []AddonsAddonStatusCondition `pulumi:"conditions"`
+	// The status of addon. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Failed`.
+	Phase string `pulumi:"phase"`
+}
+
+// AddonsAddonStatusInput is an input type that accepts AddonsAddonStatusArgs and AddonsAddonStatusOutput values.
+// You can construct a concrete instance of `AddonsAddonStatusInput` via:
+//
+//	AddonsAddonStatusArgs{...}
+type AddonsAddonStatusInput interface {
+	pulumi.Input
+
+	ToAddonsAddonStatusOutput() AddonsAddonStatusOutput
+	ToAddonsAddonStatusOutputWithContext(context.Context) AddonsAddonStatusOutput
+}
+
+type AddonsAddonStatusArgs struct {
+	// The state condition in the current primary state of the cluster, that is, the reason for entering the primary state.
+	Conditions AddonsAddonStatusConditionArrayInput `pulumi:"conditions"`
+	// The status of addon. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Failed`.
+	Phase pulumi.StringInput `pulumi:"phase"`
+}
+
+func (AddonsAddonStatusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AddonsAddonStatus)(nil)).Elem()
+}
+
+func (i AddonsAddonStatusArgs) ToAddonsAddonStatusOutput() AddonsAddonStatusOutput {
+	return i.ToAddonsAddonStatusOutputWithContext(context.Background())
+}
+
+func (i AddonsAddonStatusArgs) ToAddonsAddonStatusOutputWithContext(ctx context.Context) AddonsAddonStatusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AddonsAddonStatusOutput)
+}
+
+type AddonsAddonStatusOutput struct{ *pulumi.OutputState }
+
+func (AddonsAddonStatusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AddonsAddonStatus)(nil)).Elem()
+}
+
+func (o AddonsAddonStatusOutput) ToAddonsAddonStatusOutput() AddonsAddonStatusOutput {
+	return o
+}
+
+func (o AddonsAddonStatusOutput) ToAddonsAddonStatusOutputWithContext(ctx context.Context) AddonsAddonStatusOutput {
+	return o
+}
+
+// The state condition in the current primary state of the cluster, that is, the reason for entering the primary state.
+func (o AddonsAddonStatusOutput) Conditions() AddonsAddonStatusConditionArrayOutput {
+	return o.ApplyT(func(v AddonsAddonStatus) []AddonsAddonStatusCondition { return v.Conditions }).(AddonsAddonStatusConditionArrayOutput)
+}
+
+// The status of addon. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Failed`.
+func (o AddonsAddonStatusOutput) Phase() pulumi.StringOutput {
+	return o.ApplyT(func(v AddonsAddonStatus) string { return v.Phase }).(pulumi.StringOutput)
+}
+
+type AddonsAddonStatusCondition struct {
+	// The state condition in the current main state of the addon, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`,`Unknown`, `ClusterNotRunning`, `CrashLoopBackOff`, `SchedulingFailed`, `NameConflict`, `ResourceCleanupFailed`, `ClusterVersionUpgrading`.
+	Type string `pulumi:"type"`
+}
+
+// AddonsAddonStatusConditionInput is an input type that accepts AddonsAddonStatusConditionArgs and AddonsAddonStatusConditionOutput values.
+// You can construct a concrete instance of `AddonsAddonStatusConditionInput` via:
+//
+//	AddonsAddonStatusConditionArgs{...}
+type AddonsAddonStatusConditionInput interface {
+	pulumi.Input
+
+	ToAddonsAddonStatusConditionOutput() AddonsAddonStatusConditionOutput
+	ToAddonsAddonStatusConditionOutputWithContext(context.Context) AddonsAddonStatusConditionOutput
+}
+
+type AddonsAddonStatusConditionArgs struct {
+	// The state condition in the current main state of the addon, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`,`Unknown`, `ClusterNotRunning`, `CrashLoopBackOff`, `SchedulingFailed`, `NameConflict`, `ResourceCleanupFailed`, `ClusterVersionUpgrading`.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (AddonsAddonStatusConditionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AddonsAddonStatusCondition)(nil)).Elem()
+}
+
+func (i AddonsAddonStatusConditionArgs) ToAddonsAddonStatusConditionOutput() AddonsAddonStatusConditionOutput {
+	return i.ToAddonsAddonStatusConditionOutputWithContext(context.Background())
+}
+
+func (i AddonsAddonStatusConditionArgs) ToAddonsAddonStatusConditionOutputWithContext(ctx context.Context) AddonsAddonStatusConditionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AddonsAddonStatusConditionOutput)
+}
+
+// AddonsAddonStatusConditionArrayInput is an input type that accepts AddonsAddonStatusConditionArray and AddonsAddonStatusConditionArrayOutput values.
+// You can construct a concrete instance of `AddonsAddonStatusConditionArrayInput` via:
+//
+//	AddonsAddonStatusConditionArray{ AddonsAddonStatusConditionArgs{...} }
+type AddonsAddonStatusConditionArrayInput interface {
+	pulumi.Input
+
+	ToAddonsAddonStatusConditionArrayOutput() AddonsAddonStatusConditionArrayOutput
+	ToAddonsAddonStatusConditionArrayOutputWithContext(context.Context) AddonsAddonStatusConditionArrayOutput
+}
+
+type AddonsAddonStatusConditionArray []AddonsAddonStatusConditionInput
+
+func (AddonsAddonStatusConditionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AddonsAddonStatusCondition)(nil)).Elem()
+}
+
+func (i AddonsAddonStatusConditionArray) ToAddonsAddonStatusConditionArrayOutput() AddonsAddonStatusConditionArrayOutput {
+	return i.ToAddonsAddonStatusConditionArrayOutputWithContext(context.Background())
+}
+
+func (i AddonsAddonStatusConditionArray) ToAddonsAddonStatusConditionArrayOutputWithContext(ctx context.Context) AddonsAddonStatusConditionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AddonsAddonStatusConditionArrayOutput)
+}
+
+type AddonsAddonStatusConditionOutput struct{ *pulumi.OutputState }
+
+func (AddonsAddonStatusConditionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AddonsAddonStatusCondition)(nil)).Elem()
+}
+
+func (o AddonsAddonStatusConditionOutput) ToAddonsAddonStatusConditionOutput() AddonsAddonStatusConditionOutput {
+	return o
+}
+
+func (o AddonsAddonStatusConditionOutput) ToAddonsAddonStatusConditionOutputWithContext(ctx context.Context) AddonsAddonStatusConditionOutput {
+	return o
+}
+
+// The state condition in the current main state of the addon, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`,`Unknown`, `ClusterNotRunning`, `CrashLoopBackOff`, `SchedulingFailed`, `NameConflict`, `ResourceCleanupFailed`, `ClusterVersionUpgrading`.
+func (o AddonsAddonStatusConditionOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v AddonsAddonStatusCondition) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type AddonsAddonStatusConditionArrayOutput struct{ *pulumi.OutputState }
+
+func (AddonsAddonStatusConditionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AddonsAddonStatusCondition)(nil)).Elem()
+}
+
+func (o AddonsAddonStatusConditionArrayOutput) ToAddonsAddonStatusConditionArrayOutput() AddonsAddonStatusConditionArrayOutput {
+	return o
+}
+
+func (o AddonsAddonStatusConditionArrayOutput) ToAddonsAddonStatusConditionArrayOutputWithContext(ctx context.Context) AddonsAddonStatusConditionArrayOutput {
+	return o
+}
+
+func (o AddonsAddonStatusConditionArrayOutput) Index(i pulumi.IntInput) AddonsAddonStatusConditionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AddonsAddonStatusCondition {
+		return vs[0].([]AddonsAddonStatusCondition)[vs[1].(int)]
+	}).(AddonsAddonStatusConditionOutput)
+}
+
+type AddonsStatus struct {
+	// The state condition in the current main state of the addon, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`,`Unknown`, `ClusterNotRunning`, `CrashLoopBackOff`, `SchedulingFailed`, `NameConflict`, `ResourceCleanupFailed`, `ClusterVersionUpgrading`.
+	ConditionsType *string `pulumi:"conditionsType"`
+	// The status of addon. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Failed`.
+	Phase *string `pulumi:"phase"`
+}
+
+// AddonsStatusInput is an input type that accepts AddonsStatusArgs and AddonsStatusOutput values.
+// You can construct a concrete instance of `AddonsStatusInput` via:
+//
+//	AddonsStatusArgs{...}
+type AddonsStatusInput interface {
+	pulumi.Input
+
+	ToAddonsStatusOutput() AddonsStatusOutput
+	ToAddonsStatusOutputWithContext(context.Context) AddonsStatusOutput
+}
+
+type AddonsStatusArgs struct {
+	// The state condition in the current main state of the addon, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`,`Unknown`, `ClusterNotRunning`, `CrashLoopBackOff`, `SchedulingFailed`, `NameConflict`, `ResourceCleanupFailed`, `ClusterVersionUpgrading`.
+	ConditionsType pulumi.StringPtrInput `pulumi:"conditionsType"`
+	// The status of addon. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Failed`.
+	Phase pulumi.StringPtrInput `pulumi:"phase"`
+}
+
+func (AddonsStatusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AddonsStatus)(nil)).Elem()
+}
+
+func (i AddonsStatusArgs) ToAddonsStatusOutput() AddonsStatusOutput {
+	return i.ToAddonsStatusOutputWithContext(context.Background())
+}
+
+func (i AddonsStatusArgs) ToAddonsStatusOutputWithContext(ctx context.Context) AddonsStatusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AddonsStatusOutput)
+}
+
+// AddonsStatusArrayInput is an input type that accepts AddonsStatusArray and AddonsStatusArrayOutput values.
+// You can construct a concrete instance of `AddonsStatusArrayInput` via:
+//
+//	AddonsStatusArray{ AddonsStatusArgs{...} }
+type AddonsStatusArrayInput interface {
+	pulumi.Input
+
+	ToAddonsStatusArrayOutput() AddonsStatusArrayOutput
+	ToAddonsStatusArrayOutputWithContext(context.Context) AddonsStatusArrayOutput
+}
+
+type AddonsStatusArray []AddonsStatusInput
+
+func (AddonsStatusArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AddonsStatus)(nil)).Elem()
+}
+
+func (i AddonsStatusArray) ToAddonsStatusArrayOutput() AddonsStatusArrayOutput {
+	return i.ToAddonsStatusArrayOutputWithContext(context.Background())
+}
+
+func (i AddonsStatusArray) ToAddonsStatusArrayOutputWithContext(ctx context.Context) AddonsStatusArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AddonsStatusArrayOutput)
+}
+
+type AddonsStatusOutput struct{ *pulumi.OutputState }
+
+func (AddonsStatusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AddonsStatus)(nil)).Elem()
+}
+
+func (o AddonsStatusOutput) ToAddonsStatusOutput() AddonsStatusOutput {
+	return o
+}
+
+func (o AddonsStatusOutput) ToAddonsStatusOutputWithContext(ctx context.Context) AddonsStatusOutput {
+	return o
+}
+
+// The state condition in the current main state of the addon, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`,`Unknown`, `ClusterNotRunning`, `CrashLoopBackOff`, `SchedulingFailed`, `NameConflict`, `ResourceCleanupFailed`, `ClusterVersionUpgrading`.
+func (o AddonsStatusOutput) ConditionsType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AddonsStatus) *string { return v.ConditionsType }).(pulumi.StringPtrOutput)
+}
+
+// The status of addon. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Failed`.
+func (o AddonsStatusOutput) Phase() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AddonsStatus) *string { return v.Phase }).(pulumi.StringPtrOutput)
+}
+
+type AddonsStatusArrayOutput struct{ *pulumi.OutputState }
+
+func (AddonsStatusArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AddonsStatus)(nil)).Elem()
+}
+
+func (o AddonsStatusArrayOutput) ToAddonsStatusArrayOutput() AddonsStatusArrayOutput {
+	return o
+}
+
+func (o AddonsStatusArrayOutput) ToAddonsStatusArrayOutputWithContext(ctx context.Context) AddonsStatusArrayOutput {
+	return o
+}
+
+func (o AddonsStatusArrayOutput) Index(i pulumi.IntInput) AddonsStatusOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AddonsStatus {
+		return vs[0].([]AddonsStatus)[vs[1].(int)]
+	}).(AddonsStatusOutput)
+}
+
 type ClusterClusterConfig struct {
 	// Cluster API Server public network access configuration.
 	ApiServerPublicAccessConfig *ClusterClusterConfigApiServerPublicAccessConfig `pulumi:"apiServerPublicAccessConfig"`
@@ -24,7 +475,7 @@ type ClusterClusterConfig struct {
 // ClusterClusterConfigInput is an input type that accepts ClusterClusterConfigArgs and ClusterClusterConfigOutput values.
 // You can construct a concrete instance of `ClusterClusterConfigInput` via:
 //
-//          ClusterClusterConfigArgs{...}
+//	ClusterClusterConfigArgs{...}
 type ClusterClusterConfigInput interface {
 	pulumi.Input
 
@@ -66,11 +517,11 @@ func (i ClusterClusterConfigArgs) ToClusterClusterConfigPtrOutputWithContext(ctx
 // ClusterClusterConfigPtrInput is an input type that accepts ClusterClusterConfigArgs, ClusterClusterConfigPtr and ClusterClusterConfigPtrOutput values.
 // You can construct a concrete instance of `ClusterClusterConfigPtrInput` via:
 //
-//          ClusterClusterConfigArgs{...}
+//	        ClusterClusterConfigArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type ClusterClusterConfigPtrInput interface {
 	pulumi.Input
 
@@ -214,7 +665,7 @@ type ClusterClusterConfigApiServerPublicAccessConfig struct {
 // ClusterClusterConfigApiServerPublicAccessConfigInput is an input type that accepts ClusterClusterConfigApiServerPublicAccessConfigArgs and ClusterClusterConfigApiServerPublicAccessConfigOutput values.
 // You can construct a concrete instance of `ClusterClusterConfigApiServerPublicAccessConfigInput` via:
 //
-//          ClusterClusterConfigApiServerPublicAccessConfigArgs{...}
+//	ClusterClusterConfigApiServerPublicAccessConfigArgs{...}
 type ClusterClusterConfigApiServerPublicAccessConfigInput interface {
 	pulumi.Input
 
@@ -250,11 +701,11 @@ func (i ClusterClusterConfigApiServerPublicAccessConfigArgs) ToClusterClusterCon
 // ClusterClusterConfigApiServerPublicAccessConfigPtrInput is an input type that accepts ClusterClusterConfigApiServerPublicAccessConfigArgs, ClusterClusterConfigApiServerPublicAccessConfigPtr and ClusterClusterConfigApiServerPublicAccessConfigPtrOutput values.
 // You can construct a concrete instance of `ClusterClusterConfigApiServerPublicAccessConfigPtrInput` via:
 //
-//          ClusterClusterConfigApiServerPublicAccessConfigArgs{...}
+//	        ClusterClusterConfigApiServerPublicAccessConfigArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type ClusterClusterConfigApiServerPublicAccessConfigPtrInput interface {
 	pulumi.Input
 
@@ -355,7 +806,7 @@ type ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfig st
 // ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigInput is an input type that accepts ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs and ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigOutput values.
 // You can construct a concrete instance of `ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigInput` via:
 //
-//          ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs{...}
+//	ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs{...}
 type ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigInput interface {
 	pulumi.Input
 
@@ -393,11 +844,11 @@ func (i ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfig
 // ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigPtrInput is an input type that accepts ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs, ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigPtr and ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigPtrOutput values.
 // You can construct a concrete instance of `ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigPtrInput` via:
 //
-//          ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs{...}
+//	        ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigPtrInput interface {
 	pulumi.Input
 
@@ -505,6 +956,277 @@ func (o ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfig
 	}).(pulumi.StringPtrOutput)
 }
 
+type ClusterLoggingConfig struct {
+	// The TLS log item ID of the collection target.
+	LogProjectId *string `pulumi:"logProjectId"`
+	// Cluster logging options. This structure can only be modified and added, and cannot be deleted. When encountering a `cannot be deleted` error, please query the log setups of the current cluster and fill in the current `tf` file.
+	LogSetups []ClusterLoggingConfigLogSetup `pulumi:"logSetups"`
+}
+
+// ClusterLoggingConfigInput is an input type that accepts ClusterLoggingConfigArgs and ClusterLoggingConfigOutput values.
+// You can construct a concrete instance of `ClusterLoggingConfigInput` via:
+//
+//	ClusterLoggingConfigArgs{...}
+type ClusterLoggingConfigInput interface {
+	pulumi.Input
+
+	ToClusterLoggingConfigOutput() ClusterLoggingConfigOutput
+	ToClusterLoggingConfigOutputWithContext(context.Context) ClusterLoggingConfigOutput
+}
+
+type ClusterLoggingConfigArgs struct {
+	// The TLS log item ID of the collection target.
+	LogProjectId pulumi.StringPtrInput `pulumi:"logProjectId"`
+	// Cluster logging options. This structure can only be modified and added, and cannot be deleted. When encountering a `cannot be deleted` error, please query the log setups of the current cluster and fill in the current `tf` file.
+	LogSetups ClusterLoggingConfigLogSetupArrayInput `pulumi:"logSetups"`
+}
+
+func (ClusterLoggingConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterLoggingConfig)(nil)).Elem()
+}
+
+func (i ClusterLoggingConfigArgs) ToClusterLoggingConfigOutput() ClusterLoggingConfigOutput {
+	return i.ToClusterLoggingConfigOutputWithContext(context.Background())
+}
+
+func (i ClusterLoggingConfigArgs) ToClusterLoggingConfigOutputWithContext(ctx context.Context) ClusterLoggingConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterLoggingConfigOutput)
+}
+
+func (i ClusterLoggingConfigArgs) ToClusterLoggingConfigPtrOutput() ClusterLoggingConfigPtrOutput {
+	return i.ToClusterLoggingConfigPtrOutputWithContext(context.Background())
+}
+
+func (i ClusterLoggingConfigArgs) ToClusterLoggingConfigPtrOutputWithContext(ctx context.Context) ClusterLoggingConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterLoggingConfigOutput).ToClusterLoggingConfigPtrOutputWithContext(ctx)
+}
+
+// ClusterLoggingConfigPtrInput is an input type that accepts ClusterLoggingConfigArgs, ClusterLoggingConfigPtr and ClusterLoggingConfigPtrOutput values.
+// You can construct a concrete instance of `ClusterLoggingConfigPtrInput` via:
+//
+//	        ClusterLoggingConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type ClusterLoggingConfigPtrInput interface {
+	pulumi.Input
+
+	ToClusterLoggingConfigPtrOutput() ClusterLoggingConfigPtrOutput
+	ToClusterLoggingConfigPtrOutputWithContext(context.Context) ClusterLoggingConfigPtrOutput
+}
+
+type clusterLoggingConfigPtrType ClusterLoggingConfigArgs
+
+func ClusterLoggingConfigPtr(v *ClusterLoggingConfigArgs) ClusterLoggingConfigPtrInput {
+	return (*clusterLoggingConfigPtrType)(v)
+}
+
+func (*clusterLoggingConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClusterLoggingConfig)(nil)).Elem()
+}
+
+func (i *clusterLoggingConfigPtrType) ToClusterLoggingConfigPtrOutput() ClusterLoggingConfigPtrOutput {
+	return i.ToClusterLoggingConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *clusterLoggingConfigPtrType) ToClusterLoggingConfigPtrOutputWithContext(ctx context.Context) ClusterLoggingConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterLoggingConfigPtrOutput)
+}
+
+type ClusterLoggingConfigOutput struct{ *pulumi.OutputState }
+
+func (ClusterLoggingConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterLoggingConfig)(nil)).Elem()
+}
+
+func (o ClusterLoggingConfigOutput) ToClusterLoggingConfigOutput() ClusterLoggingConfigOutput {
+	return o
+}
+
+func (o ClusterLoggingConfigOutput) ToClusterLoggingConfigOutputWithContext(ctx context.Context) ClusterLoggingConfigOutput {
+	return o
+}
+
+func (o ClusterLoggingConfigOutput) ToClusterLoggingConfigPtrOutput() ClusterLoggingConfigPtrOutput {
+	return o.ToClusterLoggingConfigPtrOutputWithContext(context.Background())
+}
+
+func (o ClusterLoggingConfigOutput) ToClusterLoggingConfigPtrOutputWithContext(ctx context.Context) ClusterLoggingConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClusterLoggingConfig) *ClusterLoggingConfig {
+		return &v
+	}).(ClusterLoggingConfigPtrOutput)
+}
+
+// The TLS log item ID of the collection target.
+func (o ClusterLoggingConfigOutput) LogProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterLoggingConfig) *string { return v.LogProjectId }).(pulumi.StringPtrOutput)
+}
+
+// Cluster logging options. This structure can only be modified and added, and cannot be deleted. When encountering a `cannot be deleted` error, please query the log setups of the current cluster and fill in the current `tf` file.
+func (o ClusterLoggingConfigOutput) LogSetups() ClusterLoggingConfigLogSetupArrayOutput {
+	return o.ApplyT(func(v ClusterLoggingConfig) []ClusterLoggingConfigLogSetup { return v.LogSetups }).(ClusterLoggingConfigLogSetupArrayOutput)
+}
+
+type ClusterLoggingConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (ClusterLoggingConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClusterLoggingConfig)(nil)).Elem()
+}
+
+func (o ClusterLoggingConfigPtrOutput) ToClusterLoggingConfigPtrOutput() ClusterLoggingConfigPtrOutput {
+	return o
+}
+
+func (o ClusterLoggingConfigPtrOutput) ToClusterLoggingConfigPtrOutputWithContext(ctx context.Context) ClusterLoggingConfigPtrOutput {
+	return o
+}
+
+func (o ClusterLoggingConfigPtrOutput) Elem() ClusterLoggingConfigOutput {
+	return o.ApplyT(func(v *ClusterLoggingConfig) ClusterLoggingConfig {
+		if v != nil {
+			return *v
+		}
+		var ret ClusterLoggingConfig
+		return ret
+	}).(ClusterLoggingConfigOutput)
+}
+
+// The TLS log item ID of the collection target.
+func (o ClusterLoggingConfigPtrOutput) LogProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClusterLoggingConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.LogProjectId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Cluster logging options. This structure can only be modified and added, and cannot be deleted. When encountering a `cannot be deleted` error, please query the log setups of the current cluster and fill in the current `tf` file.
+func (o ClusterLoggingConfigPtrOutput) LogSetups() ClusterLoggingConfigLogSetupArrayOutput {
+	return o.ApplyT(func(v *ClusterLoggingConfig) []ClusterLoggingConfigLogSetup {
+		if v == nil {
+			return nil
+		}
+		return v.LogSetups
+	}).(ClusterLoggingConfigLogSetupArrayOutput)
+}
+
+type ClusterLoggingConfigLogSetup struct {
+	// Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
+	Enabled *bool `pulumi:"enabled"`
+	// The storage time of logs in Log Service. After the specified log storage time is exceeded, the expired logs in this log topic will be automatically cleared. The unit is days, and the default is 30 days. The value range is 1 to 3650, specifying 3650 days means permanent storage.
+	LogTtl *int `pulumi:"logTtl"`
+	// The currently enabled log type.
+	LogType string `pulumi:"logType"`
+}
+
+// ClusterLoggingConfigLogSetupInput is an input type that accepts ClusterLoggingConfigLogSetupArgs and ClusterLoggingConfigLogSetupOutput values.
+// You can construct a concrete instance of `ClusterLoggingConfigLogSetupInput` via:
+//
+//	ClusterLoggingConfigLogSetupArgs{...}
+type ClusterLoggingConfigLogSetupInput interface {
+	pulumi.Input
+
+	ToClusterLoggingConfigLogSetupOutput() ClusterLoggingConfigLogSetupOutput
+	ToClusterLoggingConfigLogSetupOutputWithContext(context.Context) ClusterLoggingConfigLogSetupOutput
+}
+
+type ClusterLoggingConfigLogSetupArgs struct {
+	// Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	// The storage time of logs in Log Service. After the specified log storage time is exceeded, the expired logs in this log topic will be automatically cleared. The unit is days, and the default is 30 days. The value range is 1 to 3650, specifying 3650 days means permanent storage.
+	LogTtl pulumi.IntPtrInput `pulumi:"logTtl"`
+	// The currently enabled log type.
+	LogType pulumi.StringInput `pulumi:"logType"`
+}
+
+func (ClusterLoggingConfigLogSetupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterLoggingConfigLogSetup)(nil)).Elem()
+}
+
+func (i ClusterLoggingConfigLogSetupArgs) ToClusterLoggingConfigLogSetupOutput() ClusterLoggingConfigLogSetupOutput {
+	return i.ToClusterLoggingConfigLogSetupOutputWithContext(context.Background())
+}
+
+func (i ClusterLoggingConfigLogSetupArgs) ToClusterLoggingConfigLogSetupOutputWithContext(ctx context.Context) ClusterLoggingConfigLogSetupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterLoggingConfigLogSetupOutput)
+}
+
+// ClusterLoggingConfigLogSetupArrayInput is an input type that accepts ClusterLoggingConfigLogSetupArray and ClusterLoggingConfigLogSetupArrayOutput values.
+// You can construct a concrete instance of `ClusterLoggingConfigLogSetupArrayInput` via:
+//
+//	ClusterLoggingConfigLogSetupArray{ ClusterLoggingConfigLogSetupArgs{...} }
+type ClusterLoggingConfigLogSetupArrayInput interface {
+	pulumi.Input
+
+	ToClusterLoggingConfigLogSetupArrayOutput() ClusterLoggingConfigLogSetupArrayOutput
+	ToClusterLoggingConfigLogSetupArrayOutputWithContext(context.Context) ClusterLoggingConfigLogSetupArrayOutput
+}
+
+type ClusterLoggingConfigLogSetupArray []ClusterLoggingConfigLogSetupInput
+
+func (ClusterLoggingConfigLogSetupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClusterLoggingConfigLogSetup)(nil)).Elem()
+}
+
+func (i ClusterLoggingConfigLogSetupArray) ToClusterLoggingConfigLogSetupArrayOutput() ClusterLoggingConfigLogSetupArrayOutput {
+	return i.ToClusterLoggingConfigLogSetupArrayOutputWithContext(context.Background())
+}
+
+func (i ClusterLoggingConfigLogSetupArray) ToClusterLoggingConfigLogSetupArrayOutputWithContext(ctx context.Context) ClusterLoggingConfigLogSetupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterLoggingConfigLogSetupArrayOutput)
+}
+
+type ClusterLoggingConfigLogSetupOutput struct{ *pulumi.OutputState }
+
+func (ClusterLoggingConfigLogSetupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterLoggingConfigLogSetup)(nil)).Elem()
+}
+
+func (o ClusterLoggingConfigLogSetupOutput) ToClusterLoggingConfigLogSetupOutput() ClusterLoggingConfigLogSetupOutput {
+	return o
+}
+
+func (o ClusterLoggingConfigLogSetupOutput) ToClusterLoggingConfigLogSetupOutputWithContext(ctx context.Context) ClusterLoggingConfigLogSetupOutput {
+	return o
+}
+
+// Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
+func (o ClusterLoggingConfigLogSetupOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ClusterLoggingConfigLogSetup) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// The storage time of logs in Log Service. After the specified log storage time is exceeded, the expired logs in this log topic will be automatically cleared. The unit is days, and the default is 30 days. The value range is 1 to 3650, specifying 3650 days means permanent storage.
+func (o ClusterLoggingConfigLogSetupOutput) LogTtl() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ClusterLoggingConfigLogSetup) *int { return v.LogTtl }).(pulumi.IntPtrOutput)
+}
+
+// The currently enabled log type.
+func (o ClusterLoggingConfigLogSetupOutput) LogType() pulumi.StringOutput {
+	return o.ApplyT(func(v ClusterLoggingConfigLogSetup) string { return v.LogType }).(pulumi.StringOutput)
+}
+
+type ClusterLoggingConfigLogSetupArrayOutput struct{ *pulumi.OutputState }
+
+func (ClusterLoggingConfigLogSetupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClusterLoggingConfigLogSetup)(nil)).Elem()
+}
+
+func (o ClusterLoggingConfigLogSetupArrayOutput) ToClusterLoggingConfigLogSetupArrayOutput() ClusterLoggingConfigLogSetupArrayOutput {
+	return o
+}
+
+func (o ClusterLoggingConfigLogSetupArrayOutput) ToClusterLoggingConfigLogSetupArrayOutputWithContext(ctx context.Context) ClusterLoggingConfigLogSetupArrayOutput {
+	return o
+}
+
+func (o ClusterLoggingConfigLogSetupArrayOutput) Index(i pulumi.IntInput) ClusterLoggingConfigLogSetupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClusterLoggingConfigLogSetup {
+		return vs[0].([]ClusterLoggingConfigLogSetup)[vs[1].(int)]
+	}).(ClusterLoggingConfigLogSetupOutput)
+}
+
 type ClusterPodsConfig struct {
 	// Flannel network configuration.
 	FlannelConfig *ClusterPodsConfigFlannelConfig `pulumi:"flannelConfig"`
@@ -517,7 +1239,7 @@ type ClusterPodsConfig struct {
 // ClusterPodsConfigInput is an input type that accepts ClusterPodsConfigArgs and ClusterPodsConfigOutput values.
 // You can construct a concrete instance of `ClusterPodsConfigInput` via:
 //
-//          ClusterPodsConfigArgs{...}
+//	ClusterPodsConfigArgs{...}
 type ClusterPodsConfigInput interface {
 	pulumi.Input
 
@@ -557,11 +1279,11 @@ func (i ClusterPodsConfigArgs) ToClusterPodsConfigPtrOutputWithContext(ctx conte
 // ClusterPodsConfigPtrInput is an input type that accepts ClusterPodsConfigArgs, ClusterPodsConfigPtr and ClusterPodsConfigPtrOutput values.
 // You can construct a concrete instance of `ClusterPodsConfigPtrInput` via:
 //
-//          ClusterPodsConfigArgs{...}
+//	        ClusterPodsConfigArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type ClusterPodsConfigPtrInput interface {
 	pulumi.Input
 
@@ -681,7 +1403,7 @@ func (o ClusterPodsConfigPtrOutput) VpcCniConfig() ClusterPodsConfigVpcCniConfig
 }
 
 type ClusterPodsConfigFlannelConfig struct {
-	// The maximum number of single-node Pod instances for a Flannel container network.
+	// The maximum number of single-node Pod instances for a Flannel container network, the value can be `16` or `32` or `64` or `128` or `256`.
 	MaxPodsPerNode *int `pulumi:"maxPodsPerNode"`
 	// Pod CIDR for the Flannel container network.
 	PodCidrs []string `pulumi:"podCidrs"`
@@ -690,7 +1412,7 @@ type ClusterPodsConfigFlannelConfig struct {
 // ClusterPodsConfigFlannelConfigInput is an input type that accepts ClusterPodsConfigFlannelConfigArgs and ClusterPodsConfigFlannelConfigOutput values.
 // You can construct a concrete instance of `ClusterPodsConfigFlannelConfigInput` via:
 //
-//          ClusterPodsConfigFlannelConfigArgs{...}
+//	ClusterPodsConfigFlannelConfigArgs{...}
 type ClusterPodsConfigFlannelConfigInput interface {
 	pulumi.Input
 
@@ -699,7 +1421,7 @@ type ClusterPodsConfigFlannelConfigInput interface {
 }
 
 type ClusterPodsConfigFlannelConfigArgs struct {
-	// The maximum number of single-node Pod instances for a Flannel container network.
+	// The maximum number of single-node Pod instances for a Flannel container network, the value can be `16` or `32` or `64` or `128` or `256`.
 	MaxPodsPerNode pulumi.IntPtrInput `pulumi:"maxPodsPerNode"`
 	// Pod CIDR for the Flannel container network.
 	PodCidrs pulumi.StringArrayInput `pulumi:"podCidrs"`
@@ -728,11 +1450,11 @@ func (i ClusterPodsConfigFlannelConfigArgs) ToClusterPodsConfigFlannelConfigPtrO
 // ClusterPodsConfigFlannelConfigPtrInput is an input type that accepts ClusterPodsConfigFlannelConfigArgs, ClusterPodsConfigFlannelConfigPtr and ClusterPodsConfigFlannelConfigPtrOutput values.
 // You can construct a concrete instance of `ClusterPodsConfigFlannelConfigPtrInput` via:
 //
-//          ClusterPodsConfigFlannelConfigArgs{...}
+//	        ClusterPodsConfigFlannelConfigArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type ClusterPodsConfigFlannelConfigPtrInput interface {
 	pulumi.Input
 
@@ -782,7 +1504,7 @@ func (o ClusterPodsConfigFlannelConfigOutput) ToClusterPodsConfigFlannelConfigPt
 	}).(ClusterPodsConfigFlannelConfigPtrOutput)
 }
 
-// The maximum number of single-node Pod instances for a Flannel container network.
+// The maximum number of single-node Pod instances for a Flannel container network, the value can be `16` or `32` or `64` or `128` or `256`.
 func (o ClusterPodsConfigFlannelConfigOutput) MaxPodsPerNode() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ClusterPodsConfigFlannelConfig) *int { return v.MaxPodsPerNode }).(pulumi.IntPtrOutput)
 }
@@ -816,7 +1538,7 @@ func (o ClusterPodsConfigFlannelConfigPtrOutput) Elem() ClusterPodsConfigFlannel
 	}).(ClusterPodsConfigFlannelConfigOutput)
 }
 
-// The maximum number of single-node Pod instances for a Flannel container network.
+// The maximum number of single-node Pod instances for a Flannel container network, the value can be `16` or `32` or `64` or `128` or `256`.
 func (o ClusterPodsConfigFlannelConfigPtrOutput) MaxPodsPerNode() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ClusterPodsConfigFlannelConfig) *int {
 		if v == nil {
@@ -846,7 +1568,7 @@ type ClusterPodsConfigVpcCniConfig struct {
 // ClusterPodsConfigVpcCniConfigInput is an input type that accepts ClusterPodsConfigVpcCniConfigArgs and ClusterPodsConfigVpcCniConfigOutput values.
 // You can construct a concrete instance of `ClusterPodsConfigVpcCniConfigInput` via:
 //
-//          ClusterPodsConfigVpcCniConfigArgs{...}
+//	ClusterPodsConfigVpcCniConfigArgs{...}
 type ClusterPodsConfigVpcCniConfigInput interface {
 	pulumi.Input
 
@@ -884,11 +1606,11 @@ func (i ClusterPodsConfigVpcCniConfigArgs) ToClusterPodsConfigVpcCniConfigPtrOut
 // ClusterPodsConfigVpcCniConfigPtrInput is an input type that accepts ClusterPodsConfigVpcCniConfigArgs, ClusterPodsConfigVpcCniConfigPtr and ClusterPodsConfigVpcCniConfigPtrOutput values.
 // You can construct a concrete instance of `ClusterPodsConfigVpcCniConfigPtrInput` via:
 //
-//          ClusterPodsConfigVpcCniConfigArgs{...}
+//	        ClusterPodsConfigVpcCniConfigArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type ClusterPodsConfigVpcCniConfigPtrInput interface {
 	pulumi.Input
 
@@ -1000,7 +1722,7 @@ type ClusterServicesConfig struct {
 // ClusterServicesConfigInput is an input type that accepts ClusterServicesConfigArgs and ClusterServicesConfigOutput values.
 // You can construct a concrete instance of `ClusterServicesConfigInput` via:
 //
-//          ClusterServicesConfigArgs{...}
+//	ClusterServicesConfigArgs{...}
 type ClusterServicesConfigInput interface {
 	pulumi.Input
 
@@ -1036,11 +1758,11 @@ func (i ClusterServicesConfigArgs) ToClusterServicesConfigPtrOutputWithContext(c
 // ClusterServicesConfigPtrInput is an input type that accepts ClusterServicesConfigArgs, ClusterServicesConfigPtr and ClusterServicesConfigPtrOutput values.
 // You can construct a concrete instance of `ClusterServicesConfigPtrInput` via:
 //
-//          ClusterServicesConfigArgs{...}
+//	        ClusterServicesConfigArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type ClusterServicesConfigPtrInput interface {
 	pulumi.Input
 
@@ -1129,6 +1851,112 @@ func (o ClusterServicesConfigPtrOutput) ServiceCidrsv4s() pulumi.StringArrayOutp
 	}).(pulumi.StringArrayOutput)
 }
 
+type ClusterTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// ClusterTagInput is an input type that accepts ClusterTagArgs and ClusterTagOutput values.
+// You can construct a concrete instance of `ClusterTagInput` via:
+//
+//	ClusterTagArgs{...}
+type ClusterTagInput interface {
+	pulumi.Input
+
+	ToClusterTagOutput() ClusterTagOutput
+	ToClusterTagOutputWithContext(context.Context) ClusterTagOutput
+}
+
+type ClusterTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (ClusterTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterTag)(nil)).Elem()
+}
+
+func (i ClusterTagArgs) ToClusterTagOutput() ClusterTagOutput {
+	return i.ToClusterTagOutputWithContext(context.Background())
+}
+
+func (i ClusterTagArgs) ToClusterTagOutputWithContext(ctx context.Context) ClusterTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterTagOutput)
+}
+
+// ClusterTagArrayInput is an input type that accepts ClusterTagArray and ClusterTagArrayOutput values.
+// You can construct a concrete instance of `ClusterTagArrayInput` via:
+//
+//	ClusterTagArray{ ClusterTagArgs{...} }
+type ClusterTagArrayInput interface {
+	pulumi.Input
+
+	ToClusterTagArrayOutput() ClusterTagArrayOutput
+	ToClusterTagArrayOutputWithContext(context.Context) ClusterTagArrayOutput
+}
+
+type ClusterTagArray []ClusterTagInput
+
+func (ClusterTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClusterTag)(nil)).Elem()
+}
+
+func (i ClusterTagArray) ToClusterTagArrayOutput() ClusterTagArrayOutput {
+	return i.ToClusterTagArrayOutputWithContext(context.Background())
+}
+
+func (i ClusterTagArray) ToClusterTagArrayOutputWithContext(ctx context.Context) ClusterTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterTagArrayOutput)
+}
+
+type ClusterTagOutput struct{ *pulumi.OutputState }
+
+func (ClusterTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterTag)(nil)).Elem()
+}
+
+func (o ClusterTagOutput) ToClusterTagOutput() ClusterTagOutput {
+	return o
+}
+
+func (o ClusterTagOutput) ToClusterTagOutputWithContext(ctx context.Context) ClusterTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o ClusterTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v ClusterTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o ClusterTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v ClusterTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type ClusterTagArrayOutput struct{ *pulumi.OutputState }
+
+func (ClusterTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClusterTag)(nil)).Elem()
+}
+
+func (o ClusterTagArrayOutput) ToClusterTagArrayOutput() ClusterTagArrayOutput {
+	return o
+}
+
+func (o ClusterTagArrayOutput) ToClusterTagArrayOutputWithContext(ctx context.Context) ClusterTagArrayOutput {
+	return o
+}
+
+func (o ClusterTagArrayOutput) Index(i pulumi.IntInput) ClusterTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClusterTag {
+		return vs[0].([]ClusterTag)[vs[1].(int)]
+	}).(ClusterTagOutput)
+}
+
 type ClustersCluster struct {
 	// The config of the cluster.
 	ClusterConfig ClustersClusterClusterConfig `pulumi:"clusterConfig"`
@@ -1144,12 +1972,14 @@ type ClustersCluster struct {
 	EipAllocationId string `pulumi:"eipAllocationId"`
 	// The ID of the Cluster.
 	Id string `pulumi:"id"`
-	// Kubeconfig data with private network access, returned in BASE64 encoding.
+	// Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
 	KubeconfigPrivate string `pulumi:"kubeconfigPrivate"`
-	// Kubeconfig data with public network access, returned in BASE64 encoding.
+	// Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
 	KubeconfigPublic string `pulumi:"kubeconfigPublic"`
 	// The Kubernetes version information corresponding to the cluster, specific to the patch version.
 	KubernetesVersion string `pulumi:"kubernetesVersion"`
+	// Cluster log configuration information.
+	LoggingConfigs []ClustersClusterLoggingConfig `pulumi:"loggingConfigs"`
 	// The name of the cluster.
 	Name string `pulumi:"name"`
 	// Statistics on the number of nodes corresponding to each master state in the cluster.
@@ -1160,6 +1990,8 @@ type ClustersCluster struct {
 	ServicesConfig ClustersClusterServicesConfig `pulumi:"servicesConfig"`
 	// The status of the cluster.
 	Status ClustersClusterStatus `pulumi:"status"`
+	// Tags.
+	Tags []ClustersClusterTag `pulumi:"tags"`
 	// The ClientToken when the last cluster update succeeded. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
 	UpdateClientToken *string `pulumi:"updateClientToken"`
 	// The last time a request was accepted by the cluster and executed or completed. UTC+0 time in standard RFC3339 format.
@@ -1169,7 +2001,7 @@ type ClustersCluster struct {
 // ClustersClusterInput is an input type that accepts ClustersClusterArgs and ClustersClusterOutput values.
 // You can construct a concrete instance of `ClustersClusterInput` via:
 //
-//          ClustersClusterArgs{...}
+//	ClustersClusterArgs{...}
 type ClustersClusterInput interface {
 	pulumi.Input
 
@@ -1192,12 +2024,14 @@ type ClustersClusterArgs struct {
 	EipAllocationId pulumi.StringInput `pulumi:"eipAllocationId"`
 	// The ID of the Cluster.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Kubeconfig data with private network access, returned in BASE64 encoding.
+	// Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
 	KubeconfigPrivate pulumi.StringInput `pulumi:"kubeconfigPrivate"`
-	// Kubeconfig data with public network access, returned in BASE64 encoding.
+	// Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
 	KubeconfigPublic pulumi.StringInput `pulumi:"kubeconfigPublic"`
 	// The Kubernetes version information corresponding to the cluster, specific to the patch version.
 	KubernetesVersion pulumi.StringInput `pulumi:"kubernetesVersion"`
+	// Cluster log configuration information.
+	LoggingConfigs ClustersClusterLoggingConfigArrayInput `pulumi:"loggingConfigs"`
 	// The name of the cluster.
 	Name pulumi.StringInput `pulumi:"name"`
 	// Statistics on the number of nodes corresponding to each master state in the cluster.
@@ -1208,6 +2042,8 @@ type ClustersClusterArgs struct {
 	ServicesConfig ClustersClusterServicesConfigInput `pulumi:"servicesConfig"`
 	// The status of the cluster.
 	Status ClustersClusterStatusInput `pulumi:"status"`
+	// Tags.
+	Tags ClustersClusterTagArrayInput `pulumi:"tags"`
 	// The ClientToken when the last cluster update succeeded. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
 	UpdateClientToken pulumi.StringPtrInput `pulumi:"updateClientToken"`
 	// The last time a request was accepted by the cluster and executed or completed. UTC+0 time in standard RFC3339 format.
@@ -1229,7 +2065,7 @@ func (i ClustersClusterArgs) ToClustersClusterOutputWithContext(ctx context.Cont
 // ClustersClusterArrayInput is an input type that accepts ClustersClusterArray and ClustersClusterArrayOutput values.
 // You can construct a concrete instance of `ClustersClusterArrayInput` via:
 //
-//          ClustersClusterArray{ ClustersClusterArgs{...} }
+//	ClustersClusterArray{ ClustersClusterArgs{...} }
 type ClustersClusterArrayInput interface {
 	pulumi.Input
 
@@ -1300,12 +2136,12 @@ func (o ClustersClusterOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v ClustersCluster) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Kubeconfig data with private network access, returned in BASE64 encoding.
+// Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
 func (o ClustersClusterOutput) KubeconfigPrivate() pulumi.StringOutput {
 	return o.ApplyT(func(v ClustersCluster) string { return v.KubeconfigPrivate }).(pulumi.StringOutput)
 }
 
-// Kubeconfig data with public network access, returned in BASE64 encoding.
+// Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
 func (o ClustersClusterOutput) KubeconfigPublic() pulumi.StringOutput {
 	return o.ApplyT(func(v ClustersCluster) string { return v.KubeconfigPublic }).(pulumi.StringOutput)
 }
@@ -1313,6 +2149,11 @@ func (o ClustersClusterOutput) KubeconfigPublic() pulumi.StringOutput {
 // The Kubernetes version information corresponding to the cluster, specific to the patch version.
 func (o ClustersClusterOutput) KubernetesVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v ClustersCluster) string { return v.KubernetesVersion }).(pulumi.StringOutput)
+}
+
+// Cluster log configuration information.
+func (o ClustersClusterOutput) LoggingConfigs() ClustersClusterLoggingConfigArrayOutput {
+	return o.ApplyT(func(v ClustersCluster) []ClustersClusterLoggingConfig { return v.LoggingConfigs }).(ClustersClusterLoggingConfigArrayOutput)
 }
 
 // The name of the cluster.
@@ -1338,6 +2179,11 @@ func (o ClustersClusterOutput) ServicesConfig() ClustersClusterServicesConfigOut
 // The status of the cluster.
 func (o ClustersClusterOutput) Status() ClustersClusterStatusOutput {
 	return o.ApplyT(func(v ClustersCluster) ClustersClusterStatus { return v.Status }).(ClustersClusterStatusOutput)
+}
+
+// Tags.
+func (o ClustersClusterOutput) Tags() ClustersClusterTagArrayOutput {
+	return o.ApplyT(func(v ClustersCluster) []ClustersClusterTag { return v.Tags }).(ClustersClusterTagArrayOutput)
 }
 
 // The ClientToken when the last cluster update succeeded. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
@@ -1390,7 +2236,7 @@ type ClustersClusterClusterConfig struct {
 // ClustersClusterClusterConfigInput is an input type that accepts ClustersClusterClusterConfigArgs and ClustersClusterClusterConfigOutput values.
 // You can construct a concrete instance of `ClustersClusterClusterConfigInput` via:
 //
-//          ClustersClusterClusterConfigArgs{...}
+//	ClustersClusterClusterConfigArgs{...}
 type ClustersClusterClusterConfigInput interface {
 	pulumi.Input
 
@@ -1490,7 +2336,7 @@ type ClustersClusterClusterConfigApiServerEndpoints struct {
 // ClustersClusterClusterConfigApiServerEndpointsInput is an input type that accepts ClustersClusterClusterConfigApiServerEndpointsArgs and ClustersClusterClusterConfigApiServerEndpointsOutput values.
 // You can construct a concrete instance of `ClustersClusterClusterConfigApiServerEndpointsInput` via:
 //
-//          ClustersClusterClusterConfigApiServerEndpointsArgs{...}
+//	ClustersClusterClusterConfigApiServerEndpointsArgs{...}
 type ClustersClusterClusterConfigApiServerEndpointsInput interface {
 	pulumi.Input
 
@@ -1553,7 +2399,7 @@ type ClustersClusterClusterConfigApiServerEndpointsPrivateIp struct {
 // ClustersClusterClusterConfigApiServerEndpointsPrivateIpInput is an input type that accepts ClustersClusterClusterConfigApiServerEndpointsPrivateIpArgs and ClustersClusterClusterConfigApiServerEndpointsPrivateIpOutput values.
 // You can construct a concrete instance of `ClustersClusterClusterConfigApiServerEndpointsPrivateIpInput` via:
 //
-//          ClustersClusterClusterConfigApiServerEndpointsPrivateIpArgs{...}
+//	ClustersClusterClusterConfigApiServerEndpointsPrivateIpArgs{...}
 type ClustersClusterClusterConfigApiServerEndpointsPrivateIpInput interface {
 	pulumi.Input
 
@@ -1605,7 +2451,7 @@ type ClustersClusterClusterConfigApiServerEndpointsPublicIp struct {
 // ClustersClusterClusterConfigApiServerEndpointsPublicIpInput is an input type that accepts ClustersClusterClusterConfigApiServerEndpointsPublicIpArgs and ClustersClusterClusterConfigApiServerEndpointsPublicIpOutput values.
 // You can construct a concrete instance of `ClustersClusterClusterConfigApiServerEndpointsPublicIpInput` via:
 //
-//          ClustersClusterClusterConfigApiServerEndpointsPublicIpArgs{...}
+//	ClustersClusterClusterConfigApiServerEndpointsPublicIpArgs{...}
 type ClustersClusterClusterConfigApiServerEndpointsPublicIpInput interface {
 	pulumi.Input
 
@@ -1659,7 +2505,7 @@ type ClustersClusterClusterConfigApiServerPublicAccessConfig struct {
 // ClustersClusterClusterConfigApiServerPublicAccessConfigInput is an input type that accepts ClustersClusterClusterConfigApiServerPublicAccessConfigArgs and ClustersClusterClusterConfigApiServerPublicAccessConfigOutput values.
 // You can construct a concrete instance of `ClustersClusterClusterConfigApiServerPublicAccessConfigInput` via:
 //
-//          ClustersClusterClusterConfigApiServerPublicAccessConfigArgs{...}
+//	ClustersClusterClusterConfigApiServerPublicAccessConfigArgs{...}
 type ClustersClusterClusterConfigApiServerPublicAccessConfigInput interface {
 	pulumi.Input
 
@@ -1724,7 +2570,7 @@ type ClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkC
 // ClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigInput is an input type that accepts ClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs and ClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigOutput values.
 // You can construct a concrete instance of `ClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigInput` via:
 //
-//          ClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs{...}
+//	ClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs{...}
 type ClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigInput interface {
 	pulumi.Input
 
@@ -1788,6 +2634,227 @@ func (o ClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetwo
 	}).(pulumi.StringOutput)
 }
 
+type ClustersClusterLoggingConfig struct {
+	// The TLS log item ID of the collection target.
+	LogProjectId string `pulumi:"logProjectId"`
+	// Cluster logging options.
+	LogSetups []ClustersClusterLoggingConfigLogSetup `pulumi:"logSetups"`
+}
+
+// ClustersClusterLoggingConfigInput is an input type that accepts ClustersClusterLoggingConfigArgs and ClustersClusterLoggingConfigOutput values.
+// You can construct a concrete instance of `ClustersClusterLoggingConfigInput` via:
+//
+//	ClustersClusterLoggingConfigArgs{...}
+type ClustersClusterLoggingConfigInput interface {
+	pulumi.Input
+
+	ToClustersClusterLoggingConfigOutput() ClustersClusterLoggingConfigOutput
+	ToClustersClusterLoggingConfigOutputWithContext(context.Context) ClustersClusterLoggingConfigOutput
+}
+
+type ClustersClusterLoggingConfigArgs struct {
+	// The TLS log item ID of the collection target.
+	LogProjectId pulumi.StringInput `pulumi:"logProjectId"`
+	// Cluster logging options.
+	LogSetups ClustersClusterLoggingConfigLogSetupArrayInput `pulumi:"logSetups"`
+}
+
+func (ClustersClusterLoggingConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClustersClusterLoggingConfig)(nil)).Elem()
+}
+
+func (i ClustersClusterLoggingConfigArgs) ToClustersClusterLoggingConfigOutput() ClustersClusterLoggingConfigOutput {
+	return i.ToClustersClusterLoggingConfigOutputWithContext(context.Background())
+}
+
+func (i ClustersClusterLoggingConfigArgs) ToClustersClusterLoggingConfigOutputWithContext(ctx context.Context) ClustersClusterLoggingConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClustersClusterLoggingConfigOutput)
+}
+
+// ClustersClusterLoggingConfigArrayInput is an input type that accepts ClustersClusterLoggingConfigArray and ClustersClusterLoggingConfigArrayOutput values.
+// You can construct a concrete instance of `ClustersClusterLoggingConfigArrayInput` via:
+//
+//	ClustersClusterLoggingConfigArray{ ClustersClusterLoggingConfigArgs{...} }
+type ClustersClusterLoggingConfigArrayInput interface {
+	pulumi.Input
+
+	ToClustersClusterLoggingConfigArrayOutput() ClustersClusterLoggingConfigArrayOutput
+	ToClustersClusterLoggingConfigArrayOutputWithContext(context.Context) ClustersClusterLoggingConfigArrayOutput
+}
+
+type ClustersClusterLoggingConfigArray []ClustersClusterLoggingConfigInput
+
+func (ClustersClusterLoggingConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClustersClusterLoggingConfig)(nil)).Elem()
+}
+
+func (i ClustersClusterLoggingConfigArray) ToClustersClusterLoggingConfigArrayOutput() ClustersClusterLoggingConfigArrayOutput {
+	return i.ToClustersClusterLoggingConfigArrayOutputWithContext(context.Background())
+}
+
+func (i ClustersClusterLoggingConfigArray) ToClustersClusterLoggingConfigArrayOutputWithContext(ctx context.Context) ClustersClusterLoggingConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClustersClusterLoggingConfigArrayOutput)
+}
+
+type ClustersClusterLoggingConfigOutput struct{ *pulumi.OutputState }
+
+func (ClustersClusterLoggingConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClustersClusterLoggingConfig)(nil)).Elem()
+}
+
+func (o ClustersClusterLoggingConfigOutput) ToClustersClusterLoggingConfigOutput() ClustersClusterLoggingConfigOutput {
+	return o
+}
+
+func (o ClustersClusterLoggingConfigOutput) ToClustersClusterLoggingConfigOutputWithContext(ctx context.Context) ClustersClusterLoggingConfigOutput {
+	return o
+}
+
+// The TLS log item ID of the collection target.
+func (o ClustersClusterLoggingConfigOutput) LogProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v ClustersClusterLoggingConfig) string { return v.LogProjectId }).(pulumi.StringOutput)
+}
+
+// Cluster logging options.
+func (o ClustersClusterLoggingConfigOutput) LogSetups() ClustersClusterLoggingConfigLogSetupArrayOutput {
+	return o.ApplyT(func(v ClustersClusterLoggingConfig) []ClustersClusterLoggingConfigLogSetup { return v.LogSetups }).(ClustersClusterLoggingConfigLogSetupArrayOutput)
+}
+
+type ClustersClusterLoggingConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (ClustersClusterLoggingConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClustersClusterLoggingConfig)(nil)).Elem()
+}
+
+func (o ClustersClusterLoggingConfigArrayOutput) ToClustersClusterLoggingConfigArrayOutput() ClustersClusterLoggingConfigArrayOutput {
+	return o
+}
+
+func (o ClustersClusterLoggingConfigArrayOutput) ToClustersClusterLoggingConfigArrayOutputWithContext(ctx context.Context) ClustersClusterLoggingConfigArrayOutput {
+	return o
+}
+
+func (o ClustersClusterLoggingConfigArrayOutput) Index(i pulumi.IntInput) ClustersClusterLoggingConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClustersClusterLoggingConfig {
+		return vs[0].([]ClustersClusterLoggingConfig)[vs[1].(int)]
+	}).(ClustersClusterLoggingConfigOutput)
+}
+
+type ClustersClusterLoggingConfigLogSetup struct {
+	// Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
+	Enabled bool `pulumi:"enabled"`
+	// The storage time of logs in Log Service. After the specified log storage time is exceeded, the expired logs in this log topic will be automatically cleared. The unit is days, and the default is 30 days. The value range is 1 to 3650, specifying 3650 days means permanent storage.
+	LogTtl int `pulumi:"logTtl"`
+	// The currently enabled log type.
+	LogType string `pulumi:"logType"`
+}
+
+// ClustersClusterLoggingConfigLogSetupInput is an input type that accepts ClustersClusterLoggingConfigLogSetupArgs and ClustersClusterLoggingConfigLogSetupOutput values.
+// You can construct a concrete instance of `ClustersClusterLoggingConfigLogSetupInput` via:
+//
+//	ClustersClusterLoggingConfigLogSetupArgs{...}
+type ClustersClusterLoggingConfigLogSetupInput interface {
+	pulumi.Input
+
+	ToClustersClusterLoggingConfigLogSetupOutput() ClustersClusterLoggingConfigLogSetupOutput
+	ToClustersClusterLoggingConfigLogSetupOutputWithContext(context.Context) ClustersClusterLoggingConfigLogSetupOutput
+}
+
+type ClustersClusterLoggingConfigLogSetupArgs struct {
+	// Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// The storage time of logs in Log Service. After the specified log storage time is exceeded, the expired logs in this log topic will be automatically cleared. The unit is days, and the default is 30 days. The value range is 1 to 3650, specifying 3650 days means permanent storage.
+	LogTtl pulumi.IntInput `pulumi:"logTtl"`
+	// The currently enabled log type.
+	LogType pulumi.StringInput `pulumi:"logType"`
+}
+
+func (ClustersClusterLoggingConfigLogSetupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClustersClusterLoggingConfigLogSetup)(nil)).Elem()
+}
+
+func (i ClustersClusterLoggingConfigLogSetupArgs) ToClustersClusterLoggingConfigLogSetupOutput() ClustersClusterLoggingConfigLogSetupOutput {
+	return i.ToClustersClusterLoggingConfigLogSetupOutputWithContext(context.Background())
+}
+
+func (i ClustersClusterLoggingConfigLogSetupArgs) ToClustersClusterLoggingConfigLogSetupOutputWithContext(ctx context.Context) ClustersClusterLoggingConfigLogSetupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClustersClusterLoggingConfigLogSetupOutput)
+}
+
+// ClustersClusterLoggingConfigLogSetupArrayInput is an input type that accepts ClustersClusterLoggingConfigLogSetupArray and ClustersClusterLoggingConfigLogSetupArrayOutput values.
+// You can construct a concrete instance of `ClustersClusterLoggingConfigLogSetupArrayInput` via:
+//
+//	ClustersClusterLoggingConfigLogSetupArray{ ClustersClusterLoggingConfigLogSetupArgs{...} }
+type ClustersClusterLoggingConfigLogSetupArrayInput interface {
+	pulumi.Input
+
+	ToClustersClusterLoggingConfigLogSetupArrayOutput() ClustersClusterLoggingConfigLogSetupArrayOutput
+	ToClustersClusterLoggingConfigLogSetupArrayOutputWithContext(context.Context) ClustersClusterLoggingConfigLogSetupArrayOutput
+}
+
+type ClustersClusterLoggingConfigLogSetupArray []ClustersClusterLoggingConfigLogSetupInput
+
+func (ClustersClusterLoggingConfigLogSetupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClustersClusterLoggingConfigLogSetup)(nil)).Elem()
+}
+
+func (i ClustersClusterLoggingConfigLogSetupArray) ToClustersClusterLoggingConfigLogSetupArrayOutput() ClustersClusterLoggingConfigLogSetupArrayOutput {
+	return i.ToClustersClusterLoggingConfigLogSetupArrayOutputWithContext(context.Background())
+}
+
+func (i ClustersClusterLoggingConfigLogSetupArray) ToClustersClusterLoggingConfigLogSetupArrayOutputWithContext(ctx context.Context) ClustersClusterLoggingConfigLogSetupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClustersClusterLoggingConfigLogSetupArrayOutput)
+}
+
+type ClustersClusterLoggingConfigLogSetupOutput struct{ *pulumi.OutputState }
+
+func (ClustersClusterLoggingConfigLogSetupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClustersClusterLoggingConfigLogSetup)(nil)).Elem()
+}
+
+func (o ClustersClusterLoggingConfigLogSetupOutput) ToClustersClusterLoggingConfigLogSetupOutput() ClustersClusterLoggingConfigLogSetupOutput {
+	return o
+}
+
+func (o ClustersClusterLoggingConfigLogSetupOutput) ToClustersClusterLoggingConfigLogSetupOutputWithContext(ctx context.Context) ClustersClusterLoggingConfigLogSetupOutput {
+	return o
+}
+
+// Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
+func (o ClustersClusterLoggingConfigLogSetupOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v ClustersClusterLoggingConfigLogSetup) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// The storage time of logs in Log Service. After the specified log storage time is exceeded, the expired logs in this log topic will be automatically cleared. The unit is days, and the default is 30 days. The value range is 1 to 3650, specifying 3650 days means permanent storage.
+func (o ClustersClusterLoggingConfigLogSetupOutput) LogTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v ClustersClusterLoggingConfigLogSetup) int { return v.LogTtl }).(pulumi.IntOutput)
+}
+
+// The currently enabled log type.
+func (o ClustersClusterLoggingConfigLogSetupOutput) LogType() pulumi.StringOutput {
+	return o.ApplyT(func(v ClustersClusterLoggingConfigLogSetup) string { return v.LogType }).(pulumi.StringOutput)
+}
+
+type ClustersClusterLoggingConfigLogSetupArrayOutput struct{ *pulumi.OutputState }
+
+func (ClustersClusterLoggingConfigLogSetupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClustersClusterLoggingConfigLogSetup)(nil)).Elem()
+}
+
+func (o ClustersClusterLoggingConfigLogSetupArrayOutput) ToClustersClusterLoggingConfigLogSetupArrayOutput() ClustersClusterLoggingConfigLogSetupArrayOutput {
+	return o
+}
+
+func (o ClustersClusterLoggingConfigLogSetupArrayOutput) ToClustersClusterLoggingConfigLogSetupArrayOutputWithContext(ctx context.Context) ClustersClusterLoggingConfigLogSetupArrayOutput {
+	return o
+}
+
+func (o ClustersClusterLoggingConfigLogSetupArrayOutput) Index(i pulumi.IntInput) ClustersClusterLoggingConfigLogSetupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClustersClusterLoggingConfigLogSetup {
+		return vs[0].([]ClustersClusterLoggingConfigLogSetup)[vs[1].(int)]
+	}).(ClustersClusterLoggingConfigLogSetupOutput)
+}
+
 type ClustersClusterNodeStatistics struct {
 	// Phase=Creating total number of nodes.
 	CreatingCount int `pulumi:"creatingCount"`
@@ -1808,7 +2875,7 @@ type ClustersClusterNodeStatistics struct {
 // ClustersClusterNodeStatisticsInput is an input type that accepts ClustersClusterNodeStatisticsArgs and ClustersClusterNodeStatisticsOutput values.
 // You can construct a concrete instance of `ClustersClusterNodeStatisticsInput` via:
 //
-//          ClustersClusterNodeStatisticsArgs{...}
+//	ClustersClusterNodeStatisticsArgs{...}
 type ClustersClusterNodeStatisticsInput interface {
 	pulumi.Input
 
@@ -1906,7 +2973,7 @@ type ClustersClusterPodsConfig struct {
 // ClustersClusterPodsConfigInput is an input type that accepts ClustersClusterPodsConfigArgs and ClustersClusterPodsConfigOutput values.
 // You can construct a concrete instance of `ClustersClusterPodsConfigInput` via:
 //
-//          ClustersClusterPodsConfigArgs{...}
+//	ClustersClusterPodsConfigArgs{...}
 type ClustersClusterPodsConfigInput interface {
 	pulumi.Input
 
@@ -1974,7 +3041,7 @@ type ClustersClusterPodsConfigFlannelConfig struct {
 // ClustersClusterPodsConfigFlannelConfigInput is an input type that accepts ClustersClusterPodsConfigFlannelConfigArgs and ClustersClusterPodsConfigFlannelConfigOutput values.
 // You can construct a concrete instance of `ClustersClusterPodsConfigFlannelConfigInput` via:
 //
-//          ClustersClusterPodsConfigFlannelConfigArgs{...}
+//	ClustersClusterPodsConfigFlannelConfigArgs{...}
 type ClustersClusterPodsConfigFlannelConfigInput interface {
 	pulumi.Input
 
@@ -2035,7 +3102,7 @@ type ClustersClusterPodsConfigVpcCniConfig struct {
 // ClustersClusterPodsConfigVpcCniConfigInput is an input type that accepts ClustersClusterPodsConfigVpcCniConfigArgs and ClustersClusterPodsConfigVpcCniConfigOutput values.
 // You can construct a concrete instance of `ClustersClusterPodsConfigVpcCniConfigInput` via:
 //
-//          ClustersClusterPodsConfigVpcCniConfigArgs{...}
+//	ClustersClusterPodsConfigVpcCniConfigArgs{...}
 type ClustersClusterPodsConfigVpcCniConfigInput interface {
 	pulumi.Input
 
@@ -2094,7 +3161,7 @@ type ClustersClusterServicesConfig struct {
 // ClustersClusterServicesConfigInput is an input type that accepts ClustersClusterServicesConfigArgs and ClustersClusterServicesConfigOutput values.
 // You can construct a concrete instance of `ClustersClusterServicesConfigInput` via:
 //
-//          ClustersClusterServicesConfigArgs{...}
+//	ClustersClusterServicesConfigArgs{...}
 type ClustersClusterServicesConfigInput interface {
 	pulumi.Input
 
@@ -2148,7 +3215,7 @@ type ClustersClusterStatus struct {
 // ClustersClusterStatusInput is an input type that accepts ClustersClusterStatusArgs and ClustersClusterStatusOutput values.
 // You can construct a concrete instance of `ClustersClusterStatusInput` via:
 //
-//          ClustersClusterStatusArgs{...}
+//	ClustersClusterStatusArgs{...}
 type ClustersClusterStatusInput interface {
 	pulumi.Input
 
@@ -2200,14 +3267,14 @@ func (o ClustersClusterStatusOutput) Phase() pulumi.StringOutput {
 }
 
 type ClustersClusterStatusCondition struct {
-	// The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Balance`, `CreateError`, `ResourceCleanupFailed`, `Unknown`.
+	// The Type of Tags.
 	Type string `pulumi:"type"`
 }
 
 // ClustersClusterStatusConditionInput is an input type that accepts ClustersClusterStatusConditionArgs and ClustersClusterStatusConditionOutput values.
 // You can construct a concrete instance of `ClustersClusterStatusConditionInput` via:
 //
-//          ClustersClusterStatusConditionArgs{...}
+//	ClustersClusterStatusConditionArgs{...}
 type ClustersClusterStatusConditionInput interface {
 	pulumi.Input
 
@@ -2216,7 +3283,7 @@ type ClustersClusterStatusConditionInput interface {
 }
 
 type ClustersClusterStatusConditionArgs struct {
-	// The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Balance`, `CreateError`, `ResourceCleanupFailed`, `Unknown`.
+	// The Type of Tags.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -2235,7 +3302,7 @@ func (i ClustersClusterStatusConditionArgs) ToClustersClusterStatusConditionOutp
 // ClustersClusterStatusConditionArrayInput is an input type that accepts ClustersClusterStatusConditionArray and ClustersClusterStatusConditionArrayOutput values.
 // You can construct a concrete instance of `ClustersClusterStatusConditionArrayInput` via:
 //
-//          ClustersClusterStatusConditionArray{ ClustersClusterStatusConditionArgs{...} }
+//	ClustersClusterStatusConditionArray{ ClustersClusterStatusConditionArgs{...} }
 type ClustersClusterStatusConditionArrayInput interface {
 	pulumi.Input
 
@@ -2271,7 +3338,7 @@ func (o ClustersClusterStatusConditionOutput) ToClustersClusterStatusConditionOu
 	return o
 }
 
-// The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Balance`, `CreateError`, `ResourceCleanupFailed`, `Unknown`.
+// The Type of Tags.
 func (o ClustersClusterStatusConditionOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v ClustersClusterStatusCondition) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -2296,8 +3363,123 @@ func (o ClustersClusterStatusConditionArrayOutput) Index(i pulumi.IntInput) Clus
 	}).(ClustersClusterStatusConditionOutput)
 }
 
+type ClustersClusterTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Type of Tags.
+	Type string `pulumi:"type"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// ClustersClusterTagInput is an input type that accepts ClustersClusterTagArgs and ClustersClusterTagOutput values.
+// You can construct a concrete instance of `ClustersClusterTagInput` via:
+//
+//	ClustersClusterTagArgs{...}
+type ClustersClusterTagInput interface {
+	pulumi.Input
+
+	ToClustersClusterTagOutput() ClustersClusterTagOutput
+	ToClustersClusterTagOutputWithContext(context.Context) ClustersClusterTagOutput
+}
+
+type ClustersClusterTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Type of Tags.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (ClustersClusterTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClustersClusterTag)(nil)).Elem()
+}
+
+func (i ClustersClusterTagArgs) ToClustersClusterTagOutput() ClustersClusterTagOutput {
+	return i.ToClustersClusterTagOutputWithContext(context.Background())
+}
+
+func (i ClustersClusterTagArgs) ToClustersClusterTagOutputWithContext(ctx context.Context) ClustersClusterTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClustersClusterTagOutput)
+}
+
+// ClustersClusterTagArrayInput is an input type that accepts ClustersClusterTagArray and ClustersClusterTagArrayOutput values.
+// You can construct a concrete instance of `ClustersClusterTagArrayInput` via:
+//
+//	ClustersClusterTagArray{ ClustersClusterTagArgs{...} }
+type ClustersClusterTagArrayInput interface {
+	pulumi.Input
+
+	ToClustersClusterTagArrayOutput() ClustersClusterTagArrayOutput
+	ToClustersClusterTagArrayOutputWithContext(context.Context) ClustersClusterTagArrayOutput
+}
+
+type ClustersClusterTagArray []ClustersClusterTagInput
+
+func (ClustersClusterTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClustersClusterTag)(nil)).Elem()
+}
+
+func (i ClustersClusterTagArray) ToClustersClusterTagArrayOutput() ClustersClusterTagArrayOutput {
+	return i.ToClustersClusterTagArrayOutputWithContext(context.Background())
+}
+
+func (i ClustersClusterTagArray) ToClustersClusterTagArrayOutputWithContext(ctx context.Context) ClustersClusterTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClustersClusterTagArrayOutput)
+}
+
+type ClustersClusterTagOutput struct{ *pulumi.OutputState }
+
+func (ClustersClusterTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClustersClusterTag)(nil)).Elem()
+}
+
+func (o ClustersClusterTagOutput) ToClustersClusterTagOutput() ClustersClusterTagOutput {
+	return o
+}
+
+func (o ClustersClusterTagOutput) ToClustersClusterTagOutputWithContext(ctx context.Context) ClustersClusterTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o ClustersClusterTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v ClustersClusterTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Type of Tags.
+func (o ClustersClusterTagOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v ClustersClusterTag) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o ClustersClusterTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v ClustersClusterTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type ClustersClusterTagArrayOutput struct{ *pulumi.OutputState }
+
+func (ClustersClusterTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClustersClusterTag)(nil)).Elem()
+}
+
+func (o ClustersClusterTagArrayOutput) ToClustersClusterTagArrayOutput() ClustersClusterTagArrayOutput {
+	return o
+}
+
+func (o ClustersClusterTagArrayOutput) ToClustersClusterTagArrayOutputWithContext(ctx context.Context) ClustersClusterTagArrayOutput {
+	return o
+}
+
+func (o ClustersClusterTagArrayOutput) Index(i pulumi.IntInput) ClustersClusterTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClustersClusterTag {
+		return vs[0].([]ClustersClusterTag)[vs[1].(int)]
+	}).(ClustersClusterTagOutput)
+}
+
 type ClustersStatus struct {
-	// The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Balance`, `CreateError`, `ResourceCleanupFailed`, `Unknown`.
+	// The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`, `SetByProvider`, `Balance`, `Security`, `CreateError`, `ResourceCleanupFailed`, `LimitedByQuota`, `StockOut`,`Unknown`.
 	ConditionsType *string `pulumi:"conditionsType"`
 	// The status of cluster. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Stopped`, `Failed`.
 	Phase *string `pulumi:"phase"`
@@ -2306,7 +3488,7 @@ type ClustersStatus struct {
 // ClustersStatusInput is an input type that accepts ClustersStatusArgs and ClustersStatusOutput values.
 // You can construct a concrete instance of `ClustersStatusInput` via:
 //
-//          ClustersStatusArgs{...}
+//	ClustersStatusArgs{...}
 type ClustersStatusInput interface {
 	pulumi.Input
 
@@ -2315,7 +3497,7 @@ type ClustersStatusInput interface {
 }
 
 type ClustersStatusArgs struct {
-	// The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Balance`, `CreateError`, `ResourceCleanupFailed`, `Unknown`.
+	// The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`, `SetByProvider`, `Balance`, `Security`, `CreateError`, `ResourceCleanupFailed`, `LimitedByQuota`, `StockOut`,`Unknown`.
 	ConditionsType pulumi.StringPtrInput `pulumi:"conditionsType"`
 	// The status of cluster. the value contains `Creating`, `Running`, `Updating`, `Deleting`, `Stopped`, `Failed`.
 	Phase pulumi.StringPtrInput `pulumi:"phase"`
@@ -2336,7 +3518,7 @@ func (i ClustersStatusArgs) ToClustersStatusOutputWithContext(ctx context.Contex
 // ClustersStatusArrayInput is an input type that accepts ClustersStatusArray and ClustersStatusArrayOutput values.
 // You can construct a concrete instance of `ClustersStatusArrayInput` via:
 //
-//          ClustersStatusArray{ ClustersStatusArgs{...} }
+//	ClustersStatusArray{ ClustersStatusArgs{...} }
 type ClustersStatusArrayInput interface {
 	pulumi.Input
 
@@ -2372,7 +3554,7 @@ func (o ClustersStatusOutput) ToClustersStatusOutputWithContext(ctx context.Cont
 	return o
 }
 
-// The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Balance`, `CreateError`, `ResourceCleanupFailed`, `Unknown`.
+// The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`, `SetByProvider`, `Balance`, `Security`, `CreateError`, `ResourceCleanupFailed`, `LimitedByQuota`, `StockOut`,`Unknown`.
 func (o ClustersStatusOutput) ConditionsType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClustersStatus) *string { return v.ConditionsType }).(pulumi.StringPtrOutput)
 }
@@ -2402,23 +3584,3019 @@ func (o ClustersStatusArrayOutput) Index(i pulumi.IntInput) ClustersStatusOutput
 	}).(ClustersStatusOutput)
 }
 
+type ClustersTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// ClustersTagInput is an input type that accepts ClustersTagArgs and ClustersTagOutput values.
+// You can construct a concrete instance of `ClustersTagInput` via:
+//
+//	ClustersTagArgs{...}
+type ClustersTagInput interface {
+	pulumi.Input
+
+	ToClustersTagOutput() ClustersTagOutput
+	ToClustersTagOutputWithContext(context.Context) ClustersTagOutput
+}
+
+type ClustersTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (ClustersTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClustersTag)(nil)).Elem()
+}
+
+func (i ClustersTagArgs) ToClustersTagOutput() ClustersTagOutput {
+	return i.ToClustersTagOutputWithContext(context.Background())
+}
+
+func (i ClustersTagArgs) ToClustersTagOutputWithContext(ctx context.Context) ClustersTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClustersTagOutput)
+}
+
+// ClustersTagArrayInput is an input type that accepts ClustersTagArray and ClustersTagArrayOutput values.
+// You can construct a concrete instance of `ClustersTagArrayInput` via:
+//
+//	ClustersTagArray{ ClustersTagArgs{...} }
+type ClustersTagArrayInput interface {
+	pulumi.Input
+
+	ToClustersTagArrayOutput() ClustersTagArrayOutput
+	ToClustersTagArrayOutputWithContext(context.Context) ClustersTagArrayOutput
+}
+
+type ClustersTagArray []ClustersTagInput
+
+func (ClustersTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClustersTag)(nil)).Elem()
+}
+
+func (i ClustersTagArray) ToClustersTagArrayOutput() ClustersTagArrayOutput {
+	return i.ToClustersTagArrayOutputWithContext(context.Background())
+}
+
+func (i ClustersTagArray) ToClustersTagArrayOutputWithContext(ctx context.Context) ClustersTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClustersTagArrayOutput)
+}
+
+type ClustersTagOutput struct{ *pulumi.OutputState }
+
+func (ClustersTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClustersTag)(nil)).Elem()
+}
+
+func (o ClustersTagOutput) ToClustersTagOutput() ClustersTagOutput {
+	return o
+}
+
+func (o ClustersTagOutput) ToClustersTagOutputWithContext(ctx context.Context) ClustersTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o ClustersTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v ClustersTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o ClustersTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v ClustersTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type ClustersTagArrayOutput struct{ *pulumi.OutputState }
+
+func (ClustersTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClustersTag)(nil)).Elem()
+}
+
+func (o ClustersTagArrayOutput) ToClustersTagArrayOutput() ClustersTagArrayOutput {
+	return o
+}
+
+func (o ClustersTagArrayOutput) ToClustersTagArrayOutputWithContext(ctx context.Context) ClustersTagArrayOutput {
+	return o
+}
+
+func (o ClustersTagArrayOutput) Index(i pulumi.IntInput) ClustersTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClustersTag {
+		return vs[0].([]ClustersTag)[vs[1].(int)]
+	}).(ClustersTagOutput)
+}
+
+type DefaultNodePoolBatchAttachInstance struct {
+	// The flag of additional container storage enable, the value is `true` or `false`..Default is `false`.
+	AdditionalContainerStorageEnabled *bool `pulumi:"additionalContainerStorageEnabled"`
+	// The container storage path.When additionalContainerStorageEnabled is `false` will ignore.
+	ContainerStoragePath *string `pulumi:"containerStoragePath"`
+	// ID of the resource.
+	Id *string `pulumi:"id"`
+	// The Image Id to the ECS Instance.
+	ImageId *string `pulumi:"imageId"`
+	// The instance id.
+	InstanceId string `pulumi:"instanceId"`
+	// The flag of keep instance name, the value is `true` or `false`.Default is `false`.
+	KeepInstanceName *bool   `pulumi:"keepInstanceName"`
+	Phase            *string `pulumi:"phase"`
+}
+
+// DefaultNodePoolBatchAttachInstanceInput is an input type that accepts DefaultNodePoolBatchAttachInstanceArgs and DefaultNodePoolBatchAttachInstanceOutput values.
+// You can construct a concrete instance of `DefaultNodePoolBatchAttachInstanceInput` via:
+//
+//	DefaultNodePoolBatchAttachInstanceArgs{...}
+type DefaultNodePoolBatchAttachInstanceInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolBatchAttachInstanceOutput() DefaultNodePoolBatchAttachInstanceOutput
+	ToDefaultNodePoolBatchAttachInstanceOutputWithContext(context.Context) DefaultNodePoolBatchAttachInstanceOutput
+}
+
+type DefaultNodePoolBatchAttachInstanceArgs struct {
+	// The flag of additional container storage enable, the value is `true` or `false`..Default is `false`.
+	AdditionalContainerStorageEnabled pulumi.BoolPtrInput `pulumi:"additionalContainerStorageEnabled"`
+	// The container storage path.When additionalContainerStorageEnabled is `false` will ignore.
+	ContainerStoragePath pulumi.StringPtrInput `pulumi:"containerStoragePath"`
+	// ID of the resource.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The Image Id to the ECS Instance.
+	ImageId pulumi.StringPtrInput `pulumi:"imageId"`
+	// The instance id.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The flag of keep instance name, the value is `true` or `false`.Default is `false`.
+	KeepInstanceName pulumi.BoolPtrInput   `pulumi:"keepInstanceName"`
+	Phase            pulumi.StringPtrInput `pulumi:"phase"`
+}
+
+func (DefaultNodePoolBatchAttachInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolBatchAttachInstance)(nil)).Elem()
+}
+
+func (i DefaultNodePoolBatchAttachInstanceArgs) ToDefaultNodePoolBatchAttachInstanceOutput() DefaultNodePoolBatchAttachInstanceOutput {
+	return i.ToDefaultNodePoolBatchAttachInstanceOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolBatchAttachInstanceArgs) ToDefaultNodePoolBatchAttachInstanceOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolBatchAttachInstanceOutput)
+}
+
+// DefaultNodePoolBatchAttachInstanceArrayInput is an input type that accepts DefaultNodePoolBatchAttachInstanceArray and DefaultNodePoolBatchAttachInstanceArrayOutput values.
+// You can construct a concrete instance of `DefaultNodePoolBatchAttachInstanceArrayInput` via:
+//
+//	DefaultNodePoolBatchAttachInstanceArray{ DefaultNodePoolBatchAttachInstanceArgs{...} }
+type DefaultNodePoolBatchAttachInstanceArrayInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolBatchAttachInstanceArrayOutput() DefaultNodePoolBatchAttachInstanceArrayOutput
+	ToDefaultNodePoolBatchAttachInstanceArrayOutputWithContext(context.Context) DefaultNodePoolBatchAttachInstanceArrayOutput
+}
+
+type DefaultNodePoolBatchAttachInstanceArray []DefaultNodePoolBatchAttachInstanceInput
+
+func (DefaultNodePoolBatchAttachInstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DefaultNodePoolBatchAttachInstance)(nil)).Elem()
+}
+
+func (i DefaultNodePoolBatchAttachInstanceArray) ToDefaultNodePoolBatchAttachInstanceArrayOutput() DefaultNodePoolBatchAttachInstanceArrayOutput {
+	return i.ToDefaultNodePoolBatchAttachInstanceArrayOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolBatchAttachInstanceArray) ToDefaultNodePoolBatchAttachInstanceArrayOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachInstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolBatchAttachInstanceArrayOutput)
+}
+
+type DefaultNodePoolBatchAttachInstanceOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolBatchAttachInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolBatchAttachInstance)(nil)).Elem()
+}
+
+func (o DefaultNodePoolBatchAttachInstanceOutput) ToDefaultNodePoolBatchAttachInstanceOutput() DefaultNodePoolBatchAttachInstanceOutput {
+	return o
+}
+
+func (o DefaultNodePoolBatchAttachInstanceOutput) ToDefaultNodePoolBatchAttachInstanceOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachInstanceOutput {
+	return o
+}
+
+// The flag of additional container storage enable, the value is `true` or `false`..Default is `false`.
+func (o DefaultNodePoolBatchAttachInstanceOutput) AdditionalContainerStorageEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolBatchAttachInstance) *bool { return v.AdditionalContainerStorageEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// The container storage path.When additionalContainerStorageEnabled is `false` will ignore.
+func (o DefaultNodePoolBatchAttachInstanceOutput) ContainerStoragePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolBatchAttachInstance) *string { return v.ContainerStoragePath }).(pulumi.StringPtrOutput)
+}
+
+// ID of the resource.
+func (o DefaultNodePoolBatchAttachInstanceOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolBatchAttachInstance) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// The Image Id to the ECS Instance.
+func (o DefaultNodePoolBatchAttachInstanceOutput) ImageId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolBatchAttachInstance) *string { return v.ImageId }).(pulumi.StringPtrOutput)
+}
+
+// The instance id.
+func (o DefaultNodePoolBatchAttachInstanceOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v DefaultNodePoolBatchAttachInstance) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The flag of keep instance name, the value is `true` or `false`.Default is `false`.
+func (o DefaultNodePoolBatchAttachInstanceOutput) KeepInstanceName() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolBatchAttachInstance) *bool { return v.KeepInstanceName }).(pulumi.BoolPtrOutput)
+}
+
+func (o DefaultNodePoolBatchAttachInstanceOutput) Phase() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolBatchAttachInstance) *string { return v.Phase }).(pulumi.StringPtrOutput)
+}
+
+type DefaultNodePoolBatchAttachInstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolBatchAttachInstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DefaultNodePoolBatchAttachInstance)(nil)).Elem()
+}
+
+func (o DefaultNodePoolBatchAttachInstanceArrayOutput) ToDefaultNodePoolBatchAttachInstanceArrayOutput() DefaultNodePoolBatchAttachInstanceArrayOutput {
+	return o
+}
+
+func (o DefaultNodePoolBatchAttachInstanceArrayOutput) ToDefaultNodePoolBatchAttachInstanceArrayOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachInstanceArrayOutput {
+	return o
+}
+
+func (o DefaultNodePoolBatchAttachInstanceArrayOutput) Index(i pulumi.IntInput) DefaultNodePoolBatchAttachInstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DefaultNodePoolBatchAttachInstance {
+		return vs[0].([]DefaultNodePoolBatchAttachInstance)[vs[1].(int)]
+	}).(DefaultNodePoolBatchAttachInstanceOutput)
+}
+
+type DefaultNodePoolBatchAttachKubernetesConfig struct {
+	// The Cordon of KubernetesConfig.
+	Cordon *bool `pulumi:"cordon"`
+	// The Labels of KubernetesConfig.
+	Labels []DefaultNodePoolBatchAttachKubernetesConfigLabel `pulumi:"labels"`
+	// The Taints of KubernetesConfig.
+	Taints []DefaultNodePoolBatchAttachKubernetesConfigTaint `pulumi:"taints"`
+}
+
+// DefaultNodePoolBatchAttachKubernetesConfigInput is an input type that accepts DefaultNodePoolBatchAttachKubernetesConfigArgs and DefaultNodePoolBatchAttachKubernetesConfigOutput values.
+// You can construct a concrete instance of `DefaultNodePoolBatchAttachKubernetesConfigInput` via:
+//
+//	DefaultNodePoolBatchAttachKubernetesConfigArgs{...}
+type DefaultNodePoolBatchAttachKubernetesConfigInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolBatchAttachKubernetesConfigOutput() DefaultNodePoolBatchAttachKubernetesConfigOutput
+	ToDefaultNodePoolBatchAttachKubernetesConfigOutputWithContext(context.Context) DefaultNodePoolBatchAttachKubernetesConfigOutput
+}
+
+type DefaultNodePoolBatchAttachKubernetesConfigArgs struct {
+	// The Cordon of KubernetesConfig.
+	Cordon pulumi.BoolPtrInput `pulumi:"cordon"`
+	// The Labels of KubernetesConfig.
+	Labels DefaultNodePoolBatchAttachKubernetesConfigLabelArrayInput `pulumi:"labels"`
+	// The Taints of KubernetesConfig.
+	Taints DefaultNodePoolBatchAttachKubernetesConfigTaintArrayInput `pulumi:"taints"`
+}
+
+func (DefaultNodePoolBatchAttachKubernetesConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolBatchAttachKubernetesConfig)(nil)).Elem()
+}
+
+func (i DefaultNodePoolBatchAttachKubernetesConfigArgs) ToDefaultNodePoolBatchAttachKubernetesConfigOutput() DefaultNodePoolBatchAttachKubernetesConfigOutput {
+	return i.ToDefaultNodePoolBatchAttachKubernetesConfigOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolBatchAttachKubernetesConfigArgs) ToDefaultNodePoolBatchAttachKubernetesConfigOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachKubernetesConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolBatchAttachKubernetesConfigOutput)
+}
+
+// DefaultNodePoolBatchAttachKubernetesConfigArrayInput is an input type that accepts DefaultNodePoolBatchAttachKubernetesConfigArray and DefaultNodePoolBatchAttachKubernetesConfigArrayOutput values.
+// You can construct a concrete instance of `DefaultNodePoolBatchAttachKubernetesConfigArrayInput` via:
+//
+//	DefaultNodePoolBatchAttachKubernetesConfigArray{ DefaultNodePoolBatchAttachKubernetesConfigArgs{...} }
+type DefaultNodePoolBatchAttachKubernetesConfigArrayInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolBatchAttachKubernetesConfigArrayOutput() DefaultNodePoolBatchAttachKubernetesConfigArrayOutput
+	ToDefaultNodePoolBatchAttachKubernetesConfigArrayOutputWithContext(context.Context) DefaultNodePoolBatchAttachKubernetesConfigArrayOutput
+}
+
+type DefaultNodePoolBatchAttachKubernetesConfigArray []DefaultNodePoolBatchAttachKubernetesConfigInput
+
+func (DefaultNodePoolBatchAttachKubernetesConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DefaultNodePoolBatchAttachKubernetesConfig)(nil)).Elem()
+}
+
+func (i DefaultNodePoolBatchAttachKubernetesConfigArray) ToDefaultNodePoolBatchAttachKubernetesConfigArrayOutput() DefaultNodePoolBatchAttachKubernetesConfigArrayOutput {
+	return i.ToDefaultNodePoolBatchAttachKubernetesConfigArrayOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolBatchAttachKubernetesConfigArray) ToDefaultNodePoolBatchAttachKubernetesConfigArrayOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachKubernetesConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolBatchAttachKubernetesConfigArrayOutput)
+}
+
+type DefaultNodePoolBatchAttachKubernetesConfigOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolBatchAttachKubernetesConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolBatchAttachKubernetesConfig)(nil)).Elem()
+}
+
+func (o DefaultNodePoolBatchAttachKubernetesConfigOutput) ToDefaultNodePoolBatchAttachKubernetesConfigOutput() DefaultNodePoolBatchAttachKubernetesConfigOutput {
+	return o
+}
+
+func (o DefaultNodePoolBatchAttachKubernetesConfigOutput) ToDefaultNodePoolBatchAttachKubernetesConfigOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachKubernetesConfigOutput {
+	return o
+}
+
+// The Cordon of KubernetesConfig.
+func (o DefaultNodePoolBatchAttachKubernetesConfigOutput) Cordon() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolBatchAttachKubernetesConfig) *bool { return v.Cordon }).(pulumi.BoolPtrOutput)
+}
+
+// The Labels of KubernetesConfig.
+func (o DefaultNodePoolBatchAttachKubernetesConfigOutput) Labels() DefaultNodePoolBatchAttachKubernetesConfigLabelArrayOutput {
+	return o.ApplyT(func(v DefaultNodePoolBatchAttachKubernetesConfig) []DefaultNodePoolBatchAttachKubernetesConfigLabel {
+		return v.Labels
+	}).(DefaultNodePoolBatchAttachKubernetesConfigLabelArrayOutput)
+}
+
+// The Taints of KubernetesConfig.
+func (o DefaultNodePoolBatchAttachKubernetesConfigOutput) Taints() DefaultNodePoolBatchAttachKubernetesConfigTaintArrayOutput {
+	return o.ApplyT(func(v DefaultNodePoolBatchAttachKubernetesConfig) []DefaultNodePoolBatchAttachKubernetesConfigTaint {
+		return v.Taints
+	}).(DefaultNodePoolBatchAttachKubernetesConfigTaintArrayOutput)
+}
+
+type DefaultNodePoolBatchAttachKubernetesConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolBatchAttachKubernetesConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DefaultNodePoolBatchAttachKubernetesConfig)(nil)).Elem()
+}
+
+func (o DefaultNodePoolBatchAttachKubernetesConfigArrayOutput) ToDefaultNodePoolBatchAttachKubernetesConfigArrayOutput() DefaultNodePoolBatchAttachKubernetesConfigArrayOutput {
+	return o
+}
+
+func (o DefaultNodePoolBatchAttachKubernetesConfigArrayOutput) ToDefaultNodePoolBatchAttachKubernetesConfigArrayOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachKubernetesConfigArrayOutput {
+	return o
+}
+
+func (o DefaultNodePoolBatchAttachKubernetesConfigArrayOutput) Index(i pulumi.IntInput) DefaultNodePoolBatchAttachKubernetesConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DefaultNodePoolBatchAttachKubernetesConfig {
+		return vs[0].([]DefaultNodePoolBatchAttachKubernetesConfig)[vs[1].(int)]
+	}).(DefaultNodePoolBatchAttachKubernetesConfigOutput)
+}
+
+type DefaultNodePoolBatchAttachKubernetesConfigLabel struct {
+	// The Key of Tags.
+	Key *string `pulumi:"key"`
+	// The Value of Tags.
+	Value *string `pulumi:"value"`
+}
+
+// DefaultNodePoolBatchAttachKubernetesConfigLabelInput is an input type that accepts DefaultNodePoolBatchAttachKubernetesConfigLabelArgs and DefaultNodePoolBatchAttachKubernetesConfigLabelOutput values.
+// You can construct a concrete instance of `DefaultNodePoolBatchAttachKubernetesConfigLabelInput` via:
+//
+//	DefaultNodePoolBatchAttachKubernetesConfigLabelArgs{...}
+type DefaultNodePoolBatchAttachKubernetesConfigLabelInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolBatchAttachKubernetesConfigLabelOutput() DefaultNodePoolBatchAttachKubernetesConfigLabelOutput
+	ToDefaultNodePoolBatchAttachKubernetesConfigLabelOutputWithContext(context.Context) DefaultNodePoolBatchAttachKubernetesConfigLabelOutput
+}
+
+type DefaultNodePoolBatchAttachKubernetesConfigLabelArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringPtrInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (DefaultNodePoolBatchAttachKubernetesConfigLabelArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolBatchAttachKubernetesConfigLabel)(nil)).Elem()
+}
+
+func (i DefaultNodePoolBatchAttachKubernetesConfigLabelArgs) ToDefaultNodePoolBatchAttachKubernetesConfigLabelOutput() DefaultNodePoolBatchAttachKubernetesConfigLabelOutput {
+	return i.ToDefaultNodePoolBatchAttachKubernetesConfigLabelOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolBatchAttachKubernetesConfigLabelArgs) ToDefaultNodePoolBatchAttachKubernetesConfigLabelOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachKubernetesConfigLabelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolBatchAttachKubernetesConfigLabelOutput)
+}
+
+// DefaultNodePoolBatchAttachKubernetesConfigLabelArrayInput is an input type that accepts DefaultNodePoolBatchAttachKubernetesConfigLabelArray and DefaultNodePoolBatchAttachKubernetesConfigLabelArrayOutput values.
+// You can construct a concrete instance of `DefaultNodePoolBatchAttachKubernetesConfigLabelArrayInput` via:
+//
+//	DefaultNodePoolBatchAttachKubernetesConfigLabelArray{ DefaultNodePoolBatchAttachKubernetesConfigLabelArgs{...} }
+type DefaultNodePoolBatchAttachKubernetesConfigLabelArrayInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolBatchAttachKubernetesConfigLabelArrayOutput() DefaultNodePoolBatchAttachKubernetesConfigLabelArrayOutput
+	ToDefaultNodePoolBatchAttachKubernetesConfigLabelArrayOutputWithContext(context.Context) DefaultNodePoolBatchAttachKubernetesConfigLabelArrayOutput
+}
+
+type DefaultNodePoolBatchAttachKubernetesConfigLabelArray []DefaultNodePoolBatchAttachKubernetesConfigLabelInput
+
+func (DefaultNodePoolBatchAttachKubernetesConfigLabelArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DefaultNodePoolBatchAttachKubernetesConfigLabel)(nil)).Elem()
+}
+
+func (i DefaultNodePoolBatchAttachKubernetesConfigLabelArray) ToDefaultNodePoolBatchAttachKubernetesConfigLabelArrayOutput() DefaultNodePoolBatchAttachKubernetesConfigLabelArrayOutput {
+	return i.ToDefaultNodePoolBatchAttachKubernetesConfigLabelArrayOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolBatchAttachKubernetesConfigLabelArray) ToDefaultNodePoolBatchAttachKubernetesConfigLabelArrayOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachKubernetesConfigLabelArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolBatchAttachKubernetesConfigLabelArrayOutput)
+}
+
+type DefaultNodePoolBatchAttachKubernetesConfigLabelOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolBatchAttachKubernetesConfigLabelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolBatchAttachKubernetesConfigLabel)(nil)).Elem()
+}
+
+func (o DefaultNodePoolBatchAttachKubernetesConfigLabelOutput) ToDefaultNodePoolBatchAttachKubernetesConfigLabelOutput() DefaultNodePoolBatchAttachKubernetesConfigLabelOutput {
+	return o
+}
+
+func (o DefaultNodePoolBatchAttachKubernetesConfigLabelOutput) ToDefaultNodePoolBatchAttachKubernetesConfigLabelOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachKubernetesConfigLabelOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o DefaultNodePoolBatchAttachKubernetesConfigLabelOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolBatchAttachKubernetesConfigLabel) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+// The Value of Tags.
+func (o DefaultNodePoolBatchAttachKubernetesConfigLabelOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolBatchAttachKubernetesConfigLabel) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type DefaultNodePoolBatchAttachKubernetesConfigLabelArrayOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolBatchAttachKubernetesConfigLabelArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DefaultNodePoolBatchAttachKubernetesConfigLabel)(nil)).Elem()
+}
+
+func (o DefaultNodePoolBatchAttachKubernetesConfigLabelArrayOutput) ToDefaultNodePoolBatchAttachKubernetesConfigLabelArrayOutput() DefaultNodePoolBatchAttachKubernetesConfigLabelArrayOutput {
+	return o
+}
+
+func (o DefaultNodePoolBatchAttachKubernetesConfigLabelArrayOutput) ToDefaultNodePoolBatchAttachKubernetesConfigLabelArrayOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachKubernetesConfigLabelArrayOutput {
+	return o
+}
+
+func (o DefaultNodePoolBatchAttachKubernetesConfigLabelArrayOutput) Index(i pulumi.IntInput) DefaultNodePoolBatchAttachKubernetesConfigLabelOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DefaultNodePoolBatchAttachKubernetesConfigLabel {
+		return vs[0].([]DefaultNodePoolBatchAttachKubernetesConfigLabel)[vs[1].(int)]
+	}).(DefaultNodePoolBatchAttachKubernetesConfigLabelOutput)
+}
+
+type DefaultNodePoolBatchAttachKubernetesConfigTaint struct {
+	// The Effect of Taints.
+	Effect *string `pulumi:"effect"`
+	// The Key of Tags.
+	Key *string `pulumi:"key"`
+	// The Value of Tags.
+	Value *string `pulumi:"value"`
+}
+
+// DefaultNodePoolBatchAttachKubernetesConfigTaintInput is an input type that accepts DefaultNodePoolBatchAttachKubernetesConfigTaintArgs and DefaultNodePoolBatchAttachKubernetesConfigTaintOutput values.
+// You can construct a concrete instance of `DefaultNodePoolBatchAttachKubernetesConfigTaintInput` via:
+//
+//	DefaultNodePoolBatchAttachKubernetesConfigTaintArgs{...}
+type DefaultNodePoolBatchAttachKubernetesConfigTaintInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolBatchAttachKubernetesConfigTaintOutput() DefaultNodePoolBatchAttachKubernetesConfigTaintOutput
+	ToDefaultNodePoolBatchAttachKubernetesConfigTaintOutputWithContext(context.Context) DefaultNodePoolBatchAttachKubernetesConfigTaintOutput
+}
+
+type DefaultNodePoolBatchAttachKubernetesConfigTaintArgs struct {
+	// The Effect of Taints.
+	Effect pulumi.StringPtrInput `pulumi:"effect"`
+	// The Key of Tags.
+	Key pulumi.StringPtrInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (DefaultNodePoolBatchAttachKubernetesConfigTaintArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolBatchAttachKubernetesConfigTaint)(nil)).Elem()
+}
+
+func (i DefaultNodePoolBatchAttachKubernetesConfigTaintArgs) ToDefaultNodePoolBatchAttachKubernetesConfigTaintOutput() DefaultNodePoolBatchAttachKubernetesConfigTaintOutput {
+	return i.ToDefaultNodePoolBatchAttachKubernetesConfigTaintOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolBatchAttachKubernetesConfigTaintArgs) ToDefaultNodePoolBatchAttachKubernetesConfigTaintOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachKubernetesConfigTaintOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolBatchAttachKubernetesConfigTaintOutput)
+}
+
+// DefaultNodePoolBatchAttachKubernetesConfigTaintArrayInput is an input type that accepts DefaultNodePoolBatchAttachKubernetesConfigTaintArray and DefaultNodePoolBatchAttachKubernetesConfigTaintArrayOutput values.
+// You can construct a concrete instance of `DefaultNodePoolBatchAttachKubernetesConfigTaintArrayInput` via:
+//
+//	DefaultNodePoolBatchAttachKubernetesConfigTaintArray{ DefaultNodePoolBatchAttachKubernetesConfigTaintArgs{...} }
+type DefaultNodePoolBatchAttachKubernetesConfigTaintArrayInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolBatchAttachKubernetesConfigTaintArrayOutput() DefaultNodePoolBatchAttachKubernetesConfigTaintArrayOutput
+	ToDefaultNodePoolBatchAttachKubernetesConfigTaintArrayOutputWithContext(context.Context) DefaultNodePoolBatchAttachKubernetesConfigTaintArrayOutput
+}
+
+type DefaultNodePoolBatchAttachKubernetesConfigTaintArray []DefaultNodePoolBatchAttachKubernetesConfigTaintInput
+
+func (DefaultNodePoolBatchAttachKubernetesConfigTaintArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DefaultNodePoolBatchAttachKubernetesConfigTaint)(nil)).Elem()
+}
+
+func (i DefaultNodePoolBatchAttachKubernetesConfigTaintArray) ToDefaultNodePoolBatchAttachKubernetesConfigTaintArrayOutput() DefaultNodePoolBatchAttachKubernetesConfigTaintArrayOutput {
+	return i.ToDefaultNodePoolBatchAttachKubernetesConfigTaintArrayOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolBatchAttachKubernetesConfigTaintArray) ToDefaultNodePoolBatchAttachKubernetesConfigTaintArrayOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachKubernetesConfigTaintArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolBatchAttachKubernetesConfigTaintArrayOutput)
+}
+
+type DefaultNodePoolBatchAttachKubernetesConfigTaintOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolBatchAttachKubernetesConfigTaintOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolBatchAttachKubernetesConfigTaint)(nil)).Elem()
+}
+
+func (o DefaultNodePoolBatchAttachKubernetesConfigTaintOutput) ToDefaultNodePoolBatchAttachKubernetesConfigTaintOutput() DefaultNodePoolBatchAttachKubernetesConfigTaintOutput {
+	return o
+}
+
+func (o DefaultNodePoolBatchAttachKubernetesConfigTaintOutput) ToDefaultNodePoolBatchAttachKubernetesConfigTaintOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachKubernetesConfigTaintOutput {
+	return o
+}
+
+// The Effect of Taints.
+func (o DefaultNodePoolBatchAttachKubernetesConfigTaintOutput) Effect() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolBatchAttachKubernetesConfigTaint) *string { return v.Effect }).(pulumi.StringPtrOutput)
+}
+
+// The Key of Tags.
+func (o DefaultNodePoolBatchAttachKubernetesConfigTaintOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolBatchAttachKubernetesConfigTaint) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+// The Value of Tags.
+func (o DefaultNodePoolBatchAttachKubernetesConfigTaintOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolBatchAttachKubernetesConfigTaint) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type DefaultNodePoolBatchAttachKubernetesConfigTaintArrayOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolBatchAttachKubernetesConfigTaintArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DefaultNodePoolBatchAttachKubernetesConfigTaint)(nil)).Elem()
+}
+
+func (o DefaultNodePoolBatchAttachKubernetesConfigTaintArrayOutput) ToDefaultNodePoolBatchAttachKubernetesConfigTaintArrayOutput() DefaultNodePoolBatchAttachKubernetesConfigTaintArrayOutput {
+	return o
+}
+
+func (o DefaultNodePoolBatchAttachKubernetesConfigTaintArrayOutput) ToDefaultNodePoolBatchAttachKubernetesConfigTaintArrayOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachKubernetesConfigTaintArrayOutput {
+	return o
+}
+
+func (o DefaultNodePoolBatchAttachKubernetesConfigTaintArrayOutput) Index(i pulumi.IntInput) DefaultNodePoolBatchAttachKubernetesConfigTaintOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DefaultNodePoolBatchAttachKubernetesConfigTaint {
+		return vs[0].([]DefaultNodePoolBatchAttachKubernetesConfigTaint)[vs[1].(int)]
+	}).(DefaultNodePoolBatchAttachKubernetesConfigTaintOutput)
+}
+
+type DefaultNodePoolBatchAttachNodeConfig struct {
+	// Tags for Ecs.
+	EcsTags []DefaultNodePoolBatchAttachNodeConfigEcsTag `pulumi:"ecsTags"`
+	// The initializeScript of NodeConfig.
+	InitializeScript *string `pulumi:"initializeScript"`
+	// The NamePrefix of NodeConfig.
+	NamePrefix *string `pulumi:"namePrefix"`
+	// The Security of NodeConfig.
+	Securities []DefaultNodePoolBatchAttachNodeConfigSecurity `pulumi:"securities"`
+}
+
+// DefaultNodePoolBatchAttachNodeConfigInput is an input type that accepts DefaultNodePoolBatchAttachNodeConfigArgs and DefaultNodePoolBatchAttachNodeConfigOutput values.
+// You can construct a concrete instance of `DefaultNodePoolBatchAttachNodeConfigInput` via:
+//
+//	DefaultNodePoolBatchAttachNodeConfigArgs{...}
+type DefaultNodePoolBatchAttachNodeConfigInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolBatchAttachNodeConfigOutput() DefaultNodePoolBatchAttachNodeConfigOutput
+	ToDefaultNodePoolBatchAttachNodeConfigOutputWithContext(context.Context) DefaultNodePoolBatchAttachNodeConfigOutput
+}
+
+type DefaultNodePoolBatchAttachNodeConfigArgs struct {
+	// Tags for Ecs.
+	EcsTags DefaultNodePoolBatchAttachNodeConfigEcsTagArrayInput `pulumi:"ecsTags"`
+	// The initializeScript of NodeConfig.
+	InitializeScript pulumi.StringPtrInput `pulumi:"initializeScript"`
+	// The NamePrefix of NodeConfig.
+	NamePrefix pulumi.StringPtrInput `pulumi:"namePrefix"`
+	// The Security of NodeConfig.
+	Securities DefaultNodePoolBatchAttachNodeConfigSecurityArrayInput `pulumi:"securities"`
+}
+
+func (DefaultNodePoolBatchAttachNodeConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolBatchAttachNodeConfig)(nil)).Elem()
+}
+
+func (i DefaultNodePoolBatchAttachNodeConfigArgs) ToDefaultNodePoolBatchAttachNodeConfigOutput() DefaultNodePoolBatchAttachNodeConfigOutput {
+	return i.ToDefaultNodePoolBatchAttachNodeConfigOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolBatchAttachNodeConfigArgs) ToDefaultNodePoolBatchAttachNodeConfigOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachNodeConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolBatchAttachNodeConfigOutput)
+}
+
+// DefaultNodePoolBatchAttachNodeConfigArrayInput is an input type that accepts DefaultNodePoolBatchAttachNodeConfigArray and DefaultNodePoolBatchAttachNodeConfigArrayOutput values.
+// You can construct a concrete instance of `DefaultNodePoolBatchAttachNodeConfigArrayInput` via:
+//
+//	DefaultNodePoolBatchAttachNodeConfigArray{ DefaultNodePoolBatchAttachNodeConfigArgs{...} }
+type DefaultNodePoolBatchAttachNodeConfigArrayInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolBatchAttachNodeConfigArrayOutput() DefaultNodePoolBatchAttachNodeConfigArrayOutput
+	ToDefaultNodePoolBatchAttachNodeConfigArrayOutputWithContext(context.Context) DefaultNodePoolBatchAttachNodeConfigArrayOutput
+}
+
+type DefaultNodePoolBatchAttachNodeConfigArray []DefaultNodePoolBatchAttachNodeConfigInput
+
+func (DefaultNodePoolBatchAttachNodeConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DefaultNodePoolBatchAttachNodeConfig)(nil)).Elem()
+}
+
+func (i DefaultNodePoolBatchAttachNodeConfigArray) ToDefaultNodePoolBatchAttachNodeConfigArrayOutput() DefaultNodePoolBatchAttachNodeConfigArrayOutput {
+	return i.ToDefaultNodePoolBatchAttachNodeConfigArrayOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolBatchAttachNodeConfigArray) ToDefaultNodePoolBatchAttachNodeConfigArrayOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachNodeConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolBatchAttachNodeConfigArrayOutput)
+}
+
+type DefaultNodePoolBatchAttachNodeConfigOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolBatchAttachNodeConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolBatchAttachNodeConfig)(nil)).Elem()
+}
+
+func (o DefaultNodePoolBatchAttachNodeConfigOutput) ToDefaultNodePoolBatchAttachNodeConfigOutput() DefaultNodePoolBatchAttachNodeConfigOutput {
+	return o
+}
+
+func (o DefaultNodePoolBatchAttachNodeConfigOutput) ToDefaultNodePoolBatchAttachNodeConfigOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachNodeConfigOutput {
+	return o
+}
+
+// Tags for Ecs.
+func (o DefaultNodePoolBatchAttachNodeConfigOutput) EcsTags() DefaultNodePoolBatchAttachNodeConfigEcsTagArrayOutput {
+	return o.ApplyT(func(v DefaultNodePoolBatchAttachNodeConfig) []DefaultNodePoolBatchAttachNodeConfigEcsTag {
+		return v.EcsTags
+	}).(DefaultNodePoolBatchAttachNodeConfigEcsTagArrayOutput)
+}
+
+// The initializeScript of NodeConfig.
+func (o DefaultNodePoolBatchAttachNodeConfigOutput) InitializeScript() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolBatchAttachNodeConfig) *string { return v.InitializeScript }).(pulumi.StringPtrOutput)
+}
+
+// The NamePrefix of NodeConfig.
+func (o DefaultNodePoolBatchAttachNodeConfigOutput) NamePrefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolBatchAttachNodeConfig) *string { return v.NamePrefix }).(pulumi.StringPtrOutput)
+}
+
+// The Security of NodeConfig.
+func (o DefaultNodePoolBatchAttachNodeConfigOutput) Securities() DefaultNodePoolBatchAttachNodeConfigSecurityArrayOutput {
+	return o.ApplyT(func(v DefaultNodePoolBatchAttachNodeConfig) []DefaultNodePoolBatchAttachNodeConfigSecurity {
+		return v.Securities
+	}).(DefaultNodePoolBatchAttachNodeConfigSecurityArrayOutput)
+}
+
+type DefaultNodePoolBatchAttachNodeConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolBatchAttachNodeConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DefaultNodePoolBatchAttachNodeConfig)(nil)).Elem()
+}
+
+func (o DefaultNodePoolBatchAttachNodeConfigArrayOutput) ToDefaultNodePoolBatchAttachNodeConfigArrayOutput() DefaultNodePoolBatchAttachNodeConfigArrayOutput {
+	return o
+}
+
+func (o DefaultNodePoolBatchAttachNodeConfigArrayOutput) ToDefaultNodePoolBatchAttachNodeConfigArrayOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachNodeConfigArrayOutput {
+	return o
+}
+
+func (o DefaultNodePoolBatchAttachNodeConfigArrayOutput) Index(i pulumi.IntInput) DefaultNodePoolBatchAttachNodeConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DefaultNodePoolBatchAttachNodeConfig {
+		return vs[0].([]DefaultNodePoolBatchAttachNodeConfig)[vs[1].(int)]
+	}).(DefaultNodePoolBatchAttachNodeConfigOutput)
+}
+
+type DefaultNodePoolBatchAttachNodeConfigEcsTag struct {
+	// The Key of Tags.
+	Key *string `pulumi:"key"`
+	// The Value of Tags.
+	Value *string `pulumi:"value"`
+}
+
+// DefaultNodePoolBatchAttachNodeConfigEcsTagInput is an input type that accepts DefaultNodePoolBatchAttachNodeConfigEcsTagArgs and DefaultNodePoolBatchAttachNodeConfigEcsTagOutput values.
+// You can construct a concrete instance of `DefaultNodePoolBatchAttachNodeConfigEcsTagInput` via:
+//
+//	DefaultNodePoolBatchAttachNodeConfigEcsTagArgs{...}
+type DefaultNodePoolBatchAttachNodeConfigEcsTagInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolBatchAttachNodeConfigEcsTagOutput() DefaultNodePoolBatchAttachNodeConfigEcsTagOutput
+	ToDefaultNodePoolBatchAttachNodeConfigEcsTagOutputWithContext(context.Context) DefaultNodePoolBatchAttachNodeConfigEcsTagOutput
+}
+
+type DefaultNodePoolBatchAttachNodeConfigEcsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringPtrInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (DefaultNodePoolBatchAttachNodeConfigEcsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolBatchAttachNodeConfigEcsTag)(nil)).Elem()
+}
+
+func (i DefaultNodePoolBatchAttachNodeConfigEcsTagArgs) ToDefaultNodePoolBatchAttachNodeConfigEcsTagOutput() DefaultNodePoolBatchAttachNodeConfigEcsTagOutput {
+	return i.ToDefaultNodePoolBatchAttachNodeConfigEcsTagOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolBatchAttachNodeConfigEcsTagArgs) ToDefaultNodePoolBatchAttachNodeConfigEcsTagOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachNodeConfigEcsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolBatchAttachNodeConfigEcsTagOutput)
+}
+
+// DefaultNodePoolBatchAttachNodeConfigEcsTagArrayInput is an input type that accepts DefaultNodePoolBatchAttachNodeConfigEcsTagArray and DefaultNodePoolBatchAttachNodeConfigEcsTagArrayOutput values.
+// You can construct a concrete instance of `DefaultNodePoolBatchAttachNodeConfigEcsTagArrayInput` via:
+//
+//	DefaultNodePoolBatchAttachNodeConfigEcsTagArray{ DefaultNodePoolBatchAttachNodeConfigEcsTagArgs{...} }
+type DefaultNodePoolBatchAttachNodeConfigEcsTagArrayInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolBatchAttachNodeConfigEcsTagArrayOutput() DefaultNodePoolBatchAttachNodeConfigEcsTagArrayOutput
+	ToDefaultNodePoolBatchAttachNodeConfigEcsTagArrayOutputWithContext(context.Context) DefaultNodePoolBatchAttachNodeConfigEcsTagArrayOutput
+}
+
+type DefaultNodePoolBatchAttachNodeConfigEcsTagArray []DefaultNodePoolBatchAttachNodeConfigEcsTagInput
+
+func (DefaultNodePoolBatchAttachNodeConfigEcsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DefaultNodePoolBatchAttachNodeConfigEcsTag)(nil)).Elem()
+}
+
+func (i DefaultNodePoolBatchAttachNodeConfigEcsTagArray) ToDefaultNodePoolBatchAttachNodeConfigEcsTagArrayOutput() DefaultNodePoolBatchAttachNodeConfigEcsTagArrayOutput {
+	return i.ToDefaultNodePoolBatchAttachNodeConfigEcsTagArrayOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolBatchAttachNodeConfigEcsTagArray) ToDefaultNodePoolBatchAttachNodeConfigEcsTagArrayOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachNodeConfigEcsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolBatchAttachNodeConfigEcsTagArrayOutput)
+}
+
+type DefaultNodePoolBatchAttachNodeConfigEcsTagOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolBatchAttachNodeConfigEcsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolBatchAttachNodeConfigEcsTag)(nil)).Elem()
+}
+
+func (o DefaultNodePoolBatchAttachNodeConfigEcsTagOutput) ToDefaultNodePoolBatchAttachNodeConfigEcsTagOutput() DefaultNodePoolBatchAttachNodeConfigEcsTagOutput {
+	return o
+}
+
+func (o DefaultNodePoolBatchAttachNodeConfigEcsTagOutput) ToDefaultNodePoolBatchAttachNodeConfigEcsTagOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachNodeConfigEcsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o DefaultNodePoolBatchAttachNodeConfigEcsTagOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolBatchAttachNodeConfigEcsTag) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+// The Value of Tags.
+func (o DefaultNodePoolBatchAttachNodeConfigEcsTagOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolBatchAttachNodeConfigEcsTag) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type DefaultNodePoolBatchAttachNodeConfigEcsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolBatchAttachNodeConfigEcsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DefaultNodePoolBatchAttachNodeConfigEcsTag)(nil)).Elem()
+}
+
+func (o DefaultNodePoolBatchAttachNodeConfigEcsTagArrayOutput) ToDefaultNodePoolBatchAttachNodeConfigEcsTagArrayOutput() DefaultNodePoolBatchAttachNodeConfigEcsTagArrayOutput {
+	return o
+}
+
+func (o DefaultNodePoolBatchAttachNodeConfigEcsTagArrayOutput) ToDefaultNodePoolBatchAttachNodeConfigEcsTagArrayOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachNodeConfigEcsTagArrayOutput {
+	return o
+}
+
+func (o DefaultNodePoolBatchAttachNodeConfigEcsTagArrayOutput) Index(i pulumi.IntInput) DefaultNodePoolBatchAttachNodeConfigEcsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DefaultNodePoolBatchAttachNodeConfigEcsTag {
+		return vs[0].([]DefaultNodePoolBatchAttachNodeConfigEcsTag)[vs[1].(int)]
+	}).(DefaultNodePoolBatchAttachNodeConfigEcsTagOutput)
+}
+
+type DefaultNodePoolBatchAttachNodeConfigSecurity struct {
+	// The Login of Security.
+	Logins []DefaultNodePoolBatchAttachNodeConfigSecurityLogin `pulumi:"logins"`
+	// The SecurityGroupIds of Security.
+	SecurityGroupIds []string `pulumi:"securityGroupIds"`
+	// The SecurityStrategies of Security.
+	SecurityStrategies []string `pulumi:"securityStrategies"`
+}
+
+// DefaultNodePoolBatchAttachNodeConfigSecurityInput is an input type that accepts DefaultNodePoolBatchAttachNodeConfigSecurityArgs and DefaultNodePoolBatchAttachNodeConfigSecurityOutput values.
+// You can construct a concrete instance of `DefaultNodePoolBatchAttachNodeConfigSecurityInput` via:
+//
+//	DefaultNodePoolBatchAttachNodeConfigSecurityArgs{...}
+type DefaultNodePoolBatchAttachNodeConfigSecurityInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolBatchAttachNodeConfigSecurityOutput() DefaultNodePoolBatchAttachNodeConfigSecurityOutput
+	ToDefaultNodePoolBatchAttachNodeConfigSecurityOutputWithContext(context.Context) DefaultNodePoolBatchAttachNodeConfigSecurityOutput
+}
+
+type DefaultNodePoolBatchAttachNodeConfigSecurityArgs struct {
+	// The Login of Security.
+	Logins DefaultNodePoolBatchAttachNodeConfigSecurityLoginArrayInput `pulumi:"logins"`
+	// The SecurityGroupIds of Security.
+	SecurityGroupIds pulumi.StringArrayInput `pulumi:"securityGroupIds"`
+	// The SecurityStrategies of Security.
+	SecurityStrategies pulumi.StringArrayInput `pulumi:"securityStrategies"`
+}
+
+func (DefaultNodePoolBatchAttachNodeConfigSecurityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolBatchAttachNodeConfigSecurity)(nil)).Elem()
+}
+
+func (i DefaultNodePoolBatchAttachNodeConfigSecurityArgs) ToDefaultNodePoolBatchAttachNodeConfigSecurityOutput() DefaultNodePoolBatchAttachNodeConfigSecurityOutput {
+	return i.ToDefaultNodePoolBatchAttachNodeConfigSecurityOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolBatchAttachNodeConfigSecurityArgs) ToDefaultNodePoolBatchAttachNodeConfigSecurityOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachNodeConfigSecurityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolBatchAttachNodeConfigSecurityOutput)
+}
+
+// DefaultNodePoolBatchAttachNodeConfigSecurityArrayInput is an input type that accepts DefaultNodePoolBatchAttachNodeConfigSecurityArray and DefaultNodePoolBatchAttachNodeConfigSecurityArrayOutput values.
+// You can construct a concrete instance of `DefaultNodePoolBatchAttachNodeConfigSecurityArrayInput` via:
+//
+//	DefaultNodePoolBatchAttachNodeConfigSecurityArray{ DefaultNodePoolBatchAttachNodeConfigSecurityArgs{...} }
+type DefaultNodePoolBatchAttachNodeConfigSecurityArrayInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolBatchAttachNodeConfigSecurityArrayOutput() DefaultNodePoolBatchAttachNodeConfigSecurityArrayOutput
+	ToDefaultNodePoolBatchAttachNodeConfigSecurityArrayOutputWithContext(context.Context) DefaultNodePoolBatchAttachNodeConfigSecurityArrayOutput
+}
+
+type DefaultNodePoolBatchAttachNodeConfigSecurityArray []DefaultNodePoolBatchAttachNodeConfigSecurityInput
+
+func (DefaultNodePoolBatchAttachNodeConfigSecurityArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DefaultNodePoolBatchAttachNodeConfigSecurity)(nil)).Elem()
+}
+
+func (i DefaultNodePoolBatchAttachNodeConfigSecurityArray) ToDefaultNodePoolBatchAttachNodeConfigSecurityArrayOutput() DefaultNodePoolBatchAttachNodeConfigSecurityArrayOutput {
+	return i.ToDefaultNodePoolBatchAttachNodeConfigSecurityArrayOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolBatchAttachNodeConfigSecurityArray) ToDefaultNodePoolBatchAttachNodeConfigSecurityArrayOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachNodeConfigSecurityArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolBatchAttachNodeConfigSecurityArrayOutput)
+}
+
+type DefaultNodePoolBatchAttachNodeConfigSecurityOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolBatchAttachNodeConfigSecurityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolBatchAttachNodeConfigSecurity)(nil)).Elem()
+}
+
+func (o DefaultNodePoolBatchAttachNodeConfigSecurityOutput) ToDefaultNodePoolBatchAttachNodeConfigSecurityOutput() DefaultNodePoolBatchAttachNodeConfigSecurityOutput {
+	return o
+}
+
+func (o DefaultNodePoolBatchAttachNodeConfigSecurityOutput) ToDefaultNodePoolBatchAttachNodeConfigSecurityOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachNodeConfigSecurityOutput {
+	return o
+}
+
+// The Login of Security.
+func (o DefaultNodePoolBatchAttachNodeConfigSecurityOutput) Logins() DefaultNodePoolBatchAttachNodeConfigSecurityLoginArrayOutput {
+	return o.ApplyT(func(v DefaultNodePoolBatchAttachNodeConfigSecurity) []DefaultNodePoolBatchAttachNodeConfigSecurityLogin {
+		return v.Logins
+	}).(DefaultNodePoolBatchAttachNodeConfigSecurityLoginArrayOutput)
+}
+
+// The SecurityGroupIds of Security.
+func (o DefaultNodePoolBatchAttachNodeConfigSecurityOutput) SecurityGroupIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v DefaultNodePoolBatchAttachNodeConfigSecurity) []string { return v.SecurityGroupIds }).(pulumi.StringArrayOutput)
+}
+
+// The SecurityStrategies of Security.
+func (o DefaultNodePoolBatchAttachNodeConfigSecurityOutput) SecurityStrategies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v DefaultNodePoolBatchAttachNodeConfigSecurity) []string { return v.SecurityStrategies }).(pulumi.StringArrayOutput)
+}
+
+type DefaultNodePoolBatchAttachNodeConfigSecurityArrayOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolBatchAttachNodeConfigSecurityArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DefaultNodePoolBatchAttachNodeConfigSecurity)(nil)).Elem()
+}
+
+func (o DefaultNodePoolBatchAttachNodeConfigSecurityArrayOutput) ToDefaultNodePoolBatchAttachNodeConfigSecurityArrayOutput() DefaultNodePoolBatchAttachNodeConfigSecurityArrayOutput {
+	return o
+}
+
+func (o DefaultNodePoolBatchAttachNodeConfigSecurityArrayOutput) ToDefaultNodePoolBatchAttachNodeConfigSecurityArrayOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachNodeConfigSecurityArrayOutput {
+	return o
+}
+
+func (o DefaultNodePoolBatchAttachNodeConfigSecurityArrayOutput) Index(i pulumi.IntInput) DefaultNodePoolBatchAttachNodeConfigSecurityOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DefaultNodePoolBatchAttachNodeConfigSecurity {
+		return vs[0].([]DefaultNodePoolBatchAttachNodeConfigSecurity)[vs[1].(int)]
+	}).(DefaultNodePoolBatchAttachNodeConfigSecurityOutput)
+}
+
+type DefaultNodePoolBatchAttachNodeConfigSecurityLogin struct {
+	// The Password of Security.
+	Password *string `pulumi:"password"`
+	// The SshKeyPairName of Security.
+	SshKeyPairName *string `pulumi:"sshKeyPairName"`
+}
+
+// DefaultNodePoolBatchAttachNodeConfigSecurityLoginInput is an input type that accepts DefaultNodePoolBatchAttachNodeConfigSecurityLoginArgs and DefaultNodePoolBatchAttachNodeConfigSecurityLoginOutput values.
+// You can construct a concrete instance of `DefaultNodePoolBatchAttachNodeConfigSecurityLoginInput` via:
+//
+//	DefaultNodePoolBatchAttachNodeConfigSecurityLoginArgs{...}
+type DefaultNodePoolBatchAttachNodeConfigSecurityLoginInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolBatchAttachNodeConfigSecurityLoginOutput() DefaultNodePoolBatchAttachNodeConfigSecurityLoginOutput
+	ToDefaultNodePoolBatchAttachNodeConfigSecurityLoginOutputWithContext(context.Context) DefaultNodePoolBatchAttachNodeConfigSecurityLoginOutput
+}
+
+type DefaultNodePoolBatchAttachNodeConfigSecurityLoginArgs struct {
+	// The Password of Security.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// The SshKeyPairName of Security.
+	SshKeyPairName pulumi.StringPtrInput `pulumi:"sshKeyPairName"`
+}
+
+func (DefaultNodePoolBatchAttachNodeConfigSecurityLoginArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolBatchAttachNodeConfigSecurityLogin)(nil)).Elem()
+}
+
+func (i DefaultNodePoolBatchAttachNodeConfigSecurityLoginArgs) ToDefaultNodePoolBatchAttachNodeConfigSecurityLoginOutput() DefaultNodePoolBatchAttachNodeConfigSecurityLoginOutput {
+	return i.ToDefaultNodePoolBatchAttachNodeConfigSecurityLoginOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolBatchAttachNodeConfigSecurityLoginArgs) ToDefaultNodePoolBatchAttachNodeConfigSecurityLoginOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachNodeConfigSecurityLoginOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolBatchAttachNodeConfigSecurityLoginOutput)
+}
+
+// DefaultNodePoolBatchAttachNodeConfigSecurityLoginArrayInput is an input type that accepts DefaultNodePoolBatchAttachNodeConfigSecurityLoginArray and DefaultNodePoolBatchAttachNodeConfigSecurityLoginArrayOutput values.
+// You can construct a concrete instance of `DefaultNodePoolBatchAttachNodeConfigSecurityLoginArrayInput` via:
+//
+//	DefaultNodePoolBatchAttachNodeConfigSecurityLoginArray{ DefaultNodePoolBatchAttachNodeConfigSecurityLoginArgs{...} }
+type DefaultNodePoolBatchAttachNodeConfigSecurityLoginArrayInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolBatchAttachNodeConfigSecurityLoginArrayOutput() DefaultNodePoolBatchAttachNodeConfigSecurityLoginArrayOutput
+	ToDefaultNodePoolBatchAttachNodeConfigSecurityLoginArrayOutputWithContext(context.Context) DefaultNodePoolBatchAttachNodeConfigSecurityLoginArrayOutput
+}
+
+type DefaultNodePoolBatchAttachNodeConfigSecurityLoginArray []DefaultNodePoolBatchAttachNodeConfigSecurityLoginInput
+
+func (DefaultNodePoolBatchAttachNodeConfigSecurityLoginArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DefaultNodePoolBatchAttachNodeConfigSecurityLogin)(nil)).Elem()
+}
+
+func (i DefaultNodePoolBatchAttachNodeConfigSecurityLoginArray) ToDefaultNodePoolBatchAttachNodeConfigSecurityLoginArrayOutput() DefaultNodePoolBatchAttachNodeConfigSecurityLoginArrayOutput {
+	return i.ToDefaultNodePoolBatchAttachNodeConfigSecurityLoginArrayOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolBatchAttachNodeConfigSecurityLoginArray) ToDefaultNodePoolBatchAttachNodeConfigSecurityLoginArrayOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachNodeConfigSecurityLoginArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolBatchAttachNodeConfigSecurityLoginArrayOutput)
+}
+
+type DefaultNodePoolBatchAttachNodeConfigSecurityLoginOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolBatchAttachNodeConfigSecurityLoginOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolBatchAttachNodeConfigSecurityLogin)(nil)).Elem()
+}
+
+func (o DefaultNodePoolBatchAttachNodeConfigSecurityLoginOutput) ToDefaultNodePoolBatchAttachNodeConfigSecurityLoginOutput() DefaultNodePoolBatchAttachNodeConfigSecurityLoginOutput {
+	return o
+}
+
+func (o DefaultNodePoolBatchAttachNodeConfigSecurityLoginOutput) ToDefaultNodePoolBatchAttachNodeConfigSecurityLoginOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachNodeConfigSecurityLoginOutput {
+	return o
+}
+
+// The Password of Security.
+func (o DefaultNodePoolBatchAttachNodeConfigSecurityLoginOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolBatchAttachNodeConfigSecurityLogin) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// The SshKeyPairName of Security.
+func (o DefaultNodePoolBatchAttachNodeConfigSecurityLoginOutput) SshKeyPairName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolBatchAttachNodeConfigSecurityLogin) *string { return v.SshKeyPairName }).(pulumi.StringPtrOutput)
+}
+
+type DefaultNodePoolBatchAttachNodeConfigSecurityLoginArrayOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolBatchAttachNodeConfigSecurityLoginArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DefaultNodePoolBatchAttachNodeConfigSecurityLogin)(nil)).Elem()
+}
+
+func (o DefaultNodePoolBatchAttachNodeConfigSecurityLoginArrayOutput) ToDefaultNodePoolBatchAttachNodeConfigSecurityLoginArrayOutput() DefaultNodePoolBatchAttachNodeConfigSecurityLoginArrayOutput {
+	return o
+}
+
+func (o DefaultNodePoolBatchAttachNodeConfigSecurityLoginArrayOutput) ToDefaultNodePoolBatchAttachNodeConfigSecurityLoginArrayOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachNodeConfigSecurityLoginArrayOutput {
+	return o
+}
+
+func (o DefaultNodePoolBatchAttachNodeConfigSecurityLoginArrayOutput) Index(i pulumi.IntInput) DefaultNodePoolBatchAttachNodeConfigSecurityLoginOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DefaultNodePoolBatchAttachNodeConfigSecurityLogin {
+		return vs[0].([]DefaultNodePoolBatchAttachNodeConfigSecurityLogin)[vs[1].(int)]
+	}).(DefaultNodePoolBatchAttachNodeConfigSecurityLoginOutput)
+}
+
+type DefaultNodePoolBatchAttachTag struct {
+	// The Key of Tags.
+	Key *string `pulumi:"key"`
+	// The Value of Tags.
+	Value *string `pulumi:"value"`
+}
+
+// DefaultNodePoolBatchAttachTagInput is an input type that accepts DefaultNodePoolBatchAttachTagArgs and DefaultNodePoolBatchAttachTagOutput values.
+// You can construct a concrete instance of `DefaultNodePoolBatchAttachTagInput` via:
+//
+//	DefaultNodePoolBatchAttachTagArgs{...}
+type DefaultNodePoolBatchAttachTagInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolBatchAttachTagOutput() DefaultNodePoolBatchAttachTagOutput
+	ToDefaultNodePoolBatchAttachTagOutputWithContext(context.Context) DefaultNodePoolBatchAttachTagOutput
+}
+
+type DefaultNodePoolBatchAttachTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringPtrInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (DefaultNodePoolBatchAttachTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolBatchAttachTag)(nil)).Elem()
+}
+
+func (i DefaultNodePoolBatchAttachTagArgs) ToDefaultNodePoolBatchAttachTagOutput() DefaultNodePoolBatchAttachTagOutput {
+	return i.ToDefaultNodePoolBatchAttachTagOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolBatchAttachTagArgs) ToDefaultNodePoolBatchAttachTagOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolBatchAttachTagOutput)
+}
+
+// DefaultNodePoolBatchAttachTagArrayInput is an input type that accepts DefaultNodePoolBatchAttachTagArray and DefaultNodePoolBatchAttachTagArrayOutput values.
+// You can construct a concrete instance of `DefaultNodePoolBatchAttachTagArrayInput` via:
+//
+//	DefaultNodePoolBatchAttachTagArray{ DefaultNodePoolBatchAttachTagArgs{...} }
+type DefaultNodePoolBatchAttachTagArrayInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolBatchAttachTagArrayOutput() DefaultNodePoolBatchAttachTagArrayOutput
+	ToDefaultNodePoolBatchAttachTagArrayOutputWithContext(context.Context) DefaultNodePoolBatchAttachTagArrayOutput
+}
+
+type DefaultNodePoolBatchAttachTagArray []DefaultNodePoolBatchAttachTagInput
+
+func (DefaultNodePoolBatchAttachTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DefaultNodePoolBatchAttachTag)(nil)).Elem()
+}
+
+func (i DefaultNodePoolBatchAttachTagArray) ToDefaultNodePoolBatchAttachTagArrayOutput() DefaultNodePoolBatchAttachTagArrayOutput {
+	return i.ToDefaultNodePoolBatchAttachTagArrayOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolBatchAttachTagArray) ToDefaultNodePoolBatchAttachTagArrayOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolBatchAttachTagArrayOutput)
+}
+
+type DefaultNodePoolBatchAttachTagOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolBatchAttachTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolBatchAttachTag)(nil)).Elem()
+}
+
+func (o DefaultNodePoolBatchAttachTagOutput) ToDefaultNodePoolBatchAttachTagOutput() DefaultNodePoolBatchAttachTagOutput {
+	return o
+}
+
+func (o DefaultNodePoolBatchAttachTagOutput) ToDefaultNodePoolBatchAttachTagOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o DefaultNodePoolBatchAttachTagOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolBatchAttachTag) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+// The Value of Tags.
+func (o DefaultNodePoolBatchAttachTagOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolBatchAttachTag) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type DefaultNodePoolBatchAttachTagArrayOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolBatchAttachTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DefaultNodePoolBatchAttachTag)(nil)).Elem()
+}
+
+func (o DefaultNodePoolBatchAttachTagArrayOutput) ToDefaultNodePoolBatchAttachTagArrayOutput() DefaultNodePoolBatchAttachTagArrayOutput {
+	return o
+}
+
+func (o DefaultNodePoolBatchAttachTagArrayOutput) ToDefaultNodePoolBatchAttachTagArrayOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachTagArrayOutput {
+	return o
+}
+
+func (o DefaultNodePoolBatchAttachTagArrayOutput) Index(i pulumi.IntInput) DefaultNodePoolBatchAttachTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DefaultNodePoolBatchAttachTag {
+		return vs[0].([]DefaultNodePoolBatchAttachTag)[vs[1].(int)]
+	}).(DefaultNodePoolBatchAttachTagOutput)
+}
+
+type DefaultNodePoolInstance struct {
+	// The flag of additional container storage enable, the value is `true` or `false`..Default is `false`.
+	AdditionalContainerStorageEnabled *bool `pulumi:"additionalContainerStorageEnabled"`
+	// The container storage path.When additionalContainerStorageEnabled is `false` will ignore.
+	ContainerStoragePath *string `pulumi:"containerStoragePath"`
+	// ID of the resource.
+	Id *string `pulumi:"id"`
+	// The Image Id to the ECS Instance.
+	ImageId *string `pulumi:"imageId"`
+	// The instance id.
+	InstanceId string `pulumi:"instanceId"`
+	// The flag of keep instance name, the value is `true` or `false`.Default is `false`.
+	KeepInstanceName *bool   `pulumi:"keepInstanceName"`
+	Phase            *string `pulumi:"phase"`
+}
+
+// DefaultNodePoolInstanceInput is an input type that accepts DefaultNodePoolInstanceArgs and DefaultNodePoolInstanceOutput values.
+// You can construct a concrete instance of `DefaultNodePoolInstanceInput` via:
+//
+//	DefaultNodePoolInstanceArgs{...}
+type DefaultNodePoolInstanceInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolInstanceOutput() DefaultNodePoolInstanceOutput
+	ToDefaultNodePoolInstanceOutputWithContext(context.Context) DefaultNodePoolInstanceOutput
+}
+
+type DefaultNodePoolInstanceArgs struct {
+	// The flag of additional container storage enable, the value is `true` or `false`..Default is `false`.
+	AdditionalContainerStorageEnabled pulumi.BoolPtrInput `pulumi:"additionalContainerStorageEnabled"`
+	// The container storage path.When additionalContainerStorageEnabled is `false` will ignore.
+	ContainerStoragePath pulumi.StringPtrInput `pulumi:"containerStoragePath"`
+	// ID of the resource.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The Image Id to the ECS Instance.
+	ImageId pulumi.StringPtrInput `pulumi:"imageId"`
+	// The instance id.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The flag of keep instance name, the value is `true` or `false`.Default is `false`.
+	KeepInstanceName pulumi.BoolPtrInput   `pulumi:"keepInstanceName"`
+	Phase            pulumi.StringPtrInput `pulumi:"phase"`
+}
+
+func (DefaultNodePoolInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolInstance)(nil)).Elem()
+}
+
+func (i DefaultNodePoolInstanceArgs) ToDefaultNodePoolInstanceOutput() DefaultNodePoolInstanceOutput {
+	return i.ToDefaultNodePoolInstanceOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolInstanceArgs) ToDefaultNodePoolInstanceOutputWithContext(ctx context.Context) DefaultNodePoolInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolInstanceOutput)
+}
+
+// DefaultNodePoolInstanceArrayInput is an input type that accepts DefaultNodePoolInstanceArray and DefaultNodePoolInstanceArrayOutput values.
+// You can construct a concrete instance of `DefaultNodePoolInstanceArrayInput` via:
+//
+//	DefaultNodePoolInstanceArray{ DefaultNodePoolInstanceArgs{...} }
+type DefaultNodePoolInstanceArrayInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolInstanceArrayOutput() DefaultNodePoolInstanceArrayOutput
+	ToDefaultNodePoolInstanceArrayOutputWithContext(context.Context) DefaultNodePoolInstanceArrayOutput
+}
+
+type DefaultNodePoolInstanceArray []DefaultNodePoolInstanceInput
+
+func (DefaultNodePoolInstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DefaultNodePoolInstance)(nil)).Elem()
+}
+
+func (i DefaultNodePoolInstanceArray) ToDefaultNodePoolInstanceArrayOutput() DefaultNodePoolInstanceArrayOutput {
+	return i.ToDefaultNodePoolInstanceArrayOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolInstanceArray) ToDefaultNodePoolInstanceArrayOutputWithContext(ctx context.Context) DefaultNodePoolInstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolInstanceArrayOutput)
+}
+
+type DefaultNodePoolInstanceOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolInstance)(nil)).Elem()
+}
+
+func (o DefaultNodePoolInstanceOutput) ToDefaultNodePoolInstanceOutput() DefaultNodePoolInstanceOutput {
+	return o
+}
+
+func (o DefaultNodePoolInstanceOutput) ToDefaultNodePoolInstanceOutputWithContext(ctx context.Context) DefaultNodePoolInstanceOutput {
+	return o
+}
+
+// The flag of additional container storage enable, the value is `true` or `false`..Default is `false`.
+func (o DefaultNodePoolInstanceOutput) AdditionalContainerStorageEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolInstance) *bool { return v.AdditionalContainerStorageEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// The container storage path.When additionalContainerStorageEnabled is `false` will ignore.
+func (o DefaultNodePoolInstanceOutput) ContainerStoragePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolInstance) *string { return v.ContainerStoragePath }).(pulumi.StringPtrOutput)
+}
+
+// ID of the resource.
+func (o DefaultNodePoolInstanceOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolInstance) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// The Image Id to the ECS Instance.
+func (o DefaultNodePoolInstanceOutput) ImageId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolInstance) *string { return v.ImageId }).(pulumi.StringPtrOutput)
+}
+
+// The instance id.
+func (o DefaultNodePoolInstanceOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v DefaultNodePoolInstance) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The flag of keep instance name, the value is `true` or `false`.Default is `false`.
+func (o DefaultNodePoolInstanceOutput) KeepInstanceName() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolInstance) *bool { return v.KeepInstanceName }).(pulumi.BoolPtrOutput)
+}
+
+func (o DefaultNodePoolInstanceOutput) Phase() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolInstance) *string { return v.Phase }).(pulumi.StringPtrOutput)
+}
+
+type DefaultNodePoolInstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolInstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DefaultNodePoolInstance)(nil)).Elem()
+}
+
+func (o DefaultNodePoolInstanceArrayOutput) ToDefaultNodePoolInstanceArrayOutput() DefaultNodePoolInstanceArrayOutput {
+	return o
+}
+
+func (o DefaultNodePoolInstanceArrayOutput) ToDefaultNodePoolInstanceArrayOutputWithContext(ctx context.Context) DefaultNodePoolInstanceArrayOutput {
+	return o
+}
+
+func (o DefaultNodePoolInstanceArrayOutput) Index(i pulumi.IntInput) DefaultNodePoolInstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DefaultNodePoolInstance {
+		return vs[0].([]DefaultNodePoolInstance)[vs[1].(int)]
+	}).(DefaultNodePoolInstanceOutput)
+}
+
+type DefaultNodePoolKubernetesConfig struct {
+	// The Cordon of KubernetesConfig.
+	Cordon bool `pulumi:"cordon"`
+	// The Labels of KubernetesConfig.
+	Labels []DefaultNodePoolKubernetesConfigLabel `pulumi:"labels"`
+	// The Taints of KubernetesConfig.
+	Taints []DefaultNodePoolKubernetesConfigTaint `pulumi:"taints"`
+}
+
+// DefaultNodePoolKubernetesConfigInput is an input type that accepts DefaultNodePoolKubernetesConfigArgs and DefaultNodePoolKubernetesConfigOutput values.
+// You can construct a concrete instance of `DefaultNodePoolKubernetesConfigInput` via:
+//
+//	DefaultNodePoolKubernetesConfigArgs{...}
+type DefaultNodePoolKubernetesConfigInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolKubernetesConfigOutput() DefaultNodePoolKubernetesConfigOutput
+	ToDefaultNodePoolKubernetesConfigOutputWithContext(context.Context) DefaultNodePoolKubernetesConfigOutput
+}
+
+type DefaultNodePoolKubernetesConfigArgs struct {
+	// The Cordon of KubernetesConfig.
+	Cordon pulumi.BoolInput `pulumi:"cordon"`
+	// The Labels of KubernetesConfig.
+	Labels DefaultNodePoolKubernetesConfigLabelArrayInput `pulumi:"labels"`
+	// The Taints of KubernetesConfig.
+	Taints DefaultNodePoolKubernetesConfigTaintArrayInput `pulumi:"taints"`
+}
+
+func (DefaultNodePoolKubernetesConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolKubernetesConfig)(nil)).Elem()
+}
+
+func (i DefaultNodePoolKubernetesConfigArgs) ToDefaultNodePoolKubernetesConfigOutput() DefaultNodePoolKubernetesConfigOutput {
+	return i.ToDefaultNodePoolKubernetesConfigOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolKubernetesConfigArgs) ToDefaultNodePoolKubernetesConfigOutputWithContext(ctx context.Context) DefaultNodePoolKubernetesConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolKubernetesConfigOutput)
+}
+
+func (i DefaultNodePoolKubernetesConfigArgs) ToDefaultNodePoolKubernetesConfigPtrOutput() DefaultNodePoolKubernetesConfigPtrOutput {
+	return i.ToDefaultNodePoolKubernetesConfigPtrOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolKubernetesConfigArgs) ToDefaultNodePoolKubernetesConfigPtrOutputWithContext(ctx context.Context) DefaultNodePoolKubernetesConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolKubernetesConfigOutput).ToDefaultNodePoolKubernetesConfigPtrOutputWithContext(ctx)
+}
+
+// DefaultNodePoolKubernetesConfigPtrInput is an input type that accepts DefaultNodePoolKubernetesConfigArgs, DefaultNodePoolKubernetesConfigPtr and DefaultNodePoolKubernetesConfigPtrOutput values.
+// You can construct a concrete instance of `DefaultNodePoolKubernetesConfigPtrInput` via:
+//
+//	        DefaultNodePoolKubernetesConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type DefaultNodePoolKubernetesConfigPtrInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolKubernetesConfigPtrOutput() DefaultNodePoolKubernetesConfigPtrOutput
+	ToDefaultNodePoolKubernetesConfigPtrOutputWithContext(context.Context) DefaultNodePoolKubernetesConfigPtrOutput
+}
+
+type defaultNodePoolKubernetesConfigPtrType DefaultNodePoolKubernetesConfigArgs
+
+func DefaultNodePoolKubernetesConfigPtr(v *DefaultNodePoolKubernetesConfigArgs) DefaultNodePoolKubernetesConfigPtrInput {
+	return (*defaultNodePoolKubernetesConfigPtrType)(v)
+}
+
+func (*defaultNodePoolKubernetesConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DefaultNodePoolKubernetesConfig)(nil)).Elem()
+}
+
+func (i *defaultNodePoolKubernetesConfigPtrType) ToDefaultNodePoolKubernetesConfigPtrOutput() DefaultNodePoolKubernetesConfigPtrOutput {
+	return i.ToDefaultNodePoolKubernetesConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *defaultNodePoolKubernetesConfigPtrType) ToDefaultNodePoolKubernetesConfigPtrOutputWithContext(ctx context.Context) DefaultNodePoolKubernetesConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolKubernetesConfigPtrOutput)
+}
+
+type DefaultNodePoolKubernetesConfigOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolKubernetesConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolKubernetesConfig)(nil)).Elem()
+}
+
+func (o DefaultNodePoolKubernetesConfigOutput) ToDefaultNodePoolKubernetesConfigOutput() DefaultNodePoolKubernetesConfigOutput {
+	return o
+}
+
+func (o DefaultNodePoolKubernetesConfigOutput) ToDefaultNodePoolKubernetesConfigOutputWithContext(ctx context.Context) DefaultNodePoolKubernetesConfigOutput {
+	return o
+}
+
+func (o DefaultNodePoolKubernetesConfigOutput) ToDefaultNodePoolKubernetesConfigPtrOutput() DefaultNodePoolKubernetesConfigPtrOutput {
+	return o.ToDefaultNodePoolKubernetesConfigPtrOutputWithContext(context.Background())
+}
+
+func (o DefaultNodePoolKubernetesConfigOutput) ToDefaultNodePoolKubernetesConfigPtrOutputWithContext(ctx context.Context) DefaultNodePoolKubernetesConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DefaultNodePoolKubernetesConfig) *DefaultNodePoolKubernetesConfig {
+		return &v
+	}).(DefaultNodePoolKubernetesConfigPtrOutput)
+}
+
+// The Cordon of KubernetesConfig.
+func (o DefaultNodePoolKubernetesConfigOutput) Cordon() pulumi.BoolOutput {
+	return o.ApplyT(func(v DefaultNodePoolKubernetesConfig) bool { return v.Cordon }).(pulumi.BoolOutput)
+}
+
+// The Labels of KubernetesConfig.
+func (o DefaultNodePoolKubernetesConfigOutput) Labels() DefaultNodePoolKubernetesConfigLabelArrayOutput {
+	return o.ApplyT(func(v DefaultNodePoolKubernetesConfig) []DefaultNodePoolKubernetesConfigLabel { return v.Labels }).(DefaultNodePoolKubernetesConfigLabelArrayOutput)
+}
+
+// The Taints of KubernetesConfig.
+func (o DefaultNodePoolKubernetesConfigOutput) Taints() DefaultNodePoolKubernetesConfigTaintArrayOutput {
+	return o.ApplyT(func(v DefaultNodePoolKubernetesConfig) []DefaultNodePoolKubernetesConfigTaint { return v.Taints }).(DefaultNodePoolKubernetesConfigTaintArrayOutput)
+}
+
+type DefaultNodePoolKubernetesConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolKubernetesConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DefaultNodePoolKubernetesConfig)(nil)).Elem()
+}
+
+func (o DefaultNodePoolKubernetesConfigPtrOutput) ToDefaultNodePoolKubernetesConfigPtrOutput() DefaultNodePoolKubernetesConfigPtrOutput {
+	return o
+}
+
+func (o DefaultNodePoolKubernetesConfigPtrOutput) ToDefaultNodePoolKubernetesConfigPtrOutputWithContext(ctx context.Context) DefaultNodePoolKubernetesConfigPtrOutput {
+	return o
+}
+
+func (o DefaultNodePoolKubernetesConfigPtrOutput) Elem() DefaultNodePoolKubernetesConfigOutput {
+	return o.ApplyT(func(v *DefaultNodePoolKubernetesConfig) DefaultNodePoolKubernetesConfig {
+		if v != nil {
+			return *v
+		}
+		var ret DefaultNodePoolKubernetesConfig
+		return ret
+	}).(DefaultNodePoolKubernetesConfigOutput)
+}
+
+// The Cordon of KubernetesConfig.
+func (o DefaultNodePoolKubernetesConfigPtrOutput) Cordon() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *DefaultNodePoolKubernetesConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Cordon
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The Labels of KubernetesConfig.
+func (o DefaultNodePoolKubernetesConfigPtrOutput) Labels() DefaultNodePoolKubernetesConfigLabelArrayOutput {
+	return o.ApplyT(func(v *DefaultNodePoolKubernetesConfig) []DefaultNodePoolKubernetesConfigLabel {
+		if v == nil {
+			return nil
+		}
+		return v.Labels
+	}).(DefaultNodePoolKubernetesConfigLabelArrayOutput)
+}
+
+// The Taints of KubernetesConfig.
+func (o DefaultNodePoolKubernetesConfigPtrOutput) Taints() DefaultNodePoolKubernetesConfigTaintArrayOutput {
+	return o.ApplyT(func(v *DefaultNodePoolKubernetesConfig) []DefaultNodePoolKubernetesConfigTaint {
+		if v == nil {
+			return nil
+		}
+		return v.Taints
+	}).(DefaultNodePoolKubernetesConfigTaintArrayOutput)
+}
+
+type DefaultNodePoolKubernetesConfigLabel struct {
+	// The Key of Labels.
+	Key *string `pulumi:"key"`
+	// The Value of Labels.
+	Value *string `pulumi:"value"`
+}
+
+// DefaultNodePoolKubernetesConfigLabelInput is an input type that accepts DefaultNodePoolKubernetesConfigLabelArgs and DefaultNodePoolKubernetesConfigLabelOutput values.
+// You can construct a concrete instance of `DefaultNodePoolKubernetesConfigLabelInput` via:
+//
+//	DefaultNodePoolKubernetesConfigLabelArgs{...}
+type DefaultNodePoolKubernetesConfigLabelInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolKubernetesConfigLabelOutput() DefaultNodePoolKubernetesConfigLabelOutput
+	ToDefaultNodePoolKubernetesConfigLabelOutputWithContext(context.Context) DefaultNodePoolKubernetesConfigLabelOutput
+}
+
+type DefaultNodePoolKubernetesConfigLabelArgs struct {
+	// The Key of Labels.
+	Key pulumi.StringPtrInput `pulumi:"key"`
+	// The Value of Labels.
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (DefaultNodePoolKubernetesConfigLabelArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolKubernetesConfigLabel)(nil)).Elem()
+}
+
+func (i DefaultNodePoolKubernetesConfigLabelArgs) ToDefaultNodePoolKubernetesConfigLabelOutput() DefaultNodePoolKubernetesConfigLabelOutput {
+	return i.ToDefaultNodePoolKubernetesConfigLabelOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolKubernetesConfigLabelArgs) ToDefaultNodePoolKubernetesConfigLabelOutputWithContext(ctx context.Context) DefaultNodePoolKubernetesConfigLabelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolKubernetesConfigLabelOutput)
+}
+
+// DefaultNodePoolKubernetesConfigLabelArrayInput is an input type that accepts DefaultNodePoolKubernetesConfigLabelArray and DefaultNodePoolKubernetesConfigLabelArrayOutput values.
+// You can construct a concrete instance of `DefaultNodePoolKubernetesConfigLabelArrayInput` via:
+//
+//	DefaultNodePoolKubernetesConfigLabelArray{ DefaultNodePoolKubernetesConfigLabelArgs{...} }
+type DefaultNodePoolKubernetesConfigLabelArrayInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolKubernetesConfigLabelArrayOutput() DefaultNodePoolKubernetesConfigLabelArrayOutput
+	ToDefaultNodePoolKubernetesConfigLabelArrayOutputWithContext(context.Context) DefaultNodePoolKubernetesConfigLabelArrayOutput
+}
+
+type DefaultNodePoolKubernetesConfigLabelArray []DefaultNodePoolKubernetesConfigLabelInput
+
+func (DefaultNodePoolKubernetesConfigLabelArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DefaultNodePoolKubernetesConfigLabel)(nil)).Elem()
+}
+
+func (i DefaultNodePoolKubernetesConfigLabelArray) ToDefaultNodePoolKubernetesConfigLabelArrayOutput() DefaultNodePoolKubernetesConfigLabelArrayOutput {
+	return i.ToDefaultNodePoolKubernetesConfigLabelArrayOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolKubernetesConfigLabelArray) ToDefaultNodePoolKubernetesConfigLabelArrayOutputWithContext(ctx context.Context) DefaultNodePoolKubernetesConfigLabelArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolKubernetesConfigLabelArrayOutput)
+}
+
+type DefaultNodePoolKubernetesConfigLabelOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolKubernetesConfigLabelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolKubernetesConfigLabel)(nil)).Elem()
+}
+
+func (o DefaultNodePoolKubernetesConfigLabelOutput) ToDefaultNodePoolKubernetesConfigLabelOutput() DefaultNodePoolKubernetesConfigLabelOutput {
+	return o
+}
+
+func (o DefaultNodePoolKubernetesConfigLabelOutput) ToDefaultNodePoolKubernetesConfigLabelOutputWithContext(ctx context.Context) DefaultNodePoolKubernetesConfigLabelOutput {
+	return o
+}
+
+// The Key of Labels.
+func (o DefaultNodePoolKubernetesConfigLabelOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolKubernetesConfigLabel) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+// The Value of Labels.
+func (o DefaultNodePoolKubernetesConfigLabelOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolKubernetesConfigLabel) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type DefaultNodePoolKubernetesConfigLabelArrayOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolKubernetesConfigLabelArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DefaultNodePoolKubernetesConfigLabel)(nil)).Elem()
+}
+
+func (o DefaultNodePoolKubernetesConfigLabelArrayOutput) ToDefaultNodePoolKubernetesConfigLabelArrayOutput() DefaultNodePoolKubernetesConfigLabelArrayOutput {
+	return o
+}
+
+func (o DefaultNodePoolKubernetesConfigLabelArrayOutput) ToDefaultNodePoolKubernetesConfigLabelArrayOutputWithContext(ctx context.Context) DefaultNodePoolKubernetesConfigLabelArrayOutput {
+	return o
+}
+
+func (o DefaultNodePoolKubernetesConfigLabelArrayOutput) Index(i pulumi.IntInput) DefaultNodePoolKubernetesConfigLabelOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DefaultNodePoolKubernetesConfigLabel {
+		return vs[0].([]DefaultNodePoolKubernetesConfigLabel)[vs[1].(int)]
+	}).(DefaultNodePoolKubernetesConfigLabelOutput)
+}
+
+type DefaultNodePoolKubernetesConfigTaint struct {
+	// The Effect of Taints.
+	Effect *string `pulumi:"effect"`
+	// The Key of Taints.
+	Key *string `pulumi:"key"`
+	// The Value of Taints.
+	Value *string `pulumi:"value"`
+}
+
+// DefaultNodePoolKubernetesConfigTaintInput is an input type that accepts DefaultNodePoolKubernetesConfigTaintArgs and DefaultNodePoolKubernetesConfigTaintOutput values.
+// You can construct a concrete instance of `DefaultNodePoolKubernetesConfigTaintInput` via:
+//
+//	DefaultNodePoolKubernetesConfigTaintArgs{...}
+type DefaultNodePoolKubernetesConfigTaintInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolKubernetesConfigTaintOutput() DefaultNodePoolKubernetesConfigTaintOutput
+	ToDefaultNodePoolKubernetesConfigTaintOutputWithContext(context.Context) DefaultNodePoolKubernetesConfigTaintOutput
+}
+
+type DefaultNodePoolKubernetesConfigTaintArgs struct {
+	// The Effect of Taints.
+	Effect pulumi.StringPtrInput `pulumi:"effect"`
+	// The Key of Taints.
+	Key pulumi.StringPtrInput `pulumi:"key"`
+	// The Value of Taints.
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (DefaultNodePoolKubernetesConfigTaintArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolKubernetesConfigTaint)(nil)).Elem()
+}
+
+func (i DefaultNodePoolKubernetesConfigTaintArgs) ToDefaultNodePoolKubernetesConfigTaintOutput() DefaultNodePoolKubernetesConfigTaintOutput {
+	return i.ToDefaultNodePoolKubernetesConfigTaintOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolKubernetesConfigTaintArgs) ToDefaultNodePoolKubernetesConfigTaintOutputWithContext(ctx context.Context) DefaultNodePoolKubernetesConfigTaintOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolKubernetesConfigTaintOutput)
+}
+
+// DefaultNodePoolKubernetesConfigTaintArrayInput is an input type that accepts DefaultNodePoolKubernetesConfigTaintArray and DefaultNodePoolKubernetesConfigTaintArrayOutput values.
+// You can construct a concrete instance of `DefaultNodePoolKubernetesConfigTaintArrayInput` via:
+//
+//	DefaultNodePoolKubernetesConfigTaintArray{ DefaultNodePoolKubernetesConfigTaintArgs{...} }
+type DefaultNodePoolKubernetesConfigTaintArrayInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolKubernetesConfigTaintArrayOutput() DefaultNodePoolKubernetesConfigTaintArrayOutput
+	ToDefaultNodePoolKubernetesConfigTaintArrayOutputWithContext(context.Context) DefaultNodePoolKubernetesConfigTaintArrayOutput
+}
+
+type DefaultNodePoolKubernetesConfigTaintArray []DefaultNodePoolKubernetesConfigTaintInput
+
+func (DefaultNodePoolKubernetesConfigTaintArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DefaultNodePoolKubernetesConfigTaint)(nil)).Elem()
+}
+
+func (i DefaultNodePoolKubernetesConfigTaintArray) ToDefaultNodePoolKubernetesConfigTaintArrayOutput() DefaultNodePoolKubernetesConfigTaintArrayOutput {
+	return i.ToDefaultNodePoolKubernetesConfigTaintArrayOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolKubernetesConfigTaintArray) ToDefaultNodePoolKubernetesConfigTaintArrayOutputWithContext(ctx context.Context) DefaultNodePoolKubernetesConfigTaintArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolKubernetesConfigTaintArrayOutput)
+}
+
+type DefaultNodePoolKubernetesConfigTaintOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolKubernetesConfigTaintOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolKubernetesConfigTaint)(nil)).Elem()
+}
+
+func (o DefaultNodePoolKubernetesConfigTaintOutput) ToDefaultNodePoolKubernetesConfigTaintOutput() DefaultNodePoolKubernetesConfigTaintOutput {
+	return o
+}
+
+func (o DefaultNodePoolKubernetesConfigTaintOutput) ToDefaultNodePoolKubernetesConfigTaintOutputWithContext(ctx context.Context) DefaultNodePoolKubernetesConfigTaintOutput {
+	return o
+}
+
+// The Effect of Taints.
+func (o DefaultNodePoolKubernetesConfigTaintOutput) Effect() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolKubernetesConfigTaint) *string { return v.Effect }).(pulumi.StringPtrOutput)
+}
+
+// The Key of Taints.
+func (o DefaultNodePoolKubernetesConfigTaintOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolKubernetesConfigTaint) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+// The Value of Taints.
+func (o DefaultNodePoolKubernetesConfigTaintOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolKubernetesConfigTaint) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type DefaultNodePoolKubernetesConfigTaintArrayOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolKubernetesConfigTaintArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DefaultNodePoolKubernetesConfigTaint)(nil)).Elem()
+}
+
+func (o DefaultNodePoolKubernetesConfigTaintArrayOutput) ToDefaultNodePoolKubernetesConfigTaintArrayOutput() DefaultNodePoolKubernetesConfigTaintArrayOutput {
+	return o
+}
+
+func (o DefaultNodePoolKubernetesConfigTaintArrayOutput) ToDefaultNodePoolKubernetesConfigTaintArrayOutputWithContext(ctx context.Context) DefaultNodePoolKubernetesConfigTaintArrayOutput {
+	return o
+}
+
+func (o DefaultNodePoolKubernetesConfigTaintArrayOutput) Index(i pulumi.IntInput) DefaultNodePoolKubernetesConfigTaintOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DefaultNodePoolKubernetesConfigTaint {
+		return vs[0].([]DefaultNodePoolKubernetesConfigTaint)[vs[1].(int)]
+	}).(DefaultNodePoolKubernetesConfigTaintOutput)
+}
+
+type DefaultNodePoolNodeConfig struct {
+	// Tags for Ecs.
+	EcsTags []DefaultNodePoolNodeConfigEcsTag `pulumi:"ecsTags"`
+	// The initializeScript of NodeConfig.
+	InitializeScript *string `pulumi:"initializeScript"`
+	// The NamePrefix of NodeConfig.
+	NamePrefix *string `pulumi:"namePrefix"`
+	// The Security of NodeConfig.
+	Security DefaultNodePoolNodeConfigSecurity `pulumi:"security"`
+}
+
+// DefaultNodePoolNodeConfigInput is an input type that accepts DefaultNodePoolNodeConfigArgs and DefaultNodePoolNodeConfigOutput values.
+// You can construct a concrete instance of `DefaultNodePoolNodeConfigInput` via:
+//
+//	DefaultNodePoolNodeConfigArgs{...}
+type DefaultNodePoolNodeConfigInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolNodeConfigOutput() DefaultNodePoolNodeConfigOutput
+	ToDefaultNodePoolNodeConfigOutputWithContext(context.Context) DefaultNodePoolNodeConfigOutput
+}
+
+type DefaultNodePoolNodeConfigArgs struct {
+	// Tags for Ecs.
+	EcsTags DefaultNodePoolNodeConfigEcsTagArrayInput `pulumi:"ecsTags"`
+	// The initializeScript of NodeConfig.
+	InitializeScript pulumi.StringPtrInput `pulumi:"initializeScript"`
+	// The NamePrefix of NodeConfig.
+	NamePrefix pulumi.StringPtrInput `pulumi:"namePrefix"`
+	// The Security of NodeConfig.
+	Security DefaultNodePoolNodeConfigSecurityInput `pulumi:"security"`
+}
+
+func (DefaultNodePoolNodeConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolNodeConfig)(nil)).Elem()
+}
+
+func (i DefaultNodePoolNodeConfigArgs) ToDefaultNodePoolNodeConfigOutput() DefaultNodePoolNodeConfigOutput {
+	return i.ToDefaultNodePoolNodeConfigOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolNodeConfigArgs) ToDefaultNodePoolNodeConfigOutputWithContext(ctx context.Context) DefaultNodePoolNodeConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolNodeConfigOutput)
+}
+
+func (i DefaultNodePoolNodeConfigArgs) ToDefaultNodePoolNodeConfigPtrOutput() DefaultNodePoolNodeConfigPtrOutput {
+	return i.ToDefaultNodePoolNodeConfigPtrOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolNodeConfigArgs) ToDefaultNodePoolNodeConfigPtrOutputWithContext(ctx context.Context) DefaultNodePoolNodeConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolNodeConfigOutput).ToDefaultNodePoolNodeConfigPtrOutputWithContext(ctx)
+}
+
+// DefaultNodePoolNodeConfigPtrInput is an input type that accepts DefaultNodePoolNodeConfigArgs, DefaultNodePoolNodeConfigPtr and DefaultNodePoolNodeConfigPtrOutput values.
+// You can construct a concrete instance of `DefaultNodePoolNodeConfigPtrInput` via:
+//
+//	        DefaultNodePoolNodeConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type DefaultNodePoolNodeConfigPtrInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolNodeConfigPtrOutput() DefaultNodePoolNodeConfigPtrOutput
+	ToDefaultNodePoolNodeConfigPtrOutputWithContext(context.Context) DefaultNodePoolNodeConfigPtrOutput
+}
+
+type defaultNodePoolNodeConfigPtrType DefaultNodePoolNodeConfigArgs
+
+func DefaultNodePoolNodeConfigPtr(v *DefaultNodePoolNodeConfigArgs) DefaultNodePoolNodeConfigPtrInput {
+	return (*defaultNodePoolNodeConfigPtrType)(v)
+}
+
+func (*defaultNodePoolNodeConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DefaultNodePoolNodeConfig)(nil)).Elem()
+}
+
+func (i *defaultNodePoolNodeConfigPtrType) ToDefaultNodePoolNodeConfigPtrOutput() DefaultNodePoolNodeConfigPtrOutput {
+	return i.ToDefaultNodePoolNodeConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *defaultNodePoolNodeConfigPtrType) ToDefaultNodePoolNodeConfigPtrOutputWithContext(ctx context.Context) DefaultNodePoolNodeConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolNodeConfigPtrOutput)
+}
+
+type DefaultNodePoolNodeConfigOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolNodeConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolNodeConfig)(nil)).Elem()
+}
+
+func (o DefaultNodePoolNodeConfigOutput) ToDefaultNodePoolNodeConfigOutput() DefaultNodePoolNodeConfigOutput {
+	return o
+}
+
+func (o DefaultNodePoolNodeConfigOutput) ToDefaultNodePoolNodeConfigOutputWithContext(ctx context.Context) DefaultNodePoolNodeConfigOutput {
+	return o
+}
+
+func (o DefaultNodePoolNodeConfigOutput) ToDefaultNodePoolNodeConfigPtrOutput() DefaultNodePoolNodeConfigPtrOutput {
+	return o.ToDefaultNodePoolNodeConfigPtrOutputWithContext(context.Background())
+}
+
+func (o DefaultNodePoolNodeConfigOutput) ToDefaultNodePoolNodeConfigPtrOutputWithContext(ctx context.Context) DefaultNodePoolNodeConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DefaultNodePoolNodeConfig) *DefaultNodePoolNodeConfig {
+		return &v
+	}).(DefaultNodePoolNodeConfigPtrOutput)
+}
+
+// Tags for Ecs.
+func (o DefaultNodePoolNodeConfigOutput) EcsTags() DefaultNodePoolNodeConfigEcsTagArrayOutput {
+	return o.ApplyT(func(v DefaultNodePoolNodeConfig) []DefaultNodePoolNodeConfigEcsTag { return v.EcsTags }).(DefaultNodePoolNodeConfigEcsTagArrayOutput)
+}
+
+// The initializeScript of NodeConfig.
+func (o DefaultNodePoolNodeConfigOutput) InitializeScript() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolNodeConfig) *string { return v.InitializeScript }).(pulumi.StringPtrOutput)
+}
+
+// The NamePrefix of NodeConfig.
+func (o DefaultNodePoolNodeConfigOutput) NamePrefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolNodeConfig) *string { return v.NamePrefix }).(pulumi.StringPtrOutput)
+}
+
+// The Security of NodeConfig.
+func (o DefaultNodePoolNodeConfigOutput) Security() DefaultNodePoolNodeConfigSecurityOutput {
+	return o.ApplyT(func(v DefaultNodePoolNodeConfig) DefaultNodePoolNodeConfigSecurity { return v.Security }).(DefaultNodePoolNodeConfigSecurityOutput)
+}
+
+type DefaultNodePoolNodeConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolNodeConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DefaultNodePoolNodeConfig)(nil)).Elem()
+}
+
+func (o DefaultNodePoolNodeConfigPtrOutput) ToDefaultNodePoolNodeConfigPtrOutput() DefaultNodePoolNodeConfigPtrOutput {
+	return o
+}
+
+func (o DefaultNodePoolNodeConfigPtrOutput) ToDefaultNodePoolNodeConfigPtrOutputWithContext(ctx context.Context) DefaultNodePoolNodeConfigPtrOutput {
+	return o
+}
+
+func (o DefaultNodePoolNodeConfigPtrOutput) Elem() DefaultNodePoolNodeConfigOutput {
+	return o.ApplyT(func(v *DefaultNodePoolNodeConfig) DefaultNodePoolNodeConfig {
+		if v != nil {
+			return *v
+		}
+		var ret DefaultNodePoolNodeConfig
+		return ret
+	}).(DefaultNodePoolNodeConfigOutput)
+}
+
+// Tags for Ecs.
+func (o DefaultNodePoolNodeConfigPtrOutput) EcsTags() DefaultNodePoolNodeConfigEcsTagArrayOutput {
+	return o.ApplyT(func(v *DefaultNodePoolNodeConfig) []DefaultNodePoolNodeConfigEcsTag {
+		if v == nil {
+			return nil
+		}
+		return v.EcsTags
+	}).(DefaultNodePoolNodeConfigEcsTagArrayOutput)
+}
+
+// The initializeScript of NodeConfig.
+func (o DefaultNodePoolNodeConfigPtrOutput) InitializeScript() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DefaultNodePoolNodeConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.InitializeScript
+	}).(pulumi.StringPtrOutput)
+}
+
+// The NamePrefix of NodeConfig.
+func (o DefaultNodePoolNodeConfigPtrOutput) NamePrefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DefaultNodePoolNodeConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NamePrefix
+	}).(pulumi.StringPtrOutput)
+}
+
+// The Security of NodeConfig.
+func (o DefaultNodePoolNodeConfigPtrOutput) Security() DefaultNodePoolNodeConfigSecurityPtrOutput {
+	return o.ApplyT(func(v *DefaultNodePoolNodeConfig) *DefaultNodePoolNodeConfigSecurity {
+		if v == nil {
+			return nil
+		}
+		return &v.Security
+	}).(DefaultNodePoolNodeConfigSecurityPtrOutput)
+}
+
+type DefaultNodePoolNodeConfigEcsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// DefaultNodePoolNodeConfigEcsTagInput is an input type that accepts DefaultNodePoolNodeConfigEcsTagArgs and DefaultNodePoolNodeConfigEcsTagOutput values.
+// You can construct a concrete instance of `DefaultNodePoolNodeConfigEcsTagInput` via:
+//
+//	DefaultNodePoolNodeConfigEcsTagArgs{...}
+type DefaultNodePoolNodeConfigEcsTagInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolNodeConfigEcsTagOutput() DefaultNodePoolNodeConfigEcsTagOutput
+	ToDefaultNodePoolNodeConfigEcsTagOutputWithContext(context.Context) DefaultNodePoolNodeConfigEcsTagOutput
+}
+
+type DefaultNodePoolNodeConfigEcsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (DefaultNodePoolNodeConfigEcsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolNodeConfigEcsTag)(nil)).Elem()
+}
+
+func (i DefaultNodePoolNodeConfigEcsTagArgs) ToDefaultNodePoolNodeConfigEcsTagOutput() DefaultNodePoolNodeConfigEcsTagOutput {
+	return i.ToDefaultNodePoolNodeConfigEcsTagOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolNodeConfigEcsTagArgs) ToDefaultNodePoolNodeConfigEcsTagOutputWithContext(ctx context.Context) DefaultNodePoolNodeConfigEcsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolNodeConfigEcsTagOutput)
+}
+
+// DefaultNodePoolNodeConfigEcsTagArrayInput is an input type that accepts DefaultNodePoolNodeConfigEcsTagArray and DefaultNodePoolNodeConfigEcsTagArrayOutput values.
+// You can construct a concrete instance of `DefaultNodePoolNodeConfigEcsTagArrayInput` via:
+//
+//	DefaultNodePoolNodeConfigEcsTagArray{ DefaultNodePoolNodeConfigEcsTagArgs{...} }
+type DefaultNodePoolNodeConfigEcsTagArrayInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolNodeConfigEcsTagArrayOutput() DefaultNodePoolNodeConfigEcsTagArrayOutput
+	ToDefaultNodePoolNodeConfigEcsTagArrayOutputWithContext(context.Context) DefaultNodePoolNodeConfigEcsTagArrayOutput
+}
+
+type DefaultNodePoolNodeConfigEcsTagArray []DefaultNodePoolNodeConfigEcsTagInput
+
+func (DefaultNodePoolNodeConfigEcsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DefaultNodePoolNodeConfigEcsTag)(nil)).Elem()
+}
+
+func (i DefaultNodePoolNodeConfigEcsTagArray) ToDefaultNodePoolNodeConfigEcsTagArrayOutput() DefaultNodePoolNodeConfigEcsTagArrayOutput {
+	return i.ToDefaultNodePoolNodeConfigEcsTagArrayOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolNodeConfigEcsTagArray) ToDefaultNodePoolNodeConfigEcsTagArrayOutputWithContext(ctx context.Context) DefaultNodePoolNodeConfigEcsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolNodeConfigEcsTagArrayOutput)
+}
+
+type DefaultNodePoolNodeConfigEcsTagOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolNodeConfigEcsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolNodeConfigEcsTag)(nil)).Elem()
+}
+
+func (o DefaultNodePoolNodeConfigEcsTagOutput) ToDefaultNodePoolNodeConfigEcsTagOutput() DefaultNodePoolNodeConfigEcsTagOutput {
+	return o
+}
+
+func (o DefaultNodePoolNodeConfigEcsTagOutput) ToDefaultNodePoolNodeConfigEcsTagOutputWithContext(ctx context.Context) DefaultNodePoolNodeConfigEcsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o DefaultNodePoolNodeConfigEcsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v DefaultNodePoolNodeConfigEcsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o DefaultNodePoolNodeConfigEcsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v DefaultNodePoolNodeConfigEcsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type DefaultNodePoolNodeConfigEcsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolNodeConfigEcsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DefaultNodePoolNodeConfigEcsTag)(nil)).Elem()
+}
+
+func (o DefaultNodePoolNodeConfigEcsTagArrayOutput) ToDefaultNodePoolNodeConfigEcsTagArrayOutput() DefaultNodePoolNodeConfigEcsTagArrayOutput {
+	return o
+}
+
+func (o DefaultNodePoolNodeConfigEcsTagArrayOutput) ToDefaultNodePoolNodeConfigEcsTagArrayOutputWithContext(ctx context.Context) DefaultNodePoolNodeConfigEcsTagArrayOutput {
+	return o
+}
+
+func (o DefaultNodePoolNodeConfigEcsTagArrayOutput) Index(i pulumi.IntInput) DefaultNodePoolNodeConfigEcsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DefaultNodePoolNodeConfigEcsTag {
+		return vs[0].([]DefaultNodePoolNodeConfigEcsTag)[vs[1].(int)]
+	}).(DefaultNodePoolNodeConfigEcsTagOutput)
+}
+
+type DefaultNodePoolNodeConfigSecurity struct {
+	// The Login of Security.
+	Login DefaultNodePoolNodeConfigSecurityLogin `pulumi:"login"`
+	// The SecurityGroupIds of Security.
+	SecurityGroupIds []string `pulumi:"securityGroupIds"`
+	// The SecurityStrategies of Security.
+	SecurityStrategies []string `pulumi:"securityStrategies"`
+}
+
+// DefaultNodePoolNodeConfigSecurityInput is an input type that accepts DefaultNodePoolNodeConfigSecurityArgs and DefaultNodePoolNodeConfigSecurityOutput values.
+// You can construct a concrete instance of `DefaultNodePoolNodeConfigSecurityInput` via:
+//
+//	DefaultNodePoolNodeConfigSecurityArgs{...}
+type DefaultNodePoolNodeConfigSecurityInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolNodeConfigSecurityOutput() DefaultNodePoolNodeConfigSecurityOutput
+	ToDefaultNodePoolNodeConfigSecurityOutputWithContext(context.Context) DefaultNodePoolNodeConfigSecurityOutput
+}
+
+type DefaultNodePoolNodeConfigSecurityArgs struct {
+	// The Login of Security.
+	Login DefaultNodePoolNodeConfigSecurityLoginInput `pulumi:"login"`
+	// The SecurityGroupIds of Security.
+	SecurityGroupIds pulumi.StringArrayInput `pulumi:"securityGroupIds"`
+	// The SecurityStrategies of Security.
+	SecurityStrategies pulumi.StringArrayInput `pulumi:"securityStrategies"`
+}
+
+func (DefaultNodePoolNodeConfigSecurityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolNodeConfigSecurity)(nil)).Elem()
+}
+
+func (i DefaultNodePoolNodeConfigSecurityArgs) ToDefaultNodePoolNodeConfigSecurityOutput() DefaultNodePoolNodeConfigSecurityOutput {
+	return i.ToDefaultNodePoolNodeConfigSecurityOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolNodeConfigSecurityArgs) ToDefaultNodePoolNodeConfigSecurityOutputWithContext(ctx context.Context) DefaultNodePoolNodeConfigSecurityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolNodeConfigSecurityOutput)
+}
+
+func (i DefaultNodePoolNodeConfigSecurityArgs) ToDefaultNodePoolNodeConfigSecurityPtrOutput() DefaultNodePoolNodeConfigSecurityPtrOutput {
+	return i.ToDefaultNodePoolNodeConfigSecurityPtrOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolNodeConfigSecurityArgs) ToDefaultNodePoolNodeConfigSecurityPtrOutputWithContext(ctx context.Context) DefaultNodePoolNodeConfigSecurityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolNodeConfigSecurityOutput).ToDefaultNodePoolNodeConfigSecurityPtrOutputWithContext(ctx)
+}
+
+// DefaultNodePoolNodeConfigSecurityPtrInput is an input type that accepts DefaultNodePoolNodeConfigSecurityArgs, DefaultNodePoolNodeConfigSecurityPtr and DefaultNodePoolNodeConfigSecurityPtrOutput values.
+// You can construct a concrete instance of `DefaultNodePoolNodeConfigSecurityPtrInput` via:
+//
+//	        DefaultNodePoolNodeConfigSecurityArgs{...}
+//
+//	or:
+//
+//	        nil
+type DefaultNodePoolNodeConfigSecurityPtrInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolNodeConfigSecurityPtrOutput() DefaultNodePoolNodeConfigSecurityPtrOutput
+	ToDefaultNodePoolNodeConfigSecurityPtrOutputWithContext(context.Context) DefaultNodePoolNodeConfigSecurityPtrOutput
+}
+
+type defaultNodePoolNodeConfigSecurityPtrType DefaultNodePoolNodeConfigSecurityArgs
+
+func DefaultNodePoolNodeConfigSecurityPtr(v *DefaultNodePoolNodeConfigSecurityArgs) DefaultNodePoolNodeConfigSecurityPtrInput {
+	return (*defaultNodePoolNodeConfigSecurityPtrType)(v)
+}
+
+func (*defaultNodePoolNodeConfigSecurityPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DefaultNodePoolNodeConfigSecurity)(nil)).Elem()
+}
+
+func (i *defaultNodePoolNodeConfigSecurityPtrType) ToDefaultNodePoolNodeConfigSecurityPtrOutput() DefaultNodePoolNodeConfigSecurityPtrOutput {
+	return i.ToDefaultNodePoolNodeConfigSecurityPtrOutputWithContext(context.Background())
+}
+
+func (i *defaultNodePoolNodeConfigSecurityPtrType) ToDefaultNodePoolNodeConfigSecurityPtrOutputWithContext(ctx context.Context) DefaultNodePoolNodeConfigSecurityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolNodeConfigSecurityPtrOutput)
+}
+
+type DefaultNodePoolNodeConfigSecurityOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolNodeConfigSecurityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolNodeConfigSecurity)(nil)).Elem()
+}
+
+func (o DefaultNodePoolNodeConfigSecurityOutput) ToDefaultNodePoolNodeConfigSecurityOutput() DefaultNodePoolNodeConfigSecurityOutput {
+	return o
+}
+
+func (o DefaultNodePoolNodeConfigSecurityOutput) ToDefaultNodePoolNodeConfigSecurityOutputWithContext(ctx context.Context) DefaultNodePoolNodeConfigSecurityOutput {
+	return o
+}
+
+func (o DefaultNodePoolNodeConfigSecurityOutput) ToDefaultNodePoolNodeConfigSecurityPtrOutput() DefaultNodePoolNodeConfigSecurityPtrOutput {
+	return o.ToDefaultNodePoolNodeConfigSecurityPtrOutputWithContext(context.Background())
+}
+
+func (o DefaultNodePoolNodeConfigSecurityOutput) ToDefaultNodePoolNodeConfigSecurityPtrOutputWithContext(ctx context.Context) DefaultNodePoolNodeConfigSecurityPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DefaultNodePoolNodeConfigSecurity) *DefaultNodePoolNodeConfigSecurity {
+		return &v
+	}).(DefaultNodePoolNodeConfigSecurityPtrOutput)
+}
+
+// The Login of Security.
+func (o DefaultNodePoolNodeConfigSecurityOutput) Login() DefaultNodePoolNodeConfigSecurityLoginOutput {
+	return o.ApplyT(func(v DefaultNodePoolNodeConfigSecurity) DefaultNodePoolNodeConfigSecurityLogin { return v.Login }).(DefaultNodePoolNodeConfigSecurityLoginOutput)
+}
+
+// The SecurityGroupIds of Security.
+func (o DefaultNodePoolNodeConfigSecurityOutput) SecurityGroupIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v DefaultNodePoolNodeConfigSecurity) []string { return v.SecurityGroupIds }).(pulumi.StringArrayOutput)
+}
+
+// The SecurityStrategies of Security.
+func (o DefaultNodePoolNodeConfigSecurityOutput) SecurityStrategies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v DefaultNodePoolNodeConfigSecurity) []string { return v.SecurityStrategies }).(pulumi.StringArrayOutput)
+}
+
+type DefaultNodePoolNodeConfigSecurityPtrOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolNodeConfigSecurityPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DefaultNodePoolNodeConfigSecurity)(nil)).Elem()
+}
+
+func (o DefaultNodePoolNodeConfigSecurityPtrOutput) ToDefaultNodePoolNodeConfigSecurityPtrOutput() DefaultNodePoolNodeConfigSecurityPtrOutput {
+	return o
+}
+
+func (o DefaultNodePoolNodeConfigSecurityPtrOutput) ToDefaultNodePoolNodeConfigSecurityPtrOutputWithContext(ctx context.Context) DefaultNodePoolNodeConfigSecurityPtrOutput {
+	return o
+}
+
+func (o DefaultNodePoolNodeConfigSecurityPtrOutput) Elem() DefaultNodePoolNodeConfigSecurityOutput {
+	return o.ApplyT(func(v *DefaultNodePoolNodeConfigSecurity) DefaultNodePoolNodeConfigSecurity {
+		if v != nil {
+			return *v
+		}
+		var ret DefaultNodePoolNodeConfigSecurity
+		return ret
+	}).(DefaultNodePoolNodeConfigSecurityOutput)
+}
+
+// The Login of Security.
+func (o DefaultNodePoolNodeConfigSecurityPtrOutput) Login() DefaultNodePoolNodeConfigSecurityLoginPtrOutput {
+	return o.ApplyT(func(v *DefaultNodePoolNodeConfigSecurity) *DefaultNodePoolNodeConfigSecurityLogin {
+		if v == nil {
+			return nil
+		}
+		return &v.Login
+	}).(DefaultNodePoolNodeConfigSecurityLoginPtrOutput)
+}
+
+// The SecurityGroupIds of Security.
+func (o DefaultNodePoolNodeConfigSecurityPtrOutput) SecurityGroupIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *DefaultNodePoolNodeConfigSecurity) []string {
+		if v == nil {
+			return nil
+		}
+		return v.SecurityGroupIds
+	}).(pulumi.StringArrayOutput)
+}
+
+// The SecurityStrategies of Security.
+func (o DefaultNodePoolNodeConfigSecurityPtrOutput) SecurityStrategies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *DefaultNodePoolNodeConfigSecurity) []string {
+		if v == nil {
+			return nil
+		}
+		return v.SecurityStrategies
+	}).(pulumi.StringArrayOutput)
+}
+
+type DefaultNodePoolNodeConfigSecurityLogin struct {
+	// The Password of Security.
+	Password *string `pulumi:"password"`
+	// The SshKeyPairName of Security.
+	SshKeyPairName *string `pulumi:"sshKeyPairName"`
+}
+
+// DefaultNodePoolNodeConfigSecurityLoginInput is an input type that accepts DefaultNodePoolNodeConfigSecurityLoginArgs and DefaultNodePoolNodeConfigSecurityLoginOutput values.
+// You can construct a concrete instance of `DefaultNodePoolNodeConfigSecurityLoginInput` via:
+//
+//	DefaultNodePoolNodeConfigSecurityLoginArgs{...}
+type DefaultNodePoolNodeConfigSecurityLoginInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolNodeConfigSecurityLoginOutput() DefaultNodePoolNodeConfigSecurityLoginOutput
+	ToDefaultNodePoolNodeConfigSecurityLoginOutputWithContext(context.Context) DefaultNodePoolNodeConfigSecurityLoginOutput
+}
+
+type DefaultNodePoolNodeConfigSecurityLoginArgs struct {
+	// The Password of Security.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// The SshKeyPairName of Security.
+	SshKeyPairName pulumi.StringPtrInput `pulumi:"sshKeyPairName"`
+}
+
+func (DefaultNodePoolNodeConfigSecurityLoginArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolNodeConfigSecurityLogin)(nil)).Elem()
+}
+
+func (i DefaultNodePoolNodeConfigSecurityLoginArgs) ToDefaultNodePoolNodeConfigSecurityLoginOutput() DefaultNodePoolNodeConfigSecurityLoginOutput {
+	return i.ToDefaultNodePoolNodeConfigSecurityLoginOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolNodeConfigSecurityLoginArgs) ToDefaultNodePoolNodeConfigSecurityLoginOutputWithContext(ctx context.Context) DefaultNodePoolNodeConfigSecurityLoginOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolNodeConfigSecurityLoginOutput)
+}
+
+func (i DefaultNodePoolNodeConfigSecurityLoginArgs) ToDefaultNodePoolNodeConfigSecurityLoginPtrOutput() DefaultNodePoolNodeConfigSecurityLoginPtrOutput {
+	return i.ToDefaultNodePoolNodeConfigSecurityLoginPtrOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolNodeConfigSecurityLoginArgs) ToDefaultNodePoolNodeConfigSecurityLoginPtrOutputWithContext(ctx context.Context) DefaultNodePoolNodeConfigSecurityLoginPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolNodeConfigSecurityLoginOutput).ToDefaultNodePoolNodeConfigSecurityLoginPtrOutputWithContext(ctx)
+}
+
+// DefaultNodePoolNodeConfigSecurityLoginPtrInput is an input type that accepts DefaultNodePoolNodeConfigSecurityLoginArgs, DefaultNodePoolNodeConfigSecurityLoginPtr and DefaultNodePoolNodeConfigSecurityLoginPtrOutput values.
+// You can construct a concrete instance of `DefaultNodePoolNodeConfigSecurityLoginPtrInput` via:
+//
+//	        DefaultNodePoolNodeConfigSecurityLoginArgs{...}
+//
+//	or:
+//
+//	        nil
+type DefaultNodePoolNodeConfigSecurityLoginPtrInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolNodeConfigSecurityLoginPtrOutput() DefaultNodePoolNodeConfigSecurityLoginPtrOutput
+	ToDefaultNodePoolNodeConfigSecurityLoginPtrOutputWithContext(context.Context) DefaultNodePoolNodeConfigSecurityLoginPtrOutput
+}
+
+type defaultNodePoolNodeConfigSecurityLoginPtrType DefaultNodePoolNodeConfigSecurityLoginArgs
+
+func DefaultNodePoolNodeConfigSecurityLoginPtr(v *DefaultNodePoolNodeConfigSecurityLoginArgs) DefaultNodePoolNodeConfigSecurityLoginPtrInput {
+	return (*defaultNodePoolNodeConfigSecurityLoginPtrType)(v)
+}
+
+func (*defaultNodePoolNodeConfigSecurityLoginPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DefaultNodePoolNodeConfigSecurityLogin)(nil)).Elem()
+}
+
+func (i *defaultNodePoolNodeConfigSecurityLoginPtrType) ToDefaultNodePoolNodeConfigSecurityLoginPtrOutput() DefaultNodePoolNodeConfigSecurityLoginPtrOutput {
+	return i.ToDefaultNodePoolNodeConfigSecurityLoginPtrOutputWithContext(context.Background())
+}
+
+func (i *defaultNodePoolNodeConfigSecurityLoginPtrType) ToDefaultNodePoolNodeConfigSecurityLoginPtrOutputWithContext(ctx context.Context) DefaultNodePoolNodeConfigSecurityLoginPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolNodeConfigSecurityLoginPtrOutput)
+}
+
+type DefaultNodePoolNodeConfigSecurityLoginOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolNodeConfigSecurityLoginOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolNodeConfigSecurityLogin)(nil)).Elem()
+}
+
+func (o DefaultNodePoolNodeConfigSecurityLoginOutput) ToDefaultNodePoolNodeConfigSecurityLoginOutput() DefaultNodePoolNodeConfigSecurityLoginOutput {
+	return o
+}
+
+func (o DefaultNodePoolNodeConfigSecurityLoginOutput) ToDefaultNodePoolNodeConfigSecurityLoginOutputWithContext(ctx context.Context) DefaultNodePoolNodeConfigSecurityLoginOutput {
+	return o
+}
+
+func (o DefaultNodePoolNodeConfigSecurityLoginOutput) ToDefaultNodePoolNodeConfigSecurityLoginPtrOutput() DefaultNodePoolNodeConfigSecurityLoginPtrOutput {
+	return o.ToDefaultNodePoolNodeConfigSecurityLoginPtrOutputWithContext(context.Background())
+}
+
+func (o DefaultNodePoolNodeConfigSecurityLoginOutput) ToDefaultNodePoolNodeConfigSecurityLoginPtrOutputWithContext(ctx context.Context) DefaultNodePoolNodeConfigSecurityLoginPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DefaultNodePoolNodeConfigSecurityLogin) *DefaultNodePoolNodeConfigSecurityLogin {
+		return &v
+	}).(DefaultNodePoolNodeConfigSecurityLoginPtrOutput)
+}
+
+// The Password of Security.
+func (o DefaultNodePoolNodeConfigSecurityLoginOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolNodeConfigSecurityLogin) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// The SshKeyPairName of Security.
+func (o DefaultNodePoolNodeConfigSecurityLoginOutput) SshKeyPairName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolNodeConfigSecurityLogin) *string { return v.SshKeyPairName }).(pulumi.StringPtrOutput)
+}
+
+type DefaultNodePoolNodeConfigSecurityLoginPtrOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolNodeConfigSecurityLoginPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DefaultNodePoolNodeConfigSecurityLogin)(nil)).Elem()
+}
+
+func (o DefaultNodePoolNodeConfigSecurityLoginPtrOutput) ToDefaultNodePoolNodeConfigSecurityLoginPtrOutput() DefaultNodePoolNodeConfigSecurityLoginPtrOutput {
+	return o
+}
+
+func (o DefaultNodePoolNodeConfigSecurityLoginPtrOutput) ToDefaultNodePoolNodeConfigSecurityLoginPtrOutputWithContext(ctx context.Context) DefaultNodePoolNodeConfigSecurityLoginPtrOutput {
+	return o
+}
+
+func (o DefaultNodePoolNodeConfigSecurityLoginPtrOutput) Elem() DefaultNodePoolNodeConfigSecurityLoginOutput {
+	return o.ApplyT(func(v *DefaultNodePoolNodeConfigSecurityLogin) DefaultNodePoolNodeConfigSecurityLogin {
+		if v != nil {
+			return *v
+		}
+		var ret DefaultNodePoolNodeConfigSecurityLogin
+		return ret
+	}).(DefaultNodePoolNodeConfigSecurityLoginOutput)
+}
+
+// The Password of Security.
+func (o DefaultNodePoolNodeConfigSecurityLoginPtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DefaultNodePoolNodeConfigSecurityLogin) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// The SshKeyPairName of Security.
+func (o DefaultNodePoolNodeConfigSecurityLoginPtrOutput) SshKeyPairName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DefaultNodePoolNodeConfigSecurityLogin) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SshKeyPairName
+	}).(pulumi.StringPtrOutput)
+}
+
+type DefaultNodePoolTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// DefaultNodePoolTagInput is an input type that accepts DefaultNodePoolTagArgs and DefaultNodePoolTagOutput values.
+// You can construct a concrete instance of `DefaultNodePoolTagInput` via:
+//
+//	DefaultNodePoolTagArgs{...}
+type DefaultNodePoolTagInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolTagOutput() DefaultNodePoolTagOutput
+	ToDefaultNodePoolTagOutputWithContext(context.Context) DefaultNodePoolTagOutput
+}
+
+type DefaultNodePoolTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (DefaultNodePoolTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolTag)(nil)).Elem()
+}
+
+func (i DefaultNodePoolTagArgs) ToDefaultNodePoolTagOutput() DefaultNodePoolTagOutput {
+	return i.ToDefaultNodePoolTagOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolTagArgs) ToDefaultNodePoolTagOutputWithContext(ctx context.Context) DefaultNodePoolTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolTagOutput)
+}
+
+// DefaultNodePoolTagArrayInput is an input type that accepts DefaultNodePoolTagArray and DefaultNodePoolTagArrayOutput values.
+// You can construct a concrete instance of `DefaultNodePoolTagArrayInput` via:
+//
+//	DefaultNodePoolTagArray{ DefaultNodePoolTagArgs{...} }
+type DefaultNodePoolTagArrayInput interface {
+	pulumi.Input
+
+	ToDefaultNodePoolTagArrayOutput() DefaultNodePoolTagArrayOutput
+	ToDefaultNodePoolTagArrayOutputWithContext(context.Context) DefaultNodePoolTagArrayOutput
+}
+
+type DefaultNodePoolTagArray []DefaultNodePoolTagInput
+
+func (DefaultNodePoolTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DefaultNodePoolTag)(nil)).Elem()
+}
+
+func (i DefaultNodePoolTagArray) ToDefaultNodePoolTagArrayOutput() DefaultNodePoolTagArrayOutput {
+	return i.ToDefaultNodePoolTagArrayOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolTagArray) ToDefaultNodePoolTagArrayOutputWithContext(ctx context.Context) DefaultNodePoolTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolTagArrayOutput)
+}
+
+type DefaultNodePoolTagOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DefaultNodePoolTag)(nil)).Elem()
+}
+
+func (o DefaultNodePoolTagOutput) ToDefaultNodePoolTagOutput() DefaultNodePoolTagOutput {
+	return o
+}
+
+func (o DefaultNodePoolTagOutput) ToDefaultNodePoolTagOutputWithContext(ctx context.Context) DefaultNodePoolTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o DefaultNodePoolTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v DefaultNodePoolTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o DefaultNodePoolTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v DefaultNodePoolTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type DefaultNodePoolTagArrayOutput struct{ *pulumi.OutputState }
+
+func (DefaultNodePoolTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DefaultNodePoolTag)(nil)).Elem()
+}
+
+func (o DefaultNodePoolTagArrayOutput) ToDefaultNodePoolTagArrayOutput() DefaultNodePoolTagArrayOutput {
+	return o
+}
+
+func (o DefaultNodePoolTagArrayOutput) ToDefaultNodePoolTagArrayOutputWithContext(ctx context.Context) DefaultNodePoolTagArrayOutput {
+	return o
+}
+
+func (o DefaultNodePoolTagArrayOutput) Index(i pulumi.IntInput) DefaultNodePoolTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DefaultNodePoolTag {
+		return vs[0].([]DefaultNodePoolTag)[vs[1].(int)]
+	}).(DefaultNodePoolTagOutput)
+}
+
+type KubeconfigsKubeconfig struct {
+	// The Cluster ID of the Kubeconfig.
+	ClusterId string `pulumi:"clusterId"`
+	// The create time of the Kubeconfig.
+	CreateTime string `pulumi:"createTime"`
+	// The expire time of the Kubeconfig.
+	ExpireTime string `pulumi:"expireTime"`
+	// The ID of the Kubeconfig.
+	Id string `pulumi:"id"`
+	// Kubeconfig data with public/private network access, returned in BASE64 encoding.
+	Kubeconfig string `pulumi:"kubeconfig"`
+	// The ID of the Kubeconfig.
+	KubeconfigId string `pulumi:"kubeconfigId"`
+	// The type of the Kubeconfig.
+	Type string `pulumi:"type"`
+	// The account ID of the Kubeconfig.
+	UserId int `pulumi:"userId"`
+}
+
+// KubeconfigsKubeconfigInput is an input type that accepts KubeconfigsKubeconfigArgs and KubeconfigsKubeconfigOutput values.
+// You can construct a concrete instance of `KubeconfigsKubeconfigInput` via:
+//
+//	KubeconfigsKubeconfigArgs{...}
+type KubeconfigsKubeconfigInput interface {
+	pulumi.Input
+
+	ToKubeconfigsKubeconfigOutput() KubeconfigsKubeconfigOutput
+	ToKubeconfigsKubeconfigOutputWithContext(context.Context) KubeconfigsKubeconfigOutput
+}
+
+type KubeconfigsKubeconfigArgs struct {
+	// The Cluster ID of the Kubeconfig.
+	ClusterId pulumi.StringInput `pulumi:"clusterId"`
+	// The create time of the Kubeconfig.
+	CreateTime pulumi.StringInput `pulumi:"createTime"`
+	// The expire time of the Kubeconfig.
+	ExpireTime pulumi.StringInput `pulumi:"expireTime"`
+	// The ID of the Kubeconfig.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Kubeconfig data with public/private network access, returned in BASE64 encoding.
+	Kubeconfig pulumi.StringInput `pulumi:"kubeconfig"`
+	// The ID of the Kubeconfig.
+	KubeconfigId pulumi.StringInput `pulumi:"kubeconfigId"`
+	// The type of the Kubeconfig.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The account ID of the Kubeconfig.
+	UserId pulumi.IntInput `pulumi:"userId"`
+}
+
+func (KubeconfigsKubeconfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*KubeconfigsKubeconfig)(nil)).Elem()
+}
+
+func (i KubeconfigsKubeconfigArgs) ToKubeconfigsKubeconfigOutput() KubeconfigsKubeconfigOutput {
+	return i.ToKubeconfigsKubeconfigOutputWithContext(context.Background())
+}
+
+func (i KubeconfigsKubeconfigArgs) ToKubeconfigsKubeconfigOutputWithContext(ctx context.Context) KubeconfigsKubeconfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubeconfigsKubeconfigOutput)
+}
+
+// KubeconfigsKubeconfigArrayInput is an input type that accepts KubeconfigsKubeconfigArray and KubeconfigsKubeconfigArrayOutput values.
+// You can construct a concrete instance of `KubeconfigsKubeconfigArrayInput` via:
+//
+//	KubeconfigsKubeconfigArray{ KubeconfigsKubeconfigArgs{...} }
+type KubeconfigsKubeconfigArrayInput interface {
+	pulumi.Input
+
+	ToKubeconfigsKubeconfigArrayOutput() KubeconfigsKubeconfigArrayOutput
+	ToKubeconfigsKubeconfigArrayOutputWithContext(context.Context) KubeconfigsKubeconfigArrayOutput
+}
+
+type KubeconfigsKubeconfigArray []KubeconfigsKubeconfigInput
+
+func (KubeconfigsKubeconfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KubeconfigsKubeconfig)(nil)).Elem()
+}
+
+func (i KubeconfigsKubeconfigArray) ToKubeconfigsKubeconfigArrayOutput() KubeconfigsKubeconfigArrayOutput {
+	return i.ToKubeconfigsKubeconfigArrayOutputWithContext(context.Background())
+}
+
+func (i KubeconfigsKubeconfigArray) ToKubeconfigsKubeconfigArrayOutputWithContext(ctx context.Context) KubeconfigsKubeconfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubeconfigsKubeconfigArrayOutput)
+}
+
+type KubeconfigsKubeconfigOutput struct{ *pulumi.OutputState }
+
+func (KubeconfigsKubeconfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KubeconfigsKubeconfig)(nil)).Elem()
+}
+
+func (o KubeconfigsKubeconfigOutput) ToKubeconfigsKubeconfigOutput() KubeconfigsKubeconfigOutput {
+	return o
+}
+
+func (o KubeconfigsKubeconfigOutput) ToKubeconfigsKubeconfigOutputWithContext(ctx context.Context) KubeconfigsKubeconfigOutput {
+	return o
+}
+
+// The Cluster ID of the Kubeconfig.
+func (o KubeconfigsKubeconfigOutput) ClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v KubeconfigsKubeconfig) string { return v.ClusterId }).(pulumi.StringOutput)
+}
+
+// The create time of the Kubeconfig.
+func (o KubeconfigsKubeconfigOutput) CreateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v KubeconfigsKubeconfig) string { return v.CreateTime }).(pulumi.StringOutput)
+}
+
+// The expire time of the Kubeconfig.
+func (o KubeconfigsKubeconfigOutput) ExpireTime() pulumi.StringOutput {
+	return o.ApplyT(func(v KubeconfigsKubeconfig) string { return v.ExpireTime }).(pulumi.StringOutput)
+}
+
+// The ID of the Kubeconfig.
+func (o KubeconfigsKubeconfigOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v KubeconfigsKubeconfig) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Kubeconfig data with public/private network access, returned in BASE64 encoding.
+func (o KubeconfigsKubeconfigOutput) Kubeconfig() pulumi.StringOutput {
+	return o.ApplyT(func(v KubeconfigsKubeconfig) string { return v.Kubeconfig }).(pulumi.StringOutput)
+}
+
+// The ID of the Kubeconfig.
+func (o KubeconfigsKubeconfigOutput) KubeconfigId() pulumi.StringOutput {
+	return o.ApplyT(func(v KubeconfigsKubeconfig) string { return v.KubeconfigId }).(pulumi.StringOutput)
+}
+
+// The type of the Kubeconfig.
+func (o KubeconfigsKubeconfigOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v KubeconfigsKubeconfig) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The account ID of the Kubeconfig.
+func (o KubeconfigsKubeconfigOutput) UserId() pulumi.IntOutput {
+	return o.ApplyT(func(v KubeconfigsKubeconfig) int { return v.UserId }).(pulumi.IntOutput)
+}
+
+type KubeconfigsKubeconfigArrayOutput struct{ *pulumi.OutputState }
+
+func (KubeconfigsKubeconfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KubeconfigsKubeconfig)(nil)).Elem()
+}
+
+func (o KubeconfigsKubeconfigArrayOutput) ToKubeconfigsKubeconfigArrayOutput() KubeconfigsKubeconfigArrayOutput {
+	return o
+}
+
+func (o KubeconfigsKubeconfigArrayOutput) ToKubeconfigsKubeconfigArrayOutputWithContext(ctx context.Context) KubeconfigsKubeconfigArrayOutput {
+	return o
+}
+
+func (o KubeconfigsKubeconfigArrayOutput) Index(i pulumi.IntInput) KubeconfigsKubeconfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) KubeconfigsKubeconfig {
+		return vs[0].([]KubeconfigsKubeconfig)[vs[1].(int)]
+	}).(KubeconfigsKubeconfigOutput)
+}
+
+type NodeKubernetesConfig struct {
+	// The Cordon of KubernetesConfig.
+	Cordon *bool `pulumi:"cordon"`
+	// The Labels of KubernetesConfig.
+	Labels []NodeKubernetesConfigLabel `pulumi:"labels"`
+	// The Taints of KubernetesConfig.
+	Taints []NodeKubernetesConfigTaint `pulumi:"taints"`
+}
+
+// NodeKubernetesConfigInput is an input type that accepts NodeKubernetesConfigArgs and NodeKubernetesConfigOutput values.
+// You can construct a concrete instance of `NodeKubernetesConfigInput` via:
+//
+//	NodeKubernetesConfigArgs{...}
+type NodeKubernetesConfigInput interface {
+	pulumi.Input
+
+	ToNodeKubernetesConfigOutput() NodeKubernetesConfigOutput
+	ToNodeKubernetesConfigOutputWithContext(context.Context) NodeKubernetesConfigOutput
+}
+
+type NodeKubernetesConfigArgs struct {
+	// The Cordon of KubernetesConfig.
+	Cordon pulumi.BoolPtrInput `pulumi:"cordon"`
+	// The Labels of KubernetesConfig.
+	Labels NodeKubernetesConfigLabelArrayInput `pulumi:"labels"`
+	// The Taints of KubernetesConfig.
+	Taints NodeKubernetesConfigTaintArrayInput `pulumi:"taints"`
+}
+
+func (NodeKubernetesConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodeKubernetesConfig)(nil)).Elem()
+}
+
+func (i NodeKubernetesConfigArgs) ToNodeKubernetesConfigOutput() NodeKubernetesConfigOutput {
+	return i.ToNodeKubernetesConfigOutputWithContext(context.Background())
+}
+
+func (i NodeKubernetesConfigArgs) ToNodeKubernetesConfigOutputWithContext(ctx context.Context) NodeKubernetesConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodeKubernetesConfigOutput)
+}
+
+func (i NodeKubernetesConfigArgs) ToNodeKubernetesConfigPtrOutput() NodeKubernetesConfigPtrOutput {
+	return i.ToNodeKubernetesConfigPtrOutputWithContext(context.Background())
+}
+
+func (i NodeKubernetesConfigArgs) ToNodeKubernetesConfigPtrOutputWithContext(ctx context.Context) NodeKubernetesConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodeKubernetesConfigOutput).ToNodeKubernetesConfigPtrOutputWithContext(ctx)
+}
+
+// NodeKubernetesConfigPtrInput is an input type that accepts NodeKubernetesConfigArgs, NodeKubernetesConfigPtr and NodeKubernetesConfigPtrOutput values.
+// You can construct a concrete instance of `NodeKubernetesConfigPtrInput` via:
+//
+//	        NodeKubernetesConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type NodeKubernetesConfigPtrInput interface {
+	pulumi.Input
+
+	ToNodeKubernetesConfigPtrOutput() NodeKubernetesConfigPtrOutput
+	ToNodeKubernetesConfigPtrOutputWithContext(context.Context) NodeKubernetesConfigPtrOutput
+}
+
+type nodeKubernetesConfigPtrType NodeKubernetesConfigArgs
+
+func NodeKubernetesConfigPtr(v *NodeKubernetesConfigArgs) NodeKubernetesConfigPtrInput {
+	return (*nodeKubernetesConfigPtrType)(v)
+}
+
+func (*nodeKubernetesConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**NodeKubernetesConfig)(nil)).Elem()
+}
+
+func (i *nodeKubernetesConfigPtrType) ToNodeKubernetesConfigPtrOutput() NodeKubernetesConfigPtrOutput {
+	return i.ToNodeKubernetesConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *nodeKubernetesConfigPtrType) ToNodeKubernetesConfigPtrOutputWithContext(ctx context.Context) NodeKubernetesConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodeKubernetesConfigPtrOutput)
+}
+
+type NodeKubernetesConfigOutput struct{ *pulumi.OutputState }
+
+func (NodeKubernetesConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodeKubernetesConfig)(nil)).Elem()
+}
+
+func (o NodeKubernetesConfigOutput) ToNodeKubernetesConfigOutput() NodeKubernetesConfigOutput {
+	return o
+}
+
+func (o NodeKubernetesConfigOutput) ToNodeKubernetesConfigOutputWithContext(ctx context.Context) NodeKubernetesConfigOutput {
+	return o
+}
+
+func (o NodeKubernetesConfigOutput) ToNodeKubernetesConfigPtrOutput() NodeKubernetesConfigPtrOutput {
+	return o.ToNodeKubernetesConfigPtrOutputWithContext(context.Background())
+}
+
+func (o NodeKubernetesConfigOutput) ToNodeKubernetesConfigPtrOutputWithContext(ctx context.Context) NodeKubernetesConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v NodeKubernetesConfig) *NodeKubernetesConfig {
+		return &v
+	}).(NodeKubernetesConfigPtrOutput)
+}
+
+// The Cordon of KubernetesConfig.
+func (o NodeKubernetesConfigOutput) Cordon() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v NodeKubernetesConfig) *bool { return v.Cordon }).(pulumi.BoolPtrOutput)
+}
+
+// The Labels of KubernetesConfig.
+func (o NodeKubernetesConfigOutput) Labels() NodeKubernetesConfigLabelArrayOutput {
+	return o.ApplyT(func(v NodeKubernetesConfig) []NodeKubernetesConfigLabel { return v.Labels }).(NodeKubernetesConfigLabelArrayOutput)
+}
+
+// The Taints of KubernetesConfig.
+func (o NodeKubernetesConfigOutput) Taints() NodeKubernetesConfigTaintArrayOutput {
+	return o.ApplyT(func(v NodeKubernetesConfig) []NodeKubernetesConfigTaint { return v.Taints }).(NodeKubernetesConfigTaintArrayOutput)
+}
+
+type NodeKubernetesConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (NodeKubernetesConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**NodeKubernetesConfig)(nil)).Elem()
+}
+
+func (o NodeKubernetesConfigPtrOutput) ToNodeKubernetesConfigPtrOutput() NodeKubernetesConfigPtrOutput {
+	return o
+}
+
+func (o NodeKubernetesConfigPtrOutput) ToNodeKubernetesConfigPtrOutputWithContext(ctx context.Context) NodeKubernetesConfigPtrOutput {
+	return o
+}
+
+func (o NodeKubernetesConfigPtrOutput) Elem() NodeKubernetesConfigOutput {
+	return o.ApplyT(func(v *NodeKubernetesConfig) NodeKubernetesConfig {
+		if v != nil {
+			return *v
+		}
+		var ret NodeKubernetesConfig
+		return ret
+	}).(NodeKubernetesConfigOutput)
+}
+
+// The Cordon of KubernetesConfig.
+func (o NodeKubernetesConfigPtrOutput) Cordon() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *NodeKubernetesConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Cordon
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The Labels of KubernetesConfig.
+func (o NodeKubernetesConfigPtrOutput) Labels() NodeKubernetesConfigLabelArrayOutput {
+	return o.ApplyT(func(v *NodeKubernetesConfig) []NodeKubernetesConfigLabel {
+		if v == nil {
+			return nil
+		}
+		return v.Labels
+	}).(NodeKubernetesConfigLabelArrayOutput)
+}
+
+// The Taints of KubernetesConfig.
+func (o NodeKubernetesConfigPtrOutput) Taints() NodeKubernetesConfigTaintArrayOutput {
+	return o.ApplyT(func(v *NodeKubernetesConfig) []NodeKubernetesConfigTaint {
+		if v == nil {
+			return nil
+		}
+		return v.Taints
+	}).(NodeKubernetesConfigTaintArrayOutput)
+}
+
+type NodeKubernetesConfigLabel struct {
+	// The Key of Labels.
+	Key *string `pulumi:"key"`
+	// The Value of Labels.
+	Value *string `pulumi:"value"`
+}
+
+// NodeKubernetesConfigLabelInput is an input type that accepts NodeKubernetesConfigLabelArgs and NodeKubernetesConfigLabelOutput values.
+// You can construct a concrete instance of `NodeKubernetesConfigLabelInput` via:
+//
+//	NodeKubernetesConfigLabelArgs{...}
+type NodeKubernetesConfigLabelInput interface {
+	pulumi.Input
+
+	ToNodeKubernetesConfigLabelOutput() NodeKubernetesConfigLabelOutput
+	ToNodeKubernetesConfigLabelOutputWithContext(context.Context) NodeKubernetesConfigLabelOutput
+}
+
+type NodeKubernetesConfigLabelArgs struct {
+	// The Key of Labels.
+	Key pulumi.StringPtrInput `pulumi:"key"`
+	// The Value of Labels.
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (NodeKubernetesConfigLabelArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodeKubernetesConfigLabel)(nil)).Elem()
+}
+
+func (i NodeKubernetesConfigLabelArgs) ToNodeKubernetesConfigLabelOutput() NodeKubernetesConfigLabelOutput {
+	return i.ToNodeKubernetesConfigLabelOutputWithContext(context.Background())
+}
+
+func (i NodeKubernetesConfigLabelArgs) ToNodeKubernetesConfigLabelOutputWithContext(ctx context.Context) NodeKubernetesConfigLabelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodeKubernetesConfigLabelOutput)
+}
+
+// NodeKubernetesConfigLabelArrayInput is an input type that accepts NodeKubernetesConfigLabelArray and NodeKubernetesConfigLabelArrayOutput values.
+// You can construct a concrete instance of `NodeKubernetesConfigLabelArrayInput` via:
+//
+//	NodeKubernetesConfigLabelArray{ NodeKubernetesConfigLabelArgs{...} }
+type NodeKubernetesConfigLabelArrayInput interface {
+	pulumi.Input
+
+	ToNodeKubernetesConfigLabelArrayOutput() NodeKubernetesConfigLabelArrayOutput
+	ToNodeKubernetesConfigLabelArrayOutputWithContext(context.Context) NodeKubernetesConfigLabelArrayOutput
+}
+
+type NodeKubernetesConfigLabelArray []NodeKubernetesConfigLabelInput
+
+func (NodeKubernetesConfigLabelArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodeKubernetesConfigLabel)(nil)).Elem()
+}
+
+func (i NodeKubernetesConfigLabelArray) ToNodeKubernetesConfigLabelArrayOutput() NodeKubernetesConfigLabelArrayOutput {
+	return i.ToNodeKubernetesConfigLabelArrayOutputWithContext(context.Background())
+}
+
+func (i NodeKubernetesConfigLabelArray) ToNodeKubernetesConfigLabelArrayOutputWithContext(ctx context.Context) NodeKubernetesConfigLabelArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodeKubernetesConfigLabelArrayOutput)
+}
+
+type NodeKubernetesConfigLabelOutput struct{ *pulumi.OutputState }
+
+func (NodeKubernetesConfigLabelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodeKubernetesConfigLabel)(nil)).Elem()
+}
+
+func (o NodeKubernetesConfigLabelOutput) ToNodeKubernetesConfigLabelOutput() NodeKubernetesConfigLabelOutput {
+	return o
+}
+
+func (o NodeKubernetesConfigLabelOutput) ToNodeKubernetesConfigLabelOutputWithContext(ctx context.Context) NodeKubernetesConfigLabelOutput {
+	return o
+}
+
+// The Key of Labels.
+func (o NodeKubernetesConfigLabelOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NodeKubernetesConfigLabel) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+// The Value of Labels.
+func (o NodeKubernetesConfigLabelOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NodeKubernetesConfigLabel) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type NodeKubernetesConfigLabelArrayOutput struct{ *pulumi.OutputState }
+
+func (NodeKubernetesConfigLabelArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodeKubernetesConfigLabel)(nil)).Elem()
+}
+
+func (o NodeKubernetesConfigLabelArrayOutput) ToNodeKubernetesConfigLabelArrayOutput() NodeKubernetesConfigLabelArrayOutput {
+	return o
+}
+
+func (o NodeKubernetesConfigLabelArrayOutput) ToNodeKubernetesConfigLabelArrayOutputWithContext(ctx context.Context) NodeKubernetesConfigLabelArrayOutput {
+	return o
+}
+
+func (o NodeKubernetesConfigLabelArrayOutput) Index(i pulumi.IntInput) NodeKubernetesConfigLabelOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NodeKubernetesConfigLabel {
+		return vs[0].([]NodeKubernetesConfigLabel)[vs[1].(int)]
+	}).(NodeKubernetesConfigLabelOutput)
+}
+
+type NodeKubernetesConfigTaint struct {
+	// The Effect of Taints, the value can be `NoSchedule` or `NoExecute` or `PreferNoSchedule`.
+	Effect *string `pulumi:"effect"`
+	// The Key of Taints.
+	Key *string `pulumi:"key"`
+	// The Value of Taints.
+	Value *string `pulumi:"value"`
+}
+
+// NodeKubernetesConfigTaintInput is an input type that accepts NodeKubernetesConfigTaintArgs and NodeKubernetesConfigTaintOutput values.
+// You can construct a concrete instance of `NodeKubernetesConfigTaintInput` via:
+//
+//	NodeKubernetesConfigTaintArgs{...}
+type NodeKubernetesConfigTaintInput interface {
+	pulumi.Input
+
+	ToNodeKubernetesConfigTaintOutput() NodeKubernetesConfigTaintOutput
+	ToNodeKubernetesConfigTaintOutputWithContext(context.Context) NodeKubernetesConfigTaintOutput
+}
+
+type NodeKubernetesConfigTaintArgs struct {
+	// The Effect of Taints, the value can be `NoSchedule` or `NoExecute` or `PreferNoSchedule`.
+	Effect pulumi.StringPtrInput `pulumi:"effect"`
+	// The Key of Taints.
+	Key pulumi.StringPtrInput `pulumi:"key"`
+	// The Value of Taints.
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (NodeKubernetesConfigTaintArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodeKubernetesConfigTaint)(nil)).Elem()
+}
+
+func (i NodeKubernetesConfigTaintArgs) ToNodeKubernetesConfigTaintOutput() NodeKubernetesConfigTaintOutput {
+	return i.ToNodeKubernetesConfigTaintOutputWithContext(context.Background())
+}
+
+func (i NodeKubernetesConfigTaintArgs) ToNodeKubernetesConfigTaintOutputWithContext(ctx context.Context) NodeKubernetesConfigTaintOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodeKubernetesConfigTaintOutput)
+}
+
+// NodeKubernetesConfigTaintArrayInput is an input type that accepts NodeKubernetesConfigTaintArray and NodeKubernetesConfigTaintArrayOutput values.
+// You can construct a concrete instance of `NodeKubernetesConfigTaintArrayInput` via:
+//
+//	NodeKubernetesConfigTaintArray{ NodeKubernetesConfigTaintArgs{...} }
+type NodeKubernetesConfigTaintArrayInput interface {
+	pulumi.Input
+
+	ToNodeKubernetesConfigTaintArrayOutput() NodeKubernetesConfigTaintArrayOutput
+	ToNodeKubernetesConfigTaintArrayOutputWithContext(context.Context) NodeKubernetesConfigTaintArrayOutput
+}
+
+type NodeKubernetesConfigTaintArray []NodeKubernetesConfigTaintInput
+
+func (NodeKubernetesConfigTaintArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodeKubernetesConfigTaint)(nil)).Elem()
+}
+
+func (i NodeKubernetesConfigTaintArray) ToNodeKubernetesConfigTaintArrayOutput() NodeKubernetesConfigTaintArrayOutput {
+	return i.ToNodeKubernetesConfigTaintArrayOutputWithContext(context.Background())
+}
+
+func (i NodeKubernetesConfigTaintArray) ToNodeKubernetesConfigTaintArrayOutputWithContext(ctx context.Context) NodeKubernetesConfigTaintArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodeKubernetesConfigTaintArrayOutput)
+}
+
+type NodeKubernetesConfigTaintOutput struct{ *pulumi.OutputState }
+
+func (NodeKubernetesConfigTaintOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodeKubernetesConfigTaint)(nil)).Elem()
+}
+
+func (o NodeKubernetesConfigTaintOutput) ToNodeKubernetesConfigTaintOutput() NodeKubernetesConfigTaintOutput {
+	return o
+}
+
+func (o NodeKubernetesConfigTaintOutput) ToNodeKubernetesConfigTaintOutputWithContext(ctx context.Context) NodeKubernetesConfigTaintOutput {
+	return o
+}
+
+// The Effect of Taints, the value can be `NoSchedule` or `NoExecute` or `PreferNoSchedule`.
+func (o NodeKubernetesConfigTaintOutput) Effect() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NodeKubernetesConfigTaint) *string { return v.Effect }).(pulumi.StringPtrOutput)
+}
+
+// The Key of Taints.
+func (o NodeKubernetesConfigTaintOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NodeKubernetesConfigTaint) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+// The Value of Taints.
+func (o NodeKubernetesConfigTaintOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NodeKubernetesConfigTaint) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type NodeKubernetesConfigTaintArrayOutput struct{ *pulumi.OutputState }
+
+func (NodeKubernetesConfigTaintArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodeKubernetesConfigTaint)(nil)).Elem()
+}
+
+func (o NodeKubernetesConfigTaintArrayOutput) ToNodeKubernetesConfigTaintArrayOutput() NodeKubernetesConfigTaintArrayOutput {
+	return o
+}
+
+func (o NodeKubernetesConfigTaintArrayOutput) ToNodeKubernetesConfigTaintArrayOutputWithContext(ctx context.Context) NodeKubernetesConfigTaintArrayOutput {
+	return o
+}
+
+func (o NodeKubernetesConfigTaintArrayOutput) Index(i pulumi.IntInput) NodeKubernetesConfigTaintOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NodeKubernetesConfigTaint {
+		return vs[0].([]NodeKubernetesConfigTaint)[vs[1].(int)]
+	}).(NodeKubernetesConfigTaintOutput)
+}
+
 type NodePoolAutoScaling struct {
-	// The DesiredReplicas of AutoScaling.
+	// The DesiredReplicas of AutoScaling, default 0, range in minReplicas to max_replicas.
 	DesiredReplicas *int `pulumi:"desiredReplicas"`
 	// Is Enabled of AutoScaling.
 	Enabled *bool `pulumi:"enabled"`
-	// The MaxReplicas of AutoScaling.
+	// The MaxReplicas of AutoScaling, default 10, range in 1~2000.
 	MaxReplicas *int `pulumi:"maxReplicas"`
-	// The MinReplicas of AutoScaling.
+	// The MinReplicas of AutoScaling, default 0.
 	MinReplicas *int `pulumi:"minReplicas"`
-	// The Priority of AutoScaling.
+	// The Priority of AutoScaling, default 10, rang in 0~100.
 	Priority *int `pulumi:"priority"`
+	// Multi-subnet scheduling strategy for nodes. The value can be `ZoneBalance` or `Priority`.
+	SubnetPolicy *string `pulumi:"subnetPolicy"`
 }
 
 // NodePoolAutoScalingInput is an input type that accepts NodePoolAutoScalingArgs and NodePoolAutoScalingOutput values.
 // You can construct a concrete instance of `NodePoolAutoScalingInput` via:
 //
-//          NodePoolAutoScalingArgs{...}
+//	NodePoolAutoScalingArgs{...}
 type NodePoolAutoScalingInput interface {
 	pulumi.Input
 
@@ -2427,16 +6605,18 @@ type NodePoolAutoScalingInput interface {
 }
 
 type NodePoolAutoScalingArgs struct {
-	// The DesiredReplicas of AutoScaling.
+	// The DesiredReplicas of AutoScaling, default 0, range in minReplicas to max_replicas.
 	DesiredReplicas pulumi.IntPtrInput `pulumi:"desiredReplicas"`
 	// Is Enabled of AutoScaling.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
-	// The MaxReplicas of AutoScaling.
+	// The MaxReplicas of AutoScaling, default 10, range in 1~2000.
 	MaxReplicas pulumi.IntPtrInput `pulumi:"maxReplicas"`
-	// The MinReplicas of AutoScaling.
+	// The MinReplicas of AutoScaling, default 0.
 	MinReplicas pulumi.IntPtrInput `pulumi:"minReplicas"`
-	// The Priority of AutoScaling.
+	// The Priority of AutoScaling, default 10, rang in 0~100.
 	Priority pulumi.IntPtrInput `pulumi:"priority"`
+	// Multi-subnet scheduling strategy for nodes. The value can be `ZoneBalance` or `Priority`.
+	SubnetPolicy pulumi.StringPtrInput `pulumi:"subnetPolicy"`
 }
 
 func (NodePoolAutoScalingArgs) ElementType() reflect.Type {
@@ -2462,11 +6642,11 @@ func (i NodePoolAutoScalingArgs) ToNodePoolAutoScalingPtrOutputWithContext(ctx c
 // NodePoolAutoScalingPtrInput is an input type that accepts NodePoolAutoScalingArgs, NodePoolAutoScalingPtr and NodePoolAutoScalingPtrOutput values.
 // You can construct a concrete instance of `NodePoolAutoScalingPtrInput` via:
 //
-//          NodePoolAutoScalingArgs{...}
+//	        NodePoolAutoScalingArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type NodePoolAutoScalingPtrInput interface {
 	pulumi.Input
 
@@ -2516,7 +6696,7 @@ func (o NodePoolAutoScalingOutput) ToNodePoolAutoScalingPtrOutputWithContext(ctx
 	}).(NodePoolAutoScalingPtrOutput)
 }
 
-// The DesiredReplicas of AutoScaling.
+// The DesiredReplicas of AutoScaling, default 0, range in minReplicas to max_replicas.
 func (o NodePoolAutoScalingOutput) DesiredReplicas() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v NodePoolAutoScaling) *int { return v.DesiredReplicas }).(pulumi.IntPtrOutput)
 }
@@ -2526,19 +6706,24 @@ func (o NodePoolAutoScalingOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v NodePoolAutoScaling) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
-// The MaxReplicas of AutoScaling.
+// The MaxReplicas of AutoScaling, default 10, range in 1~2000.
 func (o NodePoolAutoScalingOutput) MaxReplicas() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v NodePoolAutoScaling) *int { return v.MaxReplicas }).(pulumi.IntPtrOutput)
 }
 
-// The MinReplicas of AutoScaling.
+// The MinReplicas of AutoScaling, default 0.
 func (o NodePoolAutoScalingOutput) MinReplicas() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v NodePoolAutoScaling) *int { return v.MinReplicas }).(pulumi.IntPtrOutput)
 }
 
-// The Priority of AutoScaling.
+// The Priority of AutoScaling, default 10, rang in 0~100.
 func (o NodePoolAutoScalingOutput) Priority() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v NodePoolAutoScaling) *int { return v.Priority }).(pulumi.IntPtrOutput)
+}
+
+// Multi-subnet scheduling strategy for nodes. The value can be `ZoneBalance` or `Priority`.
+func (o NodePoolAutoScalingOutput) SubnetPolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NodePoolAutoScaling) *string { return v.SubnetPolicy }).(pulumi.StringPtrOutput)
 }
 
 type NodePoolAutoScalingPtrOutput struct{ *pulumi.OutputState }
@@ -2565,7 +6750,7 @@ func (o NodePoolAutoScalingPtrOutput) Elem() NodePoolAutoScalingOutput {
 	}).(NodePoolAutoScalingOutput)
 }
 
-// The DesiredReplicas of AutoScaling.
+// The DesiredReplicas of AutoScaling, default 0, range in minReplicas to max_replicas.
 func (o NodePoolAutoScalingPtrOutput) DesiredReplicas() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *NodePoolAutoScaling) *int {
 		if v == nil {
@@ -2585,7 +6770,7 @@ func (o NodePoolAutoScalingPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// The MaxReplicas of AutoScaling.
+// The MaxReplicas of AutoScaling, default 10, range in 1~2000.
 func (o NodePoolAutoScalingPtrOutput) MaxReplicas() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *NodePoolAutoScaling) *int {
 		if v == nil {
@@ -2595,7 +6780,7 @@ func (o NodePoolAutoScalingPtrOutput) MaxReplicas() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// The MinReplicas of AutoScaling.
+// The MinReplicas of AutoScaling, default 0.
 func (o NodePoolAutoScalingPtrOutput) MinReplicas() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *NodePoolAutoScaling) *int {
 		if v == nil {
@@ -2605,7 +6790,7 @@ func (o NodePoolAutoScalingPtrOutput) MinReplicas() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// The Priority of AutoScaling.
+// The Priority of AutoScaling, default 10, rang in 0~100.
 func (o NodePoolAutoScalingPtrOutput) Priority() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *NodePoolAutoScaling) *int {
 		if v == nil {
@@ -2615,9 +6800,19 @@ func (o NodePoolAutoScalingPtrOutput) Priority() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+// Multi-subnet scheduling strategy for nodes. The value can be `ZoneBalance` or `Priority`.
+func (o NodePoolAutoScalingPtrOutput) SubnetPolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NodePoolAutoScaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SubnetPolicy
+	}).(pulumi.StringPtrOutput)
+}
+
 type NodePoolKubernetesConfig struct {
 	// The Cordon of KubernetesConfig.
-	Cordon *bool `pulumi:"cordon"`
+	Cordon bool `pulumi:"cordon"`
 	// The Labels of KubernetesConfig.
 	Labels []NodePoolKubernetesConfigLabel `pulumi:"labels"`
 	// The Taints of KubernetesConfig.
@@ -2627,7 +6822,7 @@ type NodePoolKubernetesConfig struct {
 // NodePoolKubernetesConfigInput is an input type that accepts NodePoolKubernetesConfigArgs and NodePoolKubernetesConfigOutput values.
 // You can construct a concrete instance of `NodePoolKubernetesConfigInput` via:
 //
-//          NodePoolKubernetesConfigArgs{...}
+//	NodePoolKubernetesConfigArgs{...}
 type NodePoolKubernetesConfigInput interface {
 	pulumi.Input
 
@@ -2637,7 +6832,7 @@ type NodePoolKubernetesConfigInput interface {
 
 type NodePoolKubernetesConfigArgs struct {
 	// The Cordon of KubernetesConfig.
-	Cordon pulumi.BoolPtrInput `pulumi:"cordon"`
+	Cordon pulumi.BoolInput `pulumi:"cordon"`
 	// The Labels of KubernetesConfig.
 	Labels NodePoolKubernetesConfigLabelArrayInput `pulumi:"labels"`
 	// The Taints of KubernetesConfig.
@@ -2667,11 +6862,11 @@ func (i NodePoolKubernetesConfigArgs) ToNodePoolKubernetesConfigPtrOutputWithCon
 // NodePoolKubernetesConfigPtrInput is an input type that accepts NodePoolKubernetesConfigArgs, NodePoolKubernetesConfigPtr and NodePoolKubernetesConfigPtrOutput values.
 // You can construct a concrete instance of `NodePoolKubernetesConfigPtrInput` via:
 //
-//          NodePoolKubernetesConfigArgs{...}
+//	        NodePoolKubernetesConfigArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type NodePoolKubernetesConfigPtrInput interface {
 	pulumi.Input
 
@@ -2722,8 +6917,8 @@ func (o NodePoolKubernetesConfigOutput) ToNodePoolKubernetesConfigPtrOutputWithC
 }
 
 // The Cordon of KubernetesConfig.
-func (o NodePoolKubernetesConfigOutput) Cordon() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v NodePoolKubernetesConfig) *bool { return v.Cordon }).(pulumi.BoolPtrOutput)
+func (o NodePoolKubernetesConfigOutput) Cordon() pulumi.BoolOutput {
+	return o.ApplyT(func(v NodePoolKubernetesConfig) bool { return v.Cordon }).(pulumi.BoolOutput)
 }
 
 // The Labels of KubernetesConfig.
@@ -2766,7 +6961,7 @@ func (o NodePoolKubernetesConfigPtrOutput) Cordon() pulumi.BoolPtrOutput {
 		if v == nil {
 			return nil
 		}
-		return v.Cordon
+		return &v.Cordon
 	}).(pulumi.BoolPtrOutput)
 }
 
@@ -2800,7 +6995,7 @@ type NodePoolKubernetesConfigLabel struct {
 // NodePoolKubernetesConfigLabelInput is an input type that accepts NodePoolKubernetesConfigLabelArgs and NodePoolKubernetesConfigLabelOutput values.
 // You can construct a concrete instance of `NodePoolKubernetesConfigLabelInput` via:
 //
-//          NodePoolKubernetesConfigLabelArgs{...}
+//	NodePoolKubernetesConfigLabelArgs{...}
 type NodePoolKubernetesConfigLabelInput interface {
 	pulumi.Input
 
@@ -2830,7 +7025,7 @@ func (i NodePoolKubernetesConfigLabelArgs) ToNodePoolKubernetesConfigLabelOutput
 // NodePoolKubernetesConfigLabelArrayInput is an input type that accepts NodePoolKubernetesConfigLabelArray and NodePoolKubernetesConfigLabelArrayOutput values.
 // You can construct a concrete instance of `NodePoolKubernetesConfigLabelArrayInput` via:
 //
-//          NodePoolKubernetesConfigLabelArray{ NodePoolKubernetesConfigLabelArgs{...} }
+//	NodePoolKubernetesConfigLabelArray{ NodePoolKubernetesConfigLabelArgs{...} }
 type NodePoolKubernetesConfigLabelArrayInput interface {
 	pulumi.Input
 
@@ -2897,7 +7092,7 @@ func (o NodePoolKubernetesConfigLabelArrayOutput) Index(i pulumi.IntInput) NodeP
 }
 
 type NodePoolKubernetesConfigTaint struct {
-	// The Effect of Taints.
+	// The Effect of Taints, the value can be `NoSchedule` or `NoExecute` or `PreferNoSchedule`.
 	Effect *string `pulumi:"effect"`
 	// The Key of Taints.
 	Key *string `pulumi:"key"`
@@ -2908,7 +7103,7 @@ type NodePoolKubernetesConfigTaint struct {
 // NodePoolKubernetesConfigTaintInput is an input type that accepts NodePoolKubernetesConfigTaintArgs and NodePoolKubernetesConfigTaintOutput values.
 // You can construct a concrete instance of `NodePoolKubernetesConfigTaintInput` via:
 //
-//          NodePoolKubernetesConfigTaintArgs{...}
+//	NodePoolKubernetesConfigTaintArgs{...}
 type NodePoolKubernetesConfigTaintInput interface {
 	pulumi.Input
 
@@ -2917,7 +7112,7 @@ type NodePoolKubernetesConfigTaintInput interface {
 }
 
 type NodePoolKubernetesConfigTaintArgs struct {
-	// The Effect of Taints.
+	// The Effect of Taints, the value can be `NoSchedule` or `NoExecute` or `PreferNoSchedule`.
 	Effect pulumi.StringPtrInput `pulumi:"effect"`
 	// The Key of Taints.
 	Key pulumi.StringPtrInput `pulumi:"key"`
@@ -2940,7 +7135,7 @@ func (i NodePoolKubernetesConfigTaintArgs) ToNodePoolKubernetesConfigTaintOutput
 // NodePoolKubernetesConfigTaintArrayInput is an input type that accepts NodePoolKubernetesConfigTaintArray and NodePoolKubernetesConfigTaintArrayOutput values.
 // You can construct a concrete instance of `NodePoolKubernetesConfigTaintArrayInput` via:
 //
-//          NodePoolKubernetesConfigTaintArray{ NodePoolKubernetesConfigTaintArgs{...} }
+//	NodePoolKubernetesConfigTaintArray{ NodePoolKubernetesConfigTaintArgs{...} }
 type NodePoolKubernetesConfigTaintArrayInput interface {
 	pulumi.Input
 
@@ -2976,7 +7171,7 @@ func (o NodePoolKubernetesConfigTaintOutput) ToNodePoolKubernetesConfigTaintOutp
 	return o
 }
 
-// The Effect of Taints.
+// The Effect of Taints, the value can be `NoSchedule` or `NoExecute` or `PreferNoSchedule`.
 func (o NodePoolKubernetesConfigTaintOutput) Effect() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NodePoolKubernetesConfigTaint) *string { return v.Effect }).(pulumi.StringPtrOutput)
 }
@@ -3014,14 +7209,30 @@ func (o NodePoolKubernetesConfigTaintArrayOutput) Index(i pulumi.IntInput) NodeP
 type NodePoolNodeConfig struct {
 	// The AdditionalContainerStorageEnabled of NodeConfig.
 	AdditionalContainerStorageEnabled *bool `pulumi:"additionalContainerStorageEnabled"`
+	// Is AutoRenew of PrePaid instance of NodeConfig. Valid values: true, false. when InstanceChargeType is PrePaid, default value is true.
+	AutoRenew *bool `pulumi:"autoRenew"`
+	// The AutoRenewPeriod of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 6, 12. Unit: month. when InstanceChargeType is PrePaid and AutoRenew enable, default value is 1.
+	AutoRenewPeriod *int `pulumi:"autoRenewPeriod"`
 	// The DataVolumes of NodeConfig.
 	DataVolumes []NodePoolNodeConfigDataVolume `pulumi:"dataVolumes"`
+	// Tags for Ecs.
+	EcsTags []NodePoolNodeConfigEcsTag `pulumi:"ecsTags"`
+	// The IDs of HpcCluster, only one ID is supported currently.
+	HpcClusterIds []string `pulumi:"hpcClusterIds"`
+	// The ImageId of NodeConfig.
+	ImageId *string `pulumi:"imageId"`
 	// The initializeScript of NodeConfig.
 	InitializeScript *string `pulumi:"initializeScript"`
+	// The InstanceChargeType of PrePaid instance of NodeConfig. Valid values: PostPaid, PrePaid. Default value: PostPaid.
+	InstanceChargeType *string `pulumi:"instanceChargeType"`
 	// The InstanceTypeIds of NodeConfig.
 	InstanceTypeIds []string `pulumi:"instanceTypeIds"`
+	// The NamePrefix of NodeConfig.
+	NamePrefix *string `pulumi:"namePrefix"`
+	// The Period of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36. Unit: month. when InstanceChargeType is PrePaid, default value is 12.
+	Period *int `pulumi:"period"`
 	// The Security of NodeConfig.
-	Security *NodePoolNodeConfigSecurity `pulumi:"security"`
+	Security NodePoolNodeConfigSecurity `pulumi:"security"`
 	// The SubnetIds of NodeConfig.
 	SubnetIds []string `pulumi:"subnetIds"`
 	// The SystemVolume of NodeConfig.
@@ -3031,7 +7242,7 @@ type NodePoolNodeConfig struct {
 // NodePoolNodeConfigInput is an input type that accepts NodePoolNodeConfigArgs and NodePoolNodeConfigOutput values.
 // You can construct a concrete instance of `NodePoolNodeConfigInput` via:
 //
-//          NodePoolNodeConfigArgs{...}
+//	NodePoolNodeConfigArgs{...}
 type NodePoolNodeConfigInput interface {
 	pulumi.Input
 
@@ -3042,14 +7253,30 @@ type NodePoolNodeConfigInput interface {
 type NodePoolNodeConfigArgs struct {
 	// The AdditionalContainerStorageEnabled of NodeConfig.
 	AdditionalContainerStorageEnabled pulumi.BoolPtrInput `pulumi:"additionalContainerStorageEnabled"`
+	// Is AutoRenew of PrePaid instance of NodeConfig. Valid values: true, false. when InstanceChargeType is PrePaid, default value is true.
+	AutoRenew pulumi.BoolPtrInput `pulumi:"autoRenew"`
+	// The AutoRenewPeriod of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 6, 12. Unit: month. when InstanceChargeType is PrePaid and AutoRenew enable, default value is 1.
+	AutoRenewPeriod pulumi.IntPtrInput `pulumi:"autoRenewPeriod"`
 	// The DataVolumes of NodeConfig.
 	DataVolumes NodePoolNodeConfigDataVolumeArrayInput `pulumi:"dataVolumes"`
+	// Tags for Ecs.
+	EcsTags NodePoolNodeConfigEcsTagArrayInput `pulumi:"ecsTags"`
+	// The IDs of HpcCluster, only one ID is supported currently.
+	HpcClusterIds pulumi.StringArrayInput `pulumi:"hpcClusterIds"`
+	// The ImageId of NodeConfig.
+	ImageId pulumi.StringPtrInput `pulumi:"imageId"`
 	// The initializeScript of NodeConfig.
 	InitializeScript pulumi.StringPtrInput `pulumi:"initializeScript"`
+	// The InstanceChargeType of PrePaid instance of NodeConfig. Valid values: PostPaid, PrePaid. Default value: PostPaid.
+	InstanceChargeType pulumi.StringPtrInput `pulumi:"instanceChargeType"`
 	// The InstanceTypeIds of NodeConfig.
 	InstanceTypeIds pulumi.StringArrayInput `pulumi:"instanceTypeIds"`
+	// The NamePrefix of NodeConfig.
+	NamePrefix pulumi.StringPtrInput `pulumi:"namePrefix"`
+	// The Period of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36. Unit: month. when InstanceChargeType is PrePaid, default value is 12.
+	Period pulumi.IntPtrInput `pulumi:"period"`
 	// The Security of NodeConfig.
-	Security NodePoolNodeConfigSecurityPtrInput `pulumi:"security"`
+	Security NodePoolNodeConfigSecurityInput `pulumi:"security"`
 	// The SubnetIds of NodeConfig.
 	SubnetIds pulumi.StringArrayInput `pulumi:"subnetIds"`
 	// The SystemVolume of NodeConfig.
@@ -3079,11 +7306,11 @@ func (i NodePoolNodeConfigArgs) ToNodePoolNodeConfigPtrOutputWithContext(ctx con
 // NodePoolNodeConfigPtrInput is an input type that accepts NodePoolNodeConfigArgs, NodePoolNodeConfigPtr and NodePoolNodeConfigPtrOutput values.
 // You can construct a concrete instance of `NodePoolNodeConfigPtrInput` via:
 //
-//          NodePoolNodeConfigArgs{...}
+//	        NodePoolNodeConfigArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type NodePoolNodeConfigPtrInput interface {
 	pulumi.Input
 
@@ -3138,9 +7365,34 @@ func (o NodePoolNodeConfigOutput) AdditionalContainerStorageEnabled() pulumi.Boo
 	return o.ApplyT(func(v NodePoolNodeConfig) *bool { return v.AdditionalContainerStorageEnabled }).(pulumi.BoolPtrOutput)
 }
 
+// Is AutoRenew of PrePaid instance of NodeConfig. Valid values: true, false. when InstanceChargeType is PrePaid, default value is true.
+func (o NodePoolNodeConfigOutput) AutoRenew() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v NodePoolNodeConfig) *bool { return v.AutoRenew }).(pulumi.BoolPtrOutput)
+}
+
+// The AutoRenewPeriod of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 6, 12. Unit: month. when InstanceChargeType is PrePaid and AutoRenew enable, default value is 1.
+func (o NodePoolNodeConfigOutput) AutoRenewPeriod() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v NodePoolNodeConfig) *int { return v.AutoRenewPeriod }).(pulumi.IntPtrOutput)
+}
+
 // The DataVolumes of NodeConfig.
 func (o NodePoolNodeConfigOutput) DataVolumes() NodePoolNodeConfigDataVolumeArrayOutput {
 	return o.ApplyT(func(v NodePoolNodeConfig) []NodePoolNodeConfigDataVolume { return v.DataVolumes }).(NodePoolNodeConfigDataVolumeArrayOutput)
+}
+
+// Tags for Ecs.
+func (o NodePoolNodeConfigOutput) EcsTags() NodePoolNodeConfigEcsTagArrayOutput {
+	return o.ApplyT(func(v NodePoolNodeConfig) []NodePoolNodeConfigEcsTag { return v.EcsTags }).(NodePoolNodeConfigEcsTagArrayOutput)
+}
+
+// The IDs of HpcCluster, only one ID is supported currently.
+func (o NodePoolNodeConfigOutput) HpcClusterIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NodePoolNodeConfig) []string { return v.HpcClusterIds }).(pulumi.StringArrayOutput)
+}
+
+// The ImageId of NodeConfig.
+func (o NodePoolNodeConfigOutput) ImageId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NodePoolNodeConfig) *string { return v.ImageId }).(pulumi.StringPtrOutput)
 }
 
 // The initializeScript of NodeConfig.
@@ -3148,14 +7400,29 @@ func (o NodePoolNodeConfigOutput) InitializeScript() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NodePoolNodeConfig) *string { return v.InitializeScript }).(pulumi.StringPtrOutput)
 }
 
+// The InstanceChargeType of PrePaid instance of NodeConfig. Valid values: PostPaid, PrePaid. Default value: PostPaid.
+func (o NodePoolNodeConfigOutput) InstanceChargeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NodePoolNodeConfig) *string { return v.InstanceChargeType }).(pulumi.StringPtrOutput)
+}
+
 // The InstanceTypeIds of NodeConfig.
 func (o NodePoolNodeConfigOutput) InstanceTypeIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v NodePoolNodeConfig) []string { return v.InstanceTypeIds }).(pulumi.StringArrayOutput)
 }
 
+// The NamePrefix of NodeConfig.
+func (o NodePoolNodeConfigOutput) NamePrefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NodePoolNodeConfig) *string { return v.NamePrefix }).(pulumi.StringPtrOutput)
+}
+
+// The Period of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36. Unit: month. when InstanceChargeType is PrePaid, default value is 12.
+func (o NodePoolNodeConfigOutput) Period() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v NodePoolNodeConfig) *int { return v.Period }).(pulumi.IntPtrOutput)
+}
+
 // The Security of NodeConfig.
-func (o NodePoolNodeConfigOutput) Security() NodePoolNodeConfigSecurityPtrOutput {
-	return o.ApplyT(func(v NodePoolNodeConfig) *NodePoolNodeConfigSecurity { return v.Security }).(NodePoolNodeConfigSecurityPtrOutput)
+func (o NodePoolNodeConfigOutput) Security() NodePoolNodeConfigSecurityOutput {
+	return o.ApplyT(func(v NodePoolNodeConfig) NodePoolNodeConfigSecurity { return v.Security }).(NodePoolNodeConfigSecurityOutput)
 }
 
 // The SubnetIds of NodeConfig.
@@ -3202,6 +7469,26 @@ func (o NodePoolNodeConfigPtrOutput) AdditionalContainerStorageEnabled() pulumi.
 	}).(pulumi.BoolPtrOutput)
 }
 
+// Is AutoRenew of PrePaid instance of NodeConfig. Valid values: true, false. when InstanceChargeType is PrePaid, default value is true.
+func (o NodePoolNodeConfigPtrOutput) AutoRenew() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *NodePoolNodeConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.AutoRenew
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The AutoRenewPeriod of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 6, 12. Unit: month. when InstanceChargeType is PrePaid and AutoRenew enable, default value is 1.
+func (o NodePoolNodeConfigPtrOutput) AutoRenewPeriod() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *NodePoolNodeConfig) *int {
+		if v == nil {
+			return nil
+		}
+		return v.AutoRenewPeriod
+	}).(pulumi.IntPtrOutput)
+}
+
 // The DataVolumes of NodeConfig.
 func (o NodePoolNodeConfigPtrOutput) DataVolumes() NodePoolNodeConfigDataVolumeArrayOutput {
 	return o.ApplyT(func(v *NodePoolNodeConfig) []NodePoolNodeConfigDataVolume {
@@ -3212,6 +7499,36 @@ func (o NodePoolNodeConfigPtrOutput) DataVolumes() NodePoolNodeConfigDataVolumeA
 	}).(NodePoolNodeConfigDataVolumeArrayOutput)
 }
 
+// Tags for Ecs.
+func (o NodePoolNodeConfigPtrOutput) EcsTags() NodePoolNodeConfigEcsTagArrayOutput {
+	return o.ApplyT(func(v *NodePoolNodeConfig) []NodePoolNodeConfigEcsTag {
+		if v == nil {
+			return nil
+		}
+		return v.EcsTags
+	}).(NodePoolNodeConfigEcsTagArrayOutput)
+}
+
+// The IDs of HpcCluster, only one ID is supported currently.
+func (o NodePoolNodeConfigPtrOutput) HpcClusterIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *NodePoolNodeConfig) []string {
+		if v == nil {
+			return nil
+		}
+		return v.HpcClusterIds
+	}).(pulumi.StringArrayOutput)
+}
+
+// The ImageId of NodeConfig.
+func (o NodePoolNodeConfigPtrOutput) ImageId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NodePoolNodeConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ImageId
+	}).(pulumi.StringPtrOutput)
+}
+
 // The initializeScript of NodeConfig.
 func (o NodePoolNodeConfigPtrOutput) InitializeScript() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *NodePoolNodeConfig) *string {
@@ -3219,6 +7536,16 @@ func (o NodePoolNodeConfigPtrOutput) InitializeScript() pulumi.StringPtrOutput {
 			return nil
 		}
 		return v.InitializeScript
+	}).(pulumi.StringPtrOutput)
+}
+
+// The InstanceChargeType of PrePaid instance of NodeConfig. Valid values: PostPaid, PrePaid. Default value: PostPaid.
+func (o NodePoolNodeConfigPtrOutput) InstanceChargeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NodePoolNodeConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.InstanceChargeType
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -3232,13 +7559,33 @@ func (o NodePoolNodeConfigPtrOutput) InstanceTypeIds() pulumi.StringArrayOutput 
 	}).(pulumi.StringArrayOutput)
 }
 
+// The NamePrefix of NodeConfig.
+func (o NodePoolNodeConfigPtrOutput) NamePrefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NodePoolNodeConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NamePrefix
+	}).(pulumi.StringPtrOutput)
+}
+
+// The Period of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36. Unit: month. when InstanceChargeType is PrePaid, default value is 12.
+func (o NodePoolNodeConfigPtrOutput) Period() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *NodePoolNodeConfig) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Period
+	}).(pulumi.IntPtrOutput)
+}
+
 // The Security of NodeConfig.
 func (o NodePoolNodeConfigPtrOutput) Security() NodePoolNodeConfigSecurityPtrOutput {
 	return o.ApplyT(func(v *NodePoolNodeConfig) *NodePoolNodeConfigSecurity {
 		if v == nil {
 			return nil
 		}
-		return v.Security
+		return &v.Security
 	}).(NodePoolNodeConfigSecurityPtrOutput)
 }
 
@@ -3263,16 +7610,18 @@ func (o NodePoolNodeConfigPtrOutput) SystemVolume() NodePoolNodeConfigSystemVolu
 }
 
 type NodePoolNodeConfigDataVolume struct {
-	// The Size of DataVolumes.
+	// The target mount directory of the disk. Must start with `/`.
+	MountPoint *string `pulumi:"mountPoint"`
+	// The Size of DataVolumes, the value range in 20~32768.
 	Size *int `pulumi:"size"`
-	// The Type of DataVolumes.
+	// The Type of DataVolumes, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`.
 	Type *string `pulumi:"type"`
 }
 
 // NodePoolNodeConfigDataVolumeInput is an input type that accepts NodePoolNodeConfigDataVolumeArgs and NodePoolNodeConfigDataVolumeOutput values.
 // You can construct a concrete instance of `NodePoolNodeConfigDataVolumeInput` via:
 //
-//          NodePoolNodeConfigDataVolumeArgs{...}
+//	NodePoolNodeConfigDataVolumeArgs{...}
 type NodePoolNodeConfigDataVolumeInput interface {
 	pulumi.Input
 
@@ -3281,9 +7630,11 @@ type NodePoolNodeConfigDataVolumeInput interface {
 }
 
 type NodePoolNodeConfigDataVolumeArgs struct {
-	// The Size of DataVolumes.
+	// The target mount directory of the disk. Must start with `/`.
+	MountPoint pulumi.StringPtrInput `pulumi:"mountPoint"`
+	// The Size of DataVolumes, the value range in 20~32768.
 	Size pulumi.IntPtrInput `pulumi:"size"`
-	// The Type of DataVolumes.
+	// The Type of DataVolumes, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`.
 	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
@@ -3302,7 +7653,7 @@ func (i NodePoolNodeConfigDataVolumeArgs) ToNodePoolNodeConfigDataVolumeOutputWi
 // NodePoolNodeConfigDataVolumeArrayInput is an input type that accepts NodePoolNodeConfigDataVolumeArray and NodePoolNodeConfigDataVolumeArrayOutput values.
 // You can construct a concrete instance of `NodePoolNodeConfigDataVolumeArrayInput` via:
 //
-//          NodePoolNodeConfigDataVolumeArray{ NodePoolNodeConfigDataVolumeArgs{...} }
+//	NodePoolNodeConfigDataVolumeArray{ NodePoolNodeConfigDataVolumeArgs{...} }
 type NodePoolNodeConfigDataVolumeArrayInput interface {
 	pulumi.Input
 
@@ -3338,12 +7689,17 @@ func (o NodePoolNodeConfigDataVolumeOutput) ToNodePoolNodeConfigDataVolumeOutput
 	return o
 }
 
-// The Size of DataVolumes.
+// The target mount directory of the disk. Must start with `/`.
+func (o NodePoolNodeConfigDataVolumeOutput) MountPoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NodePoolNodeConfigDataVolume) *string { return v.MountPoint }).(pulumi.StringPtrOutput)
+}
+
+// The Size of DataVolumes, the value range in 20~32768.
 func (o NodePoolNodeConfigDataVolumeOutput) Size() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v NodePoolNodeConfigDataVolume) *int { return v.Size }).(pulumi.IntPtrOutput)
 }
 
-// The Type of DataVolumes.
+// The Type of DataVolumes, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`.
 func (o NodePoolNodeConfigDataVolumeOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NodePoolNodeConfigDataVolume) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
@@ -3368,19 +7724,125 @@ func (o NodePoolNodeConfigDataVolumeArrayOutput) Index(i pulumi.IntInput) NodePo
 	}).(NodePoolNodeConfigDataVolumeOutput)
 }
 
+type NodePoolNodeConfigEcsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// NodePoolNodeConfigEcsTagInput is an input type that accepts NodePoolNodeConfigEcsTagArgs and NodePoolNodeConfigEcsTagOutput values.
+// You can construct a concrete instance of `NodePoolNodeConfigEcsTagInput` via:
+//
+//	NodePoolNodeConfigEcsTagArgs{...}
+type NodePoolNodeConfigEcsTagInput interface {
+	pulumi.Input
+
+	ToNodePoolNodeConfigEcsTagOutput() NodePoolNodeConfigEcsTagOutput
+	ToNodePoolNodeConfigEcsTagOutputWithContext(context.Context) NodePoolNodeConfigEcsTagOutput
+}
+
+type NodePoolNodeConfigEcsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (NodePoolNodeConfigEcsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolNodeConfigEcsTag)(nil)).Elem()
+}
+
+func (i NodePoolNodeConfigEcsTagArgs) ToNodePoolNodeConfigEcsTagOutput() NodePoolNodeConfigEcsTagOutput {
+	return i.ToNodePoolNodeConfigEcsTagOutputWithContext(context.Background())
+}
+
+func (i NodePoolNodeConfigEcsTagArgs) ToNodePoolNodeConfigEcsTagOutputWithContext(ctx context.Context) NodePoolNodeConfigEcsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolNodeConfigEcsTagOutput)
+}
+
+// NodePoolNodeConfigEcsTagArrayInput is an input type that accepts NodePoolNodeConfigEcsTagArray and NodePoolNodeConfigEcsTagArrayOutput values.
+// You can construct a concrete instance of `NodePoolNodeConfigEcsTagArrayInput` via:
+//
+//	NodePoolNodeConfigEcsTagArray{ NodePoolNodeConfigEcsTagArgs{...} }
+type NodePoolNodeConfigEcsTagArrayInput interface {
+	pulumi.Input
+
+	ToNodePoolNodeConfigEcsTagArrayOutput() NodePoolNodeConfigEcsTagArrayOutput
+	ToNodePoolNodeConfigEcsTagArrayOutputWithContext(context.Context) NodePoolNodeConfigEcsTagArrayOutput
+}
+
+type NodePoolNodeConfigEcsTagArray []NodePoolNodeConfigEcsTagInput
+
+func (NodePoolNodeConfigEcsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodePoolNodeConfigEcsTag)(nil)).Elem()
+}
+
+func (i NodePoolNodeConfigEcsTagArray) ToNodePoolNodeConfigEcsTagArrayOutput() NodePoolNodeConfigEcsTagArrayOutput {
+	return i.ToNodePoolNodeConfigEcsTagArrayOutputWithContext(context.Background())
+}
+
+func (i NodePoolNodeConfigEcsTagArray) ToNodePoolNodeConfigEcsTagArrayOutputWithContext(ctx context.Context) NodePoolNodeConfigEcsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolNodeConfigEcsTagArrayOutput)
+}
+
+type NodePoolNodeConfigEcsTagOutput struct{ *pulumi.OutputState }
+
+func (NodePoolNodeConfigEcsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolNodeConfigEcsTag)(nil)).Elem()
+}
+
+func (o NodePoolNodeConfigEcsTagOutput) ToNodePoolNodeConfigEcsTagOutput() NodePoolNodeConfigEcsTagOutput {
+	return o
+}
+
+func (o NodePoolNodeConfigEcsTagOutput) ToNodePoolNodeConfigEcsTagOutputWithContext(ctx context.Context) NodePoolNodeConfigEcsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o NodePoolNodeConfigEcsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v NodePoolNodeConfigEcsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o NodePoolNodeConfigEcsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v NodePoolNodeConfigEcsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type NodePoolNodeConfigEcsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (NodePoolNodeConfigEcsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodePoolNodeConfigEcsTag)(nil)).Elem()
+}
+
+func (o NodePoolNodeConfigEcsTagArrayOutput) ToNodePoolNodeConfigEcsTagArrayOutput() NodePoolNodeConfigEcsTagArrayOutput {
+	return o
+}
+
+func (o NodePoolNodeConfigEcsTagArrayOutput) ToNodePoolNodeConfigEcsTagArrayOutputWithContext(ctx context.Context) NodePoolNodeConfigEcsTagArrayOutput {
+	return o
+}
+
+func (o NodePoolNodeConfigEcsTagArrayOutput) Index(i pulumi.IntInput) NodePoolNodeConfigEcsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NodePoolNodeConfigEcsTag {
+		return vs[0].([]NodePoolNodeConfigEcsTag)[vs[1].(int)]
+	}).(NodePoolNodeConfigEcsTagOutput)
+}
+
 type NodePoolNodeConfigSecurity struct {
 	// The Login of Security.
 	Login *NodePoolNodeConfigSecurityLogin `pulumi:"login"`
 	// The SecurityGroupIds of Security.
 	SecurityGroupIds []string `pulumi:"securityGroupIds"`
-	// The SecurityStrategies of Security.
+	// The SecurityStrategies of Security, the value can be empty or `Hids`.
 	SecurityStrategies []string `pulumi:"securityStrategies"`
 }
 
 // NodePoolNodeConfigSecurityInput is an input type that accepts NodePoolNodeConfigSecurityArgs and NodePoolNodeConfigSecurityOutput values.
 // You can construct a concrete instance of `NodePoolNodeConfigSecurityInput` via:
 //
-//          NodePoolNodeConfigSecurityArgs{...}
+//	NodePoolNodeConfigSecurityArgs{...}
 type NodePoolNodeConfigSecurityInput interface {
 	pulumi.Input
 
@@ -3393,7 +7855,7 @@ type NodePoolNodeConfigSecurityArgs struct {
 	Login NodePoolNodeConfigSecurityLoginPtrInput `pulumi:"login"`
 	// The SecurityGroupIds of Security.
 	SecurityGroupIds pulumi.StringArrayInput `pulumi:"securityGroupIds"`
-	// The SecurityStrategies of Security.
+	// The SecurityStrategies of Security, the value can be empty or `Hids`.
 	SecurityStrategies pulumi.StringArrayInput `pulumi:"securityStrategies"`
 }
 
@@ -3420,11 +7882,11 @@ func (i NodePoolNodeConfigSecurityArgs) ToNodePoolNodeConfigSecurityPtrOutputWit
 // NodePoolNodeConfigSecurityPtrInput is an input type that accepts NodePoolNodeConfigSecurityArgs, NodePoolNodeConfigSecurityPtr and NodePoolNodeConfigSecurityPtrOutput values.
 // You can construct a concrete instance of `NodePoolNodeConfigSecurityPtrInput` via:
 //
-//          NodePoolNodeConfigSecurityArgs{...}
+//	        NodePoolNodeConfigSecurityArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type NodePoolNodeConfigSecurityPtrInput interface {
 	pulumi.Input
 
@@ -3484,7 +7946,7 @@ func (o NodePoolNodeConfigSecurityOutput) SecurityGroupIds() pulumi.StringArrayO
 	return o.ApplyT(func(v NodePoolNodeConfigSecurity) []string { return v.SecurityGroupIds }).(pulumi.StringArrayOutput)
 }
 
-// The SecurityStrategies of Security.
+// The SecurityStrategies of Security, the value can be empty or `Hids`.
 func (o NodePoolNodeConfigSecurityOutput) SecurityStrategies() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v NodePoolNodeConfigSecurity) []string { return v.SecurityStrategies }).(pulumi.StringArrayOutput)
 }
@@ -3533,7 +7995,7 @@ func (o NodePoolNodeConfigSecurityPtrOutput) SecurityGroupIds() pulumi.StringArr
 	}).(pulumi.StringArrayOutput)
 }
 
-// The SecurityStrategies of Security.
+// The SecurityStrategies of Security, the value can be empty or `Hids`.
 func (o NodePoolNodeConfigSecurityPtrOutput) SecurityStrategies() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *NodePoolNodeConfigSecurity) []string {
 		if v == nil {
@@ -3544,7 +8006,7 @@ func (o NodePoolNodeConfigSecurityPtrOutput) SecurityStrategies() pulumi.StringA
 }
 
 type NodePoolNodeConfigSecurityLogin struct {
-	// The Password of Security.
+	// The Password of Security, this field must be encoded with base64.
 	Password *string `pulumi:"password"`
 	// The SshKeyPairName of Security.
 	SshKeyPairName *string `pulumi:"sshKeyPairName"`
@@ -3553,7 +8015,7 @@ type NodePoolNodeConfigSecurityLogin struct {
 // NodePoolNodeConfigSecurityLoginInput is an input type that accepts NodePoolNodeConfigSecurityLoginArgs and NodePoolNodeConfigSecurityLoginOutput values.
 // You can construct a concrete instance of `NodePoolNodeConfigSecurityLoginInput` via:
 //
-//          NodePoolNodeConfigSecurityLoginArgs{...}
+//	NodePoolNodeConfigSecurityLoginArgs{...}
 type NodePoolNodeConfigSecurityLoginInput interface {
 	pulumi.Input
 
@@ -3562,7 +8024,7 @@ type NodePoolNodeConfigSecurityLoginInput interface {
 }
 
 type NodePoolNodeConfigSecurityLoginArgs struct {
-	// The Password of Security.
+	// The Password of Security, this field must be encoded with base64.
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// The SshKeyPairName of Security.
 	SshKeyPairName pulumi.StringPtrInput `pulumi:"sshKeyPairName"`
@@ -3591,11 +8053,11 @@ func (i NodePoolNodeConfigSecurityLoginArgs) ToNodePoolNodeConfigSecurityLoginPt
 // NodePoolNodeConfigSecurityLoginPtrInput is an input type that accepts NodePoolNodeConfigSecurityLoginArgs, NodePoolNodeConfigSecurityLoginPtr and NodePoolNodeConfigSecurityLoginPtrOutput values.
 // You can construct a concrete instance of `NodePoolNodeConfigSecurityLoginPtrInput` via:
 //
-//          NodePoolNodeConfigSecurityLoginArgs{...}
+//	        NodePoolNodeConfigSecurityLoginArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type NodePoolNodeConfigSecurityLoginPtrInput interface {
 	pulumi.Input
 
@@ -3645,7 +8107,7 @@ func (o NodePoolNodeConfigSecurityLoginOutput) ToNodePoolNodeConfigSecurityLogin
 	}).(NodePoolNodeConfigSecurityLoginPtrOutput)
 }
 
-// The Password of Security.
+// The Password of Security, this field must be encoded with base64.
 func (o NodePoolNodeConfigSecurityLoginOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NodePoolNodeConfigSecurityLogin) *string { return v.Password }).(pulumi.StringPtrOutput)
 }
@@ -3679,7 +8141,7 @@ func (o NodePoolNodeConfigSecurityLoginPtrOutput) Elem() NodePoolNodeConfigSecur
 	}).(NodePoolNodeConfigSecurityLoginOutput)
 }
 
-// The Password of Security.
+// The Password of Security, this field must be encoded with base64.
 func (o NodePoolNodeConfigSecurityLoginPtrOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *NodePoolNodeConfigSecurityLogin) *string {
 		if v == nil {
@@ -3700,16 +8162,16 @@ func (o NodePoolNodeConfigSecurityLoginPtrOutput) SshKeyPairName() pulumi.String
 }
 
 type NodePoolNodeConfigSystemVolume struct {
-	// The Size of SystemVolume.
+	// The Size of SystemVolume, the value range in 20~2048.
 	Size *int `pulumi:"size"`
-	// The Type of SystemVolume.
+	// The Type of SystemVolume, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`.
 	Type *string `pulumi:"type"`
 }
 
 // NodePoolNodeConfigSystemVolumeInput is an input type that accepts NodePoolNodeConfigSystemVolumeArgs and NodePoolNodeConfigSystemVolumeOutput values.
 // You can construct a concrete instance of `NodePoolNodeConfigSystemVolumeInput` via:
 //
-//          NodePoolNodeConfigSystemVolumeArgs{...}
+//	NodePoolNodeConfigSystemVolumeArgs{...}
 type NodePoolNodeConfigSystemVolumeInput interface {
 	pulumi.Input
 
@@ -3718,9 +8180,9 @@ type NodePoolNodeConfigSystemVolumeInput interface {
 }
 
 type NodePoolNodeConfigSystemVolumeArgs struct {
-	// The Size of SystemVolume.
+	// The Size of SystemVolume, the value range in 20~2048.
 	Size pulumi.IntPtrInput `pulumi:"size"`
-	// The Type of SystemVolume.
+	// The Type of SystemVolume, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`.
 	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
@@ -3747,11 +8209,11 @@ func (i NodePoolNodeConfigSystemVolumeArgs) ToNodePoolNodeConfigSystemVolumePtrO
 // NodePoolNodeConfigSystemVolumePtrInput is an input type that accepts NodePoolNodeConfigSystemVolumeArgs, NodePoolNodeConfigSystemVolumePtr and NodePoolNodeConfigSystemVolumePtrOutput values.
 // You can construct a concrete instance of `NodePoolNodeConfigSystemVolumePtrInput` via:
 //
-//          NodePoolNodeConfigSystemVolumeArgs{...}
+//	        NodePoolNodeConfigSystemVolumeArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type NodePoolNodeConfigSystemVolumePtrInput interface {
 	pulumi.Input
 
@@ -3801,12 +8263,12 @@ func (o NodePoolNodeConfigSystemVolumeOutput) ToNodePoolNodeConfigSystemVolumePt
 	}).(NodePoolNodeConfigSystemVolumePtrOutput)
 }
 
-// The Size of SystemVolume.
+// The Size of SystemVolume, the value range in 20~2048.
 func (o NodePoolNodeConfigSystemVolumeOutput) Size() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v NodePoolNodeConfigSystemVolume) *int { return v.Size }).(pulumi.IntPtrOutput)
 }
 
-// The Type of SystemVolume.
+// The Type of SystemVolume, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`.
 func (o NodePoolNodeConfigSystemVolumeOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NodePoolNodeConfigSystemVolume) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
@@ -3835,7 +8297,7 @@ func (o NodePoolNodeConfigSystemVolumePtrOutput) Elem() NodePoolNodeConfigSystem
 	}).(NodePoolNodeConfigSystemVolumeOutput)
 }
 
-// The Size of SystemVolume.
+// The Size of SystemVolume, the value range in 20~2048.
 func (o NodePoolNodeConfigSystemVolumePtrOutput) Size() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *NodePoolNodeConfigSystemVolume) *int {
 		if v == nil {
@@ -3845,7 +8307,7 @@ func (o NodePoolNodeConfigSystemVolumePtrOutput) Size() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// The Type of SystemVolume.
+// The Type of SystemVolume, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`.
 func (o NodePoolNodeConfigSystemVolumePtrOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *NodePoolNodeConfigSystemVolume) *string {
 		if v == nil {
@@ -3855,115 +8317,119 @@ func (o NodePoolNodeConfigSystemVolumePtrOutput) Type() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-type NodePoolStatus struct {
-	// Indicates the status condition of the node pool in the active state.
-	ConditionsType *string `pulumi:"conditionsType"`
-	// The Phase of Status.
-	Phase *string `pulumi:"phase"`
+type NodePoolTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
 }
 
-// NodePoolStatusInput is an input type that accepts NodePoolStatusArgs and NodePoolStatusOutput values.
-// You can construct a concrete instance of `NodePoolStatusInput` via:
+// NodePoolTagInput is an input type that accepts NodePoolTagArgs and NodePoolTagOutput values.
+// You can construct a concrete instance of `NodePoolTagInput` via:
 //
-//          NodePoolStatusArgs{...}
-type NodePoolStatusInput interface {
+//	NodePoolTagArgs{...}
+type NodePoolTagInput interface {
 	pulumi.Input
 
-	ToNodePoolStatusOutput() NodePoolStatusOutput
-	ToNodePoolStatusOutputWithContext(context.Context) NodePoolStatusOutput
+	ToNodePoolTagOutput() NodePoolTagOutput
+	ToNodePoolTagOutputWithContext(context.Context) NodePoolTagOutput
 }
 
-type NodePoolStatusArgs struct {
-	// Indicates the status condition of the node pool in the active state.
-	ConditionsType pulumi.StringPtrInput `pulumi:"conditionsType"`
-	// The Phase of Status.
-	Phase pulumi.StringPtrInput `pulumi:"phase"`
+type NodePoolTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
 }
 
-func (NodePoolStatusArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*NodePoolStatus)(nil)).Elem()
+func (NodePoolTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolTag)(nil)).Elem()
 }
 
-func (i NodePoolStatusArgs) ToNodePoolStatusOutput() NodePoolStatusOutput {
-	return i.ToNodePoolStatusOutputWithContext(context.Background())
+func (i NodePoolTagArgs) ToNodePoolTagOutput() NodePoolTagOutput {
+	return i.ToNodePoolTagOutputWithContext(context.Background())
 }
 
-func (i NodePoolStatusArgs) ToNodePoolStatusOutputWithContext(ctx context.Context) NodePoolStatusOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodePoolStatusOutput)
+func (i NodePoolTagArgs) ToNodePoolTagOutputWithContext(ctx context.Context) NodePoolTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolTagOutput)
 }
 
-// NodePoolStatusArrayInput is an input type that accepts NodePoolStatusArray and NodePoolStatusArrayOutput values.
-// You can construct a concrete instance of `NodePoolStatusArrayInput` via:
+// NodePoolTagArrayInput is an input type that accepts NodePoolTagArray and NodePoolTagArrayOutput values.
+// You can construct a concrete instance of `NodePoolTagArrayInput` via:
 //
-//          NodePoolStatusArray{ NodePoolStatusArgs{...} }
-type NodePoolStatusArrayInput interface {
+//	NodePoolTagArray{ NodePoolTagArgs{...} }
+type NodePoolTagArrayInput interface {
 	pulumi.Input
 
-	ToNodePoolStatusArrayOutput() NodePoolStatusArrayOutput
-	ToNodePoolStatusArrayOutputWithContext(context.Context) NodePoolStatusArrayOutput
+	ToNodePoolTagArrayOutput() NodePoolTagArrayOutput
+	ToNodePoolTagArrayOutputWithContext(context.Context) NodePoolTagArrayOutput
 }
 
-type NodePoolStatusArray []NodePoolStatusInput
+type NodePoolTagArray []NodePoolTagInput
 
-func (NodePoolStatusArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]NodePoolStatus)(nil)).Elem()
+func (NodePoolTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodePoolTag)(nil)).Elem()
 }
 
-func (i NodePoolStatusArray) ToNodePoolStatusArrayOutput() NodePoolStatusArrayOutput {
-	return i.ToNodePoolStatusArrayOutputWithContext(context.Background())
+func (i NodePoolTagArray) ToNodePoolTagArrayOutput() NodePoolTagArrayOutput {
+	return i.ToNodePoolTagArrayOutputWithContext(context.Background())
 }
 
-func (i NodePoolStatusArray) ToNodePoolStatusArrayOutputWithContext(ctx context.Context) NodePoolStatusArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodePoolStatusArrayOutput)
+func (i NodePoolTagArray) ToNodePoolTagArrayOutputWithContext(ctx context.Context) NodePoolTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolTagArrayOutput)
 }
 
-type NodePoolStatusOutput struct{ *pulumi.OutputState }
+type NodePoolTagOutput struct{ *pulumi.OutputState }
 
-func (NodePoolStatusOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*NodePoolStatus)(nil)).Elem()
+func (NodePoolTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolTag)(nil)).Elem()
 }
 
-func (o NodePoolStatusOutput) ToNodePoolStatusOutput() NodePoolStatusOutput {
+func (o NodePoolTagOutput) ToNodePoolTagOutput() NodePoolTagOutput {
 	return o
 }
 
-func (o NodePoolStatusOutput) ToNodePoolStatusOutputWithContext(ctx context.Context) NodePoolStatusOutput {
+func (o NodePoolTagOutput) ToNodePoolTagOutputWithContext(ctx context.Context) NodePoolTagOutput {
 	return o
 }
 
-// Indicates the status condition of the node pool in the active state.
-func (o NodePoolStatusOutput) ConditionsType() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v NodePoolStatus) *string { return v.ConditionsType }).(pulumi.StringPtrOutput)
+// The Key of Tags.
+func (o NodePoolTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v NodePoolTag) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// The Phase of Status.
-func (o NodePoolStatusOutput) Phase() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v NodePoolStatus) *string { return v.Phase }).(pulumi.StringPtrOutput)
+// The Value of Tags.
+func (o NodePoolTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v NodePoolTag) string { return v.Value }).(pulumi.StringOutput)
 }
 
-type NodePoolStatusArrayOutput struct{ *pulumi.OutputState }
+type NodePoolTagArrayOutput struct{ *pulumi.OutputState }
 
-func (NodePoolStatusArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]NodePoolStatus)(nil)).Elem()
+func (NodePoolTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodePoolTag)(nil)).Elem()
 }
 
-func (o NodePoolStatusArrayOutput) ToNodePoolStatusArrayOutput() NodePoolStatusArrayOutput {
+func (o NodePoolTagArrayOutput) ToNodePoolTagArrayOutput() NodePoolTagArrayOutput {
 	return o
 }
 
-func (o NodePoolStatusArrayOutput) ToNodePoolStatusArrayOutputWithContext(ctx context.Context) NodePoolStatusArrayOutput {
+func (o NodePoolTagArrayOutput) ToNodePoolTagArrayOutputWithContext(ctx context.Context) NodePoolTagArrayOutput {
 	return o
 }
 
-func (o NodePoolStatusArrayOutput) Index(i pulumi.IntInput) NodePoolStatusOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NodePoolStatus {
-		return vs[0].([]NodePoolStatus)[vs[1].(int)]
-	}).(NodePoolStatusOutput)
+func (o NodePoolTagArrayOutput) Index(i pulumi.IntInput) NodePoolTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NodePoolTag {
+		return vs[0].([]NodePoolTag)[vs[1].(int)]
+	}).(NodePoolTagOutput)
 }
 
 type NodePoolsNodePool struct {
 	// Is AdditionalContainerStorageEnabled of NodeConfig.
 	AdditionalContainerStorageEnabled bool `pulumi:"additionalContainerStorageEnabled"`
+	// Is auto renew of the PrePaid instance of NodeConfig.
+	AutoRenew bool `pulumi:"autoRenew"`
+	// The AutoRenewPeriod of the PrePaid instance of NodeConfig.
+	AutoRenewPeriod int `pulumi:"autoRenewPeriod"`
 	// The ClusterId of NodePool.
 	ClusterId string `pulumi:"clusterId"`
 	// The Condition of Status.
@@ -3976,36 +8442,60 @@ type NodePoolsNodePool struct {
 	CreateTime string `pulumi:"createTime"`
 	// The DataVolume of NodeConfig.
 	DataVolumes []NodePoolsNodePoolDataVolume `pulumi:"dataVolumes"`
-	// The Description of NodePool.
-	Description string `pulumi:"description"`
 	// The DesiredReplicas of AutoScaling.
 	DesiredReplicas int `pulumi:"desiredReplicas"`
+	// Tags for Ecs.
+	EcsTags []NodePoolsNodePoolEcsTag `pulumi:"ecsTags"`
 	// Is Enabled of AutoScaling.
 	Enabled bool `pulumi:"enabled"`
+	// The IDs of HpcCluster.
+	HpcClusterIds []string `pulumi:"hpcClusterIds"`
 	// The Id of NodePool.
 	Id string `pulumi:"id"`
+	// The ImageId of NodeConfig.
+	ImageId string `pulumi:"imageId"`
 	// The InitializeScript of NodeConfig.
 	InitializeScript string `pulumi:"initializeScript"`
+	// The InstanceChargeType of NodeConfig.
+	InstanceChargeType string `pulumi:"instanceChargeType"`
 	// The InstanceTypeIds of NodeConfig.
 	InstanceTypeIds []string `pulumi:"instanceTypeIds"`
 	// The LabelContent of KubernetesConfig.
 	LabelContents []NodePoolsNodePoolLabelContent `pulumi:"labelContents"`
+	// The login SshKeyPairName of NodeConfig.
+	LoginKeyPairName string `pulumi:"loginKeyPairName"`
+	// The login type of NodeConfig.
+	LoginType string `pulumi:"loginType"`
 	// The MaxReplicas of AutoScaling.
 	MaxReplicas int `pulumi:"maxReplicas"`
 	// The MinReplicas of AutoScaling.
 	MinReplicas int `pulumi:"minReplicas"`
 	// The Name of NodePool.
 	Name string `pulumi:"name"`
+	// The NamePrefix of NodeConfig.
+	NamePrefix string `pulumi:"namePrefix"`
 	// The NodeStatistics of NodeConfig.
 	NodeStatistics NodePoolsNodePoolNodeStatistics `pulumi:"nodeStatistics"`
-	// The Phase of Status.
+	// The period of the PrePaid instance of NodeConfig.
+	Period int `pulumi:"period"`
+	// The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
 	Phase string `pulumi:"phase"`
 	// The Priority of AutoScaling.
 	Priority int `pulumi:"priority"`
+	// The SecurityGroupIds of NodeConfig.
+	SecurityGroupIds []string `pulumi:"securityGroupIds"`
+	// The SecurityStrategies of NodeConfig.
+	SecurityStrategies []string `pulumi:"securityStrategies"`
+	// The SecurityStrategyEnabled of NodeConfig.
+	SecurityStrategyEnabled bool `pulumi:"securityStrategyEnabled"`
 	// The SubnetId of NodeConfig.
 	SubnetIds []string `pulumi:"subnetIds"`
+	// Multi-subnet scheduling strategy for nodes. The value can be `ZoneBalance` or `Priority`.
+	SubnetPolicy string `pulumi:"subnetPolicy"`
 	// The SystemVolume of NodeConfig.
 	SystemVolume NodePoolsNodePoolSystemVolume `pulumi:"systemVolume"`
+	// Tags.
+	Tags []NodePoolsNodePoolTag `pulumi:"tags"`
 	// The TaintContent of NodeConfig.
 	TaintContents []NodePoolsNodePoolTaintContent `pulumi:"taintContents"`
 	// The ClientToken when last update was successful.
@@ -4017,7 +8507,7 @@ type NodePoolsNodePool struct {
 // NodePoolsNodePoolInput is an input type that accepts NodePoolsNodePoolArgs and NodePoolsNodePoolOutput values.
 // You can construct a concrete instance of `NodePoolsNodePoolInput` via:
 //
-//          NodePoolsNodePoolArgs{...}
+//	NodePoolsNodePoolArgs{...}
 type NodePoolsNodePoolInput interface {
 	pulumi.Input
 
@@ -4028,6 +8518,10 @@ type NodePoolsNodePoolInput interface {
 type NodePoolsNodePoolArgs struct {
 	// Is AdditionalContainerStorageEnabled of NodeConfig.
 	AdditionalContainerStorageEnabled pulumi.BoolInput `pulumi:"additionalContainerStorageEnabled"`
+	// Is auto renew of the PrePaid instance of NodeConfig.
+	AutoRenew pulumi.BoolInput `pulumi:"autoRenew"`
+	// The AutoRenewPeriod of the PrePaid instance of NodeConfig.
+	AutoRenewPeriod pulumi.IntInput `pulumi:"autoRenewPeriod"`
 	// The ClusterId of NodePool.
 	ClusterId pulumi.StringInput `pulumi:"clusterId"`
 	// The Condition of Status.
@@ -4040,36 +8534,60 @@ type NodePoolsNodePoolArgs struct {
 	CreateTime pulumi.StringInput `pulumi:"createTime"`
 	// The DataVolume of NodeConfig.
 	DataVolumes NodePoolsNodePoolDataVolumeArrayInput `pulumi:"dataVolumes"`
-	// The Description of NodePool.
-	Description pulumi.StringInput `pulumi:"description"`
 	// The DesiredReplicas of AutoScaling.
 	DesiredReplicas pulumi.IntInput `pulumi:"desiredReplicas"`
+	// Tags for Ecs.
+	EcsTags NodePoolsNodePoolEcsTagArrayInput `pulumi:"ecsTags"`
 	// Is Enabled of AutoScaling.
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// The IDs of HpcCluster.
+	HpcClusterIds pulumi.StringArrayInput `pulumi:"hpcClusterIds"`
 	// The Id of NodePool.
 	Id pulumi.StringInput `pulumi:"id"`
+	// The ImageId of NodeConfig.
+	ImageId pulumi.StringInput `pulumi:"imageId"`
 	// The InitializeScript of NodeConfig.
 	InitializeScript pulumi.StringInput `pulumi:"initializeScript"`
+	// The InstanceChargeType of NodeConfig.
+	InstanceChargeType pulumi.StringInput `pulumi:"instanceChargeType"`
 	// The InstanceTypeIds of NodeConfig.
 	InstanceTypeIds pulumi.StringArrayInput `pulumi:"instanceTypeIds"`
 	// The LabelContent of KubernetesConfig.
 	LabelContents NodePoolsNodePoolLabelContentArrayInput `pulumi:"labelContents"`
+	// The login SshKeyPairName of NodeConfig.
+	LoginKeyPairName pulumi.StringInput `pulumi:"loginKeyPairName"`
+	// The login type of NodeConfig.
+	LoginType pulumi.StringInput `pulumi:"loginType"`
 	// The MaxReplicas of AutoScaling.
 	MaxReplicas pulumi.IntInput `pulumi:"maxReplicas"`
 	// The MinReplicas of AutoScaling.
 	MinReplicas pulumi.IntInput `pulumi:"minReplicas"`
 	// The Name of NodePool.
 	Name pulumi.StringInput `pulumi:"name"`
+	// The NamePrefix of NodeConfig.
+	NamePrefix pulumi.StringInput `pulumi:"namePrefix"`
 	// The NodeStatistics of NodeConfig.
 	NodeStatistics NodePoolsNodePoolNodeStatisticsInput `pulumi:"nodeStatistics"`
-	// The Phase of Status.
+	// The period of the PrePaid instance of NodeConfig.
+	Period pulumi.IntInput `pulumi:"period"`
+	// The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
 	Phase pulumi.StringInput `pulumi:"phase"`
 	// The Priority of AutoScaling.
 	Priority pulumi.IntInput `pulumi:"priority"`
+	// The SecurityGroupIds of NodeConfig.
+	SecurityGroupIds pulumi.StringArrayInput `pulumi:"securityGroupIds"`
+	// The SecurityStrategies of NodeConfig.
+	SecurityStrategies pulumi.StringArrayInput `pulumi:"securityStrategies"`
+	// The SecurityStrategyEnabled of NodeConfig.
+	SecurityStrategyEnabled pulumi.BoolInput `pulumi:"securityStrategyEnabled"`
 	// The SubnetId of NodeConfig.
 	SubnetIds pulumi.StringArrayInput `pulumi:"subnetIds"`
+	// Multi-subnet scheduling strategy for nodes. The value can be `ZoneBalance` or `Priority`.
+	SubnetPolicy pulumi.StringInput `pulumi:"subnetPolicy"`
 	// The SystemVolume of NodeConfig.
 	SystemVolume NodePoolsNodePoolSystemVolumeInput `pulumi:"systemVolume"`
+	// Tags.
+	Tags NodePoolsNodePoolTagArrayInput `pulumi:"tags"`
 	// The TaintContent of NodeConfig.
 	TaintContents NodePoolsNodePoolTaintContentArrayInput `pulumi:"taintContents"`
 	// The ClientToken when last update was successful.
@@ -4093,7 +8611,7 @@ func (i NodePoolsNodePoolArgs) ToNodePoolsNodePoolOutputWithContext(ctx context.
 // NodePoolsNodePoolArrayInput is an input type that accepts NodePoolsNodePoolArray and NodePoolsNodePoolArrayOutput values.
 // You can construct a concrete instance of `NodePoolsNodePoolArrayInput` via:
 //
-//          NodePoolsNodePoolArray{ NodePoolsNodePoolArgs{...} }
+//	NodePoolsNodePoolArray{ NodePoolsNodePoolArgs{...} }
 type NodePoolsNodePoolArrayInput interface {
 	pulumi.Input
 
@@ -4134,6 +8652,16 @@ func (o NodePoolsNodePoolOutput) AdditionalContainerStorageEnabled() pulumi.Bool
 	return o.ApplyT(func(v NodePoolsNodePool) bool { return v.AdditionalContainerStorageEnabled }).(pulumi.BoolOutput)
 }
 
+// Is auto renew of the PrePaid instance of NodeConfig.
+func (o NodePoolsNodePoolOutput) AutoRenew() pulumi.BoolOutput {
+	return o.ApplyT(func(v NodePoolsNodePool) bool { return v.AutoRenew }).(pulumi.BoolOutput)
+}
+
+// The AutoRenewPeriod of the PrePaid instance of NodeConfig.
+func (o NodePoolsNodePoolOutput) AutoRenewPeriod() pulumi.IntOutput {
+	return o.ApplyT(func(v NodePoolsNodePool) int { return v.AutoRenewPeriod }).(pulumi.IntOutput)
+}
+
 // The ClusterId of NodePool.
 func (o NodePoolsNodePoolOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolsNodePool) string { return v.ClusterId }).(pulumi.StringOutput)
@@ -4164,14 +8692,14 @@ func (o NodePoolsNodePoolOutput) DataVolumes() NodePoolsNodePoolDataVolumeArrayO
 	return o.ApplyT(func(v NodePoolsNodePool) []NodePoolsNodePoolDataVolume { return v.DataVolumes }).(NodePoolsNodePoolDataVolumeArrayOutput)
 }
 
-// The Description of NodePool.
-func (o NodePoolsNodePoolOutput) Description() pulumi.StringOutput {
-	return o.ApplyT(func(v NodePoolsNodePool) string { return v.Description }).(pulumi.StringOutput)
-}
-
 // The DesiredReplicas of AutoScaling.
 func (o NodePoolsNodePoolOutput) DesiredReplicas() pulumi.IntOutput {
 	return o.ApplyT(func(v NodePoolsNodePool) int { return v.DesiredReplicas }).(pulumi.IntOutput)
+}
+
+// Tags for Ecs.
+func (o NodePoolsNodePoolOutput) EcsTags() NodePoolsNodePoolEcsTagArrayOutput {
+	return o.ApplyT(func(v NodePoolsNodePool) []NodePoolsNodePoolEcsTag { return v.EcsTags }).(NodePoolsNodePoolEcsTagArrayOutput)
 }
 
 // Is Enabled of AutoScaling.
@@ -4179,14 +8707,29 @@ func (o NodePoolsNodePoolOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v NodePoolsNodePool) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
+// The IDs of HpcCluster.
+func (o NodePoolsNodePoolOutput) HpcClusterIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NodePoolsNodePool) []string { return v.HpcClusterIds }).(pulumi.StringArrayOutput)
+}
+
 // The Id of NodePool.
 func (o NodePoolsNodePoolOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolsNodePool) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The ImageId of NodeConfig.
+func (o NodePoolsNodePoolOutput) ImageId() pulumi.StringOutput {
+	return o.ApplyT(func(v NodePoolsNodePool) string { return v.ImageId }).(pulumi.StringOutput)
+}
+
 // The InitializeScript of NodeConfig.
 func (o NodePoolsNodePoolOutput) InitializeScript() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolsNodePool) string { return v.InitializeScript }).(pulumi.StringOutput)
+}
+
+// The InstanceChargeType of NodeConfig.
+func (o NodePoolsNodePoolOutput) InstanceChargeType() pulumi.StringOutput {
+	return o.ApplyT(func(v NodePoolsNodePool) string { return v.InstanceChargeType }).(pulumi.StringOutput)
 }
 
 // The InstanceTypeIds of NodeConfig.
@@ -4197,6 +8740,16 @@ func (o NodePoolsNodePoolOutput) InstanceTypeIds() pulumi.StringArrayOutput {
 // The LabelContent of KubernetesConfig.
 func (o NodePoolsNodePoolOutput) LabelContents() NodePoolsNodePoolLabelContentArrayOutput {
 	return o.ApplyT(func(v NodePoolsNodePool) []NodePoolsNodePoolLabelContent { return v.LabelContents }).(NodePoolsNodePoolLabelContentArrayOutput)
+}
+
+// The login SshKeyPairName of NodeConfig.
+func (o NodePoolsNodePoolOutput) LoginKeyPairName() pulumi.StringOutput {
+	return o.ApplyT(func(v NodePoolsNodePool) string { return v.LoginKeyPairName }).(pulumi.StringOutput)
+}
+
+// The login type of NodeConfig.
+func (o NodePoolsNodePoolOutput) LoginType() pulumi.StringOutput {
+	return o.ApplyT(func(v NodePoolsNodePool) string { return v.LoginType }).(pulumi.StringOutput)
 }
 
 // The MaxReplicas of AutoScaling.
@@ -4214,12 +8767,22 @@ func (o NodePoolsNodePoolOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolsNodePool) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The NamePrefix of NodeConfig.
+func (o NodePoolsNodePoolOutput) NamePrefix() pulumi.StringOutput {
+	return o.ApplyT(func(v NodePoolsNodePool) string { return v.NamePrefix }).(pulumi.StringOutput)
+}
+
 // The NodeStatistics of NodeConfig.
 func (o NodePoolsNodePoolOutput) NodeStatistics() NodePoolsNodePoolNodeStatisticsOutput {
 	return o.ApplyT(func(v NodePoolsNodePool) NodePoolsNodePoolNodeStatistics { return v.NodeStatistics }).(NodePoolsNodePoolNodeStatisticsOutput)
 }
 
-// The Phase of Status.
+// The period of the PrePaid instance of NodeConfig.
+func (o NodePoolsNodePoolOutput) Period() pulumi.IntOutput {
+	return o.ApplyT(func(v NodePoolsNodePool) int { return v.Period }).(pulumi.IntOutput)
+}
+
+// The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
 func (o NodePoolsNodePoolOutput) Phase() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolsNodePool) string { return v.Phase }).(pulumi.StringOutput)
 }
@@ -4229,14 +8792,39 @@ func (o NodePoolsNodePoolOutput) Priority() pulumi.IntOutput {
 	return o.ApplyT(func(v NodePoolsNodePool) int { return v.Priority }).(pulumi.IntOutput)
 }
 
+// The SecurityGroupIds of NodeConfig.
+func (o NodePoolsNodePoolOutput) SecurityGroupIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NodePoolsNodePool) []string { return v.SecurityGroupIds }).(pulumi.StringArrayOutput)
+}
+
+// The SecurityStrategies of NodeConfig.
+func (o NodePoolsNodePoolOutput) SecurityStrategies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NodePoolsNodePool) []string { return v.SecurityStrategies }).(pulumi.StringArrayOutput)
+}
+
+// The SecurityStrategyEnabled of NodeConfig.
+func (o NodePoolsNodePoolOutput) SecurityStrategyEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v NodePoolsNodePool) bool { return v.SecurityStrategyEnabled }).(pulumi.BoolOutput)
+}
+
 // The SubnetId of NodeConfig.
 func (o NodePoolsNodePoolOutput) SubnetIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v NodePoolsNodePool) []string { return v.SubnetIds }).(pulumi.StringArrayOutput)
 }
 
+// Multi-subnet scheduling strategy for nodes. The value can be `ZoneBalance` or `Priority`.
+func (o NodePoolsNodePoolOutput) SubnetPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v NodePoolsNodePool) string { return v.SubnetPolicy }).(pulumi.StringOutput)
+}
+
 // The SystemVolume of NodeConfig.
 func (o NodePoolsNodePoolOutput) SystemVolume() NodePoolsNodePoolSystemVolumeOutput {
 	return o.ApplyT(func(v NodePoolsNodePool) NodePoolsNodePoolSystemVolume { return v.SystemVolume }).(NodePoolsNodePoolSystemVolumeOutput)
+}
+
+// Tags.
+func (o NodePoolsNodePoolOutput) Tags() NodePoolsNodePoolTagArrayOutput {
+	return o.ApplyT(func(v NodePoolsNodePool) []NodePoolsNodePoolTag { return v.Tags }).(NodePoolsNodePoolTagArrayOutput)
 }
 
 // The TaintContent of NodeConfig.
@@ -4275,16 +8863,18 @@ func (o NodePoolsNodePoolArrayOutput) Index(i pulumi.IntInput) NodePoolsNodePool
 }
 
 type NodePoolsNodePoolDataVolume struct {
+	// The target mount directory of the disk.
+	MountPoint string `pulumi:"mountPoint"`
 	// The Size of SystemVolume.
 	Size string `pulumi:"size"`
-	// The Type of SystemVolume.
+	// The Type of Tags.
 	Type string `pulumi:"type"`
 }
 
 // NodePoolsNodePoolDataVolumeInput is an input type that accepts NodePoolsNodePoolDataVolumeArgs and NodePoolsNodePoolDataVolumeOutput values.
 // You can construct a concrete instance of `NodePoolsNodePoolDataVolumeInput` via:
 //
-//          NodePoolsNodePoolDataVolumeArgs{...}
+//	NodePoolsNodePoolDataVolumeArgs{...}
 type NodePoolsNodePoolDataVolumeInput interface {
 	pulumi.Input
 
@@ -4293,9 +8883,11 @@ type NodePoolsNodePoolDataVolumeInput interface {
 }
 
 type NodePoolsNodePoolDataVolumeArgs struct {
+	// The target mount directory of the disk.
+	MountPoint pulumi.StringInput `pulumi:"mountPoint"`
 	// The Size of SystemVolume.
 	Size pulumi.StringInput `pulumi:"size"`
-	// The Type of SystemVolume.
+	// The Type of Tags.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -4314,7 +8906,7 @@ func (i NodePoolsNodePoolDataVolumeArgs) ToNodePoolsNodePoolDataVolumeOutputWith
 // NodePoolsNodePoolDataVolumeArrayInput is an input type that accepts NodePoolsNodePoolDataVolumeArray and NodePoolsNodePoolDataVolumeArrayOutput values.
 // You can construct a concrete instance of `NodePoolsNodePoolDataVolumeArrayInput` via:
 //
-//          NodePoolsNodePoolDataVolumeArray{ NodePoolsNodePoolDataVolumeArgs{...} }
+//	NodePoolsNodePoolDataVolumeArray{ NodePoolsNodePoolDataVolumeArgs{...} }
 type NodePoolsNodePoolDataVolumeArrayInput interface {
 	pulumi.Input
 
@@ -4350,12 +8942,17 @@ func (o NodePoolsNodePoolDataVolumeOutput) ToNodePoolsNodePoolDataVolumeOutputWi
 	return o
 }
 
+// The target mount directory of the disk.
+func (o NodePoolsNodePoolDataVolumeOutput) MountPoint() pulumi.StringOutput {
+	return o.ApplyT(func(v NodePoolsNodePoolDataVolume) string { return v.MountPoint }).(pulumi.StringOutput)
+}
+
 // The Size of SystemVolume.
 func (o NodePoolsNodePoolDataVolumeOutput) Size() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolsNodePoolDataVolume) string { return v.Size }).(pulumi.StringOutput)
 }
 
-// The Type of SystemVolume.
+// The Type of Tags.
 func (o NodePoolsNodePoolDataVolumeOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolsNodePoolDataVolume) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -4380,17 +8977,123 @@ func (o NodePoolsNodePoolDataVolumeArrayOutput) Index(i pulumi.IntInput) NodePoo
 	}).(NodePoolsNodePoolDataVolumeOutput)
 }
 
-type NodePoolsNodePoolLabelContent struct {
-	// The Key of Taint.
+type NodePoolsNodePoolEcsTag struct {
+	// The Key of Tags.
 	Key string `pulumi:"key"`
-	// The Value of Taint.
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// NodePoolsNodePoolEcsTagInput is an input type that accepts NodePoolsNodePoolEcsTagArgs and NodePoolsNodePoolEcsTagOutput values.
+// You can construct a concrete instance of `NodePoolsNodePoolEcsTagInput` via:
+//
+//	NodePoolsNodePoolEcsTagArgs{...}
+type NodePoolsNodePoolEcsTagInput interface {
+	pulumi.Input
+
+	ToNodePoolsNodePoolEcsTagOutput() NodePoolsNodePoolEcsTagOutput
+	ToNodePoolsNodePoolEcsTagOutputWithContext(context.Context) NodePoolsNodePoolEcsTagOutput
+}
+
+type NodePoolsNodePoolEcsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (NodePoolsNodePoolEcsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolsNodePoolEcsTag)(nil)).Elem()
+}
+
+func (i NodePoolsNodePoolEcsTagArgs) ToNodePoolsNodePoolEcsTagOutput() NodePoolsNodePoolEcsTagOutput {
+	return i.ToNodePoolsNodePoolEcsTagOutputWithContext(context.Background())
+}
+
+func (i NodePoolsNodePoolEcsTagArgs) ToNodePoolsNodePoolEcsTagOutputWithContext(ctx context.Context) NodePoolsNodePoolEcsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolsNodePoolEcsTagOutput)
+}
+
+// NodePoolsNodePoolEcsTagArrayInput is an input type that accepts NodePoolsNodePoolEcsTagArray and NodePoolsNodePoolEcsTagArrayOutput values.
+// You can construct a concrete instance of `NodePoolsNodePoolEcsTagArrayInput` via:
+//
+//	NodePoolsNodePoolEcsTagArray{ NodePoolsNodePoolEcsTagArgs{...} }
+type NodePoolsNodePoolEcsTagArrayInput interface {
+	pulumi.Input
+
+	ToNodePoolsNodePoolEcsTagArrayOutput() NodePoolsNodePoolEcsTagArrayOutput
+	ToNodePoolsNodePoolEcsTagArrayOutputWithContext(context.Context) NodePoolsNodePoolEcsTagArrayOutput
+}
+
+type NodePoolsNodePoolEcsTagArray []NodePoolsNodePoolEcsTagInput
+
+func (NodePoolsNodePoolEcsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodePoolsNodePoolEcsTag)(nil)).Elem()
+}
+
+func (i NodePoolsNodePoolEcsTagArray) ToNodePoolsNodePoolEcsTagArrayOutput() NodePoolsNodePoolEcsTagArrayOutput {
+	return i.ToNodePoolsNodePoolEcsTagArrayOutputWithContext(context.Background())
+}
+
+func (i NodePoolsNodePoolEcsTagArray) ToNodePoolsNodePoolEcsTagArrayOutputWithContext(ctx context.Context) NodePoolsNodePoolEcsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolsNodePoolEcsTagArrayOutput)
+}
+
+type NodePoolsNodePoolEcsTagOutput struct{ *pulumi.OutputState }
+
+func (NodePoolsNodePoolEcsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolsNodePoolEcsTag)(nil)).Elem()
+}
+
+func (o NodePoolsNodePoolEcsTagOutput) ToNodePoolsNodePoolEcsTagOutput() NodePoolsNodePoolEcsTagOutput {
+	return o
+}
+
+func (o NodePoolsNodePoolEcsTagOutput) ToNodePoolsNodePoolEcsTagOutputWithContext(ctx context.Context) NodePoolsNodePoolEcsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o NodePoolsNodePoolEcsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v NodePoolsNodePoolEcsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o NodePoolsNodePoolEcsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v NodePoolsNodePoolEcsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type NodePoolsNodePoolEcsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (NodePoolsNodePoolEcsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodePoolsNodePoolEcsTag)(nil)).Elem()
+}
+
+func (o NodePoolsNodePoolEcsTagArrayOutput) ToNodePoolsNodePoolEcsTagArrayOutput() NodePoolsNodePoolEcsTagArrayOutput {
+	return o
+}
+
+func (o NodePoolsNodePoolEcsTagArrayOutput) ToNodePoolsNodePoolEcsTagArrayOutputWithContext(ctx context.Context) NodePoolsNodePoolEcsTagArrayOutput {
+	return o
+}
+
+func (o NodePoolsNodePoolEcsTagArrayOutput) Index(i pulumi.IntInput) NodePoolsNodePoolEcsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NodePoolsNodePoolEcsTag {
+		return vs[0].([]NodePoolsNodePoolEcsTag)[vs[1].(int)]
+	}).(NodePoolsNodePoolEcsTagOutput)
+}
+
+type NodePoolsNodePoolLabelContent struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
 	Value string `pulumi:"value"`
 }
 
 // NodePoolsNodePoolLabelContentInput is an input type that accepts NodePoolsNodePoolLabelContentArgs and NodePoolsNodePoolLabelContentOutput values.
 // You can construct a concrete instance of `NodePoolsNodePoolLabelContentInput` via:
 //
-//          NodePoolsNodePoolLabelContentArgs{...}
+//	NodePoolsNodePoolLabelContentArgs{...}
 type NodePoolsNodePoolLabelContentInput interface {
 	pulumi.Input
 
@@ -4399,9 +9102,9 @@ type NodePoolsNodePoolLabelContentInput interface {
 }
 
 type NodePoolsNodePoolLabelContentArgs struct {
-	// The Key of Taint.
+	// The Key of Tags.
 	Key pulumi.StringInput `pulumi:"key"`
-	// The Value of Taint.
+	// The Value of Tags.
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -4420,7 +9123,7 @@ func (i NodePoolsNodePoolLabelContentArgs) ToNodePoolsNodePoolLabelContentOutput
 // NodePoolsNodePoolLabelContentArrayInput is an input type that accepts NodePoolsNodePoolLabelContentArray and NodePoolsNodePoolLabelContentArrayOutput values.
 // You can construct a concrete instance of `NodePoolsNodePoolLabelContentArrayInput` via:
 //
-//          NodePoolsNodePoolLabelContentArray{ NodePoolsNodePoolLabelContentArgs{...} }
+//	NodePoolsNodePoolLabelContentArray{ NodePoolsNodePoolLabelContentArgs{...} }
 type NodePoolsNodePoolLabelContentArrayInput interface {
 	pulumi.Input
 
@@ -4456,12 +9159,12 @@ func (o NodePoolsNodePoolLabelContentOutput) ToNodePoolsNodePoolLabelContentOutp
 	return o
 }
 
-// The Key of Taint.
+// The Key of Tags.
 func (o NodePoolsNodePoolLabelContentOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolsNodePoolLabelContent) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// The Value of Taint.
+// The Value of Tags.
 func (o NodePoolsNodePoolLabelContentOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolsNodePoolLabelContent) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -4495,6 +9198,12 @@ type NodePoolsNodePoolNodeStatistics struct {
 	FailedCount int `pulumi:"failedCount"`
 	// The RunningCount of Node.
 	RunningCount int `pulumi:"runningCount"`
+	// The StartingCount of Node.
+	StartingCount int `pulumi:"startingCount"`
+	// The StoppedCount of Node.
+	StoppedCount int `pulumi:"stoppedCount"`
+	// The StoppingCount of Node.
+	StoppingCount int `pulumi:"stoppingCount"`
 	// Returns the total amount of the data list.
 	TotalCount int `pulumi:"totalCount"`
 	// The UpdatingCount of Node.
@@ -4504,7 +9213,7 @@ type NodePoolsNodePoolNodeStatistics struct {
 // NodePoolsNodePoolNodeStatisticsInput is an input type that accepts NodePoolsNodePoolNodeStatisticsArgs and NodePoolsNodePoolNodeStatisticsOutput values.
 // You can construct a concrete instance of `NodePoolsNodePoolNodeStatisticsInput` via:
 //
-//          NodePoolsNodePoolNodeStatisticsArgs{...}
+//	NodePoolsNodePoolNodeStatisticsArgs{...}
 type NodePoolsNodePoolNodeStatisticsInput interface {
 	pulumi.Input
 
@@ -4521,6 +9230,12 @@ type NodePoolsNodePoolNodeStatisticsArgs struct {
 	FailedCount pulumi.IntInput `pulumi:"failedCount"`
 	// The RunningCount of Node.
 	RunningCount pulumi.IntInput `pulumi:"runningCount"`
+	// The StartingCount of Node.
+	StartingCount pulumi.IntInput `pulumi:"startingCount"`
+	// The StoppedCount of Node.
+	StoppedCount pulumi.IntInput `pulumi:"stoppedCount"`
+	// The StoppingCount of Node.
+	StoppingCount pulumi.IntInput `pulumi:"stoppingCount"`
 	// Returns the total amount of the data list.
 	TotalCount pulumi.IntInput `pulumi:"totalCount"`
 	// The UpdatingCount of Node.
@@ -4573,6 +9288,21 @@ func (o NodePoolsNodePoolNodeStatisticsOutput) RunningCount() pulumi.IntOutput {
 	return o.ApplyT(func(v NodePoolsNodePoolNodeStatistics) int { return v.RunningCount }).(pulumi.IntOutput)
 }
 
+// The StartingCount of Node.
+func (o NodePoolsNodePoolNodeStatisticsOutput) StartingCount() pulumi.IntOutput {
+	return o.ApplyT(func(v NodePoolsNodePoolNodeStatistics) int { return v.StartingCount }).(pulumi.IntOutput)
+}
+
+// The StoppedCount of Node.
+func (o NodePoolsNodePoolNodeStatisticsOutput) StoppedCount() pulumi.IntOutput {
+	return o.ApplyT(func(v NodePoolsNodePoolNodeStatistics) int { return v.StoppedCount }).(pulumi.IntOutput)
+}
+
+// The StoppingCount of Node.
+func (o NodePoolsNodePoolNodeStatisticsOutput) StoppingCount() pulumi.IntOutput {
+	return o.ApplyT(func(v NodePoolsNodePoolNodeStatistics) int { return v.StoppingCount }).(pulumi.IntOutput)
+}
+
 // Returns the total amount of the data list.
 func (o NodePoolsNodePoolNodeStatisticsOutput) TotalCount() pulumi.IntOutput {
 	return o.ApplyT(func(v NodePoolsNodePoolNodeStatistics) int { return v.TotalCount }).(pulumi.IntOutput)
@@ -4586,14 +9316,14 @@ func (o NodePoolsNodePoolNodeStatisticsOutput) UpdatingCount() pulumi.IntOutput 
 type NodePoolsNodePoolSystemVolume struct {
 	// The Size of SystemVolume.
 	Size string `pulumi:"size"`
-	// The Type of SystemVolume.
+	// The Type of Tags.
 	Type string `pulumi:"type"`
 }
 
 // NodePoolsNodePoolSystemVolumeInput is an input type that accepts NodePoolsNodePoolSystemVolumeArgs and NodePoolsNodePoolSystemVolumeOutput values.
 // You can construct a concrete instance of `NodePoolsNodePoolSystemVolumeInput` via:
 //
-//          NodePoolsNodePoolSystemVolumeArgs{...}
+//	NodePoolsNodePoolSystemVolumeArgs{...}
 type NodePoolsNodePoolSystemVolumeInput interface {
 	pulumi.Input
 
@@ -4604,7 +9334,7 @@ type NodePoolsNodePoolSystemVolumeInput interface {
 type NodePoolsNodePoolSystemVolumeArgs struct {
 	// The Size of SystemVolume.
 	Size pulumi.StringInput `pulumi:"size"`
-	// The Type of SystemVolume.
+	// The Type of Tags.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -4639,24 +9369,139 @@ func (o NodePoolsNodePoolSystemVolumeOutput) Size() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolsNodePoolSystemVolume) string { return v.Size }).(pulumi.StringOutput)
 }
 
-// The Type of SystemVolume.
+// The Type of Tags.
 func (o NodePoolsNodePoolSystemVolumeOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolsNodePoolSystemVolume) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type NodePoolsNodePoolTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Type of Tags.
+	Type string `pulumi:"type"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// NodePoolsNodePoolTagInput is an input type that accepts NodePoolsNodePoolTagArgs and NodePoolsNodePoolTagOutput values.
+// You can construct a concrete instance of `NodePoolsNodePoolTagInput` via:
+//
+//	NodePoolsNodePoolTagArgs{...}
+type NodePoolsNodePoolTagInput interface {
+	pulumi.Input
+
+	ToNodePoolsNodePoolTagOutput() NodePoolsNodePoolTagOutput
+	ToNodePoolsNodePoolTagOutputWithContext(context.Context) NodePoolsNodePoolTagOutput
+}
+
+type NodePoolsNodePoolTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Type of Tags.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (NodePoolsNodePoolTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolsNodePoolTag)(nil)).Elem()
+}
+
+func (i NodePoolsNodePoolTagArgs) ToNodePoolsNodePoolTagOutput() NodePoolsNodePoolTagOutput {
+	return i.ToNodePoolsNodePoolTagOutputWithContext(context.Background())
+}
+
+func (i NodePoolsNodePoolTagArgs) ToNodePoolsNodePoolTagOutputWithContext(ctx context.Context) NodePoolsNodePoolTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolsNodePoolTagOutput)
+}
+
+// NodePoolsNodePoolTagArrayInput is an input type that accepts NodePoolsNodePoolTagArray and NodePoolsNodePoolTagArrayOutput values.
+// You can construct a concrete instance of `NodePoolsNodePoolTagArrayInput` via:
+//
+//	NodePoolsNodePoolTagArray{ NodePoolsNodePoolTagArgs{...} }
+type NodePoolsNodePoolTagArrayInput interface {
+	pulumi.Input
+
+	ToNodePoolsNodePoolTagArrayOutput() NodePoolsNodePoolTagArrayOutput
+	ToNodePoolsNodePoolTagArrayOutputWithContext(context.Context) NodePoolsNodePoolTagArrayOutput
+}
+
+type NodePoolsNodePoolTagArray []NodePoolsNodePoolTagInput
+
+func (NodePoolsNodePoolTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodePoolsNodePoolTag)(nil)).Elem()
+}
+
+func (i NodePoolsNodePoolTagArray) ToNodePoolsNodePoolTagArrayOutput() NodePoolsNodePoolTagArrayOutput {
+	return i.ToNodePoolsNodePoolTagArrayOutputWithContext(context.Background())
+}
+
+func (i NodePoolsNodePoolTagArray) ToNodePoolsNodePoolTagArrayOutputWithContext(ctx context.Context) NodePoolsNodePoolTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolsNodePoolTagArrayOutput)
+}
+
+type NodePoolsNodePoolTagOutput struct{ *pulumi.OutputState }
+
+func (NodePoolsNodePoolTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolsNodePoolTag)(nil)).Elem()
+}
+
+func (o NodePoolsNodePoolTagOutput) ToNodePoolsNodePoolTagOutput() NodePoolsNodePoolTagOutput {
+	return o
+}
+
+func (o NodePoolsNodePoolTagOutput) ToNodePoolsNodePoolTagOutputWithContext(ctx context.Context) NodePoolsNodePoolTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o NodePoolsNodePoolTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v NodePoolsNodePoolTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Type of Tags.
+func (o NodePoolsNodePoolTagOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v NodePoolsNodePoolTag) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o NodePoolsNodePoolTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v NodePoolsNodePoolTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type NodePoolsNodePoolTagArrayOutput struct{ *pulumi.OutputState }
+
+func (NodePoolsNodePoolTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodePoolsNodePoolTag)(nil)).Elem()
+}
+
+func (o NodePoolsNodePoolTagArrayOutput) ToNodePoolsNodePoolTagArrayOutput() NodePoolsNodePoolTagArrayOutput {
+	return o
+}
+
+func (o NodePoolsNodePoolTagArrayOutput) ToNodePoolsNodePoolTagArrayOutputWithContext(ctx context.Context) NodePoolsNodePoolTagArrayOutput {
+	return o
+}
+
+func (o NodePoolsNodePoolTagArrayOutput) Index(i pulumi.IntInput) NodePoolsNodePoolTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NodePoolsNodePoolTag {
+		return vs[0].([]NodePoolsNodePoolTag)[vs[1].(int)]
+	}).(NodePoolsNodePoolTagOutput)
 }
 
 type NodePoolsNodePoolTaintContent struct {
 	// The Effect of Taint.
 	Effect string `pulumi:"effect"`
-	// The Key of Taint.
+	// The Key of Tags.
 	Key string `pulumi:"key"`
-	// The Value of Taint.
+	// The Value of Tags.
 	Value string `pulumi:"value"`
 }
 
 // NodePoolsNodePoolTaintContentInput is an input type that accepts NodePoolsNodePoolTaintContentArgs and NodePoolsNodePoolTaintContentOutput values.
 // You can construct a concrete instance of `NodePoolsNodePoolTaintContentInput` via:
 //
-//          NodePoolsNodePoolTaintContentArgs{...}
+//	NodePoolsNodePoolTaintContentArgs{...}
 type NodePoolsNodePoolTaintContentInput interface {
 	pulumi.Input
 
@@ -4667,9 +9512,9 @@ type NodePoolsNodePoolTaintContentInput interface {
 type NodePoolsNodePoolTaintContentArgs struct {
 	// The Effect of Taint.
 	Effect pulumi.StringInput `pulumi:"effect"`
-	// The Key of Taint.
+	// The Key of Tags.
 	Key pulumi.StringInput `pulumi:"key"`
-	// The Value of Taint.
+	// The Value of Tags.
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -4688,7 +9533,7 @@ func (i NodePoolsNodePoolTaintContentArgs) ToNodePoolsNodePoolTaintContentOutput
 // NodePoolsNodePoolTaintContentArrayInput is an input type that accepts NodePoolsNodePoolTaintContentArray and NodePoolsNodePoolTaintContentArrayOutput values.
 // You can construct a concrete instance of `NodePoolsNodePoolTaintContentArrayInput` via:
 //
-//          NodePoolsNodePoolTaintContentArray{ NodePoolsNodePoolTaintContentArgs{...} }
+//	NodePoolsNodePoolTaintContentArray{ NodePoolsNodePoolTaintContentArgs{...} }
 type NodePoolsNodePoolTaintContentArrayInput interface {
 	pulumi.Input
 
@@ -4729,12 +9574,12 @@ func (o NodePoolsNodePoolTaintContentOutput) Effect() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolsNodePoolTaintContent) string { return v.Effect }).(pulumi.StringOutput)
 }
 
-// The Key of Taint.
+// The Key of Tags.
 func (o NodePoolsNodePoolTaintContentOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolsNodePoolTaintContent) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// The Value of Taint.
+// The Value of Tags.
 func (o NodePoolsNodePoolTaintContentOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolsNodePoolTaintContent) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -4760,16 +9605,16 @@ func (o NodePoolsNodePoolTaintContentArrayOutput) Index(i pulumi.IntInput) NodeP
 }
 
 type NodePoolsStatus struct {
-	// Indicates the status condition of the node pool in the active state.
+	// Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
 	ConditionsType *string `pulumi:"conditionsType"`
-	// The Phase of Status.
+	// The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
 	Phase *string `pulumi:"phase"`
 }
 
 // NodePoolsStatusInput is an input type that accepts NodePoolsStatusArgs and NodePoolsStatusOutput values.
 // You can construct a concrete instance of `NodePoolsStatusInput` via:
 //
-//          NodePoolsStatusArgs{...}
+//	NodePoolsStatusArgs{...}
 type NodePoolsStatusInput interface {
 	pulumi.Input
 
@@ -4778,9 +9623,9 @@ type NodePoolsStatusInput interface {
 }
 
 type NodePoolsStatusArgs struct {
-	// Indicates the status condition of the node pool in the active state.
+	// Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
 	ConditionsType pulumi.StringPtrInput `pulumi:"conditionsType"`
-	// The Phase of Status.
+	// The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
 	Phase pulumi.StringPtrInput `pulumi:"phase"`
 }
 
@@ -4799,7 +9644,7 @@ func (i NodePoolsStatusArgs) ToNodePoolsStatusOutputWithContext(ctx context.Cont
 // NodePoolsStatusArrayInput is an input type that accepts NodePoolsStatusArray and NodePoolsStatusArrayOutput values.
 // You can construct a concrete instance of `NodePoolsStatusArrayInput` via:
 //
-//          NodePoolsStatusArray{ NodePoolsStatusArgs{...} }
+//	NodePoolsStatusArray{ NodePoolsStatusArgs{...} }
 type NodePoolsStatusArrayInput interface {
 	pulumi.Input
 
@@ -4835,12 +9680,12 @@ func (o NodePoolsStatusOutput) ToNodePoolsStatusOutputWithContext(ctx context.Co
 	return o
 }
 
-// Indicates the status condition of the node pool in the active state.
+// Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
 func (o NodePoolsStatusOutput) ConditionsType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NodePoolsStatus) *string { return v.ConditionsType }).(pulumi.StringPtrOutput)
 }
 
-// The Phase of Status.
+// The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
 func (o NodePoolsStatusOutput) Phase() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NodePoolsStatus) *string { return v.Phase }).(pulumi.StringPtrOutput)
 }
@@ -4865,6 +9710,112 @@ func (o NodePoolsStatusArrayOutput) Index(i pulumi.IntInput) NodePoolsStatusOutp
 	}).(NodePoolsStatusOutput)
 }
 
+type NodePoolsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// NodePoolsTagInput is an input type that accepts NodePoolsTagArgs and NodePoolsTagOutput values.
+// You can construct a concrete instance of `NodePoolsTagInput` via:
+//
+//	NodePoolsTagArgs{...}
+type NodePoolsTagInput interface {
+	pulumi.Input
+
+	ToNodePoolsTagOutput() NodePoolsTagOutput
+	ToNodePoolsTagOutputWithContext(context.Context) NodePoolsTagOutput
+}
+
+type NodePoolsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (NodePoolsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolsTag)(nil)).Elem()
+}
+
+func (i NodePoolsTagArgs) ToNodePoolsTagOutput() NodePoolsTagOutput {
+	return i.ToNodePoolsTagOutputWithContext(context.Background())
+}
+
+func (i NodePoolsTagArgs) ToNodePoolsTagOutputWithContext(ctx context.Context) NodePoolsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolsTagOutput)
+}
+
+// NodePoolsTagArrayInput is an input type that accepts NodePoolsTagArray and NodePoolsTagArrayOutput values.
+// You can construct a concrete instance of `NodePoolsTagArrayInput` via:
+//
+//	NodePoolsTagArray{ NodePoolsTagArgs{...} }
+type NodePoolsTagArrayInput interface {
+	pulumi.Input
+
+	ToNodePoolsTagArrayOutput() NodePoolsTagArrayOutput
+	ToNodePoolsTagArrayOutputWithContext(context.Context) NodePoolsTagArrayOutput
+}
+
+type NodePoolsTagArray []NodePoolsTagInput
+
+func (NodePoolsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodePoolsTag)(nil)).Elem()
+}
+
+func (i NodePoolsTagArray) ToNodePoolsTagArrayOutput() NodePoolsTagArrayOutput {
+	return i.ToNodePoolsTagArrayOutputWithContext(context.Background())
+}
+
+func (i NodePoolsTagArray) ToNodePoolsTagArrayOutputWithContext(ctx context.Context) NodePoolsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolsTagArrayOutput)
+}
+
+type NodePoolsTagOutput struct{ *pulumi.OutputState }
+
+func (NodePoolsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolsTag)(nil)).Elem()
+}
+
+func (o NodePoolsTagOutput) ToNodePoolsTagOutput() NodePoolsTagOutput {
+	return o
+}
+
+func (o NodePoolsTagOutput) ToNodePoolsTagOutputWithContext(ctx context.Context) NodePoolsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o NodePoolsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v NodePoolsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o NodePoolsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v NodePoolsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type NodePoolsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (NodePoolsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodePoolsTag)(nil)).Elem()
+}
+
+func (o NodePoolsTagArrayOutput) ToNodePoolsTagArrayOutput() NodePoolsTagArrayOutput {
+	return o
+}
+
+func (o NodePoolsTagArrayOutput) ToNodePoolsTagArrayOutputWithContext(ctx context.Context) NodePoolsTagArrayOutput {
+	return o
+}
+
+func (o NodePoolsTagArrayOutput) Index(i pulumi.IntInput) NodePoolsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NodePoolsTag {
+		return vs[0].([]NodePoolsTag)[vs[1].(int)]
+	}).(NodePoolsTagOutput)
+}
+
 type NodesNode struct {
 	// Is Additional Container storage enables.
 	AdditionalContainerStorageEnabled bool `pulumi:"additionalContainerStorageEnabled"`
@@ -4874,32 +9825,44 @@ type NodesNode struct {
 	ConditionTypes []string `pulumi:"conditionTypes"`
 	// The Storage Path.
 	ContainerStoragePath string `pulumi:"containerStoragePath"`
+	// The Cordon of KubernetesConfig.
+	Cordon bool `pulumi:"cordon"`
 	// The Create Client Token.
 	CreateClientToken string `pulumi:"createClientToken"`
 	// The create time of Node.
 	CreateTime string `pulumi:"createTime"`
 	// The ID of Node.
 	Id string `pulumi:"id"`
+	// The ImageId of NodeConfig.
+	ImageId string `pulumi:"imageId"`
+	// The InitializeScript of NodeConfig.
+	InitializeScript string `pulumi:"initializeScript"`
 	// The instance id of node.
 	InstanceId string `pulumi:"instanceId"`
 	// Is virtual node.
 	IsVirtual bool `pulumi:"isVirtual"`
+	// The Label of KubernetesConfig.
+	Labels []NodesNodeLabel `pulumi:"labels"`
 	// The Name of Node.
 	Name string `pulumi:"name"`
 	// The node pool id.
 	NodePoolId string `pulumi:"nodePoolId"`
-	// The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed`.
+	// The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
 	Phase string `pulumi:"phase"`
 	// The roles of node.
 	Roles []string `pulumi:"roles"`
+	// The Taint of KubernetesConfig.
+	Taints []NodesNodeTaint `pulumi:"taints"`
 	// The update time of Node.
 	UpdateTime string `pulumi:"updateTime"`
+	// The zone id.
+	ZoneId string `pulumi:"zoneId"`
 }
 
 // NodesNodeInput is an input type that accepts NodesNodeArgs and NodesNodeOutput values.
 // You can construct a concrete instance of `NodesNodeInput` via:
 //
-//          NodesNodeArgs{...}
+//	NodesNodeArgs{...}
 type NodesNodeInput interface {
 	pulumi.Input
 
@@ -4916,26 +9879,38 @@ type NodesNodeArgs struct {
 	ConditionTypes pulumi.StringArrayInput `pulumi:"conditionTypes"`
 	// The Storage Path.
 	ContainerStoragePath pulumi.StringInput `pulumi:"containerStoragePath"`
+	// The Cordon of KubernetesConfig.
+	Cordon pulumi.BoolInput `pulumi:"cordon"`
 	// The Create Client Token.
 	CreateClientToken pulumi.StringInput `pulumi:"createClientToken"`
 	// The create time of Node.
 	CreateTime pulumi.StringInput `pulumi:"createTime"`
 	// The ID of Node.
 	Id pulumi.StringInput `pulumi:"id"`
+	// The ImageId of NodeConfig.
+	ImageId pulumi.StringInput `pulumi:"imageId"`
+	// The InitializeScript of NodeConfig.
+	InitializeScript pulumi.StringInput `pulumi:"initializeScript"`
 	// The instance id of node.
 	InstanceId pulumi.StringInput `pulumi:"instanceId"`
 	// Is virtual node.
 	IsVirtual pulumi.BoolInput `pulumi:"isVirtual"`
+	// The Label of KubernetesConfig.
+	Labels NodesNodeLabelArrayInput `pulumi:"labels"`
 	// The Name of Node.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The node pool id.
 	NodePoolId pulumi.StringInput `pulumi:"nodePoolId"`
-	// The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed`.
+	// The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
 	Phase pulumi.StringInput `pulumi:"phase"`
 	// The roles of node.
 	Roles pulumi.StringArrayInput `pulumi:"roles"`
+	// The Taint of KubernetesConfig.
+	Taints NodesNodeTaintArrayInput `pulumi:"taints"`
 	// The update time of Node.
 	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+	// The zone id.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
 }
 
 func (NodesNodeArgs) ElementType() reflect.Type {
@@ -4953,7 +9928,7 @@ func (i NodesNodeArgs) ToNodesNodeOutputWithContext(ctx context.Context) NodesNo
 // NodesNodeArrayInput is an input type that accepts NodesNodeArray and NodesNodeArrayOutput values.
 // You can construct a concrete instance of `NodesNodeArrayInput` via:
 //
-//          NodesNodeArray{ NodesNodeArgs{...} }
+//	NodesNodeArray{ NodesNodeArgs{...} }
 type NodesNodeArrayInput interface {
 	pulumi.Input
 
@@ -5009,6 +9984,11 @@ func (o NodesNodeOutput) ContainerStoragePath() pulumi.StringOutput {
 	return o.ApplyT(func(v NodesNode) string { return v.ContainerStoragePath }).(pulumi.StringOutput)
 }
 
+// The Cordon of KubernetesConfig.
+func (o NodesNodeOutput) Cordon() pulumi.BoolOutput {
+	return o.ApplyT(func(v NodesNode) bool { return v.Cordon }).(pulumi.BoolOutput)
+}
+
 // The Create Client Token.
 func (o NodesNodeOutput) CreateClientToken() pulumi.StringOutput {
 	return o.ApplyT(func(v NodesNode) string { return v.CreateClientToken }).(pulumi.StringOutput)
@@ -5024,6 +10004,16 @@ func (o NodesNodeOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v NodesNode) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The ImageId of NodeConfig.
+func (o NodesNodeOutput) ImageId() pulumi.StringOutput {
+	return o.ApplyT(func(v NodesNode) string { return v.ImageId }).(pulumi.StringOutput)
+}
+
+// The InitializeScript of NodeConfig.
+func (o NodesNodeOutput) InitializeScript() pulumi.StringOutput {
+	return o.ApplyT(func(v NodesNode) string { return v.InitializeScript }).(pulumi.StringOutput)
+}
+
 // The instance id of node.
 func (o NodesNodeOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v NodesNode) string { return v.InstanceId }).(pulumi.StringOutput)
@@ -5032,6 +10022,11 @@ func (o NodesNodeOutput) InstanceId() pulumi.StringOutput {
 // Is virtual node.
 func (o NodesNodeOutput) IsVirtual() pulumi.BoolOutput {
 	return o.ApplyT(func(v NodesNode) bool { return v.IsVirtual }).(pulumi.BoolOutput)
+}
+
+// The Label of KubernetesConfig.
+func (o NodesNodeOutput) Labels() NodesNodeLabelArrayOutput {
+	return o.ApplyT(func(v NodesNode) []NodesNodeLabel { return v.Labels }).(NodesNodeLabelArrayOutput)
 }
 
 // The Name of Node.
@@ -5044,7 +10039,7 @@ func (o NodesNodeOutput) NodePoolId() pulumi.StringOutput {
 	return o.ApplyT(func(v NodesNode) string { return v.NodePoolId }).(pulumi.StringOutput)
 }
 
-// The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed`.
+// The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
 func (o NodesNodeOutput) Phase() pulumi.StringOutput {
 	return o.ApplyT(func(v NodesNode) string { return v.Phase }).(pulumi.StringOutput)
 }
@@ -5054,9 +10049,19 @@ func (o NodesNodeOutput) Roles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v NodesNode) []string { return v.Roles }).(pulumi.StringArrayOutput)
 }
 
+// The Taint of KubernetesConfig.
+func (o NodesNodeOutput) Taints() NodesNodeTaintArrayOutput {
+	return o.ApplyT(func(v NodesNode) []NodesNodeTaint { return v.Taints }).(NodesNodeTaintArrayOutput)
+}
+
 // The update time of Node.
 func (o NodesNodeOutput) UpdateTime() pulumi.StringOutput {
 	return o.ApplyT(func(v NodesNode) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+// The zone id.
+func (o NodesNodeOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v NodesNode) string { return v.ZoneId }).(pulumi.StringOutput)
 }
 
 type NodesNodeArrayOutput struct{ *pulumi.OutputState }
@@ -5079,17 +10084,238 @@ func (o NodesNodeArrayOutput) Index(i pulumi.IntInput) NodesNodeOutput {
 	}).(NodesNodeOutput)
 }
 
+type NodesNodeLabel struct {
+	// The Key of Taint.
+	Key string `pulumi:"key"`
+	// The Value of Taint.
+	Value string `pulumi:"value"`
+}
+
+// NodesNodeLabelInput is an input type that accepts NodesNodeLabelArgs and NodesNodeLabelOutput values.
+// You can construct a concrete instance of `NodesNodeLabelInput` via:
+//
+//	NodesNodeLabelArgs{...}
+type NodesNodeLabelInput interface {
+	pulumi.Input
+
+	ToNodesNodeLabelOutput() NodesNodeLabelOutput
+	ToNodesNodeLabelOutputWithContext(context.Context) NodesNodeLabelOutput
+}
+
+type NodesNodeLabelArgs struct {
+	// The Key of Taint.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Taint.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (NodesNodeLabelArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodesNodeLabel)(nil)).Elem()
+}
+
+func (i NodesNodeLabelArgs) ToNodesNodeLabelOutput() NodesNodeLabelOutput {
+	return i.ToNodesNodeLabelOutputWithContext(context.Background())
+}
+
+func (i NodesNodeLabelArgs) ToNodesNodeLabelOutputWithContext(ctx context.Context) NodesNodeLabelOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodesNodeLabelOutput)
+}
+
+// NodesNodeLabelArrayInput is an input type that accepts NodesNodeLabelArray and NodesNodeLabelArrayOutput values.
+// You can construct a concrete instance of `NodesNodeLabelArrayInput` via:
+//
+//	NodesNodeLabelArray{ NodesNodeLabelArgs{...} }
+type NodesNodeLabelArrayInput interface {
+	pulumi.Input
+
+	ToNodesNodeLabelArrayOutput() NodesNodeLabelArrayOutput
+	ToNodesNodeLabelArrayOutputWithContext(context.Context) NodesNodeLabelArrayOutput
+}
+
+type NodesNodeLabelArray []NodesNodeLabelInput
+
+func (NodesNodeLabelArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodesNodeLabel)(nil)).Elem()
+}
+
+func (i NodesNodeLabelArray) ToNodesNodeLabelArrayOutput() NodesNodeLabelArrayOutput {
+	return i.ToNodesNodeLabelArrayOutputWithContext(context.Background())
+}
+
+func (i NodesNodeLabelArray) ToNodesNodeLabelArrayOutputWithContext(ctx context.Context) NodesNodeLabelArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodesNodeLabelArrayOutput)
+}
+
+type NodesNodeLabelOutput struct{ *pulumi.OutputState }
+
+func (NodesNodeLabelOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodesNodeLabel)(nil)).Elem()
+}
+
+func (o NodesNodeLabelOutput) ToNodesNodeLabelOutput() NodesNodeLabelOutput {
+	return o
+}
+
+func (o NodesNodeLabelOutput) ToNodesNodeLabelOutputWithContext(ctx context.Context) NodesNodeLabelOutput {
+	return o
+}
+
+// The Key of Taint.
+func (o NodesNodeLabelOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v NodesNodeLabel) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Taint.
+func (o NodesNodeLabelOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v NodesNodeLabel) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type NodesNodeLabelArrayOutput struct{ *pulumi.OutputState }
+
+func (NodesNodeLabelArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodesNodeLabel)(nil)).Elem()
+}
+
+func (o NodesNodeLabelArrayOutput) ToNodesNodeLabelArrayOutput() NodesNodeLabelArrayOutput {
+	return o
+}
+
+func (o NodesNodeLabelArrayOutput) ToNodesNodeLabelArrayOutputWithContext(ctx context.Context) NodesNodeLabelArrayOutput {
+	return o
+}
+
+func (o NodesNodeLabelArrayOutput) Index(i pulumi.IntInput) NodesNodeLabelOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NodesNodeLabel {
+		return vs[0].([]NodesNodeLabel)[vs[1].(int)]
+	}).(NodesNodeLabelOutput)
+}
+
+type NodesNodeTaint struct {
+	// The Effect of Taint.
+	Effect string `pulumi:"effect"`
+	// The Key of Taint.
+	Key string `pulumi:"key"`
+	// The Value of Taint.
+	Value string `pulumi:"value"`
+}
+
+// NodesNodeTaintInput is an input type that accepts NodesNodeTaintArgs and NodesNodeTaintOutput values.
+// You can construct a concrete instance of `NodesNodeTaintInput` via:
+//
+//	NodesNodeTaintArgs{...}
+type NodesNodeTaintInput interface {
+	pulumi.Input
+
+	ToNodesNodeTaintOutput() NodesNodeTaintOutput
+	ToNodesNodeTaintOutputWithContext(context.Context) NodesNodeTaintOutput
+}
+
+type NodesNodeTaintArgs struct {
+	// The Effect of Taint.
+	Effect pulumi.StringInput `pulumi:"effect"`
+	// The Key of Taint.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Taint.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (NodesNodeTaintArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodesNodeTaint)(nil)).Elem()
+}
+
+func (i NodesNodeTaintArgs) ToNodesNodeTaintOutput() NodesNodeTaintOutput {
+	return i.ToNodesNodeTaintOutputWithContext(context.Background())
+}
+
+func (i NodesNodeTaintArgs) ToNodesNodeTaintOutputWithContext(ctx context.Context) NodesNodeTaintOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodesNodeTaintOutput)
+}
+
+// NodesNodeTaintArrayInput is an input type that accepts NodesNodeTaintArray and NodesNodeTaintArrayOutput values.
+// You can construct a concrete instance of `NodesNodeTaintArrayInput` via:
+//
+//	NodesNodeTaintArray{ NodesNodeTaintArgs{...} }
+type NodesNodeTaintArrayInput interface {
+	pulumi.Input
+
+	ToNodesNodeTaintArrayOutput() NodesNodeTaintArrayOutput
+	ToNodesNodeTaintArrayOutputWithContext(context.Context) NodesNodeTaintArrayOutput
+}
+
+type NodesNodeTaintArray []NodesNodeTaintInput
+
+func (NodesNodeTaintArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodesNodeTaint)(nil)).Elem()
+}
+
+func (i NodesNodeTaintArray) ToNodesNodeTaintArrayOutput() NodesNodeTaintArrayOutput {
+	return i.ToNodesNodeTaintArrayOutputWithContext(context.Background())
+}
+
+func (i NodesNodeTaintArray) ToNodesNodeTaintArrayOutputWithContext(ctx context.Context) NodesNodeTaintArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodesNodeTaintArrayOutput)
+}
+
+type NodesNodeTaintOutput struct{ *pulumi.OutputState }
+
+func (NodesNodeTaintOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodesNodeTaint)(nil)).Elem()
+}
+
+func (o NodesNodeTaintOutput) ToNodesNodeTaintOutput() NodesNodeTaintOutput {
+	return o
+}
+
+func (o NodesNodeTaintOutput) ToNodesNodeTaintOutputWithContext(ctx context.Context) NodesNodeTaintOutput {
+	return o
+}
+
+// The Effect of Taint.
+func (o NodesNodeTaintOutput) Effect() pulumi.StringOutput {
+	return o.ApplyT(func(v NodesNodeTaint) string { return v.Effect }).(pulumi.StringOutput)
+}
+
+// The Key of Taint.
+func (o NodesNodeTaintOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v NodesNodeTaint) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Taint.
+func (o NodesNodeTaintOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v NodesNodeTaint) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type NodesNodeTaintArrayOutput struct{ *pulumi.OutputState }
+
+func (NodesNodeTaintArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodesNodeTaint)(nil)).Elem()
+}
+
+func (o NodesNodeTaintArrayOutput) ToNodesNodeTaintArrayOutput() NodesNodeTaintArrayOutput {
+	return o
+}
+
+func (o NodesNodeTaintArrayOutput) ToNodesNodeTaintArrayOutputWithContext(ctx context.Context) NodesNodeTaintArrayOutput {
+	return o
+}
+
+func (o NodesNodeTaintArrayOutput) Index(i pulumi.IntInput) NodesNodeTaintOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NodesNodeTaint {
+		return vs[0].([]NodesNodeTaint)[vs[1].(int)]
+	}).(NodesNodeTaintOutput)
+}
+
 type NodesStatus struct {
 	// The Type of Node Condition, the value is `Progressing` or `Ok` or `Unschedulable` or `InitilizeFailed` or `Unknown` or `NotReady` or `Security` or `Balance` or `ResourceCleanupFailed`.
 	ConditionsType *string `pulumi:"conditionsType"`
-	// The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed`.
+	// The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
 	Phase *string `pulumi:"phase"`
 }
 
 // NodesStatusInput is an input type that accepts NodesStatusArgs and NodesStatusOutput values.
 // You can construct a concrete instance of `NodesStatusInput` via:
 //
-//          NodesStatusArgs{...}
+//	NodesStatusArgs{...}
 type NodesStatusInput interface {
 	pulumi.Input
 
@@ -5100,7 +10326,7 @@ type NodesStatusInput interface {
 type NodesStatusArgs struct {
 	// The Type of Node Condition, the value is `Progressing` or `Ok` or `Unschedulable` or `InitilizeFailed` or `Unknown` or `NotReady` or `Security` or `Balance` or `ResourceCleanupFailed`.
 	ConditionsType pulumi.StringPtrInput `pulumi:"conditionsType"`
-	// The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed`.
+	// The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
 	Phase pulumi.StringPtrInput `pulumi:"phase"`
 }
 
@@ -5119,7 +10345,7 @@ func (i NodesStatusArgs) ToNodesStatusOutputWithContext(ctx context.Context) Nod
 // NodesStatusArrayInput is an input type that accepts NodesStatusArray and NodesStatusArrayOutput values.
 // You can construct a concrete instance of `NodesStatusArrayInput` via:
 //
-//          NodesStatusArray{ NodesStatusArgs{...} }
+//	NodesStatusArray{ NodesStatusArgs{...} }
 type NodesStatusArrayInput interface {
 	pulumi.Input
 
@@ -5160,7 +10386,7 @@ func (o NodesStatusOutput) ConditionsType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NodesStatus) *string { return v.ConditionsType }).(pulumi.StringPtrOutput)
 }
 
-// The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed`.
+// The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
 func (o NodesStatusOutput) Phase() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NodesStatus) *string { return v.Phase }).(pulumi.StringPtrOutput)
 }
@@ -5185,13 +10411,384 @@ func (o NodesStatusArrayOutput) Index(i pulumi.IntInput) NodesStatusOutput {
 	}).(NodesStatusOutput)
 }
 
+type SupportAddonsAddon struct {
+	// The categories of addons, the value is `Storage` or `Network` or `Monitor` or `Scheduler` or `Dns` or `Security` or `Gpu` or `Image`.
+	Categories []string `pulumi:"categories"`
+	// The deploy model.
+	DeployMode string `pulumi:"deployMode"`
+	// The deploy node types, the value is `Node` or `VirtualNode`. Only effected when deployMode is `Unmanaged`.
+	DeployNodeTypes []string `pulumi:"deployNodeTypes"`
+	// The name of the addon.
+	Name      string  `pulumi:"name"`
+	Necessary *string `pulumi:"necessary"`
+	// The container network model, the value is `Flannel` or `VpcCniShared`. Flannel: Flannel network model, an independent Underlay container network solution, combined with the global routing capability of VPC, to achieve a high-performance network experience for the cluster. VpcCniShared: VPC-CNI network model, an Underlay container network solution based on the ENI of the private network elastic network card, with high network communication performance.
+	PodNetworkModes []string `pulumi:"podNetworkModes"`
+	// The version info of addon.
+	Versions []SupportAddonsAddonVersion `pulumi:"versions"`
+}
+
+// SupportAddonsAddonInput is an input type that accepts SupportAddonsAddonArgs and SupportAddonsAddonOutput values.
+// You can construct a concrete instance of `SupportAddonsAddonInput` via:
+//
+//	SupportAddonsAddonArgs{...}
+type SupportAddonsAddonInput interface {
+	pulumi.Input
+
+	ToSupportAddonsAddonOutput() SupportAddonsAddonOutput
+	ToSupportAddonsAddonOutputWithContext(context.Context) SupportAddonsAddonOutput
+}
+
+type SupportAddonsAddonArgs struct {
+	// The categories of addons, the value is `Storage` or `Network` or `Monitor` or `Scheduler` or `Dns` or `Security` or `Gpu` or `Image`.
+	Categories pulumi.StringArrayInput `pulumi:"categories"`
+	// The deploy model.
+	DeployMode pulumi.StringInput `pulumi:"deployMode"`
+	// The deploy node types, the value is `Node` or `VirtualNode`. Only effected when deployMode is `Unmanaged`.
+	DeployNodeTypes pulumi.StringArrayInput `pulumi:"deployNodeTypes"`
+	// The name of the addon.
+	Name      pulumi.StringInput    `pulumi:"name"`
+	Necessary pulumi.StringPtrInput `pulumi:"necessary"`
+	// The container network model, the value is `Flannel` or `VpcCniShared`. Flannel: Flannel network model, an independent Underlay container network solution, combined with the global routing capability of VPC, to achieve a high-performance network experience for the cluster. VpcCniShared: VPC-CNI network model, an Underlay container network solution based on the ENI of the private network elastic network card, with high network communication performance.
+	PodNetworkModes pulumi.StringArrayInput `pulumi:"podNetworkModes"`
+	// The version info of addon.
+	Versions SupportAddonsAddonVersionArrayInput `pulumi:"versions"`
+}
+
+func (SupportAddonsAddonArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SupportAddonsAddon)(nil)).Elem()
+}
+
+func (i SupportAddonsAddonArgs) ToSupportAddonsAddonOutput() SupportAddonsAddonOutput {
+	return i.ToSupportAddonsAddonOutputWithContext(context.Background())
+}
+
+func (i SupportAddonsAddonArgs) ToSupportAddonsAddonOutputWithContext(ctx context.Context) SupportAddonsAddonOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SupportAddonsAddonOutput)
+}
+
+// SupportAddonsAddonArrayInput is an input type that accepts SupportAddonsAddonArray and SupportAddonsAddonArrayOutput values.
+// You can construct a concrete instance of `SupportAddonsAddonArrayInput` via:
+//
+//	SupportAddonsAddonArray{ SupportAddonsAddonArgs{...} }
+type SupportAddonsAddonArrayInput interface {
+	pulumi.Input
+
+	ToSupportAddonsAddonArrayOutput() SupportAddonsAddonArrayOutput
+	ToSupportAddonsAddonArrayOutputWithContext(context.Context) SupportAddonsAddonArrayOutput
+}
+
+type SupportAddonsAddonArray []SupportAddonsAddonInput
+
+func (SupportAddonsAddonArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SupportAddonsAddon)(nil)).Elem()
+}
+
+func (i SupportAddonsAddonArray) ToSupportAddonsAddonArrayOutput() SupportAddonsAddonArrayOutput {
+	return i.ToSupportAddonsAddonArrayOutputWithContext(context.Background())
+}
+
+func (i SupportAddonsAddonArray) ToSupportAddonsAddonArrayOutputWithContext(ctx context.Context) SupportAddonsAddonArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SupportAddonsAddonArrayOutput)
+}
+
+type SupportAddonsAddonOutput struct{ *pulumi.OutputState }
+
+func (SupportAddonsAddonOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SupportAddonsAddon)(nil)).Elem()
+}
+
+func (o SupportAddonsAddonOutput) ToSupportAddonsAddonOutput() SupportAddonsAddonOutput {
+	return o
+}
+
+func (o SupportAddonsAddonOutput) ToSupportAddonsAddonOutputWithContext(ctx context.Context) SupportAddonsAddonOutput {
+	return o
+}
+
+// The categories of addons, the value is `Storage` or `Network` or `Monitor` or `Scheduler` or `Dns` or `Security` or `Gpu` or `Image`.
+func (o SupportAddonsAddonOutput) Categories() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SupportAddonsAddon) []string { return v.Categories }).(pulumi.StringArrayOutput)
+}
+
+// The deploy model.
+func (o SupportAddonsAddonOutput) DeployMode() pulumi.StringOutput {
+	return o.ApplyT(func(v SupportAddonsAddon) string { return v.DeployMode }).(pulumi.StringOutput)
+}
+
+// The deploy node types, the value is `Node` or `VirtualNode`. Only effected when deployMode is `Unmanaged`.
+func (o SupportAddonsAddonOutput) DeployNodeTypes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SupportAddonsAddon) []string { return v.DeployNodeTypes }).(pulumi.StringArrayOutput)
+}
+
+// The name of the addon.
+func (o SupportAddonsAddonOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v SupportAddonsAddon) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o SupportAddonsAddonOutput) Necessary() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SupportAddonsAddon) *string { return v.Necessary }).(pulumi.StringPtrOutput)
+}
+
+// The container network model, the value is `Flannel` or `VpcCniShared`. Flannel: Flannel network model, an independent Underlay container network solution, combined with the global routing capability of VPC, to achieve a high-performance network experience for the cluster. VpcCniShared: VPC-CNI network model, an Underlay container network solution based on the ENI of the private network elastic network card, with high network communication performance.
+func (o SupportAddonsAddonOutput) PodNetworkModes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SupportAddonsAddon) []string { return v.PodNetworkModes }).(pulumi.StringArrayOutput)
+}
+
+// The version info of addon.
+func (o SupportAddonsAddonOutput) Versions() SupportAddonsAddonVersionArrayOutput {
+	return o.ApplyT(func(v SupportAddonsAddon) []SupportAddonsAddonVersion { return v.Versions }).(SupportAddonsAddonVersionArrayOutput)
+}
+
+type SupportAddonsAddonArrayOutput struct{ *pulumi.OutputState }
+
+func (SupportAddonsAddonArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SupportAddonsAddon)(nil)).Elem()
+}
+
+func (o SupportAddonsAddonArrayOutput) ToSupportAddonsAddonArrayOutput() SupportAddonsAddonArrayOutput {
+	return o
+}
+
+func (o SupportAddonsAddonArrayOutput) ToSupportAddonsAddonArrayOutputWithContext(ctx context.Context) SupportAddonsAddonArrayOutput {
+	return o
+}
+
+func (o SupportAddonsAddonArrayOutput) Index(i pulumi.IntInput) SupportAddonsAddonOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SupportAddonsAddon {
+		return vs[0].([]SupportAddonsAddon)[vs[1].(int)]
+	}).(SupportAddonsAddonOutput)
+}
+
+type SupportAddonsAddonVersion struct {
+	// The compatible version list.
+	Compatibilities []SupportAddonsAddonVersionCompatibility `pulumi:"compatibilities"`
+	// The compatible version list.
+	CompatibleVersions []string `pulumi:"compatibleVersions"`
+	// The basic version info.
+	Version string `pulumi:"version"`
+}
+
+// SupportAddonsAddonVersionInput is an input type that accepts SupportAddonsAddonVersionArgs and SupportAddonsAddonVersionOutput values.
+// You can construct a concrete instance of `SupportAddonsAddonVersionInput` via:
+//
+//	SupportAddonsAddonVersionArgs{...}
+type SupportAddonsAddonVersionInput interface {
+	pulumi.Input
+
+	ToSupportAddonsAddonVersionOutput() SupportAddonsAddonVersionOutput
+	ToSupportAddonsAddonVersionOutputWithContext(context.Context) SupportAddonsAddonVersionOutput
+}
+
+type SupportAddonsAddonVersionArgs struct {
+	// The compatible version list.
+	Compatibilities SupportAddonsAddonVersionCompatibilityArrayInput `pulumi:"compatibilities"`
+	// The compatible version list.
+	CompatibleVersions pulumi.StringArrayInput `pulumi:"compatibleVersions"`
+	// The basic version info.
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (SupportAddonsAddonVersionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SupportAddonsAddonVersion)(nil)).Elem()
+}
+
+func (i SupportAddonsAddonVersionArgs) ToSupportAddonsAddonVersionOutput() SupportAddonsAddonVersionOutput {
+	return i.ToSupportAddonsAddonVersionOutputWithContext(context.Background())
+}
+
+func (i SupportAddonsAddonVersionArgs) ToSupportAddonsAddonVersionOutputWithContext(ctx context.Context) SupportAddonsAddonVersionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SupportAddonsAddonVersionOutput)
+}
+
+// SupportAddonsAddonVersionArrayInput is an input type that accepts SupportAddonsAddonVersionArray and SupportAddonsAddonVersionArrayOutput values.
+// You can construct a concrete instance of `SupportAddonsAddonVersionArrayInput` via:
+//
+//	SupportAddonsAddonVersionArray{ SupportAddonsAddonVersionArgs{...} }
+type SupportAddonsAddonVersionArrayInput interface {
+	pulumi.Input
+
+	ToSupportAddonsAddonVersionArrayOutput() SupportAddonsAddonVersionArrayOutput
+	ToSupportAddonsAddonVersionArrayOutputWithContext(context.Context) SupportAddonsAddonVersionArrayOutput
+}
+
+type SupportAddonsAddonVersionArray []SupportAddonsAddonVersionInput
+
+func (SupportAddonsAddonVersionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SupportAddonsAddonVersion)(nil)).Elem()
+}
+
+func (i SupportAddonsAddonVersionArray) ToSupportAddonsAddonVersionArrayOutput() SupportAddonsAddonVersionArrayOutput {
+	return i.ToSupportAddonsAddonVersionArrayOutputWithContext(context.Background())
+}
+
+func (i SupportAddonsAddonVersionArray) ToSupportAddonsAddonVersionArrayOutputWithContext(ctx context.Context) SupportAddonsAddonVersionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SupportAddonsAddonVersionArrayOutput)
+}
+
+type SupportAddonsAddonVersionOutput struct{ *pulumi.OutputState }
+
+func (SupportAddonsAddonVersionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SupportAddonsAddonVersion)(nil)).Elem()
+}
+
+func (o SupportAddonsAddonVersionOutput) ToSupportAddonsAddonVersionOutput() SupportAddonsAddonVersionOutput {
+	return o
+}
+
+func (o SupportAddonsAddonVersionOutput) ToSupportAddonsAddonVersionOutputWithContext(ctx context.Context) SupportAddonsAddonVersionOutput {
+	return o
+}
+
+// The compatible version list.
+func (o SupportAddonsAddonVersionOutput) Compatibilities() SupportAddonsAddonVersionCompatibilityArrayOutput {
+	return o.ApplyT(func(v SupportAddonsAddonVersion) []SupportAddonsAddonVersionCompatibility { return v.Compatibilities }).(SupportAddonsAddonVersionCompatibilityArrayOutput)
+}
+
+// The compatible version list.
+func (o SupportAddonsAddonVersionOutput) CompatibleVersions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SupportAddonsAddonVersion) []string { return v.CompatibleVersions }).(pulumi.StringArrayOutput)
+}
+
+// The basic version info.
+func (o SupportAddonsAddonVersionOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v SupportAddonsAddonVersion) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type SupportAddonsAddonVersionArrayOutput struct{ *pulumi.OutputState }
+
+func (SupportAddonsAddonVersionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SupportAddonsAddonVersion)(nil)).Elem()
+}
+
+func (o SupportAddonsAddonVersionArrayOutput) ToSupportAddonsAddonVersionArrayOutput() SupportAddonsAddonVersionArrayOutput {
+	return o
+}
+
+func (o SupportAddonsAddonVersionArrayOutput) ToSupportAddonsAddonVersionArrayOutputWithContext(ctx context.Context) SupportAddonsAddonVersionArrayOutput {
+	return o
+}
+
+func (o SupportAddonsAddonVersionArrayOutput) Index(i pulumi.IntInput) SupportAddonsAddonVersionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SupportAddonsAddonVersion {
+		return vs[0].([]SupportAddonsAddonVersion)[vs[1].(int)]
+	}).(SupportAddonsAddonVersionOutput)
+}
+
+type SupportAddonsAddonVersionCompatibility struct {
+	// The Kubernetes Version of addon.
+	KubernetesVersion string `pulumi:"kubernetesVersion"`
+}
+
+// SupportAddonsAddonVersionCompatibilityInput is an input type that accepts SupportAddonsAddonVersionCompatibilityArgs and SupportAddonsAddonVersionCompatibilityOutput values.
+// You can construct a concrete instance of `SupportAddonsAddonVersionCompatibilityInput` via:
+//
+//	SupportAddonsAddonVersionCompatibilityArgs{...}
+type SupportAddonsAddonVersionCompatibilityInput interface {
+	pulumi.Input
+
+	ToSupportAddonsAddonVersionCompatibilityOutput() SupportAddonsAddonVersionCompatibilityOutput
+	ToSupportAddonsAddonVersionCompatibilityOutputWithContext(context.Context) SupportAddonsAddonVersionCompatibilityOutput
+}
+
+type SupportAddonsAddonVersionCompatibilityArgs struct {
+	// The Kubernetes Version of addon.
+	KubernetesVersion pulumi.StringInput `pulumi:"kubernetesVersion"`
+}
+
+func (SupportAddonsAddonVersionCompatibilityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SupportAddonsAddonVersionCompatibility)(nil)).Elem()
+}
+
+func (i SupportAddonsAddonVersionCompatibilityArgs) ToSupportAddonsAddonVersionCompatibilityOutput() SupportAddonsAddonVersionCompatibilityOutput {
+	return i.ToSupportAddonsAddonVersionCompatibilityOutputWithContext(context.Background())
+}
+
+func (i SupportAddonsAddonVersionCompatibilityArgs) ToSupportAddonsAddonVersionCompatibilityOutputWithContext(ctx context.Context) SupportAddonsAddonVersionCompatibilityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SupportAddonsAddonVersionCompatibilityOutput)
+}
+
+// SupportAddonsAddonVersionCompatibilityArrayInput is an input type that accepts SupportAddonsAddonVersionCompatibilityArray and SupportAddonsAddonVersionCompatibilityArrayOutput values.
+// You can construct a concrete instance of `SupportAddonsAddonVersionCompatibilityArrayInput` via:
+//
+//	SupportAddonsAddonVersionCompatibilityArray{ SupportAddonsAddonVersionCompatibilityArgs{...} }
+type SupportAddonsAddonVersionCompatibilityArrayInput interface {
+	pulumi.Input
+
+	ToSupportAddonsAddonVersionCompatibilityArrayOutput() SupportAddonsAddonVersionCompatibilityArrayOutput
+	ToSupportAddonsAddonVersionCompatibilityArrayOutputWithContext(context.Context) SupportAddonsAddonVersionCompatibilityArrayOutput
+}
+
+type SupportAddonsAddonVersionCompatibilityArray []SupportAddonsAddonVersionCompatibilityInput
+
+func (SupportAddonsAddonVersionCompatibilityArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SupportAddonsAddonVersionCompatibility)(nil)).Elem()
+}
+
+func (i SupportAddonsAddonVersionCompatibilityArray) ToSupportAddonsAddonVersionCompatibilityArrayOutput() SupportAddonsAddonVersionCompatibilityArrayOutput {
+	return i.ToSupportAddonsAddonVersionCompatibilityArrayOutputWithContext(context.Background())
+}
+
+func (i SupportAddonsAddonVersionCompatibilityArray) ToSupportAddonsAddonVersionCompatibilityArrayOutputWithContext(ctx context.Context) SupportAddonsAddonVersionCompatibilityArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SupportAddonsAddonVersionCompatibilityArrayOutput)
+}
+
+type SupportAddonsAddonVersionCompatibilityOutput struct{ *pulumi.OutputState }
+
+func (SupportAddonsAddonVersionCompatibilityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SupportAddonsAddonVersionCompatibility)(nil)).Elem()
+}
+
+func (o SupportAddonsAddonVersionCompatibilityOutput) ToSupportAddonsAddonVersionCompatibilityOutput() SupportAddonsAddonVersionCompatibilityOutput {
+	return o
+}
+
+func (o SupportAddonsAddonVersionCompatibilityOutput) ToSupportAddonsAddonVersionCompatibilityOutputWithContext(ctx context.Context) SupportAddonsAddonVersionCompatibilityOutput {
+	return o
+}
+
+// The Kubernetes Version of addon.
+func (o SupportAddonsAddonVersionCompatibilityOutput) KubernetesVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v SupportAddonsAddonVersionCompatibility) string { return v.KubernetesVersion }).(pulumi.StringOutput)
+}
+
+type SupportAddonsAddonVersionCompatibilityArrayOutput struct{ *pulumi.OutputState }
+
+func (SupportAddonsAddonVersionCompatibilityArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SupportAddonsAddonVersionCompatibility)(nil)).Elem()
+}
+
+func (o SupportAddonsAddonVersionCompatibilityArrayOutput) ToSupportAddonsAddonVersionCompatibilityArrayOutput() SupportAddonsAddonVersionCompatibilityArrayOutput {
+	return o
+}
+
+func (o SupportAddonsAddonVersionCompatibilityArrayOutput) ToSupportAddonsAddonVersionCompatibilityArrayOutputWithContext(ctx context.Context) SupportAddonsAddonVersionCompatibilityArrayOutput {
+	return o
+}
+
+func (o SupportAddonsAddonVersionCompatibilityArrayOutput) Index(i pulumi.IntInput) SupportAddonsAddonVersionCompatibilityOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SupportAddonsAddonVersionCompatibility {
+		return vs[0].([]SupportAddonsAddonVersionCompatibility)[vs[1].(int)]
+	}).(SupportAddonsAddonVersionCompatibilityOutput)
+}
+
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AddonsAddonInput)(nil)).Elem(), AddonsAddonArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AddonsAddonArrayInput)(nil)).Elem(), AddonsAddonArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AddonsAddonStatusInput)(nil)).Elem(), AddonsAddonStatusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AddonsAddonStatusConditionInput)(nil)).Elem(), AddonsAddonStatusConditionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AddonsAddonStatusConditionArrayInput)(nil)).Elem(), AddonsAddonStatusConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AddonsStatusInput)(nil)).Elem(), AddonsStatusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AddonsStatusArrayInput)(nil)).Elem(), AddonsStatusArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterClusterConfigInput)(nil)).Elem(), ClusterClusterConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterClusterConfigPtrInput)(nil)).Elem(), ClusterClusterConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterClusterConfigApiServerPublicAccessConfigInput)(nil)).Elem(), ClusterClusterConfigApiServerPublicAccessConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterClusterConfigApiServerPublicAccessConfigPtrInput)(nil)).Elem(), ClusterClusterConfigApiServerPublicAccessConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigInput)(nil)).Elem(), ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigPtrInput)(nil)).Elem(), ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClusterLoggingConfigInput)(nil)).Elem(), ClusterLoggingConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClusterLoggingConfigPtrInput)(nil)).Elem(), ClusterLoggingConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClusterLoggingConfigLogSetupInput)(nil)).Elem(), ClusterLoggingConfigLogSetupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClusterLoggingConfigLogSetupArrayInput)(nil)).Elem(), ClusterLoggingConfigLogSetupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterPodsConfigInput)(nil)).Elem(), ClusterPodsConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterPodsConfigPtrInput)(nil)).Elem(), ClusterPodsConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterPodsConfigFlannelConfigInput)(nil)).Elem(), ClusterPodsConfigFlannelConfigArgs{})
@@ -5200,6 +10797,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterPodsConfigVpcCniConfigPtrInput)(nil)).Elem(), ClusterPodsConfigVpcCniConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterServicesConfigInput)(nil)).Elem(), ClusterServicesConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterServicesConfigPtrInput)(nil)).Elem(), ClusterServicesConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClusterTagInput)(nil)).Elem(), ClusterTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClusterTagArrayInput)(nil)).Elem(), ClusterTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClustersClusterInput)(nil)).Elem(), ClustersClusterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClustersClusterArrayInput)(nil)).Elem(), ClustersClusterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClustersClusterClusterConfigInput)(nil)).Elem(), ClustersClusterClusterConfigArgs{})
@@ -5208,6 +10807,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ClustersClusterClusterConfigApiServerEndpointsPublicIpInput)(nil)).Elem(), ClustersClusterClusterConfigApiServerEndpointsPublicIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClustersClusterClusterConfigApiServerPublicAccessConfigInput)(nil)).Elem(), ClustersClusterClusterConfigApiServerPublicAccessConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigInput)(nil)).Elem(), ClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClustersClusterLoggingConfigInput)(nil)).Elem(), ClustersClusterLoggingConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClustersClusterLoggingConfigArrayInput)(nil)).Elem(), ClustersClusterLoggingConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClustersClusterLoggingConfigLogSetupInput)(nil)).Elem(), ClustersClusterLoggingConfigLogSetupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClustersClusterLoggingConfigLogSetupArrayInput)(nil)).Elem(), ClustersClusterLoggingConfigLogSetupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClustersClusterNodeStatisticsInput)(nil)).Elem(), ClustersClusterNodeStatisticsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClustersClusterPodsConfigInput)(nil)).Elem(), ClustersClusterPodsConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClustersClusterPodsConfigFlannelConfigInput)(nil)).Elem(), ClustersClusterPodsConfigFlannelConfigArgs{})
@@ -5216,8 +10819,56 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ClustersClusterStatusInput)(nil)).Elem(), ClustersClusterStatusArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClustersClusterStatusConditionInput)(nil)).Elem(), ClustersClusterStatusConditionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClustersClusterStatusConditionArrayInput)(nil)).Elem(), ClustersClusterStatusConditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClustersClusterTagInput)(nil)).Elem(), ClustersClusterTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClustersClusterTagArrayInput)(nil)).Elem(), ClustersClusterTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClustersStatusInput)(nil)).Elem(), ClustersStatusArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClustersStatusArrayInput)(nil)).Elem(), ClustersStatusArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClustersTagInput)(nil)).Elem(), ClustersTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClustersTagArrayInput)(nil)).Elem(), ClustersTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolBatchAttachInstanceInput)(nil)).Elem(), DefaultNodePoolBatchAttachInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolBatchAttachInstanceArrayInput)(nil)).Elem(), DefaultNodePoolBatchAttachInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolBatchAttachKubernetesConfigInput)(nil)).Elem(), DefaultNodePoolBatchAttachKubernetesConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolBatchAttachKubernetesConfigArrayInput)(nil)).Elem(), DefaultNodePoolBatchAttachKubernetesConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolBatchAttachKubernetesConfigLabelInput)(nil)).Elem(), DefaultNodePoolBatchAttachKubernetesConfigLabelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolBatchAttachKubernetesConfigLabelArrayInput)(nil)).Elem(), DefaultNodePoolBatchAttachKubernetesConfigLabelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolBatchAttachKubernetesConfigTaintInput)(nil)).Elem(), DefaultNodePoolBatchAttachKubernetesConfigTaintArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolBatchAttachKubernetesConfigTaintArrayInput)(nil)).Elem(), DefaultNodePoolBatchAttachKubernetesConfigTaintArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolBatchAttachNodeConfigInput)(nil)).Elem(), DefaultNodePoolBatchAttachNodeConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolBatchAttachNodeConfigArrayInput)(nil)).Elem(), DefaultNodePoolBatchAttachNodeConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolBatchAttachNodeConfigEcsTagInput)(nil)).Elem(), DefaultNodePoolBatchAttachNodeConfigEcsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolBatchAttachNodeConfigEcsTagArrayInput)(nil)).Elem(), DefaultNodePoolBatchAttachNodeConfigEcsTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolBatchAttachNodeConfigSecurityInput)(nil)).Elem(), DefaultNodePoolBatchAttachNodeConfigSecurityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolBatchAttachNodeConfigSecurityArrayInput)(nil)).Elem(), DefaultNodePoolBatchAttachNodeConfigSecurityArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolBatchAttachNodeConfigSecurityLoginInput)(nil)).Elem(), DefaultNodePoolBatchAttachNodeConfigSecurityLoginArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolBatchAttachNodeConfigSecurityLoginArrayInput)(nil)).Elem(), DefaultNodePoolBatchAttachNodeConfigSecurityLoginArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolBatchAttachTagInput)(nil)).Elem(), DefaultNodePoolBatchAttachTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolBatchAttachTagArrayInput)(nil)).Elem(), DefaultNodePoolBatchAttachTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolInstanceInput)(nil)).Elem(), DefaultNodePoolInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolInstanceArrayInput)(nil)).Elem(), DefaultNodePoolInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolKubernetesConfigInput)(nil)).Elem(), DefaultNodePoolKubernetesConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolKubernetesConfigPtrInput)(nil)).Elem(), DefaultNodePoolKubernetesConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolKubernetesConfigLabelInput)(nil)).Elem(), DefaultNodePoolKubernetesConfigLabelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolKubernetesConfigLabelArrayInput)(nil)).Elem(), DefaultNodePoolKubernetesConfigLabelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolKubernetesConfigTaintInput)(nil)).Elem(), DefaultNodePoolKubernetesConfigTaintArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolKubernetesConfigTaintArrayInput)(nil)).Elem(), DefaultNodePoolKubernetesConfigTaintArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolNodeConfigInput)(nil)).Elem(), DefaultNodePoolNodeConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolNodeConfigPtrInput)(nil)).Elem(), DefaultNodePoolNodeConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolNodeConfigEcsTagInput)(nil)).Elem(), DefaultNodePoolNodeConfigEcsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolNodeConfigEcsTagArrayInput)(nil)).Elem(), DefaultNodePoolNodeConfigEcsTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolNodeConfigSecurityInput)(nil)).Elem(), DefaultNodePoolNodeConfigSecurityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolNodeConfigSecurityPtrInput)(nil)).Elem(), DefaultNodePoolNodeConfigSecurityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolNodeConfigSecurityLoginInput)(nil)).Elem(), DefaultNodePoolNodeConfigSecurityLoginArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolNodeConfigSecurityLoginPtrInput)(nil)).Elem(), DefaultNodePoolNodeConfigSecurityLoginArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolTagInput)(nil)).Elem(), DefaultNodePoolTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolTagArrayInput)(nil)).Elem(), DefaultNodePoolTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubeconfigsKubeconfigInput)(nil)).Elem(), KubeconfigsKubeconfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubeconfigsKubeconfigArrayInput)(nil)).Elem(), KubeconfigsKubeconfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodeKubernetesConfigInput)(nil)).Elem(), NodeKubernetesConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodeKubernetesConfigPtrInput)(nil)).Elem(), NodeKubernetesConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodeKubernetesConfigLabelInput)(nil)).Elem(), NodeKubernetesConfigLabelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodeKubernetesConfigLabelArrayInput)(nil)).Elem(), NodeKubernetesConfigLabelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodeKubernetesConfigTaintInput)(nil)).Elem(), NodeKubernetesConfigTaintArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodeKubernetesConfigTaintArrayInput)(nil)).Elem(), NodeKubernetesConfigTaintArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolAutoScalingInput)(nil)).Elem(), NodePoolAutoScalingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolAutoScalingPtrInput)(nil)).Elem(), NodePoolAutoScalingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolKubernetesConfigInput)(nil)).Elem(), NodePoolKubernetesConfigArgs{})
@@ -5230,36 +10881,65 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolNodeConfigPtrInput)(nil)).Elem(), NodePoolNodeConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolNodeConfigDataVolumeInput)(nil)).Elem(), NodePoolNodeConfigDataVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolNodeConfigDataVolumeArrayInput)(nil)).Elem(), NodePoolNodeConfigDataVolumeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolNodeConfigEcsTagInput)(nil)).Elem(), NodePoolNodeConfigEcsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolNodeConfigEcsTagArrayInput)(nil)).Elem(), NodePoolNodeConfigEcsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolNodeConfigSecurityInput)(nil)).Elem(), NodePoolNodeConfigSecurityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolNodeConfigSecurityPtrInput)(nil)).Elem(), NodePoolNodeConfigSecurityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolNodeConfigSecurityLoginInput)(nil)).Elem(), NodePoolNodeConfigSecurityLoginArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolNodeConfigSecurityLoginPtrInput)(nil)).Elem(), NodePoolNodeConfigSecurityLoginArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolNodeConfigSystemVolumeInput)(nil)).Elem(), NodePoolNodeConfigSystemVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolNodeConfigSystemVolumePtrInput)(nil)).Elem(), NodePoolNodeConfigSystemVolumeArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolStatusInput)(nil)).Elem(), NodePoolStatusArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolStatusArrayInput)(nil)).Elem(), NodePoolStatusArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolTagInput)(nil)).Elem(), NodePoolTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolTagArrayInput)(nil)).Elem(), NodePoolTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolInput)(nil)).Elem(), NodePoolsNodePoolArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolArrayInput)(nil)).Elem(), NodePoolsNodePoolArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolDataVolumeInput)(nil)).Elem(), NodePoolsNodePoolDataVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolDataVolumeArrayInput)(nil)).Elem(), NodePoolsNodePoolDataVolumeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolEcsTagInput)(nil)).Elem(), NodePoolsNodePoolEcsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolEcsTagArrayInput)(nil)).Elem(), NodePoolsNodePoolEcsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolLabelContentInput)(nil)).Elem(), NodePoolsNodePoolLabelContentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolLabelContentArrayInput)(nil)).Elem(), NodePoolsNodePoolLabelContentArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolNodeStatisticsInput)(nil)).Elem(), NodePoolsNodePoolNodeStatisticsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolSystemVolumeInput)(nil)).Elem(), NodePoolsNodePoolSystemVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolTagInput)(nil)).Elem(), NodePoolsNodePoolTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolTagArrayInput)(nil)).Elem(), NodePoolsNodePoolTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolTaintContentInput)(nil)).Elem(), NodePoolsNodePoolTaintContentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolTaintContentArrayInput)(nil)).Elem(), NodePoolsNodePoolTaintContentArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsStatusInput)(nil)).Elem(), NodePoolsStatusArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsStatusArrayInput)(nil)).Elem(), NodePoolsStatusArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsTagInput)(nil)).Elem(), NodePoolsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsTagArrayInput)(nil)).Elem(), NodePoolsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodesNodeInput)(nil)).Elem(), NodesNodeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodesNodeArrayInput)(nil)).Elem(), NodesNodeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodesNodeLabelInput)(nil)).Elem(), NodesNodeLabelArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodesNodeLabelArrayInput)(nil)).Elem(), NodesNodeLabelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodesNodeTaintInput)(nil)).Elem(), NodesNodeTaintArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodesNodeTaintArrayInput)(nil)).Elem(), NodesNodeTaintArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodesStatusInput)(nil)).Elem(), NodesStatusArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodesStatusArrayInput)(nil)).Elem(), NodesStatusArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SupportAddonsAddonInput)(nil)).Elem(), SupportAddonsAddonArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SupportAddonsAddonArrayInput)(nil)).Elem(), SupportAddonsAddonArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SupportAddonsAddonVersionInput)(nil)).Elem(), SupportAddonsAddonVersionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SupportAddonsAddonVersionArrayInput)(nil)).Elem(), SupportAddonsAddonVersionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SupportAddonsAddonVersionCompatibilityInput)(nil)).Elem(), SupportAddonsAddonVersionCompatibilityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SupportAddonsAddonVersionCompatibilityArrayInput)(nil)).Elem(), SupportAddonsAddonVersionCompatibilityArray{})
+	pulumi.RegisterOutputType(AddonsAddonOutput{})
+	pulumi.RegisterOutputType(AddonsAddonArrayOutput{})
+	pulumi.RegisterOutputType(AddonsAddonStatusOutput{})
+	pulumi.RegisterOutputType(AddonsAddonStatusConditionOutput{})
+	pulumi.RegisterOutputType(AddonsAddonStatusConditionArrayOutput{})
+	pulumi.RegisterOutputType(AddonsStatusOutput{})
+	pulumi.RegisterOutputType(AddonsStatusArrayOutput{})
 	pulumi.RegisterOutputType(ClusterClusterConfigOutput{})
 	pulumi.RegisterOutputType(ClusterClusterConfigPtrOutput{})
 	pulumi.RegisterOutputType(ClusterClusterConfigApiServerPublicAccessConfigOutput{})
 	pulumi.RegisterOutputType(ClusterClusterConfigApiServerPublicAccessConfigPtrOutput{})
 	pulumi.RegisterOutputType(ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigOutput{})
 	pulumi.RegisterOutputType(ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigPtrOutput{})
+	pulumi.RegisterOutputType(ClusterLoggingConfigOutput{})
+	pulumi.RegisterOutputType(ClusterLoggingConfigPtrOutput{})
+	pulumi.RegisterOutputType(ClusterLoggingConfigLogSetupOutput{})
+	pulumi.RegisterOutputType(ClusterLoggingConfigLogSetupArrayOutput{})
 	pulumi.RegisterOutputType(ClusterPodsConfigOutput{})
 	pulumi.RegisterOutputType(ClusterPodsConfigPtrOutput{})
 	pulumi.RegisterOutputType(ClusterPodsConfigFlannelConfigOutput{})
@@ -5268,6 +10948,8 @@ func init() {
 	pulumi.RegisterOutputType(ClusterPodsConfigVpcCniConfigPtrOutput{})
 	pulumi.RegisterOutputType(ClusterServicesConfigOutput{})
 	pulumi.RegisterOutputType(ClusterServicesConfigPtrOutput{})
+	pulumi.RegisterOutputType(ClusterTagOutput{})
+	pulumi.RegisterOutputType(ClusterTagArrayOutput{})
 	pulumi.RegisterOutputType(ClustersClusterOutput{})
 	pulumi.RegisterOutputType(ClustersClusterArrayOutput{})
 	pulumi.RegisterOutputType(ClustersClusterClusterConfigOutput{})
@@ -5276,6 +10958,10 @@ func init() {
 	pulumi.RegisterOutputType(ClustersClusterClusterConfigApiServerEndpointsPublicIpOutput{})
 	pulumi.RegisterOutputType(ClustersClusterClusterConfigApiServerPublicAccessConfigOutput{})
 	pulumi.RegisterOutputType(ClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigOutput{})
+	pulumi.RegisterOutputType(ClustersClusterLoggingConfigOutput{})
+	pulumi.RegisterOutputType(ClustersClusterLoggingConfigArrayOutput{})
+	pulumi.RegisterOutputType(ClustersClusterLoggingConfigLogSetupOutput{})
+	pulumi.RegisterOutputType(ClustersClusterLoggingConfigLogSetupArrayOutput{})
 	pulumi.RegisterOutputType(ClustersClusterNodeStatisticsOutput{})
 	pulumi.RegisterOutputType(ClustersClusterPodsConfigOutput{})
 	pulumi.RegisterOutputType(ClustersClusterPodsConfigFlannelConfigOutput{})
@@ -5284,8 +10970,56 @@ func init() {
 	pulumi.RegisterOutputType(ClustersClusterStatusOutput{})
 	pulumi.RegisterOutputType(ClustersClusterStatusConditionOutput{})
 	pulumi.RegisterOutputType(ClustersClusterStatusConditionArrayOutput{})
+	pulumi.RegisterOutputType(ClustersClusterTagOutput{})
+	pulumi.RegisterOutputType(ClustersClusterTagArrayOutput{})
 	pulumi.RegisterOutputType(ClustersStatusOutput{})
 	pulumi.RegisterOutputType(ClustersStatusArrayOutput{})
+	pulumi.RegisterOutputType(ClustersTagOutput{})
+	pulumi.RegisterOutputType(ClustersTagArrayOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolBatchAttachInstanceOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolBatchAttachInstanceArrayOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolBatchAttachKubernetesConfigOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolBatchAttachKubernetesConfigArrayOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolBatchAttachKubernetesConfigLabelOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolBatchAttachKubernetesConfigLabelArrayOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolBatchAttachKubernetesConfigTaintOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolBatchAttachKubernetesConfigTaintArrayOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolBatchAttachNodeConfigOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolBatchAttachNodeConfigArrayOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolBatchAttachNodeConfigEcsTagOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolBatchAttachNodeConfigEcsTagArrayOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolBatchAttachNodeConfigSecurityOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolBatchAttachNodeConfigSecurityArrayOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolBatchAttachNodeConfigSecurityLoginOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolBatchAttachNodeConfigSecurityLoginArrayOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolBatchAttachTagOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolBatchAttachTagArrayOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolInstanceOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolInstanceArrayOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolKubernetesConfigOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolKubernetesConfigPtrOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolKubernetesConfigLabelOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolKubernetesConfigLabelArrayOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolKubernetesConfigTaintOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolKubernetesConfigTaintArrayOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolNodeConfigOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolNodeConfigPtrOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolNodeConfigEcsTagOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolNodeConfigEcsTagArrayOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolNodeConfigSecurityOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolNodeConfigSecurityPtrOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolNodeConfigSecurityLoginOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolNodeConfigSecurityLoginPtrOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolTagOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolTagArrayOutput{})
+	pulumi.RegisterOutputType(KubeconfigsKubeconfigOutput{})
+	pulumi.RegisterOutputType(KubeconfigsKubeconfigArrayOutput{})
+	pulumi.RegisterOutputType(NodeKubernetesConfigOutput{})
+	pulumi.RegisterOutputType(NodeKubernetesConfigPtrOutput{})
+	pulumi.RegisterOutputType(NodeKubernetesConfigLabelOutput{})
+	pulumi.RegisterOutputType(NodeKubernetesConfigLabelArrayOutput{})
+	pulumi.RegisterOutputType(NodeKubernetesConfigTaintOutput{})
+	pulumi.RegisterOutputType(NodeKubernetesConfigTaintArrayOutput{})
 	pulumi.RegisterOutputType(NodePoolAutoScalingOutput{})
 	pulumi.RegisterOutputType(NodePoolAutoScalingPtrOutput{})
 	pulumi.RegisterOutputType(NodePoolKubernetesConfigOutput{})
@@ -5298,28 +11032,46 @@ func init() {
 	pulumi.RegisterOutputType(NodePoolNodeConfigPtrOutput{})
 	pulumi.RegisterOutputType(NodePoolNodeConfigDataVolumeOutput{})
 	pulumi.RegisterOutputType(NodePoolNodeConfigDataVolumeArrayOutput{})
+	pulumi.RegisterOutputType(NodePoolNodeConfigEcsTagOutput{})
+	pulumi.RegisterOutputType(NodePoolNodeConfigEcsTagArrayOutput{})
 	pulumi.RegisterOutputType(NodePoolNodeConfigSecurityOutput{})
 	pulumi.RegisterOutputType(NodePoolNodeConfigSecurityPtrOutput{})
 	pulumi.RegisterOutputType(NodePoolNodeConfigSecurityLoginOutput{})
 	pulumi.RegisterOutputType(NodePoolNodeConfigSecurityLoginPtrOutput{})
 	pulumi.RegisterOutputType(NodePoolNodeConfigSystemVolumeOutput{})
 	pulumi.RegisterOutputType(NodePoolNodeConfigSystemVolumePtrOutput{})
-	pulumi.RegisterOutputType(NodePoolStatusOutput{})
-	pulumi.RegisterOutputType(NodePoolStatusArrayOutput{})
+	pulumi.RegisterOutputType(NodePoolTagOutput{})
+	pulumi.RegisterOutputType(NodePoolTagArrayOutput{})
 	pulumi.RegisterOutputType(NodePoolsNodePoolOutput{})
 	pulumi.RegisterOutputType(NodePoolsNodePoolArrayOutput{})
 	pulumi.RegisterOutputType(NodePoolsNodePoolDataVolumeOutput{})
 	pulumi.RegisterOutputType(NodePoolsNodePoolDataVolumeArrayOutput{})
+	pulumi.RegisterOutputType(NodePoolsNodePoolEcsTagOutput{})
+	pulumi.RegisterOutputType(NodePoolsNodePoolEcsTagArrayOutput{})
 	pulumi.RegisterOutputType(NodePoolsNodePoolLabelContentOutput{})
 	pulumi.RegisterOutputType(NodePoolsNodePoolLabelContentArrayOutput{})
 	pulumi.RegisterOutputType(NodePoolsNodePoolNodeStatisticsOutput{})
 	pulumi.RegisterOutputType(NodePoolsNodePoolSystemVolumeOutput{})
+	pulumi.RegisterOutputType(NodePoolsNodePoolTagOutput{})
+	pulumi.RegisterOutputType(NodePoolsNodePoolTagArrayOutput{})
 	pulumi.RegisterOutputType(NodePoolsNodePoolTaintContentOutput{})
 	pulumi.RegisterOutputType(NodePoolsNodePoolTaintContentArrayOutput{})
 	pulumi.RegisterOutputType(NodePoolsStatusOutput{})
 	pulumi.RegisterOutputType(NodePoolsStatusArrayOutput{})
+	pulumi.RegisterOutputType(NodePoolsTagOutput{})
+	pulumi.RegisterOutputType(NodePoolsTagArrayOutput{})
 	pulumi.RegisterOutputType(NodesNodeOutput{})
 	pulumi.RegisterOutputType(NodesNodeArrayOutput{})
+	pulumi.RegisterOutputType(NodesNodeLabelOutput{})
+	pulumi.RegisterOutputType(NodesNodeLabelArrayOutput{})
+	pulumi.RegisterOutputType(NodesNodeTaintOutput{})
+	pulumi.RegisterOutputType(NodesNodeTaintArrayOutput{})
 	pulumi.RegisterOutputType(NodesStatusOutput{})
 	pulumi.RegisterOutputType(NodesStatusArrayOutput{})
+	pulumi.RegisterOutputType(SupportAddonsAddonOutput{})
+	pulumi.RegisterOutputType(SupportAddonsAddonArrayOutput{})
+	pulumi.RegisterOutputType(SupportAddonsAddonVersionOutput{})
+	pulumi.RegisterOutputType(SupportAddonsAddonVersionArrayOutput{})
+	pulumi.RegisterOutputType(SupportAddonsAddonVersionCompatibilityOutput{})
+	pulumi.RegisterOutputType(SupportAddonsAddonVersionCompatibilityArrayOutput{})
 }

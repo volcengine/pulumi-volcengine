@@ -18,22 +18,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Vpc"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/vpc"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Vpc.NewRouteTableAssociate(ctx, "foo", &Vpc.RouteTableAssociateArgs{
-// 			RouteTableId: pulumi.String("vtb-274e19skkuhog7fap8u4i8ird"),
-// 			SubnetId:     pulumi.String("subnet-2744ht7fhjthc7fap8tm10eqg"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vpc.NewRouteTableAssociate(ctx, "foo", &vpc.RouteTableAssociateArgs{
+//				RouteTableId: pulumi.String("vtb-274e19skkuhog7fap8u4i8ird"),
+//				SubnetId:     pulumi.String("subnet-2744ht7fhjthc7fap8tm10eqg"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -41,7 +44,9 @@ import (
 // Route table associate address can be imported using the route_table_id:subnet_id, e.g.
 //
 // ```sh
-//  $ pulumi import volcengine:Vpc/routeTableAssociate:RouteTableAssociate default vtb-2fdzao4h726f45******:subnet-2fdzaou4liw3k5oxruv******
+//
+//	$ pulumi import volcengine:vpc/routeTableAssociate:RouteTableAssociate default vtb-2fdzao4h726f45******:subnet-2fdzaou4liw3k5oxruv******
+//
 // ```
 type RouteTableAssociate struct {
 	pulumi.CustomResourceState
@@ -66,7 +71,7 @@ func NewRouteTableAssociate(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'SubnetId'")
 	}
 	var resource RouteTableAssociate
-	err := ctx.RegisterResource("volcengine:Vpc/routeTableAssociate:RouteTableAssociate", name, args, &resource, opts...)
+	err := ctx.RegisterResource("volcengine:vpc/routeTableAssociate:RouteTableAssociate", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -78,7 +83,7 @@ func NewRouteTableAssociate(ctx *pulumi.Context,
 func GetRouteTableAssociate(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *RouteTableAssociateState, opts ...pulumi.ResourceOption) (*RouteTableAssociate, error) {
 	var resource RouteTableAssociate
-	err := ctx.ReadResource("volcengine:Vpc/routeTableAssociate:RouteTableAssociate", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("volcengine:vpc/routeTableAssociate:RouteTableAssociate", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -145,7 +150,7 @@ func (i *RouteTableAssociate) ToRouteTableAssociateOutputWithContext(ctx context
 // RouteTableAssociateArrayInput is an input type that accepts RouteTableAssociateArray and RouteTableAssociateArrayOutput values.
 // You can construct a concrete instance of `RouteTableAssociateArrayInput` via:
 //
-//          RouteTableAssociateArray{ RouteTableAssociateArgs{...} }
+//	RouteTableAssociateArray{ RouteTableAssociateArgs{...} }
 type RouteTableAssociateArrayInput interface {
 	pulumi.Input
 
@@ -170,7 +175,7 @@ func (i RouteTableAssociateArray) ToRouteTableAssociateArrayOutputWithContext(ct
 // RouteTableAssociateMapInput is an input type that accepts RouteTableAssociateMap and RouteTableAssociateMapOutput values.
 // You can construct a concrete instance of `RouteTableAssociateMapInput` via:
 //
-//          RouteTableAssociateMap{ "key": RouteTableAssociateArgs{...} }
+//	RouteTableAssociateMap{ "key": RouteTableAssociateArgs{...} }
 type RouteTableAssociateMapInput interface {
 	pulumi.Input
 

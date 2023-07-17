@@ -6,7 +6,6 @@ import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
- * Provides a resource to manage ecs instance
  * ## Example Usage
  *
  * ```typescript
@@ -27,7 +26,6 @@ import * as utilities from "../utilities";
  *     dependsOn: [foo1Subnet],
  * });
  * const _default = new volcengine.ecs.Instance("default", {
- *     zoneId: "cn-beijing-a",
  *     imageId: "image-aagd56zrw2jtdro3bnrl",
  *     instanceType: "ecs.g1.large",
  *     instanceName: "xym-tf-test-2",
@@ -43,6 +41,8 @@ import * as utilities from "../utilities";
  *         size: 100,
  *         deleteWithInstance: true,
  *     }],
+ *     deploymentSetId: "",
+ *     ipv6AddressCount: 1,
  * });
  * //  secondary_network_interfaces {
  * //    subnet_id = volcengine_subnet.foo1.id
@@ -52,10 +52,10 @@ import * as utilities from "../utilities";
  *
  * ## Import
  *
- * ECS Instance can be imported using the id, e.g.
+ * ECS Instance can be imported using the id, e.g. If Import,The data_volumes is sort by volume name
  *
  * ```sh
- *  $ pulumi import volcengine:Ecs/instance:Instance default i-mizl7m1kqccg5smt1bdpijuj
+ *  $ pulumi import volcengine:ecs/instance:Instance default i-mizl7m1kqccg5smt1bdpijuj
  * ```
  */
 export class Instance extends pulumi.CustomResource {
@@ -73,7 +73,7 @@ export class Instance extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'volcengine:Ecs/instance:Instance';
+    public static readonly __pulumiType = 'volcengine:ecs/instance:Instance';
 
     /**
      * Returns true if the given object is an instance of Instance.  This is designed to work even
@@ -87,11 +87,11 @@ export class Instance extends pulumi.CustomResource {
     }
 
     /**
-     * The auto renew flag of ECS instance.Only effective when instanceChargeType is PrePaid. Default is true.
+     * The auto renew flag of ECS instance.Only effective when instanceChargeType is PrePaid. Default is true.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     public readonly autoRenew!: pulumi.Output<boolean | undefined>;
     /**
-     * The auto renew period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 1.
+     * The auto renew period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     public readonly autoRenewPeriod!: pulumi.Output<number | undefined>;
     /**
@@ -103,13 +103,21 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * The data volume collection of  ECS instance.
+     * The data volumes collection of  ECS instance.
      */
-    public readonly dataVolumes!: pulumi.Output<outputs.Ecs.InstanceDataVolume[] | undefined>;
+    public readonly dataVolumes!: pulumi.Output<outputs.ecs.InstanceDataVolume[] | undefined>;
+    /**
+     * The ID of Ecs Deployment Set.
+     */
+    public readonly deploymentSetId!: pulumi.Output<string | undefined>;
     /**
      * The description of ECS instance.
      */
     public readonly description!: pulumi.Output<string>;
+    /**
+     * The GPU device info of Instance.
+     */
+    public /*out*/ readonly gpuDevices!: pulumi.Output<outputs.ecs.InstanceGpuDevice[]>;
     /**
      * The host name of ECS instance.
      */
@@ -127,7 +135,7 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly includeDataVolumes!: pulumi.Output<boolean | undefined>;
     /**
-     * The charge type of ECS instance.
+     * The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
      */
     public readonly instanceChargeType!: pulumi.Output<string>;
     /**
@@ -142,6 +150,25 @@ export class Instance extends pulumi.CustomResource {
      * The instance type of ECS instance.
      */
     public readonly instanceType!: pulumi.Output<string>;
+    /**
+     * The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 1 to 10.
+     */
+    public readonly ipv6AddressCount!: pulumi.Output<number>;
+    /**
+     * One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+     * You cannot specify both the ipv6Addresses and ipv6AddressCount parameters.
+     */
+    public readonly ipv6Addresses!: pulumi.Output<string[]>;
+    /**
+     * The Flag of GPU instance.If the instance is GPU,The flag is true.
+     */
+    public /*out*/ readonly isGpu!: pulumi.Output<boolean>;
+    /**
+     * Whether to keep the mirror settings. Only custom images and shared images support this field.
+     * When the value of this field is true, the Password and KeyPairName cannot be specified.
+     * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    public readonly keepImageCredential!: pulumi.Output<boolean | undefined>;
     /**
      * The ssh key ID of ECS instance.
      */
@@ -175,17 +202,29 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly period!: pulumi.Output<number | undefined>;
     /**
+     * The private ip address of primary networkInterface.
+     */
+    public /*out*/ readonly primaryIpAddress!: pulumi.Output<string>;
+    /**
+     * The ProjectName of the ecs instance.
+     */
+    public readonly projectName!: pulumi.Output<string | undefined>;
+    /**
      * The secondary networkInterface detail collection of ECS instance.
      */
-    public readonly secondaryNetworkInterfaces!: pulumi.Output<outputs.Ecs.InstanceSecondaryNetworkInterface[] | undefined>;
+    public readonly secondaryNetworkInterfaces!: pulumi.Output<outputs.ecs.InstanceSecondaryNetworkInterface[] | undefined>;
     /**
-     * The security enhancement strategy of ECS instance.Default is true.
+     * The security enhancement strategy of ECS instance. The value can be Active or InActive. Default is Active.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     public readonly securityEnhancementStrategy!: pulumi.Output<string | undefined>;
     /**
      * The security group ID set of primary networkInterface.
      */
     public readonly securityGroupIds!: pulumi.Output<string[]>;
+    /**
+     * The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
+     */
+    public readonly spotStrategy!: pulumi.Output<string>;
     /**
      * The status of ECS instance.
      */
@@ -207,15 +246,19 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly systemVolumeSize!: pulumi.Output<number>;
     /**
-     * The type of system volume.
+     * The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
      */
     public readonly systemVolumeType!: pulumi.Output<string>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.ecs.InstanceTag[] | undefined>;
     /**
      * The update time of ECS instance.
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
-     * The user data of ECS instance.
+     * The user data of ECS instance, this field must be encrypted with base64.
      */
     public readonly userData!: pulumi.Output<string>;
     /**
@@ -245,7 +288,9 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["cpus"] = state ? state.cpus : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["dataVolumes"] = state ? state.dataVolumes : undefined;
+            resourceInputs["deploymentSetId"] = state ? state.deploymentSetId : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["gpuDevices"] = state ? state.gpuDevices : undefined;
             resourceInputs["hostName"] = state ? state.hostName : undefined;
             resourceInputs["hpcClusterId"] = state ? state.hpcClusterId : undefined;
             resourceInputs["imageId"] = state ? state.imageId : undefined;
@@ -254,6 +299,10 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["instanceName"] = state ? state.instanceName : undefined;
             resourceInputs["instanceType"] = state ? state.instanceType : undefined;
+            resourceInputs["ipv6AddressCount"] = state ? state.ipv6AddressCount : undefined;
+            resourceInputs["ipv6Addresses"] = state ? state.ipv6Addresses : undefined;
+            resourceInputs["isGpu"] = state ? state.isGpu : undefined;
+            resourceInputs["keepImageCredential"] = state ? state.keepImageCredential : undefined;
             resourceInputs["keyPairId"] = state ? state.keyPairId : undefined;
             resourceInputs["keyPairName"] = state ? state.keyPairName : undefined;
             resourceInputs["memorySize"] = state ? state.memorySize : undefined;
@@ -262,15 +311,19 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["osType"] = state ? state.osType : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
             resourceInputs["period"] = state ? state.period : undefined;
+            resourceInputs["primaryIpAddress"] = state ? state.primaryIpAddress : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["secondaryNetworkInterfaces"] = state ? state.secondaryNetworkInterfaces : undefined;
             resourceInputs["securityEnhancementStrategy"] = state ? state.securityEnhancementStrategy : undefined;
             resourceInputs["securityGroupIds"] = state ? state.securityGroupIds : undefined;
+            resourceInputs["spotStrategy"] = state ? state.spotStrategy : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["stoppedMode"] = state ? state.stoppedMode : undefined;
             resourceInputs["subnetId"] = state ? state.subnetId : undefined;
             resourceInputs["systemVolumeId"] = state ? state.systemVolumeId : undefined;
             resourceInputs["systemVolumeSize"] = state ? state.systemVolumeSize : undefined;
             resourceInputs["systemVolumeType"] = state ? state.systemVolumeType : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
             resourceInputs["userData"] = state ? state.userData : undefined;
             resourceInputs["vpcId"] = state ? state.vpcId : undefined;
@@ -295,12 +348,10 @@ export class Instance extends pulumi.CustomResource {
             if ((!args || args.systemVolumeType === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'systemVolumeType'");
             }
-            if ((!args || args.zoneId === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'zoneId'");
-            }
             resourceInputs["autoRenew"] = args ? args.autoRenew : undefined;
             resourceInputs["autoRenewPeriod"] = args ? args.autoRenewPeriod : undefined;
             resourceInputs["dataVolumes"] = args ? args.dataVolumes : undefined;
+            resourceInputs["deploymentSetId"] = args ? args.deploymentSetId : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["hostName"] = args ? args.hostName : undefined;
             resourceInputs["hpcClusterId"] = args ? args.hpcClusterId : undefined;
@@ -309,25 +360,34 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["instanceChargeType"] = args ? args.instanceChargeType : undefined;
             resourceInputs["instanceName"] = args ? args.instanceName : undefined;
             resourceInputs["instanceType"] = args ? args.instanceType : undefined;
+            resourceInputs["ipv6AddressCount"] = args ? args.ipv6AddressCount : undefined;
+            resourceInputs["ipv6Addresses"] = args ? args.ipv6Addresses : undefined;
+            resourceInputs["keepImageCredential"] = args ? args.keepImageCredential : undefined;
             resourceInputs["keyPairName"] = args ? args.keyPairName : undefined;
             resourceInputs["password"] = args ? args.password : undefined;
             resourceInputs["period"] = args ? args.period : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["secondaryNetworkInterfaces"] = args ? args.secondaryNetworkInterfaces : undefined;
             resourceInputs["securityEnhancementStrategy"] = args ? args.securityEnhancementStrategy : undefined;
             resourceInputs["securityGroupIds"] = args ? args.securityGroupIds : undefined;
+            resourceInputs["spotStrategy"] = args ? args.spotStrategy : undefined;
             resourceInputs["subnetId"] = args ? args.subnetId : undefined;
             resourceInputs["systemVolumeSize"] = args ? args.systemVolumeSize : undefined;
             resourceInputs["systemVolumeType"] = args ? args.systemVolumeType : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["userData"] = args ? args.userData : undefined;
             resourceInputs["zoneId"] = args ? args.zoneId : undefined;
             resourceInputs["cpus"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["gpuDevices"] = undefined /*out*/;
             resourceInputs["instanceId"] = undefined /*out*/;
+            resourceInputs["isGpu"] = undefined /*out*/;
             resourceInputs["keyPairId"] = undefined /*out*/;
             resourceInputs["memorySize"] = undefined /*out*/;
             resourceInputs["networkInterfaceId"] = undefined /*out*/;
             resourceInputs["osName"] = undefined /*out*/;
             resourceInputs["osType"] = undefined /*out*/;
+            resourceInputs["primaryIpAddress"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["stoppedMode"] = undefined /*out*/;
             resourceInputs["systemVolumeId"] = undefined /*out*/;
@@ -344,11 +404,11 @@ export class Instance extends pulumi.CustomResource {
  */
 export interface InstanceState {
     /**
-     * The auto renew flag of ECS instance.Only effective when instanceChargeType is PrePaid. Default is true.
+     * The auto renew flag of ECS instance.Only effective when instanceChargeType is PrePaid. Default is true.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     autoRenew?: pulumi.Input<boolean>;
     /**
-     * The auto renew period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 1.
+     * The auto renew period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     autoRenewPeriod?: pulumi.Input<number>;
     /**
@@ -360,13 +420,21 @@ export interface InstanceState {
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * The data volume collection of  ECS instance.
+     * The data volumes collection of  ECS instance.
      */
-    dataVolumes?: pulumi.Input<pulumi.Input<inputs.Ecs.InstanceDataVolume>[]>;
+    dataVolumes?: pulumi.Input<pulumi.Input<inputs.ecs.InstanceDataVolume>[]>;
+    /**
+     * The ID of Ecs Deployment Set.
+     */
+    deploymentSetId?: pulumi.Input<string>;
     /**
      * The description of ECS instance.
      */
     description?: pulumi.Input<string>;
+    /**
+     * The GPU device info of Instance.
+     */
+    gpuDevices?: pulumi.Input<pulumi.Input<inputs.ecs.InstanceGpuDevice>[]>;
     /**
      * The host name of ECS instance.
      */
@@ -384,7 +452,7 @@ export interface InstanceState {
      */
     includeDataVolumes?: pulumi.Input<boolean>;
     /**
-     * The charge type of ECS instance.
+     * The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
      */
     instanceChargeType?: pulumi.Input<string>;
     /**
@@ -399,6 +467,25 @@ export interface InstanceState {
      * The instance type of ECS instance.
      */
     instanceType?: pulumi.Input<string>;
+    /**
+     * The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 1 to 10.
+     */
+    ipv6AddressCount?: pulumi.Input<number>;
+    /**
+     * One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+     * You cannot specify both the ipv6Addresses and ipv6AddressCount parameters.
+     */
+    ipv6Addresses?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The Flag of GPU instance.If the instance is GPU,The flag is true.
+     */
+    isGpu?: pulumi.Input<boolean>;
+    /**
+     * Whether to keep the mirror settings. Only custom images and shared images support this field.
+     * When the value of this field is true, the Password and KeyPairName cannot be specified.
+     * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    keepImageCredential?: pulumi.Input<boolean>;
     /**
      * The ssh key ID of ECS instance.
      */
@@ -432,17 +519,29 @@ export interface InstanceState {
      */
     period?: pulumi.Input<number>;
     /**
+     * The private ip address of primary networkInterface.
+     */
+    primaryIpAddress?: pulumi.Input<string>;
+    /**
+     * The ProjectName of the ecs instance.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * The secondary networkInterface detail collection of ECS instance.
      */
-    secondaryNetworkInterfaces?: pulumi.Input<pulumi.Input<inputs.Ecs.InstanceSecondaryNetworkInterface>[]>;
+    secondaryNetworkInterfaces?: pulumi.Input<pulumi.Input<inputs.ecs.InstanceSecondaryNetworkInterface>[]>;
     /**
-     * The security enhancement strategy of ECS instance.Default is true.
+     * The security enhancement strategy of ECS instance. The value can be Active or InActive. Default is Active.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     securityEnhancementStrategy?: pulumi.Input<string>;
     /**
      * The security group ID set of primary networkInterface.
      */
     securityGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
+     */
+    spotStrategy?: pulumi.Input<string>;
     /**
      * The status of ECS instance.
      */
@@ -464,15 +563,19 @@ export interface InstanceState {
      */
     systemVolumeSize?: pulumi.Input<number>;
     /**
-     * The type of system volume.
+     * The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
      */
     systemVolumeType?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.ecs.InstanceTag>[]>;
     /**
      * The update time of ECS instance.
      */
     updatedAt?: pulumi.Input<string>;
     /**
-     * The user data of ECS instance.
+     * The user data of ECS instance, this field must be encrypted with base64.
      */
     userData?: pulumi.Input<string>;
     /**
@@ -490,17 +593,21 @@ export interface InstanceState {
  */
 export interface InstanceArgs {
     /**
-     * The auto renew flag of ECS instance.Only effective when instanceChargeType is PrePaid. Default is true.
+     * The auto renew flag of ECS instance.Only effective when instanceChargeType is PrePaid. Default is true.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     autoRenew?: pulumi.Input<boolean>;
     /**
-     * The auto renew period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 1.
+     * The auto renew period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     autoRenewPeriod?: pulumi.Input<number>;
     /**
-     * The data volume collection of  ECS instance.
+     * The data volumes collection of  ECS instance.
      */
-    dataVolumes?: pulumi.Input<pulumi.Input<inputs.Ecs.InstanceDataVolume>[]>;
+    dataVolumes?: pulumi.Input<pulumi.Input<inputs.ecs.InstanceDataVolume>[]>;
+    /**
+     * The ID of Ecs Deployment Set.
+     */
+    deploymentSetId?: pulumi.Input<string>;
     /**
      * The description of ECS instance.
      */
@@ -522,7 +629,7 @@ export interface InstanceArgs {
      */
     includeDataVolumes?: pulumi.Input<boolean>;
     /**
-     * The charge type of ECS instance.
+     * The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
      */
     instanceChargeType?: pulumi.Input<string>;
     /**
@@ -533,6 +640,21 @@ export interface InstanceArgs {
      * The instance type of ECS instance.
      */
     instanceType: pulumi.Input<string>;
+    /**
+     * The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 1 to 10.
+     */
+    ipv6AddressCount?: pulumi.Input<number>;
+    /**
+     * One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+     * You cannot specify both the ipv6Addresses and ipv6AddressCount parameters.
+     */
+    ipv6Addresses?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Whether to keep the mirror settings. Only custom images and shared images support this field.
+     * When the value of this field is true, the Password and KeyPairName cannot be specified.
+     * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    keepImageCredential?: pulumi.Input<boolean>;
     /**
      * The ssh key name of ECS instance.
      */
@@ -546,17 +668,25 @@ export interface InstanceArgs {
      */
     period?: pulumi.Input<number>;
     /**
+     * The ProjectName of the ecs instance.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * The secondary networkInterface detail collection of ECS instance.
      */
-    secondaryNetworkInterfaces?: pulumi.Input<pulumi.Input<inputs.Ecs.InstanceSecondaryNetworkInterface>[]>;
+    secondaryNetworkInterfaces?: pulumi.Input<pulumi.Input<inputs.ecs.InstanceSecondaryNetworkInterface>[]>;
     /**
-     * The security enhancement strategy of ECS instance.Default is true.
+     * The security enhancement strategy of ECS instance. The value can be Active or InActive. Default is Active.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     securityEnhancementStrategy?: pulumi.Input<string>;
     /**
      * The security group ID set of primary networkInterface.
      */
     securityGroupIds: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
+     */
+    spotStrategy?: pulumi.Input<string>;
     /**
      * The subnet ID of primary networkInterface.
      */
@@ -566,15 +696,19 @@ export interface InstanceArgs {
      */
     systemVolumeSize: pulumi.Input<number>;
     /**
-     * The type of system volume.
+     * The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
      */
     systemVolumeType: pulumi.Input<string>;
     /**
-     * The user data of ECS instance.
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.ecs.InstanceTag>[]>;
+    /**
+     * The user data of ECS instance, this field must be encrypted with base64.
      */
     userData?: pulumi.Input<string>;
     /**
      * The available zone ID of ECS instance.
      */
-    zoneId: pulumi.Input<string>;
+    zoneId?: pulumi.Input<string>;
 }

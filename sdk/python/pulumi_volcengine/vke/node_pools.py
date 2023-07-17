@@ -22,7 +22,7 @@ class NodePoolsResult:
     """
     A collection of values returned by NodePools.
     """
-    def __init__(__self__, auto_scaling_enabled=None, cluster_id=None, cluster_ids=None, create_client_token=None, id=None, ids=None, name=None, name_regex=None, node_pools=None, output_file=None, statuses=None, total_count=None, update_client_token=None):
+    def __init__(__self__, auto_scaling_enabled=None, cluster_id=None, cluster_ids=None, create_client_token=None, id=None, ids=None, name=None, name_regex=None, node_pools=None, output_file=None, statuses=None, tags=None, total_count=None, update_client_token=None):
         if auto_scaling_enabled and not isinstance(auto_scaling_enabled, bool):
             raise TypeError("Expected argument 'auto_scaling_enabled' to be a bool")
         pulumi.set(__self__, "auto_scaling_enabled", auto_scaling_enabled)
@@ -56,6 +56,9 @@ class NodePoolsResult:
         if statuses and not isinstance(statuses, list):
             raise TypeError("Expected argument 'statuses' to be a list")
         pulumi.set(__self__, "statuses", statuses)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -134,6 +137,14 @@ class NodePoolsResult:
         return pulumi.get(self, "statuses")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.NodePoolsTagResult']]:
+        """
+        Tags of the NodePool.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
         """
@@ -167,6 +178,7 @@ class AwaitableNodePoolsResult(NodePoolsResult):
             node_pools=self.node_pools,
             output_file=self.output_file,
             statuses=self.statuses,
+            tags=self.tags,
             total_count=self.total_count,
             update_client_token=self.update_client_token)
 
@@ -180,6 +192,7 @@ def node_pools(auto_scaling_enabled: Optional[bool] = None,
                name_regex: Optional[str] = None,
                output_file: Optional[str] = None,
                statuses: Optional[Sequence[pulumi.InputType['NodePoolsStatusArgs']]] = None,
+               tags: Optional[Sequence[pulumi.InputType['NodePoolsTagArgs']]] = None,
                update_client_token: Optional[str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableNodePoolsResult:
     """
@@ -190,7 +203,7 @@ def node_pools(auto_scaling_enabled: Optional[bool] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    vke_test = volcengine.Vke.node_pools(cluster_ids=["ccabe57fqtofgrbln3dog"],
+    vke_test = volcengine.vke.node_pools(cluster_ids=["ccabe57fqtofgrbln3dog"],
         name="demo")
     ```
 
@@ -204,6 +217,7 @@ def node_pools(auto_scaling_enabled: Optional[bool] = None,
     :param str name_regex: A Name Regex of NodePool.
     :param str output_file: File name where to save data source results.
     :param Sequence[pulumi.InputType['NodePoolsStatusArgs']] statuses: The Status of NodePool.
+    :param Sequence[pulumi.InputType['NodePoolsTagArgs']] tags: Tags.
     :param str update_client_token: The ClientToken when last update was successful.
     """
     __args__ = dict()
@@ -216,12 +230,13 @@ def node_pools(auto_scaling_enabled: Optional[bool] = None,
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
     __args__['statuses'] = statuses
+    __args__['tags'] = tags
     __args__['updateClientToken'] = update_client_token
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('volcengine:Vke/nodePools:NodePools', __args__, opts=opts, typ=NodePoolsResult).value
+    __ret__ = pulumi.runtime.invoke('volcengine:vke/nodePools:NodePools', __args__, opts=opts, typ=NodePoolsResult).value
 
     return AwaitableNodePoolsResult(
         auto_scaling_enabled=__ret__.auto_scaling_enabled,
@@ -235,6 +250,7 @@ def node_pools(auto_scaling_enabled: Optional[bool] = None,
         node_pools=__ret__.node_pools,
         output_file=__ret__.output_file,
         statuses=__ret__.statuses,
+        tags=__ret__.tags,
         total_count=__ret__.total_count,
         update_client_token=__ret__.update_client_token)
 
@@ -249,6 +265,7 @@ def node_pools_output(auto_scaling_enabled: Optional[pulumi.Input[Optional[bool]
                       name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                       output_file: Optional[pulumi.Input[Optional[str]]] = None,
                       statuses: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['NodePoolsStatusArgs']]]]] = None,
+                      tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['NodePoolsTagArgs']]]]] = None,
                       update_client_token: Optional[pulumi.Input[Optional[str]]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[NodePoolsResult]:
     """
@@ -259,7 +276,7 @@ def node_pools_output(auto_scaling_enabled: Optional[pulumi.Input[Optional[bool]
     import pulumi
     import pulumi_volcengine as volcengine
 
-    vke_test = volcengine.Vke.node_pools(cluster_ids=["ccabe57fqtofgrbln3dog"],
+    vke_test = volcengine.vke.node_pools(cluster_ids=["ccabe57fqtofgrbln3dog"],
         name="demo")
     ```
 
@@ -273,6 +290,7 @@ def node_pools_output(auto_scaling_enabled: Optional[pulumi.Input[Optional[bool]
     :param str name_regex: A Name Regex of NodePool.
     :param str output_file: File name where to save data source results.
     :param Sequence[pulumi.InputType['NodePoolsStatusArgs']] statuses: The Status of NodePool.
+    :param Sequence[pulumi.InputType['NodePoolsTagArgs']] tags: Tags.
     :param str update_client_token: The ClientToken when last update was successful.
     """
     ...

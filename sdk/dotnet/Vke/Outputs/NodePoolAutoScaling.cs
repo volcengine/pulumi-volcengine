@@ -14,7 +14,7 @@ namespace Pulumi.Volcengine.Vke.Outputs
     public sealed class NodePoolAutoScaling
     {
         /// <summary>
-        /// The DesiredReplicas of AutoScaling.
+        /// The DesiredReplicas of AutoScaling, default 0, range in min_replicas to max_replicas.
         /// </summary>
         public readonly int? DesiredReplicas;
         /// <summary>
@@ -22,17 +22,21 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// </summary>
         public readonly bool? Enabled;
         /// <summary>
-        /// The MaxReplicas of AutoScaling.
+        /// The MaxReplicas of AutoScaling, default 10, range in 1~2000.
         /// </summary>
         public readonly int? MaxReplicas;
         /// <summary>
-        /// The MinReplicas of AutoScaling.
+        /// The MinReplicas of AutoScaling, default 0.
         /// </summary>
         public readonly int? MinReplicas;
         /// <summary>
-        /// The Priority of AutoScaling.
+        /// The Priority of AutoScaling, default 10, rang in 0~100.
         /// </summary>
         public readonly int? Priority;
+        /// <summary>
+        /// Multi-subnet scheduling strategy for nodes. The value can be `ZoneBalance` or `Priority`.
+        /// </summary>
+        public readonly string? SubnetPolicy;
 
         [OutputConstructor]
         private NodePoolAutoScaling(
@@ -44,13 +48,16 @@ namespace Pulumi.Volcengine.Vke.Outputs
 
             int? minReplicas,
 
-            int? priority)
+            int? priority,
+
+            string? subnetPolicy)
         {
             DesiredReplicas = desiredReplicas;
             Enabled = enabled;
             MaxReplicas = maxReplicas;
             MinReplicas = minReplicas;
             Priority = priority;
+            SubnetPolicy = subnetPolicy;
         }
     }
 }

@@ -5,27 +5,56 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export * from "./deploymentSet";
+export * from "./deploymentSetAssociate";
+export * from "./deploymentSets";
 export * from "./images";
 export * from "./instance";
 export * from "./instances";
+export * from "./keyPair";
+export * from "./keyPairAssociate";
+export * from "./keyPairs";
+export * from "./launchTemplate";
+export * from "./launchTemplates";
 export * from "./state";
+export * from "./zones";
 
 // Import resources to register:
+import { DeploymentSet } from "./deploymentSet";
+import { DeploymentSetAssociate } from "./deploymentSetAssociate";
 import { Instance } from "./instance";
+import { KeyPair } from "./keyPair";
+import { KeyPairAssociate } from "./keyPairAssociate";
+import { LaunchTemplate } from "./launchTemplate";
 import { State } from "./state";
 
 const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "volcengine:Ecs/instance:Instance":
+            case "volcengine:ecs/deploymentSet:DeploymentSet":
+                return new DeploymentSet(name, <any>undefined, { urn })
+            case "volcengine:ecs/deploymentSetAssociate:DeploymentSetAssociate":
+                return new DeploymentSetAssociate(name, <any>undefined, { urn })
+            case "volcengine:ecs/instance:Instance":
                 return new Instance(name, <any>undefined, { urn })
-            case "volcengine:Ecs/state:State":
+            case "volcengine:ecs/keyPair:KeyPair":
+                return new KeyPair(name, <any>undefined, { urn })
+            case "volcengine:ecs/keyPairAssociate:KeyPairAssociate":
+                return new KeyPairAssociate(name, <any>undefined, { urn })
+            case "volcengine:ecs/launchTemplate:LaunchTemplate":
+                return new LaunchTemplate(name, <any>undefined, { urn })
+            case "volcengine:ecs/state:State":
                 return new State(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
-pulumi.runtime.registerResourceModule("volcengine", "Ecs/instance", _module)
-pulumi.runtime.registerResourceModule("volcengine", "Ecs/state", _module)
+pulumi.runtime.registerResourceModule("volcengine", "ecs/deploymentSet", _module)
+pulumi.runtime.registerResourceModule("volcengine", "ecs/deploymentSetAssociate", _module)
+pulumi.runtime.registerResourceModule("volcengine", "ecs/instance", _module)
+pulumi.runtime.registerResourceModule("volcengine", "ecs/keyPair", _module)
+pulumi.runtime.registerResourceModule("volcengine", "ecs/keyPairAssociate", _module)
+pulumi.runtime.registerResourceModule("volcengine", "ecs/launchTemplate", _module)
+pulumi.runtime.registerResourceModule("volcengine", "ecs/state", _module)

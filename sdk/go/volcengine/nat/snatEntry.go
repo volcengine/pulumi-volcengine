@@ -18,24 +18,27 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Nat"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/nat"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Nat.NewSnatEntry(ctx, "foo", &Nat.SnatEntryArgs{
-// 			EipId:         pulumi.String("eip-274zlae117nr47fap8tzl24v4"),
-// 			NatGatewayId:  pulumi.String("ngw-2743w1f6iqby87fap8tvm9kop"),
-// 			SnatEntryName: pulumi.String("tf-test-up"),
-// 			SubnetId:      pulumi.String("subnet-2744i7u9alnnk7fap8tkq8aft"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := nat.NewSnatEntry(ctx, "foo", &nat.SnatEntryArgs{
+//				EipId:         pulumi.String("eip-274zlae117nr47fap8tzl24v4"),
+//				NatGatewayId:  pulumi.String("ngw-2743w1f6iqby87fap8tvm9kop"),
+//				SnatEntryName: pulumi.String("tf-test-up"),
+//				SubnetId:      pulumi.String("subnet-2744i7u9alnnk7fap8tkq8aft"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -43,7 +46,9 @@ import (
 // Snat entry can be imported using the id, e.g.
 //
 // ```sh
-//  $ pulumi import volcengine:Nat/snatEntry:SnatEntry default snat-3fvhk47kf56****
+//
+//	$ pulumi import volcengine:nat/snatEntry:SnatEntry default snat-3fvhk47kf56****
+//
 // ```
 type SnatEntry struct {
 	pulumi.CustomResourceState
@@ -54,10 +59,12 @@ type SnatEntry struct {
 	NatGatewayId pulumi.StringOutput `pulumi:"natGatewayId"`
 	// The name of the SNAT entry.
 	SnatEntryName pulumi.StringOutput `pulumi:"snatEntryName"`
+	// The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
+	SourceCidr pulumi.StringPtrOutput `pulumi:"sourceCidr"`
 	// The status of the SNAT entry.
 	Status pulumi.StringOutput `pulumi:"status"`
-	// The id of the subnet that is required to access the internet.
-	SubnetId pulumi.StringOutput `pulumi:"subnetId"`
+	// The id of the subnet that is required to access the internet. Only one of `subnet_id,source_cidr` can be specified.
+	SubnetId pulumi.StringPtrOutput `pulumi:"subnetId"`
 }
 
 // NewSnatEntry registers a new resource with the given unique name, arguments, and options.
@@ -73,11 +80,8 @@ func NewSnatEntry(ctx *pulumi.Context,
 	if args.NatGatewayId == nil {
 		return nil, errors.New("invalid value for required argument 'NatGatewayId'")
 	}
-	if args.SubnetId == nil {
-		return nil, errors.New("invalid value for required argument 'SubnetId'")
-	}
 	var resource SnatEntry
-	err := ctx.RegisterResource("volcengine:Nat/snatEntry:SnatEntry", name, args, &resource, opts...)
+	err := ctx.RegisterResource("volcengine:nat/snatEntry:SnatEntry", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -89,7 +93,7 @@ func NewSnatEntry(ctx *pulumi.Context,
 func GetSnatEntry(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *SnatEntryState, opts ...pulumi.ResourceOption) (*SnatEntry, error) {
 	var resource SnatEntry
-	err := ctx.ReadResource("volcengine:Nat/snatEntry:SnatEntry", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("volcengine:nat/snatEntry:SnatEntry", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -104,9 +108,11 @@ type snatEntryState struct {
 	NatGatewayId *string `pulumi:"natGatewayId"`
 	// The name of the SNAT entry.
 	SnatEntryName *string `pulumi:"snatEntryName"`
+	// The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
+	SourceCidr *string `pulumi:"sourceCidr"`
 	// The status of the SNAT entry.
 	Status *string `pulumi:"status"`
-	// The id of the subnet that is required to access the internet.
+	// The id of the subnet that is required to access the internet. Only one of `subnet_id,source_cidr` can be specified.
 	SubnetId *string `pulumi:"subnetId"`
 }
 
@@ -117,9 +123,11 @@ type SnatEntryState struct {
 	NatGatewayId pulumi.StringPtrInput
 	// The name of the SNAT entry.
 	SnatEntryName pulumi.StringPtrInput
+	// The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
+	SourceCidr pulumi.StringPtrInput
 	// The status of the SNAT entry.
 	Status pulumi.StringPtrInput
-	// The id of the subnet that is required to access the internet.
+	// The id of the subnet that is required to access the internet. Only one of `subnet_id,source_cidr` can be specified.
 	SubnetId pulumi.StringPtrInput
 }
 
@@ -134,8 +142,10 @@ type snatEntryArgs struct {
 	NatGatewayId string `pulumi:"natGatewayId"`
 	// The name of the SNAT entry.
 	SnatEntryName *string `pulumi:"snatEntryName"`
-	// The id of the subnet that is required to access the internet.
-	SubnetId string `pulumi:"subnetId"`
+	// The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
+	SourceCidr *string `pulumi:"sourceCidr"`
+	// The id of the subnet that is required to access the internet. Only one of `subnet_id,source_cidr` can be specified.
+	SubnetId *string `pulumi:"subnetId"`
 }
 
 // The set of arguments for constructing a SnatEntry resource.
@@ -146,8 +156,10 @@ type SnatEntryArgs struct {
 	NatGatewayId pulumi.StringInput
 	// The name of the SNAT entry.
 	SnatEntryName pulumi.StringPtrInput
-	// The id of the subnet that is required to access the internet.
-	SubnetId pulumi.StringInput
+	// The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
+	SourceCidr pulumi.StringPtrInput
+	// The id of the subnet that is required to access the internet. Only one of `subnet_id,source_cidr` can be specified.
+	SubnetId pulumi.StringPtrInput
 }
 
 func (SnatEntryArgs) ElementType() reflect.Type {
@@ -176,7 +188,7 @@ func (i *SnatEntry) ToSnatEntryOutputWithContext(ctx context.Context) SnatEntryO
 // SnatEntryArrayInput is an input type that accepts SnatEntryArray and SnatEntryArrayOutput values.
 // You can construct a concrete instance of `SnatEntryArrayInput` via:
 //
-//          SnatEntryArray{ SnatEntryArgs{...} }
+//	SnatEntryArray{ SnatEntryArgs{...} }
 type SnatEntryArrayInput interface {
 	pulumi.Input
 
@@ -201,7 +213,7 @@ func (i SnatEntryArray) ToSnatEntryArrayOutputWithContext(ctx context.Context) S
 // SnatEntryMapInput is an input type that accepts SnatEntryMap and SnatEntryMapOutput values.
 // You can construct a concrete instance of `SnatEntryMapInput` via:
 //
-//          SnatEntryMap{ "key": SnatEntryArgs{...} }
+//	SnatEntryMap{ "key": SnatEntryArgs{...} }
 type SnatEntryMapInput interface {
 	pulumi.Input
 
@@ -252,14 +264,19 @@ func (o SnatEntryOutput) SnatEntryName() pulumi.StringOutput {
 	return o.ApplyT(func(v *SnatEntry) pulumi.StringOutput { return v.SnatEntryName }).(pulumi.StringOutput)
 }
 
+// The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
+func (o SnatEntryOutput) SourceCidr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnatEntry) pulumi.StringPtrOutput { return v.SourceCidr }).(pulumi.StringPtrOutput)
+}
+
 // The status of the SNAT entry.
 func (o SnatEntryOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *SnatEntry) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
-// The id of the subnet that is required to access the internet.
-func (o SnatEntryOutput) SubnetId() pulumi.StringOutput {
-	return o.ApplyT(func(v *SnatEntry) pulumi.StringOutput { return v.SubnetId }).(pulumi.StringOutput)
+// The id of the subnet that is required to access the internet. Only one of `subnet_id,source_cidr` can be specified.
+func (o SnatEntryOutput) SubnetId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnatEntry) pulumi.StringPtrOutput { return v.SubnetId }).(pulumi.StringPtrOutput)
 }
 
 type SnatEntryArrayOutput struct{ *pulumi.OutputState }

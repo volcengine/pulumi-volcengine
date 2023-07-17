@@ -21,7 +21,7 @@ class SubnetsResult:
     """
     A collection of values returned by Subnets.
     """
-    def __init__(__self__, id=None, ids=None, name_regex=None, output_file=None, subnets=None, total_count=None):
+    def __init__(__self__, id=None, ids=None, name_regex=None, output_file=None, route_table_id=None, subnet_name=None, subnets=None, total_count=None, vpc_id=None, zone_id=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -34,12 +34,24 @@ class SubnetsResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if route_table_id and not isinstance(route_table_id, str):
+            raise TypeError("Expected argument 'route_table_id' to be a str")
+        pulumi.set(__self__, "route_table_id", route_table_id)
+        if subnet_name and not isinstance(subnet_name, str):
+            raise TypeError("Expected argument 'subnet_name' to be a str")
+        pulumi.set(__self__, "subnet_name", subnet_name)
         if subnets and not isinstance(subnets, list):
             raise TypeError("Expected argument 'subnets' to be a list")
         pulumi.set(__self__, "subnets", subnets)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
+        if vpc_id and not isinstance(vpc_id, str):
+            raise TypeError("Expected argument 'vpc_id' to be a str")
+        pulumi.set(__self__, "vpc_id", vpc_id)
+        if zone_id and not isinstance(zone_id, str):
+            raise TypeError("Expected argument 'zone_id' to be a str")
+        pulumi.set(__self__, "zone_id", zone_id)
 
     @property
     @pulumi.getter
@@ -65,6 +77,22 @@ class SubnetsResult:
         return pulumi.get(self, "output_file")
 
     @property
+    @pulumi.getter(name="routeTableId")
+    def route_table_id(self) -> Optional[str]:
+        """
+        The route table ID.
+        """
+        return pulumi.get(self, "route_table_id")
+
+    @property
+    @pulumi.getter(name="subnetName")
+    def subnet_name(self) -> Optional[str]:
+        """
+        The Name of Subnet.
+        """
+        return pulumi.get(self, "subnet_name")
+
+    @property
     @pulumi.getter
     def subnets(self) -> Sequence['outputs.SubnetsSubnetResult']:
         """
@@ -80,6 +108,22 @@ class SubnetsResult:
         """
         return pulumi.get(self, "total_count")
 
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> Optional[str]:
+        """
+        The Vpc ID of Subnet.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> Optional[str]:
+        """
+        The ID of Zone.
+        """
+        return pulumi.get(self, "zone_id")
+
 
 class AwaitableSubnetsResult(SubnetsResult):
     # pylint: disable=using-constant-test
@@ -91,13 +135,21 @@ class AwaitableSubnetsResult(SubnetsResult):
             ids=self.ids,
             name_regex=self.name_regex,
             output_file=self.output_file,
+            route_table_id=self.route_table_id,
+            subnet_name=self.subnet_name,
             subnets=self.subnets,
-            total_count=self.total_count)
+            total_count=self.total_count,
+            vpc_id=self.vpc_id,
+            zone_id=self.zone_id)
 
 
 def subnets(ids: Optional[Sequence[str]] = None,
             name_regex: Optional[str] = None,
             output_file: Optional[str] = None,
+            route_table_id: Optional[str] = None,
+            subnet_name: Optional[str] = None,
+            vpc_id: Optional[str] = None,
+            zone_id: Optional[str] = None,
             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableSubnetsResult:
     """
     Use this data source to query detailed information of subnets
@@ -107,37 +159,53 @@ def subnets(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.Vpc.subnets(ids=["subnet-274zsa5kfmj287fap8soo5e19"])
+    default = volcengine.vpc.subnets(ids=["subnet-274zsa5kfmj287fap8soo5e19"])
     ```
 
 
     :param Sequence[str] ids: A list of Subnet IDs.
     :param str name_regex: A Name Regex of Subnet.
     :param str output_file: File name where to save data source results.
+    :param str route_table_id: The ID of route table which subnet associated with.
+    :param str subnet_name: The subnet name to query.
+    :param str vpc_id: The ID of VPC which subnet belongs to.
+    :param str zone_id: The ID of zone which subnet belongs to.
     """
     __args__ = dict()
     __args__['ids'] = ids
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
+    __args__['routeTableId'] = route_table_id
+    __args__['subnetName'] = subnet_name
+    __args__['vpcId'] = vpc_id
+    __args__['zoneId'] = zone_id
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('volcengine:Vpc/subnets:Subnets', __args__, opts=opts, typ=SubnetsResult).value
+    __ret__ = pulumi.runtime.invoke('volcengine:vpc/subnets:Subnets', __args__, opts=opts, typ=SubnetsResult).value
 
     return AwaitableSubnetsResult(
         id=__ret__.id,
         ids=__ret__.ids,
         name_regex=__ret__.name_regex,
         output_file=__ret__.output_file,
+        route_table_id=__ret__.route_table_id,
+        subnet_name=__ret__.subnet_name,
         subnets=__ret__.subnets,
-        total_count=__ret__.total_count)
+        total_count=__ret__.total_count,
+        vpc_id=__ret__.vpc_id,
+        zone_id=__ret__.zone_id)
 
 
 @_utilities.lift_output_func(subnets)
 def subnets_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                    name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                    output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                   route_table_id: Optional[pulumi.Input[Optional[str]]] = None,
+                   subnet_name: Optional[pulumi.Input[Optional[str]]] = None,
+                   vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
+                   zone_id: Optional[pulumi.Input[Optional[str]]] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[SubnetsResult]:
     """
     Use this data source to query detailed information of subnets
@@ -147,12 +215,16 @@ def subnets_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.Vpc.subnets(ids=["subnet-274zsa5kfmj287fap8soo5e19"])
+    default = volcengine.vpc.subnets(ids=["subnet-274zsa5kfmj287fap8soo5e19"])
     ```
 
 
     :param Sequence[str] ids: A list of Subnet IDs.
     :param str name_regex: A Name Regex of Subnet.
     :param str output_file: File name where to save data source results.
+    :param str route_table_id: The ID of route table which subnet associated with.
+    :param str subnet_name: The subnet name to query.
+    :param str vpc_id: The ID of VPC which subnet belongs to.
+    :param str zone_id: The ID of zone which subnet belongs to.
     """
     ...

@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultSubnets = pulumi.output(volcengine.Vpc.Subnets({
+ * const defaultSubnets = pulumi.output(volcengine.vpc.Subnets({
  *     ids: ["subnet-274zsa5kfmj287fap8soo5e19"],
  * }));
  * ```
@@ -25,10 +25,14 @@ export function subnets(args?: SubnetsArgs, opts?: pulumi.InvokeOptions): Promis
     }
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-    return pulumi.runtime.invoke("volcengine:Vpc/subnets:Subnets", {
+    return pulumi.runtime.invoke("volcengine:vpc/subnets:Subnets", {
         "ids": args.ids,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
+        "routeTableId": args.routeTableId,
+        "subnetName": args.subnetName,
+        "vpcId": args.vpcId,
+        "zoneId": args.zoneId,
     }, opts);
 }
 
@@ -48,6 +52,22 @@ export interface SubnetsArgs {
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * The ID of route table which subnet associated with.
+     */
+    routeTableId?: string;
+    /**
+     * The subnet name to query.
+     */
+    subnetName?: string;
+    /**
+     * The ID of VPC which subnet belongs to.
+     */
+    vpcId?: string;
+    /**
+     * The ID of zone which subnet belongs to.
+     */
+    zoneId?: string;
 }
 
 /**
@@ -62,13 +82,29 @@ export interface SubnetsResult {
     readonly nameRegex?: string;
     readonly outputFile?: string;
     /**
+     * The route table ID.
+     */
+    readonly routeTableId?: string;
+    /**
+     * The Name of Subnet.
+     */
+    readonly subnetName?: string;
+    /**
      * The collection of Subnet query.
      */
-    readonly subnets: outputs.Vpc.SubnetsSubnet[];
+    readonly subnets: outputs.vpc.SubnetsSubnet[];
     /**
      * The total count of Subnet query.
      */
     readonly totalCount: number;
+    /**
+     * The Vpc ID of Subnet.
+     */
+    readonly vpcId?: string;
+    /**
+     * The ID of Zone.
+     */
+    readonly zoneId?: string;
 }
 
 export function subnetsOutput(args?: SubnetsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<SubnetsResult> {
@@ -91,4 +127,20 @@ export interface SubnetsOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The ID of route table which subnet associated with.
+     */
+    routeTableId?: pulumi.Input<string>;
+    /**
+     * The subnet name to query.
+     */
+    subnetName?: pulumi.Input<string>;
+    /**
+     * The ID of VPC which subnet belongs to.
+     */
+    vpcId?: pulumi.Input<string>;
+    /**
+     * The ID of zone which subnet belongs to.
+     */
+    zoneId?: pulumi.Input<string>;
 }

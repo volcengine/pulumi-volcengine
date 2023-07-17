@@ -29,29 +29,29 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "volcengine:Iam/accessKey:AccessKey":
+            case "volcengine:iam/accessKey:AccessKey":
                 return new AccessKey(name, <any>undefined, { urn })
-            case "volcengine:Iam/loginProfile:LoginProfile":
+            case "volcengine:iam/loginProfile:LoginProfile":
                 return new LoginProfile(name, <any>undefined, { urn })
-            case "volcengine:Iam/policy:Policy":
+            case "volcengine:iam/policy:Policy":
                 return new Policy(name, <any>undefined, { urn })
-            case "volcengine:Iam/role:Role":
+            case "volcengine:iam/role:Role":
                 return new Role(name, <any>undefined, { urn })
-            case "volcengine:Iam/rolePolicyAttachment:RolePolicyAttachment":
+            case "volcengine:iam/rolePolicyAttachment:RolePolicyAttachment":
                 return new RolePolicyAttachment(name, <any>undefined, { urn })
-            case "volcengine:Iam/user:User":
+            case "volcengine:iam/user:User":
                 return new User(name, <any>undefined, { urn })
-            case "volcengine:Iam/userPolicyAttachment:UserPolicyAttachment":
+            case "volcengine:iam/userPolicyAttachment:UserPolicyAttachment":
                 return new UserPolicyAttachment(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
-pulumi.runtime.registerResourceModule("volcengine", "Iam/accessKey", _module)
-pulumi.runtime.registerResourceModule("volcengine", "Iam/loginProfile", _module)
-pulumi.runtime.registerResourceModule("volcengine", "Iam/policy", _module)
-pulumi.runtime.registerResourceModule("volcengine", "Iam/role", _module)
-pulumi.runtime.registerResourceModule("volcengine", "Iam/rolePolicyAttachment", _module)
-pulumi.runtime.registerResourceModule("volcengine", "Iam/user", _module)
-pulumi.runtime.registerResourceModule("volcengine", "Iam/userPolicyAttachment", _module)
+pulumi.runtime.registerResourceModule("volcengine", "iam/accessKey", _module)
+pulumi.runtime.registerResourceModule("volcengine", "iam/loginProfile", _module)
+pulumi.runtime.registerResourceModule("volcengine", "iam/policy", _module)
+pulumi.runtime.registerResourceModule("volcengine", "iam/role", _module)
+pulumi.runtime.registerResourceModule("volcengine", "iam/rolePolicyAttachment", _module)
+pulumi.runtime.registerResourceModule("volcengine", "iam/user", _module)
+pulumi.runtime.registerResourceModule("volcengine", "iam/userPolicyAttachment", _module)

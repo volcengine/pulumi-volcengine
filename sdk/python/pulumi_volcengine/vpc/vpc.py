@@ -18,12 +18,20 @@ class VpcArgs:
                  cidr_block: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
                  dns_servers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 enable_ipv6: Optional[pulumi.Input[bool]] = None,
+                 ipv6_cidr_block: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['VpcTagArgs']]]] = None,
                  vpc_name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Vpc resource.
         :param pulumi.Input[str] cidr_block: A network address block which should be a subnet of the three internal network segments (10.0.0.0/16, 172.16.0.0/12 and 192.168.0.0/16).
         :param pulumi.Input[str] description: The description of the VPC.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] dns_servers: The DNS server list of the VPC. And you can specify 0 to 5 servers to this list.
+        :param pulumi.Input[bool] enable_ipv6: Specifies whether to enable the IPv6 CIDR block of the VPC.
+        :param pulumi.Input[str] ipv6_cidr_block: The IPv6 CIDR block of the VPC.
+        :param pulumi.Input[str] project_name: The ProjectName of the VPC.
+        :param pulumi.Input[Sequence[pulumi.Input['VpcTagArgs']]] tags: Tags.
         :param pulumi.Input[str] vpc_name: The name of the VPC.
         """
         pulumi.set(__self__, "cidr_block", cidr_block)
@@ -31,6 +39,14 @@ class VpcArgs:
             pulumi.set(__self__, "description", description)
         if dns_servers is not None:
             pulumi.set(__self__, "dns_servers", dns_servers)
+        if enable_ipv6 is not None:
+            pulumi.set(__self__, "enable_ipv6", enable_ipv6)
+        if ipv6_cidr_block is not None:
+            pulumi.set(__self__, "ipv6_cidr_block", ipv6_cidr_block)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if vpc_name is not None:
             pulumi.set(__self__, "vpc_name", vpc_name)
 
@@ -71,6 +87,54 @@ class VpcArgs:
         pulumi.set(self, "dns_servers", value)
 
     @property
+    @pulumi.getter(name="enableIpv6")
+    def enable_ipv6(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies whether to enable the IPv6 CIDR block of the VPC.
+        """
+        return pulumi.get(self, "enable_ipv6")
+
+    @enable_ipv6.setter
+    def enable_ipv6(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_ipv6", value)
+
+    @property
+    @pulumi.getter(name="ipv6CidrBlock")
+    def ipv6_cidr_block(self) -> Optional[pulumi.Input[str]]:
+        """
+        The IPv6 CIDR block of the VPC.
+        """
+        return pulumi.get(self, "ipv6_cidr_block")
+
+    @ipv6_cidr_block.setter
+    def ipv6_cidr_block(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipv6_cidr_block", value)
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of the VPC.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VpcTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VpcTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="vpcName")
     def vpc_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -93,11 +157,15 @@ class _VpcState:
                  creation_time: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  dns_servers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 enable_ipv6: Optional[pulumi.Input[bool]] = None,
+                 ipv6_cidr_block: Optional[pulumi.Input[str]] = None,
                  nat_gateway_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  route_table_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  subnet_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['VpcTagArgs']]]] = None,
                  update_time: Optional[pulumi.Input[str]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  vpc_name: Optional[pulumi.Input[str]] = None):
@@ -110,11 +178,15 @@ class _VpcState:
         :param pulumi.Input[str] creation_time: Creation time of VPC.
         :param pulumi.Input[str] description: The description of the VPC.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] dns_servers: The DNS server list of the VPC. And you can specify 0 to 5 servers to this list.
+        :param pulumi.Input[bool] enable_ipv6: Specifies whether to enable the IPv6 CIDR block of the VPC.
+        :param pulumi.Input[str] ipv6_cidr_block: The IPv6 CIDR block of the VPC.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] nat_gateway_ids: The nat gateway ID list of VPC.
+        :param pulumi.Input[str] project_name: The ProjectName of the VPC.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] route_table_ids: The route table ID list of VPC.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The security group ID list of VPC.
         :param pulumi.Input[str] status: Status of VPC.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] subnet_ids: The subnet ID list of VPC.
+        :param pulumi.Input[Sequence[pulumi.Input['VpcTagArgs']]] tags: Tags.
         :param pulumi.Input[str] update_time: The update time of VPC.
         :param pulumi.Input[str] vpc_id: The ID of VPC.
         :param pulumi.Input[str] vpc_name: The name of the VPC.
@@ -133,8 +205,14 @@ class _VpcState:
             pulumi.set(__self__, "description", description)
         if dns_servers is not None:
             pulumi.set(__self__, "dns_servers", dns_servers)
+        if enable_ipv6 is not None:
+            pulumi.set(__self__, "enable_ipv6", enable_ipv6)
+        if ipv6_cidr_block is not None:
+            pulumi.set(__self__, "ipv6_cidr_block", ipv6_cidr_block)
         if nat_gateway_ids is not None:
             pulumi.set(__self__, "nat_gateway_ids", nat_gateway_ids)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if route_table_ids is not None:
             pulumi.set(__self__, "route_table_ids", route_table_ids)
         if security_group_ids is not None:
@@ -143,6 +221,8 @@ class _VpcState:
             pulumi.set(__self__, "status", status)
         if subnet_ids is not None:
             pulumi.set(__self__, "subnet_ids", subnet_ids)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if update_time is not None:
             pulumi.set(__self__, "update_time", update_time)
         if vpc_id is not None:
@@ -235,6 +315,30 @@ class _VpcState:
         pulumi.set(self, "dns_servers", value)
 
     @property
+    @pulumi.getter(name="enableIpv6")
+    def enable_ipv6(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies whether to enable the IPv6 CIDR block of the VPC.
+        """
+        return pulumi.get(self, "enable_ipv6")
+
+    @enable_ipv6.setter
+    def enable_ipv6(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_ipv6", value)
+
+    @property
+    @pulumi.getter(name="ipv6CidrBlock")
+    def ipv6_cidr_block(self) -> Optional[pulumi.Input[str]]:
+        """
+        The IPv6 CIDR block of the VPC.
+        """
+        return pulumi.get(self, "ipv6_cidr_block")
+
+    @ipv6_cidr_block.setter
+    def ipv6_cidr_block(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipv6_cidr_block", value)
+
+    @property
     @pulumi.getter(name="natGatewayIds")
     def nat_gateway_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -245,6 +349,18 @@ class _VpcState:
     @nat_gateway_ids.setter
     def nat_gateway_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "nat_gateway_ids", value)
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of the VPC.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
 
     @property
     @pulumi.getter(name="routeTableIds")
@@ -295,6 +411,18 @@ class _VpcState:
         pulumi.set(self, "subnet_ids", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VpcTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VpcTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="updateTime")
     def update_time(self) -> Optional[pulumi.Input[str]]:
         """
@@ -339,6 +467,10 @@ class Vpc(pulumi.CustomResource):
                  cidr_block: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  dns_servers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 enable_ipv6: Optional[pulumi.Input[bool]] = None,
+                 ipv6_cidr_block: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcTagArgs']]]]] = None,
                  vpc_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -355,7 +487,8 @@ class Vpc(pulumi.CustomResource):
                 "8.8.8.8",
                 "114.114.114.114",
             ],
-            vpc_name="tf-test-2")
+            project_name="AS_test",
+            vpc_name="tf-project-1")
         ```
 
         ## Import
@@ -363,7 +496,7 @@ class Vpc(pulumi.CustomResource):
         VPC can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Vpc/vpc:Vpc default vpc-mizl7m1kqccg5smt1bdpijuj
+         $ pulumi import volcengine:vpc/vpc:Vpc default vpc-mizl7m1kqccg5smt1bdpijuj
         ```
 
         :param str resource_name: The name of the resource.
@@ -371,6 +504,10 @@ class Vpc(pulumi.CustomResource):
         :param pulumi.Input[str] cidr_block: A network address block which should be a subnet of the three internal network segments (10.0.0.0/16, 172.16.0.0/12 and 192.168.0.0/16).
         :param pulumi.Input[str] description: The description of the VPC.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] dns_servers: The DNS server list of the VPC. And you can specify 0 to 5 servers to this list.
+        :param pulumi.Input[bool] enable_ipv6: Specifies whether to enable the IPv6 CIDR block of the VPC.
+        :param pulumi.Input[str] ipv6_cidr_block: The IPv6 CIDR block of the VPC.
+        :param pulumi.Input[str] project_name: The ProjectName of the VPC.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] vpc_name: The name of the VPC.
         """
         ...
@@ -393,7 +530,8 @@ class Vpc(pulumi.CustomResource):
                 "8.8.8.8",
                 "114.114.114.114",
             ],
-            vpc_name="tf-test-2")
+            project_name="AS_test",
+            vpc_name="tf-project-1")
         ```
 
         ## Import
@@ -401,7 +539,7 @@ class Vpc(pulumi.CustomResource):
         VPC can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Vpc/vpc:Vpc default vpc-mizl7m1kqccg5smt1bdpijuj
+         $ pulumi import volcengine:vpc/vpc:Vpc default vpc-mizl7m1kqccg5smt1bdpijuj
         ```
 
         :param str resource_name: The name of the resource.
@@ -422,6 +560,10 @@ class Vpc(pulumi.CustomResource):
                  cidr_block: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  dns_servers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 enable_ipv6: Optional[pulumi.Input[bool]] = None,
+                 ipv6_cidr_block: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcTagArgs']]]]] = None,
                  vpc_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
@@ -440,6 +582,10 @@ class Vpc(pulumi.CustomResource):
             __props__.__dict__["cidr_block"] = cidr_block
             __props__.__dict__["description"] = description
             __props__.__dict__["dns_servers"] = dns_servers
+            __props__.__dict__["enable_ipv6"] = enable_ipv6
+            __props__.__dict__["ipv6_cidr_block"] = ipv6_cidr_block
+            __props__.__dict__["project_name"] = project_name
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["vpc_name"] = vpc_name
             __props__.__dict__["account_id"] = None
             __props__.__dict__["associate_cens"] = None
@@ -453,7 +599,7 @@ class Vpc(pulumi.CustomResource):
             __props__.__dict__["update_time"] = None
             __props__.__dict__["vpc_id"] = None
         super(Vpc, __self__).__init__(
-            'volcengine:Vpc/vpc:Vpc',
+            'volcengine:vpc/vpc:Vpc',
             resource_name,
             __props__,
             opts)
@@ -469,11 +615,15 @@ class Vpc(pulumi.CustomResource):
             creation_time: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             dns_servers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            enable_ipv6: Optional[pulumi.Input[bool]] = None,
+            ipv6_cidr_block: Optional[pulumi.Input[str]] = None,
             nat_gateway_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            project_name: Optional[pulumi.Input[str]] = None,
             route_table_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             status: Optional[pulumi.Input[str]] = None,
             subnet_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcTagArgs']]]]] = None,
             update_time: Optional[pulumi.Input[str]] = None,
             vpc_id: Optional[pulumi.Input[str]] = None,
             vpc_name: Optional[pulumi.Input[str]] = None) -> 'Vpc':
@@ -491,11 +641,15 @@ class Vpc(pulumi.CustomResource):
         :param pulumi.Input[str] creation_time: Creation time of VPC.
         :param pulumi.Input[str] description: The description of the VPC.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] dns_servers: The DNS server list of the VPC. And you can specify 0 to 5 servers to this list.
+        :param pulumi.Input[bool] enable_ipv6: Specifies whether to enable the IPv6 CIDR block of the VPC.
+        :param pulumi.Input[str] ipv6_cidr_block: The IPv6 CIDR block of the VPC.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] nat_gateway_ids: The nat gateway ID list of VPC.
+        :param pulumi.Input[str] project_name: The ProjectName of the VPC.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] route_table_ids: The route table ID list of VPC.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The security group ID list of VPC.
         :param pulumi.Input[str] status: Status of VPC.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] subnet_ids: The subnet ID list of VPC.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] update_time: The update time of VPC.
         :param pulumi.Input[str] vpc_id: The ID of VPC.
         :param pulumi.Input[str] vpc_name: The name of the VPC.
@@ -511,11 +665,15 @@ class Vpc(pulumi.CustomResource):
         __props__.__dict__["creation_time"] = creation_time
         __props__.__dict__["description"] = description
         __props__.__dict__["dns_servers"] = dns_servers
+        __props__.__dict__["enable_ipv6"] = enable_ipv6
+        __props__.__dict__["ipv6_cidr_block"] = ipv6_cidr_block
         __props__.__dict__["nat_gateway_ids"] = nat_gateway_ids
+        __props__.__dict__["project_name"] = project_name
         __props__.__dict__["route_table_ids"] = route_table_ids
         __props__.__dict__["security_group_ids"] = security_group_ids
         __props__.__dict__["status"] = status
         __props__.__dict__["subnet_ids"] = subnet_ids
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["update_time"] = update_time
         __props__.__dict__["vpc_id"] = vpc_id
         __props__.__dict__["vpc_name"] = vpc_name
@@ -578,12 +736,36 @@ class Vpc(pulumi.CustomResource):
         return pulumi.get(self, "dns_servers")
 
     @property
+    @pulumi.getter(name="enableIpv6")
+    def enable_ipv6(self) -> pulumi.Output[bool]:
+        """
+        Specifies whether to enable the IPv6 CIDR block of the VPC.
+        """
+        return pulumi.get(self, "enable_ipv6")
+
+    @property
+    @pulumi.getter(name="ipv6CidrBlock")
+    def ipv6_cidr_block(self) -> pulumi.Output[str]:
+        """
+        The IPv6 CIDR block of the VPC.
+        """
+        return pulumi.get(self, "ipv6_cidr_block")
+
+    @property
     @pulumi.getter(name="natGatewayIds")
     def nat_gateway_ids(self) -> pulumi.Output[Sequence[str]]:
         """
         The nat gateway ID list of VPC.
         """
         return pulumi.get(self, "nat_gateway_ids")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        The ProjectName of the VPC.
+        """
+        return pulumi.get(self, "project_name")
 
     @property
     @pulumi.getter(name="routeTableIds")
@@ -616,6 +798,14 @@ class Vpc(pulumi.CustomResource):
         The subnet ID list of VPC.
         """
         return pulumi.get(self, "subnet_ids")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.VpcTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="updateTime")

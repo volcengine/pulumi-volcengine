@@ -18,25 +18,28 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Vke"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/vke"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Vke.NewNode(ctx, "foo", &Vke.NodeArgs{
-// 			AdditionalContainerStorageEnabled: pulumi.Bool(false),
-// 			ClusterId:                         pulumi.String("ccahbr0nqtofhiuuuajn0"),
-// 			ContainerStoragePath:              pulumi.String(""),
-// 			InstanceId:                        pulumi.String("i-ybrfa2vu2t7grbv8qa0j"),
-// 			KeepInstanceName:                  pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vke.NewNode(ctx, "foo", &vke.NodeArgs{
+//				AdditionalContainerStorageEnabled: pulumi.Bool(false),
+//				ClusterId:                         pulumi.String("ccahbr0nqtofhiuuuajn0"),
+//				ContainerStoragePath:              pulumi.String(""),
+//				InstanceId:                        pulumi.String("i-ybrfa2vu2t7grbv8qa0j"),
+//				KeepInstanceName:                  pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -44,7 +47,9 @@ import (
 // VKE node can be imported using the node id, e.g.
 //
 // ```sh
-//  $ pulumi import volcengine:Vke/node:Node default nc5t5epmrsf****
+//
+//	$ pulumi import volcengine:vke/node:Node default nc5t5epmrsf****
+//
 // ```
 type Node struct {
 	pulumi.CustomResourceState
@@ -57,10 +62,16 @@ type Node struct {
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
 	// The container storage path.
 	ContainerStoragePath pulumi.StringOutput `pulumi:"containerStoragePath"`
+	// The ImageId of NodeConfig.
+	ImageId pulumi.StringOutput `pulumi:"imageId"`
+	// The initializeScript of Node.
+	InitializeScript pulumi.StringPtrOutput `pulumi:"initializeScript"`
 	// The instance id.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// The flag of keep instance name, the value is `true` or `false`.
 	KeepInstanceName pulumi.BoolPtrOutput `pulumi:"keepInstanceName"`
+	// The KubernetesConfig of Node.
+	KubernetesConfig NodeKubernetesConfigPtrOutput `pulumi:"kubernetesConfig"`
 	// The node pool id.
 	NodePoolId pulumi.StringOutput `pulumi:"nodePoolId"`
 }
@@ -79,7 +90,7 @@ func NewNode(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'InstanceId'")
 	}
 	var resource Node
-	err := ctx.RegisterResource("volcengine:Vke/node:Node", name, args, &resource, opts...)
+	err := ctx.RegisterResource("volcengine:vke/node:Node", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -91,7 +102,7 @@ func NewNode(ctx *pulumi.Context,
 func GetNode(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *NodeState, opts ...pulumi.ResourceOption) (*Node, error) {
 	var resource Node
-	err := ctx.ReadResource("volcengine:Vke/node:Node", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("volcengine:vke/node:Node", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -108,10 +119,16 @@ type nodeState struct {
 	ClusterId *string `pulumi:"clusterId"`
 	// The container storage path.
 	ContainerStoragePath *string `pulumi:"containerStoragePath"`
+	// The ImageId of NodeConfig.
+	ImageId *string `pulumi:"imageId"`
+	// The initializeScript of Node.
+	InitializeScript *string `pulumi:"initializeScript"`
 	// The instance id.
 	InstanceId *string `pulumi:"instanceId"`
 	// The flag of keep instance name, the value is `true` or `false`.
 	KeepInstanceName *bool `pulumi:"keepInstanceName"`
+	// The KubernetesConfig of Node.
+	KubernetesConfig *NodeKubernetesConfig `pulumi:"kubernetesConfig"`
 	// The node pool id.
 	NodePoolId *string `pulumi:"nodePoolId"`
 }
@@ -125,10 +142,16 @@ type NodeState struct {
 	ClusterId pulumi.StringPtrInput
 	// The container storage path.
 	ContainerStoragePath pulumi.StringPtrInput
+	// The ImageId of NodeConfig.
+	ImageId pulumi.StringPtrInput
+	// The initializeScript of Node.
+	InitializeScript pulumi.StringPtrInput
 	// The instance id.
 	InstanceId pulumi.StringPtrInput
 	// The flag of keep instance name, the value is `true` or `false`.
 	KeepInstanceName pulumi.BoolPtrInput
+	// The KubernetesConfig of Node.
+	KubernetesConfig NodeKubernetesConfigPtrInput
 	// The node pool id.
 	NodePoolId pulumi.StringPtrInput
 }
@@ -146,10 +169,16 @@ type nodeArgs struct {
 	ClusterId string `pulumi:"clusterId"`
 	// The container storage path.
 	ContainerStoragePath *string `pulumi:"containerStoragePath"`
+	// The ImageId of NodeConfig.
+	ImageId *string `pulumi:"imageId"`
+	// The initializeScript of Node.
+	InitializeScript *string `pulumi:"initializeScript"`
 	// The instance id.
 	InstanceId string `pulumi:"instanceId"`
 	// The flag of keep instance name, the value is `true` or `false`.
 	KeepInstanceName *bool `pulumi:"keepInstanceName"`
+	// The KubernetesConfig of Node.
+	KubernetesConfig *NodeKubernetesConfig `pulumi:"kubernetesConfig"`
 }
 
 // The set of arguments for constructing a Node resource.
@@ -162,10 +191,16 @@ type NodeArgs struct {
 	ClusterId pulumi.StringInput
 	// The container storage path.
 	ContainerStoragePath pulumi.StringPtrInput
+	// The ImageId of NodeConfig.
+	ImageId pulumi.StringPtrInput
+	// The initializeScript of Node.
+	InitializeScript pulumi.StringPtrInput
 	// The instance id.
 	InstanceId pulumi.StringInput
 	// The flag of keep instance name, the value is `true` or `false`.
 	KeepInstanceName pulumi.BoolPtrInput
+	// The KubernetesConfig of Node.
+	KubernetesConfig NodeKubernetesConfigPtrInput
 }
 
 func (NodeArgs) ElementType() reflect.Type {
@@ -194,7 +229,7 @@ func (i *Node) ToNodeOutputWithContext(ctx context.Context) NodeOutput {
 // NodeArrayInput is an input type that accepts NodeArray and NodeArrayOutput values.
 // You can construct a concrete instance of `NodeArrayInput` via:
 //
-//          NodeArray{ NodeArgs{...} }
+//	NodeArray{ NodeArgs{...} }
 type NodeArrayInput interface {
 	pulumi.Input
 
@@ -219,7 +254,7 @@ func (i NodeArray) ToNodeArrayOutputWithContext(ctx context.Context) NodeArrayOu
 // NodeMapInput is an input type that accepts NodeMap and NodeMapOutput values.
 // You can construct a concrete instance of `NodeMapInput` via:
 //
-//          NodeMap{ "key": NodeArgs{...} }
+//	NodeMap{ "key": NodeArgs{...} }
 type NodeMapInput interface {
 	pulumi.Input
 
@@ -275,6 +310,16 @@ func (o NodeOutput) ContainerStoragePath() pulumi.StringOutput {
 	return o.ApplyT(func(v *Node) pulumi.StringOutput { return v.ContainerStoragePath }).(pulumi.StringOutput)
 }
 
+// The ImageId of NodeConfig.
+func (o NodeOutput) ImageId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Node) pulumi.StringOutput { return v.ImageId }).(pulumi.StringOutput)
+}
+
+// The initializeScript of Node.
+func (o NodeOutput) InitializeScript() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Node) pulumi.StringPtrOutput { return v.InitializeScript }).(pulumi.StringPtrOutput)
+}
+
 // The instance id.
 func (o NodeOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Node) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
@@ -283,6 +328,11 @@ func (o NodeOutput) InstanceId() pulumi.StringOutput {
 // The flag of keep instance name, the value is `true` or `false`.
 func (o NodeOutput) KeepInstanceName() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Node) pulumi.BoolPtrOutput { return v.KeepInstanceName }).(pulumi.BoolPtrOutput)
+}
+
+// The KubernetesConfig of Node.
+func (o NodeOutput) KubernetesConfig() NodeKubernetesConfigPtrOutput {
+	return o.ApplyT(func(v *Node) NodeKubernetesConfigPtrOutput { return v.KubernetesConfig }).(NodeKubernetesConfigPtrOutput)
 }
 
 // The node pool id.

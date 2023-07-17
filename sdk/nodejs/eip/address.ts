@@ -2,21 +2,22 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
- * Provides a resource to manage eip address
  * ## Example Usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = new volcengine.Eip.Address("foo", {
+ * const foo = new volcengine.eip.Address("foo", {
  *     bandwidth: 1,
  *     billingType: "PostPaidByBandwidth",
  *     description: "tf-test",
- *     isp: "BGP",
+ *     isp: "ChinaUnicom",
+ *     projectName: "yuwenhao",
  * });
  * ```
  *
@@ -25,7 +26,7 @@ import * as utilities from "../utilities";
  * Eip address can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:Eip/address:Address default eip-274oj9a8rs9a87fap8sf9515b
+ *  $ pulumi import volcengine:eip/address:Address default eip-274oj9a8rs9a87fap8sf9515b
  * ```
  */
 export class Address extends pulumi.CustomResource {
@@ -43,7 +44,7 @@ export class Address extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'volcengine:Eip/address:Address';
+    public static readonly __pulumiType = 'volcengine:eip/address:Address';
 
     /**
      * Returns true if the given object is an instance of Address.  This is designed to work even
@@ -57,7 +58,7 @@ export class Address extends pulumi.CustomResource {
     }
 
     /**
-     * The peek bandwidth of the EIP.
+     * The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
      */
     public readonly bandwidth!: pulumi.Output<number>;
     /**
@@ -73,7 +74,7 @@ export class Address extends pulumi.CustomResource {
      */
     public /*out*/ readonly eipAddress!: pulumi.Output<string>;
     /**
-     * The ISP of the EIP.
+     * The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
      */
     public readonly isp!: pulumi.Output<string>;
     /**
@@ -81,9 +82,17 @@ export class Address extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The ProjectName of the EIP.
+     */
+    public readonly projectName!: pulumi.Output<string | undefined>;
+    /**
      * The status of the EIP.
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.eip.AddressTag[] | undefined>;
 
     /**
      * Create a Address resource with the given unique name, arguments, and options.
@@ -104,7 +113,9 @@ export class Address extends pulumi.CustomResource {
             resourceInputs["eipAddress"] = state ? state.eipAddress : undefined;
             resourceInputs["isp"] = state ? state.isp : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
         } else {
             const args = argsOrState as AddressArgs | undefined;
             if ((!args || args.billingType === undefined) && !opts.urn) {
@@ -115,6 +126,8 @@ export class Address extends pulumi.CustomResource {
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["isp"] = args ? args.isp : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["eipAddress"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
         }
@@ -128,7 +141,7 @@ export class Address extends pulumi.CustomResource {
  */
 export interface AddressState {
     /**
-     * The peek bandwidth of the EIP.
+     * The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
      */
     bandwidth?: pulumi.Input<number>;
     /**
@@ -144,7 +157,7 @@ export interface AddressState {
      */
     eipAddress?: pulumi.Input<string>;
     /**
-     * The ISP of the EIP.
+     * The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
      */
     isp?: pulumi.Input<string>;
     /**
@@ -152,9 +165,17 @@ export interface AddressState {
      */
     name?: pulumi.Input<string>;
     /**
+     * The ProjectName of the EIP.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * The status of the EIP.
      */
     status?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.eip.AddressTag>[]>;
 }
 
 /**
@@ -162,7 +183,7 @@ export interface AddressState {
  */
 export interface AddressArgs {
     /**
-     * The peek bandwidth of the EIP.
+     * The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
      */
     bandwidth?: pulumi.Input<number>;
     /**
@@ -174,11 +195,19 @@ export interface AddressArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * The ISP of the EIP.
+     * The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
      */
     isp?: pulumi.Input<string>;
     /**
      * The name of the EIP Address.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The ProjectName of the EIP.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.eip.AddressTag>[]>;
 }

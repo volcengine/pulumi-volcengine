@@ -32,7 +32,7 @@ namespace Pulumi.Volcengine
 
         private static readonly Pulumi.Config __config = new Pulumi.Config("volcengine");
 
-        private static readonly __Value<string?> _accessKey = new __Value<string?>(() => __config.Get("accessKey"));
+        private static readonly __Value<string?> _accessKey = new __Value<string?>(() => __config.Get("accessKey") ?? Utilities.GetEnv("VOLCENGINE_ACCESS_KEY"));
         /// <summary>
         /// The Access Key for Volcengine Provider
         /// </summary>
@@ -40,6 +40,16 @@ namespace Pulumi.Volcengine
         {
             get => _accessKey.Get();
             set => _accessKey.Set(value);
+        }
+
+        private static readonly __Value<string?> _customerEndpoints = new __Value<string?>(() => __config.Get("customerEndpoints"));
+        /// <summary>
+        /// CUSTOMER ENDPOINTS for Volcengine Provider
+        /// </summary>
+        public static string? CustomerEndpoints
+        {
+            get => _customerEndpoints.Get();
+            set => _customerEndpoints.Set(value);
         }
 
         private static readonly __Value<string?> _customerHeaders = new __Value<string?>(() => __config.Get("customerHeaders"));
@@ -62,7 +72,7 @@ namespace Pulumi.Volcengine
             set => _disableSsl.Set(value);
         }
 
-        private static readonly __Value<string?> _endpoint = new __Value<string?>(() => __config.Get("endpoint"));
+        private static readonly __Value<string?> _endpoint = new __Value<string?>(() => __config.Get("endpoint") ?? Utilities.GetEnv("VOLCENGINE_ENDPOINT"));
         /// <summary>
         /// The Customer Endpoint for Volcengine Provider
         /// </summary>
@@ -72,7 +82,17 @@ namespace Pulumi.Volcengine
             set => _endpoint.Set(value);
         }
 
-        private static readonly __Value<string?> _region = new __Value<string?>(() => __config.Get("region"));
+        private static readonly __Value<string?> _proxyUrl = new __Value<string?>(() => __config.Get("proxyUrl"));
+        /// <summary>
+        /// PROXY URL for Volcengine Provider
+        /// </summary>
+        public static string? ProxyUrl
+        {
+            get => _proxyUrl.Get();
+            set => _proxyUrl.Set(value);
+        }
+
+        private static readonly __Value<string?> _region = new __Value<string?>(() => __config.Get("region") ?? Utilities.GetEnv("VOLCENGINE_REGION"));
         /// <summary>
         /// The Region for Volcengine Provider
         /// </summary>
@@ -82,7 +102,7 @@ namespace Pulumi.Volcengine
             set => _region.Set(value);
         }
 
-        private static readonly __Value<string?> _secretKey = new __Value<string?>(() => __config.Get("secretKey"));
+        private static readonly __Value<string?> _secretKey = new __Value<string?>(() => __config.Get("secretKey") ?? Utilities.GetEnv("VOLCENGINE_SECRET_KEY"));
         /// <summary>
         /// The Secret Key for Volcengine Provider
         /// </summary>

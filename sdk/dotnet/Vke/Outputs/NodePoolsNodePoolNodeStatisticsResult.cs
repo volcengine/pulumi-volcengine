@@ -30,6 +30,18 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// </summary>
         public readonly int RunningCount;
         /// <summary>
+        /// The StartingCount of Node.
+        /// </summary>
+        public readonly int StartingCount;
+        /// <summary>
+        /// The StoppedCount of Node.
+        /// </summary>
+        public readonly int StoppedCount;
+        /// <summary>
+        /// The StoppingCount of Node.
+        /// </summary>
+        public readonly int StoppingCount;
+        /// <summary>
         /// Returns the total amount of the data list.
         /// </summary>
         public readonly int TotalCount;
@@ -48,6 +60,12 @@ namespace Pulumi.Volcengine.Vke.Outputs
 
             int runningCount,
 
+            int startingCount,
+
+            int stoppedCount,
+
+            int stoppingCount,
+
             int totalCount,
 
             int updatingCount)
@@ -56,6 +74,9 @@ namespace Pulumi.Volcengine.Vke.Outputs
             DeletingCount = deletingCount;
             FailedCount = failedCount;
             RunningCount = runningCount;
+            StartingCount = startingCount;
+            StoppedCount = stoppedCount;
+            StoppingCount = stoppingCount;
             TotalCount = totalCount;
             UpdatingCount = updatingCount;
         }

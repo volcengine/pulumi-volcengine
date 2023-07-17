@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'VpcsResult',
@@ -21,7 +22,7 @@ class VpcsResult:
     """
     A collection of values returned by Vpcs.
     """
-    def __init__(__self__, id=None, ids=None, name_regex=None, output_file=None, total_count=None, vpcs=None):
+    def __init__(__self__, id=None, ids=None, name_regex=None, output_file=None, project_name=None, tags=None, total_count=None, vpc_name=None, vpcs=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -34,9 +35,18 @@ class VpcsResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if project_name and not isinstance(project_name, str):
+            raise TypeError("Expected argument 'project_name' to be a str")
+        pulumi.set(__self__, "project_name", project_name)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
+        if vpc_name and not isinstance(vpc_name, str):
+            raise TypeError("Expected argument 'vpc_name' to be a str")
+        pulumi.set(__self__, "vpc_name", vpc_name)
         if vpcs and not isinstance(vpcs, list):
             raise TypeError("Expected argument 'vpcs' to be a list")
         pulumi.set(__self__, "vpcs", vpcs)
@@ -65,12 +75,36 @@ class VpcsResult:
         return pulumi.get(self, "output_file")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[str]:
+        """
+        The ProjectName of the VPC.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.VpcsTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
         """
         The total count of Vpc query.
         """
         return pulumi.get(self, "total_count")
+
+    @property
+    @pulumi.getter(name="vpcName")
+    def vpc_name(self) -> Optional[str]:
+        """
+        The name of VPC.
+        """
+        return pulumi.get(self, "vpc_name")
 
     @property
     @pulumi.getter
@@ -91,13 +125,19 @@ class AwaitableVpcsResult(VpcsResult):
             ids=self.ids,
             name_regex=self.name_regex,
             output_file=self.output_file,
+            project_name=self.project_name,
+            tags=self.tags,
             total_count=self.total_count,
+            vpc_name=self.vpc_name,
             vpcs=self.vpcs)
 
 
 def vpcs(ids: Optional[Sequence[str]] = None,
          name_regex: Optional[str] = None,
          output_file: Optional[str] = None,
+         project_name: Optional[str] = None,
+         tags: Optional[Sequence[pulumi.InputType['VpcsTagArgs']]] = None,
+         vpc_name: Optional[str] = None,
          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableVpcsResult:
     """
     Use this data source to query detailed information of vpcs
@@ -107,30 +147,39 @@ def vpcs(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.Vpc.vpcs(ids=["vpc-mizl7m1kqccg5smt1bdpijuj"])
+    default = volcengine.vpc.vpcs(ids=["vpc-mizl7m1kqccg5smt1bdpijuj"])
     ```
 
 
     :param Sequence[str] ids: A list of VPC IDs.
     :param str name_regex: A Name Regex of Vpc.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The ProjectName of the VPC.
+    :param Sequence[pulumi.InputType['VpcsTagArgs']] tags: Tags.
+    :param str vpc_name: The vpc name to query.
     """
     __args__ = dict()
     __args__['ids'] = ids
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
+    __args__['projectName'] = project_name
+    __args__['tags'] = tags
+    __args__['vpcName'] = vpc_name
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('volcengine:Vpc/vpcs:Vpcs', __args__, opts=opts, typ=VpcsResult).value
+    __ret__ = pulumi.runtime.invoke('volcengine:vpc/vpcs:Vpcs', __args__, opts=opts, typ=VpcsResult).value
 
     return AwaitableVpcsResult(
         id=__ret__.id,
         ids=__ret__.ids,
         name_regex=__ret__.name_regex,
         output_file=__ret__.output_file,
+        project_name=__ret__.project_name,
+        tags=__ret__.tags,
         total_count=__ret__.total_count,
+        vpc_name=__ret__.vpc_name,
         vpcs=__ret__.vpcs)
 
 
@@ -138,6 +187,9 @@ def vpcs(ids: Optional[Sequence[str]] = None,
 def vpcs_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                 name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                 output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                project_name: Optional[pulumi.Input[Optional[str]]] = None,
+                tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['VpcsTagArgs']]]]] = None,
+                vpc_name: Optional[pulumi.Input[Optional[str]]] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[VpcsResult]:
     """
     Use this data source to query detailed information of vpcs
@@ -147,12 +199,15 @@ def vpcs_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.Vpc.vpcs(ids=["vpc-mizl7m1kqccg5smt1bdpijuj"])
+    default = volcengine.vpc.vpcs(ids=["vpc-mizl7m1kqccg5smt1bdpijuj"])
     ```
 
 
     :param Sequence[str] ids: A list of VPC IDs.
     :param str name_regex: A Name Regex of Vpc.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The ProjectName of the VPC.
+    :param Sequence[pulumi.InputType['VpcsTagArgs']] tags: Tags.
+    :param str vpc_name: The vpc name to query.
     """
     ...

@@ -22,7 +22,9 @@ class ClusterArgs:
                  delete_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  kubernetes_version: Optional[pulumi.Input[str]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
+                 logging_config: Optional[pulumi.Input['ClusterLoggingConfigArgs']] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterTagArgs']]]] = None):
         """
         The set of arguments for constructing a Cluster resource.
         :param pulumi.Input['ClusterClusterConfigArgs'] cluster_config: The config of the cluster.
@@ -32,7 +34,9 @@ class ClusterArgs:
         :param pulumi.Input[bool] delete_protection_enabled: The delete protection of the cluster, the value is `true` or `false`.
         :param pulumi.Input[str] description: The description of the cluster.
         :param pulumi.Input[str] kubernetes_version: The version of Kubernetes specified when creating a VKE cluster (specified to patch version), if not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
+        :param pulumi.Input['ClusterLoggingConfigArgs'] logging_config: Cluster log configuration information.
         :param pulumi.Input[str] name: The name of the cluster.
+        :param pulumi.Input[Sequence[pulumi.Input['ClusterTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "cluster_config", cluster_config)
         pulumi.set(__self__, "pods_config", pods_config)
@@ -45,8 +49,12 @@ class ClusterArgs:
             pulumi.set(__self__, "description", description)
         if kubernetes_version is not None:
             pulumi.set(__self__, "kubernetes_version", kubernetes_version)
+        if logging_config is not None:
+            pulumi.set(__self__, "logging_config", logging_config)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="clusterConfig")
@@ -133,6 +141,18 @@ class ClusterArgs:
         pulumi.set(self, "kubernetes_version", value)
 
     @property
+    @pulumi.getter(name="loggingConfig")
+    def logging_config(self) -> Optional[pulumi.Input['ClusterLoggingConfigArgs']]:
+        """
+        Cluster log configuration information.
+        """
+        return pulumi.get(self, "logging_config")
+
+    @logging_config.setter
+    def logging_config(self, value: Optional[pulumi.Input['ClusterLoggingConfigArgs']]):
+        pulumi.set(self, "logging_config", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -143,6 +163,18 @@ class ClusterArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterTagArgs']]]]):
+        pulumi.set(self, "tags", value)
 
 
 @pulumi.input_type
@@ -156,9 +188,11 @@ class _ClusterState:
                  kubeconfig_private: Optional[pulumi.Input[str]] = None,
                  kubeconfig_public: Optional[pulumi.Input[str]] = None,
                  kubernetes_version: Optional[pulumi.Input[str]] = None,
+                 logging_config: Optional[pulumi.Input['ClusterLoggingConfigArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  pods_config: Optional[pulumi.Input['ClusterPodsConfigArgs']] = None,
-                 services_config: Optional[pulumi.Input['ClusterServicesConfigArgs']] = None):
+                 services_config: Optional[pulumi.Input['ClusterServicesConfigArgs']] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterTagArgs']]]] = None):
         """
         Input properties used for looking up and filtering Cluster resources.
         :param pulumi.Input[str] client_token: ClientToken is a case-sensitive string of no more than 64 ASCII characters passed in by the caller.
@@ -166,12 +200,14 @@ class _ClusterState:
         :param pulumi.Input[bool] delete_protection_enabled: The delete protection of the cluster, the value is `true` or `false`.
         :param pulumi.Input[str] description: The description of the cluster.
         :param pulumi.Input[str] eip_allocation_id: Eip allocation Id.
-        :param pulumi.Input[str] kubeconfig_private: Kubeconfig data with private network access, returned in BASE64 encoding.
-        :param pulumi.Input[str] kubeconfig_public: Kubeconfig data with public network access, returned in BASE64 encoding.
+        :param pulumi.Input[str] kubeconfig_private: Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.
+        :param pulumi.Input[str] kubeconfig_public: Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.
         :param pulumi.Input[str] kubernetes_version: The version of Kubernetes specified when creating a VKE cluster (specified to patch version), if not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
+        :param pulumi.Input['ClusterLoggingConfigArgs'] logging_config: Cluster log configuration information.
         :param pulumi.Input[str] name: The name of the cluster.
         :param pulumi.Input['ClusterPodsConfigArgs'] pods_config: The config of the pods.
         :param pulumi.Input['ClusterServicesConfigArgs'] services_config: The config of the services.
+        :param pulumi.Input[Sequence[pulumi.Input['ClusterTagArgs']]] tags: Tags.
         """
         if client_token is not None:
             pulumi.set(__self__, "client_token", client_token)
@@ -189,12 +225,16 @@ class _ClusterState:
             pulumi.set(__self__, "kubeconfig_public", kubeconfig_public)
         if kubernetes_version is not None:
             pulumi.set(__self__, "kubernetes_version", kubernetes_version)
+        if logging_config is not None:
+            pulumi.set(__self__, "logging_config", logging_config)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if pods_config is not None:
             pulumi.set(__self__, "pods_config", pods_config)
         if services_config is not None:
             pulumi.set(__self__, "services_config", services_config)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="clientToken")
@@ -260,7 +300,7 @@ class _ClusterState:
     @pulumi.getter(name="kubeconfigPrivate")
     def kubeconfig_private(self) -> Optional[pulumi.Input[str]]:
         """
-        Kubeconfig data with private network access, returned in BASE64 encoding.
+        Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.
         """
         return pulumi.get(self, "kubeconfig_private")
 
@@ -272,7 +312,7 @@ class _ClusterState:
     @pulumi.getter(name="kubeconfigPublic")
     def kubeconfig_public(self) -> Optional[pulumi.Input[str]]:
         """
-        Kubeconfig data with public network access, returned in BASE64 encoding.
+        Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.
         """
         return pulumi.get(self, "kubeconfig_public")
 
@@ -291,6 +331,18 @@ class _ClusterState:
     @kubernetes_version.setter
     def kubernetes_version(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "kubernetes_version", value)
+
+    @property
+    @pulumi.getter(name="loggingConfig")
+    def logging_config(self) -> Optional[pulumi.Input['ClusterLoggingConfigArgs']]:
+        """
+        Cluster log configuration information.
+        """
+        return pulumi.get(self, "logging_config")
+
+    @logging_config.setter
+    def logging_config(self, value: Optional[pulumi.Input['ClusterLoggingConfigArgs']]):
+        pulumi.set(self, "logging_config", value)
 
     @property
     @pulumi.getter
@@ -328,6 +380,18 @@ class _ClusterState:
     def services_config(self, value: Optional[pulumi.Input['ClusterServicesConfigArgs']]):
         pulumi.set(self, "services_config", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 class Cluster(pulumi.CustomResource):
     @overload
@@ -339,9 +403,11 @@ class Cluster(pulumi.CustomResource):
                  delete_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  kubernetes_version: Optional[pulumi.Input[str]] = None,
+                 logging_config: Optional[pulumi.Input[pulumi.InputType['ClusterLoggingConfigArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  pods_config: Optional[pulumi.Input[pulumi.InputType['ClusterPodsConfigArgs']]] = None,
                  services_config: Optional[pulumi.Input[pulumi.InputType['ClusterServicesConfigArgs']]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterTagArgs']]]]] = None,
                  __props__=None):
         """
         Provides a resource to manage vke cluster
@@ -361,23 +427,34 @@ class Cluster(pulumi.CustomResource):
                 ),
                 api_server_public_access_enabled=True,
                 resource_public_access_default_enabled=True,
-                subnet_ids=["subnet-2bzud0pbor8qo2dx0ee884y6h"],
+                subnet_ids=["subnet-rrqvkt2nq1hcv0x57ccqf3x"],
             ),
             delete_protection_enabled=False,
             description="created by terraform",
+            logging_config=volcengine.vke.ClusterLoggingConfigArgs(
+                log_setups=[volcengine.vke.ClusterLoggingConfigLogSetupArgs(
+                    enabled=False,
+                    log_ttl=30,
+                    log_type="Audit",
+                )],
+            ),
             pods_config=volcengine.vke.ClusterPodsConfigArgs(
-                flannel_config=volcengine.vke.ClusterPodsConfigFlannelConfigArgs(
-                    max_pods_per_node=64,
-                    pod_cidrs=["172.27.224.0/19"],
-                ),
-                pod_network_mode="Flannel",
+                pod_network_mode="VpcCniShared",
                 vpc_cni_config=volcengine.vke.ClusterPodsConfigVpcCniConfigArgs(
-                    subnet_ids=["subnet-2bzud0pbor8qo2dx0ee884y6h"],
+                    subnet_ids=[
+                        "subnet-rrqvkt2nq1hcv0x57ccqf3x",
+                        "subnet-miklcqh75vcw5smt1amo4ik5",
+                        "subnet-13g0x0ytpm0hs3n6nu5j591lv",
+                    ],
                 ),
             ),
             services_config=volcengine.vke.ClusterServicesConfigArgs(
-                service_cidrsv4s=["172.30.0.0/17"],
-            ))
+                service_cidrsv4s=["172.30.0.0/18"],
+            ),
+            tags=[volcengine.vke.ClusterTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -385,7 +462,7 @@ class Cluster(pulumi.CustomResource):
         VkeCluster can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Vke/cluster:Cluster default cc9l74mvqtofjnoj5****
+         $ pulumi import volcengine:vke/cluster:Cluster default cc9l74mvqtofjnoj5****
         ```
 
         :param str resource_name: The name of the resource.
@@ -395,9 +472,11 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[bool] delete_protection_enabled: The delete protection of the cluster, the value is `true` or `false`.
         :param pulumi.Input[str] description: The description of the cluster.
         :param pulumi.Input[str] kubernetes_version: The version of Kubernetes specified when creating a VKE cluster (specified to patch version), if not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
+        :param pulumi.Input[pulumi.InputType['ClusterLoggingConfigArgs']] logging_config: Cluster log configuration information.
         :param pulumi.Input[str] name: The name of the cluster.
         :param pulumi.Input[pulumi.InputType['ClusterPodsConfigArgs']] pods_config: The config of the pods.
         :param pulumi.Input[pulumi.InputType['ClusterServicesConfigArgs']] services_config: The config of the services.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterTagArgs']]]] tags: Tags.
         """
         ...
     @overload
@@ -423,23 +502,34 @@ class Cluster(pulumi.CustomResource):
                 ),
                 api_server_public_access_enabled=True,
                 resource_public_access_default_enabled=True,
-                subnet_ids=["subnet-2bzud0pbor8qo2dx0ee884y6h"],
+                subnet_ids=["subnet-rrqvkt2nq1hcv0x57ccqf3x"],
             ),
             delete_protection_enabled=False,
             description="created by terraform",
+            logging_config=volcengine.vke.ClusterLoggingConfigArgs(
+                log_setups=[volcengine.vke.ClusterLoggingConfigLogSetupArgs(
+                    enabled=False,
+                    log_ttl=30,
+                    log_type="Audit",
+                )],
+            ),
             pods_config=volcengine.vke.ClusterPodsConfigArgs(
-                flannel_config=volcengine.vke.ClusterPodsConfigFlannelConfigArgs(
-                    max_pods_per_node=64,
-                    pod_cidrs=["172.27.224.0/19"],
-                ),
-                pod_network_mode="Flannel",
+                pod_network_mode="VpcCniShared",
                 vpc_cni_config=volcengine.vke.ClusterPodsConfigVpcCniConfigArgs(
-                    subnet_ids=["subnet-2bzud0pbor8qo2dx0ee884y6h"],
+                    subnet_ids=[
+                        "subnet-rrqvkt2nq1hcv0x57ccqf3x",
+                        "subnet-miklcqh75vcw5smt1amo4ik5",
+                        "subnet-13g0x0ytpm0hs3n6nu5j591lv",
+                    ],
                 ),
             ),
             services_config=volcengine.vke.ClusterServicesConfigArgs(
-                service_cidrsv4s=["172.30.0.0/17"],
-            ))
+                service_cidrsv4s=["172.30.0.0/18"],
+            ),
+            tags=[volcengine.vke.ClusterTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -447,7 +537,7 @@ class Cluster(pulumi.CustomResource):
         VkeCluster can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Vke/cluster:Cluster default cc9l74mvqtofjnoj5****
+         $ pulumi import volcengine:vke/cluster:Cluster default cc9l74mvqtofjnoj5****
         ```
 
         :param str resource_name: The name of the resource.
@@ -470,9 +560,11 @@ class Cluster(pulumi.CustomResource):
                  delete_protection_enabled: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  kubernetes_version: Optional[pulumi.Input[str]] = None,
+                 logging_config: Optional[pulumi.Input[pulumi.InputType['ClusterLoggingConfigArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  pods_config: Optional[pulumi.Input[pulumi.InputType['ClusterPodsConfigArgs']]] = None,
                  services_config: Optional[pulumi.Input[pulumi.InputType['ClusterServicesConfigArgs']]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterTagArgs']]]]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -492,6 +584,7 @@ class Cluster(pulumi.CustomResource):
             __props__.__dict__["delete_protection_enabled"] = delete_protection_enabled
             __props__.__dict__["description"] = description
             __props__.__dict__["kubernetes_version"] = kubernetes_version
+            __props__.__dict__["logging_config"] = logging_config
             __props__.__dict__["name"] = name
             if pods_config is None and not opts.urn:
                 raise TypeError("Missing required property 'pods_config'")
@@ -499,11 +592,12 @@ class Cluster(pulumi.CustomResource):
             if services_config is None and not opts.urn:
                 raise TypeError("Missing required property 'services_config'")
             __props__.__dict__["services_config"] = services_config
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["eip_allocation_id"] = None
             __props__.__dict__["kubeconfig_private"] = None
             __props__.__dict__["kubeconfig_public"] = None
         super(Cluster, __self__).__init__(
-            'volcengine:Vke/cluster:Cluster',
+            'volcengine:vke/cluster:Cluster',
             resource_name,
             __props__,
             opts)
@@ -520,9 +614,11 @@ class Cluster(pulumi.CustomResource):
             kubeconfig_private: Optional[pulumi.Input[str]] = None,
             kubeconfig_public: Optional[pulumi.Input[str]] = None,
             kubernetes_version: Optional[pulumi.Input[str]] = None,
+            logging_config: Optional[pulumi.Input[pulumi.InputType['ClusterLoggingConfigArgs']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             pods_config: Optional[pulumi.Input[pulumi.InputType['ClusterPodsConfigArgs']]] = None,
-            services_config: Optional[pulumi.Input[pulumi.InputType['ClusterServicesConfigArgs']]] = None) -> 'Cluster':
+            services_config: Optional[pulumi.Input[pulumi.InputType['ClusterServicesConfigArgs']]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterTagArgs']]]]] = None) -> 'Cluster':
         """
         Get an existing Cluster resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -535,12 +631,14 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[bool] delete_protection_enabled: The delete protection of the cluster, the value is `true` or `false`.
         :param pulumi.Input[str] description: The description of the cluster.
         :param pulumi.Input[str] eip_allocation_id: Eip allocation Id.
-        :param pulumi.Input[str] kubeconfig_private: Kubeconfig data with private network access, returned in BASE64 encoding.
-        :param pulumi.Input[str] kubeconfig_public: Kubeconfig data with public network access, returned in BASE64 encoding.
+        :param pulumi.Input[str] kubeconfig_private: Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.
+        :param pulumi.Input[str] kubeconfig_public: Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.
         :param pulumi.Input[str] kubernetes_version: The version of Kubernetes specified when creating a VKE cluster (specified to patch version), if not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
+        :param pulumi.Input[pulumi.InputType['ClusterLoggingConfigArgs']] logging_config: Cluster log configuration information.
         :param pulumi.Input[str] name: The name of the cluster.
         :param pulumi.Input[pulumi.InputType['ClusterPodsConfigArgs']] pods_config: The config of the pods.
         :param pulumi.Input[pulumi.InputType['ClusterServicesConfigArgs']] services_config: The config of the services.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterTagArgs']]]] tags: Tags.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -554,9 +652,11 @@ class Cluster(pulumi.CustomResource):
         __props__.__dict__["kubeconfig_private"] = kubeconfig_private
         __props__.__dict__["kubeconfig_public"] = kubeconfig_public
         __props__.__dict__["kubernetes_version"] = kubernetes_version
+        __props__.__dict__["logging_config"] = logging_config
         __props__.__dict__["name"] = name
         __props__.__dict__["pods_config"] = pods_config
         __props__.__dict__["services_config"] = services_config
+        __props__.__dict__["tags"] = tags
         return Cluster(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -603,7 +703,7 @@ class Cluster(pulumi.CustomResource):
     @pulumi.getter(name="kubeconfigPrivate")
     def kubeconfig_private(self) -> pulumi.Output[str]:
         """
-        Kubeconfig data with private network access, returned in BASE64 encoding.
+        Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.
         """
         return pulumi.get(self, "kubeconfig_private")
 
@@ -611,7 +711,7 @@ class Cluster(pulumi.CustomResource):
     @pulumi.getter(name="kubeconfigPublic")
     def kubeconfig_public(self) -> pulumi.Output[str]:
         """
-        Kubeconfig data with public network access, returned in BASE64 encoding.
+        Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.
         """
         return pulumi.get(self, "kubeconfig_public")
 
@@ -622,6 +722,14 @@ class Cluster(pulumi.CustomResource):
         The version of Kubernetes specified when creating a VKE cluster (specified to patch version), if not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
         """
         return pulumi.get(self, "kubernetes_version")
+
+    @property
+    @pulumi.getter(name="loggingConfig")
+    def logging_config(self) -> pulumi.Output[Optional['outputs.ClusterLoggingConfig']]:
+        """
+        Cluster log configuration information.
+        """
+        return pulumi.get(self, "logging_config")
 
     @property
     @pulumi.getter
@@ -646,4 +754,12 @@ class Cluster(pulumi.CustomResource):
         The config of the services.
         """
         return pulumi.get(self, "services_config")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.ClusterTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 

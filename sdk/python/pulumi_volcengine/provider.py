@@ -13,70 +13,77 @@ __all__ = ['ProviderArgs', 'Provider']
 @pulumi.input_type
 class ProviderArgs:
     def __init__(__self__, *,
-                 access_key: pulumi.Input[str],
-                 region: pulumi.Input[str],
-                 secret_key: pulumi.Input[str],
+                 access_key: Optional[pulumi.Input[str]] = None,
+                 customer_endpoints: Optional[pulumi.Input[str]] = None,
                  customer_headers: Optional[pulumi.Input[str]] = None,
                  disable_ssl: Optional[pulumi.Input[bool]] = None,
                  endpoint: Optional[pulumi.Input[str]] = None,
+                 proxy_url: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
+                 secret_key: Optional[pulumi.Input[str]] = None,
                  session_token: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Provider resource.
         :param pulumi.Input[str] access_key: The Access Key for Volcengine Provider
-        :param pulumi.Input[str] region: The Region for Volcengine Provider
-        :param pulumi.Input[str] secret_key: The Secret Key for Volcengine Provider
+        :param pulumi.Input[str] customer_endpoints: CUSTOMER ENDPOINTS for Volcengine Provider
         :param pulumi.Input[str] customer_headers: CUSTOMER HEADERS for Volcengine Provider
         :param pulumi.Input[bool] disable_ssl: Disable SSL for Volcengine Provider
         :param pulumi.Input[str] endpoint: The Customer Endpoint for Volcengine Provider
+        :param pulumi.Input[str] proxy_url: PROXY URL for Volcengine Provider
+        :param pulumi.Input[str] region: The Region for Volcengine Provider
+        :param pulumi.Input[str] secret_key: The Secret Key for Volcengine Provider
         :param pulumi.Input[str] session_token: The Session Token for Volcengine Provider
         """
-        pulumi.set(__self__, "access_key", access_key)
-        pulumi.set(__self__, "region", region)
-        pulumi.set(__self__, "secret_key", secret_key)
+        if access_key is None:
+            access_key = _utilities.get_env('VOLCENGINE_ACCESS_KEY')
+        if access_key is not None:
+            pulumi.set(__self__, "access_key", access_key)
+        if customer_endpoints is not None:
+            pulumi.set(__self__, "customer_endpoints", customer_endpoints)
         if customer_headers is not None:
             pulumi.set(__self__, "customer_headers", customer_headers)
         if disable_ssl is not None:
             pulumi.set(__self__, "disable_ssl", disable_ssl)
+        if endpoint is None:
+            endpoint = _utilities.get_env('VOLCENGINE_ENDPOINT')
         if endpoint is not None:
             pulumi.set(__self__, "endpoint", endpoint)
+        if proxy_url is not None:
+            pulumi.set(__self__, "proxy_url", proxy_url)
+        if region is None:
+            region = _utilities.get_env('VOLCENGINE_REGION')
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if secret_key is None:
+            secret_key = _utilities.get_env('VOLCENGINE_SECRET_KEY')
+        if secret_key is not None:
+            pulumi.set(__self__, "secret_key", secret_key)
         if session_token is not None:
             pulumi.set(__self__, "session_token", session_token)
 
     @property
     @pulumi.getter(name="accessKey")
-    def access_key(self) -> pulumi.Input[str]:
+    def access_key(self) -> Optional[pulumi.Input[str]]:
         """
         The Access Key for Volcengine Provider
         """
         return pulumi.get(self, "access_key")
 
     @access_key.setter
-    def access_key(self, value: pulumi.Input[str]):
+    def access_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "access_key", value)
 
     @property
-    @pulumi.getter
-    def region(self) -> pulumi.Input[str]:
+    @pulumi.getter(name="customerEndpoints")
+    def customer_endpoints(self) -> Optional[pulumi.Input[str]]:
         """
-        The Region for Volcengine Provider
+        CUSTOMER ENDPOINTS for Volcengine Provider
         """
-        return pulumi.get(self, "region")
+        return pulumi.get(self, "customer_endpoints")
 
-    @region.setter
-    def region(self, value: pulumi.Input[str]):
-        pulumi.set(self, "region", value)
-
-    @property
-    @pulumi.getter(name="secretKey")
-    def secret_key(self) -> pulumi.Input[str]:
-        """
-        The Secret Key for Volcengine Provider
-        """
-        return pulumi.get(self, "secret_key")
-
-    @secret_key.setter
-    def secret_key(self, value: pulumi.Input[str]):
-        pulumi.set(self, "secret_key", value)
+    @customer_endpoints.setter
+    def customer_endpoints(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "customer_endpoints", value)
 
     @property
     @pulumi.getter(name="customerHeaders")
@@ -115,6 +122,42 @@ class ProviderArgs:
         pulumi.set(self, "endpoint", value)
 
     @property
+    @pulumi.getter(name="proxyUrl")
+    def proxy_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        PROXY URL for Volcengine Provider
+        """
+        return pulumi.get(self, "proxy_url")
+
+    @proxy_url.setter
+    def proxy_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy_url", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Region for Volcengine Provider
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter(name="secretKey")
+    def secret_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Secret Key for Volcengine Provider
+        """
+        return pulumi.get(self, "secret_key")
+
+    @secret_key.setter
+    def secret_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "secret_key", value)
+
+    @property
     @pulumi.getter(name="sessionToken")
     def session_token(self) -> Optional[pulumi.Input[str]]:
         """
@@ -133,9 +176,11 @@ class Provider(pulumi.ProviderResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_key: Optional[pulumi.Input[str]] = None,
+                 customer_endpoints: Optional[pulumi.Input[str]] = None,
                  customer_headers: Optional[pulumi.Input[str]] = None,
                  disable_ssl: Optional[pulumi.Input[bool]] = None,
                  endpoint: Optional[pulumi.Input[str]] = None,
+                 proxy_url: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  session_token: Optional[pulumi.Input[str]] = None,
@@ -149,9 +194,11 @@ class Provider(pulumi.ProviderResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key: The Access Key for Volcengine Provider
+        :param pulumi.Input[str] customer_endpoints: CUSTOMER ENDPOINTS for Volcengine Provider
         :param pulumi.Input[str] customer_headers: CUSTOMER HEADERS for Volcengine Provider
         :param pulumi.Input[bool] disable_ssl: Disable SSL for Volcengine Provider
         :param pulumi.Input[str] endpoint: The Customer Endpoint for Volcengine Provider
+        :param pulumi.Input[str] proxy_url: PROXY URL for Volcengine Provider
         :param pulumi.Input[str] region: The Region for Volcengine Provider
         :param pulumi.Input[str] secret_key: The Secret Key for Volcengine Provider
         :param pulumi.Input[str] session_token: The Session Token for Volcengine Provider
@@ -160,7 +207,7 @@ class Provider(pulumi.ProviderResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: ProviderArgs,
+                 args: Optional[ProviderArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The provider type for the volcengine package. By default, resources use package-wide configuration
@@ -184,9 +231,11 @@ class Provider(pulumi.ProviderResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_key: Optional[pulumi.Input[str]] = None,
+                 customer_endpoints: Optional[pulumi.Input[str]] = None,
                  customer_headers: Optional[pulumi.Input[str]] = None,
                  disable_ssl: Optional[pulumi.Input[bool]] = None,
                  endpoint: Optional[pulumi.Input[str]] = None,
+                 proxy_url: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  session_token: Optional[pulumi.Input[str]] = None,
@@ -202,17 +251,21 @@ class Provider(pulumi.ProviderResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ProviderArgs.__new__(ProviderArgs)
 
-            if access_key is None and not opts.urn:
-                raise TypeError("Missing required property 'access_key'")
+            if access_key is None:
+                access_key = _utilities.get_env('VOLCENGINE_ACCESS_KEY')
             __props__.__dict__["access_key"] = access_key
+            __props__.__dict__["customer_endpoints"] = customer_endpoints
             __props__.__dict__["customer_headers"] = customer_headers
             __props__.__dict__["disable_ssl"] = pulumi.Output.from_input(disable_ssl).apply(pulumi.runtime.to_json) if disable_ssl is not None else None
+            if endpoint is None:
+                endpoint = _utilities.get_env('VOLCENGINE_ENDPOINT')
             __props__.__dict__["endpoint"] = endpoint
-            if region is None and not opts.urn:
-                raise TypeError("Missing required property 'region'")
+            __props__.__dict__["proxy_url"] = proxy_url
+            if region is None:
+                region = _utilities.get_env('VOLCENGINE_REGION')
             __props__.__dict__["region"] = region
-            if secret_key is None and not opts.urn:
-                raise TypeError("Missing required property 'secret_key'")
+            if secret_key is None:
+                secret_key = _utilities.get_env('VOLCENGINE_SECRET_KEY')
             __props__.__dict__["secret_key"] = secret_key
             __props__.__dict__["session_token"] = session_token
         super(Provider, __self__).__init__(
@@ -223,11 +276,19 @@ class Provider(pulumi.ProviderResource):
 
     @property
     @pulumi.getter(name="accessKey")
-    def access_key(self) -> pulumi.Output[str]:
+    def access_key(self) -> pulumi.Output[Optional[str]]:
         """
         The Access Key for Volcengine Provider
         """
         return pulumi.get(self, "access_key")
+
+    @property
+    @pulumi.getter(name="customerEndpoints")
+    def customer_endpoints(self) -> pulumi.Output[Optional[str]]:
+        """
+        CUSTOMER ENDPOINTS for Volcengine Provider
+        """
+        return pulumi.get(self, "customer_endpoints")
 
     @property
     @pulumi.getter(name="customerHeaders")
@@ -246,8 +307,16 @@ class Provider(pulumi.ProviderResource):
         return pulumi.get(self, "endpoint")
 
     @property
+    @pulumi.getter(name="proxyUrl")
+    def proxy_url(self) -> pulumi.Output[Optional[str]]:
+        """
+        PROXY URL for Volcengine Provider
+        """
+        return pulumi.get(self, "proxy_url")
+
+    @property
     @pulumi.getter
-    def region(self) -> pulumi.Output[str]:
+    def region(self) -> pulumi.Output[Optional[str]]:
         """
         The Region for Volcengine Provider
         """
@@ -255,7 +324,7 @@ class Provider(pulumi.ProviderResource):
 
     @property
     @pulumi.getter(name="secretKey")
-    def secret_key(self) -> pulumi.Output[str]:
+    def secret_key(self) -> pulumi.Output[Optional[str]]:
         """
         The Secret Key for Volcengine Provider
         """

@@ -5,23 +5,30 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export * from "./acl";
+export * from "./aclEntry";
+export * from "./acls";
 export * from "./certificate";
+export * from "./certificates";
 export * from "./clb";
-export * from "./clbRule";
-export * from "./clbRules";
 export * from "./clbs";
 export * from "./listener";
 export * from "./listeners";
+export * from "./rule";
+export * from "./rules";
 export * from "./serverGroup";
 export * from "./serverGroupServer";
 export * from "./serverGroupServers";
 export * from "./serverGroups";
+export * from "./zones";
 
 // Import resources to register:
+import { Acl } from "./acl";
+import { AclEntry } from "./aclEntry";
 import { Certificate } from "./certificate";
 import { Clb } from "./clb";
-import { ClbRule } from "./clbRule";
 import { Listener } from "./listener";
+import { Rule } from "./rule";
 import { ServerGroup } from "./serverGroup";
 import { ServerGroupServer } from "./serverGroupServer";
 
@@ -29,26 +36,32 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "volcengine:Clb/certificate:Certificate":
+            case "volcengine:clb/acl:Acl":
+                return new Acl(name, <any>undefined, { urn })
+            case "volcengine:clb/aclEntry:AclEntry":
+                return new AclEntry(name, <any>undefined, { urn })
+            case "volcengine:clb/certificate:Certificate":
                 return new Certificate(name, <any>undefined, { urn })
-            case "volcengine:Clb/clb:Clb":
+            case "volcengine:clb/clb:Clb":
                 return new Clb(name, <any>undefined, { urn })
-            case "volcengine:Clb/clbRule:ClbRule":
-                return new ClbRule(name, <any>undefined, { urn })
-            case "volcengine:Clb/listener:Listener":
+            case "volcengine:clb/listener:Listener":
                 return new Listener(name, <any>undefined, { urn })
-            case "volcengine:Clb/serverGroup:ServerGroup":
+            case "volcengine:clb/rule:Rule":
+                return new Rule(name, <any>undefined, { urn })
+            case "volcengine:clb/serverGroup:ServerGroup":
                 return new ServerGroup(name, <any>undefined, { urn })
-            case "volcengine:Clb/serverGroupServer:ServerGroupServer":
+            case "volcengine:clb/serverGroupServer:ServerGroupServer":
                 return new ServerGroupServer(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
-pulumi.runtime.registerResourceModule("volcengine", "Clb/certificate", _module)
-pulumi.runtime.registerResourceModule("volcengine", "Clb/clb", _module)
-pulumi.runtime.registerResourceModule("volcengine", "Clb/clbRule", _module)
-pulumi.runtime.registerResourceModule("volcengine", "Clb/listener", _module)
-pulumi.runtime.registerResourceModule("volcengine", "Clb/serverGroup", _module)
-pulumi.runtime.registerResourceModule("volcengine", "Clb/serverGroupServer", _module)
+pulumi.runtime.registerResourceModule("volcengine", "clb/acl", _module)
+pulumi.runtime.registerResourceModule("volcengine", "clb/aclEntry", _module)
+pulumi.runtime.registerResourceModule("volcengine", "clb/certificate", _module)
+pulumi.runtime.registerResourceModule("volcengine", "clb/clb", _module)
+pulumi.runtime.registerResourceModule("volcengine", "clb/listener", _module)
+pulumi.runtime.registerResourceModule("volcengine", "clb/rule", _module)
+pulumi.runtime.registerResourceModule("volcengine", "clb/serverGroup", _module)
+pulumi.runtime.registerResourceModule("volcengine", "clb/serverGroupServer", _module)

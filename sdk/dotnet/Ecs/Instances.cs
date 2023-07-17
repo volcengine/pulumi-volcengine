@@ -40,7 +40,7 @@ namespace Pulumi.Volcengine.Ecs
         /// {{% /examples %}}
         /// </summary>
         public static Task<InstancesResult> InvokeAsync(InstancesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<InstancesResult>("volcengine:Ecs/instances:Instances", args ?? new InstancesArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.InvokeAsync<InstancesResult>("volcengine:ecs/instances:Instances", args ?? new InstancesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of ecs instances
@@ -71,12 +71,24 @@ namespace Pulumi.Volcengine.Ecs
         /// {{% /examples %}}
         /// </summary>
         public static Output<InstancesResult> Invoke(InstancesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<InstancesResult>("volcengine:Ecs/instances:Instances", args ?? new InstancesInvokeArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.Invoke<InstancesResult>("volcengine:ecs/instances:Instances", args ?? new InstancesInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class InstancesArgs : Pulumi.InvokeArgs
     {
+        [Input("deploymentSetIds")]
+        private List<string>? _deploymentSetIds;
+
+        /// <summary>
+        /// A list of DeploymentSet IDs.
+        /// </summary>
+        public List<string> DeploymentSetIds
+        {
+            get => _deploymentSetIds ?? (_deploymentSetIds = new List<string>());
+            set => _deploymentSetIds = value;
+        }
+
         /// <summary>
         /// The hpc cluster ID of ECS instance.
         /// </summary>
@@ -126,10 +138,28 @@ namespace Pulumi.Volcengine.Ecs
         public string? PrimaryIpAddress { get; set; }
 
         /// <summary>
+        /// The ProjectName of ECS instance.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
+
+        /// <summary>
         /// The status of ECS instance.
         /// </summary>
         [Input("status")]
         public string? Status { get; set; }
+
+        [Input("tags")]
+        private List<Inputs.InstancesTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.InstancesTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.InstancesTagArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The VPC ID of ECS instance.
@@ -150,6 +180,18 @@ namespace Pulumi.Volcengine.Ecs
 
     public sealed class InstancesInvokeArgs : Pulumi.InvokeArgs
     {
+        [Input("deploymentSetIds")]
+        private InputList<string>? _deploymentSetIds;
+
+        /// <summary>
+        /// A list of DeploymentSet IDs.
+        /// </summary>
+        public InputList<string> DeploymentSetIds
+        {
+            get => _deploymentSetIds ?? (_deploymentSetIds = new InputList<string>());
+            set => _deploymentSetIds = value;
+        }
+
         /// <summary>
         /// The hpc cluster ID of ECS instance.
         /// </summary>
@@ -199,10 +241,28 @@ namespace Pulumi.Volcengine.Ecs
         public Input<string>? PrimaryIpAddress { get; set; }
 
         /// <summary>
+        /// The ProjectName of ECS instance.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
         /// The status of ECS instance.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.InstancesTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.InstancesTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.InstancesTagInputArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The VPC ID of ECS instance.
@@ -225,6 +285,7 @@ namespace Pulumi.Volcengine.Ecs
     [OutputType]
     public sealed class InstancesResult
     {
+        public readonly ImmutableArray<string> DeploymentSetIds;
         public readonly string? HpcClusterId;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -250,9 +311,17 @@ namespace Pulumi.Volcengine.Ecs
         /// </summary>
         public readonly string? PrimaryIpAddress;
         /// <summary>
+        /// The ProjectName of ECS instance.
+        /// </summary>
+        public readonly string? ProjectName;
+        /// <summary>
         /// The status of ECS instance.
         /// </summary>
         public readonly string? Status;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.InstancesTagResult> Tags;
         /// <summary>
         /// The total count of ECS instance query.
         /// </summary>
@@ -268,6 +337,8 @@ namespace Pulumi.Volcengine.Ecs
 
         [OutputConstructor]
         private InstancesResult(
+            ImmutableArray<string> deploymentSetIds,
+
             string? hpcClusterId,
 
             string id,
@@ -286,7 +357,11 @@ namespace Pulumi.Volcengine.Ecs
 
             string? primaryIpAddress,
 
+            string? projectName,
+
             string? status,
+
+            ImmutableArray<Outputs.InstancesTagResult> tags,
 
             int totalCount,
 
@@ -294,6 +369,7 @@ namespace Pulumi.Volcengine.Ecs
 
             string? zoneId)
         {
+            DeploymentSetIds = deploymentSetIds;
             HpcClusterId = hpcClusterId;
             Id = id;
             Ids = ids;
@@ -303,7 +379,9 @@ namespace Pulumi.Volcengine.Ecs
             NameRegex = nameRegex;
             OutputFile = outputFile;
             PrimaryIpAddress = primaryIpAddress;
+            ProjectName = projectName;
             Status = status;
+            Tags = tags;
             TotalCount = totalCount;
             VpcId = vpcId;
             ZoneId = zoneId;

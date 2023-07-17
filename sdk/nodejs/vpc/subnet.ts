@@ -12,7 +12,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = new volcengine.Vpc.Subnet("foo", {
+ * const foo = new volcengine.vpc.Subnet("foo", {
  *     cidrBlock: "192.168.1.0/24",
  *     subnetName: "subnet-test-2",
  *     vpcId: "vpc-2749wnlhro3y87fap8u5ztvt5",
@@ -25,7 +25,7 @@ import * as utilities from "../utilities";
  * Subnet can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:Vpc/subnet:Subnet default subnet-274oj9a8rs9a87fap8sf9515b
+ *  $ pulumi import volcengine:vpc/subnet:Subnet default subnet-274oj9a8rs9a87fap8sf9515b
  * ```
  */
 export class Subnet extends pulumi.CustomResource {
@@ -43,7 +43,7 @@ export class Subnet extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'volcengine:Vpc/subnet:Subnet';
+    public static readonly __pulumiType = 'volcengine:vpc/subnet:Subnet';
 
     /**
      * Returns true if the given object is an instance of Subnet.  This is designed to work even
@@ -68,6 +68,14 @@ export class Subnet extends pulumi.CustomResource {
      * The description of the Subnet.
      */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * Specifies whether to enable the IPv6 CIDR block of the Subnet. This field is only valid when modifying the Subnet.
+     */
+    public readonly enableIpv6!: pulumi.Output<boolean>;
+    /**
+     * The last eight bits of the IPv6 CIDR block of the Subnet. Valid values: 0 - 255.
+     */
+    public readonly ipv6CidrBlock!: pulumi.Output<number>;
     /**
      * Status of Subnet.
      */
@@ -101,6 +109,8 @@ export class Subnet extends pulumi.CustomResource {
             resourceInputs["cidrBlock"] = state ? state.cidrBlock : undefined;
             resourceInputs["creationTime"] = state ? state.creationTime : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["enableIpv6"] = state ? state.enableIpv6 : undefined;
+            resourceInputs["ipv6CidrBlock"] = state ? state.ipv6CidrBlock : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["subnetName"] = state ? state.subnetName : undefined;
             resourceInputs["vpcId"] = state ? state.vpcId : undefined;
@@ -118,6 +128,8 @@ export class Subnet extends pulumi.CustomResource {
             }
             resourceInputs["cidrBlock"] = args ? args.cidrBlock : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["enableIpv6"] = args ? args.enableIpv6 : undefined;
+            resourceInputs["ipv6CidrBlock"] = args ? args.ipv6CidrBlock : undefined;
             resourceInputs["subnetName"] = args ? args.subnetName : undefined;
             resourceInputs["vpcId"] = args ? args.vpcId : undefined;
             resourceInputs["zoneId"] = args ? args.zoneId : undefined;
@@ -145,6 +157,14 @@ export interface SubnetState {
      * The description of the Subnet.
      */
     description?: pulumi.Input<string>;
+    /**
+     * Specifies whether to enable the IPv6 CIDR block of the Subnet. This field is only valid when modifying the Subnet.
+     */
+    enableIpv6?: pulumi.Input<boolean>;
+    /**
+     * The last eight bits of the IPv6 CIDR block of the Subnet. Valid values: 0 - 255.
+     */
+    ipv6CidrBlock?: pulumi.Input<number>;
     /**
      * Status of Subnet.
      */
@@ -175,6 +195,14 @@ export interface SubnetArgs {
      * The description of the Subnet.
      */
     description?: pulumi.Input<string>;
+    /**
+     * Specifies whether to enable the IPv6 CIDR block of the Subnet. This field is only valid when modifying the Subnet.
+     */
+    enableIpv6?: pulumi.Input<boolean>;
+    /**
+     * The last eight bits of the IPv6 CIDR block of the Subnet. Valid values: 0 - 255.
+     */
+    ipv6CidrBlock?: pulumi.Input<number>;
     /**
      * The name of the Subnet.
      */

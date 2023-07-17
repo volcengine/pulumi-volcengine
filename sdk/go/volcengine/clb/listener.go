@@ -18,37 +18,80 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Clb"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/clb"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Clb.NewListener(ctx, "foo", &Clb.ListenerArgs{
-// 			Enabled: pulumi.String("on"),
-// 			HealthCheck: &clb.ListenerHealthCheckArgs{
-// 				Domain:             pulumi.String("github.com"),
-// 				Enabled:            pulumi.String("on"),
-// 				HealthyThreshold:   pulumi.Int(5),
-// 				HttpCode:           pulumi.String("http_2xx"),
-// 				Interval:           pulumi.Int(10),
-// 				Method:             pulumi.String("GET"),
-// 				Timeout:            pulumi.Int(3),
-// 				UnHealthyThreshold: pulumi.Int(2),
-// 				Uri:                pulumi.String("/"),
-// 			},
-// 			ListenerName:   pulumi.String("Demo-HTTP-90"),
-// 			LoadBalancerId: pulumi.String("clb-273ylkl0a3i807fap8t4unbsq"),
-// 			Port:           pulumi.Int(90),
-// 			Protocol:       pulumi.String("HTTP"),
-// 			ServerGroupId:  pulumi.String("rsp-273yv0kir1vk07fap8tt9jtwg"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := clb.NewListener(ctx, "foo", &clb.ListenerArgs{
+//				Enabled: pulumi.String("on"),
+//				HealthCheck: &clb.ListenerHealthCheckArgs{
+//					Domain:             pulumi.String("volcengine.com"),
+//					Enabled:            pulumi.String("on"),
+//					HealthyThreshold:   pulumi.Int(5),
+//					HttpCode:           pulumi.String("http_2xx"),
+//					Interval:           pulumi.Int(10),
+//					Method:             pulumi.String("GET"),
+//					Timeout:            pulumi.Int(3),
+//					UnHealthyThreshold: pulumi.Int(2),
+//					Uri:                pulumi.String("/"),
+//				},
+//				ListenerName:   pulumi.String("Demo-HTTP-90"),
+//				LoadBalancerId: pulumi.String("clb-274xltt3rfmyo7fap8sv1jq39"),
+//				Port:           pulumi.Int(90),
+//				Protocol:       pulumi.String("HTTP"),
+//				ServerGroupId:  pulumi.String("rsp-274xltv2sjoxs7fap8tlv3q3s"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = clb.NewListener(ctx, "bar", &clb.ListenerArgs{
+//				Enabled: pulumi.String("on"),
+//				HealthCheck: &clb.ListenerHealthCheckArgs{
+//					Domain:             pulumi.String("volcengine.com"),
+//					Enabled:            pulumi.String("on"),
+//					HealthyThreshold:   pulumi.Int(5),
+//					HttpCode:           pulumi.String("http_2xx"),
+//					Interval:           pulumi.Int(10),
+//					Method:             pulumi.String("GET"),
+//					Timeout:            pulumi.Int(3),
+//					UnHealthyThreshold: pulumi.Int(2),
+//					Uri:                pulumi.String("/"),
+//				},
+//				ListenerName:   pulumi.String("Demo-HTTP-91"),
+//				LoadBalancerId: pulumi.String("clb-274xltt3rfmyo7fap8sv1jq39"),
+//				Port:           pulumi.Int(91),
+//				Protocol:       pulumi.String("HTTP"),
+//				ServerGroupId:  pulumi.String("rsp-274xltv2sjoxs7fap8tlv3q3s"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = clb.NewListener(ctx, "demo", &clb.ListenerArgs{
+//				Enabled:            pulumi.String("on"),
+//				EstablishedTimeout: pulumi.Int(10),
+//				HealthCheck: &clb.ListenerHealthCheckArgs{
+//					Enabled:            pulumi.String("on"),
+//					HealthyThreshold:   pulumi.Int(5),
+//					Interval:           pulumi.Int(10),
+//					Timeout:            pulumi.Int(3),
+//					UnHealthyThreshold: pulumi.Int(2),
+//				},
+//				LoadBalancerId: pulumi.String("clb-274xltt3rfmyo7fap8sv1jq39"),
+//				Port:           pulumi.Int(92),
+//				Protocol:       pulumi.String("TCP"),
+//				ServerGroupId:  pulumi.String("rsp-274xltv2sjoxs7fap8tlv3q3s"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -56,7 +99,9 @@ import (
 // Listener can be imported using the id, e.g.
 //
 // ```sh
-//  $ pulumi import volcengine:Clb/listener:Listener default lsn-273yv0mhs5xj47fap8sehiiso
+//
+//	$ pulumi import volcengine:clb/listener:Listener default lsn-273yv0mhs5xj47fap8sehiiso
+//
 // ```
 type Listener struct {
 	pulumi.CustomResourceState
@@ -83,7 +128,7 @@ type Listener struct {
 	ListenerName pulumi.StringOutput `pulumi:"listenerName"`
 	// The region of the request.
 	LoadBalancerId pulumi.StringOutput `pulumi:"loadBalancerId"`
-	// The port receiving request of the Listener.
+	// The port receiving request of the Listener, the value range in 1~65535.
 	Port pulumi.IntOutput `pulumi:"port"`
 	// The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
 	Protocol pulumi.StringOutput `pulumi:"protocol"`
@@ -113,7 +158,7 @@ func NewListener(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'ServerGroupId'")
 	}
 	var resource Listener
-	err := ctx.RegisterResource("volcengine:Clb/listener:Listener", name, args, &resource, opts...)
+	err := ctx.RegisterResource("volcengine:clb/listener:Listener", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -125,7 +170,7 @@ func NewListener(ctx *pulumi.Context,
 func GetListener(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *ListenerState, opts ...pulumi.ResourceOption) (*Listener, error) {
 	var resource Listener
-	err := ctx.ReadResource("volcengine:Clb/listener:Listener", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("volcengine:clb/listener:Listener", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -156,7 +201,7 @@ type listenerState struct {
 	ListenerName *string `pulumi:"listenerName"`
 	// The region of the request.
 	LoadBalancerId *string `pulumi:"loadBalancerId"`
-	// The port receiving request of the Listener.
+	// The port receiving request of the Listener, the value range in 1~65535.
 	Port *int `pulumi:"port"`
 	// The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
 	Protocol *string `pulumi:"protocol"`
@@ -189,7 +234,7 @@ type ListenerState struct {
 	ListenerName pulumi.StringPtrInput
 	// The region of the request.
 	LoadBalancerId pulumi.StringPtrInput
-	// The port receiving request of the Listener.
+	// The port receiving request of the Listener, the value range in 1~65535.
 	Port pulumi.IntPtrInput
 	// The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
 	Protocol pulumi.StringPtrInput
@@ -224,7 +269,7 @@ type listenerArgs struct {
 	ListenerName *string `pulumi:"listenerName"`
 	// The region of the request.
 	LoadBalancerId string `pulumi:"loadBalancerId"`
-	// The port receiving request of the Listener.
+	// The port receiving request of the Listener, the value range in 1~65535.
 	Port int `pulumi:"port"`
 	// The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
 	Protocol string `pulumi:"protocol"`
@@ -256,7 +301,7 @@ type ListenerArgs struct {
 	ListenerName pulumi.StringPtrInput
 	// The region of the request.
 	LoadBalancerId pulumi.StringInput
-	// The port receiving request of the Listener.
+	// The port receiving request of the Listener, the value range in 1~65535.
 	Port pulumi.IntInput
 	// The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
 	Protocol pulumi.StringInput
@@ -292,7 +337,7 @@ func (i *Listener) ToListenerOutputWithContext(ctx context.Context) ListenerOutp
 // ListenerArrayInput is an input type that accepts ListenerArray and ListenerArrayOutput values.
 // You can construct a concrete instance of `ListenerArrayInput` via:
 //
-//          ListenerArray{ ListenerArgs{...} }
+//	ListenerArray{ ListenerArgs{...} }
 type ListenerArrayInput interface {
 	pulumi.Input
 
@@ -317,7 +362,7 @@ func (i ListenerArray) ToListenerArrayOutputWithContext(ctx context.Context) Lis
 // ListenerMapInput is an input type that accepts ListenerMap and ListenerMapOutput values.
 // You can construct a concrete instance of `ListenerMapInput` via:
 //
-//          ListenerMap{ "key": ListenerArgs{...} }
+//	ListenerMap{ "key": ListenerArgs{...} }
 type ListenerMapInput interface {
 	pulumi.Input
 
@@ -408,7 +453,7 @@ func (o ListenerOutput) LoadBalancerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.LoadBalancerId }).(pulumi.StringOutput)
 }
 
-// The port receiving request of the Listener.
+// The port receiving request of the Listener, the value range in 1~65535.
 func (o ListenerOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v *Listener) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
 }

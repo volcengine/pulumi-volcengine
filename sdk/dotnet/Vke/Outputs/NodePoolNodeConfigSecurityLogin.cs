@@ -14,7 +14,7 @@ namespace Pulumi.Volcengine.Vke.Outputs
     public sealed class NodePoolNodeConfigSecurityLogin
     {
         /// <summary>
-        /// The Password of Security.
+        /// The Password of Security, this field must be encoded with base64.
         /// </summary>
         public readonly string? Password;
         /// <summary>

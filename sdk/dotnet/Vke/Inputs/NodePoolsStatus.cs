@@ -13,13 +13,13 @@ namespace Pulumi.Volcengine.Vke.Inputs
     public sealed class NodePoolsStatusArgs : Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Indicates the status condition of the node pool in the active state.
+        /// Indicates the status condition of the node pool in the active state. The value can be `Progressing` or `Ok` or `VersionPartlyUpgraded` or `StockOut` or `LimitedByQuota` or `Balance` or `Degraded` or `ClusterVersionUpgrading` or `Cluster` or `ResourceCleanupFailed` or `Unknown` or `ClusterNotRunning` or `SetByProvider`.
         /// </summary>
         [Input("conditionsType")]
         public string? ConditionsType { get; set; }
 
         /// <summary>
-        /// The Phase of Status.
+        /// The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
         /// </summary>
         [Input("phase")]
         public string? Phase { get; set; }

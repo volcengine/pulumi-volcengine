@@ -2,6 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -12,8 +13,9 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const g1test1 = new volcengine.Vpc.SecurityGroup("g1test1", {
- *     vpcId: "sg-273ycgql3ig3k7fap8t3dyvqx",
+ * const g1test1 = new volcengine.vpc.SecurityGroup("g1test1", {
+ *     projectName: "yuwenhao",
+ *     vpcId: "vpc-2feppmy1ugt1c59gp688n1fld",
  * });
  * ```
  *
@@ -22,7 +24,7 @@ import * as utilities from "../utilities";
  * SecurityGroup can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:Vpc/securityGroup:SecurityGroup default sg-273ycgql3ig3k7fap8t3dyvqx
+ *  $ pulumi import volcengine:vpc/securityGroup:SecurityGroup default sg-273ycgql3ig3k7fap8t3dyvqx
  * ```
  */
 export class SecurityGroup extends pulumi.CustomResource {
@@ -40,7 +42,7 @@ export class SecurityGroup extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'volcengine:Vpc/securityGroup:SecurityGroup';
+    public static readonly __pulumiType = 'volcengine:vpc/securityGroup:SecurityGroup';
 
     /**
      * Returns true if the given object is an instance of SecurityGroup.  This is designed to work even
@@ -62,6 +64,10 @@ export class SecurityGroup extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * The ProjectName of SecurityGroup.
+     */
+    public readonly projectName!: pulumi.Output<string | undefined>;
+    /**
      * Name of SecurityGroup.
      */
     public readonly securityGroupName!: pulumi.Output<string>;
@@ -69,6 +75,10 @@ export class SecurityGroup extends pulumi.CustomResource {
      * Status of SecurityGroup.
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.vpc.SecurityGroupTag[] | undefined>;
     /**
      * Id of the VPC.
      */
@@ -89,8 +99,10 @@ export class SecurityGroup extends pulumi.CustomResource {
             const state = argsOrState as SecurityGroupState | undefined;
             resourceInputs["creationTime"] = state ? state.creationTime : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["securityGroupName"] = state ? state.securityGroupName : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["vpcId"] = state ? state.vpcId : undefined;
         } else {
             const args = argsOrState as SecurityGroupArgs | undefined;
@@ -98,7 +110,9 @@ export class SecurityGroup extends pulumi.CustomResource {
                 throw new Error("Missing required property 'vpcId'");
             }
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["securityGroupName"] = args ? args.securityGroupName : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["vpcId"] = args ? args.vpcId : undefined;
             resourceInputs["creationTime"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
@@ -121,6 +135,10 @@ export interface SecurityGroupState {
      */
     description?: pulumi.Input<string>;
     /**
+     * The ProjectName of SecurityGroup.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * Name of SecurityGroup.
      */
     securityGroupName?: pulumi.Input<string>;
@@ -128,6 +146,10 @@ export interface SecurityGroupState {
      * Status of SecurityGroup.
      */
     status?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpc.SecurityGroupTag>[]>;
     /**
      * Id of the VPC.
      */
@@ -143,9 +165,17 @@ export interface SecurityGroupArgs {
      */
     description?: pulumi.Input<string>;
     /**
+     * The ProjectName of SecurityGroup.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * Name of SecurityGroup.
      */
     securityGroupName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpc.SecurityGroupTag>[]>;
     /**
      * Id of the VPC.
      */

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -17,52 +18,78 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Vke"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/vke"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Vke.NewNodePool(ctx, "vkeTest", &Vke.NodePoolArgs{
-// 			ClusterId: pulumi.String("ccah01nnqtofnluts98j0"),
-// 			KubernetesConfig: &vke.NodePoolKubernetesConfigArgs{
-// 				Labels: vke.NodePoolKubernetesConfigLabelArray{
-// 					&vke.NodePoolKubernetesConfigLabelArgs{
-// 						Key:   pulumi.String("aa"),
-// 						Value: pulumi.String("bb"),
-// 					},
-// 					&vke.NodePoolKubernetesConfigLabelArgs{
-// 						Key:   pulumi.String("cccc"),
-// 						Value: pulumi.String("dddd"),
-// 					},
-// 				},
-// 			},
-// 			NodeConfig: &vke.NodePoolNodeConfigArgs{
-// 				DataVolumes: vke.NodePoolNodeConfigDataVolumeArray{
-// 					&vke.NodePoolNodeConfigDataVolumeArgs{
-// 						Size: pulumi.Int(60),
-// 						Type: pulumi.String("ESSD_PL0"),
-// 					},
-// 				},
-// 				InstanceTypeIds: pulumi.StringArray{
-// 					pulumi.String("ecs.r1.large"),
-// 				},
-// 				Security: &vke.NodePoolNodeConfigSecurityArgs{
-// 					Login: &vke.NodePoolNodeConfigSecurityLoginArgs{
-// 						Password: pulumi.String("UHdkMTIzNDU2"),
-// 					},
-// 				},
-// 				SubnetIds: pulumi.StringArray{
-// 					pulumi.String("subnet-3recgzi7hfim85zsk2i8l9ve7"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vke.NewNodePool(ctx, "vkeTest", &vke.NodePoolArgs{
+//				AutoScaling: &vke.NodePoolAutoScalingArgs{
+//					Enabled:      pulumi.Bool(true),
+//					SubnetPolicy: pulumi.String("ZoneBalance"),
+//				},
+//				ClusterId: pulumi.String("ccgd6066rsfegs2dkhlog"),
+//				KubernetesConfig: &vke.NodePoolKubernetesConfigArgs{
+//					Cordon: pulumi.Bool(false),
+//					Labels: vke.NodePoolKubernetesConfigLabelArray{
+//						&vke.NodePoolKubernetesConfigLabelArgs{
+//							Key:   pulumi.String("aa"),
+//							Value: pulumi.String("bb"),
+//						},
+//						&vke.NodePoolKubernetesConfigLabelArgs{
+//							Key:   pulumi.String("cccc"),
+//							Value: pulumi.String("dddd"),
+//						},
+//					},
+//				},
+//				NodeConfig: &vke.NodePoolNodeConfigArgs{
+//					DataVolumes: vke.NodePoolNodeConfigDataVolumeArray{
+//						&vke.NodePoolNodeConfigDataVolumeArgs{
+//							Size: pulumi.Int(60),
+//							Type: pulumi.String("ESSD_PL0"),
+//						},
+//					},
+//					EcsTags: vke.NodePoolNodeConfigEcsTagArray{
+//						&vke.NodePoolNodeConfigEcsTagArgs{
+//							Key:   pulumi.String("ecs_k1"),
+//							Value: pulumi.String("ecs_v1"),
+//						},
+//					},
+//					InstanceChargeType: pulumi.String("PostPaid"),
+//					InstanceTypeIds: pulumi.StringArray{
+//						pulumi.String("ecs.g1ie.xlarge"),
+//					},
+//					Period: pulumi.Int(1),
+//					Security: &vke.NodePoolNodeConfigSecurityArgs{
+//						Login: &vke.NodePoolNodeConfigSecurityLoginArgs{
+//							Password: pulumi.String("UHdkMTIzNDU2"),
+//						},
+//						SecurityGroupIds: pulumi.StringArray{
+//							pulumi.String("sg-13fbyz0sok3y83n6nu4hv1q10"),
+//							pulumi.String("sg-mj1e9tbztgqo5smt1ah8l4bh"),
+//						},
+//					},
+//					SubnetIds: pulumi.StringArray{
+//						pulumi.String("subnet-mj1e9jgu96v45smt1a674x3h"),
+//					},
+//				},
+//				Tags: vke.NodePoolTagArray{
+//					&vke.NodePoolTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -70,46 +97,44 @@ import (
 // NodePool can be imported using the id, e.g.
 //
 // ```sh
-//  $ pulumi import volcengine:Vke/nodePool:NodePool default pcabe57vqtofgrbln3dp0
+//
+//	$ pulumi import volcengine:vke/nodePool:NodePool default pcabe57vqtofgrbln3dp0
+//
 // ```
 type NodePool struct {
 	pulumi.CustomResourceState
 
 	// The node pool elastic scaling configuration information.
-	AutoScaling NodePoolAutoScalingPtrOutput `pulumi:"autoScaling"`
-	// Is enabled of AutoScaling.
-	AutoScalingEnabled pulumi.BoolPtrOutput `pulumi:"autoScalingEnabled"`
+	AutoScaling NodePoolAutoScalingOutput `pulumi:"autoScaling"`
 	// The ClientToken of NodePool.
 	ClientToken pulumi.StringPtrOutput `pulumi:"clientToken"`
 	// The ClusterId of NodePool.
 	ClusterId pulumi.StringPtrOutput `pulumi:"clusterId"`
-	// The ClusterIds of NodePool.
-	ClusterIds pulumi.StringArrayOutput `pulumi:"clusterIds"`
-	// The CreateClientToken of NodePool.
-	CreateClientToken pulumi.StringOutput `pulumi:"createClientToken"`
-	// The IDs of NodePool.
-	Ids pulumi.StringArrayOutput `pulumi:"ids"`
 	// The KubernetesConfig of NodeConfig.
-	KubernetesConfig NodePoolKubernetesConfigPtrOutput `pulumi:"kubernetesConfig"`
+	KubernetesConfig NodePoolKubernetesConfigOutput `pulumi:"kubernetesConfig"`
 	// The Name of NodePool.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The Config of NodePool.
-	NodeConfig NodePoolNodeConfigPtrOutput `pulumi:"nodeConfig"`
-	// The Status of NodePool.
-	Statuses NodePoolStatusArrayOutput `pulumi:"statuses"`
-	// The UpdateClientToken of NodePool.
-	UpdateClientToken pulumi.StringOutput `pulumi:"updateClientToken"`
+	NodeConfig NodePoolNodeConfigOutput `pulumi:"nodeConfig"`
+	// Tags.
+	Tags NodePoolTagArrayOutput `pulumi:"tags"`
 }
 
 // NewNodePool registers a new resource with the given unique name, arguments, and options.
 func NewNodePool(ctx *pulumi.Context,
 	name string, args *NodePoolArgs, opts ...pulumi.ResourceOption) (*NodePool, error) {
 	if args == nil {
-		args = &NodePoolArgs{}
+		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.KubernetesConfig == nil {
+		return nil, errors.New("invalid value for required argument 'KubernetesConfig'")
+	}
+	if args.NodeConfig == nil {
+		return nil, errors.New("invalid value for required argument 'NodeConfig'")
+	}
 	var resource NodePool
-	err := ctx.RegisterResource("volcengine:Vke/nodePool:NodePool", name, args, &resource, opts...)
+	err := ctx.RegisterResource("volcengine:vke/nodePool:NodePool", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -121,7 +146,7 @@ func NewNodePool(ctx *pulumi.Context,
 func GetNodePool(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *NodePoolState, opts ...pulumi.ResourceOption) (*NodePool, error) {
 	var resource NodePool
-	err := ctx.ReadResource("volcengine:Vke/nodePool:NodePool", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("volcengine:vke/nodePool:NodePool", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -132,55 +157,35 @@ func GetNodePool(ctx *pulumi.Context,
 type nodePoolState struct {
 	// The node pool elastic scaling configuration information.
 	AutoScaling *NodePoolAutoScaling `pulumi:"autoScaling"`
-	// Is enabled of AutoScaling.
-	AutoScalingEnabled *bool `pulumi:"autoScalingEnabled"`
 	// The ClientToken of NodePool.
 	ClientToken *string `pulumi:"clientToken"`
 	// The ClusterId of NodePool.
 	ClusterId *string `pulumi:"clusterId"`
-	// The ClusterIds of NodePool.
-	ClusterIds []string `pulumi:"clusterIds"`
-	// The CreateClientToken of NodePool.
-	CreateClientToken *string `pulumi:"createClientToken"`
-	// The IDs of NodePool.
-	Ids []string `pulumi:"ids"`
 	// The KubernetesConfig of NodeConfig.
 	KubernetesConfig *NodePoolKubernetesConfig `pulumi:"kubernetesConfig"`
 	// The Name of NodePool.
 	Name *string `pulumi:"name"`
 	// The Config of NodePool.
 	NodeConfig *NodePoolNodeConfig `pulumi:"nodeConfig"`
-	// The Status of NodePool.
-	Statuses []NodePoolStatus `pulumi:"statuses"`
-	// The UpdateClientToken of NodePool.
-	UpdateClientToken *string `pulumi:"updateClientToken"`
+	// Tags.
+	Tags []NodePoolTag `pulumi:"tags"`
 }
 
 type NodePoolState struct {
 	// The node pool elastic scaling configuration information.
 	AutoScaling NodePoolAutoScalingPtrInput
-	// Is enabled of AutoScaling.
-	AutoScalingEnabled pulumi.BoolPtrInput
 	// The ClientToken of NodePool.
 	ClientToken pulumi.StringPtrInput
 	// The ClusterId of NodePool.
 	ClusterId pulumi.StringPtrInput
-	// The ClusterIds of NodePool.
-	ClusterIds pulumi.StringArrayInput
-	// The CreateClientToken of NodePool.
-	CreateClientToken pulumi.StringPtrInput
-	// The IDs of NodePool.
-	Ids pulumi.StringArrayInput
 	// The KubernetesConfig of NodeConfig.
 	KubernetesConfig NodePoolKubernetesConfigPtrInput
 	// The Name of NodePool.
 	Name pulumi.StringPtrInput
 	// The Config of NodePool.
 	NodeConfig NodePoolNodeConfigPtrInput
-	// The Status of NodePool.
-	Statuses NodePoolStatusArrayInput
-	// The UpdateClientToken of NodePool.
-	UpdateClientToken pulumi.StringPtrInput
+	// Tags.
+	Tags NodePoolTagArrayInput
 }
 
 func (NodePoolState) ElementType() reflect.Type {
@@ -190,48 +195,36 @@ func (NodePoolState) ElementType() reflect.Type {
 type nodePoolArgs struct {
 	// The node pool elastic scaling configuration information.
 	AutoScaling *NodePoolAutoScaling `pulumi:"autoScaling"`
-	// Is enabled of AutoScaling.
-	AutoScalingEnabled *bool `pulumi:"autoScalingEnabled"`
 	// The ClientToken of NodePool.
 	ClientToken *string `pulumi:"clientToken"`
 	// The ClusterId of NodePool.
 	ClusterId *string `pulumi:"clusterId"`
-	// The ClusterIds of NodePool.
-	ClusterIds []string `pulumi:"clusterIds"`
-	// The IDs of NodePool.
-	Ids []string `pulumi:"ids"`
 	// The KubernetesConfig of NodeConfig.
-	KubernetesConfig *NodePoolKubernetesConfig `pulumi:"kubernetesConfig"`
+	KubernetesConfig NodePoolKubernetesConfig `pulumi:"kubernetesConfig"`
 	// The Name of NodePool.
 	Name *string `pulumi:"name"`
 	// The Config of NodePool.
-	NodeConfig *NodePoolNodeConfig `pulumi:"nodeConfig"`
-	// The Status of NodePool.
-	Statuses []NodePoolStatus `pulumi:"statuses"`
+	NodeConfig NodePoolNodeConfig `pulumi:"nodeConfig"`
+	// Tags.
+	Tags []NodePoolTag `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a NodePool resource.
 type NodePoolArgs struct {
 	// The node pool elastic scaling configuration information.
 	AutoScaling NodePoolAutoScalingPtrInput
-	// Is enabled of AutoScaling.
-	AutoScalingEnabled pulumi.BoolPtrInput
 	// The ClientToken of NodePool.
 	ClientToken pulumi.StringPtrInput
 	// The ClusterId of NodePool.
 	ClusterId pulumi.StringPtrInput
-	// The ClusterIds of NodePool.
-	ClusterIds pulumi.StringArrayInput
-	// The IDs of NodePool.
-	Ids pulumi.StringArrayInput
 	// The KubernetesConfig of NodeConfig.
-	KubernetesConfig NodePoolKubernetesConfigPtrInput
+	KubernetesConfig NodePoolKubernetesConfigInput
 	// The Name of NodePool.
 	Name pulumi.StringPtrInput
 	// The Config of NodePool.
-	NodeConfig NodePoolNodeConfigPtrInput
-	// The Status of NodePool.
-	Statuses NodePoolStatusArrayInput
+	NodeConfig NodePoolNodeConfigInput
+	// Tags.
+	Tags NodePoolTagArrayInput
 }
 
 func (NodePoolArgs) ElementType() reflect.Type {
@@ -260,7 +253,7 @@ func (i *NodePool) ToNodePoolOutputWithContext(ctx context.Context) NodePoolOutp
 // NodePoolArrayInput is an input type that accepts NodePoolArray and NodePoolArrayOutput values.
 // You can construct a concrete instance of `NodePoolArrayInput` via:
 //
-//          NodePoolArray{ NodePoolArgs{...} }
+//	NodePoolArray{ NodePoolArgs{...} }
 type NodePoolArrayInput interface {
 	pulumi.Input
 
@@ -285,7 +278,7 @@ func (i NodePoolArray) ToNodePoolArrayOutputWithContext(ctx context.Context) Nod
 // NodePoolMapInput is an input type that accepts NodePoolMap and NodePoolMapOutput values.
 // You can construct a concrete instance of `NodePoolMapInput` via:
 //
-//          NodePoolMap{ "key": NodePoolArgs{...} }
+//	NodePoolMap{ "key": NodePoolArgs{...} }
 type NodePoolMapInput interface {
 	pulumi.Input
 
@@ -322,13 +315,8 @@ func (o NodePoolOutput) ToNodePoolOutputWithContext(ctx context.Context) NodePoo
 }
 
 // The node pool elastic scaling configuration information.
-func (o NodePoolOutput) AutoScaling() NodePoolAutoScalingPtrOutput {
-	return o.ApplyT(func(v *NodePool) NodePoolAutoScalingPtrOutput { return v.AutoScaling }).(NodePoolAutoScalingPtrOutput)
-}
-
-// Is enabled of AutoScaling.
-func (o NodePoolOutput) AutoScalingEnabled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *NodePool) pulumi.BoolPtrOutput { return v.AutoScalingEnabled }).(pulumi.BoolPtrOutput)
+func (o NodePoolOutput) AutoScaling() NodePoolAutoScalingOutput {
+	return o.ApplyT(func(v *NodePool) NodePoolAutoScalingOutput { return v.AutoScaling }).(NodePoolAutoScalingOutput)
 }
 
 // The ClientToken of NodePool.
@@ -341,24 +329,9 @@ func (o NodePoolOutput) ClusterId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *NodePool) pulumi.StringPtrOutput { return v.ClusterId }).(pulumi.StringPtrOutput)
 }
 
-// The ClusterIds of NodePool.
-func (o NodePoolOutput) ClusterIds() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v *NodePool) pulumi.StringArrayOutput { return v.ClusterIds }).(pulumi.StringArrayOutput)
-}
-
-// The CreateClientToken of NodePool.
-func (o NodePoolOutput) CreateClientToken() pulumi.StringOutput {
-	return o.ApplyT(func(v *NodePool) pulumi.StringOutput { return v.CreateClientToken }).(pulumi.StringOutput)
-}
-
-// The IDs of NodePool.
-func (o NodePoolOutput) Ids() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v *NodePool) pulumi.StringArrayOutput { return v.Ids }).(pulumi.StringArrayOutput)
-}
-
 // The KubernetesConfig of NodeConfig.
-func (o NodePoolOutput) KubernetesConfig() NodePoolKubernetesConfigPtrOutput {
-	return o.ApplyT(func(v *NodePool) NodePoolKubernetesConfigPtrOutput { return v.KubernetesConfig }).(NodePoolKubernetesConfigPtrOutput)
+func (o NodePoolOutput) KubernetesConfig() NodePoolKubernetesConfigOutput {
+	return o.ApplyT(func(v *NodePool) NodePoolKubernetesConfigOutput { return v.KubernetesConfig }).(NodePoolKubernetesConfigOutput)
 }
 
 // The Name of NodePool.
@@ -367,18 +340,13 @@ func (o NodePoolOutput) Name() pulumi.StringOutput {
 }
 
 // The Config of NodePool.
-func (o NodePoolOutput) NodeConfig() NodePoolNodeConfigPtrOutput {
-	return o.ApplyT(func(v *NodePool) NodePoolNodeConfigPtrOutput { return v.NodeConfig }).(NodePoolNodeConfigPtrOutput)
+func (o NodePoolOutput) NodeConfig() NodePoolNodeConfigOutput {
+	return o.ApplyT(func(v *NodePool) NodePoolNodeConfigOutput { return v.NodeConfig }).(NodePoolNodeConfigOutput)
 }
 
-// The Status of NodePool.
-func (o NodePoolOutput) Statuses() NodePoolStatusArrayOutput {
-	return o.ApplyT(func(v *NodePool) NodePoolStatusArrayOutput { return v.Statuses }).(NodePoolStatusArrayOutput)
-}
-
-// The UpdateClientToken of NodePool.
-func (o NodePoolOutput) UpdateClientToken() pulumi.StringOutput {
-	return o.ApplyT(func(v *NodePool) pulumi.StringOutput { return v.UpdateClientToken }).(pulumi.StringOutput)
+// Tags.
+func (o NodePoolOutput) Tags() NodePoolTagArrayOutput {
+	return o.ApplyT(func(v *NodePool) NodePoolTagArrayOutput { return v.Tags }).(NodePoolTagArrayOutput)
 }
 
 type NodePoolArrayOutput struct{ *pulumi.OutputState }

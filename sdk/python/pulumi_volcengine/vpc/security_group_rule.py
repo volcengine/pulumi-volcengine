@@ -28,7 +28,7 @@ class SecurityGroupRuleArgs:
         :param pulumi.Input[str] direction: Direction of rule, ingress (inbound) or egress (outbound).
         :param pulumi.Input[int] port_end: Port end of egress/ingress Rule.
         :param pulumi.Input[int] port_start: Port start of egress/ingress Rule.
-        :param pulumi.Input[str] protocol: Protocol of the SecurityGroup.
+        :param pulumi.Input[str] protocol: Protocol of the SecurityGroup, the value can be `tcp` or `udp` or `icmp` or `all` or `icmpv6`.
         :param pulumi.Input[str] security_group_id: Id of SecurityGroup.
         :param pulumi.Input[str] cidr_ip: Cidr ip of egress/ingress Rule.
         :param pulumi.Input[str] description: description of a egress rule.
@@ -92,7 +92,7 @@ class SecurityGroupRuleArgs:
     @pulumi.getter
     def protocol(self) -> pulumi.Input[str]:
         """
-        Protocol of the SecurityGroup.
+        Protocol of the SecurityGroup, the value can be `tcp` or `udp` or `icmp` or `all` or `icmpv6`.
         """
         return pulumi.get(self, "protocol")
 
@@ -196,7 +196,7 @@ class _SecurityGroupRuleState:
         :param pulumi.Input[int] port_end: Port end of egress/ingress Rule.
         :param pulumi.Input[int] port_start: Port start of egress/ingress Rule.
         :param pulumi.Input[int] priority: Priority of a security group rule.
-        :param pulumi.Input[str] protocol: Protocol of the SecurityGroup.
+        :param pulumi.Input[str] protocol: Protocol of the SecurityGroup, the value can be `tcp` or `udp` or `icmp` or `all` or `icmpv6`.
         :param pulumi.Input[str] security_group_id: Id of SecurityGroup.
         :param pulumi.Input[str] source_group_id: ID of the source security group whose access permission you want to set.
         :param pulumi.Input[str] status: Status of SecurityGroup.
@@ -312,7 +312,7 @@ class _SecurityGroupRuleState:
     @pulumi.getter
     def protocol(self) -> Optional[pulumi.Input[str]]:
         """
-        Protocol of the SecurityGroup.
+        Protocol of the SecurityGroup, the value can be `tcp` or `udp` or `icmp` or `all` or `icmpv6`.
         """
         return pulumi.get(self, "protocol")
 
@@ -383,11 +383,47 @@ class SecurityGroupRule(pulumi.CustomResource):
 
         g1test3 = volcengine.vpc.SecurityGroupRule("g1test3",
             cidr_ip="10.0.0.0/8",
+            description="tft1234",
             direction="egress",
             port_end=9003,
             port_start=8000,
             protocol="tcp",
-            security_group_id="sg-273ycgql3ig3k7fap8t3dyvqx")
+            security_group_id="sg-2d6722jpp55og58ozfd1sqtdb")
+        g1test2 = volcengine.vpc.SecurityGroupRule("g1test2",
+            cidr_ip="10.0.0.0/24",
+            direction="egress",
+            port_end=9003,
+            port_start=8000,
+            protocol="tcp",
+            security_group_id="sg-2d6722jpp55og58ozfd1sqtdb")
+        g1test1 = volcengine.vpc.SecurityGroupRule("g1test1",
+            cidr_ip="10.0.0.0/24",
+            direction="egress",
+            port_end=9003,
+            port_start=8000,
+            priority=2,
+            protocol="tcp",
+            security_group_id="sg-2d6722jpp55og58ozfd1sqtdb")
+        g1test0 = volcengine.vpc.SecurityGroupRule("g1test0",
+            cidr_ip="10.0.0.0/24",
+            description="tft",
+            direction="ingress",
+            policy="drop",
+            port_end=80,
+            port_start=80,
+            priority=2,
+            protocol="tcp",
+            security_group_id="sg-2d6722jpp55og58ozfd1sqtdb")
+        g1test06 = volcengine.vpc.SecurityGroupRule("g1test06",
+            description="tft",
+            direction="ingress",
+            policy="drop",
+            port_end=9003,
+            port_start=8000,
+            priority=2,
+            protocol="tcp",
+            security_group_id="sg-2d6722jpp55og58ozfd1sqtdb",
+            source_group_id="sg-3rfe5j4xdnklc5zsk2hcw5c6q")
         ```
 
         ## Import
@@ -395,7 +431,7 @@ class SecurityGroupRule(pulumi.CustomResource):
         SecurityGroupRule can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Vpc/securityGroupRule:SecurityGroupRule default ID is a string concatenated with colons(SecurityGroupId:Protocol:PortStart:PortEnd:CidrIp)
+         $ pulumi import volcengine:vpc/securityGroupRule:SecurityGroupRule default ID is a string concatenated with colons(SecurityGroupId:Protocol:PortStart:PortEnd:CidrIp:SourceGroupId:Direction:Policy:Priority)
         ```
 
         :param str resource_name: The name of the resource.
@@ -407,7 +443,7 @@ class SecurityGroupRule(pulumi.CustomResource):
         :param pulumi.Input[int] port_end: Port end of egress/ingress Rule.
         :param pulumi.Input[int] port_start: Port start of egress/ingress Rule.
         :param pulumi.Input[int] priority: Priority of a security group rule.
-        :param pulumi.Input[str] protocol: Protocol of the SecurityGroup.
+        :param pulumi.Input[str] protocol: Protocol of the SecurityGroup, the value can be `tcp` or `udp` or `icmp` or `all` or `icmpv6`.
         :param pulumi.Input[str] security_group_id: Id of SecurityGroup.
         :param pulumi.Input[str] source_group_id: ID of the source security group whose access permission you want to set.
         """
@@ -427,11 +463,47 @@ class SecurityGroupRule(pulumi.CustomResource):
 
         g1test3 = volcengine.vpc.SecurityGroupRule("g1test3",
             cidr_ip="10.0.0.0/8",
+            description="tft1234",
             direction="egress",
             port_end=9003,
             port_start=8000,
             protocol="tcp",
-            security_group_id="sg-273ycgql3ig3k7fap8t3dyvqx")
+            security_group_id="sg-2d6722jpp55og58ozfd1sqtdb")
+        g1test2 = volcengine.vpc.SecurityGroupRule("g1test2",
+            cidr_ip="10.0.0.0/24",
+            direction="egress",
+            port_end=9003,
+            port_start=8000,
+            protocol="tcp",
+            security_group_id="sg-2d6722jpp55og58ozfd1sqtdb")
+        g1test1 = volcengine.vpc.SecurityGroupRule("g1test1",
+            cidr_ip="10.0.0.0/24",
+            direction="egress",
+            port_end=9003,
+            port_start=8000,
+            priority=2,
+            protocol="tcp",
+            security_group_id="sg-2d6722jpp55og58ozfd1sqtdb")
+        g1test0 = volcengine.vpc.SecurityGroupRule("g1test0",
+            cidr_ip="10.0.0.0/24",
+            description="tft",
+            direction="ingress",
+            policy="drop",
+            port_end=80,
+            port_start=80,
+            priority=2,
+            protocol="tcp",
+            security_group_id="sg-2d6722jpp55og58ozfd1sqtdb")
+        g1test06 = volcengine.vpc.SecurityGroupRule("g1test06",
+            description="tft",
+            direction="ingress",
+            policy="drop",
+            port_end=9003,
+            port_start=8000,
+            priority=2,
+            protocol="tcp",
+            security_group_id="sg-2d6722jpp55og58ozfd1sqtdb",
+            source_group_id="sg-3rfe5j4xdnklc5zsk2hcw5c6q")
         ```
 
         ## Import
@@ -439,7 +511,7 @@ class SecurityGroupRule(pulumi.CustomResource):
         SecurityGroupRule can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Vpc/securityGroupRule:SecurityGroupRule default ID is a string concatenated with colons(SecurityGroupId:Protocol:PortStart:PortEnd:CidrIp)
+         $ pulumi import volcengine:vpc/securityGroupRule:SecurityGroupRule default ID is a string concatenated with colons(SecurityGroupId:Protocol:PortStart:PortEnd:CidrIp:SourceGroupId:Direction:Policy:Priority)
         ```
 
         :param str resource_name: The name of the resource.
@@ -501,7 +573,7 @@ class SecurityGroupRule(pulumi.CustomResource):
             __props__.__dict__["source_group_id"] = source_group_id
             __props__.__dict__["status"] = None
         super(SecurityGroupRule, __self__).__init__(
-            'volcengine:Vpc/securityGroupRule:SecurityGroupRule',
+            'volcengine:vpc/securityGroupRule:SecurityGroupRule',
             resource_name,
             __props__,
             opts)
@@ -535,7 +607,7 @@ class SecurityGroupRule(pulumi.CustomResource):
         :param pulumi.Input[int] port_end: Port end of egress/ingress Rule.
         :param pulumi.Input[int] port_start: Port start of egress/ingress Rule.
         :param pulumi.Input[int] priority: Priority of a security group rule.
-        :param pulumi.Input[str] protocol: Protocol of the SecurityGroup.
+        :param pulumi.Input[str] protocol: Protocol of the SecurityGroup, the value can be `tcp` or `udp` or `icmp` or `all` or `icmpv6`.
         :param pulumi.Input[str] security_group_id: Id of SecurityGroup.
         :param pulumi.Input[str] source_group_id: ID of the source security group whose access permission you want to set.
         :param pulumi.Input[str] status: Status of SecurityGroup.
@@ -617,7 +689,7 @@ class SecurityGroupRule(pulumi.CustomResource):
     @pulumi.getter
     def protocol(self) -> pulumi.Output[str]:
         """
-        Protocol of the SecurityGroup.
+        Protocol of the SecurityGroup, the value can be `tcp` or `udp` or `icmp` or `all` or `icmpv6`.
         """
         return pulumi.get(self, "protocol")
 

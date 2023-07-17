@@ -12,7 +12,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = new volcengine.Clb.ServerGroup("foo", {
+ * const foo = new volcengine.clb.ServerGroup("foo", {
  *     description: "hello demo11",
  *     loadBalancerId: "clb-273z7d4r8tvk07fap8tsniyfe",
  *     serverGroupName: "demo-demo11",
@@ -24,7 +24,7 @@ import * as utilities from "../utilities";
  * ServerGroup can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:Clb/serverGroup:ServerGroup default rsp-273yv0kir1vk07fap8tt9jtwg
+ *  $ pulumi import volcengine:clb/serverGroup:ServerGroup default rsp-273yv0kir1vk07fap8tt9jtwg
  * ```
  */
 export class ServerGroup extends pulumi.CustomResource {
@@ -42,7 +42,7 @@ export class ServerGroup extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'volcengine:Clb/serverGroup:ServerGroup';
+    public static readonly __pulumiType = 'volcengine:clb/serverGroup:ServerGroup';
 
     /**
      * Returns true if the given object is an instance of ServerGroup.  This is designed to work even

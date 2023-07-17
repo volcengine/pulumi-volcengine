@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const vkeTest = pulumi.output(volcengine.Vke.NodePools({
+ * const vkeTest = pulumi.output(volcengine.vke.NodePools({
  *     clusterIds: ["ccabe57fqtofgrbln3dog"],
  *     name: "demo",
  * }));
@@ -26,7 +26,7 @@ export function nodePools(args?: NodePoolsArgs, opts?: pulumi.InvokeOptions): Pr
     }
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-    return pulumi.runtime.invoke("volcengine:Vke/nodePools:NodePools", {
+    return pulumi.runtime.invoke("volcengine:vke/nodePools:NodePools", {
         "autoScalingEnabled": args.autoScalingEnabled,
         "clusterId": args.clusterId,
         "clusterIds": args.clusterIds,
@@ -36,6 +36,7 @@ export function nodePools(args?: NodePoolsArgs, opts?: pulumi.InvokeOptions): Pr
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
         "statuses": args.statuses,
+        "tags": args.tags,
         "updateClientToken": args.updateClientToken,
     }, opts);
 }
@@ -79,7 +80,11 @@ export interface NodePoolsArgs {
     /**
      * The Status of NodePool.
      */
-    statuses?: inputs.Vke.NodePoolsStatus[];
+    statuses?: inputs.vke.NodePoolsStatus[];
+    /**
+     * Tags.
+     */
+    tags?: inputs.vke.NodePoolsTag[];
     /**
      * The ClientToken when last update was successful.
      */
@@ -113,9 +118,13 @@ export interface NodePoolsResult {
     /**
      * The collection of NodePools query.
      */
-    readonly nodePools: outputs.Vke.NodePoolsNodePool[];
+    readonly nodePools: outputs.vke.NodePoolsNodePool[];
     readonly outputFile?: string;
-    readonly statuses?: outputs.Vke.NodePoolsStatus[];
+    readonly statuses?: outputs.vke.NodePoolsStatus[];
+    /**
+     * Tags of the NodePool.
+     */
+    readonly tags?: outputs.vke.NodePoolsTag[];
     /**
      * Returns the total amount of the data list.
      */
@@ -169,7 +178,11 @@ export interface NodePoolsOutputArgs {
     /**
      * The Status of NodePool.
      */
-    statuses?: pulumi.Input<pulumi.Input<inputs.Vke.NodePoolsStatusArgs>[]>;
+    statuses?: pulumi.Input<pulumi.Input<inputs.vke.NodePoolsStatusArgs>[]>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vke.NodePoolsTagArgs>[]>;
     /**
      * The ClientToken when last update was successful.
      */

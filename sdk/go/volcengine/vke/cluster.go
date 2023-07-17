@@ -18,54 +18,68 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Vke"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/vke"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Vke.NewCluster(ctx, "foo", &Vke.ClusterArgs{
-// 			ClusterConfig: &vke.ClusterClusterConfigArgs{
-// 				ApiServerPublicAccessConfig: &vke.ClusterClusterConfigApiServerPublicAccessConfigArgs{
-// 					PublicAccessNetworkConfig: &vke.ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs{
-// 						Bandwidth:   pulumi.Int(1),
-// 						BillingType: pulumi.String("PostPaidByBandwidth"),
-// 					},
-// 				},
-// 				ApiServerPublicAccessEnabled:       pulumi.Bool(true),
-// 				ResourcePublicAccessDefaultEnabled: pulumi.Bool(true),
-// 				SubnetIds: pulumi.StringArray{
-// 					pulumi.String("subnet-2bzud0pbor8qo2dx0ee884y6h"),
-// 				},
-// 			},
-// 			DeleteProtectionEnabled: pulumi.Bool(false),
-// 			Description:             pulumi.String("created by terraform"),
-// 			PodsConfig: &vke.ClusterPodsConfigArgs{
-// 				FlannelConfig: &vke.ClusterPodsConfigFlannelConfigArgs{
-// 					MaxPodsPerNode: pulumi.Int(64),
-// 					PodCidrs: pulumi.StringArray{
-// 						pulumi.String("172.27.224.0/19"),
-// 					},
-// 				},
-// 				PodNetworkMode: pulumi.String("Flannel"),
-// 				VpcCniConfig: &vke.ClusterPodsConfigVpcCniConfigArgs{
-// 					SubnetIds: pulumi.StringArray{
-// 						pulumi.String("subnet-2bzud0pbor8qo2dx0ee884y6h"),
-// 					},
-// 				},
-// 			},
-// 			ServicesConfig: &vke.ClusterServicesConfigArgs{
-// 				ServiceCidrsv4s: pulumi.StringArray{
-// 					pulumi.String("172.30.0.0/17"),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vke.NewCluster(ctx, "foo", &vke.ClusterArgs{
+//				ClusterConfig: &vke.ClusterClusterConfigArgs{
+//					ApiServerPublicAccessConfig: &vke.ClusterClusterConfigApiServerPublicAccessConfigArgs{
+//						PublicAccessNetworkConfig: &vke.ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs{
+//							Bandwidth:   pulumi.Int(1),
+//							BillingType: pulumi.String("PostPaidByBandwidth"),
+//						},
+//					},
+//					ApiServerPublicAccessEnabled:       pulumi.Bool(true),
+//					ResourcePublicAccessDefaultEnabled: pulumi.Bool(true),
+//					SubnetIds: pulumi.StringArray{
+//						pulumi.String("subnet-rrqvkt2nq1hcv0x57ccqf3x"),
+//					},
+//				},
+//				DeleteProtectionEnabled: pulumi.Bool(false),
+//				Description:             pulumi.String("created by terraform"),
+//				LoggingConfig: &vke.ClusterLoggingConfigArgs{
+//					LogSetups: vke.ClusterLoggingConfigLogSetupArray{
+//						&vke.ClusterLoggingConfigLogSetupArgs{
+//							Enabled: pulumi.Bool(false),
+//							LogTtl:  pulumi.Int(30),
+//							LogType: pulumi.String("Audit"),
+//						},
+//					},
+//				},
+//				PodsConfig: &vke.ClusterPodsConfigArgs{
+//					PodNetworkMode: pulumi.String("VpcCniShared"),
+//					VpcCniConfig: &vke.ClusterPodsConfigVpcCniConfigArgs{
+//						SubnetIds: pulumi.StringArray{
+//							pulumi.String("subnet-rrqvkt2nq1hcv0x57ccqf3x"),
+//							pulumi.String("subnet-miklcqh75vcw5smt1amo4ik5"),
+//							pulumi.String("subnet-13g0x0ytpm0hs3n6nu5j591lv"),
+//						},
+//					},
+//				},
+//				ServicesConfig: &vke.ClusterServicesConfigArgs{
+//					ServiceCidrsv4s: pulumi.StringArray{
+//						pulumi.String("172.30.0.0/18"),
+//					},
+//				},
+//				Tags: vke.ClusterTagArray{
+//					&vke.ClusterTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -73,7 +87,9 @@ import (
 // VkeCluster can be imported using the id, e.g.
 //
 // ```sh
-//  $ pulumi import volcengine:Vke/cluster:Cluster default cc9l74mvqtofjnoj5****
+//
+//	$ pulumi import volcengine:vke/cluster:Cluster default cc9l74mvqtofjnoj5****
+//
 // ```
 type Cluster struct {
 	pulumi.CustomResourceState
@@ -88,18 +104,22 @@ type Cluster struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Eip allocation Id.
 	EipAllocationId pulumi.StringOutput `pulumi:"eipAllocationId"`
-	// Kubeconfig data with private network access, returned in BASE64 encoding.
+	// Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
 	KubeconfigPrivate pulumi.StringOutput `pulumi:"kubeconfigPrivate"`
-	// Kubeconfig data with public network access, returned in BASE64 encoding.
+	// Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
 	KubeconfigPublic pulumi.StringOutput `pulumi:"kubeconfigPublic"`
 	// The version of Kubernetes specified when creating a VKE cluster (specified to patch version), if not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
 	KubernetesVersion pulumi.StringOutput `pulumi:"kubernetesVersion"`
+	// Cluster log configuration information.
+	LoggingConfig ClusterLoggingConfigPtrOutput `pulumi:"loggingConfig"`
 	// The name of the cluster.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The config of the pods.
 	PodsConfig ClusterPodsConfigOutput `pulumi:"podsConfig"`
 	// The config of the services.
 	ServicesConfig ClusterServicesConfigOutput `pulumi:"servicesConfig"`
+	// Tags.
+	Tags ClusterTagArrayOutput `pulumi:"tags"`
 }
 
 // NewCluster registers a new resource with the given unique name, arguments, and options.
@@ -119,7 +139,7 @@ func NewCluster(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'ServicesConfig'")
 	}
 	var resource Cluster
-	err := ctx.RegisterResource("volcengine:Vke/cluster:Cluster", name, args, &resource, opts...)
+	err := ctx.RegisterResource("volcengine:vke/cluster:Cluster", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -131,7 +151,7 @@ func NewCluster(ctx *pulumi.Context,
 func GetCluster(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *ClusterState, opts ...pulumi.ResourceOption) (*Cluster, error) {
 	var resource Cluster
-	err := ctx.ReadResource("volcengine:Vke/cluster:Cluster", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("volcengine:vke/cluster:Cluster", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -150,18 +170,22 @@ type clusterState struct {
 	Description *string `pulumi:"description"`
 	// Eip allocation Id.
 	EipAllocationId *string `pulumi:"eipAllocationId"`
-	// Kubeconfig data with private network access, returned in BASE64 encoding.
+	// Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
 	KubeconfigPrivate *string `pulumi:"kubeconfigPrivate"`
-	// Kubeconfig data with public network access, returned in BASE64 encoding.
+	// Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
 	KubeconfigPublic *string `pulumi:"kubeconfigPublic"`
 	// The version of Kubernetes specified when creating a VKE cluster (specified to patch version), if not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
 	KubernetesVersion *string `pulumi:"kubernetesVersion"`
+	// Cluster log configuration information.
+	LoggingConfig *ClusterLoggingConfig `pulumi:"loggingConfig"`
 	// The name of the cluster.
 	Name *string `pulumi:"name"`
 	// The config of the pods.
 	PodsConfig *ClusterPodsConfig `pulumi:"podsConfig"`
 	// The config of the services.
 	ServicesConfig *ClusterServicesConfig `pulumi:"servicesConfig"`
+	// Tags.
+	Tags []ClusterTag `pulumi:"tags"`
 }
 
 type ClusterState struct {
@@ -175,18 +199,22 @@ type ClusterState struct {
 	Description pulumi.StringPtrInput
 	// Eip allocation Id.
 	EipAllocationId pulumi.StringPtrInput
-	// Kubeconfig data with private network access, returned in BASE64 encoding.
+	// Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
 	KubeconfigPrivate pulumi.StringPtrInput
-	// Kubeconfig data with public network access, returned in BASE64 encoding.
+	// Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
 	KubeconfigPublic pulumi.StringPtrInput
 	// The version of Kubernetes specified when creating a VKE cluster (specified to patch version), if not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
 	KubernetesVersion pulumi.StringPtrInput
+	// Cluster log configuration information.
+	LoggingConfig ClusterLoggingConfigPtrInput
 	// The name of the cluster.
 	Name pulumi.StringPtrInput
 	// The config of the pods.
 	PodsConfig ClusterPodsConfigPtrInput
 	// The config of the services.
 	ServicesConfig ClusterServicesConfigPtrInput
+	// Tags.
+	Tags ClusterTagArrayInput
 }
 
 func (ClusterState) ElementType() reflect.Type {
@@ -204,12 +232,16 @@ type clusterArgs struct {
 	Description *string `pulumi:"description"`
 	// The version of Kubernetes specified when creating a VKE cluster (specified to patch version), if not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
 	KubernetesVersion *string `pulumi:"kubernetesVersion"`
+	// Cluster log configuration information.
+	LoggingConfig *ClusterLoggingConfig `pulumi:"loggingConfig"`
 	// The name of the cluster.
 	Name *string `pulumi:"name"`
 	// The config of the pods.
 	PodsConfig ClusterPodsConfig `pulumi:"podsConfig"`
 	// The config of the services.
 	ServicesConfig ClusterServicesConfig `pulumi:"servicesConfig"`
+	// Tags.
+	Tags []ClusterTag `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a Cluster resource.
@@ -224,12 +256,16 @@ type ClusterArgs struct {
 	Description pulumi.StringPtrInput
 	// The version of Kubernetes specified when creating a VKE cluster (specified to patch version), if not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
 	KubernetesVersion pulumi.StringPtrInput
+	// Cluster log configuration information.
+	LoggingConfig ClusterLoggingConfigPtrInput
 	// The name of the cluster.
 	Name pulumi.StringPtrInput
 	// The config of the pods.
 	PodsConfig ClusterPodsConfigInput
 	// The config of the services.
 	ServicesConfig ClusterServicesConfigInput
+	// Tags.
+	Tags ClusterTagArrayInput
 }
 
 func (ClusterArgs) ElementType() reflect.Type {
@@ -258,7 +294,7 @@ func (i *Cluster) ToClusterOutputWithContext(ctx context.Context) ClusterOutput 
 // ClusterArrayInput is an input type that accepts ClusterArray and ClusterArrayOutput values.
 // You can construct a concrete instance of `ClusterArrayInput` via:
 //
-//          ClusterArray{ ClusterArgs{...} }
+//	ClusterArray{ ClusterArgs{...} }
 type ClusterArrayInput interface {
 	pulumi.Input
 
@@ -283,7 +319,7 @@ func (i ClusterArray) ToClusterArrayOutputWithContext(ctx context.Context) Clust
 // ClusterMapInput is an input type that accepts ClusterMap and ClusterMapOutput values.
 // You can construct a concrete instance of `ClusterMapInput` via:
 //
-//          ClusterMap{ "key": ClusterArgs{...} }
+//	ClusterMap{ "key": ClusterArgs{...} }
 type ClusterMapInput interface {
 	pulumi.Input
 
@@ -344,12 +380,12 @@ func (o ClusterOutput) EipAllocationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.EipAllocationId }).(pulumi.StringOutput)
 }
 
-// Kubeconfig data with private network access, returned in BASE64 encoding.
+// Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
 func (o ClusterOutput) KubeconfigPrivate() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.KubeconfigPrivate }).(pulumi.StringOutput)
 }
 
-// Kubeconfig data with public network access, returned in BASE64 encoding.
+// Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
 func (o ClusterOutput) KubeconfigPublic() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.KubeconfigPublic }).(pulumi.StringOutput)
 }
@@ -357,6 +393,11 @@ func (o ClusterOutput) KubeconfigPublic() pulumi.StringOutput {
 // The version of Kubernetes specified when creating a VKE cluster (specified to patch version), if not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
 func (o ClusterOutput) KubernetesVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.KubernetesVersion }).(pulumi.StringOutput)
+}
+
+// Cluster log configuration information.
+func (o ClusterOutput) LoggingConfig() ClusterLoggingConfigPtrOutput {
+	return o.ApplyT(func(v *Cluster) ClusterLoggingConfigPtrOutput { return v.LoggingConfig }).(ClusterLoggingConfigPtrOutput)
 }
 
 // The name of the cluster.
@@ -372,6 +413,11 @@ func (o ClusterOutput) PodsConfig() ClusterPodsConfigOutput {
 // The config of the services.
 func (o ClusterOutput) ServicesConfig() ClusterServicesConfigOutput {
 	return o.ApplyT(func(v *Cluster) ClusterServicesConfigOutput { return v.ServicesConfig }).(ClusterServicesConfigOutput)
+}
+
+// Tags.
+func (o ClusterOutput) Tags() ClusterTagArrayOutput {
+	return o.ApplyT(func(v *Cluster) ClusterTagArrayOutput { return v.Tags }).(ClusterTagArrayOutput)
 }
 
 type ClusterArrayOutput struct{ *pulumi.OutputState }

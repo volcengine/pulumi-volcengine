@@ -17,25 +17,28 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Iam"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/iam"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Iam.Policies(ctx, &iam.PoliciesArgs{
-// 			Query: pulumi.StringRef("AdministratorAccess"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := iam.Policies(ctx, &iam.PoliciesArgs{
+//				Query: pulumi.StringRef("AdministratorAccess"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func Policies(ctx *pulumi.Context, args *PoliciesArgs, opts ...pulumi.InvokeOption) (*PoliciesResult, error) {
 	var rv PoliciesResult
-	err := ctx.Invoke("volcengine:Iam/policies:Policies", args, &rv, opts...)
+	err := ctx.Invoke("volcengine:iam/policies:Policies", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -50,10 +53,14 @@ type PoliciesArgs struct {
 	OutputFile *string `pulumi:"outputFile"`
 	// Query policies, support policy name or description.
 	Query *string `pulumi:"query"`
+	// The name of the IAM role.
+	RoleName *string `pulumi:"roleName"`
 	// The scope of the Policy.
 	Scope *string `pulumi:"scope"`
 	// The status of policy.
 	Status *string `pulumi:"status"`
+	// The name of the IAM user.
+	UserName *string `pulumi:"userName"`
 }
 
 // A collection of values returned by Policies.
@@ -65,10 +72,14 @@ type PoliciesResult struct {
 	// The collection of Policy query.
 	Policies []PoliciesPolicy `pulumi:"policies"`
 	Query    *string          `pulumi:"query"`
-	Scope    *string          `pulumi:"scope"`
-	Status   *string          `pulumi:"status"`
+	// The name of the IAM role.The data show only query with role_name.
+	RoleName *string `pulumi:"roleName"`
+	Scope    *string `pulumi:"scope"`
+	Status   *string `pulumi:"status"`
 	// The total count of Policy query.
 	TotalCount int `pulumi:"totalCount"`
+	// The name of the IAM user.The data show only query with user_name.
+	UserName *string `pulumi:"userName"`
 }
 
 func PoliciesOutput(ctx *pulumi.Context, args PoliciesOutputArgs, opts ...pulumi.InvokeOption) PoliciesResultOutput {
@@ -92,10 +103,14 @@ type PoliciesOutputArgs struct {
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
 	// Query policies, support policy name or description.
 	Query pulumi.StringPtrInput `pulumi:"query"`
+	// The name of the IAM role.
+	RoleName pulumi.StringPtrInput `pulumi:"roleName"`
 	// The scope of the Policy.
 	Scope pulumi.StringPtrInput `pulumi:"scope"`
 	// The status of policy.
 	Status pulumi.StringPtrInput `pulumi:"status"`
+	// The name of the IAM user.
+	UserName pulumi.StringPtrInput `pulumi:"userName"`
 }
 
 func (PoliciesOutputArgs) ElementType() reflect.Type {
@@ -139,6 +154,11 @@ func (o PoliciesResultOutput) Query() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v PoliciesResult) *string { return v.Query }).(pulumi.StringPtrOutput)
 }
 
+// The name of the IAM role.The data show only query with role_name.
+func (o PoliciesResultOutput) RoleName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PoliciesResult) *string { return v.RoleName }).(pulumi.StringPtrOutput)
+}
+
 func (o PoliciesResultOutput) Scope() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v PoliciesResult) *string { return v.Scope }).(pulumi.StringPtrOutput)
 }
@@ -150,6 +170,11 @@ func (o PoliciesResultOutput) Status() pulumi.StringPtrOutput {
 // The total count of Policy query.
 func (o PoliciesResultOutput) TotalCount() pulumi.IntOutput {
 	return o.ApplyT(func(v PoliciesResult) int { return v.TotalCount }).(pulumi.IntOutput)
+}
+
+// The name of the IAM user.The data show only query with user_name.
+func (o PoliciesResultOutput) UserName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PoliciesResult) *string { return v.UserName }).(pulumi.StringPtrOutput)
 }
 
 func init() {

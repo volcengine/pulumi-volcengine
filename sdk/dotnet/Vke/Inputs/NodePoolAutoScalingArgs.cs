@@ -13,7 +13,7 @@ namespace Pulumi.Volcengine.Vke.Inputs
     public sealed class NodePoolAutoScalingArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The DesiredReplicas of AutoScaling.
+        /// The DesiredReplicas of AutoScaling, default 0, range in min_replicas to max_replicas.
         /// </summary>
         [Input("desiredReplicas")]
         public Input<int>? DesiredReplicas { get; set; }
@@ -25,22 +25,28 @@ namespace Pulumi.Volcengine.Vke.Inputs
         public Input<bool>? Enabled { get; set; }
 
         /// <summary>
-        /// The MaxReplicas of AutoScaling.
+        /// The MaxReplicas of AutoScaling, default 10, range in 1~2000.
         /// </summary>
         [Input("maxReplicas")]
         public Input<int>? MaxReplicas { get; set; }
 
         /// <summary>
-        /// The MinReplicas of AutoScaling.
+        /// The MinReplicas of AutoScaling, default 0.
         /// </summary>
         [Input("minReplicas")]
         public Input<int>? MinReplicas { get; set; }
 
         /// <summary>
-        /// The Priority of AutoScaling.
+        /// The Priority of AutoScaling, default 10, rang in 0~100.
         /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
+
+        /// <summary>
+        /// Multi-subnet scheduling strategy for nodes. The value can be `ZoneBalance` or `Priority`.
+        /// </summary>
+        [Input("subnetPolicy")]
+        public Input<string>? SubnetPolicy { get; set; }
 
         public NodePoolAutoScalingArgs()
         {

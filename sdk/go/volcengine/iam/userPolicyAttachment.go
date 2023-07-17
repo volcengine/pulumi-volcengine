@@ -18,38 +18,41 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Iam"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/iam"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		user, err := Iam.NewUser(ctx, "user", &Iam.UserArgs{
-// 			UserName:    pulumi.String("TfTest"),
-// 			Description: pulumi.String("test"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		policy, err := Iam.NewPolicy(ctx, "policy", &Iam.PolicyArgs{
-// 			PolicyName:     pulumi.String("TerraformResourceTest1"),
-// 			Description:    pulumi.String("created by terraform 1"),
-// 			PolicyDocument: pulumi.String("{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = Iam.NewUserPolicyAttachment(ctx, "foo", &Iam.UserPolicyAttachmentArgs{
-// 			UserName:   user.UserName,
-// 			PolicyName: policy.PolicyName,
-// 			PolicyType: policy.PolicyType,
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			user, err := iam.NewUser(ctx, "user", &iam.UserArgs{
+//				UserName:    pulumi.String("TfTest"),
+//				Description: pulumi.String("test"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			policy, err := iam.NewPolicy(ctx, "policy", &iam.PolicyArgs{
+//				PolicyName:     pulumi.String("TerraformResourceTest1"),
+//				Description:    pulumi.String("created by terraform 1"),
+//				PolicyDocument: pulumi.String("{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = iam.NewUserPolicyAttachment(ctx, "foo", &iam.UserPolicyAttachmentArgs{
+//				UserName:   user.UserName,
+//				PolicyName: policy.PolicyName,
+//				PolicyType: policy.PolicyType,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -57,7 +60,9 @@ import (
 // Iam user policy attachment can be imported using the UserName:PolicyName:PolicyType, e.g.
 //
 // ```sh
-//  $ pulumi import volcengine:Iam/userPolicyAttachment:UserPolicyAttachment default TerraformTestUser:TerraformTestPolicy:Custom
+//
+//	$ pulumi import volcengine:iam/userPolicyAttachment:UserPolicyAttachment default TerraformTestUser:TerraformTestPolicy:Custom
+//
 // ```
 type UserPolicyAttachment struct {
 	pulumi.CustomResourceState
@@ -87,7 +92,7 @@ func NewUserPolicyAttachment(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'UserName'")
 	}
 	var resource UserPolicyAttachment
-	err := ctx.RegisterResource("volcengine:Iam/userPolicyAttachment:UserPolicyAttachment", name, args, &resource, opts...)
+	err := ctx.RegisterResource("volcengine:iam/userPolicyAttachment:UserPolicyAttachment", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -99,7 +104,7 @@ func NewUserPolicyAttachment(ctx *pulumi.Context,
 func GetUserPolicyAttachment(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *UserPolicyAttachmentState, opts ...pulumi.ResourceOption) (*UserPolicyAttachment, error) {
 	var resource UserPolicyAttachment
-	err := ctx.ReadResource("volcengine:Iam/userPolicyAttachment:UserPolicyAttachment", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("volcengine:iam/userPolicyAttachment:UserPolicyAttachment", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -174,7 +179,7 @@ func (i *UserPolicyAttachment) ToUserPolicyAttachmentOutputWithContext(ctx conte
 // UserPolicyAttachmentArrayInput is an input type that accepts UserPolicyAttachmentArray and UserPolicyAttachmentArrayOutput values.
 // You can construct a concrete instance of `UserPolicyAttachmentArrayInput` via:
 //
-//          UserPolicyAttachmentArray{ UserPolicyAttachmentArgs{...} }
+//	UserPolicyAttachmentArray{ UserPolicyAttachmentArgs{...} }
 type UserPolicyAttachmentArrayInput interface {
 	pulumi.Input
 
@@ -199,7 +204,7 @@ func (i UserPolicyAttachmentArray) ToUserPolicyAttachmentArrayOutputWithContext(
 // UserPolicyAttachmentMapInput is an input type that accepts UserPolicyAttachmentMap and UserPolicyAttachmentMapOutput values.
 // You can construct a concrete instance of `UserPolicyAttachmentMapInput` via:
 //
-//          UserPolicyAttachmentMap{ "key": UserPolicyAttachmentArgs{...} }
+//	UserPolicyAttachmentMap{ "key": UserPolicyAttachmentArgs{...} }
 type UserPolicyAttachmentMapInput interface {
 	pulumi.Input
 

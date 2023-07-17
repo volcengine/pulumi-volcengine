@@ -279,7 +279,7 @@ class User(pulumi.CustomResource):
         Iam user can be imported using the UserName, e.g.
 
         ```sh
-         $ pulumi import volcengine:Iam/user:User default user_name
+         $ pulumi import volcengine:iam/user:User default user_name
         ```
 
         :param str resource_name: The name of the resource.
@@ -315,7 +315,7 @@ class User(pulumi.CustomResource):
         Iam user can be imported using the UserName, e.g.
 
         ```sh
-         $ pulumi import volcengine:Iam/user:User default user_name
+         $ pulumi import volcengine:iam/user:User default user_name
         ```
 
         :param str resource_name: The name of the resource.
@@ -362,7 +362,7 @@ class User(pulumi.CustomResource):
             __props__.__dict__["trn"] = None
             __props__.__dict__["update_date"] = None
         super(User, __self__).__init__(
-            'volcengine:Iam/user:User',
+            'volcengine:iam/user:User',
             resource_name,
             __props__,
             opts)

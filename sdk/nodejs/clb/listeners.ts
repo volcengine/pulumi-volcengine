@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultListeners = pulumi.output(volcengine.Clb.Listeners({
+ * const defaultListeners = pulumi.output(volcengine.clb.Listeners({
  *     ids: [
  *         "lsn-273yv0mhs5xj47fap8sehiiso",
  *         "lsn-273yw6zps6pz47fap8swa0q2z",
@@ -28,7 +28,7 @@ export function listeners(args?: ListenersArgs, opts?: pulumi.InvokeOptions): Pr
     }
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-    return pulumi.runtime.invoke("volcengine:Clb/listeners:Listeners", {
+    return pulumi.runtime.invoke("volcengine:clb/listeners:Listeners", {
         "ids": args.ids,
         "listenerName": args.listenerName,
         "loadBalancerId": args.loadBalancerId,
@@ -79,7 +79,7 @@ export interface ListenersResult {
     /**
      * The collection of Listener query.
      */
-    readonly listeners: outputs.Clb.ListenersListener[];
+    readonly listeners: outputs.clb.ListenersListener[];
     readonly loadBalancerId?: string;
     readonly nameRegex?: string;
     readonly outputFile?: string;

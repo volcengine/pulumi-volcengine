@@ -12,7 +12,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = new volcengine.Vpc.NetworkInterfaceAttach("foo", {
+ * const foo = new volcengine.vpc.NetworkInterfaceAttach("foo", {
  *     instanceId: "i-72q20hi6s082wcafdem8",
  *     networkInterfaceId: "eni-274ecj646ylts7fap8t6xbba1",
  * });
@@ -23,7 +23,7 @@ import * as utilities from "../utilities";
  * Network interface attach can be imported using the network_interface_id:instance_id.
  *
  * ```sh
- *  $ pulumi import volcengine:Vpc/networkInterfaceAttach:NetworkInterfaceAttach default eni-bp1fg655nh68xyz9***:i-wijfn35c****
+ *  $ pulumi import volcengine:vpc/networkInterfaceAttach:NetworkInterfaceAttach default eni-bp1fg655nh68xyz9***:i-wijfn35c****
  * ```
  */
 export class NetworkInterfaceAttach extends pulumi.CustomResource {
@@ -41,7 +41,7 @@ export class NetworkInterfaceAttach extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'volcengine:Vpc/networkInterfaceAttach:NetworkInterfaceAttach';
+    public static readonly __pulumiType = 'volcengine:vpc/networkInterfaceAttach:NetworkInterfaceAttach';
 
     /**
      * Returns true if the given object is an instance of NetworkInterfaceAttach.  This is designed to work even

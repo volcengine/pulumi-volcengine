@@ -14,20 +14,27 @@ namespace Pulumi.Volcengine.Vke.Outputs
     public sealed class NodePoolNodeConfigDataVolume
     {
         /// <summary>
-        /// The Size of DataVolumes.
+        /// The target mount directory of the disk. Must start with `/`.
+        /// </summary>
+        public readonly string? MountPoint;
+        /// <summary>
+        /// The Size of DataVolumes, the value range in 20~32768.
         /// </summary>
         public readonly int? Size;
         /// <summary>
-        /// The Type of DataVolumes.
+        /// The Type of DataVolumes, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`.
         /// </summary>
         public readonly string? Type;
 
         [OutputConstructor]
         private NodePoolNodeConfigDataVolume(
+            string? mountPoint,
+
             int? size,
 
             string? type)
         {
+            MountPoint = mountPoint;
             Size = size;
             Type = type;
         }

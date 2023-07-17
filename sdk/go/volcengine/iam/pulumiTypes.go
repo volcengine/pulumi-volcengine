@@ -25,14 +25,22 @@ type PoliciesPolicy struct {
 	PolicyTrn string `pulumi:"policyTrn"`
 	// The type of the Policy.
 	PolicyType string `pulumi:"policyType"`
+	// The role attach time of the Policy.The data show only query with role_name.
+	RoleAttachDate string `pulumi:"roleAttachDate"`
+	// The name of the IAM role.
+	RoleName string `pulumi:"roleName"`
 	// The update time of the Policy.
 	UpdateDate string `pulumi:"updateDate"`
+	// The user attach time of the Policy.The data show only query with user_name.
+	UserAttachDate string `pulumi:"userAttachDate"`
+	// The name of the IAM user.
+	UserName string `pulumi:"userName"`
 }
 
 // PoliciesPolicyInput is an input type that accepts PoliciesPolicyArgs and PoliciesPolicyOutput values.
 // You can construct a concrete instance of `PoliciesPolicyInput` via:
 //
-//          PoliciesPolicyArgs{...}
+//	PoliciesPolicyArgs{...}
 type PoliciesPolicyInput interface {
 	pulumi.Input
 
@@ -55,8 +63,16 @@ type PoliciesPolicyArgs struct {
 	PolicyTrn pulumi.StringInput `pulumi:"policyTrn"`
 	// The type of the Policy.
 	PolicyType pulumi.StringInput `pulumi:"policyType"`
+	// The role attach time of the Policy.The data show only query with role_name.
+	RoleAttachDate pulumi.StringInput `pulumi:"roleAttachDate"`
+	// The name of the IAM role.
+	RoleName pulumi.StringInput `pulumi:"roleName"`
 	// The update time of the Policy.
 	UpdateDate pulumi.StringInput `pulumi:"updateDate"`
+	// The user attach time of the Policy.The data show only query with user_name.
+	UserAttachDate pulumi.StringInput `pulumi:"userAttachDate"`
+	// The name of the IAM user.
+	UserName pulumi.StringInput `pulumi:"userName"`
 }
 
 func (PoliciesPolicyArgs) ElementType() reflect.Type {
@@ -74,7 +90,7 @@ func (i PoliciesPolicyArgs) ToPoliciesPolicyOutputWithContext(ctx context.Contex
 // PoliciesPolicyArrayInput is an input type that accepts PoliciesPolicyArray and PoliciesPolicyArrayOutput values.
 // You can construct a concrete instance of `PoliciesPolicyArrayInput` via:
 //
-//          PoliciesPolicyArray{ PoliciesPolicyArgs{...} }
+//	PoliciesPolicyArray{ PoliciesPolicyArgs{...} }
 type PoliciesPolicyArrayInput interface {
 	pulumi.Input
 
@@ -145,9 +161,29 @@ func (o PoliciesPolicyOutput) PolicyType() pulumi.StringOutput {
 	return o.ApplyT(func(v PoliciesPolicy) string { return v.PolicyType }).(pulumi.StringOutput)
 }
 
+// The role attach time of the Policy.The data show only query with role_name.
+func (o PoliciesPolicyOutput) RoleAttachDate() pulumi.StringOutput {
+	return o.ApplyT(func(v PoliciesPolicy) string { return v.RoleAttachDate }).(pulumi.StringOutput)
+}
+
+// The name of the IAM role.
+func (o PoliciesPolicyOutput) RoleName() pulumi.StringOutput {
+	return o.ApplyT(func(v PoliciesPolicy) string { return v.RoleName }).(pulumi.StringOutput)
+}
+
 // The update time of the Policy.
 func (o PoliciesPolicyOutput) UpdateDate() pulumi.StringOutput {
 	return o.ApplyT(func(v PoliciesPolicy) string { return v.UpdateDate }).(pulumi.StringOutput)
+}
+
+// The user attach time of the Policy.The data show only query with user_name.
+func (o PoliciesPolicyOutput) UserAttachDate() pulumi.StringOutput {
+	return o.ApplyT(func(v PoliciesPolicy) string { return v.UserAttachDate }).(pulumi.StringOutput)
+}
+
+// The name of the IAM user.
+func (o PoliciesPolicyOutput) UserName() pulumi.StringOutput {
+	return o.ApplyT(func(v PoliciesPolicy) string { return v.UserName }).(pulumi.StringOutput)
 }
 
 type PoliciesPolicyArrayOutput struct{ *pulumi.OutputState }
@@ -188,7 +224,7 @@ type RolesRole struct {
 // RolesRoleInput is an input type that accepts RolesRoleArgs and RolesRoleOutput values.
 // You can construct a concrete instance of `RolesRoleInput` via:
 //
-//          RolesRoleArgs{...}
+//	RolesRoleArgs{...}
 type RolesRoleInput interface {
 	pulumi.Input
 
@@ -226,7 +262,7 @@ func (i RolesRoleArgs) ToRolesRoleOutputWithContext(ctx context.Context) RolesRo
 // RolesRoleArrayInput is an input type that accepts RolesRoleArray and RolesRoleArrayOutput values.
 // You can construct a concrete instance of `RolesRoleArrayInput` via:
 //
-//          RolesRoleArray{ RolesRoleArgs{...} }
+//	RolesRoleArray{ RolesRoleArgs{...} }
 type RolesRoleArrayInput interface {
 	pulumi.Input
 
@@ -328,7 +364,7 @@ type UsersUser struct {
 // UsersUserInput is an input type that accepts UsersUserArgs and UsersUserOutput values.
 // You can construct a concrete instance of `UsersUserInput` via:
 //
-//          UsersUserArgs{...}
+//	UsersUserArgs{...}
 type UsersUserInput interface {
 	pulumi.Input
 
@@ -364,7 +400,7 @@ func (i UsersUserArgs) ToUsersUserOutputWithContext(ctx context.Context) UsersUs
 // UsersUserArrayInput is an input type that accepts UsersUserArray and UsersUserArrayOutput values.
 // You can construct a concrete instance of `UsersUserArrayInput` via:
 //
-//          UsersUserArray{ UsersUserArgs{...} }
+//	UsersUserArray{ UsersUserArgs{...} }
 type UsersUserArrayInput interface {
 	pulumi.Input
 

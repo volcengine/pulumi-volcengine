@@ -45,7 +45,7 @@ namespace Pulumi.Volcengine.Vke
         /// {{% /examples %}}
         /// </summary>
         public static Task<ClustersResult> InvokeAsync(ClustersArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<ClustersResult>("volcengine:Vke/clusters:Clusters", args ?? new ClustersArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.InvokeAsync<ClustersResult>("volcengine:vke/clusters:Clusters", args ?? new ClustersArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of vke clusters
@@ -81,7 +81,7 @@ namespace Pulumi.Volcengine.Vke
         /// {{% /examples %}}
         /// </summary>
         public static Output<ClustersResult> Invoke(ClustersInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<ClustersResult>("volcengine:Vke/clusters:Clusters", args ?? new ClustersInvokeArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.Invoke<ClustersResult>("volcengine:vke/clusters:Clusters", args ?? new ClustersInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -157,6 +157,18 @@ namespace Pulumi.Volcengine.Vke
         {
             get => _statuses ?? (_statuses = new List<Inputs.ClustersStatusArgs>());
             set => _statuses = value;
+        }
+
+        [Input("tags")]
+        private List<Inputs.ClustersTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.ClustersTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.ClustersTagArgs>());
+            set => _tags = value;
         }
 
         /// <summary>
@@ -244,6 +256,18 @@ namespace Pulumi.Volcengine.Vke
             set => _statuses = value;
         }
 
+        [Input("tags")]
+        private InputList<Inputs.ClustersTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.ClustersTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.ClustersTagInputArgs>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// The ClientToken when the last cluster update succeeded. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
         /// </summary>
@@ -284,6 +308,10 @@ namespace Pulumi.Volcengine.Vke
         public readonly string? PodsConfigPodNetworkMode;
         public readonly ImmutableArray<Outputs.ClustersStatusResult> Statuses;
         /// <summary>
+        /// Tags of the Cluster.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.ClustersTagResult> Tags;
+        /// <summary>
         /// The total count of Cluster query.
         /// </summary>
         public readonly int TotalCount;
@@ -315,6 +343,8 @@ namespace Pulumi.Volcengine.Vke
 
             ImmutableArray<Outputs.ClustersStatusResult> statuses,
 
+            ImmutableArray<Outputs.ClustersTagResult> tags,
+
             int totalCount,
 
             string? updateClientToken)
@@ -331,6 +361,7 @@ namespace Pulumi.Volcengine.Vke
             PageSize = pageSize;
             PodsConfigPodNetworkMode = podsConfigPodNetworkMode;
             Statuses = statuses;
+            Tags = tags;
             TotalCount = totalCount;
             UpdateClientToken = updateClientToken;
         }

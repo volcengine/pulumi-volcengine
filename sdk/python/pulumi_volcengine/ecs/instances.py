@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'InstancesResult',
@@ -21,7 +22,10 @@ class InstancesResult:
     """
     A collection of values returned by Instances.
     """
-    def __init__(__self__, hpc_cluster_id=None, id=None, ids=None, instance_charge_type=None, instances=None, key_pair_name=None, name_regex=None, output_file=None, primary_ip_address=None, status=None, total_count=None, vpc_id=None, zone_id=None):
+    def __init__(__self__, deployment_set_ids=None, hpc_cluster_id=None, id=None, ids=None, instance_charge_type=None, instances=None, key_pair_name=None, name_regex=None, output_file=None, primary_ip_address=None, project_name=None, status=None, tags=None, total_count=None, vpc_id=None, zone_id=None):
+        if deployment_set_ids and not isinstance(deployment_set_ids, list):
+            raise TypeError("Expected argument 'deployment_set_ids' to be a list")
+        pulumi.set(__self__, "deployment_set_ids", deployment_set_ids)
         if hpc_cluster_id and not isinstance(hpc_cluster_id, str):
             raise TypeError("Expected argument 'hpc_cluster_id' to be a str")
         pulumi.set(__self__, "hpc_cluster_id", hpc_cluster_id)
@@ -49,9 +53,15 @@ class InstancesResult:
         if primary_ip_address and not isinstance(primary_ip_address, str):
             raise TypeError("Expected argument 'primary_ip_address' to be a str")
         pulumi.set(__self__, "primary_ip_address", primary_ip_address)
+        if project_name and not isinstance(project_name, str):
+            raise TypeError("Expected argument 'project_name' to be a str")
+        pulumi.set(__self__, "project_name", project_name)
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -61,6 +71,11 @@ class InstancesResult:
         if zone_id and not isinstance(zone_id, str):
             raise TypeError("Expected argument 'zone_id' to be a str")
         pulumi.set(__self__, "zone_id", zone_id)
+
+    @property
+    @pulumi.getter(name="deploymentSetIds")
+    def deployment_set_ids(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "deployment_set_ids")
 
     @property
     @pulumi.getter(name="hpcClusterId")
@@ -123,12 +138,28 @@ class InstancesResult:
         return pulumi.get(self, "primary_ip_address")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[str]:
+        """
+        The ProjectName of ECS instance.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter
     def status(self) -> Optional[str]:
         """
         The status of ECS instance.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.InstancesTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="totalCount")
@@ -161,6 +192,7 @@ class AwaitableInstancesResult(InstancesResult):
         if False:
             yield self
         return InstancesResult(
+            deployment_set_ids=self.deployment_set_ids,
             hpc_cluster_id=self.hpc_cluster_id,
             id=self.id,
             ids=self.ids,
@@ -170,20 +202,25 @@ class AwaitableInstancesResult(InstancesResult):
             name_regex=self.name_regex,
             output_file=self.output_file,
             primary_ip_address=self.primary_ip_address,
+            project_name=self.project_name,
             status=self.status,
+            tags=self.tags,
             total_count=self.total_count,
             vpc_id=self.vpc_id,
             zone_id=self.zone_id)
 
 
-def instances(hpc_cluster_id: Optional[str] = None,
+def instances(deployment_set_ids: Optional[Sequence[str]] = None,
+              hpc_cluster_id: Optional[str] = None,
               ids: Optional[Sequence[str]] = None,
               instance_charge_type: Optional[str] = None,
               key_pair_name: Optional[str] = None,
               name_regex: Optional[str] = None,
               output_file: Optional[str] = None,
               primary_ip_address: Optional[str] = None,
+              project_name: Optional[str] = None,
               status: Optional[str] = None,
+              tags: Optional[Sequence[pulumi.InputType['InstancesTagArgs']]] = None,
               vpc_id: Optional[str] = None,
               zone_id: Optional[str] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableInstancesResult:
@@ -195,10 +232,11 @@ def instances(hpc_cluster_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.Ecs.instances(ids=["i-ebgy6xmgjve0384ncgsc"])
+    foo = volcengine.ecs.instances(ids=["i-ebgy6xmgjve0384ncgsc"])
     ```
 
 
+    :param Sequence[str] deployment_set_ids: A list of DeploymentSet IDs.
     :param str hpc_cluster_id: The hpc cluster ID of ECS instance.
     :param Sequence[str] ids: A list of ECS instance IDs.
     :param str instance_charge_type: The charge type of ECS instance.
@@ -206,11 +244,14 @@ def instances(hpc_cluster_id: Optional[str] = None,
     :param str name_regex: A Name Regex of ECS instance.
     :param str output_file: File name where to save data source results.
     :param str primary_ip_address: The primary ip address of ECS instance.
+    :param str project_name: The ProjectName of ECS instance.
     :param str status: The status of ECS instance.
+    :param Sequence[pulumi.InputType['InstancesTagArgs']] tags: Tags.
     :param str vpc_id: The VPC ID of ECS instance.
     :param str zone_id: The available zone ID of ECS instance.
     """
     __args__ = dict()
+    __args__['deploymentSetIds'] = deployment_set_ids
     __args__['hpcClusterId'] = hpc_cluster_id
     __args__['ids'] = ids
     __args__['instanceChargeType'] = instance_charge_type
@@ -218,16 +259,19 @@ def instances(hpc_cluster_id: Optional[str] = None,
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
     __args__['primaryIpAddress'] = primary_ip_address
+    __args__['projectName'] = project_name
     __args__['status'] = status
+    __args__['tags'] = tags
     __args__['vpcId'] = vpc_id
     __args__['zoneId'] = zone_id
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('volcengine:Ecs/instances:Instances', __args__, opts=opts, typ=InstancesResult).value
+    __ret__ = pulumi.runtime.invoke('volcengine:ecs/instances:Instances', __args__, opts=opts, typ=InstancesResult).value
 
     return AwaitableInstancesResult(
+        deployment_set_ids=__ret__.deployment_set_ids,
         hpc_cluster_id=__ret__.hpc_cluster_id,
         id=__ret__.id,
         ids=__ret__.ids,
@@ -237,21 +281,26 @@ def instances(hpc_cluster_id: Optional[str] = None,
         name_regex=__ret__.name_regex,
         output_file=__ret__.output_file,
         primary_ip_address=__ret__.primary_ip_address,
+        project_name=__ret__.project_name,
         status=__ret__.status,
+        tags=__ret__.tags,
         total_count=__ret__.total_count,
         vpc_id=__ret__.vpc_id,
         zone_id=__ret__.zone_id)
 
 
 @_utilities.lift_output_func(instances)
-def instances_output(hpc_cluster_id: Optional[pulumi.Input[Optional[str]]] = None,
+def instances_output(deployment_set_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                     hpc_cluster_id: Optional[pulumi.Input[Optional[str]]] = None,
                      ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                      instance_charge_type: Optional[pulumi.Input[Optional[str]]] = None,
                      key_pair_name: Optional[pulumi.Input[Optional[str]]] = None,
                      name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                      output_file: Optional[pulumi.Input[Optional[str]]] = None,
                      primary_ip_address: Optional[pulumi.Input[Optional[str]]] = None,
+                     project_name: Optional[pulumi.Input[Optional[str]]] = None,
                      status: Optional[pulumi.Input[Optional[str]]] = None,
+                     tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['InstancesTagArgs']]]]] = None,
                      vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
                      zone_id: Optional[pulumi.Input[Optional[str]]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[InstancesResult]:
@@ -263,10 +312,11 @@ def instances_output(hpc_cluster_id: Optional[pulumi.Input[Optional[str]]] = Non
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.Ecs.instances(ids=["i-ebgy6xmgjve0384ncgsc"])
+    foo = volcengine.ecs.instances(ids=["i-ebgy6xmgjve0384ncgsc"])
     ```
 
 
+    :param Sequence[str] deployment_set_ids: A list of DeploymentSet IDs.
     :param str hpc_cluster_id: The hpc cluster ID of ECS instance.
     :param Sequence[str] ids: A list of ECS instance IDs.
     :param str instance_charge_type: The charge type of ECS instance.
@@ -274,7 +324,9 @@ def instances_output(hpc_cluster_id: Optional[pulumi.Input[Optional[str]]] = Non
     :param str name_regex: A Name Regex of ECS instance.
     :param str output_file: File name where to save data source results.
     :param str primary_ip_address: The primary ip address of ECS instance.
+    :param str project_name: The ProjectName of ECS instance.
     :param str status: The status of ECS instance.
+    :param Sequence[pulumi.InputType['InstancesTagArgs']] tags: Tags.
     :param str vpc_id: The VPC ID of ECS instance.
     :param str zone_id: The available zone ID of ECS instance.
     """

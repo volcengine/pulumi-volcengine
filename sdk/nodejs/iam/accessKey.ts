@@ -12,7 +12,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = new volcengine.Iam.AccessKey("foo", {
+ * const foo = new volcengine.iam.AccessKey("foo", {
  *     secretFile: "./sk",
  *     status: "active",
  *     userName: "",
@@ -38,7 +38,7 @@ export class AccessKey extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'volcengine:Iam/accessKey:AccessKey';
+    public static readonly __pulumiType = 'volcengine:iam/accessKey:AccessKey';
 
     /**
      * Returns true if the given object is an instance of AccessKey.  This is designed to work even
@@ -76,7 +76,7 @@ export class AccessKey extends pulumi.CustomResource {
      */
     public readonly secretFile!: pulumi.Output<string | undefined>;
     /**
-     * The status of the access key.
+     * The status of the access key, Optional choice contains `active` or `inactive`.
      */
     public readonly status!: pulumi.Output<string | undefined>;
     /**
@@ -150,7 +150,7 @@ export interface AccessKeyState {
      */
     secretFile?: pulumi.Input<string>;
     /**
-     * The status of the access key.
+     * The status of the access key, Optional choice contains `active` or `inactive`.
      */
     status?: pulumi.Input<string>;
     /**
@@ -172,7 +172,7 @@ export interface AccessKeyArgs {
      */
     secretFile?: pulumi.Input<string>;
     /**
-     * The status of the access key.
+     * The status of the access key, Optional choice contains `active` or `inactive`.
      */
     status?: pulumi.Input<string>;
     /**

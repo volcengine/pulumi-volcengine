@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultUsers = pulumi.output(volcengine.Iam.Users());
+ * const defaultUsers = pulumi.output(volcengine.iam.Users());
  * ```
  */
 export function users(args?: UsersArgs, opts?: pulumi.InvokeOptions): Promise<UsersResult> {
@@ -23,7 +23,7 @@ export function users(args?: UsersArgs, opts?: pulumi.InvokeOptions): Promise<Us
     }
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-    return pulumi.runtime.invoke("volcengine:Iam/users:Users", {
+    return pulumi.runtime.invoke("volcengine:iam/users:Users", {
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
         "userNames": args.userNames,
@@ -66,7 +66,7 @@ export interface UsersResult {
     /**
      * The collection of user.
      */
-    readonly users: outputs.Iam.UsersUser[];
+    readonly users: outputs.iam.UsersUser[];
 }
 
 export function usersOutput(args?: UsersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<UsersResult> {

@@ -62,7 +62,7 @@ namespace Pulumi.Volcengine.Ecs.Outputs
         /// </summary>
         public readonly int Size;
         /// <summary>
-        /// A list of Image status.
+        /// A list of Image status, the value can be `available` or `creating` or `error`.
         /// </summary>
         public readonly string Status;
         /// <summary>

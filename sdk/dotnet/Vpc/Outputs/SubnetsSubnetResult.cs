@@ -14,6 +14,10 @@ namespace Pulumi.Volcengine.Vpc.Outputs
     public sealed class SubnetsSubnetResult
     {
         /// <summary>
+        /// The account ID which the subnet belongs to.
+        /// </summary>
+        public readonly string AccountId;
+        /// <summary>
         /// The count of available ip address.
         /// </summary>
         public readonly int AvailableIpAddressCount;
@@ -34,11 +38,23 @@ namespace Pulumi.Volcengine.Vpc.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// The ID of route table.
+        /// The IPv6 CIDR block of the VPC.
+        /// </summary>
+        public readonly string Ipv6CidrBlock;
+        /// <summary>
+        /// The ID of network acl which this subnet associate with.
+        /// </summary>
+        public readonly string NetworkAclId;
+        /// <summary>
+        /// The route table information.
+        /// </summary>
+        public readonly Outputs.SubnetsSubnetRouteTableResult RouteTable;
+        /// <summary>
+        /// The ID of route table which subnet associated with.
         /// </summary>
         public readonly string RouteTableId;
         /// <summary>
-        /// The type of route table.
+        /// The route table type.
         /// </summary>
         public readonly string RouteTableType;
         /// <summary>
@@ -46,7 +62,7 @@ namespace Pulumi.Volcengine.Vpc.Outputs
         /// </summary>
         public readonly string Status;
         /// <summary>
-        /// The Name of Subnet.
+        /// The subnet name to query.
         /// </summary>
         public readonly string SubnetName;
         /// <summary>
@@ -58,16 +74,18 @@ namespace Pulumi.Volcengine.Vpc.Outputs
         /// </summary>
         public readonly string UpdateTime;
         /// <summary>
-        /// The Vpc ID of Subnet.
+        /// The ID of VPC which subnet belongs to.
         /// </summary>
         public readonly string VpcId;
         /// <summary>
-        /// The ID of Zone.
+        /// The ID of zone which subnet belongs to.
         /// </summary>
         public readonly string ZoneId;
 
         [OutputConstructor]
         private SubnetsSubnetResult(
+            string accountId,
+
             int availableIpAddressCount,
 
             string cidrBlock,
@@ -77,6 +95,12 @@ namespace Pulumi.Volcengine.Vpc.Outputs
             string description,
 
             string id,
+
+            string ipv6CidrBlock,
+
+            string networkAclId,
+
+            Outputs.SubnetsSubnetRouteTableResult routeTable,
 
             string routeTableId,
 
@@ -94,11 +118,15 @@ namespace Pulumi.Volcengine.Vpc.Outputs
 
             string zoneId)
         {
+            AccountId = accountId;
             AvailableIpAddressCount = availableIpAddressCount;
             CidrBlock = cidrBlock;
             CreationTime = creationTime;
             Description = description;
             Id = id;
+            Ipv6CidrBlock = ipv6CidrBlock;
+            NetworkAclId = networkAclId;
+            RouteTable = routeTable;
             RouteTableId = routeTableId;
             RouteTableType = routeTableType;
             Status = status;

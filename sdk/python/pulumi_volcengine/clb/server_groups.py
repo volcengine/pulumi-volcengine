@@ -130,7 +130,7 @@ def server_groups(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.Clb.server_groups(ids=[
+    default = volcengine.clb.server_groups(ids=[
         "rsp-273yv0kir1vk07fap8tt9jtwg",
         "rsp-273yxuqfova4g7fap8tyemn6t",
         "rsp-273z9pt9lpdds7fap8sqdvfrf",
@@ -154,7 +154,7 @@ def server_groups(ids: Optional[Sequence[str]] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('volcengine:Clb/serverGroups:ServerGroups', __args__, opts=opts, typ=ServerGroupsResult).value
+    __ret__ = pulumi.runtime.invoke('volcengine:clb/serverGroups:ServerGroups', __args__, opts=opts, typ=ServerGroupsResult).value
 
     return AwaitableServerGroupsResult(
         groups=__ret__.groups,
@@ -182,7 +182,7 @@ def server_groups_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = 
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.Clb.server_groups(ids=[
+    default = volcengine.clb.server_groups(ids=[
         "rsp-273yv0kir1vk07fap8tt9jtwg",
         "rsp-273yxuqfova4g7fap8tyemn6t",
         "rsp-273z9pt9lpdds7fap8sqdvfrf",

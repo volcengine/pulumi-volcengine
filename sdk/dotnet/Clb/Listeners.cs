@@ -41,7 +41,7 @@ namespace Pulumi.Volcengine.Clb
         /// {{% /examples %}}
         /// </summary>
         public static Task<ListenersResult> InvokeAsync(ListenersArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<ListenersResult>("volcengine:Clb/listeners:Listeners", args ?? new ListenersArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.InvokeAsync<ListenersResult>("volcengine:clb/listeners:Listeners", args ?? new ListenersArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of listeners
@@ -73,7 +73,7 @@ namespace Pulumi.Volcengine.Clb
         /// {{% /examples %}}
         /// </summary>
         public static Output<ListenersResult> Invoke(ListenersInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<ListenersResult>("volcengine:Clb/listeners:Listeners", args ?? new ListenersInvokeArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.Invoke<ListenersResult>("volcengine:clb/listeners:Listeners", args ?? new ListenersInvokeArgs(), options.WithDefaults());
     }
 
 

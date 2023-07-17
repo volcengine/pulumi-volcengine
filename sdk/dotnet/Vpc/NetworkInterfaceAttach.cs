@@ -36,10 +36,10 @@ namespace Pulumi.Volcengine.Vpc
     /// Network interface attach can be imported using the network_interface_id:instance_id.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:Vpc/networkInterfaceAttach:NetworkInterfaceAttach default eni-bp1fg655nh68xyz9***:i-wijfn35c****
+    ///  $ pulumi import volcengine:vpc/networkInterfaceAttach:NetworkInterfaceAttach default eni-bp1fg655nh68xyz9***:i-wijfn35c****
     /// ```
     /// </summary>
-    [VolcengineResourceType("volcengine:Vpc/networkInterfaceAttach:NetworkInterfaceAttach")]
+    [VolcengineResourceType("volcengine:vpc/networkInterfaceAttach:NetworkInterfaceAttach")]
     public partial class NetworkInterfaceAttach : Pulumi.CustomResource
     {
         /// <summary>
@@ -63,12 +63,12 @@ namespace Pulumi.Volcengine.Vpc
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public NetworkInterfaceAttach(string name, NetworkInterfaceAttachArgs args, CustomResourceOptions? options = null)
-            : base("volcengine:Vpc/networkInterfaceAttach:NetworkInterfaceAttach", name, args ?? new NetworkInterfaceAttachArgs(), MakeResourceOptions(options, ""))
+            : base("volcengine:vpc/networkInterfaceAttach:NetworkInterfaceAttach", name, args ?? new NetworkInterfaceAttachArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private NetworkInterfaceAttach(string name, Input<string> id, NetworkInterfaceAttachState? state = null, CustomResourceOptions? options = null)
-            : base("volcengine:Vpc/networkInterfaceAttach:NetworkInterfaceAttach", name, state, MakeResourceOptions(options, id))
+            : base("volcengine:vpc/networkInterfaceAttach:NetworkInterfaceAttach", name, state, MakeResourceOptions(options, id))
         {
         }
 

@@ -11,32 +11,35 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a resource to manage clb
 // ## Example Usage
 //
 // ```go
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Clb"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/clb"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Clb.NewClb(ctx, "foo", &Clb.ClbArgs{
-// 			Description:      pulumi.String("Demo"),
-// 			LoadBalancerSpec: pulumi.String("small_1"),
-// 			RegionId:         pulumi.String("cn-north-3"),
-// 			SubnetId:         pulumi.String("subnet-2744i7u9alnnk7fap8tkq8aft"),
-// 			Type:             pulumi.String("public"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := clb.NewClb(ctx, "foo", &clb.ClbArgs{
+//				Description:      pulumi.String("Demo"),
+//				LoadBalancerName: pulumi.String("terraform-auto-create"),
+//				LoadBalancerSpec: pulumi.String("small_1"),
+//				ProjectName:      pulumi.String("yyy"),
+//				SubnetId:         pulumi.String("subnet-mj92ij84m5fk5smt1arvwrtw"),
+//				Type:             pulumi.String("public"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -44,7 +47,9 @@ import (
 // CLB can be imported using the id, e.g.
 //
 // ```sh
-//  $ pulumi import volcengine:Clb/clb:Clb default clb-273y2ok6ets007fap8txvf6us
+//
+//	$ pulumi import volcengine:clb/clb:Clb default clb-273y2ok6ets007fap8txvf6us
+//
 // ```
 type Clb struct {
 	pulumi.CustomResourceState
@@ -53,20 +58,28 @@ type Clb struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The eni address of the CLB.
 	EniAddress pulumi.StringOutput `pulumi:"eniAddress"`
-	// The billing type of the CLB.
+	// The billing type of the CLB, the value can be `PostPaid`.
 	LoadBalancerBillingType pulumi.StringOutput `pulumi:"loadBalancerBillingType"`
 	// The name of the CLB.
 	LoadBalancerName pulumi.StringOutput `pulumi:"loadBalancerName"`
-	// The specification of the CLB.
+	// The specification of the CLB, the value can be `small1`, `small2`, `medium1`, `medium2`, `large1`, `large2`.
 	LoadBalancerSpec pulumi.StringOutput `pulumi:"loadBalancerSpec"`
+	// The master zone ID of the CLB.
+	MasterZoneId pulumi.StringOutput `pulumi:"masterZoneId"`
 	// The reason of the console modification protection.
 	ModificationProtectionReason pulumi.StringPtrOutput `pulumi:"modificationProtectionReason"`
-	// The status of the console modification protection.
+	// The status of the console modification protection, the value can be `NonProtection` or `ConsoleProtection`.
 	ModificationProtectionStatus pulumi.StringPtrOutput `pulumi:"modificationProtectionStatus"`
+	// The ProjectName of the CLB.
+	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
 	// The region of the request.
 	RegionId pulumi.StringOutput `pulumi:"regionId"`
+	// The slave zone ID of the CLB.
+	SlaveZoneId pulumi.StringOutput `pulumi:"slaveZoneId"`
 	// The id of the Subnet.
 	SubnetId pulumi.StringOutput `pulumi:"subnetId"`
+	// Tags.
+	Tags ClbTagArrayOutput `pulumi:"tags"`
 	// The type of the CLB. And optional choice contains `public` or `private`.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// The id of the VPC.
@@ -83,9 +96,6 @@ func NewClb(ctx *pulumi.Context,
 	if args.LoadBalancerSpec == nil {
 		return nil, errors.New("invalid value for required argument 'LoadBalancerSpec'")
 	}
-	if args.RegionId == nil {
-		return nil, errors.New("invalid value for required argument 'RegionId'")
-	}
 	if args.SubnetId == nil {
 		return nil, errors.New("invalid value for required argument 'SubnetId'")
 	}
@@ -93,7 +103,7 @@ func NewClb(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
 	var resource Clb
-	err := ctx.RegisterResource("volcengine:Clb/clb:Clb", name, args, &resource, opts...)
+	err := ctx.RegisterResource("volcengine:clb/clb:Clb", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -105,7 +115,7 @@ func NewClb(ctx *pulumi.Context,
 func GetClb(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *ClbState, opts ...pulumi.ResourceOption) (*Clb, error) {
 	var resource Clb
-	err := ctx.ReadResource("volcengine:Clb/clb:Clb", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("volcengine:clb/clb:Clb", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -118,20 +128,28 @@ type clbState struct {
 	Description *string `pulumi:"description"`
 	// The eni address of the CLB.
 	EniAddress *string `pulumi:"eniAddress"`
-	// The billing type of the CLB.
+	// The billing type of the CLB, the value can be `PostPaid`.
 	LoadBalancerBillingType *string `pulumi:"loadBalancerBillingType"`
 	// The name of the CLB.
 	LoadBalancerName *string `pulumi:"loadBalancerName"`
-	// The specification of the CLB.
+	// The specification of the CLB, the value can be `small1`, `small2`, `medium1`, `medium2`, `large1`, `large2`.
 	LoadBalancerSpec *string `pulumi:"loadBalancerSpec"`
+	// The master zone ID of the CLB.
+	MasterZoneId *string `pulumi:"masterZoneId"`
 	// The reason of the console modification protection.
 	ModificationProtectionReason *string `pulumi:"modificationProtectionReason"`
-	// The status of the console modification protection.
+	// The status of the console modification protection, the value can be `NonProtection` or `ConsoleProtection`.
 	ModificationProtectionStatus *string `pulumi:"modificationProtectionStatus"`
+	// The ProjectName of the CLB.
+	ProjectName *string `pulumi:"projectName"`
 	// The region of the request.
 	RegionId *string `pulumi:"regionId"`
+	// The slave zone ID of the CLB.
+	SlaveZoneId *string `pulumi:"slaveZoneId"`
 	// The id of the Subnet.
 	SubnetId *string `pulumi:"subnetId"`
+	// Tags.
+	Tags []ClbTag `pulumi:"tags"`
 	// The type of the CLB. And optional choice contains `public` or `private`.
 	Type *string `pulumi:"type"`
 	// The id of the VPC.
@@ -143,20 +161,28 @@ type ClbState struct {
 	Description pulumi.StringPtrInput
 	// The eni address of the CLB.
 	EniAddress pulumi.StringPtrInput
-	// The billing type of the CLB.
+	// The billing type of the CLB, the value can be `PostPaid`.
 	LoadBalancerBillingType pulumi.StringPtrInput
 	// The name of the CLB.
 	LoadBalancerName pulumi.StringPtrInput
-	// The specification of the CLB.
+	// The specification of the CLB, the value can be `small1`, `small2`, `medium1`, `medium2`, `large1`, `large2`.
 	LoadBalancerSpec pulumi.StringPtrInput
+	// The master zone ID of the CLB.
+	MasterZoneId pulumi.StringPtrInput
 	// The reason of the console modification protection.
 	ModificationProtectionReason pulumi.StringPtrInput
-	// The status of the console modification protection.
+	// The status of the console modification protection, the value can be `NonProtection` or `ConsoleProtection`.
 	ModificationProtectionStatus pulumi.StringPtrInput
+	// The ProjectName of the CLB.
+	ProjectName pulumi.StringPtrInput
 	// The region of the request.
 	RegionId pulumi.StringPtrInput
+	// The slave zone ID of the CLB.
+	SlaveZoneId pulumi.StringPtrInput
 	// The id of the Subnet.
 	SubnetId pulumi.StringPtrInput
+	// Tags.
+	Tags ClbTagArrayInput
 	// The type of the CLB. And optional choice contains `public` or `private`.
 	Type pulumi.StringPtrInput
 	// The id of the VPC.
@@ -172,20 +198,28 @@ type clbArgs struct {
 	Description *string `pulumi:"description"`
 	// The eni address of the CLB.
 	EniAddress *string `pulumi:"eniAddress"`
-	// The billing type of the CLB.
+	// The billing type of the CLB, the value can be `PostPaid`.
 	LoadBalancerBillingType *string `pulumi:"loadBalancerBillingType"`
 	// The name of the CLB.
 	LoadBalancerName *string `pulumi:"loadBalancerName"`
-	// The specification of the CLB.
+	// The specification of the CLB, the value can be `small1`, `small2`, `medium1`, `medium2`, `large1`, `large2`.
 	LoadBalancerSpec string `pulumi:"loadBalancerSpec"`
+	// The master zone ID of the CLB.
+	MasterZoneId *string `pulumi:"masterZoneId"`
 	// The reason of the console modification protection.
 	ModificationProtectionReason *string `pulumi:"modificationProtectionReason"`
-	// The status of the console modification protection.
+	// The status of the console modification protection, the value can be `NonProtection` or `ConsoleProtection`.
 	ModificationProtectionStatus *string `pulumi:"modificationProtectionStatus"`
+	// The ProjectName of the CLB.
+	ProjectName *string `pulumi:"projectName"`
 	// The region of the request.
-	RegionId string `pulumi:"regionId"`
+	RegionId *string `pulumi:"regionId"`
+	// The slave zone ID of the CLB.
+	SlaveZoneId *string `pulumi:"slaveZoneId"`
 	// The id of the Subnet.
 	SubnetId string `pulumi:"subnetId"`
+	// Tags.
+	Tags []ClbTag `pulumi:"tags"`
 	// The type of the CLB. And optional choice contains `public` or `private`.
 	Type string `pulumi:"type"`
 	// The id of the VPC.
@@ -198,20 +232,28 @@ type ClbArgs struct {
 	Description pulumi.StringPtrInput
 	// The eni address of the CLB.
 	EniAddress pulumi.StringPtrInput
-	// The billing type of the CLB.
+	// The billing type of the CLB, the value can be `PostPaid`.
 	LoadBalancerBillingType pulumi.StringPtrInput
 	// The name of the CLB.
 	LoadBalancerName pulumi.StringPtrInput
-	// The specification of the CLB.
+	// The specification of the CLB, the value can be `small1`, `small2`, `medium1`, `medium2`, `large1`, `large2`.
 	LoadBalancerSpec pulumi.StringInput
+	// The master zone ID of the CLB.
+	MasterZoneId pulumi.StringPtrInput
 	// The reason of the console modification protection.
 	ModificationProtectionReason pulumi.StringPtrInput
-	// The status of the console modification protection.
+	// The status of the console modification protection, the value can be `NonProtection` or `ConsoleProtection`.
 	ModificationProtectionStatus pulumi.StringPtrInput
+	// The ProjectName of the CLB.
+	ProjectName pulumi.StringPtrInput
 	// The region of the request.
-	RegionId pulumi.StringInput
+	RegionId pulumi.StringPtrInput
+	// The slave zone ID of the CLB.
+	SlaveZoneId pulumi.StringPtrInput
 	// The id of the Subnet.
 	SubnetId pulumi.StringInput
+	// Tags.
+	Tags ClbTagArrayInput
 	// The type of the CLB. And optional choice contains `public` or `private`.
 	Type pulumi.StringInput
 	// The id of the VPC.
@@ -244,7 +286,7 @@ func (i *Clb) ToClbOutputWithContext(ctx context.Context) ClbOutput {
 // ClbArrayInput is an input type that accepts ClbArray and ClbArrayOutput values.
 // You can construct a concrete instance of `ClbArrayInput` via:
 //
-//          ClbArray{ ClbArgs{...} }
+//	ClbArray{ ClbArgs{...} }
 type ClbArrayInput interface {
 	pulumi.Input
 
@@ -269,7 +311,7 @@ func (i ClbArray) ToClbArrayOutputWithContext(ctx context.Context) ClbArrayOutpu
 // ClbMapInput is an input type that accepts ClbMap and ClbMapOutput values.
 // You can construct a concrete instance of `ClbMapInput` via:
 //
-//          ClbMap{ "key": ClbArgs{...} }
+//	ClbMap{ "key": ClbArgs{...} }
 type ClbMapInput interface {
 	pulumi.Input
 
@@ -315,7 +357,7 @@ func (o ClbOutput) EniAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v *Clb) pulumi.StringOutput { return v.EniAddress }).(pulumi.StringOutput)
 }
 
-// The billing type of the CLB.
+// The billing type of the CLB, the value can be `PostPaid`.
 func (o ClbOutput) LoadBalancerBillingType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Clb) pulumi.StringOutput { return v.LoadBalancerBillingType }).(pulumi.StringOutput)
 }
@@ -325,9 +367,14 @@ func (o ClbOutput) LoadBalancerName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Clb) pulumi.StringOutput { return v.LoadBalancerName }).(pulumi.StringOutput)
 }
 
-// The specification of the CLB.
+// The specification of the CLB, the value can be `small1`, `small2`, `medium1`, `medium2`, `large1`, `large2`.
 func (o ClbOutput) LoadBalancerSpec() pulumi.StringOutput {
 	return o.ApplyT(func(v *Clb) pulumi.StringOutput { return v.LoadBalancerSpec }).(pulumi.StringOutput)
+}
+
+// The master zone ID of the CLB.
+func (o ClbOutput) MasterZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Clb) pulumi.StringOutput { return v.MasterZoneId }).(pulumi.StringOutput)
 }
 
 // The reason of the console modification protection.
@@ -335,9 +382,14 @@ func (o ClbOutput) ModificationProtectionReason() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Clb) pulumi.StringPtrOutput { return v.ModificationProtectionReason }).(pulumi.StringPtrOutput)
 }
 
-// The status of the console modification protection.
+// The status of the console modification protection, the value can be `NonProtection` or `ConsoleProtection`.
 func (o ClbOutput) ModificationProtectionStatus() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Clb) pulumi.StringPtrOutput { return v.ModificationProtectionStatus }).(pulumi.StringPtrOutput)
+}
+
+// The ProjectName of the CLB.
+func (o ClbOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Clb) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
 }
 
 // The region of the request.
@@ -345,9 +397,19 @@ func (o ClbOutput) RegionId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Clb) pulumi.StringOutput { return v.RegionId }).(pulumi.StringOutput)
 }
 
+// The slave zone ID of the CLB.
+func (o ClbOutput) SlaveZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Clb) pulumi.StringOutput { return v.SlaveZoneId }).(pulumi.StringOutput)
+}
+
 // The id of the Subnet.
 func (o ClbOutput) SubnetId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Clb) pulumi.StringOutput { return v.SubnetId }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o ClbOutput) Tags() ClbTagArrayOutput {
+	return o.ApplyT(func(v *Clb) ClbTagArrayOutput { return v.Tags }).(ClbTagArrayOutput)
 }
 
 // The type of the CLB. And optional choice contains `public` or `private`.

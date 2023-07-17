@@ -18,7 +18,7 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// </summary>
         public readonly string Size;
         /// <summary>
-        /// The Type of SystemVolume.
+        /// The Type of Tags.
         /// </summary>
         public readonly string Type;
 

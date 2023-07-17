@@ -17,41 +17,44 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Vke"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/vke"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Vke.Nodes(ctx, &vke.NodesArgs{
-// 			ClusterIds: []string{
-// 				"c123",
-// 				"c456",
-// 			},
-// 			Ids: []string{
-// 				"ncaa3e5mrsferqkomi190",
-// 			},
-// 			Statuses: []vke.NodesStatus{
-// 				vke.NodesStatus{
-// 					ConditionsType: pulumi.StringRef("Progressing"),
-// 					Phase:          pulumi.StringRef("Creating"),
-// 				},
-// 				vke.NodesStatus{
-// 					ConditionsType: pulumi.StringRef("Progressing123"),
-// 					Phase:          pulumi.StringRef("Creating123"),
-// 				},
-// 			},
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vke.Nodes(ctx, &vke.NodesArgs{
+//				ClusterIds: []string{
+//					"c123",
+//					"c456",
+//				},
+//				Ids: []string{
+//					"ncaa3e5mrsferqkomi190",
+//				},
+//				Statuses: []vke.NodesStatus{
+//					vke.NodesStatus{
+//						ConditionsType: pulumi.StringRef("Progressing"),
+//						Phase:          pulumi.StringRef("Creating"),
+//					},
+//					vke.NodesStatus{
+//						ConditionsType: pulumi.StringRef("Progressing123"),
+//						Phase:          pulumi.StringRef("Creating123"),
+//					},
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func Nodes(ctx *pulumi.Context, args *NodesArgs, opts ...pulumi.InvokeOption) (*NodesResult, error) {
 	var rv NodesResult
-	err := ctx.Invoke("volcengine:Vke/nodes:Nodes", args, &rv, opts...)
+	err := ctx.Invoke("volcengine:vke/nodes:Nodes", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -76,6 +79,8 @@ type NodesArgs struct {
 	OutputFile *string `pulumi:"outputFile"`
 	// The Status of filter.
 	Statuses []NodesStatus `pulumi:"statuses"`
+	// The Zone IDs.
+	ZoneIds []string `pulumi:"zoneIds"`
 }
 
 // A collection of values returned by Nodes.
@@ -95,7 +100,8 @@ type NodesResult struct {
 	OutputFile *string       `pulumi:"outputFile"`
 	Statuses   []NodesStatus `pulumi:"statuses"`
 	// The total count of Node query.
-	TotalCount int `pulumi:"totalCount"`
+	TotalCount int      `pulumi:"totalCount"`
+	ZoneIds    []string `pulumi:"zoneIds"`
 }
 
 func NodesOutput(ctx *pulumi.Context, args NodesOutputArgs, opts ...pulumi.InvokeOption) NodesResultOutput {
@@ -129,6 +135,8 @@ type NodesOutputArgs struct {
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
 	// The Status of filter.
 	Statuses NodesStatusArrayInput `pulumi:"statuses"`
+	// The Zone IDs.
+	ZoneIds pulumi.StringArrayInput `pulumi:"zoneIds"`
 }
 
 func (NodesOutputArgs) ElementType() reflect.Type {
@@ -197,6 +205,10 @@ func (o NodesResultOutput) Statuses() NodesStatusArrayOutput {
 // The total count of Node query.
 func (o NodesResultOutput) TotalCount() pulumi.IntOutput {
 	return o.ApplyT(func(v NodesResult) int { return v.TotalCount }).(pulumi.IntOutput)
+}
+
+func (o NodesResultOutput) ZoneIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NodesResult) []string { return v.ZoneIds }).(pulumi.StringArrayOutput)
 }
 
 func init() {

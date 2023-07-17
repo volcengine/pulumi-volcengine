@@ -2,22 +2,23 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
- * Provides a resource to manage nat gateway
  * ## Example Usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = new volcengine.Nat.Gateway("foo", {
+ * const foo = new volcengine.nat.Gateway("foo", {
  *     description: "This nat gateway auto-created by terraform. ",
  *     natGatewayName: "tf-auto-demo-1",
+ *     projectName: "default",
  *     spec: "Medium",
- *     subnetId: "subnet-2740cym8mv9q87fap8u3hfx4i",
- *     vpcId: "vpc-2740cxyk9im0w7fap8u013dfe",
+ *     subnetId: "subnet-im67x70vxla88gbssz1hy1z2",
+ *     vpcId: "vpc-im67wjcikxkw8gbssx8ufpj8",
  * });
  * ```
  *
@@ -26,7 +27,7 @@ import * as utilities from "../utilities";
  * NatGateway can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:Nat/gateway:Gateway default ngw-vv3t043k05sm****
+ *  $ pulumi import volcengine:nat/gateway:Gateway default ngw-vv3t043k05sm****
  * ```
  */
 export class Gateway extends pulumi.CustomResource {
@@ -44,7 +45,7 @@ export class Gateway extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'volcengine:Nat/gateway:Gateway';
+    public static readonly __pulumiType = 'volcengine:nat/gateway:Gateway';
 
     /**
      * Returns true if the given object is an instance of Gateway.  This is designed to work even
@@ -58,7 +59,7 @@ export class Gateway extends pulumi.CustomResource {
     }
 
     /**
-     * The billing type of the NatGateway.
+     * The billing type of the NatGateway, the value is `PostPaid`.
      */
     public readonly billingType!: pulumi.Output<string | undefined>;
     /**
@@ -70,6 +71,10 @@ export class Gateway extends pulumi.CustomResource {
      */
     public readonly natGatewayName!: pulumi.Output<string | undefined>;
     /**
+     * The ProjectName of the NatGateway.
+     */
+    public readonly projectName!: pulumi.Output<string | undefined>;
+    /**
      * The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
      */
     public readonly spec!: pulumi.Output<string | undefined>;
@@ -77,6 +82,10 @@ export class Gateway extends pulumi.CustomResource {
      * The ID of the Subnet.
      */
     public readonly subnetId!: pulumi.Output<string>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.nat.GatewayTag[] | undefined>;
     /**
      * The ID of the VPC.
      */
@@ -98,8 +107,10 @@ export class Gateway extends pulumi.CustomResource {
             resourceInputs["billingType"] = state ? state.billingType : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["natGatewayName"] = state ? state.natGatewayName : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["spec"] = state ? state.spec : undefined;
             resourceInputs["subnetId"] = state ? state.subnetId : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["vpcId"] = state ? state.vpcId : undefined;
         } else {
             const args = argsOrState as GatewayArgs | undefined;
@@ -112,8 +123,10 @@ export class Gateway extends pulumi.CustomResource {
             resourceInputs["billingType"] = args ? args.billingType : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["natGatewayName"] = args ? args.natGatewayName : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["spec"] = args ? args.spec : undefined;
             resourceInputs["subnetId"] = args ? args.subnetId : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["vpcId"] = args ? args.vpcId : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -126,7 +139,7 @@ export class Gateway extends pulumi.CustomResource {
  */
 export interface GatewayState {
     /**
-     * The billing type of the NatGateway.
+     * The billing type of the NatGateway, the value is `PostPaid`.
      */
     billingType?: pulumi.Input<string>;
     /**
@@ -138,6 +151,10 @@ export interface GatewayState {
      */
     natGatewayName?: pulumi.Input<string>;
     /**
+     * The ProjectName of the NatGateway.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
      */
     spec?: pulumi.Input<string>;
@@ -145,6 +162,10 @@ export interface GatewayState {
      * The ID of the Subnet.
      */
     subnetId?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.nat.GatewayTag>[]>;
     /**
      * The ID of the VPC.
      */
@@ -156,7 +177,7 @@ export interface GatewayState {
  */
 export interface GatewayArgs {
     /**
-     * The billing type of the NatGateway.
+     * The billing type of the NatGateway, the value is `PostPaid`.
      */
     billingType?: pulumi.Input<string>;
     /**
@@ -168,6 +189,10 @@ export interface GatewayArgs {
      */
     natGatewayName?: pulumi.Input<string>;
     /**
+     * The ProjectName of the NatGateway.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
      */
     spec?: pulumi.Input<string>;
@@ -175,6 +200,10 @@ export interface GatewayArgs {
      * The ID of the Subnet.
      */
     subnetId: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.nat.GatewayTag>[]>;
     /**
      * The ID of the VPC.
      */

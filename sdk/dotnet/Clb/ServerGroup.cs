@@ -37,10 +37,10 @@ namespace Pulumi.Volcengine.Clb
     /// ServerGroup can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:Clb/serverGroup:ServerGroup default rsp-273yv0kir1vk07fap8tt9jtwg
+    ///  $ pulumi import volcengine:clb/serverGroup:ServerGroup default rsp-273yv0kir1vk07fap8tt9jtwg
     /// ```
     /// </summary>
-    [VolcengineResourceType("volcengine:Clb/serverGroup:ServerGroup")]
+    [VolcengineResourceType("volcengine:clb/serverGroup:ServerGroup")]
     public partial class ServerGroup : Pulumi.CustomResource
     {
         /// <summary>
@@ -76,12 +76,12 @@ namespace Pulumi.Volcengine.Clb
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public ServerGroup(string name, ServerGroupArgs args, CustomResourceOptions? options = null)
-            : base("volcengine:Clb/serverGroup:ServerGroup", name, args ?? new ServerGroupArgs(), MakeResourceOptions(options, ""))
+            : base("volcengine:clb/serverGroup:ServerGroup", name, args ?? new ServerGroupArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private ServerGroup(string name, Input<string> id, ServerGroupState? state = null, CustomResourceOptions? options = null)
-            : base("volcengine:Clb/serverGroup:ServerGroup", name, state, MakeResourceOptions(options, id))
+            : base("volcengine:clb/serverGroup:ServerGroup", name, state, MakeResourceOptions(options, id))
         {
         }
 

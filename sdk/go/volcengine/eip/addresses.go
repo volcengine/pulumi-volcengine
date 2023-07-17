@@ -17,27 +17,30 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Eip"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/eip"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Eip.Addresses(ctx, &eip.AddressesArgs{
-// 			Ids: []string{
-// 				"eip-2748mbpjqzhfk7fap8teu0k1a",
-// 			},
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := eip.Addresses(ctx, &eip.AddressesArgs{
+//				Ids: []string{
+//					"eip-2748mbpjqzhfk7fap8teu0k1a",
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func Addresses(ctx *pulumi.Context, args *AddressesArgs, opts ...pulumi.InvokeOption) (*AddressesResult, error) {
 	var rv AddressesResult
-	err := ctx.Invoke("volcengine:Eip/addresses:Addresses", args, &rv, opts...)
+	err := ctx.Invoke("volcengine:eip/addresses:Addresses", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -48,20 +51,24 @@ func Addresses(ctx *pulumi.Context, args *AddressesArgs, opts ...pulumi.InvokeOp
 type AddressesArgs struct {
 	// An id of associated instance.
 	AssociatedInstanceId *string `pulumi:"associatedInstanceId"`
-	// A type of associated instance.
+	// A type of associated instance, the value can be `Nat`, `NetworkInterface`, `ClbInstance` or `EcsInstance`.
 	AssociatedInstanceType *string `pulumi:"associatedInstanceType"`
 	// A list of EIP ip address that you want to query.
 	EipAddresses []string `pulumi:"eipAddresses"`
 	// A list of EIP allocation ids.
 	Ids []string `pulumi:"ids"`
-	// An ISP of EIP Address.
+	// An ISP of EIP Address, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
 	Isp *string `pulumi:"isp"`
 	// A name of EIP.
 	Name *string `pulumi:"name"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
-	// A status of EIP.
+	// The ProjectName of EIP.
+	ProjectName *string `pulumi:"projectName"`
+	// A status of EIP, the value can be `Attaching` or `Detaching` or `Attached` or `Available`.
 	Status *string `pulumi:"status"`
+	// Tags.
+	Tags []AddressesTag `pulumi:"tags"`
 }
 
 // A collection of values returned by Addresses.
@@ -79,8 +86,12 @@ type AddressesResult struct {
 	// The name of the EIP.
 	Name       *string `pulumi:"name"`
 	OutputFile *string `pulumi:"outputFile"`
+	// The ProjectName of the EIP.
+	ProjectName *string `pulumi:"projectName"`
 	// The status of the EIP.
 	Status *string `pulumi:"status"`
+	// Tags.
+	Tags []AddressesTag `pulumi:"tags"`
 	// The total count of EIP addresses query.
 	TotalCount int `pulumi:"totalCount"`
 }
@@ -102,20 +113,24 @@ func AddressesOutput(ctx *pulumi.Context, args AddressesOutputArgs, opts ...pulu
 type AddressesOutputArgs struct {
 	// An id of associated instance.
 	AssociatedInstanceId pulumi.StringPtrInput `pulumi:"associatedInstanceId"`
-	// A type of associated instance.
+	// A type of associated instance, the value can be `Nat`, `NetworkInterface`, `ClbInstance` or `EcsInstance`.
 	AssociatedInstanceType pulumi.StringPtrInput `pulumi:"associatedInstanceType"`
 	// A list of EIP ip address that you want to query.
 	EipAddresses pulumi.StringArrayInput `pulumi:"eipAddresses"`
 	// A list of EIP allocation ids.
 	Ids pulumi.StringArrayInput `pulumi:"ids"`
-	// An ISP of EIP Address.
+	// An ISP of EIP Address, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
 	Isp pulumi.StringPtrInput `pulumi:"isp"`
 	// A name of EIP.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
-	// A status of EIP.
+	// The ProjectName of EIP.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
+	// A status of EIP, the value can be `Attaching` or `Detaching` or `Attached` or `Available`.
 	Status pulumi.StringPtrInput `pulumi:"status"`
+	// Tags.
+	Tags AddressesTagArrayInput `pulumi:"tags"`
 }
 
 func (AddressesOutputArgs) ElementType() reflect.Type {
@@ -177,9 +192,19 @@ func (o AddressesResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AddressesResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
 }
 
+// The ProjectName of the EIP.
+func (o AddressesResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AddressesResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
 // The status of the EIP.
 func (o AddressesResultOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AddressesResult) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o AddressesResultOutput) Tags() AddressesTagArrayOutput {
+	return o.ApplyT(func(v AddressesResult) []AddressesTag { return v.Tags }).(AddressesTagArrayOutput)
 }
 
 // The total count of EIP addresses query.

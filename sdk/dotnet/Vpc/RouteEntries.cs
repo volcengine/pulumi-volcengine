@@ -38,7 +38,7 @@ namespace Pulumi.Volcengine.Vpc
         /// {{% /examples %}}
         /// </summary>
         public static Task<RouteEntriesResult> InvokeAsync(RouteEntriesArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<RouteEntriesResult>("volcengine:Vpc/routeEntries:RouteEntries", args ?? new RouteEntriesArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.InvokeAsync<RouteEntriesResult>("volcengine:vpc/routeEntries:RouteEntries", args ?? new RouteEntriesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of route entries
@@ -67,7 +67,7 @@ namespace Pulumi.Volcengine.Vpc
         /// {{% /examples %}}
         /// </summary>
         public static Output<RouteEntriesResult> Invoke(RouteEntriesInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<RouteEntriesResult>("volcengine:Vpc/routeEntries:RouteEntries", args ?? new RouteEntriesInvokeArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.Invoke<RouteEntriesResult>("volcengine:vpc/routeEntries:RouteEntries", args ?? new RouteEntriesInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -98,7 +98,7 @@ namespace Pulumi.Volcengine.Vpc
         public string? NextHopId { get; set; }
 
         /// <summary>
-        /// A type of next hop.
+        /// A type of next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`.
         /// </summary>
         [Input("nextHopType")]
         public string? NextHopType { get; set; }
@@ -159,7 +159,7 @@ namespace Pulumi.Volcengine.Vpc
         public Input<string>? NextHopId { get; set; }
 
         /// <summary>
-        /// A type of next hop.
+        /// A type of next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`.
         /// </summary>
         [Input("nextHopType")]
         public Input<string>? NextHopType { get; set; }

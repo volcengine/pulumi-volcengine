@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultAddresses = pulumi.output(volcengine.Eip.Addresses({
+ * const defaultAddresses = pulumi.output(volcengine.eip.Addresses({
  *     ids: ["eip-2748mbpjqzhfk7fap8teu0k1a"],
  * }));
  * ```
@@ -25,7 +25,7 @@ export function addresses(args?: AddressesArgs, opts?: pulumi.InvokeOptions): Pr
     }
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-    return pulumi.runtime.invoke("volcengine:Eip/addresses:Addresses", {
+    return pulumi.runtime.invoke("volcengine:eip/addresses:Addresses", {
         "associatedInstanceId": args.associatedInstanceId,
         "associatedInstanceType": args.associatedInstanceType,
         "eipAddresses": args.eipAddresses,
@@ -33,7 +33,9 @@ export function addresses(args?: AddressesArgs, opts?: pulumi.InvokeOptions): Pr
         "isp": args.isp,
         "name": args.name,
         "outputFile": args.outputFile,
+        "projectName": args.projectName,
         "status": args.status,
+        "tags": args.tags,
     }, opts);
 }
 
@@ -46,7 +48,7 @@ export interface AddressesArgs {
      */
     associatedInstanceId?: string;
     /**
-     * A type of associated instance.
+     * A type of associated instance, the value can be `Nat`, `NetworkInterface`, `ClbInstance` or `EcsInstance`.
      */
     associatedInstanceType?: string;
     /**
@@ -58,7 +60,7 @@ export interface AddressesArgs {
      */
     ids?: string[];
     /**
-     * An ISP of EIP Address.
+     * An ISP of EIP Address, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
      */
     isp?: string;
     /**
@@ -70,9 +72,17 @@ export interface AddressesArgs {
      */
     outputFile?: string;
     /**
-     * A status of EIP.
+     * The ProjectName of EIP.
+     */
+    projectName?: string;
+    /**
+     * A status of EIP, the value can be `Attaching` or `Detaching` or `Attached` or `Available`.
      */
     status?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.eip.AddressesTag[];
 }
 
 /**
@@ -82,7 +92,7 @@ export interface AddressesResult {
     /**
      * The collection of EIP addresses.
      */
-    readonly addresses: outputs.Eip.AddressesAddress[];
+    readonly addresses: outputs.eip.AddressesAddress[];
     readonly associatedInstanceId?: string;
     readonly associatedInstanceType?: string;
     readonly eipAddresses?: string[];
@@ -101,9 +111,17 @@ export interface AddressesResult {
     readonly name?: string;
     readonly outputFile?: string;
     /**
+     * The ProjectName of the EIP.
+     */
+    readonly projectName?: string;
+    /**
      * The status of the EIP.
      */
     readonly status?: string;
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.eip.AddressesTag[];
     /**
      * The total count of EIP addresses query.
      */
@@ -123,7 +141,7 @@ export interface AddressesOutputArgs {
      */
     associatedInstanceId?: pulumi.Input<string>;
     /**
-     * A type of associated instance.
+     * A type of associated instance, the value can be `Nat`, `NetworkInterface`, `ClbInstance` or `EcsInstance`.
      */
     associatedInstanceType?: pulumi.Input<string>;
     /**
@@ -135,7 +153,7 @@ export interface AddressesOutputArgs {
      */
     ids?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * An ISP of EIP Address.
+     * An ISP of EIP Address, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
      */
     isp?: pulumi.Input<string>;
     /**
@@ -147,7 +165,15 @@ export interface AddressesOutputArgs {
      */
     outputFile?: pulumi.Input<string>;
     /**
-     * A status of EIP.
+     * The ProjectName of EIP.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * A status of EIP, the value can be `Attaching` or `Detaching` or `Attached` or `Available`.
      */
     status?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.eip.AddressesTagArgs>[]>;
 }

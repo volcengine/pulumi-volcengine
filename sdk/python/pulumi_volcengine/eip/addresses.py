@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'AddressesResult',
@@ -21,7 +22,7 @@ class AddressesResult:
     """
     A collection of values returned by Addresses.
     """
-    def __init__(__self__, addresses=None, associated_instance_id=None, associated_instance_type=None, eip_addresses=None, id=None, ids=None, isp=None, name=None, output_file=None, status=None, total_count=None):
+    def __init__(__self__, addresses=None, associated_instance_id=None, associated_instance_type=None, eip_addresses=None, id=None, ids=None, isp=None, name=None, output_file=None, project_name=None, status=None, tags=None, total_count=None):
         if addresses and not isinstance(addresses, list):
             raise TypeError("Expected argument 'addresses' to be a list")
         pulumi.set(__self__, "addresses", addresses)
@@ -49,9 +50,15 @@ class AddressesResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if project_name and not isinstance(project_name, str):
+            raise TypeError("Expected argument 'project_name' to be a str")
+        pulumi.set(__self__, "project_name", project_name)
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -114,12 +121,28 @@ class AddressesResult:
         return pulumi.get(self, "output_file")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[str]:
+        """
+        The ProjectName of the EIP.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter
     def status(self) -> Optional[str]:
         """
         The status of the EIP.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.AddressesTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="totalCount")
@@ -145,7 +168,9 @@ class AwaitableAddressesResult(AddressesResult):
             isp=self.isp,
             name=self.name,
             output_file=self.output_file,
+            project_name=self.project_name,
             status=self.status,
+            tags=self.tags,
             total_count=self.total_count)
 
 
@@ -156,7 +181,9 @@ def addresses(associated_instance_id: Optional[str] = None,
               isp: Optional[str] = None,
               name: Optional[str] = None,
               output_file: Optional[str] = None,
+              project_name: Optional[str] = None,
               status: Optional[str] = None,
+              tags: Optional[Sequence[pulumi.InputType['AddressesTagArgs']]] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableAddressesResult:
     """
     Use this data source to query detailed information of eip addresses
@@ -166,18 +193,20 @@ def addresses(associated_instance_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.Eip.addresses(ids=["eip-2748mbpjqzhfk7fap8teu0k1a"])
+    default = volcengine.eip.addresses(ids=["eip-2748mbpjqzhfk7fap8teu0k1a"])
     ```
 
 
     :param str associated_instance_id: An id of associated instance.
-    :param str associated_instance_type: A type of associated instance.
+    :param str associated_instance_type: A type of associated instance, the value can be `Nat`, `NetworkInterface`, `ClbInstance` or `EcsInstance`.
     :param Sequence[str] eip_addresses: A list of EIP ip address that you want to query.
     :param Sequence[str] ids: A list of EIP allocation ids.
-    :param str isp: An ISP of EIP Address.
+    :param str isp: An ISP of EIP Address, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
     :param str name: A name of EIP.
     :param str output_file: File name where to save data source results.
-    :param str status: A status of EIP.
+    :param str project_name: The ProjectName of EIP.
+    :param str status: A status of EIP, the value can be `Attaching` or `Detaching` or `Attached` or `Available`.
+    :param Sequence[pulumi.InputType['AddressesTagArgs']] tags: Tags.
     """
     __args__ = dict()
     __args__['associatedInstanceId'] = associated_instance_id
@@ -187,12 +216,14 @@ def addresses(associated_instance_id: Optional[str] = None,
     __args__['isp'] = isp
     __args__['name'] = name
     __args__['outputFile'] = output_file
+    __args__['projectName'] = project_name
     __args__['status'] = status
+    __args__['tags'] = tags
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('volcengine:Eip/addresses:Addresses', __args__, opts=opts, typ=AddressesResult).value
+    __ret__ = pulumi.runtime.invoke('volcengine:eip/addresses:Addresses', __args__, opts=opts, typ=AddressesResult).value
 
     return AwaitableAddressesResult(
         addresses=__ret__.addresses,
@@ -204,7 +235,9 @@ def addresses(associated_instance_id: Optional[str] = None,
         isp=__ret__.isp,
         name=__ret__.name,
         output_file=__ret__.output_file,
+        project_name=__ret__.project_name,
         status=__ret__.status,
+        tags=__ret__.tags,
         total_count=__ret__.total_count)
 
 
@@ -216,7 +249,9 @@ def addresses_output(associated_instance_id: Optional[pulumi.Input[Optional[str]
                      isp: Optional[pulumi.Input[Optional[str]]] = None,
                      name: Optional[pulumi.Input[Optional[str]]] = None,
                      output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                     project_name: Optional[pulumi.Input[Optional[str]]] = None,
                      status: Optional[pulumi.Input[Optional[str]]] = None,
+                     tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['AddressesTagArgs']]]]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[AddressesResult]:
     """
     Use this data source to query detailed information of eip addresses
@@ -226,17 +261,19 @@ def addresses_output(associated_instance_id: Optional[pulumi.Input[Optional[str]
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.Eip.addresses(ids=["eip-2748mbpjqzhfk7fap8teu0k1a"])
+    default = volcengine.eip.addresses(ids=["eip-2748mbpjqzhfk7fap8teu0k1a"])
     ```
 
 
     :param str associated_instance_id: An id of associated instance.
-    :param str associated_instance_type: A type of associated instance.
+    :param str associated_instance_type: A type of associated instance, the value can be `Nat`, `NetworkInterface`, `ClbInstance` or `EcsInstance`.
     :param Sequence[str] eip_addresses: A list of EIP ip address that you want to query.
     :param Sequence[str] ids: A list of EIP allocation ids.
-    :param str isp: An ISP of EIP Address.
+    :param str isp: An ISP of EIP Address, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
     :param str name: A name of EIP.
     :param str output_file: File name where to save data source results.
-    :param str status: A status of EIP.
+    :param str project_name: The ProjectName of EIP.
+    :param str status: A status of EIP, the value can be `Attaching` or `Detaching` or `Attached` or `Available`.
+    :param Sequence[pulumi.InputType['AddressesTagArgs']] tags: Tags.
     """
     ...

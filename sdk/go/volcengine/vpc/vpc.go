@@ -18,26 +18,30 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Vpc"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/vpc"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Vpc.NewVpc(ctx, "foo", &Vpc.VpcArgs{
-// 			CidrBlock: pulumi.String("172.16.0.0/16"),
-// 			DnsServers: pulumi.StringArray{
-// 				pulumi.String("8.8.8.8"),
-// 				pulumi.String("114.114.114.114"),
-// 			},
-// 			VpcName: pulumi.String("tf-test-2"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vpc.NewVpc(ctx, "foo", &vpc.VpcArgs{
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//				DnsServers: pulumi.StringArray{
+//					pulumi.String("8.8.8.8"),
+//					pulumi.String("114.114.114.114"),
+//				},
+//				ProjectName: pulumi.String("AS_test"),
+//				VpcName:     pulumi.String("tf-project-1"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -45,7 +49,9 @@ import (
 // VPC can be imported using the id, e.g.
 //
 // ```sh
-//  $ pulumi import volcengine:Vpc/vpc:Vpc default vpc-mizl7m1kqccg5smt1bdpijuj
+//
+//	$ pulumi import volcengine:vpc/vpc:Vpc default vpc-mizl7m1kqccg5smt1bdpijuj
+//
 // ```
 type Vpc struct {
 	pulumi.CustomResourceState
@@ -64,8 +70,14 @@ type Vpc struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The DNS server list of the VPC. And you can specify 0 to 5 servers to this list.
 	DnsServers pulumi.StringArrayOutput `pulumi:"dnsServers"`
+	// Specifies whether to enable the IPv6 CIDR block of the VPC.
+	EnableIpv6 pulumi.BoolOutput `pulumi:"enableIpv6"`
+	// The IPv6 CIDR block of the VPC.
+	Ipv6CidrBlock pulumi.StringOutput `pulumi:"ipv6CidrBlock"`
 	// The nat gateway ID list of VPC.
 	NatGatewayIds pulumi.StringArrayOutput `pulumi:"natGatewayIds"`
+	// The ProjectName of the VPC.
+	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
 	// The route table ID list of VPC.
 	RouteTableIds pulumi.StringArrayOutput `pulumi:"routeTableIds"`
 	// The security group ID list of VPC.
@@ -74,6 +86,8 @@ type Vpc struct {
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The subnet ID list of VPC.
 	SubnetIds pulumi.StringArrayOutput `pulumi:"subnetIds"`
+	// Tags.
+	Tags VpcTagArrayOutput `pulumi:"tags"`
 	// The update time of VPC.
 	UpdateTime pulumi.StringOutput `pulumi:"updateTime"`
 	// The ID of VPC.
@@ -93,7 +107,7 @@ func NewVpc(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'CidrBlock'")
 	}
 	var resource Vpc
-	err := ctx.RegisterResource("volcengine:Vpc/vpc:Vpc", name, args, &resource, opts...)
+	err := ctx.RegisterResource("volcengine:vpc/vpc:Vpc", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -105,7 +119,7 @@ func NewVpc(ctx *pulumi.Context,
 func GetVpc(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *VpcState, opts ...pulumi.ResourceOption) (*Vpc, error) {
 	var resource Vpc
-	err := ctx.ReadResource("volcengine:Vpc/vpc:Vpc", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("volcengine:vpc/vpc:Vpc", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -128,8 +142,14 @@ type vpcState struct {
 	Description *string `pulumi:"description"`
 	// The DNS server list of the VPC. And you can specify 0 to 5 servers to this list.
 	DnsServers []string `pulumi:"dnsServers"`
+	// Specifies whether to enable the IPv6 CIDR block of the VPC.
+	EnableIpv6 *bool `pulumi:"enableIpv6"`
+	// The IPv6 CIDR block of the VPC.
+	Ipv6CidrBlock *string `pulumi:"ipv6CidrBlock"`
 	// The nat gateway ID list of VPC.
 	NatGatewayIds []string `pulumi:"natGatewayIds"`
+	// The ProjectName of the VPC.
+	ProjectName *string `pulumi:"projectName"`
 	// The route table ID list of VPC.
 	RouteTableIds []string `pulumi:"routeTableIds"`
 	// The security group ID list of VPC.
@@ -138,6 +158,8 @@ type vpcState struct {
 	Status *string `pulumi:"status"`
 	// The subnet ID list of VPC.
 	SubnetIds []string `pulumi:"subnetIds"`
+	// Tags.
+	Tags []VpcTag `pulumi:"tags"`
 	// The update time of VPC.
 	UpdateTime *string `pulumi:"updateTime"`
 	// The ID of VPC.
@@ -161,8 +183,14 @@ type VpcState struct {
 	Description pulumi.StringPtrInput
 	// The DNS server list of the VPC. And you can specify 0 to 5 servers to this list.
 	DnsServers pulumi.StringArrayInput
+	// Specifies whether to enable the IPv6 CIDR block of the VPC.
+	EnableIpv6 pulumi.BoolPtrInput
+	// The IPv6 CIDR block of the VPC.
+	Ipv6CidrBlock pulumi.StringPtrInput
 	// The nat gateway ID list of VPC.
 	NatGatewayIds pulumi.StringArrayInput
+	// The ProjectName of the VPC.
+	ProjectName pulumi.StringPtrInput
 	// The route table ID list of VPC.
 	RouteTableIds pulumi.StringArrayInput
 	// The security group ID list of VPC.
@@ -171,6 +199,8 @@ type VpcState struct {
 	Status pulumi.StringPtrInput
 	// The subnet ID list of VPC.
 	SubnetIds pulumi.StringArrayInput
+	// Tags.
+	Tags VpcTagArrayInput
 	// The update time of VPC.
 	UpdateTime pulumi.StringPtrInput
 	// The ID of VPC.
@@ -190,6 +220,14 @@ type vpcArgs struct {
 	Description *string `pulumi:"description"`
 	// The DNS server list of the VPC. And you can specify 0 to 5 servers to this list.
 	DnsServers []string `pulumi:"dnsServers"`
+	// Specifies whether to enable the IPv6 CIDR block of the VPC.
+	EnableIpv6 *bool `pulumi:"enableIpv6"`
+	// The IPv6 CIDR block of the VPC.
+	Ipv6CidrBlock *string `pulumi:"ipv6CidrBlock"`
+	// The ProjectName of the VPC.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []VpcTag `pulumi:"tags"`
 	// The name of the VPC.
 	VpcName *string `pulumi:"vpcName"`
 }
@@ -202,6 +240,14 @@ type VpcArgs struct {
 	Description pulumi.StringPtrInput
 	// The DNS server list of the VPC. And you can specify 0 to 5 servers to this list.
 	DnsServers pulumi.StringArrayInput
+	// Specifies whether to enable the IPv6 CIDR block of the VPC.
+	EnableIpv6 pulumi.BoolPtrInput
+	// The IPv6 CIDR block of the VPC.
+	Ipv6CidrBlock pulumi.StringPtrInput
+	// The ProjectName of the VPC.
+	ProjectName pulumi.StringPtrInput
+	// Tags.
+	Tags VpcTagArrayInput
 	// The name of the VPC.
 	VpcName pulumi.StringPtrInput
 }
@@ -232,7 +278,7 @@ func (i *Vpc) ToVpcOutputWithContext(ctx context.Context) VpcOutput {
 // VpcArrayInput is an input type that accepts VpcArray and VpcArrayOutput values.
 // You can construct a concrete instance of `VpcArrayInput` via:
 //
-//          VpcArray{ VpcArgs{...} }
+//	VpcArray{ VpcArgs{...} }
 type VpcArrayInput interface {
 	pulumi.Input
 
@@ -257,7 +303,7 @@ func (i VpcArray) ToVpcArrayOutputWithContext(ctx context.Context) VpcArrayOutpu
 // VpcMapInput is an input type that accepts VpcMap and VpcMapOutput values.
 // You can construct a concrete instance of `VpcMapInput` via:
 //
-//          VpcMap{ "key": VpcArgs{...} }
+//	VpcMap{ "key": VpcArgs{...} }
 type VpcMapInput interface {
 	pulumi.Input
 
@@ -328,9 +374,24 @@ func (o VpcOutput) DnsServers() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Vpc) pulumi.StringArrayOutput { return v.DnsServers }).(pulumi.StringArrayOutput)
 }
 
+// Specifies whether to enable the IPv6 CIDR block of the VPC.
+func (o VpcOutput) EnableIpv6() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Vpc) pulumi.BoolOutput { return v.EnableIpv6 }).(pulumi.BoolOutput)
+}
+
+// The IPv6 CIDR block of the VPC.
+func (o VpcOutput) Ipv6CidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vpc) pulumi.StringOutput { return v.Ipv6CidrBlock }).(pulumi.StringOutput)
+}
+
 // The nat gateway ID list of VPC.
 func (o VpcOutput) NatGatewayIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Vpc) pulumi.StringArrayOutput { return v.NatGatewayIds }).(pulumi.StringArrayOutput)
+}
+
+// The ProjectName of the VPC.
+func (o VpcOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Vpc) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
 }
 
 // The route table ID list of VPC.
@@ -351,6 +412,11 @@ func (o VpcOutput) Status() pulumi.StringOutput {
 // The subnet ID list of VPC.
 func (o VpcOutput) SubnetIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Vpc) pulumi.StringArrayOutput { return v.SubnetIds }).(pulumi.StringArrayOutput)
+}
+
+// Tags.
+func (o VpcOutput) Tags() VpcTagArrayOutput {
+	return o.ApplyT(func(v *Vpc) VpcTagArrayOutput { return v.Tags }).(VpcTagArrayOutput)
 }
 
 // The update time of VPC.

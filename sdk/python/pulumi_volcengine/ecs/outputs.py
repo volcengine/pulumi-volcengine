@@ -10,13 +10,88 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'DeploymentSetsDeploymentSetResult',
     'ImagesImageResult',
     'InstanceDataVolume',
+    'InstanceGpuDevice',
     'InstanceSecondaryNetworkInterface',
+    'InstanceTag',
     'InstancesInstanceResult',
+    'InstancesInstanceGpuDeviceResult',
     'InstancesInstanceNetworkInterfaceResult',
+    'InstancesInstanceTagResult',
     'InstancesInstanceVolumeResult',
+    'InstancesTagResult',
+    'KeyPairsKeyPairResult',
+    'LaunchTemplateNetworkInterface',
+    'LaunchTemplateVolume',
+    'LaunchTemplatesLaunchTemplateResult',
+    'LaunchTemplatesLaunchTemplateNetworkInterfaceResult',
+    'LaunchTemplatesLaunchTemplateVolumeResult',
+    'ZonesZoneResult',
 ]
+
+@pulumi.output_type
+class DeploymentSetsDeploymentSetResult(dict):
+    def __init__(__self__, *,
+                 deployment_set_id: str,
+                 deployment_set_name: str,
+                 description: str,
+                 granularity: str,
+                 strategy: str):
+        """
+        :param str deployment_set_id: The ID of ECS DeploymentSet.
+        :param str deployment_set_name: The name of ECS DeploymentSet.
+        :param str description: The description of ECS DeploymentSet.
+        :param str granularity: The granularity of ECS DeploymentSet.Valid values: switch, host, rack.
+        :param str strategy: The strategy of ECS DeploymentSet.
+        """
+        pulumi.set(__self__, "deployment_set_id", deployment_set_id)
+        pulumi.set(__self__, "deployment_set_name", deployment_set_name)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "granularity", granularity)
+        pulumi.set(__self__, "strategy", strategy)
+
+    @property
+    @pulumi.getter(name="deploymentSetId")
+    def deployment_set_id(self) -> str:
+        """
+        The ID of ECS DeploymentSet.
+        """
+        return pulumi.get(self, "deployment_set_id")
+
+    @property
+    @pulumi.getter(name="deploymentSetName")
+    def deployment_set_name(self) -> str:
+        """
+        The name of ECS DeploymentSet.
+        """
+        return pulumi.get(self, "deployment_set_name")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of ECS DeploymentSet.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def granularity(self) -> str:
+        """
+        The granularity of ECS DeploymentSet.Valid values: switch, host, rack.
+        """
+        return pulumi.get(self, "granularity")
+
+    @property
+    @pulumi.getter
+    def strategy(self) -> str:
+        """
+        The strategy of ECS DeploymentSet.
+        """
+        return pulumi.get(self, "strategy")
+
 
 @pulumi.output_type
 class ImagesImageResult(dict):
@@ -49,7 +124,7 @@ class ImagesImageResult(dict):
         :param str platform_version: The platform version of Image.
         :param str share_status: The share mode of Image.
         :param int size: The size(GiB) of Image.
-        :param str status: A list of Image status.
+        :param str status: A list of Image status, the value can be `available` or `creating` or `error`.
         :param str updated_at: The update time of Image.
         :param str visibility: The visibility of Image.
         """
@@ -169,7 +244,7 @@ class ImagesImageResult(dict):
     @pulumi.getter
     def status(self) -> str:
         """
-        A list of Image status.
+        A list of Image status, the value can be `available` or `creating` or `error`.
         """
         return pulumi.get(self, "status")
 
@@ -217,7 +292,7 @@ class InstanceDataVolume(dict):
                  delete_with_instance: Optional[bool] = None):
         """
         :param int size: The size of volume.
-        :param str volume_type: The type of volume.
+        :param str volume_type: The type of volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         :param bool delete_with_instance: The delete with instance flag of volume.
         """
         pulumi.set(__self__, "size", size)
@@ -237,7 +312,7 @@ class InstanceDataVolume(dict):
     @pulumi.getter(name="volumeType")
     def volume_type(self) -> str:
         """
-        The type of volume.
+        The type of volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         """
         return pulumi.get(self, "volume_type")
 
@@ -251,6 +326,82 @@ class InstanceDataVolume(dict):
 
 
 @pulumi.output_type
+class InstanceGpuDevice(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "encryptedMemorySize":
+            suggest = "encrypted_memory_size"
+        elif key == "memorySize":
+            suggest = "memory_size"
+        elif key == "productName":
+            suggest = "product_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in InstanceGpuDevice. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        InstanceGpuDevice.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        InstanceGpuDevice.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 count: Optional[int] = None,
+                 encrypted_memory_size: Optional[int] = None,
+                 memory_size: Optional[int] = None,
+                 product_name: Optional[str] = None):
+        """
+        :param int count: The Count of GPU device.
+        :param int encrypted_memory_size: The Encrypted Memory Size of GPU device.
+        :param int memory_size: The memory size of ECS instance.
+        :param str product_name: The Product Name of GPU device.
+        """
+        if count is not None:
+            pulumi.set(__self__, "count", count)
+        if encrypted_memory_size is not None:
+            pulumi.set(__self__, "encrypted_memory_size", encrypted_memory_size)
+        if memory_size is not None:
+            pulumi.set(__self__, "memory_size", memory_size)
+        if product_name is not None:
+            pulumi.set(__self__, "product_name", product_name)
+
+    @property
+    @pulumi.getter
+    def count(self) -> Optional[int]:
+        """
+        The Count of GPU device.
+        """
+        return pulumi.get(self, "count")
+
+    @property
+    @pulumi.getter(name="encryptedMemorySize")
+    def encrypted_memory_size(self) -> Optional[int]:
+        """
+        The Encrypted Memory Size of GPU device.
+        """
+        return pulumi.get(self, "encrypted_memory_size")
+
+    @property
+    @pulumi.getter(name="memorySize")
+    def memory_size(self) -> Optional[int]:
+        """
+        The memory size of ECS instance.
+        """
+        return pulumi.get(self, "memory_size")
+
+    @property
+    @pulumi.getter(name="productName")
+    def product_name(self) -> Optional[str]:
+        """
+        The Product Name of GPU device.
+        """
+        return pulumi.get(self, "product_name")
+
+
+@pulumi.output_type
 class InstanceSecondaryNetworkInterface(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -259,6 +410,8 @@ class InstanceSecondaryNetworkInterface(dict):
             suggest = "security_group_ids"
         elif key == "subnetId":
             suggest = "subnet_id"
+        elif key == "primaryIpAddress":
+            suggest = "primary_ip_address"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in InstanceSecondaryNetworkInterface. Access the value via the '{suggest}' property getter instead.")
@@ -273,13 +426,17 @@ class InstanceSecondaryNetworkInterface(dict):
 
     def __init__(__self__, *,
                  security_group_ids: Sequence[str],
-                 subnet_id: str):
+                 subnet_id: str,
+                 primary_ip_address: Optional[str] = None):
         """
         :param Sequence[str] security_group_ids: The security group ID set of secondary networkInterface.
         :param str subnet_id: The subnet ID of secondary networkInterface.
+        :param str primary_ip_address: The private ip address of primary networkInterface.
         """
         pulumi.set(__self__, "security_group_ids", security_group_ids)
         pulumi.set(__self__, "subnet_id", subnet_id)
+        if primary_ip_address is not None:
+            pulumi.set(__self__, "primary_ip_address", primary_ip_address)
 
     @property
     @pulumi.getter(name="securityGroupIds")
@@ -297,27 +454,72 @@ class InstanceSecondaryNetworkInterface(dict):
         """
         return pulumi.get(self, "subnet_id")
 
+    @property
+    @pulumi.getter(name="primaryIpAddress")
+    def primary_ip_address(self) -> Optional[str]:
+        """
+        The private ip address of primary networkInterface.
+        """
+        return pulumi.get(self, "primary_ip_address")
+
+
+@pulumi.output_type
+class InstanceTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
 
 @pulumi.output_type
 class InstancesInstanceResult(dict):
     def __init__(__self__, *,
                  cpus: int,
                  created_at: str,
+                 deployment_set_id: str,
                  description: str,
+                 gpu_devices: Sequence['outputs.InstancesInstanceGpuDeviceResult'],
                  host_name: str,
                  image_id: str,
                  instance_charge_type: str,
                  instance_id: str,
                  instance_name: str,
                  instance_type: str,
+                 ipv6_address_count: int,
+                 ipv6_addresses: Sequence[str],
+                 is_gpu: bool,
                  key_pair_id: str,
                  key_pair_name: str,
                  memory_size: int,
                  network_interfaces: Sequence['outputs.InstancesInstanceNetworkInterfaceResult'],
                  os_name: str,
                  os_type: str,
+                 project_name: str,
+                 spot_strategy: str,
                  status: str,
                  stopped_mode: str,
+                 tags: Sequence['outputs.InstancesInstanceTagResult'],
                  updated_at: str,
                  volumes: Sequence['outputs.InstancesInstanceVolumeResult'],
                  vpc_id: str,
@@ -325,21 +527,29 @@ class InstancesInstanceResult(dict):
         """
         :param int cpus: The number of ECS instance CPU cores.
         :param str created_at: The create time of ECS instance.
+        :param str deployment_set_id: The ID of DeploymentSet.
         :param str description: The description of ECS instance.
+        :param Sequence['InstancesInstanceGpuDeviceArgs'] gpu_devices: The GPU device info of Instance.
         :param str host_name: The host name of ECS instance.
         :param str image_id: The image ID of ECS instance.
         :param str instance_charge_type: The charge type of ECS instance.
         :param str instance_id: The ID of ECS instance.
         :param str instance_name: The name of ECS instance.
         :param str instance_type: The spec type of ECS instance.
+        :param int ipv6_address_count: The number of IPv6 addresses of the ECS instance.
+        :param Sequence[str] ipv6_addresses: The  IPv6 address list of the ECS instance.
+        :param bool is_gpu: The Flag of GPU instance.If the instance is GPU,The flag is true.
         :param str key_pair_id: The ssh key ID of ECS instance.
         :param str key_pair_name: The key pair name of ECS instance.
         :param int memory_size: The memory size of ECS instance.
         :param Sequence['InstancesInstanceNetworkInterfaceArgs'] network_interfaces: The networkInterface detail collection of ECS instance.
         :param str os_name: The os name of ECS instance.
         :param str os_type: The os type of ECS instance.
+        :param str project_name: The ProjectName of ECS instance.
+        :param str spot_strategy: The spot strategy of ECS instance.
         :param str status: The status of ECS instance.
         :param str stopped_mode: The stop mode of ECS instance.
+        :param Sequence['InstancesInstanceTagArgs'] tags: Tags.
         :param str updated_at: The update time of ECS instance.
         :param Sequence['InstancesInstanceVolumeArgs'] volumes: The volume detail collection of volume.
         :param str vpc_id: The VPC ID of ECS instance.
@@ -347,21 +557,29 @@ class InstancesInstanceResult(dict):
         """
         pulumi.set(__self__, "cpus", cpus)
         pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "deployment_set_id", deployment_set_id)
         pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "gpu_devices", gpu_devices)
         pulumi.set(__self__, "host_name", host_name)
         pulumi.set(__self__, "image_id", image_id)
         pulumi.set(__self__, "instance_charge_type", instance_charge_type)
         pulumi.set(__self__, "instance_id", instance_id)
         pulumi.set(__self__, "instance_name", instance_name)
         pulumi.set(__self__, "instance_type", instance_type)
+        pulumi.set(__self__, "ipv6_address_count", ipv6_address_count)
+        pulumi.set(__self__, "ipv6_addresses", ipv6_addresses)
+        pulumi.set(__self__, "is_gpu", is_gpu)
         pulumi.set(__self__, "key_pair_id", key_pair_id)
         pulumi.set(__self__, "key_pair_name", key_pair_name)
         pulumi.set(__self__, "memory_size", memory_size)
         pulumi.set(__self__, "network_interfaces", network_interfaces)
         pulumi.set(__self__, "os_name", os_name)
         pulumi.set(__self__, "os_type", os_type)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "spot_strategy", spot_strategy)
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "stopped_mode", stopped_mode)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "updated_at", updated_at)
         pulumi.set(__self__, "volumes", volumes)
         pulumi.set(__self__, "vpc_id", vpc_id)
@@ -384,12 +602,28 @@ class InstancesInstanceResult(dict):
         return pulumi.get(self, "created_at")
 
     @property
+    @pulumi.getter(name="deploymentSetId")
+    def deployment_set_id(self) -> str:
+        """
+        The ID of DeploymentSet.
+        """
+        return pulumi.get(self, "deployment_set_id")
+
+    @property
     @pulumi.getter
     def description(self) -> str:
         """
         The description of ECS instance.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="gpuDevices")
+    def gpu_devices(self) -> Sequence['outputs.InstancesInstanceGpuDeviceResult']:
+        """
+        The GPU device info of Instance.
+        """
+        return pulumi.get(self, "gpu_devices")
 
     @property
     @pulumi.getter(name="hostName")
@@ -440,6 +674,30 @@ class InstancesInstanceResult(dict):
         return pulumi.get(self, "instance_type")
 
     @property
+    @pulumi.getter(name="ipv6AddressCount")
+    def ipv6_address_count(self) -> int:
+        """
+        The number of IPv6 addresses of the ECS instance.
+        """
+        return pulumi.get(self, "ipv6_address_count")
+
+    @property
+    @pulumi.getter(name="ipv6Addresses")
+    def ipv6_addresses(self) -> Sequence[str]:
+        """
+        The  IPv6 address list of the ECS instance.
+        """
+        return pulumi.get(self, "ipv6_addresses")
+
+    @property
+    @pulumi.getter(name="isGpu")
+    def is_gpu(self) -> bool:
+        """
+        The Flag of GPU instance.If the instance is GPU,The flag is true.
+        """
+        return pulumi.get(self, "is_gpu")
+
+    @property
     @pulumi.getter(name="keyPairId")
     def key_pair_id(self) -> str:
         """
@@ -488,6 +746,22 @@ class InstancesInstanceResult(dict):
         return pulumi.get(self, "os_type")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The ProjectName of ECS instance.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="spotStrategy")
+    def spot_strategy(self) -> str:
+        """
+        The spot strategy of ECS instance.
+        """
+        return pulumi.get(self, "spot_strategy")
+
+    @property
     @pulumi.getter
     def status(self) -> str:
         """
@@ -502,6 +776,14 @@ class InstancesInstanceResult(dict):
         The stop mode of ECS instance.
         """
         return pulumi.get(self, "stopped_mode")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.InstancesInstanceTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="updatedAt")
@@ -534,6 +816,57 @@ class InstancesInstanceResult(dict):
         The available zone ID of ECS instance.
         """
         return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class InstancesInstanceGpuDeviceResult(dict):
+    def __init__(__self__, *,
+                 count: int,
+                 encrypted_memory_size: int,
+                 memory_size: int,
+                 product_name: str):
+        """
+        :param int count: The Count of GPU device.
+        :param int encrypted_memory_size: The Encrypted Memory Size of GPU device.
+        :param int memory_size: The memory size of ECS instance.
+        :param str product_name: The Product Name of GPU device.
+        """
+        pulumi.set(__self__, "count", count)
+        pulumi.set(__self__, "encrypted_memory_size", encrypted_memory_size)
+        pulumi.set(__self__, "memory_size", memory_size)
+        pulumi.set(__self__, "product_name", product_name)
+
+    @property
+    @pulumi.getter
+    def count(self) -> int:
+        """
+        The Count of GPU device.
+        """
+        return pulumi.get(self, "count")
+
+    @property
+    @pulumi.getter(name="encryptedMemorySize")
+    def encrypted_memory_size(self) -> int:
+        """
+        The Encrypted Memory Size of GPU device.
+        """
+        return pulumi.get(self, "encrypted_memory_size")
+
+    @property
+    @pulumi.getter(name="memorySize")
+    def memory_size(self) -> int:
+        """
+        The memory size of ECS instance.
+        """
+        return pulumi.get(self, "memory_size")
+
+    @property
+    @pulumi.getter(name="productName")
+    def product_name(self) -> str:
+        """
+        The Product Name of GPU device.
+        """
+        return pulumi.get(self, "product_name")
 
 
 @pulumi.output_type
@@ -610,6 +943,35 @@ class InstancesInstanceNetworkInterfaceResult(dict):
 
 
 @pulumi.output_type
+class InstancesInstanceTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class InstancesInstanceVolumeResult(dict):
     def __init__(__self__, *,
                  delete_with_instance: bool,
@@ -669,5 +1031,610 @@ class InstancesInstanceVolumeResult(dict):
         The type of volume.
         """
         return pulumi.get(self, "volume_type")
+
+
+@pulumi.output_type
+class InstancesTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class KeyPairsKeyPairResult(dict):
+    def __init__(__self__, *,
+                 created_at: str,
+                 description: str,
+                 finger_print: str,
+                 id: str,
+                 key_pair_id: str,
+                 key_pair_name: str,
+                 updated_at: str):
+        """
+        :param str created_at: The creation time of key pair.
+        :param str description: The description of key pair.
+        :param str finger_print: The finger print info.
+        :param str id: The id of key pair.
+        :param str key_pair_id: The id of key pair.
+        :param str key_pair_name: Name of key pair.
+        :param str updated_at: The update time of key pair.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "finger_print", finger_print)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "key_pair_id", key_pair_id)
+        pulumi.set(__self__, "key_pair_name", key_pair_name)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The creation time of key pair.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of key pair.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="fingerPrint")
+    def finger_print(self) -> str:
+        """
+        The finger print info.
+        """
+        return pulumi.get(self, "finger_print")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of key pair.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="keyPairId")
+    def key_pair_id(self) -> str:
+        """
+        The id of key pair.
+        """
+        return pulumi.get(self, "key_pair_id")
+
+    @property
+    @pulumi.getter(name="keyPairName")
+    def key_pair_name(self) -> str:
+        """
+        Name of key pair.
+        """
+        return pulumi.get(self, "key_pair_name")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        The update time of key pair.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class LaunchTemplateNetworkInterface(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "securityGroupIds":
+            suggest = "security_group_ids"
+        elif key == "subnetId":
+            suggest = "subnet_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LaunchTemplateNetworkInterface. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LaunchTemplateNetworkInterface.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LaunchTemplateNetworkInterface.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 security_group_ids: Optional[Sequence[str]] = None,
+                 subnet_id: Optional[str] = None):
+        """
+        :param Sequence[str] security_group_ids: The security group ID associated with the NIC.
+        :param str subnet_id: The private network subnet ID of the instance, when creating the instance, supports binding the secondary NIC at the same time.
+        """
+        if security_group_ids is not None:
+            pulumi.set(__self__, "security_group_ids", security_group_ids)
+        if subnet_id is not None:
+            pulumi.set(__self__, "subnet_id", subnet_id)
+
+    @property
+    @pulumi.getter(name="securityGroupIds")
+    def security_group_ids(self) -> Optional[Sequence[str]]:
+        """
+        The security group ID associated with the NIC.
+        """
+        return pulumi.get(self, "security_group_ids")
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> Optional[str]:
+        """
+        The private network subnet ID of the instance, when creating the instance, supports binding the secondary NIC at the same time.
+        """
+        return pulumi.get(self, "subnet_id")
+
+
+@pulumi.output_type
+class LaunchTemplateVolume(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "deleteWithInstance":
+            suggest = "delete_with_instance"
+        elif key == "volumeType":
+            suggest = "volume_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LaunchTemplateVolume. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LaunchTemplateVolume.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LaunchTemplateVolume.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 delete_with_instance: Optional[bool] = None,
+                 size: Optional[int] = None,
+                 volume_type: Optional[str] = None):
+        """
+        :param bool delete_with_instance: The delete with instance flag of volume. Valid values: true, false. Default value: true.
+        :param int size: The size of volume.
+        :param str volume_type: The type of volume.
+        """
+        if delete_with_instance is not None:
+            pulumi.set(__self__, "delete_with_instance", delete_with_instance)
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+        if volume_type is not None:
+            pulumi.set(__self__, "volume_type", volume_type)
+
+    @property
+    @pulumi.getter(name="deleteWithInstance")
+    def delete_with_instance(self) -> Optional[bool]:
+        """
+        The delete with instance flag of volume. Valid values: true, false. Default value: true.
+        """
+        return pulumi.get(self, "delete_with_instance")
+
+    @property
+    @pulumi.getter
+    def size(self) -> Optional[int]:
+        """
+        The size of volume.
+        """
+        return pulumi.get(self, "size")
+
+    @property
+    @pulumi.getter(name="volumeType")
+    def volume_type(self) -> Optional[str]:
+        """
+        The type of volume.
+        """
+        return pulumi.get(self, "volume_type")
+
+
+@pulumi.output_type
+class LaunchTemplatesLaunchTemplateResult(dict):
+    def __init__(__self__, *,
+                 created_at: str,
+                 default_version_number: int,
+                 description: str,
+                 eip_bandwidth: int,
+                 eip_billing_type: str,
+                 eip_isp: str,
+                 host_name: str,
+                 hpc_cluster_id: str,
+                 id: str,
+                 image_id: str,
+                 instance_charge_type: str,
+                 instance_name: str,
+                 key_pair_name: str,
+                 latest_version_number: int,
+                 launch_template_id: str,
+                 launch_template_name: str,
+                 network_interfaces: Sequence['outputs.LaunchTemplatesLaunchTemplateNetworkInterfaceResult'],
+                 security_enhancement_strategy: str,
+                 suffix_index: int,
+                 unique_suffix: bool,
+                 updated_at: str,
+                 version_description: str,
+                 volumes: Sequence['outputs.LaunchTemplatesLaunchTemplateVolumeResult'],
+                 vpc_id: str,
+                 zone_id: str):
+        """
+        :param str created_at: The created time of the launch template.
+        :param int default_version_number: The default version of the launch template.
+        :param str description: The description of the instance.
+        :param int eip_bandwidth: The EIP bandwidth which the scaling configuration set.
+        :param str eip_billing_type: The EIP billing type which the scaling configuration set. Valid values: PostPaidByBandwidth, PostPaidByTraffic.
+        :param str eip_isp: The EIP ISP which the scaling configuration set. Valid values: BGP, ChinaMobile, ChinaUnicom, ChinaTelecom.
+        :param str host_name: The host name of the instance.
+        :param str hpc_cluster_id: The hpc cluster id.
+        :param str id: The id of the launch template.
+        :param str image_id: The image id.
+        :param str instance_charge_type: The charge type of the instance and volume.
+        :param str instance_name: The name of the instance.
+        :param str key_pair_name: When you log in to the instance using the SSH key pair, enter the name of the key pair.
+        :param int latest_version_number: The latest version of the launch template.
+        :param str launch_template_id: The id of the launch template.
+        :param str launch_template_name: The name of the launch template.
+        :param Sequence['LaunchTemplatesLaunchTemplateNetworkInterfaceArgs'] network_interfaces: The list of network interfaces.
+        :param str security_enhancement_strategy: Whether to open the security reinforcement.
+        :param int suffix_index: The index of the ordered suffix.
+        :param bool unique_suffix: Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.
+        :param str updated_at: The updated time of the launch template.
+        :param str version_description: The latest version description of the launch template.
+        :param Sequence['LaunchTemplatesLaunchTemplateVolumeArgs'] volumes: The list of volume of the scaling configuration.
+        :param str vpc_id: The vpc id.
+        :param str zone_id: The zone ID of the instance.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "default_version_number", default_version_number)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "eip_bandwidth", eip_bandwidth)
+        pulumi.set(__self__, "eip_billing_type", eip_billing_type)
+        pulumi.set(__self__, "eip_isp", eip_isp)
+        pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "hpc_cluster_id", hpc_cluster_id)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "image_id", image_id)
+        pulumi.set(__self__, "instance_charge_type", instance_charge_type)
+        pulumi.set(__self__, "instance_name", instance_name)
+        pulumi.set(__self__, "key_pair_name", key_pair_name)
+        pulumi.set(__self__, "latest_version_number", latest_version_number)
+        pulumi.set(__self__, "launch_template_id", launch_template_id)
+        pulumi.set(__self__, "launch_template_name", launch_template_name)
+        pulumi.set(__self__, "network_interfaces", network_interfaces)
+        pulumi.set(__self__, "security_enhancement_strategy", security_enhancement_strategy)
+        pulumi.set(__self__, "suffix_index", suffix_index)
+        pulumi.set(__self__, "unique_suffix", unique_suffix)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "version_description", version_description)
+        pulumi.set(__self__, "volumes", volumes)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+        pulumi.set(__self__, "zone_id", zone_id)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The created time of the launch template.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="defaultVersionNumber")
+    def default_version_number(self) -> int:
+        """
+        The default version of the launch template.
+        """
+        return pulumi.get(self, "default_version_number")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the instance.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="eipBandwidth")
+    def eip_bandwidth(self) -> int:
+        """
+        The EIP bandwidth which the scaling configuration set.
+        """
+        return pulumi.get(self, "eip_bandwidth")
+
+    @property
+    @pulumi.getter(name="eipBillingType")
+    def eip_billing_type(self) -> str:
+        """
+        The EIP billing type which the scaling configuration set. Valid values: PostPaidByBandwidth, PostPaidByTraffic.
+        """
+        return pulumi.get(self, "eip_billing_type")
+
+    @property
+    @pulumi.getter(name="eipIsp")
+    def eip_isp(self) -> str:
+        """
+        The EIP ISP which the scaling configuration set. Valid values: BGP, ChinaMobile, ChinaUnicom, ChinaTelecom.
+        """
+        return pulumi.get(self, "eip_isp")
+
+    @property
+    @pulumi.getter(name="hostName")
+    def host_name(self) -> str:
+        """
+        The host name of the instance.
+        """
+        return pulumi.get(self, "host_name")
+
+    @property
+    @pulumi.getter(name="hpcClusterId")
+    def hpc_cluster_id(self) -> str:
+        """
+        The hpc cluster id.
+        """
+        return pulumi.get(self, "hpc_cluster_id")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the launch template.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="imageId")
+    def image_id(self) -> str:
+        """
+        The image id.
+        """
+        return pulumi.get(self, "image_id")
+
+    @property
+    @pulumi.getter(name="instanceChargeType")
+    def instance_charge_type(self) -> str:
+        """
+        The charge type of the instance and volume.
+        """
+        return pulumi.get(self, "instance_charge_type")
+
+    @property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> str:
+        """
+        The name of the instance.
+        """
+        return pulumi.get(self, "instance_name")
+
+    @property
+    @pulumi.getter(name="keyPairName")
+    def key_pair_name(self) -> str:
+        """
+        When you log in to the instance using the SSH key pair, enter the name of the key pair.
+        """
+        return pulumi.get(self, "key_pair_name")
+
+    @property
+    @pulumi.getter(name="latestVersionNumber")
+    def latest_version_number(self) -> int:
+        """
+        The latest version of the launch template.
+        """
+        return pulumi.get(self, "latest_version_number")
+
+    @property
+    @pulumi.getter(name="launchTemplateId")
+    def launch_template_id(self) -> str:
+        """
+        The id of the launch template.
+        """
+        return pulumi.get(self, "launch_template_id")
+
+    @property
+    @pulumi.getter(name="launchTemplateName")
+    def launch_template_name(self) -> str:
+        """
+        The name of the launch template.
+        """
+        return pulumi.get(self, "launch_template_name")
+
+    @property
+    @pulumi.getter(name="networkInterfaces")
+    def network_interfaces(self) -> Sequence['outputs.LaunchTemplatesLaunchTemplateNetworkInterfaceResult']:
+        """
+        The list of network interfaces.
+        """
+        return pulumi.get(self, "network_interfaces")
+
+    @property
+    @pulumi.getter(name="securityEnhancementStrategy")
+    def security_enhancement_strategy(self) -> str:
+        """
+        Whether to open the security reinforcement.
+        """
+        return pulumi.get(self, "security_enhancement_strategy")
+
+    @property
+    @pulumi.getter(name="suffixIndex")
+    def suffix_index(self) -> int:
+        """
+        The index of the ordered suffix.
+        """
+        return pulumi.get(self, "suffix_index")
+
+    @property
+    @pulumi.getter(name="uniqueSuffix")
+    def unique_suffix(self) -> bool:
+        """
+        Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.
+        """
+        return pulumi.get(self, "unique_suffix")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        The updated time of the launch template.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @property
+    @pulumi.getter(name="versionDescription")
+    def version_description(self) -> str:
+        """
+        The latest version description of the launch template.
+        """
+        return pulumi.get(self, "version_description")
+
+    @property
+    @pulumi.getter
+    def volumes(self) -> Sequence['outputs.LaunchTemplatesLaunchTemplateVolumeResult']:
+        """
+        The list of volume of the scaling configuration.
+        """
+        return pulumi.get(self, "volumes")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The vpc id.
+        """
+        return pulumi.get(self, "vpc_id")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The zone ID of the instance.
+        """
+        return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class LaunchTemplatesLaunchTemplateNetworkInterfaceResult(dict):
+    def __init__(__self__, *,
+                 security_group_ids: Sequence[str],
+                 subnet_id: str):
+        """
+        :param Sequence[str] security_group_ids: The security group ID associated with the NIC.
+        :param str subnet_id: The private network subnet ID of the instance, when creating the instance, supports binding the secondary NIC at the same time.
+        """
+        pulumi.set(__self__, "security_group_ids", security_group_ids)
+        pulumi.set(__self__, "subnet_id", subnet_id)
+
+    @property
+    @pulumi.getter(name="securityGroupIds")
+    def security_group_ids(self) -> Sequence[str]:
+        """
+        The security group ID associated with the NIC.
+        """
+        return pulumi.get(self, "security_group_ids")
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> str:
+        """
+        The private network subnet ID of the instance, when creating the instance, supports binding the secondary NIC at the same time.
+        """
+        return pulumi.get(self, "subnet_id")
+
+
+@pulumi.output_type
+class LaunchTemplatesLaunchTemplateVolumeResult(dict):
+    def __init__(__self__, *,
+                 delete_with_instance: bool,
+                 size: int,
+                 volume_type: str):
+        """
+        :param bool delete_with_instance: The delete with instance flag of volume. Valid values: true, false. Default value: true.
+        :param int size: The size of volume.
+        :param str volume_type: The type of volume.
+        """
+        pulumi.set(__self__, "delete_with_instance", delete_with_instance)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "volume_type", volume_type)
+
+    @property
+    @pulumi.getter(name="deleteWithInstance")
+    def delete_with_instance(self) -> bool:
+        """
+        The delete with instance flag of volume. Valid values: true, false. Default value: true.
+        """
+        return pulumi.get(self, "delete_with_instance")
+
+    @property
+    @pulumi.getter
+    def size(self) -> int:
+        """
+        The size of volume.
+        """
+        return pulumi.get(self, "size")
+
+    @property
+    @pulumi.getter(name="volumeType")
+    def volume_type(self) -> str:
+        """
+        The type of volume.
+        """
+        return pulumi.get(self, "volume_type")
+
+
+@pulumi.output_type
+class ZonesZoneResult(dict):
+    def __init__(__self__, *,
+                 id: str,
+                 zone_id: str):
+        """
+        :param str id: The id of the zone.
+        :param str zone_id: The id of the zone.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "zone_id", zone_id)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the zone.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The id of the zone.
+        """
+        return pulumi.get(self, "zone_id")
 
 

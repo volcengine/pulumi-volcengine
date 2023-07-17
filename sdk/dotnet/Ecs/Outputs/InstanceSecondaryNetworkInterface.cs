@@ -14,6 +14,10 @@ namespace Pulumi.Volcengine.Ecs.Outputs
     public sealed class InstanceSecondaryNetworkInterface
     {
         /// <summary>
+        /// The private ip address of primary networkInterface.
+        /// </summary>
+        public readonly string? PrimaryIpAddress;
+        /// <summary>
         /// The security group ID set of secondary networkInterface.
         /// </summary>
         public readonly ImmutableArray<string> SecurityGroupIds;
@@ -24,10 +28,13 @@ namespace Pulumi.Volcengine.Ecs.Outputs
 
         [OutputConstructor]
         private InstanceSecondaryNetworkInterface(
+            string? primaryIpAddress,
+
             ImmutableArray<string> securityGroupIds,
 
             string subnetId)
         {
+            PrimaryIpAddress = primaryIpAddress;
             SecurityGroupIds = securityGroupIds;
             SubnetId = subnetId;
         }

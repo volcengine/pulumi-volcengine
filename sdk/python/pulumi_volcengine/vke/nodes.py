@@ -22,7 +22,7 @@ class NodesResult:
     """
     A collection of values returned by Nodes.
     """
-    def __init__(__self__, cluster_ids=None, create_client_token=None, id=None, ids=None, name=None, name_regex=None, node_pool_ids=None, nodes=None, output_file=None, statuses=None, total_count=None):
+    def __init__(__self__, cluster_ids=None, create_client_token=None, id=None, ids=None, name=None, name_regex=None, node_pool_ids=None, nodes=None, output_file=None, statuses=None, total_count=None, zone_ids=None):
         if cluster_ids and not isinstance(cluster_ids, list):
             raise TypeError("Expected argument 'cluster_ids' to be a list")
         pulumi.set(__self__, "cluster_ids", cluster_ids)
@@ -56,6 +56,9 @@ class NodesResult:
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
+        if zone_ids and not isinstance(zone_ids, list):
+            raise TypeError("Expected argument 'zone_ids' to be a list")
+        pulumi.set(__self__, "zone_ids", zone_ids)
 
     @property
     @pulumi.getter(name="clusterIds")
@@ -127,6 +130,11 @@ class NodesResult:
         """
         return pulumi.get(self, "total_count")
 
+    @property
+    @pulumi.getter(name="zoneIds")
+    def zone_ids(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "zone_ids")
+
 
 class AwaitableNodesResult(NodesResult):
     # pylint: disable=using-constant-test
@@ -144,7 +152,8 @@ class AwaitableNodesResult(NodesResult):
             nodes=self.nodes,
             output_file=self.output_file,
             statuses=self.statuses,
-            total_count=self.total_count)
+            total_count=self.total_count,
+            zone_ids=self.zone_ids)
 
 
 def nodes(cluster_ids: Optional[Sequence[str]] = None,
@@ -155,6 +164,7 @@ def nodes(cluster_ids: Optional[Sequence[str]] = None,
           node_pool_ids: Optional[Sequence[str]] = None,
           output_file: Optional[str] = None,
           statuses: Optional[Sequence[pulumi.InputType['NodesStatusArgs']]] = None,
+          zone_ids: Optional[Sequence[str]] = None,
           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableNodesResult:
     """
     Use this data source to query detailed information of vke nodes
@@ -164,7 +174,7 @@ def nodes(cluster_ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.Vke.nodes(cluster_ids=[
+    default = volcengine.vke.nodes(cluster_ids=[
             "c123",
             "c456",
         ],
@@ -190,6 +200,7 @@ def nodes(cluster_ids: Optional[Sequence[str]] = None,
     :param Sequence[str] node_pool_ids: The Node Pool IDs.
     :param str output_file: File name where to save data source results.
     :param Sequence[pulumi.InputType['NodesStatusArgs']] statuses: The Status of filter.
+    :param Sequence[str] zone_ids: The Zone IDs.
     """
     __args__ = dict()
     __args__['clusterIds'] = cluster_ids
@@ -200,11 +211,12 @@ def nodes(cluster_ids: Optional[Sequence[str]] = None,
     __args__['nodePoolIds'] = node_pool_ids
     __args__['outputFile'] = output_file
     __args__['statuses'] = statuses
+    __args__['zoneIds'] = zone_ids
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('volcengine:Vke/nodes:Nodes', __args__, opts=opts, typ=NodesResult).value
+    __ret__ = pulumi.runtime.invoke('volcengine:vke/nodes:Nodes', __args__, opts=opts, typ=NodesResult).value
 
     return AwaitableNodesResult(
         cluster_ids=__ret__.cluster_ids,
@@ -217,7 +229,8 @@ def nodes(cluster_ids: Optional[Sequence[str]] = None,
         nodes=__ret__.nodes,
         output_file=__ret__.output_file,
         statuses=__ret__.statuses,
-        total_count=__ret__.total_count)
+        total_count=__ret__.total_count,
+        zone_ids=__ret__.zone_ids)
 
 
 @_utilities.lift_output_func(nodes)
@@ -229,6 +242,7 @@ def nodes_output(cluster_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = 
                  node_pool_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                  output_file: Optional[pulumi.Input[Optional[str]]] = None,
                  statuses: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['NodesStatusArgs']]]]] = None,
+                 zone_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[NodesResult]:
     """
     Use this data source to query detailed information of vke nodes
@@ -238,7 +252,7 @@ def nodes_output(cluster_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = 
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.Vke.nodes(cluster_ids=[
+    default = volcengine.vke.nodes(cluster_ids=[
             "c123",
             "c456",
         ],
@@ -264,5 +278,6 @@ def nodes_output(cluster_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = 
     :param Sequence[str] node_pool_ids: The Node Pool IDs.
     :param str output_file: File name where to save data source results.
     :param Sequence[pulumi.InputType['NodesStatusArgs']] statuses: The Status of filter.
+    :param Sequence[str] zone_ids: The Zone IDs.
     """
     ...

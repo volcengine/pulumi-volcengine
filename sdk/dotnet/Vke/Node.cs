@@ -39,10 +39,10 @@ namespace Pulumi.Volcengine.Vke
     /// VKE node can be imported using the node id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:Vke/node:Node default nc5t5epmrsf****
+    ///  $ pulumi import volcengine:vke/node:Node default nc5t5epmrsf****
     /// ```
     /// </summary>
-    [VolcengineResourceType("volcengine:Vke/node:Node")]
+    [VolcengineResourceType("volcengine:vke/node:Node")]
     public partial class Node : Pulumi.CustomResource
     {
         /// <summary>
@@ -70,6 +70,18 @@ namespace Pulumi.Volcengine.Vke
         public Output<string> ContainerStoragePath { get; private set; } = null!;
 
         /// <summary>
+        /// The ImageId of NodeConfig.
+        /// </summary>
+        [Output("imageId")]
+        public Output<string> ImageId { get; private set; } = null!;
+
+        /// <summary>
+        /// The initializeScript of Node.
+        /// </summary>
+        [Output("initializeScript")]
+        public Output<string?> InitializeScript { get; private set; } = null!;
+
+        /// <summary>
         /// The instance id.
         /// </summary>
         [Output("instanceId")]
@@ -80,6 +92,12 @@ namespace Pulumi.Volcengine.Vke
         /// </summary>
         [Output("keepInstanceName")]
         public Output<bool?> KeepInstanceName { get; private set; } = null!;
+
+        /// <summary>
+        /// The KubernetesConfig of Node.
+        /// </summary>
+        [Output("kubernetesConfig")]
+        public Output<Outputs.NodeKubernetesConfig?> KubernetesConfig { get; private set; } = null!;
 
         /// <summary>
         /// The node pool id.
@@ -96,12 +114,12 @@ namespace Pulumi.Volcengine.Vke
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Node(string name, NodeArgs args, CustomResourceOptions? options = null)
-            : base("volcengine:Vke/node:Node", name, args ?? new NodeArgs(), MakeResourceOptions(options, ""))
+            : base("volcengine:vke/node:Node", name, args ?? new NodeArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private Node(string name, Input<string> id, NodeState? state = null, CustomResourceOptions? options = null)
-            : base("volcengine:Vke/node:Node", name, state, MakeResourceOptions(options, id))
+            : base("volcengine:vke/node:Node", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -158,6 +176,18 @@ namespace Pulumi.Volcengine.Vke
         public Input<string>? ContainerStoragePath { get; set; }
 
         /// <summary>
+        /// The ImageId of NodeConfig.
+        /// </summary>
+        [Input("imageId")]
+        public Input<string>? ImageId { get; set; }
+
+        /// <summary>
+        /// The initializeScript of Node.
+        /// </summary>
+        [Input("initializeScript")]
+        public Input<string>? InitializeScript { get; set; }
+
+        /// <summary>
         /// The instance id.
         /// </summary>
         [Input("instanceId", required: true)]
@@ -168,6 +198,12 @@ namespace Pulumi.Volcengine.Vke
         /// </summary>
         [Input("keepInstanceName")]
         public Input<bool>? KeepInstanceName { get; set; }
+
+        /// <summary>
+        /// The KubernetesConfig of Node.
+        /// </summary>
+        [Input("kubernetesConfig")]
+        public Input<Inputs.NodeKubernetesConfigArgs>? KubernetesConfig { get; set; }
 
         public NodeArgs()
         {
@@ -201,6 +237,18 @@ namespace Pulumi.Volcengine.Vke
         public Input<string>? ContainerStoragePath { get; set; }
 
         /// <summary>
+        /// The ImageId of NodeConfig.
+        /// </summary>
+        [Input("imageId")]
+        public Input<string>? ImageId { get; set; }
+
+        /// <summary>
+        /// The initializeScript of Node.
+        /// </summary>
+        [Input("initializeScript")]
+        public Input<string>? InitializeScript { get; set; }
+
+        /// <summary>
         /// The instance id.
         /// </summary>
         [Input("instanceId")]
@@ -211,6 +259,12 @@ namespace Pulumi.Volcengine.Vke
         /// </summary>
         [Input("keepInstanceName")]
         public Input<bool>? KeepInstanceName { get; set; }
+
+        /// <summary>
+        /// The KubernetesConfig of Node.
+        /// </summary>
+        [Input("kubernetesConfig")]
+        public Input<Inputs.NodeKubernetesConfigGetArgs>? KubernetesConfig { get; set; }
 
         /// <summary>
         /// The node pool id.

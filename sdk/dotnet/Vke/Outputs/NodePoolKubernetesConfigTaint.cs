@@ -14,7 +14,7 @@ namespace Pulumi.Volcengine.Vke.Outputs
     public sealed class NodePoolKubernetesConfigTaint
     {
         /// <summary>
-        /// The Effect of Taints.
+        /// The Effect of Taints, the value can be `NoSchedule` or `NoExecute` or `PreferNoSchedule`.
         /// </summary>
         public readonly string? Effect;
         /// <summary>

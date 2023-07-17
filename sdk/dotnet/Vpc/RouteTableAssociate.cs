@@ -36,10 +36,10 @@ namespace Pulumi.Volcengine.Vpc
     /// Route table associate address can be imported using the route_table_id:subnet_id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:Vpc/routeTableAssociate:RouteTableAssociate default vtb-2fdzao4h726f45******:subnet-2fdzaou4liw3k5oxruv******
+    ///  $ pulumi import volcengine:vpc/routeTableAssociate:RouteTableAssociate default vtb-2fdzao4h726f45******:subnet-2fdzaou4liw3k5oxruv******
     /// ```
     /// </summary>
-    [VolcengineResourceType("volcengine:Vpc/routeTableAssociate:RouteTableAssociate")]
+    [VolcengineResourceType("volcengine:vpc/routeTableAssociate:RouteTableAssociate")]
     public partial class RouteTableAssociate : Pulumi.CustomResource
     {
         /// <summary>
@@ -63,12 +63,12 @@ namespace Pulumi.Volcengine.Vpc
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public RouteTableAssociate(string name, RouteTableAssociateArgs args, CustomResourceOptions? options = null)
-            : base("volcengine:Vpc/routeTableAssociate:RouteTableAssociate", name, args ?? new RouteTableAssociateArgs(), MakeResourceOptions(options, ""))
+            : base("volcengine:vpc/routeTableAssociate:RouteTableAssociate", name, args ?? new RouteTableAssociateArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private RouteTableAssociate(string name, Input<string> id, RouteTableAssociateState? state = null, CustomResourceOptions? options = null)
-            : base("volcengine:Vpc/routeTableAssociate:RouteTableAssociate", name, state, MakeResourceOptions(options, id))
+            : base("volcengine:vpc/routeTableAssociate:RouteTableAssociate", name, state, MakeResourceOptions(options, id))
         {
         }
 

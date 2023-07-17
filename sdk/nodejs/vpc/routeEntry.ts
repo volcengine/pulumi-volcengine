@@ -12,7 +12,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = new volcengine.Vpc.RouteEntry("foo", {
+ * const foo = new volcengine.vpc.RouteEntry("foo", {
  *     description: "tf-test-up",
  *     destinationCidrBlock: "0.0.0.0/2",
  *     nextHopId: "ngw-274gwbqe340zk7fap8spkzo7x",
@@ -27,7 +27,7 @@ import * as utilities from "../utilities";
  * Route entry can be imported using the route_table_id:route_entry_id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:Vpc/routeEntry:RouteEntry default vtb-274e19skkuhog7fap8u4i8ird:rte-274e1g9ei4k5c7fap8sp974fq
+ *  $ pulumi import volcengine:vpc/routeEntry:RouteEntry default vtb-274e19skkuhog7fap8u4i8ird:rte-274e1g9ei4k5c7fap8sp974fq
  * ```
  */
 export class RouteEntry extends pulumi.CustomResource {
@@ -45,7 +45,7 @@ export class RouteEntry extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'volcengine:Vpc/routeEntry:RouteEntry';
+    public static readonly __pulumiType = 'volcengine:vpc/routeEntry:RouteEntry';
 
     /**
      * Returns true if the given object is an instance of RouteEntry.  This is designed to work even
@@ -71,7 +71,7 @@ export class RouteEntry extends pulumi.CustomResource {
      */
     public readonly nextHopId!: pulumi.Output<string>;
     /**
-     * The type of the next hop.
+     * The type of the next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
      */
     public readonly nextHopType!: pulumi.Output<string>;
     /**
@@ -157,7 +157,7 @@ export interface RouteEntryState {
      */
     nextHopId?: pulumi.Input<string>;
     /**
-     * The type of the next hop.
+     * The type of the next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
      */
     nextHopType?: pulumi.Input<string>;
     /**
@@ -195,7 +195,7 @@ export interface RouteEntryArgs {
      */
     nextHopId: pulumi.Input<string>;
     /**
-     * The type of the next hop.
+     * The type of the next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
      */
     nextHopType: pulumi.Input<string>;
     /**

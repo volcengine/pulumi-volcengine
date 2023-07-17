@@ -41,7 +41,7 @@ namespace Pulumi.Volcengine.Ecs
         /// {{% /examples %}}
         /// </summary>
         public static Task<ImagesResult> InvokeAsync(ImagesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<ImagesResult>("volcengine:Ecs/images:Images", args ?? new ImagesArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.InvokeAsync<ImagesResult>("volcengine:ecs/images:Images", args ?? new ImagesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of images
@@ -73,7 +73,7 @@ namespace Pulumi.Volcengine.Ecs
         /// {{% /examples %}}
         /// </summary>
         public static Output<ImagesResult> Invoke(ImagesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<ImagesResult>("volcengine:Ecs/images:Images", args ?? new ImagesInvokeArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.Invoke<ImagesResult>("volcengine:ecs/images:Images", args ?? new ImagesInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -125,7 +125,7 @@ namespace Pulumi.Volcengine.Ecs
         private List<string>? _statuses;
 
         /// <summary>
-        /// A list of Image status.
+        /// A list of Image status, the value can be `available` or `creating` or `error`.
         /// </summary>
         public List<string> Statuses
         {
@@ -192,7 +192,7 @@ namespace Pulumi.Volcengine.Ecs
         private InputList<string>? _statuses;
 
         /// <summary>
-        /// A list of Image status.
+        /// A list of Image status, the value can be `available` or `creating` or `error`.
         /// </summary>
         public InputList<string> Statuses
         {

@@ -38,10 +38,10 @@ namespace Pulumi.Volcengine.Clb
     /// Certificate can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:Clb/certificate:Certificate default cert-2fe5k****c16o5oxruvtk3qf5
+    ///  $ pulumi import volcengine:clb/certificate:Certificate default cert-2fe5k****c16o5oxruvtk3qf5
     /// ```
     /// </summary>
-    [VolcengineResourceType("volcengine:Clb/certificate:Certificate")]
+    [VolcengineResourceType("volcengine:clb/certificate:Certificate")]
     public partial class Certificate : Pulumi.CustomResource
     {
         /// <summary>
@@ -57,13 +57,19 @@ namespace Pulumi.Volcengine.Clb
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The private key of the Certificate.
+        /// The private key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
         [Output("privateKey")]
         public Output<string> PrivateKey { get; private set; } = null!;
 
         /// <summary>
-        /// The public key of the Certificate.
+        /// The ProjectName of the Certificate.
+        /// </summary>
+        [Output("projectName")]
+        public Output<string?> ProjectName { get; private set; } = null!;
+
+        /// <summary>
+        /// The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
         [Output("publicKey")]
         public Output<string> PublicKey { get; private set; } = null!;
@@ -77,12 +83,12 @@ namespace Pulumi.Volcengine.Clb
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Certificate(string name, CertificateArgs args, CustomResourceOptions? options = null)
-            : base("volcengine:Clb/certificate:Certificate", name, args ?? new CertificateArgs(), MakeResourceOptions(options, ""))
+            : base("volcengine:clb/certificate:Certificate", name, args ?? new CertificateArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private Certificate(string name, Input<string> id, CertificateState? state = null, CustomResourceOptions? options = null)
-            : base("volcengine:Clb/certificate:Certificate", name, state, MakeResourceOptions(options, id))
+            : base("volcengine:clb/certificate:Certificate", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -127,13 +133,19 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The private key of the Certificate.
+        /// The private key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
         [Input("privateKey", required: true)]
         public Input<string> PrivateKey { get; set; } = null!;
 
         /// <summary>
-        /// The public key of the Certificate.
+        /// The ProjectName of the Certificate.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
+        /// The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
         [Input("publicKey", required: true)]
         public Input<string> PublicKey { get; set; } = null!;
@@ -158,13 +170,19 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The private key of the Certificate.
+        /// The private key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
         [Input("privateKey")]
         public Input<string>? PrivateKey { get; set; }
 
         /// <summary>
-        /// The public key of the Certificate.
+        /// The ProjectName of the Certificate.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
+        /// The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
         [Input("publicKey")]
         public Input<string>? PublicKey { get; set; }

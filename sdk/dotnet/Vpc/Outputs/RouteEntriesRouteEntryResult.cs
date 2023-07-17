@@ -34,7 +34,7 @@ namespace Pulumi.Volcengine.Vpc.Outputs
         /// </summary>
         public readonly string NextHopName;
         /// <summary>
-        /// A type of next hop.
+        /// A type of next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`.
         /// </summary>
         public readonly string NextHopType;
         /// <summary>

@@ -12,6 +12,12 @@ namespace Pulumi.Volcengine.Ecs.Inputs
 
     public sealed class InstanceSecondaryNetworkInterfaceArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The private ip address of primary networkInterface.
+        /// </summary>
+        [Input("primaryIpAddress")]
+        public Input<string>? PrimaryIpAddress { get; set; }
+
         [Input("securityGroupIds", required: true)]
         private InputList<string>? _securityGroupIds;
 

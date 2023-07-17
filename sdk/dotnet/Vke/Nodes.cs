@@ -58,7 +58,7 @@ namespace Pulumi.Volcengine.Vke
         /// {{% /examples %}}
         /// </summary>
         public static Task<NodesResult> InvokeAsync(NodesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<NodesResult>("volcengine:Vke/nodes:Nodes", args ?? new NodesArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.InvokeAsync<NodesResult>("volcengine:vke/nodes:Nodes", args ?? new NodesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of vke nodes
@@ -107,7 +107,7 @@ namespace Pulumi.Volcengine.Vke
         /// {{% /examples %}}
         /// </summary>
         public static Output<NodesResult> Invoke(NodesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<NodesResult>("volcengine:Vke/nodes:Nodes", args ?? new NodesInvokeArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.Invoke<NodesResult>("volcengine:vke/nodes:Nodes", args ?? new NodesInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -183,6 +183,18 @@ namespace Pulumi.Volcengine.Vke
         {
             get => _statuses ?? (_statuses = new List<Inputs.NodesStatusArgs>());
             set => _statuses = value;
+        }
+
+        [Input("zoneIds")]
+        private List<string>? _zoneIds;
+
+        /// <summary>
+        /// The Zone IDs.
+        /// </summary>
+        public List<string> ZoneIds
+        {
+            get => _zoneIds ?? (_zoneIds = new List<string>());
+            set => _zoneIds = value;
         }
 
         public NodesArgs()
@@ -264,6 +276,18 @@ namespace Pulumi.Volcengine.Vke
             set => _statuses = value;
         }
 
+        [Input("zoneIds")]
+        private InputList<string>? _zoneIds;
+
+        /// <summary>
+        /// The Zone IDs.
+        /// </summary>
+        public InputList<string> ZoneIds
+        {
+            get => _zoneIds ?? (_zoneIds = new InputList<string>());
+            set => _zoneIds = value;
+        }
+
         public NodesInvokeArgs()
         {
         }
@@ -299,6 +323,7 @@ namespace Pulumi.Volcengine.Vke
         /// The total count of Node query.
         /// </summary>
         public readonly int TotalCount;
+        public readonly ImmutableArray<string> ZoneIds;
 
         [OutputConstructor]
         private NodesResult(
@@ -322,7 +347,9 @@ namespace Pulumi.Volcengine.Vke
 
             ImmutableArray<Outputs.NodesStatusResult> statuses,
 
-            int totalCount)
+            int totalCount,
+
+            ImmutableArray<string> zoneIds)
         {
             ClusterIds = clusterIds;
             CreateClientToken = createClientToken;
@@ -335,6 +362,7 @@ namespace Pulumi.Volcengine.Vke
             OutputFile = outputFile;
             Statuses = statuses;
             TotalCount = totalCount;
+            ZoneIds = zoneIds;
         }
     }
 }

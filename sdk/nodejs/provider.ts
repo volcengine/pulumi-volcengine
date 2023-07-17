@@ -28,7 +28,11 @@ export class Provider extends pulumi.ProviderResource {
     /**
      * The Access Key for Volcengine Provider
      */
-    public readonly accessKey!: pulumi.Output<string>;
+    public readonly accessKey!: pulumi.Output<string | undefined>;
+    /**
+     * CUSTOMER ENDPOINTS for Volcengine Provider
+     */
+    public readonly customerEndpoints!: pulumi.Output<string | undefined>;
     /**
      * CUSTOMER HEADERS for Volcengine Provider
      */
@@ -38,13 +42,17 @@ export class Provider extends pulumi.ProviderResource {
      */
     public readonly endpoint!: pulumi.Output<string | undefined>;
     /**
+     * PROXY URL for Volcengine Provider
+     */
+    public readonly proxyUrl!: pulumi.Output<string | undefined>;
+    /**
      * The Region for Volcengine Provider
      */
-    public readonly region!: pulumi.Output<string>;
+    public readonly region!: pulumi.Output<string | undefined>;
     /**
      * The Secret Key for Volcengine Provider
      */
-    public readonly secretKey!: pulumi.Output<string>;
+    public readonly secretKey!: pulumi.Output<string | undefined>;
     /**
      * The Session Token for Volcengine Provider
      */
@@ -57,25 +65,18 @@ export class Provider extends pulumi.ProviderResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: ProviderArgs, opts?: pulumi.ResourceOptions) {
+    constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            if ((!args || args.accessKey === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'accessKey'");
-            }
-            if ((!args || args.region === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'region'");
-            }
-            if ((!args || args.secretKey === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'secretKey'");
-            }
-            resourceInputs["accessKey"] = args ? args.accessKey : undefined;
+            resourceInputs["accessKey"] = (args ? args.accessKey : undefined) ?? utilities.getEnv("VOLCENGINE_ACCESS_KEY");
+            resourceInputs["customerEndpoints"] = args ? args.customerEndpoints : undefined;
             resourceInputs["customerHeaders"] = args ? args.customerHeaders : undefined;
             resourceInputs["disableSsl"] = pulumi.output(args ? args.disableSsl : undefined).apply(JSON.stringify);
-            resourceInputs["endpoint"] = args ? args.endpoint : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["secretKey"] = args ? args.secretKey : undefined;
+            resourceInputs["endpoint"] = (args ? args.endpoint : undefined) ?? utilities.getEnv("VOLCENGINE_ENDPOINT");
+            resourceInputs["proxyUrl"] = args ? args.proxyUrl : undefined;
+            resourceInputs["region"] = (args ? args.region : undefined) ?? utilities.getEnv("VOLCENGINE_REGION");
+            resourceInputs["secretKey"] = (args ? args.secretKey : undefined) ?? utilities.getEnv("VOLCENGINE_SECRET_KEY");
             resourceInputs["sessionToken"] = args ? args.sessionToken : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -90,7 +91,11 @@ export interface ProviderArgs {
     /**
      * The Access Key for Volcengine Provider
      */
-    accessKey: pulumi.Input<string>;
+    accessKey?: pulumi.Input<string>;
+    /**
+     * CUSTOMER ENDPOINTS for Volcengine Provider
+     */
+    customerEndpoints?: pulumi.Input<string>;
     /**
      * CUSTOMER HEADERS for Volcengine Provider
      */
@@ -104,13 +109,17 @@ export interface ProviderArgs {
      */
     endpoint?: pulumi.Input<string>;
     /**
+     * PROXY URL for Volcengine Provider
+     */
+    proxyUrl?: pulumi.Input<string>;
+    /**
      * The Region for Volcengine Provider
      */
-    region: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
     /**
      * The Secret Key for Volcengine Provider
      */
-    secretKey: pulumi.Input<string>;
+    secretKey?: pulumi.Input<string>;
     /**
      * The Session Token for Volcengine Provider
      */

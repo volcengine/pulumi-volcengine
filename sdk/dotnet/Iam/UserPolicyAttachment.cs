@@ -48,10 +48,10 @@ namespace Pulumi.Volcengine.Iam
     /// Iam user policy attachment can be imported using the UserName:PolicyName:PolicyType, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:Iam/userPolicyAttachment:UserPolicyAttachment default TerraformTestUser:TerraformTestPolicy:Custom
+    ///  $ pulumi import volcengine:iam/userPolicyAttachment:UserPolicyAttachment default TerraformTestUser:TerraformTestPolicy:Custom
     /// ```
     /// </summary>
-    [VolcengineResourceType("volcengine:Iam/userPolicyAttachment:UserPolicyAttachment")]
+    [VolcengineResourceType("volcengine:iam/userPolicyAttachment:UserPolicyAttachment")]
     public partial class UserPolicyAttachment : Pulumi.CustomResource
     {
         /// <summary>
@@ -81,12 +81,12 @@ namespace Pulumi.Volcengine.Iam
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public UserPolicyAttachment(string name, UserPolicyAttachmentArgs args, CustomResourceOptions? options = null)
-            : base("volcengine:Iam/userPolicyAttachment:UserPolicyAttachment", name, args ?? new UserPolicyAttachmentArgs(), MakeResourceOptions(options, ""))
+            : base("volcengine:iam/userPolicyAttachment:UserPolicyAttachment", name, args ?? new UserPolicyAttachmentArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private UserPolicyAttachment(string name, Input<string> id, UserPolicyAttachmentState? state = null, CustomResourceOptions? options = null)
-            : base("volcengine:Iam/userPolicyAttachment:UserPolicyAttachment", name, state, MakeResourceOptions(options, id))
+            : base("volcengine:iam/userPolicyAttachment:UserPolicyAttachment", name, state, MakeResourceOptions(options, id))
         {
         }
 

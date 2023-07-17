@@ -21,19 +21,19 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
-	case "volcengine:Iam/accessKey:AccessKey":
+	case "volcengine:iam/accessKey:AccessKey":
 		r = &AccessKey{}
-	case "volcengine:Iam/loginProfile:LoginProfile":
+	case "volcengine:iam/loginProfile:LoginProfile":
 		r = &LoginProfile{}
-	case "volcengine:Iam/policy:Policy":
+	case "volcengine:iam/policy:Policy":
 		r = &Policy{}
-	case "volcengine:Iam/role:Role":
+	case "volcengine:iam/role:Role":
 		r = &Role{}
-	case "volcengine:Iam/rolePolicyAttachment:RolePolicyAttachment":
+	case "volcengine:iam/rolePolicyAttachment:RolePolicyAttachment":
 		r = &RolePolicyAttachment{}
-	case "volcengine:Iam/user:User":
+	case "volcengine:iam/user:User":
 		r = &User{}
-	case "volcengine:Iam/userPolicyAttachment:UserPolicyAttachment":
+	case "volcengine:iam/userPolicyAttachment:UserPolicyAttachment":
 		r = &UserPolicyAttachment{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
@@ -50,37 +50,37 @@ func init() {
 	}
 	pulumi.RegisterResourceModule(
 		"volcengine",
-		"Iam/accessKey",
+		"iam/accessKey",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
-		"Iam/loginProfile",
+		"iam/loginProfile",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
-		"Iam/policy",
+		"iam/policy",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
-		"Iam/role",
+		"iam/role",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
-		"Iam/rolePolicyAttachment",
+		"iam/rolePolicyAttachment",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
-		"Iam/user",
+		"iam/user",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
-		"Iam/userPolicyAttachment",
+		"iam/userPolicyAttachment",
 		&module{version},
 	)
 }

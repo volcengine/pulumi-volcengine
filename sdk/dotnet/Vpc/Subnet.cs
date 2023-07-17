@@ -38,10 +38,10 @@ namespace Pulumi.Volcengine.Vpc
     /// Subnet can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:Vpc/subnet:Subnet default subnet-274oj9a8rs9a87fap8sf9515b
+    ///  $ pulumi import volcengine:vpc/subnet:Subnet default subnet-274oj9a8rs9a87fap8sf9515b
     /// ```
     /// </summary>
-    [VolcengineResourceType("volcengine:Vpc/subnet:Subnet")]
+    [VolcengineResourceType("volcengine:vpc/subnet:Subnet")]
     public partial class Subnet : Pulumi.CustomResource
     {
         /// <summary>
@@ -61,6 +61,18 @@ namespace Pulumi.Volcengine.Vpc
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies whether to enable the IPv6 CIDR block of the Subnet. This field is only valid when modifying the Subnet.
+        /// </summary>
+        [Output("enableIpv6")]
+        public Output<bool> EnableIpv6 { get; private set; } = null!;
+
+        /// <summary>
+        /// The last eight bits of the IPv6 CIDR block of the Subnet. Valid values: 0 - 255.
+        /// </summary>
+        [Output("ipv6CidrBlock")]
+        public Output<int> Ipv6CidrBlock { get; private set; } = null!;
 
         /// <summary>
         /// Status of Subnet.
@@ -95,12 +107,12 @@ namespace Pulumi.Volcengine.Vpc
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Subnet(string name, SubnetArgs args, CustomResourceOptions? options = null)
-            : base("volcengine:Vpc/subnet:Subnet", name, args ?? new SubnetArgs(), MakeResourceOptions(options, ""))
+            : base("volcengine:vpc/subnet:Subnet", name, args ?? new SubnetArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private Subnet(string name, Input<string> id, SubnetState? state = null, CustomResourceOptions? options = null)
-            : base("volcengine:Vpc/subnet:Subnet", name, state, MakeResourceOptions(options, id))
+            : base("volcengine:vpc/subnet:Subnet", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -145,6 +157,18 @@ namespace Pulumi.Volcengine.Vpc
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// Specifies whether to enable the IPv6 CIDR block of the Subnet. This field is only valid when modifying the Subnet.
+        /// </summary>
+        [Input("enableIpv6")]
+        public Input<bool>? EnableIpv6 { get; set; }
+
+        /// <summary>
+        /// The last eight bits of the IPv6 CIDR block of the Subnet. Valid values: 0 - 255.
+        /// </summary>
+        [Input("ipv6CidrBlock")]
+        public Input<int>? Ipv6CidrBlock { get; set; }
+
+        /// <summary>
         /// The name of the Subnet.
         /// </summary>
         [Input("subnetName")]
@@ -186,6 +210,18 @@ namespace Pulumi.Volcengine.Vpc
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// Specifies whether to enable the IPv6 CIDR block of the Subnet. This field is only valid when modifying the Subnet.
+        /// </summary>
+        [Input("enableIpv6")]
+        public Input<bool>? EnableIpv6 { get; set; }
+
+        /// <summary>
+        /// The last eight bits of the IPv6 CIDR block of the Subnet. Valid values: 0 - 255.
+        /// </summary>
+        [Input("ipv6CidrBlock")]
+        public Input<int>? Ipv6CidrBlock { get; set; }
 
         /// <summary>
         /// Status of Subnet.

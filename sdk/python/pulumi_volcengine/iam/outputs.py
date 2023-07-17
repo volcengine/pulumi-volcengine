@@ -24,7 +24,11 @@ class PoliciesPolicyResult(dict):
                  policy_name: str,
                  policy_trn: str,
                  policy_type: str,
-                 update_date: str):
+                 role_attach_date: str,
+                 role_name: str,
+                 update_date: str,
+                 user_attach_date: str,
+                 user_name: str):
         """
         :param str create_date: The create time of the Policy.
         :param str description: The description of the Policy.
@@ -33,7 +37,11 @@ class PoliciesPolicyResult(dict):
         :param str policy_name: The name of the Policy.
         :param str policy_trn: The resource name of the Policy.
         :param str policy_type: The type of the Policy.
+        :param str role_attach_date: The role attach time of the Policy.The data show only query with role_name.
+        :param str role_name: The name of the IAM role.
         :param str update_date: The update time of the Policy.
+        :param str user_attach_date: The user attach time of the Policy.The data show only query with user_name.
+        :param str user_name: The name of the IAM user.
         """
         pulumi.set(__self__, "create_date", create_date)
         pulumi.set(__self__, "description", description)
@@ -42,7 +50,11 @@ class PoliciesPolicyResult(dict):
         pulumi.set(__self__, "policy_name", policy_name)
         pulumi.set(__self__, "policy_trn", policy_trn)
         pulumi.set(__self__, "policy_type", policy_type)
+        pulumi.set(__self__, "role_attach_date", role_attach_date)
+        pulumi.set(__self__, "role_name", role_name)
         pulumi.set(__self__, "update_date", update_date)
+        pulumi.set(__self__, "user_attach_date", user_attach_date)
+        pulumi.set(__self__, "user_name", user_name)
 
     @property
     @pulumi.getter(name="createDate")
@@ -101,12 +113,44 @@ class PoliciesPolicyResult(dict):
         return pulumi.get(self, "policy_type")
 
     @property
+    @pulumi.getter(name="roleAttachDate")
+    def role_attach_date(self) -> str:
+        """
+        The role attach time of the Policy.The data show only query with role_name.
+        """
+        return pulumi.get(self, "role_attach_date")
+
+    @property
+    @pulumi.getter(name="roleName")
+    def role_name(self) -> str:
+        """
+        The name of the IAM role.
+        """
+        return pulumi.get(self, "role_name")
+
+    @property
     @pulumi.getter(name="updateDate")
     def update_date(self) -> str:
         """
         The update time of the Policy.
         """
         return pulumi.get(self, "update_date")
+
+    @property
+    @pulumi.getter(name="userAttachDate")
+    def user_attach_date(self) -> str:
+        """
+        The user attach time of the Policy.The data show only query with user_name.
+        """
+        return pulumi.get(self, "user_attach_date")
+
+    @property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> str:
+        """
+        The name of the IAM user.
+        """
+        return pulumi.get(self, "user_name")
 
 
 @pulumi.output_type

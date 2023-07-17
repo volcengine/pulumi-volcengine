@@ -154,7 +154,7 @@ class UserPolicyAttachment(pulumi.CustomResource):
         Iam user policy attachment can be imported using the UserName:PolicyName:PolicyType, e.g.
 
         ```sh
-         $ pulumi import volcengine:Iam/userPolicyAttachment:UserPolicyAttachment default TerraformTestUser:TerraformTestPolicy:Custom
+         $ pulumi import volcengine:iam/userPolicyAttachment:UserPolicyAttachment default TerraformTestUser:TerraformTestPolicy:Custom
         ```
 
         :param str resource_name: The name of the resource.
@@ -195,7 +195,7 @@ class UserPolicyAttachment(pulumi.CustomResource):
         Iam user policy attachment can be imported using the UserName:PolicyName:PolicyType, e.g.
 
         ```sh
-         $ pulumi import volcengine:Iam/userPolicyAttachment:UserPolicyAttachment default TerraformTestUser:TerraformTestPolicy:Custom
+         $ pulumi import volcengine:iam/userPolicyAttachment:UserPolicyAttachment default TerraformTestUser:TerraformTestPolicy:Custom
         ```
 
         :param str resource_name: The name of the resource.
@@ -238,7 +238,7 @@ class UserPolicyAttachment(pulumi.CustomResource):
                 raise TypeError("Missing required property 'user_name'")
             __props__.__dict__["user_name"] = user_name
         super(UserPolicyAttachment, __self__).__init__(
-            'volcengine:Iam/userPolicyAttachment:UserPolicyAttachment',
+            'volcengine:iam/userPolicyAttachment:UserPolicyAttachment',
             resource_name,
             __props__,
             opts)

@@ -37,10 +37,10 @@ namespace Pulumi.Volcengine.Iam
     /// Iam user can be imported using the UserName, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:Iam/user:User default user_name
+    ///  $ pulumi import volcengine:iam/user:User default user_name
     /// ```
     /// </summary>
-    [VolcengineResourceType("volcengine:Iam/user:User")]
+    [VolcengineResourceType("volcengine:iam/user:User")]
     public partial class User : Pulumi.CustomResource
     {
         /// <summary>
@@ -106,12 +106,12 @@ namespace Pulumi.Volcengine.Iam
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public User(string name, UserArgs args, CustomResourceOptions? options = null)
-            : base("volcengine:Iam/user:User", name, args ?? new UserArgs(), MakeResourceOptions(options, ""))
+            : base("volcengine:iam/user:User", name, args ?? new UserArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private User(string name, Input<string> id, UserState? state = null, CustomResourceOptions? options = null)
-            : base("volcengine:Iam/user:User", name, state, MakeResourceOptions(options, id))
+            : base("volcengine:iam/user:User", name, state, MakeResourceOptions(options, id))
         {
         }
 

@@ -17,14 +17,14 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "volcengine:Ebs/volume:Volume":
+            case "volcengine:ebs/volume:Volume":
                 return new Volume(name, <any>undefined, { urn })
-            case "volcengine:Ebs/volumeAttach:VolumeAttach":
+            case "volcengine:ebs/volumeAttach:VolumeAttach":
                 return new VolumeAttach(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
-pulumi.runtime.registerResourceModule("volcengine", "Ebs/volume", _module)
-pulumi.runtime.registerResourceModule("volcengine", "Ebs/volumeAttach", _module)
+pulumi.runtime.registerResourceModule("volcengine", "ebs/volume", _module)
+pulumi.runtime.registerResourceModule("volcengine", "ebs/volumeAttach", _module)

@@ -18,22 +18,26 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Ecs"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/ecs"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Ecs.NewState(ctx, "foo", &Ecs.StateArgs{
-// 			Action:     pulumi.String("Start"),
-// 			InstanceId: pulumi.String("i-l8u2ai4j0fauo6mrpgk8"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := ecs.NewState(ctx, "foo", &ecs.StateArgs{
+//				Action:      pulumi.String("ForceStop"),
+//				InstanceId:  pulumi.String("i-ycc01lmwecgh9z3sqqfl"),
+//				StoppedMode: pulumi.String("KeepCharging"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -41,18 +45,20 @@ import (
 // State Instance can be imported using the id, e.g.
 //
 // ```sh
-//  $ pulumi import volcengine:Ecs/state:State default state:i-mizl7m1kqccg5smt1bdpijuj
+//
+//	$ pulumi import volcengine:ecs/state:State default state:i-mizl7m1kqccg5smt1bdpijuj
+//
 // ```
 type State struct {
 	pulumi.CustomResourceState
 
-	// Start or Stop of Instance Action.
+	// Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
 	Action pulumi.StringOutput `pulumi:"action"`
 	// Id of Instance.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// Status of Instance.
 	Status pulumi.StringOutput `pulumi:"status"`
-	// Stop Mode of Instance.
+	// Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`, default `KeepCharging`.
 	StoppedMode pulumi.StringPtrOutput `pulumi:"stoppedMode"`
 }
 
@@ -70,7 +76,7 @@ func NewState(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'InstanceId'")
 	}
 	var resource State
-	err := ctx.RegisterResource("volcengine:Ecs/state:State", name, args, &resource, opts...)
+	err := ctx.RegisterResource("volcengine:ecs/state:State", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -82,7 +88,7 @@ func NewState(ctx *pulumi.Context,
 func GetState(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *StateState, opts ...pulumi.ResourceOption) (*State, error) {
 	var resource State
-	err := ctx.ReadResource("volcengine:Ecs/state:State", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("volcengine:ecs/state:State", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -91,24 +97,24 @@ func GetState(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering State resources.
 type stateState struct {
-	// Start or Stop of Instance Action.
+	// Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
 	Action *string `pulumi:"action"`
 	// Id of Instance.
 	InstanceId *string `pulumi:"instanceId"`
 	// Status of Instance.
 	Status *string `pulumi:"status"`
-	// Stop Mode of Instance.
+	// Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`, default `KeepCharging`.
 	StoppedMode *string `pulumi:"stoppedMode"`
 }
 
 type StateState struct {
-	// Start or Stop of Instance Action.
+	// Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
 	Action pulumi.StringPtrInput
 	// Id of Instance.
 	InstanceId pulumi.StringPtrInput
 	// Status of Instance.
 	Status pulumi.StringPtrInput
-	// Stop Mode of Instance.
+	// Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`, default `KeepCharging`.
 	StoppedMode pulumi.StringPtrInput
 }
 
@@ -117,21 +123,21 @@ func (StateState) ElementType() reflect.Type {
 }
 
 type stateArgs struct {
-	// Start or Stop of Instance Action.
+	// Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
 	Action string `pulumi:"action"`
 	// Id of Instance.
 	InstanceId string `pulumi:"instanceId"`
-	// Stop Mode of Instance.
+	// Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`, default `KeepCharging`.
 	StoppedMode *string `pulumi:"stoppedMode"`
 }
 
 // The set of arguments for constructing a State resource.
 type StateArgs struct {
-	// Start or Stop of Instance Action.
+	// Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
 	Action pulumi.StringInput
 	// Id of Instance.
 	InstanceId pulumi.StringInput
-	// Stop Mode of Instance.
+	// Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`, default `KeepCharging`.
 	StoppedMode pulumi.StringPtrInput
 }
 
@@ -161,7 +167,7 @@ func (i *State) ToStateOutputWithContext(ctx context.Context) StateOutput {
 // StateArrayInput is an input type that accepts StateArray and StateArrayOutput values.
 // You can construct a concrete instance of `StateArrayInput` via:
 //
-//          StateArray{ StateArgs{...} }
+//	StateArray{ StateArgs{...} }
 type StateArrayInput interface {
 	pulumi.Input
 
@@ -186,7 +192,7 @@ func (i StateArray) ToStateArrayOutputWithContext(ctx context.Context) StateArra
 // StateMapInput is an input type that accepts StateMap and StateMapOutput values.
 // You can construct a concrete instance of `StateMapInput` via:
 //
-//          StateMap{ "key": StateArgs{...} }
+//	StateMap{ "key": StateArgs{...} }
 type StateMapInput interface {
 	pulumi.Input
 
@@ -222,7 +228,7 @@ func (o StateOutput) ToStateOutputWithContext(ctx context.Context) StateOutput {
 	return o
 }
 
-// Start or Stop of Instance Action.
+// Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
 func (o StateOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v *State) pulumi.StringOutput { return v.Action }).(pulumi.StringOutput)
 }
@@ -237,7 +243,7 @@ func (o StateOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *State) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
-// Stop Mode of Instance.
+// Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`, default `KeepCharging`.
 func (o StateOutput) StoppedMode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *State) pulumi.StringPtrOutput { return v.StoppedMode }).(pulumi.StringPtrOutput)
 }

@@ -9,8 +9,123 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
+    'AclAclEntryArgs',
+    'ClbTagArgs',
+    'ClbsTagArgs',
     'ListenerHealthCheckArgs',
 ]
+
+@pulumi.input_type
+class AclAclEntryArgs:
+    def __init__(__self__, *,
+                 entry: pulumi.Input[str],
+                 description: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] entry: The content of the AclEntry.
+        :param pulumi.Input[str] description: The description of the AclEntry.
+        """
+        pulumi.set(__self__, "entry", entry)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+
+    @property
+    @pulumi.getter
+    def entry(self) -> pulumi.Input[str]:
+        """
+        The content of the AclEntry.
+        """
+        return pulumi.get(self, "entry")
+
+    @entry.setter
+    def entry(self, value: pulumi.Input[str]):
+        pulumi.set(self, "entry", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        The description of the AclEntry.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+
+@pulumi.input_type
+class ClbTagArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ClbsTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
 
 @pulumi.input_type
 class ListenerHealthCheckArgs:
@@ -27,12 +142,12 @@ class ListenerHealthCheckArgs:
         """
         :param pulumi.Input[str] domain: The domain of health check.
         :param pulumi.Input[str] enabled: The enable status of health check function. Optional choice contains `on`, `off`.
-        :param pulumi.Input[int] healthy_threshold: The healthy threshold of health check.
-        :param pulumi.Input[str] http_code: The normal http status code of health check.
-        :param pulumi.Input[int] interval: The interval executing health check.
-        :param pulumi.Input[str] method: The method of health check.
-        :param pulumi.Input[int] timeout: The response timeout of health check.
-        :param pulumi.Input[int] un_healthy_threshold: The unhealthy threshold of health check.
+        :param pulumi.Input[int] healthy_threshold: The healthy threshold of health check, default 3, range in 2~10.
+        :param pulumi.Input[str] http_code: The normal http status code of health check, the value can be `http_2xx` or `http_3xx` or `http_4xx` or `http_5xx`.
+        :param pulumi.Input[int] interval: The interval executing health check, default 2, range in 1~300.
+        :param pulumi.Input[str] method: The method of health check, the value can be `GET` or `HEAD`.
+        :param pulumi.Input[int] timeout: The response timeout of health check, default 2, range in 1~60..
+        :param pulumi.Input[int] un_healthy_threshold: The unhealthy threshold of health check, default 3, range in 2~10.
         :param pulumi.Input[str] uri: The uri of health check.
         """
         if domain is not None:
@@ -82,7 +197,7 @@ class ListenerHealthCheckArgs:
     @pulumi.getter(name="healthyThreshold")
     def healthy_threshold(self) -> Optional[pulumi.Input[int]]:
         """
-        The healthy threshold of health check.
+        The healthy threshold of health check, default 3, range in 2~10.
         """
         return pulumi.get(self, "healthy_threshold")
 
@@ -94,7 +209,7 @@ class ListenerHealthCheckArgs:
     @pulumi.getter(name="httpCode")
     def http_code(self) -> Optional[pulumi.Input[str]]:
         """
-        The normal http status code of health check.
+        The normal http status code of health check, the value can be `http_2xx` or `http_3xx` or `http_4xx` or `http_5xx`.
         """
         return pulumi.get(self, "http_code")
 
@@ -106,7 +221,7 @@ class ListenerHealthCheckArgs:
     @pulumi.getter
     def interval(self) -> Optional[pulumi.Input[int]]:
         """
-        The interval executing health check.
+        The interval executing health check, default 2, range in 1~300.
         """
         return pulumi.get(self, "interval")
 
@@ -118,7 +233,7 @@ class ListenerHealthCheckArgs:
     @pulumi.getter
     def method(self) -> Optional[pulumi.Input[str]]:
         """
-        The method of health check.
+        The method of health check, the value can be `GET` or `HEAD`.
         """
         return pulumi.get(self, "method")
 
@@ -130,7 +245,7 @@ class ListenerHealthCheckArgs:
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        The response timeout of health check.
+        The response timeout of health check, default 2, range in 1~60..
         """
         return pulumi.get(self, "timeout")
 
@@ -142,7 +257,7 @@ class ListenerHealthCheckArgs:
     @pulumi.getter(name="unHealthyThreshold")
     def un_healthy_threshold(self) -> Optional[pulumi.Input[int]]:
         """
-        The unhealthy threshold of health check.
+        The unhealthy threshold of health check, default 3, range in 2~10.
         """
         return pulumi.get(self, "un_healthy_threshold")
 

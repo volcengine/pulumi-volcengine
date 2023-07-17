@@ -14,11 +14,11 @@ namespace Pulumi.Volcengine.Vke.Outputs
     public sealed class NodePoolsNodePoolLabelContentResult
     {
         /// <summary>
-        /// The Key of Taint.
+        /// The Key of Tags.
         /// </summary>
         public readonly string Key;
         /// <summary>
-        /// The Value of Taint.
+        /// The Value of Tags.
         /// </summary>
         public readonly string Value;
 

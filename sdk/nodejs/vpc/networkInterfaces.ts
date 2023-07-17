@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultNetworkInterfaces = pulumi.output(volcengine.Vpc.NetworkInterfaces({
+ * const defaultNetworkInterfaces = pulumi.output(volcengine.vpc.NetworkInterfaces({
  *     ids: ["eni-2744htx2w0j5s7fap8t3ivwze"],
  * }));
  * ```
@@ -25,17 +25,22 @@ export function networkInterfaces(args?: NetworkInterfacesArgs, opts?: pulumi.In
     }
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-    return pulumi.runtime.invoke("volcengine:Vpc/networkInterfaces:NetworkInterfaces", {
+    return pulumi.runtime.invoke("volcengine:vpc/networkInterfaces:NetworkInterfaces", {
         "ids": args.ids,
         "instanceId": args.instanceId,
+        "networkInterfaceIds": args.networkInterfaceIds,
         "networkInterfaceName": args.networkInterfaceName,
         "outputFile": args.outputFile,
         "primaryIpAddresses": args.primaryIpAddresses,
+        "privateIpAddresses": args.privateIpAddresses,
+        "projectName": args.projectName,
         "securityGroupId": args.securityGroupId,
         "status": args.status,
         "subnetId": args.subnetId,
+        "tags": args.tags,
         "type": args.type,
         "vpcId": args.vpcId,
+        "zoneId": args.zoneId,
     }, opts);
 }
 
@@ -52,6 +57,10 @@ export interface NetworkInterfacesArgs {
      */
     instanceId?: string;
     /**
+     * A list of network interface ids.
+     */
+    networkInterfaceIds?: string[];
+    /**
      * A name of ENI.
      */
     networkInterfaceName?: string;
@@ -64,11 +73,19 @@ export interface NetworkInterfacesArgs {
      */
     primaryIpAddresses?: string[];
     /**
+     * A list of private IP addresses.
+     */
+    privateIpAddresses?: string[];
+    /**
+     * The ProjectName of the ENI.
+     */
+    projectName?: string;
+    /**
      * An id of the security group to which the secondary ENI belongs.
      */
     securityGroupId?: string;
     /**
-     * A status of ENI.
+     * A status of ENI, Optional choice contains `Creating`, `Available`, `Attaching`, `InUse`, `Detaching`, `Deleting`.
      */
     status?: string;
     /**
@@ -76,13 +93,21 @@ export interface NetworkInterfacesArgs {
      */
     subnetId?: string;
     /**
-     * A type of ENI.
+     * Tags.
+     */
+    tags?: inputs.vpc.NetworkInterfacesTag[];
+    /**
+     * A type of ENI, Optional choice contains `primary`, `secondary`.
      */
     type?: string;
     /**
      * An id of the virtual private cloud (VPC) to which the ENI belongs.
      */
     vpcId?: string;
+    /**
+     * The zone ID.
+     */
+    zoneId?: string;
 }
 
 /**
@@ -95,6 +120,7 @@ export interface NetworkInterfacesResult {
     readonly id: string;
     readonly ids?: string[];
     readonly instanceId?: string;
+    readonly networkInterfaceIds?: string[];
     /**
      * The name of the ENI.
      */
@@ -102,9 +128,14 @@ export interface NetworkInterfacesResult {
     /**
      * The collection of ENI.
      */
-    readonly networkInterfaces: outputs.Vpc.NetworkInterfacesNetworkInterface[];
+    readonly networkInterfaces: outputs.vpc.NetworkInterfacesNetworkInterface[];
     readonly outputFile?: string;
     readonly primaryIpAddresses?: string[];
+    readonly privateIpAddresses?: string[];
+    /**
+     * The ProjectName of the ENI.
+     */
+    readonly projectName?: string;
     readonly securityGroupId?: string;
     /**
      * The status of the ENI.
@@ -114,6 +145,10 @@ export interface NetworkInterfacesResult {
      * The id of the subnet to which the ENI is connected.
      */
     readonly subnetId?: string;
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.vpc.NetworkInterfacesTag[];
     /**
      * The total count of ENI query.
      */
@@ -126,6 +161,10 @@ export interface NetworkInterfacesResult {
      * The id of the virtual private cloud (VPC) to which the ENI belongs.
      */
     readonly vpcId?: string;
+    /**
+     * The zone id of the ENI.
+     */
+    readonly zoneId?: string;
 }
 
 export function networkInterfacesOutput(args?: NetworkInterfacesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<NetworkInterfacesResult> {
@@ -145,6 +184,10 @@ export interface NetworkInterfacesOutputArgs {
      */
     instanceId?: pulumi.Input<string>;
     /**
+     * A list of network interface ids.
+     */
+    networkInterfaceIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * A name of ENI.
      */
     networkInterfaceName?: pulumi.Input<string>;
@@ -157,11 +200,19 @@ export interface NetworkInterfacesOutputArgs {
      */
     primaryIpAddresses?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * A list of private IP addresses.
+     */
+    privateIpAddresses?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The ProjectName of the ENI.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * An id of the security group to which the secondary ENI belongs.
      */
     securityGroupId?: pulumi.Input<string>;
     /**
-     * A status of ENI.
+     * A status of ENI, Optional choice contains `Creating`, `Available`, `Attaching`, `InUse`, `Detaching`, `Deleting`.
      */
     status?: pulumi.Input<string>;
     /**
@@ -169,11 +220,19 @@ export interface NetworkInterfacesOutputArgs {
      */
     subnetId?: pulumi.Input<string>;
     /**
-     * A type of ENI.
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpc.NetworkInterfacesTagArgs>[]>;
+    /**
+     * A type of ENI, Optional choice contains `primary`, `secondary`.
      */
     type?: pulumi.Input<string>;
     /**
      * An id of the virtual private cloud (VPC) to which the ENI belongs.
      */
     vpcId?: pulumi.Input<string>;
+    /**
+     * The zone ID.
+     */
+    zoneId?: pulumi.Input<string>;
 }

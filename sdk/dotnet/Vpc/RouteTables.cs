@@ -42,7 +42,7 @@ namespace Pulumi.Volcengine.Vpc
         /// {{% /examples %}}
         /// </summary>
         public static Task<RouteTablesResult> InvokeAsync(RouteTablesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<RouteTablesResult>("volcengine:Vpc/routeTables:RouteTables", args ?? new RouteTablesArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.InvokeAsync<RouteTablesResult>("volcengine:vpc/routeTables:RouteTables", args ?? new RouteTablesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of route tables
@@ -75,7 +75,7 @@ namespace Pulumi.Volcengine.Vpc
         /// {{% /examples %}}
         /// </summary>
         public static Output<RouteTablesResult> Invoke(RouteTablesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<RouteTablesResult>("volcengine:Vpc/routeTables:RouteTables", args ?? new RouteTablesInvokeArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.Invoke<RouteTablesResult>("volcengine:vpc/routeTables:RouteTables", args ?? new RouteTablesInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -98,6 +98,12 @@ namespace Pulumi.Volcengine.Vpc
         /// </summary>
         [Input("outputFile")]
         public string? OutputFile { get; set; }
+
+        /// <summary>
+        /// The ProjectName of the route table.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
 
         /// <summary>
         /// A name of route table.
@@ -137,6 +143,12 @@ namespace Pulumi.Volcengine.Vpc
         public Input<string>? OutputFile { get; set; }
 
         /// <summary>
+        /// The ProjectName of the route table.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
         /// A name of route table.
         /// </summary>
         [Input("routeTableName")]
@@ -164,6 +176,10 @@ namespace Pulumi.Volcengine.Vpc
         public readonly ImmutableArray<string> Ids;
         public readonly string? OutputFile;
         /// <summary>
+        /// The ProjectName of the route table.
+        /// </summary>
+        public readonly string? ProjectName;
+        /// <summary>
         /// The name of the route table.
         /// </summary>
         public readonly string? RouteTableName;
@@ -188,6 +204,8 @@ namespace Pulumi.Volcengine.Vpc
 
             string? outputFile,
 
+            string? projectName,
+
             string? routeTableName,
 
             ImmutableArray<Outputs.RouteTablesRouteTableResult> routeTables,
@@ -199,6 +217,7 @@ namespace Pulumi.Volcengine.Vpc
             Id = id;
             Ids = ids;
             OutputFile = outputFile;
+            ProjectName = projectName;
             RouteTableName = routeTableName;
             RouteTables = routeTables;
             TotalCount = totalCount;

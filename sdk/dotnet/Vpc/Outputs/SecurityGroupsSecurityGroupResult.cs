@@ -26,6 +26,10 @@ namespace Pulumi.Volcengine.Vpc.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// The ProjectName of SecurityGroup.
+        /// </summary>
+        public readonly string ProjectName;
+        /// <summary>
         /// The ID of SecurityGroup.
         /// </summary>
         public readonly string SecurityGroupId;
@@ -38,11 +42,15 @@ namespace Pulumi.Volcengine.Vpc.Outputs
         /// </summary>
         public readonly string Status;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.SecurityGroupsSecurityGroupTagResult> Tags;
+        /// <summary>
         /// A Name Regex of SecurityGroup.
         /// </summary>
         public readonly string Type;
         /// <summary>
-        /// The ID of Vpc.
+        /// The ID of vpc where security group is located.
         /// </summary>
         public readonly string VpcId;
 
@@ -54,11 +62,15 @@ namespace Pulumi.Volcengine.Vpc.Outputs
 
             string id,
 
+            string projectName,
+
             string securityGroupId,
 
             string securityGroupName,
 
             string status,
+
+            ImmutableArray<Outputs.SecurityGroupsSecurityGroupTagResult> tags,
 
             string type,
 
@@ -67,9 +79,11 @@ namespace Pulumi.Volcengine.Vpc.Outputs
             CreationTime = creationTime;
             Description = description;
             Id = id;
+            ProjectName = projectName;
             SecurityGroupId = securityGroupId;
             SecurityGroupName = securityGroupName;
             Status = status;
+            Tags = tags;
             Type = type;
             VpcId = vpcId;
         }

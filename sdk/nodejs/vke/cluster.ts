@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = new volcengine.Vke.Cluster("foo", {
+ * const foo = new volcengine.vke.Cluster("foo", {
  *     clusterConfig: {
  *         apiServerPublicAccessConfig: {
  *             publicAccessNetworkConfig: {
@@ -23,23 +23,39 @@ import * as utilities from "../utilities";
  *         },
  *         apiServerPublicAccessEnabled: true,
  *         resourcePublicAccessDefaultEnabled: true,
- *         subnetIds: ["subnet-2bzud0pbor8qo2dx0ee884y6h"],
+ *         subnetIds: ["subnet-rrqvkt2nq1hcv0x57ccqf3x"],
  *     },
  *     deleteProtectionEnabled: false,
  *     description: "created by terraform",
+ *     loggingConfig: {
+ *         //log_project_id = "3189316d-a1ee-4892-a8fc-9a566489d590"
+ *         logSetups: [{
+ *             enabled: false,
+ *             logTtl: 30,
+ *             logType: "Audit",
+ *         }],
+ *     },
  *     podsConfig: {
- *         flannelConfig: {
- *             maxPodsPerNode: 64,
- *             podCidrs: ["172.27.224.0/19"],
- *         },
- *         podNetworkMode: "Flannel",
+ *         podNetworkMode: "VpcCniShared",
+ *         //    flannel_config {
+ *         //      pod_cidrs = ["172.27.224.0/19"]
+ *         //      max_pods_per_node = 64
+ *         //    }
  *         vpcCniConfig: {
- *             subnetIds: ["subnet-2bzud0pbor8qo2dx0ee884y6h"],
+ *             subnetIds: [
+ *                 "subnet-rrqvkt2nq1hcv0x57ccqf3x",
+ *                 "subnet-miklcqh75vcw5smt1amo4ik5",
+ *                 "subnet-13g0x0ytpm0hs3n6nu5j591lv",
+ *             ],
  *         },
  *     },
  *     servicesConfig: {
- *         serviceCidrsv4s: ["172.30.0.0/17"],
+ *         serviceCidrsv4s: ["172.30.0.0/18"],
  *     },
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
  * ```
  *
@@ -48,7 +64,7 @@ import * as utilities from "../utilities";
  * VkeCluster can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:Vke/cluster:Cluster default cc9l74mvqtofjnoj5****
+ *  $ pulumi import volcengine:vke/cluster:Cluster default cc9l74mvqtofjnoj5****
  * ```
  */
 export class Cluster extends pulumi.CustomResource {
@@ -66,7 +82,7 @@ export class Cluster extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'volcengine:Vke/cluster:Cluster';
+    public static readonly __pulumiType = 'volcengine:vke/cluster:Cluster';
 
     /**
      * Returns true if the given object is an instance of Cluster.  This is designed to work even
@@ -86,7 +102,7 @@ export class Cluster extends pulumi.CustomResource {
     /**
      * The config of the cluster.
      */
-    public readonly clusterConfig!: pulumi.Output<outputs.Vke.ClusterClusterConfig>;
+    public readonly clusterConfig!: pulumi.Output<outputs.vke.ClusterClusterConfig>;
     /**
      * The delete protection of the cluster, the value is `true` or `false`.
      */
@@ -100,11 +116,11 @@ export class Cluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly eipAllocationId!: pulumi.Output<string>;
     /**
-     * Kubeconfig data with private network access, returned in BASE64 encoding.
+     * Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
      */
     public /*out*/ readonly kubeconfigPrivate!: pulumi.Output<string>;
     /**
-     * Kubeconfig data with public network access, returned in BASE64 encoding.
+     * Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
      */
     public /*out*/ readonly kubeconfigPublic!: pulumi.Output<string>;
     /**
@@ -112,17 +128,25 @@ export class Cluster extends pulumi.CustomResource {
      */
     public readonly kubernetesVersion!: pulumi.Output<string>;
     /**
+     * Cluster log configuration information.
+     */
+    public readonly loggingConfig!: pulumi.Output<outputs.vke.ClusterLoggingConfig | undefined>;
+    /**
      * The name of the cluster.
      */
     public readonly name!: pulumi.Output<string>;
     /**
      * The config of the pods.
      */
-    public readonly podsConfig!: pulumi.Output<outputs.Vke.ClusterPodsConfig>;
+    public readonly podsConfig!: pulumi.Output<outputs.vke.ClusterPodsConfig>;
     /**
      * The config of the services.
      */
-    public readonly servicesConfig!: pulumi.Output<outputs.Vke.ClusterServicesConfig>;
+    public readonly servicesConfig!: pulumi.Output<outputs.vke.ClusterServicesConfig>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.vke.ClusterTag[] | undefined>;
 
     /**
      * Create a Cluster resource with the given unique name, arguments, and options.
@@ -145,9 +169,11 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["kubeconfigPrivate"] = state ? state.kubeconfigPrivate : undefined;
             resourceInputs["kubeconfigPublic"] = state ? state.kubeconfigPublic : undefined;
             resourceInputs["kubernetesVersion"] = state ? state.kubernetesVersion : undefined;
+            resourceInputs["loggingConfig"] = state ? state.loggingConfig : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["podsConfig"] = state ? state.podsConfig : undefined;
             resourceInputs["servicesConfig"] = state ? state.servicesConfig : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
         } else {
             const args = argsOrState as ClusterArgs | undefined;
             if ((!args || args.clusterConfig === undefined) && !opts.urn) {
@@ -164,9 +190,11 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["deleteProtectionEnabled"] = args ? args.deleteProtectionEnabled : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["kubernetesVersion"] = args ? args.kubernetesVersion : undefined;
+            resourceInputs["loggingConfig"] = args ? args.loggingConfig : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["podsConfig"] = args ? args.podsConfig : undefined;
             resourceInputs["servicesConfig"] = args ? args.servicesConfig : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["eipAllocationId"] = undefined /*out*/;
             resourceInputs["kubeconfigPrivate"] = undefined /*out*/;
             resourceInputs["kubeconfigPublic"] = undefined /*out*/;
@@ -187,7 +215,7 @@ export interface ClusterState {
     /**
      * The config of the cluster.
      */
-    clusterConfig?: pulumi.Input<inputs.Vke.ClusterClusterConfig>;
+    clusterConfig?: pulumi.Input<inputs.vke.ClusterClusterConfig>;
     /**
      * The delete protection of the cluster, the value is `true` or `false`.
      */
@@ -201,11 +229,11 @@ export interface ClusterState {
      */
     eipAllocationId?: pulumi.Input<string>;
     /**
-     * Kubeconfig data with private network access, returned in BASE64 encoding.
+     * Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
      */
     kubeconfigPrivate?: pulumi.Input<string>;
     /**
-     * Kubeconfig data with public network access, returned in BASE64 encoding.
+     * Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
      */
     kubeconfigPublic?: pulumi.Input<string>;
     /**
@@ -213,17 +241,25 @@ export interface ClusterState {
      */
     kubernetesVersion?: pulumi.Input<string>;
     /**
+     * Cluster log configuration information.
+     */
+    loggingConfig?: pulumi.Input<inputs.vke.ClusterLoggingConfig>;
+    /**
      * The name of the cluster.
      */
     name?: pulumi.Input<string>;
     /**
      * The config of the pods.
      */
-    podsConfig?: pulumi.Input<inputs.Vke.ClusterPodsConfig>;
+    podsConfig?: pulumi.Input<inputs.vke.ClusterPodsConfig>;
     /**
      * The config of the services.
      */
-    servicesConfig?: pulumi.Input<inputs.Vke.ClusterServicesConfig>;
+    servicesConfig?: pulumi.Input<inputs.vke.ClusterServicesConfig>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vke.ClusterTag>[]>;
 }
 
 /**
@@ -237,7 +273,7 @@ export interface ClusterArgs {
     /**
      * The config of the cluster.
      */
-    clusterConfig: pulumi.Input<inputs.Vke.ClusterClusterConfig>;
+    clusterConfig: pulumi.Input<inputs.vke.ClusterClusterConfig>;
     /**
      * The delete protection of the cluster, the value is `true` or `false`.
      */
@@ -251,15 +287,23 @@ export interface ClusterArgs {
      */
     kubernetesVersion?: pulumi.Input<string>;
     /**
+     * Cluster log configuration information.
+     */
+    loggingConfig?: pulumi.Input<inputs.vke.ClusterLoggingConfig>;
+    /**
      * The name of the cluster.
      */
     name?: pulumi.Input<string>;
     /**
      * The config of the pods.
      */
-    podsConfig: pulumi.Input<inputs.Vke.ClusterPodsConfig>;
+    podsConfig: pulumi.Input<inputs.vke.ClusterPodsConfig>;
     /**
      * The config of the services.
      */
-    servicesConfig: pulumi.Input<inputs.Vke.ClusterServicesConfig>;
+    servicesConfig: pulumi.Input<inputs.vke.ClusterServicesConfig>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vke.ClusterTag>[]>;
 }

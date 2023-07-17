@@ -21,9 +21,9 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
-	case "volcengine:Ebs/volume:Volume":
+	case "volcengine:ebs/volume:Volume":
 		r = &Volume{}
-	case "volcengine:Ebs/volumeAttach:VolumeAttach":
+	case "volcengine:ebs/volumeAttach:VolumeAttach":
 		r = &VolumeAttach{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
@@ -40,12 +40,12 @@ func init() {
 	}
 	pulumi.RegisterResourceModule(
 		"volcengine",
-		"Ebs/volume",
+		"ebs/volume",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
-		"Ebs/volumeAttach",
+		"ebs/volumeAttach",
 		&module{version},
 	)
 }

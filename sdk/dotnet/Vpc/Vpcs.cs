@@ -40,7 +40,7 @@ namespace Pulumi.Volcengine.Vpc
         /// {{% /examples %}}
         /// </summary>
         public static Task<VpcsResult> InvokeAsync(VpcsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<VpcsResult>("volcengine:Vpc/vpcs:Vpcs", args ?? new VpcsArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.InvokeAsync<VpcsResult>("volcengine:vpc/vpcs:Vpcs", args ?? new VpcsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of vpcs
@@ -71,7 +71,7 @@ namespace Pulumi.Volcengine.Vpc
         /// {{% /examples %}}
         /// </summary>
         public static Output<VpcsResult> Invoke(VpcsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<VpcsResult>("volcengine:Vpc/vpcs:Vpcs", args ?? new VpcsInvokeArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.Invoke<VpcsResult>("volcengine:vpc/vpcs:Vpcs", args ?? new VpcsInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -100,6 +100,30 @@ namespace Pulumi.Volcengine.Vpc
         /// </summary>
         [Input("outputFile")]
         public string? OutputFile { get; set; }
+
+        /// <summary>
+        /// The ProjectName of the VPC.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
+
+        [Input("tags")]
+        private List<Inputs.VpcsTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.VpcsTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.VpcsTagArgs>());
+            set => _tags = value;
+        }
+
+        /// <summary>
+        /// The vpc name to query.
+        /// </summary>
+        [Input("vpcName")]
+        public string? VpcName { get; set; }
 
         public VpcsArgs()
         {
@@ -132,6 +156,30 @@ namespace Pulumi.Volcengine.Vpc
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
 
+        /// <summary>
+        /// The ProjectName of the VPC.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.VpcsTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.VpcsTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.VpcsTagInputArgs>());
+            set => _tags = value;
+        }
+
+        /// <summary>
+        /// The vpc name to query.
+        /// </summary>
+        [Input("vpcName")]
+        public Input<string>? VpcName { get; set; }
+
         public VpcsInvokeArgs()
         {
         }
@@ -149,9 +197,21 @@ namespace Pulumi.Volcengine.Vpc
         public readonly string? NameRegex;
         public readonly string? OutputFile;
         /// <summary>
+        /// The ProjectName of the VPC.
+        /// </summary>
+        public readonly string? ProjectName;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.VpcsTagResult> Tags;
+        /// <summary>
         /// The total count of Vpc query.
         /// </summary>
         public readonly int TotalCount;
+        /// <summary>
+        /// The name of VPC.
+        /// </summary>
+        public readonly string? VpcName;
         /// <summary>
         /// The collection of Vpc query.
         /// </summary>
@@ -167,7 +227,13 @@ namespace Pulumi.Volcengine.Vpc
 
             string? outputFile,
 
+            string? projectName,
+
+            ImmutableArray<Outputs.VpcsTagResult> tags,
+
             int totalCount,
+
+            string? vpcName,
 
             ImmutableArray<Outputs.VpcsVpcResult> vpcs)
         {
@@ -175,7 +241,10 @@ namespace Pulumi.Volcengine.Vpc
             Ids = ids;
             NameRegex = nameRegex;
             OutputFile = outputFile;
+            ProjectName = projectName;
+            Tags = tags;
             TotalCount = totalCount;
+            VpcName = vpcName;
             Vpcs = vpcs;
         }
     }

@@ -195,7 +195,7 @@ class VolumeAttach(pulumi.CustomResource):
         VolumeAttach can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Ebs/volumeAttach:VolumeAttach default vol-abc12345:i-abc12345
+         $ pulumi import volcengine:ebs/volumeAttach:VolumeAttach default vol-abc12345:i-abc12345
         ```
 
         :param str resource_name: The name of the resource.
@@ -228,7 +228,7 @@ class VolumeAttach(pulumi.CustomResource):
         VolumeAttach can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Ebs/volumeAttach:VolumeAttach default vol-abc12345:i-abc12345
+         $ pulumi import volcengine:ebs/volumeAttach:VolumeAttach default vol-abc12345:i-abc12345
         ```
 
         :param str resource_name: The name of the resource.
@@ -272,7 +272,7 @@ class VolumeAttach(pulumi.CustomResource):
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         super(VolumeAttach, __self__).__init__(
-            'volcengine:Ebs/volumeAttach:VolumeAttach',
+            'volcengine:ebs/volumeAttach:VolumeAttach',
             resource_name,
             __props__,
             opts)

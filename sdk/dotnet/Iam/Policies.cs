@@ -37,7 +37,7 @@ namespace Pulumi.Volcengine.Iam
         /// {{% /examples %}}
         /// </summary>
         public static Task<PoliciesResult> InvokeAsync(PoliciesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<PoliciesResult>("volcengine:Iam/policies:Policies", args ?? new PoliciesArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.InvokeAsync<PoliciesResult>("volcengine:iam/policies:Policies", args ?? new PoliciesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of iam policies
@@ -65,7 +65,7 @@ namespace Pulumi.Volcengine.Iam
         /// {{% /examples %}}
         /// </summary>
         public static Output<PoliciesResult> Invoke(PoliciesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<PoliciesResult>("volcengine:Iam/policies:Policies", args ?? new PoliciesInvokeArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.Invoke<PoliciesResult>("volcengine:iam/policies:Policies", args ?? new PoliciesInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -90,6 +90,12 @@ namespace Pulumi.Volcengine.Iam
         public string? Query { get; set; }
 
         /// <summary>
+        /// The name of the IAM role.
+        /// </summary>
+        [Input("roleName")]
+        public string? RoleName { get; set; }
+
+        /// <summary>
         /// The scope of the Policy.
         /// </summary>
         [Input("scope")]
@@ -100,6 +106,12 @@ namespace Pulumi.Volcengine.Iam
         /// </summary>
         [Input("status")]
         public string? Status { get; set; }
+
+        /// <summary>
+        /// The name of the IAM user.
+        /// </summary>
+        [Input("userName")]
+        public string? UserName { get; set; }
 
         public PoliciesArgs()
         {
@@ -127,6 +139,12 @@ namespace Pulumi.Volcengine.Iam
         public Input<string>? Query { get; set; }
 
         /// <summary>
+        /// The name of the IAM role.
+        /// </summary>
+        [Input("roleName")]
+        public Input<string>? RoleName { get; set; }
+
+        /// <summary>
         /// The scope of the Policy.
         /// </summary>
         [Input("scope")]
@@ -137,6 +155,12 @@ namespace Pulumi.Volcengine.Iam
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        /// <summary>
+        /// The name of the IAM user.
+        /// </summary>
+        [Input("userName")]
+        public Input<string>? UserName { get; set; }
 
         public PoliciesInvokeArgs()
         {
@@ -158,12 +182,20 @@ namespace Pulumi.Volcengine.Iam
         /// </summary>
         public readonly ImmutableArray<Outputs.PoliciesPolicyResult> Policies;
         public readonly string? Query;
+        /// <summary>
+        /// The name of the IAM role.The data show only query with role_name.
+        /// </summary>
+        public readonly string? RoleName;
         public readonly string? Scope;
         public readonly string? Status;
         /// <summary>
         /// The total count of Policy query.
         /// </summary>
         public readonly int TotalCount;
+        /// <summary>
+        /// The name of the IAM user.The data show only query with user_name.
+        /// </summary>
+        public readonly string? UserName;
 
         [OutputConstructor]
         private PoliciesResult(
@@ -177,20 +209,26 @@ namespace Pulumi.Volcengine.Iam
 
             string? query,
 
+            string? roleName,
+
             string? scope,
 
             string? status,
 
-            int totalCount)
+            int totalCount,
+
+            string? userName)
         {
             Id = id;
             NameRegex = nameRegex;
             OutputFile = outputFile;
             Policies = policies;
             Query = query;
+            RoleName = roleName;
             Scope = scope;
             Status = status;
             TotalCount = totalCount;
+            UserName = userName;
         }
     }
 }

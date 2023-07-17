@@ -18,21 +18,53 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// </summary>
         public readonly bool? AdditionalContainerStorageEnabled;
         /// <summary>
+        /// Is AutoRenew of PrePaid instance of NodeConfig. Valid values: true, false. when InstanceChargeType is PrePaid, default value is true.
+        /// </summary>
+        public readonly bool? AutoRenew;
+        /// <summary>
+        /// The AutoRenewPeriod of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 6, 12. Unit: month. when InstanceChargeType is PrePaid and AutoRenew enable, default value is 1.
+        /// </summary>
+        public readonly int? AutoRenewPeriod;
+        /// <summary>
         /// The DataVolumes of NodeConfig.
         /// </summary>
         public readonly ImmutableArray<Outputs.NodePoolNodeConfigDataVolume> DataVolumes;
+        /// <summary>
+        /// Tags for Ecs.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.NodePoolNodeConfigEcsTag> EcsTags;
+        /// <summary>
+        /// The IDs of HpcCluster, only one ID is supported currently.
+        /// </summary>
+        public readonly ImmutableArray<string> HpcClusterIds;
+        /// <summary>
+        /// The ImageId of NodeConfig.
+        /// </summary>
+        public readonly string? ImageId;
         /// <summary>
         /// The initializeScript of NodeConfig.
         /// </summary>
         public readonly string? InitializeScript;
         /// <summary>
+        /// The InstanceChargeType of PrePaid instance of NodeConfig. Valid values: PostPaid, PrePaid. Default value: PostPaid.
+        /// </summary>
+        public readonly string? InstanceChargeType;
+        /// <summary>
         /// The InstanceTypeIds of NodeConfig.
         /// </summary>
         public readonly ImmutableArray<string> InstanceTypeIds;
         /// <summary>
+        /// The NamePrefix of NodeConfig.
+        /// </summary>
+        public readonly string? NamePrefix;
+        /// <summary>
+        /// The Period of PrePaid instance of NodeConfig. Valid values: 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36. Unit: month. when InstanceChargeType is PrePaid, default value is 12.
+        /// </summary>
+        public readonly int? Period;
+        /// <summary>
         /// The Security of NodeConfig.
         /// </summary>
-        public readonly Outputs.NodePoolNodeConfigSecurity? Security;
+        public readonly Outputs.NodePoolNodeConfigSecurity Security;
         /// <summary>
         /// The SubnetIds of NodeConfig.
         /// </summary>
@@ -46,22 +78,46 @@ namespace Pulumi.Volcengine.Vke.Outputs
         private NodePoolNodeConfig(
             bool? additionalContainerStorageEnabled,
 
+            bool? autoRenew,
+
+            int? autoRenewPeriod,
+
             ImmutableArray<Outputs.NodePoolNodeConfigDataVolume> dataVolumes,
+
+            ImmutableArray<Outputs.NodePoolNodeConfigEcsTag> ecsTags,
+
+            ImmutableArray<string> hpcClusterIds,
+
+            string? imageId,
 
             string? initializeScript,
 
+            string? instanceChargeType,
+
             ImmutableArray<string> instanceTypeIds,
 
-            Outputs.NodePoolNodeConfigSecurity? security,
+            string? namePrefix,
+
+            int? period,
+
+            Outputs.NodePoolNodeConfigSecurity security,
 
             ImmutableArray<string> subnetIds,
 
             Outputs.NodePoolNodeConfigSystemVolume? systemVolume)
         {
             AdditionalContainerStorageEnabled = additionalContainerStorageEnabled;
+            AutoRenew = autoRenew;
+            AutoRenewPeriod = autoRenewPeriod;
             DataVolumes = dataVolumes;
+            EcsTags = ecsTags;
+            HpcClusterIds = hpcClusterIds;
+            ImageId = imageId;
             InitializeScript = initializeScript;
+            InstanceChargeType = instanceChargeType;
             InstanceTypeIds = instanceTypeIds;
+            NamePrefix = namePrefix;
+            Period = period;
             Security = security;
             SubnetIds = subnetIds;
             SystemVolume = systemVolume;

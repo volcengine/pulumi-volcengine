@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'ClbsResult',
@@ -21,7 +22,7 @@ class ClbsResult:
     """
     A collection of values returned by Clbs.
     """
-    def __init__(__self__, clbs=None, eni_address=None, id=None, ids=None, load_balancer_name=None, name_regex=None, output_file=None, total_count=None, vpc_id=None):
+    def __init__(__self__, clbs=None, eni_address=None, id=None, ids=None, load_balancer_name=None, name_regex=None, output_file=None, project_name=None, tags=None, total_count=None, vpc_id=None):
         if clbs and not isinstance(clbs, list):
             raise TypeError("Expected argument 'clbs' to be a list")
         pulumi.set(__self__, "clbs", clbs)
@@ -43,6 +44,12 @@ class ClbsResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if project_name and not isinstance(project_name, str):
+            raise TypeError("Expected argument 'project_name' to be a str")
+        pulumi.set(__self__, "project_name", project_name)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -98,6 +105,22 @@ class ClbsResult:
         return pulumi.get(self, "output_file")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[str]:
+        """
+        The ProjectName of the Clb.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.ClbsTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
         """
@@ -127,6 +150,8 @@ class AwaitableClbsResult(ClbsResult):
             load_balancer_name=self.load_balancer_name,
             name_regex=self.name_regex,
             output_file=self.output_file,
+            project_name=self.project_name,
+            tags=self.tags,
             total_count=self.total_count,
             vpc_id=self.vpc_id)
 
@@ -136,6 +161,8 @@ def clbs(eni_address: Optional[str] = None,
          load_balancer_name: Optional[str] = None,
          name_regex: Optional[str] = None,
          output_file: Optional[str] = None,
+         project_name: Optional[str] = None,
+         tags: Optional[Sequence[pulumi.InputType['ClbsTagArgs']]] = None,
          vpc_id: Optional[str] = None,
          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableClbsResult:
     """
@@ -146,7 +173,7 @@ def clbs(eni_address: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.Clb.clbs(ids=["clb-273y2ok6ets007fap8txvf6us"])
+    default = volcengine.clb.clbs(ids=["clb-273y2ok6ets007fap8txvf6us"])
     ```
 
 
@@ -155,6 +182,8 @@ def clbs(eni_address: Optional[str] = None,
     :param str load_balancer_name: The name of the Clb.
     :param str name_regex: A Name Regex of Clb.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The ProjectName of Clb.
+    :param Sequence[pulumi.InputType['ClbsTagArgs']] tags: Tags.
     :param str vpc_id: The id of the VPC.
     """
     __args__ = dict()
@@ -163,12 +192,14 @@ def clbs(eni_address: Optional[str] = None,
     __args__['loadBalancerName'] = load_balancer_name
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
+    __args__['projectName'] = project_name
+    __args__['tags'] = tags
     __args__['vpcId'] = vpc_id
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('volcengine:Clb/clbs:Clbs', __args__, opts=opts, typ=ClbsResult).value
+    __ret__ = pulumi.runtime.invoke('volcengine:clb/clbs:Clbs', __args__, opts=opts, typ=ClbsResult).value
 
     return AwaitableClbsResult(
         clbs=__ret__.clbs,
@@ -178,6 +209,8 @@ def clbs(eni_address: Optional[str] = None,
         load_balancer_name=__ret__.load_balancer_name,
         name_regex=__ret__.name_regex,
         output_file=__ret__.output_file,
+        project_name=__ret__.project_name,
+        tags=__ret__.tags,
         total_count=__ret__.total_count,
         vpc_id=__ret__.vpc_id)
 
@@ -188,6 +221,8 @@ def clbs_output(eni_address: Optional[pulumi.Input[Optional[str]]] = None,
                 load_balancer_name: Optional[pulumi.Input[Optional[str]]] = None,
                 name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                 output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                project_name: Optional[pulumi.Input[Optional[str]]] = None,
+                tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['ClbsTagArgs']]]]] = None,
                 vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ClbsResult]:
     """
@@ -198,7 +233,7 @@ def clbs_output(eni_address: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.Clb.clbs(ids=["clb-273y2ok6ets007fap8txvf6us"])
+    default = volcengine.clb.clbs(ids=["clb-273y2ok6ets007fap8txvf6us"])
     ```
 
 
@@ -207,6 +242,8 @@ def clbs_output(eni_address: Optional[pulumi.Input[Optional[str]]] = None,
     :param str load_balancer_name: The name of the Clb.
     :param str name_regex: A Name Regex of Clb.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The ProjectName of Clb.
+    :param Sequence[pulumi.InputType['ClbsTagArgs']] tags: Tags.
     :param str vpc_id: The id of the VPC.
     """
     ...

@@ -13,37 +13,81 @@ __all__ = ['ServerGroupServerArgs', 'ServerGroupServer']
 @pulumi.input_type
 class ServerGroupServerArgs:
     def __init__(__self__, *,
+                 instance_id: pulumi.Input[str],
+                 port: pulumi.Input[int],
+                 server_group_id: pulumi.Input[str],
+                 type: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
-                 instance_id: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
-                 port: Optional[pulumi.Input[int]] = None,
-                 server_group_id: Optional[pulumi.Input[str]] = None,
-                 type: Optional[pulumi.Input[str]] = None,
                  weight: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a ServerGroupServer resource.
-        :param pulumi.Input[str] description: The description of the instance.
         :param pulumi.Input[str] instance_id: The ID of ecs instance or the network card bound to ecs instance.
-        :param pulumi.Input[str] ip: The private ip of the instance.
         :param pulumi.Input[int] port: The port receiving request.
         :param pulumi.Input[str] server_group_id: The ID of the ServerGroup.
         :param pulumi.Input[str] type: The type of instance. Optional choice contains `ecs`, `eni`.
-        :param pulumi.Input[int] weight: The weight of the instance.
+        :param pulumi.Input[str] description: The description of the instance.
+        :param pulumi.Input[str] ip: The private ip of the instance.
+        :param pulumi.Input[int] weight: The weight of the instance, range in 0~100.
         """
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "server_group_id", server_group_id)
+        pulumi.set(__self__, "type", type)
         if description is not None:
             pulumi.set(__self__, "description", description)
-        if instance_id is not None:
-            pulumi.set(__self__, "instance_id", instance_id)
         if ip is not None:
             pulumi.set(__self__, "ip", ip)
-        if port is not None:
-            pulumi.set(__self__, "port", port)
-        if server_group_id is not None:
-            pulumi.set(__self__, "server_group_id", server_group_id)
-        if type is not None:
-            pulumi.set(__self__, "type", type)
         if weight is not None:
             pulumi.set(__self__, "weight", weight)
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> pulumi.Input[str]:
+        """
+        The ID of ecs instance or the network card bound to ecs instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @instance_id.setter
+    def instance_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "instance_id", value)
+
+    @property
+    @pulumi.getter
+    def port(self) -> pulumi.Input[int]:
+        """
+        The port receiving request.
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: pulumi.Input[int]):
+        pulumi.set(self, "port", value)
+
+    @property
+    @pulumi.getter(name="serverGroupId")
+    def server_group_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the ServerGroup.
+        """
+        return pulumi.get(self, "server_group_id")
+
+    @server_group_id.setter
+    def server_group_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "server_group_id", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[str]:
+        """
+        The type of instance. Optional choice contains `ecs`, `eni`.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type", value)
 
     @property
     @pulumi.getter
@@ -56,18 +100,6 @@ class ServerGroupServerArgs:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
-
-    @property
-    @pulumi.getter(name="instanceId")
-    def instance_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The ID of ecs instance or the network card bound to ecs instance.
-        """
-        return pulumi.get(self, "instance_id")
-
-    @instance_id.setter
-    def instance_id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "instance_id", value)
 
     @property
     @pulumi.getter
@@ -83,45 +115,9 @@ class ServerGroupServerArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[int]]:
-        """
-        The port receiving request.
-        """
-        return pulumi.get(self, "port")
-
-    @port.setter
-    def port(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "port", value)
-
-    @property
-    @pulumi.getter(name="serverGroupId")
-    def server_group_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The ID of the ServerGroup.
-        """
-        return pulumi.get(self, "server_group_id")
-
-    @server_group_id.setter
-    def server_group_id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "server_group_id", value)
-
-    @property
-    @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[str]]:
-        """
-        The type of instance. Optional choice contains `ecs`, `eni`.
-        """
-        return pulumi.get(self, "type")
-
-    @type.setter
-    def type(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "type", value)
-
-    @property
-    @pulumi.getter
     def weight(self) -> Optional[pulumi.Input[int]]:
         """
-        The weight of the instance.
+        The weight of the instance, range in 0~100.
         """
         return pulumi.get(self, "weight")
 
@@ -150,7 +146,7 @@ class _ServerGroupServerState:
         :param pulumi.Input[str] server_group_id: The ID of the ServerGroup.
         :param pulumi.Input[str] server_id: The server id of instance in ServerGroup.
         :param pulumi.Input[str] type: The type of instance. Optional choice contains `ecs`, `eni`.
-        :param pulumi.Input[int] weight: The weight of the instance.
+        :param pulumi.Input[int] weight: The weight of the instance, range in 0~100.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -257,7 +253,7 @@ class _ServerGroupServerState:
     @pulumi.getter
     def weight(self) -> Optional[pulumi.Input[int]]:
         """
-        The weight of the instance.
+        The weight of the instance, range in 0~100.
         """
         return pulumi.get(self, "weight")
 
@@ -289,10 +285,9 @@ class ServerGroupServer(pulumi.CustomResource):
 
         foo = volcengine.clb.ServerGroupServer("foo",
             description="This is a server",
-            instance_id="i-72q1zvko6i5lnawvg940",
-            ip="192.168.100.99",
+            instance_id="i-ybp1scasbe72q1vq35wv",
             port=80,
-            server_group_id="rsp-273zn4ewlhkw07fap8tig9ujz",
+            server_group_id="rsp-274xltv2sjoxs7fap8tlv3q3s",
             type="ecs",
             weight=100)
         ```
@@ -302,7 +297,7 @@ class ServerGroupServer(pulumi.CustomResource):
         ServerGroupServer can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Clb/serverGroupServer:ServerGroupServer default rs-3ciynux6i1x4w****rszh49sj
+         $ pulumi import volcengine:clb/serverGroupServer:ServerGroupServer default rsp-274xltv2*****8tlv3q3s:rs-3ciynux6i1x4w****rszh49sj
         ```
 
         :param str resource_name: The name of the resource.
@@ -313,13 +308,13 @@ class ServerGroupServer(pulumi.CustomResource):
         :param pulumi.Input[int] port: The port receiving request.
         :param pulumi.Input[str] server_group_id: The ID of the ServerGroup.
         :param pulumi.Input[str] type: The type of instance. Optional choice contains `ecs`, `eni`.
-        :param pulumi.Input[int] weight: The weight of the instance.
+        :param pulumi.Input[int] weight: The weight of the instance, range in 0~100.
         """
         ...
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: Optional[ServerGroupServerArgs] = None,
+                 args: ServerGroupServerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides a resource to manage server group server
@@ -331,10 +326,9 @@ class ServerGroupServer(pulumi.CustomResource):
 
         foo = volcengine.clb.ServerGroupServer("foo",
             description="This is a server",
-            instance_id="i-72q1zvko6i5lnawvg940",
-            ip="192.168.100.99",
+            instance_id="i-ybp1scasbe72q1vq35wv",
             port=80,
-            server_group_id="rsp-273zn4ewlhkw07fap8tig9ujz",
+            server_group_id="rsp-274xltv2sjoxs7fap8tlv3q3s",
             type="ecs",
             weight=100)
         ```
@@ -344,7 +338,7 @@ class ServerGroupServer(pulumi.CustomResource):
         ServerGroupServer can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Clb/serverGroupServer:ServerGroupServer default rs-3ciynux6i1x4w****rszh49sj
+         $ pulumi import volcengine:clb/serverGroupServer:ServerGroupServer default rsp-274xltv2*****8tlv3q3s:rs-3ciynux6i1x4w****rszh49sj
         ```
 
         :param str resource_name: The name of the resource.
@@ -382,15 +376,23 @@ class ServerGroupServer(pulumi.CustomResource):
             __props__ = ServerGroupServerArgs.__new__(ServerGroupServerArgs)
 
             __props__.__dict__["description"] = description
+            if instance_id is None and not opts.urn:
+                raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
             __props__.__dict__["ip"] = ip
+            if port is None and not opts.urn:
+                raise TypeError("Missing required property 'port'")
             __props__.__dict__["port"] = port
+            if server_group_id is None and not opts.urn:
+                raise TypeError("Missing required property 'server_group_id'")
             __props__.__dict__["server_group_id"] = server_group_id
+            if type is None and not opts.urn:
+                raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
             __props__.__dict__["weight"] = weight
             __props__.__dict__["server_id"] = None
         super(ServerGroupServer, __self__).__init__(
-            'volcengine:Clb/serverGroupServer:ServerGroupServer',
+            'volcengine:clb/serverGroupServer:ServerGroupServer',
             resource_name,
             __props__,
             opts)
@@ -421,7 +423,7 @@ class ServerGroupServer(pulumi.CustomResource):
         :param pulumi.Input[str] server_group_id: The ID of the ServerGroup.
         :param pulumi.Input[str] server_id: The server id of instance in ServerGroup.
         :param pulumi.Input[str] type: The type of instance. Optional choice contains `ecs`, `eni`.
-        :param pulumi.Input[int] weight: The weight of the instance.
+        :param pulumi.Input[int] weight: The weight of the instance, range in 0~100.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -447,7 +449,7 @@ class ServerGroupServer(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> pulumi.Output[Optional[str]]:
+    def instance_id(self) -> pulumi.Output[str]:
         """
         The ID of ecs instance or the network card bound to ecs instance.
         """
@@ -455,7 +457,7 @@ class ServerGroupServer(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def ip(self) -> pulumi.Output[Optional[str]]:
+    def ip(self) -> pulumi.Output[str]:
         """
         The private ip of the instance.
         """
@@ -463,7 +465,7 @@ class ServerGroupServer(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def port(self) -> pulumi.Output[Optional[int]]:
+    def port(self) -> pulumi.Output[int]:
         """
         The port receiving request.
         """
@@ -471,7 +473,7 @@ class ServerGroupServer(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="serverGroupId")
-    def server_group_id(self) -> pulumi.Output[Optional[str]]:
+    def server_group_id(self) -> pulumi.Output[str]:
         """
         The ID of the ServerGroup.
         """
@@ -487,7 +489,7 @@ class ServerGroupServer(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def type(self) -> pulumi.Output[Optional[str]]:
+    def type(self) -> pulumi.Output[str]:
         """
         The type of instance. Optional choice contains `ecs`, `eni`.
         """
@@ -497,7 +499,7 @@ class ServerGroupServer(pulumi.CustomResource):
     @pulumi.getter
     def weight(self) -> pulumi.Output[Optional[int]]:
         """
-        The weight of the instance.
+        The weight of the instance, range in 0~100.
         """
         return pulumi.get(self, "weight")
 

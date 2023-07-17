@@ -10,6 +10,112 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+type AddressTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// AddressTagInput is an input type that accepts AddressTagArgs and AddressTagOutput values.
+// You can construct a concrete instance of `AddressTagInput` via:
+//
+//	AddressTagArgs{...}
+type AddressTagInput interface {
+	pulumi.Input
+
+	ToAddressTagOutput() AddressTagOutput
+	ToAddressTagOutputWithContext(context.Context) AddressTagOutput
+}
+
+type AddressTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (AddressTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AddressTag)(nil)).Elem()
+}
+
+func (i AddressTagArgs) ToAddressTagOutput() AddressTagOutput {
+	return i.ToAddressTagOutputWithContext(context.Background())
+}
+
+func (i AddressTagArgs) ToAddressTagOutputWithContext(ctx context.Context) AddressTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AddressTagOutput)
+}
+
+// AddressTagArrayInput is an input type that accepts AddressTagArray and AddressTagArrayOutput values.
+// You can construct a concrete instance of `AddressTagArrayInput` via:
+//
+//	AddressTagArray{ AddressTagArgs{...} }
+type AddressTagArrayInput interface {
+	pulumi.Input
+
+	ToAddressTagArrayOutput() AddressTagArrayOutput
+	ToAddressTagArrayOutputWithContext(context.Context) AddressTagArrayOutput
+}
+
+type AddressTagArray []AddressTagInput
+
+func (AddressTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AddressTag)(nil)).Elem()
+}
+
+func (i AddressTagArray) ToAddressTagArrayOutput() AddressTagArrayOutput {
+	return i.ToAddressTagArrayOutputWithContext(context.Background())
+}
+
+func (i AddressTagArray) ToAddressTagArrayOutputWithContext(ctx context.Context) AddressTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AddressTagArrayOutput)
+}
+
+type AddressTagOutput struct{ *pulumi.OutputState }
+
+func (AddressTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AddressTag)(nil)).Elem()
+}
+
+func (o AddressTagOutput) ToAddressTagOutput() AddressTagOutput {
+	return o
+}
+
+func (o AddressTagOutput) ToAddressTagOutputWithContext(ctx context.Context) AddressTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o AddressTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v AddressTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o AddressTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v AddressTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type AddressTagArrayOutput struct{ *pulumi.OutputState }
+
+func (AddressTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AddressTag)(nil)).Elem()
+}
+
+func (o AddressTagArrayOutput) ToAddressTagArrayOutput() AddressTagArrayOutput {
+	return o
+}
+
+func (o AddressTagArrayOutput) ToAddressTagArrayOutputWithContext(ctx context.Context) AddressTagArrayOutput {
+	return o
+}
+
+func (o AddressTagArrayOutput) Index(i pulumi.IntInput) AddressTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AddressTag {
+		return vs[0].([]AddressTag)[vs[1].(int)]
+	}).(AddressTagOutput)
+}
+
 type AddressesAddress struct {
 	// The id of the EIP address.
 	AllocationId string `pulumi:"allocationId"`
@@ -35,7 +141,7 @@ type AddressesAddress struct {
 	InstanceId string `pulumi:"instanceId"`
 	// The type of the associated instance.
 	InstanceType string `pulumi:"instanceType"`
-	// An ISP of EIP Address.
+	// An ISP of EIP Address, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
 	Isp string `pulumi:"isp"`
 	// The lock reason of the EIP.
 	LockReason string `pulumi:"lockReason"`
@@ -43,8 +149,12 @@ type AddressesAddress struct {
 	Name string `pulumi:"name"`
 	// The overdue time of the EIP.
 	OverdueTime string `pulumi:"overdueTime"`
-	// A status of EIP.
+	// The ProjectName of EIP.
+	ProjectName string `pulumi:"projectName"`
+	// A status of EIP, the value can be `Attaching` or `Detaching` or `Attached` or `Available`.
 	Status string `pulumi:"status"`
+	// Tags.
+	Tags []AddressesAddressTag `pulumi:"tags"`
 	// The last update time of the EIP.
 	UpdatedAt string `pulumi:"updatedAt"`
 }
@@ -52,7 +162,7 @@ type AddressesAddress struct {
 // AddressesAddressInput is an input type that accepts AddressesAddressArgs and AddressesAddressOutput values.
 // You can construct a concrete instance of `AddressesAddressInput` via:
 //
-//          AddressesAddressArgs{...}
+//	AddressesAddressArgs{...}
 type AddressesAddressInput interface {
 	pulumi.Input
 
@@ -85,7 +195,7 @@ type AddressesAddressArgs struct {
 	InstanceId pulumi.StringInput `pulumi:"instanceId"`
 	// The type of the associated instance.
 	InstanceType pulumi.StringInput `pulumi:"instanceType"`
-	// An ISP of EIP Address.
+	// An ISP of EIP Address, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
 	Isp pulumi.StringInput `pulumi:"isp"`
 	// The lock reason of the EIP.
 	LockReason pulumi.StringInput `pulumi:"lockReason"`
@@ -93,8 +203,12 @@ type AddressesAddressArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The overdue time of the EIP.
 	OverdueTime pulumi.StringInput `pulumi:"overdueTime"`
-	// A status of EIP.
+	// The ProjectName of EIP.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// A status of EIP, the value can be `Attaching` or `Detaching` or `Attached` or `Available`.
 	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags AddressesAddressTagArrayInput `pulumi:"tags"`
 	// The last update time of the EIP.
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 }
@@ -114,7 +228,7 @@ func (i AddressesAddressArgs) ToAddressesAddressOutputWithContext(ctx context.Co
 // AddressesAddressArrayInput is an input type that accepts AddressesAddressArray and AddressesAddressArrayOutput values.
 // You can construct a concrete instance of `AddressesAddressArrayInput` via:
 //
-//          AddressesAddressArray{ AddressesAddressArgs{...} }
+//	AddressesAddressArray{ AddressesAddressArgs{...} }
 type AddressesAddressArrayInput interface {
 	pulumi.Input
 
@@ -210,7 +324,7 @@ func (o AddressesAddressOutput) InstanceType() pulumi.StringOutput {
 	return o.ApplyT(func(v AddressesAddress) string { return v.InstanceType }).(pulumi.StringOutput)
 }
 
-// An ISP of EIP Address.
+// An ISP of EIP Address, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
 func (o AddressesAddressOutput) Isp() pulumi.StringOutput {
 	return o.ApplyT(func(v AddressesAddress) string { return v.Isp }).(pulumi.StringOutput)
 }
@@ -230,9 +344,19 @@ func (o AddressesAddressOutput) OverdueTime() pulumi.StringOutput {
 	return o.ApplyT(func(v AddressesAddress) string { return v.OverdueTime }).(pulumi.StringOutput)
 }
 
-// A status of EIP.
+// The ProjectName of EIP.
+func (o AddressesAddressOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v AddressesAddress) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// A status of EIP, the value can be `Attaching` or `Detaching` or `Attached` or `Available`.
 func (o AddressesAddressOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v AddressesAddress) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o AddressesAddressOutput) Tags() AddressesAddressTagArrayOutput {
+	return o.ApplyT(func(v AddressesAddress) []AddressesAddressTag { return v.Tags }).(AddressesAddressTagArrayOutput)
 }
 
 // The last update time of the EIP.
@@ -260,9 +384,233 @@ func (o AddressesAddressArrayOutput) Index(i pulumi.IntInput) AddressesAddressOu
 	}).(AddressesAddressOutput)
 }
 
+type AddressesAddressTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// AddressesAddressTagInput is an input type that accepts AddressesAddressTagArgs and AddressesAddressTagOutput values.
+// You can construct a concrete instance of `AddressesAddressTagInput` via:
+//
+//	AddressesAddressTagArgs{...}
+type AddressesAddressTagInput interface {
+	pulumi.Input
+
+	ToAddressesAddressTagOutput() AddressesAddressTagOutput
+	ToAddressesAddressTagOutputWithContext(context.Context) AddressesAddressTagOutput
+}
+
+type AddressesAddressTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (AddressesAddressTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AddressesAddressTag)(nil)).Elem()
+}
+
+func (i AddressesAddressTagArgs) ToAddressesAddressTagOutput() AddressesAddressTagOutput {
+	return i.ToAddressesAddressTagOutputWithContext(context.Background())
+}
+
+func (i AddressesAddressTagArgs) ToAddressesAddressTagOutputWithContext(ctx context.Context) AddressesAddressTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AddressesAddressTagOutput)
+}
+
+// AddressesAddressTagArrayInput is an input type that accepts AddressesAddressTagArray and AddressesAddressTagArrayOutput values.
+// You can construct a concrete instance of `AddressesAddressTagArrayInput` via:
+//
+//	AddressesAddressTagArray{ AddressesAddressTagArgs{...} }
+type AddressesAddressTagArrayInput interface {
+	pulumi.Input
+
+	ToAddressesAddressTagArrayOutput() AddressesAddressTagArrayOutput
+	ToAddressesAddressTagArrayOutputWithContext(context.Context) AddressesAddressTagArrayOutput
+}
+
+type AddressesAddressTagArray []AddressesAddressTagInput
+
+func (AddressesAddressTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AddressesAddressTag)(nil)).Elem()
+}
+
+func (i AddressesAddressTagArray) ToAddressesAddressTagArrayOutput() AddressesAddressTagArrayOutput {
+	return i.ToAddressesAddressTagArrayOutputWithContext(context.Background())
+}
+
+func (i AddressesAddressTagArray) ToAddressesAddressTagArrayOutputWithContext(ctx context.Context) AddressesAddressTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AddressesAddressTagArrayOutput)
+}
+
+type AddressesAddressTagOutput struct{ *pulumi.OutputState }
+
+func (AddressesAddressTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AddressesAddressTag)(nil)).Elem()
+}
+
+func (o AddressesAddressTagOutput) ToAddressesAddressTagOutput() AddressesAddressTagOutput {
+	return o
+}
+
+func (o AddressesAddressTagOutput) ToAddressesAddressTagOutputWithContext(ctx context.Context) AddressesAddressTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o AddressesAddressTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v AddressesAddressTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o AddressesAddressTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v AddressesAddressTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type AddressesAddressTagArrayOutput struct{ *pulumi.OutputState }
+
+func (AddressesAddressTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AddressesAddressTag)(nil)).Elem()
+}
+
+func (o AddressesAddressTagArrayOutput) ToAddressesAddressTagArrayOutput() AddressesAddressTagArrayOutput {
+	return o
+}
+
+func (o AddressesAddressTagArrayOutput) ToAddressesAddressTagArrayOutputWithContext(ctx context.Context) AddressesAddressTagArrayOutput {
+	return o
+}
+
+func (o AddressesAddressTagArrayOutput) Index(i pulumi.IntInput) AddressesAddressTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AddressesAddressTag {
+		return vs[0].([]AddressesAddressTag)[vs[1].(int)]
+	}).(AddressesAddressTagOutput)
+}
+
+type AddressesTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// AddressesTagInput is an input type that accepts AddressesTagArgs and AddressesTagOutput values.
+// You can construct a concrete instance of `AddressesTagInput` via:
+//
+//	AddressesTagArgs{...}
+type AddressesTagInput interface {
+	pulumi.Input
+
+	ToAddressesTagOutput() AddressesTagOutput
+	ToAddressesTagOutputWithContext(context.Context) AddressesTagOutput
+}
+
+type AddressesTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (AddressesTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AddressesTag)(nil)).Elem()
+}
+
+func (i AddressesTagArgs) ToAddressesTagOutput() AddressesTagOutput {
+	return i.ToAddressesTagOutputWithContext(context.Background())
+}
+
+func (i AddressesTagArgs) ToAddressesTagOutputWithContext(ctx context.Context) AddressesTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AddressesTagOutput)
+}
+
+// AddressesTagArrayInput is an input type that accepts AddressesTagArray and AddressesTagArrayOutput values.
+// You can construct a concrete instance of `AddressesTagArrayInput` via:
+//
+//	AddressesTagArray{ AddressesTagArgs{...} }
+type AddressesTagArrayInput interface {
+	pulumi.Input
+
+	ToAddressesTagArrayOutput() AddressesTagArrayOutput
+	ToAddressesTagArrayOutputWithContext(context.Context) AddressesTagArrayOutput
+}
+
+type AddressesTagArray []AddressesTagInput
+
+func (AddressesTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AddressesTag)(nil)).Elem()
+}
+
+func (i AddressesTagArray) ToAddressesTagArrayOutput() AddressesTagArrayOutput {
+	return i.ToAddressesTagArrayOutputWithContext(context.Background())
+}
+
+func (i AddressesTagArray) ToAddressesTagArrayOutputWithContext(ctx context.Context) AddressesTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AddressesTagArrayOutput)
+}
+
+type AddressesTagOutput struct{ *pulumi.OutputState }
+
+func (AddressesTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AddressesTag)(nil)).Elem()
+}
+
+func (o AddressesTagOutput) ToAddressesTagOutput() AddressesTagOutput {
+	return o
+}
+
+func (o AddressesTagOutput) ToAddressesTagOutputWithContext(ctx context.Context) AddressesTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o AddressesTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v AddressesTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o AddressesTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v AddressesTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type AddressesTagArrayOutput struct{ *pulumi.OutputState }
+
+func (AddressesTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AddressesTag)(nil)).Elem()
+}
+
+func (o AddressesTagArrayOutput) ToAddressesTagArrayOutput() AddressesTagArrayOutput {
+	return o
+}
+
+func (o AddressesTagArrayOutput) ToAddressesTagArrayOutputWithContext(ctx context.Context) AddressesTagArrayOutput {
+	return o
+}
+
+func (o AddressesTagArrayOutput) Index(i pulumi.IntInput) AddressesTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AddressesTag {
+		return vs[0].([]AddressesTag)[vs[1].(int)]
+	}).(AddressesTagOutput)
+}
+
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AddressTagInput)(nil)).Elem(), AddressTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AddressTagArrayInput)(nil)).Elem(), AddressTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AddressesAddressInput)(nil)).Elem(), AddressesAddressArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AddressesAddressArrayInput)(nil)).Elem(), AddressesAddressArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AddressesAddressTagInput)(nil)).Elem(), AddressesAddressTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AddressesAddressTagArrayInput)(nil)).Elem(), AddressesAddressTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AddressesTagInput)(nil)).Elem(), AddressesTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AddressesTagArrayInput)(nil)).Elem(), AddressesTagArray{})
+	pulumi.RegisterOutputType(AddressTagOutput{})
+	pulumi.RegisterOutputType(AddressTagArrayOutput{})
 	pulumi.RegisterOutputType(AddressesAddressOutput{})
 	pulumi.RegisterOutputType(AddressesAddressArrayOutput{})
+	pulumi.RegisterOutputType(AddressesAddressTagOutput{})
+	pulumi.RegisterOutputType(AddressesAddressTagArrayOutput{})
+	pulumi.RegisterOutputType(AddressesTagOutput{})
+	pulumi.RegisterOutputType(AddressesTagArrayOutput{})
 }

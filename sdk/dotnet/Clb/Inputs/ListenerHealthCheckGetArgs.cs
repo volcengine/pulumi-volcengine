@@ -25,37 +25,37 @@ namespace Pulumi.Volcengine.Clb.Inputs
         public Input<string>? Enabled { get; set; }
 
         /// <summary>
-        /// The healthy threshold of health check.
+        /// The healthy threshold of health check, default 3, range in 2~10.
         /// </summary>
         [Input("healthyThreshold")]
         public Input<int>? HealthyThreshold { get; set; }
 
         /// <summary>
-        /// The normal http status code of health check.
+        /// The normal http status code of health check, the value can be `http_2xx` or `http_3xx` or `http_4xx` or `http_5xx`.
         /// </summary>
         [Input("httpCode")]
         public Input<string>? HttpCode { get; set; }
 
         /// <summary>
-        /// The interval executing health check.
+        /// The interval executing health check, default 2, range in 1~300.
         /// </summary>
         [Input("interval")]
         public Input<int>? Interval { get; set; }
 
         /// <summary>
-        /// The method of health check.
+        /// The method of health check, the value can be `GET` or `HEAD`.
         /// </summary>
         [Input("method")]
         public Input<string>? Method { get; set; }
 
         /// <summary>
-        /// The response timeout of health check.
+        /// The response timeout of health check, default 2, range in 1~60..
         /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
 
         /// <summary>
-        /// The unhealthy threshold of health check.
+        /// The unhealthy threshold of health check, default 3, range in 2~10.
         /// </summary>
         [Input("unHealthyThreshold")]
         public Input<int>? UnHealthyThreshold { get; set; }

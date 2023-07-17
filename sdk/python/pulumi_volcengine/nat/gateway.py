@@ -7,6 +7,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['GatewayArgs', 'Gateway']
 
@@ -18,15 +20,19 @@ class GatewayArgs:
                  billing_type: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  nat_gateway_name: Optional[pulumi.Input[str]] = None,
-                 spec: Optional[pulumi.Input[str]] = None):
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 spec: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['GatewayTagArgs']]]] = None):
         """
         The set of arguments for constructing a Gateway resource.
         :param pulumi.Input[str] subnet_id: The ID of the Subnet.
         :param pulumi.Input[str] vpc_id: The ID of the VPC.
-        :param pulumi.Input[str] billing_type: The billing type of the NatGateway.
+        :param pulumi.Input[str] billing_type: The billing type of the NatGateway, the value is `PostPaid`.
         :param pulumi.Input[str] description: The description of the NatGateway.
         :param pulumi.Input[str] nat_gateway_name: The name of the NatGateway.
+        :param pulumi.Input[str] project_name: The ProjectName of the NatGateway.
         :param pulumi.Input[str] spec: The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
+        :param pulumi.Input[Sequence[pulumi.Input['GatewayTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "subnet_id", subnet_id)
         pulumi.set(__self__, "vpc_id", vpc_id)
@@ -36,8 +42,12 @@ class GatewayArgs:
             pulumi.set(__self__, "description", description)
         if nat_gateway_name is not None:
             pulumi.set(__self__, "nat_gateway_name", nat_gateway_name)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if spec is not None:
             pulumi.set(__self__, "spec", spec)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="subnetId")
@@ -67,7 +77,7 @@ class GatewayArgs:
     @pulumi.getter(name="billingType")
     def billing_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The billing type of the NatGateway.
+        The billing type of the NatGateway, the value is `PostPaid`.
         """
         return pulumi.get(self, "billing_type")
 
@@ -98,6 +108,18 @@ class GatewayArgs:
     @nat_gateway_name.setter
     def nat_gateway_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "nat_gateway_name", value)
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of the NatGateway.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
 
     @property
     @pulumi.getter
@@ -111,6 +133,18 @@ class GatewayArgs:
     def spec(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "spec", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['GatewayTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['GatewayTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _GatewayState:
@@ -118,16 +152,20 @@ class _GatewayState:
                  billing_type: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  nat_gateway_name: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  spec: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['GatewayTagArgs']]]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Gateway resources.
-        :param pulumi.Input[str] billing_type: The billing type of the NatGateway.
+        :param pulumi.Input[str] billing_type: The billing type of the NatGateway, the value is `PostPaid`.
         :param pulumi.Input[str] description: The description of the NatGateway.
         :param pulumi.Input[str] nat_gateway_name: The name of the NatGateway.
+        :param pulumi.Input[str] project_name: The ProjectName of the NatGateway.
         :param pulumi.Input[str] spec: The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
         :param pulumi.Input[str] subnet_id: The ID of the Subnet.
+        :param pulumi.Input[Sequence[pulumi.Input['GatewayTagArgs']]] tags: Tags.
         :param pulumi.Input[str] vpc_id: The ID of the VPC.
         """
         if billing_type is not None:
@@ -136,10 +174,14 @@ class _GatewayState:
             pulumi.set(__self__, "description", description)
         if nat_gateway_name is not None:
             pulumi.set(__self__, "nat_gateway_name", nat_gateway_name)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if spec is not None:
             pulumi.set(__self__, "spec", spec)
         if subnet_id is not None:
             pulumi.set(__self__, "subnet_id", subnet_id)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if vpc_id is not None:
             pulumi.set(__self__, "vpc_id", vpc_id)
 
@@ -147,7 +189,7 @@ class _GatewayState:
     @pulumi.getter(name="billingType")
     def billing_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The billing type of the NatGateway.
+        The billing type of the NatGateway, the value is `PostPaid`.
         """
         return pulumi.get(self, "billing_type")
 
@@ -178,6 +220,18 @@ class _GatewayState:
     @nat_gateway_name.setter
     def nat_gateway_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "nat_gateway_name", value)
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of the NatGateway.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
 
     @property
     @pulumi.getter
@@ -204,6 +258,18 @@ class _GatewayState:
         pulumi.set(self, "subnet_id", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['GatewayTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['GatewayTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -224,12 +290,13 @@ class Gateway(pulumi.CustomResource):
                  billing_type: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  nat_gateway_name: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  spec: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GatewayTagArgs']]]]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Provides a resource to manage nat gateway
         ## Example Usage
 
         ```python
@@ -239,9 +306,10 @@ class Gateway(pulumi.CustomResource):
         foo = volcengine.nat.Gateway("foo",
             description="This nat gateway auto-created by terraform. ",
             nat_gateway_name="tf-auto-demo-1",
+            project_name="default",
             spec="Medium",
-            subnet_id="subnet-2740cym8mv9q87fap8u3hfx4i",
-            vpc_id="vpc-2740cxyk9im0w7fap8u013dfe")
+            subnet_id="subnet-im67x70vxla88gbssz1hy1z2",
+            vpc_id="vpc-im67wjcikxkw8gbssx8ufpj8")
         ```
 
         ## Import
@@ -249,16 +317,18 @@ class Gateway(pulumi.CustomResource):
         NatGateway can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Nat/gateway:Gateway default ngw-vv3t043k05sm****
+         $ pulumi import volcengine:nat/gateway:Gateway default ngw-vv3t043k05sm****
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] billing_type: The billing type of the NatGateway.
+        :param pulumi.Input[str] billing_type: The billing type of the NatGateway, the value is `PostPaid`.
         :param pulumi.Input[str] description: The description of the NatGateway.
         :param pulumi.Input[str] nat_gateway_name: The name of the NatGateway.
+        :param pulumi.Input[str] project_name: The ProjectName of the NatGateway.
         :param pulumi.Input[str] spec: The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
         :param pulumi.Input[str] subnet_id: The ID of the Subnet.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GatewayTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] vpc_id: The ID of the VPC.
         """
         ...
@@ -268,7 +338,6 @@ class Gateway(pulumi.CustomResource):
                  args: GatewayArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Provides a resource to manage nat gateway
         ## Example Usage
 
         ```python
@@ -278,9 +347,10 @@ class Gateway(pulumi.CustomResource):
         foo = volcengine.nat.Gateway("foo",
             description="This nat gateway auto-created by terraform. ",
             nat_gateway_name="tf-auto-demo-1",
+            project_name="default",
             spec="Medium",
-            subnet_id="subnet-2740cym8mv9q87fap8u3hfx4i",
-            vpc_id="vpc-2740cxyk9im0w7fap8u013dfe")
+            subnet_id="subnet-im67x70vxla88gbssz1hy1z2",
+            vpc_id="vpc-im67wjcikxkw8gbssx8ufpj8")
         ```
 
         ## Import
@@ -288,7 +358,7 @@ class Gateway(pulumi.CustomResource):
         NatGateway can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Nat/gateway:Gateway default ngw-vv3t043k05sm****
+         $ pulumi import volcengine:nat/gateway:Gateway default ngw-vv3t043k05sm****
         ```
 
         :param str resource_name: The name of the resource.
@@ -309,8 +379,10 @@ class Gateway(pulumi.CustomResource):
                  billing_type: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  nat_gateway_name: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  spec: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GatewayTagArgs']]]]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
@@ -327,15 +399,17 @@ class Gateway(pulumi.CustomResource):
             __props__.__dict__["billing_type"] = billing_type
             __props__.__dict__["description"] = description
             __props__.__dict__["nat_gateway_name"] = nat_gateway_name
+            __props__.__dict__["project_name"] = project_name
             __props__.__dict__["spec"] = spec
             if subnet_id is None and not opts.urn:
                 raise TypeError("Missing required property 'subnet_id'")
             __props__.__dict__["subnet_id"] = subnet_id
+            __props__.__dict__["tags"] = tags
             if vpc_id is None and not opts.urn:
                 raise TypeError("Missing required property 'vpc_id'")
             __props__.__dict__["vpc_id"] = vpc_id
         super(Gateway, __self__).__init__(
-            'volcengine:Nat/gateway:Gateway',
+            'volcengine:nat/gateway:Gateway',
             resource_name,
             __props__,
             opts)
@@ -347,8 +421,10 @@ class Gateway(pulumi.CustomResource):
             billing_type: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             nat_gateway_name: Optional[pulumi.Input[str]] = None,
+            project_name: Optional[pulumi.Input[str]] = None,
             spec: Optional[pulumi.Input[str]] = None,
             subnet_id: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GatewayTagArgs']]]]] = None,
             vpc_id: Optional[pulumi.Input[str]] = None) -> 'Gateway':
         """
         Get an existing Gateway resource's state with the given name, id, and optional extra
@@ -357,11 +433,13 @@ class Gateway(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] billing_type: The billing type of the NatGateway.
+        :param pulumi.Input[str] billing_type: The billing type of the NatGateway, the value is `PostPaid`.
         :param pulumi.Input[str] description: The description of the NatGateway.
         :param pulumi.Input[str] nat_gateway_name: The name of the NatGateway.
+        :param pulumi.Input[str] project_name: The ProjectName of the NatGateway.
         :param pulumi.Input[str] spec: The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
         :param pulumi.Input[str] subnet_id: The ID of the Subnet.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GatewayTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] vpc_id: The ID of the VPC.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -371,8 +449,10 @@ class Gateway(pulumi.CustomResource):
         __props__.__dict__["billing_type"] = billing_type
         __props__.__dict__["description"] = description
         __props__.__dict__["nat_gateway_name"] = nat_gateway_name
+        __props__.__dict__["project_name"] = project_name
         __props__.__dict__["spec"] = spec
         __props__.__dict__["subnet_id"] = subnet_id
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["vpc_id"] = vpc_id
         return Gateway(resource_name, opts=opts, __props__=__props__)
 
@@ -380,7 +460,7 @@ class Gateway(pulumi.CustomResource):
     @pulumi.getter(name="billingType")
     def billing_type(self) -> pulumi.Output[Optional[str]]:
         """
-        The billing type of the NatGateway.
+        The billing type of the NatGateway, the value is `PostPaid`.
         """
         return pulumi.get(self, "billing_type")
 
@@ -401,6 +481,14 @@ class Gateway(pulumi.CustomResource):
         return pulumi.get(self, "nat_gateway_name")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        The ProjectName of the NatGateway.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter
     def spec(self) -> pulumi.Output[Optional[str]]:
         """
@@ -415,6 +503,14 @@ class Gateway(pulumi.CustomResource):
         The ID of the Subnet.
         """
         return pulumi.get(self, "subnet_id")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.GatewayTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcId")

@@ -12,13 +12,53 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const g1test3 = new volcengine.Vpc.SecurityGroupRule("g1test3", {
+ * const g1test3 = new volcengine.vpc.SecurityGroupRule("g1test3", {
  *     cidrIp: "10.0.0.0/8",
+ *     description: "tft1234",
  *     direction: "egress",
  *     portEnd: 9003,
  *     portStart: 8000,
  *     protocol: "tcp",
- *     securityGroupId: "sg-273ycgql3ig3k7fap8t3dyvqx",
+ *     securityGroupId: "sg-2d6722jpp55og58ozfd1sqtdb",
+ * });
+ * const g1test2 = new volcengine.vpc.SecurityGroupRule("g1test2", {
+ *     cidrIp: "10.0.0.0/24",
+ *     direction: "egress",
+ *     portEnd: 9003,
+ *     portStart: 8000,
+ *     protocol: "tcp",
+ *     securityGroupId: "sg-2d6722jpp55og58ozfd1sqtdb",
+ * });
+ * const g1test1 = new volcengine.vpc.SecurityGroupRule("g1test1", {
+ *     cidrIp: "10.0.0.0/24",
+ *     direction: "egress",
+ *     portEnd: 9003,
+ *     portStart: 8000,
+ *     priority: 2,
+ *     protocol: "tcp",
+ *     securityGroupId: "sg-2d6722jpp55og58ozfd1sqtdb",
+ * });
+ * const g1test0 = new volcengine.vpc.SecurityGroupRule("g1test0", {
+ *     cidrIp: "10.0.0.0/24",
+ *     description: "tft",
+ *     direction: "ingress",
+ *     policy: "drop",
+ *     portEnd: 80,
+ *     portStart: 80,
+ *     priority: 2,
+ *     protocol: "tcp",
+ *     securityGroupId: "sg-2d6722jpp55og58ozfd1sqtdb",
+ * });
+ * const g1test06 = new volcengine.vpc.SecurityGroupRule("g1test06", {
+ *     description: "tft",
+ *     direction: "ingress",
+ *     policy: "drop",
+ *     portEnd: 9003,
+ *     portStart: 8000,
+ *     priority: 2,
+ *     protocol: "tcp",
+ *     securityGroupId: "sg-2d6722jpp55og58ozfd1sqtdb",
+ *     sourceGroupId: "sg-3rfe5j4xdnklc5zsk2hcw5c6q",
  * });
  * ```
  *
@@ -27,7 +67,7 @@ import * as utilities from "../utilities";
  * SecurityGroupRule can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:Vpc/securityGroupRule:SecurityGroupRule default ID is a string concatenated with colons(SecurityGroupId:Protocol:PortStart:PortEnd:CidrIp)
+ *  $ pulumi import volcengine:vpc/securityGroupRule:SecurityGroupRule default ID is a string concatenated with colons(SecurityGroupId:Protocol:PortStart:PortEnd:CidrIp:SourceGroupId:Direction:Policy:Priority)
  * ```
  */
 export class SecurityGroupRule extends pulumi.CustomResource {
@@ -45,7 +85,7 @@ export class SecurityGroupRule extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'volcengine:Vpc/securityGroupRule:SecurityGroupRule';
+    public static readonly __pulumiType = 'volcengine:vpc/securityGroupRule:SecurityGroupRule';
 
     /**
      * Returns true if the given object is an instance of SecurityGroupRule.  This is designed to work even
@@ -87,7 +127,7 @@ export class SecurityGroupRule extends pulumi.CustomResource {
      */
     public readonly priority!: pulumi.Output<number | undefined>;
     /**
-     * Protocol of the SecurityGroup.
+     * Protocol of the SecurityGroup, the value can be `tcp` or `udp` or `icmp` or `all` or `icmpv6`.
      */
     public readonly protocol!: pulumi.Output<string>;
     /**
@@ -194,7 +234,7 @@ export interface SecurityGroupRuleState {
      */
     priority?: pulumi.Input<number>;
     /**
-     * Protocol of the SecurityGroup.
+     * Protocol of the SecurityGroup, the value can be `tcp` or `udp` or `icmp` or `all` or `icmpv6`.
      */
     protocol?: pulumi.Input<string>;
     /**
@@ -244,7 +284,7 @@ export interface SecurityGroupRuleArgs {
      */
     priority?: pulumi.Input<number>;
     /**
-     * Protocol of the SecurityGroup.
+     * Protocol of the SecurityGroup, the value can be `tcp` or `udp` or `icmp` or `all` or `icmpv6`.
      */
     protocol: pulumi.Input<string>;
     /**

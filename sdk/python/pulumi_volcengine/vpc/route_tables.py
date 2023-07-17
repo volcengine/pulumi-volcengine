@@ -21,7 +21,7 @@ class RouteTablesResult:
     """
     A collection of values returned by RouteTables.
     """
-    def __init__(__self__, id=None, ids=None, output_file=None, route_table_name=None, route_tables=None, total_count=None, vpc_id=None):
+    def __init__(__self__, id=None, ids=None, output_file=None, project_name=None, route_table_name=None, route_tables=None, total_count=None, vpc_id=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -31,6 +31,9 @@ class RouteTablesResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if project_name and not isinstance(project_name, str):
+            raise TypeError("Expected argument 'project_name' to be a str")
+        pulumi.set(__self__, "project_name", project_name)
         if route_table_name and not isinstance(route_table_name, str):
             raise TypeError("Expected argument 'route_table_name' to be a str")
         pulumi.set(__self__, "route_table_name", route_table_name)
@@ -61,6 +64,14 @@ class RouteTablesResult:
     @pulumi.getter(name="outputFile")
     def output_file(self) -> Optional[str]:
         return pulumi.get(self, "output_file")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[str]:
+        """
+        The ProjectName of the route table.
+        """
+        return pulumi.get(self, "project_name")
 
     @property
     @pulumi.getter(name="routeTableName")
@@ -104,6 +115,7 @@ class AwaitableRouteTablesResult(RouteTablesResult):
             id=self.id,
             ids=self.ids,
             output_file=self.output_file,
+            project_name=self.project_name,
             route_table_name=self.route_table_name,
             route_tables=self.route_tables,
             total_count=self.total_count,
@@ -112,6 +124,7 @@ class AwaitableRouteTablesResult(RouteTablesResult):
 
 def route_tables(ids: Optional[Sequence[str]] = None,
                  output_file: Optional[str] = None,
+                 project_name: Optional[str] = None,
                  route_table_name: Optional[str] = None,
                  vpc_id: Optional[str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableRouteTablesResult:
@@ -123,7 +136,7 @@ def route_tables(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.Vpc.route_tables(ids=[
+    default = volcengine.vpc.route_tables(ids=[
             "vtb-274e19skkuhog7fap8u4i8ird",
             "vtb-2744hslq5b7r47fap8tjomgnj",
         ],
@@ -133,24 +146,27 @@ def route_tables(ids: Optional[Sequence[str]] = None,
 
     :param Sequence[str] ids: A list of route table ids.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The ProjectName of the route table.
     :param str route_table_name: A name of route table.
     :param str vpc_id: An id of VPC.
     """
     __args__ = dict()
     __args__['ids'] = ids
     __args__['outputFile'] = output_file
+    __args__['projectName'] = project_name
     __args__['routeTableName'] = route_table_name
     __args__['vpcId'] = vpc_id
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('volcengine:Vpc/routeTables:RouteTables', __args__, opts=opts, typ=RouteTablesResult).value
+    __ret__ = pulumi.runtime.invoke('volcengine:vpc/routeTables:RouteTables', __args__, opts=opts, typ=RouteTablesResult).value
 
     return AwaitableRouteTablesResult(
         id=__ret__.id,
         ids=__ret__.ids,
         output_file=__ret__.output_file,
+        project_name=__ret__.project_name,
         route_table_name=__ret__.route_table_name,
         route_tables=__ret__.route_tables,
         total_count=__ret__.total_count,
@@ -160,6 +176,7 @@ def route_tables(ids: Optional[Sequence[str]] = None,
 @_utilities.lift_output_func(route_tables)
 def route_tables_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                         output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                        project_name: Optional[pulumi.Input[Optional[str]]] = None,
                         route_table_name: Optional[pulumi.Input[Optional[str]]] = None,
                         vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[RouteTablesResult]:
@@ -171,7 +188,7 @@ def route_tables_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = N
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.Vpc.route_tables(ids=[
+    default = volcengine.vpc.route_tables(ids=[
             "vtb-274e19skkuhog7fap8u4i8ird",
             "vtb-2744hslq5b7r47fap8tjomgnj",
         ],
@@ -181,6 +198,7 @@ def route_tables_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = N
 
     :param Sequence[str] ids: A list of route table ids.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The ProjectName of the route table.
     :param str route_table_name: A name of route table.
     :param str vpc_id: An id of VPC.
     """

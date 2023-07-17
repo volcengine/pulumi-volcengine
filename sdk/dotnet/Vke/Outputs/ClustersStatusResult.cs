@@ -14,7 +14,7 @@ namespace Pulumi.Volcengine.Vke.Outputs
     public sealed class ClustersStatusResult
     {
         /// <summary>
-        /// The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Balance`, `CreateError`, `ResourceCleanupFailed`, `Unknown`.
+        /// The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`, `SetByProvider`, `Balance`, `Security`, `CreateError`, `ResourceCleanupFailed`, `LimitedByQuota`, `StockOut`,`Unknown`.
         /// </summary>
         public readonly string? ConditionsType;
         /// <summary>

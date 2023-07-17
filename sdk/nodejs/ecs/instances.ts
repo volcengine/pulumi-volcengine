@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = pulumi.output(volcengine.Ecs.Instances({
+ * const foo = pulumi.output(volcengine.ecs.Instances({
  *     ids: ["i-ebgy6xmgjve0384ncgsc"],
  * }));
  * ```
@@ -25,7 +25,8 @@ export function instances(args?: InstancesArgs, opts?: pulumi.InvokeOptions): Pr
     }
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-    return pulumi.runtime.invoke("volcengine:Ecs/instances:Instances", {
+    return pulumi.runtime.invoke("volcengine:ecs/instances:Instances", {
+        "deploymentSetIds": args.deploymentSetIds,
         "hpcClusterId": args.hpcClusterId,
         "ids": args.ids,
         "instanceChargeType": args.instanceChargeType,
@@ -33,7 +34,9 @@ export function instances(args?: InstancesArgs, opts?: pulumi.InvokeOptions): Pr
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
         "primaryIpAddress": args.primaryIpAddress,
+        "projectName": args.projectName,
         "status": args.status,
+        "tags": args.tags,
         "vpcId": args.vpcId,
         "zoneId": args.zoneId,
     }, opts);
@@ -43,6 +46,10 @@ export function instances(args?: InstancesArgs, opts?: pulumi.InvokeOptions): Pr
  * A collection of arguments for invoking Instances.
  */
 export interface InstancesArgs {
+    /**
+     * A list of DeploymentSet IDs.
+     */
+    deploymentSetIds?: string[];
     /**
      * The hpc cluster ID of ECS instance.
      */
@@ -72,9 +79,17 @@ export interface InstancesArgs {
      */
     primaryIpAddress?: string;
     /**
+     * The ProjectName of ECS instance.
+     */
+    projectName?: string;
+    /**
      * The status of ECS instance.
      */
     status?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.ecs.InstancesTag[];
     /**
      * The VPC ID of ECS instance.
      */
@@ -89,6 +104,7 @@ export interface InstancesArgs {
  * A collection of values returned by Instances.
  */
 export interface InstancesResult {
+    readonly deploymentSetIds?: string[];
     readonly hpcClusterId?: string;
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -102,7 +118,7 @@ export interface InstancesResult {
     /**
      * The collection of ECS instance query.
      */
-    readonly instances: outputs.Ecs.InstancesInstance[];
+    readonly instances: outputs.ecs.InstancesInstance[];
     /**
      * The ssh key name of ECS instance.
      */
@@ -114,9 +130,17 @@ export interface InstancesResult {
      */
     readonly primaryIpAddress?: string;
     /**
+     * The ProjectName of ECS instance.
+     */
+    readonly projectName?: string;
+    /**
      * The status of ECS instance.
      */
     readonly status?: string;
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.ecs.InstancesTag[];
     /**
      * The total count of ECS instance query.
      */
@@ -139,6 +163,10 @@ export function instancesOutput(args?: InstancesOutputArgs, opts?: pulumi.Invoke
  * A collection of arguments for invoking Instances.
  */
 export interface InstancesOutputArgs {
+    /**
+     * A list of DeploymentSet IDs.
+     */
+    deploymentSetIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The hpc cluster ID of ECS instance.
      */
@@ -168,9 +196,17 @@ export interface InstancesOutputArgs {
      */
     primaryIpAddress?: pulumi.Input<string>;
     /**
+     * The ProjectName of ECS instance.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * The status of ECS instance.
      */
     status?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.ecs.InstancesTagArgs>[]>;
     /**
      * The VPC ID of ECS instance.
      */

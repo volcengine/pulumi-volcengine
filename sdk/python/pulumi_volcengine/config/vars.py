@@ -19,7 +19,14 @@ class _ExportableConfig(types.ModuleType):
         """
         The Access Key for Volcengine Provider
         """
-        return __config__.get('accessKey')
+        return __config__.get('accessKey') or _utilities.get_env('VOLCENGINE_ACCESS_KEY')
+
+    @property
+    def customer_endpoints(self) -> Optional[str]:
+        """
+        CUSTOMER ENDPOINTS for Volcengine Provider
+        """
+        return __config__.get('customerEndpoints')
 
     @property
     def customer_headers(self) -> Optional[str]:
@@ -40,21 +47,28 @@ class _ExportableConfig(types.ModuleType):
         """
         The Customer Endpoint for Volcengine Provider
         """
-        return __config__.get('endpoint')
+        return __config__.get('endpoint') or _utilities.get_env('VOLCENGINE_ENDPOINT')
+
+    @property
+    def proxy_url(self) -> Optional[str]:
+        """
+        PROXY URL for Volcengine Provider
+        """
+        return __config__.get('proxyUrl')
 
     @property
     def region(self) -> Optional[str]:
         """
         The Region for Volcengine Provider
         """
-        return __config__.get('region')
+        return __config__.get('region') or _utilities.get_env('VOLCENGINE_REGION')
 
     @property
     def secret_key(self) -> Optional[str]:
         """
         The Secret Key for Volcengine Provider
         """
-        return __config__.get('secretKey')
+        return __config__.get('secretKey') or _utilities.get_env('VOLCENGINE_SECRET_KEY')
 
     @property
     def session_token(self) -> Optional[str]:

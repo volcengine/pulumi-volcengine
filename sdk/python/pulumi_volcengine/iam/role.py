@@ -231,7 +231,7 @@ class Role(pulumi.CustomResource):
         Iam role can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Iam/role:Role default TerraformTestRole
+         $ pulumi import volcengine:iam/role:Role default TerraformTestRole
         ```
 
         :param str resource_name: The name of the resource.
@@ -269,7 +269,7 @@ class Role(pulumi.CustomResource):
         Iam role can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Iam/role:Role default TerraformTestRole
+         $ pulumi import volcengine:iam/role:Role default TerraformTestRole
         ```
 
         :param str resource_name: The name of the resource.
@@ -317,7 +317,7 @@ class Role(pulumi.CustomResource):
             __props__.__dict__["trust_policy_document"] = trust_policy_document
             __props__.__dict__["trn"] = None
         super(Role, __self__).__init__(
-            'volcengine:Iam/role:Role',
+            'volcengine:iam/role:Role',
             resource_name,
             __props__,
             opts)

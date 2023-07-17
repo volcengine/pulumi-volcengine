@@ -169,7 +169,7 @@ def images(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.Ecs.images(ids=[
+    default = volcengine.ecs.images(ids=[
         "image-cm9ssb4eqmhdas306zlp",
         "image-ybkzct2rtj4ay5rmlfc3",
     ])
@@ -182,7 +182,7 @@ def images(ids: Optional[Sequence[str]] = None,
     :param str name_regex: A Name Regex of Image.
     :param str os_type: The operating system type of Image.
     :param str output_file: File name where to save data source results.
-    :param Sequence[str] statuses: A list of Image status.
+    :param Sequence[str] statuses: A list of Image status, the value can be `available` or `creating` or `error`.
     :param str visibility: The visibility of Image.
     """
     __args__ = dict()
@@ -198,7 +198,7 @@ def images(ids: Optional[Sequence[str]] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('volcengine:Ecs/images:Images', __args__, opts=opts, typ=ImagesResult).value
+    __ret__ = pulumi.runtime.invoke('volcengine:ecs/images:Images', __args__, opts=opts, typ=ImagesResult).value
 
     return AwaitableImagesResult(
         id=__ret__.id,
@@ -232,7 +232,7 @@ def images_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.Ecs.images(ids=[
+    default = volcengine.ecs.images(ids=[
         "image-cm9ssb4eqmhdas306zlp",
         "image-ybkzct2rtj4ay5rmlfc3",
     ])
@@ -245,7 +245,7 @@ def images_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
     :param str name_regex: A Name Regex of Image.
     :param str os_type: The operating system type of Image.
     :param str output_file: File name where to save data source results.
-    :param Sequence[str] statuses: A list of Image status.
+    :param Sequence[str] statuses: A list of Image status, the value can be `available` or `creating` or `error`.
     :param str visibility: The visibility of Image.
     """
     ...

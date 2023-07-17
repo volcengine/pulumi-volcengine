@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultVolumes = pulumi.output(volcengine.Ebs.Volumes({
+ * const defaultVolumes = pulumi.output(volcengine.ebs.Volumes({
  *     ids: ["vol-3tzg6y5imn3b9fchkedb"],
  * }));
  * ```
@@ -25,7 +25,7 @@ export function volumes(args?: VolumesArgs, opts?: pulumi.InvokeOptions): Promis
     }
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-    return pulumi.runtime.invoke("volcengine:Ebs/volumes:Volumes", {
+    return pulumi.runtime.invoke("volcengine:ebs/volumes:Volumes", {
         "ids": args.ids,
         "instanceId": args.instanceId,
         "kind": args.kind,
@@ -67,7 +67,7 @@ export interface VolumesArgs {
      */
     volumeName?: string;
     /**
-     * The Status of Volume.
+     * The Status of Volume, the value can be `available` or `attaching` or `attached` or `detaching` or `creating` or `deleting` or `error` or `extending`.
      */
     volumeStatus?: string;
     /**
@@ -103,7 +103,7 @@ export interface VolumesResult {
     /**
      * The collection of Volume query.
      */
-    readonly volumes: outputs.Ebs.VolumesVolume[];
+    readonly volumes: outputs.ebs.VolumesVolume[];
     readonly zoneId?: string;
 }
 
@@ -140,7 +140,7 @@ export interface VolumesOutputArgs {
      */
     volumeName?: pulumi.Input<string>;
     /**
-     * The Status of Volume.
+     * The Status of Volume, the value can be `available` or `attaching` or `attached` or `detaching` or `creating` or `deleting` or `error` or `extending`.
      */
     volumeStatus?: pulumi.Input<string>;
     /**

@@ -40,7 +40,7 @@ namespace Pulumi.Volcengine.Ebs
         /// {{% /examples %}}
         /// </summary>
         public static Task<VolumesResult> InvokeAsync(VolumesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<VolumesResult>("volcengine:Ebs/volumes:Volumes", args ?? new VolumesArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.InvokeAsync<VolumesResult>("volcengine:ebs/volumes:Volumes", args ?? new VolumesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of volumes
@@ -71,7 +71,7 @@ namespace Pulumi.Volcengine.Ebs
         /// {{% /examples %}}
         /// </summary>
         public static Output<VolumesResult> Invoke(VolumesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<VolumesResult>("volcengine:Ebs/volumes:Volumes", args ?? new VolumesInvokeArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.Invoke<VolumesResult>("volcengine:ebs/volumes:Volumes", args ?? new VolumesInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -120,7 +120,7 @@ namespace Pulumi.Volcengine.Ebs
         public string? VolumeName { get; set; }
 
         /// <summary>
-        /// The Status of Volume.
+        /// The Status of Volume, the value can be `available` or `attaching` or `attached` or `detaching` or `creating` or `deleting` or `error` or `extending`.
         /// </summary>
         [Input("volumeStatus")]
         public string? VolumeStatus { get; set; }
@@ -187,7 +187,7 @@ namespace Pulumi.Volcengine.Ebs
         public Input<string>? VolumeName { get; set; }
 
         /// <summary>
-        /// The Status of Volume.
+        /// The Status of Volume, the value can be `available` or `attaching` or `attached` or `detaching` or `creating` or `deleting` or `error` or `extending`.
         /// </summary>
         [Input("volumeStatus")]
         public Input<string>? VolumeStatus { get; set; }

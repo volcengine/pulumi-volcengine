@@ -11,32 +11,55 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a resource to manage volume
 // ## Example Usage
 //
 // ```go
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Ebs"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/ebs"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Ebs.NewVolume(ctx, "foo", &Ebs.VolumeArgs{
-// 			Kind:       pulumi.String("data"),
-// 			Size:       pulumi.Int(40),
-// 			VolumeName: pulumi.String("terraform-test"),
-// 			VolumeType: pulumi.String("PTSSD"),
-// 			ZoneId:     pulumi.String("cn-lingqiu-a"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			fooVolume, err := ebs.NewVolume(ctx, "fooVolume", &ebs.VolumeArgs{
+//				VolumeName:       pulumi.String("terraform-test"),
+//				ZoneId:           pulumi.String("cn-xx-a"),
+//				VolumeType:       pulumi.String("ESSD_PL0"),
+//				Kind:             pulumi.String("data"),
+//				Size:             pulumi.Int(40),
+//				VolumeChargeType: pulumi.String("PostPaid"),
+//				ProjectName:      pulumi.String("default"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ebs.NewVolumeAttach(ctx, "fooVolumeAttach", &ebs.VolumeAttachArgs{
+//				VolumeId:   fooVolume.ID(),
+//				InstanceId: pulumi.String("i-yc8pfhbafwijutv6s1fv"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ebs.NewVolume(ctx, "foo2", &ebs.VolumeArgs{
+//				VolumeName:       pulumi.String("terraform-test3"),
+//				ZoneId:           pulumi.String("cn-beijing-b"),
+//				VolumeType:       pulumi.String("ESSD_PL0"),
+//				Kind:             pulumi.String("data"),
+//				Size:             pulumi.Int(40),
+//				VolumeChargeType: pulumi.String("PrePaid"),
+//				InstanceId:       pulumi.String("i-yc8pfhbafwijutv6s1fv"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -44,34 +67,36 @@ import (
 // Volume can be imported using the id, e.g.
 //
 // ```sh
-//  $ pulumi import volcengine:Ebs/volume:Volume default vol-mizl7m1kqccg5smt1bdpijuj
+//
+//	$ pulumi import volcengine:ebs/volume:Volume default vol-mizl7m1kqccg5smt1bdpijuj
+//
 // ```
 type Volume struct {
 	pulumi.CustomResourceState
 
-	// Billing type of Volume.
-	BillingType pulumi.IntOutput `pulumi:"billingType"`
 	// Creation time of Volume.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Delete Volume with Attached Instance.
 	DeleteWithInstance pulumi.BoolOutput `pulumi:"deleteWithInstance"`
 	// The description of the Volume.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// The kind of Volume.
+	// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
+	// The kind of Volume, the value is `data`.
 	Kind pulumi.StringOutput `pulumi:"kind"`
-	// Pay type of Volume.
-	PayType pulumi.StringOutput `pulumi:"payType"`
+	// The ProjectName of the Volume.
+	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
 	// The size of Volume.
 	Size pulumi.IntOutput `pulumi:"size"`
 	// Status of Volume.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Status of Trade.
 	TradeStatus pulumi.IntOutput `pulumi:"tradeStatus"`
-	// The charge type of the Volume.
+	// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
 	VolumeChargeType pulumi.StringPtrOutput `pulumi:"volumeChargeType"`
 	// The name of Volume.
 	VolumeName pulumi.StringOutput `pulumi:"volumeName"`
-	// The type of Volume.
+	// The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
 	VolumeType pulumi.StringOutput `pulumi:"volumeType"`
 	// The id of the Zone.
 	ZoneId pulumi.StringOutput `pulumi:"zoneId"`
@@ -100,7 +125,7 @@ func NewVolume(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'ZoneId'")
 	}
 	var resource Volume
-	err := ctx.RegisterResource("volcengine:Ebs/volume:Volume", name, args, &resource, opts...)
+	err := ctx.RegisterResource("volcengine:ebs/volume:Volume", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -112,7 +137,7 @@ func NewVolume(ctx *pulumi.Context,
 func GetVolume(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *VolumeState, opts ...pulumi.ResourceOption) (*Volume, error) {
 	var resource Volume
-	err := ctx.ReadResource("volcengine:Ebs/volume:Volume", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("volcengine:ebs/volume:Volume", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -121,58 +146,58 @@ func GetVolume(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Volume resources.
 type volumeState struct {
-	// Billing type of Volume.
-	BillingType *int `pulumi:"billingType"`
 	// Creation time of Volume.
 	CreatedAt *string `pulumi:"createdAt"`
 	// Delete Volume with Attached Instance.
 	DeleteWithInstance *bool `pulumi:"deleteWithInstance"`
 	// The description of the Volume.
 	Description *string `pulumi:"description"`
-	// The kind of Volume.
+	// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+	InstanceId *string `pulumi:"instanceId"`
+	// The kind of Volume, the value is `data`.
 	Kind *string `pulumi:"kind"`
-	// Pay type of Volume.
-	PayType *string `pulumi:"payType"`
+	// The ProjectName of the Volume.
+	ProjectName *string `pulumi:"projectName"`
 	// The size of Volume.
 	Size *int `pulumi:"size"`
 	// Status of Volume.
 	Status *string `pulumi:"status"`
 	// Status of Trade.
 	TradeStatus *int `pulumi:"tradeStatus"`
-	// The charge type of the Volume.
+	// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
 	VolumeChargeType *string `pulumi:"volumeChargeType"`
 	// The name of Volume.
 	VolumeName *string `pulumi:"volumeName"`
-	// The type of Volume.
+	// The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
 	VolumeType *string `pulumi:"volumeType"`
 	// The id of the Zone.
 	ZoneId *string `pulumi:"zoneId"`
 }
 
 type VolumeState struct {
-	// Billing type of Volume.
-	BillingType pulumi.IntPtrInput
 	// Creation time of Volume.
 	CreatedAt pulumi.StringPtrInput
 	// Delete Volume with Attached Instance.
 	DeleteWithInstance pulumi.BoolPtrInput
 	// The description of the Volume.
 	Description pulumi.StringPtrInput
-	// The kind of Volume.
+	// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+	InstanceId pulumi.StringPtrInput
+	// The kind of Volume, the value is `data`.
 	Kind pulumi.StringPtrInput
-	// Pay type of Volume.
-	PayType pulumi.StringPtrInput
+	// The ProjectName of the Volume.
+	ProjectName pulumi.StringPtrInput
 	// The size of Volume.
 	Size pulumi.IntPtrInput
 	// Status of Volume.
 	Status pulumi.StringPtrInput
 	// Status of Trade.
 	TradeStatus pulumi.IntPtrInput
-	// The charge type of the Volume.
+	// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
 	VolumeChargeType pulumi.StringPtrInput
 	// The name of Volume.
 	VolumeName pulumi.StringPtrInput
-	// The type of Volume.
+	// The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
 	VolumeType pulumi.StringPtrInput
 	// The id of the Zone.
 	ZoneId pulumi.StringPtrInput
@@ -187,15 +212,19 @@ type volumeArgs struct {
 	DeleteWithInstance *bool `pulumi:"deleteWithInstance"`
 	// The description of the Volume.
 	Description *string `pulumi:"description"`
-	// The kind of Volume.
+	// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+	InstanceId *string `pulumi:"instanceId"`
+	// The kind of Volume, the value is `data`.
 	Kind string `pulumi:"kind"`
+	// The ProjectName of the Volume.
+	ProjectName *string `pulumi:"projectName"`
 	// The size of Volume.
 	Size int `pulumi:"size"`
-	// The charge type of the Volume.
+	// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
 	VolumeChargeType *string `pulumi:"volumeChargeType"`
 	// The name of Volume.
 	VolumeName string `pulumi:"volumeName"`
-	// The type of Volume.
+	// The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
 	VolumeType string `pulumi:"volumeType"`
 	// The id of the Zone.
 	ZoneId string `pulumi:"zoneId"`
@@ -207,15 +236,19 @@ type VolumeArgs struct {
 	DeleteWithInstance pulumi.BoolPtrInput
 	// The description of the Volume.
 	Description pulumi.StringPtrInput
-	// The kind of Volume.
+	// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+	InstanceId pulumi.StringPtrInput
+	// The kind of Volume, the value is `data`.
 	Kind pulumi.StringInput
+	// The ProjectName of the Volume.
+	ProjectName pulumi.StringPtrInput
 	// The size of Volume.
 	Size pulumi.IntInput
-	// The charge type of the Volume.
+	// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
 	VolumeChargeType pulumi.StringPtrInput
 	// The name of Volume.
 	VolumeName pulumi.StringInput
-	// The type of Volume.
+	// The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
 	VolumeType pulumi.StringInput
 	// The id of the Zone.
 	ZoneId pulumi.StringInput
@@ -247,7 +280,7 @@ func (i *Volume) ToVolumeOutputWithContext(ctx context.Context) VolumeOutput {
 // VolumeArrayInput is an input type that accepts VolumeArray and VolumeArrayOutput values.
 // You can construct a concrete instance of `VolumeArrayInput` via:
 //
-//          VolumeArray{ VolumeArgs{...} }
+//	VolumeArray{ VolumeArgs{...} }
 type VolumeArrayInput interface {
 	pulumi.Input
 
@@ -272,7 +305,7 @@ func (i VolumeArray) ToVolumeArrayOutputWithContext(ctx context.Context) VolumeA
 // VolumeMapInput is an input type that accepts VolumeMap and VolumeMapOutput values.
 // You can construct a concrete instance of `VolumeMapInput` via:
 //
-//          VolumeMap{ "key": VolumeArgs{...} }
+//	VolumeMap{ "key": VolumeArgs{...} }
 type VolumeMapInput interface {
 	pulumi.Input
 
@@ -308,11 +341,6 @@ func (o VolumeOutput) ToVolumeOutputWithContext(ctx context.Context) VolumeOutpu
 	return o
 }
 
-// Billing type of Volume.
-func (o VolumeOutput) BillingType() pulumi.IntOutput {
-	return o.ApplyT(func(v *Volume) pulumi.IntOutput { return v.BillingType }).(pulumi.IntOutput)
-}
-
 // Creation time of Volume.
 func (o VolumeOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
@@ -328,14 +356,19 @@ func (o VolumeOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// The kind of Volume.
+// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+func (o VolumeOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The kind of Volume, the value is `data`.
 func (o VolumeOutput) Kind() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.Kind }).(pulumi.StringOutput)
 }
 
-// Pay type of Volume.
-func (o VolumeOutput) PayType() pulumi.StringOutput {
-	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.PayType }).(pulumi.StringOutput)
+// The ProjectName of the Volume.
+func (o VolumeOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
 }
 
 // The size of Volume.
@@ -353,7 +386,7 @@ func (o VolumeOutput) TradeStatus() pulumi.IntOutput {
 	return o.ApplyT(func(v *Volume) pulumi.IntOutput { return v.TradeStatus }).(pulumi.IntOutput)
 }
 
-// The charge type of the Volume.
+// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
 func (o VolumeOutput) VolumeChargeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.VolumeChargeType }).(pulumi.StringPtrOutput)
 }
@@ -363,7 +396,7 @@ func (o VolumeOutput) VolumeName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.VolumeName }).(pulumi.StringOutput)
 }
 
-// The type of Volume.
+// The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
 func (o VolumeOutput) VolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.VolumeType }).(pulumi.StringOutput)
 }

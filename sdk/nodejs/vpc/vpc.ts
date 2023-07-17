@@ -13,13 +13,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = new volcengine.Vpc.Vpc("foo", {
+ * const foo = new volcengine.vpc.Vpc("foo", {
  *     cidrBlock: "172.16.0.0/16",
  *     dnsServers: [
  *         "8.8.8.8",
  *         "114.114.114.114",
  *     ],
- *     vpcName: "tf-test-2",
+ *     projectName: "AS_test",
+ *     vpcName: "tf-project-1",
  * });
  * ```
  *
@@ -28,7 +29,7 @@ import * as utilities from "../utilities";
  * VPC can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:Vpc/vpc:Vpc default vpc-mizl7m1kqccg5smt1bdpijuj
+ *  $ pulumi import volcengine:vpc/vpc:Vpc default vpc-mizl7m1kqccg5smt1bdpijuj
  * ```
  */
 export class Vpc extends pulumi.CustomResource {
@@ -46,7 +47,7 @@ export class Vpc extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'volcengine:Vpc/vpc:Vpc';
+    public static readonly __pulumiType = 'volcengine:vpc/vpc:Vpc';
 
     /**
      * Returns true if the given object is an instance of Vpc.  This is designed to work even
@@ -66,7 +67,7 @@ export class Vpc extends pulumi.CustomResource {
     /**
      * The associate cen list of VPC.
      */
-    public /*out*/ readonly associateCens!: pulumi.Output<outputs.Vpc.VpcAssociateCen[]>;
+    public /*out*/ readonly associateCens!: pulumi.Output<outputs.vpc.VpcAssociateCen[]>;
     /**
      * The auxiliary cidr block list of VPC.
      */
@@ -88,9 +89,21 @@ export class Vpc extends pulumi.CustomResource {
      */
     public readonly dnsServers!: pulumi.Output<string[] | undefined>;
     /**
+     * Specifies whether to enable the IPv6 CIDR block of the VPC.
+     */
+    public readonly enableIpv6!: pulumi.Output<boolean>;
+    /**
+     * The IPv6 CIDR block of the VPC.
+     */
+    public readonly ipv6CidrBlock!: pulumi.Output<string>;
+    /**
      * The nat gateway ID list of VPC.
      */
     public /*out*/ readonly natGatewayIds!: pulumi.Output<string[]>;
+    /**
+     * The ProjectName of the VPC.
+     */
+    public readonly projectName!: pulumi.Output<string | undefined>;
     /**
      * The route table ID list of VPC.
      */
@@ -107,6 +120,10 @@ export class Vpc extends pulumi.CustomResource {
      * The subnet ID list of VPC.
      */
     public /*out*/ readonly subnetIds!: pulumi.Output<string[]>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.vpc.VpcTag[] | undefined>;
     /**
      * The update time of VPC.
      */
@@ -140,11 +157,15 @@ export class Vpc extends pulumi.CustomResource {
             resourceInputs["creationTime"] = state ? state.creationTime : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["dnsServers"] = state ? state.dnsServers : undefined;
+            resourceInputs["enableIpv6"] = state ? state.enableIpv6 : undefined;
+            resourceInputs["ipv6CidrBlock"] = state ? state.ipv6CidrBlock : undefined;
             resourceInputs["natGatewayIds"] = state ? state.natGatewayIds : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["routeTableIds"] = state ? state.routeTableIds : undefined;
             resourceInputs["securityGroupIds"] = state ? state.securityGroupIds : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["subnetIds"] = state ? state.subnetIds : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["updateTime"] = state ? state.updateTime : undefined;
             resourceInputs["vpcId"] = state ? state.vpcId : undefined;
             resourceInputs["vpcName"] = state ? state.vpcName : undefined;
@@ -156,6 +177,10 @@ export class Vpc extends pulumi.CustomResource {
             resourceInputs["cidrBlock"] = args ? args.cidrBlock : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["dnsServers"] = args ? args.dnsServers : undefined;
+            resourceInputs["enableIpv6"] = args ? args.enableIpv6 : undefined;
+            resourceInputs["ipv6CidrBlock"] = args ? args.ipv6CidrBlock : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["vpcName"] = args ? args.vpcName : undefined;
             resourceInputs["accountId"] = undefined /*out*/;
             resourceInputs["associateCens"] = undefined /*out*/;
@@ -185,7 +210,7 @@ export interface VpcState {
     /**
      * The associate cen list of VPC.
      */
-    associateCens?: pulumi.Input<pulumi.Input<inputs.Vpc.VpcAssociateCen>[]>;
+    associateCens?: pulumi.Input<pulumi.Input<inputs.vpc.VpcAssociateCen>[]>;
     /**
      * The auxiliary cidr block list of VPC.
      */
@@ -207,9 +232,21 @@ export interface VpcState {
      */
     dnsServers?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * Specifies whether to enable the IPv6 CIDR block of the VPC.
+     */
+    enableIpv6?: pulumi.Input<boolean>;
+    /**
+     * The IPv6 CIDR block of the VPC.
+     */
+    ipv6CidrBlock?: pulumi.Input<string>;
+    /**
      * The nat gateway ID list of VPC.
      */
     natGatewayIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The ProjectName of the VPC.
+     */
+    projectName?: pulumi.Input<string>;
     /**
      * The route table ID list of VPC.
      */
@@ -226,6 +263,10 @@ export interface VpcState {
      * The subnet ID list of VPC.
      */
     subnetIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpc.VpcTag>[]>;
     /**
      * The update time of VPC.
      */
@@ -256,6 +297,22 @@ export interface VpcArgs {
      * The DNS server list of the VPC. And you can specify 0 to 5 servers to this list.
      */
     dnsServers?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies whether to enable the IPv6 CIDR block of the VPC.
+     */
+    enableIpv6?: pulumi.Input<boolean>;
+    /**
+     * The IPv6 CIDR block of the VPC.
+     */
+    ipv6CidrBlock?: pulumi.Input<string>;
+    /**
+     * The ProjectName of the VPC.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpc.VpcTag>[]>;
     /**
      * The name of the VPC.
      */

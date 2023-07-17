@@ -13,7 +13,18 @@ const __config = new pulumi.Config("volcengine");
 export declare const accessKey: string | undefined;
 Object.defineProperty(exports, "accessKey", {
     get() {
-        return __config.get("accessKey");
+        return __config.get("accessKey") ?? utilities.getEnv("VOLCENGINE_ACCESS_KEY");
+    },
+    enumerable: true,
+});
+
+/**
+ * CUSTOMER ENDPOINTS for Volcengine Provider
+ */
+export declare const customerEndpoints: string | undefined;
+Object.defineProperty(exports, "customerEndpoints", {
+    get() {
+        return __config.get("customerEndpoints");
     },
     enumerable: true,
 });
@@ -46,7 +57,18 @@ Object.defineProperty(exports, "disableSsl", {
 export declare const endpoint: string | undefined;
 Object.defineProperty(exports, "endpoint", {
     get() {
-        return __config.get("endpoint");
+        return __config.get("endpoint") ?? utilities.getEnv("VOLCENGINE_ENDPOINT");
+    },
+    enumerable: true,
+});
+
+/**
+ * PROXY URL for Volcengine Provider
+ */
+export declare const proxyUrl: string | undefined;
+Object.defineProperty(exports, "proxyUrl", {
+    get() {
+        return __config.get("proxyUrl");
     },
     enumerable: true,
 });
@@ -57,7 +79,7 @@ Object.defineProperty(exports, "endpoint", {
 export declare const region: string | undefined;
 Object.defineProperty(exports, "region", {
     get() {
-        return __config.get("region");
+        return __config.get("region") ?? utilities.getEnv("VOLCENGINE_REGION");
     },
     enumerable: true,
 });
@@ -68,7 +90,7 @@ Object.defineProperty(exports, "region", {
 export declare const secretKey: string | undefined;
 Object.defineProperty(exports, "secretKey", {
     get() {
-        return __config.get("secretKey");
+        return __config.get("secretKey") ?? utilities.getEnv("VOLCENGINE_SECRET_KEY");
     },
     enumerable: true,
 });

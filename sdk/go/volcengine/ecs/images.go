@@ -17,28 +17,31 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Ecs"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/ecs"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Ecs.Images(ctx, &ecs.ImagesArgs{
-// 			Ids: []string{
-// 				"image-cm9ssb4eqmhdas306zlp",
-// 				"image-ybkzct2rtj4ay5rmlfc3",
-// 			},
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := ecs.Images(ctx, &ecs.ImagesArgs{
+//				Ids: []string{
+//					"image-cm9ssb4eqmhdas306zlp",
+//					"image-ybkzct2rtj4ay5rmlfc3",
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func Images(ctx *pulumi.Context, args *ImagesArgs, opts ...pulumi.InvokeOption) (*ImagesResult, error) {
 	var rv ImagesResult
-	err := ctx.Invoke("volcengine:Ecs/images:Images", args, &rv, opts...)
+	err := ctx.Invoke("volcengine:ecs/images:Images", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -59,7 +62,7 @@ type ImagesArgs struct {
 	OsType *string `pulumi:"osType"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
-	// A list of Image status.
+	// A list of Image status, the value can be `available` or `creating` or `error`.
 	Statuses []string `pulumi:"statuses"`
 	// The visibility of Image.
 	Visibility *string `pulumi:"visibility"`
@@ -114,7 +117,7 @@ type ImagesOutputArgs struct {
 	OsType pulumi.StringPtrInput `pulumi:"osType"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
-	// A list of Image status.
+	// A list of Image status, the value can be `available` or `creating` or `error`.
 	Statuses pulumi.StringArrayInput `pulumi:"statuses"`
 	// The visibility of Image.
 	Visibility pulumi.StringPtrInput `pulumi:"visibility"`

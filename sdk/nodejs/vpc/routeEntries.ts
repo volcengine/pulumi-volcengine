@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultRouteEntries = pulumi.output(volcengine.Vpc.RouteEntries({
+ * const defaultRouteEntries = pulumi.output(volcengine.vpc.RouteEntries({
  *     ids: [],
  *     routeTableId: "vtb-274e19skkuhog7fap8u4i8ird",
  * }));
@@ -25,7 +25,7 @@ export function routeEntries(args: RouteEntriesArgs, opts?: pulumi.InvokeOptions
     }
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-    return pulumi.runtime.invoke("volcengine:Vpc/routeEntries:RouteEntries", {
+    return pulumi.runtime.invoke("volcengine:vpc/routeEntries:RouteEntries", {
         "destinationCidrBlock": args.destinationCidrBlock,
         "ids": args.ids,
         "nextHopId": args.nextHopId,
@@ -54,7 +54,7 @@ export interface RouteEntriesArgs {
      */
     nextHopId?: string;
     /**
-     * A type of next hop.
+     * A type of next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`.
      */
     nextHopType?: string;
     /**
@@ -100,7 +100,7 @@ export interface RouteEntriesResult {
     /**
      * The collection of route tables.
      */
-    readonly routeEntries: outputs.Vpc.RouteEntriesRouteEntry[];
+    readonly routeEntries: outputs.vpc.RouteEntriesRouteEntry[];
     /**
      * The name of the route entry.
      */
@@ -137,7 +137,7 @@ export interface RouteEntriesOutputArgs {
      */
     nextHopId?: pulumi.Input<string>;
     /**
-     * A type of next hop.
+     * A type of next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`.
      */
     nextHopType?: pulumi.Input<string>;
     /**

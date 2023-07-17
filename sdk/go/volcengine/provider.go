@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,15 +18,19 @@ type Provider struct {
 	pulumi.ProviderResourceState
 
 	// The Access Key for Volcengine Provider
-	AccessKey pulumi.StringOutput `pulumi:"accessKey"`
+	AccessKey pulumi.StringPtrOutput `pulumi:"accessKey"`
+	// CUSTOMER ENDPOINTS for Volcengine Provider
+	CustomerEndpoints pulumi.StringPtrOutput `pulumi:"customerEndpoints"`
 	// CUSTOMER HEADERS for Volcengine Provider
 	CustomerHeaders pulumi.StringPtrOutput `pulumi:"customerHeaders"`
 	// The Customer Endpoint for Volcengine Provider
 	Endpoint pulumi.StringPtrOutput `pulumi:"endpoint"`
+	// PROXY URL for Volcengine Provider
+	ProxyUrl pulumi.StringPtrOutput `pulumi:"proxyUrl"`
 	// The Region for Volcengine Provider
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The Secret Key for Volcengine Provider
-	SecretKey pulumi.StringOutput `pulumi:"secretKey"`
+	SecretKey pulumi.StringPtrOutput `pulumi:"secretKey"`
 	// The Session Token for Volcengine Provider
 	SessionToken pulumi.StringPtrOutput `pulumi:"sessionToken"`
 }
@@ -36,17 +39,20 @@ type Provider struct {
 func NewProvider(ctx *pulumi.Context,
 	name string, args *ProviderArgs, opts ...pulumi.ResourceOption) (*Provider, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &ProviderArgs{}
 	}
 
-	if args.AccessKey == nil {
-		return nil, errors.New("invalid value for required argument 'AccessKey'")
+	if isZero(args.AccessKey) {
+		args.AccessKey = pulumi.StringPtr(getEnvOrDefault("", nil, "VOLCENGINE_ACCESS_KEY").(string))
 	}
-	if args.Region == nil {
-		return nil, errors.New("invalid value for required argument 'Region'")
+	if isZero(args.Endpoint) {
+		args.Endpoint = pulumi.StringPtr(getEnvOrDefault("", nil, "VOLCENGINE_ENDPOINT").(string))
 	}
-	if args.SecretKey == nil {
-		return nil, errors.New("invalid value for required argument 'SecretKey'")
+	if isZero(args.Region) {
+		args.Region = pulumi.StringPtr(getEnvOrDefault("", nil, "VOLCENGINE_REGION").(string))
+	}
+	if isZero(args.SecretKey) {
+		args.SecretKey = pulumi.StringPtr(getEnvOrDefault("", nil, "VOLCENGINE_SECRET_KEY").(string))
 	}
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:volcengine", name, args, &resource, opts...)
@@ -58,17 +64,21 @@ func NewProvider(ctx *pulumi.Context,
 
 type providerArgs struct {
 	// The Access Key for Volcengine Provider
-	AccessKey string `pulumi:"accessKey"`
+	AccessKey *string `pulumi:"accessKey"`
+	// CUSTOMER ENDPOINTS for Volcengine Provider
+	CustomerEndpoints *string `pulumi:"customerEndpoints"`
 	// CUSTOMER HEADERS for Volcengine Provider
 	CustomerHeaders *string `pulumi:"customerHeaders"`
 	// Disable SSL for Volcengine Provider
 	DisableSsl *bool `pulumi:"disableSsl"`
 	// The Customer Endpoint for Volcengine Provider
 	Endpoint *string `pulumi:"endpoint"`
+	// PROXY URL for Volcengine Provider
+	ProxyUrl *string `pulumi:"proxyUrl"`
 	// The Region for Volcengine Provider
-	Region string `pulumi:"region"`
+	Region *string `pulumi:"region"`
 	// The Secret Key for Volcengine Provider
-	SecretKey string `pulumi:"secretKey"`
+	SecretKey *string `pulumi:"secretKey"`
 	// The Session Token for Volcengine Provider
 	SessionToken *string `pulumi:"sessionToken"`
 }
@@ -76,17 +86,21 @@ type providerArgs struct {
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
 	// The Access Key for Volcengine Provider
-	AccessKey pulumi.StringInput
+	AccessKey pulumi.StringPtrInput
+	// CUSTOMER ENDPOINTS for Volcengine Provider
+	CustomerEndpoints pulumi.StringPtrInput
 	// CUSTOMER HEADERS for Volcengine Provider
 	CustomerHeaders pulumi.StringPtrInput
 	// Disable SSL for Volcengine Provider
 	DisableSsl pulumi.BoolPtrInput
 	// The Customer Endpoint for Volcengine Provider
 	Endpoint pulumi.StringPtrInput
+	// PROXY URL for Volcengine Provider
+	ProxyUrl pulumi.StringPtrInput
 	// The Region for Volcengine Provider
-	Region pulumi.StringInput
+	Region pulumi.StringPtrInput
 	// The Secret Key for Volcengine Provider
-	SecretKey pulumi.StringInput
+	SecretKey pulumi.StringPtrInput
 	// The Session Token for Volcengine Provider
 	SessionToken pulumi.StringPtrInput
 }
@@ -129,8 +143,13 @@ func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) Provide
 }
 
 // The Access Key for Volcengine Provider
-func (o ProviderOutput) AccessKey() pulumi.StringOutput {
-	return o.ApplyT(func(v *Provider) pulumi.StringOutput { return v.AccessKey }).(pulumi.StringOutput)
+func (o ProviderOutput) AccessKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.AccessKey }).(pulumi.StringPtrOutput)
+}
+
+// CUSTOMER ENDPOINTS for Volcengine Provider
+func (o ProviderOutput) CustomerEndpoints() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.CustomerEndpoints }).(pulumi.StringPtrOutput)
 }
 
 // CUSTOMER HEADERS for Volcengine Provider
@@ -143,14 +162,19 @@ func (o ProviderOutput) Endpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Endpoint }).(pulumi.StringPtrOutput)
 }
 
+// PROXY URL for Volcengine Provider
+func (o ProviderOutput) ProxyUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.ProxyUrl }).(pulumi.StringPtrOutput)
+}
+
 // The Region for Volcengine Provider
-func (o ProviderOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *Provider) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o ProviderOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The Secret Key for Volcengine Provider
-func (o ProviderOutput) SecretKey() pulumi.StringOutput {
-	return o.ApplyT(func(v *Provider) pulumi.StringOutput { return v.SecretKey }).(pulumi.StringOutput)
+func (o ProviderOutput) SecretKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.SecretKey }).(pulumi.StringPtrOutput)
 }
 
 // The Session Token for Volcengine Provider

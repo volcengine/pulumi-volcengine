@@ -17,27 +17,30 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Clb"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/clb"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Clb.Clbs(ctx, &clb.ClbsArgs{
-// 			Ids: []string{
-// 				"clb-273y2ok6ets007fap8txvf6us",
-// 			},
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := clb.Clbs(ctx, &clb.ClbsArgs{
+//				Ids: []string{
+//					"clb-273y2ok6ets007fap8txvf6us",
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func Clbs(ctx *pulumi.Context, args *ClbsArgs, opts ...pulumi.InvokeOption) (*ClbsResult, error) {
 	var rv ClbsResult
-	err := ctx.Invoke("volcengine:Clb/clbs:Clbs", args, &rv, opts...)
+	err := ctx.Invoke("volcengine:clb/clbs:Clbs", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -56,6 +59,10 @@ type ClbsArgs struct {
 	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The ProjectName of Clb.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []ClbsTag `pulumi:"tags"`
 	// The id of the VPC.
 	VpcId *string `pulumi:"vpcId"`
 }
@@ -73,6 +80,10 @@ type ClbsResult struct {
 	LoadBalancerName *string `pulumi:"loadBalancerName"`
 	NameRegex        *string `pulumi:"nameRegex"`
 	OutputFile       *string `pulumi:"outputFile"`
+	// The ProjectName of the Clb.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []ClbsTag `pulumi:"tags"`
 	// The total count of Clb query.
 	TotalCount int `pulumi:"totalCount"`
 	// The vpc ID of the Clb.
@@ -104,6 +115,10 @@ type ClbsOutputArgs struct {
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The ProjectName of Clb.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
+	// Tags.
+	Tags ClbsTagArrayInput `pulumi:"tags"`
 	// The id of the VPC.
 	VpcId pulumi.StringPtrInput `pulumi:"vpcId"`
 }
@@ -157,6 +172,16 @@ func (o ClbsResultOutput) NameRegex() pulumi.StringPtrOutput {
 
 func (o ClbsResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClbsResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
+}
+
+// The ProjectName of the Clb.
+func (o ClbsResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClbsResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o ClbsResultOutput) Tags() ClbsTagArrayOutput {
+	return o.ApplyT(func(v ClbsResult) []ClbsTag { return v.Tags }).(ClbsTagArrayOutput)
 }
 
 // The total count of Clb query.

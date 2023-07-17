@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultRoles = pulumi.output(volcengine.Iam.Roles());
+ * const defaultRoles = pulumi.output(volcengine.iam.Roles());
  * ```
  */
 export function roles(args?: RolesArgs, opts?: pulumi.InvokeOptions): Promise<RolesResult> {
@@ -23,7 +23,7 @@ export function roles(args?: RolesArgs, opts?: pulumi.InvokeOptions): Promise<Ro
     }
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-    return pulumi.runtime.invoke("volcengine:Iam/roles:Roles", {
+    return pulumi.runtime.invoke("volcengine:iam/roles:Roles", {
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
         "query": args.query,
@@ -71,7 +71,7 @@ export interface RolesResult {
     /**
      * The collection of Role query.
      */
-    readonly roles: outputs.Iam.RolesRole[];
+    readonly roles: outputs.iam.RolesRole[];
     /**
      * The total count of Role query.
      */

@@ -12,7 +12,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = new volcengine.Iam.Role("foo", {
+ * const foo = new volcengine.iam.Role("foo", {
  *     description: "created by terraform",
  *     displayName: "terraform role",
  *     maxSessionDuration: 43200,
@@ -26,7 +26,7 @@ import * as utilities from "../utilities";
  * Iam role can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:Iam/role:Role default TerraformTestRole
+ *  $ pulumi import volcengine:iam/role:Role default TerraformTestRole
  * ```
  */
 export class Role extends pulumi.CustomResource {
@@ -44,7 +44,7 @@ export class Role extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'volcengine:Iam/role:Role';
+    public static readonly __pulumiType = 'volcengine:iam/role:Role';
 
     /**
      * Returns true if the given object is an instance of Role.  This is designed to work even

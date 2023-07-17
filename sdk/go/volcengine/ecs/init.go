@@ -21,9 +21,19 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
-	case "volcengine:Ecs/instance:Instance":
+	case "volcengine:ecs/deploymentSet:DeploymentSet":
+		r = &DeploymentSet{}
+	case "volcengine:ecs/deploymentSetAssociate:DeploymentSetAssociate":
+		r = &DeploymentSetAssociate{}
+	case "volcengine:ecs/instance:Instance":
 		r = &Instance{}
-	case "volcengine:Ecs/state:State":
+	case "volcengine:ecs/keyPair:KeyPair":
+		r = &KeyPair{}
+	case "volcengine:ecs/keyPairAssociate:KeyPairAssociate":
+		r = &KeyPairAssociate{}
+	case "volcengine:ecs/launchTemplate:LaunchTemplate":
+		r = &LaunchTemplate{}
+	case "volcengine:ecs/state:State":
 		r = &State{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
@@ -40,12 +50,37 @@ func init() {
 	}
 	pulumi.RegisterResourceModule(
 		"volcengine",
-		"Ecs/instance",
+		"ecs/deploymentSet",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
-		"Ecs/state",
+		"ecs/deploymentSetAssociate",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"ecs/instance",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"ecs/keyPair",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"ecs/keyPairAssociate",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"ecs/launchTemplate",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"ecs/state",
 		&module{version},
 	)
 }

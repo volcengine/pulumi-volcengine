@@ -51,10 +51,10 @@ namespace Pulumi.Volcengine.Iam
     /// Iam role policy attachment can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:Iam/rolePolicyAttachment:RolePolicyAttachment default TerraformTestRole:TerraformTestPolicy:Custom
+    ///  $ pulumi import volcengine:iam/rolePolicyAttachment:RolePolicyAttachment default TerraformTestRole:TerraformTestPolicy:Custom
     /// ```
     /// </summary>
-    [VolcengineResourceType("volcengine:Iam/rolePolicyAttachment:RolePolicyAttachment")]
+    [VolcengineResourceType("volcengine:iam/rolePolicyAttachment:RolePolicyAttachment")]
     public partial class RolePolicyAttachment : Pulumi.CustomResource
     {
         /// <summary>
@@ -84,12 +84,12 @@ namespace Pulumi.Volcengine.Iam
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public RolePolicyAttachment(string name, RolePolicyAttachmentArgs args, CustomResourceOptions? options = null)
-            : base("volcengine:Iam/rolePolicyAttachment:RolePolicyAttachment", name, args ?? new RolePolicyAttachmentArgs(), MakeResourceOptions(options, ""))
+            : base("volcengine:iam/rolePolicyAttachment:RolePolicyAttachment", name, args ?? new RolePolicyAttachmentArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private RolePolicyAttachment(string name, Input<string> id, RolePolicyAttachmentState? state = null, CustomResourceOptions? options = null)
-            : base("volcengine:Iam/rolePolicyAttachment:RolePolicyAttachment", name, state, MakeResourceOptions(options, id))
+            : base("volcengine:iam/rolePolicyAttachment:RolePolicyAttachment", name, state, MakeResourceOptions(options, id))
         {
         }
 

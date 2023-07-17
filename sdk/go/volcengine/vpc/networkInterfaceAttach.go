@@ -18,22 +18,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Vpc"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/vpc"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Vpc.NewNetworkInterfaceAttach(ctx, "foo", &Vpc.NetworkInterfaceAttachArgs{
-// 			InstanceId:         pulumi.String("i-72q20hi6s082wcafdem8"),
-// 			NetworkInterfaceId: pulumi.String("eni-274ecj646ylts7fap8t6xbba1"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vpc.NewNetworkInterfaceAttach(ctx, "foo", &vpc.NetworkInterfaceAttachArgs{
+//				InstanceId:         pulumi.String("i-72q20hi6s082wcafdem8"),
+//				NetworkInterfaceId: pulumi.String("eni-274ecj646ylts7fap8t6xbba1"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -41,7 +44,9 @@ import (
 // Network interface attach can be imported using the network_interface_id:instance_id.
 //
 // ```sh
-//  $ pulumi import volcengine:Vpc/networkInterfaceAttach:NetworkInterfaceAttach default eni-bp1fg655nh68xyz9***:i-wijfn35c****
+//
+//	$ pulumi import volcengine:vpc/networkInterfaceAttach:NetworkInterfaceAttach default eni-bp1fg655nh68xyz9***:i-wijfn35c****
+//
 // ```
 type NetworkInterfaceAttach struct {
 	pulumi.CustomResourceState
@@ -66,7 +71,7 @@ func NewNetworkInterfaceAttach(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'NetworkInterfaceId'")
 	}
 	var resource NetworkInterfaceAttach
-	err := ctx.RegisterResource("volcengine:Vpc/networkInterfaceAttach:NetworkInterfaceAttach", name, args, &resource, opts...)
+	err := ctx.RegisterResource("volcengine:vpc/networkInterfaceAttach:NetworkInterfaceAttach", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -78,7 +83,7 @@ func NewNetworkInterfaceAttach(ctx *pulumi.Context,
 func GetNetworkInterfaceAttach(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *NetworkInterfaceAttachState, opts ...pulumi.ResourceOption) (*NetworkInterfaceAttach, error) {
 	var resource NetworkInterfaceAttach
-	err := ctx.ReadResource("volcengine:Vpc/networkInterfaceAttach:NetworkInterfaceAttach", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("volcengine:vpc/networkInterfaceAttach:NetworkInterfaceAttach", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -145,7 +150,7 @@ func (i *NetworkInterfaceAttach) ToNetworkInterfaceAttachOutputWithContext(ctx c
 // NetworkInterfaceAttachArrayInput is an input type that accepts NetworkInterfaceAttachArray and NetworkInterfaceAttachArrayOutput values.
 // You can construct a concrete instance of `NetworkInterfaceAttachArrayInput` via:
 //
-//          NetworkInterfaceAttachArray{ NetworkInterfaceAttachArgs{...} }
+//	NetworkInterfaceAttachArray{ NetworkInterfaceAttachArgs{...} }
 type NetworkInterfaceAttachArrayInput interface {
 	pulumi.Input
 
@@ -170,7 +175,7 @@ func (i NetworkInterfaceAttachArray) ToNetworkInterfaceAttachArrayOutputWithCont
 // NetworkInterfaceAttachMapInput is an input type that accepts NetworkInterfaceAttachMap and NetworkInterfaceAttachMapOutput values.
 // You can construct a concrete instance of `NetworkInterfaceAttachMapInput` via:
 //
-//          NetworkInterfaceAttachMap{ "key": NetworkInterfaceAttachArgs{...} }
+//	NetworkInterfaceAttachMap{ "key": NetworkInterfaceAttachArgs{...} }
 type NetworkInterfaceAttachMapInput interface {
 	pulumi.Input
 

@@ -12,7 +12,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = new volcengine.Clb.Certificate("foo", {
+ * const foo = new volcengine.clb.Certificate("foo", {
  *     certificateName: "demo-certificate",
  *     description: "This is a clb certificate",
  *     privateKey: "private-key",
@@ -25,7 +25,7 @@ import * as utilities from "../utilities";
  * Certificate can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:Clb/certificate:Certificate default cert-2fe5k****c16o5oxruvtk3qf5
+ *  $ pulumi import volcengine:clb/certificate:Certificate default cert-2fe5k****c16o5oxruvtk3qf5
  * ```
  */
 export class Certificate extends pulumi.CustomResource {
@@ -43,7 +43,7 @@ export class Certificate extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'volcengine:Clb/certificate:Certificate';
+    public static readonly __pulumiType = 'volcengine:clb/certificate:Certificate';
 
     /**
      * Returns true if the given object is an instance of Certificate.  This is designed to work even
@@ -65,11 +65,15 @@ export class Certificate extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * The private key of the Certificate.
+     * The private key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     public readonly privateKey!: pulumi.Output<string>;
     /**
-     * The public key of the Certificate.
+     * The ProjectName of the Certificate.
+     */
+    public readonly projectName!: pulumi.Output<string | undefined>;
+    /**
+     * The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     public readonly publicKey!: pulumi.Output<string>;
 
@@ -89,6 +93,7 @@ export class Certificate extends pulumi.CustomResource {
             resourceInputs["certificateName"] = state ? state.certificateName : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["privateKey"] = state ? state.privateKey : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["publicKey"] = state ? state.publicKey : undefined;
         } else {
             const args = argsOrState as CertificateArgs | undefined;
@@ -101,6 +106,7 @@ export class Certificate extends pulumi.CustomResource {
             resourceInputs["certificateName"] = args ? args.certificateName : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["privateKey"] = args ? args.privateKey : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["publicKey"] = args ? args.publicKey : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -121,11 +127,15 @@ export interface CertificateState {
      */
     description?: pulumi.Input<string>;
     /**
-     * The private key of the Certificate.
+     * The private key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     privateKey?: pulumi.Input<string>;
     /**
-     * The public key of the Certificate.
+     * The ProjectName of the Certificate.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     publicKey?: pulumi.Input<string>;
 }
@@ -143,11 +153,15 @@ export interface CertificateArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * The private key of the Certificate.
+     * The private key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     privateKey: pulumi.Input<string>;
     /**
-     * The public key of the Certificate.
+     * The ProjectName of the Certificate.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     publicKey: pulumi.Input<string>;
 }

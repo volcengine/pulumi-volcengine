@@ -36,7 +36,7 @@ namespace Pulumi.Volcengine.Iam
     /// 
     /// Iam access key don't support import
     /// </summary>
-    [VolcengineResourceType("volcengine:Iam/accessKey:AccessKey")]
+    [VolcengineResourceType("volcengine:iam/accessKey:AccessKey")]
     public partial class AccessKey : Pulumi.CustomResource
     {
         /// <summary>
@@ -76,7 +76,7 @@ namespace Pulumi.Volcengine.Iam
         public Output<string?> SecretFile { get; private set; } = null!;
 
         /// <summary>
-        /// The status of the access key.
+        /// The status of the access key, Optional choice contains `active` or `inactive`.
         /// </summary>
         [Output("status")]
         public Output<string?> Status { get; private set; } = null!;
@@ -96,12 +96,12 @@ namespace Pulumi.Volcengine.Iam
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public AccessKey(string name, AccessKeyArgs? args = null, CustomResourceOptions? options = null)
-            : base("volcengine:Iam/accessKey:AccessKey", name, args ?? new AccessKeyArgs(), MakeResourceOptions(options, ""))
+            : base("volcengine:iam/accessKey:AccessKey", name, args ?? new AccessKeyArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private AccessKey(string name, Input<string> id, AccessKeyState? state = null, CustomResourceOptions? options = null)
-            : base("volcengine:Iam/accessKey:AccessKey", name, state, MakeResourceOptions(options, id))
+            : base("volcengine:iam/accessKey:AccessKey", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -146,7 +146,7 @@ namespace Pulumi.Volcengine.Iam
         public Input<string>? SecretFile { get; set; }
 
         /// <summary>
-        /// The status of the access key.
+        /// The status of the access key, Optional choice contains `active` or `inactive`.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
@@ -201,7 +201,7 @@ namespace Pulumi.Volcengine.Iam
         public Input<string>? SecretFile { get; set; }
 
         /// <summary>
-        /// The status of the access key.
+        /// The status of the access key, Optional choice contains `active` or `inactive`.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }

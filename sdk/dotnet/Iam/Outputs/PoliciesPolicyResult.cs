@@ -42,9 +42,25 @@ namespace Pulumi.Volcengine.Iam.Outputs
         /// </summary>
         public readonly string PolicyType;
         /// <summary>
+        /// The role attach time of the Policy.The data show only query with role_name.
+        /// </summary>
+        public readonly string RoleAttachDate;
+        /// <summary>
+        /// The name of the IAM role.
+        /// </summary>
+        public readonly string RoleName;
+        /// <summary>
         /// The update time of the Policy.
         /// </summary>
         public readonly string UpdateDate;
+        /// <summary>
+        /// The user attach time of the Policy.The data show only query with user_name.
+        /// </summary>
+        public readonly string UserAttachDate;
+        /// <summary>
+        /// The name of the IAM user.
+        /// </summary>
+        public readonly string UserName;
 
         [OutputConstructor]
         private PoliciesPolicyResult(
@@ -62,7 +78,15 @@ namespace Pulumi.Volcengine.Iam.Outputs
 
             string policyType,
 
-            string updateDate)
+            string roleAttachDate,
+
+            string roleName,
+
+            string updateDate,
+
+            string userAttachDate,
+
+            string userName)
         {
             CreateDate = createDate;
             Description = description;
@@ -71,7 +95,11 @@ namespace Pulumi.Volcengine.Iam.Outputs
             PolicyName = policyName;
             PolicyTrn = policyTrn;
             PolicyType = policyType;
+            RoleAttachDate = roleAttachDate;
+            RoleName = roleName;
             UpdateDate = updateDate;
+            UserAttachDate = userAttachDate;
+            UserName = userName;
         }
     }
 }

@@ -21,22 +21,29 @@ class InstanceArgs:
                  subnet_id: pulumi.Input[str],
                  system_volume_size: pulumi.Input[int],
                  system_volume_type: pulumi.Input[str],
-                 zone_id: pulumi.Input[str],
                  auto_renew: Optional[pulumi.Input[bool]] = None,
                  auto_renew_period: Optional[pulumi.Input[int]] = None,
                  data_volumes: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceDataVolumeArgs']]]] = None,
+                 deployment_set_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  host_name: Optional[pulumi.Input[str]] = None,
                  hpc_cluster_id: Optional[pulumi.Input[str]] = None,
                  include_data_volumes: Optional[pulumi.Input[bool]] = None,
                  instance_charge_type: Optional[pulumi.Input[str]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
+                 ipv6_address_count: Optional[pulumi.Input[int]] = None,
+                 ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 keep_image_credential: Optional[pulumi.Input[bool]] = None,
                  key_pair_name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  secondary_network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceSecondaryNetworkInterfaceArgs']]]] = None,
                  security_enhancement_strategy: Optional[pulumi.Input[str]] = None,
-                 user_data: Optional[pulumi.Input[str]] = None):
+                 spot_strategy: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]]] = None,
+                 user_data: Optional[pulumi.Input[str]] = None,
+                 zone_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Instance resource.
         :param pulumi.Input[str] image_id: The Image ID of ECS instance.
@@ -44,23 +51,33 @@ class InstanceArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The security group ID set of primary networkInterface.
         :param pulumi.Input[str] subnet_id: The subnet ID of primary networkInterface.
         :param pulumi.Input[int] system_volume_size: The size of system volume.
-        :param pulumi.Input[str] system_volume_type: The type of system volume.
-        :param pulumi.Input[str] zone_id: The available zone ID of ECS instance.
-        :param pulumi.Input[bool] auto_renew: The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.
-        :param pulumi.Input[int] auto_renew_period: The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.
-        :param pulumi.Input[Sequence[pulumi.Input['InstanceDataVolumeArgs']]] data_volumes: The data volume collection of  ECS instance.
+        :param pulumi.Input[str] system_volume_type: The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
+        :param pulumi.Input[bool] auto_renew: The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[int] auto_renew_period: The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceDataVolumeArgs']]] data_volumes: The data volumes collection of  ECS instance.
+        :param pulumi.Input[str] deployment_set_id: The ID of Ecs Deployment Set.
         :param pulumi.Input[str] description: The description of ECS instance.
         :param pulumi.Input[str] host_name: The host name of ECS instance.
         :param pulumi.Input[str] hpc_cluster_id: The hpc cluster ID of ECS instance.
         :param pulumi.Input[bool] include_data_volumes: The include data volumes flag of ECS instance.Only effective when change instance charge type.include_data_volumes.
-        :param pulumi.Input[str] instance_charge_type: The charge type of ECS instance.
+        :param pulumi.Input[str] instance_charge_type: The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
         :param pulumi.Input[str] instance_name: The name of ECS instance.
+        :param pulumi.Input[int] ipv6_address_count: The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 1 to 10.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ipv6_addresses: One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+               You cannot specify both the ipv6_addresses and ipv6_address_count parameters.
+        :param pulumi.Input[bool] keep_image_credential: Whether to keep the mirror settings. Only custom images and shared images support this field.
+               When the value of this field is true, the Password and KeyPairName cannot be specified.
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] key_pair_name: The ssh key name of ECS instance.
         :param pulumi.Input[str] password: The password of ECS instance.
         :param pulumi.Input[int] period: The period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 12. Unit is Month.
+        :param pulumi.Input[str] project_name: The ProjectName of the ecs instance.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceSecondaryNetworkInterfaceArgs']]] secondary_network_interfaces: The secondary networkInterface detail collection of ECS instance.
-        :param pulumi.Input[str] security_enhancement_strategy: The security enhancement strategy of ECS instance.Default is true.
-        :param pulumi.Input[str] user_data: The user data of ECS instance.
+        :param pulumi.Input[str] security_enhancement_strategy: The security enhancement strategy of ECS instance. The value can be Active or InActive. Default is Active.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[str] spot_strategy: The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]] tags: Tags.
+        :param pulumi.Input[str] user_data: The user data of ECS instance, this field must be encrypted with base64.
+        :param pulumi.Input[str] zone_id: The available zone ID of ECS instance.
         """
         pulumi.set(__self__, "image_id", image_id)
         pulumi.set(__self__, "instance_type", instance_type)
@@ -68,13 +85,14 @@ class InstanceArgs:
         pulumi.set(__self__, "subnet_id", subnet_id)
         pulumi.set(__self__, "system_volume_size", system_volume_size)
         pulumi.set(__self__, "system_volume_type", system_volume_type)
-        pulumi.set(__self__, "zone_id", zone_id)
         if auto_renew is not None:
             pulumi.set(__self__, "auto_renew", auto_renew)
         if auto_renew_period is not None:
             pulumi.set(__self__, "auto_renew_period", auto_renew_period)
         if data_volumes is not None:
             pulumi.set(__self__, "data_volumes", data_volumes)
+        if deployment_set_id is not None:
+            pulumi.set(__self__, "deployment_set_id", deployment_set_id)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if host_name is not None:
@@ -87,18 +105,32 @@ class InstanceArgs:
             pulumi.set(__self__, "instance_charge_type", instance_charge_type)
         if instance_name is not None:
             pulumi.set(__self__, "instance_name", instance_name)
+        if ipv6_address_count is not None:
+            pulumi.set(__self__, "ipv6_address_count", ipv6_address_count)
+        if ipv6_addresses is not None:
+            pulumi.set(__self__, "ipv6_addresses", ipv6_addresses)
+        if keep_image_credential is not None:
+            pulumi.set(__self__, "keep_image_credential", keep_image_credential)
         if key_pair_name is not None:
             pulumi.set(__self__, "key_pair_name", key_pair_name)
         if password is not None:
             pulumi.set(__self__, "password", password)
         if period is not None:
             pulumi.set(__self__, "period", period)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if secondary_network_interfaces is not None:
             pulumi.set(__self__, "secondary_network_interfaces", secondary_network_interfaces)
         if security_enhancement_strategy is not None:
             pulumi.set(__self__, "security_enhancement_strategy", security_enhancement_strategy)
+        if spot_strategy is not None:
+            pulumi.set(__self__, "spot_strategy", spot_strategy)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if user_data is not None:
             pulumi.set(__self__, "user_data", user_data)
+        if zone_id is not None:
+            pulumi.set(__self__, "zone_id", zone_id)
 
     @property
     @pulumi.getter(name="imageId")
@@ -164,7 +196,7 @@ class InstanceArgs:
     @pulumi.getter(name="systemVolumeType")
     def system_volume_type(self) -> pulumi.Input[str]:
         """
-        The type of system volume.
+        The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         """
         return pulumi.get(self, "system_volume_type")
 
@@ -173,22 +205,10 @@ class InstanceArgs:
         pulumi.set(self, "system_volume_type", value)
 
     @property
-    @pulumi.getter(name="zoneId")
-    def zone_id(self) -> pulumi.Input[str]:
-        """
-        The available zone ID of ECS instance.
-        """
-        return pulumi.get(self, "zone_id")
-
-    @zone_id.setter
-    def zone_id(self, value: pulumi.Input[str]):
-        pulumi.set(self, "zone_id", value)
-
-    @property
     @pulumi.getter(name="autoRenew")
     def auto_renew(self) -> Optional[pulumi.Input[bool]]:
         """
-        The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.
+        The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         return pulumi.get(self, "auto_renew")
 
@@ -200,7 +220,7 @@ class InstanceArgs:
     @pulumi.getter(name="autoRenewPeriod")
     def auto_renew_period(self) -> Optional[pulumi.Input[int]]:
         """
-        The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.
+        The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         return pulumi.get(self, "auto_renew_period")
 
@@ -212,13 +232,25 @@ class InstanceArgs:
     @pulumi.getter(name="dataVolumes")
     def data_volumes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceDataVolumeArgs']]]]:
         """
-        The data volume collection of  ECS instance.
+        The data volumes collection of  ECS instance.
         """
         return pulumi.get(self, "data_volumes")
 
     @data_volumes.setter
     def data_volumes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceDataVolumeArgs']]]]):
         pulumi.set(self, "data_volumes", value)
+
+    @property
+    @pulumi.getter(name="deploymentSetId")
+    def deployment_set_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of Ecs Deployment Set.
+        """
+        return pulumi.get(self, "deployment_set_id")
+
+    @deployment_set_id.setter
+    def deployment_set_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "deployment_set_id", value)
 
     @property
     @pulumi.getter
@@ -272,7 +304,7 @@ class InstanceArgs:
     @pulumi.getter(name="instanceChargeType")
     def instance_charge_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The charge type of ECS instance.
+        The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
         """
         return pulumi.get(self, "instance_charge_type")
 
@@ -291,6 +323,45 @@ class InstanceArgs:
     @instance_name.setter
     def instance_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "instance_name", value)
+
+    @property
+    @pulumi.getter(name="ipv6AddressCount")
+    def ipv6_address_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 1 to 10.
+        """
+        return pulumi.get(self, "ipv6_address_count")
+
+    @ipv6_address_count.setter
+    def ipv6_address_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ipv6_address_count", value)
+
+    @property
+    @pulumi.getter(name="ipv6Addresses")
+    def ipv6_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+        You cannot specify both the ipv6_addresses and ipv6_address_count parameters.
+        """
+        return pulumi.get(self, "ipv6_addresses")
+
+    @ipv6_addresses.setter
+    def ipv6_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "ipv6_addresses", value)
+
+    @property
+    @pulumi.getter(name="keepImageCredential")
+    def keep_image_credential(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to keep the mirror settings. Only custom images and shared images support this field.
+        When the value of this field is true, the Password and KeyPairName cannot be specified.
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "keep_image_credential")
+
+    @keep_image_credential.setter
+    def keep_image_credential(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "keep_image_credential", value)
 
     @property
     @pulumi.getter(name="keyPairName")
@@ -329,6 +400,18 @@ class InstanceArgs:
         pulumi.set(self, "period", value)
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of the ecs instance.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
     @pulumi.getter(name="secondaryNetworkInterfaces")
     def secondary_network_interfaces(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceSecondaryNetworkInterfaceArgs']]]]:
         """
@@ -344,7 +427,7 @@ class InstanceArgs:
     @pulumi.getter(name="securityEnhancementStrategy")
     def security_enhancement_strategy(self) -> Optional[pulumi.Input[str]]:
         """
-        The security enhancement strategy of ECS instance.Default is true.
+        The security enhancement strategy of ECS instance. The value can be Active or InActive. Default is Active.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         return pulumi.get(self, "security_enhancement_strategy")
 
@@ -353,16 +436,52 @@ class InstanceArgs:
         pulumi.set(self, "security_enhancement_strategy", value)
 
     @property
+    @pulumi.getter(name="spotStrategy")
+    def spot_strategy(self) -> Optional[pulumi.Input[str]]:
+        """
+        The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
+        """
+        return pulumi.get(self, "spot_strategy")
+
+    @spot_strategy.setter
+    def spot_strategy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "spot_strategy", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="userData")
     def user_data(self) -> Optional[pulumi.Input[str]]:
         """
-        The user data of ECS instance.
+        The user data of ECS instance, this field must be encrypted with base64.
         """
         return pulumi.get(self, "user_data")
 
     @user_data.setter
     def user_data(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "user_data", value)
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The available zone ID of ECS instance.
+        """
+        return pulumi.get(self, "zone_id")
+
+    @zone_id.setter
+    def zone_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "zone_id", value)
 
 
 @pulumi.input_type
@@ -373,7 +492,9 @@ class _InstanceState:
                  cpus: Optional[pulumi.Input[int]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  data_volumes: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceDataVolumeArgs']]]] = None,
+                 deployment_set_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 gpu_devices: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceGpuDeviceArgs']]]] = None,
                  host_name: Optional[pulumi.Input[str]] = None,
                  hpc_cluster_id: Optional[pulumi.Input[str]] = None,
                  image_id: Optional[pulumi.Input[str]] = None,
@@ -382,6 +503,10 @@ class _InstanceState:
                  instance_id: Optional[pulumi.Input[str]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
                  instance_type: Optional[pulumi.Input[str]] = None,
+                 ipv6_address_count: Optional[pulumi.Input[int]] = None,
+                 ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 is_gpu: Optional[pulumi.Input[bool]] = None,
+                 keep_image_credential: Optional[pulumi.Input[bool]] = None,
                  key_pair_id: Optional[pulumi.Input[str]] = None,
                  key_pair_name: Optional[pulumi.Input[str]] = None,
                  memory_size: Optional[pulumi.Input[int]] = None,
@@ -390,35 +515,48 @@ class _InstanceState:
                  os_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
+                 primary_ip_address: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  secondary_network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceSecondaryNetworkInterfaceArgs']]]] = None,
                  security_enhancement_strategy: Optional[pulumi.Input[str]] = None,
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 spot_strategy: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  stopped_mode: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
                  system_volume_id: Optional[pulumi.Input[str]] = None,
                  system_volume_size: Optional[pulumi.Input[int]] = None,
                  system_volume_type: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None,
                  user_data: Optional[pulumi.Input[str]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  zone_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Instance resources.
-        :param pulumi.Input[bool] auto_renew: The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.
-        :param pulumi.Input[int] auto_renew_period: The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.
+        :param pulumi.Input[bool] auto_renew: The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[int] auto_renew_period: The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[int] cpus: The number of ECS instance CPU cores.
         :param pulumi.Input[str] created_at: The create time of ECS instance.
-        :param pulumi.Input[Sequence[pulumi.Input['InstanceDataVolumeArgs']]] data_volumes: The data volume collection of  ECS instance.
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceDataVolumeArgs']]] data_volumes: The data volumes collection of  ECS instance.
+        :param pulumi.Input[str] deployment_set_id: The ID of Ecs Deployment Set.
         :param pulumi.Input[str] description: The description of ECS instance.
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceGpuDeviceArgs']]] gpu_devices: The GPU device info of Instance.
         :param pulumi.Input[str] host_name: The host name of ECS instance.
         :param pulumi.Input[str] hpc_cluster_id: The hpc cluster ID of ECS instance.
         :param pulumi.Input[str] image_id: The Image ID of ECS instance.
         :param pulumi.Input[bool] include_data_volumes: The include data volumes flag of ECS instance.Only effective when change instance charge type.include_data_volumes.
-        :param pulumi.Input[str] instance_charge_type: The charge type of ECS instance.
+        :param pulumi.Input[str] instance_charge_type: The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
         :param pulumi.Input[str] instance_id: The ID of ECS instance.
         :param pulumi.Input[str] instance_name: The name of ECS instance.
         :param pulumi.Input[str] instance_type: The instance type of ECS instance.
+        :param pulumi.Input[int] ipv6_address_count: The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 1 to 10.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ipv6_addresses: One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+               You cannot specify both the ipv6_addresses and ipv6_address_count parameters.
+        :param pulumi.Input[bool] is_gpu: The Flag of GPU instance.If the instance is GPU,The flag is true.
+        :param pulumi.Input[bool] keep_image_credential: Whether to keep the mirror settings. Only custom images and shared images support this field.
+               When the value of this field is true, the Password and KeyPairName cannot be specified.
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] key_pair_id: The ssh key ID of ECS instance.
         :param pulumi.Input[str] key_pair_name: The ssh key name of ECS instance.
         :param pulumi.Input[int] memory_size: The memory size of ECS instance.
@@ -427,17 +565,21 @@ class _InstanceState:
         :param pulumi.Input[str] os_type: The os type of ECS instance.
         :param pulumi.Input[str] password: The password of ECS instance.
         :param pulumi.Input[int] period: The period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 12. Unit is Month.
+        :param pulumi.Input[str] primary_ip_address: The private ip address of primary networkInterface.
+        :param pulumi.Input[str] project_name: The ProjectName of the ecs instance.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceSecondaryNetworkInterfaceArgs']]] secondary_network_interfaces: The secondary networkInterface detail collection of ECS instance.
-        :param pulumi.Input[str] security_enhancement_strategy: The security enhancement strategy of ECS instance.Default is true.
+        :param pulumi.Input[str] security_enhancement_strategy: The security enhancement strategy of ECS instance. The value can be Active or InActive. Default is Active.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The security group ID set of primary networkInterface.
+        :param pulumi.Input[str] spot_strategy: The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
         :param pulumi.Input[str] status: The status of ECS instance.
         :param pulumi.Input[str] stopped_mode: The stop mode of ECS instance.
         :param pulumi.Input[str] subnet_id: The subnet ID of primary networkInterface.
         :param pulumi.Input[str] system_volume_id: The ID of system volume.
         :param pulumi.Input[int] system_volume_size: The size of system volume.
-        :param pulumi.Input[str] system_volume_type: The type of system volume.
+        :param pulumi.Input[str] system_volume_type: The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]] tags: Tags.
         :param pulumi.Input[str] updated_at: The update time of ECS instance.
-        :param pulumi.Input[str] user_data: The user data of ECS instance.
+        :param pulumi.Input[str] user_data: The user data of ECS instance, this field must be encrypted with base64.
         :param pulumi.Input[str] vpc_id: The VPC ID of ECS instance.
         :param pulumi.Input[str] zone_id: The available zone ID of ECS instance.
         """
@@ -451,8 +593,12 @@ class _InstanceState:
             pulumi.set(__self__, "created_at", created_at)
         if data_volumes is not None:
             pulumi.set(__self__, "data_volumes", data_volumes)
+        if deployment_set_id is not None:
+            pulumi.set(__self__, "deployment_set_id", deployment_set_id)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if gpu_devices is not None:
+            pulumi.set(__self__, "gpu_devices", gpu_devices)
         if host_name is not None:
             pulumi.set(__self__, "host_name", host_name)
         if hpc_cluster_id is not None:
@@ -469,6 +615,14 @@ class _InstanceState:
             pulumi.set(__self__, "instance_name", instance_name)
         if instance_type is not None:
             pulumi.set(__self__, "instance_type", instance_type)
+        if ipv6_address_count is not None:
+            pulumi.set(__self__, "ipv6_address_count", ipv6_address_count)
+        if ipv6_addresses is not None:
+            pulumi.set(__self__, "ipv6_addresses", ipv6_addresses)
+        if is_gpu is not None:
+            pulumi.set(__self__, "is_gpu", is_gpu)
+        if keep_image_credential is not None:
+            pulumi.set(__self__, "keep_image_credential", keep_image_credential)
         if key_pair_id is not None:
             pulumi.set(__self__, "key_pair_id", key_pair_id)
         if key_pair_name is not None:
@@ -485,12 +639,18 @@ class _InstanceState:
             pulumi.set(__self__, "password", password)
         if period is not None:
             pulumi.set(__self__, "period", period)
+        if primary_ip_address is not None:
+            pulumi.set(__self__, "primary_ip_address", primary_ip_address)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if secondary_network_interfaces is not None:
             pulumi.set(__self__, "secondary_network_interfaces", secondary_network_interfaces)
         if security_enhancement_strategy is not None:
             pulumi.set(__self__, "security_enhancement_strategy", security_enhancement_strategy)
         if security_group_ids is not None:
             pulumi.set(__self__, "security_group_ids", security_group_ids)
+        if spot_strategy is not None:
+            pulumi.set(__self__, "spot_strategy", spot_strategy)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if stopped_mode is not None:
@@ -503,6 +663,8 @@ class _InstanceState:
             pulumi.set(__self__, "system_volume_size", system_volume_size)
         if system_volume_type is not None:
             pulumi.set(__self__, "system_volume_type", system_volume_type)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
         if user_data is not None:
@@ -516,7 +678,7 @@ class _InstanceState:
     @pulumi.getter(name="autoRenew")
     def auto_renew(self) -> Optional[pulumi.Input[bool]]:
         """
-        The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.
+        The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         return pulumi.get(self, "auto_renew")
 
@@ -528,7 +690,7 @@ class _InstanceState:
     @pulumi.getter(name="autoRenewPeriod")
     def auto_renew_period(self) -> Optional[pulumi.Input[int]]:
         """
-        The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.
+        The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         return pulumi.get(self, "auto_renew_period")
 
@@ -564,13 +726,25 @@ class _InstanceState:
     @pulumi.getter(name="dataVolumes")
     def data_volumes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceDataVolumeArgs']]]]:
         """
-        The data volume collection of  ECS instance.
+        The data volumes collection of  ECS instance.
         """
         return pulumi.get(self, "data_volumes")
 
     @data_volumes.setter
     def data_volumes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceDataVolumeArgs']]]]):
         pulumi.set(self, "data_volumes", value)
+
+    @property
+    @pulumi.getter(name="deploymentSetId")
+    def deployment_set_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of Ecs Deployment Set.
+        """
+        return pulumi.get(self, "deployment_set_id")
+
+    @deployment_set_id.setter
+    def deployment_set_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "deployment_set_id", value)
 
     @property
     @pulumi.getter
@@ -583,6 +757,18 @@ class _InstanceState:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="gpuDevices")
+    def gpu_devices(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceGpuDeviceArgs']]]]:
+        """
+        The GPU device info of Instance.
+        """
+        return pulumi.get(self, "gpu_devices")
+
+    @gpu_devices.setter
+    def gpu_devices(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceGpuDeviceArgs']]]]):
+        pulumi.set(self, "gpu_devices", value)
 
     @property
     @pulumi.getter(name="hostName")
@@ -636,7 +822,7 @@ class _InstanceState:
     @pulumi.getter(name="instanceChargeType")
     def instance_charge_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The charge type of ECS instance.
+        The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
         """
         return pulumi.get(self, "instance_charge_type")
 
@@ -679,6 +865,57 @@ class _InstanceState:
     @instance_type.setter
     def instance_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "instance_type", value)
+
+    @property
+    @pulumi.getter(name="ipv6AddressCount")
+    def ipv6_address_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 1 to 10.
+        """
+        return pulumi.get(self, "ipv6_address_count")
+
+    @ipv6_address_count.setter
+    def ipv6_address_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ipv6_address_count", value)
+
+    @property
+    @pulumi.getter(name="ipv6Addresses")
+    def ipv6_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+        You cannot specify both the ipv6_addresses and ipv6_address_count parameters.
+        """
+        return pulumi.get(self, "ipv6_addresses")
+
+    @ipv6_addresses.setter
+    def ipv6_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "ipv6_addresses", value)
+
+    @property
+    @pulumi.getter(name="isGpu")
+    def is_gpu(self) -> Optional[pulumi.Input[bool]]:
+        """
+        The Flag of GPU instance.If the instance is GPU,The flag is true.
+        """
+        return pulumi.get(self, "is_gpu")
+
+    @is_gpu.setter
+    def is_gpu(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_gpu", value)
+
+    @property
+    @pulumi.getter(name="keepImageCredential")
+    def keep_image_credential(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to keep the mirror settings. Only custom images and shared images support this field.
+        When the value of this field is true, the Password and KeyPairName cannot be specified.
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "keep_image_credential")
+
+    @keep_image_credential.setter
+    def keep_image_credential(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "keep_image_credential", value)
 
     @property
     @pulumi.getter(name="keyPairId")
@@ -777,6 +1014,30 @@ class _InstanceState:
         pulumi.set(self, "period", value)
 
     @property
+    @pulumi.getter(name="primaryIpAddress")
+    def primary_ip_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        The private ip address of primary networkInterface.
+        """
+        return pulumi.get(self, "primary_ip_address")
+
+    @primary_ip_address.setter
+    def primary_ip_address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "primary_ip_address", value)
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of the ecs instance.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
     @pulumi.getter(name="secondaryNetworkInterfaces")
     def secondary_network_interfaces(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceSecondaryNetworkInterfaceArgs']]]]:
         """
@@ -792,7 +1053,7 @@ class _InstanceState:
     @pulumi.getter(name="securityEnhancementStrategy")
     def security_enhancement_strategy(self) -> Optional[pulumi.Input[str]]:
         """
-        The security enhancement strategy of ECS instance.Default is true.
+        The security enhancement strategy of ECS instance. The value can be Active or InActive. Default is Active.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         return pulumi.get(self, "security_enhancement_strategy")
 
@@ -811,6 +1072,18 @@ class _InstanceState:
     @security_group_ids.setter
     def security_group_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "security_group_ids", value)
+
+    @property
+    @pulumi.getter(name="spotStrategy")
+    def spot_strategy(self) -> Optional[pulumi.Input[str]]:
+        """
+        The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
+        """
+        return pulumi.get(self, "spot_strategy")
+
+    @spot_strategy.setter
+    def spot_strategy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "spot_strategy", value)
 
     @property
     @pulumi.getter
@@ -876,13 +1149,25 @@ class _InstanceState:
     @pulumi.getter(name="systemVolumeType")
     def system_volume_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of system volume.
+        The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         """
         return pulumi.get(self, "system_volume_type")
 
     @system_volume_type.setter
     def system_volume_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "system_volume_type", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]]]):
+        pulumi.set(self, "tags", value)
 
     @property
     @pulumi.getter(name="updatedAt")
@@ -900,7 +1185,7 @@ class _InstanceState:
     @pulumi.getter(name="userData")
     def user_data(self) -> Optional[pulumi.Input[str]]:
         """
-        The user data of ECS instance.
+        The user data of ECS instance, this field must be encrypted with base64.
         """
         return pulumi.get(self, "user_data")
 
@@ -941,6 +1226,7 @@ class Instance(pulumi.CustomResource):
                  auto_renew: Optional[pulumi.Input[bool]] = None,
                  auto_renew_period: Optional[pulumi.Input[int]] = None,
                  data_volumes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceDataVolumeArgs']]]]] = None,
+                 deployment_set_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  host_name: Optional[pulumi.Input[str]] = None,
                  hpc_cluster_id: Optional[pulumi.Input[str]] = None,
@@ -949,20 +1235,25 @@ class Instance(pulumi.CustomResource):
                  instance_charge_type: Optional[pulumi.Input[str]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
                  instance_type: Optional[pulumi.Input[str]] = None,
+                 ipv6_address_count: Optional[pulumi.Input[int]] = None,
+                 ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 keep_image_credential: Optional[pulumi.Input[bool]] = None,
                  key_pair_name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  secondary_network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecondaryNetworkInterfaceArgs']]]]] = None,
                  security_enhancement_strategy: Optional[pulumi.Input[str]] = None,
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 spot_strategy: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
                  system_volume_size: Optional[pulumi.Input[int]] = None,
                  system_volume_type: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceTagArgs']]]]] = None,
                  user_data: Optional[pulumi.Input[str]] = None,
                  zone_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Provides a resource to manage ecs instance
         ## Example Usage
 
         ```python
@@ -980,7 +1271,6 @@ class Instance(pulumi.CustomResource):
         foo1_security_group = volcengine.vpc.SecurityGroup("foo1SecurityGroup", vpc_id=foo.id,
         opts=pulumi.ResourceOptions(depends_on=[foo1_subnet]))
         default = volcengine.ecs.Instance("default",
-            zone_id="cn-beijing-a",
             image_id="image-aagd56zrw2jtdro3bnrl",
             instance_type="ecs.g1.large",
             instance_name="xym-tf-test-2",
@@ -995,7 +1285,9 @@ class Instance(pulumi.CustomResource):
                 volume_type="PTSSD",
                 size=100,
                 delete_with_instance=True,
-            )])
+            )],
+            deployment_set_id="",
+            ipv6_address_count=1)
         #  secondary_network_interfaces {
         #    subnet_id = volcengine_subnet.foo1.id
         #    security_group_ids = [volcengine_security_group.foo1.id]
@@ -1004,35 +1296,45 @@ class Instance(pulumi.CustomResource):
 
         ## Import
 
-        ECS Instance can be imported using the id, e.g.
+        ECS Instance can be imported using the id, e.g. If Import,The data_volumes is sort by volume name
 
         ```sh
-         $ pulumi import volcengine:Ecs/instance:Instance default i-mizl7m1kqccg5smt1bdpijuj
+         $ pulumi import volcengine:ecs/instance:Instance default i-mizl7m1kqccg5smt1bdpijuj
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] auto_renew: The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.
-        :param pulumi.Input[int] auto_renew_period: The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceDataVolumeArgs']]]] data_volumes: The data volume collection of  ECS instance.
+        :param pulumi.Input[bool] auto_renew: The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[int] auto_renew_period: The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceDataVolumeArgs']]]] data_volumes: The data volumes collection of  ECS instance.
+        :param pulumi.Input[str] deployment_set_id: The ID of Ecs Deployment Set.
         :param pulumi.Input[str] description: The description of ECS instance.
         :param pulumi.Input[str] host_name: The host name of ECS instance.
         :param pulumi.Input[str] hpc_cluster_id: The hpc cluster ID of ECS instance.
         :param pulumi.Input[str] image_id: The Image ID of ECS instance.
         :param pulumi.Input[bool] include_data_volumes: The include data volumes flag of ECS instance.Only effective when change instance charge type.include_data_volumes.
-        :param pulumi.Input[str] instance_charge_type: The charge type of ECS instance.
+        :param pulumi.Input[str] instance_charge_type: The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
         :param pulumi.Input[str] instance_name: The name of ECS instance.
         :param pulumi.Input[str] instance_type: The instance type of ECS instance.
+        :param pulumi.Input[int] ipv6_address_count: The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 1 to 10.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ipv6_addresses: One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+               You cannot specify both the ipv6_addresses and ipv6_address_count parameters.
+        :param pulumi.Input[bool] keep_image_credential: Whether to keep the mirror settings. Only custom images and shared images support this field.
+               When the value of this field is true, the Password and KeyPairName cannot be specified.
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] key_pair_name: The ssh key name of ECS instance.
         :param pulumi.Input[str] password: The password of ECS instance.
         :param pulumi.Input[int] period: The period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 12. Unit is Month.
+        :param pulumi.Input[str] project_name: The ProjectName of the ecs instance.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecondaryNetworkInterfaceArgs']]]] secondary_network_interfaces: The secondary networkInterface detail collection of ECS instance.
-        :param pulumi.Input[str] security_enhancement_strategy: The security enhancement strategy of ECS instance.Default is true.
+        :param pulumi.Input[str] security_enhancement_strategy: The security enhancement strategy of ECS instance. The value can be Active or InActive. Default is Active.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The security group ID set of primary networkInterface.
+        :param pulumi.Input[str] spot_strategy: The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
         :param pulumi.Input[str] subnet_id: The subnet ID of primary networkInterface.
         :param pulumi.Input[int] system_volume_size: The size of system volume.
-        :param pulumi.Input[str] system_volume_type: The type of system volume.
-        :param pulumi.Input[str] user_data: The user data of ECS instance.
+        :param pulumi.Input[str] system_volume_type: The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceTagArgs']]]] tags: Tags.
+        :param pulumi.Input[str] user_data: The user data of ECS instance, this field must be encrypted with base64.
         :param pulumi.Input[str] zone_id: The available zone ID of ECS instance.
         """
         ...
@@ -1042,7 +1344,6 @@ class Instance(pulumi.CustomResource):
                  args: InstanceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Provides a resource to manage ecs instance
         ## Example Usage
 
         ```python
@@ -1060,7 +1361,6 @@ class Instance(pulumi.CustomResource):
         foo1_security_group = volcengine.vpc.SecurityGroup("foo1SecurityGroup", vpc_id=foo.id,
         opts=pulumi.ResourceOptions(depends_on=[foo1_subnet]))
         default = volcengine.ecs.Instance("default",
-            zone_id="cn-beijing-a",
             image_id="image-aagd56zrw2jtdro3bnrl",
             instance_type="ecs.g1.large",
             instance_name="xym-tf-test-2",
@@ -1075,7 +1375,9 @@ class Instance(pulumi.CustomResource):
                 volume_type="PTSSD",
                 size=100,
                 delete_with_instance=True,
-            )])
+            )],
+            deployment_set_id="",
+            ipv6_address_count=1)
         #  secondary_network_interfaces {
         #    subnet_id = volcengine_subnet.foo1.id
         #    security_group_ids = [volcengine_security_group.foo1.id]
@@ -1084,10 +1386,10 @@ class Instance(pulumi.CustomResource):
 
         ## Import
 
-        ECS Instance can be imported using the id, e.g.
+        ECS Instance can be imported using the id, e.g. If Import,The data_volumes is sort by volume name
 
         ```sh
-         $ pulumi import volcengine:Ecs/instance:Instance default i-mizl7m1kqccg5smt1bdpijuj
+         $ pulumi import volcengine:ecs/instance:Instance default i-mizl7m1kqccg5smt1bdpijuj
         ```
 
         :param str resource_name: The name of the resource.
@@ -1108,6 +1410,7 @@ class Instance(pulumi.CustomResource):
                  auto_renew: Optional[pulumi.Input[bool]] = None,
                  auto_renew_period: Optional[pulumi.Input[int]] = None,
                  data_volumes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceDataVolumeArgs']]]]] = None,
+                 deployment_set_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  host_name: Optional[pulumi.Input[str]] = None,
                  hpc_cluster_id: Optional[pulumi.Input[str]] = None,
@@ -1116,15 +1419,21 @@ class Instance(pulumi.CustomResource):
                  instance_charge_type: Optional[pulumi.Input[str]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
                  instance_type: Optional[pulumi.Input[str]] = None,
+                 ipv6_address_count: Optional[pulumi.Input[int]] = None,
+                 ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 keep_image_credential: Optional[pulumi.Input[bool]] = None,
                  key_pair_name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  secondary_network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecondaryNetworkInterfaceArgs']]]]] = None,
                  security_enhancement_strategy: Optional[pulumi.Input[str]] = None,
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 spot_strategy: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
                  system_volume_size: Optional[pulumi.Input[int]] = None,
                  system_volume_type: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceTagArgs']]]]] = None,
                  user_data: Optional[pulumi.Input[str]] = None,
                  zone_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -1142,6 +1451,7 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["auto_renew"] = auto_renew
             __props__.__dict__["auto_renew_period"] = auto_renew_period
             __props__.__dict__["data_volumes"] = data_volumes
+            __props__.__dict__["deployment_set_id"] = deployment_set_id
             __props__.__dict__["description"] = description
             __props__.__dict__["host_name"] = host_name
             __props__.__dict__["hpc_cluster_id"] = hpc_cluster_id
@@ -1154,14 +1464,19 @@ class Instance(pulumi.CustomResource):
             if instance_type is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_type'")
             __props__.__dict__["instance_type"] = instance_type
+            __props__.__dict__["ipv6_address_count"] = ipv6_address_count
+            __props__.__dict__["ipv6_addresses"] = ipv6_addresses
+            __props__.__dict__["keep_image_credential"] = keep_image_credential
             __props__.__dict__["key_pair_name"] = key_pair_name
             __props__.__dict__["password"] = password
             __props__.__dict__["period"] = period
+            __props__.__dict__["project_name"] = project_name
             __props__.__dict__["secondary_network_interfaces"] = secondary_network_interfaces
             __props__.__dict__["security_enhancement_strategy"] = security_enhancement_strategy
             if security_group_ids is None and not opts.urn:
                 raise TypeError("Missing required property 'security_group_ids'")
             __props__.__dict__["security_group_ids"] = security_group_ids
+            __props__.__dict__["spot_strategy"] = spot_strategy
             if subnet_id is None and not opts.urn:
                 raise TypeError("Missing required property 'subnet_id'")
             __props__.__dict__["subnet_id"] = subnet_id
@@ -1171,25 +1486,27 @@ class Instance(pulumi.CustomResource):
             if system_volume_type is None and not opts.urn:
                 raise TypeError("Missing required property 'system_volume_type'")
             __props__.__dict__["system_volume_type"] = system_volume_type
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["user_data"] = user_data
-            if zone_id is None and not opts.urn:
-                raise TypeError("Missing required property 'zone_id'")
             __props__.__dict__["zone_id"] = zone_id
             __props__.__dict__["cpus"] = None
             __props__.__dict__["created_at"] = None
+            __props__.__dict__["gpu_devices"] = None
             __props__.__dict__["instance_id"] = None
+            __props__.__dict__["is_gpu"] = None
             __props__.__dict__["key_pair_id"] = None
             __props__.__dict__["memory_size"] = None
             __props__.__dict__["network_interface_id"] = None
             __props__.__dict__["os_name"] = None
             __props__.__dict__["os_type"] = None
+            __props__.__dict__["primary_ip_address"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["stopped_mode"] = None
             __props__.__dict__["system_volume_id"] = None
             __props__.__dict__["updated_at"] = None
             __props__.__dict__["vpc_id"] = None
         super(Instance, __self__).__init__(
-            'volcengine:Ecs/instance:Instance',
+            'volcengine:ecs/instance:Instance',
             resource_name,
             __props__,
             opts)
@@ -1203,7 +1520,9 @@ class Instance(pulumi.CustomResource):
             cpus: Optional[pulumi.Input[int]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             data_volumes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceDataVolumeArgs']]]]] = None,
+            deployment_set_id: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            gpu_devices: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceGpuDeviceArgs']]]]] = None,
             host_name: Optional[pulumi.Input[str]] = None,
             hpc_cluster_id: Optional[pulumi.Input[str]] = None,
             image_id: Optional[pulumi.Input[str]] = None,
@@ -1212,6 +1531,10 @@ class Instance(pulumi.CustomResource):
             instance_id: Optional[pulumi.Input[str]] = None,
             instance_name: Optional[pulumi.Input[str]] = None,
             instance_type: Optional[pulumi.Input[str]] = None,
+            ipv6_address_count: Optional[pulumi.Input[int]] = None,
+            ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            is_gpu: Optional[pulumi.Input[bool]] = None,
+            keep_image_credential: Optional[pulumi.Input[bool]] = None,
             key_pair_id: Optional[pulumi.Input[str]] = None,
             key_pair_name: Optional[pulumi.Input[str]] = None,
             memory_size: Optional[pulumi.Input[int]] = None,
@@ -1220,15 +1543,19 @@ class Instance(pulumi.CustomResource):
             os_type: Optional[pulumi.Input[str]] = None,
             password: Optional[pulumi.Input[str]] = None,
             period: Optional[pulumi.Input[int]] = None,
+            primary_ip_address: Optional[pulumi.Input[str]] = None,
+            project_name: Optional[pulumi.Input[str]] = None,
             secondary_network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecondaryNetworkInterfaceArgs']]]]] = None,
             security_enhancement_strategy: Optional[pulumi.Input[str]] = None,
             security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            spot_strategy: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             stopped_mode: Optional[pulumi.Input[str]] = None,
             subnet_id: Optional[pulumi.Input[str]] = None,
             system_volume_id: Optional[pulumi.Input[str]] = None,
             system_volume_size: Optional[pulumi.Input[int]] = None,
             system_volume_type: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceTagArgs']]]]] = None,
             updated_at: Optional[pulumi.Input[str]] = None,
             user_data: Optional[pulumi.Input[str]] = None,
             vpc_id: Optional[pulumi.Input[str]] = None,
@@ -1240,20 +1567,29 @@ class Instance(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] auto_renew: The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.
-        :param pulumi.Input[int] auto_renew_period: The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.
+        :param pulumi.Input[bool] auto_renew: The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[int] auto_renew_period: The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[int] cpus: The number of ECS instance CPU cores.
         :param pulumi.Input[str] created_at: The create time of ECS instance.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceDataVolumeArgs']]]] data_volumes: The data volume collection of  ECS instance.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceDataVolumeArgs']]]] data_volumes: The data volumes collection of  ECS instance.
+        :param pulumi.Input[str] deployment_set_id: The ID of Ecs Deployment Set.
         :param pulumi.Input[str] description: The description of ECS instance.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceGpuDeviceArgs']]]] gpu_devices: The GPU device info of Instance.
         :param pulumi.Input[str] host_name: The host name of ECS instance.
         :param pulumi.Input[str] hpc_cluster_id: The hpc cluster ID of ECS instance.
         :param pulumi.Input[str] image_id: The Image ID of ECS instance.
         :param pulumi.Input[bool] include_data_volumes: The include data volumes flag of ECS instance.Only effective when change instance charge type.include_data_volumes.
-        :param pulumi.Input[str] instance_charge_type: The charge type of ECS instance.
+        :param pulumi.Input[str] instance_charge_type: The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
         :param pulumi.Input[str] instance_id: The ID of ECS instance.
         :param pulumi.Input[str] instance_name: The name of ECS instance.
         :param pulumi.Input[str] instance_type: The instance type of ECS instance.
+        :param pulumi.Input[int] ipv6_address_count: The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 1 to 10.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ipv6_addresses: One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+               You cannot specify both the ipv6_addresses and ipv6_address_count parameters.
+        :param pulumi.Input[bool] is_gpu: The Flag of GPU instance.If the instance is GPU,The flag is true.
+        :param pulumi.Input[bool] keep_image_credential: Whether to keep the mirror settings. Only custom images and shared images support this field.
+               When the value of this field is true, the Password and KeyPairName cannot be specified.
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] key_pair_id: The ssh key ID of ECS instance.
         :param pulumi.Input[str] key_pair_name: The ssh key name of ECS instance.
         :param pulumi.Input[int] memory_size: The memory size of ECS instance.
@@ -1262,17 +1598,21 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] os_type: The os type of ECS instance.
         :param pulumi.Input[str] password: The password of ECS instance.
         :param pulumi.Input[int] period: The period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 12. Unit is Month.
+        :param pulumi.Input[str] primary_ip_address: The private ip address of primary networkInterface.
+        :param pulumi.Input[str] project_name: The ProjectName of the ecs instance.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecondaryNetworkInterfaceArgs']]]] secondary_network_interfaces: The secondary networkInterface detail collection of ECS instance.
-        :param pulumi.Input[str] security_enhancement_strategy: The security enhancement strategy of ECS instance.Default is true.
+        :param pulumi.Input[str] security_enhancement_strategy: The security enhancement strategy of ECS instance. The value can be Active or InActive. Default is Active.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The security group ID set of primary networkInterface.
+        :param pulumi.Input[str] spot_strategy: The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
         :param pulumi.Input[str] status: The status of ECS instance.
         :param pulumi.Input[str] stopped_mode: The stop mode of ECS instance.
         :param pulumi.Input[str] subnet_id: The subnet ID of primary networkInterface.
         :param pulumi.Input[str] system_volume_id: The ID of system volume.
         :param pulumi.Input[int] system_volume_size: The size of system volume.
-        :param pulumi.Input[str] system_volume_type: The type of system volume.
+        :param pulumi.Input[str] system_volume_type: The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] updated_at: The update time of ECS instance.
-        :param pulumi.Input[str] user_data: The user data of ECS instance.
+        :param pulumi.Input[str] user_data: The user data of ECS instance, this field must be encrypted with base64.
         :param pulumi.Input[str] vpc_id: The VPC ID of ECS instance.
         :param pulumi.Input[str] zone_id: The available zone ID of ECS instance.
         """
@@ -1285,7 +1625,9 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["cpus"] = cpus
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["data_volumes"] = data_volumes
+        __props__.__dict__["deployment_set_id"] = deployment_set_id
         __props__.__dict__["description"] = description
+        __props__.__dict__["gpu_devices"] = gpu_devices
         __props__.__dict__["host_name"] = host_name
         __props__.__dict__["hpc_cluster_id"] = hpc_cluster_id
         __props__.__dict__["image_id"] = image_id
@@ -1294,6 +1636,10 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["instance_name"] = instance_name
         __props__.__dict__["instance_type"] = instance_type
+        __props__.__dict__["ipv6_address_count"] = ipv6_address_count
+        __props__.__dict__["ipv6_addresses"] = ipv6_addresses
+        __props__.__dict__["is_gpu"] = is_gpu
+        __props__.__dict__["keep_image_credential"] = keep_image_credential
         __props__.__dict__["key_pair_id"] = key_pair_id
         __props__.__dict__["key_pair_name"] = key_pair_name
         __props__.__dict__["memory_size"] = memory_size
@@ -1302,15 +1648,19 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["os_type"] = os_type
         __props__.__dict__["password"] = password
         __props__.__dict__["period"] = period
+        __props__.__dict__["primary_ip_address"] = primary_ip_address
+        __props__.__dict__["project_name"] = project_name
         __props__.__dict__["secondary_network_interfaces"] = secondary_network_interfaces
         __props__.__dict__["security_enhancement_strategy"] = security_enhancement_strategy
         __props__.__dict__["security_group_ids"] = security_group_ids
+        __props__.__dict__["spot_strategy"] = spot_strategy
         __props__.__dict__["status"] = status
         __props__.__dict__["stopped_mode"] = stopped_mode
         __props__.__dict__["subnet_id"] = subnet_id
         __props__.__dict__["system_volume_id"] = system_volume_id
         __props__.__dict__["system_volume_size"] = system_volume_size
         __props__.__dict__["system_volume_type"] = system_volume_type
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["user_data"] = user_data
         __props__.__dict__["vpc_id"] = vpc_id
@@ -1321,7 +1671,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="autoRenew")
     def auto_renew(self) -> pulumi.Output[Optional[bool]]:
         """
-        The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.
+        The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         return pulumi.get(self, "auto_renew")
 
@@ -1329,7 +1679,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="autoRenewPeriod")
     def auto_renew_period(self) -> pulumi.Output[Optional[int]]:
         """
-        The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.
+        The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         return pulumi.get(self, "auto_renew_period")
 
@@ -1353,9 +1703,17 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="dataVolumes")
     def data_volumes(self) -> pulumi.Output[Optional[Sequence['outputs.InstanceDataVolume']]]:
         """
-        The data volume collection of  ECS instance.
+        The data volumes collection of  ECS instance.
         """
         return pulumi.get(self, "data_volumes")
+
+    @property
+    @pulumi.getter(name="deploymentSetId")
+    def deployment_set_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The ID of Ecs Deployment Set.
+        """
+        return pulumi.get(self, "deployment_set_id")
 
     @property
     @pulumi.getter
@@ -1364,6 +1722,14 @@ class Instance(pulumi.CustomResource):
         The description of ECS instance.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="gpuDevices")
+    def gpu_devices(self) -> pulumi.Output[Sequence['outputs.InstanceGpuDevice']]:
+        """
+        The GPU device info of Instance.
+        """
+        return pulumi.get(self, "gpu_devices")
 
     @property
     @pulumi.getter(name="hostName")
@@ -1401,7 +1767,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="instanceChargeType")
     def instance_charge_type(self) -> pulumi.Output[str]:
         """
-        The charge type of ECS instance.
+        The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
         """
         return pulumi.get(self, "instance_charge_type")
 
@@ -1428,6 +1794,41 @@ class Instance(pulumi.CustomResource):
         The instance type of ECS instance.
         """
         return pulumi.get(self, "instance_type")
+
+    @property
+    @pulumi.getter(name="ipv6AddressCount")
+    def ipv6_address_count(self) -> pulumi.Output[int]:
+        """
+        The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 1 to 10.
+        """
+        return pulumi.get(self, "ipv6_address_count")
+
+    @property
+    @pulumi.getter(name="ipv6Addresses")
+    def ipv6_addresses(self) -> pulumi.Output[Sequence[str]]:
+        """
+        One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+        You cannot specify both the ipv6_addresses and ipv6_address_count parameters.
+        """
+        return pulumi.get(self, "ipv6_addresses")
+
+    @property
+    @pulumi.getter(name="isGpu")
+    def is_gpu(self) -> pulumi.Output[bool]:
+        """
+        The Flag of GPU instance.If the instance is GPU,The flag is true.
+        """
+        return pulumi.get(self, "is_gpu")
+
+    @property
+    @pulumi.getter(name="keepImageCredential")
+    def keep_image_credential(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether to keep the mirror settings. Only custom images and shared images support this field.
+        When the value of this field is true, the Password and KeyPairName cannot be specified.
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "keep_image_credential")
 
     @property
     @pulumi.getter(name="keyPairId")
@@ -1494,6 +1895,22 @@ class Instance(pulumi.CustomResource):
         return pulumi.get(self, "period")
 
     @property
+    @pulumi.getter(name="primaryIpAddress")
+    def primary_ip_address(self) -> pulumi.Output[str]:
+        """
+        The private ip address of primary networkInterface.
+        """
+        return pulumi.get(self, "primary_ip_address")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        The ProjectName of the ecs instance.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="secondaryNetworkInterfaces")
     def secondary_network_interfaces(self) -> pulumi.Output[Optional[Sequence['outputs.InstanceSecondaryNetworkInterface']]]:
         """
@@ -1505,7 +1922,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="securityEnhancementStrategy")
     def security_enhancement_strategy(self) -> pulumi.Output[Optional[str]]:
         """
-        The security enhancement strategy of ECS instance.Default is true.
+        The security enhancement strategy of ECS instance. The value can be Active or InActive. Default is Active.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         return pulumi.get(self, "security_enhancement_strategy")
 
@@ -1516,6 +1933,14 @@ class Instance(pulumi.CustomResource):
         The security group ID set of primary networkInterface.
         """
         return pulumi.get(self, "security_group_ids")
+
+    @property
+    @pulumi.getter(name="spotStrategy")
+    def spot_strategy(self) -> pulumi.Output[str]:
+        """
+        The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
+        """
+        return pulumi.get(self, "spot_strategy")
 
     @property
     @pulumi.getter
@@ -1561,9 +1986,17 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="systemVolumeType")
     def system_volume_type(self) -> pulumi.Output[str]:
         """
-        The type of system volume.
+        The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         """
         return pulumi.get(self, "system_volume_type")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.InstanceTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="updatedAt")
@@ -1577,7 +2010,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="userData")
     def user_data(self) -> pulumi.Output[str]:
         """
-        The user data of ECS instance.
+        The user data of ECS instance, this field must be encrypted with base64.
         """
         return pulumi.get(self, "user_data")
 

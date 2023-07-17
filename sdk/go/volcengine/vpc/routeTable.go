@@ -18,23 +18,27 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Vpc"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/vpc"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Vpc.NewRouteTable(ctx, "foo", &Vpc.RouteTableArgs{
-// 			Description:    pulumi.String("tf-test1"),
-// 			RouteTableName: pulumi.String("tf-test1"),
-// 			VpcId:          pulumi.String("vpc-2744hsjr475s07fap8t4jbl1c"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vpc.NewRouteTable(ctx, "foo", &vpc.RouteTableArgs{
+//				Description:    pulumi.String("tf-test1"),
+//				ProjectName:    pulumi.String("yuwao"),
+//				RouteTableName: pulumi.String("tf-project-1"),
+//				VpcId:          pulumi.String("vpc-2feppmy1ugt1c59gp688n1fld"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -42,13 +46,17 @@ import (
 // Route table can be imported using the id, e.g.
 //
 // ```sh
-//  $ pulumi import volcengine:Vpc/routeTable:RouteTable default vtb-274e0syt9av407fap8tle16kb
+//
+//	$ pulumi import volcengine:vpc/routeTable:RouteTable default vtb-274e0syt9av407fap8tle16kb
+//
 // ```
 type RouteTable struct {
 	pulumi.CustomResourceState
 
 	// The description of the route table.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// The ProjectName of the route table.
+	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
 	// The name of the route table.
 	RouteTableName pulumi.StringOutput `pulumi:"routeTableName"`
 	// The id of the VPC.
@@ -66,7 +74,7 @@ func NewRouteTable(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'VpcId'")
 	}
 	var resource RouteTable
-	err := ctx.RegisterResource("volcengine:Vpc/routeTable:RouteTable", name, args, &resource, opts...)
+	err := ctx.RegisterResource("volcengine:vpc/routeTable:RouteTable", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -78,7 +86,7 @@ func NewRouteTable(ctx *pulumi.Context,
 func GetRouteTable(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *RouteTableState, opts ...pulumi.ResourceOption) (*RouteTable, error) {
 	var resource RouteTable
-	err := ctx.ReadResource("volcengine:Vpc/routeTable:RouteTable", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("volcengine:vpc/routeTable:RouteTable", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -89,6 +97,8 @@ func GetRouteTable(ctx *pulumi.Context,
 type routeTableState struct {
 	// The description of the route table.
 	Description *string `pulumi:"description"`
+	// The ProjectName of the route table.
+	ProjectName *string `pulumi:"projectName"`
 	// The name of the route table.
 	RouteTableName *string `pulumi:"routeTableName"`
 	// The id of the VPC.
@@ -98,6 +108,8 @@ type routeTableState struct {
 type RouteTableState struct {
 	// The description of the route table.
 	Description pulumi.StringPtrInput
+	// The ProjectName of the route table.
+	ProjectName pulumi.StringPtrInput
 	// The name of the route table.
 	RouteTableName pulumi.StringPtrInput
 	// The id of the VPC.
@@ -111,6 +123,8 @@ func (RouteTableState) ElementType() reflect.Type {
 type routeTableArgs struct {
 	// The description of the route table.
 	Description *string `pulumi:"description"`
+	// The ProjectName of the route table.
+	ProjectName *string `pulumi:"projectName"`
 	// The name of the route table.
 	RouteTableName *string `pulumi:"routeTableName"`
 	// The id of the VPC.
@@ -121,6 +135,8 @@ type routeTableArgs struct {
 type RouteTableArgs struct {
 	// The description of the route table.
 	Description pulumi.StringPtrInput
+	// The ProjectName of the route table.
+	ProjectName pulumi.StringPtrInput
 	// The name of the route table.
 	RouteTableName pulumi.StringPtrInput
 	// The id of the VPC.
@@ -153,7 +169,7 @@ func (i *RouteTable) ToRouteTableOutputWithContext(ctx context.Context) RouteTab
 // RouteTableArrayInput is an input type that accepts RouteTableArray and RouteTableArrayOutput values.
 // You can construct a concrete instance of `RouteTableArrayInput` via:
 //
-//          RouteTableArray{ RouteTableArgs{...} }
+//	RouteTableArray{ RouteTableArgs{...} }
 type RouteTableArrayInput interface {
 	pulumi.Input
 
@@ -178,7 +194,7 @@ func (i RouteTableArray) ToRouteTableArrayOutputWithContext(ctx context.Context)
 // RouteTableMapInput is an input type that accepts RouteTableMap and RouteTableMapOutput values.
 // You can construct a concrete instance of `RouteTableMapInput` via:
 //
-//          RouteTableMap{ "key": RouteTableArgs{...} }
+//	RouteTableMap{ "key": RouteTableArgs{...} }
 type RouteTableMapInput interface {
 	pulumi.Input
 
@@ -217,6 +233,11 @@ func (o RouteTableOutput) ToRouteTableOutputWithContext(ctx context.Context) Rou
 // The description of the route table.
 func (o RouteTableOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RouteTable) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// The ProjectName of the route table.
+func (o RouteTableOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouteTable) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
 }
 
 // The name of the route table.

@@ -23,8 +23,9 @@ namespace Pulumi.Volcengine.Ecs
     ///     {
     ///         var foo = new Volcengine.Ecs.State("foo", new Volcengine.Ecs.StateArgs
     ///         {
-    ///             Action = "Start",
-    ///             InstanceId = "i-l8u2ai4j0fauo6mrpgk8",
+    ///             Action = "ForceStop",
+    ///             InstanceId = "i-ycc01lmwecgh9z3sqqfl",
+    ///             StoppedMode = "KeepCharging",
     ///         });
     ///     }
     /// 
@@ -36,14 +37,14 @@ namespace Pulumi.Volcengine.Ecs
     /// State Instance can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:Ecs/state:State default state:i-mizl7m1kqccg5smt1bdpijuj
+    ///  $ pulumi import volcengine:ecs/state:State default state:i-mizl7m1kqccg5smt1bdpijuj
     /// ```
     /// </summary>
-    [VolcengineResourceType("volcengine:Ecs/state:State")]
+    [VolcengineResourceType("volcengine:ecs/state:State")]
     public partial class State : Pulumi.CustomResource
     {
         /// <summary>
-        /// Start or Stop of Instance Action.
+        /// Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
         /// </summary>
         [Output("action")]
         public Output<string> Action { get; private set; } = null!;
@@ -61,7 +62,7 @@ namespace Pulumi.Volcengine.Ecs
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
-        /// Stop Mode of Instance.
+        /// Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`, default `KeepCharging`.
         /// </summary>
         [Output("stoppedMode")]
         public Output<string?> StoppedMode { get; private set; } = null!;
@@ -75,12 +76,12 @@ namespace Pulumi.Volcengine.Ecs
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public State(string name, StateArgs args, CustomResourceOptions? options = null)
-            : base("volcengine:Ecs/state:State", name, args ?? new StateArgs(), MakeResourceOptions(options, ""))
+            : base("volcengine:ecs/state:State", name, args ?? new StateArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private State(string name, Input<string> id, StateState? state = null, CustomResourceOptions? options = null)
-            : base("volcengine:Ecs/state:State", name, state, MakeResourceOptions(options, id))
+            : base("volcengine:ecs/state:State", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -113,7 +114,7 @@ namespace Pulumi.Volcengine.Ecs
     public sealed class StateArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Start or Stop of Instance Action.
+        /// Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
         /// </summary>
         [Input("action", required: true)]
         public Input<string> Action { get; set; } = null!;
@@ -125,7 +126,7 @@ namespace Pulumi.Volcengine.Ecs
         public Input<string> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// Stop Mode of Instance.
+        /// Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`, default `KeepCharging`.
         /// </summary>
         [Input("stoppedMode")]
         public Input<string>? StoppedMode { get; set; }
@@ -138,7 +139,7 @@ namespace Pulumi.Volcengine.Ecs
     public sealed class StateState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Start or Stop of Instance Action.
+        /// Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
         /// </summary>
         [Input("action")]
         public Input<string>? Action { get; set; }
@@ -156,7 +157,7 @@ namespace Pulumi.Volcengine.Ecs
         public Input<string>? Status { get; set; }
 
         /// <summary>
-        /// Stop Mode of Instance.
+        /// Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`, default `KeepCharging`.
         /// </summary>
         [Input("stoppedMode")]
         public Input<string>? StoppedMode { get; set; }

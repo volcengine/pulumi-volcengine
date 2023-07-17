@@ -20,17 +20,21 @@ class VolumeArgs:
                  zone_id: pulumi.Input[str],
                  delete_with_instance: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 instance_id: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  volume_charge_type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Volume resource.
-        :param pulumi.Input[str] kind: The kind of Volume.
+        :param pulumi.Input[str] kind: The kind of Volume, the value is `data`.
         :param pulumi.Input[int] size: The size of Volume.
         :param pulumi.Input[str] volume_name: The name of Volume.
-        :param pulumi.Input[str] volume_type: The type of Volume.
+        :param pulumi.Input[str] volume_type: The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         :param pulumi.Input[str] zone_id: The id of the Zone.
         :param pulumi.Input[bool] delete_with_instance: Delete Volume with Attached Instance.
         :param pulumi.Input[str] description: The description of the Volume.
-        :param pulumi.Input[str] volume_charge_type: The charge type of the Volume.
+        :param pulumi.Input[str] instance_id: The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+        :param pulumi.Input[str] project_name: The ProjectName of the Volume.
+        :param pulumi.Input[str] volume_charge_type: The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
         """
         pulumi.set(__self__, "kind", kind)
         pulumi.set(__self__, "size", size)
@@ -41,6 +45,10 @@ class VolumeArgs:
             pulumi.set(__self__, "delete_with_instance", delete_with_instance)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if instance_id is not None:
+            pulumi.set(__self__, "instance_id", instance_id)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if volume_charge_type is not None:
             pulumi.set(__self__, "volume_charge_type", volume_charge_type)
 
@@ -48,7 +56,7 @@ class VolumeArgs:
     @pulumi.getter
     def kind(self) -> pulumi.Input[str]:
         """
-        The kind of Volume.
+        The kind of Volume, the value is `data`.
         """
         return pulumi.get(self, "kind")
 
@@ -84,7 +92,7 @@ class VolumeArgs:
     @pulumi.getter(name="volumeType")
     def volume_type(self) -> pulumi.Input[str]:
         """
-        The type of Volume.
+        The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         """
         return pulumi.get(self, "volume_type")
 
@@ -129,10 +137,34 @@ class VolumeArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @instance_id.setter
+    def instance_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "instance_id", value)
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of the Volume.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
     @pulumi.getter(name="volumeChargeType")
     def volume_charge_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The charge type of the Volume.
+        The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
         """
         return pulumi.get(self, "volume_charge_type")
 
@@ -144,12 +176,12 @@ class VolumeArgs:
 @pulumi.input_type
 class _VolumeState:
     def __init__(__self__, *,
-                 billing_type: Optional[pulumi.Input[int]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  delete_with_instance: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 instance_id: Optional[pulumi.Input[str]] = None,
                  kind: Optional[pulumi.Input[str]] = None,
-                 pay_type: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[int]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  trade_status: Optional[pulumi.Input[int]] = None,
@@ -159,32 +191,32 @@ class _VolumeState:
                  zone_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Volume resources.
-        :param pulumi.Input[int] billing_type: Billing type of Volume.
         :param pulumi.Input[str] created_at: Creation time of Volume.
         :param pulumi.Input[bool] delete_with_instance: Delete Volume with Attached Instance.
         :param pulumi.Input[str] description: The description of the Volume.
-        :param pulumi.Input[str] kind: The kind of Volume.
-        :param pulumi.Input[str] pay_type: Pay type of Volume.
+        :param pulumi.Input[str] instance_id: The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+        :param pulumi.Input[str] kind: The kind of Volume, the value is `data`.
+        :param pulumi.Input[str] project_name: The ProjectName of the Volume.
         :param pulumi.Input[int] size: The size of Volume.
         :param pulumi.Input[str] status: Status of Volume.
         :param pulumi.Input[int] trade_status: Status of Trade.
-        :param pulumi.Input[str] volume_charge_type: The charge type of the Volume.
+        :param pulumi.Input[str] volume_charge_type: The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
         :param pulumi.Input[str] volume_name: The name of Volume.
-        :param pulumi.Input[str] volume_type: The type of Volume.
+        :param pulumi.Input[str] volume_type: The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         :param pulumi.Input[str] zone_id: The id of the Zone.
         """
-        if billing_type is not None:
-            pulumi.set(__self__, "billing_type", billing_type)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
         if delete_with_instance is not None:
             pulumi.set(__self__, "delete_with_instance", delete_with_instance)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if instance_id is not None:
+            pulumi.set(__self__, "instance_id", instance_id)
         if kind is not None:
             pulumi.set(__self__, "kind", kind)
-        if pay_type is not None:
-            pulumi.set(__self__, "pay_type", pay_type)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if size is not None:
             pulumi.set(__self__, "size", size)
         if status is not None:
@@ -199,18 +231,6 @@ class _VolumeState:
             pulumi.set(__self__, "volume_type", volume_type)
         if zone_id is not None:
             pulumi.set(__self__, "zone_id", zone_id)
-
-    @property
-    @pulumi.getter(name="billingType")
-    def billing_type(self) -> Optional[pulumi.Input[int]]:
-        """
-        Billing type of Volume.
-        """
-        return pulumi.get(self, "billing_type")
-
-    @billing_type.setter
-    def billing_type(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "billing_type", value)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -249,10 +269,22 @@ class _VolumeState:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @instance_id.setter
+    def instance_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "instance_id", value)
+
+    @property
     @pulumi.getter
     def kind(self) -> Optional[pulumi.Input[str]]:
         """
-        The kind of Volume.
+        The kind of Volume, the value is `data`.
         """
         return pulumi.get(self, "kind")
 
@@ -261,16 +293,16 @@ class _VolumeState:
         pulumi.set(self, "kind", value)
 
     @property
-    @pulumi.getter(name="payType")
-    def pay_type(self) -> Optional[pulumi.Input[str]]:
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Pay type of Volume.
+        The ProjectName of the Volume.
         """
-        return pulumi.get(self, "pay_type")
+        return pulumi.get(self, "project_name")
 
-    @pay_type.setter
-    def pay_type(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "pay_type", value)
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
 
     @property
     @pulumi.getter
@@ -312,7 +344,7 @@ class _VolumeState:
     @pulumi.getter(name="volumeChargeType")
     def volume_charge_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The charge type of the Volume.
+        The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
         """
         return pulumi.get(self, "volume_charge_type")
 
@@ -336,7 +368,7 @@ class _VolumeState:
     @pulumi.getter(name="volumeType")
     def volume_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of Volume.
+        The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         """
         return pulumi.get(self, "volume_type")
 
@@ -364,7 +396,9 @@ class Volume(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  delete_with_instance: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 instance_id: Optional[pulumi.Input[str]] = None,
                  kind: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[int]] = None,
                  volume_charge_type: Optional[pulumi.Input[str]] = None,
                  volume_name: Optional[pulumi.Input[str]] = None,
@@ -372,19 +406,31 @@ class Volume(pulumi.CustomResource):
                  zone_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Provides a resource to manage volume
         ## Example Usage
 
         ```python
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.ebs.Volume("foo",
+        foo_volume = volcengine.ebs.Volume("fooVolume",
+            volume_name="terraform-test",
+            zone_id="cn-xx-a",
+            volume_type="ESSD_PL0",
             kind="data",
             size=40,
-            volume_name="terraform-test",
-            volume_type="PTSSD",
-            zone_id="cn-lingqiu-a")
+            volume_charge_type="PostPaid",
+            project_name="default")
+        foo_volume_attach = volcengine.ebs.VolumeAttach("fooVolumeAttach",
+            volume_id=foo_volume.id,
+            instance_id="i-yc8pfhbafwijutv6s1fv")
+        foo2 = volcengine.ebs.Volume("foo2",
+            volume_name="terraform-test3",
+            zone_id="cn-beijing-b",
+            volume_type="ESSD_PL0",
+            kind="data",
+            size=40,
+            volume_charge_type="PrePaid",
+            instance_id="i-yc8pfhbafwijutv6s1fv")
         ```
 
         ## Import
@@ -392,18 +438,20 @@ class Volume(pulumi.CustomResource):
         Volume can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Ebs/volume:Volume default vol-mizl7m1kqccg5smt1bdpijuj
+         $ pulumi import volcengine:ebs/volume:Volume default vol-mizl7m1kqccg5smt1bdpijuj
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] delete_with_instance: Delete Volume with Attached Instance.
         :param pulumi.Input[str] description: The description of the Volume.
-        :param pulumi.Input[str] kind: The kind of Volume.
+        :param pulumi.Input[str] instance_id: The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+        :param pulumi.Input[str] kind: The kind of Volume, the value is `data`.
+        :param pulumi.Input[str] project_name: The ProjectName of the Volume.
         :param pulumi.Input[int] size: The size of Volume.
-        :param pulumi.Input[str] volume_charge_type: The charge type of the Volume.
+        :param pulumi.Input[str] volume_charge_type: The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
         :param pulumi.Input[str] volume_name: The name of Volume.
-        :param pulumi.Input[str] volume_type: The type of Volume.
+        :param pulumi.Input[str] volume_type: The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         :param pulumi.Input[str] zone_id: The id of the Zone.
         """
         ...
@@ -413,19 +461,31 @@ class Volume(pulumi.CustomResource):
                  args: VolumeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Provides a resource to manage volume
         ## Example Usage
 
         ```python
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.ebs.Volume("foo",
+        foo_volume = volcengine.ebs.Volume("fooVolume",
+            volume_name="terraform-test",
+            zone_id="cn-xx-a",
+            volume_type="ESSD_PL0",
             kind="data",
             size=40,
-            volume_name="terraform-test",
-            volume_type="PTSSD",
-            zone_id="cn-lingqiu-a")
+            volume_charge_type="PostPaid",
+            project_name="default")
+        foo_volume_attach = volcengine.ebs.VolumeAttach("fooVolumeAttach",
+            volume_id=foo_volume.id,
+            instance_id="i-yc8pfhbafwijutv6s1fv")
+        foo2 = volcengine.ebs.Volume("foo2",
+            volume_name="terraform-test3",
+            zone_id="cn-beijing-b",
+            volume_type="ESSD_PL0",
+            kind="data",
+            size=40,
+            volume_charge_type="PrePaid",
+            instance_id="i-yc8pfhbafwijutv6s1fv")
         ```
 
         ## Import
@@ -433,7 +493,7 @@ class Volume(pulumi.CustomResource):
         Volume can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Ebs/volume:Volume default vol-mizl7m1kqccg5smt1bdpijuj
+         $ pulumi import volcengine:ebs/volume:Volume default vol-mizl7m1kqccg5smt1bdpijuj
         ```
 
         :param str resource_name: The name of the resource.
@@ -453,7 +513,9 @@ class Volume(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  delete_with_instance: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 instance_id: Optional[pulumi.Input[str]] = None,
                  kind: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[int]] = None,
                  volume_charge_type: Optional[pulumi.Input[str]] = None,
                  volume_name: Optional[pulumi.Input[str]] = None,
@@ -473,9 +535,11 @@ class Volume(pulumi.CustomResource):
 
             __props__.__dict__["delete_with_instance"] = delete_with_instance
             __props__.__dict__["description"] = description
+            __props__.__dict__["instance_id"] = instance_id
             if kind is None and not opts.urn:
                 raise TypeError("Missing required property 'kind'")
             __props__.__dict__["kind"] = kind
+            __props__.__dict__["project_name"] = project_name
             if size is None and not opts.urn:
                 raise TypeError("Missing required property 'size'")
             __props__.__dict__["size"] = size
@@ -489,13 +553,11 @@ class Volume(pulumi.CustomResource):
             if zone_id is None and not opts.urn:
                 raise TypeError("Missing required property 'zone_id'")
             __props__.__dict__["zone_id"] = zone_id
-            __props__.__dict__["billing_type"] = None
             __props__.__dict__["created_at"] = None
-            __props__.__dict__["pay_type"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["trade_status"] = None
         super(Volume, __self__).__init__(
-            'volcengine:Ebs/volume:Volume',
+            'volcengine:ebs/volume:Volume',
             resource_name,
             __props__,
             opts)
@@ -504,12 +566,12 @@ class Volume(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            billing_type: Optional[pulumi.Input[int]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             delete_with_instance: Optional[pulumi.Input[bool]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            instance_id: Optional[pulumi.Input[str]] = None,
             kind: Optional[pulumi.Input[str]] = None,
-            pay_type: Optional[pulumi.Input[str]] = None,
+            project_name: Optional[pulumi.Input[str]] = None,
             size: Optional[pulumi.Input[int]] = None,
             status: Optional[pulumi.Input[str]] = None,
             trade_status: Optional[pulumi.Input[int]] = None,
@@ -524,30 +586,30 @@ class Volume(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] billing_type: Billing type of Volume.
         :param pulumi.Input[str] created_at: Creation time of Volume.
         :param pulumi.Input[bool] delete_with_instance: Delete Volume with Attached Instance.
         :param pulumi.Input[str] description: The description of the Volume.
-        :param pulumi.Input[str] kind: The kind of Volume.
-        :param pulumi.Input[str] pay_type: Pay type of Volume.
+        :param pulumi.Input[str] instance_id: The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+        :param pulumi.Input[str] kind: The kind of Volume, the value is `data`.
+        :param pulumi.Input[str] project_name: The ProjectName of the Volume.
         :param pulumi.Input[int] size: The size of Volume.
         :param pulumi.Input[str] status: Status of Volume.
         :param pulumi.Input[int] trade_status: Status of Trade.
-        :param pulumi.Input[str] volume_charge_type: The charge type of the Volume.
+        :param pulumi.Input[str] volume_charge_type: The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
         :param pulumi.Input[str] volume_name: The name of Volume.
-        :param pulumi.Input[str] volume_type: The type of Volume.
+        :param pulumi.Input[str] volume_type: The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         :param pulumi.Input[str] zone_id: The id of the Zone.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _VolumeState.__new__(_VolumeState)
 
-        __props__.__dict__["billing_type"] = billing_type
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["delete_with_instance"] = delete_with_instance
         __props__.__dict__["description"] = description
+        __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["kind"] = kind
-        __props__.__dict__["pay_type"] = pay_type
+        __props__.__dict__["project_name"] = project_name
         __props__.__dict__["size"] = size
         __props__.__dict__["status"] = status
         __props__.__dict__["trade_status"] = trade_status
@@ -556,14 +618,6 @@ class Volume(pulumi.CustomResource):
         __props__.__dict__["volume_type"] = volume_type
         __props__.__dict__["zone_id"] = zone_id
         return Volume(resource_name, opts=opts, __props__=__props__)
-
-    @property
-    @pulumi.getter(name="billingType")
-    def billing_type(self) -> pulumi.Output[int]:
-        """
-        Billing type of Volume.
-        """
-        return pulumi.get(self, "billing_type")
 
     @property
     @pulumi.getter(name="createdAt")
@@ -590,20 +644,28 @@ class Volume(pulumi.CustomResource):
         return pulumi.get(self, "description")
 
     @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
     @pulumi.getter
     def kind(self) -> pulumi.Output[str]:
         """
-        The kind of Volume.
+        The kind of Volume, the value is `data`.
         """
         return pulumi.get(self, "kind")
 
     @property
-    @pulumi.getter(name="payType")
-    def pay_type(self) -> pulumi.Output[str]:
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[Optional[str]]:
         """
-        Pay type of Volume.
+        The ProjectName of the Volume.
         """
-        return pulumi.get(self, "pay_type")
+        return pulumi.get(self, "project_name")
 
     @property
     @pulumi.getter
@@ -633,7 +695,7 @@ class Volume(pulumi.CustomResource):
     @pulumi.getter(name="volumeChargeType")
     def volume_charge_type(self) -> pulumi.Output[Optional[str]]:
         """
-        The charge type of the Volume.
+        The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
         """
         return pulumi.get(self, "volume_charge_type")
 
@@ -649,7 +711,7 @@ class Volume(pulumi.CustomResource):
     @pulumi.getter(name="volumeType")
     def volume_type(self) -> pulumi.Output[str]:
         """
-        The type of Volume.
+        The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         """
         return pulumi.get(self, "volume_type")
 

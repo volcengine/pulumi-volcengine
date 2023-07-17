@@ -15,20 +15,25 @@ class SnatEntryArgs:
     def __init__(__self__, *,
                  eip_id: pulumi.Input[str],
                  nat_gateway_id: pulumi.Input[str],
-                 subnet_id: pulumi.Input[str],
-                 snat_entry_name: Optional[pulumi.Input[str]] = None):
+                 snat_entry_name: Optional[pulumi.Input[str]] = None,
+                 source_cidr: Optional[pulumi.Input[str]] = None,
+                 subnet_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SnatEntry resource.
         :param pulumi.Input[str] eip_id: The id of the public ip address used by the SNAT entry.
         :param pulumi.Input[str] nat_gateway_id: The id of the nat gateway to which the entry belongs.
-        :param pulumi.Input[str] subnet_id: The id of the subnet that is required to access the internet.
         :param pulumi.Input[str] snat_entry_name: The name of the SNAT entry.
+        :param pulumi.Input[str] source_cidr: The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
+        :param pulumi.Input[str] subnet_id: The id of the subnet that is required to access the internet. Only one of `subnet_id,source_cidr` can be specified.
         """
         pulumi.set(__self__, "eip_id", eip_id)
         pulumi.set(__self__, "nat_gateway_id", nat_gateway_id)
-        pulumi.set(__self__, "subnet_id", subnet_id)
         if snat_entry_name is not None:
             pulumi.set(__self__, "snat_entry_name", snat_entry_name)
+        if source_cidr is not None:
+            pulumi.set(__self__, "source_cidr", source_cidr)
+        if subnet_id is not None:
+            pulumi.set(__self__, "subnet_id", subnet_id)
 
     @property
     @pulumi.getter(name="eipId")
@@ -55,18 +60,6 @@ class SnatEntryArgs:
         pulumi.set(self, "nat_gateway_id", value)
 
     @property
-    @pulumi.getter(name="subnetId")
-    def subnet_id(self) -> pulumi.Input[str]:
-        """
-        The id of the subnet that is required to access the internet.
-        """
-        return pulumi.get(self, "subnet_id")
-
-    @subnet_id.setter
-    def subnet_id(self, value: pulumi.Input[str]):
-        pulumi.set(self, "subnet_id", value)
-
-    @property
     @pulumi.getter(name="snatEntryName")
     def snat_entry_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -78,6 +71,30 @@ class SnatEntryArgs:
     def snat_entry_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "snat_entry_name", value)
 
+    @property
+    @pulumi.getter(name="sourceCidr")
+    def source_cidr(self) -> Optional[pulumi.Input[str]]:
+        """
+        The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
+        """
+        return pulumi.get(self, "source_cidr")
+
+    @source_cidr.setter
+    def source_cidr(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source_cidr", value)
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The id of the subnet that is required to access the internet. Only one of `subnet_id,source_cidr` can be specified.
+        """
+        return pulumi.get(self, "subnet_id")
+
+    @subnet_id.setter
+    def subnet_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "subnet_id", value)
+
 
 @pulumi.input_type
 class _SnatEntryState:
@@ -85,6 +102,7 @@ class _SnatEntryState:
                  eip_id: Optional[pulumi.Input[str]] = None,
                  nat_gateway_id: Optional[pulumi.Input[str]] = None,
                  snat_entry_name: Optional[pulumi.Input[str]] = None,
+                 source_cidr: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None):
         """
@@ -92,8 +110,9 @@ class _SnatEntryState:
         :param pulumi.Input[str] eip_id: The id of the public ip address used by the SNAT entry.
         :param pulumi.Input[str] nat_gateway_id: The id of the nat gateway to which the entry belongs.
         :param pulumi.Input[str] snat_entry_name: The name of the SNAT entry.
+        :param pulumi.Input[str] source_cidr: The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
         :param pulumi.Input[str] status: The status of the SNAT entry.
-        :param pulumi.Input[str] subnet_id: The id of the subnet that is required to access the internet.
+        :param pulumi.Input[str] subnet_id: The id of the subnet that is required to access the internet. Only one of `subnet_id,source_cidr` can be specified.
         """
         if eip_id is not None:
             pulumi.set(__self__, "eip_id", eip_id)
@@ -101,6 +120,8 @@ class _SnatEntryState:
             pulumi.set(__self__, "nat_gateway_id", nat_gateway_id)
         if snat_entry_name is not None:
             pulumi.set(__self__, "snat_entry_name", snat_entry_name)
+        if source_cidr is not None:
+            pulumi.set(__self__, "source_cidr", source_cidr)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if subnet_id is not None:
@@ -143,6 +164,18 @@ class _SnatEntryState:
         pulumi.set(self, "snat_entry_name", value)
 
     @property
+    @pulumi.getter(name="sourceCidr")
+    def source_cidr(self) -> Optional[pulumi.Input[str]]:
+        """
+        The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
+        """
+        return pulumi.get(self, "source_cidr")
+
+    @source_cidr.setter
+    def source_cidr(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source_cidr", value)
+
+    @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
@@ -158,7 +191,7 @@ class _SnatEntryState:
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The id of the subnet that is required to access the internet.
+        The id of the subnet that is required to access the internet. Only one of `subnet_id,source_cidr` can be specified.
         """
         return pulumi.get(self, "subnet_id")
 
@@ -175,6 +208,7 @@ class SnatEntry(pulumi.CustomResource):
                  eip_id: Optional[pulumi.Input[str]] = None,
                  nat_gateway_id: Optional[pulumi.Input[str]] = None,
                  snat_entry_name: Optional[pulumi.Input[str]] = None,
+                 source_cidr: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -197,7 +231,7 @@ class SnatEntry(pulumi.CustomResource):
         Snat entry can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Nat/snatEntry:SnatEntry default snat-3fvhk47kf56****
+         $ pulumi import volcengine:nat/snatEntry:SnatEntry default snat-3fvhk47kf56****
         ```
 
         :param str resource_name: The name of the resource.
@@ -205,7 +239,8 @@ class SnatEntry(pulumi.CustomResource):
         :param pulumi.Input[str] eip_id: The id of the public ip address used by the SNAT entry.
         :param pulumi.Input[str] nat_gateway_id: The id of the nat gateway to which the entry belongs.
         :param pulumi.Input[str] snat_entry_name: The name of the SNAT entry.
-        :param pulumi.Input[str] subnet_id: The id of the subnet that is required to access the internet.
+        :param pulumi.Input[str] source_cidr: The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
+        :param pulumi.Input[str] subnet_id: The id of the subnet that is required to access the internet. Only one of `subnet_id,source_cidr` can be specified.
         """
         ...
     @overload
@@ -233,7 +268,7 @@ class SnatEntry(pulumi.CustomResource):
         Snat entry can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Nat/snatEntry:SnatEntry default snat-3fvhk47kf56****
+         $ pulumi import volcengine:nat/snatEntry:SnatEntry default snat-3fvhk47kf56****
         ```
 
         :param str resource_name: The name of the resource.
@@ -254,6 +289,7 @@ class SnatEntry(pulumi.CustomResource):
                  eip_id: Optional[pulumi.Input[str]] = None,
                  nat_gateway_id: Optional[pulumi.Input[str]] = None,
                  snat_entry_name: Optional[pulumi.Input[str]] = None,
+                 source_cidr: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
@@ -274,12 +310,11 @@ class SnatEntry(pulumi.CustomResource):
                 raise TypeError("Missing required property 'nat_gateway_id'")
             __props__.__dict__["nat_gateway_id"] = nat_gateway_id
             __props__.__dict__["snat_entry_name"] = snat_entry_name
-            if subnet_id is None and not opts.urn:
-                raise TypeError("Missing required property 'subnet_id'")
+            __props__.__dict__["source_cidr"] = source_cidr
             __props__.__dict__["subnet_id"] = subnet_id
             __props__.__dict__["status"] = None
         super(SnatEntry, __self__).__init__(
-            'volcengine:Nat/snatEntry:SnatEntry',
+            'volcengine:nat/snatEntry:SnatEntry',
             resource_name,
             __props__,
             opts)
@@ -291,6 +326,7 @@ class SnatEntry(pulumi.CustomResource):
             eip_id: Optional[pulumi.Input[str]] = None,
             nat_gateway_id: Optional[pulumi.Input[str]] = None,
             snat_entry_name: Optional[pulumi.Input[str]] = None,
+            source_cidr: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             subnet_id: Optional[pulumi.Input[str]] = None) -> 'SnatEntry':
         """
@@ -303,8 +339,9 @@ class SnatEntry(pulumi.CustomResource):
         :param pulumi.Input[str] eip_id: The id of the public ip address used by the SNAT entry.
         :param pulumi.Input[str] nat_gateway_id: The id of the nat gateway to which the entry belongs.
         :param pulumi.Input[str] snat_entry_name: The name of the SNAT entry.
+        :param pulumi.Input[str] source_cidr: The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
         :param pulumi.Input[str] status: The status of the SNAT entry.
-        :param pulumi.Input[str] subnet_id: The id of the subnet that is required to access the internet.
+        :param pulumi.Input[str] subnet_id: The id of the subnet that is required to access the internet. Only one of `subnet_id,source_cidr` can be specified.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -313,6 +350,7 @@ class SnatEntry(pulumi.CustomResource):
         __props__.__dict__["eip_id"] = eip_id
         __props__.__dict__["nat_gateway_id"] = nat_gateway_id
         __props__.__dict__["snat_entry_name"] = snat_entry_name
+        __props__.__dict__["source_cidr"] = source_cidr
         __props__.__dict__["status"] = status
         __props__.__dict__["subnet_id"] = subnet_id
         return SnatEntry(resource_name, opts=opts, __props__=__props__)
@@ -342,6 +380,14 @@ class SnatEntry(pulumi.CustomResource):
         return pulumi.get(self, "snat_entry_name")
 
     @property
+    @pulumi.getter(name="sourceCidr")
+    def source_cidr(self) -> pulumi.Output[Optional[str]]:
+        """
+        The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
+        """
+        return pulumi.get(self, "source_cidr")
+
+    @property
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
         """
@@ -351,9 +397,9 @@ class SnatEntry(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="subnetId")
-    def subnet_id(self) -> pulumi.Output[str]:
+    def subnet_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The id of the subnet that is required to access the internet.
+        The id of the subnet that is required to access the internet. Only one of `subnet_id,source_cidr` can be specified.
         """
         return pulumi.get(self, "subnet_id")
 

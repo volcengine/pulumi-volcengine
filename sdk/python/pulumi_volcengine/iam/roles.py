@@ -120,7 +120,7 @@ def roles(name_regex: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.Iam.roles()
+    default = volcengine.iam.roles()
     ```
 
 
@@ -138,7 +138,7 @@ def roles(name_regex: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('volcengine:Iam/roles:Roles', __args__, opts=opts, typ=RolesResult).value
+    __ret__ = pulumi.runtime.invoke('volcengine:iam/roles:Roles', __args__, opts=opts, typ=RolesResult).value
 
     return AwaitableRolesResult(
         id=__ret__.id,
@@ -164,7 +164,7 @@ def roles_output(name_regex: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.Iam.roles()
+    default = volcengine.iam.roles()
     ```
 
 

@@ -17,27 +17,30 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Ecs"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/ecs"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Ecs.Instances(ctx, &ecs.InstancesArgs{
-// 			Ids: []string{
-// 				"i-ebgy6xmgjve0384ncgsc",
-// 			},
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := ecs.Instances(ctx, &ecs.InstancesArgs{
+//				Ids: []string{
+//					"i-ebgy6xmgjve0384ncgsc",
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func Instances(ctx *pulumi.Context, args *InstancesArgs, opts ...pulumi.InvokeOption) (*InstancesResult, error) {
 	var rv InstancesResult
-	err := ctx.Invoke("volcengine:Ecs/instances:Instances", args, &rv, opts...)
+	err := ctx.Invoke("volcengine:ecs/instances:Instances", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -46,6 +49,8 @@ func Instances(ctx *pulumi.Context, args *InstancesArgs, opts ...pulumi.InvokeOp
 
 // A collection of arguments for invoking Instances.
 type InstancesArgs struct {
+	// A list of DeploymentSet IDs.
+	DeploymentSetIds []string `pulumi:"deploymentSetIds"`
 	// The hpc cluster ID of ECS instance.
 	HpcClusterId *string `pulumi:"hpcClusterId"`
 	// A list of ECS instance IDs.
@@ -60,8 +65,12 @@ type InstancesArgs struct {
 	OutputFile *string `pulumi:"outputFile"`
 	// The primary ip address of ECS instance.
 	PrimaryIpAddress *string `pulumi:"primaryIpAddress"`
+	// The ProjectName of ECS instance.
+	ProjectName *string `pulumi:"projectName"`
 	// The status of ECS instance.
 	Status *string `pulumi:"status"`
+	// Tags.
+	Tags []InstancesTag `pulumi:"tags"`
 	// The VPC ID of ECS instance.
 	VpcId *string `pulumi:"vpcId"`
 	// The available zone ID of ECS instance.
@@ -70,7 +79,8 @@ type InstancesArgs struct {
 
 // A collection of values returned by Instances.
 type InstancesResult struct {
-	HpcClusterId *string `pulumi:"hpcClusterId"`
+	DeploymentSetIds []string `pulumi:"deploymentSetIds"`
+	HpcClusterId     *string  `pulumi:"hpcClusterId"`
 	// The provider-assigned unique ID for this managed resource.
 	Id  string   `pulumi:"id"`
 	Ids []string `pulumi:"ids"`
@@ -84,8 +94,12 @@ type InstancesResult struct {
 	OutputFile  *string `pulumi:"outputFile"`
 	// The private ip address of networkInterface.
 	PrimaryIpAddress *string `pulumi:"primaryIpAddress"`
+	// The ProjectName of ECS instance.
+	ProjectName *string `pulumi:"projectName"`
 	// The status of ECS instance.
 	Status *string `pulumi:"status"`
+	// Tags.
+	Tags []InstancesTag `pulumi:"tags"`
 	// The total count of ECS instance query.
 	TotalCount int `pulumi:"totalCount"`
 	// The VPC ID of ECS instance.
@@ -109,6 +123,8 @@ func InstancesOutput(ctx *pulumi.Context, args InstancesOutputArgs, opts ...pulu
 
 // A collection of arguments for invoking Instances.
 type InstancesOutputArgs struct {
+	// A list of DeploymentSet IDs.
+	DeploymentSetIds pulumi.StringArrayInput `pulumi:"deploymentSetIds"`
 	// The hpc cluster ID of ECS instance.
 	HpcClusterId pulumi.StringPtrInput `pulumi:"hpcClusterId"`
 	// A list of ECS instance IDs.
@@ -123,8 +139,12 @@ type InstancesOutputArgs struct {
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
 	// The primary ip address of ECS instance.
 	PrimaryIpAddress pulumi.StringPtrInput `pulumi:"primaryIpAddress"`
+	// The ProjectName of ECS instance.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
 	// The status of ECS instance.
 	Status pulumi.StringPtrInput `pulumi:"status"`
+	// Tags.
+	Tags InstancesTagArrayInput `pulumi:"tags"`
 	// The VPC ID of ECS instance.
 	VpcId pulumi.StringPtrInput `pulumi:"vpcId"`
 	// The available zone ID of ECS instance.
@@ -148,6 +168,10 @@ func (o InstancesResultOutput) ToInstancesResultOutput() InstancesResultOutput {
 
 func (o InstancesResultOutput) ToInstancesResultOutputWithContext(ctx context.Context) InstancesResultOutput {
 	return o
+}
+
+func (o InstancesResultOutput) DeploymentSetIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v InstancesResult) []string { return v.DeploymentSetIds }).(pulumi.StringArrayOutput)
 }
 
 func (o InstancesResultOutput) HpcClusterId() pulumi.StringPtrOutput {
@@ -191,9 +215,19 @@ func (o InstancesResultOutput) PrimaryIpAddress() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstancesResult) *string { return v.PrimaryIpAddress }).(pulumi.StringPtrOutput)
 }
 
+// The ProjectName of ECS instance.
+func (o InstancesResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InstancesResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
 // The status of ECS instance.
 func (o InstancesResultOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstancesResult) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o InstancesResultOutput) Tags() InstancesTagArrayOutput {
+	return o.ApplyT(func(v InstancesResult) []InstancesTag { return v.Tags }).(InstancesTagArrayOutput)
 }
 
 // The total count of ECS instance query.

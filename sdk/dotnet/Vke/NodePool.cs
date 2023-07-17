@@ -23,9 +23,15 @@ namespace Pulumi.Volcengine.Vke
     ///     {
     ///         var vkeTest = new Volcengine.Vke.NodePool("vkeTest", new Volcengine.Vke.NodePoolArgs
     ///         {
-    ///             ClusterId = "ccah01nnqtofnluts98j0",
+    ///             AutoScaling = new Volcengine.Vke.Inputs.NodePoolAutoScalingArgs
+    ///             {
+    ///                 Enabled = true,
+    ///                 SubnetPolicy = "ZoneBalance",
+    ///             },
+    ///             ClusterId = "ccgd6066rsfegs2dkhlog",
     ///             KubernetesConfig = new Volcengine.Vke.Inputs.NodePoolKubernetesConfigArgs
     ///             {
+    ///                 Cordon = false,
     ///                 Labels = 
     ///                 {
     ///                     new Volcengine.Vke.Inputs.NodePoolKubernetesConfigLabelArgs
@@ -50,20 +56,43 @@ namespace Pulumi.Volcengine.Vke
     ///                         Type = "ESSD_PL0",
     ///                     },
     ///                 },
+    ///                 EcsTags = 
+    ///                 {
+    ///                     new Volcengine.Vke.Inputs.NodePoolNodeConfigEcsTagArgs
+    ///                     {
+    ///                         Key = "ecs_k1",
+    ///                         Value = "ecs_v1",
+    ///                     },
+    ///                 },
+    ///                 InstanceChargeType = "PostPaid",
     ///                 InstanceTypeIds = 
     ///                 {
-    ///                     "ecs.r1.large",
+    ///                     "ecs.g1ie.xlarge",
     ///                 },
+    ///                 Period = 1,
     ///                 Security = new Volcengine.Vke.Inputs.NodePoolNodeConfigSecurityArgs
     ///                 {
     ///                     Login = new Volcengine.Vke.Inputs.NodePoolNodeConfigSecurityLoginArgs
     ///                     {
     ///                         Password = "UHdkMTIzNDU2",
     ///                     },
+    ///                     SecurityGroupIds = 
+    ///                     {
+    ///                         "sg-13fbyz0sok3y83n6nu4hv1q10",
+    ///                         "sg-mj1e9tbztgqo5smt1ah8l4bh",
+    ///                     },
     ///                 },
     ///                 SubnetIds = 
     ///                 {
-    ///                     "subnet-3recgzi7hfim85zsk2i8l9ve7",
+    ///                     "subnet-mj1e9jgu96v45smt1a674x3h",
+    ///                 },
+    ///             },
+    ///             Tags = 
+    ///             {
+    ///                 new Volcengine.Vke.Inputs.NodePoolTagArgs
+    ///                 {
+    ///                     Key = "k1",
+    ///                     Value = "v1",
     ///                 },
     ///             },
     ///         });
@@ -77,23 +106,17 @@ namespace Pulumi.Volcengine.Vke
     /// NodePool can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:Vke/nodePool:NodePool default pcabe57vqtofgrbln3dp0
+    ///  $ pulumi import volcengine:vke/nodePool:NodePool default pcabe57vqtofgrbln3dp0
     /// ```
     /// </summary>
-    [VolcengineResourceType("volcengine:Vke/nodePool:NodePool")]
+    [VolcengineResourceType("volcengine:vke/nodePool:NodePool")]
     public partial class NodePool : Pulumi.CustomResource
     {
         /// <summary>
         /// The node pool elastic scaling configuration information.
         /// </summary>
         [Output("autoScaling")]
-        public Output<Outputs.NodePoolAutoScaling?> AutoScaling { get; private set; } = null!;
-
-        /// <summary>
-        /// Is enabled of AutoScaling.
-        /// </summary>
-        [Output("autoScalingEnabled")]
-        public Output<bool?> AutoScalingEnabled { get; private set; } = null!;
+        public Output<Outputs.NodePoolAutoScaling> AutoScaling { get; private set; } = null!;
 
         /// <summary>
         /// The ClientToken of NodePool.
@@ -108,28 +131,10 @@ namespace Pulumi.Volcengine.Vke
         public Output<string?> ClusterId { get; private set; } = null!;
 
         /// <summary>
-        /// The ClusterIds of NodePool.
-        /// </summary>
-        [Output("clusterIds")]
-        public Output<ImmutableArray<string>> ClusterIds { get; private set; } = null!;
-
-        /// <summary>
-        /// The CreateClientToken of NodePool.
-        /// </summary>
-        [Output("createClientToken")]
-        public Output<string> CreateClientToken { get; private set; } = null!;
-
-        /// <summary>
-        /// The IDs of NodePool.
-        /// </summary>
-        [Output("ids")]
-        public Output<ImmutableArray<string>> Ids { get; private set; } = null!;
-
-        /// <summary>
         /// The KubernetesConfig of NodeConfig.
         /// </summary>
         [Output("kubernetesConfig")]
-        public Output<Outputs.NodePoolKubernetesConfig?> KubernetesConfig { get; private set; } = null!;
+        public Output<Outputs.NodePoolKubernetesConfig> KubernetesConfig { get; private set; } = null!;
 
         /// <summary>
         /// The Name of NodePool.
@@ -141,19 +146,13 @@ namespace Pulumi.Volcengine.Vke
         /// The Config of NodePool.
         /// </summary>
         [Output("nodeConfig")]
-        public Output<Outputs.NodePoolNodeConfig?> NodeConfig { get; private set; } = null!;
+        public Output<Outputs.NodePoolNodeConfig> NodeConfig { get; private set; } = null!;
 
         /// <summary>
-        /// The Status of NodePool.
+        /// Tags.
         /// </summary>
-        [Output("statuses")]
-        public Output<ImmutableArray<Outputs.NodePoolStatus>> Statuses { get; private set; } = null!;
-
-        /// <summary>
-        /// The UpdateClientToken of NodePool.
-        /// </summary>
-        [Output("updateClientToken")]
-        public Output<string> UpdateClientToken { get; private set; } = null!;
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.NodePoolTag>> Tags { get; private set; } = null!;
 
 
         /// <summary>
@@ -163,13 +162,13 @@ namespace Pulumi.Volcengine.Vke
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public NodePool(string name, NodePoolArgs? args = null, CustomResourceOptions? options = null)
-            : base("volcengine:Vke/nodePool:NodePool", name, args ?? new NodePoolArgs(), MakeResourceOptions(options, ""))
+        public NodePool(string name, NodePoolArgs args, CustomResourceOptions? options = null)
+            : base("volcengine:vke/nodePool:NodePool", name, args ?? new NodePoolArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private NodePool(string name, Input<string> id, NodePoolState? state = null, CustomResourceOptions? options = null)
-            : base("volcengine:Vke/nodePool:NodePool", name, state, MakeResourceOptions(options, id))
+            : base("volcengine:vke/nodePool:NodePool", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -208,12 +207,6 @@ namespace Pulumi.Volcengine.Vke
         public Input<Inputs.NodePoolAutoScalingArgs>? AutoScaling { get; set; }
 
         /// <summary>
-        /// Is enabled of AutoScaling.
-        /// </summary>
-        [Input("autoScalingEnabled")]
-        public Input<bool>? AutoScalingEnabled { get; set; }
-
-        /// <summary>
         /// The ClientToken of NodePool.
         /// </summary>
         [Input("clientToken")]
@@ -225,35 +218,11 @@ namespace Pulumi.Volcengine.Vke
         [Input("clusterId")]
         public Input<string>? ClusterId { get; set; }
 
-        [Input("clusterIds")]
-        private InputList<string>? _clusterIds;
-
-        /// <summary>
-        /// The ClusterIds of NodePool.
-        /// </summary>
-        public InputList<string> ClusterIds
-        {
-            get => _clusterIds ?? (_clusterIds = new InputList<string>());
-            set => _clusterIds = value;
-        }
-
-        [Input("ids")]
-        private InputList<string>? _ids;
-
-        /// <summary>
-        /// The IDs of NodePool.
-        /// </summary>
-        public InputList<string> Ids
-        {
-            get => _ids ?? (_ids = new InputList<string>());
-            set => _ids = value;
-        }
-
         /// <summary>
         /// The KubernetesConfig of NodeConfig.
         /// </summary>
-        [Input("kubernetesConfig")]
-        public Input<Inputs.NodePoolKubernetesConfigArgs>? KubernetesConfig { get; set; }
+        [Input("kubernetesConfig", required: true)]
+        public Input<Inputs.NodePoolKubernetesConfigArgs> KubernetesConfig { get; set; } = null!;
 
         /// <summary>
         /// The Name of NodePool.
@@ -264,19 +233,19 @@ namespace Pulumi.Volcengine.Vke
         /// <summary>
         /// The Config of NodePool.
         /// </summary>
-        [Input("nodeConfig")]
-        public Input<Inputs.NodePoolNodeConfigArgs>? NodeConfig { get; set; }
+        [Input("nodeConfig", required: true)]
+        public Input<Inputs.NodePoolNodeConfigArgs> NodeConfig { get; set; } = null!;
 
-        [Input("statuses")]
-        private InputList<Inputs.NodePoolStatusArgs>? _statuses;
+        [Input("tags")]
+        private InputList<Inputs.NodePoolTagArgs>? _tags;
 
         /// <summary>
-        /// The Status of NodePool.
+        /// Tags.
         /// </summary>
-        public InputList<Inputs.NodePoolStatusArgs> Statuses
+        public InputList<Inputs.NodePoolTagArgs> Tags
         {
-            get => _statuses ?? (_statuses = new InputList<Inputs.NodePoolStatusArgs>());
-            set => _statuses = value;
+            get => _tags ?? (_tags = new InputList<Inputs.NodePoolTagArgs>());
+            set => _tags = value;
         }
 
         public NodePoolArgs()
@@ -293,12 +262,6 @@ namespace Pulumi.Volcengine.Vke
         public Input<Inputs.NodePoolAutoScalingGetArgs>? AutoScaling { get; set; }
 
         /// <summary>
-        /// Is enabled of AutoScaling.
-        /// </summary>
-        [Input("autoScalingEnabled")]
-        public Input<bool>? AutoScalingEnabled { get; set; }
-
-        /// <summary>
         /// The ClientToken of NodePool.
         /// </summary>
         [Input("clientToken")]
@@ -309,36 +272,6 @@ namespace Pulumi.Volcengine.Vke
         /// </summary>
         [Input("clusterId")]
         public Input<string>? ClusterId { get; set; }
-
-        [Input("clusterIds")]
-        private InputList<string>? _clusterIds;
-
-        /// <summary>
-        /// The ClusterIds of NodePool.
-        /// </summary>
-        public InputList<string> ClusterIds
-        {
-            get => _clusterIds ?? (_clusterIds = new InputList<string>());
-            set => _clusterIds = value;
-        }
-
-        /// <summary>
-        /// The CreateClientToken of NodePool.
-        /// </summary>
-        [Input("createClientToken")]
-        public Input<string>? CreateClientToken { get; set; }
-
-        [Input("ids")]
-        private InputList<string>? _ids;
-
-        /// <summary>
-        /// The IDs of NodePool.
-        /// </summary>
-        public InputList<string> Ids
-        {
-            get => _ids ?? (_ids = new InputList<string>());
-            set => _ids = value;
-        }
 
         /// <summary>
         /// The KubernetesConfig of NodeConfig.
@@ -358,23 +291,17 @@ namespace Pulumi.Volcengine.Vke
         [Input("nodeConfig")]
         public Input<Inputs.NodePoolNodeConfigGetArgs>? NodeConfig { get; set; }
 
-        [Input("statuses")]
-        private InputList<Inputs.NodePoolStatusGetArgs>? _statuses;
+        [Input("tags")]
+        private InputList<Inputs.NodePoolTagGetArgs>? _tags;
 
         /// <summary>
-        /// The Status of NodePool.
+        /// Tags.
         /// </summary>
-        public InputList<Inputs.NodePoolStatusGetArgs> Statuses
+        public InputList<Inputs.NodePoolTagGetArgs> Tags
         {
-            get => _statuses ?? (_statuses = new InputList<Inputs.NodePoolStatusGetArgs>());
-            set => _statuses = value;
+            get => _tags ?? (_tags = new InputList<Inputs.NodePoolTagGetArgs>());
+            set => _tags = value;
         }
-
-        /// <summary>
-        /// The UpdateClientToken of NodePool.
-        /// </summary>
-        [Input("updateClientToken")]
-        public Input<string>? UpdateClientToken { get; set; }
 
         public NodePoolState()
         {

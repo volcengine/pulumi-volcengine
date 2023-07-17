@@ -10,7 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Volcengine.Ebs
 {
     /// <summary>
-    /// Provides a resource to manage volume
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -21,13 +20,30 @@ namespace Pulumi.Volcengine.Ebs
     /// {
     ///     public MyStack()
     ///     {
-    ///         var foo = new Volcengine.Ebs.Volume("foo", new Volcengine.Ebs.VolumeArgs
+    ///         var fooVolume = new Volcengine.Ebs.Volume("fooVolume", new Volcengine.Ebs.VolumeArgs
     ///         {
+    ///             VolumeName = "terraform-test",
+    ///             ZoneId = "cn-xx-a",
+    ///             VolumeType = "ESSD_PL0",
     ///             Kind = "data",
     ///             Size = 40,
-    ///             VolumeName = "terraform-test",
-    ///             VolumeType = "PTSSD",
-    ///             ZoneId = "cn-lingqiu-a",
+    ///             VolumeChargeType = "PostPaid",
+    ///             ProjectName = "default",
+    ///         });
+    ///         var fooVolumeAttach = new Volcengine.Ebs.VolumeAttach("fooVolumeAttach", new Volcengine.Ebs.VolumeAttachArgs
+    ///         {
+    ///             VolumeId = fooVolume.Id,
+    ///             InstanceId = "i-yc8pfhbafwijutv6s1fv",
+    ///         });
+    ///         var foo2 = new Volcengine.Ebs.Volume("foo2", new Volcengine.Ebs.VolumeArgs
+    ///         {
+    ///             VolumeName = "terraform-test3",
+    ///             ZoneId = "cn-beijing-b",
+    ///             VolumeType = "ESSD_PL0",
+    ///             Kind = "data",
+    ///             Size = 40,
+    ///             VolumeChargeType = "PrePaid",
+    ///             InstanceId = "i-yc8pfhbafwijutv6s1fv",
     ///         });
     ///     }
     /// 
@@ -39,18 +55,12 @@ namespace Pulumi.Volcengine.Ebs
     /// Volume can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:Ebs/volume:Volume default vol-mizl7m1kqccg5smt1bdpijuj
+    ///  $ pulumi import volcengine:ebs/volume:Volume default vol-mizl7m1kqccg5smt1bdpijuj
     /// ```
     /// </summary>
-    [VolcengineResourceType("volcengine:Ebs/volume:Volume")]
+    [VolcengineResourceType("volcengine:ebs/volume:Volume")]
     public partial class Volume : Pulumi.CustomResource
     {
-        /// <summary>
-        /// Billing type of Volume.
-        /// </summary>
-        [Output("billingType")]
-        public Output<int> BillingType { get; private set; } = null!;
-
         /// <summary>
         /// Creation time of Volume.
         /// </summary>
@@ -70,16 +80,22 @@ namespace Pulumi.Volcengine.Ebs
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The kind of Volume.
+        /// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+        /// </summary>
+        [Output("instanceId")]
+        public Output<string> InstanceId { get; private set; } = null!;
+
+        /// <summary>
+        /// The kind of Volume, the value is `data`.
         /// </summary>
         [Output("kind")]
         public Output<string> Kind { get; private set; } = null!;
 
         /// <summary>
-        /// Pay type of Volume.
+        /// The ProjectName of the Volume.
         /// </summary>
-        [Output("payType")]
-        public Output<string> PayType { get; private set; } = null!;
+        [Output("projectName")]
+        public Output<string?> ProjectName { get; private set; } = null!;
 
         /// <summary>
         /// The size of Volume.
@@ -100,7 +116,7 @@ namespace Pulumi.Volcengine.Ebs
         public Output<int> TradeStatus { get; private set; } = null!;
 
         /// <summary>
-        /// The charge type of the Volume.
+        /// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
         /// </summary>
         [Output("volumeChargeType")]
         public Output<string?> VolumeChargeType { get; private set; } = null!;
@@ -112,7 +128,7 @@ namespace Pulumi.Volcengine.Ebs
         public Output<string> VolumeName { get; private set; } = null!;
 
         /// <summary>
-        /// The type of Volume.
+        /// The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         /// </summary>
         [Output("volumeType")]
         public Output<string> VolumeType { get; private set; } = null!;
@@ -132,12 +148,12 @@ namespace Pulumi.Volcengine.Ebs
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Volume(string name, VolumeArgs args, CustomResourceOptions? options = null)
-            : base("volcengine:Ebs/volume:Volume", name, args ?? new VolumeArgs(), MakeResourceOptions(options, ""))
+            : base("volcengine:ebs/volume:Volume", name, args ?? new VolumeArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private Volume(string name, Input<string> id, VolumeState? state = null, CustomResourceOptions? options = null)
-            : base("volcengine:Ebs/volume:Volume", name, state, MakeResourceOptions(options, id))
+            : base("volcengine:ebs/volume:Volume", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -182,10 +198,22 @@ namespace Pulumi.Volcengine.Ebs
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The kind of Volume.
+        /// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+        /// </summary>
+        [Input("instanceId")]
+        public Input<string>? InstanceId { get; set; }
+
+        /// <summary>
+        /// The kind of Volume, the value is `data`.
         /// </summary>
         [Input("kind", required: true)]
         public Input<string> Kind { get; set; } = null!;
+
+        /// <summary>
+        /// The ProjectName of the Volume.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
 
         /// <summary>
         /// The size of Volume.
@@ -194,7 +222,7 @@ namespace Pulumi.Volcengine.Ebs
         public Input<int> Size { get; set; } = null!;
 
         /// <summary>
-        /// The charge type of the Volume.
+        /// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
         /// </summary>
         [Input("volumeChargeType")]
         public Input<string>? VolumeChargeType { get; set; }
@@ -206,7 +234,7 @@ namespace Pulumi.Volcengine.Ebs
         public Input<string> VolumeName { get; set; } = null!;
 
         /// <summary>
-        /// The type of Volume.
+        /// The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         /// </summary>
         [Input("volumeType", required: true)]
         public Input<string> VolumeType { get; set; } = null!;
@@ -224,12 +252,6 @@ namespace Pulumi.Volcengine.Ebs
 
     public sealed class VolumeState : Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Billing type of Volume.
-        /// </summary>
-        [Input("billingType")]
-        public Input<int>? BillingType { get; set; }
-
         /// <summary>
         /// Creation time of Volume.
         /// </summary>
@@ -249,16 +271,22 @@ namespace Pulumi.Volcengine.Ebs
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The kind of Volume.
+        /// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+        /// </summary>
+        [Input("instanceId")]
+        public Input<string>? InstanceId { get; set; }
+
+        /// <summary>
+        /// The kind of Volume, the value is `data`.
         /// </summary>
         [Input("kind")]
         public Input<string>? Kind { get; set; }
 
         /// <summary>
-        /// Pay type of Volume.
+        /// The ProjectName of the Volume.
         /// </summary>
-        [Input("payType")]
-        public Input<string>? PayType { get; set; }
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
 
         /// <summary>
         /// The size of Volume.
@@ -279,7 +307,7 @@ namespace Pulumi.Volcengine.Ebs
         public Input<int>? TradeStatus { get; set; }
 
         /// <summary>
-        /// The charge type of the Volume.
+        /// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
         /// </summary>
         [Input("volumeChargeType")]
         public Input<string>? VolumeChargeType { get; set; }
@@ -291,7 +319,7 @@ namespace Pulumi.Volcengine.Ebs
         public Input<string>? VolumeName { get; set; }
 
         /// <summary>
-        /// The type of Volume.
+        /// The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         /// </summary>
         [Input("volumeType")]
         public Input<string>? VolumeType { get; set; }

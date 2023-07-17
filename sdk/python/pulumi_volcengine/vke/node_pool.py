@@ -15,49 +15,59 @@ __all__ = ['NodePoolArgs', 'NodePool']
 @pulumi.input_type
 class NodePoolArgs:
     def __init__(__self__, *,
+                 kubernetes_config: pulumi.Input['NodePoolKubernetesConfigArgs'],
+                 node_config: pulumi.Input['NodePoolNodeConfigArgs'],
                  auto_scaling: Optional[pulumi.Input['NodePoolAutoScalingArgs']] = None,
-                 auto_scaling_enabled: Optional[pulumi.Input[bool]] = None,
                  client_token: Optional[pulumi.Input[str]] = None,
                  cluster_id: Optional[pulumi.Input[str]] = None,
-                 cluster_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 kubernetes_config: Optional[pulumi.Input['NodePoolKubernetesConfigArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 node_config: Optional[pulumi.Input['NodePoolNodeConfigArgs']] = None,
-                 statuses: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolStatusArgs']]]] = None):
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolTagArgs']]]] = None):
         """
         The set of arguments for constructing a NodePool resource.
+        :param pulumi.Input['NodePoolKubernetesConfigArgs'] kubernetes_config: The KubernetesConfig of NodeConfig.
+        :param pulumi.Input['NodePoolNodeConfigArgs'] node_config: The Config of NodePool.
         :param pulumi.Input['NodePoolAutoScalingArgs'] auto_scaling: The node pool elastic scaling configuration information.
-        :param pulumi.Input[bool] auto_scaling_enabled: Is enabled of AutoScaling.
         :param pulumi.Input[str] client_token: The ClientToken of NodePool.
         :param pulumi.Input[str] cluster_id: The ClusterId of NodePool.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] cluster_ids: The ClusterIds of NodePool.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ids: The IDs of NodePool.
-        :param pulumi.Input['NodePoolKubernetesConfigArgs'] kubernetes_config: The KubernetesConfig of NodeConfig.
         :param pulumi.Input[str] name: The Name of NodePool.
-        :param pulumi.Input['NodePoolNodeConfigArgs'] node_config: The Config of NodePool.
-        :param pulumi.Input[Sequence[pulumi.Input['NodePoolStatusArgs']]] statuses: The Status of NodePool.
+        :param pulumi.Input[Sequence[pulumi.Input['NodePoolTagArgs']]] tags: Tags.
         """
+        pulumi.set(__self__, "kubernetes_config", kubernetes_config)
+        pulumi.set(__self__, "node_config", node_config)
         if auto_scaling is not None:
             pulumi.set(__self__, "auto_scaling", auto_scaling)
-        if auto_scaling_enabled is not None:
-            pulumi.set(__self__, "auto_scaling_enabled", auto_scaling_enabled)
         if client_token is not None:
             pulumi.set(__self__, "client_token", client_token)
         if cluster_id is not None:
             pulumi.set(__self__, "cluster_id", cluster_id)
-        if cluster_ids is not None:
-            pulumi.set(__self__, "cluster_ids", cluster_ids)
-        if ids is not None:
-            pulumi.set(__self__, "ids", ids)
-        if kubernetes_config is not None:
-            pulumi.set(__self__, "kubernetes_config", kubernetes_config)
         if name is not None:
             pulumi.set(__self__, "name", name)
-        if node_config is not None:
-            pulumi.set(__self__, "node_config", node_config)
-        if statuses is not None:
-            pulumi.set(__self__, "statuses", statuses)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter(name="kubernetesConfig")
+    def kubernetes_config(self) -> pulumi.Input['NodePoolKubernetesConfigArgs']:
+        """
+        The KubernetesConfig of NodeConfig.
+        """
+        return pulumi.get(self, "kubernetes_config")
+
+    @kubernetes_config.setter
+    def kubernetes_config(self, value: pulumi.Input['NodePoolKubernetesConfigArgs']):
+        pulumi.set(self, "kubernetes_config", value)
+
+    @property
+    @pulumi.getter(name="nodeConfig")
+    def node_config(self) -> pulumi.Input['NodePoolNodeConfigArgs']:
+        """
+        The Config of NodePool.
+        """
+        return pulumi.get(self, "node_config")
+
+    @node_config.setter
+    def node_config(self, value: pulumi.Input['NodePoolNodeConfigArgs']):
+        pulumi.set(self, "node_config", value)
 
     @property
     @pulumi.getter(name="autoScaling")
@@ -70,18 +80,6 @@ class NodePoolArgs:
     @auto_scaling.setter
     def auto_scaling(self, value: Optional[pulumi.Input['NodePoolAutoScalingArgs']]):
         pulumi.set(self, "auto_scaling", value)
-
-    @property
-    @pulumi.getter(name="autoScalingEnabled")
-    def auto_scaling_enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Is enabled of AutoScaling.
-        """
-        return pulumi.get(self, "auto_scaling_enabled")
-
-    @auto_scaling_enabled.setter
-    def auto_scaling_enabled(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "auto_scaling_enabled", value)
 
     @property
     @pulumi.getter(name="clientToken")
@@ -108,42 +106,6 @@ class NodePoolArgs:
         pulumi.set(self, "cluster_id", value)
 
     @property
-    @pulumi.getter(name="clusterIds")
-    def cluster_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        The ClusterIds of NodePool.
-        """
-        return pulumi.get(self, "cluster_ids")
-
-    @cluster_ids.setter
-    def cluster_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "cluster_ids", value)
-
-    @property
-    @pulumi.getter
-    def ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        The IDs of NodePool.
-        """
-        return pulumi.get(self, "ids")
-
-    @ids.setter
-    def ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "ids", value)
-
-    @property
-    @pulumi.getter(name="kubernetesConfig")
-    def kubernetes_config(self) -> Optional[pulumi.Input['NodePoolKubernetesConfigArgs']]:
-        """
-        The KubernetesConfig of NodeConfig.
-        """
-        return pulumi.get(self, "kubernetes_config")
-
-    @kubernetes_config.setter
-    def kubernetes_config(self, value: Optional[pulumi.Input['NodePoolKubernetesConfigArgs']]):
-        pulumi.set(self, "kubernetes_config", value)
-
-    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -156,84 +118,52 @@ class NodePoolArgs:
         pulumi.set(self, "name", value)
 
     @property
-    @pulumi.getter(name="nodeConfig")
-    def node_config(self) -> Optional[pulumi.Input['NodePoolNodeConfigArgs']]:
-        """
-        The Config of NodePool.
-        """
-        return pulumi.get(self, "node_config")
-
-    @node_config.setter
-    def node_config(self, value: Optional[pulumi.Input['NodePoolNodeConfigArgs']]):
-        pulumi.set(self, "node_config", value)
-
-    @property
     @pulumi.getter
-    def statuses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolStatusArgs']]]]:
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolTagArgs']]]]:
         """
-        The Status of NodePool.
+        Tags.
         """
-        return pulumi.get(self, "statuses")
+        return pulumi.get(self, "tags")
 
-    @statuses.setter
-    def statuses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolStatusArgs']]]]):
-        pulumi.set(self, "statuses", value)
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolTagArgs']]]]):
+        pulumi.set(self, "tags", value)
 
 
 @pulumi.input_type
 class _NodePoolState:
     def __init__(__self__, *,
                  auto_scaling: Optional[pulumi.Input['NodePoolAutoScalingArgs']] = None,
-                 auto_scaling_enabled: Optional[pulumi.Input[bool]] = None,
                  client_token: Optional[pulumi.Input[str]] = None,
                  cluster_id: Optional[pulumi.Input[str]] = None,
-                 cluster_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 create_client_token: Optional[pulumi.Input[str]] = None,
-                 ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  kubernetes_config: Optional[pulumi.Input['NodePoolKubernetesConfigArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_config: Optional[pulumi.Input['NodePoolNodeConfigArgs']] = None,
-                 statuses: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolStatusArgs']]]] = None,
-                 update_client_token: Optional[pulumi.Input[str]] = None):
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolTagArgs']]]] = None):
         """
         Input properties used for looking up and filtering NodePool resources.
         :param pulumi.Input['NodePoolAutoScalingArgs'] auto_scaling: The node pool elastic scaling configuration information.
-        :param pulumi.Input[bool] auto_scaling_enabled: Is enabled of AutoScaling.
         :param pulumi.Input[str] client_token: The ClientToken of NodePool.
         :param pulumi.Input[str] cluster_id: The ClusterId of NodePool.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] cluster_ids: The ClusterIds of NodePool.
-        :param pulumi.Input[str] create_client_token: The CreateClientToken of NodePool.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ids: The IDs of NodePool.
         :param pulumi.Input['NodePoolKubernetesConfigArgs'] kubernetes_config: The KubernetesConfig of NodeConfig.
         :param pulumi.Input[str] name: The Name of NodePool.
         :param pulumi.Input['NodePoolNodeConfigArgs'] node_config: The Config of NodePool.
-        :param pulumi.Input[Sequence[pulumi.Input['NodePoolStatusArgs']]] statuses: The Status of NodePool.
-        :param pulumi.Input[str] update_client_token: The UpdateClientToken of NodePool.
+        :param pulumi.Input[Sequence[pulumi.Input['NodePoolTagArgs']]] tags: Tags.
         """
         if auto_scaling is not None:
             pulumi.set(__self__, "auto_scaling", auto_scaling)
-        if auto_scaling_enabled is not None:
-            pulumi.set(__self__, "auto_scaling_enabled", auto_scaling_enabled)
         if client_token is not None:
             pulumi.set(__self__, "client_token", client_token)
         if cluster_id is not None:
             pulumi.set(__self__, "cluster_id", cluster_id)
-        if cluster_ids is not None:
-            pulumi.set(__self__, "cluster_ids", cluster_ids)
-        if create_client_token is not None:
-            pulumi.set(__self__, "create_client_token", create_client_token)
-        if ids is not None:
-            pulumi.set(__self__, "ids", ids)
         if kubernetes_config is not None:
             pulumi.set(__self__, "kubernetes_config", kubernetes_config)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if node_config is not None:
             pulumi.set(__self__, "node_config", node_config)
-        if statuses is not None:
-            pulumi.set(__self__, "statuses", statuses)
-        if update_client_token is not None:
-            pulumi.set(__self__, "update_client_token", update_client_token)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="autoScaling")
@@ -246,18 +176,6 @@ class _NodePoolState:
     @auto_scaling.setter
     def auto_scaling(self, value: Optional[pulumi.Input['NodePoolAutoScalingArgs']]):
         pulumi.set(self, "auto_scaling", value)
-
-    @property
-    @pulumi.getter(name="autoScalingEnabled")
-    def auto_scaling_enabled(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Is enabled of AutoScaling.
-        """
-        return pulumi.get(self, "auto_scaling_enabled")
-
-    @auto_scaling_enabled.setter
-    def auto_scaling_enabled(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "auto_scaling_enabled", value)
 
     @property
     @pulumi.getter(name="clientToken")
@@ -282,42 +200,6 @@ class _NodePoolState:
     @cluster_id.setter
     def cluster_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "cluster_id", value)
-
-    @property
-    @pulumi.getter(name="clusterIds")
-    def cluster_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        The ClusterIds of NodePool.
-        """
-        return pulumi.get(self, "cluster_ids")
-
-    @cluster_ids.setter
-    def cluster_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "cluster_ids", value)
-
-    @property
-    @pulumi.getter(name="createClientToken")
-    def create_client_token(self) -> Optional[pulumi.Input[str]]:
-        """
-        The CreateClientToken of NodePool.
-        """
-        return pulumi.get(self, "create_client_token")
-
-    @create_client_token.setter
-    def create_client_token(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "create_client_token", value)
-
-    @property
-    @pulumi.getter
-    def ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        The IDs of NodePool.
-        """
-        return pulumi.get(self, "ids")
-
-    @ids.setter
-    def ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "ids", value)
 
     @property
     @pulumi.getter(name="kubernetesConfig")
@@ -357,27 +239,15 @@ class _NodePoolState:
 
     @property
     @pulumi.getter
-    def statuses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolStatusArgs']]]]:
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolTagArgs']]]]:
         """
-        The Status of NodePool.
+        Tags.
         """
-        return pulumi.get(self, "statuses")
+        return pulumi.get(self, "tags")
 
-    @statuses.setter
-    def statuses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolStatusArgs']]]]):
-        pulumi.set(self, "statuses", value)
-
-    @property
-    @pulumi.getter(name="updateClientToken")
-    def update_client_token(self) -> Optional[pulumi.Input[str]]:
-        """
-        The UpdateClientToken of NodePool.
-        """
-        return pulumi.get(self, "update_client_token")
-
-    @update_client_token.setter
-    def update_client_token(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "update_client_token", value)
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolTagArgs']]]]):
+        pulumi.set(self, "tags", value)
 
 
 class NodePool(pulumi.CustomResource):
@@ -386,15 +256,12 @@ class NodePool(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_scaling: Optional[pulumi.Input[pulumi.InputType['NodePoolAutoScalingArgs']]] = None,
-                 auto_scaling_enabled: Optional[pulumi.Input[bool]] = None,
                  client_token: Optional[pulumi.Input[str]] = None,
                  cluster_id: Optional[pulumi.Input[str]] = None,
-                 cluster_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  kubernetes_config: Optional[pulumi.Input[pulumi.InputType['NodePoolKubernetesConfigArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_config: Optional[pulumi.Input[pulumi.InputType['NodePoolNodeConfigArgs']]] = None,
-                 statuses: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolStatusArgs']]]]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolTagArgs']]]]] = None,
                  __props__=None):
         """
         Provides a resource to manage vke node pool
@@ -405,8 +272,13 @@ class NodePool(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         vke_test = volcengine.vke.NodePool("vkeTest",
-            cluster_id="ccah01nnqtofnluts98j0",
+            auto_scaling=volcengine.vke.NodePoolAutoScalingArgs(
+                enabled=True,
+                subnet_policy="ZoneBalance",
+            ),
+            cluster_id="ccgd6066rsfegs2dkhlog",
             kubernetes_config=volcengine.vke.NodePoolKubernetesConfigArgs(
+                cordon=False,
                 labels=[
                     volcengine.vke.NodePoolKubernetesConfigLabelArgs(
                         key="aa",
@@ -423,14 +295,28 @@ class NodePool(pulumi.CustomResource):
                     size=60,
                     type="ESSD_PL0",
                 )],
-                instance_type_ids=["ecs.r1.large"],
+                ecs_tags=[volcengine.vke.NodePoolNodeConfigEcsTagArgs(
+                    key="ecs_k1",
+                    value="ecs_v1",
+                )],
+                instance_charge_type="PostPaid",
+                instance_type_ids=["ecs.g1ie.xlarge"],
+                period=1,
                 security=volcengine.vke.NodePoolNodeConfigSecurityArgs(
                     login=volcengine.vke.NodePoolNodeConfigSecurityLoginArgs(
                         password="UHdkMTIzNDU2",
                     ),
+                    security_group_ids=[
+                        "sg-13fbyz0sok3y83n6nu4hv1q10",
+                        "sg-mj1e9tbztgqo5smt1ah8l4bh",
+                    ],
                 ),
-                subnet_ids=["subnet-3recgzi7hfim85zsk2i8l9ve7"],
-            ))
+                subnet_ids=["subnet-mj1e9jgu96v45smt1a674x3h"],
+            ),
+            tags=[volcengine.vke.NodePoolTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -438,27 +324,24 @@ class NodePool(pulumi.CustomResource):
         NodePool can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Vke/nodePool:NodePool default pcabe57vqtofgrbln3dp0
+         $ pulumi import volcengine:vke/nodePool:NodePool default pcabe57vqtofgrbln3dp0
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['NodePoolAutoScalingArgs']] auto_scaling: The node pool elastic scaling configuration information.
-        :param pulumi.Input[bool] auto_scaling_enabled: Is enabled of AutoScaling.
         :param pulumi.Input[str] client_token: The ClientToken of NodePool.
         :param pulumi.Input[str] cluster_id: The ClusterId of NodePool.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] cluster_ids: The ClusterIds of NodePool.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ids: The IDs of NodePool.
         :param pulumi.Input[pulumi.InputType['NodePoolKubernetesConfigArgs']] kubernetes_config: The KubernetesConfig of NodeConfig.
         :param pulumi.Input[str] name: The Name of NodePool.
         :param pulumi.Input[pulumi.InputType['NodePoolNodeConfigArgs']] node_config: The Config of NodePool.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolStatusArgs']]]] statuses: The Status of NodePool.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolTagArgs']]]] tags: Tags.
         """
         ...
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: Optional[NodePoolArgs] = None,
+                 args: NodePoolArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides a resource to manage vke node pool
@@ -469,8 +352,13 @@ class NodePool(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         vke_test = volcengine.vke.NodePool("vkeTest",
-            cluster_id="ccah01nnqtofnluts98j0",
+            auto_scaling=volcengine.vke.NodePoolAutoScalingArgs(
+                enabled=True,
+                subnet_policy="ZoneBalance",
+            ),
+            cluster_id="ccgd6066rsfegs2dkhlog",
             kubernetes_config=volcengine.vke.NodePoolKubernetesConfigArgs(
+                cordon=False,
                 labels=[
                     volcengine.vke.NodePoolKubernetesConfigLabelArgs(
                         key="aa",
@@ -487,14 +375,28 @@ class NodePool(pulumi.CustomResource):
                     size=60,
                     type="ESSD_PL0",
                 )],
-                instance_type_ids=["ecs.r1.large"],
+                ecs_tags=[volcengine.vke.NodePoolNodeConfigEcsTagArgs(
+                    key="ecs_k1",
+                    value="ecs_v1",
+                )],
+                instance_charge_type="PostPaid",
+                instance_type_ids=["ecs.g1ie.xlarge"],
+                period=1,
                 security=volcengine.vke.NodePoolNodeConfigSecurityArgs(
                     login=volcengine.vke.NodePoolNodeConfigSecurityLoginArgs(
                         password="UHdkMTIzNDU2",
                     ),
+                    security_group_ids=[
+                        "sg-13fbyz0sok3y83n6nu4hv1q10",
+                        "sg-mj1e9tbztgqo5smt1ah8l4bh",
+                    ],
                 ),
-                subnet_ids=["subnet-3recgzi7hfim85zsk2i8l9ve7"],
-            ))
+                subnet_ids=["subnet-mj1e9jgu96v45smt1a674x3h"],
+            ),
+            tags=[volcengine.vke.NodePoolTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -502,7 +404,7 @@ class NodePool(pulumi.CustomResource):
         NodePool can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Vke/nodePool:NodePool default pcabe57vqtofgrbln3dp0
+         $ pulumi import volcengine:vke/nodePool:NodePool default pcabe57vqtofgrbln3dp0
         ```
 
         :param str resource_name: The name of the resource.
@@ -521,15 +423,12 @@ class NodePool(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_scaling: Optional[pulumi.Input[pulumi.InputType['NodePoolAutoScalingArgs']]] = None,
-                 auto_scaling_enabled: Optional[pulumi.Input[bool]] = None,
                  client_token: Optional[pulumi.Input[str]] = None,
                  cluster_id: Optional[pulumi.Input[str]] = None,
-                 cluster_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  kubernetes_config: Optional[pulumi.Input[pulumi.InputType['NodePoolKubernetesConfigArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_config: Optional[pulumi.Input[pulumi.InputType['NodePoolNodeConfigArgs']]] = None,
-                 statuses: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolStatusArgs']]]]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolTagArgs']]]]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -543,19 +442,18 @@ class NodePool(pulumi.CustomResource):
             __props__ = NodePoolArgs.__new__(NodePoolArgs)
 
             __props__.__dict__["auto_scaling"] = auto_scaling
-            __props__.__dict__["auto_scaling_enabled"] = auto_scaling_enabled
             __props__.__dict__["client_token"] = client_token
             __props__.__dict__["cluster_id"] = cluster_id
-            __props__.__dict__["cluster_ids"] = cluster_ids
-            __props__.__dict__["ids"] = ids
+            if kubernetes_config is None and not opts.urn:
+                raise TypeError("Missing required property 'kubernetes_config'")
             __props__.__dict__["kubernetes_config"] = kubernetes_config
             __props__.__dict__["name"] = name
+            if node_config is None and not opts.urn:
+                raise TypeError("Missing required property 'node_config'")
             __props__.__dict__["node_config"] = node_config
-            __props__.__dict__["statuses"] = statuses
-            __props__.__dict__["create_client_token"] = None
-            __props__.__dict__["update_client_token"] = None
+            __props__.__dict__["tags"] = tags
         super(NodePool, __self__).__init__(
-            'volcengine:Vke/nodePool:NodePool',
+            'volcengine:vke/nodePool:NodePool',
             resource_name,
             __props__,
             opts)
@@ -565,17 +463,12 @@ class NodePool(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             auto_scaling: Optional[pulumi.Input[pulumi.InputType['NodePoolAutoScalingArgs']]] = None,
-            auto_scaling_enabled: Optional[pulumi.Input[bool]] = None,
             client_token: Optional[pulumi.Input[str]] = None,
             cluster_id: Optional[pulumi.Input[str]] = None,
-            cluster_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            create_client_token: Optional[pulumi.Input[str]] = None,
-            ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             kubernetes_config: Optional[pulumi.Input[pulumi.InputType['NodePoolKubernetesConfigArgs']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             node_config: Optional[pulumi.Input[pulumi.InputType['NodePoolNodeConfigArgs']]] = None,
-            statuses: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolStatusArgs']]]]] = None,
-            update_client_token: Optional[pulumi.Input[str]] = None) -> 'NodePool':
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolTagArgs']]]]] = None) -> 'NodePool':
         """
         Get an existing NodePool resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -584,51 +477,33 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['NodePoolAutoScalingArgs']] auto_scaling: The node pool elastic scaling configuration information.
-        :param pulumi.Input[bool] auto_scaling_enabled: Is enabled of AutoScaling.
         :param pulumi.Input[str] client_token: The ClientToken of NodePool.
         :param pulumi.Input[str] cluster_id: The ClusterId of NodePool.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] cluster_ids: The ClusterIds of NodePool.
-        :param pulumi.Input[str] create_client_token: The CreateClientToken of NodePool.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] ids: The IDs of NodePool.
         :param pulumi.Input[pulumi.InputType['NodePoolKubernetesConfigArgs']] kubernetes_config: The KubernetesConfig of NodeConfig.
         :param pulumi.Input[str] name: The Name of NodePool.
         :param pulumi.Input[pulumi.InputType['NodePoolNodeConfigArgs']] node_config: The Config of NodePool.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolStatusArgs']]]] statuses: The Status of NodePool.
-        :param pulumi.Input[str] update_client_token: The UpdateClientToken of NodePool.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolTagArgs']]]] tags: Tags.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _NodePoolState.__new__(_NodePoolState)
 
         __props__.__dict__["auto_scaling"] = auto_scaling
-        __props__.__dict__["auto_scaling_enabled"] = auto_scaling_enabled
         __props__.__dict__["client_token"] = client_token
         __props__.__dict__["cluster_id"] = cluster_id
-        __props__.__dict__["cluster_ids"] = cluster_ids
-        __props__.__dict__["create_client_token"] = create_client_token
-        __props__.__dict__["ids"] = ids
         __props__.__dict__["kubernetes_config"] = kubernetes_config
         __props__.__dict__["name"] = name
         __props__.__dict__["node_config"] = node_config
-        __props__.__dict__["statuses"] = statuses
-        __props__.__dict__["update_client_token"] = update_client_token
+        __props__.__dict__["tags"] = tags
         return NodePool(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="autoScaling")
-    def auto_scaling(self) -> pulumi.Output[Optional['outputs.NodePoolAutoScaling']]:
+    def auto_scaling(self) -> pulumi.Output['outputs.NodePoolAutoScaling']:
         """
         The node pool elastic scaling configuration information.
         """
         return pulumi.get(self, "auto_scaling")
-
-    @property
-    @pulumi.getter(name="autoScalingEnabled")
-    def auto_scaling_enabled(self) -> pulumi.Output[Optional[bool]]:
-        """
-        Is enabled of AutoScaling.
-        """
-        return pulumi.get(self, "auto_scaling_enabled")
 
     @property
     @pulumi.getter(name="clientToken")
@@ -647,32 +522,8 @@ class NodePool(pulumi.CustomResource):
         return pulumi.get(self, "cluster_id")
 
     @property
-    @pulumi.getter(name="clusterIds")
-    def cluster_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
-        """
-        The ClusterIds of NodePool.
-        """
-        return pulumi.get(self, "cluster_ids")
-
-    @property
-    @pulumi.getter(name="createClientToken")
-    def create_client_token(self) -> pulumi.Output[str]:
-        """
-        The CreateClientToken of NodePool.
-        """
-        return pulumi.get(self, "create_client_token")
-
-    @property
-    @pulumi.getter
-    def ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
-        """
-        The IDs of NodePool.
-        """
-        return pulumi.get(self, "ids")
-
-    @property
     @pulumi.getter(name="kubernetesConfig")
-    def kubernetes_config(self) -> pulumi.Output[Optional['outputs.NodePoolKubernetesConfig']]:
+    def kubernetes_config(self) -> pulumi.Output['outputs.NodePoolKubernetesConfig']:
         """
         The KubernetesConfig of NodeConfig.
         """
@@ -688,7 +539,7 @@ class NodePool(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="nodeConfig")
-    def node_config(self) -> pulumi.Output[Optional['outputs.NodePoolNodeConfig']]:
+    def node_config(self) -> pulumi.Output['outputs.NodePoolNodeConfig']:
         """
         The Config of NodePool.
         """
@@ -696,17 +547,9 @@ class NodePool(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def statuses(self) -> pulumi.Output[Optional[Sequence['outputs.NodePoolStatus']]]:
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.NodePoolTag']]]:
         """
-        The Status of NodePool.
+        Tags.
         """
-        return pulumi.get(self, "statuses")
-
-    @property
-    @pulumi.getter(name="updateClientToken")
-    def update_client_token(self) -> pulumi.Output[str]:
-        """
-        The UpdateClientToken of NodePool.
-        """
-        return pulumi.get(self, "update_client_token")
+        return pulumi.get(self, "tags")
 

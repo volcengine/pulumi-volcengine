@@ -5,16 +5,21 @@
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .acl import *
+from .acl_entry import *
+from .acls import *
 from .certificate import *
+from .certificates import *
 from .clb import *
-from .clb_rule import *
-from .clb_rules import *
 from .clbs import *
 from .listener import *
 from .listeners import *
+from .rule import *
+from .rules import *
 from .server_group import *
 from .server_group_server import *
 from .server_group_servers import *
 from .server_groups import *
+from .zones import *
 from ._inputs import *
 from . import outputs

@@ -18,6 +18,14 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// </summary>
         public readonly bool AdditionalContainerStorageEnabled;
         /// <summary>
+        /// Is auto renew of the PrePaid instance of NodeConfig.
+        /// </summary>
+        public readonly bool AutoRenew;
+        /// <summary>
+        /// The AutoRenewPeriod of the PrePaid instance of NodeConfig.
+        /// </summary>
+        public readonly int AutoRenewPeriod;
+        /// <summary>
         /// The ClusterId of NodePool.
         /// </summary>
         public readonly string ClusterId;
@@ -42,25 +50,37 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.NodePoolsNodePoolDataVolumeResult> DataVolumes;
         /// <summary>
-        /// The Description of NodePool.
-        /// </summary>
-        public readonly string Description;
-        /// <summary>
         /// The DesiredReplicas of AutoScaling.
         /// </summary>
         public readonly int DesiredReplicas;
+        /// <summary>
+        /// Tags for Ecs.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.NodePoolsNodePoolEcsTagResult> EcsTags;
         /// <summary>
         /// Is Enabled of AutoScaling.
         /// </summary>
         public readonly bool Enabled;
         /// <summary>
+        /// The IDs of HpcCluster.
+        /// </summary>
+        public readonly ImmutableArray<string> HpcClusterIds;
+        /// <summary>
         /// The Id of NodePool.
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// The ImageId of NodeConfig.
+        /// </summary>
+        public readonly string ImageId;
+        /// <summary>
         /// The InitializeScript of NodeConfig.
         /// </summary>
         public readonly string InitializeScript;
+        /// <summary>
+        /// The InstanceChargeType of NodeConfig.
+        /// </summary>
+        public readonly string InstanceChargeType;
         /// <summary>
         /// The InstanceTypeIds of NodeConfig.
         /// </summary>
@@ -69,6 +89,14 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// The LabelContent of KubernetesConfig.
         /// </summary>
         public readonly ImmutableArray<Outputs.NodePoolsNodePoolLabelContentResult> LabelContents;
+        /// <summary>
+        /// The login SshKeyPairName of NodeConfig.
+        /// </summary>
+        public readonly string LoginKeyPairName;
+        /// <summary>
+        /// The login type of NodeConfig.
+        /// </summary>
+        public readonly string LoginType;
         /// <summary>
         /// The MaxReplicas of AutoScaling.
         /// </summary>
@@ -82,11 +110,19 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
+        /// The NamePrefix of NodeConfig.
+        /// </summary>
+        public readonly string NamePrefix;
+        /// <summary>
         /// The NodeStatistics of NodeConfig.
         /// </summary>
         public readonly Outputs.NodePoolsNodePoolNodeStatisticsResult NodeStatistics;
         /// <summary>
-        /// The Phase of Status.
+        /// The period of the PrePaid instance of NodeConfig.
+        /// </summary>
+        public readonly int Period;
+        /// <summary>
+        /// The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
         /// </summary>
         public readonly string Phase;
         /// <summary>
@@ -94,13 +130,33 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// </summary>
         public readonly int Priority;
         /// <summary>
+        /// The SecurityGroupIds of NodeConfig.
+        /// </summary>
+        public readonly ImmutableArray<string> SecurityGroupIds;
+        /// <summary>
+        /// The SecurityStrategies of NodeConfig.
+        /// </summary>
+        public readonly ImmutableArray<string> SecurityStrategies;
+        /// <summary>
+        /// The SecurityStrategyEnabled of NodeConfig.
+        /// </summary>
+        public readonly bool SecurityStrategyEnabled;
+        /// <summary>
         /// The SubnetId of NodeConfig.
         /// </summary>
         public readonly ImmutableArray<string> SubnetIds;
         /// <summary>
+        /// Multi-subnet scheduling strategy for nodes. The value can be `ZoneBalance` or `Priority`.
+        /// </summary>
+        public readonly string SubnetPolicy;
+        /// <summary>
         /// The SystemVolume of NodeConfig.
         /// </summary>
         public readonly Outputs.NodePoolsNodePoolSystemVolumeResult SystemVolume;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.NodePoolsNodePoolTagResult> Tags;
         /// <summary>
         /// The TaintContent of NodeConfig.
         /// </summary>
@@ -118,6 +174,10 @@ namespace Pulumi.Volcengine.Vke.Outputs
         private NodePoolsNodePoolResult(
             bool additionalContainerStorageEnabled,
 
+            bool autoRenew,
+
+            int autoRenewPeriod,
+
             string clusterId,
 
             ImmutableArray<string> conditionTypes,
@@ -130,19 +190,29 @@ namespace Pulumi.Volcengine.Vke.Outputs
 
             ImmutableArray<Outputs.NodePoolsNodePoolDataVolumeResult> dataVolumes,
 
-            string description,
-
             int desiredReplicas,
+
+            ImmutableArray<Outputs.NodePoolsNodePoolEcsTagResult> ecsTags,
 
             bool enabled,
 
+            ImmutableArray<string> hpcClusterIds,
+
             string id,
 
+            string imageId,
+
             string initializeScript,
+
+            string instanceChargeType,
 
             ImmutableArray<string> instanceTypeIds,
 
             ImmutableArray<Outputs.NodePoolsNodePoolLabelContentResult> labelContents,
+
+            string loginKeyPairName,
+
+            string loginType,
 
             int maxReplicas,
 
@@ -150,15 +220,29 @@ namespace Pulumi.Volcengine.Vke.Outputs
 
             string name,
 
+            string namePrefix,
+
             Outputs.NodePoolsNodePoolNodeStatisticsResult nodeStatistics,
+
+            int period,
 
             string phase,
 
             int priority,
 
+            ImmutableArray<string> securityGroupIds,
+
+            ImmutableArray<string> securityStrategies,
+
+            bool securityStrategyEnabled,
+
             ImmutableArray<string> subnetIds,
 
+            string subnetPolicy,
+
             Outputs.NodePoolsNodePoolSystemVolumeResult systemVolume,
+
+            ImmutableArray<Outputs.NodePoolsNodePoolTagResult> tags,
 
             ImmutableArray<Outputs.NodePoolsNodePoolTaintContentResult> taintContents,
 
@@ -167,27 +251,41 @@ namespace Pulumi.Volcengine.Vke.Outputs
             string updateTime)
         {
             AdditionalContainerStorageEnabled = additionalContainerStorageEnabled;
+            AutoRenew = autoRenew;
+            AutoRenewPeriod = autoRenewPeriod;
             ClusterId = clusterId;
             ConditionTypes = conditionTypes;
             Cordon = cordon;
             CreateClientToken = createClientToken;
             CreateTime = createTime;
             DataVolumes = dataVolumes;
-            Description = description;
             DesiredReplicas = desiredReplicas;
+            EcsTags = ecsTags;
             Enabled = enabled;
+            HpcClusterIds = hpcClusterIds;
             Id = id;
+            ImageId = imageId;
             InitializeScript = initializeScript;
+            InstanceChargeType = instanceChargeType;
             InstanceTypeIds = instanceTypeIds;
             LabelContents = labelContents;
+            LoginKeyPairName = loginKeyPairName;
+            LoginType = loginType;
             MaxReplicas = maxReplicas;
             MinReplicas = minReplicas;
             Name = name;
+            NamePrefix = namePrefix;
             NodeStatistics = nodeStatistics;
+            Period = period;
             Phase = phase;
             Priority = priority;
+            SecurityGroupIds = securityGroupIds;
+            SecurityStrategies = securityStrategies;
+            SecurityStrategyEnabled = securityStrategyEnabled;
             SubnetIds = subnetIds;
+            SubnetPolicy = subnetPolicy;
             SystemVolume = systemVolume;
+            Tags = tags;
             TaintContents = taintContents;
             UpdateClientToken = updateClientToken;
             UpdateTime = updateTime;

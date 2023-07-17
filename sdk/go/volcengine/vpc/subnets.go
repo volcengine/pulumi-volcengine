@@ -17,27 +17,30 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Vpc"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/vpc"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Vpc.Subnets(ctx, &vpc.SubnetsArgs{
-// 			Ids: []string{
-// 				"subnet-274zsa5kfmj287fap8soo5e19",
-// 			},
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vpc.Subnets(ctx, &vpc.SubnetsArgs{
+//				Ids: []string{
+//					"subnet-274zsa5kfmj287fap8soo5e19",
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func Subnets(ctx *pulumi.Context, args *SubnetsArgs, opts ...pulumi.InvokeOption) (*SubnetsResult, error) {
 	var rv SubnetsResult
-	err := ctx.Invoke("volcengine:Vpc/subnets:Subnets", args, &rv, opts...)
+	err := ctx.Invoke("volcengine:vpc/subnets:Subnets", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -52,6 +55,14 @@ type SubnetsArgs struct {
 	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The ID of route table which subnet associated with.
+	RouteTableId *string `pulumi:"routeTableId"`
+	// The subnet name to query.
+	SubnetName *string `pulumi:"subnetName"`
+	// The ID of VPC which subnet belongs to.
+	VpcId *string `pulumi:"vpcId"`
+	// The ID of zone which subnet belongs to.
+	ZoneId *string `pulumi:"zoneId"`
 }
 
 // A collection of values returned by Subnets.
@@ -61,10 +72,18 @@ type SubnetsResult struct {
 	Ids        []string `pulumi:"ids"`
 	NameRegex  *string  `pulumi:"nameRegex"`
 	OutputFile *string  `pulumi:"outputFile"`
+	// The route table ID.
+	RouteTableId *string `pulumi:"routeTableId"`
+	// The Name of Subnet.
+	SubnetName *string `pulumi:"subnetName"`
 	// The collection of Subnet query.
 	Subnets []SubnetsSubnet `pulumi:"subnets"`
 	// The total count of Subnet query.
 	TotalCount int `pulumi:"totalCount"`
+	// The Vpc ID of Subnet.
+	VpcId *string `pulumi:"vpcId"`
+	// The ID of Zone.
+	ZoneId *string `pulumi:"zoneId"`
 }
 
 func SubnetsOutput(ctx *pulumi.Context, args SubnetsOutputArgs, opts ...pulumi.InvokeOption) SubnetsResultOutput {
@@ -88,6 +107,14 @@ type SubnetsOutputArgs struct {
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The ID of route table which subnet associated with.
+	RouteTableId pulumi.StringPtrInput `pulumi:"routeTableId"`
+	// The subnet name to query.
+	SubnetName pulumi.StringPtrInput `pulumi:"subnetName"`
+	// The ID of VPC which subnet belongs to.
+	VpcId pulumi.StringPtrInput `pulumi:"vpcId"`
+	// The ID of zone which subnet belongs to.
+	ZoneId pulumi.StringPtrInput `pulumi:"zoneId"`
 }
 
 func (SubnetsOutputArgs) ElementType() reflect.Type {
@@ -126,6 +153,16 @@ func (o SubnetsResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SubnetsResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
 }
 
+// The route table ID.
+func (o SubnetsResultOutput) RouteTableId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SubnetsResult) *string { return v.RouteTableId }).(pulumi.StringPtrOutput)
+}
+
+// The Name of Subnet.
+func (o SubnetsResultOutput) SubnetName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SubnetsResult) *string { return v.SubnetName }).(pulumi.StringPtrOutput)
+}
+
 // The collection of Subnet query.
 func (o SubnetsResultOutput) Subnets() SubnetsSubnetArrayOutput {
 	return o.ApplyT(func(v SubnetsResult) []SubnetsSubnet { return v.Subnets }).(SubnetsSubnetArrayOutput)
@@ -134,6 +171,16 @@ func (o SubnetsResultOutput) Subnets() SubnetsSubnetArrayOutput {
 // The total count of Subnet query.
 func (o SubnetsResultOutput) TotalCount() pulumi.IntOutput {
 	return o.ApplyT(func(v SubnetsResult) int { return v.TotalCount }).(pulumi.IntOutput)
+}
+
+// The Vpc ID of Subnet.
+func (o SubnetsResultOutput) VpcId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SubnetsResult) *string { return v.VpcId }).(pulumi.StringPtrOutput)
+}
+
+// The ID of Zone.
+func (o SubnetsResultOutput) ZoneId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SubnetsResult) *string { return v.ZoneId }).(pulumi.StringPtrOutput)
 }
 
 func init() {

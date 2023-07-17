@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultSecurityGroups = pulumi.output(volcengine.Vpc.SecurityGroups({
+ * const defaultSecurityGroups = pulumi.output(volcengine.vpc.SecurityGroups({
  *     ids: ["sg-273ycgql3ig3k7fap8t3dyvqx"],
  * }));
  * ```
@@ -25,10 +25,14 @@ export function securityGroups(args?: SecurityGroupsArgs, opts?: pulumi.InvokeOp
     }
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-    return pulumi.runtime.invoke("volcengine:Vpc/securityGroups:SecurityGroups", {
+    return pulumi.runtime.invoke("volcengine:vpc/securityGroups:SecurityGroups", {
         "ids": args.ids,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
+        "projectName": args.projectName,
+        "securityGroupNames": args.securityGroupNames,
+        "tags": args.tags,
+        "vpcId": args.vpcId,
     }, opts);
 }
 
@@ -48,6 +52,22 @@ export interface SecurityGroupsArgs {
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * The ProjectName of SecurityGroup.
+     */
+    projectName?: string;
+    /**
+     * The list of security group name to query.
+     */
+    securityGroupNames?: string[];
+    /**
+     * Tags.
+     */
+    tags?: inputs.vpc.SecurityGroupsTag[];
+    /**
+     * The ID of vpc where security group is located.
+     */
+    vpcId?: string;
 }
 
 /**
@@ -62,13 +82,26 @@ export interface SecurityGroupsResult {
     readonly nameRegex?: string;
     readonly outputFile?: string;
     /**
+     * The ProjectName of SecurityGroup.
+     */
+    readonly projectName?: string;
+    readonly securityGroupNames?: string[];
+    /**
      * The collection of SecurityGroup query.
      */
-    readonly securityGroups: outputs.Vpc.SecurityGroupsSecurityGroup[];
+    readonly securityGroups: outputs.vpc.SecurityGroupsSecurityGroup[];
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.vpc.SecurityGroupsTag[];
     /**
      * The total count of SecurityGroup query.
      */
     readonly totalCount: number;
+    /**
+     * The ID of Vpc.
+     */
+    readonly vpcId?: string;
 }
 
 export function securityGroupsOutput(args?: SecurityGroupsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<SecurityGroupsResult> {
@@ -91,4 +124,20 @@ export interface SecurityGroupsOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The ProjectName of SecurityGroup.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * The list of security group name to query.
+     */
+    securityGroupNames?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpc.SecurityGroupsTagArgs>[]>;
+    /**
+     * The ID of vpc where security group is located.
+     */
+    vpcId?: pulumi.Input<string>;
 }

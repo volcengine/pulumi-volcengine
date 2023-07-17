@@ -18,26 +18,81 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Vpc"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/vpc"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Vpc.NewSecurityGroupRule(ctx, "g1test3", &Vpc.SecurityGroupRuleArgs{
-// 			CidrIp:          pulumi.String("10.0.0.0/8"),
-// 			Direction:       pulumi.String("egress"),
-// 			PortEnd:         pulumi.Int(9003),
-// 			PortStart:       pulumi.Int(8000),
-// 			Protocol:        pulumi.String("tcp"),
-// 			SecurityGroupId: pulumi.String("sg-273ycgql3ig3k7fap8t3dyvqx"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vpc.NewSecurityGroupRule(ctx, "g1test3", &vpc.SecurityGroupRuleArgs{
+//				CidrIp:          pulumi.String("10.0.0.0/8"),
+//				Description:     pulumi.String("tft1234"),
+//				Direction:       pulumi.String("egress"),
+//				PortEnd:         pulumi.Int(9003),
+//				PortStart:       pulumi.Int(8000),
+//				Protocol:        pulumi.String("tcp"),
+//				SecurityGroupId: pulumi.String("sg-2d6722jpp55og58ozfd1sqtdb"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = vpc.NewSecurityGroupRule(ctx, "g1test2", &vpc.SecurityGroupRuleArgs{
+//				CidrIp:          pulumi.String("10.0.0.0/24"),
+//				Direction:       pulumi.String("egress"),
+//				PortEnd:         pulumi.Int(9003),
+//				PortStart:       pulumi.Int(8000),
+//				Protocol:        pulumi.String("tcp"),
+//				SecurityGroupId: pulumi.String("sg-2d6722jpp55og58ozfd1sqtdb"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = vpc.NewSecurityGroupRule(ctx, "g1test1", &vpc.SecurityGroupRuleArgs{
+//				CidrIp:          pulumi.String("10.0.0.0/24"),
+//				Direction:       pulumi.String("egress"),
+//				PortEnd:         pulumi.Int(9003),
+//				PortStart:       pulumi.Int(8000),
+//				Priority:        pulumi.Int(2),
+//				Protocol:        pulumi.String("tcp"),
+//				SecurityGroupId: pulumi.String("sg-2d6722jpp55og58ozfd1sqtdb"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = vpc.NewSecurityGroupRule(ctx, "g1test0", &vpc.SecurityGroupRuleArgs{
+//				CidrIp:          pulumi.String("10.0.0.0/24"),
+//				Description:     pulumi.String("tft"),
+//				Direction:       pulumi.String("ingress"),
+//				Policy:          pulumi.String("drop"),
+//				PortEnd:         pulumi.Int(80),
+//				PortStart:       pulumi.Int(80),
+//				Priority:        pulumi.Int(2),
+//				Protocol:        pulumi.String("tcp"),
+//				SecurityGroupId: pulumi.String("sg-2d6722jpp55og58ozfd1sqtdb"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = vpc.NewSecurityGroupRule(ctx, "g1test06", &vpc.SecurityGroupRuleArgs{
+//				Description:     pulumi.String("tft"),
+//				Direction:       pulumi.String("ingress"),
+//				Policy:          pulumi.String("drop"),
+//				PortEnd:         pulumi.Int(9003),
+//				PortStart:       pulumi.Int(8000),
+//				Priority:        pulumi.Int(2),
+//				Protocol:        pulumi.String("tcp"),
+//				SecurityGroupId: pulumi.String("sg-2d6722jpp55og58ozfd1sqtdb"),
+//				SourceGroupId:   pulumi.String("sg-3rfe5j4xdnklc5zsk2hcw5c6q"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -45,7 +100,9 @@ import (
 // SecurityGroupRule can be imported using the id, e.g.
 //
 // ```sh
-//  $ pulumi import volcengine:Vpc/securityGroupRule:SecurityGroupRule default ID is a string concatenated with colons(SecurityGroupId:Protocol:PortStart:PortEnd:CidrIp)
+//
+//	$ pulumi import volcengine:vpc/securityGroupRule:SecurityGroupRule default ID is a string concatenated with colons(SecurityGroupId:Protocol:PortStart:PortEnd:CidrIp:SourceGroupId:Direction:Policy:Priority)
+//
 // ```
 type SecurityGroupRule struct {
 	pulumi.CustomResourceState
@@ -64,7 +121,7 @@ type SecurityGroupRule struct {
 	PortStart pulumi.IntOutput `pulumi:"portStart"`
 	// Priority of a security group rule.
 	Priority pulumi.IntPtrOutput `pulumi:"priority"`
-	// Protocol of the SecurityGroup.
+	// Protocol of the SecurityGroup, the value can be `tcp` or `udp` or `icmp` or `all` or `icmpv6`.
 	Protocol pulumi.StringOutput `pulumi:"protocol"`
 	// Id of SecurityGroup.
 	SecurityGroupId pulumi.StringOutput `pulumi:"securityGroupId"`
@@ -97,7 +154,7 @@ func NewSecurityGroupRule(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'SecurityGroupId'")
 	}
 	var resource SecurityGroupRule
-	err := ctx.RegisterResource("volcengine:Vpc/securityGroupRule:SecurityGroupRule", name, args, &resource, opts...)
+	err := ctx.RegisterResource("volcengine:vpc/securityGroupRule:SecurityGroupRule", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -109,7 +166,7 @@ func NewSecurityGroupRule(ctx *pulumi.Context,
 func GetSecurityGroupRule(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *SecurityGroupRuleState, opts ...pulumi.ResourceOption) (*SecurityGroupRule, error) {
 	var resource SecurityGroupRule
-	err := ctx.ReadResource("volcengine:Vpc/securityGroupRule:SecurityGroupRule", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("volcengine:vpc/securityGroupRule:SecurityGroupRule", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -132,7 +189,7 @@ type securityGroupRuleState struct {
 	PortStart *int `pulumi:"portStart"`
 	// Priority of a security group rule.
 	Priority *int `pulumi:"priority"`
-	// Protocol of the SecurityGroup.
+	// Protocol of the SecurityGroup, the value can be `tcp` or `udp` or `icmp` or `all` or `icmpv6`.
 	Protocol *string `pulumi:"protocol"`
 	// Id of SecurityGroup.
 	SecurityGroupId *string `pulumi:"securityGroupId"`
@@ -157,7 +214,7 @@ type SecurityGroupRuleState struct {
 	PortStart pulumi.IntPtrInput
 	// Priority of a security group rule.
 	Priority pulumi.IntPtrInput
-	// Protocol of the SecurityGroup.
+	// Protocol of the SecurityGroup, the value can be `tcp` or `udp` or `icmp` or `all` or `icmpv6`.
 	Protocol pulumi.StringPtrInput
 	// Id of SecurityGroup.
 	SecurityGroupId pulumi.StringPtrInput
@@ -186,7 +243,7 @@ type securityGroupRuleArgs struct {
 	PortStart int `pulumi:"portStart"`
 	// Priority of a security group rule.
 	Priority *int `pulumi:"priority"`
-	// Protocol of the SecurityGroup.
+	// Protocol of the SecurityGroup, the value can be `tcp` or `udp` or `icmp` or `all` or `icmpv6`.
 	Protocol string `pulumi:"protocol"`
 	// Id of SecurityGroup.
 	SecurityGroupId string `pulumi:"securityGroupId"`
@@ -210,7 +267,7 @@ type SecurityGroupRuleArgs struct {
 	PortStart pulumi.IntInput
 	// Priority of a security group rule.
 	Priority pulumi.IntPtrInput
-	// Protocol of the SecurityGroup.
+	// Protocol of the SecurityGroup, the value can be `tcp` or `udp` or `icmp` or `all` or `icmpv6`.
 	Protocol pulumi.StringInput
 	// Id of SecurityGroup.
 	SecurityGroupId pulumi.StringInput
@@ -244,7 +301,7 @@ func (i *SecurityGroupRule) ToSecurityGroupRuleOutputWithContext(ctx context.Con
 // SecurityGroupRuleArrayInput is an input type that accepts SecurityGroupRuleArray and SecurityGroupRuleArrayOutput values.
 // You can construct a concrete instance of `SecurityGroupRuleArrayInput` via:
 //
-//          SecurityGroupRuleArray{ SecurityGroupRuleArgs{...} }
+//	SecurityGroupRuleArray{ SecurityGroupRuleArgs{...} }
 type SecurityGroupRuleArrayInput interface {
 	pulumi.Input
 
@@ -269,7 +326,7 @@ func (i SecurityGroupRuleArray) ToSecurityGroupRuleArrayOutputWithContext(ctx co
 // SecurityGroupRuleMapInput is an input type that accepts SecurityGroupRuleMap and SecurityGroupRuleMapOutput values.
 // You can construct a concrete instance of `SecurityGroupRuleMapInput` via:
 //
-//          SecurityGroupRuleMap{ "key": SecurityGroupRuleArgs{...} }
+//	SecurityGroupRuleMap{ "key": SecurityGroupRuleArgs{...} }
 type SecurityGroupRuleMapInput interface {
 	pulumi.Input
 
@@ -340,7 +397,7 @@ func (o SecurityGroupRuleOutput) Priority() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecurityGroupRule) pulumi.IntPtrOutput { return v.Priority }).(pulumi.IntPtrOutput)
 }
 
-// Protocol of the SecurityGroup.
+// Protocol of the SecurityGroup, the value can be `tcp` or `udp` or `icmp` or `all` or `icmpv6`.
 func (o SecurityGroupRuleOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecurityGroupRule) pulumi.StringOutput { return v.Protocol }).(pulumi.StringOutput)
 }

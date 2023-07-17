@@ -12,7 +12,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = new volcengine.Nat.SnatEntry("foo", {
+ * const foo = new volcengine.nat.SnatEntry("foo", {
  *     eipId: "eip-274zlae117nr47fap8tzl24v4",
  *     natGatewayId: "ngw-2743w1f6iqby87fap8tvm9kop",
  *     snatEntryName: "tf-test-up",
@@ -25,7 +25,7 @@ import * as utilities from "../utilities";
  * Snat entry can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:Nat/snatEntry:SnatEntry default snat-3fvhk47kf56****
+ *  $ pulumi import volcengine:nat/snatEntry:SnatEntry default snat-3fvhk47kf56****
  * ```
  */
 export class SnatEntry extends pulumi.CustomResource {
@@ -43,7 +43,7 @@ export class SnatEntry extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'volcengine:Nat/snatEntry:SnatEntry';
+    public static readonly __pulumiType = 'volcengine:nat/snatEntry:SnatEntry';
 
     /**
      * Returns true if the given object is an instance of SnatEntry.  This is designed to work even
@@ -69,13 +69,17 @@ export class SnatEntry extends pulumi.CustomResource {
      */
     public readonly snatEntryName!: pulumi.Output<string>;
     /**
+     * The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
+     */
+    public readonly sourceCidr!: pulumi.Output<string | undefined>;
+    /**
      * The status of the SNAT entry.
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
-     * The id of the subnet that is required to access the internet.
+     * The id of the subnet that is required to access the internet. Only one of `subnet_id,source_cidr` can be specified.
      */
-    public readonly subnetId!: pulumi.Output<string>;
+    public readonly subnetId!: pulumi.Output<string | undefined>;
 
     /**
      * Create a SnatEntry resource with the given unique name, arguments, and options.
@@ -93,6 +97,7 @@ export class SnatEntry extends pulumi.CustomResource {
             resourceInputs["eipId"] = state ? state.eipId : undefined;
             resourceInputs["natGatewayId"] = state ? state.natGatewayId : undefined;
             resourceInputs["snatEntryName"] = state ? state.snatEntryName : undefined;
+            resourceInputs["sourceCidr"] = state ? state.sourceCidr : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["subnetId"] = state ? state.subnetId : undefined;
         } else {
@@ -103,12 +108,10 @@ export class SnatEntry extends pulumi.CustomResource {
             if ((!args || args.natGatewayId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'natGatewayId'");
             }
-            if ((!args || args.subnetId === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'subnetId'");
-            }
             resourceInputs["eipId"] = args ? args.eipId : undefined;
             resourceInputs["natGatewayId"] = args ? args.natGatewayId : undefined;
             resourceInputs["snatEntryName"] = args ? args.snatEntryName : undefined;
+            resourceInputs["sourceCidr"] = args ? args.sourceCidr : undefined;
             resourceInputs["subnetId"] = args ? args.subnetId : undefined;
             resourceInputs["status"] = undefined /*out*/;
         }
@@ -134,11 +137,15 @@ export interface SnatEntryState {
      */
     snatEntryName?: pulumi.Input<string>;
     /**
+     * The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
+     */
+    sourceCidr?: pulumi.Input<string>;
+    /**
      * The status of the SNAT entry.
      */
     status?: pulumi.Input<string>;
     /**
-     * The id of the subnet that is required to access the internet.
+     * The id of the subnet that is required to access the internet. Only one of `subnet_id,source_cidr` can be specified.
      */
     subnetId?: pulumi.Input<string>;
 }
@@ -160,7 +167,11 @@ export interface SnatEntryArgs {
      */
     snatEntryName?: pulumi.Input<string>;
     /**
-     * The id of the subnet that is required to access the internet.
+     * The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
      */
-    subnetId: pulumi.Input<string>;
+    sourceCidr?: pulumi.Input<string>;
+    /**
+     * The id of the subnet that is required to access the internet. Only one of `subnet_id,source_cidr` can be specified.
+     */
+    subnetId?: pulumi.Input<string>;
 }

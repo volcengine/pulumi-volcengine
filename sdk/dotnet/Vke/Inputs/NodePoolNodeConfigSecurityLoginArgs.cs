@@ -13,7 +13,7 @@ namespace Pulumi.Volcengine.Vke.Inputs
     public sealed class NodePoolNodeConfigSecurityLoginArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The Password of Security.
+        /// The Password of Security, this field must be encoded with base64.
         /// </summary>
         [Input("password")]
         public Input<string>? Password { get; set; }

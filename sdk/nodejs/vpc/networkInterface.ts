@@ -2,6 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -12,13 +13,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = new volcengine.Vpc.NetworkInterface("foo", {
+ * const foo = new volcengine.vpc.NetworkInterface("foo", {
  *     description: "tf-test-up",
  *     networkInterfaceName: "tf-test-up",
  *     portSecurityEnabled: false,
- *     primaryIpAddress: "192.168.0.253",
- *     securityGroupIds: ["sg-2744hspo7jbpc7fap8t7lef1p"],
- *     subnetId: "subnet-2744ht7fhjthc7fap8tm10eqg",
+ *     primaryIpAddress: "192.168.5.253",
+ *     privateIpAddresses: ["192.168.5.2"],
+ *     projectName: "default",
+ *     securityGroupIds: ["sg-2fepz3c793g1s59gp67y21r34"],
+ *     subnetId: "subnet-2fe79j7c8o5c059gp68ksxr93",
  * });
  * ```
  *
@@ -27,7 +30,7 @@ import * as utilities from "../utilities";
  * Network interface can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:Vpc/networkInterface:NetworkInterface default eni-bp1fgnh68xyz9****
+ *  $ pulumi import volcengine:vpc/networkInterface:NetworkInterface default eni-bp1fgnh68xyz9****
  * ```
  */
 export class NetworkInterface extends pulumi.CustomResource {
@@ -45,7 +48,7 @@ export class NetworkInterface extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'volcengine:Vpc/networkInterface:NetworkInterface';
+    public static readonly __pulumiType = 'volcengine:vpc/networkInterface:NetworkInterface';
 
     /**
      * Returns true if the given object is an instance of NetworkInterface.  This is designed to work even
@@ -75,6 +78,18 @@ export class NetworkInterface extends pulumi.CustomResource {
      */
     public readonly primaryIpAddress!: pulumi.Output<string>;
     /**
+     * The list of private ip address. This field conflicts with `secondaryPrivateIpAddressCount`.
+     */
+    public readonly privateIpAddresses!: pulumi.Output<string[]>;
+    /**
+     * The ProjectName of the ENI.
+     */
+    public readonly projectName!: pulumi.Output<string | undefined>;
+    /**
+     * The count of secondary private ip address. This field conflicts with `privateIpAddress`.
+     */
+    public readonly secondaryPrivateIpAddressCount!: pulumi.Output<number>;
+    /**
      * The list of the security group id to which the secondary ENI belongs.
      */
     public readonly securityGroupIds!: pulumi.Output<string[]>;
@@ -86,6 +101,10 @@ export class NetworkInterface extends pulumi.CustomResource {
      * The id of the subnet to which the ENI is connected.
      */
     public readonly subnetId!: pulumi.Output<string>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.vpc.NetworkInterfaceTag[] | undefined>;
 
     /**
      * Create a NetworkInterface resource with the given unique name, arguments, and options.
@@ -104,9 +123,13 @@ export class NetworkInterface extends pulumi.CustomResource {
             resourceInputs["networkInterfaceName"] = state ? state.networkInterfaceName : undefined;
             resourceInputs["portSecurityEnabled"] = state ? state.portSecurityEnabled : undefined;
             resourceInputs["primaryIpAddress"] = state ? state.primaryIpAddress : undefined;
+            resourceInputs["privateIpAddresses"] = state ? state.privateIpAddresses : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
+            resourceInputs["secondaryPrivateIpAddressCount"] = state ? state.secondaryPrivateIpAddressCount : undefined;
             resourceInputs["securityGroupIds"] = state ? state.securityGroupIds : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["subnetId"] = state ? state.subnetId : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
         } else {
             const args = argsOrState as NetworkInterfaceArgs | undefined;
             if ((!args || args.securityGroupIds === undefined) && !opts.urn) {
@@ -119,8 +142,12 @@ export class NetworkInterface extends pulumi.CustomResource {
             resourceInputs["networkInterfaceName"] = args ? args.networkInterfaceName : undefined;
             resourceInputs["portSecurityEnabled"] = args ? args.portSecurityEnabled : undefined;
             resourceInputs["primaryIpAddress"] = args ? args.primaryIpAddress : undefined;
+            resourceInputs["privateIpAddresses"] = args ? args.privateIpAddresses : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
+            resourceInputs["secondaryPrivateIpAddressCount"] = args ? args.secondaryPrivateIpAddressCount : undefined;
             resourceInputs["securityGroupIds"] = args ? args.securityGroupIds : undefined;
             resourceInputs["subnetId"] = args ? args.subnetId : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["status"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -149,6 +176,18 @@ export interface NetworkInterfaceState {
      */
     primaryIpAddress?: pulumi.Input<string>;
     /**
+     * The list of private ip address. This field conflicts with `secondaryPrivateIpAddressCount`.
+     */
+    privateIpAddresses?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The ProjectName of the ENI.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * The count of secondary private ip address. This field conflicts with `privateIpAddress`.
+     */
+    secondaryPrivateIpAddressCount?: pulumi.Input<number>;
+    /**
      * The list of the security group id to which the secondary ENI belongs.
      */
     securityGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
@@ -160,6 +199,10 @@ export interface NetworkInterfaceState {
      * The id of the subnet to which the ENI is connected.
      */
     subnetId?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpc.NetworkInterfaceTag>[]>;
 }
 
 /**
@@ -183,6 +226,18 @@ export interface NetworkInterfaceArgs {
      */
     primaryIpAddress?: pulumi.Input<string>;
     /**
+     * The list of private ip address. This field conflicts with `secondaryPrivateIpAddressCount`.
+     */
+    privateIpAddresses?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The ProjectName of the ENI.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * The count of secondary private ip address. This field conflicts with `privateIpAddress`.
+     */
+    secondaryPrivateIpAddressCount?: pulumi.Input<number>;
+    /**
      * The list of the security group id to which the secondary ENI belongs.
      */
     securityGroupIds: pulumi.Input<pulumi.Input<string>[]>;
@@ -190,4 +245,8 @@ export interface NetworkInterfaceArgs {
      * The id of the subnet to which the ENI is connected.
      */
     subnetId: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpc.NetworkInterfaceTag>[]>;
 }

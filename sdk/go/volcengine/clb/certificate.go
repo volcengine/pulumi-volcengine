@@ -18,24 +18,27 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Clb"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/clb"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Clb.NewCertificate(ctx, "foo", &Clb.CertificateArgs{
-// 			CertificateName: pulumi.String("demo-certificate"),
-// 			Description:     pulumi.String("This is a clb certificate"),
-// 			PrivateKey:      pulumi.String("private-key"),
-// 			PublicKey:       pulumi.String("public-key"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := clb.NewCertificate(ctx, "foo", &clb.CertificateArgs{
+//				CertificateName: pulumi.String("demo-certificate"),
+//				Description:     pulumi.String("This is a clb certificate"),
+//				PrivateKey:      pulumi.String("private-key"),
+//				PublicKey:       pulumi.String("public-key"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -43,7 +46,9 @@ import (
 // Certificate can be imported using the id, e.g.
 //
 // ```sh
-//  $ pulumi import volcengine:Clb/certificate:Certificate default cert-2fe5k****c16o5oxruvtk3qf5
+//
+//	$ pulumi import volcengine:clb/certificate:Certificate default cert-2fe5k****c16o5oxruvtk3qf5
+//
 // ```
 type Certificate struct {
 	pulumi.CustomResourceState
@@ -52,9 +57,11 @@ type Certificate struct {
 	CertificateName pulumi.StringPtrOutput `pulumi:"certificateName"`
 	// The description of the Certificate.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// The private key of the Certificate.
+	// The private key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
-	// The public key of the Certificate.
+	// The ProjectName of the Certificate.
+	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
+	// The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	PublicKey pulumi.StringOutput `pulumi:"publicKey"`
 }
 
@@ -72,7 +79,7 @@ func NewCertificate(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'PublicKey'")
 	}
 	var resource Certificate
-	err := ctx.RegisterResource("volcengine:Clb/certificate:Certificate", name, args, &resource, opts...)
+	err := ctx.RegisterResource("volcengine:clb/certificate:Certificate", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -84,7 +91,7 @@ func NewCertificate(ctx *pulumi.Context,
 func GetCertificate(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *CertificateState, opts ...pulumi.ResourceOption) (*Certificate, error) {
 	var resource Certificate
-	err := ctx.ReadResource("volcengine:Clb/certificate:Certificate", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("volcengine:clb/certificate:Certificate", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -97,9 +104,11 @@ type certificateState struct {
 	CertificateName *string `pulumi:"certificateName"`
 	// The description of the Certificate.
 	Description *string `pulumi:"description"`
-	// The private key of the Certificate.
+	// The private key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	PrivateKey *string `pulumi:"privateKey"`
-	// The public key of the Certificate.
+	// The ProjectName of the Certificate.
+	ProjectName *string `pulumi:"projectName"`
+	// The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	PublicKey *string `pulumi:"publicKey"`
 }
 
@@ -108,9 +117,11 @@ type CertificateState struct {
 	CertificateName pulumi.StringPtrInput
 	// The description of the Certificate.
 	Description pulumi.StringPtrInput
-	// The private key of the Certificate.
+	// The private key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	PrivateKey pulumi.StringPtrInput
-	// The public key of the Certificate.
+	// The ProjectName of the Certificate.
+	ProjectName pulumi.StringPtrInput
+	// The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	PublicKey pulumi.StringPtrInput
 }
 
@@ -123,9 +134,11 @@ type certificateArgs struct {
 	CertificateName *string `pulumi:"certificateName"`
 	// The description of the Certificate.
 	Description *string `pulumi:"description"`
-	// The private key of the Certificate.
+	// The private key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	PrivateKey string `pulumi:"privateKey"`
-	// The public key of the Certificate.
+	// The ProjectName of the Certificate.
+	ProjectName *string `pulumi:"projectName"`
+	// The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	PublicKey string `pulumi:"publicKey"`
 }
 
@@ -135,9 +148,11 @@ type CertificateArgs struct {
 	CertificateName pulumi.StringPtrInput
 	// The description of the Certificate.
 	Description pulumi.StringPtrInput
-	// The private key of the Certificate.
+	// The private key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	PrivateKey pulumi.StringInput
-	// The public key of the Certificate.
+	// The ProjectName of the Certificate.
+	ProjectName pulumi.StringPtrInput
+	// The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	PublicKey pulumi.StringInput
 }
 
@@ -167,7 +182,7 @@ func (i *Certificate) ToCertificateOutputWithContext(ctx context.Context) Certif
 // CertificateArrayInput is an input type that accepts CertificateArray and CertificateArrayOutput values.
 // You can construct a concrete instance of `CertificateArrayInput` via:
 //
-//          CertificateArray{ CertificateArgs{...} }
+//	CertificateArray{ CertificateArgs{...} }
 type CertificateArrayInput interface {
 	pulumi.Input
 
@@ -192,7 +207,7 @@ func (i CertificateArray) ToCertificateArrayOutputWithContext(ctx context.Contex
 // CertificateMapInput is an input type that accepts CertificateMap and CertificateMapOutput values.
 // You can construct a concrete instance of `CertificateMapInput` via:
 //
-//          CertificateMap{ "key": CertificateArgs{...} }
+//	CertificateMap{ "key": CertificateArgs{...} }
 type CertificateMapInput interface {
 	pulumi.Input
 
@@ -238,12 +253,17 @@ func (o CertificateOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Certificate) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// The private key of the Certificate.
+// The private key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 func (o CertificateOutput) PrivateKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *Certificate) pulumi.StringOutput { return v.PrivateKey }).(pulumi.StringOutput)
 }
 
-// The public key of the Certificate.
+// The ProjectName of the Certificate.
+func (o CertificateOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Certificate) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
+// The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 func (o CertificateOutput) PublicKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *Certificate) pulumi.StringOutput { return v.PublicKey }).(pulumi.StringOutput)
 }

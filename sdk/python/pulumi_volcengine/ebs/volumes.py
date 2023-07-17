@@ -167,7 +167,7 @@ def volumes(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.Ebs.volumes(ids=["vol-3tzg6y5imn3b9fchkedb"])
+    default = volcengine.ebs.volumes(ids=["vol-3tzg6y5imn3b9fchkedb"])
     ```
 
 
@@ -177,7 +177,7 @@ def volumes(ids: Optional[Sequence[str]] = None,
     :param str name_regex: A Name Regex of Volume.
     :param str output_file: File name where to save data source results.
     :param str volume_name: The name of Volume.
-    :param str volume_status: The Status of Volume.
+    :param str volume_status: The Status of Volume, the value can be `available` or `attaching` or `attached` or `detaching` or `creating` or `deleting` or `error` or `extending`.
     :param str volume_type: The type of Volume.
     :param str zone_id: The Id of Zone.
     """
@@ -195,7 +195,7 @@ def volumes(ids: Optional[Sequence[str]] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('volcengine:Ebs/volumes:Volumes', __args__, opts=opts, typ=VolumesResult).value
+    __ret__ = pulumi.runtime.invoke('volcengine:ebs/volumes:Volumes', __args__, opts=opts, typ=VolumesResult).value
 
     return AwaitableVolumesResult(
         id=__ret__.id,
@@ -231,7 +231,7 @@ def volumes_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.Ebs.volumes(ids=["vol-3tzg6y5imn3b9fchkedb"])
+    default = volcengine.ebs.volumes(ids=["vol-3tzg6y5imn3b9fchkedb"])
     ```
 
 
@@ -241,7 +241,7 @@ def volumes_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
     :param str name_regex: A Name Regex of Volume.
     :param str output_file: File name where to save data source results.
     :param str volume_name: The name of Volume.
-    :param str volume_status: The Status of Volume.
+    :param str volume_status: The Status of Volume, the value can be `available` or `attaching` or `attached` or `detaching` or `creating` or `deleting` or `error` or `extending`.
     :param str volume_type: The type of Volume.
     :param str zone_id: The Id of Zone.
     """

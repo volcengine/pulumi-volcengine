@@ -22,7 +22,7 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// </summary>
         public readonly ImmutableArray<string> SecurityGroupIds;
         /// <summary>
-        /// The SecurityStrategies of Security.
+        /// The SecurityStrategies of Security, the value can be empty or `Hids`.
         /// </summary>
         public readonly ImmutableArray<string> SecurityStrategies;
 

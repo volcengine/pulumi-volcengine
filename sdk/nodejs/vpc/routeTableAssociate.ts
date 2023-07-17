@@ -12,7 +12,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = new volcengine.Vpc.RouteTableAssociate("foo", {
+ * const foo = new volcengine.vpc.RouteTableAssociate("foo", {
  *     routeTableId: "vtb-274e19skkuhog7fap8u4i8ird",
  *     subnetId: "subnet-2744ht7fhjthc7fap8tm10eqg",
  * });
@@ -23,7 +23,7 @@ import * as utilities from "../utilities";
  * Route table associate address can be imported using the route_table_id:subnet_id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:Vpc/routeTableAssociate:RouteTableAssociate default vtb-2fdzao4h726f45******:subnet-2fdzaou4liw3k5oxruv******
+ *  $ pulumi import volcengine:vpc/routeTableAssociate:RouteTableAssociate default vtb-2fdzao4h726f45******:subnet-2fdzaou4liw3k5oxruv******
  * ```
  */
 export class RouteTableAssociate extends pulumi.CustomResource {
@@ -41,7 +41,7 @@ export class RouteTableAssociate extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'volcengine:Vpc/routeTableAssociate:RouteTableAssociate';
+    public static readonly __pulumiType = 'volcengine:vpc/routeTableAssociate:RouteTableAssociate';
 
     /**
      * Returns true if the given object is an instance of RouteTableAssociate.  This is designed to work even

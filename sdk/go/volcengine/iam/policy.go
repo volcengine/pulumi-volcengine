@@ -18,23 +18,26 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Iam"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/iam"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Iam.NewPolicy(ctx, "foo", &Iam.PolicyArgs{
-// 			Description:    pulumi.String("created by terraform 1"),
-// 			PolicyDocument: pulumi.String("{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}"),
-// 			PolicyName:     pulumi.String("TerraformResourceTest1"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := iam.NewPolicy(ctx, "foo", &iam.PolicyArgs{
+//				Description:    pulumi.String("created by terraform 1"),
+//				PolicyDocument: pulumi.String("{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}"),
+//				PolicyName:     pulumi.String("TerraformResourceTest1"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -42,7 +45,9 @@ import (
 // Iam policy can be imported using the id, e.g.
 //
 // ```sh
-//  $ pulumi import volcengine:Iam/policy:Policy default TerraformTestPolicy
+//
+//	$ pulumi import volcengine:iam/policy:Policy default TerraformTestPolicy
+//
 // ```
 type Policy struct {
 	pulumi.CustomResourceState
@@ -77,7 +82,7 @@ func NewPolicy(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'PolicyName'")
 	}
 	var resource Policy
-	err := ctx.RegisterResource("volcengine:Iam/policy:Policy", name, args, &resource, opts...)
+	err := ctx.RegisterResource("volcengine:iam/policy:Policy", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -89,7 +94,7 @@ func NewPolicy(ctx *pulumi.Context,
 func GetPolicy(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *PolicyState, opts ...pulumi.ResourceOption) (*Policy, error) {
 	var resource Policy
-	err := ctx.ReadResource("volcengine:Iam/policy:Policy", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("volcengine:iam/policy:Policy", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -180,7 +185,7 @@ func (i *Policy) ToPolicyOutputWithContext(ctx context.Context) PolicyOutput {
 // PolicyArrayInput is an input type that accepts PolicyArray and PolicyArrayOutput values.
 // You can construct a concrete instance of `PolicyArrayInput` via:
 //
-//          PolicyArray{ PolicyArgs{...} }
+//	PolicyArray{ PolicyArgs{...} }
 type PolicyArrayInput interface {
 	pulumi.Input
 
@@ -205,7 +210,7 @@ func (i PolicyArray) ToPolicyArrayOutputWithContext(ctx context.Context) PolicyA
 // PolicyMapInput is an input type that accepts PolicyMap and PolicyMapOutput values.
 // You can construct a concrete instance of `PolicyMapInput` via:
 //
-//          PolicyMap{ "key": PolicyArgs{...} }
+//	PolicyMap{ "key": PolicyArgs{...} }
 type PolicyMapInput interface {
 	pulumi.Input
 

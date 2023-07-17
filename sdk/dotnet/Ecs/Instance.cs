@@ -10,7 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Volcengine.Ecs
 {
     /// <summary>
-    /// Provides a resource to manage ecs instance
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -45,7 +44,6 @@ namespace Pulumi.Volcengine.Ecs
     ///         });
     ///         var @default = new Volcengine.Ecs.Instance("default", new Volcengine.Ecs.InstanceArgs
     ///         {
-    ///             ZoneId = "cn-beijing-a",
     ///             ImageId = "image-aagd56zrw2jtdro3bnrl",
     ///             InstanceType = "ecs.g1.large",
     ///             InstanceName = "xym-tf-test-2",
@@ -68,6 +66,8 @@ namespace Pulumi.Volcengine.Ecs
     ///                     DeleteWithInstance = true,
     ///                 },
     ///             },
+    ///             DeploymentSetId = "",
+    ///             Ipv6AddressCount = 1,
     ///         });
     ///         //  secondary_network_interfaces {
     ///         //    subnet_id = volcengine_subnet.foo1.id
@@ -80,23 +80,23 @@ namespace Pulumi.Volcengine.Ecs
     /// 
     /// ## Import
     /// 
-    /// ECS Instance can be imported using the id, e.g.
+    /// ECS Instance can be imported using the id, e.g. If Import,The data_volumes is sort by volume name
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:Ecs/instance:Instance default i-mizl7m1kqccg5smt1bdpijuj
+    ///  $ pulumi import volcengine:ecs/instance:Instance default i-mizl7m1kqccg5smt1bdpijuj
     /// ```
     /// </summary>
-    [VolcengineResourceType("volcengine:Ecs/instance:Instance")]
+    [VolcengineResourceType("volcengine:ecs/instance:Instance")]
     public partial class Instance : Pulumi.CustomResource
     {
         /// <summary>
-        /// The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.
+        /// The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
         [Output("autoRenew")]
         public Output<bool?> AutoRenew { get; private set; } = null!;
 
         /// <summary>
-        /// The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.
+        /// The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
         [Output("autoRenewPeriod")]
         public Output<int?> AutoRenewPeriod { get; private set; } = null!;
@@ -114,16 +114,28 @@ namespace Pulumi.Volcengine.Ecs
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The data volume collection of  ECS instance.
+        /// The data volumes collection of  ECS instance.
         /// </summary>
         [Output("dataVolumes")]
         public Output<ImmutableArray<Outputs.InstanceDataVolume>> DataVolumes { get; private set; } = null!;
+
+        /// <summary>
+        /// The ID of Ecs Deployment Set.
+        /// </summary>
+        [Output("deploymentSetId")]
+        public Output<string?> DeploymentSetId { get; private set; } = null!;
 
         /// <summary>
         /// The description of ECS instance.
         /// </summary>
         [Output("description")]
         public Output<string> Description { get; private set; } = null!;
+
+        /// <summary>
+        /// The GPU device info of Instance.
+        /// </summary>
+        [Output("gpuDevices")]
+        public Output<ImmutableArray<Outputs.InstanceGpuDevice>> GpuDevices { get; private set; } = null!;
 
         /// <summary>
         /// The host name of ECS instance.
@@ -150,7 +162,7 @@ namespace Pulumi.Volcengine.Ecs
         public Output<bool?> IncludeDataVolumes { get; private set; } = null!;
 
         /// <summary>
-        /// The charge type of ECS instance.
+        /// The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
         /// </summary>
         [Output("instanceChargeType")]
         public Output<string> InstanceChargeType { get; private set; } = null!;
@@ -172,6 +184,33 @@ namespace Pulumi.Volcengine.Ecs
         /// </summary>
         [Output("instanceType")]
         public Output<string> InstanceType { get; private set; } = null!;
+
+        /// <summary>
+        /// The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 1 to 10.
+        /// </summary>
+        [Output("ipv6AddressCount")]
+        public Output<int> Ipv6AddressCount { get; private set; } = null!;
+
+        /// <summary>
+        /// One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+        /// You cannot specify both the ipv6_addresses and ipv6_address_count parameters.
+        /// </summary>
+        [Output("ipv6Addresses")]
+        public Output<ImmutableArray<string>> Ipv6Addresses { get; private set; } = null!;
+
+        /// <summary>
+        /// The Flag of GPU instance.If the instance is GPU,The flag is true.
+        /// </summary>
+        [Output("isGpu")]
+        public Output<bool> IsGpu { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether to keep the mirror settings. Only custom images and shared images support this field.
+        /// When the value of this field is true, the Password and KeyPairName cannot be specified.
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        [Output("keepImageCredential")]
+        public Output<bool?> KeepImageCredential { get; private set; } = null!;
 
         /// <summary>
         /// The ssh key ID of ECS instance.
@@ -222,13 +261,25 @@ namespace Pulumi.Volcengine.Ecs
         public Output<int?> Period { get; private set; } = null!;
 
         /// <summary>
+        /// The private ip address of primary networkInterface.
+        /// </summary>
+        [Output("primaryIpAddress")]
+        public Output<string> PrimaryIpAddress { get; private set; } = null!;
+
+        /// <summary>
+        /// The ProjectName of the ecs instance.
+        /// </summary>
+        [Output("projectName")]
+        public Output<string?> ProjectName { get; private set; } = null!;
+
+        /// <summary>
         /// The secondary networkInterface detail collection of ECS instance.
         /// </summary>
         [Output("secondaryNetworkInterfaces")]
         public Output<ImmutableArray<Outputs.InstanceSecondaryNetworkInterface>> SecondaryNetworkInterfaces { get; private set; } = null!;
 
         /// <summary>
-        /// The security enhancement strategy of ECS instance.Default is true.
+        /// The security enhancement strategy of ECS instance. The value can be Active or InActive. Default is Active.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
         [Output("securityEnhancementStrategy")]
         public Output<string?> SecurityEnhancementStrategy { get; private set; } = null!;
@@ -238,6 +289,12 @@ namespace Pulumi.Volcengine.Ecs
         /// </summary>
         [Output("securityGroupIds")]
         public Output<ImmutableArray<string>> SecurityGroupIds { get; private set; } = null!;
+
+        /// <summary>
+        /// The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
+        /// </summary>
+        [Output("spotStrategy")]
+        public Output<string> SpotStrategy { get; private set; } = null!;
 
         /// <summary>
         /// The status of ECS instance.
@@ -270,10 +327,16 @@ namespace Pulumi.Volcengine.Ecs
         public Output<int> SystemVolumeSize { get; private set; } = null!;
 
         /// <summary>
-        /// The type of system volume.
+        /// The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         /// </summary>
         [Output("systemVolumeType")]
         public Output<string> SystemVolumeType { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.InstanceTag>> Tags { get; private set; } = null!;
 
         /// <summary>
         /// The update time of ECS instance.
@@ -282,7 +345,7 @@ namespace Pulumi.Volcengine.Ecs
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The user data of ECS instance.
+        /// The user data of ECS instance, this field must be encrypted with base64.
         /// </summary>
         [Output("userData")]
         public Output<string> UserData { get; private set; } = null!;
@@ -308,12 +371,12 @@ namespace Pulumi.Volcengine.Ecs
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Instance(string name, InstanceArgs args, CustomResourceOptions? options = null)
-            : base("volcengine:Ecs/instance:Instance", name, args ?? new InstanceArgs(), MakeResourceOptions(options, ""))
+            : base("volcengine:ecs/instance:Instance", name, args ?? new InstanceArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private Instance(string name, Input<string> id, InstanceState? state = null, CustomResourceOptions? options = null)
-            : base("volcengine:Ecs/instance:Instance", name, state, MakeResourceOptions(options, id))
+            : base("volcengine:ecs/instance:Instance", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -346,13 +409,13 @@ namespace Pulumi.Volcengine.Ecs
     public sealed class InstanceArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.
+        /// The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
         [Input("autoRenew")]
         public Input<bool>? AutoRenew { get; set; }
 
         /// <summary>
-        /// The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.
+        /// The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
         [Input("autoRenewPeriod")]
         public Input<int>? AutoRenewPeriod { get; set; }
@@ -361,13 +424,19 @@ namespace Pulumi.Volcengine.Ecs
         private InputList<Inputs.InstanceDataVolumeArgs>? _dataVolumes;
 
         /// <summary>
-        /// The data volume collection of  ECS instance.
+        /// The data volumes collection of  ECS instance.
         /// </summary>
         public InputList<Inputs.InstanceDataVolumeArgs> DataVolumes
         {
             get => _dataVolumes ?? (_dataVolumes = new InputList<Inputs.InstanceDataVolumeArgs>());
             set => _dataVolumes = value;
         }
+
+        /// <summary>
+        /// The ID of Ecs Deployment Set.
+        /// </summary>
+        [Input("deploymentSetId")]
+        public Input<string>? DeploymentSetId { get; set; }
 
         /// <summary>
         /// The description of ECS instance.
@@ -400,7 +469,7 @@ namespace Pulumi.Volcengine.Ecs
         public Input<bool>? IncludeDataVolumes { get; set; }
 
         /// <summary>
-        /// The charge type of ECS instance.
+        /// The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
         /// </summary>
         [Input("instanceChargeType")]
         public Input<string>? InstanceChargeType { get; set; }
@@ -416,6 +485,33 @@ namespace Pulumi.Volcengine.Ecs
         /// </summary>
         [Input("instanceType", required: true)]
         public Input<string> InstanceType { get; set; } = null!;
+
+        /// <summary>
+        /// The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 1 to 10.
+        /// </summary>
+        [Input("ipv6AddressCount")]
+        public Input<int>? Ipv6AddressCount { get; set; }
+
+        [Input("ipv6Addresses")]
+        private InputList<string>? _ipv6Addresses;
+
+        /// <summary>
+        /// One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+        /// You cannot specify both the ipv6_addresses and ipv6_address_count parameters.
+        /// </summary>
+        public InputList<string> Ipv6Addresses
+        {
+            get => _ipv6Addresses ?? (_ipv6Addresses = new InputList<string>());
+            set => _ipv6Addresses = value;
+        }
+
+        /// <summary>
+        /// Whether to keep the mirror settings. Only custom images and shared images support this field.
+        /// When the value of this field is true, the Password and KeyPairName cannot be specified.
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        [Input("keepImageCredential")]
+        public Input<bool>? KeepImageCredential { get; set; }
 
         /// <summary>
         /// The ssh key name of ECS instance.
@@ -435,6 +531,12 @@ namespace Pulumi.Volcengine.Ecs
         [Input("period")]
         public Input<int>? Period { get; set; }
 
+        /// <summary>
+        /// The ProjectName of the ecs instance.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
         [Input("secondaryNetworkInterfaces")]
         private InputList<Inputs.InstanceSecondaryNetworkInterfaceArgs>? _secondaryNetworkInterfaces;
 
@@ -448,7 +550,7 @@ namespace Pulumi.Volcengine.Ecs
         }
 
         /// <summary>
-        /// The security enhancement strategy of ECS instance.Default is true.
+        /// The security enhancement strategy of ECS instance. The value can be Active or InActive. Default is Active.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
         [Input("securityEnhancementStrategy")]
         public Input<string>? SecurityEnhancementStrategy { get; set; }
@@ -466,6 +568,12 @@ namespace Pulumi.Volcengine.Ecs
         }
 
         /// <summary>
+        /// The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
+        /// </summary>
+        [Input("spotStrategy")]
+        public Input<string>? SpotStrategy { get; set; }
+
+        /// <summary>
         /// The subnet ID of primary networkInterface.
         /// </summary>
         [Input("subnetId", required: true)]
@@ -478,13 +586,25 @@ namespace Pulumi.Volcengine.Ecs
         public Input<int> SystemVolumeSize { get; set; } = null!;
 
         /// <summary>
-        /// The type of system volume.
+        /// The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         /// </summary>
         [Input("systemVolumeType", required: true)]
         public Input<string> SystemVolumeType { get; set; } = null!;
 
+        [Input("tags")]
+        private InputList<Inputs.InstanceTagArgs>? _tags;
+
         /// <summary>
-        /// The user data of ECS instance.
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.InstanceTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.InstanceTagArgs>());
+            set => _tags = value;
+        }
+
+        /// <summary>
+        /// The user data of ECS instance, this field must be encrypted with base64.
         /// </summary>
         [Input("userData")]
         public Input<string>? UserData { get; set; }
@@ -492,8 +612,8 @@ namespace Pulumi.Volcengine.Ecs
         /// <summary>
         /// The available zone ID of ECS instance.
         /// </summary>
-        [Input("zoneId", required: true)]
-        public Input<string> ZoneId { get; set; } = null!;
+        [Input("zoneId")]
+        public Input<string>? ZoneId { get; set; }
 
         public InstanceArgs()
         {
@@ -503,13 +623,13 @@ namespace Pulumi.Volcengine.Ecs
     public sealed class InstanceState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.
+        /// The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
         [Input("autoRenew")]
         public Input<bool>? AutoRenew { get; set; }
 
         /// <summary>
-        /// The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.
+        /// The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
         [Input("autoRenewPeriod")]
         public Input<int>? AutoRenewPeriod { get; set; }
@@ -530,7 +650,7 @@ namespace Pulumi.Volcengine.Ecs
         private InputList<Inputs.InstanceDataVolumeGetArgs>? _dataVolumes;
 
         /// <summary>
-        /// The data volume collection of  ECS instance.
+        /// The data volumes collection of  ECS instance.
         /// </summary>
         public InputList<Inputs.InstanceDataVolumeGetArgs> DataVolumes
         {
@@ -539,10 +659,28 @@ namespace Pulumi.Volcengine.Ecs
         }
 
         /// <summary>
+        /// The ID of Ecs Deployment Set.
+        /// </summary>
+        [Input("deploymentSetId")]
+        public Input<string>? DeploymentSetId { get; set; }
+
+        /// <summary>
         /// The description of ECS instance.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        [Input("gpuDevices")]
+        private InputList<Inputs.InstanceGpuDeviceGetArgs>? _gpuDevices;
+
+        /// <summary>
+        /// The GPU device info of Instance.
+        /// </summary>
+        public InputList<Inputs.InstanceGpuDeviceGetArgs> GpuDevices
+        {
+            get => _gpuDevices ?? (_gpuDevices = new InputList<Inputs.InstanceGpuDeviceGetArgs>());
+            set => _gpuDevices = value;
+        }
 
         /// <summary>
         /// The host name of ECS instance.
@@ -569,7 +707,7 @@ namespace Pulumi.Volcengine.Ecs
         public Input<bool>? IncludeDataVolumes { get; set; }
 
         /// <summary>
-        /// The charge type of ECS instance.
+        /// The charge type of ECS instance, the value can be `PrePaid` or `PostPaid`.
         /// </summary>
         [Input("instanceChargeType")]
         public Input<string>? InstanceChargeType { get; set; }
@@ -591,6 +729,39 @@ namespace Pulumi.Volcengine.Ecs
         /// </summary>
         [Input("instanceType")]
         public Input<string>? InstanceType { get; set; }
+
+        /// <summary>
+        /// The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 1 to 10.
+        /// </summary>
+        [Input("ipv6AddressCount")]
+        public Input<int>? Ipv6AddressCount { get; set; }
+
+        [Input("ipv6Addresses")]
+        private InputList<string>? _ipv6Addresses;
+
+        /// <summary>
+        /// One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+        /// You cannot specify both the ipv6_addresses and ipv6_address_count parameters.
+        /// </summary>
+        public InputList<string> Ipv6Addresses
+        {
+            get => _ipv6Addresses ?? (_ipv6Addresses = new InputList<string>());
+            set => _ipv6Addresses = value;
+        }
+
+        /// <summary>
+        /// The Flag of GPU instance.If the instance is GPU,The flag is true.
+        /// </summary>
+        [Input("isGpu")]
+        public Input<bool>? IsGpu { get; set; }
+
+        /// <summary>
+        /// Whether to keep the mirror settings. Only custom images and shared images support this field.
+        /// When the value of this field is true, the Password and KeyPairName cannot be specified.
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        [Input("keepImageCredential")]
+        public Input<bool>? KeepImageCredential { get; set; }
 
         /// <summary>
         /// The ssh key ID of ECS instance.
@@ -640,6 +811,18 @@ namespace Pulumi.Volcengine.Ecs
         [Input("period")]
         public Input<int>? Period { get; set; }
 
+        /// <summary>
+        /// The private ip address of primary networkInterface.
+        /// </summary>
+        [Input("primaryIpAddress")]
+        public Input<string>? PrimaryIpAddress { get; set; }
+
+        /// <summary>
+        /// The ProjectName of the ecs instance.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
         [Input("secondaryNetworkInterfaces")]
         private InputList<Inputs.InstanceSecondaryNetworkInterfaceGetArgs>? _secondaryNetworkInterfaces;
 
@@ -653,7 +836,7 @@ namespace Pulumi.Volcengine.Ecs
         }
 
         /// <summary>
-        /// The security enhancement strategy of ECS instance.Default is true.
+        /// The security enhancement strategy of ECS instance. The value can be Active or InActive. Default is Active.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
         [Input("securityEnhancementStrategy")]
         public Input<string>? SecurityEnhancementStrategy { get; set; }
@@ -669,6 +852,12 @@ namespace Pulumi.Volcengine.Ecs
             get => _securityGroupIds ?? (_securityGroupIds = new InputList<string>());
             set => _securityGroupIds = value;
         }
+
+        /// <summary>
+        /// The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
+        /// </summary>
+        [Input("spotStrategy")]
+        public Input<string>? SpotStrategy { get; set; }
 
         /// <summary>
         /// The status of ECS instance.
@@ -701,10 +890,22 @@ namespace Pulumi.Volcengine.Ecs
         public Input<int>? SystemVolumeSize { get; set; }
 
         /// <summary>
-        /// The type of system volume.
+        /// The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         /// </summary>
         [Input("systemVolumeType")]
         public Input<string>? SystemVolumeType { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.InstanceTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.InstanceTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.InstanceTagGetArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The update time of ECS instance.
@@ -713,7 +914,7 @@ namespace Pulumi.Volcengine.Ecs
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// The user data of ECS instance.
+        /// The user data of ECS instance, this field must be encrypted with base64.
         /// </summary>
         [Input("userData")]
         public Input<string>? UserData { get; set; }

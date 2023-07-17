@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultImages = pulumi.output(volcengine.Ecs.Images({
+ * const defaultImages = pulumi.output(volcengine.ecs.Images({
  *     ids: [
  *         "image-cm9ssb4eqmhdas306zlp",
  *         "image-ybkzct2rtj4ay5rmlfc3",
@@ -28,7 +28,7 @@ export function images(args?: ImagesArgs, opts?: pulumi.InvokeOptions): Promise<
     }
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-    return pulumi.runtime.invoke("volcengine:Ecs/images:Images", {
+    return pulumi.runtime.invoke("volcengine:ecs/images:Images", {
         "ids": args.ids,
         "instanceTypeId": args.instanceTypeId,
         "isSupportCloudInit": args.isSupportCloudInit,
@@ -69,7 +69,7 @@ export interface ImagesArgs {
      */
     outputFile?: string;
     /**
-     * A list of Image status.
+     * A list of Image status, the value can be `available` or `creating` or `error`.
      */
     statuses?: string[];
     /**
@@ -90,7 +90,7 @@ export interface ImagesResult {
     /**
      * The collection of Image query.
      */
-    readonly images: outputs.Ecs.ImagesImage[];
+    readonly images: outputs.ecs.ImagesImage[];
     readonly instanceTypeId?: string;
     /**
      * Whether the Image support cloud-init.
@@ -149,7 +149,7 @@ export interface ImagesOutputArgs {
      */
     outputFile?: pulumi.Input<string>;
     /**
-     * A list of Image status.
+     * A list of Image status, the value can be `available` or `creating` or `error`.
      */
     statuses?: pulumi.Input<pulumi.Input<string>[]>;
     /**

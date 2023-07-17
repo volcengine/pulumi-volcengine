@@ -12,9 +12,10 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = new volcengine.Ecs.State("foo", {
- *     action: "Start",
- *     instanceId: "i-l8u2ai4j0fauo6mrpgk8",
+ * const foo = new volcengine.ecs.State("foo", {
+ *     action: "ForceStop",
+ *     instanceId: "i-ycc01lmwecgh9z3sqqfl",
+ *     stoppedMode: "KeepCharging",
  * });
  * ```
  *
@@ -23,7 +24,7 @@ import * as utilities from "../utilities";
  * State Instance can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:Ecs/state:State default state:i-mizl7m1kqccg5smt1bdpijuj
+ *  $ pulumi import volcengine:ecs/state:State default state:i-mizl7m1kqccg5smt1bdpijuj
  * ```
  */
 export class State extends pulumi.CustomResource {
@@ -41,7 +42,7 @@ export class State extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'volcengine:Ecs/state:State';
+    public static readonly __pulumiType = 'volcengine:ecs/state:State';
 
     /**
      * Returns true if the given object is an instance of State.  This is designed to work even
@@ -55,7 +56,7 @@ export class State extends pulumi.CustomResource {
     }
 
     /**
-     * Start or Stop of Instance Action.
+     * Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
      */
     public readonly action!: pulumi.Output<string>;
     /**
@@ -67,7 +68,7 @@ export class State extends pulumi.CustomResource {
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
-     * Stop Mode of Instance.
+     * Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`, default `KeepCharging`.
      */
     public readonly stoppedMode!: pulumi.Output<string | undefined>;
 
@@ -111,7 +112,7 @@ export class State extends pulumi.CustomResource {
  */
 export interface StateState {
     /**
-     * Start or Stop of Instance Action.
+     * Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
      */
     action?: pulumi.Input<string>;
     /**
@@ -123,7 +124,7 @@ export interface StateState {
      */
     status?: pulumi.Input<string>;
     /**
-     * Stop Mode of Instance.
+     * Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`, default `KeepCharging`.
      */
     stoppedMode?: pulumi.Input<string>;
 }
@@ -133,7 +134,7 @@ export interface StateState {
  */
 export interface StateArgs {
     /**
-     * Start or Stop of Instance Action.
+     * Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
      */
     action: pulumi.Input<string>;
     /**
@@ -141,7 +142,7 @@ export interface StateArgs {
      */
     instanceId: pulumi.Input<string>;
     /**
-     * Stop Mode of Instance.
+     * Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`, default `KeepCharging`.
      */
     stoppedMode?: pulumi.Input<string>;
 }

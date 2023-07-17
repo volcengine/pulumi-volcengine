@@ -40,7 +40,7 @@ namespace Pulumi.Volcengine.Vpc
         /// {{% /examples %}}
         /// </summary>
         public static Task<SecurityGroupsResult> InvokeAsync(SecurityGroupsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<SecurityGroupsResult>("volcengine:Vpc/securityGroups:SecurityGroups", args ?? new SecurityGroupsArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.InvokeAsync<SecurityGroupsResult>("volcengine:vpc/securityGroups:SecurityGroups", args ?? new SecurityGroupsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of security groups
@@ -71,7 +71,7 @@ namespace Pulumi.Volcengine.Vpc
         /// {{% /examples %}}
         /// </summary>
         public static Output<SecurityGroupsResult> Invoke(SecurityGroupsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<SecurityGroupsResult>("volcengine:Vpc/securityGroups:SecurityGroups", args ?? new SecurityGroupsInvokeArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.Invoke<SecurityGroupsResult>("volcengine:vpc/securityGroups:SecurityGroups", args ?? new SecurityGroupsInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -100,6 +100,42 @@ namespace Pulumi.Volcengine.Vpc
         /// </summary>
         [Input("outputFile")]
         public string? OutputFile { get; set; }
+
+        /// <summary>
+        /// The ProjectName of SecurityGroup.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
+
+        [Input("securityGroupNames")]
+        private List<string>? _securityGroupNames;
+
+        /// <summary>
+        /// The list of security group name to query.
+        /// </summary>
+        public List<string> SecurityGroupNames
+        {
+            get => _securityGroupNames ?? (_securityGroupNames = new List<string>());
+            set => _securityGroupNames = value;
+        }
+
+        [Input("tags")]
+        private List<Inputs.SecurityGroupsTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.SecurityGroupsTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.SecurityGroupsTagArgs>());
+            set => _tags = value;
+        }
+
+        /// <summary>
+        /// The ID of vpc where security group is located.
+        /// </summary>
+        [Input("vpcId")]
+        public string? VpcId { get; set; }
 
         public SecurityGroupsArgs()
         {
@@ -132,6 +168,42 @@ namespace Pulumi.Volcengine.Vpc
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
 
+        /// <summary>
+        /// The ProjectName of SecurityGroup.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        [Input("securityGroupNames")]
+        private InputList<string>? _securityGroupNames;
+
+        /// <summary>
+        /// The list of security group name to query.
+        /// </summary>
+        public InputList<string> SecurityGroupNames
+        {
+            get => _securityGroupNames ?? (_securityGroupNames = new InputList<string>());
+            set => _securityGroupNames = value;
+        }
+
+        [Input("tags")]
+        private InputList<Inputs.SecurityGroupsTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.SecurityGroupsTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.SecurityGroupsTagInputArgs>());
+            set => _tags = value;
+        }
+
+        /// <summary>
+        /// The ID of vpc where security group is located.
+        /// </summary>
+        [Input("vpcId")]
+        public Input<string>? VpcId { get; set; }
+
         public SecurityGroupsInvokeArgs()
         {
         }
@@ -149,13 +221,26 @@ namespace Pulumi.Volcengine.Vpc
         public readonly string? NameRegex;
         public readonly string? OutputFile;
         /// <summary>
+        /// The ProjectName of SecurityGroup.
+        /// </summary>
+        public readonly string? ProjectName;
+        public readonly ImmutableArray<string> SecurityGroupNames;
+        /// <summary>
         /// The collection of SecurityGroup query.
         /// </summary>
         public readonly ImmutableArray<Outputs.SecurityGroupsSecurityGroupResult> SecurityGroups;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.SecurityGroupsTagResult> Tags;
+        /// <summary>
         /// The total count of SecurityGroup query.
         /// </summary>
         public readonly int TotalCount;
+        /// <summary>
+        /// The ID of Vpc.
+        /// </summary>
+        public readonly string? VpcId;
 
         [OutputConstructor]
         private SecurityGroupsResult(
@@ -167,16 +252,28 @@ namespace Pulumi.Volcengine.Vpc
 
             string? outputFile,
 
+            string? projectName,
+
+            ImmutableArray<string> securityGroupNames,
+
             ImmutableArray<Outputs.SecurityGroupsSecurityGroupResult> securityGroups,
 
-            int totalCount)
+            ImmutableArray<Outputs.SecurityGroupsTagResult> tags,
+
+            int totalCount,
+
+            string? vpcId)
         {
             Id = id;
             Ids = ids;
             NameRegex = nameRegex;
             OutputFile = outputFile;
+            ProjectName = projectName;
+            SecurityGroupNames = securityGroupNames;
             SecurityGroups = securityGroups;
+            Tags = tags;
             TotalCount = totalCount;
+            VpcId = vpcId;
         }
     }
 }

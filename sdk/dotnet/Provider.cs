@@ -22,7 +22,13 @@ namespace Pulumi.Volcengine
         /// The Access Key for Volcengine Provider
         /// </summary>
         [Output("accessKey")]
-        public Output<string> AccessKey { get; private set; } = null!;
+        public Output<string?> AccessKey { get; private set; } = null!;
+
+        /// <summary>
+        /// CUSTOMER ENDPOINTS for Volcengine Provider
+        /// </summary>
+        [Output("customerEndpoints")]
+        public Output<string?> CustomerEndpoints { get; private set; } = null!;
 
         /// <summary>
         /// CUSTOMER HEADERS for Volcengine Provider
@@ -37,16 +43,22 @@ namespace Pulumi.Volcengine
         public Output<string?> Endpoint { get; private set; } = null!;
 
         /// <summary>
+        /// PROXY URL for Volcengine Provider
+        /// </summary>
+        [Output("proxyUrl")]
+        public Output<string?> ProxyUrl { get; private set; } = null!;
+
+        /// <summary>
         /// The Region for Volcengine Provider
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// The Secret Key for Volcengine Provider
         /// </summary>
         [Output("secretKey")]
-        public Output<string> SecretKey { get; private set; } = null!;
+        public Output<string?> SecretKey { get; private set; } = null!;
 
         /// <summary>
         /// The Session Token for Volcengine Provider
@@ -62,7 +74,7 @@ namespace Pulumi.Volcengine
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Provider(string name, ProviderArgs args, CustomResourceOptions? options = null)
+        public Provider(string name, ProviderArgs? args = null, CustomResourceOptions? options = null)
             : base("volcengine", name, args ?? new ProviderArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -85,8 +97,14 @@ namespace Pulumi.Volcengine
         /// <summary>
         /// The Access Key for Volcengine Provider
         /// </summary>
-        [Input("accessKey", required: true)]
-        public Input<string> AccessKey { get; set; } = null!;
+        [Input("accessKey")]
+        public Input<string>? AccessKey { get; set; }
+
+        /// <summary>
+        /// CUSTOMER ENDPOINTS for Volcengine Provider
+        /// </summary>
+        [Input("customerEndpoints")]
+        public Input<string>? CustomerEndpoints { get; set; }
 
         /// <summary>
         /// CUSTOMER HEADERS for Volcengine Provider
@@ -107,16 +125,22 @@ namespace Pulumi.Volcengine
         public Input<string>? Endpoint { get; set; }
 
         /// <summary>
+        /// PROXY URL for Volcengine Provider
+        /// </summary>
+        [Input("proxyUrl")]
+        public Input<string>? ProxyUrl { get; set; }
+
+        /// <summary>
         /// The Region for Volcengine Provider
         /// </summary>
-        [Input("region", required: true)]
-        public Input<string> Region { get; set; } = null!;
+        [Input("region")]
+        public Input<string>? Region { get; set; }
 
         /// <summary>
         /// The Secret Key for Volcengine Provider
         /// </summary>
-        [Input("secretKey", required: true)]
-        public Input<string> SecretKey { get; set; } = null!;
+        [Input("secretKey")]
+        public Input<string>? SecretKey { get; set; }
 
         /// <summary>
         /// The Session Token for Volcengine Provider
@@ -126,6 +150,10 @@ namespace Pulumi.Volcengine
 
         public ProviderArgs()
         {
+            AccessKey = Utilities.GetEnv("VOLCENGINE_ACCESS_KEY");
+            Endpoint = Utilities.GetEnv("VOLCENGINE_ENDPOINT");
+            Region = Utilities.GetEnv("VOLCENGINE_REGION");
+            SecretKey = Utilities.GetEnv("VOLCENGINE_SECRET_KEY");
         }
     }
 }

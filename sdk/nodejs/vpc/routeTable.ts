@@ -12,10 +12,11 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = new volcengine.Vpc.RouteTable("foo", {
+ * const foo = new volcengine.vpc.RouteTable("foo", {
  *     description: "tf-test1",
- *     routeTableName: "tf-test1",
- *     vpcId: "vpc-2744hsjr475s07fap8t4jbl1c",
+ *     projectName: "yuwao",
+ *     routeTableName: "tf-project-1",
+ *     vpcId: "vpc-2feppmy1ugt1c59gp688n1fld",
  * });
  * ```
  *
@@ -24,7 +25,7 @@ import * as utilities from "../utilities";
  * Route table can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:Vpc/routeTable:RouteTable default vtb-274e0syt9av407fap8tle16kb
+ *  $ pulumi import volcengine:vpc/routeTable:RouteTable default vtb-274e0syt9av407fap8tle16kb
  * ```
  */
 export class RouteTable extends pulumi.CustomResource {
@@ -42,7 +43,7 @@ export class RouteTable extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'volcengine:Vpc/routeTable:RouteTable';
+    public static readonly __pulumiType = 'volcengine:vpc/routeTable:RouteTable';
 
     /**
      * Returns true if the given object is an instance of RouteTable.  This is designed to work even
@@ -59,6 +60,10 @@ export class RouteTable extends pulumi.CustomResource {
      * The description of the route table.
      */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * The ProjectName of the route table.
+     */
+    public readonly projectName!: pulumi.Output<string | undefined>;
     /**
      * The name of the route table.
      */
@@ -82,6 +87,7 @@ export class RouteTable extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as RouteTableState | undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["routeTableName"] = state ? state.routeTableName : undefined;
             resourceInputs["vpcId"] = state ? state.vpcId : undefined;
         } else {
@@ -90,6 +96,7 @@ export class RouteTable extends pulumi.CustomResource {
                 throw new Error("Missing required property 'vpcId'");
             }
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["routeTableName"] = args ? args.routeTableName : undefined;
             resourceInputs["vpcId"] = args ? args.vpcId : undefined;
         }
@@ -106,6 +113,10 @@ export interface RouteTableState {
      * The description of the route table.
      */
     description?: pulumi.Input<string>;
+    /**
+     * The ProjectName of the route table.
+     */
+    projectName?: pulumi.Input<string>;
     /**
      * The name of the route table.
      */
@@ -124,6 +135,10 @@ export interface RouteTableArgs {
      * The description of the route table.
      */
     description?: pulumi.Input<string>;
+    /**
+     * The ProjectName of the route table.
+     */
+    projectName?: pulumi.Input<string>;
     /**
      * The name of the route table.
      */

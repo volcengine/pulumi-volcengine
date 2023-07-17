@@ -13,7 +13,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultClusters = pulumi.output(volcengine.Vke.Clusters({
+ * const defaultClusters = pulumi.output(volcengine.vke.Clusters({
  *     podsConfigPodNetworkMode: "VpcCniShared",
  *     statuses: [{
  *         conditionsType: "Progressing",
@@ -29,7 +29,7 @@ export function clusters(args?: ClustersArgs, opts?: pulumi.InvokeOptions): Prom
     }
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-    return pulumi.runtime.invoke("volcengine:Vke/clusters:Clusters", {
+    return pulumi.runtime.invoke("volcengine:vke/clusters:Clusters", {
         "createClientToken": args.createClientToken,
         "deleteProtectionEnabled": args.deleteProtectionEnabled,
         "ids": args.ids,
@@ -40,6 +40,7 @@ export function clusters(args?: ClustersArgs, opts?: pulumi.InvokeOptions): Prom
         "pageSize": args.pageSize,
         "podsConfigPodNetworkMode": args.podsConfigPodNetworkMode,
         "statuses": args.statuses,
+        "tags": args.tags,
         "updateClientToken": args.updateClientToken,
     }, opts);
 }
@@ -87,7 +88,11 @@ export interface ClustersArgs {
     /**
      * Array of cluster states to filter. (The elements of the array are logically ORed. A maximum of 15 state array elements can be filled at a time).
      */
-    statuses?: inputs.Vke.ClustersStatus[];
+    statuses?: inputs.vke.ClustersStatus[];
+    /**
+     * Tags.
+     */
+    tags?: inputs.vke.ClustersTag[];
     /**
      * The ClientToken when the last cluster update succeeded. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
      */
@@ -101,7 +106,7 @@ export interface ClustersResult {
     /**
      * The collection of VkeCluster query.
      */
-    readonly clusters: outputs.Vke.ClustersCluster[];
+    readonly clusters: outputs.vke.ClustersCluster[];
     readonly createClientToken?: string;
     /**
      * The delete protection of the cluster, the value is `true` or `false`.
@@ -121,7 +126,11 @@ export interface ClustersResult {
     readonly pageNumber: number;
     readonly pageSize: number;
     readonly podsConfigPodNetworkMode?: string;
-    readonly statuses?: outputs.Vke.ClustersStatus[];
+    readonly statuses?: outputs.vke.ClustersStatus[];
+    /**
+     * Tags of the Cluster.
+     */
+    readonly tags?: outputs.vke.ClustersTag[];
     /**
      * The total count of Cluster query.
      */
@@ -176,7 +185,11 @@ export interface ClustersOutputArgs {
     /**
      * Array of cluster states to filter. (The elements of the array are logically ORed. A maximum of 15 state array elements can be filled at a time).
      */
-    statuses?: pulumi.Input<pulumi.Input<inputs.Vke.ClustersStatusArgs>[]>;
+    statuses?: pulumi.Input<pulumi.Input<inputs.vke.ClustersStatusArgs>[]>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vke.ClustersTagArgs>[]>;
     /**
      * The ClientToken when the last cluster update succeeded. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
      */

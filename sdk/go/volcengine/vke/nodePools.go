@@ -17,28 +17,31 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Vke"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/vke"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Vke.NodePools(ctx, &vke.NodePoolsArgs{
-// 			ClusterIds: []string{
-// 				"ccabe57fqtofgrbln3dog",
-// 			},
-// 			Name: pulumi.StringRef("demo"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vke.NodePools(ctx, &vke.NodePoolsArgs{
+//				ClusterIds: []string{
+//					"ccabe57fqtofgrbln3dog",
+//				},
+//				Name: pulumi.StringRef("demo"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func NodePools(ctx *pulumi.Context, args *NodePoolsArgs, opts ...pulumi.InvokeOption) (*NodePoolsResult, error) {
 	var rv NodePoolsResult
-	err := ctx.Invoke("volcengine:Vke/nodePools:NodePools", args, &rv, opts...)
+	err := ctx.Invoke("volcengine:vke/nodePools:NodePools", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -65,6 +68,8 @@ type NodePoolsArgs struct {
 	OutputFile *string `pulumi:"outputFile"`
 	// The Status of NodePool.
 	Statuses []NodePoolsStatus `pulumi:"statuses"`
+	// Tags.
+	Tags []NodePoolsTag `pulumi:"tags"`
 	// The ClientToken when last update was successful.
 	UpdateClientToken *string `pulumi:"updateClientToken"`
 }
@@ -87,6 +92,8 @@ type NodePoolsResult struct {
 	NodePools  []NodePoolsNodePool `pulumi:"nodePools"`
 	OutputFile *string             `pulumi:"outputFile"`
 	Statuses   []NodePoolsStatus   `pulumi:"statuses"`
+	// Tags of the NodePool.
+	Tags []NodePoolsTag `pulumi:"tags"`
 	// Returns the total amount of the data list.
 	TotalCount int `pulumi:"totalCount"`
 	// The ClientToken when last update was successful.
@@ -126,6 +133,8 @@ type NodePoolsOutputArgs struct {
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
 	// The Status of NodePool.
 	Statuses NodePoolsStatusArrayInput `pulumi:"statuses"`
+	// Tags.
+	Tags NodePoolsTagArrayInput `pulumi:"tags"`
 	// The ClientToken when last update was successful.
 	UpdateClientToken pulumi.StringPtrInput `pulumi:"updateClientToken"`
 }
@@ -196,6 +205,11 @@ func (o NodePoolsResultOutput) OutputFile() pulumi.StringPtrOutput {
 
 func (o NodePoolsResultOutput) Statuses() NodePoolsStatusArrayOutput {
 	return o.ApplyT(func(v NodePoolsResult) []NodePoolsStatus { return v.Statuses }).(NodePoolsStatusArrayOutput)
+}
+
+// Tags of the NodePool.
+func (o NodePoolsResultOutput) Tags() NodePoolsTagArrayOutput {
+	return o.ApplyT(func(v NodePoolsResult) []NodePoolsTag { return v.Tags }).(NodePoolsTagArrayOutput)
 }
 
 // Returns the total amount of the data list.

@@ -5,11 +5,14 @@
 from .. import _utilities
 import typing
 # Export this package's modules as members:
-from .acl import *
-from .acl_entry import *
-from .acls import *
-from .certificates import *
-from .gateways import *
+from .ipv6_address_bandwidth import *
+from .ipv6_address_bandwidths import *
+from .ipv6_addresses import *
+from .ipv6_gateway import *
+from .ipv6_gateways import *
+from .network_acl import *
+from .network_acl_associate import *
+from .network_acls import *
 from .network_interface import *
 from .network_interface_attach import *
 from .network_interfaces import *
@@ -20,12 +23,11 @@ from .route_table_associate import *
 from .route_tables import *
 from .security_group import *
 from .security_group_rule import *
+from .security_group_rules import *
 from .security_groups import *
-from .snat_entries import *
 from .subnet import *
 from .subnets import *
 from .vpc import *
 from .vpcs import *
-from .zones import *
 from ._inputs import *
 from . import outputs

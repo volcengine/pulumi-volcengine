@@ -41,7 +41,7 @@ namespace Pulumi.Volcengine.Clb
         /// {{% /examples %}}
         /// </summary>
         public static Task<ServerGroupServersResult> InvokeAsync(ServerGroupServersArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<ServerGroupServersResult>("volcengine:Clb/serverGroupServers:ServerGroupServers", args ?? new ServerGroupServersArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.InvokeAsync<ServerGroupServersResult>("volcengine:clb/serverGroupServers:ServerGroupServers", args ?? new ServerGroupServersArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of server group servers
@@ -73,7 +73,7 @@ namespace Pulumi.Volcengine.Clb
         /// {{% /examples %}}
         /// </summary>
         public static Output<ServerGroupServersResult> Invoke(ServerGroupServersInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<ServerGroupServersResult>("volcengine:Clb/serverGroupServers:ServerGroupServers", args ?? new ServerGroupServersInvokeArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.Invoke<ServerGroupServersResult>("volcengine:clb/serverGroupServers:ServerGroupServers", args ?? new ServerGroupServersInvokeArgs(), options.WithDefaults());
     }
 
 

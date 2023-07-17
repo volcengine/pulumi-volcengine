@@ -21,7 +21,7 @@ class AccessKeyArgs:
         The set of arguments for constructing a AccessKey resource.
         :param pulumi.Input[str] pgp_key: Either a base-64 encoded PGP public key, or a keybase username in the form `keybase:some_person_that_exists`.
         :param pulumi.Input[str] secret_file: The file to save the access id and secret. Strongly suggest you to specified it when you creating access key, otherwise, you wouldn't get its secret ever.
-        :param pulumi.Input[str] status: The status of the access key.
+        :param pulumi.Input[str] status: The status of the access key, Optional choice contains `active` or `inactive`.
         :param pulumi.Input[str] user_name: The user name.
         """
         if pgp_key is not None:
@@ -61,7 +61,7 @@ class AccessKeyArgs:
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
-        The status of the access key.
+        The status of the access key, Optional choice contains `active` or `inactive`.
         """
         return pulumi.get(self, "status")
 
@@ -101,7 +101,7 @@ class _AccessKeyState:
         :param pulumi.Input[str] pgp_key: Either a base-64 encoded PGP public key, or a keybase username in the form `keybase:some_person_that_exists`.
         :param pulumi.Input[str] secret: The secret of the access key.
         :param pulumi.Input[str] secret_file: The file to save the access id and secret. Strongly suggest you to specified it when you creating access key, otherwise, you wouldn't get its secret ever.
-        :param pulumi.Input[str] status: The status of the access key.
+        :param pulumi.Input[str] status: The status of the access key, Optional choice contains `active` or `inactive`.
         :param pulumi.Input[str] user_name: The user name.
         """
         if create_date is not None:
@@ -197,7 +197,7 @@ class _AccessKeyState:
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
-        The status of the access key.
+        The status of the access key, Optional choice contains `active` or `inactive`.
         """
         return pulumi.get(self, "status")
 
@@ -250,7 +250,7 @@ class AccessKey(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] pgp_key: Either a base-64 encoded PGP public key, or a keybase username in the form `keybase:some_person_that_exists`.
         :param pulumi.Input[str] secret_file: The file to save the access id and secret. Strongly suggest you to specified it when you creating access key, otherwise, you wouldn't get its secret ever.
-        :param pulumi.Input[str] status: The status of the access key.
+        :param pulumi.Input[str] status: The status of the access key, Optional choice contains `active` or `inactive`.
         :param pulumi.Input[str] user_name: The user name.
         """
         ...
@@ -317,7 +317,7 @@ class AccessKey(pulumi.CustomResource):
             __props__.__dict__["key_fingerprint"] = None
             __props__.__dict__["secret"] = None
         super(AccessKey, __self__).__init__(
-            'volcengine:Iam/accessKey:AccessKey',
+            'volcengine:iam/accessKey:AccessKey',
             resource_name,
             __props__,
             opts)
@@ -347,7 +347,7 @@ class AccessKey(pulumi.CustomResource):
         :param pulumi.Input[str] pgp_key: Either a base-64 encoded PGP public key, or a keybase username in the form `keybase:some_person_that_exists`.
         :param pulumi.Input[str] secret: The secret of the access key.
         :param pulumi.Input[str] secret_file: The file to save the access id and secret. Strongly suggest you to specified it when you creating access key, otherwise, you wouldn't get its secret ever.
-        :param pulumi.Input[str] status: The status of the access key.
+        :param pulumi.Input[str] status: The status of the access key, Optional choice contains `active` or `inactive`.
         :param pulumi.Input[str] user_name: The user name.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -416,7 +416,7 @@ class AccessKey(pulumi.CustomResource):
     @pulumi.getter
     def status(self) -> pulumi.Output[Optional[str]]:
         """
-        The status of the access key.
+        The status of the access key, Optional choice contains `active` or `inactive`.
         """
         return pulumi.get(self, "status")
 

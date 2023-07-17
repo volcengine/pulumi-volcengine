@@ -182,7 +182,7 @@ class ServerGroup(pulumi.CustomResource):
         ServerGroup can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Clb/serverGroup:ServerGroup default rsp-273yv0kir1vk07fap8tt9jtwg
+         $ pulumi import volcengine:clb/serverGroup:ServerGroup default rsp-273yv0kir1vk07fap8tt9jtwg
         ```
 
         :param str resource_name: The name of the resource.
@@ -217,7 +217,7 @@ class ServerGroup(pulumi.CustomResource):
         ServerGroup can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:Clb/serverGroup:ServerGroup default rsp-273yv0kir1vk07fap8tt9jtwg
+         $ pulumi import volcengine:clb/serverGroup:ServerGroup default rsp-273yv0kir1vk07fap8tt9jtwg
         ```
 
         :param str resource_name: The name of the resource.
@@ -258,7 +258,7 @@ class ServerGroup(pulumi.CustomResource):
             __props__.__dict__["server_group_id"] = server_group_id
             __props__.__dict__["server_group_name"] = server_group_name
         super(ServerGroup, __self__).__init__(
-            'volcengine:Clb/serverGroup:ServerGroup',
+            'volcengine:clb/serverGroup:ServerGroup',
             resource_name,
             __props__,
             opts)

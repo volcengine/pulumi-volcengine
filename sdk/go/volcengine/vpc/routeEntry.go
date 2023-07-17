@@ -18,26 +18,29 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Vpc"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/vpc"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Vpc.NewRouteEntry(ctx, "foo", &Vpc.RouteEntryArgs{
-// 			Description:          pulumi.String("tf-test-up"),
-// 			DestinationCidrBlock: pulumi.String("0.0.0.0/2"),
-// 			NextHopId:            pulumi.String("ngw-274gwbqe340zk7fap8spkzo7x"),
-// 			NextHopType:          pulumi.String("NatGW"),
-// 			RouteEntryName:       pulumi.String("tf-test-up"),
-// 			RouteTableId:         pulumi.String("vtb-2744hslq5b7r47fap8tjomgnj"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vpc.NewRouteEntry(ctx, "foo", &vpc.RouteEntryArgs{
+//				Description:          pulumi.String("tf-test-up"),
+//				DestinationCidrBlock: pulumi.String("0.0.0.0/2"),
+//				NextHopId:            pulumi.String("ngw-274gwbqe340zk7fap8spkzo7x"),
+//				NextHopType:          pulumi.String("NatGW"),
+//				RouteEntryName:       pulumi.String("tf-test-up"),
+//				RouteTableId:         pulumi.String("vtb-2744hslq5b7r47fap8tjomgnj"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -45,7 +48,9 @@ import (
 // Route entry can be imported using the route_table_id:route_entry_id, e.g.
 //
 // ```sh
-//  $ pulumi import volcengine:Vpc/routeEntry:RouteEntry default vtb-274e19skkuhog7fap8u4i8ird:rte-274e1g9ei4k5c7fap8sp974fq
+//
+//	$ pulumi import volcengine:vpc/routeEntry:RouteEntry default vtb-274e19skkuhog7fap8u4i8ird:rte-274e1g9ei4k5c7fap8sp974fq
+//
 // ```
 type RouteEntry struct {
 	pulumi.CustomResourceState
@@ -56,7 +61,7 @@ type RouteEntry struct {
 	DestinationCidrBlock pulumi.StringOutput `pulumi:"destinationCidrBlock"`
 	// The id of the next hop.
 	NextHopId pulumi.StringOutput `pulumi:"nextHopId"`
-	// The type of the next hop.
+	// The type of the next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
 	NextHopType pulumi.StringOutput `pulumi:"nextHopType"`
 	// The id of the route entry.
 	RouteEntryId pulumi.StringOutput `pulumi:"routeEntryId"`
@@ -88,7 +93,7 @@ func NewRouteEntry(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'RouteTableId'")
 	}
 	var resource RouteEntry
-	err := ctx.RegisterResource("volcengine:Vpc/routeEntry:RouteEntry", name, args, &resource, opts...)
+	err := ctx.RegisterResource("volcengine:vpc/routeEntry:RouteEntry", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -100,7 +105,7 @@ func NewRouteEntry(ctx *pulumi.Context,
 func GetRouteEntry(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *RouteEntryState, opts ...pulumi.ResourceOption) (*RouteEntry, error) {
 	var resource RouteEntry
-	err := ctx.ReadResource("volcengine:Vpc/routeEntry:RouteEntry", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("volcengine:vpc/routeEntry:RouteEntry", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -115,7 +120,7 @@ type routeEntryState struct {
 	DestinationCidrBlock *string `pulumi:"destinationCidrBlock"`
 	// The id of the next hop.
 	NextHopId *string `pulumi:"nextHopId"`
-	// The type of the next hop.
+	// The type of the next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
 	NextHopType *string `pulumi:"nextHopType"`
 	// The id of the route entry.
 	RouteEntryId *string `pulumi:"routeEntryId"`
@@ -134,7 +139,7 @@ type RouteEntryState struct {
 	DestinationCidrBlock pulumi.StringPtrInput
 	// The id of the next hop.
 	NextHopId pulumi.StringPtrInput
-	// The type of the next hop.
+	// The type of the next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
 	NextHopType pulumi.StringPtrInput
 	// The id of the route entry.
 	RouteEntryId pulumi.StringPtrInput
@@ -157,7 +162,7 @@ type routeEntryArgs struct {
 	DestinationCidrBlock string `pulumi:"destinationCidrBlock"`
 	// The id of the next hop.
 	NextHopId string `pulumi:"nextHopId"`
-	// The type of the next hop.
+	// The type of the next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
 	NextHopType string `pulumi:"nextHopType"`
 	// The name of the route entry.
 	RouteEntryName *string `pulumi:"routeEntryName"`
@@ -173,7 +178,7 @@ type RouteEntryArgs struct {
 	DestinationCidrBlock pulumi.StringInput
 	// The id of the next hop.
 	NextHopId pulumi.StringInput
-	// The type of the next hop.
+	// The type of the next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
 	NextHopType pulumi.StringInput
 	// The name of the route entry.
 	RouteEntryName pulumi.StringPtrInput
@@ -207,7 +212,7 @@ func (i *RouteEntry) ToRouteEntryOutputWithContext(ctx context.Context) RouteEnt
 // RouteEntryArrayInput is an input type that accepts RouteEntryArray and RouteEntryArrayOutput values.
 // You can construct a concrete instance of `RouteEntryArrayInput` via:
 //
-//          RouteEntryArray{ RouteEntryArgs{...} }
+//	RouteEntryArray{ RouteEntryArgs{...} }
 type RouteEntryArrayInput interface {
 	pulumi.Input
 
@@ -232,7 +237,7 @@ func (i RouteEntryArray) ToRouteEntryArrayOutputWithContext(ctx context.Context)
 // RouteEntryMapInput is an input type that accepts RouteEntryMap and RouteEntryMapOutput values.
 // You can construct a concrete instance of `RouteEntryMapInput` via:
 //
-//          RouteEntryMap{ "key": RouteEntryArgs{...} }
+//	RouteEntryMap{ "key": RouteEntryArgs{...} }
 type RouteEntryMapInput interface {
 	pulumi.Input
 
@@ -283,7 +288,7 @@ func (o RouteEntryOutput) NextHopId() pulumi.StringOutput {
 	return o.ApplyT(func(v *RouteEntry) pulumi.StringOutput { return v.NextHopId }).(pulumi.StringOutput)
 }
 
-// The type of the next hop.
+// The type of the next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
 func (o RouteEntryOutput) NextHopType() pulumi.StringOutput {
 	return o.ApplyT(func(v *RouteEntry) pulumi.StringOutput { return v.NextHopType }).(pulumi.StringOutput)
 }

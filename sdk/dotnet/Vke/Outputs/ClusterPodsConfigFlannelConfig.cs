@@ -14,7 +14,7 @@ namespace Pulumi.Volcengine.Vke.Outputs
     public sealed class ClusterPodsConfigFlannelConfig
     {
         /// <summary>
-        /// The maximum number of single-node Pod instances for a Flannel container network.
+        /// The maximum number of single-node Pod instances for a Flannel container network, the value can be `16` or `32` or `64` or `128` or `256`.
         /// </summary>
         public readonly int? MaxPodsPerNode;
         /// <summary>

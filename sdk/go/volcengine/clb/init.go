@@ -21,17 +21,21 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
-	case "volcengine:Clb/certificate:Certificate":
+	case "volcengine:clb/acl:Acl":
+		r = &Acl{}
+	case "volcengine:clb/aclEntry:AclEntry":
+		r = &AclEntry{}
+	case "volcengine:clb/certificate:Certificate":
 		r = &Certificate{}
-	case "volcengine:Clb/clb:Clb":
+	case "volcengine:clb/clb:Clb":
 		r = &Clb{}
-	case "volcengine:Clb/clbRule:ClbRule":
-		r = &ClbRule{}
-	case "volcengine:Clb/listener:Listener":
+	case "volcengine:clb/listener:Listener":
 		r = &Listener{}
-	case "volcengine:Clb/serverGroup:ServerGroup":
+	case "volcengine:clb/rule:Rule":
+		r = &Rule{}
+	case "volcengine:clb/serverGroup:ServerGroup":
 		r = &ServerGroup{}
-	case "volcengine:Clb/serverGroupServer:ServerGroupServer":
+	case "volcengine:clb/serverGroupServer:ServerGroupServer":
 		r = &ServerGroupServer{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
@@ -48,32 +52,42 @@ func init() {
 	}
 	pulumi.RegisterResourceModule(
 		"volcengine",
-		"Clb/certificate",
+		"clb/acl",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
-		"Clb/clb",
+		"clb/aclEntry",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
-		"Clb/clbRule",
+		"clb/certificate",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
-		"Clb/listener",
+		"clb/clb",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
-		"Clb/serverGroup",
+		"clb/listener",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
-		"Clb/serverGroupServer",
+		"clb/rule",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"clb/serverGroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"clb/serverGroupServer",
 		&module{version},
 	)
 }

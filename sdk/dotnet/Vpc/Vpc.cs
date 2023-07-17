@@ -29,7 +29,8 @@ namespace Pulumi.Volcengine.Vpc
     ///                 "8.8.8.8",
     ///                 "114.114.114.114",
     ///             },
-    ///             VpcName = "tf-test-2",
+    ///             ProjectName = "AS_test",
+    ///             VpcName = "tf-project-1",
     ///         });
     ///     }
     /// 
@@ -41,10 +42,10 @@ namespace Pulumi.Volcengine.Vpc
     /// VPC can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:Vpc/vpc:Vpc default vpc-mizl7m1kqccg5smt1bdpijuj
+    ///  $ pulumi import volcengine:vpc/vpc:Vpc default vpc-mizl7m1kqccg5smt1bdpijuj
     /// ```
     /// </summary>
-    [VolcengineResourceType("volcengine:Vpc/vpc:Vpc")]
+    [VolcengineResourceType("volcengine:vpc/vpc:Vpc")]
     public partial class Vpc : Pulumi.CustomResource
     {
         /// <summary>
@@ -90,10 +91,28 @@ namespace Pulumi.Volcengine.Vpc
         public Output<ImmutableArray<string>> DnsServers { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies whether to enable the IPv6 CIDR block of the VPC.
+        /// </summary>
+        [Output("enableIpv6")]
+        public Output<bool> EnableIpv6 { get; private set; } = null!;
+
+        /// <summary>
+        /// The IPv6 CIDR block of the VPC.
+        /// </summary>
+        [Output("ipv6CidrBlock")]
+        public Output<string> Ipv6CidrBlock { get; private set; } = null!;
+
+        /// <summary>
         /// The nat gateway ID list of VPC.
         /// </summary>
         [Output("natGatewayIds")]
         public Output<ImmutableArray<string>> NatGatewayIds { get; private set; } = null!;
+
+        /// <summary>
+        /// The ProjectName of the VPC.
+        /// </summary>
+        [Output("projectName")]
+        public Output<string?> ProjectName { get; private set; } = null!;
 
         /// <summary>
         /// The route table ID list of VPC.
@@ -118,6 +137,12 @@ namespace Pulumi.Volcengine.Vpc
         /// </summary>
         [Output("subnetIds")]
         public Output<ImmutableArray<string>> SubnetIds { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.VpcTag>> Tags { get; private set; } = null!;
 
         /// <summary>
         /// The update time of VPC.
@@ -146,12 +171,12 @@ namespace Pulumi.Volcengine.Vpc
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public Vpc(string name, VpcArgs args, CustomResourceOptions? options = null)
-            : base("volcengine:Vpc/vpc:Vpc", name, args ?? new VpcArgs(), MakeResourceOptions(options, ""))
+            : base("volcengine:vpc/vpc:Vpc", name, args ?? new VpcArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private Vpc(string name, Input<string> id, VpcState? state = null, CustomResourceOptions? options = null)
-            : base("volcengine:Vpc/vpc:Vpc", name, state, MakeResourceOptions(options, id))
+            : base("volcengine:vpc/vpc:Vpc", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -205,6 +230,36 @@ namespace Pulumi.Volcengine.Vpc
         {
             get => _dnsServers ?? (_dnsServers = new InputList<string>());
             set => _dnsServers = value;
+        }
+
+        /// <summary>
+        /// Specifies whether to enable the IPv6 CIDR block of the VPC.
+        /// </summary>
+        [Input("enableIpv6")]
+        public Input<bool>? EnableIpv6 { get; set; }
+
+        /// <summary>
+        /// The IPv6 CIDR block of the VPC.
+        /// </summary>
+        [Input("ipv6CidrBlock")]
+        public Input<string>? Ipv6CidrBlock { get; set; }
+
+        /// <summary>
+        /// The ProjectName of the VPC.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.VpcTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.VpcTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.VpcTagArgs>());
+            set => _tags = value;
         }
 
         /// <summary>
@@ -280,6 +335,18 @@ namespace Pulumi.Volcengine.Vpc
             set => _dnsServers = value;
         }
 
+        /// <summary>
+        /// Specifies whether to enable the IPv6 CIDR block of the VPC.
+        /// </summary>
+        [Input("enableIpv6")]
+        public Input<bool>? EnableIpv6 { get; set; }
+
+        /// <summary>
+        /// The IPv6 CIDR block of the VPC.
+        /// </summary>
+        [Input("ipv6CidrBlock")]
+        public Input<string>? Ipv6CidrBlock { get; set; }
+
         [Input("natGatewayIds")]
         private InputList<string>? _natGatewayIds;
 
@@ -291,6 +358,12 @@ namespace Pulumi.Volcengine.Vpc
             get => _natGatewayIds ?? (_natGatewayIds = new InputList<string>());
             set => _natGatewayIds = value;
         }
+
+        /// <summary>
+        /// The ProjectName of the VPC.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
 
         [Input("routeTableIds")]
         private InputList<string>? _routeTableIds;
@@ -332,6 +405,18 @@ namespace Pulumi.Volcengine.Vpc
         {
             get => _subnetIds ?? (_subnetIds = new InputList<string>());
             set => _subnetIds = value;
+        }
+
+        [Input("tags")]
+        private InputList<Inputs.VpcTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.VpcTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.VpcTagGetArgs>());
+            set => _tags = value;
         }
 
         /// <summary>

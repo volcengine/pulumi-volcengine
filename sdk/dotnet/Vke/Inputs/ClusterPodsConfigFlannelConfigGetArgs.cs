@@ -13,7 +13,7 @@ namespace Pulumi.Volcengine.Vke.Inputs
     public sealed class ClusterPodsConfigFlannelConfigGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The maximum number of single-node Pod instances for a Flannel container network.
+        /// The maximum number of single-node Pod instances for a Flannel container network, the value can be `16` or `32` or `64` or `128` or `256`.
         /// </summary>
         [Input("maxPodsPerNode")]
         public Input<int>? MaxPodsPerNode { get; set; }

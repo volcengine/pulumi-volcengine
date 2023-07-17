@@ -12,7 +12,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = new volcengine.Iam.Policy("foo", {
+ * const foo = new volcengine.iam.Policy("foo", {
  *     description: "created by terraform 1",
  *     policyDocument: "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}",
  *     policyName: "TerraformResourceTest1",
@@ -24,7 +24,7 @@ import * as utilities from "../utilities";
  * Iam policy can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:Iam/policy:Policy default TerraformTestPolicy
+ *  $ pulumi import volcengine:iam/policy:Policy default TerraformTestPolicy
  * ```
  */
 export class Policy extends pulumi.CustomResource {
@@ -42,7 +42,7 @@ export class Policy extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'volcengine:Iam/policy:Policy';
+    public static readonly __pulumiType = 'volcengine:iam/policy:Policy';
 
     /**
      * Returns true if the given object is an instance of Policy.  This is designed to work even

@@ -18,23 +18,26 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Iam"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/iam"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Iam.NewUser(ctx, "foo", &Iam.UserArgs{
-// 			Description: pulumi.String("test"),
-// 			DisplayName: pulumi.String("name"),
-// 			UserName:    pulumi.String("tf-test"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := iam.NewUser(ctx, "foo", &iam.UserArgs{
+//				Description: pulumi.String("test"),
+//				DisplayName: pulumi.String("name"),
+//				UserName:    pulumi.String("tf-test"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -42,7 +45,9 @@ import (
 // Iam user can be imported using the UserName, e.g.
 //
 // ```sh
-//  $ pulumi import volcengine:Iam/user:User default user_name
+//
+//	$ pulumi import volcengine:iam/user:User default user_name
+//
 // ```
 type User struct {
 	pulumi.CustomResourceState
@@ -78,7 +83,7 @@ func NewUser(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'UserName'")
 	}
 	var resource User
-	err := ctx.RegisterResource("volcengine:Iam/user:User", name, args, &resource, opts...)
+	err := ctx.RegisterResource("volcengine:iam/user:User", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -90,7 +95,7 @@ func NewUser(ctx *pulumi.Context,
 func GetUser(ctx *pulumi.Context,
 	name string, id pulumi.IDInput, state *UserState, opts ...pulumi.ResourceOption) (*User, error) {
 	var resource User
-	err := ctx.ReadResource("volcengine:Iam/user:User", name, id, state, &resource, opts...)
+	err := ctx.ReadResource("volcengine:iam/user:User", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -197,7 +202,7 @@ func (i *User) ToUserOutputWithContext(ctx context.Context) UserOutput {
 // UserArrayInput is an input type that accepts UserArray and UserArrayOutput values.
 // You can construct a concrete instance of `UserArrayInput` via:
 //
-//          UserArray{ UserArgs{...} }
+//	UserArray{ UserArgs{...} }
 type UserArrayInput interface {
 	pulumi.Input
 
@@ -222,7 +227,7 @@ func (i UserArray) ToUserArrayOutputWithContext(ctx context.Context) UserArrayOu
 // UserMapInput is an input type that accepts UserMap and UserMapOutput values.
 // You can construct a concrete instance of `UserMapInput` via:
 //
-//          UserMap{ "key": UserArgs{...} }
+//	UserMap{ "key": UserArgs{...} }
 type UserMapInput interface {
 	pulumi.Input
 

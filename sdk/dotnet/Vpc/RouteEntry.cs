@@ -40,10 +40,10 @@ namespace Pulumi.Volcengine.Vpc
     /// Route entry can be imported using the route_table_id:route_entry_id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:Vpc/routeEntry:RouteEntry default vtb-274e19skkuhog7fap8u4i8ird:rte-274e1g9ei4k5c7fap8sp974fq
+    ///  $ pulumi import volcengine:vpc/routeEntry:RouteEntry default vtb-274e19skkuhog7fap8u4i8ird:rte-274e1g9ei4k5c7fap8sp974fq
     /// ```
     /// </summary>
-    [VolcengineResourceType("volcengine:Vpc/routeEntry:RouteEntry")]
+    [VolcengineResourceType("volcengine:vpc/routeEntry:RouteEntry")]
     public partial class RouteEntry : Pulumi.CustomResource
     {
         /// <summary>
@@ -65,7 +65,7 @@ namespace Pulumi.Volcengine.Vpc
         public Output<string> NextHopId { get; private set; } = null!;
 
         /// <summary>
-        /// The type of the next hop.
+        /// The type of the next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
         /// </summary>
         [Output("nextHopType")]
         public Output<string> NextHopType { get; private set; } = null!;
@@ -103,12 +103,12 @@ namespace Pulumi.Volcengine.Vpc
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
         public RouteEntry(string name, RouteEntryArgs args, CustomResourceOptions? options = null)
-            : base("volcengine:Vpc/routeEntry:RouteEntry", name, args ?? new RouteEntryArgs(), MakeResourceOptions(options, ""))
+            : base("volcengine:vpc/routeEntry:RouteEntry", name, args ?? new RouteEntryArgs(), MakeResourceOptions(options, ""))
         {
         }
 
         private RouteEntry(string name, Input<string> id, RouteEntryState? state = null, CustomResourceOptions? options = null)
-            : base("volcengine:Vpc/routeEntry:RouteEntry", name, state, MakeResourceOptions(options, id))
+            : base("volcengine:vpc/routeEntry:RouteEntry", name, state, MakeResourceOptions(options, id))
         {
         }
 
@@ -159,7 +159,7 @@ namespace Pulumi.Volcengine.Vpc
         public Input<string> NextHopId { get; set; } = null!;
 
         /// <summary>
-        /// The type of the next hop.
+        /// The type of the next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
         /// </summary>
         [Input("nextHopType", required: true)]
         public Input<string> NextHopType { get; set; } = null!;
@@ -202,7 +202,7 @@ namespace Pulumi.Volcengine.Vpc
         public Input<string>? NextHopId { get; set; }
 
         /// <summary>
-        /// The type of the next hop.
+        /// The type of the next hop, Optional choice contains `Instance`, `NetworkInterface`, `NatGW`, `VpnGW`, `TransitRouter`.
         /// </summary>
         [Input("nextHopType")]
         public Input<string>? NextHopType { get; set; }

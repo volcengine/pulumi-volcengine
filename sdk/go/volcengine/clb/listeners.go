@@ -17,28 +17,31 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/Clb"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/clb"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := Clb.Listeners(ctx, &clb.ListenersArgs{
-// 			Ids: []string{
-// 				"lsn-273yv0mhs5xj47fap8sehiiso",
-// 				"lsn-273yw6zps6pz47fap8swa0q2z",
-// 			},
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := clb.Listeners(ctx, &clb.ListenersArgs{
+//				Ids: []string{
+//					"lsn-273yv0mhs5xj47fap8sehiiso",
+//					"lsn-273yw6zps6pz47fap8swa0q2z",
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func Listeners(ctx *pulumi.Context, args *ListenersArgs, opts ...pulumi.InvokeOption) (*ListenersResult, error) {
 	var rv ListenersResult
-	err := ctx.Invoke("volcengine:Clb/listeners:Listeners", args, &rv, opts...)
+	err := ctx.Invoke("volcengine:clb/listeners:Listeners", args, &rv, opts...)
 	if err != nil {
 		return nil, err
 	}

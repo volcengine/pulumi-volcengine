@@ -13,6 +13,11 @@ accessKey: Optional[str]
 The Access Key for Volcengine Provider
 """
 
+customerEndpoints: Optional[str]
+"""
+CUSTOMER ENDPOINTS for Volcengine Provider
+"""
+
 customerHeaders: Optional[str]
 """
 CUSTOMER HEADERS for Volcengine Provider
@@ -26,6 +31,11 @@ Disable SSL for Volcengine Provider
 endpoint: Optional[str]
 """
 The Customer Endpoint for Volcengine Provider
+"""
+
+proxyUrl: Optional[str]
+"""
+PROXY URL for Volcengine Provider
 """
 
 region: Optional[str]

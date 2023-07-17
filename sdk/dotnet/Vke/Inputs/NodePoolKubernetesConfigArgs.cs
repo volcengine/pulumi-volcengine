@@ -15,8 +15,8 @@ namespace Pulumi.Volcengine.Vke.Inputs
         /// <summary>
         /// The Cordon of KubernetesConfig.
         /// </summary>
-        [Input("cordon")]
-        public Input<bool>? Cordon { get; set; }
+        [Input("cordon", required: true)]
+        public Input<bool> Cordon { get; set; } = null!;
 
         [Input("labels")]
         private InputList<Inputs.NodePoolKubernetesConfigLabelArgs>? _labels;

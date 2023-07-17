@@ -22,27 +22,27 @@ namespace Pulumi.Volcengine.Clb.Outputs
         /// </summary>
         public readonly string? Enabled;
         /// <summary>
-        /// The healthy threshold of health check.
+        /// The healthy threshold of health check, default 3, range in 2~10.
         /// </summary>
         public readonly int? HealthyThreshold;
         /// <summary>
-        /// The normal http status code of health check.
+        /// The normal http status code of health check, the value can be `http_2xx` or `http_3xx` or `http_4xx` or `http_5xx`.
         /// </summary>
         public readonly string? HttpCode;
         /// <summary>
-        /// The interval executing health check.
+        /// The interval executing health check, default 2, range in 1~300.
         /// </summary>
         public readonly int? Interval;
         /// <summary>
-        /// The method of health check.
+        /// The method of health check, the value can be `GET` or `HEAD`.
         /// </summary>
         public readonly string? Method;
         /// <summary>
-        /// The response timeout of health check.
+        /// The response timeout of health check, default 2, range in 1~60..
         /// </summary>
         public readonly int? Timeout;
         /// <summary>
-        /// The unhealthy threshold of health check.
+        /// The unhealthy threshold of health check, default 3, range in 2~10.
         /// </summary>
         public readonly int? UnHealthyThreshold;
         /// <summary>

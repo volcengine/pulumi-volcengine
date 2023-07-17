@@ -40,7 +40,7 @@ namespace Pulumi.Volcengine.Vpc
         /// {{% /examples %}}
         /// </summary>
         public static Task<SubnetsResult> InvokeAsync(SubnetsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<SubnetsResult>("volcengine:Vpc/subnets:Subnets", args ?? new SubnetsArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.InvokeAsync<SubnetsResult>("volcengine:vpc/subnets:Subnets", args ?? new SubnetsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of subnets
@@ -71,7 +71,7 @@ namespace Pulumi.Volcengine.Vpc
         /// {{% /examples %}}
         /// </summary>
         public static Output<SubnetsResult> Invoke(SubnetsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<SubnetsResult>("volcengine:Vpc/subnets:Subnets", args ?? new SubnetsInvokeArgs(), options.WithDefaults());
+            => Pulumi.Deployment.Instance.Invoke<SubnetsResult>("volcengine:vpc/subnets:Subnets", args ?? new SubnetsInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -100,6 +100,30 @@ namespace Pulumi.Volcengine.Vpc
         /// </summary>
         [Input("outputFile")]
         public string? OutputFile { get; set; }
+
+        /// <summary>
+        /// The ID of route table which subnet associated with.
+        /// </summary>
+        [Input("routeTableId")]
+        public string? RouteTableId { get; set; }
+
+        /// <summary>
+        /// The subnet name to query.
+        /// </summary>
+        [Input("subnetName")]
+        public string? SubnetName { get; set; }
+
+        /// <summary>
+        /// The ID of VPC which subnet belongs to.
+        /// </summary>
+        [Input("vpcId")]
+        public string? VpcId { get; set; }
+
+        /// <summary>
+        /// The ID of zone which subnet belongs to.
+        /// </summary>
+        [Input("zoneId")]
+        public string? ZoneId { get; set; }
 
         public SubnetsArgs()
         {
@@ -132,6 +156,30 @@ namespace Pulumi.Volcengine.Vpc
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
 
+        /// <summary>
+        /// The ID of route table which subnet associated with.
+        /// </summary>
+        [Input("routeTableId")]
+        public Input<string>? RouteTableId { get; set; }
+
+        /// <summary>
+        /// The subnet name to query.
+        /// </summary>
+        [Input("subnetName")]
+        public Input<string>? SubnetName { get; set; }
+
+        /// <summary>
+        /// The ID of VPC which subnet belongs to.
+        /// </summary>
+        [Input("vpcId")]
+        public Input<string>? VpcId { get; set; }
+
+        /// <summary>
+        /// The ID of zone which subnet belongs to.
+        /// </summary>
+        [Input("zoneId")]
+        public Input<string>? ZoneId { get; set; }
+
         public SubnetsInvokeArgs()
         {
         }
@@ -149,6 +197,14 @@ namespace Pulumi.Volcengine.Vpc
         public readonly string? NameRegex;
         public readonly string? OutputFile;
         /// <summary>
+        /// The route table ID.
+        /// </summary>
+        public readonly string? RouteTableId;
+        /// <summary>
+        /// The Name of Subnet.
+        /// </summary>
+        public readonly string? SubnetName;
+        /// <summary>
         /// The collection of Subnet query.
         /// </summary>
         public readonly ImmutableArray<Outputs.SubnetsSubnetResult> Subnets;
@@ -156,6 +212,14 @@ namespace Pulumi.Volcengine.Vpc
         /// The total count of Subnet query.
         /// </summary>
         public readonly int TotalCount;
+        /// <summary>
+        /// The Vpc ID of Subnet.
+        /// </summary>
+        public readonly string? VpcId;
+        /// <summary>
+        /// The ID of Zone.
+        /// </summary>
+        public readonly string? ZoneId;
 
         [OutputConstructor]
         private SubnetsResult(
@@ -167,16 +231,28 @@ namespace Pulumi.Volcengine.Vpc
 
             string? outputFile,
 
+            string? routeTableId,
+
+            string? subnetName,
+
             ImmutableArray<Outputs.SubnetsSubnetResult> subnets,
 
-            int totalCount)
+            int totalCount,
+
+            string? vpcId,
+
+            string? zoneId)
         {
             Id = id;
             Ids = ids;
             NameRegex = nameRegex;
             OutputFile = outputFile;
+            RouteTableId = routeTableId;
+            SubnetName = subnetName;
             Subnets = subnets;
             TotalCount = totalCount;
+            VpcId = vpcId;
+            ZoneId = zoneId;
         }
     }
 }

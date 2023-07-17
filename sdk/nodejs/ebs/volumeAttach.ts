@@ -12,7 +12,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = new volcengine.Ebs.VolumeAttach("foo", {
+ * const foo = new volcengine.ebs.VolumeAttach("foo", {
  *     instanceId: "i-4ay59ww7dq8dt9c29hd4",
  *     volumeId: "vol-3tzl52wubz3b9fciw7ev",
  * });
@@ -23,7 +23,7 @@ import * as utilities from "../utilities";
  * VolumeAttach can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:Ebs/volumeAttach:VolumeAttach default vol-abc12345:i-abc12345
+ *  $ pulumi import volcengine:ebs/volumeAttach:VolumeAttach default vol-abc12345:i-abc12345
  * ```
  */
 export class VolumeAttach extends pulumi.CustomResource {
@@ -41,7 +41,7 @@ export class VolumeAttach extends pulumi.CustomResource {
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'volcengine:Ebs/volumeAttach:VolumeAttach';
+    public static readonly __pulumiType = 'volcengine:ebs/volumeAttach:VolumeAttach';
 
     /**
      * Returns true if the given object is an instance of VolumeAttach.  This is designed to work even
