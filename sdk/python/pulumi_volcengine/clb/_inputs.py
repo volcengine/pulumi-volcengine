@@ -10,6 +10,9 @@ from .. import _utilities
 
 __all__ = [
     'AclAclEntryArgs',
+    'CertificateTagArgs',
+    'CertificatesTagArgs',
+    'ClbEipBillingConfigArgs',
     'ClbTagArgs',
     'ClbsTagArgs',
     'ListenerHealthCheckArgs',
@@ -51,6 +54,133 @@ class AclAclEntryArgs:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+
+@pulumi.input_type
+class CertificateTagArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class CertificatesTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ClbEipBillingConfigArgs:
+    def __init__(__self__, *,
+                 eip_billing_type: pulumi.Input[str],
+                 isp: pulumi.Input[str],
+                 bandwidth: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] eip_billing_type: The billing type of the EIP which automatically assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.When creating a `PrePaid` public CLB, this field must be specified as `PrePaid` simultaneously.When the LoadBalancerBillingType changes from `PostPaid` to `PrePaid`, please manually modify the value of this field to `PrePaid` simultaneously.
+        :param pulumi.Input[str] isp: The ISP of the EIP which automatically associated to CLB, the value can be `BGP`.
+        :param pulumi.Input[int] bandwidth: The peek bandwidth of the EIP which automatically assigned to CLB. The value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
+        """
+        pulumi.set(__self__, "eip_billing_type", eip_billing_type)
+        pulumi.set(__self__, "isp", isp)
+        if bandwidth is not None:
+            pulumi.set(__self__, "bandwidth", bandwidth)
+
+    @property
+    @pulumi.getter(name="eipBillingType")
+    def eip_billing_type(self) -> pulumi.Input[str]:
+        """
+        The billing type of the EIP which automatically assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.When creating a `PrePaid` public CLB, this field must be specified as `PrePaid` simultaneously.When the LoadBalancerBillingType changes from `PostPaid` to `PrePaid`, please manually modify the value of this field to `PrePaid` simultaneously.
+        """
+        return pulumi.get(self, "eip_billing_type")
+
+    @eip_billing_type.setter
+    def eip_billing_type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "eip_billing_type", value)
+
+    @property
+    @pulumi.getter
+    def isp(self) -> pulumi.Input[str]:
+        """
+        The ISP of the EIP which automatically associated to CLB, the value can be `BGP`.
+        """
+        return pulumi.get(self, "isp")
+
+    @isp.setter
+    def isp(self, value: pulumi.Input[str]):
+        pulumi.set(self, "isp", value)
+
+    @property
+    @pulumi.getter
+    def bandwidth(self) -> Optional[pulumi.Input[int]]:
+        """
+        The peek bandwidth of the EIP which automatically assigned to CLB. The value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
+        """
+        return pulumi.get(self, "bandwidth")
+
+    @bandwidth.setter
+    def bandwidth(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "bandwidth", value)
 
 
 @pulumi.input_type
@@ -137,6 +267,8 @@ class ListenerHealthCheckArgs:
                  interval: Optional[pulumi.Input[int]] = None,
                  method: Optional[pulumi.Input[str]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
+                 udp_expect: Optional[pulumi.Input[str]] = None,
+                 udp_request: Optional[pulumi.Input[str]] = None,
                  un_healthy_threshold: Optional[pulumi.Input[int]] = None,
                  uri: Optional[pulumi.Input[str]] = None):
         """
@@ -147,6 +279,8 @@ class ListenerHealthCheckArgs:
         :param pulumi.Input[int] interval: The interval executing health check, default 2, range in 1~300.
         :param pulumi.Input[str] method: The method of health check, the value can be `GET` or `HEAD`.
         :param pulumi.Input[int] timeout: The response timeout of health check, default 2, range in 1~60..
+        :param pulumi.Input[str] udp_expect: The UDP expect of health check. This field must be specified simultaneously with field `udp_request`.
+        :param pulumi.Input[str] udp_request: The UDP request of health check. This field must be specified simultaneously with field `udp_expect`.
         :param pulumi.Input[int] un_healthy_threshold: The unhealthy threshold of health check, default 3, range in 2~10.
         :param pulumi.Input[str] uri: The uri of health check.
         """
@@ -164,6 +298,10 @@ class ListenerHealthCheckArgs:
             pulumi.set(__self__, "method", method)
         if timeout is not None:
             pulumi.set(__self__, "timeout", timeout)
+        if udp_expect is not None:
+            pulumi.set(__self__, "udp_expect", udp_expect)
+        if udp_request is not None:
+            pulumi.set(__self__, "udp_request", udp_request)
         if un_healthy_threshold is not None:
             pulumi.set(__self__, "un_healthy_threshold", un_healthy_threshold)
         if uri is not None:
@@ -252,6 +390,30 @@ class ListenerHealthCheckArgs:
     @timeout.setter
     def timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "timeout", value)
+
+    @property
+    @pulumi.getter(name="udpExpect")
+    def udp_expect(self) -> Optional[pulumi.Input[str]]:
+        """
+        The UDP expect of health check. This field must be specified simultaneously with field `udp_request`.
+        """
+        return pulumi.get(self, "udp_expect")
+
+    @udp_expect.setter
+    def udp_expect(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "udp_expect", value)
+
+    @property
+    @pulumi.getter(name="udpRequest")
+    def udp_request(self) -> Optional[pulumi.Input[str]]:
+        """
+        The UDP request of health check. This field must be specified simultaneously with field `udp_expect`.
+        """
+        return pulumi.get(self, "udp_request")
+
+    @udp_request.setter
+    def udp_request(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "udp_request", value)
 
     @property
     @pulumi.getter(name="unHealthyThreshold")

@@ -11,12 +11,22 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as pulumi from "@volcengine/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultDeploymentSets = pulumi.output(volcengine.ecs.DeploymentSets({
- *     granularity: "host",
- *     ids: ["dps-ybp1b059cb5m57n135g3"],
- * }));
+ * const fooDeploymentSet: volcengine.ecs.DeploymentSet[];
+ * for (const range = {value: 0}; range.value < 3; range.value++) {
+ *     fooDeploymentSet.push(new volcengine.ecs.DeploymentSet(`fooDeploymentSet-${range.value}`, {
+ *         deploymentSetName: `acc-test-ecs-ds-${range.value}`,
+ *         description: "acc-test",
+ *         granularity: "switch",
+ *         strategy: "Availability",
+ *     }));
+ * }
+ * const fooDeploymentSets = volcengine.ecs.DeploymentSetsOutput({
+ *     granularity: "switch",
+ *     ids: fooDeploymentSet.map(__item => __item.id),
+ * });
  * ```
  */
 export function deploymentSets(args?: DeploymentSetsArgs, opts?: pulumi.InvokeOptions): Promise<DeploymentSetsResult> {

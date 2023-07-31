@@ -17,6 +17,7 @@ from .continuous_backup import *
 from .endpoint import *
 from .instance import *
 from .instances import *
+from .pitr_time_windows import *
 from .regions import *
 from .state import *
 from .zones import *

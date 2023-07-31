@@ -16,9 +16,9 @@ import * as utilities from "../utilities";
  *     bandwidth: 20,
  *     description: "tf-test",
  *     period: 2,
- *     projectName: "yuwenhao",
- *     subnetId: "subnet-2fe19qp20f3sw59gp67w8om25",
- *     vpcId: "vpc-2fe19q1dn2g3k59gp68n7w3rr",
+ *     projectName: "default",
+ *     subnetId: "subnet-12bh8g2d7fshs17q7y2nx82uk",
+ *     vpcId: "vpc-12b31m7z2kc8w17q7y2fih9ts",
  *     vpnGatewayName: "tf-test",
  * });
  * ```
@@ -64,12 +64,12 @@ export class Gateway extends pulumi.CustomResource {
      */
     public /*out*/ readonly accountId!: pulumi.Output<string>;
     /**
-     * The bandwidth of the VPN gateway.
+     * The bandwidth of the VPN gateway. Unit: Mbps. Values: 5, 10, 20, 50, 100, 200, 500.
      */
     public readonly bandwidth!: pulumi.Output<number>;
     /**
-     * The BillingType of the VPN gateway. Terraform will only remove the PrePaid VPN gateway from the state file, not actually
-     * remove.
+     * The BillingType of the VPN gateway. Only support `PrePaid`. Terraform will only remove the PrePaid VPN gateway from the
+     * state file, not actually remove.
      */
     public readonly billingType!: pulumi.Output<string | undefined>;
     /**
@@ -105,7 +105,8 @@ export class Gateway extends pulumi.CustomResource {
      */
     public /*out*/ readonly lockReason!: pulumi.Output<string>;
     /**
-     * The Period of the VPN gateway. This parameter is only useful when creating vpn gateway. Default period unit is Month.
+     * The Period of the VPN gateway. Default value is 12. This parameter is only useful when creating vpn gateway. Default period unit is Month.
+     * Value range: 1~9, 12, 24, 36. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     public readonly period!: pulumi.Output<number | undefined>;
     /**
@@ -232,12 +233,12 @@ export interface GatewayState {
      */
     accountId?: pulumi.Input<string>;
     /**
-     * The bandwidth of the VPN gateway.
+     * The bandwidth of the VPN gateway. Unit: Mbps. Values: 5, 10, 20, 50, 100, 200, 500.
      */
     bandwidth?: pulumi.Input<number>;
     /**
-     * The BillingType of the VPN gateway. Terraform will only remove the PrePaid VPN gateway from the state file, not actually
-     * remove.
+     * The BillingType of the VPN gateway. Only support `PrePaid`. Terraform will only remove the PrePaid VPN gateway from the
+     * state file, not actually remove.
      */
     billingType?: pulumi.Input<string>;
     /**
@@ -273,7 +274,8 @@ export interface GatewayState {
      */
     lockReason?: pulumi.Input<string>;
     /**
-     * The Period of the VPN gateway. This parameter is only useful when creating vpn gateway. Default period unit is Month.
+     * The Period of the VPN gateway. Default value is 12. This parameter is only useful when creating vpn gateway. Default period unit is Month.
+     * Value range: 1~9, 12, 24, 36. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     period?: pulumi.Input<number>;
     /**
@@ -323,12 +325,12 @@ export interface GatewayState {
  */
 export interface GatewayArgs {
     /**
-     * The bandwidth of the VPN gateway.
+     * The bandwidth of the VPN gateway. Unit: Mbps. Values: 5, 10, 20, 50, 100, 200, 500.
      */
     bandwidth: pulumi.Input<number>;
     /**
-     * The BillingType of the VPN gateway. Terraform will only remove the PrePaid VPN gateway from the state file, not actually
-     * remove.
+     * The BillingType of the VPN gateway. Only support `PrePaid`. Terraform will only remove the PrePaid VPN gateway from the
+     * state file, not actually remove.
      */
     billingType?: pulumi.Input<string>;
     /**
@@ -336,7 +338,8 @@ export interface GatewayArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * The Period of the VPN gateway. This parameter is only useful when creating vpn gateway. Default period unit is Month.
+     * The Period of the VPN gateway. Default value is 12. This parameter is only useful when creating vpn gateway. Default period unit is Month.
+     * Value range: 1~9, 12, 24, 36. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     period?: pulumi.Input<number>;
     /**

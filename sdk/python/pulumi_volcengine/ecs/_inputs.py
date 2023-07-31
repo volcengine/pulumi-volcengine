@@ -9,6 +9,7 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
+    'InstanceCpuOptionsArgs',
     'InstanceDataVolumeArgs',
     'InstanceGpuDeviceArgs',
     'InstanceSecondaryNetworkInterfaceArgs',
@@ -19,13 +20,35 @@ __all__ = [
 ]
 
 @pulumi.input_type
+class InstanceCpuOptionsArgs:
+    def __init__(__self__, *,
+                 threads_per_core: pulumi.Input[int]):
+        """
+        :param pulumi.Input[int] threads_per_core: The per core of threads.
+        """
+        pulumi.set(__self__, "threads_per_core", threads_per_core)
+
+    @property
+    @pulumi.getter(name="threadsPerCore")
+    def threads_per_core(self) -> pulumi.Input[int]:
+        """
+        The per core of threads.
+        """
+        return pulumi.get(self, "threads_per_core")
+
+    @threads_per_core.setter
+    def threads_per_core(self, value: pulumi.Input[int]):
+        pulumi.set(self, "threads_per_core", value)
+
+
+@pulumi.input_type
 class InstanceDataVolumeArgs:
     def __init__(__self__, *,
                  size: pulumi.Input[int],
                  volume_type: pulumi.Input[str],
                  delete_with_instance: Optional[pulumi.Input[bool]] = None):
         """
-        :param pulumi.Input[int] size: The size of volume.
+        :param pulumi.Input[int] size: The size of volume. The value range of the data volume size is ESSD_PL0: 10~32768, ESSD_FlexPL: 10~32768, PTSSD: 20~8192.
         :param pulumi.Input[str] volume_type: The type of volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         :param pulumi.Input[bool] delete_with_instance: The delete with instance flag of volume.
         """
@@ -38,7 +61,7 @@ class InstanceDataVolumeArgs:
     @pulumi.getter
     def size(self) -> pulumi.Input[int]:
         """
-        The size of volume.
+        The size of volume. The value range of the data volume size is ESSD_PL0: 10~32768, ESSD_FlexPL: 10~32768, PTSSD: 20~8192.
         """
         return pulumi.get(self, "size")
 

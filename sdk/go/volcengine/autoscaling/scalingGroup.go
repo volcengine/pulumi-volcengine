@@ -21,6 +21,7 @@ import (
 //
 //	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/autoscaling"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/autoscaling"
 //
 // )
 //
@@ -33,9 +34,16 @@ import (
 //				MaxInstanceNumber:       pulumi.Int(1),
 //				MinInstanceNumber:       pulumi.Int(0),
 //				MultiAzPolicy:           pulumi.String("BALANCE"),
-//				ScalingGroupName:        pulumi.String("tf-test"),
+//				ProjectName:             pulumi.String("default"),
+//				ScalingGroupName:        pulumi.String("test-tf"),
 //				SubnetIds: pulumi.StringArray{
-//					pulumi.String("subnet-2ff1n75eyf08w59gp67qhnhqm"),
+//					pulumi.String("subnet-2fe79j7c8o5c059gp68ksxr93"),
+//				},
+//				Tags: autoscaling.ScalingGroupTagArray{
+//					&autoscaling.ScalingGroupTagArgs{
+//						Key:   pulumi.String("tf-key1"),
+//						Value: pulumi.String("tf-value1"),
+//					},
 //				},
 //			})
 //			if err != nil {
@@ -65,24 +73,26 @@ type ScalingGroup struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The list of db instance ids.
 	DbInstanceIds pulumi.StringArrayOutput `pulumi:"dbInstanceIds"`
-	// The default cooldown interval of the scaling group. Default value: 300.
+	// The default cooldown interval of the scaling group. Value range: 5 ~ 86400, unit: second. Default value: 300.
 	DefaultCooldown pulumi.IntOutput `pulumi:"defaultCooldown"`
 	// The desire instance number of the scaling group.
 	DesireInstanceNumber pulumi.IntOutput `pulumi:"desireInstanceNumber"`
 	// The instance terminate policy of the scaling group. Valid values: OldestInstance, NewestInstance, OldestScalingConfigurationWithOldestInstance, OldestScalingConfigurationWithNewestInstance. Default value: OldestScalingConfigurationWithOldestInstance.
 	InstanceTerminatePolicy pulumi.StringOutput `pulumi:"instanceTerminatePolicy"`
-	// The ID of the launch template bound to the scaling group.
+	// The ID of the launch template bound to the scaling group. The launch template and scaling configuration cannot take effect at the same time.
 	LaunchTemplateId pulumi.StringPtrOutput `pulumi:"launchTemplateId"`
-	// The version of the launch template bound to the scaling group.
+	// The version of the launch template bound to the scaling group. Valid values are the version number, Latest, or Default.
 	LaunchTemplateVersion pulumi.StringPtrOutput `pulumi:"launchTemplateVersion"`
 	// The lifecycle state of the scaling group.
 	LifecycleState pulumi.StringOutput `pulumi:"lifecycleState"`
-	// The max instance number of the scaling group.
+	// The max instance number of the scaling group. Value range: 0 ~ 100.
 	MaxInstanceNumber pulumi.IntOutput `pulumi:"maxInstanceNumber"`
-	// The min instance number of the scaling group.
+	// The min instance number of the scaling group. Value range: 0 ~ 100.
 	MinInstanceNumber pulumi.IntOutput `pulumi:"minInstanceNumber"`
 	// The multi az policy of the scaling group. Valid values: PRIORITY, BALANCE. Default value: PRIORITY.
 	MultiAzPolicy pulumi.StringOutput `pulumi:"multiAzPolicy"`
+	// The ProjectName of the scaling group.
+	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
 	// The id of the scaling group.
 	ScalingGroupId pulumi.StringOutput `pulumi:"scalingGroupId"`
 	// The name of the scaling group.
@@ -91,6 +101,8 @@ type ScalingGroup struct {
 	ServerGroupAttributes ScalingGroupServerGroupAttributeArrayOutput `pulumi:"serverGroupAttributes"`
 	// The list of the subnet id to which the ENI is connected.
 	SubnetIds pulumi.StringArrayOutput `pulumi:"subnetIds"`
+	// Tags.
+	Tags ScalingGroupTagArrayOutput `pulumi:"tags"`
 	// The total instance count of the scaling group.
 	TotalInstanceCount pulumi.IntOutput `pulumi:"totalInstanceCount"`
 	// The create time of the scaling group.
@@ -146,24 +158,26 @@ type scalingGroupState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// The list of db instance ids.
 	DbInstanceIds []string `pulumi:"dbInstanceIds"`
-	// The default cooldown interval of the scaling group. Default value: 300.
+	// The default cooldown interval of the scaling group. Value range: 5 ~ 86400, unit: second. Default value: 300.
 	DefaultCooldown *int `pulumi:"defaultCooldown"`
 	// The desire instance number of the scaling group.
 	DesireInstanceNumber *int `pulumi:"desireInstanceNumber"`
 	// The instance terminate policy of the scaling group. Valid values: OldestInstance, NewestInstance, OldestScalingConfigurationWithOldestInstance, OldestScalingConfigurationWithNewestInstance. Default value: OldestScalingConfigurationWithOldestInstance.
 	InstanceTerminatePolicy *string `pulumi:"instanceTerminatePolicy"`
-	// The ID of the launch template bound to the scaling group.
+	// The ID of the launch template bound to the scaling group. The launch template and scaling configuration cannot take effect at the same time.
 	LaunchTemplateId *string `pulumi:"launchTemplateId"`
-	// The version of the launch template bound to the scaling group.
+	// The version of the launch template bound to the scaling group. Valid values are the version number, Latest, or Default.
 	LaunchTemplateVersion *string `pulumi:"launchTemplateVersion"`
 	// The lifecycle state of the scaling group.
 	LifecycleState *string `pulumi:"lifecycleState"`
-	// The max instance number of the scaling group.
+	// The max instance number of the scaling group. Value range: 0 ~ 100.
 	MaxInstanceNumber *int `pulumi:"maxInstanceNumber"`
-	// The min instance number of the scaling group.
+	// The min instance number of the scaling group. Value range: 0 ~ 100.
 	MinInstanceNumber *int `pulumi:"minInstanceNumber"`
 	// The multi az policy of the scaling group. Valid values: PRIORITY, BALANCE. Default value: PRIORITY.
 	MultiAzPolicy *string `pulumi:"multiAzPolicy"`
+	// The ProjectName of the scaling group.
+	ProjectName *string `pulumi:"projectName"`
 	// The id of the scaling group.
 	ScalingGroupId *string `pulumi:"scalingGroupId"`
 	// The name of the scaling group.
@@ -172,6 +186,8 @@ type scalingGroupState struct {
 	ServerGroupAttributes []ScalingGroupServerGroupAttribute `pulumi:"serverGroupAttributes"`
 	// The list of the subnet id to which the ENI is connected.
 	SubnetIds []string `pulumi:"subnetIds"`
+	// Tags.
+	Tags []ScalingGroupTag `pulumi:"tags"`
 	// The total instance count of the scaling group.
 	TotalInstanceCount *int `pulumi:"totalInstanceCount"`
 	// The create time of the scaling group.
@@ -187,24 +203,26 @@ type ScalingGroupState struct {
 	CreatedAt pulumi.StringPtrInput
 	// The list of db instance ids.
 	DbInstanceIds pulumi.StringArrayInput
-	// The default cooldown interval of the scaling group. Default value: 300.
+	// The default cooldown interval of the scaling group. Value range: 5 ~ 86400, unit: second. Default value: 300.
 	DefaultCooldown pulumi.IntPtrInput
 	// The desire instance number of the scaling group.
 	DesireInstanceNumber pulumi.IntPtrInput
 	// The instance terminate policy of the scaling group. Valid values: OldestInstance, NewestInstance, OldestScalingConfigurationWithOldestInstance, OldestScalingConfigurationWithNewestInstance. Default value: OldestScalingConfigurationWithOldestInstance.
 	InstanceTerminatePolicy pulumi.StringPtrInput
-	// The ID of the launch template bound to the scaling group.
+	// The ID of the launch template bound to the scaling group. The launch template and scaling configuration cannot take effect at the same time.
 	LaunchTemplateId pulumi.StringPtrInput
-	// The version of the launch template bound to the scaling group.
+	// The version of the launch template bound to the scaling group. Valid values are the version number, Latest, or Default.
 	LaunchTemplateVersion pulumi.StringPtrInput
 	// The lifecycle state of the scaling group.
 	LifecycleState pulumi.StringPtrInput
-	// The max instance number of the scaling group.
+	// The max instance number of the scaling group. Value range: 0 ~ 100.
 	MaxInstanceNumber pulumi.IntPtrInput
-	// The min instance number of the scaling group.
+	// The min instance number of the scaling group. Value range: 0 ~ 100.
 	MinInstanceNumber pulumi.IntPtrInput
 	// The multi az policy of the scaling group. Valid values: PRIORITY, BALANCE. Default value: PRIORITY.
 	MultiAzPolicy pulumi.StringPtrInput
+	// The ProjectName of the scaling group.
+	ProjectName pulumi.StringPtrInput
 	// The id of the scaling group.
 	ScalingGroupId pulumi.StringPtrInput
 	// The name of the scaling group.
@@ -213,6 +231,8 @@ type ScalingGroupState struct {
 	ServerGroupAttributes ScalingGroupServerGroupAttributeArrayInput
 	// The list of the subnet id to which the ENI is connected.
 	SubnetIds pulumi.StringArrayInput
+	// Tags.
+	Tags ScalingGroupTagArrayInput
 	// The total instance count of the scaling group.
 	TotalInstanceCount pulumi.IntPtrInput
 	// The create time of the scaling group.
@@ -226,54 +246,62 @@ func (ScalingGroupState) ElementType() reflect.Type {
 }
 
 type scalingGroupArgs struct {
-	// The default cooldown interval of the scaling group. Default value: 300.
+	// The default cooldown interval of the scaling group. Value range: 5 ~ 86400, unit: second. Default value: 300.
 	DefaultCooldown *int `pulumi:"defaultCooldown"`
 	// The desire instance number of the scaling group.
 	DesireInstanceNumber *int `pulumi:"desireInstanceNumber"`
 	// The instance terminate policy of the scaling group. Valid values: OldestInstance, NewestInstance, OldestScalingConfigurationWithOldestInstance, OldestScalingConfigurationWithNewestInstance. Default value: OldestScalingConfigurationWithOldestInstance.
 	InstanceTerminatePolicy *string `pulumi:"instanceTerminatePolicy"`
-	// The ID of the launch template bound to the scaling group.
+	// The ID of the launch template bound to the scaling group. The launch template and scaling configuration cannot take effect at the same time.
 	LaunchTemplateId *string `pulumi:"launchTemplateId"`
-	// The version of the launch template bound to the scaling group.
+	// The version of the launch template bound to the scaling group. Valid values are the version number, Latest, or Default.
 	LaunchTemplateVersion *string `pulumi:"launchTemplateVersion"`
-	// The max instance number of the scaling group.
+	// The max instance number of the scaling group. Value range: 0 ~ 100.
 	MaxInstanceNumber int `pulumi:"maxInstanceNumber"`
-	// The min instance number of the scaling group.
+	// The min instance number of the scaling group. Value range: 0 ~ 100.
 	MinInstanceNumber int `pulumi:"minInstanceNumber"`
 	// The multi az policy of the scaling group. Valid values: PRIORITY, BALANCE. Default value: PRIORITY.
 	MultiAzPolicy *string `pulumi:"multiAzPolicy"`
+	// The ProjectName of the scaling group.
+	ProjectName *string `pulumi:"projectName"`
 	// The name of the scaling group.
 	ScalingGroupName string `pulumi:"scalingGroupName"`
 	// The load balancer server group attributes of the scaling group.
 	ServerGroupAttributes []ScalingGroupServerGroupAttribute `pulumi:"serverGroupAttributes"`
 	// The list of the subnet id to which the ENI is connected.
 	SubnetIds []string `pulumi:"subnetIds"`
+	// Tags.
+	Tags []ScalingGroupTag `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a ScalingGroup resource.
 type ScalingGroupArgs struct {
-	// The default cooldown interval of the scaling group. Default value: 300.
+	// The default cooldown interval of the scaling group. Value range: 5 ~ 86400, unit: second. Default value: 300.
 	DefaultCooldown pulumi.IntPtrInput
 	// The desire instance number of the scaling group.
 	DesireInstanceNumber pulumi.IntPtrInput
 	// The instance terminate policy of the scaling group. Valid values: OldestInstance, NewestInstance, OldestScalingConfigurationWithOldestInstance, OldestScalingConfigurationWithNewestInstance. Default value: OldestScalingConfigurationWithOldestInstance.
 	InstanceTerminatePolicy pulumi.StringPtrInput
-	// The ID of the launch template bound to the scaling group.
+	// The ID of the launch template bound to the scaling group. The launch template and scaling configuration cannot take effect at the same time.
 	LaunchTemplateId pulumi.StringPtrInput
-	// The version of the launch template bound to the scaling group.
+	// The version of the launch template bound to the scaling group. Valid values are the version number, Latest, or Default.
 	LaunchTemplateVersion pulumi.StringPtrInput
-	// The max instance number of the scaling group.
+	// The max instance number of the scaling group. Value range: 0 ~ 100.
 	MaxInstanceNumber pulumi.IntInput
-	// The min instance number of the scaling group.
+	// The min instance number of the scaling group. Value range: 0 ~ 100.
 	MinInstanceNumber pulumi.IntInput
 	// The multi az policy of the scaling group. Valid values: PRIORITY, BALANCE. Default value: PRIORITY.
 	MultiAzPolicy pulumi.StringPtrInput
+	// The ProjectName of the scaling group.
+	ProjectName pulumi.StringPtrInput
 	// The name of the scaling group.
 	ScalingGroupName pulumi.StringInput
 	// The load balancer server group attributes of the scaling group.
 	ServerGroupAttributes ScalingGroupServerGroupAttributeArrayInput
 	// The list of the subnet id to which the ENI is connected.
 	SubnetIds pulumi.StringArrayInput
+	// Tags.
+	Tags ScalingGroupTagArrayInput
 }
 
 func (ScalingGroupArgs) ElementType() reflect.Type {
@@ -378,7 +406,7 @@ func (o ScalingGroupOutput) DbInstanceIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ScalingGroup) pulumi.StringArrayOutput { return v.DbInstanceIds }).(pulumi.StringArrayOutput)
 }
 
-// The default cooldown interval of the scaling group. Default value: 300.
+// The default cooldown interval of the scaling group. Value range: 5 ~ 86400, unit: second. Default value: 300.
 func (o ScalingGroupOutput) DefaultCooldown() pulumi.IntOutput {
 	return o.ApplyT(func(v *ScalingGroup) pulumi.IntOutput { return v.DefaultCooldown }).(pulumi.IntOutput)
 }
@@ -393,12 +421,12 @@ func (o ScalingGroupOutput) InstanceTerminatePolicy() pulumi.StringOutput {
 	return o.ApplyT(func(v *ScalingGroup) pulumi.StringOutput { return v.InstanceTerminatePolicy }).(pulumi.StringOutput)
 }
 
-// The ID of the launch template bound to the scaling group.
+// The ID of the launch template bound to the scaling group. The launch template and scaling configuration cannot take effect at the same time.
 func (o ScalingGroupOutput) LaunchTemplateId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ScalingGroup) pulumi.StringPtrOutput { return v.LaunchTemplateId }).(pulumi.StringPtrOutput)
 }
 
-// The version of the launch template bound to the scaling group.
+// The version of the launch template bound to the scaling group. Valid values are the version number, Latest, or Default.
 func (o ScalingGroupOutput) LaunchTemplateVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ScalingGroup) pulumi.StringPtrOutput { return v.LaunchTemplateVersion }).(pulumi.StringPtrOutput)
 }
@@ -408,12 +436,12 @@ func (o ScalingGroupOutput) LifecycleState() pulumi.StringOutput {
 	return o.ApplyT(func(v *ScalingGroup) pulumi.StringOutput { return v.LifecycleState }).(pulumi.StringOutput)
 }
 
-// The max instance number of the scaling group.
+// The max instance number of the scaling group. Value range: 0 ~ 100.
 func (o ScalingGroupOutput) MaxInstanceNumber() pulumi.IntOutput {
 	return o.ApplyT(func(v *ScalingGroup) pulumi.IntOutput { return v.MaxInstanceNumber }).(pulumi.IntOutput)
 }
 
-// The min instance number of the scaling group.
+// The min instance number of the scaling group. Value range: 0 ~ 100.
 func (o ScalingGroupOutput) MinInstanceNumber() pulumi.IntOutput {
 	return o.ApplyT(func(v *ScalingGroup) pulumi.IntOutput { return v.MinInstanceNumber }).(pulumi.IntOutput)
 }
@@ -421,6 +449,11 @@ func (o ScalingGroupOutput) MinInstanceNumber() pulumi.IntOutput {
 // The multi az policy of the scaling group. Valid values: PRIORITY, BALANCE. Default value: PRIORITY.
 func (o ScalingGroupOutput) MultiAzPolicy() pulumi.StringOutput {
 	return o.ApplyT(func(v *ScalingGroup) pulumi.StringOutput { return v.MultiAzPolicy }).(pulumi.StringOutput)
+}
+
+// The ProjectName of the scaling group.
+func (o ScalingGroupOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ScalingGroup) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
 }
 
 // The id of the scaling group.
@@ -441,6 +474,11 @@ func (o ScalingGroupOutput) ServerGroupAttributes() ScalingGroupServerGroupAttri
 // The list of the subnet id to which the ENI is connected.
 func (o ScalingGroupOutput) SubnetIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ScalingGroup) pulumi.StringArrayOutput { return v.SubnetIds }).(pulumi.StringArrayOutput)
+}
+
+// Tags.
+func (o ScalingGroupOutput) Tags() ScalingGroupTagArrayOutput {
+	return o.ApplyT(func(v *ScalingGroup) ScalingGroupTagArrayOutput { return v.Tags }).(ScalingGroupTagArrayOutput)
 }
 
 // The total instance count of the scaling group.

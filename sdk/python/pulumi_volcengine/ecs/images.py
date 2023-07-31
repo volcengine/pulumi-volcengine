@@ -169,10 +169,9 @@ def images(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.ecs.images(ids=[
-        "image-cm9ssb4eqmhdas306zlp",
-        "image-ybkzct2rtj4ay5rmlfc3",
-    ])
+    foo = volcengine.ecs.images(instance_type_id="ecs.g1.large",
+        os_type="Linux",
+        visibility="public")
     ```
 
 
@@ -232,10 +231,9 @@ def images_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.ecs.images(ids=[
-        "image-cm9ssb4eqmhdas306zlp",
-        "image-ybkzct2rtj4ay5rmlfc3",
-    ])
+    foo = volcengine.ecs.images(instance_type_id="ecs.g1.large",
+        os_type="Linux",
+        visibility="public")
     ```
 
 

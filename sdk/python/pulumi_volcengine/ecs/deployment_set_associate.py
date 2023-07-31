@@ -104,9 +104,44 @@ class DeploymentSetAssociate(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        default = volcengine.ecs.DeploymentSetAssociate("default",
-            deployment_set_id="dps-ybp1b059cb5m57n135g3",
-            instance_id="i-ybsum2gwr6a8j7j7ak8h")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+            security_group_name="acc-test-security-group",
+            vpc_id=foo_vpc.id)
+        foo_images = volcengine.ecs.images(os_type="Linux",
+            visibility="public",
+            instance_type_id="ecs.g1.large")
+        foo_instance = volcengine.ecs.Instance("fooInstance",
+            instance_name="acc-test-ecs",
+            image_id=foo_images.images[0].image_id,
+            instance_type="ecs.g1.large",
+            password="93f0cb0614Aab12",
+            instance_charge_type="PostPaid",
+            system_volume_type="ESSD_PL0",
+            system_volume_size=40,
+            subnet_id=foo_subnet.id,
+            security_group_ids=[foo_security_group.id])
+        foo_state = volcengine.ecs.State("fooState",
+            instance_id=foo_instance.id,
+            action="Stop",
+            stopped_mode="KeepCharging")
+        foo_deployment_set = volcengine.ecs.DeploymentSet("fooDeploymentSet",
+            deployment_set_name="acc-test-ecs-ds",
+            description="acc-test",
+            granularity="switch",
+            strategy="Availability")
+        foo_deployment_set_associate = volcengine.ecs.DeploymentSetAssociate("fooDeploymentSetAssociate",
+            deployment_set_id=foo_deployment_set.id,
+            instance_id=foo_instance.id,
+            opts=pulumi.ResourceOptions(depends_on=[foo_state]))
         ```
 
         ## Import
@@ -136,9 +171,44 @@ class DeploymentSetAssociate(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        default = volcengine.ecs.DeploymentSetAssociate("default",
-            deployment_set_id="dps-ybp1b059cb5m57n135g3",
-            instance_id="i-ybsum2gwr6a8j7j7ak8h")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+            security_group_name="acc-test-security-group",
+            vpc_id=foo_vpc.id)
+        foo_images = volcengine.ecs.images(os_type="Linux",
+            visibility="public",
+            instance_type_id="ecs.g1.large")
+        foo_instance = volcengine.ecs.Instance("fooInstance",
+            instance_name="acc-test-ecs",
+            image_id=foo_images.images[0].image_id,
+            instance_type="ecs.g1.large",
+            password="93f0cb0614Aab12",
+            instance_charge_type="PostPaid",
+            system_volume_type="ESSD_PL0",
+            system_volume_size=40,
+            subnet_id=foo_subnet.id,
+            security_group_ids=[foo_security_group.id])
+        foo_state = volcengine.ecs.State("fooState",
+            instance_id=foo_instance.id,
+            action="Stop",
+            stopped_mode="KeepCharging")
+        foo_deployment_set = volcengine.ecs.DeploymentSet("fooDeploymentSet",
+            deployment_set_name="acc-test-ecs-ds",
+            description="acc-test",
+            granularity="switch",
+            strategy="Availability")
+        foo_deployment_set_associate = volcengine.ecs.DeploymentSetAssociate("fooDeploymentSetAssociate",
+            deployment_set_id=foo_deployment_set.id,
+            instance_id=foo_instance.id,
+            opts=pulumi.ResourceOptions(depends_on=[foo_state]))
         ```
 
         ## Import

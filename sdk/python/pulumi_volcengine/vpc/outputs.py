@@ -374,9 +374,9 @@ class NetworkAclEgressAclEntry(dict):
         :param str description: The description of entry.
         :param str destination_cidr_ip: The DestinationCidrIp of entry.
         :param str network_acl_entry_name: The name of entry.
-        :param str policy: The policy of entry.
-        :param str port: The port of entry.
-        :param str protocol: The protocol of entry.
+        :param str policy: The policy of entry. Default is `accept`. The value can be `accept` or `drop`.
+        :param str port: The port of entry. Default is `-1/-1`. When Protocol is `all`, `icmp` or `gre`, the port range is `-1/-1`, which means no port restriction.When the Protocol is `tcp` or `udp`, the port range is `1~65535`, and the format is `1/200`, `80/80`,which means port 1 to port 200, port 80.
+        :param str protocol: The protocol of entry. The value can be `icmp` or `gre` or `tcp` or `udp` or `all`. Default is `all`.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -428,7 +428,7 @@ class NetworkAclEgressAclEntry(dict):
     @pulumi.getter
     def policy(self) -> Optional[str]:
         """
-        The policy of entry.
+        The policy of entry. Default is `accept`. The value can be `accept` or `drop`.
         """
         return pulumi.get(self, "policy")
 
@@ -436,7 +436,7 @@ class NetworkAclEgressAclEntry(dict):
     @pulumi.getter
     def port(self) -> Optional[str]:
         """
-        The port of entry.
+        The port of entry. Default is `-1/-1`. When Protocol is `all`, `icmp` or `gre`, the port range is `-1/-1`, which means no port restriction.When the Protocol is `tcp` or `udp`, the port range is `1~65535`, and the format is `1/200`, `80/80`,which means port 1 to port 200, port 80.
         """
         return pulumi.get(self, "port")
 
@@ -449,7 +449,7 @@ class NetworkAclEgressAclEntry(dict):
     @pulumi.getter
     def protocol(self) -> Optional[str]:
         """
-        The protocol of entry.
+        The protocol of entry. The value can be `icmp` or `gre` or `tcp` or `udp` or `all`. Default is `all`.
         """
         return pulumi.get(self, "protocol")
 
@@ -489,9 +489,9 @@ class NetworkAclIngressAclEntry(dict):
         """
         :param str description: The description of entry.
         :param str network_acl_entry_name: The name of entry.
-        :param str policy: The policy of entry.
-        :param str port: The port of entry.
-        :param str protocol: The protocol of entry.
+        :param str policy: The policy of entry, default is `accept`. The value can be `accept` or `drop`.
+        :param str port: The port of entry. Default is `-1/-1`. When Protocol is `all`, `icmp` or `gre`, the port range is `-1/-1`, which means no port restriction. When the Protocol is `tcp` or `udp`, the port range is `1~65535`, and the format is `1/200`, `80/80`, which means port 1 to port 200, port 80.
+        :param str protocol: The protocol of entry, default is `all`. The value can be `icmp` or `gre` or `tcp` or `udp` or `all`.
         :param str source_cidr_ip: The SourceCidrIp of entry.
         """
         if description is not None:
@@ -536,7 +536,7 @@ class NetworkAclIngressAclEntry(dict):
     @pulumi.getter
     def policy(self) -> Optional[str]:
         """
-        The policy of entry.
+        The policy of entry, default is `accept`. The value can be `accept` or `drop`.
         """
         return pulumi.get(self, "policy")
 
@@ -544,7 +544,7 @@ class NetworkAclIngressAclEntry(dict):
     @pulumi.getter
     def port(self) -> Optional[str]:
         """
-        The port of entry.
+        The port of entry. Default is `-1/-1`. When Protocol is `all`, `icmp` or `gre`, the port range is `-1/-1`, which means no port restriction. When the Protocol is `tcp` or `udp`, the port range is `1~65535`, and the format is `1/200`, `80/80`, which means port 1 to port 200, port 80.
         """
         return pulumi.get(self, "port")
 
@@ -557,7 +557,7 @@ class NetworkAclIngressAclEntry(dict):
     @pulumi.getter
     def protocol(self) -> Optional[str]:
         """
-        The protocol of entry.
+        The protocol of entry, default is `all`. The value can be `icmp` or `gre` or `tcp` or `udp` or `all`.
         """
         return pulumi.get(self, "protocol")
 

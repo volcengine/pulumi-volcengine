@@ -20,15 +20,34 @@ import (
 //
 //	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ecs.LaunchTemplates(ctx, nil, nil)
+//			fooLaunchTemplate, err := ecs.NewLaunchTemplate(ctx, "fooLaunchTemplate", &ecs.LaunchTemplateArgs{
+//				Description:        pulumi.String("acc-test-desc"),
+//				EipBandwidth:       pulumi.Int(1),
+//				EipBillingType:     pulumi.String("PostPaidByBandwidth"),
+//				EipIsp:             pulumi.String("ChinaMobile"),
+//				HostName:           pulumi.String("tf-host-name"),
+//				HpcClusterId:       pulumi.String("hpcCluster-l8u24ovdmoab6opf"),
+//				ImageId:            pulumi.String("image-ycjwwciuzy5pkh54xx8f"),
+//				InstanceChargeType: pulumi.String("PostPaid"),
+//				InstanceName:       pulumi.String("tf-acc-name"),
+//				InstanceTypeId:     pulumi.String("ecs.g1.large"),
+//				KeyPairName:        pulumi.String("tf-key-pair"),
+//				LaunchTemplateName: pulumi.String("tf-acc-template"),
+//			})
 //			if err != nil {
 //				return err
 //			}
+//			_ = ecs.LaunchTemplatesOutput(ctx, ecs.LaunchTemplatesOutputArgs{
+//				Ids: pulumi.StringArray{
+//					fooLaunchTemplate.ID(),
+//				},
+//			}, nil)
 //			return nil
 //		})
 //	}

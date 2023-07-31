@@ -117,7 +117,20 @@ def launch_templates(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.ecs.launch_templates()
+    foo_launch_template = volcengine.ecs.LaunchTemplate("fooLaunchTemplate",
+        description="acc-test-desc",
+        eip_bandwidth=1,
+        eip_billing_type="PostPaidByBandwidth",
+        eip_isp="ChinaMobile",
+        host_name="tf-host-name",
+        hpc_cluster_id="hpcCluster-l8u24ovdmoab6opf",
+        image_id="image-ycjwwciuzy5pkh54xx8f",
+        instance_charge_type="PostPaid",
+        instance_name="tf-acc-name",
+        instance_type_id="ecs.g1.large",
+        key_pair_name="tf-key-pair",
+        launch_template_name="tf-acc-template")
+    foo_launch_templates = volcengine.ecs.launch_templates_output(ids=[foo_launch_template.id])
     ```
 
 
@@ -161,7 +174,20 @@ def launch_templates_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]]
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.ecs.launch_templates()
+    foo_launch_template = volcengine.ecs.LaunchTemplate("fooLaunchTemplate",
+        description="acc-test-desc",
+        eip_bandwidth=1,
+        eip_billing_type="PostPaidByBandwidth",
+        eip_isp="ChinaMobile",
+        host_name="tf-host-name",
+        hpc_cluster_id="hpcCluster-l8u24ovdmoab6opf",
+        image_id="image-ycjwwciuzy5pkh54xx8f",
+        instance_charge_type="PostPaid",
+        instance_name="tf-acc-name",
+        instance_type_id="ecs.g1.large",
+        key_pair_name="tf-key-pair",
+        launch_template_name="tf-acc-template")
+    foo_launch_templates = volcengine.ecs.launch_templates_output(ids=[foo_launch_template.id])
     ```
 
 

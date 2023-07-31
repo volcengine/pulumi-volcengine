@@ -17,8 +17,8 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/cen"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/cen"
 //
 // )
 //
@@ -33,6 +33,7 @@ import (
 //				PeerGeographicRegionSetId:  pulumi.String("China"),
 //				Period:                     pulumi.Int(1),
 //				PeriodUnit:                 pulumi.String("Year"),
+//				ProjectName:                pulumi.String("default"),
 //			})
 //			if err != nil {
 //				return err
@@ -57,10 +58,10 @@ type BandwidthPackage struct {
 
 	// The account ID of the cen bandwidth package.
 	AccountId pulumi.StringOutput `pulumi:"accountId"`
-	// The bandwidth of the cen bandwidth package.
+	// The bandwidth of the cen bandwidth package. Value: 2~10000.
 	Bandwidth pulumi.IntOutput `pulumi:"bandwidth"`
-	// The billing type of the cen bandwidth package. Terraform will only remove the PrePaid cen bandwidth package from the
-	// state file, not actually remove.
+	// The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`. Terraform will
+	// only remove the PrePaid cen bandwidth package from the state file, not actually remove.
 	BillingType pulumi.StringPtrOutput `pulumi:"billingType"`
 	// The business status of the cen bandwidth package.
 	BusinessStatus pulumi.StringOutput `pulumi:"businessStatus"`
@@ -78,14 +79,16 @@ type BandwidthPackage struct {
 	Description pulumi.StringOutput `pulumi:"description"`
 	// The expired time of the cen bandwidth package.
 	ExpiredTime pulumi.StringOutput `pulumi:"expiredTime"`
-	// The local geographic region set id of the cen bandwidth package.
+	// The local geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
 	LocalGeographicRegionSetId pulumi.StringPtrOutput `pulumi:"localGeographicRegionSetId"`
-	// The peer geographic region set id of the cen bandwidth package.
+	// The peer geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
 	PeerGeographicRegionSetId pulumi.StringPtrOutput `pulumi:"peerGeographicRegionSetId"`
-	// The period of the cen bandwidth package.
+	// The period of the cen bandwidth package. Default value is 1.
 	Period pulumi.IntPtrOutput `pulumi:"period"`
-	// The period unit of the cen bandwidth package.
+	// The period unit of the cen bandwidth package. Value: `Month`, `Year`. Default value is `Month`.
 	PeriodUnit pulumi.StringPtrOutput `pulumi:"periodUnit"`
+	// The ProjectName of the cen bandwidth package.
+	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
 	// The remain bandwidth of the cen bandwidth package.
 	RemainingBandwidth pulumi.IntOutput `pulumi:"remainingBandwidth"`
 	// The status of the cen bandwidth package.
@@ -127,10 +130,10 @@ func GetBandwidthPackage(ctx *pulumi.Context,
 type bandwidthPackageState struct {
 	// The account ID of the cen bandwidth package.
 	AccountId *string `pulumi:"accountId"`
-	// The bandwidth of the cen bandwidth package.
+	// The bandwidth of the cen bandwidth package. Value: 2~10000.
 	Bandwidth *int `pulumi:"bandwidth"`
-	// The billing type of the cen bandwidth package. Terraform will only remove the PrePaid cen bandwidth package from the
-	// state file, not actually remove.
+	// The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`. Terraform will
+	// only remove the PrePaid cen bandwidth package from the state file, not actually remove.
 	BillingType *string `pulumi:"billingType"`
 	// The business status of the cen bandwidth package.
 	BusinessStatus *string `pulumi:"businessStatus"`
@@ -148,14 +151,16 @@ type bandwidthPackageState struct {
 	Description *string `pulumi:"description"`
 	// The expired time of the cen bandwidth package.
 	ExpiredTime *string `pulumi:"expiredTime"`
-	// The local geographic region set id of the cen bandwidth package.
+	// The local geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
 	LocalGeographicRegionSetId *string `pulumi:"localGeographicRegionSetId"`
-	// The peer geographic region set id of the cen bandwidth package.
+	// The peer geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
 	PeerGeographicRegionSetId *string `pulumi:"peerGeographicRegionSetId"`
-	// The period of the cen bandwidth package.
+	// The period of the cen bandwidth package. Default value is 1.
 	Period *int `pulumi:"period"`
-	// The period unit of the cen bandwidth package.
+	// The period unit of the cen bandwidth package. Value: `Month`, `Year`. Default value is `Month`.
 	PeriodUnit *string `pulumi:"periodUnit"`
+	// The ProjectName of the cen bandwidth package.
+	ProjectName *string `pulumi:"projectName"`
 	// The remain bandwidth of the cen bandwidth package.
 	RemainingBandwidth *int `pulumi:"remainingBandwidth"`
 	// The status of the cen bandwidth package.
@@ -169,10 +174,10 @@ type bandwidthPackageState struct {
 type BandwidthPackageState struct {
 	// The account ID of the cen bandwidth package.
 	AccountId pulumi.StringPtrInput
-	// The bandwidth of the cen bandwidth package.
+	// The bandwidth of the cen bandwidth package. Value: 2~10000.
 	Bandwidth pulumi.IntPtrInput
-	// The billing type of the cen bandwidth package. Terraform will only remove the PrePaid cen bandwidth package from the
-	// state file, not actually remove.
+	// The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`. Terraform will
+	// only remove the PrePaid cen bandwidth package from the state file, not actually remove.
 	BillingType pulumi.StringPtrInput
 	// The business status of the cen bandwidth package.
 	BusinessStatus pulumi.StringPtrInput
@@ -190,14 +195,16 @@ type BandwidthPackageState struct {
 	Description pulumi.StringPtrInput
 	// The expired time of the cen bandwidth package.
 	ExpiredTime pulumi.StringPtrInput
-	// The local geographic region set id of the cen bandwidth package.
+	// The local geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
 	LocalGeographicRegionSetId pulumi.StringPtrInput
-	// The peer geographic region set id of the cen bandwidth package.
+	// The peer geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
 	PeerGeographicRegionSetId pulumi.StringPtrInput
-	// The period of the cen bandwidth package.
+	// The period of the cen bandwidth package. Default value is 1.
 	Period pulumi.IntPtrInput
-	// The period unit of the cen bandwidth package.
+	// The period unit of the cen bandwidth package. Value: `Month`, `Year`. Default value is `Month`.
 	PeriodUnit pulumi.StringPtrInput
+	// The ProjectName of the cen bandwidth package.
+	ProjectName pulumi.StringPtrInput
 	// The remain bandwidth of the cen bandwidth package.
 	RemainingBandwidth pulumi.IntPtrInput
 	// The status of the cen bandwidth package.
@@ -213,46 +220,50 @@ func (BandwidthPackageState) ElementType() reflect.Type {
 }
 
 type bandwidthPackageArgs struct {
-	// The bandwidth of the cen bandwidth package.
+	// The bandwidth of the cen bandwidth package. Value: 2~10000.
 	Bandwidth *int `pulumi:"bandwidth"`
-	// The billing type of the cen bandwidth package. Terraform will only remove the PrePaid cen bandwidth package from the
-	// state file, not actually remove.
+	// The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`. Terraform will
+	// only remove the PrePaid cen bandwidth package from the state file, not actually remove.
 	BillingType *string `pulumi:"billingType"`
 	// The name of the cen bandwidth package.
 	CenBandwidthPackageName *string `pulumi:"cenBandwidthPackageName"`
 	// The description of the cen bandwidth package.
 	Description *string `pulumi:"description"`
-	// The local geographic region set id of the cen bandwidth package.
+	// The local geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
 	LocalGeographicRegionSetId *string `pulumi:"localGeographicRegionSetId"`
-	// The peer geographic region set id of the cen bandwidth package.
+	// The peer geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
 	PeerGeographicRegionSetId *string `pulumi:"peerGeographicRegionSetId"`
-	// The period of the cen bandwidth package.
+	// The period of the cen bandwidth package. Default value is 1.
 	Period *int `pulumi:"period"`
-	// The period unit of the cen bandwidth package.
+	// The period unit of the cen bandwidth package. Value: `Month`, `Year`. Default value is `Month`.
 	PeriodUnit *string `pulumi:"periodUnit"`
+	// The ProjectName of the cen bandwidth package.
+	ProjectName *string `pulumi:"projectName"`
 	// Tags.
 	Tags []BandwidthPackageTag `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a BandwidthPackage resource.
 type BandwidthPackageArgs struct {
-	// The bandwidth of the cen bandwidth package.
+	// The bandwidth of the cen bandwidth package. Value: 2~10000.
 	Bandwidth pulumi.IntPtrInput
-	// The billing type of the cen bandwidth package. Terraform will only remove the PrePaid cen bandwidth package from the
-	// state file, not actually remove.
+	// The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`. Terraform will
+	// only remove the PrePaid cen bandwidth package from the state file, not actually remove.
 	BillingType pulumi.StringPtrInput
 	// The name of the cen bandwidth package.
 	CenBandwidthPackageName pulumi.StringPtrInput
 	// The description of the cen bandwidth package.
 	Description pulumi.StringPtrInput
-	// The local geographic region set id of the cen bandwidth package.
+	// The local geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
 	LocalGeographicRegionSetId pulumi.StringPtrInput
-	// The peer geographic region set id of the cen bandwidth package.
+	// The peer geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
 	PeerGeographicRegionSetId pulumi.StringPtrInput
-	// The period of the cen bandwidth package.
+	// The period of the cen bandwidth package. Default value is 1.
 	Period pulumi.IntPtrInput
-	// The period unit of the cen bandwidth package.
+	// The period unit of the cen bandwidth package. Value: `Month`, `Year`. Default value is `Month`.
 	PeriodUnit pulumi.StringPtrInput
+	// The ProjectName of the cen bandwidth package.
+	ProjectName pulumi.StringPtrInput
 	// Tags.
 	Tags BandwidthPackageTagArrayInput
 }
@@ -349,13 +360,13 @@ func (o BandwidthPackageOutput) AccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v *BandwidthPackage) pulumi.StringOutput { return v.AccountId }).(pulumi.StringOutput)
 }
 
-// The bandwidth of the cen bandwidth package.
+// The bandwidth of the cen bandwidth package. Value: 2~10000.
 func (o BandwidthPackageOutput) Bandwidth() pulumi.IntOutput {
 	return o.ApplyT(func(v *BandwidthPackage) pulumi.IntOutput { return v.Bandwidth }).(pulumi.IntOutput)
 }
 
-// The billing type of the cen bandwidth package. Terraform will only remove the PrePaid cen bandwidth package from the
-// state file, not actually remove.
+// The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`. Terraform will
+// only remove the PrePaid cen bandwidth package from the state file, not actually remove.
 func (o BandwidthPackageOutput) BillingType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BandwidthPackage) pulumi.StringPtrOutput { return v.BillingType }).(pulumi.StringPtrOutput)
 }
@@ -400,24 +411,29 @@ func (o BandwidthPackageOutput) ExpiredTime() pulumi.StringOutput {
 	return o.ApplyT(func(v *BandwidthPackage) pulumi.StringOutput { return v.ExpiredTime }).(pulumi.StringOutput)
 }
 
-// The local geographic region set id of the cen bandwidth package.
+// The local geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
 func (o BandwidthPackageOutput) LocalGeographicRegionSetId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BandwidthPackage) pulumi.StringPtrOutput { return v.LocalGeographicRegionSetId }).(pulumi.StringPtrOutput)
 }
 
-// The peer geographic region set id of the cen bandwidth package.
+// The peer geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
 func (o BandwidthPackageOutput) PeerGeographicRegionSetId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BandwidthPackage) pulumi.StringPtrOutput { return v.PeerGeographicRegionSetId }).(pulumi.StringPtrOutput)
 }
 
-// The period of the cen bandwidth package.
+// The period of the cen bandwidth package. Default value is 1.
 func (o BandwidthPackageOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *BandwidthPackage) pulumi.IntPtrOutput { return v.Period }).(pulumi.IntPtrOutput)
 }
 
-// The period unit of the cen bandwidth package.
+// The period unit of the cen bandwidth package. Value: `Month`, `Year`. Default value is `Month`.
 func (o BandwidthPackageOutput) PeriodUnit() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BandwidthPackage) pulumi.StringPtrOutput { return v.PeriodUnit }).(pulumi.StringPtrOutput)
+}
+
+// The ProjectName of the cen bandwidth package.
+func (o BandwidthPackageOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BandwidthPackage) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
 }
 
 // The remain bandwidth of the cen bandwidth package.

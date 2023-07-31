@@ -18,16 +18,17 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/cen"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/cen"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cen.NewCen(ctx, "foo", &cen.CenArgs{
-//				CenName:     pulumi.String("tf-test"),
+//				CenName:     pulumi.String("tf-test-3"),
 //				Description: pulumi.String("tf-test"),
+//				ProjectName: pulumi.String("default"),
 //			})
 //			if err != nil {
 //				return err
@@ -62,6 +63,8 @@ type Cen struct {
 	CreationTime pulumi.StringOutput `pulumi:"creationTime"`
 	// The description of the cen.
 	Description pulumi.StringOutput `pulumi:"description"`
+	// The ProjectName of the cen instance.
+	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
 	// The status of the cen.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Tags.
@@ -111,6 +114,8 @@ type cenState struct {
 	CreationTime *string `pulumi:"creationTime"`
 	// The description of the cen.
 	Description *string `pulumi:"description"`
+	// The ProjectName of the cen instance.
+	ProjectName *string `pulumi:"projectName"`
 	// The status of the cen.
 	Status *string `pulumi:"status"`
 	// Tags.
@@ -132,6 +137,8 @@ type CenState struct {
 	CreationTime pulumi.StringPtrInput
 	// The description of the cen.
 	Description pulumi.StringPtrInput
+	// The ProjectName of the cen instance.
+	ProjectName pulumi.StringPtrInput
 	// The status of the cen.
 	Status pulumi.StringPtrInput
 	// Tags.
@@ -149,6 +156,8 @@ type cenArgs struct {
 	CenName *string `pulumi:"cenName"`
 	// The description of the cen.
 	Description *string `pulumi:"description"`
+	// The ProjectName of the cen instance.
+	ProjectName *string `pulumi:"projectName"`
 	// Tags.
 	Tags []CenTag `pulumi:"tags"`
 }
@@ -159,6 +168,8 @@ type CenArgs struct {
 	CenName pulumi.StringPtrInput
 	// The description of the cen.
 	Description pulumi.StringPtrInput
+	// The ProjectName of the cen instance.
+	ProjectName pulumi.StringPtrInput
 	// Tags.
 	Tags CenTagArrayInput
 }
@@ -278,6 +289,11 @@ func (o CenOutput) CreationTime() pulumi.StringOutput {
 // The description of the cen.
 func (o CenOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cen) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+// The ProjectName of the cen instance.
+func (o CenOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Cen) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
 }
 
 // The status of the cen.

@@ -10,7 +10,7 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as pulumi from "@volcengine/pulumi";
  *
  * const fooAcl = new volcengine.clb.Acl("fooAcl", {
  *     aclName: "tf-test-3",

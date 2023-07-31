@@ -11,34 +11,6 @@ import (
 )
 
 // Use this data source to query detailed information of ecs deployment sets
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/ecs"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ecs.DeploymentSets(ctx, &ecs.DeploymentSetsArgs{
-//				Granularity: pulumi.StringRef("host"),
-//				Ids: []string{
-//					"dps-ybp1b059cb5m57n135g3",
-//				},
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func DeploymentSets(ctx *pulumi.Context, args *DeploymentSetsArgs, opts ...pulumi.InvokeOption) (*DeploymentSetsResult, error) {
 	var rv DeploymentSetsResult
 	err := ctx.Invoke("volcengine:ecs/deploymentSets:DeploymentSets", args, &rv, opts...)

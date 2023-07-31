@@ -25,20 +25,24 @@ class ScalingGroupArgs:
                  launch_template_id: Optional[pulumi.Input[str]] = None,
                  launch_template_version: Optional[pulumi.Input[str]] = None,
                  multi_az_policy: Optional[pulumi.Input[str]] = None,
-                 server_group_attributes: Optional[pulumi.Input[Sequence[pulumi.Input['ScalingGroupServerGroupAttributeArgs']]]] = None):
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 server_group_attributes: Optional[pulumi.Input[Sequence[pulumi.Input['ScalingGroupServerGroupAttributeArgs']]]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ScalingGroupTagArgs']]]] = None):
         """
         The set of arguments for constructing a ScalingGroup resource.
-        :param pulumi.Input[int] max_instance_number: The max instance number of the scaling group.
-        :param pulumi.Input[int] min_instance_number: The min instance number of the scaling group.
+        :param pulumi.Input[int] max_instance_number: The max instance number of the scaling group. Value range: 0 ~ 100.
+        :param pulumi.Input[int] min_instance_number: The min instance number of the scaling group. Value range: 0 ~ 100.
         :param pulumi.Input[str] scaling_group_name: The name of the scaling group.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] subnet_ids: The list of the subnet id to which the ENI is connected.
-        :param pulumi.Input[int] default_cooldown: The default cooldown interval of the scaling group. Default value: 300.
+        :param pulumi.Input[int] default_cooldown: The default cooldown interval of the scaling group. Value range: 5 ~ 86400, unit: second. Default value: 300.
         :param pulumi.Input[int] desire_instance_number: The desire instance number of the scaling group.
         :param pulumi.Input[str] instance_terminate_policy: The instance terminate policy of the scaling group. Valid values: OldestInstance, NewestInstance, OldestScalingConfigurationWithOldestInstance, OldestScalingConfigurationWithNewestInstance. Default value: OldestScalingConfigurationWithOldestInstance.
-        :param pulumi.Input[str] launch_template_id: The ID of the launch template bound to the scaling group.
-        :param pulumi.Input[str] launch_template_version: The version of the launch template bound to the scaling group.
+        :param pulumi.Input[str] launch_template_id: The ID of the launch template bound to the scaling group. The launch template and scaling configuration cannot take effect at the same time.
+        :param pulumi.Input[str] launch_template_version: The version of the launch template bound to the scaling group. Valid values are the version number, Latest, or Default.
         :param pulumi.Input[str] multi_az_policy: The multi az policy of the scaling group. Valid values: PRIORITY, BALANCE. Default value: PRIORITY.
+        :param pulumi.Input[str] project_name: The ProjectName of the scaling group.
         :param pulumi.Input[Sequence[pulumi.Input['ScalingGroupServerGroupAttributeArgs']]] server_group_attributes: The load balancer server group attributes of the scaling group.
+        :param pulumi.Input[Sequence[pulumi.Input['ScalingGroupTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "max_instance_number", max_instance_number)
         pulumi.set(__self__, "min_instance_number", min_instance_number)
@@ -56,14 +60,18 @@ class ScalingGroupArgs:
             pulumi.set(__self__, "launch_template_version", launch_template_version)
         if multi_az_policy is not None:
             pulumi.set(__self__, "multi_az_policy", multi_az_policy)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if server_group_attributes is not None:
             pulumi.set(__self__, "server_group_attributes", server_group_attributes)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="maxInstanceNumber")
     def max_instance_number(self) -> pulumi.Input[int]:
         """
-        The max instance number of the scaling group.
+        The max instance number of the scaling group. Value range: 0 ~ 100.
         """
         return pulumi.get(self, "max_instance_number")
 
@@ -75,7 +83,7 @@ class ScalingGroupArgs:
     @pulumi.getter(name="minInstanceNumber")
     def min_instance_number(self) -> pulumi.Input[int]:
         """
-        The min instance number of the scaling group.
+        The min instance number of the scaling group. Value range: 0 ~ 100.
         """
         return pulumi.get(self, "min_instance_number")
 
@@ -111,7 +119,7 @@ class ScalingGroupArgs:
     @pulumi.getter(name="defaultCooldown")
     def default_cooldown(self) -> Optional[pulumi.Input[int]]:
         """
-        The default cooldown interval of the scaling group. Default value: 300.
+        The default cooldown interval of the scaling group. Value range: 5 ~ 86400, unit: second. Default value: 300.
         """
         return pulumi.get(self, "default_cooldown")
 
@@ -147,7 +155,7 @@ class ScalingGroupArgs:
     @pulumi.getter(name="launchTemplateId")
     def launch_template_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the launch template bound to the scaling group.
+        The ID of the launch template bound to the scaling group. The launch template and scaling configuration cannot take effect at the same time.
         """
         return pulumi.get(self, "launch_template_id")
 
@@ -159,7 +167,7 @@ class ScalingGroupArgs:
     @pulumi.getter(name="launchTemplateVersion")
     def launch_template_version(self) -> Optional[pulumi.Input[str]]:
         """
-        The version of the launch template bound to the scaling group.
+        The version of the launch template bound to the scaling group. Valid values are the version number, Latest, or Default.
         """
         return pulumi.get(self, "launch_template_version")
 
@@ -180,6 +188,18 @@ class ScalingGroupArgs:
         pulumi.set(self, "multi_az_policy", value)
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of the scaling group.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
     @pulumi.getter(name="serverGroupAttributes")
     def server_group_attributes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ScalingGroupServerGroupAttributeArgs']]]]:
         """
@@ -190,6 +210,18 @@ class ScalingGroupArgs:
     @server_group_attributes.setter
     def server_group_attributes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ScalingGroupServerGroupAttributeArgs']]]]):
         pulumi.set(self, "server_group_attributes", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ScalingGroupTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ScalingGroupTagArgs']]]]):
+        pulumi.set(self, "tags", value)
 
 
 @pulumi.input_type
@@ -207,10 +239,12 @@ class _ScalingGroupState:
                  max_instance_number: Optional[pulumi.Input[int]] = None,
                  min_instance_number: Optional[pulumi.Input[int]] = None,
                  multi_az_policy: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  scaling_group_id: Optional[pulumi.Input[str]] = None,
                  scaling_group_name: Optional[pulumi.Input[str]] = None,
                  server_group_attributes: Optional[pulumi.Input[Sequence[pulumi.Input['ScalingGroupServerGroupAttributeArgs']]]] = None,
                  subnet_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ScalingGroupTagArgs']]]] = None,
                  total_instance_count: Optional[pulumi.Input[int]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None):
@@ -219,19 +253,21 @@ class _ScalingGroupState:
         :param pulumi.Input[str] active_scaling_configuration_id: The scaling configuration id which used by the scaling group.
         :param pulumi.Input[str] created_at: The create time of the scaling group.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] db_instance_ids: The list of db instance ids.
-        :param pulumi.Input[int] default_cooldown: The default cooldown interval of the scaling group. Default value: 300.
+        :param pulumi.Input[int] default_cooldown: The default cooldown interval of the scaling group. Value range: 5 ~ 86400, unit: second. Default value: 300.
         :param pulumi.Input[int] desire_instance_number: The desire instance number of the scaling group.
         :param pulumi.Input[str] instance_terminate_policy: The instance terminate policy of the scaling group. Valid values: OldestInstance, NewestInstance, OldestScalingConfigurationWithOldestInstance, OldestScalingConfigurationWithNewestInstance. Default value: OldestScalingConfigurationWithOldestInstance.
-        :param pulumi.Input[str] launch_template_id: The ID of the launch template bound to the scaling group.
-        :param pulumi.Input[str] launch_template_version: The version of the launch template bound to the scaling group.
+        :param pulumi.Input[str] launch_template_id: The ID of the launch template bound to the scaling group. The launch template and scaling configuration cannot take effect at the same time.
+        :param pulumi.Input[str] launch_template_version: The version of the launch template bound to the scaling group. Valid values are the version number, Latest, or Default.
         :param pulumi.Input[str] lifecycle_state: The lifecycle state of the scaling group.
-        :param pulumi.Input[int] max_instance_number: The max instance number of the scaling group.
-        :param pulumi.Input[int] min_instance_number: The min instance number of the scaling group.
+        :param pulumi.Input[int] max_instance_number: The max instance number of the scaling group. Value range: 0 ~ 100.
+        :param pulumi.Input[int] min_instance_number: The min instance number of the scaling group. Value range: 0 ~ 100.
         :param pulumi.Input[str] multi_az_policy: The multi az policy of the scaling group. Valid values: PRIORITY, BALANCE. Default value: PRIORITY.
+        :param pulumi.Input[str] project_name: The ProjectName of the scaling group.
         :param pulumi.Input[str] scaling_group_id: The id of the scaling group.
         :param pulumi.Input[str] scaling_group_name: The name of the scaling group.
         :param pulumi.Input[Sequence[pulumi.Input['ScalingGroupServerGroupAttributeArgs']]] server_group_attributes: The load balancer server group attributes of the scaling group.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] subnet_ids: The list of the subnet id to which the ENI is connected.
+        :param pulumi.Input[Sequence[pulumi.Input['ScalingGroupTagArgs']]] tags: Tags.
         :param pulumi.Input[int] total_instance_count: The total instance count of the scaling group.
         :param pulumi.Input[str] updated_at: The create time of the scaling group.
         :param pulumi.Input[str] vpc_id: The VPC id of the scaling group.
@@ -260,6 +296,8 @@ class _ScalingGroupState:
             pulumi.set(__self__, "min_instance_number", min_instance_number)
         if multi_az_policy is not None:
             pulumi.set(__self__, "multi_az_policy", multi_az_policy)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if scaling_group_id is not None:
             pulumi.set(__self__, "scaling_group_id", scaling_group_id)
         if scaling_group_name is not None:
@@ -268,6 +306,8 @@ class _ScalingGroupState:
             pulumi.set(__self__, "server_group_attributes", server_group_attributes)
         if subnet_ids is not None:
             pulumi.set(__self__, "subnet_ids", subnet_ids)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if total_instance_count is not None:
             pulumi.set(__self__, "total_instance_count", total_instance_count)
         if updated_at is not None:
@@ -315,7 +355,7 @@ class _ScalingGroupState:
     @pulumi.getter(name="defaultCooldown")
     def default_cooldown(self) -> Optional[pulumi.Input[int]]:
         """
-        The default cooldown interval of the scaling group. Default value: 300.
+        The default cooldown interval of the scaling group. Value range: 5 ~ 86400, unit: second. Default value: 300.
         """
         return pulumi.get(self, "default_cooldown")
 
@@ -351,7 +391,7 @@ class _ScalingGroupState:
     @pulumi.getter(name="launchTemplateId")
     def launch_template_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the launch template bound to the scaling group.
+        The ID of the launch template bound to the scaling group. The launch template and scaling configuration cannot take effect at the same time.
         """
         return pulumi.get(self, "launch_template_id")
 
@@ -363,7 +403,7 @@ class _ScalingGroupState:
     @pulumi.getter(name="launchTemplateVersion")
     def launch_template_version(self) -> Optional[pulumi.Input[str]]:
         """
-        The version of the launch template bound to the scaling group.
+        The version of the launch template bound to the scaling group. Valid values are the version number, Latest, or Default.
         """
         return pulumi.get(self, "launch_template_version")
 
@@ -387,7 +427,7 @@ class _ScalingGroupState:
     @pulumi.getter(name="maxInstanceNumber")
     def max_instance_number(self) -> Optional[pulumi.Input[int]]:
         """
-        The max instance number of the scaling group.
+        The max instance number of the scaling group. Value range: 0 ~ 100.
         """
         return pulumi.get(self, "max_instance_number")
 
@@ -399,7 +439,7 @@ class _ScalingGroupState:
     @pulumi.getter(name="minInstanceNumber")
     def min_instance_number(self) -> Optional[pulumi.Input[int]]:
         """
-        The min instance number of the scaling group.
+        The min instance number of the scaling group. Value range: 0 ~ 100.
         """
         return pulumi.get(self, "min_instance_number")
 
@@ -418,6 +458,18 @@ class _ScalingGroupState:
     @multi_az_policy.setter
     def multi_az_policy(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "multi_az_policy", value)
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of the scaling group.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
 
     @property
     @pulumi.getter(name="scalingGroupId")
@@ -466,6 +518,18 @@ class _ScalingGroupState:
     @subnet_ids.setter
     def subnet_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "subnet_ids", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ScalingGroupTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ScalingGroupTagArgs']]]]):
+        pulumi.set(self, "tags", value)
 
     @property
     @pulumi.getter(name="totalInstanceCount")
@@ -517,9 +581,11 @@ class ScalingGroup(pulumi.CustomResource):
                  max_instance_number: Optional[pulumi.Input[int]] = None,
                  min_instance_number: Optional[pulumi.Input[int]] = None,
                  multi_az_policy: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  scaling_group_name: Optional[pulumi.Input[str]] = None,
                  server_group_attributes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ScalingGroupServerGroupAttributeArgs']]]]] = None,
                  subnet_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ScalingGroupTagArgs']]]]] = None,
                  __props__=None):
         """
         Provides a resource to manage scaling group
@@ -536,8 +602,13 @@ class ScalingGroup(pulumi.CustomResource):
             max_instance_number=1,
             min_instance_number=0,
             multi_az_policy="BALANCE",
-            scaling_group_name="tf-test",
-            subnet_ids=["subnet-2ff1n75eyf08w59gp67qhnhqm"])
+            project_name="default",
+            scaling_group_name="test-tf",
+            subnet_ids=["subnet-2fe79j7c8o5c059gp68ksxr93"],
+            tags=[volcengine.autoscaling.ScalingGroupTagArgs(
+                key="tf-key1",
+                value="tf-value1",
+            )])
         ```
 
         ## Import
@@ -550,17 +621,19 @@ class ScalingGroup(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] default_cooldown: The default cooldown interval of the scaling group. Default value: 300.
+        :param pulumi.Input[int] default_cooldown: The default cooldown interval of the scaling group. Value range: 5 ~ 86400, unit: second. Default value: 300.
         :param pulumi.Input[int] desire_instance_number: The desire instance number of the scaling group.
         :param pulumi.Input[str] instance_terminate_policy: The instance terminate policy of the scaling group. Valid values: OldestInstance, NewestInstance, OldestScalingConfigurationWithOldestInstance, OldestScalingConfigurationWithNewestInstance. Default value: OldestScalingConfigurationWithOldestInstance.
-        :param pulumi.Input[str] launch_template_id: The ID of the launch template bound to the scaling group.
-        :param pulumi.Input[str] launch_template_version: The version of the launch template bound to the scaling group.
-        :param pulumi.Input[int] max_instance_number: The max instance number of the scaling group.
-        :param pulumi.Input[int] min_instance_number: The min instance number of the scaling group.
+        :param pulumi.Input[str] launch_template_id: The ID of the launch template bound to the scaling group. The launch template and scaling configuration cannot take effect at the same time.
+        :param pulumi.Input[str] launch_template_version: The version of the launch template bound to the scaling group. Valid values are the version number, Latest, or Default.
+        :param pulumi.Input[int] max_instance_number: The max instance number of the scaling group. Value range: 0 ~ 100.
+        :param pulumi.Input[int] min_instance_number: The min instance number of the scaling group. Value range: 0 ~ 100.
         :param pulumi.Input[str] multi_az_policy: The multi az policy of the scaling group. Valid values: PRIORITY, BALANCE. Default value: PRIORITY.
+        :param pulumi.Input[str] project_name: The ProjectName of the scaling group.
         :param pulumi.Input[str] scaling_group_name: The name of the scaling group.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ScalingGroupServerGroupAttributeArgs']]]] server_group_attributes: The load balancer server group attributes of the scaling group.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] subnet_ids: The list of the subnet id to which the ENI is connected.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ScalingGroupTagArgs']]]] tags: Tags.
         """
         ...
     @overload
@@ -583,8 +656,13 @@ class ScalingGroup(pulumi.CustomResource):
             max_instance_number=1,
             min_instance_number=0,
             multi_az_policy="BALANCE",
-            scaling_group_name="tf-test",
-            subnet_ids=["subnet-2ff1n75eyf08w59gp67qhnhqm"])
+            project_name="default",
+            scaling_group_name="test-tf",
+            subnet_ids=["subnet-2fe79j7c8o5c059gp68ksxr93"],
+            tags=[volcengine.autoscaling.ScalingGroupTagArgs(
+                key="tf-key1",
+                value="tf-value1",
+            )])
         ```
 
         ## Import
@@ -618,9 +696,11 @@ class ScalingGroup(pulumi.CustomResource):
                  max_instance_number: Optional[pulumi.Input[int]] = None,
                  min_instance_number: Optional[pulumi.Input[int]] = None,
                  multi_az_policy: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  scaling_group_name: Optional[pulumi.Input[str]] = None,
                  server_group_attributes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ScalingGroupServerGroupAttributeArgs']]]]] = None,
                  subnet_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ScalingGroupTagArgs']]]]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -645,6 +725,7 @@ class ScalingGroup(pulumi.CustomResource):
                 raise TypeError("Missing required property 'min_instance_number'")
             __props__.__dict__["min_instance_number"] = min_instance_number
             __props__.__dict__["multi_az_policy"] = multi_az_policy
+            __props__.__dict__["project_name"] = project_name
             if scaling_group_name is None and not opts.urn:
                 raise TypeError("Missing required property 'scaling_group_name'")
             __props__.__dict__["scaling_group_name"] = scaling_group_name
@@ -652,6 +733,7 @@ class ScalingGroup(pulumi.CustomResource):
             if subnet_ids is None and not opts.urn:
                 raise TypeError("Missing required property 'subnet_ids'")
             __props__.__dict__["subnet_ids"] = subnet_ids
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["active_scaling_configuration_id"] = None
             __props__.__dict__["created_at"] = None
             __props__.__dict__["db_instance_ids"] = None
@@ -682,10 +764,12 @@ class ScalingGroup(pulumi.CustomResource):
             max_instance_number: Optional[pulumi.Input[int]] = None,
             min_instance_number: Optional[pulumi.Input[int]] = None,
             multi_az_policy: Optional[pulumi.Input[str]] = None,
+            project_name: Optional[pulumi.Input[str]] = None,
             scaling_group_id: Optional[pulumi.Input[str]] = None,
             scaling_group_name: Optional[pulumi.Input[str]] = None,
             server_group_attributes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ScalingGroupServerGroupAttributeArgs']]]]] = None,
             subnet_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ScalingGroupTagArgs']]]]] = None,
             total_instance_count: Optional[pulumi.Input[int]] = None,
             updated_at: Optional[pulumi.Input[str]] = None,
             vpc_id: Optional[pulumi.Input[str]] = None) -> 'ScalingGroup':
@@ -699,19 +783,21 @@ class ScalingGroup(pulumi.CustomResource):
         :param pulumi.Input[str] active_scaling_configuration_id: The scaling configuration id which used by the scaling group.
         :param pulumi.Input[str] created_at: The create time of the scaling group.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] db_instance_ids: The list of db instance ids.
-        :param pulumi.Input[int] default_cooldown: The default cooldown interval of the scaling group. Default value: 300.
+        :param pulumi.Input[int] default_cooldown: The default cooldown interval of the scaling group. Value range: 5 ~ 86400, unit: second. Default value: 300.
         :param pulumi.Input[int] desire_instance_number: The desire instance number of the scaling group.
         :param pulumi.Input[str] instance_terminate_policy: The instance terminate policy of the scaling group. Valid values: OldestInstance, NewestInstance, OldestScalingConfigurationWithOldestInstance, OldestScalingConfigurationWithNewestInstance. Default value: OldestScalingConfigurationWithOldestInstance.
-        :param pulumi.Input[str] launch_template_id: The ID of the launch template bound to the scaling group.
-        :param pulumi.Input[str] launch_template_version: The version of the launch template bound to the scaling group.
+        :param pulumi.Input[str] launch_template_id: The ID of the launch template bound to the scaling group. The launch template and scaling configuration cannot take effect at the same time.
+        :param pulumi.Input[str] launch_template_version: The version of the launch template bound to the scaling group. Valid values are the version number, Latest, or Default.
         :param pulumi.Input[str] lifecycle_state: The lifecycle state of the scaling group.
-        :param pulumi.Input[int] max_instance_number: The max instance number of the scaling group.
-        :param pulumi.Input[int] min_instance_number: The min instance number of the scaling group.
+        :param pulumi.Input[int] max_instance_number: The max instance number of the scaling group. Value range: 0 ~ 100.
+        :param pulumi.Input[int] min_instance_number: The min instance number of the scaling group. Value range: 0 ~ 100.
         :param pulumi.Input[str] multi_az_policy: The multi az policy of the scaling group. Valid values: PRIORITY, BALANCE. Default value: PRIORITY.
+        :param pulumi.Input[str] project_name: The ProjectName of the scaling group.
         :param pulumi.Input[str] scaling_group_id: The id of the scaling group.
         :param pulumi.Input[str] scaling_group_name: The name of the scaling group.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ScalingGroupServerGroupAttributeArgs']]]] server_group_attributes: The load balancer server group attributes of the scaling group.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] subnet_ids: The list of the subnet id to which the ENI is connected.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ScalingGroupTagArgs']]]] tags: Tags.
         :param pulumi.Input[int] total_instance_count: The total instance count of the scaling group.
         :param pulumi.Input[str] updated_at: The create time of the scaling group.
         :param pulumi.Input[str] vpc_id: The VPC id of the scaling group.
@@ -732,10 +818,12 @@ class ScalingGroup(pulumi.CustomResource):
         __props__.__dict__["max_instance_number"] = max_instance_number
         __props__.__dict__["min_instance_number"] = min_instance_number
         __props__.__dict__["multi_az_policy"] = multi_az_policy
+        __props__.__dict__["project_name"] = project_name
         __props__.__dict__["scaling_group_id"] = scaling_group_id
         __props__.__dict__["scaling_group_name"] = scaling_group_name
         __props__.__dict__["server_group_attributes"] = server_group_attributes
         __props__.__dict__["subnet_ids"] = subnet_ids
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["total_instance_count"] = total_instance_count
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["vpc_id"] = vpc_id
@@ -769,7 +857,7 @@ class ScalingGroup(pulumi.CustomResource):
     @pulumi.getter(name="defaultCooldown")
     def default_cooldown(self) -> pulumi.Output[int]:
         """
-        The default cooldown interval of the scaling group. Default value: 300.
+        The default cooldown interval of the scaling group. Value range: 5 ~ 86400, unit: second. Default value: 300.
         """
         return pulumi.get(self, "default_cooldown")
 
@@ -793,7 +881,7 @@ class ScalingGroup(pulumi.CustomResource):
     @pulumi.getter(name="launchTemplateId")
     def launch_template_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The ID of the launch template bound to the scaling group.
+        The ID of the launch template bound to the scaling group. The launch template and scaling configuration cannot take effect at the same time.
         """
         return pulumi.get(self, "launch_template_id")
 
@@ -801,7 +889,7 @@ class ScalingGroup(pulumi.CustomResource):
     @pulumi.getter(name="launchTemplateVersion")
     def launch_template_version(self) -> pulumi.Output[Optional[str]]:
         """
-        The version of the launch template bound to the scaling group.
+        The version of the launch template bound to the scaling group. Valid values are the version number, Latest, or Default.
         """
         return pulumi.get(self, "launch_template_version")
 
@@ -817,7 +905,7 @@ class ScalingGroup(pulumi.CustomResource):
     @pulumi.getter(name="maxInstanceNumber")
     def max_instance_number(self) -> pulumi.Output[int]:
         """
-        The max instance number of the scaling group.
+        The max instance number of the scaling group. Value range: 0 ~ 100.
         """
         return pulumi.get(self, "max_instance_number")
 
@@ -825,7 +913,7 @@ class ScalingGroup(pulumi.CustomResource):
     @pulumi.getter(name="minInstanceNumber")
     def min_instance_number(self) -> pulumi.Output[int]:
         """
-        The min instance number of the scaling group.
+        The min instance number of the scaling group. Value range: 0 ~ 100.
         """
         return pulumi.get(self, "min_instance_number")
 
@@ -836,6 +924,14 @@ class ScalingGroup(pulumi.CustomResource):
         The multi az policy of the scaling group. Valid values: PRIORITY, BALANCE. Default value: PRIORITY.
         """
         return pulumi.get(self, "multi_az_policy")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        The ProjectName of the scaling group.
+        """
+        return pulumi.get(self, "project_name")
 
     @property
     @pulumi.getter(name="scalingGroupId")
@@ -868,6 +964,14 @@ class ScalingGroup(pulumi.CustomResource):
         The list of the subnet id to which the ENI is connected.
         """
         return pulumi.get(self, "subnet_ids")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.ScalingGroupTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="totalInstanceCount")

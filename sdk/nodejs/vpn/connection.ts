@@ -19,7 +19,7 @@ import * as utilities from "../utilities";
  *     ikeConfigAuthAlg: "md5",
  *     ikeConfigDhGroup: "group2",
  *     ikeConfigEncAlg: "aes",
- *     ikeConfigLifetime: 100,
+ *     ikeConfigLifetime: 9000,
  *     ikeConfigLocalId: "tf_test",
  *     ikeConfigMode: "main",
  *     ikeConfigPsk: "tftest@!3",
@@ -28,7 +28,7 @@ import * as utilities from "../utilities";
  *     ipsecConfigAuthAlg: "sha256",
  *     ipsecConfigDhGroup: "group2",
  *     ipsecConfigEncAlg: "aes",
- *     ipsecConfigLifetime: 100,
+ *     ipsecConfigLifetime: 9000,
  *     localSubnets: ["192.168.0.0/22"],
  *     natTraversal: true,
  *     projectName: "default",
@@ -83,7 +83,7 @@ export class Connection extends pulumi.CustomResource {
      */
     public /*out*/ readonly attachStatus!: pulumi.Output<string>;
     /**
-     * The attach type of the VPN connection, the value can be VpnGateway or TransitRouter.
+     * The attach type of the VPN connection, the value can be `VpnGateway` or `TransitRouter`.
      */
     public readonly attachType!: pulumi.Output<string | undefined>;
     /**
@@ -115,19 +115,19 @@ export class Connection extends pulumi.CustomResource {
      */
     public readonly dpdAction!: pulumi.Output<string | undefined>;
     /**
-     * The auth alg of the ike config of the VPN connection.
+     * The auth alg of the ike config of the VPN connection. Valid value are `sha1`, `md5`, `sha256`, `sha384`, `sha512`, `sm3`. The default value is `sha1`.
      */
     public readonly ikeConfigAuthAlg!: pulumi.Output<string | undefined>;
     /**
-     * The dk group of the ike config of the VPN connection.
+     * The dk group of the ike config of the VPN connection. Valid value are `group1`, `group2`, `group5`, `group14`. The default value is `group2`.
      */
     public readonly ikeConfigDhGroup!: pulumi.Output<string | undefined>;
     /**
-     * The enc alg of the ike config of the VPN connection.
+     * The enc alg of the ike config of the VPN connection. Valid value are `aes`, `aes192`, `aes256`, `des`, `3des`, `sm4`. The default value is `aes`.
      */
     public readonly ikeConfigEncAlg!: pulumi.Output<string | undefined>;
     /**
-     * The lifetime of the ike config of the VPN connection.
+     * The lifetime of the ike config of the VPN connection. Value: 900~86400.
      */
     public readonly ikeConfigLifetime!: pulumi.Output<number | undefined>;
     /**
@@ -135,11 +135,11 @@ export class Connection extends pulumi.CustomResource {
      */
     public readonly ikeConfigLocalId!: pulumi.Output<string>;
     /**
-     * The mode of the ike config of the VPN connection.
+     * The mode of the ike config of the VPN connection. Valid values are `main`, `aggressive`, and default value is `main`.
      */
     public readonly ikeConfigMode!: pulumi.Output<string | undefined>;
     /**
-     * The psk of the ike config of the VPN connection.
+     * The psk of the ike config of the VPN connection. The length does not exceed 100 characters, and only uppercase and lowercase letters, special symbols and numbers are allowed.
      */
     public readonly ikeConfigPsk!: pulumi.Output<string>;
     /**
@@ -147,7 +147,7 @@ export class Connection extends pulumi.CustomResource {
      */
     public readonly ikeConfigRemoteId!: pulumi.Output<string>;
     /**
-     * The version of the ike config of the VPN connection.
+     * The version of the ike config of the VPN connection. The value can be `ikev1` or `ikev2`. The default value is `ikev1`.
      */
     public readonly ikeConfigVersion!: pulumi.Output<string | undefined>;
     /**
@@ -155,29 +155,29 @@ export class Connection extends pulumi.CustomResource {
      */
     public /*out*/ readonly ipAddress!: pulumi.Output<string>;
     /**
-     * The auth alg of the ipsec config of the VPN connection.
+     * The auth alg of the ipsec config of the VPN connection. Valid value are `sha1`, `md5`, `sha256`, `sha384`, `sha512`, `sm3`. The default value is `sha1`.
      */
     public readonly ipsecConfigAuthAlg!: pulumi.Output<string | undefined>;
     /**
-     * The dh group of the ipsec config of the VPN connection.
+     * The dh group of the ipsec config of the VPN connection. Valid value are `group1`, `group2`, `group5`, `group14` and `disable`. The default value is `group2`.
      */
     public readonly ipsecConfigDhGroup!: pulumi.Output<string | undefined>;
     /**
-     * The enc alg of the ipsec config of the VPN connection.
+     * The enc alg of the ipsec config of the VPN connection. Valid value are `aes`, `aes192`, `aes256`, `des`, `3des`, `sm4`. The default value is `aes`.
      */
     public readonly ipsecConfigEncAlg!: pulumi.Output<string | undefined>;
     /**
-     * The ipsec config of the ike config of the VPN connection.
+     * The ipsec config of the ike config of the VPN connection. Value: 900~86400.
      */
     public readonly ipsecConfigLifetime!: pulumi.Output<number | undefined>;
     /**
-     * The local subnet of the VPN connection.
+     * The local subnet of the VPN connection. Up to 5 network segments are supported.
      */
     public readonly localSubnets!: pulumi.Output<string[]>;
     /**
-     * Whether to enable the connection log.
+     * Whether to enable connection logging. After enabling Connection Day, you can view and download IPsec connection logs, and use the log information to troubleshoot IPsec connection problems yourself.
      */
-    public /*out*/ readonly logEnabled!: pulumi.Output<boolean>;
+    public readonly logEnabled!: pulumi.Output<boolean | undefined>;
     /**
      * The nat traversal of the VPN connection.
      */
@@ -195,7 +195,7 @@ export class Connection extends pulumi.CustomResource {
      */
     public readonly projectName!: pulumi.Output<string | undefined>;
     /**
-     * The remote subnet of the VPN connection.
+     * The remote subnet of the VPN connection. Up to 5 network segments are supported.
      */
     public readonly remoteSubnets!: pulumi.Output<string[]>;
     /**
@@ -219,7 +219,7 @@ export class Connection extends pulumi.CustomResource {
      */
     public readonly vpnConnectionName!: pulumi.Output<string>;
     /**
-     * The ID of the vpn gateway.
+     * The ID of the vpn gateway. If the `AttachType` is not passed or the passed value is `VpnGateway`, this parameter must be filled. If the value of `AttachType` is `TransitRouter`, this parameter does not need to be filled.
      */
     public readonly vpnGatewayId!: pulumi.Output<string | undefined>;
     /**
@@ -310,6 +310,7 @@ export class Connection extends pulumi.CustomResource {
             resourceInputs["ipsecConfigEncAlg"] = args ? args.ipsecConfigEncAlg : undefined;
             resourceInputs["ipsecConfigLifetime"] = args ? args.ipsecConfigLifetime : undefined;
             resourceInputs["localSubnets"] = args ? args.localSubnets : undefined;
+            resourceInputs["logEnabled"] = args ? args.logEnabled : undefined;
             resourceInputs["natTraversal"] = args ? args.natTraversal : undefined;
             resourceInputs["negotiateInstantly"] = args ? args.negotiateInstantly : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
@@ -323,7 +324,6 @@ export class Connection extends pulumi.CustomResource {
             resourceInputs["creationTime"] = undefined /*out*/;
             resourceInputs["deletedTime"] = undefined /*out*/;
             resourceInputs["ipAddress"] = undefined /*out*/;
-            resourceInputs["logEnabled"] = undefined /*out*/;
             resourceInputs["overdueTime"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["transitRouterId"] = undefined /*out*/;
@@ -349,7 +349,7 @@ export interface ConnectionState {
      */
     attachStatus?: pulumi.Input<string>;
     /**
-     * The attach type of the VPN connection, the value can be VpnGateway or TransitRouter.
+     * The attach type of the VPN connection, the value can be `VpnGateway` or `TransitRouter`.
      */
     attachType?: pulumi.Input<string>;
     /**
@@ -381,19 +381,19 @@ export interface ConnectionState {
      */
     dpdAction?: pulumi.Input<string>;
     /**
-     * The auth alg of the ike config of the VPN connection.
+     * The auth alg of the ike config of the VPN connection. Valid value are `sha1`, `md5`, `sha256`, `sha384`, `sha512`, `sm3`. The default value is `sha1`.
      */
     ikeConfigAuthAlg?: pulumi.Input<string>;
     /**
-     * The dk group of the ike config of the VPN connection.
+     * The dk group of the ike config of the VPN connection. Valid value are `group1`, `group2`, `group5`, `group14`. The default value is `group2`.
      */
     ikeConfigDhGroup?: pulumi.Input<string>;
     /**
-     * The enc alg of the ike config of the VPN connection.
+     * The enc alg of the ike config of the VPN connection. Valid value are `aes`, `aes192`, `aes256`, `des`, `3des`, `sm4`. The default value is `aes`.
      */
     ikeConfigEncAlg?: pulumi.Input<string>;
     /**
-     * The lifetime of the ike config of the VPN connection.
+     * The lifetime of the ike config of the VPN connection. Value: 900~86400.
      */
     ikeConfigLifetime?: pulumi.Input<number>;
     /**
@@ -401,11 +401,11 @@ export interface ConnectionState {
      */
     ikeConfigLocalId?: pulumi.Input<string>;
     /**
-     * The mode of the ike config of the VPN connection.
+     * The mode of the ike config of the VPN connection. Valid values are `main`, `aggressive`, and default value is `main`.
      */
     ikeConfigMode?: pulumi.Input<string>;
     /**
-     * The psk of the ike config of the VPN connection.
+     * The psk of the ike config of the VPN connection. The length does not exceed 100 characters, and only uppercase and lowercase letters, special symbols and numbers are allowed.
      */
     ikeConfigPsk?: pulumi.Input<string>;
     /**
@@ -413,7 +413,7 @@ export interface ConnectionState {
      */
     ikeConfigRemoteId?: pulumi.Input<string>;
     /**
-     * The version of the ike config of the VPN connection.
+     * The version of the ike config of the VPN connection. The value can be `ikev1` or `ikev2`. The default value is `ikev1`.
      */
     ikeConfigVersion?: pulumi.Input<string>;
     /**
@@ -421,27 +421,27 @@ export interface ConnectionState {
      */
     ipAddress?: pulumi.Input<string>;
     /**
-     * The auth alg of the ipsec config of the VPN connection.
+     * The auth alg of the ipsec config of the VPN connection. Valid value are `sha1`, `md5`, `sha256`, `sha384`, `sha512`, `sm3`. The default value is `sha1`.
      */
     ipsecConfigAuthAlg?: pulumi.Input<string>;
     /**
-     * The dh group of the ipsec config of the VPN connection.
+     * The dh group of the ipsec config of the VPN connection. Valid value are `group1`, `group2`, `group5`, `group14` and `disable`. The default value is `group2`.
      */
     ipsecConfigDhGroup?: pulumi.Input<string>;
     /**
-     * The enc alg of the ipsec config of the VPN connection.
+     * The enc alg of the ipsec config of the VPN connection. Valid value are `aes`, `aes192`, `aes256`, `des`, `3des`, `sm4`. The default value is `aes`.
      */
     ipsecConfigEncAlg?: pulumi.Input<string>;
     /**
-     * The ipsec config of the ike config of the VPN connection.
+     * The ipsec config of the ike config of the VPN connection. Value: 900~86400.
      */
     ipsecConfigLifetime?: pulumi.Input<number>;
     /**
-     * The local subnet of the VPN connection.
+     * The local subnet of the VPN connection. Up to 5 network segments are supported.
      */
     localSubnets?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Whether to enable the connection log.
+     * Whether to enable connection logging. After enabling Connection Day, you can view and download IPsec connection logs, and use the log information to troubleshoot IPsec connection problems yourself.
      */
     logEnabled?: pulumi.Input<boolean>;
     /**
@@ -461,7 +461,7 @@ export interface ConnectionState {
      */
     projectName?: pulumi.Input<string>;
     /**
-     * The remote subnet of the VPN connection.
+     * The remote subnet of the VPN connection. Up to 5 network segments are supported.
      */
     remoteSubnets?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -485,7 +485,7 @@ export interface ConnectionState {
      */
     vpnConnectionName?: pulumi.Input<string>;
     /**
-     * The ID of the vpn gateway.
+     * The ID of the vpn gateway. If the `AttachType` is not passed or the passed value is `VpnGateway`, this parameter must be filled. If the value of `AttachType` is `TransitRouter`, this parameter does not need to be filled.
      */
     vpnGatewayId?: pulumi.Input<string>;
     /**
@@ -499,7 +499,7 @@ export interface ConnectionState {
  */
 export interface ConnectionArgs {
     /**
-     * The attach type of the VPN connection, the value can be VpnGateway or TransitRouter.
+     * The attach type of the VPN connection, the value can be `VpnGateway` or `TransitRouter`.
      */
     attachType?: pulumi.Input<string>;
     /**
@@ -515,19 +515,19 @@ export interface ConnectionArgs {
      */
     dpdAction?: pulumi.Input<string>;
     /**
-     * The auth alg of the ike config of the VPN connection.
+     * The auth alg of the ike config of the VPN connection. Valid value are `sha1`, `md5`, `sha256`, `sha384`, `sha512`, `sm3`. The default value is `sha1`.
      */
     ikeConfigAuthAlg?: pulumi.Input<string>;
     /**
-     * The dk group of the ike config of the VPN connection.
+     * The dk group of the ike config of the VPN connection. Valid value are `group1`, `group2`, `group5`, `group14`. The default value is `group2`.
      */
     ikeConfigDhGroup?: pulumi.Input<string>;
     /**
-     * The enc alg of the ike config of the VPN connection.
+     * The enc alg of the ike config of the VPN connection. Valid value are `aes`, `aes192`, `aes256`, `des`, `3des`, `sm4`. The default value is `aes`.
      */
     ikeConfigEncAlg?: pulumi.Input<string>;
     /**
-     * The lifetime of the ike config of the VPN connection.
+     * The lifetime of the ike config of the VPN connection. Value: 900~86400.
      */
     ikeConfigLifetime?: pulumi.Input<number>;
     /**
@@ -535,11 +535,11 @@ export interface ConnectionArgs {
      */
     ikeConfigLocalId?: pulumi.Input<string>;
     /**
-     * The mode of the ike config of the VPN connection.
+     * The mode of the ike config of the VPN connection. Valid values are `main`, `aggressive`, and default value is `main`.
      */
     ikeConfigMode?: pulumi.Input<string>;
     /**
-     * The psk of the ike config of the VPN connection.
+     * The psk of the ike config of the VPN connection. The length does not exceed 100 characters, and only uppercase and lowercase letters, special symbols and numbers are allowed.
      */
     ikeConfigPsk: pulumi.Input<string>;
     /**
@@ -547,29 +547,33 @@ export interface ConnectionArgs {
      */
     ikeConfigRemoteId?: pulumi.Input<string>;
     /**
-     * The version of the ike config of the VPN connection.
+     * The version of the ike config of the VPN connection. The value can be `ikev1` or `ikev2`. The default value is `ikev1`.
      */
     ikeConfigVersion?: pulumi.Input<string>;
     /**
-     * The auth alg of the ipsec config of the VPN connection.
+     * The auth alg of the ipsec config of the VPN connection. Valid value are `sha1`, `md5`, `sha256`, `sha384`, `sha512`, `sm3`. The default value is `sha1`.
      */
     ipsecConfigAuthAlg?: pulumi.Input<string>;
     /**
-     * The dh group of the ipsec config of the VPN connection.
+     * The dh group of the ipsec config of the VPN connection. Valid value are `group1`, `group2`, `group5`, `group14` and `disable`. The default value is `group2`.
      */
     ipsecConfigDhGroup?: pulumi.Input<string>;
     /**
-     * The enc alg of the ipsec config of the VPN connection.
+     * The enc alg of the ipsec config of the VPN connection. Valid value are `aes`, `aes192`, `aes256`, `des`, `3des`, `sm4`. The default value is `aes`.
      */
     ipsecConfigEncAlg?: pulumi.Input<string>;
     /**
-     * The ipsec config of the ike config of the VPN connection.
+     * The ipsec config of the ike config of the VPN connection. Value: 900~86400.
      */
     ipsecConfigLifetime?: pulumi.Input<number>;
     /**
-     * The local subnet of the VPN connection.
+     * The local subnet of the VPN connection. Up to 5 network segments are supported.
      */
     localSubnets: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Whether to enable connection logging. After enabling Connection Day, you can view and download IPsec connection logs, and use the log information to troubleshoot IPsec connection problems yourself.
+     */
+    logEnabled?: pulumi.Input<boolean>;
     /**
      * The nat traversal of the VPN connection.
      */
@@ -583,7 +587,7 @@ export interface ConnectionArgs {
      */
     projectName?: pulumi.Input<string>;
     /**
-     * The remote subnet of the VPN connection.
+     * The remote subnet of the VPN connection. Up to 5 network segments are supported.
      */
     remoteSubnets: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -591,7 +595,7 @@ export interface ConnectionArgs {
      */
     vpnConnectionName?: pulumi.Input<string>;
     /**
-     * The ID of the vpn gateway.
+     * The ID of the vpn gateway. If the `AttachType` is not passed or the passed value is `VpnGateway`, this parameter must be filled. If the value of `AttachType` is `TransitRouter`, this parameter does not need to be filled.
      */
     vpnGatewayId?: pulumi.Input<string>;
 }

@@ -20,15 +20,17 @@ class AddressArgs:
                  description: Optional[pulumi.Input[str]] = None,
                  isp: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 period: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['AddressTagArgs']]]] = None):
         """
         The set of arguments for constructing a Address resource.
-        :param pulumi.Input[str] billing_type: The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+        :param pulumi.Input[str] billing_type: The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
         :param pulumi.Input[int] bandwidth: The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
         :param pulumi.Input[str] description: The description of the EIP.
-        :param pulumi.Input[str] isp: The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
+        :param pulumi.Input[str] isp: The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP`.
         :param pulumi.Input[str] name: The name of the EIP Address.
+        :param pulumi.Input[int] period: The period of the EIP Address, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid Eip or changing the billing_type from PostPaid to PrePaid.
         :param pulumi.Input[str] project_name: The ProjectName of the EIP.
         :param pulumi.Input[Sequence[pulumi.Input['AddressTagArgs']]] tags: Tags.
         """
@@ -41,6 +43,8 @@ class AddressArgs:
             pulumi.set(__self__, "isp", isp)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
         if tags is not None:
@@ -50,7 +54,7 @@ class AddressArgs:
     @pulumi.getter(name="billingType")
     def billing_type(self) -> pulumi.Input[str]:
         """
-        The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+        The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
         """
         return pulumi.get(self, "billing_type")
 
@@ -86,7 +90,7 @@ class AddressArgs:
     @pulumi.getter
     def isp(self) -> Optional[pulumi.Input[str]]:
         """
-        The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
+        The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP`.
         """
         return pulumi.get(self, "isp")
 
@@ -105,6 +109,18 @@ class AddressArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The period of the EIP Address, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid Eip or changing the billing_type from PostPaid to PrePaid.
+        """
+        return pulumi.get(self, "period")
+
+    @period.setter
+    def period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "period", value)
 
     @property
     @pulumi.getter(name="projectName")
@@ -136,21 +152,29 @@ class _AddressState:
     def __init__(__self__, *,
                  bandwidth: Optional[pulumi.Input[int]] = None,
                  billing_type: Optional[pulumi.Input[str]] = None,
+                 deleted_time: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  eip_address: Optional[pulumi.Input[str]] = None,
+                 expired_time: Optional[pulumi.Input[str]] = None,
                  isp: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 overdue_time: Optional[pulumi.Input[str]] = None,
+                 period: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['AddressTagArgs']]]] = None):
         """
         Input properties used for looking up and filtering Address resources.
         :param pulumi.Input[int] bandwidth: The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
-        :param pulumi.Input[str] billing_type: The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+        :param pulumi.Input[str] billing_type: The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
+        :param pulumi.Input[str] deleted_time: The deleted time of the EIP.
         :param pulumi.Input[str] description: The description of the EIP.
         :param pulumi.Input[str] eip_address: The ip address of the EIP.
-        :param pulumi.Input[str] isp: The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
+        :param pulumi.Input[str] expired_time: The expired time of the EIP.
+        :param pulumi.Input[str] isp: The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP`.
         :param pulumi.Input[str] name: The name of the EIP Address.
+        :param pulumi.Input[str] overdue_time: The overdue time of the EIP.
+        :param pulumi.Input[int] period: The period of the EIP Address, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid Eip or changing the billing_type from PostPaid to PrePaid.
         :param pulumi.Input[str] project_name: The ProjectName of the EIP.
         :param pulumi.Input[str] status: The status of the EIP.
         :param pulumi.Input[Sequence[pulumi.Input['AddressTagArgs']]] tags: Tags.
@@ -159,14 +183,22 @@ class _AddressState:
             pulumi.set(__self__, "bandwidth", bandwidth)
         if billing_type is not None:
             pulumi.set(__self__, "billing_type", billing_type)
+        if deleted_time is not None:
+            pulumi.set(__self__, "deleted_time", deleted_time)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if eip_address is not None:
             pulumi.set(__self__, "eip_address", eip_address)
+        if expired_time is not None:
+            pulumi.set(__self__, "expired_time", expired_time)
         if isp is not None:
             pulumi.set(__self__, "isp", isp)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if overdue_time is not None:
+            pulumi.set(__self__, "overdue_time", overdue_time)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
         if status is not None:
@@ -190,13 +222,25 @@ class _AddressState:
     @pulumi.getter(name="billingType")
     def billing_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+        The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
         """
         return pulumi.get(self, "billing_type")
 
     @billing_type.setter
     def billing_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "billing_type", value)
+
+    @property
+    @pulumi.getter(name="deletedTime")
+    def deleted_time(self) -> Optional[pulumi.Input[str]]:
+        """
+        The deleted time of the EIP.
+        """
+        return pulumi.get(self, "deleted_time")
+
+    @deleted_time.setter
+    def deleted_time(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "deleted_time", value)
 
     @property
     @pulumi.getter
@@ -223,10 +267,22 @@ class _AddressState:
         pulumi.set(self, "eip_address", value)
 
     @property
+    @pulumi.getter(name="expiredTime")
+    def expired_time(self) -> Optional[pulumi.Input[str]]:
+        """
+        The expired time of the EIP.
+        """
+        return pulumi.get(self, "expired_time")
+
+    @expired_time.setter
+    def expired_time(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "expired_time", value)
+
+    @property
     @pulumi.getter
     def isp(self) -> Optional[pulumi.Input[str]]:
         """
-        The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
+        The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP`.
         """
         return pulumi.get(self, "isp")
 
@@ -245,6 +301,30 @@ class _AddressState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="overdueTime")
+    def overdue_time(self) -> Optional[pulumi.Input[str]]:
+        """
+        The overdue time of the EIP.
+        """
+        return pulumi.get(self, "overdue_time")
+
+    @overdue_time.setter
+    def overdue_time(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "overdue_time", value)
+
+    @property
+    @pulumi.getter
+    def period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The period of the EIP Address, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid Eip or changing the billing_type from PostPaid to PrePaid.
+        """
+        return pulumi.get(self, "period")
+
+    @period.setter
+    def period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "period", value)
 
     @property
     @pulumi.getter(name="projectName")
@@ -293,6 +373,7 @@ class Address(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  isp: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 period: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressTagArgs']]]]] = None,
                  __props__=None):
@@ -306,9 +387,9 @@ class Address(pulumi.CustomResource):
         foo = volcengine.eip.Address("foo",
             bandwidth=1,
             billing_type="PostPaidByBandwidth",
-            description="tf-test",
+            description="acc-test",
             isp="ChinaUnicom",
-            project_name="yuwenhao")
+            project_name="default")
         ```
 
         ## Import
@@ -322,10 +403,11 @@ class Address(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] bandwidth: The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
-        :param pulumi.Input[str] billing_type: The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+        :param pulumi.Input[str] billing_type: The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
         :param pulumi.Input[str] description: The description of the EIP.
-        :param pulumi.Input[str] isp: The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
+        :param pulumi.Input[str] isp: The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP`.
         :param pulumi.Input[str] name: The name of the EIP Address.
+        :param pulumi.Input[int] period: The period of the EIP Address, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid Eip or changing the billing_type from PostPaid to PrePaid.
         :param pulumi.Input[str] project_name: The ProjectName of the EIP.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressTagArgs']]]] tags: Tags.
         """
@@ -345,9 +427,9 @@ class Address(pulumi.CustomResource):
         foo = volcengine.eip.Address("foo",
             bandwidth=1,
             billing_type="PostPaidByBandwidth",
-            description="tf-test",
+            description="acc-test",
             isp="ChinaUnicom",
-            project_name="yuwenhao")
+            project_name="default")
         ```
 
         ## Import
@@ -378,6 +460,7 @@ class Address(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  isp: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 period: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressTagArgs']]]]] = None,
                  __props__=None):
@@ -399,9 +482,13 @@ class Address(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["isp"] = isp
             __props__.__dict__["name"] = name
+            __props__.__dict__["period"] = period
             __props__.__dict__["project_name"] = project_name
             __props__.__dict__["tags"] = tags
+            __props__.__dict__["deleted_time"] = None
             __props__.__dict__["eip_address"] = None
+            __props__.__dict__["expired_time"] = None
+            __props__.__dict__["overdue_time"] = None
             __props__.__dict__["status"] = None
         super(Address, __self__).__init__(
             'volcengine:eip/address:Address',
@@ -415,10 +502,14 @@ class Address(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             bandwidth: Optional[pulumi.Input[int]] = None,
             billing_type: Optional[pulumi.Input[str]] = None,
+            deleted_time: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             eip_address: Optional[pulumi.Input[str]] = None,
+            expired_time: Optional[pulumi.Input[str]] = None,
             isp: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            overdue_time: Optional[pulumi.Input[str]] = None,
+            period: Optional[pulumi.Input[int]] = None,
             project_name: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressTagArgs']]]]] = None) -> 'Address':
@@ -430,11 +521,15 @@ class Address(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] bandwidth: The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
-        :param pulumi.Input[str] billing_type: The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+        :param pulumi.Input[str] billing_type: The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
+        :param pulumi.Input[str] deleted_time: The deleted time of the EIP.
         :param pulumi.Input[str] description: The description of the EIP.
         :param pulumi.Input[str] eip_address: The ip address of the EIP.
-        :param pulumi.Input[str] isp: The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
+        :param pulumi.Input[str] expired_time: The expired time of the EIP.
+        :param pulumi.Input[str] isp: The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP`.
         :param pulumi.Input[str] name: The name of the EIP Address.
+        :param pulumi.Input[str] overdue_time: The overdue time of the EIP.
+        :param pulumi.Input[int] period: The period of the EIP Address, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid Eip or changing the billing_type from PostPaid to PrePaid.
         :param pulumi.Input[str] project_name: The ProjectName of the EIP.
         :param pulumi.Input[str] status: The status of the EIP.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressTagArgs']]]] tags: Tags.
@@ -445,10 +540,14 @@ class Address(pulumi.CustomResource):
 
         __props__.__dict__["bandwidth"] = bandwidth
         __props__.__dict__["billing_type"] = billing_type
+        __props__.__dict__["deleted_time"] = deleted_time
         __props__.__dict__["description"] = description
         __props__.__dict__["eip_address"] = eip_address
+        __props__.__dict__["expired_time"] = expired_time
         __props__.__dict__["isp"] = isp
         __props__.__dict__["name"] = name
+        __props__.__dict__["overdue_time"] = overdue_time
+        __props__.__dict__["period"] = period
         __props__.__dict__["project_name"] = project_name
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
@@ -466,9 +565,17 @@ class Address(pulumi.CustomResource):
     @pulumi.getter(name="billingType")
     def billing_type(self) -> pulumi.Output[str]:
         """
-        The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+        The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
         """
         return pulumi.get(self, "billing_type")
+
+    @property
+    @pulumi.getter(name="deletedTime")
+    def deleted_time(self) -> pulumi.Output[str]:
+        """
+        The deleted time of the EIP.
+        """
+        return pulumi.get(self, "deleted_time")
 
     @property
     @pulumi.getter
@@ -487,10 +594,18 @@ class Address(pulumi.CustomResource):
         return pulumi.get(self, "eip_address")
 
     @property
+    @pulumi.getter(name="expiredTime")
+    def expired_time(self) -> pulumi.Output[str]:
+        """
+        The expired time of the EIP.
+        """
+        return pulumi.get(self, "expired_time")
+
+    @property
     @pulumi.getter
     def isp(self) -> pulumi.Output[str]:
         """
-        The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
+        The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP`.
         """
         return pulumi.get(self, "isp")
 
@@ -501,6 +616,22 @@ class Address(pulumi.CustomResource):
         The name of the EIP Address.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="overdueTime")
+    def overdue_time(self) -> pulumi.Output[str]:
+        """
+        The overdue time of the EIP.
+        """
+        return pulumi.get(self, "overdue_time")
+
+    @property
+    @pulumi.getter
+    def period(self) -> pulumi.Output[Optional[int]]:
+        """
+        The period of the EIP Address, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid Eip or changing the billing_type from PostPaid to PrePaid.
+        """
+        return pulumi.get(self, "period")
 
     @property
     @pulumi.getter(name="projectName")

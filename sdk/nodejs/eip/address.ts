@@ -15,9 +15,9 @@ import * as utilities from "../utilities";
  * const foo = new volcengine.eip.Address("foo", {
  *     bandwidth: 1,
  *     billingType: "PostPaidByBandwidth",
- *     description: "tf-test",
+ *     description: "acc-test",
  *     isp: "ChinaUnicom",
- *     projectName: "yuwenhao",
+ *     projectName: "default",
  * });
  * ```
  *
@@ -62,9 +62,13 @@ export class Address extends pulumi.CustomResource {
      */
     public readonly bandwidth!: pulumi.Output<number>;
     /**
-     * The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+     * The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
      */
     public readonly billingType!: pulumi.Output<string>;
+    /**
+     * The deleted time of the EIP.
+     */
+    public /*out*/ readonly deletedTime!: pulumi.Output<string>;
     /**
      * The description of the EIP.
      */
@@ -74,13 +78,25 @@ export class Address extends pulumi.CustomResource {
      */
     public /*out*/ readonly eipAddress!: pulumi.Output<string>;
     /**
-     * The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
+     * The expired time of the EIP.
+     */
+    public /*out*/ readonly expiredTime!: pulumi.Output<string>;
+    /**
+     * The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP`.
      */
     public readonly isp!: pulumi.Output<string>;
     /**
      * The name of the EIP Address.
      */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * The overdue time of the EIP.
+     */
+    public /*out*/ readonly overdueTime!: pulumi.Output<string>;
+    /**
+     * The period of the EIP Address, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid Eip or changing the billingType from PostPaid to PrePaid.
+     */
+    public readonly period!: pulumi.Output<number | undefined>;
     /**
      * The ProjectName of the EIP.
      */
@@ -109,10 +125,14 @@ export class Address extends pulumi.CustomResource {
             const state = argsOrState as AddressState | undefined;
             resourceInputs["bandwidth"] = state ? state.bandwidth : undefined;
             resourceInputs["billingType"] = state ? state.billingType : undefined;
+            resourceInputs["deletedTime"] = state ? state.deletedTime : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["eipAddress"] = state ? state.eipAddress : undefined;
+            resourceInputs["expiredTime"] = state ? state.expiredTime : undefined;
             resourceInputs["isp"] = state ? state.isp : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["overdueTime"] = state ? state.overdueTime : undefined;
+            resourceInputs["period"] = state ? state.period : undefined;
             resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
@@ -126,9 +146,13 @@ export class Address extends pulumi.CustomResource {
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["isp"] = args ? args.isp : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["period"] = args ? args.period : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["deletedTime"] = undefined /*out*/;
             resourceInputs["eipAddress"] = undefined /*out*/;
+            resourceInputs["expiredTime"] = undefined /*out*/;
+            resourceInputs["overdueTime"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -145,9 +169,13 @@ export interface AddressState {
      */
     bandwidth?: pulumi.Input<number>;
     /**
-     * The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+     * The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
      */
     billingType?: pulumi.Input<string>;
+    /**
+     * The deleted time of the EIP.
+     */
+    deletedTime?: pulumi.Input<string>;
     /**
      * The description of the EIP.
      */
@@ -157,13 +185,25 @@ export interface AddressState {
      */
     eipAddress?: pulumi.Input<string>;
     /**
-     * The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
+     * The expired time of the EIP.
+     */
+    expiredTime?: pulumi.Input<string>;
+    /**
+     * The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP`.
      */
     isp?: pulumi.Input<string>;
     /**
      * The name of the EIP Address.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The overdue time of the EIP.
+     */
+    overdueTime?: pulumi.Input<string>;
+    /**
+     * The period of the EIP Address, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid Eip or changing the billingType from PostPaid to PrePaid.
+     */
+    period?: pulumi.Input<number>;
     /**
      * The ProjectName of the EIP.
      */
@@ -187,7 +227,7 @@ export interface AddressArgs {
      */
     bandwidth?: pulumi.Input<number>;
     /**
-     * The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+     * The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
      */
     billingType: pulumi.Input<string>;
     /**
@@ -195,13 +235,17 @@ export interface AddressArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
+     * The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP`.
      */
     isp?: pulumi.Input<string>;
     /**
      * The name of the EIP Address.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The period of the EIP Address, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid Eip or changing the billingType from PostPaid to PrePaid.
+     */
+    period?: pulumi.Input<number>;
     /**
      * The ProjectName of the EIP.
      */

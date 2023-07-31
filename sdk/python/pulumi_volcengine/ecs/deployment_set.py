@@ -187,10 +187,11 @@ class DeploymentSet(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        default = volcengine.ecs.DeploymentSet("default",
-            deployment_set_name="tf-test",
-            description="test1",
-            granularity="host")
+        foo = volcengine.ecs.DeploymentSet("foo",
+            deployment_set_name="acc-test-ecs-ds",
+            description="acc-test",
+            granularity="switch",
+            strategy="Availability")
         ```
 
         ## Import
@@ -222,10 +223,11 @@ class DeploymentSet(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        default = volcengine.ecs.DeploymentSet("default",
-            deployment_set_name="tf-test",
-            description="test1",
-            granularity="host")
+        foo = volcengine.ecs.DeploymentSet("foo",
+            deployment_set_name="acc-test-ecs-ds",
+            description="acc-test",
+            granularity="switch",
+            strategy="Availability")
         ```
 
         ## Import

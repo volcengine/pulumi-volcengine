@@ -20,13 +20,14 @@ import (
 //
 //	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/cen"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/cen"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cen.RouteEntries(ctx, &cen.RouteEntriesArgs{
-//				CenId: "cen-12bjcqtr8ah3417q7y38h8t79",
+//				CenId: "cen-12ar8uclj68sg17q7y20v9gil",
 //			}, nil)
 //			if err != nil {
 //				return err

@@ -366,10 +366,147 @@ func (o ImagesImageArrayOutput) Index(i pulumi.IntInput) ImagesImageOutput {
 	}).(ImagesImageOutput)
 }
 
+type InstanceCpuOptions struct {
+	// The per core of threads.
+	ThreadsPerCore int `pulumi:"threadsPerCore"`
+}
+
+// InstanceCpuOptionsInput is an input type that accepts InstanceCpuOptionsArgs and InstanceCpuOptionsOutput values.
+// You can construct a concrete instance of `InstanceCpuOptionsInput` via:
+//
+//	InstanceCpuOptionsArgs{...}
+type InstanceCpuOptionsInput interface {
+	pulumi.Input
+
+	ToInstanceCpuOptionsOutput() InstanceCpuOptionsOutput
+	ToInstanceCpuOptionsOutputWithContext(context.Context) InstanceCpuOptionsOutput
+}
+
+type InstanceCpuOptionsArgs struct {
+	// The per core of threads.
+	ThreadsPerCore pulumi.IntInput `pulumi:"threadsPerCore"`
+}
+
+func (InstanceCpuOptionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceCpuOptions)(nil)).Elem()
+}
+
+func (i InstanceCpuOptionsArgs) ToInstanceCpuOptionsOutput() InstanceCpuOptionsOutput {
+	return i.ToInstanceCpuOptionsOutputWithContext(context.Background())
+}
+
+func (i InstanceCpuOptionsArgs) ToInstanceCpuOptionsOutputWithContext(ctx context.Context) InstanceCpuOptionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceCpuOptionsOutput)
+}
+
+func (i InstanceCpuOptionsArgs) ToInstanceCpuOptionsPtrOutput() InstanceCpuOptionsPtrOutput {
+	return i.ToInstanceCpuOptionsPtrOutputWithContext(context.Background())
+}
+
+func (i InstanceCpuOptionsArgs) ToInstanceCpuOptionsPtrOutputWithContext(ctx context.Context) InstanceCpuOptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceCpuOptionsOutput).ToInstanceCpuOptionsPtrOutputWithContext(ctx)
+}
+
+// InstanceCpuOptionsPtrInput is an input type that accepts InstanceCpuOptionsArgs, InstanceCpuOptionsPtr and InstanceCpuOptionsPtrOutput values.
+// You can construct a concrete instance of `InstanceCpuOptionsPtrInput` via:
+//
+//	        InstanceCpuOptionsArgs{...}
+//
+//	or:
+//
+//	        nil
+type InstanceCpuOptionsPtrInput interface {
+	pulumi.Input
+
+	ToInstanceCpuOptionsPtrOutput() InstanceCpuOptionsPtrOutput
+	ToInstanceCpuOptionsPtrOutputWithContext(context.Context) InstanceCpuOptionsPtrOutput
+}
+
+type instanceCpuOptionsPtrType InstanceCpuOptionsArgs
+
+func InstanceCpuOptionsPtr(v *InstanceCpuOptionsArgs) InstanceCpuOptionsPtrInput {
+	return (*instanceCpuOptionsPtrType)(v)
+}
+
+func (*instanceCpuOptionsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**InstanceCpuOptions)(nil)).Elem()
+}
+
+func (i *instanceCpuOptionsPtrType) ToInstanceCpuOptionsPtrOutput() InstanceCpuOptionsPtrOutput {
+	return i.ToInstanceCpuOptionsPtrOutputWithContext(context.Background())
+}
+
+func (i *instanceCpuOptionsPtrType) ToInstanceCpuOptionsPtrOutputWithContext(ctx context.Context) InstanceCpuOptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceCpuOptionsPtrOutput)
+}
+
+type InstanceCpuOptionsOutput struct{ *pulumi.OutputState }
+
+func (InstanceCpuOptionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceCpuOptions)(nil)).Elem()
+}
+
+func (o InstanceCpuOptionsOutput) ToInstanceCpuOptionsOutput() InstanceCpuOptionsOutput {
+	return o
+}
+
+func (o InstanceCpuOptionsOutput) ToInstanceCpuOptionsOutputWithContext(ctx context.Context) InstanceCpuOptionsOutput {
+	return o
+}
+
+func (o InstanceCpuOptionsOutput) ToInstanceCpuOptionsPtrOutput() InstanceCpuOptionsPtrOutput {
+	return o.ToInstanceCpuOptionsPtrOutputWithContext(context.Background())
+}
+
+func (o InstanceCpuOptionsOutput) ToInstanceCpuOptionsPtrOutputWithContext(ctx context.Context) InstanceCpuOptionsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v InstanceCpuOptions) *InstanceCpuOptions {
+		return &v
+	}).(InstanceCpuOptionsPtrOutput)
+}
+
+// The per core of threads.
+func (o InstanceCpuOptionsOutput) ThreadsPerCore() pulumi.IntOutput {
+	return o.ApplyT(func(v InstanceCpuOptions) int { return v.ThreadsPerCore }).(pulumi.IntOutput)
+}
+
+type InstanceCpuOptionsPtrOutput struct{ *pulumi.OutputState }
+
+func (InstanceCpuOptionsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**InstanceCpuOptions)(nil)).Elem()
+}
+
+func (o InstanceCpuOptionsPtrOutput) ToInstanceCpuOptionsPtrOutput() InstanceCpuOptionsPtrOutput {
+	return o
+}
+
+func (o InstanceCpuOptionsPtrOutput) ToInstanceCpuOptionsPtrOutputWithContext(ctx context.Context) InstanceCpuOptionsPtrOutput {
+	return o
+}
+
+func (o InstanceCpuOptionsPtrOutput) Elem() InstanceCpuOptionsOutput {
+	return o.ApplyT(func(v *InstanceCpuOptions) InstanceCpuOptions {
+		if v != nil {
+			return *v
+		}
+		var ret InstanceCpuOptions
+		return ret
+	}).(InstanceCpuOptionsOutput)
+}
+
+// The per core of threads.
+func (o InstanceCpuOptionsPtrOutput) ThreadsPerCore() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *InstanceCpuOptions) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.ThreadsPerCore
+	}).(pulumi.IntPtrOutput)
+}
+
 type InstanceDataVolume struct {
 	// The delete with instance flag of volume.
 	DeleteWithInstance *bool `pulumi:"deleteWithInstance"`
-	// The size of volume.
+	// The size of volume. The value range of the data volume size is ESSD_PL0: 10~32768, ESSD_FlexPL: 10~32768, PTSSD: 20~8192.
 	Size int `pulumi:"size"`
 	// The type of volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
 	VolumeType string `pulumi:"volumeType"`
@@ -389,7 +526,7 @@ type InstanceDataVolumeInput interface {
 type InstanceDataVolumeArgs struct {
 	// The delete with instance flag of volume.
 	DeleteWithInstance pulumi.BoolPtrInput `pulumi:"deleteWithInstance"`
-	// The size of volume.
+	// The size of volume. The value range of the data volume size is ESSD_PL0: 10~32768, ESSD_FlexPL: 10~32768, PTSSD: 20~8192.
 	Size pulumi.IntInput `pulumi:"size"`
 	// The type of volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
 	VolumeType pulumi.StringInput `pulumi:"volumeType"`
@@ -451,7 +588,7 @@ func (o InstanceDataVolumeOutput) DeleteWithInstance() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v InstanceDataVolume) *bool { return v.DeleteWithInstance }).(pulumi.BoolPtrOutput)
 }
 
-// The size of volume.
+// The size of volume. The value range of the data volume size is ESSD_PL0: 10~32768, ESSD_FlexPL: 10~32768, PTSSD: 20~8192.
 func (o InstanceDataVolumeOutput) Size() pulumi.IntOutput {
 	return o.ApplyT(func(v InstanceDataVolume) int { return v.Size }).(pulumi.IntOutput)
 }
@@ -2805,6 +2942,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentSetsDeploymentSetArrayInput)(nil)).Elem(), DeploymentSetsDeploymentSetArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ImagesImageInput)(nil)).Elem(), ImagesImageArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ImagesImageArrayInput)(nil)).Elem(), ImagesImageArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceCpuOptionsInput)(nil)).Elem(), InstanceCpuOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceCpuOptionsPtrInput)(nil)).Elem(), InstanceCpuOptionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceDataVolumeInput)(nil)).Elem(), InstanceDataVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceDataVolumeArrayInput)(nil)).Elem(), InstanceDataVolumeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceGpuDeviceInput)(nil)).Elem(), InstanceGpuDeviceArgs{})
@@ -2843,6 +2982,8 @@ func init() {
 	pulumi.RegisterOutputType(DeploymentSetsDeploymentSetArrayOutput{})
 	pulumi.RegisterOutputType(ImagesImageOutput{})
 	pulumi.RegisterOutputType(ImagesImageArrayOutput{})
+	pulumi.RegisterOutputType(InstanceCpuOptionsOutput{})
+	pulumi.RegisterOutputType(InstanceCpuOptionsPtrOutput{})
 	pulumi.RegisterOutputType(InstanceDataVolumeOutput{})
 	pulumi.RegisterOutputType(InstanceDataVolumeArrayOutput{})
 	pulumi.RegisterOutputType(InstanceGpuDeviceOutput{})

@@ -10,7 +10,7 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as pulumi from "@volcengine/pulumi";
  *
  * // 创建步骤：terraform init -> terraform plan -> terraform apply
  * // 删除步骤: terraform state rm volcengine_scaling_configuration.foo1 -> terraform destroy

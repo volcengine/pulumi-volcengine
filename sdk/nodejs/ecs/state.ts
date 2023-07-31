@@ -10,11 +10,43 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as pulumi from "@volcengine/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = new volcengine.ecs.State("foo", {
- *     action: "ForceStop",
- *     instanceId: "i-ycc01lmwecgh9z3sqqfl",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
+ *     securityGroupName: "acc-test-security-group",
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooImages = volcengine.ecs.Images({
+ *     osType: "Linux",
+ *     visibility: "public",
+ *     instanceTypeId: "ecs.g1.large",
+ * });
+ * const fooInstance = new volcengine.ecs.Instance("fooInstance", {
+ *     instanceName: "acc-test-ecs",
+ *     imageId: fooImages.then(fooImages => fooImages.images?[0]?.imageId),
+ *     instanceType: "ecs.g1.large",
+ *     password: "93f0cb0614Aab12",
+ *     instanceChargeType: "PostPaid",
+ *     systemVolumeType: "ESSD_PL0",
+ *     systemVolumeSize: 40,
+ *     subnetId: fooSubnet.id,
+ *     securityGroupIds: [fooSecurityGroup.id],
+ * });
+ * const fooState = new volcengine.ecs.State("fooState", {
+ *     instanceId: fooInstance.id,
+ *     action: "Stop",
  *     stoppedMode: "KeepCharging",
  * });
  * ```

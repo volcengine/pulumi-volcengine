@@ -21,6 +21,7 @@ import * as utilities from "../utilities";
  *     peerGeographicRegionSetId: "China",
  *     period: 1,
  *     periodUnit: "Year",
+ *     projectName: "default",
  * });
  * ```
  *
@@ -65,12 +66,12 @@ export class BandwidthPackage extends pulumi.CustomResource {
      */
     public /*out*/ readonly accountId!: pulumi.Output<string>;
     /**
-     * The bandwidth of the cen bandwidth package.
+     * The bandwidth of the cen bandwidth package. Value: 2~10000.
      */
     public readonly bandwidth!: pulumi.Output<number>;
     /**
-     * The billing type of the cen bandwidth package. Terraform will only remove the PrePaid cen bandwidth package from the
-     * state file, not actually remove.
+     * The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`. Terraform will
+     * only remove the PrePaid cen bandwidth package from the state file, not actually remove.
      */
     public readonly billingType!: pulumi.Output<string | undefined>;
     /**
@@ -106,21 +107,25 @@ export class BandwidthPackage extends pulumi.CustomResource {
      */
     public /*out*/ readonly expiredTime!: pulumi.Output<string>;
     /**
-     * The local geographic region set id of the cen bandwidth package.
+     * The local geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
      */
     public readonly localGeographicRegionSetId!: pulumi.Output<string | undefined>;
     /**
-     * The peer geographic region set id of the cen bandwidth package.
+     * The peer geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
      */
     public readonly peerGeographicRegionSetId!: pulumi.Output<string | undefined>;
     /**
-     * The period of the cen bandwidth package.
+     * The period of the cen bandwidth package. Default value is 1.
      */
     public readonly period!: pulumi.Output<number | undefined>;
     /**
-     * The period unit of the cen bandwidth package.
+     * The period unit of the cen bandwidth package. Value: `Month`, `Year`. Default value is `Month`.
      */
     public readonly periodUnit!: pulumi.Output<string | undefined>;
+    /**
+     * The ProjectName of the cen bandwidth package.
+     */
+    public readonly projectName!: pulumi.Output<string | undefined>;
     /**
      * The remain bandwidth of the cen bandwidth package.
      */
@@ -166,6 +171,7 @@ export class BandwidthPackage extends pulumi.CustomResource {
             resourceInputs["peerGeographicRegionSetId"] = state ? state.peerGeographicRegionSetId : undefined;
             resourceInputs["period"] = state ? state.period : undefined;
             resourceInputs["periodUnit"] = state ? state.periodUnit : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["remainingBandwidth"] = state ? state.remainingBandwidth : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
@@ -180,6 +186,7 @@ export class BandwidthPackage extends pulumi.CustomResource {
             resourceInputs["peerGeographicRegionSetId"] = args ? args.peerGeographicRegionSetId : undefined;
             resourceInputs["period"] = args ? args.period : undefined;
             resourceInputs["periodUnit"] = args ? args.periodUnit : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["accountId"] = undefined /*out*/;
             resourceInputs["businessStatus"] = undefined /*out*/;
@@ -206,12 +213,12 @@ export interface BandwidthPackageState {
      */
     accountId?: pulumi.Input<string>;
     /**
-     * The bandwidth of the cen bandwidth package.
+     * The bandwidth of the cen bandwidth package. Value: 2~10000.
      */
     bandwidth?: pulumi.Input<number>;
     /**
-     * The billing type of the cen bandwidth package. Terraform will only remove the PrePaid cen bandwidth package from the
-     * state file, not actually remove.
+     * The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`. Terraform will
+     * only remove the PrePaid cen bandwidth package from the state file, not actually remove.
      */
     billingType?: pulumi.Input<string>;
     /**
@@ -247,21 +254,25 @@ export interface BandwidthPackageState {
      */
     expiredTime?: pulumi.Input<string>;
     /**
-     * The local geographic region set id of the cen bandwidth package.
+     * The local geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
      */
     localGeographicRegionSetId?: pulumi.Input<string>;
     /**
-     * The peer geographic region set id of the cen bandwidth package.
+     * The peer geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
      */
     peerGeographicRegionSetId?: pulumi.Input<string>;
     /**
-     * The period of the cen bandwidth package.
+     * The period of the cen bandwidth package. Default value is 1.
      */
     period?: pulumi.Input<number>;
     /**
-     * The period unit of the cen bandwidth package.
+     * The period unit of the cen bandwidth package. Value: `Month`, `Year`. Default value is `Month`.
      */
     periodUnit?: pulumi.Input<string>;
+    /**
+     * The ProjectName of the cen bandwidth package.
+     */
+    projectName?: pulumi.Input<string>;
     /**
      * The remain bandwidth of the cen bandwidth package.
      */
@@ -285,12 +296,12 @@ export interface BandwidthPackageState {
  */
 export interface BandwidthPackageArgs {
     /**
-     * The bandwidth of the cen bandwidth package.
+     * The bandwidth of the cen bandwidth package. Value: 2~10000.
      */
     bandwidth?: pulumi.Input<number>;
     /**
-     * The billing type of the cen bandwidth package. Terraform will only remove the PrePaid cen bandwidth package from the
-     * state file, not actually remove.
+     * The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`. Terraform will
+     * only remove the PrePaid cen bandwidth package from the state file, not actually remove.
      */
     billingType?: pulumi.Input<string>;
     /**
@@ -302,21 +313,25 @@ export interface BandwidthPackageArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * The local geographic region set id of the cen bandwidth package.
+     * The local geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
      */
     localGeographicRegionSetId?: pulumi.Input<string>;
     /**
-     * The peer geographic region set id of the cen bandwidth package.
+     * The peer geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
      */
     peerGeographicRegionSetId?: pulumi.Input<string>;
     /**
-     * The period of the cen bandwidth package.
+     * The period of the cen bandwidth package. Default value is 1.
      */
     period?: pulumi.Input<number>;
     /**
-     * The period unit of the cen bandwidth package.
+     * The period unit of the cen bandwidth package. Value: `Month`, `Year`. Default value is `Month`.
      */
     periodUnit?: pulumi.Input<string>;
+    /**
+     * The ProjectName of the cen bandwidth package.
+     */
+    projectName?: pulumi.Input<string>;
     /**
      * Tags.
      */

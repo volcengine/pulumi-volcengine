@@ -5,13 +5,24 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "../types";
 
 export namespace autoscaling {
+    export interface ScalingConfigurationTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface ScalingConfigurationVolume {
         /**
          * The delete with instance flag of volume. Valid values: true, false. Default value: true.
          */
         deleteWithInstance?: pulumi.Input<boolean>;
         /**
-         * The size of volume.
+         * The size of volume. System disk value range: 10 - 500. The value range of the data disk: 10 - 8192.
          */
         size: pulumi.Input<number>;
         /**
@@ -23,7 +34,7 @@ export namespace autoscaling {
     export interface ScalingGroupServerGroupAttribute {
         loadBalancerId?: pulumi.Input<string>;
         /**
-         * The port receiving request of the server group.
+         * The port receiving request of the server group. Value range: 1 ~ 65535.
          */
         port: pulumi.Input<number>;
         /**
@@ -31,9 +42,20 @@ export namespace autoscaling {
          */
         serverGroupId: pulumi.Input<string>;
         /**
-         * The weight of the instance.
+         * The weight of the instance. Value range: 0 ~ 100.
          */
         weight: pulumi.Input<number>;
+    }
+
+    export interface ScalingGroupTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
     }
 
 }
@@ -126,6 +148,20 @@ export namespace cen {
         value: pulumi.Input<string>;
     }
 
+    export interface ServiceRouteEntryPublishToInstance {
+        /**
+         * Cloud service access routes need to publish the network instance ID.
+         */
+        instanceId?: pulumi.Input<string>;
+        /**
+         * The region where the cloud service access route needs to be published.
+         */
+        instanceRegionId?: pulumi.Input<string>;
+        /**
+         * The network instance type that needs to be published for cloud service access routes. The values are as follows: `VPC`, `DCGW`.
+         */
+        instanceType?: pulumi.Input<string>;
+    }
 }
 
 export namespace clb {
@@ -138,6 +174,54 @@ export namespace clb {
          * The content of the AclEntry.
          */
         entry: pulumi.Input<string>;
+    }
+
+    export interface CertificateTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface CertificatesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface CertificatesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface ClbEipBillingConfig {
+        /**
+         * The peek bandwidth of the EIP which automatically assigned to CLB. The value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
+         */
+        bandwidth?: pulumi.Input<number>;
+        /**
+         * The billing type of the EIP which automatically assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.When creating a `PrePaid` public CLB, this field must be specified as `PrePaid` simultaneously.When the LoadBalancerBillingType changes from `PostPaid` to `PrePaid`, please manually modify the value of this field to `PrePaid` simultaneously.
+         */
+        eipBillingType: pulumi.Input<string>;
+        /**
+         * The ISP of the EIP which automatically associated to CLB, the value can be `BGP`.
+         */
+        isp: pulumi.Input<string>;
     }
 
     export interface ClbTag {
@@ -202,6 +286,14 @@ export namespace clb {
          * The response timeout of health check, default 2, range in 1~60..
          */
         timeout?: pulumi.Input<number>;
+        /**
+         * The UDP expect of health check. This field must be specified simultaneously with field `udpRequest`.
+         */
+        udpExpect?: pulumi.Input<string>;
+        /**
+         * The UDP request of health check. This field must be specified simultaneously with field `udpExpect`.
+         */
+        udpRequest?: pulumi.Input<string>;
         /**
          * The unhealthy threshold of health check, default 3, range in 2~10.
          */
@@ -325,13 +417,20 @@ export namespace ebs {
 }
 
 export namespace ecs {
+    export interface InstanceCpuOptions {
+        /**
+         * The per core of threads.
+         */
+        threadsPerCore: pulumi.Input<number>;
+    }
+
     export interface InstanceDataVolume {
         /**
          * The delete with instance flag of volume.
          */
         deleteWithInstance?: pulumi.Input<boolean>;
         /**
-         * The size of volume.
+         * The size of volume. The value range of the data volume size is ESSD_PL0: 10~32768, ESSD_FlexPL: 10~32768, PTSSD: 20~8192.
          */
         size: pulumi.Input<number>;
         /**
@@ -2640,16 +2739,16 @@ export namespace vpc {
          */
         networkAclEntryName?: pulumi.Input<string>;
         /**
-         * The policy of entry.
+         * The policy of entry. Default is `accept`. The value can be `accept` or `drop`.
          */
         policy?: pulumi.Input<string>;
         /**
-         * The port of entry.
+         * The port of entry. Default is `-1/-1`. When Protocol is `all`, `icmp` or `gre`, the port range is `-1/-1`, which means no port restriction.When the Protocol is `tcp` or `udp`, the port range is `1~65535`, and the format is `1/200`, `80/80`,which means port 1 to port 200, port 80.
          */
         port?: pulumi.Input<string>;
         priority?: pulumi.Input<number>;
         /**
-         * The protocol of entry.
+         * The protocol of entry. The value can be `icmp` or `gre` or `tcp` or `udp` or `all`. Default is `all`.
          */
         protocol?: pulumi.Input<string>;
     }
@@ -2665,16 +2764,16 @@ export namespace vpc {
          */
         networkAclEntryName?: pulumi.Input<string>;
         /**
-         * The policy of entry.
+         * The policy of entry, default is `accept`. The value can be `accept` or `drop`.
          */
         policy?: pulumi.Input<string>;
         /**
-         * The port of entry.
+         * The port of entry. Default is `-1/-1`. When Protocol is `all`, `icmp` or `gre`, the port range is `-1/-1`, which means no port restriction. When the Protocol is `tcp` or `udp`, the port range is `1~65535`, and the format is `1/200`, `80/80`, which means port 1 to port 200, port 80.
          */
         port?: pulumi.Input<string>;
         priority?: pulumi.Input<number>;
         /**
-         * The protocol of entry.
+         * The protocol of entry, default is `all`. The value can be `icmp` or `gre` or `tcp` or `udp` or `all`.
          */
         protocol?: pulumi.Input<string>;
         /**

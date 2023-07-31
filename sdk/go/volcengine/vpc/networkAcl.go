@@ -21,6 +21,7 @@ import (
 //
 //	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/vpc"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
@@ -42,10 +43,17 @@ import (
 //						Protocol:            pulumi.String("all"),
 //						SourceCidrIp:        pulumi.String("192.168.0.0/24"),
 //					},
+//					&vpc.NetworkAclIngressAclEntryArgs{
+//						NetworkAclEntryName: pulumi.String("ingress3"),
+//						Policy:              pulumi.String("accept"),
+//						Port:                pulumi.String("80/80"),
+//						Protocol:            pulumi.String("tcp"),
+//						SourceCidrIp:        pulumi.String("192.168.0.0/24"),
+//					},
 //				},
 //				NetworkAclName: pulumi.String("tf-test-acl"),
 //				ProjectName:    pulumi.String("default"),
-//				VpcId:          pulumi.String("vpc-12bk4qjc69reo17q7y36shv6z"),
+//				VpcId:          pulumi.String("vpc-2d6jskar243k058ozfdae13ne"),
 //			})
 //			if err != nil {
 //				return err

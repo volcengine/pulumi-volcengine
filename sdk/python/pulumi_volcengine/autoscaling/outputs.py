@@ -12,12 +12,16 @@ from . import outputs
 __all__ = [
     'ScalingActivitiesActivityResult',
     'ScalingActivitiesActivityRelatedInstanceResult',
+    'ScalingConfigurationTag',
     'ScalingConfigurationVolume',
     'ScalingConfigurationsScalingConfigurationResult',
+    'ScalingConfigurationsScalingConfigurationTagResult',
     'ScalingConfigurationsScalingConfigurationVolumeResult',
     'ScalingGroupServerGroupAttribute',
+    'ScalingGroupTag',
     'ScalingGroupsScalingGroupResult',
     'ScalingGroupsScalingGroupServerGroupAttributeResult',
+    'ScalingGroupsScalingGroupTagResult',
     'ScalingInstancesScalingInstanceResult',
     'ScalingLifecycleHooksLifecycleHookResult',
     'ScalingPoliciesScalingPolicyResult',
@@ -258,6 +262,35 @@ class ScalingActivitiesActivityRelatedInstanceResult(dict):
 
 
 @pulumi.output_type
+class ScalingConfigurationTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class ScalingConfigurationVolume(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -283,7 +316,7 @@ class ScalingConfigurationVolume(dict):
                  volume_type: str,
                  delete_with_instance: Optional[bool] = None):
         """
-        :param int size: The size of volume.
+        :param int size: The size of volume. System disk value range: 10 - 500. The value range of the data disk: 10 - 8192.
         :param str volume_type: The type of volume.
         :param bool delete_with_instance: The delete with instance flag of volume. Valid values: true, false. Default value: true.
         """
@@ -296,7 +329,7 @@ class ScalingConfigurationVolume(dict):
     @pulumi.getter
     def size(self) -> int:
         """
-        The size of volume.
+        The size of volume. System disk value range: 10 - 500. The value range of the data disk: 10 - 8192.
         """
         return pulumi.get(self, "size")
 
@@ -325,6 +358,7 @@ class ScalingConfigurationsScalingConfigurationResult(dict):
                  eip_billing_type: str,
                  eip_isp: str,
                  host_name: str,
+                 hpc_cluster_id: str,
                  id: str,
                  image_id: str,
                  instance_description: str,
@@ -332,11 +366,14 @@ class ScalingConfigurationsScalingConfigurationResult(dict):
                  instance_types: Sequence[str],
                  key_pair_name: str,
                  lifecycle_state: str,
+                 project_name: str,
                  scaling_configuration_id: str,
                  scaling_configuration_name: str,
                  scaling_group_id: str,
                  security_enhancement_strategy: str,
                  security_group_ids: Sequence[str],
+                 spot_strategy: str,
+                 tags: Sequence['outputs.ScalingConfigurationsScalingConfigurationTagResult'],
                  updated_at: str,
                  user_data: str,
                  volumes: Sequence['outputs.ScalingConfigurationsScalingConfigurationVolumeResult']):
@@ -346,6 +383,7 @@ class ScalingConfigurationsScalingConfigurationResult(dict):
         :param str eip_billing_type: The EIP ISP which the scaling configuration set.
         :param str eip_isp: The EIP ISP which the scaling configuration set.
         :param str host_name: The ECS hostname which the scaling configuration set.
+        :param str hpc_cluster_id: The ID of the HPC cluster to which the instance belongs. Valid only when InstanceTypes.N specifies High Performance Computing GPU Type.
         :param str id: The id of the scaling configuration.
         :param str image_id: The ECS image id which the scaling configuration set.
         :param str instance_description: The ECS instance description which the scaling configuration set.
@@ -353,11 +391,14 @@ class ScalingConfigurationsScalingConfigurationResult(dict):
         :param Sequence[str] instance_types: The list of the ECS instance type which the scaling configuration set.
         :param str key_pair_name: The ECS key pair name which the scaling configuration set.
         :param str lifecycle_state: The lifecycle state of the scaling configuration.
+        :param str project_name: The project to which the instance created by the scaling configuration belongs.
         :param str scaling_configuration_id: The id of the scaling configuration.
         :param str scaling_configuration_name: The name of the scaling configuration.
         :param str scaling_group_id: An id of scaling group.
         :param str security_enhancement_strategy: The Ecs security enhancement strategy which the scaling configuration set.
         :param Sequence[str] security_group_ids: The list of the security group id of the networkInterface which the scaling configuration set.
+        :param str spot_strategy: The preemption policy of the instance. Valid Value: NoSpot (default), SpotAsPriceGo.
+        :param Sequence['ScalingConfigurationsScalingConfigurationTagArgs'] tags: The label of the instance created by the scaling configuration.
         :param str updated_at: The create time of the scaling configuration.
         :param str user_data: The ECS user data which the scaling configuration set.
         :param Sequence['ScalingConfigurationsScalingConfigurationVolumeArgs'] volumes: The list of volume of the scaling configuration.
@@ -367,6 +408,7 @@ class ScalingConfigurationsScalingConfigurationResult(dict):
         pulumi.set(__self__, "eip_billing_type", eip_billing_type)
         pulumi.set(__self__, "eip_isp", eip_isp)
         pulumi.set(__self__, "host_name", host_name)
+        pulumi.set(__self__, "hpc_cluster_id", hpc_cluster_id)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "image_id", image_id)
         pulumi.set(__self__, "instance_description", instance_description)
@@ -374,11 +416,14 @@ class ScalingConfigurationsScalingConfigurationResult(dict):
         pulumi.set(__self__, "instance_types", instance_types)
         pulumi.set(__self__, "key_pair_name", key_pair_name)
         pulumi.set(__self__, "lifecycle_state", lifecycle_state)
+        pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "scaling_configuration_id", scaling_configuration_id)
         pulumi.set(__self__, "scaling_configuration_name", scaling_configuration_name)
         pulumi.set(__self__, "scaling_group_id", scaling_group_id)
         pulumi.set(__self__, "security_enhancement_strategy", security_enhancement_strategy)
         pulumi.set(__self__, "security_group_ids", security_group_ids)
+        pulumi.set(__self__, "spot_strategy", spot_strategy)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "updated_at", updated_at)
         pulumi.set(__self__, "user_data", user_data)
         pulumi.set(__self__, "volumes", volumes)
@@ -422,6 +467,14 @@ class ScalingConfigurationsScalingConfigurationResult(dict):
         The ECS hostname which the scaling configuration set.
         """
         return pulumi.get(self, "host_name")
+
+    @property
+    @pulumi.getter(name="hpcClusterId")
+    def hpc_cluster_id(self) -> str:
+        """
+        The ID of the HPC cluster to which the instance belongs. Valid only when InstanceTypes.N specifies High Performance Computing GPU Type.
+        """
+        return pulumi.get(self, "hpc_cluster_id")
 
     @property
     @pulumi.getter
@@ -480,6 +533,14 @@ class ScalingConfigurationsScalingConfigurationResult(dict):
         return pulumi.get(self, "lifecycle_state")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project to which the instance created by the scaling configuration belongs.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="scalingConfigurationId")
     def scaling_configuration_id(self) -> str:
         """
@@ -520,6 +581,22 @@ class ScalingConfigurationsScalingConfigurationResult(dict):
         return pulumi.get(self, "security_group_ids")
 
     @property
+    @pulumi.getter(name="spotStrategy")
+    def spot_strategy(self) -> str:
+        """
+        The preemption policy of the instance. Valid Value: NoSpot (default), SpotAsPriceGo.
+        """
+        return pulumi.get(self, "spot_strategy")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.ScalingConfigurationsScalingConfigurationTagResult']:
+        """
+        The label of the instance created by the scaling configuration.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> str:
         """
@@ -542,6 +619,35 @@ class ScalingConfigurationsScalingConfigurationResult(dict):
         The list of volume of the scaling configuration.
         """
         return pulumi.get(self, "volumes")
+
+
+@pulumi.output_type
+class ScalingConfigurationsScalingConfigurationTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -611,9 +717,9 @@ class ScalingGroupServerGroupAttribute(dict):
                  weight: int,
                  load_balancer_id: Optional[str] = None):
         """
-        :param int port: The port receiving request of the server group.
+        :param int port: The port receiving request of the server group. Value range: 1 ~ 65535.
         :param str server_group_id: The id of the server group.
-        :param int weight: The weight of the instance.
+        :param int weight: The weight of the instance. Value range: 0 ~ 100.
         """
         pulumi.set(__self__, "port", port)
         pulumi.set(__self__, "server_group_id", server_group_id)
@@ -625,7 +731,7 @@ class ScalingGroupServerGroupAttribute(dict):
     @pulumi.getter
     def port(self) -> int:
         """
-        The port receiving request of the server group.
+        The port receiving request of the server group. Value range: 1 ~ 65535.
         """
         return pulumi.get(self, "port")
 
@@ -641,7 +747,7 @@ class ScalingGroupServerGroupAttribute(dict):
     @pulumi.getter
     def weight(self) -> int:
         """
-        The weight of the instance.
+        The weight of the instance. Value range: 0 ~ 100.
         """
         return pulumi.get(self, "weight")
 
@@ -649,6 +755,35 @@ class ScalingGroupServerGroupAttribute(dict):
     @pulumi.getter(name="loadBalancerId")
     def load_balancer_id(self) -> Optional[str]:
         return pulumi.get(self, "load_balancer_id")
+
+
+@pulumi.output_type
+class ScalingGroupTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -667,10 +802,12 @@ class ScalingGroupsScalingGroupResult(dict):
                  max_instance_number: int,
                  min_instance_number: int,
                  multi_az_policy: str,
+                 project_name: str,
                  scaling_group_id: str,
                  scaling_group_name: str,
                  server_group_attributes: Sequence['outputs.ScalingGroupsScalingGroupServerGroupAttributeResult'],
                  subnet_ids: Sequence[str],
+                 tags: Sequence['outputs.ScalingGroupsScalingGroupTagResult'],
                  total_instance_count: int,
                  updated_at: str,
                  vpc_id: str):
@@ -688,10 +825,12 @@ class ScalingGroupsScalingGroupResult(dict):
         :param int max_instance_number: The max instance number of the scaling group.
         :param int min_instance_number: The min instance number of the scaling group.
         :param str multi_az_policy: The multi az policy of the scaling group. Valid values: PRIORITY, BALANCE.
+        :param str project_name: The ProjectName of scaling group.
         :param str scaling_group_id: The id of the scaling group.
         :param str scaling_group_name: The name of the scaling group.
         :param Sequence['ScalingGroupsScalingGroupServerGroupAttributeArgs'] server_group_attributes: The list of server group attributes.
         :param Sequence[str] subnet_ids: The list of the subnet id to which the ENI is connected.
+        :param Sequence['ScalingGroupsScalingGroupTagArgs'] tags: Tags.
         :param int total_instance_count: The total instance count of the scaling group.
         :param str updated_at: The create time of the scaling group.
         :param str vpc_id: The VPC id of the scaling group.
@@ -709,10 +848,12 @@ class ScalingGroupsScalingGroupResult(dict):
         pulumi.set(__self__, "max_instance_number", max_instance_number)
         pulumi.set(__self__, "min_instance_number", min_instance_number)
         pulumi.set(__self__, "multi_az_policy", multi_az_policy)
+        pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "scaling_group_id", scaling_group_id)
         pulumi.set(__self__, "scaling_group_name", scaling_group_name)
         pulumi.set(__self__, "server_group_attributes", server_group_attributes)
         pulumi.set(__self__, "subnet_ids", subnet_ids)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "total_instance_count", total_instance_count)
         pulumi.set(__self__, "updated_at", updated_at)
         pulumi.set(__self__, "vpc_id", vpc_id)
@@ -822,6 +963,14 @@ class ScalingGroupsScalingGroupResult(dict):
         return pulumi.get(self, "multi_az_policy")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The ProjectName of scaling group.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="scalingGroupId")
     def scaling_group_id(self) -> str:
         """
@@ -852,6 +1001,14 @@ class ScalingGroupsScalingGroupResult(dict):
         The list of the subnet id to which the ENI is connected.
         """
         return pulumi.get(self, "subnet_ids")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.ScalingGroupsScalingGroupTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="totalInstanceCount")
@@ -927,6 +1084,35 @@ class ScalingGroupsScalingGroupServerGroupAttributeResult(dict):
         The weight of the instance.
         """
         return pulumi.get(self, "weight")
+
+
+@pulumi.output_type
+class ScalingGroupsScalingGroupTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type

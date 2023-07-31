@@ -19,17 +19,26 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/cen"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/cen"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cen.NewAttachInstance(ctx, "foo", &cen.AttachInstanceArgs{
-//				CenId:            pulumi.String("cen-2bzrl3srxsv0g2dx0efyoojn3"),
-//				InstanceId:       pulumi.String("vpc-2d686ofu89pfk58ozfd8z9khe"),
-//				InstanceRegionId: pulumi.String("cn-guilin-boe"),
+//				CenId:            pulumi.String("cen-12ar8uclj68sg17q7y20v9gil"),
+//				InstanceId:       pulumi.String("vpc-2fe5dpn0av2m859gp68rhk2dc"),
+//				InstanceRegionId: pulumi.String("cn-beijing"),
+//				InstanceType:     pulumi.String("VPC"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cen.NewAttachInstance(ctx, "foo1", &cen.AttachInstanceArgs{
+//				CenId:            pulumi.String("cen-12ar8uclj68sg17q7y20v9gil"),
+//				InstanceId:       pulumi.String("vpc-in66ktl5t24g8gbssz0sqva1"),
+//				InstanceRegionId: pulumi.String("cn-beijing"),
 //				InstanceType:     pulumi.String("VPC"),
 //			})
 //			if err != nil {
@@ -63,7 +72,7 @@ type AttachInstance struct {
 	InstanceOwnerId pulumi.StringOutput `pulumi:"instanceOwnerId"`
 	// The region ID of the instance.
 	InstanceRegionId pulumi.StringOutput `pulumi:"instanceRegionId"`
-	// The type of the instance.
+	// The type of the instance. Valid values: `VPC`, `DCGW`.
 	InstanceType pulumi.StringOutput `pulumi:"instanceType"`
 	// The status of the cen attaching instance.
 	Status pulumi.StringOutput `pulumi:"status"`
@@ -120,7 +129,7 @@ type attachInstanceState struct {
 	InstanceOwnerId *string `pulumi:"instanceOwnerId"`
 	// The region ID of the instance.
 	InstanceRegionId *string `pulumi:"instanceRegionId"`
-	// The type of the instance.
+	// The type of the instance. Valid values: `VPC`, `DCGW`.
 	InstanceType *string `pulumi:"instanceType"`
 	// The status of the cen attaching instance.
 	Status *string `pulumi:"status"`
@@ -137,7 +146,7 @@ type AttachInstanceState struct {
 	InstanceOwnerId pulumi.StringPtrInput
 	// The region ID of the instance.
 	InstanceRegionId pulumi.StringPtrInput
-	// The type of the instance.
+	// The type of the instance. Valid values: `VPC`, `DCGW`.
 	InstanceType pulumi.StringPtrInput
 	// The status of the cen attaching instance.
 	Status pulumi.StringPtrInput
@@ -156,7 +165,7 @@ type attachInstanceArgs struct {
 	InstanceOwnerId *string `pulumi:"instanceOwnerId"`
 	// The region ID of the instance.
 	InstanceRegionId string `pulumi:"instanceRegionId"`
-	// The type of the instance.
+	// The type of the instance. Valid values: `VPC`, `DCGW`.
 	InstanceType string `pulumi:"instanceType"`
 }
 
@@ -170,7 +179,7 @@ type AttachInstanceArgs struct {
 	InstanceOwnerId pulumi.StringPtrInput
 	// The region ID of the instance.
 	InstanceRegionId pulumi.StringInput
-	// The type of the instance.
+	// The type of the instance. Valid values: `VPC`, `DCGW`.
 	InstanceType pulumi.StringInput
 }
 
@@ -286,7 +295,7 @@ func (o AttachInstanceOutput) InstanceRegionId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AttachInstance) pulumi.StringOutput { return v.InstanceRegionId }).(pulumi.StringOutput)
 }
 
-// The type of the instance.
+// The type of the instance. Valid values: `VPC`, `DCGW`.
 func (o AttachInstanceOutput) InstanceType() pulumi.StringOutput {
 	return o.ApplyT(func(v *AttachInstance) pulumi.StringOutput { return v.InstanceType }).(pulumi.StringOutput)
 }

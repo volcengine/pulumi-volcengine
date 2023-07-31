@@ -193,7 +193,8 @@ def addresses(associated_instance_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.eip.addresses(ids=["eip-2748mbpjqzhfk7fap8teu0k1a"])
+    foo_address = volcengine.eip.Address("fooAddress", billing_type="PostPaidByTraffic")
+    foo_addresses = volcengine.eip.addresses_output(ids=[foo_address.id])
     ```
 
 
@@ -261,7 +262,8 @@ def addresses_output(associated_instance_id: Optional[pulumi.Input[Optional[str]
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.eip.addresses(ids=["eip-2748mbpjqzhfk7fap8teu0k1a"])
+    foo_address = volcengine.eip.Address("fooAddress", billing_type="PostPaidByTraffic")
+    foo_addresses = volcengine.eip.addresses_output(ids=[foo_address.id])
     ```
 
 

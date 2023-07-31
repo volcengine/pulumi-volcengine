@@ -8,6 +8,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'CertificatesResult',
@@ -21,7 +22,7 @@ class CertificatesResult:
     """
     A collection of values returned by Certificates.
     """
-    def __init__(__self__, certificate_name=None, certificates=None, id=None, ids=None, name_regex=None, output_file=None, project_name=None, total_count=None):
+    def __init__(__self__, certificate_name=None, certificates=None, id=None, ids=None, name_regex=None, output_file=None, project_name=None, tags=None, total_count=None):
         if certificate_name and not isinstance(certificate_name, str):
             raise TypeError("Expected argument 'certificate_name' to be a str")
         pulumi.set(__self__, "certificate_name", certificate_name)
@@ -43,6 +44,9 @@ class CertificatesResult:
         if project_name and not isinstance(project_name, str):
             raise TypeError("Expected argument 'project_name' to be a str")
         pulumi.set(__self__, "project_name", project_name)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -95,6 +99,14 @@ class CertificatesResult:
         return pulumi.get(self, "project_name")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.CertificatesTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
         """
@@ -116,6 +128,7 @@ class AwaitableCertificatesResult(CertificatesResult):
             name_regex=self.name_regex,
             output_file=self.output_file,
             project_name=self.project_name,
+            tags=self.tags,
             total_count=self.total_count)
 
 
@@ -124,6 +137,7 @@ def certificates(certificate_name: Optional[str] = None,
                  name_regex: Optional[str] = None,
                  output_file: Optional[str] = None,
                  project_name: Optional[str] = None,
+                 tags: Optional[Sequence[pulumi.InputType['CertificatesTagArgs']]] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableCertificatesResult:
     """
     Use this data source to query detailed information of certificates
@@ -142,6 +156,7 @@ def certificates(certificate_name: Optional[str] = None,
     :param str name_regex: The Name Regex of Certificate.
     :param str output_file: File name where to save data source results.
     :param str project_name: The ProjectName of Certificate.
+    :param Sequence[pulumi.InputType['CertificatesTagArgs']] tags: Tags.
     """
     __args__ = dict()
     __args__['certificateName'] = certificate_name
@@ -149,6 +164,7 @@ def certificates(certificate_name: Optional[str] = None,
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
     __args__['projectName'] = project_name
+    __args__['tags'] = tags
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
@@ -163,6 +179,7 @@ def certificates(certificate_name: Optional[str] = None,
         name_regex=__ret__.name_regex,
         output_file=__ret__.output_file,
         project_name=__ret__.project_name,
+        tags=__ret__.tags,
         total_count=__ret__.total_count)
 
 
@@ -172,6 +189,7 @@ def certificates_output(certificate_name: Optional[pulumi.Input[Optional[str]]] 
                         name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                         output_file: Optional[pulumi.Input[Optional[str]]] = None,
                         project_name: Optional[pulumi.Input[Optional[str]]] = None,
+                        tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['CertificatesTagArgs']]]]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[CertificatesResult]:
     """
     Use this data source to query detailed information of certificates
@@ -190,5 +208,6 @@ def certificates_output(certificate_name: Optional[pulumi.Input[Optional[str]]] 
     :param str name_regex: The Name Regex of Certificate.
     :param str output_file: File name where to save data source results.
     :param str project_name: The ProjectName of Certificate.
+    :param Sequence[pulumi.InputType['CertificatesTagArgs']] tags: Tags.
     """
     ...

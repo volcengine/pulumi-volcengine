@@ -21,6 +21,7 @@ import (
 //
 //	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/vke"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vke"
 //
 // )
 //

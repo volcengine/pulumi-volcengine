@@ -23,18 +23,20 @@ class BandwidthPackageArgs:
                  peer_geographic_region_set_id: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
                  period_unit: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['BandwidthPackageTagArgs']]]] = None):
         """
         The set of arguments for constructing a BandwidthPackage resource.
-        :param pulumi.Input[int] bandwidth: The bandwidth of the cen bandwidth package.
-        :param pulumi.Input[str] billing_type: The billing type of the cen bandwidth package. Terraform will only remove the PrePaid cen bandwidth package from the
-               state file, not actually remove.
+        :param pulumi.Input[int] bandwidth: The bandwidth of the cen bandwidth package. Value: 2~10000.
+        :param pulumi.Input[str] billing_type: The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`. Terraform will
+               only remove the PrePaid cen bandwidth package from the state file, not actually remove.
         :param pulumi.Input[str] cen_bandwidth_package_name: The name of the cen bandwidth package.
         :param pulumi.Input[str] description: The description of the cen bandwidth package.
-        :param pulumi.Input[str] local_geographic_region_set_id: The local geographic region set id of the cen bandwidth package.
-        :param pulumi.Input[str] peer_geographic_region_set_id: The peer geographic region set id of the cen bandwidth package.
-        :param pulumi.Input[int] period: The period of the cen bandwidth package.
-        :param pulumi.Input[str] period_unit: The period unit of the cen bandwidth package.
+        :param pulumi.Input[str] local_geographic_region_set_id: The local geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
+        :param pulumi.Input[str] peer_geographic_region_set_id: The peer geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
+        :param pulumi.Input[int] period: The period of the cen bandwidth package. Default value is 1.
+        :param pulumi.Input[str] period_unit: The period unit of the cen bandwidth package. Value: `Month`, `Year`. Default value is `Month`.
+        :param pulumi.Input[str] project_name: The ProjectName of the cen bandwidth package.
         :param pulumi.Input[Sequence[pulumi.Input['BandwidthPackageTagArgs']]] tags: Tags.
         """
         if bandwidth is not None:
@@ -53,6 +55,8 @@ class BandwidthPackageArgs:
             pulumi.set(__self__, "period", period)
         if period_unit is not None:
             pulumi.set(__self__, "period_unit", period_unit)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
 
@@ -60,7 +64,7 @@ class BandwidthPackageArgs:
     @pulumi.getter
     def bandwidth(self) -> Optional[pulumi.Input[int]]:
         """
-        The bandwidth of the cen bandwidth package.
+        The bandwidth of the cen bandwidth package. Value: 2~10000.
         """
         return pulumi.get(self, "bandwidth")
 
@@ -72,8 +76,8 @@ class BandwidthPackageArgs:
     @pulumi.getter(name="billingType")
     def billing_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The billing type of the cen bandwidth package. Terraform will only remove the PrePaid cen bandwidth package from the
-        state file, not actually remove.
+        The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`. Terraform will
+        only remove the PrePaid cen bandwidth package from the state file, not actually remove.
         """
         return pulumi.get(self, "billing_type")
 
@@ -109,7 +113,7 @@ class BandwidthPackageArgs:
     @pulumi.getter(name="localGeographicRegionSetId")
     def local_geographic_region_set_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The local geographic region set id of the cen bandwidth package.
+        The local geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
         """
         return pulumi.get(self, "local_geographic_region_set_id")
 
@@ -121,7 +125,7 @@ class BandwidthPackageArgs:
     @pulumi.getter(name="peerGeographicRegionSetId")
     def peer_geographic_region_set_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The peer geographic region set id of the cen bandwidth package.
+        The peer geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
         """
         return pulumi.get(self, "peer_geographic_region_set_id")
 
@@ -133,7 +137,7 @@ class BandwidthPackageArgs:
     @pulumi.getter
     def period(self) -> Optional[pulumi.Input[int]]:
         """
-        The period of the cen bandwidth package.
+        The period of the cen bandwidth package. Default value is 1.
         """
         return pulumi.get(self, "period")
 
@@ -145,13 +149,25 @@ class BandwidthPackageArgs:
     @pulumi.getter(name="periodUnit")
     def period_unit(self) -> Optional[pulumi.Input[str]]:
         """
-        The period unit of the cen bandwidth package.
+        The period unit of the cen bandwidth package. Value: `Month`, `Year`. Default value is `Month`.
         """
         return pulumi.get(self, "period_unit")
 
     @period_unit.setter
     def period_unit(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "period_unit", value)
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of the cen bandwidth package.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
 
     @property
     @pulumi.getter
@@ -184,6 +200,7 @@ class _BandwidthPackageState:
                  peer_geographic_region_set_id: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
                  period_unit: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  remaining_bandwidth: Optional[pulumi.Input[int]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['BandwidthPackageTagArgs']]]] = None,
@@ -191,9 +208,9 @@ class _BandwidthPackageState:
         """
         Input properties used for looking up and filtering BandwidthPackage resources.
         :param pulumi.Input[str] account_id: The account ID of the cen bandwidth package.
-        :param pulumi.Input[int] bandwidth: The bandwidth of the cen bandwidth package.
-        :param pulumi.Input[str] billing_type: The billing type of the cen bandwidth package. Terraform will only remove the PrePaid cen bandwidth package from the
-               state file, not actually remove.
+        :param pulumi.Input[int] bandwidth: The bandwidth of the cen bandwidth package. Value: 2~10000.
+        :param pulumi.Input[str] billing_type: The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`. Terraform will
+               only remove the PrePaid cen bandwidth package from the state file, not actually remove.
         :param pulumi.Input[str] business_status: The business status of the cen bandwidth package.
         :param pulumi.Input[str] cen_bandwidth_package_id: The ID of the cen bandwidth package.
         :param pulumi.Input[str] cen_bandwidth_package_name: The name of the cen bandwidth package.
@@ -202,10 +219,11 @@ class _BandwidthPackageState:
         :param pulumi.Input[str] deleted_time: The deleted time of the cen bandwidth package.
         :param pulumi.Input[str] description: The description of the cen bandwidth package.
         :param pulumi.Input[str] expired_time: The expired time of the cen bandwidth package.
-        :param pulumi.Input[str] local_geographic_region_set_id: The local geographic region set id of the cen bandwidth package.
-        :param pulumi.Input[str] peer_geographic_region_set_id: The peer geographic region set id of the cen bandwidth package.
-        :param pulumi.Input[int] period: The period of the cen bandwidth package.
-        :param pulumi.Input[str] period_unit: The period unit of the cen bandwidth package.
+        :param pulumi.Input[str] local_geographic_region_set_id: The local geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
+        :param pulumi.Input[str] peer_geographic_region_set_id: The peer geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
+        :param pulumi.Input[int] period: The period of the cen bandwidth package. Default value is 1.
+        :param pulumi.Input[str] period_unit: The period unit of the cen bandwidth package. Value: `Month`, `Year`. Default value is `Month`.
+        :param pulumi.Input[str] project_name: The ProjectName of the cen bandwidth package.
         :param pulumi.Input[int] remaining_bandwidth: The remain bandwidth of the cen bandwidth package.
         :param pulumi.Input[str] status: The status of the cen bandwidth package.
         :param pulumi.Input[Sequence[pulumi.Input['BandwidthPackageTagArgs']]] tags: Tags.
@@ -241,6 +259,8 @@ class _BandwidthPackageState:
             pulumi.set(__self__, "period", period)
         if period_unit is not None:
             pulumi.set(__self__, "period_unit", period_unit)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if remaining_bandwidth is not None:
             pulumi.set(__self__, "remaining_bandwidth", remaining_bandwidth)
         if status is not None:
@@ -266,7 +286,7 @@ class _BandwidthPackageState:
     @pulumi.getter
     def bandwidth(self) -> Optional[pulumi.Input[int]]:
         """
-        The bandwidth of the cen bandwidth package.
+        The bandwidth of the cen bandwidth package. Value: 2~10000.
         """
         return pulumi.get(self, "bandwidth")
 
@@ -278,8 +298,8 @@ class _BandwidthPackageState:
     @pulumi.getter(name="billingType")
     def billing_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The billing type of the cen bandwidth package. Terraform will only remove the PrePaid cen bandwidth package from the
-        state file, not actually remove.
+        The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`. Terraform will
+        only remove the PrePaid cen bandwidth package from the state file, not actually remove.
         """
         return pulumi.get(self, "billing_type")
 
@@ -387,7 +407,7 @@ class _BandwidthPackageState:
     @pulumi.getter(name="localGeographicRegionSetId")
     def local_geographic_region_set_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The local geographic region set id of the cen bandwidth package.
+        The local geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
         """
         return pulumi.get(self, "local_geographic_region_set_id")
 
@@ -399,7 +419,7 @@ class _BandwidthPackageState:
     @pulumi.getter(name="peerGeographicRegionSetId")
     def peer_geographic_region_set_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The peer geographic region set id of the cen bandwidth package.
+        The peer geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
         """
         return pulumi.get(self, "peer_geographic_region_set_id")
 
@@ -411,7 +431,7 @@ class _BandwidthPackageState:
     @pulumi.getter
     def period(self) -> Optional[pulumi.Input[int]]:
         """
-        The period of the cen bandwidth package.
+        The period of the cen bandwidth package. Default value is 1.
         """
         return pulumi.get(self, "period")
 
@@ -423,13 +443,25 @@ class _BandwidthPackageState:
     @pulumi.getter(name="periodUnit")
     def period_unit(self) -> Optional[pulumi.Input[str]]:
         """
-        The period unit of the cen bandwidth package.
+        The period unit of the cen bandwidth package. Value: `Month`, `Year`. Default value is `Month`.
         """
         return pulumi.get(self, "period_unit")
 
     @period_unit.setter
     def period_unit(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "period_unit", value)
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of the cen bandwidth package.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
 
     @property
     @pulumi.getter(name="remainingBandwidth")
@@ -493,6 +525,7 @@ class BandwidthPackage(pulumi.CustomResource):
                  peer_geographic_region_set_id: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
                  period_unit: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BandwidthPackageTagArgs']]]]] = None,
                  __props__=None):
         """
@@ -510,7 +543,8 @@ class BandwidthPackage(pulumi.CustomResource):
             local_geographic_region_set_id="China",
             peer_geographic_region_set_id="China",
             period=1,
-            period_unit="Year")
+            period_unit="Year",
+            project_name="default")
         ```
 
         ## Import
@@ -523,15 +557,16 @@ class BandwidthPackage(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] bandwidth: The bandwidth of the cen bandwidth package.
-        :param pulumi.Input[str] billing_type: The billing type of the cen bandwidth package. Terraform will only remove the PrePaid cen bandwidth package from the
-               state file, not actually remove.
+        :param pulumi.Input[int] bandwidth: The bandwidth of the cen bandwidth package. Value: 2~10000.
+        :param pulumi.Input[str] billing_type: The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`. Terraform will
+               only remove the PrePaid cen bandwidth package from the state file, not actually remove.
         :param pulumi.Input[str] cen_bandwidth_package_name: The name of the cen bandwidth package.
         :param pulumi.Input[str] description: The description of the cen bandwidth package.
-        :param pulumi.Input[str] local_geographic_region_set_id: The local geographic region set id of the cen bandwidth package.
-        :param pulumi.Input[str] peer_geographic_region_set_id: The peer geographic region set id of the cen bandwidth package.
-        :param pulumi.Input[int] period: The period of the cen bandwidth package.
-        :param pulumi.Input[str] period_unit: The period unit of the cen bandwidth package.
+        :param pulumi.Input[str] local_geographic_region_set_id: The local geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
+        :param pulumi.Input[str] peer_geographic_region_set_id: The peer geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
+        :param pulumi.Input[int] period: The period of the cen bandwidth package. Default value is 1.
+        :param pulumi.Input[str] period_unit: The period unit of the cen bandwidth package. Value: `Month`, `Year`. Default value is `Month`.
+        :param pulumi.Input[str] project_name: The ProjectName of the cen bandwidth package.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BandwidthPackageTagArgs']]]] tags: Tags.
         """
         ...
@@ -555,7 +590,8 @@ class BandwidthPackage(pulumi.CustomResource):
             local_geographic_region_set_id="China",
             peer_geographic_region_set_id="China",
             period=1,
-            period_unit="Year")
+            period_unit="Year",
+            project_name="default")
         ```
 
         ## Import
@@ -589,6 +625,7 @@ class BandwidthPackage(pulumi.CustomResource):
                  peer_geographic_region_set_id: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
                  period_unit: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BandwidthPackageTagArgs']]]]] = None,
                  __props__=None):
         if opts is None:
@@ -610,6 +647,7 @@ class BandwidthPackage(pulumi.CustomResource):
             __props__.__dict__["peer_geographic_region_set_id"] = peer_geographic_region_set_id
             __props__.__dict__["period"] = period
             __props__.__dict__["period_unit"] = period_unit
+            __props__.__dict__["project_name"] = project_name
             __props__.__dict__["tags"] = tags
             __props__.__dict__["account_id"] = None
             __props__.__dict__["business_status"] = None
@@ -646,6 +684,7 @@ class BandwidthPackage(pulumi.CustomResource):
             peer_geographic_region_set_id: Optional[pulumi.Input[str]] = None,
             period: Optional[pulumi.Input[int]] = None,
             period_unit: Optional[pulumi.Input[str]] = None,
+            project_name: Optional[pulumi.Input[str]] = None,
             remaining_bandwidth: Optional[pulumi.Input[int]] = None,
             status: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BandwidthPackageTagArgs']]]]] = None,
@@ -658,9 +697,9 @@ class BandwidthPackage(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] account_id: The account ID of the cen bandwidth package.
-        :param pulumi.Input[int] bandwidth: The bandwidth of the cen bandwidth package.
-        :param pulumi.Input[str] billing_type: The billing type of the cen bandwidth package. Terraform will only remove the PrePaid cen bandwidth package from the
-               state file, not actually remove.
+        :param pulumi.Input[int] bandwidth: The bandwidth of the cen bandwidth package. Value: 2~10000.
+        :param pulumi.Input[str] billing_type: The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`. Terraform will
+               only remove the PrePaid cen bandwidth package from the state file, not actually remove.
         :param pulumi.Input[str] business_status: The business status of the cen bandwidth package.
         :param pulumi.Input[str] cen_bandwidth_package_id: The ID of the cen bandwidth package.
         :param pulumi.Input[str] cen_bandwidth_package_name: The name of the cen bandwidth package.
@@ -669,10 +708,11 @@ class BandwidthPackage(pulumi.CustomResource):
         :param pulumi.Input[str] deleted_time: The deleted time of the cen bandwidth package.
         :param pulumi.Input[str] description: The description of the cen bandwidth package.
         :param pulumi.Input[str] expired_time: The expired time of the cen bandwidth package.
-        :param pulumi.Input[str] local_geographic_region_set_id: The local geographic region set id of the cen bandwidth package.
-        :param pulumi.Input[str] peer_geographic_region_set_id: The peer geographic region set id of the cen bandwidth package.
-        :param pulumi.Input[int] period: The period of the cen bandwidth package.
-        :param pulumi.Input[str] period_unit: The period unit of the cen bandwidth package.
+        :param pulumi.Input[str] local_geographic_region_set_id: The local geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
+        :param pulumi.Input[str] peer_geographic_region_set_id: The peer geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
+        :param pulumi.Input[int] period: The period of the cen bandwidth package. Default value is 1.
+        :param pulumi.Input[str] period_unit: The period unit of the cen bandwidth package. Value: `Month`, `Year`. Default value is `Month`.
+        :param pulumi.Input[str] project_name: The ProjectName of the cen bandwidth package.
         :param pulumi.Input[int] remaining_bandwidth: The remain bandwidth of the cen bandwidth package.
         :param pulumi.Input[str] status: The status of the cen bandwidth package.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BandwidthPackageTagArgs']]]] tags: Tags.
@@ -697,6 +737,7 @@ class BandwidthPackage(pulumi.CustomResource):
         __props__.__dict__["peer_geographic_region_set_id"] = peer_geographic_region_set_id
         __props__.__dict__["period"] = period
         __props__.__dict__["period_unit"] = period_unit
+        __props__.__dict__["project_name"] = project_name
         __props__.__dict__["remaining_bandwidth"] = remaining_bandwidth
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
@@ -715,7 +756,7 @@ class BandwidthPackage(pulumi.CustomResource):
     @pulumi.getter
     def bandwidth(self) -> pulumi.Output[int]:
         """
-        The bandwidth of the cen bandwidth package.
+        The bandwidth of the cen bandwidth package. Value: 2~10000.
         """
         return pulumi.get(self, "bandwidth")
 
@@ -723,8 +764,8 @@ class BandwidthPackage(pulumi.CustomResource):
     @pulumi.getter(name="billingType")
     def billing_type(self) -> pulumi.Output[Optional[str]]:
         """
-        The billing type of the cen bandwidth package. Terraform will only remove the PrePaid cen bandwidth package from the
-        state file, not actually remove.
+        The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`. Terraform will
+        only remove the PrePaid cen bandwidth package from the state file, not actually remove.
         """
         return pulumi.get(self, "billing_type")
 
@@ -796,7 +837,7 @@ class BandwidthPackage(pulumi.CustomResource):
     @pulumi.getter(name="localGeographicRegionSetId")
     def local_geographic_region_set_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The local geographic region set id of the cen bandwidth package.
+        The local geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
         """
         return pulumi.get(self, "local_geographic_region_set_id")
 
@@ -804,7 +845,7 @@ class BandwidthPackage(pulumi.CustomResource):
     @pulumi.getter(name="peerGeographicRegionSetId")
     def peer_geographic_region_set_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The peer geographic region set id of the cen bandwidth package.
+        The peer geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
         """
         return pulumi.get(self, "peer_geographic_region_set_id")
 
@@ -812,7 +853,7 @@ class BandwidthPackage(pulumi.CustomResource):
     @pulumi.getter
     def period(self) -> pulumi.Output[Optional[int]]:
         """
-        The period of the cen bandwidth package.
+        The period of the cen bandwidth package. Default value is 1.
         """
         return pulumi.get(self, "period")
 
@@ -820,9 +861,17 @@ class BandwidthPackage(pulumi.CustomResource):
     @pulumi.getter(name="periodUnit")
     def period_unit(self) -> pulumi.Output[Optional[str]]:
         """
-        The period unit of the cen bandwidth package.
+        The period unit of the cen bandwidth package. Value: `Month`, `Year`. Default value is `Month`.
         """
         return pulumi.get(self, "period_unit")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        The ProjectName of the cen bandwidth package.
+        """
+        return pulumi.get(self, "project_name")
 
     @property
     @pulumi.getter(name="remainingBandwidth")

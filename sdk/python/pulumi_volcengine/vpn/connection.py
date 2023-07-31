@@ -32,6 +32,7 @@ class ConnectionArgs:
                  ipsec_config_dh_group: Optional[pulumi.Input[str]] = None,
                  ipsec_config_enc_alg: Optional[pulumi.Input[str]] = None,
                  ipsec_config_lifetime: Optional[pulumi.Input[int]] = None,
+                 log_enabled: Optional[pulumi.Input[bool]] = None,
                  nat_traversal: Optional[pulumi.Input[bool]] = None,
                  negotiate_instantly: Optional[pulumi.Input[bool]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
@@ -40,29 +41,30 @@ class ConnectionArgs:
         """
         The set of arguments for constructing a Connection resource.
         :param pulumi.Input[str] customer_gateway_id: The ID of the customer gateway.
-        :param pulumi.Input[str] ike_config_psk: The psk of the ike config of the VPN connection.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] local_subnets: The local subnet of the VPN connection.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] remote_subnets: The remote subnet of the VPN connection.
-        :param pulumi.Input[str] attach_type: The attach type of the VPN connection, the value can be VpnGateway or TransitRouter.
+        :param pulumi.Input[str] ike_config_psk: The psk of the ike config of the VPN connection. The length does not exceed 100 characters, and only uppercase and lowercase letters, special symbols and numbers are allowed.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] local_subnets: The local subnet of the VPN connection. Up to 5 network segments are supported.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] remote_subnets: The remote subnet of the VPN connection. Up to 5 network segments are supported.
+        :param pulumi.Input[str] attach_type: The attach type of the VPN connection, the value can be `VpnGateway` or `TransitRouter`.
         :param pulumi.Input[str] description: The description of the VPN connection.
         :param pulumi.Input[str] dpd_action: The dpd action of the VPN connection.
-        :param pulumi.Input[str] ike_config_auth_alg: The auth alg of the ike config of the VPN connection.
-        :param pulumi.Input[str] ike_config_dh_group: The dk group of the ike config of the VPN connection.
-        :param pulumi.Input[str] ike_config_enc_alg: The enc alg of the ike config of the VPN connection.
-        :param pulumi.Input[int] ike_config_lifetime: The lifetime of the ike config of the VPN connection.
+        :param pulumi.Input[str] ike_config_auth_alg: The auth alg of the ike config of the VPN connection. Valid value are `sha1`, `md5`, `sha256`, `sha384`, `sha512`, `sm3`. The default value is `sha1`.
+        :param pulumi.Input[str] ike_config_dh_group: The dk group of the ike config of the VPN connection. Valid value are `group1`, `group2`, `group5`, `group14`. The default value is `group2`.
+        :param pulumi.Input[str] ike_config_enc_alg: The enc alg of the ike config of the VPN connection. Valid value are `aes`, `aes192`, `aes256`, `des`, `3des`, `sm4`. The default value is `aes`.
+        :param pulumi.Input[int] ike_config_lifetime: The lifetime of the ike config of the VPN connection. Value: 900~86400.
         :param pulumi.Input[str] ike_config_local_id: The local_id of the ike config of the VPN connection.
-        :param pulumi.Input[str] ike_config_mode: The mode of the ike config of the VPN connection.
+        :param pulumi.Input[str] ike_config_mode: The mode of the ike config of the VPN connection. Valid values are `main`, `aggressive`, and default value is `main`.
         :param pulumi.Input[str] ike_config_remote_id: The remote id of the ike config of the VPN connection.
-        :param pulumi.Input[str] ike_config_version: The version of the ike config of the VPN connection.
-        :param pulumi.Input[str] ipsec_config_auth_alg: The auth alg of the ipsec config of the VPN connection.
-        :param pulumi.Input[str] ipsec_config_dh_group: The dh group of the ipsec config of the VPN connection.
-        :param pulumi.Input[str] ipsec_config_enc_alg: The enc alg of the ipsec config of the VPN connection.
-        :param pulumi.Input[int] ipsec_config_lifetime: The ipsec config of the ike config of the VPN connection.
+        :param pulumi.Input[str] ike_config_version: The version of the ike config of the VPN connection. The value can be `ikev1` or `ikev2`. The default value is `ikev1`.
+        :param pulumi.Input[str] ipsec_config_auth_alg: The auth alg of the ipsec config of the VPN connection. Valid value are `sha1`, `md5`, `sha256`, `sha384`, `sha512`, `sm3`. The default value is `sha1`.
+        :param pulumi.Input[str] ipsec_config_dh_group: The dh group of the ipsec config of the VPN connection. Valid value are `group1`, `group2`, `group5`, `group14` and `disable`. The default value is `group2`.
+        :param pulumi.Input[str] ipsec_config_enc_alg: The enc alg of the ipsec config of the VPN connection. Valid value are `aes`, `aes192`, `aes256`, `des`, `3des`, `sm4`. The default value is `aes`.
+        :param pulumi.Input[int] ipsec_config_lifetime: The ipsec config of the ike config of the VPN connection. Value: 900~86400.
+        :param pulumi.Input[bool] log_enabled: Whether to enable connection logging. After enabling Connection Day, you can view and download IPsec connection logs, and use the log information to troubleshoot IPsec connection problems yourself.
         :param pulumi.Input[bool] nat_traversal: The nat traversal of the VPN connection.
         :param pulumi.Input[bool] negotiate_instantly: Whether to initiate negotiation mode immediately.
         :param pulumi.Input[str] project_name: The project name of the VPN connection.
         :param pulumi.Input[str] vpn_connection_name: The name of the VPN connection.
-        :param pulumi.Input[str] vpn_gateway_id: The ID of the vpn gateway.
+        :param pulumi.Input[str] vpn_gateway_id: The ID of the vpn gateway. If the `AttachType` is not passed or the passed value is `VpnGateway`, this parameter must be filled. If the value of `AttachType` is `TransitRouter`, this parameter does not need to be filled.
         """
         pulumi.set(__self__, "customer_gateway_id", customer_gateway_id)
         pulumi.set(__self__, "ike_config_psk", ike_config_psk)
@@ -98,6 +100,8 @@ class ConnectionArgs:
             pulumi.set(__self__, "ipsec_config_enc_alg", ipsec_config_enc_alg)
         if ipsec_config_lifetime is not None:
             pulumi.set(__self__, "ipsec_config_lifetime", ipsec_config_lifetime)
+        if log_enabled is not None:
+            pulumi.set(__self__, "log_enabled", log_enabled)
         if nat_traversal is not None:
             pulumi.set(__self__, "nat_traversal", nat_traversal)
         if negotiate_instantly is not None:
@@ -125,7 +129,7 @@ class ConnectionArgs:
     @pulumi.getter(name="ikeConfigPsk")
     def ike_config_psk(self) -> pulumi.Input[str]:
         """
-        The psk of the ike config of the VPN connection.
+        The psk of the ike config of the VPN connection. The length does not exceed 100 characters, and only uppercase and lowercase letters, special symbols and numbers are allowed.
         """
         return pulumi.get(self, "ike_config_psk")
 
@@ -137,7 +141,7 @@ class ConnectionArgs:
     @pulumi.getter(name="localSubnets")
     def local_subnets(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        The local subnet of the VPN connection.
+        The local subnet of the VPN connection. Up to 5 network segments are supported.
         """
         return pulumi.get(self, "local_subnets")
 
@@ -149,7 +153,7 @@ class ConnectionArgs:
     @pulumi.getter(name="remoteSubnets")
     def remote_subnets(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        The remote subnet of the VPN connection.
+        The remote subnet of the VPN connection. Up to 5 network segments are supported.
         """
         return pulumi.get(self, "remote_subnets")
 
@@ -161,7 +165,7 @@ class ConnectionArgs:
     @pulumi.getter(name="attachType")
     def attach_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The attach type of the VPN connection, the value can be VpnGateway or TransitRouter.
+        The attach type of the VPN connection, the value can be `VpnGateway` or `TransitRouter`.
         """
         return pulumi.get(self, "attach_type")
 
@@ -197,7 +201,7 @@ class ConnectionArgs:
     @pulumi.getter(name="ikeConfigAuthAlg")
     def ike_config_auth_alg(self) -> Optional[pulumi.Input[str]]:
         """
-        The auth alg of the ike config of the VPN connection.
+        The auth alg of the ike config of the VPN connection. Valid value are `sha1`, `md5`, `sha256`, `sha384`, `sha512`, `sm3`. The default value is `sha1`.
         """
         return pulumi.get(self, "ike_config_auth_alg")
 
@@ -209,7 +213,7 @@ class ConnectionArgs:
     @pulumi.getter(name="ikeConfigDhGroup")
     def ike_config_dh_group(self) -> Optional[pulumi.Input[str]]:
         """
-        The dk group of the ike config of the VPN connection.
+        The dk group of the ike config of the VPN connection. Valid value are `group1`, `group2`, `group5`, `group14`. The default value is `group2`.
         """
         return pulumi.get(self, "ike_config_dh_group")
 
@@ -221,7 +225,7 @@ class ConnectionArgs:
     @pulumi.getter(name="ikeConfigEncAlg")
     def ike_config_enc_alg(self) -> Optional[pulumi.Input[str]]:
         """
-        The enc alg of the ike config of the VPN connection.
+        The enc alg of the ike config of the VPN connection. Valid value are `aes`, `aes192`, `aes256`, `des`, `3des`, `sm4`. The default value is `aes`.
         """
         return pulumi.get(self, "ike_config_enc_alg")
 
@@ -233,7 +237,7 @@ class ConnectionArgs:
     @pulumi.getter(name="ikeConfigLifetime")
     def ike_config_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
-        The lifetime of the ike config of the VPN connection.
+        The lifetime of the ike config of the VPN connection. Value: 900~86400.
         """
         return pulumi.get(self, "ike_config_lifetime")
 
@@ -257,7 +261,7 @@ class ConnectionArgs:
     @pulumi.getter(name="ikeConfigMode")
     def ike_config_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        The mode of the ike config of the VPN connection.
+        The mode of the ike config of the VPN connection. Valid values are `main`, `aggressive`, and default value is `main`.
         """
         return pulumi.get(self, "ike_config_mode")
 
@@ -281,7 +285,7 @@ class ConnectionArgs:
     @pulumi.getter(name="ikeConfigVersion")
     def ike_config_version(self) -> Optional[pulumi.Input[str]]:
         """
-        The version of the ike config of the VPN connection.
+        The version of the ike config of the VPN connection. The value can be `ikev1` or `ikev2`. The default value is `ikev1`.
         """
         return pulumi.get(self, "ike_config_version")
 
@@ -293,7 +297,7 @@ class ConnectionArgs:
     @pulumi.getter(name="ipsecConfigAuthAlg")
     def ipsec_config_auth_alg(self) -> Optional[pulumi.Input[str]]:
         """
-        The auth alg of the ipsec config of the VPN connection.
+        The auth alg of the ipsec config of the VPN connection. Valid value are `sha1`, `md5`, `sha256`, `sha384`, `sha512`, `sm3`. The default value is `sha1`.
         """
         return pulumi.get(self, "ipsec_config_auth_alg")
 
@@ -305,7 +309,7 @@ class ConnectionArgs:
     @pulumi.getter(name="ipsecConfigDhGroup")
     def ipsec_config_dh_group(self) -> Optional[pulumi.Input[str]]:
         """
-        The dh group of the ipsec config of the VPN connection.
+        The dh group of the ipsec config of the VPN connection. Valid value are `group1`, `group2`, `group5`, `group14` and `disable`. The default value is `group2`.
         """
         return pulumi.get(self, "ipsec_config_dh_group")
 
@@ -317,7 +321,7 @@ class ConnectionArgs:
     @pulumi.getter(name="ipsecConfigEncAlg")
     def ipsec_config_enc_alg(self) -> Optional[pulumi.Input[str]]:
         """
-        The enc alg of the ipsec config of the VPN connection.
+        The enc alg of the ipsec config of the VPN connection. Valid value are `aes`, `aes192`, `aes256`, `des`, `3des`, `sm4`. The default value is `aes`.
         """
         return pulumi.get(self, "ipsec_config_enc_alg")
 
@@ -329,13 +333,25 @@ class ConnectionArgs:
     @pulumi.getter(name="ipsecConfigLifetime")
     def ipsec_config_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
-        The ipsec config of the ike config of the VPN connection.
+        The ipsec config of the ike config of the VPN connection. Value: 900~86400.
         """
         return pulumi.get(self, "ipsec_config_lifetime")
 
     @ipsec_config_lifetime.setter
     def ipsec_config_lifetime(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "ipsec_config_lifetime", value)
+
+    @property
+    @pulumi.getter(name="logEnabled")
+    def log_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable connection logging. After enabling Connection Day, you can view and download IPsec connection logs, and use the log information to troubleshoot IPsec connection problems yourself.
+        """
+        return pulumi.get(self, "log_enabled")
+
+    @log_enabled.setter
+    def log_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "log_enabled", value)
 
     @property
     @pulumi.getter(name="natTraversal")
@@ -389,7 +405,7 @@ class ConnectionArgs:
     @pulumi.getter(name="vpnGatewayId")
     def vpn_gateway_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the vpn gateway.
+        The ID of the vpn gateway. If the `AttachType` is not passed or the passed value is `VpnGateway`, this parameter must be filled. If the value of `AttachType` is `TransitRouter`, this parameter does not need to be filled.
         """
         return pulumi.get(self, "vpn_gateway_id")
 
@@ -443,7 +459,7 @@ class _ConnectionState:
         Input properties used for looking up and filtering Connection resources.
         :param pulumi.Input[str] account_id: The account ID of the VPN connection.
         :param pulumi.Input[str] attach_status: The IPsec attach status.
-        :param pulumi.Input[str] attach_type: The attach type of the VPN connection, the value can be VpnGateway or TransitRouter.
+        :param pulumi.Input[str] attach_type: The attach type of the VPN connection, the value can be `VpnGateway` or `TransitRouter`.
         :param pulumi.Input[str] business_status: The business status of IPsec connection, valid when the attach type is 'TransitRouter'.
         :param pulumi.Input[str] connect_status: The connect status of the VPN connection.
         :param pulumi.Input[str] creation_time: The create time of VPN connection.
@@ -451,33 +467,33 @@ class _ConnectionState:
         :param pulumi.Input[str] deleted_time: The delete time of resource, valid when the attach type is 'TransitRouter'.
         :param pulumi.Input[str] description: The description of the VPN connection.
         :param pulumi.Input[str] dpd_action: The dpd action of the VPN connection.
-        :param pulumi.Input[str] ike_config_auth_alg: The auth alg of the ike config of the VPN connection.
-        :param pulumi.Input[str] ike_config_dh_group: The dk group of the ike config of the VPN connection.
-        :param pulumi.Input[str] ike_config_enc_alg: The enc alg of the ike config of the VPN connection.
-        :param pulumi.Input[int] ike_config_lifetime: The lifetime of the ike config of the VPN connection.
+        :param pulumi.Input[str] ike_config_auth_alg: The auth alg of the ike config of the VPN connection. Valid value are `sha1`, `md5`, `sha256`, `sha384`, `sha512`, `sm3`. The default value is `sha1`.
+        :param pulumi.Input[str] ike_config_dh_group: The dk group of the ike config of the VPN connection. Valid value are `group1`, `group2`, `group5`, `group14`. The default value is `group2`.
+        :param pulumi.Input[str] ike_config_enc_alg: The enc alg of the ike config of the VPN connection. Valid value are `aes`, `aes192`, `aes256`, `des`, `3des`, `sm4`. The default value is `aes`.
+        :param pulumi.Input[int] ike_config_lifetime: The lifetime of the ike config of the VPN connection. Value: 900~86400.
         :param pulumi.Input[str] ike_config_local_id: The local_id of the ike config of the VPN connection.
-        :param pulumi.Input[str] ike_config_mode: The mode of the ike config of the VPN connection.
-        :param pulumi.Input[str] ike_config_psk: The psk of the ike config of the VPN connection.
+        :param pulumi.Input[str] ike_config_mode: The mode of the ike config of the VPN connection. Valid values are `main`, `aggressive`, and default value is `main`.
+        :param pulumi.Input[str] ike_config_psk: The psk of the ike config of the VPN connection. The length does not exceed 100 characters, and only uppercase and lowercase letters, special symbols and numbers are allowed.
         :param pulumi.Input[str] ike_config_remote_id: The remote id of the ike config of the VPN connection.
-        :param pulumi.Input[str] ike_config_version: The version of the ike config of the VPN connection.
+        :param pulumi.Input[str] ike_config_version: The version of the ike config of the VPN connection. The value can be `ikev1` or `ikev2`. The default value is `ikev1`.
         :param pulumi.Input[str] ip_address: The ip address of transit router, valid when the attach type is 'TransitRouter'.
-        :param pulumi.Input[str] ipsec_config_auth_alg: The auth alg of the ipsec config of the VPN connection.
-        :param pulumi.Input[str] ipsec_config_dh_group: The dh group of the ipsec config of the VPN connection.
-        :param pulumi.Input[str] ipsec_config_enc_alg: The enc alg of the ipsec config of the VPN connection.
-        :param pulumi.Input[int] ipsec_config_lifetime: The ipsec config of the ike config of the VPN connection.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] local_subnets: The local subnet of the VPN connection.
-        :param pulumi.Input[bool] log_enabled: Whether to enable the connection log.
+        :param pulumi.Input[str] ipsec_config_auth_alg: The auth alg of the ipsec config of the VPN connection. Valid value are `sha1`, `md5`, `sha256`, `sha384`, `sha512`, `sm3`. The default value is `sha1`.
+        :param pulumi.Input[str] ipsec_config_dh_group: The dh group of the ipsec config of the VPN connection. Valid value are `group1`, `group2`, `group5`, `group14` and `disable`. The default value is `group2`.
+        :param pulumi.Input[str] ipsec_config_enc_alg: The enc alg of the ipsec config of the VPN connection. Valid value are `aes`, `aes192`, `aes256`, `des`, `3des`, `sm4`. The default value is `aes`.
+        :param pulumi.Input[int] ipsec_config_lifetime: The ipsec config of the ike config of the VPN connection. Value: 900~86400.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] local_subnets: The local subnet of the VPN connection. Up to 5 network segments are supported.
+        :param pulumi.Input[bool] log_enabled: Whether to enable connection logging. After enabling Connection Day, you can view and download IPsec connection logs, and use the log information to troubleshoot IPsec connection problems yourself.
         :param pulumi.Input[bool] nat_traversal: The nat traversal of the VPN connection.
         :param pulumi.Input[bool] negotiate_instantly: Whether to initiate negotiation mode immediately.
         :param pulumi.Input[str] overdue_time: The overdue time of resource, valid when the attach type is 'TransitRouter'.
         :param pulumi.Input[str] project_name: The project name of the VPN connection.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] remote_subnets: The remote subnet of the VPN connection.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] remote_subnets: The remote subnet of the VPN connection. Up to 5 network segments are supported.
         :param pulumi.Input[str] status: The status of the VPN connection.
         :param pulumi.Input[str] transit_router_id: The id of transit router, valid when the attach type is 'TransitRouter'.
         :param pulumi.Input[str] update_time: The update time of VPN connection.
         :param pulumi.Input[str] vpn_connection_id: The ID of the VPN connection.
         :param pulumi.Input[str] vpn_connection_name: The name of the VPN connection.
-        :param pulumi.Input[str] vpn_gateway_id: The ID of the vpn gateway.
+        :param pulumi.Input[str] vpn_gateway_id: The ID of the vpn gateway. If the `AttachType` is not passed or the passed value is `VpnGateway`, this parameter must be filled. If the value of `AttachType` is `TransitRouter`, this parameter does not need to be filled.
         :param pulumi.Input[str] zone_id: The zone id of transit router, valid when the attach type is 'TransitRouter'.
         """
         if account_id is not None:
@@ -585,7 +601,7 @@ class _ConnectionState:
     @pulumi.getter(name="attachType")
     def attach_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The attach type of the VPN connection, the value can be VpnGateway or TransitRouter.
+        The attach type of the VPN connection, the value can be `VpnGateway` or `TransitRouter`.
         """
         return pulumi.get(self, "attach_type")
 
@@ -681,7 +697,7 @@ class _ConnectionState:
     @pulumi.getter(name="ikeConfigAuthAlg")
     def ike_config_auth_alg(self) -> Optional[pulumi.Input[str]]:
         """
-        The auth alg of the ike config of the VPN connection.
+        The auth alg of the ike config of the VPN connection. Valid value are `sha1`, `md5`, `sha256`, `sha384`, `sha512`, `sm3`. The default value is `sha1`.
         """
         return pulumi.get(self, "ike_config_auth_alg")
 
@@ -693,7 +709,7 @@ class _ConnectionState:
     @pulumi.getter(name="ikeConfigDhGroup")
     def ike_config_dh_group(self) -> Optional[pulumi.Input[str]]:
         """
-        The dk group of the ike config of the VPN connection.
+        The dk group of the ike config of the VPN connection. Valid value are `group1`, `group2`, `group5`, `group14`. The default value is `group2`.
         """
         return pulumi.get(self, "ike_config_dh_group")
 
@@ -705,7 +721,7 @@ class _ConnectionState:
     @pulumi.getter(name="ikeConfigEncAlg")
     def ike_config_enc_alg(self) -> Optional[pulumi.Input[str]]:
         """
-        The enc alg of the ike config of the VPN connection.
+        The enc alg of the ike config of the VPN connection. Valid value are `aes`, `aes192`, `aes256`, `des`, `3des`, `sm4`. The default value is `aes`.
         """
         return pulumi.get(self, "ike_config_enc_alg")
 
@@ -717,7 +733,7 @@ class _ConnectionState:
     @pulumi.getter(name="ikeConfigLifetime")
     def ike_config_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
-        The lifetime of the ike config of the VPN connection.
+        The lifetime of the ike config of the VPN connection. Value: 900~86400.
         """
         return pulumi.get(self, "ike_config_lifetime")
 
@@ -741,7 +757,7 @@ class _ConnectionState:
     @pulumi.getter(name="ikeConfigMode")
     def ike_config_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        The mode of the ike config of the VPN connection.
+        The mode of the ike config of the VPN connection. Valid values are `main`, `aggressive`, and default value is `main`.
         """
         return pulumi.get(self, "ike_config_mode")
 
@@ -753,7 +769,7 @@ class _ConnectionState:
     @pulumi.getter(name="ikeConfigPsk")
     def ike_config_psk(self) -> Optional[pulumi.Input[str]]:
         """
-        The psk of the ike config of the VPN connection.
+        The psk of the ike config of the VPN connection. The length does not exceed 100 characters, and only uppercase and lowercase letters, special symbols and numbers are allowed.
         """
         return pulumi.get(self, "ike_config_psk")
 
@@ -777,7 +793,7 @@ class _ConnectionState:
     @pulumi.getter(name="ikeConfigVersion")
     def ike_config_version(self) -> Optional[pulumi.Input[str]]:
         """
-        The version of the ike config of the VPN connection.
+        The version of the ike config of the VPN connection. The value can be `ikev1` or `ikev2`. The default value is `ikev1`.
         """
         return pulumi.get(self, "ike_config_version")
 
@@ -801,7 +817,7 @@ class _ConnectionState:
     @pulumi.getter(name="ipsecConfigAuthAlg")
     def ipsec_config_auth_alg(self) -> Optional[pulumi.Input[str]]:
         """
-        The auth alg of the ipsec config of the VPN connection.
+        The auth alg of the ipsec config of the VPN connection. Valid value are `sha1`, `md5`, `sha256`, `sha384`, `sha512`, `sm3`. The default value is `sha1`.
         """
         return pulumi.get(self, "ipsec_config_auth_alg")
 
@@ -813,7 +829,7 @@ class _ConnectionState:
     @pulumi.getter(name="ipsecConfigDhGroup")
     def ipsec_config_dh_group(self) -> Optional[pulumi.Input[str]]:
         """
-        The dh group of the ipsec config of the VPN connection.
+        The dh group of the ipsec config of the VPN connection. Valid value are `group1`, `group2`, `group5`, `group14` and `disable`. The default value is `group2`.
         """
         return pulumi.get(self, "ipsec_config_dh_group")
 
@@ -825,7 +841,7 @@ class _ConnectionState:
     @pulumi.getter(name="ipsecConfigEncAlg")
     def ipsec_config_enc_alg(self) -> Optional[pulumi.Input[str]]:
         """
-        The enc alg of the ipsec config of the VPN connection.
+        The enc alg of the ipsec config of the VPN connection. Valid value are `aes`, `aes192`, `aes256`, `des`, `3des`, `sm4`. The default value is `aes`.
         """
         return pulumi.get(self, "ipsec_config_enc_alg")
 
@@ -837,7 +853,7 @@ class _ConnectionState:
     @pulumi.getter(name="ipsecConfigLifetime")
     def ipsec_config_lifetime(self) -> Optional[pulumi.Input[int]]:
         """
-        The ipsec config of the ike config of the VPN connection.
+        The ipsec config of the ike config of the VPN connection. Value: 900~86400.
         """
         return pulumi.get(self, "ipsec_config_lifetime")
 
@@ -849,7 +865,7 @@ class _ConnectionState:
     @pulumi.getter(name="localSubnets")
     def local_subnets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The local subnet of the VPN connection.
+        The local subnet of the VPN connection. Up to 5 network segments are supported.
         """
         return pulumi.get(self, "local_subnets")
 
@@ -861,7 +877,7 @@ class _ConnectionState:
     @pulumi.getter(name="logEnabled")
     def log_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to enable the connection log.
+        Whether to enable connection logging. After enabling Connection Day, you can view and download IPsec connection logs, and use the log information to troubleshoot IPsec connection problems yourself.
         """
         return pulumi.get(self, "log_enabled")
 
@@ -921,7 +937,7 @@ class _ConnectionState:
     @pulumi.getter(name="remoteSubnets")
     def remote_subnets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The remote subnet of the VPN connection.
+        The remote subnet of the VPN connection. Up to 5 network segments are supported.
         """
         return pulumi.get(self, "remote_subnets")
 
@@ -993,7 +1009,7 @@ class _ConnectionState:
     @pulumi.getter(name="vpnGatewayId")
     def vpn_gateway_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the vpn gateway.
+        The ID of the vpn gateway. If the `AttachType` is not passed or the passed value is `VpnGateway`, this parameter must be filled. If the value of `AttachType` is `TransitRouter`, this parameter does not need to be filled.
         """
         return pulumi.get(self, "vpn_gateway_id")
 
@@ -1037,6 +1053,7 @@ class Connection(pulumi.CustomResource):
                  ipsec_config_enc_alg: Optional[pulumi.Input[str]] = None,
                  ipsec_config_lifetime: Optional[pulumi.Input[int]] = None,
                  local_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 log_enabled: Optional[pulumi.Input[bool]] = None,
                  nat_traversal: Optional[pulumi.Input[bool]] = None,
                  negotiate_instantly: Optional[pulumi.Input[bool]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
@@ -1059,7 +1076,7 @@ class Connection(pulumi.CustomResource):
             ike_config_auth_alg="md5",
             ike_config_dh_group="group2",
             ike_config_enc_alg="aes",
-            ike_config_lifetime=100,
+            ike_config_lifetime=9000,
             ike_config_local_id="tf_test",
             ike_config_mode="main",
             ike_config_psk="tftest@!3",
@@ -1068,7 +1085,7 @@ class Connection(pulumi.CustomResource):
             ipsec_config_auth_alg="sha256",
             ipsec_config_dh_group="group2",
             ipsec_config_enc_alg="aes",
-            ipsec_config_lifetime=100,
+            ipsec_config_lifetime=9000,
             local_subnets=["192.168.0.0/22"],
             nat_traversal=True,
             project_name="default",
@@ -1087,30 +1104,31 @@ class Connection(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] attach_type: The attach type of the VPN connection, the value can be VpnGateway or TransitRouter.
+        :param pulumi.Input[str] attach_type: The attach type of the VPN connection, the value can be `VpnGateway` or `TransitRouter`.
         :param pulumi.Input[str] customer_gateway_id: The ID of the customer gateway.
         :param pulumi.Input[str] description: The description of the VPN connection.
         :param pulumi.Input[str] dpd_action: The dpd action of the VPN connection.
-        :param pulumi.Input[str] ike_config_auth_alg: The auth alg of the ike config of the VPN connection.
-        :param pulumi.Input[str] ike_config_dh_group: The dk group of the ike config of the VPN connection.
-        :param pulumi.Input[str] ike_config_enc_alg: The enc alg of the ike config of the VPN connection.
-        :param pulumi.Input[int] ike_config_lifetime: The lifetime of the ike config of the VPN connection.
+        :param pulumi.Input[str] ike_config_auth_alg: The auth alg of the ike config of the VPN connection. Valid value are `sha1`, `md5`, `sha256`, `sha384`, `sha512`, `sm3`. The default value is `sha1`.
+        :param pulumi.Input[str] ike_config_dh_group: The dk group of the ike config of the VPN connection. Valid value are `group1`, `group2`, `group5`, `group14`. The default value is `group2`.
+        :param pulumi.Input[str] ike_config_enc_alg: The enc alg of the ike config of the VPN connection. Valid value are `aes`, `aes192`, `aes256`, `des`, `3des`, `sm4`. The default value is `aes`.
+        :param pulumi.Input[int] ike_config_lifetime: The lifetime of the ike config of the VPN connection. Value: 900~86400.
         :param pulumi.Input[str] ike_config_local_id: The local_id of the ike config of the VPN connection.
-        :param pulumi.Input[str] ike_config_mode: The mode of the ike config of the VPN connection.
-        :param pulumi.Input[str] ike_config_psk: The psk of the ike config of the VPN connection.
+        :param pulumi.Input[str] ike_config_mode: The mode of the ike config of the VPN connection. Valid values are `main`, `aggressive`, and default value is `main`.
+        :param pulumi.Input[str] ike_config_psk: The psk of the ike config of the VPN connection. The length does not exceed 100 characters, and only uppercase and lowercase letters, special symbols and numbers are allowed.
         :param pulumi.Input[str] ike_config_remote_id: The remote id of the ike config of the VPN connection.
-        :param pulumi.Input[str] ike_config_version: The version of the ike config of the VPN connection.
-        :param pulumi.Input[str] ipsec_config_auth_alg: The auth alg of the ipsec config of the VPN connection.
-        :param pulumi.Input[str] ipsec_config_dh_group: The dh group of the ipsec config of the VPN connection.
-        :param pulumi.Input[str] ipsec_config_enc_alg: The enc alg of the ipsec config of the VPN connection.
-        :param pulumi.Input[int] ipsec_config_lifetime: The ipsec config of the ike config of the VPN connection.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] local_subnets: The local subnet of the VPN connection.
+        :param pulumi.Input[str] ike_config_version: The version of the ike config of the VPN connection. The value can be `ikev1` or `ikev2`. The default value is `ikev1`.
+        :param pulumi.Input[str] ipsec_config_auth_alg: The auth alg of the ipsec config of the VPN connection. Valid value are `sha1`, `md5`, `sha256`, `sha384`, `sha512`, `sm3`. The default value is `sha1`.
+        :param pulumi.Input[str] ipsec_config_dh_group: The dh group of the ipsec config of the VPN connection. Valid value are `group1`, `group2`, `group5`, `group14` and `disable`. The default value is `group2`.
+        :param pulumi.Input[str] ipsec_config_enc_alg: The enc alg of the ipsec config of the VPN connection. Valid value are `aes`, `aes192`, `aes256`, `des`, `3des`, `sm4`. The default value is `aes`.
+        :param pulumi.Input[int] ipsec_config_lifetime: The ipsec config of the ike config of the VPN connection. Value: 900~86400.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] local_subnets: The local subnet of the VPN connection. Up to 5 network segments are supported.
+        :param pulumi.Input[bool] log_enabled: Whether to enable connection logging. After enabling Connection Day, you can view and download IPsec connection logs, and use the log information to troubleshoot IPsec connection problems yourself.
         :param pulumi.Input[bool] nat_traversal: The nat traversal of the VPN connection.
         :param pulumi.Input[bool] negotiate_instantly: Whether to initiate negotiation mode immediately.
         :param pulumi.Input[str] project_name: The project name of the VPN connection.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] remote_subnets: The remote subnet of the VPN connection.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] remote_subnets: The remote subnet of the VPN connection. Up to 5 network segments are supported.
         :param pulumi.Input[str] vpn_connection_name: The name of the VPN connection.
-        :param pulumi.Input[str] vpn_gateway_id: The ID of the vpn gateway.
+        :param pulumi.Input[str] vpn_gateway_id: The ID of the vpn gateway. If the `AttachType` is not passed or the passed value is `VpnGateway`, this parameter must be filled. If the value of `AttachType` is `TransitRouter`, this parameter does not need to be filled.
         """
         ...
     @overload
@@ -1133,7 +1151,7 @@ class Connection(pulumi.CustomResource):
             ike_config_auth_alg="md5",
             ike_config_dh_group="group2",
             ike_config_enc_alg="aes",
-            ike_config_lifetime=100,
+            ike_config_lifetime=9000,
             ike_config_local_id="tf_test",
             ike_config_mode="main",
             ike_config_psk="tftest@!3",
@@ -1142,7 +1160,7 @@ class Connection(pulumi.CustomResource):
             ipsec_config_auth_alg="sha256",
             ipsec_config_dh_group="group2",
             ipsec_config_enc_alg="aes",
-            ipsec_config_lifetime=100,
+            ipsec_config_lifetime=9000,
             local_subnets=["192.168.0.0/22"],
             nat_traversal=True,
             project_name="default",
@@ -1192,6 +1210,7 @@ class Connection(pulumi.CustomResource):
                  ipsec_config_enc_alg: Optional[pulumi.Input[str]] = None,
                  ipsec_config_lifetime: Optional[pulumi.Input[int]] = None,
                  local_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 log_enabled: Optional[pulumi.Input[bool]] = None,
                  nat_traversal: Optional[pulumi.Input[bool]] = None,
                  negotiate_instantly: Optional[pulumi.Input[bool]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
@@ -1234,6 +1253,7 @@ class Connection(pulumi.CustomResource):
             if local_subnets is None and not opts.urn:
                 raise TypeError("Missing required property 'local_subnets'")
             __props__.__dict__["local_subnets"] = local_subnets
+            __props__.__dict__["log_enabled"] = log_enabled
             __props__.__dict__["nat_traversal"] = nat_traversal
             __props__.__dict__["negotiate_instantly"] = negotiate_instantly
             __props__.__dict__["project_name"] = project_name
@@ -1249,7 +1269,6 @@ class Connection(pulumi.CustomResource):
             __props__.__dict__["creation_time"] = None
             __props__.__dict__["deleted_time"] = None
             __props__.__dict__["ip_address"] = None
-            __props__.__dict__["log_enabled"] = None
             __props__.__dict__["overdue_time"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["transit_router_id"] = None
@@ -1313,7 +1332,7 @@ class Connection(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] account_id: The account ID of the VPN connection.
         :param pulumi.Input[str] attach_status: The IPsec attach status.
-        :param pulumi.Input[str] attach_type: The attach type of the VPN connection, the value can be VpnGateway or TransitRouter.
+        :param pulumi.Input[str] attach_type: The attach type of the VPN connection, the value can be `VpnGateway` or `TransitRouter`.
         :param pulumi.Input[str] business_status: The business status of IPsec connection, valid when the attach type is 'TransitRouter'.
         :param pulumi.Input[str] connect_status: The connect status of the VPN connection.
         :param pulumi.Input[str] creation_time: The create time of VPN connection.
@@ -1321,33 +1340,33 @@ class Connection(pulumi.CustomResource):
         :param pulumi.Input[str] deleted_time: The delete time of resource, valid when the attach type is 'TransitRouter'.
         :param pulumi.Input[str] description: The description of the VPN connection.
         :param pulumi.Input[str] dpd_action: The dpd action of the VPN connection.
-        :param pulumi.Input[str] ike_config_auth_alg: The auth alg of the ike config of the VPN connection.
-        :param pulumi.Input[str] ike_config_dh_group: The dk group of the ike config of the VPN connection.
-        :param pulumi.Input[str] ike_config_enc_alg: The enc alg of the ike config of the VPN connection.
-        :param pulumi.Input[int] ike_config_lifetime: The lifetime of the ike config of the VPN connection.
+        :param pulumi.Input[str] ike_config_auth_alg: The auth alg of the ike config of the VPN connection. Valid value are `sha1`, `md5`, `sha256`, `sha384`, `sha512`, `sm3`. The default value is `sha1`.
+        :param pulumi.Input[str] ike_config_dh_group: The dk group of the ike config of the VPN connection. Valid value are `group1`, `group2`, `group5`, `group14`. The default value is `group2`.
+        :param pulumi.Input[str] ike_config_enc_alg: The enc alg of the ike config of the VPN connection. Valid value are `aes`, `aes192`, `aes256`, `des`, `3des`, `sm4`. The default value is `aes`.
+        :param pulumi.Input[int] ike_config_lifetime: The lifetime of the ike config of the VPN connection. Value: 900~86400.
         :param pulumi.Input[str] ike_config_local_id: The local_id of the ike config of the VPN connection.
-        :param pulumi.Input[str] ike_config_mode: The mode of the ike config of the VPN connection.
-        :param pulumi.Input[str] ike_config_psk: The psk of the ike config of the VPN connection.
+        :param pulumi.Input[str] ike_config_mode: The mode of the ike config of the VPN connection. Valid values are `main`, `aggressive`, and default value is `main`.
+        :param pulumi.Input[str] ike_config_psk: The psk of the ike config of the VPN connection. The length does not exceed 100 characters, and only uppercase and lowercase letters, special symbols and numbers are allowed.
         :param pulumi.Input[str] ike_config_remote_id: The remote id of the ike config of the VPN connection.
-        :param pulumi.Input[str] ike_config_version: The version of the ike config of the VPN connection.
+        :param pulumi.Input[str] ike_config_version: The version of the ike config of the VPN connection. The value can be `ikev1` or `ikev2`. The default value is `ikev1`.
         :param pulumi.Input[str] ip_address: The ip address of transit router, valid when the attach type is 'TransitRouter'.
-        :param pulumi.Input[str] ipsec_config_auth_alg: The auth alg of the ipsec config of the VPN connection.
-        :param pulumi.Input[str] ipsec_config_dh_group: The dh group of the ipsec config of the VPN connection.
-        :param pulumi.Input[str] ipsec_config_enc_alg: The enc alg of the ipsec config of the VPN connection.
-        :param pulumi.Input[int] ipsec_config_lifetime: The ipsec config of the ike config of the VPN connection.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] local_subnets: The local subnet of the VPN connection.
-        :param pulumi.Input[bool] log_enabled: Whether to enable the connection log.
+        :param pulumi.Input[str] ipsec_config_auth_alg: The auth alg of the ipsec config of the VPN connection. Valid value are `sha1`, `md5`, `sha256`, `sha384`, `sha512`, `sm3`. The default value is `sha1`.
+        :param pulumi.Input[str] ipsec_config_dh_group: The dh group of the ipsec config of the VPN connection. Valid value are `group1`, `group2`, `group5`, `group14` and `disable`. The default value is `group2`.
+        :param pulumi.Input[str] ipsec_config_enc_alg: The enc alg of the ipsec config of the VPN connection. Valid value are `aes`, `aes192`, `aes256`, `des`, `3des`, `sm4`. The default value is `aes`.
+        :param pulumi.Input[int] ipsec_config_lifetime: The ipsec config of the ike config of the VPN connection. Value: 900~86400.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] local_subnets: The local subnet of the VPN connection. Up to 5 network segments are supported.
+        :param pulumi.Input[bool] log_enabled: Whether to enable connection logging. After enabling Connection Day, you can view and download IPsec connection logs, and use the log information to troubleshoot IPsec connection problems yourself.
         :param pulumi.Input[bool] nat_traversal: The nat traversal of the VPN connection.
         :param pulumi.Input[bool] negotiate_instantly: Whether to initiate negotiation mode immediately.
         :param pulumi.Input[str] overdue_time: The overdue time of resource, valid when the attach type is 'TransitRouter'.
         :param pulumi.Input[str] project_name: The project name of the VPN connection.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] remote_subnets: The remote subnet of the VPN connection.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] remote_subnets: The remote subnet of the VPN connection. Up to 5 network segments are supported.
         :param pulumi.Input[str] status: The status of the VPN connection.
         :param pulumi.Input[str] transit_router_id: The id of transit router, valid when the attach type is 'TransitRouter'.
         :param pulumi.Input[str] update_time: The update time of VPN connection.
         :param pulumi.Input[str] vpn_connection_id: The ID of the VPN connection.
         :param pulumi.Input[str] vpn_connection_name: The name of the VPN connection.
-        :param pulumi.Input[str] vpn_gateway_id: The ID of the vpn gateway.
+        :param pulumi.Input[str] vpn_gateway_id: The ID of the vpn gateway. If the `AttachType` is not passed or the passed value is `VpnGateway`, this parameter must be filled. If the value of `AttachType` is `TransitRouter`, this parameter does not need to be filled.
         :param pulumi.Input[str] zone_id: The zone id of transit router, valid when the attach type is 'TransitRouter'.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1414,7 +1433,7 @@ class Connection(pulumi.CustomResource):
     @pulumi.getter(name="attachType")
     def attach_type(self) -> pulumi.Output[Optional[str]]:
         """
-        The attach type of the VPN connection, the value can be VpnGateway or TransitRouter.
+        The attach type of the VPN connection, the value can be `VpnGateway` or `TransitRouter`.
         """
         return pulumi.get(self, "attach_type")
 
@@ -1478,7 +1497,7 @@ class Connection(pulumi.CustomResource):
     @pulumi.getter(name="ikeConfigAuthAlg")
     def ike_config_auth_alg(self) -> pulumi.Output[Optional[str]]:
         """
-        The auth alg of the ike config of the VPN connection.
+        The auth alg of the ike config of the VPN connection. Valid value are `sha1`, `md5`, `sha256`, `sha384`, `sha512`, `sm3`. The default value is `sha1`.
         """
         return pulumi.get(self, "ike_config_auth_alg")
 
@@ -1486,7 +1505,7 @@ class Connection(pulumi.CustomResource):
     @pulumi.getter(name="ikeConfigDhGroup")
     def ike_config_dh_group(self) -> pulumi.Output[Optional[str]]:
         """
-        The dk group of the ike config of the VPN connection.
+        The dk group of the ike config of the VPN connection. Valid value are `group1`, `group2`, `group5`, `group14`. The default value is `group2`.
         """
         return pulumi.get(self, "ike_config_dh_group")
 
@@ -1494,7 +1513,7 @@ class Connection(pulumi.CustomResource):
     @pulumi.getter(name="ikeConfigEncAlg")
     def ike_config_enc_alg(self) -> pulumi.Output[Optional[str]]:
         """
-        The enc alg of the ike config of the VPN connection.
+        The enc alg of the ike config of the VPN connection. Valid value are `aes`, `aes192`, `aes256`, `des`, `3des`, `sm4`. The default value is `aes`.
         """
         return pulumi.get(self, "ike_config_enc_alg")
 
@@ -1502,7 +1521,7 @@ class Connection(pulumi.CustomResource):
     @pulumi.getter(name="ikeConfigLifetime")
     def ike_config_lifetime(self) -> pulumi.Output[Optional[int]]:
         """
-        The lifetime of the ike config of the VPN connection.
+        The lifetime of the ike config of the VPN connection. Value: 900~86400.
         """
         return pulumi.get(self, "ike_config_lifetime")
 
@@ -1518,7 +1537,7 @@ class Connection(pulumi.CustomResource):
     @pulumi.getter(name="ikeConfigMode")
     def ike_config_mode(self) -> pulumi.Output[Optional[str]]:
         """
-        The mode of the ike config of the VPN connection.
+        The mode of the ike config of the VPN connection. Valid values are `main`, `aggressive`, and default value is `main`.
         """
         return pulumi.get(self, "ike_config_mode")
 
@@ -1526,7 +1545,7 @@ class Connection(pulumi.CustomResource):
     @pulumi.getter(name="ikeConfigPsk")
     def ike_config_psk(self) -> pulumi.Output[str]:
         """
-        The psk of the ike config of the VPN connection.
+        The psk of the ike config of the VPN connection. The length does not exceed 100 characters, and only uppercase and lowercase letters, special symbols and numbers are allowed.
         """
         return pulumi.get(self, "ike_config_psk")
 
@@ -1542,7 +1561,7 @@ class Connection(pulumi.CustomResource):
     @pulumi.getter(name="ikeConfigVersion")
     def ike_config_version(self) -> pulumi.Output[Optional[str]]:
         """
-        The version of the ike config of the VPN connection.
+        The version of the ike config of the VPN connection. The value can be `ikev1` or `ikev2`. The default value is `ikev1`.
         """
         return pulumi.get(self, "ike_config_version")
 
@@ -1558,7 +1577,7 @@ class Connection(pulumi.CustomResource):
     @pulumi.getter(name="ipsecConfigAuthAlg")
     def ipsec_config_auth_alg(self) -> pulumi.Output[Optional[str]]:
         """
-        The auth alg of the ipsec config of the VPN connection.
+        The auth alg of the ipsec config of the VPN connection. Valid value are `sha1`, `md5`, `sha256`, `sha384`, `sha512`, `sm3`. The default value is `sha1`.
         """
         return pulumi.get(self, "ipsec_config_auth_alg")
 
@@ -1566,7 +1585,7 @@ class Connection(pulumi.CustomResource):
     @pulumi.getter(name="ipsecConfigDhGroup")
     def ipsec_config_dh_group(self) -> pulumi.Output[Optional[str]]:
         """
-        The dh group of the ipsec config of the VPN connection.
+        The dh group of the ipsec config of the VPN connection. Valid value are `group1`, `group2`, `group5`, `group14` and `disable`. The default value is `group2`.
         """
         return pulumi.get(self, "ipsec_config_dh_group")
 
@@ -1574,7 +1593,7 @@ class Connection(pulumi.CustomResource):
     @pulumi.getter(name="ipsecConfigEncAlg")
     def ipsec_config_enc_alg(self) -> pulumi.Output[Optional[str]]:
         """
-        The enc alg of the ipsec config of the VPN connection.
+        The enc alg of the ipsec config of the VPN connection. Valid value are `aes`, `aes192`, `aes256`, `des`, `3des`, `sm4`. The default value is `aes`.
         """
         return pulumi.get(self, "ipsec_config_enc_alg")
 
@@ -1582,7 +1601,7 @@ class Connection(pulumi.CustomResource):
     @pulumi.getter(name="ipsecConfigLifetime")
     def ipsec_config_lifetime(self) -> pulumi.Output[Optional[int]]:
         """
-        The ipsec config of the ike config of the VPN connection.
+        The ipsec config of the ike config of the VPN connection. Value: 900~86400.
         """
         return pulumi.get(self, "ipsec_config_lifetime")
 
@@ -1590,15 +1609,15 @@ class Connection(pulumi.CustomResource):
     @pulumi.getter(name="localSubnets")
     def local_subnets(self) -> pulumi.Output[Sequence[str]]:
         """
-        The local subnet of the VPN connection.
+        The local subnet of the VPN connection. Up to 5 network segments are supported.
         """
         return pulumi.get(self, "local_subnets")
 
     @property
     @pulumi.getter(name="logEnabled")
-    def log_enabled(self) -> pulumi.Output[bool]:
+    def log_enabled(self) -> pulumi.Output[Optional[bool]]:
         """
-        Whether to enable the connection log.
+        Whether to enable connection logging. After enabling Connection Day, you can view and download IPsec connection logs, and use the log information to troubleshoot IPsec connection problems yourself.
         """
         return pulumi.get(self, "log_enabled")
 
@@ -1638,7 +1657,7 @@ class Connection(pulumi.CustomResource):
     @pulumi.getter(name="remoteSubnets")
     def remote_subnets(self) -> pulumi.Output[Sequence[str]]:
         """
-        The remote subnet of the VPN connection.
+        The remote subnet of the VPN connection. Up to 5 network segments are supported.
         """
         return pulumi.get(self, "remote_subnets")
 
@@ -1686,7 +1705,7 @@ class Connection(pulumi.CustomResource):
     @pulumi.getter(name="vpnGatewayId")
     def vpn_gateway_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The ID of the vpn gateway.
+        The ID of the vpn gateway. If the `AttachType` is not passed or the passed value is `VpnGateway`, this parameter must be filled. If the value of `AttachType` is `TransitRouter`, this parameter does not need to be filled.
         """
         return pulumi.get(self, "vpn_gateway_id")
 

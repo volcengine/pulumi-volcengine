@@ -18,8 +18,8 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/vpn"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpn"
 //
 // )
 //
@@ -29,9 +29,9 @@ import (
 //				Bandwidth:      pulumi.Int(20),
 //				Description:    pulumi.String("tf-test"),
 //				Period:         pulumi.Int(2),
-//				ProjectName:    pulumi.String("yuwenhao"),
-//				SubnetId:       pulumi.String("subnet-2fe19qp20f3sw59gp67w8om25"),
-//				VpcId:          pulumi.String("vpc-2fe19q1dn2g3k59gp68n7w3rr"),
+//				ProjectName:    pulumi.String("default"),
+//				SubnetId:       pulumi.String("subnet-12bh8g2d7fshs17q7y2nx82uk"),
+//				VpcId:          pulumi.String("vpc-12b31m7z2kc8w17q7y2fih9ts"),
 //				VpnGatewayName: pulumi.String("tf-test"),
 //			})
 //			if err != nil {
@@ -57,10 +57,10 @@ type Gateway struct {
 
 	// The account ID of the VPN gateway.
 	AccountId pulumi.StringOutput `pulumi:"accountId"`
-	// The bandwidth of the VPN gateway.
+	// The bandwidth of the VPN gateway. Unit: Mbps. Values: 5, 10, 20, 50, 100, 200, 500.
 	Bandwidth pulumi.IntOutput `pulumi:"bandwidth"`
-	// The BillingType of the VPN gateway. Terraform will only remove the PrePaid VPN gateway from the state file, not actually
-	// remove.
+	// The BillingType of the VPN gateway. Only support `PrePaid`. Terraform will only remove the PrePaid VPN gateway from the
+	// state file, not actually remove.
 	BillingType pulumi.StringPtrOutput `pulumi:"billingType"`
 	// The business status of the VPN gateway.
 	BusinessStatus pulumi.StringOutput `pulumi:"businessStatus"`
@@ -78,7 +78,8 @@ type Gateway struct {
 	IpAddress pulumi.StringOutput `pulumi:"ipAddress"`
 	// The lock reason of the VPN gateway.
 	LockReason pulumi.StringOutput `pulumi:"lockReason"`
-	// The Period of the VPN gateway. This parameter is only useful when creating vpn gateway. Default period unit is Month.
+	// The Period of the VPN gateway. Default value is 12. This parameter is only useful when creating vpn gateway. Default period unit is Month.
+	// Value range: 1~9, 12, 24, 36. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	Period pulumi.IntPtrOutput `pulumi:"period"`
 	// The project name of the VPN gateway.
 	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
@@ -142,10 +143,10 @@ func GetGateway(ctx *pulumi.Context,
 type gatewayState struct {
 	// The account ID of the VPN gateway.
 	AccountId *string `pulumi:"accountId"`
-	// The bandwidth of the VPN gateway.
+	// The bandwidth of the VPN gateway. Unit: Mbps. Values: 5, 10, 20, 50, 100, 200, 500.
 	Bandwidth *int `pulumi:"bandwidth"`
-	// The BillingType of the VPN gateway. Terraform will only remove the PrePaid VPN gateway from the state file, not actually
-	// remove.
+	// The BillingType of the VPN gateway. Only support `PrePaid`. Terraform will only remove the PrePaid VPN gateway from the
+	// state file, not actually remove.
 	BillingType *string `pulumi:"billingType"`
 	// The business status of the VPN gateway.
 	BusinessStatus *string `pulumi:"businessStatus"`
@@ -163,7 +164,8 @@ type gatewayState struct {
 	IpAddress *string `pulumi:"ipAddress"`
 	// The lock reason of the VPN gateway.
 	LockReason *string `pulumi:"lockReason"`
-	// The Period of the VPN gateway. This parameter is only useful when creating vpn gateway. Default period unit is Month.
+	// The Period of the VPN gateway. Default value is 12. This parameter is only useful when creating vpn gateway. Default period unit is Month.
+	// Value range: 1~9, 12, 24, 36. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	Period *int `pulumi:"period"`
 	// The project name of the VPN gateway.
 	ProjectName *string `pulumi:"projectName"`
@@ -190,10 +192,10 @@ type gatewayState struct {
 type GatewayState struct {
 	// The account ID of the VPN gateway.
 	AccountId pulumi.StringPtrInput
-	// The bandwidth of the VPN gateway.
+	// The bandwidth of the VPN gateway. Unit: Mbps. Values: 5, 10, 20, 50, 100, 200, 500.
 	Bandwidth pulumi.IntPtrInput
-	// The BillingType of the VPN gateway. Terraform will only remove the PrePaid VPN gateway from the state file, not actually
-	// remove.
+	// The BillingType of the VPN gateway. Only support `PrePaid`. Terraform will only remove the PrePaid VPN gateway from the
+	// state file, not actually remove.
 	BillingType pulumi.StringPtrInput
 	// The business status of the VPN gateway.
 	BusinessStatus pulumi.StringPtrInput
@@ -211,7 +213,8 @@ type GatewayState struct {
 	IpAddress pulumi.StringPtrInput
 	// The lock reason of the VPN gateway.
 	LockReason pulumi.StringPtrInput
-	// The Period of the VPN gateway. This parameter is only useful when creating vpn gateway. Default period unit is Month.
+	// The Period of the VPN gateway. Default value is 12. This parameter is only useful when creating vpn gateway. Default period unit is Month.
+	// Value range: 1~9, 12, 24, 36. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	Period pulumi.IntPtrInput
 	// The project name of the VPN gateway.
 	ProjectName pulumi.StringPtrInput
@@ -240,14 +243,15 @@ func (GatewayState) ElementType() reflect.Type {
 }
 
 type gatewayArgs struct {
-	// The bandwidth of the VPN gateway.
+	// The bandwidth of the VPN gateway. Unit: Mbps. Values: 5, 10, 20, 50, 100, 200, 500.
 	Bandwidth int `pulumi:"bandwidth"`
-	// The BillingType of the VPN gateway. Terraform will only remove the PrePaid VPN gateway from the state file, not actually
-	// remove.
+	// The BillingType of the VPN gateway. Only support `PrePaid`. Terraform will only remove the PrePaid VPN gateway from the
+	// state file, not actually remove.
 	BillingType *string `pulumi:"billingType"`
 	// The description of the VPN gateway.
 	Description *string `pulumi:"description"`
-	// The Period of the VPN gateway. This parameter is only useful when creating vpn gateway. Default period unit is Month.
+	// The Period of the VPN gateway. Default value is 12. This parameter is only useful when creating vpn gateway. Default period unit is Month.
+	// Value range: 1~9, 12, 24, 36. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	Period *int `pulumi:"period"`
 	// The project name of the VPN gateway.
 	ProjectName *string `pulumi:"projectName"`
@@ -263,14 +267,15 @@ type gatewayArgs struct {
 
 // The set of arguments for constructing a Gateway resource.
 type GatewayArgs struct {
-	// The bandwidth of the VPN gateway.
+	// The bandwidth of the VPN gateway. Unit: Mbps. Values: 5, 10, 20, 50, 100, 200, 500.
 	Bandwidth pulumi.IntInput
-	// The BillingType of the VPN gateway. Terraform will only remove the PrePaid VPN gateway from the state file, not actually
-	// remove.
+	// The BillingType of the VPN gateway. Only support `PrePaid`. Terraform will only remove the PrePaid VPN gateway from the
+	// state file, not actually remove.
 	BillingType pulumi.StringPtrInput
 	// The description of the VPN gateway.
 	Description pulumi.StringPtrInput
-	// The Period of the VPN gateway. This parameter is only useful when creating vpn gateway. Default period unit is Month.
+	// The Period of the VPN gateway. Default value is 12. This parameter is only useful when creating vpn gateway. Default period unit is Month.
+	// Value range: 1~9, 12, 24, 36. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	Period pulumi.IntPtrInput
 	// The project name of the VPN gateway.
 	ProjectName pulumi.StringPtrInput
@@ -376,13 +381,13 @@ func (o GatewayOutput) AccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.StringOutput { return v.AccountId }).(pulumi.StringOutput)
 }
 
-// The bandwidth of the VPN gateway.
+// The bandwidth of the VPN gateway. Unit: Mbps. Values: 5, 10, 20, 50, 100, 200, 500.
 func (o GatewayOutput) Bandwidth() pulumi.IntOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.IntOutput { return v.Bandwidth }).(pulumi.IntOutput)
 }
 
-// The BillingType of the VPN gateway. Terraform will only remove the PrePaid VPN gateway from the state file, not actually
-// remove.
+// The BillingType of the VPN gateway. Only support `PrePaid`. Terraform will only remove the PrePaid VPN gateway from the
+// state file, not actually remove.
 func (o GatewayOutput) BillingType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.StringPtrOutput { return v.BillingType }).(pulumi.StringPtrOutput)
 }
@@ -427,7 +432,8 @@ func (o GatewayOutput) LockReason() pulumi.StringOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.StringOutput { return v.LockReason }).(pulumi.StringOutput)
 }
 
-// The Period of the VPN gateway. This parameter is only useful when creating vpn gateway. Default period unit is Month.
+// The Period of the VPN gateway. Default value is 12. This parameter is only useful when creating vpn gateway. Default period unit is Month.
+// Value range: 1~9, 12, 24, 36. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 func (o GatewayOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.IntPtrOutput { return v.Period }).(pulumi.IntPtrOutput)
 }

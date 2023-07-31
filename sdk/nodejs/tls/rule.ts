@@ -11,7 +11,7 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as pulumi from "@volcengine/pulumi";
  *
  * const foo = new volcengine.tls.Rule("foo", {
  *     topicId: "7bfa2cdc-4f8b-4cf9-b4c9-0ed05c33349f",

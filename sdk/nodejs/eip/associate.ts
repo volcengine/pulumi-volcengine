@@ -10,11 +10,44 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as pulumi from "@volcengine/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = new volcengine.eip.Associate("foo", {
- *     allocationId: "eip-273ybrd0oeo007fap8t0nggtx",
- *     instanceId: "i-cm9tjw9zp9j942mfkczp",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooImages = volcengine.ecs.Images({
+ *     osType: "Linux",
+ *     visibility: "public",
+ *     instanceTypeId: "ecs.g1.large",
+ * });
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
+ *     vpcId: fooVpc.id,
+ *     securityGroupName: "acc-test-security-group",
+ * });
+ * const fooInstance = new volcengine.ecs.Instance("fooInstance", {
+ *     imageId: fooImages.then(fooImages => fooImages.images?[0]?.imageId),
+ *     instanceType: "ecs.g1.large",
+ *     instanceName: "acc-test-ecs-name",
+ *     password: "93f0cb0614Aab12",
+ *     instanceChargeType: "PostPaid",
+ *     systemVolumeType: "ESSD_PL0",
+ *     systemVolumeSize: 40,
+ *     subnetId: fooSubnet.id,
+ *     securityGroupIds: [fooSecurityGroup.id],
+ * });
+ * const fooAddress = new volcengine.eip.Address("fooAddress", {billingType: "PostPaidByTraffic"});
+ * const fooAssociate = new volcengine.eip.Associate("fooAssociate", {
+ *     allocationId: fooAddress.id,
+ *     instanceId: fooInstance.id,
  *     instanceType: "EcsInstance",
  * });
  * ```
@@ -64,7 +97,7 @@ export class Associate extends pulumi.CustomResource {
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
-     * The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
+     * The type of the associated instance,the value is `Nat` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
      */
     public readonly instanceType!: pulumi.Output<string>;
     /**
@@ -123,7 +156,7 @@ export interface AssociateState {
      */
     instanceId?: pulumi.Input<string>;
     /**
-     * The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
+     * The type of the associated instance,the value is `Nat` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
      */
     instanceType?: pulumi.Input<string>;
     /**
@@ -145,7 +178,7 @@ export interface AssociateArgs {
      */
     instanceId: pulumi.Input<string>;
     /**
-     * The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
+     * The type of the associated instance,the value is `Nat` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
      */
     instanceType: pulumi.Input<string>;
     /**

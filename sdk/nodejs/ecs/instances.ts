@@ -11,11 +11,58 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as pulumi from "@volcengine/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = pulumi.output(volcengine.ecs.Instances({
- *     ids: ["i-ebgy6xmgjve0384ncgsc"],
- * }));
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
+ *     securityGroupName: "acc-test-security-group",
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooImages = volcengine.ecs.Images({
+ *     osType: "Linux",
+ *     visibility: "public",
+ *     instanceTypeId: "ecs.g1.large",
+ * });
+ * const fooInstance: volcengine.ecs.Instance[];
+ * for (const range = {value: 0}; range.value < 2; range.value++) {
+ *     fooInstance.push(new volcengine.ecs.Instance(`fooInstance-${range.value}`, {
+ *         instanceName: `acc-test-ecs-${range.value}`,
+ *         description: "acc-test",
+ *         hostName: "tf-acc-test",
+ *         imageId: fooImages.then(fooImages => fooImages.images?[0]?.imageId),
+ *         instanceType: "ecs.g1.large",
+ *         password: "93f0cb0614Aab12",
+ *         instanceChargeType: "PostPaid",
+ *         systemVolumeType: "ESSD_PL0",
+ *         systemVolumeSize: 40,
+ *         dataVolumes: [{
+ *             volumeType: "ESSD_PL0",
+ *             size: 50,
+ *             deleteWithInstance: true,
+ *         }],
+ *         subnetId: fooSubnet.id,
+ *         securityGroupIds: [fooSecurityGroup.id],
+ *         projectName: "default",
+ *         tags: [{
+ *             key: "k1",
+ *             value: "v1",
+ *         }],
+ *     }));
+ * }
+ * const fooInstances = volcengine.ecs.InstancesOutput({
+ *     ids: fooInstance.map(__item => __item.id),
+ * });
  * ```
  */
 export function instances(args?: InstancesArgs, opts?: pulumi.InvokeOptions): Promise<InstancesResult> {

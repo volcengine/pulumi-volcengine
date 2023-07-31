@@ -21,14 +21,67 @@ import (
 //
 //	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ecs.NewState(ctx, "foo", &ecs.StateArgs{
-//				Action:      pulumi.String("ForceStop"),
-//				InstanceId:  pulumi.String("i-ycc01lmwecgh9z3sqqfl"),
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSecurityGroup, err := vpc.NewSecurityGroup(ctx, "fooSecurityGroup", &vpc.SecurityGroupArgs{
+//				SecurityGroupName: pulumi.String("acc-test-security-group"),
+//				VpcId:             fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooImages, err := ecs.Images(ctx, &ecs.ImagesArgs{
+//				OsType:         pulumi.StringRef("Linux"),
+//				Visibility:     pulumi.StringRef("public"),
+//				InstanceTypeId: pulumi.StringRef("ecs.g1.large"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooInstance, err := ecs.NewInstance(ctx, "fooInstance", &ecs.InstanceArgs{
+//				InstanceName:       pulumi.String("acc-test-ecs"),
+//				ImageId:            pulumi.String(fooImages.Images[0].ImageId),
+//				InstanceType:       pulumi.String("ecs.g1.large"),
+//				Password:           pulumi.String("93f0cb0614Aab12"),
+//				InstanceChargeType: pulumi.String("PostPaid"),
+//				SystemVolumeType:   pulumi.String("ESSD_PL0"),
+//				SystemVolumeSize:   pulumi.Int(40),
+//				SubnetId:           fooSubnet.ID(),
+//				SecurityGroupIds: pulumi.StringArray{
+//					fooSecurityGroup.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ecs.NewState(ctx, "fooState", &ecs.StateArgs{
+//				InstanceId:  fooInstance.ID(),
+//				Action:      pulumi.String("Stop"),
 //				StoppedMode: pulumi.String("KeepCharging"),
 //			})
 //			if err != nil {

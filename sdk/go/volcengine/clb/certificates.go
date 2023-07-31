@@ -20,6 +20,7 @@ import (
 //
 //	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/clb"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/clb"
 //
 // )
 //
@@ -59,6 +60,8 @@ type CertificatesArgs struct {
 	OutputFile *string `pulumi:"outputFile"`
 	// The ProjectName of Certificate.
 	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []CertificatesTag `pulumi:"tags"`
 }
 
 // A collection of values returned by Certificates.
@@ -74,6 +77,8 @@ type CertificatesResult struct {
 	OutputFile *string  `pulumi:"outputFile"`
 	// The ProjectName of the Certificate.
 	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []CertificatesTag `pulumi:"tags"`
 	// The total count of Certificate query.
 	TotalCount int `pulumi:"totalCount"`
 }
@@ -103,6 +108,8 @@ type CertificatesOutputArgs struct {
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
 	// The ProjectName of Certificate.
 	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
+	// Tags.
+	Tags CertificatesTagArrayInput `pulumi:"tags"`
 }
 
 func (CertificatesOutputArgs) ElementType() reflect.Type {
@@ -154,6 +161,11 @@ func (o CertificatesResultOutput) OutputFile() pulumi.StringPtrOutput {
 // The ProjectName of the Certificate.
 func (o CertificatesResultOutput) ProjectName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CertificatesResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o CertificatesResultOutput) Tags() CertificatesTagArrayOutput {
+	return o.ApplyT(func(v CertificatesResult) []CertificatesTag { return v.Tags }).(CertificatesTagArrayOutput)
 }
 
 // The total count of Certificate query.

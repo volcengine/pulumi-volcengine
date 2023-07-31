@@ -20,20 +20,22 @@ import (
 //
 //	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ecs.KeyPairs(ctx, &ecs.KeyPairsArgs{
-//				KeyPairIds: []string{
-//					"kp-l8u16bn69r8ny0fz01oc",
-//					"kp-l8u1wc12n3a82ep2s1px",
-//				},
-//			}, nil)
+//			fooKeyPair, err := ecs.NewKeyPair(ctx, "fooKeyPair", &ecs.KeyPairArgs{
+//				KeyPairName: pulumi.String("acc-test-key-name"),
+//				Description: pulumi.String("acc-test"),
+//			})
 //			if err != nil {
 //				return err
 //			}
+//			_ = ecs.KeyPairsOutput(ctx, ecs.KeyPairsOutputArgs{
+//				KeyPairName: fooKeyPair.KeyPairName,
+//			}, nil)
 //			return nil
 //		})
 //	}

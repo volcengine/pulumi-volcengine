@@ -143,10 +143,10 @@ def key_pairs(finger_print: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.ecs.key_pairs(key_pair_ids=[
-        "kp-l8u16bn69r8ny0fz01oc",
-        "kp-l8u1wc12n3a82ep2s1px",
-    ])
+    foo_key_pair = volcengine.ecs.KeyPair("fooKeyPair",
+        key_pair_name="acc-test-key-name",
+        description="acc-test")
+    foo_key_pairs = volcengine.ecs.key_pairs_output(key_pair_name=foo_key_pair.key_pair_name)
     ```
 
 
@@ -198,10 +198,10 @@ def key_pairs_output(finger_print: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.ecs.key_pairs(key_pair_ids=[
-        "kp-l8u16bn69r8ny0fz01oc",
-        "kp-l8u1wc12n3a82ep2s1px",
-    ])
+    foo_key_pair = volcengine.ecs.KeyPair("fooKeyPair",
+        key_pair_name="acc-test-key-name",
+        description="acc-test")
+    foo_key_pairs = volcengine.ecs.key_pairs_output(key_pair_name=foo_key_pair.key_pair_name)
     ```
 
 

@@ -18,39 +18,26 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := ecs.NewLaunchTemplate(ctx, "foo", &ecs.LaunchTemplateArgs{
-//				EipBandwidth:       pulumi.Int(3),
+//				Description:        pulumi.String("acc-test-desc"),
+//				EipBandwidth:       pulumi.Int(1),
 //				EipBillingType:     pulumi.String("PostPaidByBandwidth"),
-//				EipIsp:             pulumi.String("BGP"),
-//				HostName:           pulumi.String("instance-host-name"),
-//				ImageId:            pulumi.String("image-ycb26d1ryzl8j1fcxa9m"),
+//				EipIsp:             pulumi.String("ChinaMobile"),
+//				HostName:           pulumi.String("tf-host-name"),
+//				HpcClusterId:       pulumi.String("hpcCluster-l8u24ovdmoab6opf"),
+//				ImageId:            pulumi.String("image-ycjwwciuzy5pkh54xx8f"),
 //				InstanceChargeType: pulumi.String("PostPaid"),
-//				InstanceName:       pulumi.String("instance-test"),
+//				InstanceName:       pulumi.String("tf-acc-name"),
 //				InstanceTypeId:     pulumi.String("ecs.g1.large"),
-//				LaunchTemplateName: pulumi.String("tf-test-zzm"),
-//				NetworkInterfaces: ecs.LaunchTemplateNetworkInterfaceArray{
-//					&ecs.LaunchTemplateNetworkInterfaceArgs{
-//						SecurityGroupIds: pulumi.StringArray{
-//							pulumi.String("sg-xxxxxxxx"),
-//						},
-//						SubnetId: pulumi.String("subnet-3tispp1nai4e8idddd"),
-//					},
-//				},
-//				UserData:           pulumi.String("IyEvYmluL2Jhc2gKZWNobyAidGVzdCI="),
-//				VersionDescription: pulumi.String("testterraformaa"),
-//				Volumes: ecs.LaunchTemplateVolumeArray{
-//					&ecs.LaunchTemplateVolumeArgs{
-//						Size:       pulumi.Int(20),
-//						VolumeType: pulumi.String("ESSD_PL0"),
-//					},
-//				},
+//				KeyPairName:        pulumi.String("tf-key-pair"),
+//				LaunchTemplateName: pulumi.String("tf-acc-template"),
 //			})
 //			if err != nil {
 //				return err

@@ -216,6 +216,22 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "cen/routeEntry",
+  "fqn": "pulumi_volcengine.cen",
+  "classes": {
+   "volcengine:cen/routeEntry:RouteEntry": "RouteEntry"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cen/serviceRouteEntry",
+  "fqn": "pulumi_volcengine.cen",
+  "classes": {
+   "volcengine:cen/serviceRouteEntry:ServiceRouteEntry": "ServiceRouteEntry"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "clb/acl",
   "fqn": "pulumi_volcengine.clb",
   "classes": {

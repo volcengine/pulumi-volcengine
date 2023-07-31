@@ -11,14 +11,16 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as pulumi from "@volcengine/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultKeyPairs = pulumi.output(volcengine.ecs.KeyPairs({
- *     keyPairIds: [
- *         "kp-l8u16bn69r8ny0fz01oc",
- *         "kp-l8u1wc12n3a82ep2s1px",
- *     ],
- * }));
+ * const fooKeyPair = new volcengine.ecs.KeyPair("fooKeyPair", {
+ *     keyPairName: "acc-test-key-name",
+ *     description: "acc-test",
+ * });
+ * const fooKeyPairs = volcengine.ecs.KeyPairsOutput({
+ *     keyPairName: fooKeyPair.keyPairName,
+ * });
  * ```
  */
 export function keyPairs(args?: KeyPairsArgs, opts?: pulumi.InvokeOptions): Promise<KeyPairsResult> {

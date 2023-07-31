@@ -26,28 +26,36 @@ class ScalingConfigurationArgs:
                  eip_billing_type: Optional[pulumi.Input[str]] = None,
                  eip_isp: Optional[pulumi.Input[str]] = None,
                  host_name: Optional[pulumi.Input[str]] = None,
+                 hpc_cluster_id: Optional[pulumi.Input[str]] = None,
                  instance_description: Optional[pulumi.Input[str]] = None,
                  key_pair_name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  security_enhancement_strategy: Optional[pulumi.Input[str]] = None,
+                 spot_strategy: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ScalingConfigurationTagArgs']]]] = None,
                  user_data: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ScalingConfiguration resource.
         :param pulumi.Input[str] image_id: The ECS image id which the scaling configuration set.
         :param pulumi.Input[str] instance_name: The ECS instance name which the scaling configuration set.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_types: The list of the ECS instance type which the scaling configuration set.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_types: The list of the ECS instance type which the scaling configuration set. The maximum number of instance types is 10.
         :param pulumi.Input[str] scaling_configuration_name: The name of the scaling configuration.
         :param pulumi.Input[str] scaling_group_id: The id of the scaling group to which the scaling configuration belongs.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The list of the security group id of the networkInterface which the scaling configuration set.
-        :param pulumi.Input[Sequence[pulumi.Input['ScalingConfigurationVolumeArgs']]] volumes: The list of volume of the scaling configuration.
-        :param pulumi.Input[int] eip_bandwidth: The EIP bandwidth which the scaling configuration set.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The list of the security group id of the networkInterface which the scaling configuration set. A maximum of 5 security groups can be bound at the same time, and the value ranges from 1 to 5.
+        :param pulumi.Input[Sequence[pulumi.Input['ScalingConfigurationVolumeArgs']]] volumes: The list of volume of the scaling configuration. The number of supported volumes ranges from 1 to 15.
+        :param pulumi.Input[int] eip_bandwidth: The EIP bandwidth which the scaling configuration set. When the value of Eip.BillingType is PostPaidByBandwidth, the value is 1 to 500. When the value of Eip.BillingType is PostPaidByTraffic, the value is 1 to 200.
         :param pulumi.Input[str] eip_billing_type: The EIP billing type which the scaling configuration set. Valid values: PostPaidByBandwidth, PostPaidByTraffic.
         :param pulumi.Input[str] eip_isp: The EIP ISP which the scaling configuration set. Valid values: BGP, ChinaMobile, ChinaUnicom, ChinaTelecom.
         :param pulumi.Input[str] host_name: The ECS hostname which the scaling configuration set.
+        :param pulumi.Input[str] hpc_cluster_id: The ID of the HPC cluster to which the instance belongs. Valid only when InstanceTypes.N specifies High Performance Computing GPU Type.
         :param pulumi.Input[str] instance_description: The ECS instance description which the scaling configuration set.
         :param pulumi.Input[str] key_pair_name: The ECS key pair name which the scaling configuration set.
         :param pulumi.Input[str] password: The ECS password which the scaling configuration set.
+        :param pulumi.Input[str] project_name: The project to which the instance created by the scaling configuration belongs.
         :param pulumi.Input[str] security_enhancement_strategy: The Ecs security enhancement strategy which the scaling configuration set. Valid values: Active, InActive.
+        :param pulumi.Input[str] spot_strategy: The preemption policy of the instance. Valid Value: NoSpot (default), SpotAsPriceGo.
+        :param pulumi.Input[Sequence[pulumi.Input['ScalingConfigurationTagArgs']]] tags: The label of the instance created by the scaling configuration. Up to 20 tags are supported.
         :param pulumi.Input[str] user_data: The ECS user data which the scaling configuration set.
         """
         pulumi.set(__self__, "image_id", image_id)
@@ -65,14 +73,22 @@ class ScalingConfigurationArgs:
             pulumi.set(__self__, "eip_isp", eip_isp)
         if host_name is not None:
             pulumi.set(__self__, "host_name", host_name)
+        if hpc_cluster_id is not None:
+            pulumi.set(__self__, "hpc_cluster_id", hpc_cluster_id)
         if instance_description is not None:
             pulumi.set(__self__, "instance_description", instance_description)
         if key_pair_name is not None:
             pulumi.set(__self__, "key_pair_name", key_pair_name)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if security_enhancement_strategy is not None:
             pulumi.set(__self__, "security_enhancement_strategy", security_enhancement_strategy)
+        if spot_strategy is not None:
+            pulumi.set(__self__, "spot_strategy", spot_strategy)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if user_data is not None:
             pulumi.set(__self__, "user_data", user_data)
 
@@ -104,7 +120,7 @@ class ScalingConfigurationArgs:
     @pulumi.getter(name="instanceTypes")
     def instance_types(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        The list of the ECS instance type which the scaling configuration set.
+        The list of the ECS instance type which the scaling configuration set. The maximum number of instance types is 10.
         """
         return pulumi.get(self, "instance_types")
 
@@ -140,7 +156,7 @@ class ScalingConfigurationArgs:
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        The list of the security group id of the networkInterface which the scaling configuration set.
+        The list of the security group id of the networkInterface which the scaling configuration set. A maximum of 5 security groups can be bound at the same time, and the value ranges from 1 to 5.
         """
         return pulumi.get(self, "security_group_ids")
 
@@ -152,7 +168,7 @@ class ScalingConfigurationArgs:
     @pulumi.getter
     def volumes(self) -> pulumi.Input[Sequence[pulumi.Input['ScalingConfigurationVolumeArgs']]]:
         """
-        The list of volume of the scaling configuration.
+        The list of volume of the scaling configuration. The number of supported volumes ranges from 1 to 15.
         """
         return pulumi.get(self, "volumes")
 
@@ -164,7 +180,7 @@ class ScalingConfigurationArgs:
     @pulumi.getter(name="eipBandwidth")
     def eip_bandwidth(self) -> Optional[pulumi.Input[int]]:
         """
-        The EIP bandwidth which the scaling configuration set.
+        The EIP bandwidth which the scaling configuration set. When the value of Eip.BillingType is PostPaidByBandwidth, the value is 1 to 500. When the value of Eip.BillingType is PostPaidByTraffic, the value is 1 to 200.
         """
         return pulumi.get(self, "eip_bandwidth")
 
@@ -207,6 +223,18 @@ class ScalingConfigurationArgs:
     @host_name.setter
     def host_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "host_name", value)
+
+    @property
+    @pulumi.getter(name="hpcClusterId")
+    def hpc_cluster_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the HPC cluster to which the instance belongs. Valid only when InstanceTypes.N specifies High Performance Computing GPU Type.
+        """
+        return pulumi.get(self, "hpc_cluster_id")
+
+    @hpc_cluster_id.setter
+    def hpc_cluster_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hpc_cluster_id", value)
 
     @property
     @pulumi.getter(name="instanceDescription")
@@ -245,6 +273,18 @@ class ScalingConfigurationArgs:
         pulumi.set(self, "password", value)
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project to which the instance created by the scaling configuration belongs.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
     @pulumi.getter(name="securityEnhancementStrategy")
     def security_enhancement_strategy(self) -> Optional[pulumi.Input[str]]:
         """
@@ -255,6 +295,30 @@ class ScalingConfigurationArgs:
     @security_enhancement_strategy.setter
     def security_enhancement_strategy(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "security_enhancement_strategy", value)
+
+    @property
+    @pulumi.getter(name="spotStrategy")
+    def spot_strategy(self) -> Optional[pulumi.Input[str]]:
+        """
+        The preemption policy of the instance. Valid Value: NoSpot (default), SpotAsPriceGo.
+        """
+        return pulumi.get(self, "spot_strategy")
+
+    @spot_strategy.setter
+    def spot_strategy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "spot_strategy", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ScalingConfigurationTagArgs']]]]:
+        """
+        The label of the instance created by the scaling configuration. Up to 20 tags are supported.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ScalingConfigurationTagArgs']]]]):
+        pulumi.set(self, "tags", value)
 
     @property
     @pulumi.getter(name="userData")
@@ -277,6 +341,7 @@ class _ScalingConfigurationState:
                  eip_billing_type: Optional[pulumi.Input[str]] = None,
                  eip_isp: Optional[pulumi.Input[str]] = None,
                  host_name: Optional[pulumi.Input[str]] = None,
+                 hpc_cluster_id: Optional[pulumi.Input[str]] = None,
                  image_id: Optional[pulumi.Input[str]] = None,
                  instance_description: Optional[pulumi.Input[str]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
@@ -284,36 +349,43 @@ class _ScalingConfigurationState:
                  key_pair_name: Optional[pulumi.Input[str]] = None,
                  lifecycle_state: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  scaling_configuration_id: Optional[pulumi.Input[str]] = None,
                  scaling_configuration_name: Optional[pulumi.Input[str]] = None,
                  scaling_group_id: Optional[pulumi.Input[str]] = None,
                  security_enhancement_strategy: Optional[pulumi.Input[str]] = None,
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 spot_strategy: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ScalingConfigurationTagArgs']]]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None,
                  user_data: Optional[pulumi.Input[str]] = None,
                  volumes: Optional[pulumi.Input[Sequence[pulumi.Input['ScalingConfigurationVolumeArgs']]]] = None):
         """
         Input properties used for looking up and filtering ScalingConfiguration resources.
         :param pulumi.Input[str] created_at: The create time of the scaling configuration.
-        :param pulumi.Input[int] eip_bandwidth: The EIP bandwidth which the scaling configuration set.
+        :param pulumi.Input[int] eip_bandwidth: The EIP bandwidth which the scaling configuration set. When the value of Eip.BillingType is PostPaidByBandwidth, the value is 1 to 500. When the value of Eip.BillingType is PostPaidByTraffic, the value is 1 to 200.
         :param pulumi.Input[str] eip_billing_type: The EIP billing type which the scaling configuration set. Valid values: PostPaidByBandwidth, PostPaidByTraffic.
         :param pulumi.Input[str] eip_isp: The EIP ISP which the scaling configuration set. Valid values: BGP, ChinaMobile, ChinaUnicom, ChinaTelecom.
         :param pulumi.Input[str] host_name: The ECS hostname which the scaling configuration set.
+        :param pulumi.Input[str] hpc_cluster_id: The ID of the HPC cluster to which the instance belongs. Valid only when InstanceTypes.N specifies High Performance Computing GPU Type.
         :param pulumi.Input[str] image_id: The ECS image id which the scaling configuration set.
         :param pulumi.Input[str] instance_description: The ECS instance description which the scaling configuration set.
         :param pulumi.Input[str] instance_name: The ECS instance name which the scaling configuration set.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_types: The list of the ECS instance type which the scaling configuration set.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_types: The list of the ECS instance type which the scaling configuration set. The maximum number of instance types is 10.
         :param pulumi.Input[str] key_pair_name: The ECS key pair name which the scaling configuration set.
         :param pulumi.Input[str] lifecycle_state: The lifecycle state of the scaling configuration.
         :param pulumi.Input[str] password: The ECS password which the scaling configuration set.
+        :param pulumi.Input[str] project_name: The project to which the instance created by the scaling configuration belongs.
         :param pulumi.Input[str] scaling_configuration_id: The id of the scaling configuration.
         :param pulumi.Input[str] scaling_configuration_name: The name of the scaling configuration.
         :param pulumi.Input[str] scaling_group_id: The id of the scaling group to which the scaling configuration belongs.
         :param pulumi.Input[str] security_enhancement_strategy: The Ecs security enhancement strategy which the scaling configuration set. Valid values: Active, InActive.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The list of the security group id of the networkInterface which the scaling configuration set.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The list of the security group id of the networkInterface which the scaling configuration set. A maximum of 5 security groups can be bound at the same time, and the value ranges from 1 to 5.
+        :param pulumi.Input[str] spot_strategy: The preemption policy of the instance. Valid Value: NoSpot (default), SpotAsPriceGo.
+        :param pulumi.Input[Sequence[pulumi.Input['ScalingConfigurationTagArgs']]] tags: The label of the instance created by the scaling configuration. Up to 20 tags are supported.
         :param pulumi.Input[str] updated_at: The create time of the scaling configuration.
         :param pulumi.Input[str] user_data: The ECS user data which the scaling configuration set.
-        :param pulumi.Input[Sequence[pulumi.Input['ScalingConfigurationVolumeArgs']]] volumes: The list of volume of the scaling configuration.
+        :param pulumi.Input[Sequence[pulumi.Input['ScalingConfigurationVolumeArgs']]] volumes: The list of volume of the scaling configuration. The number of supported volumes ranges from 1 to 15.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -325,6 +397,8 @@ class _ScalingConfigurationState:
             pulumi.set(__self__, "eip_isp", eip_isp)
         if host_name is not None:
             pulumi.set(__self__, "host_name", host_name)
+        if hpc_cluster_id is not None:
+            pulumi.set(__self__, "hpc_cluster_id", hpc_cluster_id)
         if image_id is not None:
             pulumi.set(__self__, "image_id", image_id)
         if instance_description is not None:
@@ -339,6 +413,8 @@ class _ScalingConfigurationState:
             pulumi.set(__self__, "lifecycle_state", lifecycle_state)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if scaling_configuration_id is not None:
             pulumi.set(__self__, "scaling_configuration_id", scaling_configuration_id)
         if scaling_configuration_name is not None:
@@ -349,6 +425,10 @@ class _ScalingConfigurationState:
             pulumi.set(__self__, "security_enhancement_strategy", security_enhancement_strategy)
         if security_group_ids is not None:
             pulumi.set(__self__, "security_group_ids", security_group_ids)
+        if spot_strategy is not None:
+            pulumi.set(__self__, "spot_strategy", spot_strategy)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
         if user_data is not None:
@@ -372,7 +452,7 @@ class _ScalingConfigurationState:
     @pulumi.getter(name="eipBandwidth")
     def eip_bandwidth(self) -> Optional[pulumi.Input[int]]:
         """
-        The EIP bandwidth which the scaling configuration set.
+        The EIP bandwidth which the scaling configuration set. When the value of Eip.BillingType is PostPaidByBandwidth, the value is 1 to 500. When the value of Eip.BillingType is PostPaidByTraffic, the value is 1 to 200.
         """
         return pulumi.get(self, "eip_bandwidth")
 
@@ -415,6 +495,18 @@ class _ScalingConfigurationState:
     @host_name.setter
     def host_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "host_name", value)
+
+    @property
+    @pulumi.getter(name="hpcClusterId")
+    def hpc_cluster_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the HPC cluster to which the instance belongs. Valid only when InstanceTypes.N specifies High Performance Computing GPU Type.
+        """
+        return pulumi.get(self, "hpc_cluster_id")
+
+    @hpc_cluster_id.setter
+    def hpc_cluster_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hpc_cluster_id", value)
 
     @property
     @pulumi.getter(name="imageId")
@@ -456,7 +548,7 @@ class _ScalingConfigurationState:
     @pulumi.getter(name="instanceTypes")
     def instance_types(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The list of the ECS instance type which the scaling configuration set.
+        The list of the ECS instance type which the scaling configuration set. The maximum number of instance types is 10.
         """
         return pulumi.get(self, "instance_types")
 
@@ -499,6 +591,18 @@ class _ScalingConfigurationState:
     @password.setter
     def password(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project to which the instance created by the scaling configuration belongs.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
 
     @property
     @pulumi.getter(name="scalingConfigurationId")
@@ -552,13 +656,37 @@ class _ScalingConfigurationState:
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The list of the security group id of the networkInterface which the scaling configuration set.
+        The list of the security group id of the networkInterface which the scaling configuration set. A maximum of 5 security groups can be bound at the same time, and the value ranges from 1 to 5.
         """
         return pulumi.get(self, "security_group_ids")
 
     @security_group_ids.setter
     def security_group_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "security_group_ids", value)
+
+    @property
+    @pulumi.getter(name="spotStrategy")
+    def spot_strategy(self) -> Optional[pulumi.Input[str]]:
+        """
+        The preemption policy of the instance. Valid Value: NoSpot (default), SpotAsPriceGo.
+        """
+        return pulumi.get(self, "spot_strategy")
+
+    @spot_strategy.setter
+    def spot_strategy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "spot_strategy", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ScalingConfigurationTagArgs']]]]:
+        """
+        The label of the instance created by the scaling configuration. Up to 20 tags are supported.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ScalingConfigurationTagArgs']]]]):
+        pulumi.set(self, "tags", value)
 
     @property
     @pulumi.getter(name="updatedAt")
@@ -588,7 +716,7 @@ class _ScalingConfigurationState:
     @pulumi.getter
     def volumes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ScalingConfigurationVolumeArgs']]]]:
         """
-        The list of volume of the scaling configuration.
+        The list of volume of the scaling configuration. The number of supported volumes ranges from 1 to 15.
         """
         return pulumi.get(self, "volumes")
 
@@ -606,16 +734,20 @@ class ScalingConfiguration(pulumi.CustomResource):
                  eip_billing_type: Optional[pulumi.Input[str]] = None,
                  eip_isp: Optional[pulumi.Input[str]] = None,
                  host_name: Optional[pulumi.Input[str]] = None,
+                 hpc_cluster_id: Optional[pulumi.Input[str]] = None,
                  image_id: Optional[pulumi.Input[str]] = None,
                  instance_description: Optional[pulumi.Input[str]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
                  instance_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  key_pair_name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  scaling_configuration_name: Optional[pulumi.Input[str]] = None,
                  scaling_group_id: Optional[pulumi.Input[str]] = None,
                  security_enhancement_strategy: Optional[pulumi.Input[str]] = None,
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 spot_strategy: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ScalingConfigurationTagArgs']]]]] = None,
                  user_data: Optional[pulumi.Input[str]] = None,
                  volumes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ScalingConfigurationVolumeArgs']]]]] = None,
                  __props__=None):
@@ -627,20 +759,33 @@ class ScalingConfiguration(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.autoscaling.ScalingConfiguration("foo",
-            eip_bandwidth=0,
+            eip_bandwidth=10,
             eip_billing_type="PostPaidByBandwidth",
             eip_isp="ChinaMobile",
             host_name="",
-            image_id="image-ybpbrfay1gl8j1srwwyz",
+            hpc_cluster_id="",
+            image_id="image-ycgud4t4hxgso0e27bdl",
             instance_description="",
             instance_name="tf-test",
-            instance_types=["ecs.g1.4xlarge"],
-            key_pair_name="renhuaxi",
+            instance_types=["ecs.g2i.large"],
+            key_pair_name="tf-keypair",
             password="",
+            project_name="default",
             scaling_configuration_name="tf-test",
-            scaling_group_id="scg-ybru8pazhgl8j1di4tyd",
+            scaling_group_id="scg-ycinx27x25gh9y31p0fy",
             security_enhancement_strategy="InActive",
-            security_group_ids=["sg-2ff4fhdtlo8ao59gp67iiq9o3"],
+            security_group_ids=["sg-2fepz3c793g1s59gp67y21r34"],
+            spot_strategy="NoSpot",
+            tags=[
+                volcengine.autoscaling.ScalingConfigurationTagArgs(
+                    key="tf-key1",
+                    value="tf-value1",
+                ),
+                volcengine.autoscaling.ScalingConfigurationTagArgs(
+                    key="tf-key2",
+                    value="tf-value2",
+                ),
+            ],
             user_data="IyEvYmluL2Jhc2gKZWNobyAidGVzdCI=",
             volumes=[
                 volcengine.autoscaling.ScalingConfigurationVolumeArgs(
@@ -666,22 +811,26 @@ class ScalingConfiguration(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[int] eip_bandwidth: The EIP bandwidth which the scaling configuration set.
+        :param pulumi.Input[int] eip_bandwidth: The EIP bandwidth which the scaling configuration set. When the value of Eip.BillingType is PostPaidByBandwidth, the value is 1 to 500. When the value of Eip.BillingType is PostPaidByTraffic, the value is 1 to 200.
         :param pulumi.Input[str] eip_billing_type: The EIP billing type which the scaling configuration set. Valid values: PostPaidByBandwidth, PostPaidByTraffic.
         :param pulumi.Input[str] eip_isp: The EIP ISP which the scaling configuration set. Valid values: BGP, ChinaMobile, ChinaUnicom, ChinaTelecom.
         :param pulumi.Input[str] host_name: The ECS hostname which the scaling configuration set.
+        :param pulumi.Input[str] hpc_cluster_id: The ID of the HPC cluster to which the instance belongs. Valid only when InstanceTypes.N specifies High Performance Computing GPU Type.
         :param pulumi.Input[str] image_id: The ECS image id which the scaling configuration set.
         :param pulumi.Input[str] instance_description: The ECS instance description which the scaling configuration set.
         :param pulumi.Input[str] instance_name: The ECS instance name which the scaling configuration set.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_types: The list of the ECS instance type which the scaling configuration set.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_types: The list of the ECS instance type which the scaling configuration set. The maximum number of instance types is 10.
         :param pulumi.Input[str] key_pair_name: The ECS key pair name which the scaling configuration set.
         :param pulumi.Input[str] password: The ECS password which the scaling configuration set.
+        :param pulumi.Input[str] project_name: The project to which the instance created by the scaling configuration belongs.
         :param pulumi.Input[str] scaling_configuration_name: The name of the scaling configuration.
         :param pulumi.Input[str] scaling_group_id: The id of the scaling group to which the scaling configuration belongs.
         :param pulumi.Input[str] security_enhancement_strategy: The Ecs security enhancement strategy which the scaling configuration set. Valid values: Active, InActive.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The list of the security group id of the networkInterface which the scaling configuration set.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The list of the security group id of the networkInterface which the scaling configuration set. A maximum of 5 security groups can be bound at the same time, and the value ranges from 1 to 5.
+        :param pulumi.Input[str] spot_strategy: The preemption policy of the instance. Valid Value: NoSpot (default), SpotAsPriceGo.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ScalingConfigurationTagArgs']]]] tags: The label of the instance created by the scaling configuration. Up to 20 tags are supported.
         :param pulumi.Input[str] user_data: The ECS user data which the scaling configuration set.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ScalingConfigurationVolumeArgs']]]] volumes: The list of volume of the scaling configuration.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ScalingConfigurationVolumeArgs']]]] volumes: The list of volume of the scaling configuration. The number of supported volumes ranges from 1 to 15.
         """
         ...
     @overload
@@ -697,20 +846,33 @@ class ScalingConfiguration(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.autoscaling.ScalingConfiguration("foo",
-            eip_bandwidth=0,
+            eip_bandwidth=10,
             eip_billing_type="PostPaidByBandwidth",
             eip_isp="ChinaMobile",
             host_name="",
-            image_id="image-ybpbrfay1gl8j1srwwyz",
+            hpc_cluster_id="",
+            image_id="image-ycgud4t4hxgso0e27bdl",
             instance_description="",
             instance_name="tf-test",
-            instance_types=["ecs.g1.4xlarge"],
-            key_pair_name="renhuaxi",
+            instance_types=["ecs.g2i.large"],
+            key_pair_name="tf-keypair",
             password="",
+            project_name="default",
             scaling_configuration_name="tf-test",
-            scaling_group_id="scg-ybru8pazhgl8j1di4tyd",
+            scaling_group_id="scg-ycinx27x25gh9y31p0fy",
             security_enhancement_strategy="InActive",
-            security_group_ids=["sg-2ff4fhdtlo8ao59gp67iiq9o3"],
+            security_group_ids=["sg-2fepz3c793g1s59gp67y21r34"],
+            spot_strategy="NoSpot",
+            tags=[
+                volcengine.autoscaling.ScalingConfigurationTagArgs(
+                    key="tf-key1",
+                    value="tf-value1",
+                ),
+                volcengine.autoscaling.ScalingConfigurationTagArgs(
+                    key="tf-key2",
+                    value="tf-value2",
+                ),
+            ],
             user_data="IyEvYmluL2Jhc2gKZWNobyAidGVzdCI=",
             volumes=[
                 volcengine.autoscaling.ScalingConfigurationVolumeArgs(
@@ -753,16 +915,20 @@ class ScalingConfiguration(pulumi.CustomResource):
                  eip_billing_type: Optional[pulumi.Input[str]] = None,
                  eip_isp: Optional[pulumi.Input[str]] = None,
                  host_name: Optional[pulumi.Input[str]] = None,
+                 hpc_cluster_id: Optional[pulumi.Input[str]] = None,
                  image_id: Optional[pulumi.Input[str]] = None,
                  instance_description: Optional[pulumi.Input[str]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
                  instance_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  key_pair_name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  scaling_configuration_name: Optional[pulumi.Input[str]] = None,
                  scaling_group_id: Optional[pulumi.Input[str]] = None,
                  security_enhancement_strategy: Optional[pulumi.Input[str]] = None,
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 spot_strategy: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ScalingConfigurationTagArgs']]]]] = None,
                  user_data: Optional[pulumi.Input[str]] = None,
                  volumes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ScalingConfigurationVolumeArgs']]]]] = None,
                  __props__=None):
@@ -781,6 +947,7 @@ class ScalingConfiguration(pulumi.CustomResource):
             __props__.__dict__["eip_billing_type"] = eip_billing_type
             __props__.__dict__["eip_isp"] = eip_isp
             __props__.__dict__["host_name"] = host_name
+            __props__.__dict__["hpc_cluster_id"] = hpc_cluster_id
             if image_id is None and not opts.urn:
                 raise TypeError("Missing required property 'image_id'")
             __props__.__dict__["image_id"] = image_id
@@ -793,6 +960,7 @@ class ScalingConfiguration(pulumi.CustomResource):
             __props__.__dict__["instance_types"] = instance_types
             __props__.__dict__["key_pair_name"] = key_pair_name
             __props__.__dict__["password"] = password
+            __props__.__dict__["project_name"] = project_name
             if scaling_configuration_name is None and not opts.urn:
                 raise TypeError("Missing required property 'scaling_configuration_name'")
             __props__.__dict__["scaling_configuration_name"] = scaling_configuration_name
@@ -803,6 +971,8 @@ class ScalingConfiguration(pulumi.CustomResource):
             if security_group_ids is None and not opts.urn:
                 raise TypeError("Missing required property 'security_group_ids'")
             __props__.__dict__["security_group_ids"] = security_group_ids
+            __props__.__dict__["spot_strategy"] = spot_strategy
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["user_data"] = user_data
             if volumes is None and not opts.urn:
                 raise TypeError("Missing required property 'volumes'")
@@ -826,6 +996,7 @@ class ScalingConfiguration(pulumi.CustomResource):
             eip_billing_type: Optional[pulumi.Input[str]] = None,
             eip_isp: Optional[pulumi.Input[str]] = None,
             host_name: Optional[pulumi.Input[str]] = None,
+            hpc_cluster_id: Optional[pulumi.Input[str]] = None,
             image_id: Optional[pulumi.Input[str]] = None,
             instance_description: Optional[pulumi.Input[str]] = None,
             instance_name: Optional[pulumi.Input[str]] = None,
@@ -833,11 +1004,14 @@ class ScalingConfiguration(pulumi.CustomResource):
             key_pair_name: Optional[pulumi.Input[str]] = None,
             lifecycle_state: Optional[pulumi.Input[str]] = None,
             password: Optional[pulumi.Input[str]] = None,
+            project_name: Optional[pulumi.Input[str]] = None,
             scaling_configuration_id: Optional[pulumi.Input[str]] = None,
             scaling_configuration_name: Optional[pulumi.Input[str]] = None,
             scaling_group_id: Optional[pulumi.Input[str]] = None,
             security_enhancement_strategy: Optional[pulumi.Input[str]] = None,
             security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            spot_strategy: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ScalingConfigurationTagArgs']]]]] = None,
             updated_at: Optional[pulumi.Input[str]] = None,
             user_data: Optional[pulumi.Input[str]] = None,
             volumes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ScalingConfigurationVolumeArgs']]]]] = None) -> 'ScalingConfiguration':
@@ -849,25 +1023,29 @@ class ScalingConfiguration(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] created_at: The create time of the scaling configuration.
-        :param pulumi.Input[int] eip_bandwidth: The EIP bandwidth which the scaling configuration set.
+        :param pulumi.Input[int] eip_bandwidth: The EIP bandwidth which the scaling configuration set. When the value of Eip.BillingType is PostPaidByBandwidth, the value is 1 to 500. When the value of Eip.BillingType is PostPaidByTraffic, the value is 1 to 200.
         :param pulumi.Input[str] eip_billing_type: The EIP billing type which the scaling configuration set. Valid values: PostPaidByBandwidth, PostPaidByTraffic.
         :param pulumi.Input[str] eip_isp: The EIP ISP which the scaling configuration set. Valid values: BGP, ChinaMobile, ChinaUnicom, ChinaTelecom.
         :param pulumi.Input[str] host_name: The ECS hostname which the scaling configuration set.
+        :param pulumi.Input[str] hpc_cluster_id: The ID of the HPC cluster to which the instance belongs. Valid only when InstanceTypes.N specifies High Performance Computing GPU Type.
         :param pulumi.Input[str] image_id: The ECS image id which the scaling configuration set.
         :param pulumi.Input[str] instance_description: The ECS instance description which the scaling configuration set.
         :param pulumi.Input[str] instance_name: The ECS instance name which the scaling configuration set.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_types: The list of the ECS instance type which the scaling configuration set.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_types: The list of the ECS instance type which the scaling configuration set. The maximum number of instance types is 10.
         :param pulumi.Input[str] key_pair_name: The ECS key pair name which the scaling configuration set.
         :param pulumi.Input[str] lifecycle_state: The lifecycle state of the scaling configuration.
         :param pulumi.Input[str] password: The ECS password which the scaling configuration set.
+        :param pulumi.Input[str] project_name: The project to which the instance created by the scaling configuration belongs.
         :param pulumi.Input[str] scaling_configuration_id: The id of the scaling configuration.
         :param pulumi.Input[str] scaling_configuration_name: The name of the scaling configuration.
         :param pulumi.Input[str] scaling_group_id: The id of the scaling group to which the scaling configuration belongs.
         :param pulumi.Input[str] security_enhancement_strategy: The Ecs security enhancement strategy which the scaling configuration set. Valid values: Active, InActive.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The list of the security group id of the networkInterface which the scaling configuration set.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The list of the security group id of the networkInterface which the scaling configuration set. A maximum of 5 security groups can be bound at the same time, and the value ranges from 1 to 5.
+        :param pulumi.Input[str] spot_strategy: The preemption policy of the instance. Valid Value: NoSpot (default), SpotAsPriceGo.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ScalingConfigurationTagArgs']]]] tags: The label of the instance created by the scaling configuration. Up to 20 tags are supported.
         :param pulumi.Input[str] updated_at: The create time of the scaling configuration.
         :param pulumi.Input[str] user_data: The ECS user data which the scaling configuration set.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ScalingConfigurationVolumeArgs']]]] volumes: The list of volume of the scaling configuration.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ScalingConfigurationVolumeArgs']]]] volumes: The list of volume of the scaling configuration. The number of supported volumes ranges from 1 to 15.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -878,6 +1056,7 @@ class ScalingConfiguration(pulumi.CustomResource):
         __props__.__dict__["eip_billing_type"] = eip_billing_type
         __props__.__dict__["eip_isp"] = eip_isp
         __props__.__dict__["host_name"] = host_name
+        __props__.__dict__["hpc_cluster_id"] = hpc_cluster_id
         __props__.__dict__["image_id"] = image_id
         __props__.__dict__["instance_description"] = instance_description
         __props__.__dict__["instance_name"] = instance_name
@@ -885,11 +1064,14 @@ class ScalingConfiguration(pulumi.CustomResource):
         __props__.__dict__["key_pair_name"] = key_pair_name
         __props__.__dict__["lifecycle_state"] = lifecycle_state
         __props__.__dict__["password"] = password
+        __props__.__dict__["project_name"] = project_name
         __props__.__dict__["scaling_configuration_id"] = scaling_configuration_id
         __props__.__dict__["scaling_configuration_name"] = scaling_configuration_name
         __props__.__dict__["scaling_group_id"] = scaling_group_id
         __props__.__dict__["security_enhancement_strategy"] = security_enhancement_strategy
         __props__.__dict__["security_group_ids"] = security_group_ids
+        __props__.__dict__["spot_strategy"] = spot_strategy
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["user_data"] = user_data
         __props__.__dict__["volumes"] = volumes
@@ -907,7 +1089,7 @@ class ScalingConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="eipBandwidth")
     def eip_bandwidth(self) -> pulumi.Output[int]:
         """
-        The EIP bandwidth which the scaling configuration set.
+        The EIP bandwidth which the scaling configuration set. When the value of Eip.BillingType is PostPaidByBandwidth, the value is 1 to 500. When the value of Eip.BillingType is PostPaidByTraffic, the value is 1 to 200.
         """
         return pulumi.get(self, "eip_bandwidth")
 
@@ -934,6 +1116,14 @@ class ScalingConfiguration(pulumi.CustomResource):
         The ECS hostname which the scaling configuration set.
         """
         return pulumi.get(self, "host_name")
+
+    @property
+    @pulumi.getter(name="hpcClusterId")
+    def hpc_cluster_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The ID of the HPC cluster to which the instance belongs. Valid only when InstanceTypes.N specifies High Performance Computing GPU Type.
+        """
+        return pulumi.get(self, "hpc_cluster_id")
 
     @property
     @pulumi.getter(name="imageId")
@@ -963,7 +1153,7 @@ class ScalingConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="instanceTypes")
     def instance_types(self) -> pulumi.Output[Sequence[str]]:
         """
-        The list of the ECS instance type which the scaling configuration set.
+        The list of the ECS instance type which the scaling configuration set. The maximum number of instance types is 10.
         """
         return pulumi.get(self, "instance_types")
 
@@ -990,6 +1180,14 @@ class ScalingConfiguration(pulumi.CustomResource):
         The ECS password which the scaling configuration set.
         """
         return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        The project to which the instance created by the scaling configuration belongs.
+        """
+        return pulumi.get(self, "project_name")
 
     @property
     @pulumi.getter(name="scalingConfigurationId")
@@ -1027,9 +1225,25 @@ class ScalingConfiguration(pulumi.CustomResource):
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> pulumi.Output[Sequence[str]]:
         """
-        The list of the security group id of the networkInterface which the scaling configuration set.
+        The list of the security group id of the networkInterface which the scaling configuration set. A maximum of 5 security groups can be bound at the same time, and the value ranges from 1 to 5.
         """
         return pulumi.get(self, "security_group_ids")
+
+    @property
+    @pulumi.getter(name="spotStrategy")
+    def spot_strategy(self) -> pulumi.Output[Optional[str]]:
+        """
+        The preemption policy of the instance. Valid Value: NoSpot (default), SpotAsPriceGo.
+        """
+        return pulumi.get(self, "spot_strategy")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.ScalingConfigurationTag']]]:
+        """
+        The label of the instance created by the scaling configuration. Up to 20 tags are supported.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="updatedAt")
@@ -1051,7 +1265,7 @@ class ScalingConfiguration(pulumi.CustomResource):
     @pulumi.getter
     def volumes(self) -> pulumi.Output[Sequence['outputs.ScalingConfigurationVolume']]:
         """
-        The list of volume of the scaling configuration.
+        The list of volume of the scaling configuration. The number of supported volumes ranges from 1 to 15.
         """
         return pulumi.get(self, "volumes")
 

@@ -2753,6 +2753,112 @@ func (o InstancesTagArrayOutput) Index(i pulumi.IntInput) InstancesTagOutput {
 	}).(InstancesTagOutput)
 }
 
+type PitrTimeWindowsPeriod struct {
+	EndTime    string `pulumi:"endTime"`
+	InstanceId string `pulumi:"instanceId"`
+	StartTime  string `pulumi:"startTime"`
+}
+
+// PitrTimeWindowsPeriodInput is an input type that accepts PitrTimeWindowsPeriodArgs and PitrTimeWindowsPeriodOutput values.
+// You can construct a concrete instance of `PitrTimeWindowsPeriodInput` via:
+//
+//	PitrTimeWindowsPeriodArgs{...}
+type PitrTimeWindowsPeriodInput interface {
+	pulumi.Input
+
+	ToPitrTimeWindowsPeriodOutput() PitrTimeWindowsPeriodOutput
+	ToPitrTimeWindowsPeriodOutputWithContext(context.Context) PitrTimeWindowsPeriodOutput
+}
+
+type PitrTimeWindowsPeriodArgs struct {
+	EndTime    pulumi.StringInput `pulumi:"endTime"`
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	StartTime  pulumi.StringInput `pulumi:"startTime"`
+}
+
+func (PitrTimeWindowsPeriodArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PitrTimeWindowsPeriod)(nil)).Elem()
+}
+
+func (i PitrTimeWindowsPeriodArgs) ToPitrTimeWindowsPeriodOutput() PitrTimeWindowsPeriodOutput {
+	return i.ToPitrTimeWindowsPeriodOutputWithContext(context.Background())
+}
+
+func (i PitrTimeWindowsPeriodArgs) ToPitrTimeWindowsPeriodOutputWithContext(ctx context.Context) PitrTimeWindowsPeriodOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PitrTimeWindowsPeriodOutput)
+}
+
+// PitrTimeWindowsPeriodArrayInput is an input type that accepts PitrTimeWindowsPeriodArray and PitrTimeWindowsPeriodArrayOutput values.
+// You can construct a concrete instance of `PitrTimeWindowsPeriodArrayInput` via:
+//
+//	PitrTimeWindowsPeriodArray{ PitrTimeWindowsPeriodArgs{...} }
+type PitrTimeWindowsPeriodArrayInput interface {
+	pulumi.Input
+
+	ToPitrTimeWindowsPeriodArrayOutput() PitrTimeWindowsPeriodArrayOutput
+	ToPitrTimeWindowsPeriodArrayOutputWithContext(context.Context) PitrTimeWindowsPeriodArrayOutput
+}
+
+type PitrTimeWindowsPeriodArray []PitrTimeWindowsPeriodInput
+
+func (PitrTimeWindowsPeriodArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PitrTimeWindowsPeriod)(nil)).Elem()
+}
+
+func (i PitrTimeWindowsPeriodArray) ToPitrTimeWindowsPeriodArrayOutput() PitrTimeWindowsPeriodArrayOutput {
+	return i.ToPitrTimeWindowsPeriodArrayOutputWithContext(context.Background())
+}
+
+func (i PitrTimeWindowsPeriodArray) ToPitrTimeWindowsPeriodArrayOutputWithContext(ctx context.Context) PitrTimeWindowsPeriodArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PitrTimeWindowsPeriodArrayOutput)
+}
+
+type PitrTimeWindowsPeriodOutput struct{ *pulumi.OutputState }
+
+func (PitrTimeWindowsPeriodOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PitrTimeWindowsPeriod)(nil)).Elem()
+}
+
+func (o PitrTimeWindowsPeriodOutput) ToPitrTimeWindowsPeriodOutput() PitrTimeWindowsPeriodOutput {
+	return o
+}
+
+func (o PitrTimeWindowsPeriodOutput) ToPitrTimeWindowsPeriodOutputWithContext(ctx context.Context) PitrTimeWindowsPeriodOutput {
+	return o
+}
+
+func (o PitrTimeWindowsPeriodOutput) EndTime() pulumi.StringOutput {
+	return o.ApplyT(func(v PitrTimeWindowsPeriod) string { return v.EndTime }).(pulumi.StringOutput)
+}
+
+func (o PitrTimeWindowsPeriodOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v PitrTimeWindowsPeriod) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+func (o PitrTimeWindowsPeriodOutput) StartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v PitrTimeWindowsPeriod) string { return v.StartTime }).(pulumi.StringOutput)
+}
+
+type PitrTimeWindowsPeriodArrayOutput struct{ *pulumi.OutputState }
+
+func (PitrTimeWindowsPeriodArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PitrTimeWindowsPeriod)(nil)).Elem()
+}
+
+func (o PitrTimeWindowsPeriodArrayOutput) ToPitrTimeWindowsPeriodArrayOutput() PitrTimeWindowsPeriodArrayOutput {
+	return o
+}
+
+func (o PitrTimeWindowsPeriodArrayOutput) ToPitrTimeWindowsPeriodArrayOutputWithContext(ctx context.Context) PitrTimeWindowsPeriodArrayOutput {
+	return o
+}
+
+func (o PitrTimeWindowsPeriodArrayOutput) Index(i pulumi.IntInput) PitrTimeWindowsPeriodOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PitrTimeWindowsPeriod {
+		return vs[0].([]PitrTimeWindowsPeriod)[vs[1].(int)]
+	}).(PitrTimeWindowsPeriodOutput)
+}
+
 type RegionsRegion struct {
 	// Target region info.
 	RegionId string `pulumi:"regionId"`
@@ -3011,6 +3117,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesInstanceVisitAddrArrayInput)(nil)).Elem(), InstancesInstanceVisitAddrArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesTagInput)(nil)).Elem(), InstancesTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesTagArrayInput)(nil)).Elem(), InstancesTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PitrTimeWindowsPeriodInput)(nil)).Elem(), PitrTimeWindowsPeriodArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PitrTimeWindowsPeriodArrayInput)(nil)).Elem(), PitrTimeWindowsPeriodArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegionsRegionInput)(nil)).Elem(), RegionsRegionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegionsRegionArrayInput)(nil)).Elem(), RegionsRegionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ZonesZoneInput)(nil)).Elem(), ZonesZoneArgs{})
@@ -3051,6 +3159,8 @@ func init() {
 	pulumi.RegisterOutputType(InstancesInstanceVisitAddrArrayOutput{})
 	pulumi.RegisterOutputType(InstancesTagOutput{})
 	pulumi.RegisterOutputType(InstancesTagArrayOutput{})
+	pulumi.RegisterOutputType(PitrTimeWindowsPeriodOutput{})
+	pulumi.RegisterOutputType(PitrTimeWindowsPeriodArrayOutput{})
 	pulumi.RegisterOutputType(RegionsRegionOutput{})
 	pulumi.RegisterOutputType(RegionsRegionArrayOutput{})
 	pulumi.RegisterOutputType(ZonesZoneOutput{})

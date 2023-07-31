@@ -12,9 +12,9 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultKeyPair = new volcengine.ecs.KeyPair("default", {
- *     description: "tftest21111",
- *     keyPairName: "tf-test-key-name1",
+ * const foo = new volcengine.ecs.KeyPair("foo", {
+ *     description: "acc-test",
+ *     keyPairName: "acc-test-key-name",
  * });
  * ```
  *

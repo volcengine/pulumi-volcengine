@@ -10,11 +10,56 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as pulumi from "@volcengine/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultDeploymentSetAssociate = new volcengine.ecs.DeploymentSetAssociate("default", {
- *     deploymentSetId: "dps-ybp1b059cb5m57n135g3",
- *     instanceId: "i-ybsum2gwr6a8j7j7ak8h",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
+ *     securityGroupName: "acc-test-security-group",
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooImages = volcengine.ecs.Images({
+ *     osType: "Linux",
+ *     visibility: "public",
+ *     instanceTypeId: "ecs.g1.large",
+ * });
+ * const fooInstance = new volcengine.ecs.Instance("fooInstance", {
+ *     instanceName: "acc-test-ecs",
+ *     imageId: fooImages.then(fooImages => fooImages.images?[0]?.imageId),
+ *     instanceType: "ecs.g1.large",
+ *     password: "93f0cb0614Aab12",
+ *     instanceChargeType: "PostPaid",
+ *     systemVolumeType: "ESSD_PL0",
+ *     systemVolumeSize: 40,
+ *     subnetId: fooSubnet.id,
+ *     securityGroupIds: [fooSecurityGroup.id],
+ * });
+ * const fooState = new volcengine.ecs.State("fooState", {
+ *     instanceId: fooInstance.id,
+ *     action: "Stop",
+ *     stoppedMode: "KeepCharging",
+ * });
+ * const fooDeploymentSet = new volcengine.ecs.DeploymentSet("fooDeploymentSet", {
+ *     deploymentSetName: "acc-test-ecs-ds",
+ *     description: "acc-test",
+ *     granularity: "switch",
+ *     strategy: "Availability",
+ * });
+ * const fooDeploymentSetAssociate = new volcengine.ecs.DeploymentSetAssociate("fooDeploymentSetAssociate", {
+ *     deploymentSetId: fooDeploymentSet.id,
+ *     instanceId: fooInstance.id,
+ * }, {
+ *     dependsOn: [fooState],
  * });
  * ```
  *

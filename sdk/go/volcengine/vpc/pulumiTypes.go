@@ -507,12 +507,12 @@ type NetworkAclEgressAclEntry struct {
 	NetworkAclEntryId *string `pulumi:"networkAclEntryId"`
 	// The name of entry.
 	NetworkAclEntryName *string `pulumi:"networkAclEntryName"`
-	// The policy of entry.
+	// The policy of entry. Default is `accept`. The value can be `accept` or `drop`.
 	Policy *string `pulumi:"policy"`
-	// The port of entry.
+	// The port of entry. Default is `-1/-1`. When Protocol is `all`, `icmp` or `gre`, the port range is `-1/-1`, which means no port restriction.When the Protocol is `tcp` or `udp`, the port range is `1~65535`, and the format is `1/200`, `80/80`,which means port 1 to port 200, port 80.
 	Port     *string `pulumi:"port"`
 	Priority *int    `pulumi:"priority"`
-	// The protocol of entry.
+	// The protocol of entry. The value can be `icmp` or `gre` or `tcp` or `udp` or `all`. Default is `all`.
 	Protocol *string `pulumi:"protocol"`
 }
 
@@ -535,12 +535,12 @@ type NetworkAclEgressAclEntryArgs struct {
 	NetworkAclEntryId pulumi.StringPtrInput `pulumi:"networkAclEntryId"`
 	// The name of entry.
 	NetworkAclEntryName pulumi.StringPtrInput `pulumi:"networkAclEntryName"`
-	// The policy of entry.
+	// The policy of entry. Default is `accept`. The value can be `accept` or `drop`.
 	Policy pulumi.StringPtrInput `pulumi:"policy"`
-	// The port of entry.
+	// The port of entry. Default is `-1/-1`. When Protocol is `all`, `icmp` or `gre`, the port range is `-1/-1`, which means no port restriction.When the Protocol is `tcp` or `udp`, the port range is `1~65535`, and the format is `1/200`, `80/80`,which means port 1 to port 200, port 80.
 	Port     pulumi.StringPtrInput `pulumi:"port"`
 	Priority pulumi.IntPtrInput    `pulumi:"priority"`
-	// The protocol of entry.
+	// The protocol of entry. The value can be `icmp` or `gre` or `tcp` or `udp` or `all`. Default is `all`.
 	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
 }
 
@@ -614,12 +614,12 @@ func (o NetworkAclEgressAclEntryOutput) NetworkAclEntryName() pulumi.StringPtrOu
 	return o.ApplyT(func(v NetworkAclEgressAclEntry) *string { return v.NetworkAclEntryName }).(pulumi.StringPtrOutput)
 }
 
-// The policy of entry.
+// The policy of entry. Default is `accept`. The value can be `accept` or `drop`.
 func (o NetworkAclEgressAclEntryOutput) Policy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NetworkAclEgressAclEntry) *string { return v.Policy }).(pulumi.StringPtrOutput)
 }
 
-// The port of entry.
+// The port of entry. Default is `-1/-1`. When Protocol is `all`, `icmp` or `gre`, the port range is `-1/-1`, which means no port restriction.When the Protocol is `tcp` or `udp`, the port range is `1~65535`, and the format is `1/200`, `80/80`,which means port 1 to port 200, port 80.
 func (o NetworkAclEgressAclEntryOutput) Port() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NetworkAclEgressAclEntry) *string { return v.Port }).(pulumi.StringPtrOutput)
 }
@@ -628,7 +628,7 @@ func (o NetworkAclEgressAclEntryOutput) Priority() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v NetworkAclEgressAclEntry) *int { return v.Priority }).(pulumi.IntPtrOutput)
 }
 
-// The protocol of entry.
+// The protocol of entry. The value can be `icmp` or `gre` or `tcp` or `udp` or `all`. Default is `all`.
 func (o NetworkAclEgressAclEntryOutput) Protocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NetworkAclEgressAclEntry) *string { return v.Protocol }).(pulumi.StringPtrOutput)
 }
@@ -659,12 +659,12 @@ type NetworkAclIngressAclEntry struct {
 	NetworkAclEntryId *string `pulumi:"networkAclEntryId"`
 	// The name of entry.
 	NetworkAclEntryName *string `pulumi:"networkAclEntryName"`
-	// The policy of entry.
+	// The policy of entry, default is `accept`. The value can be `accept` or `drop`.
 	Policy *string `pulumi:"policy"`
-	// The port of entry.
+	// The port of entry. Default is `-1/-1`. When Protocol is `all`, `icmp` or `gre`, the port range is `-1/-1`, which means no port restriction. When the Protocol is `tcp` or `udp`, the port range is `1~65535`, and the format is `1/200`, `80/80`, which means port 1 to port 200, port 80.
 	Port     *string `pulumi:"port"`
 	Priority *int    `pulumi:"priority"`
-	// The protocol of entry.
+	// The protocol of entry, default is `all`. The value can be `icmp` or `gre` or `tcp` or `udp` or `all`.
 	Protocol *string `pulumi:"protocol"`
 	// The SourceCidrIp of entry.
 	SourceCidrIp *string `pulumi:"sourceCidrIp"`
@@ -687,12 +687,12 @@ type NetworkAclIngressAclEntryArgs struct {
 	NetworkAclEntryId pulumi.StringPtrInput `pulumi:"networkAclEntryId"`
 	// The name of entry.
 	NetworkAclEntryName pulumi.StringPtrInput `pulumi:"networkAclEntryName"`
-	// The policy of entry.
+	// The policy of entry, default is `accept`. The value can be `accept` or `drop`.
 	Policy pulumi.StringPtrInput `pulumi:"policy"`
-	// The port of entry.
+	// The port of entry. Default is `-1/-1`. When Protocol is `all`, `icmp` or `gre`, the port range is `-1/-1`, which means no port restriction. When the Protocol is `tcp` or `udp`, the port range is `1~65535`, and the format is `1/200`, `80/80`, which means port 1 to port 200, port 80.
 	Port     pulumi.StringPtrInput `pulumi:"port"`
 	Priority pulumi.IntPtrInput    `pulumi:"priority"`
-	// The protocol of entry.
+	// The protocol of entry, default is `all`. The value can be `icmp` or `gre` or `tcp` or `udp` or `all`.
 	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
 	// The SourceCidrIp of entry.
 	SourceCidrIp pulumi.StringPtrInput `pulumi:"sourceCidrIp"`
@@ -763,12 +763,12 @@ func (o NetworkAclIngressAclEntryOutput) NetworkAclEntryName() pulumi.StringPtrO
 	return o.ApplyT(func(v NetworkAclIngressAclEntry) *string { return v.NetworkAclEntryName }).(pulumi.StringPtrOutput)
 }
 
-// The policy of entry.
+// The policy of entry, default is `accept`. The value can be `accept` or `drop`.
 func (o NetworkAclIngressAclEntryOutput) Policy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NetworkAclIngressAclEntry) *string { return v.Policy }).(pulumi.StringPtrOutput)
 }
 
-// The port of entry.
+// The port of entry. Default is `-1/-1`. When Protocol is `all`, `icmp` or `gre`, the port range is `-1/-1`, which means no port restriction. When the Protocol is `tcp` or `udp`, the port range is `1~65535`, and the format is `1/200`, `80/80`, which means port 1 to port 200, port 80.
 func (o NetworkAclIngressAclEntryOutput) Port() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NetworkAclIngressAclEntry) *string { return v.Port }).(pulumi.StringPtrOutput)
 }
@@ -777,7 +777,7 @@ func (o NetworkAclIngressAclEntryOutput) Priority() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v NetworkAclIngressAclEntry) *int { return v.Priority }).(pulumi.IntPtrOutput)
 }
 
-// The protocol of entry.
+// The protocol of entry, default is `all`. The value can be `icmp` or `gre` or `tcp` or `udp` or `all`.
 func (o NetworkAclIngressAclEntryOutput) Protocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NetworkAclIngressAclEntry) *string { return v.Protocol }).(pulumi.StringPtrOutput)
 }

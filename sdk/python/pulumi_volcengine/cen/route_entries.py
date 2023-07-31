@@ -152,7 +152,7 @@ def route_entries(cen_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cen.route_entries(cen_id="cen-12bjcqtr8ah3417q7y38h8t79")
+    foo = volcengine.cen.route_entries(cen_id="cen-12ar8uclj68sg17q7y20v9gil")
     ```
 
 
@@ -204,7 +204,7 @@ def route_entries_output(cen_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cen.route_entries(cen_id="cen-12bjcqtr8ah3417q7y38h8t79")
+    foo = volcengine.cen.route_entries(cen_id="cen-12ar8uclj68sg17q7y20v9gil")
     ```
 
 

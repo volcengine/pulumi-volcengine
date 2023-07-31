@@ -11,9 +11,26 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as pulumi from "@volcengine/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultLaunchTemplates = pulumi.output(volcengine.ecs.LaunchTemplates());
+ * const fooLaunchTemplate = new volcengine.ecs.LaunchTemplate("fooLaunchTemplate", {
+ *     description: "acc-test-desc",
+ *     eipBandwidth: 1,
+ *     eipBillingType: "PostPaidByBandwidth",
+ *     eipIsp: "ChinaMobile",
+ *     hostName: "tf-host-name",
+ *     hpcClusterId: "hpcCluster-l8u24ovdmoab6opf",
+ *     imageId: "image-ycjwwciuzy5pkh54xx8f",
+ *     instanceChargeType: "PostPaid",
+ *     instanceName: "tf-acc-name",
+ *     instanceTypeId: "ecs.g1.large",
+ *     keyPairName: "tf-key-pair",
+ *     launchTemplateName: "tf-acc-template",
+ * });
+ * const fooLaunchTemplates = volcengine.ecs.LaunchTemplatesOutput({
+ *     ids: [fooLaunchTemplate.id],
+ * });
  * ```
  */
 export function launchTemplates(args?: LaunchTemplatesArgs, opts?: pulumi.InvokeOptions): Promise<LaunchTemplatesResult> {
