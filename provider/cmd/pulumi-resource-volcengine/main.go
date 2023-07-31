@@ -18,8 +18,8 @@ package main
 
 import (
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	volcengine "github.com/pulumi/pulumi-volcengine/provider"
-	"github.com/pulumi/pulumi-volcengine/provider/pkg/version"
+	volcengine "github.com/volcengine/pulumi-volcengine/provider"
+	"github.com/volcengine/pulumi-volcengine/provider/pkg/version"
 )
 
 func main() {
