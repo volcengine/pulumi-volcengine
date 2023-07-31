@@ -153,9 +153,34 @@ class State(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.ecs.State("foo",
-            action="ForceStop",
-            instance_id="i-ycc01lmwecgh9z3sqqfl",
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+            security_group_name="acc-test-security-group",
+            vpc_id=foo_vpc.id)
+        foo_images = volcengine.ecs.images(os_type="Linux",
+            visibility="public",
+            instance_type_id="ecs.g1.large")
+        foo_instance = volcengine.ecs.Instance("fooInstance",
+            instance_name="acc-test-ecs",
+            image_id=foo_images.images[0].image_id,
+            instance_type="ecs.g1.large",
+            password="93f0cb0614Aab12",
+            instance_charge_type="PostPaid",
+            system_volume_type="ESSD_PL0",
+            system_volume_size=40,
+            subnet_id=foo_subnet.id,
+            security_group_ids=[foo_security_group.id])
+        foo_state = volcengine.ecs.State("fooState",
+            instance_id=foo_instance.id,
+            action="Stop",
             stopped_mode="KeepCharging")
         ```
 
@@ -187,9 +212,34 @@ class State(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.ecs.State("foo",
-            action="ForceStop",
-            instance_id="i-ycc01lmwecgh9z3sqqfl",
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+            security_group_name="acc-test-security-group",
+            vpc_id=foo_vpc.id)
+        foo_images = volcengine.ecs.images(os_type="Linux",
+            visibility="public",
+            instance_type_id="ecs.g1.large")
+        foo_instance = volcengine.ecs.Instance("fooInstance",
+            instance_name="acc-test-ecs",
+            image_id=foo_images.images[0].image_id,
+            instance_type="ecs.g1.large",
+            password="93f0cb0614Aab12",
+            instance_charge_type="PostPaid",
+            system_volume_type="ESSD_PL0",
+            system_volume_size=40,
+            subnet_id=foo_subnet.id,
+            security_group_ids=[foo_security_group.id])
+        foo_state = volcengine.ecs.State("fooState",
+            instance_id=foo_instance.id,
+            action="Stop",
             stopped_mode="KeepCharging")
         ```
 

@@ -9,7 +9,7 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as pulumi from "@volcengine/pulumi";
  *
  * const fooVolume = new volcengine.ebs.Volume("fooVolume", {
  *     volumeName: "terraform-test",

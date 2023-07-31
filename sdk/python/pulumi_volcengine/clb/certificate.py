@@ -7,6 +7,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['CertificateArgs', 'Certificate']
 
@@ -17,7 +19,8 @@ class CertificateArgs:
                  public_key: pulumi.Input[str],
                  certificate_name: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
-                 project_name: Optional[pulumi.Input[str]] = None):
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['CertificateTagArgs']]]] = None):
         """
         The set of arguments for constructing a Certificate resource.
         :param pulumi.Input[str] private_key: The private key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
@@ -25,6 +28,7 @@ class CertificateArgs:
         :param pulumi.Input[str] certificate_name: The name of the Certificate.
         :param pulumi.Input[str] description: The description of the Certificate.
         :param pulumi.Input[str] project_name: The ProjectName of the Certificate.
+        :param pulumi.Input[Sequence[pulumi.Input['CertificateTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "private_key", private_key)
         pulumi.set(__self__, "public_key", public_key)
@@ -34,6 +38,8 @@ class CertificateArgs:
             pulumi.set(__self__, "description", description)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="privateKey")
@@ -95,6 +101,18 @@ class CertificateArgs:
     def project_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "project_name", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CertificateTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CertificateTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _CertificateState:
@@ -103,7 +121,8 @@ class _CertificateState:
                  description: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
-                 public_key: Optional[pulumi.Input[str]] = None):
+                 public_key: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['CertificateTagArgs']]]] = None):
         """
         Input properties used for looking up and filtering Certificate resources.
         :param pulumi.Input[str] certificate_name: The name of the Certificate.
@@ -111,6 +130,7 @@ class _CertificateState:
         :param pulumi.Input[str] private_key: The private key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] project_name: The ProjectName of the Certificate.
         :param pulumi.Input[str] public_key: The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[Sequence[pulumi.Input['CertificateTagArgs']]] tags: Tags.
         """
         if certificate_name is not None:
             pulumi.set(__self__, "certificate_name", certificate_name)
@@ -122,6 +142,8 @@ class _CertificateState:
             pulumi.set(__self__, "project_name", project_name)
         if public_key is not None:
             pulumi.set(__self__, "public_key", public_key)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="certificateName")
@@ -183,6 +205,18 @@ class _CertificateState:
     def public_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "public_key", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CertificateTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CertificateTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 class Certificate(pulumi.CustomResource):
     @overload
@@ -194,6 +228,7 @@ class Certificate(pulumi.CustomResource):
                  private_key: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  public_key: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CertificateTagArgs']]]]] = None,
                  __props__=None):
         """
         Provides a resource to manage certificate
@@ -207,7 +242,11 @@ class Certificate(pulumi.CustomResource):
             certificate_name="demo-certificate",
             description="This is a clb certificate",
             private_key="private-key",
-            public_key="public-key")
+            public_key="public-key",
+            tags=[volcengine.clb.CertificateTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -225,6 +264,7 @@ class Certificate(pulumi.CustomResource):
         :param pulumi.Input[str] private_key: The private key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] project_name: The ProjectName of the Certificate.
         :param pulumi.Input[str] public_key: The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CertificateTagArgs']]]] tags: Tags.
         """
         ...
     @overload
@@ -244,7 +284,11 @@ class Certificate(pulumi.CustomResource):
             certificate_name="demo-certificate",
             description="This is a clb certificate",
             private_key="private-key",
-            public_key="public-key")
+            public_key="public-key",
+            tags=[volcengine.clb.CertificateTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -275,6 +319,7 @@ class Certificate(pulumi.CustomResource):
                  private_key: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  public_key: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CertificateTagArgs']]]]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -296,6 +341,7 @@ class Certificate(pulumi.CustomResource):
             if public_key is None and not opts.urn:
                 raise TypeError("Missing required property 'public_key'")
             __props__.__dict__["public_key"] = public_key
+            __props__.__dict__["tags"] = tags
         super(Certificate, __self__).__init__(
             'volcengine:clb/certificate:Certificate',
             resource_name,
@@ -310,7 +356,8 @@ class Certificate(pulumi.CustomResource):
             description: Optional[pulumi.Input[str]] = None,
             private_key: Optional[pulumi.Input[str]] = None,
             project_name: Optional[pulumi.Input[str]] = None,
-            public_key: Optional[pulumi.Input[str]] = None) -> 'Certificate':
+            public_key: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CertificateTagArgs']]]]] = None) -> 'Certificate':
         """
         Get an existing Certificate resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -323,6 +370,7 @@ class Certificate(pulumi.CustomResource):
         :param pulumi.Input[str] private_key: The private key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] project_name: The ProjectName of the Certificate.
         :param pulumi.Input[str] public_key: The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CertificateTagArgs']]]] tags: Tags.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -333,6 +381,7 @@ class Certificate(pulumi.CustomResource):
         __props__.__dict__["private_key"] = private_key
         __props__.__dict__["project_name"] = project_name
         __props__.__dict__["public_key"] = public_key
+        __props__.__dict__["tags"] = tags
         return Certificate(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -374,4 +423,12 @@ class Certificate(pulumi.CustomResource):
         The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         return pulumi.get(self, "public_key")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.CertificateTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 

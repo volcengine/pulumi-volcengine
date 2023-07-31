@@ -120,8 +120,15 @@ def deployment_sets(granularity: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.ecs.deployment_sets(granularity="host",
-        ids=["dps-ybp1b059cb5m57n135g3"])
+    foo_deployment_set = []
+    for range in [{"value": i} for i in range(0, 3)]:
+        foo_deployment_set.append(volcengine.ecs.DeploymentSet(f"fooDeploymentSet-{range['value']}",
+            deployment_set_name=f"acc-test-ecs-ds-{range['value']}",
+            description="acc-test",
+            granularity="switch",
+            strategy="Availability"))
+    foo_deployment_sets = volcengine.ecs.deployment_sets_output(granularity="switch",
+        ids=[__item.id for __item in foo_deployment_set])
     ```
 
 
@@ -165,8 +172,15 @@ def deployment_sets_output(granularity: Optional[pulumi.Input[Optional[str]]] = 
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.ecs.deployment_sets(granularity="host",
-        ids=["dps-ybp1b059cb5m57n135g3"])
+    foo_deployment_set = []
+    for range in [{"value": i} for i in range(0, 3)]:
+        foo_deployment_set.append(volcengine.ecs.DeploymentSet(f"fooDeploymentSet-{range['value']}",
+            deployment_set_name=f"acc-test-ecs-ds-{range['value']}",
+            description="acc-test",
+            granularity="switch",
+            strategy="Availability"))
+    foo_deployment_sets = volcengine.ecs.deployment_sets_output(granularity="switch",
+        ids=[__item.id for __item in foo_deployment_set])
     ```
 
 

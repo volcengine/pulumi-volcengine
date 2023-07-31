@@ -7,8 +7,8 @@ import (
 	"fmt"
 
 	"github.com/blang/semver"
-	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine"
 )
 
 type module struct {
@@ -33,6 +33,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &GrantInstance{}
 	case "volcengine:cen/interRegionBandwidth:InterRegionBandwidth":
 		r = &InterRegionBandwidth{}
+	case "volcengine:cen/routeEntry:RouteEntry":
+		r = &RouteEntry{}
+	case "volcengine:cen/serviceRouteEntry:ServiceRouteEntry":
+		r = &ServiceRouteEntry{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -74,6 +78,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"volcengine",
 		"cen/interRegionBandwidth",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"cen/routeEntry",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"cen/serviceRouteEntry",
 		&module{version},
 	)
 }

@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  *
  * const foo = pulumi.output(volcengine.cen.RouteEntries({
- *     cenId: "cen-12bjcqtr8ah3417q7y38h8t79",
+ *     cenId: "cen-12ar8uclj68sg17q7y20v9gil",
  * }));
  * ```
  */

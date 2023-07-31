@@ -13,25 +13,18 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  *
  * const foo = new volcengine.ecs.LaunchTemplate("foo", {
- *     eipBandwidth: 3,
+ *     description: "acc-test-desc",
+ *     eipBandwidth: 1,
  *     eipBillingType: "PostPaidByBandwidth",
- *     eipIsp: "BGP",
- *     hostName: "instance-host-name",
- *     imageId: "image-ycb26d1ryzl8j1fcxa9m",
+ *     eipIsp: "ChinaMobile",
+ *     hostName: "tf-host-name",
+ *     hpcClusterId: "hpcCluster-l8u24ovdmoab6opf",
+ *     imageId: "image-ycjwwciuzy5pkh54xx8f",
  *     instanceChargeType: "PostPaid",
- *     instanceName: "instance-test",
+ *     instanceName: "tf-acc-name",
  *     instanceTypeId: "ecs.g1.large",
- *     launchTemplateName: "tf-test-zzm",
- *     networkInterfaces: [{
- *         securityGroupIds: ["sg-xxxxxxxx"],
- *         subnetId: "subnet-3tispp1nai4e8idddd",
- *     }],
- *     userData: "IyEvYmluL2Jhc2gKZWNobyAidGVzdCI=",
- *     versionDescription: "testterraformaa",
- *     volumes: [{
- *         size: 20,
- *         volumeType: "ESSD_PL0",
- *     }],
+ *     keyPairName: "tf-key-pair",
+ *     launchTemplateName: "tf-acc-template",
  * });
  * ```
  *

@@ -18,8 +18,8 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/eip"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/eip"
 //
 // )
 //
@@ -28,9 +28,9 @@ import (
 //			_, err := eip.NewAddress(ctx, "foo", &eip.AddressArgs{
 //				Bandwidth:   pulumi.Int(1),
 //				BillingType: pulumi.String("PostPaidByBandwidth"),
-//				Description: pulumi.String("tf-test"),
+//				Description: pulumi.String("acc-test"),
 //				Isp:         pulumi.String("ChinaUnicom"),
-//				ProjectName: pulumi.String("yuwenhao"),
+//				ProjectName: pulumi.String("default"),
 //			})
 //			if err != nil {
 //				return err
@@ -55,16 +55,24 @@ type Address struct {
 
 	// The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
 	Bandwidth pulumi.IntOutput `pulumi:"bandwidth"`
-	// The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+	// The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
 	BillingType pulumi.StringOutput `pulumi:"billingType"`
+	// The deleted time of the EIP.
+	DeletedTime pulumi.StringOutput `pulumi:"deletedTime"`
 	// The description of the EIP.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The ip address of the EIP.
 	EipAddress pulumi.StringOutput `pulumi:"eipAddress"`
-	// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
+	// The expired time of the EIP.
+	ExpiredTime pulumi.StringOutput `pulumi:"expiredTime"`
+	// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP`.
 	Isp pulumi.StringOutput `pulumi:"isp"`
 	// The name of the EIP Address.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The overdue time of the EIP.
+	OverdueTime pulumi.StringOutput `pulumi:"overdueTime"`
+	// The period of the EIP Address, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid Eip or changing the billingType from PostPaid to PrePaid.
+	Period pulumi.IntPtrOutput `pulumi:"period"`
 	// The ProjectName of the EIP.
 	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
 	// The status of the EIP.
@@ -107,16 +115,24 @@ func GetAddress(ctx *pulumi.Context,
 type addressState struct {
 	// The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
 	Bandwidth *int `pulumi:"bandwidth"`
-	// The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+	// The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
 	BillingType *string `pulumi:"billingType"`
+	// The deleted time of the EIP.
+	DeletedTime *string `pulumi:"deletedTime"`
 	// The description of the EIP.
 	Description *string `pulumi:"description"`
 	// The ip address of the EIP.
 	EipAddress *string `pulumi:"eipAddress"`
-	// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
+	// The expired time of the EIP.
+	ExpiredTime *string `pulumi:"expiredTime"`
+	// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP`.
 	Isp *string `pulumi:"isp"`
 	// The name of the EIP Address.
 	Name *string `pulumi:"name"`
+	// The overdue time of the EIP.
+	OverdueTime *string `pulumi:"overdueTime"`
+	// The period of the EIP Address, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid Eip or changing the billingType from PostPaid to PrePaid.
+	Period *int `pulumi:"period"`
 	// The ProjectName of the EIP.
 	ProjectName *string `pulumi:"projectName"`
 	// The status of the EIP.
@@ -128,16 +144,24 @@ type addressState struct {
 type AddressState struct {
 	// The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
 	Bandwidth pulumi.IntPtrInput
-	// The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+	// The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
 	BillingType pulumi.StringPtrInput
+	// The deleted time of the EIP.
+	DeletedTime pulumi.StringPtrInput
 	// The description of the EIP.
 	Description pulumi.StringPtrInput
 	// The ip address of the EIP.
 	EipAddress pulumi.StringPtrInput
-	// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
+	// The expired time of the EIP.
+	ExpiredTime pulumi.StringPtrInput
+	// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP`.
 	Isp pulumi.StringPtrInput
 	// The name of the EIP Address.
 	Name pulumi.StringPtrInput
+	// The overdue time of the EIP.
+	OverdueTime pulumi.StringPtrInput
+	// The period of the EIP Address, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid Eip or changing the billingType from PostPaid to PrePaid.
+	Period pulumi.IntPtrInput
 	// The ProjectName of the EIP.
 	ProjectName pulumi.StringPtrInput
 	// The status of the EIP.
@@ -153,14 +177,16 @@ func (AddressState) ElementType() reflect.Type {
 type addressArgs struct {
 	// The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
 	Bandwidth *int `pulumi:"bandwidth"`
-	// The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+	// The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
 	BillingType string `pulumi:"billingType"`
 	// The description of the EIP.
 	Description *string `pulumi:"description"`
-	// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
+	// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP`.
 	Isp *string `pulumi:"isp"`
 	// The name of the EIP Address.
 	Name *string `pulumi:"name"`
+	// The period of the EIP Address, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid Eip or changing the billingType from PostPaid to PrePaid.
+	Period *int `pulumi:"period"`
 	// The ProjectName of the EIP.
 	ProjectName *string `pulumi:"projectName"`
 	// Tags.
@@ -171,14 +197,16 @@ type addressArgs struct {
 type AddressArgs struct {
 	// The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
 	Bandwidth pulumi.IntPtrInput
-	// The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+	// The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
 	BillingType pulumi.StringInput
 	// The description of the EIP.
 	Description pulumi.StringPtrInput
-	// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
+	// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP`.
 	Isp pulumi.StringPtrInput
 	// The name of the EIP Address.
 	Name pulumi.StringPtrInput
+	// The period of the EIP Address, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid Eip or changing the billingType from PostPaid to PrePaid.
+	Period pulumi.IntPtrInput
 	// The ProjectName of the EIP.
 	ProjectName pulumi.StringPtrInput
 	// Tags.
@@ -277,9 +305,14 @@ func (o AddressOutput) Bandwidth() pulumi.IntOutput {
 	return o.ApplyT(func(v *Address) pulumi.IntOutput { return v.Bandwidth }).(pulumi.IntOutput)
 }
 
-// The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+// The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
 func (o AddressOutput) BillingType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Address) pulumi.StringOutput { return v.BillingType }).(pulumi.StringOutput)
+}
+
+// The deleted time of the EIP.
+func (o AddressOutput) DeletedTime() pulumi.StringOutput {
+	return o.ApplyT(func(v *Address) pulumi.StringOutput { return v.DeletedTime }).(pulumi.StringOutput)
 }
 
 // The description of the EIP.
@@ -292,7 +325,12 @@ func (o AddressOutput) EipAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v *Address) pulumi.StringOutput { return v.EipAddress }).(pulumi.StringOutput)
 }
 
-// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
+// The expired time of the EIP.
+func (o AddressOutput) ExpiredTime() pulumi.StringOutput {
+	return o.ApplyT(func(v *Address) pulumi.StringOutput { return v.ExpiredTime }).(pulumi.StringOutput)
+}
+
+// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP`.
 func (o AddressOutput) Isp() pulumi.StringOutput {
 	return o.ApplyT(func(v *Address) pulumi.StringOutput { return v.Isp }).(pulumi.StringOutput)
 }
@@ -300,6 +338,16 @@ func (o AddressOutput) Isp() pulumi.StringOutput {
 // The name of the EIP Address.
 func (o AddressOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Address) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The overdue time of the EIP.
+func (o AddressOutput) OverdueTime() pulumi.StringOutput {
+	return o.ApplyT(func(v *Address) pulumi.StringOutput { return v.OverdueTime }).(pulumi.StringOutput)
+}
+
+// The period of the EIP Address, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid Eip or changing the billingType from PostPaid to PrePaid.
+func (o AddressOutput) Period() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Address) pulumi.IntPtrOutput { return v.Period }).(pulumi.IntPtrOutput)
 }
 
 // The ProjectName of the EIP.

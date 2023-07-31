@@ -33,22 +33,29 @@ class ScalingPolicyArgs:
         """
         The set of arguments for constructing a ScalingPolicy resource.
         :param pulumi.Input[str] adjustment_type: The adjustment type of the scaling policy. Valid values: QuantityChangeInCapacity, PercentChangeInCapacity, TotalCapacity.
-        :param pulumi.Input[int] adjustment_value: The adjustment value of the scaling policy.
+        :param pulumi.Input[int] adjustment_value: The adjustment value of the scaling policy. When the value of the `AdjustmentType` parameter is `QuantityChangeInCapacity`: -100 ~ 100, 0 is not allowed, unit: piece. When the value of the `AdjustmentType` parameter is `PercentChangeInCapacity`: -100 ~ 10000, 0 is not allowed, unit: %. When the value of the `AdjustmentType` parameter is `TotalCapacity`: the default is 0 to 100, unit: piece.
         :param pulumi.Input[str] scaling_group_id: The id of the scaling group to which the scaling policy belongs.
         :param pulumi.Input[str] scaling_policy_name: The name of the scaling policy.
         :param pulumi.Input[str] scaling_policy_type: The type of scaling policy. Valid values: Scheduled, Recurrence, Alarm.
         :param pulumi.Input[bool] active: The active flag of the scaling policy. [Warning] the scaling policy can be active only when the scaling group be active otherwise will fail.
-        :param pulumi.Input[str] alarm_policy_condition_comparison_operator: The comparison operator of the alarm policy condition of the scaling policy. Valid values: >, <, =.
+        :param pulumi.Input[str] alarm_policy_condition_comparison_operator: The comparison operator of the alarm policy condition of the scaling policy. Valid values: `>`, `<`, `=`. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
         :param pulumi.Input[str] alarm_policy_condition_metric_name: The metric name of the alarm policy condition of the scaling policy. Valid values: CpuTotal_Max, CpuTotal_Min, CpuTotal_Avg, MemoryUsedUtilization_Max, MemoryUsedUtilization_Min, MemoryUsedUtilization_Avg, Instance_CpuBusy_Max, Instance_CpuBusy_Min, Instance_CpuBusy_Avg.
-        :param pulumi.Input[str] alarm_policy_condition_metric_unit: The comparison operator of the alarm policy condition of the scaling policy.
-        :param pulumi.Input[str] alarm_policy_condition_threshold: The threshold of the alarm policy condition of the scaling policy.
-        :param pulumi.Input[int] alarm_policy_evaluation_count: The evaluation count of the alarm policy of the scaling policy.
-        :param pulumi.Input[str] alarm_policy_rule_type: The rule type of the alarm policy of the scaling policy. Valid value: Static.
-        :param pulumi.Input[int] cooldown: The cooldown of the scaling policy. Default value is the cooldown time of the scaling group.
+        :param pulumi.Input[str] alarm_policy_condition_metric_unit: The comparison operator of the alarm policy condition of the scaling policy. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
+        :param pulumi.Input[str] alarm_policy_condition_threshold: The threshold of the alarm policy condition of the scaling policy. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
+        :param pulumi.Input[int] alarm_policy_evaluation_count: The evaluation count of the alarm policy of the scaling policy. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
+        :param pulumi.Input[str] alarm_policy_rule_type: The rule type of the alarm policy of the scaling policy. Valid value: Static. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
+        :param pulumi.Input[int] cooldown: The cooldown of the scaling policy. Default value is the cooldown time of the scaling group. Value: 0~86400, unit: second, if left blank, the cooling time of the scaling group will be used by default.
         :param pulumi.Input[str] scheduled_policy_launch_time: The launch time of the scheduled policy of the scaling policy.
-        :param pulumi.Input[str] scheduled_policy_recurrence_end_time: The recurrence end time of the scheduled policy of the scaling policy.
+               When the value of `ScalingPolicyType` is `Scheduled`, it means that the trigger time of the scheduled task must be greater than the current time.
+               When the value of `ScalingPolicyType` is `Recurrence`: If `ScheduledPolicy.RecurrenceType` is not specified, it means to execute only once according to the date and time specified here.
+               If `ScheduledPolicy.RecurrenceType` is specified, it indicates the start time of the periodic task. Only the time within 90 days from the date of creation/modification is supported.
+               When the value of `ScalingPolicyType` is `Alarm`, this parameter is invalid.
+        :param pulumi.Input[str] scheduled_policy_recurrence_end_time: The recurrence end time of the scheduled policy of the scaling policy. Valid and required when `ScalingPolicyType` is `Recurrence`. If not configured, it will default to the day/week/month after this moment according to the recurrence period (ScheduledPolicy.RecurrenceType).
         :param pulumi.Input[str] scheduled_policy_recurrence_type: The recurrence type the scheduled policy of the scaling policy. Valid values: Daily, Weekly, Monthly, Cron.
-        :param pulumi.Input[str] scheduled_policy_recurrence_value: The recurrence value the scheduled policy of the scaling policy.
+        :param pulumi.Input[str] scheduled_policy_recurrence_value: The recurrence value the scheduled policy of the scaling policy. Valid and required when `ScalingPolicyType` is `Recurrence`. When the value of the ScheduledPolicy.RecurrenceType parameter is Daily, only one value can be filled in, ranging from 1 to 31.
+               When the value of the ScheduledPolicy.RecurrenceType parameter is Weekly, you can enter multiple values separated by commas (,). The values from Monday to Sunday are: 1,2,3,4,5,6,7.
+               When the value of the ScheduledPolicy.RecurrenceType parameter is Monthly, the format is A-B. The value ranges of A and B are both 1~31, and B must be greater than or equal to A.
+               When the value of the ScheduledPolicy.RecurrenceType parameter is Cron, it means UTC+8 time, supports 5-field expressions of minutes, hours, days, months, and weeks, and supports wildcard English commas (,), English question marks (?), and conjunctions ( -), asterisk (*), pound sign (#), slash (/), L, and W.
         """
         pulumi.set(__self__, "adjustment_type", adjustment_type)
         pulumi.set(__self__, "adjustment_value", adjustment_value)
@@ -96,7 +103,7 @@ class ScalingPolicyArgs:
     @pulumi.getter(name="adjustmentValue")
     def adjustment_value(self) -> pulumi.Input[int]:
         """
-        The adjustment value of the scaling policy.
+        The adjustment value of the scaling policy. When the value of the `AdjustmentType` parameter is `QuantityChangeInCapacity`: -100 ~ 100, 0 is not allowed, unit: piece. When the value of the `AdjustmentType` parameter is `PercentChangeInCapacity`: -100 ~ 10000, 0 is not allowed, unit: %. When the value of the `AdjustmentType` parameter is `TotalCapacity`: the default is 0 to 100, unit: piece.
         """
         return pulumi.get(self, "adjustment_value")
 
@@ -156,7 +163,7 @@ class ScalingPolicyArgs:
     @pulumi.getter(name="alarmPolicyConditionComparisonOperator")
     def alarm_policy_condition_comparison_operator(self) -> Optional[pulumi.Input[str]]:
         """
-        The comparison operator of the alarm policy condition of the scaling policy. Valid values: >, <, =.
+        The comparison operator of the alarm policy condition of the scaling policy. Valid values: `>`, `<`, `=`. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
         """
         return pulumi.get(self, "alarm_policy_condition_comparison_operator")
 
@@ -180,7 +187,7 @@ class ScalingPolicyArgs:
     @pulumi.getter(name="alarmPolicyConditionMetricUnit")
     def alarm_policy_condition_metric_unit(self) -> Optional[pulumi.Input[str]]:
         """
-        The comparison operator of the alarm policy condition of the scaling policy.
+        The comparison operator of the alarm policy condition of the scaling policy. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
         """
         return pulumi.get(self, "alarm_policy_condition_metric_unit")
 
@@ -192,7 +199,7 @@ class ScalingPolicyArgs:
     @pulumi.getter(name="alarmPolicyConditionThreshold")
     def alarm_policy_condition_threshold(self) -> Optional[pulumi.Input[str]]:
         """
-        The threshold of the alarm policy condition of the scaling policy.
+        The threshold of the alarm policy condition of the scaling policy. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
         """
         return pulumi.get(self, "alarm_policy_condition_threshold")
 
@@ -204,7 +211,7 @@ class ScalingPolicyArgs:
     @pulumi.getter(name="alarmPolicyEvaluationCount")
     def alarm_policy_evaluation_count(self) -> Optional[pulumi.Input[int]]:
         """
-        The evaluation count of the alarm policy of the scaling policy.
+        The evaluation count of the alarm policy of the scaling policy. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
         """
         return pulumi.get(self, "alarm_policy_evaluation_count")
 
@@ -216,7 +223,7 @@ class ScalingPolicyArgs:
     @pulumi.getter(name="alarmPolicyRuleType")
     def alarm_policy_rule_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The rule type of the alarm policy of the scaling policy. Valid value: Static.
+        The rule type of the alarm policy of the scaling policy. Valid value: Static. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
         """
         return pulumi.get(self, "alarm_policy_rule_type")
 
@@ -228,7 +235,7 @@ class ScalingPolicyArgs:
     @pulumi.getter
     def cooldown(self) -> Optional[pulumi.Input[int]]:
         """
-        The cooldown of the scaling policy. Default value is the cooldown time of the scaling group.
+        The cooldown of the scaling policy. Default value is the cooldown time of the scaling group. Value: 0~86400, unit: second, if left blank, the cooling time of the scaling group will be used by default.
         """
         return pulumi.get(self, "cooldown")
 
@@ -241,6 +248,10 @@ class ScalingPolicyArgs:
     def scheduled_policy_launch_time(self) -> Optional[pulumi.Input[str]]:
         """
         The launch time of the scheduled policy of the scaling policy.
+        When the value of `ScalingPolicyType` is `Scheduled`, it means that the trigger time of the scheduled task must be greater than the current time.
+        When the value of `ScalingPolicyType` is `Recurrence`: If `ScheduledPolicy.RecurrenceType` is not specified, it means to execute only once according to the date and time specified here.
+        If `ScheduledPolicy.RecurrenceType` is specified, it indicates the start time of the periodic task. Only the time within 90 days from the date of creation/modification is supported.
+        When the value of `ScalingPolicyType` is `Alarm`, this parameter is invalid.
         """
         return pulumi.get(self, "scheduled_policy_launch_time")
 
@@ -252,7 +263,7 @@ class ScalingPolicyArgs:
     @pulumi.getter(name="scheduledPolicyRecurrenceEndTime")
     def scheduled_policy_recurrence_end_time(self) -> Optional[pulumi.Input[str]]:
         """
-        The recurrence end time of the scheduled policy of the scaling policy.
+        The recurrence end time of the scheduled policy of the scaling policy. Valid and required when `ScalingPolicyType` is `Recurrence`. If not configured, it will default to the day/week/month after this moment according to the recurrence period (ScheduledPolicy.RecurrenceType).
         """
         return pulumi.get(self, "scheduled_policy_recurrence_end_time")
 
@@ -276,7 +287,10 @@ class ScalingPolicyArgs:
     @pulumi.getter(name="scheduledPolicyRecurrenceValue")
     def scheduled_policy_recurrence_value(self) -> Optional[pulumi.Input[str]]:
         """
-        The recurrence value the scheduled policy of the scaling policy.
+        The recurrence value the scheduled policy of the scaling policy. Valid and required when `ScalingPolicyType` is `Recurrence`. When the value of the ScheduledPolicy.RecurrenceType parameter is Daily, only one value can be filled in, ranging from 1 to 31.
+        When the value of the ScheduledPolicy.RecurrenceType parameter is Weekly, you can enter multiple values separated by commas (,). The values from Monday to Sunday are: 1,2,3,4,5,6,7.
+        When the value of the ScheduledPolicy.RecurrenceType parameter is Monthly, the format is A-B. The value ranges of A and B are both 1~31, and B must be greater than or equal to A.
+        When the value of the ScheduledPolicy.RecurrenceType parameter is Cron, it means UTC+8 time, supports 5-field expressions of minutes, hours, days, months, and weeks, and supports wildcard English commas (,), English question marks (?), and conjunctions ( -), asterisk (*), pound sign (#), slash (/), L, and W.
         """
         return pulumi.get(self, "scheduled_policy_recurrence_value")
 
@@ -310,21 +324,28 @@ class _ScalingPolicyState:
         Input properties used for looking up and filtering ScalingPolicy resources.
         :param pulumi.Input[bool] active: The active flag of the scaling policy. [Warning] the scaling policy can be active only when the scaling group be active otherwise will fail.
         :param pulumi.Input[str] adjustment_type: The adjustment type of the scaling policy. Valid values: QuantityChangeInCapacity, PercentChangeInCapacity, TotalCapacity.
-        :param pulumi.Input[int] adjustment_value: The adjustment value of the scaling policy.
-        :param pulumi.Input[str] alarm_policy_condition_comparison_operator: The comparison operator of the alarm policy condition of the scaling policy. Valid values: >, <, =.
+        :param pulumi.Input[int] adjustment_value: The adjustment value of the scaling policy. When the value of the `AdjustmentType` parameter is `QuantityChangeInCapacity`: -100 ~ 100, 0 is not allowed, unit: piece. When the value of the `AdjustmentType` parameter is `PercentChangeInCapacity`: -100 ~ 10000, 0 is not allowed, unit: %. When the value of the `AdjustmentType` parameter is `TotalCapacity`: the default is 0 to 100, unit: piece.
+        :param pulumi.Input[str] alarm_policy_condition_comparison_operator: The comparison operator of the alarm policy condition of the scaling policy. Valid values: `>`, `<`, `=`. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
         :param pulumi.Input[str] alarm_policy_condition_metric_name: The metric name of the alarm policy condition of the scaling policy. Valid values: CpuTotal_Max, CpuTotal_Min, CpuTotal_Avg, MemoryUsedUtilization_Max, MemoryUsedUtilization_Min, MemoryUsedUtilization_Avg, Instance_CpuBusy_Max, Instance_CpuBusy_Min, Instance_CpuBusy_Avg.
-        :param pulumi.Input[str] alarm_policy_condition_metric_unit: The comparison operator of the alarm policy condition of the scaling policy.
-        :param pulumi.Input[str] alarm_policy_condition_threshold: The threshold of the alarm policy condition of the scaling policy.
-        :param pulumi.Input[int] alarm_policy_evaluation_count: The evaluation count of the alarm policy of the scaling policy.
-        :param pulumi.Input[str] alarm_policy_rule_type: The rule type of the alarm policy of the scaling policy. Valid value: Static.
-        :param pulumi.Input[int] cooldown: The cooldown of the scaling policy. Default value is the cooldown time of the scaling group.
+        :param pulumi.Input[str] alarm_policy_condition_metric_unit: The comparison operator of the alarm policy condition of the scaling policy. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
+        :param pulumi.Input[str] alarm_policy_condition_threshold: The threshold of the alarm policy condition of the scaling policy. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
+        :param pulumi.Input[int] alarm_policy_evaluation_count: The evaluation count of the alarm policy of the scaling policy. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
+        :param pulumi.Input[str] alarm_policy_rule_type: The rule type of the alarm policy of the scaling policy. Valid value: Static. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
+        :param pulumi.Input[int] cooldown: The cooldown of the scaling policy. Default value is the cooldown time of the scaling group. Value: 0~86400, unit: second, if left blank, the cooling time of the scaling group will be used by default.
         :param pulumi.Input[str] scaling_group_id: The id of the scaling group to which the scaling policy belongs.
         :param pulumi.Input[str] scaling_policy_name: The name of the scaling policy.
         :param pulumi.Input[str] scaling_policy_type: The type of scaling policy. Valid values: Scheduled, Recurrence, Alarm.
         :param pulumi.Input[str] scheduled_policy_launch_time: The launch time of the scheduled policy of the scaling policy.
-        :param pulumi.Input[str] scheduled_policy_recurrence_end_time: The recurrence end time of the scheduled policy of the scaling policy.
+               When the value of `ScalingPolicyType` is `Scheduled`, it means that the trigger time of the scheduled task must be greater than the current time.
+               When the value of `ScalingPolicyType` is `Recurrence`: If `ScheduledPolicy.RecurrenceType` is not specified, it means to execute only once according to the date and time specified here.
+               If `ScheduledPolicy.RecurrenceType` is specified, it indicates the start time of the periodic task. Only the time within 90 days from the date of creation/modification is supported.
+               When the value of `ScalingPolicyType` is `Alarm`, this parameter is invalid.
+        :param pulumi.Input[str] scheduled_policy_recurrence_end_time: The recurrence end time of the scheduled policy of the scaling policy. Valid and required when `ScalingPolicyType` is `Recurrence`. If not configured, it will default to the day/week/month after this moment according to the recurrence period (ScheduledPolicy.RecurrenceType).
         :param pulumi.Input[str] scheduled_policy_recurrence_type: The recurrence type the scheduled policy of the scaling policy. Valid values: Daily, Weekly, Monthly, Cron.
-        :param pulumi.Input[str] scheduled_policy_recurrence_value: The recurrence value the scheduled policy of the scaling policy.
+        :param pulumi.Input[str] scheduled_policy_recurrence_value: The recurrence value the scheduled policy of the scaling policy. Valid and required when `ScalingPolicyType` is `Recurrence`. When the value of the ScheduledPolicy.RecurrenceType parameter is Daily, only one value can be filled in, ranging from 1 to 31.
+               When the value of the ScheduledPolicy.RecurrenceType parameter is Weekly, you can enter multiple values separated by commas (,). The values from Monday to Sunday are: 1,2,3,4,5,6,7.
+               When the value of the ScheduledPolicy.RecurrenceType parameter is Monthly, the format is A-B. The value ranges of A and B are both 1~31, and B must be greater than or equal to A.
+               When the value of the ScheduledPolicy.RecurrenceType parameter is Cron, it means UTC+8 time, supports 5-field expressions of minutes, hours, days, months, and weeks, and supports wildcard English commas (,), English question marks (?), and conjunctions ( -), asterisk (*), pound sign (#), slash (/), L, and W.
         :param pulumi.Input[str] status: The status of the scaling policy. Valid values: Active, InActive.
         """
         if active is not None:
@@ -392,7 +413,7 @@ class _ScalingPolicyState:
     @pulumi.getter(name="adjustmentValue")
     def adjustment_value(self) -> Optional[pulumi.Input[int]]:
         """
-        The adjustment value of the scaling policy.
+        The adjustment value of the scaling policy. When the value of the `AdjustmentType` parameter is `QuantityChangeInCapacity`: -100 ~ 100, 0 is not allowed, unit: piece. When the value of the `AdjustmentType` parameter is `PercentChangeInCapacity`: -100 ~ 10000, 0 is not allowed, unit: %. When the value of the `AdjustmentType` parameter is `TotalCapacity`: the default is 0 to 100, unit: piece.
         """
         return pulumi.get(self, "adjustment_value")
 
@@ -404,7 +425,7 @@ class _ScalingPolicyState:
     @pulumi.getter(name="alarmPolicyConditionComparisonOperator")
     def alarm_policy_condition_comparison_operator(self) -> Optional[pulumi.Input[str]]:
         """
-        The comparison operator of the alarm policy condition of the scaling policy. Valid values: >, <, =.
+        The comparison operator of the alarm policy condition of the scaling policy. Valid values: `>`, `<`, `=`. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
         """
         return pulumi.get(self, "alarm_policy_condition_comparison_operator")
 
@@ -428,7 +449,7 @@ class _ScalingPolicyState:
     @pulumi.getter(name="alarmPolicyConditionMetricUnit")
     def alarm_policy_condition_metric_unit(self) -> Optional[pulumi.Input[str]]:
         """
-        The comparison operator of the alarm policy condition of the scaling policy.
+        The comparison operator of the alarm policy condition of the scaling policy. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
         """
         return pulumi.get(self, "alarm_policy_condition_metric_unit")
 
@@ -440,7 +461,7 @@ class _ScalingPolicyState:
     @pulumi.getter(name="alarmPolicyConditionThreshold")
     def alarm_policy_condition_threshold(self) -> Optional[pulumi.Input[str]]:
         """
-        The threshold of the alarm policy condition of the scaling policy.
+        The threshold of the alarm policy condition of the scaling policy. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
         """
         return pulumi.get(self, "alarm_policy_condition_threshold")
 
@@ -452,7 +473,7 @@ class _ScalingPolicyState:
     @pulumi.getter(name="alarmPolicyEvaluationCount")
     def alarm_policy_evaluation_count(self) -> Optional[pulumi.Input[int]]:
         """
-        The evaluation count of the alarm policy of the scaling policy.
+        The evaluation count of the alarm policy of the scaling policy. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
         """
         return pulumi.get(self, "alarm_policy_evaluation_count")
 
@@ -464,7 +485,7 @@ class _ScalingPolicyState:
     @pulumi.getter(name="alarmPolicyRuleType")
     def alarm_policy_rule_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The rule type of the alarm policy of the scaling policy. Valid value: Static.
+        The rule type of the alarm policy of the scaling policy. Valid value: Static. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
         """
         return pulumi.get(self, "alarm_policy_rule_type")
 
@@ -476,7 +497,7 @@ class _ScalingPolicyState:
     @pulumi.getter
     def cooldown(self) -> Optional[pulumi.Input[int]]:
         """
-        The cooldown of the scaling policy. Default value is the cooldown time of the scaling group.
+        The cooldown of the scaling policy. Default value is the cooldown time of the scaling group. Value: 0~86400, unit: second, if left blank, the cooling time of the scaling group will be used by default.
         """
         return pulumi.get(self, "cooldown")
 
@@ -525,6 +546,10 @@ class _ScalingPolicyState:
     def scheduled_policy_launch_time(self) -> Optional[pulumi.Input[str]]:
         """
         The launch time of the scheduled policy of the scaling policy.
+        When the value of `ScalingPolicyType` is `Scheduled`, it means that the trigger time of the scheduled task must be greater than the current time.
+        When the value of `ScalingPolicyType` is `Recurrence`: If `ScheduledPolicy.RecurrenceType` is not specified, it means to execute only once according to the date and time specified here.
+        If `ScheduledPolicy.RecurrenceType` is specified, it indicates the start time of the periodic task. Only the time within 90 days from the date of creation/modification is supported.
+        When the value of `ScalingPolicyType` is `Alarm`, this parameter is invalid.
         """
         return pulumi.get(self, "scheduled_policy_launch_time")
 
@@ -536,7 +561,7 @@ class _ScalingPolicyState:
     @pulumi.getter(name="scheduledPolicyRecurrenceEndTime")
     def scheduled_policy_recurrence_end_time(self) -> Optional[pulumi.Input[str]]:
         """
-        The recurrence end time of the scheduled policy of the scaling policy.
+        The recurrence end time of the scheduled policy of the scaling policy. Valid and required when `ScalingPolicyType` is `Recurrence`. If not configured, it will default to the day/week/month after this moment according to the recurrence period (ScheduledPolicy.RecurrenceType).
         """
         return pulumi.get(self, "scheduled_policy_recurrence_end_time")
 
@@ -560,7 +585,10 @@ class _ScalingPolicyState:
     @pulumi.getter(name="scheduledPolicyRecurrenceValue")
     def scheduled_policy_recurrence_value(self) -> Optional[pulumi.Input[str]]:
         """
-        The recurrence value the scheduled policy of the scaling policy.
+        The recurrence value the scheduled policy of the scaling policy. Valid and required when `ScalingPolicyType` is `Recurrence`. When the value of the ScheduledPolicy.RecurrenceType parameter is Daily, only one value can be filled in, ranging from 1 to 31.
+        When the value of the ScheduledPolicy.RecurrenceType parameter is Weekly, you can enter multiple values separated by commas (,). The values from Monday to Sunday are: 1,2,3,4,5,6,7.
+        When the value of the ScheduledPolicy.RecurrenceType parameter is Monthly, the format is A-B. The value ranges of A and B are both 1~31, and B must be greater than or equal to A.
+        When the value of the ScheduledPolicy.RecurrenceType parameter is Cron, it means UTC+8 time, supports 5-field expressions of minutes, hours, days, months, and weeks, and supports wildcard English commas (,), English question marks (?), and conjunctions ( -), asterisk (*), pound sign (#), slash (/), L, and W.
         """
         return pulumi.get(self, "scheduled_policy_recurrence_value")
 
@@ -644,21 +672,28 @@ class ScalingPolicy(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] active: The active flag of the scaling policy. [Warning] the scaling policy can be active only when the scaling group be active otherwise will fail.
         :param pulumi.Input[str] adjustment_type: The adjustment type of the scaling policy. Valid values: QuantityChangeInCapacity, PercentChangeInCapacity, TotalCapacity.
-        :param pulumi.Input[int] adjustment_value: The adjustment value of the scaling policy.
-        :param pulumi.Input[str] alarm_policy_condition_comparison_operator: The comparison operator of the alarm policy condition of the scaling policy. Valid values: >, <, =.
+        :param pulumi.Input[int] adjustment_value: The adjustment value of the scaling policy. When the value of the `AdjustmentType` parameter is `QuantityChangeInCapacity`: -100 ~ 100, 0 is not allowed, unit: piece. When the value of the `AdjustmentType` parameter is `PercentChangeInCapacity`: -100 ~ 10000, 0 is not allowed, unit: %. When the value of the `AdjustmentType` parameter is `TotalCapacity`: the default is 0 to 100, unit: piece.
+        :param pulumi.Input[str] alarm_policy_condition_comparison_operator: The comparison operator of the alarm policy condition of the scaling policy. Valid values: `>`, `<`, `=`. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
         :param pulumi.Input[str] alarm_policy_condition_metric_name: The metric name of the alarm policy condition of the scaling policy. Valid values: CpuTotal_Max, CpuTotal_Min, CpuTotal_Avg, MemoryUsedUtilization_Max, MemoryUsedUtilization_Min, MemoryUsedUtilization_Avg, Instance_CpuBusy_Max, Instance_CpuBusy_Min, Instance_CpuBusy_Avg.
-        :param pulumi.Input[str] alarm_policy_condition_metric_unit: The comparison operator of the alarm policy condition of the scaling policy.
-        :param pulumi.Input[str] alarm_policy_condition_threshold: The threshold of the alarm policy condition of the scaling policy.
-        :param pulumi.Input[int] alarm_policy_evaluation_count: The evaluation count of the alarm policy of the scaling policy.
-        :param pulumi.Input[str] alarm_policy_rule_type: The rule type of the alarm policy of the scaling policy. Valid value: Static.
-        :param pulumi.Input[int] cooldown: The cooldown of the scaling policy. Default value is the cooldown time of the scaling group.
+        :param pulumi.Input[str] alarm_policy_condition_metric_unit: The comparison operator of the alarm policy condition of the scaling policy. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
+        :param pulumi.Input[str] alarm_policy_condition_threshold: The threshold of the alarm policy condition of the scaling policy. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
+        :param pulumi.Input[int] alarm_policy_evaluation_count: The evaluation count of the alarm policy of the scaling policy. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
+        :param pulumi.Input[str] alarm_policy_rule_type: The rule type of the alarm policy of the scaling policy. Valid value: Static. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
+        :param pulumi.Input[int] cooldown: The cooldown of the scaling policy. Default value is the cooldown time of the scaling group. Value: 0~86400, unit: second, if left blank, the cooling time of the scaling group will be used by default.
         :param pulumi.Input[str] scaling_group_id: The id of the scaling group to which the scaling policy belongs.
         :param pulumi.Input[str] scaling_policy_name: The name of the scaling policy.
         :param pulumi.Input[str] scaling_policy_type: The type of scaling policy. Valid values: Scheduled, Recurrence, Alarm.
         :param pulumi.Input[str] scheduled_policy_launch_time: The launch time of the scheduled policy of the scaling policy.
-        :param pulumi.Input[str] scheduled_policy_recurrence_end_time: The recurrence end time of the scheduled policy of the scaling policy.
+               When the value of `ScalingPolicyType` is `Scheduled`, it means that the trigger time of the scheduled task must be greater than the current time.
+               When the value of `ScalingPolicyType` is `Recurrence`: If `ScheduledPolicy.RecurrenceType` is not specified, it means to execute only once according to the date and time specified here.
+               If `ScheduledPolicy.RecurrenceType` is specified, it indicates the start time of the periodic task. Only the time within 90 days from the date of creation/modification is supported.
+               When the value of `ScalingPolicyType` is `Alarm`, this parameter is invalid.
+        :param pulumi.Input[str] scheduled_policy_recurrence_end_time: The recurrence end time of the scheduled policy of the scaling policy. Valid and required when `ScalingPolicyType` is `Recurrence`. If not configured, it will default to the day/week/month after this moment according to the recurrence period (ScheduledPolicy.RecurrenceType).
         :param pulumi.Input[str] scheduled_policy_recurrence_type: The recurrence type the scheduled policy of the scaling policy. Valid values: Daily, Weekly, Monthly, Cron.
-        :param pulumi.Input[str] scheduled_policy_recurrence_value: The recurrence value the scheduled policy of the scaling policy.
+        :param pulumi.Input[str] scheduled_policy_recurrence_value: The recurrence value the scheduled policy of the scaling policy. Valid and required when `ScalingPolicyType` is `Recurrence`. When the value of the ScheduledPolicy.RecurrenceType parameter is Daily, only one value can be filled in, ranging from 1 to 31.
+               When the value of the ScheduledPolicy.RecurrenceType parameter is Weekly, you can enter multiple values separated by commas (,). The values from Monday to Sunday are: 1,2,3,4,5,6,7.
+               When the value of the ScheduledPolicy.RecurrenceType parameter is Monthly, the format is A-B. The value ranges of A and B are both 1~31, and B must be greater than or equal to A.
+               When the value of the ScheduledPolicy.RecurrenceType parameter is Cron, it means UTC+8 time, supports 5-field expressions of minutes, hours, days, months, and weeks, and supports wildcard English commas (,), English question marks (?), and conjunctions ( -), asterisk (*), pound sign (#), slash (/), L, and W.
         """
         ...
     @overload
@@ -811,21 +846,28 @@ class ScalingPolicy(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] active: The active flag of the scaling policy. [Warning] the scaling policy can be active only when the scaling group be active otherwise will fail.
         :param pulumi.Input[str] adjustment_type: The adjustment type of the scaling policy. Valid values: QuantityChangeInCapacity, PercentChangeInCapacity, TotalCapacity.
-        :param pulumi.Input[int] adjustment_value: The adjustment value of the scaling policy.
-        :param pulumi.Input[str] alarm_policy_condition_comparison_operator: The comparison operator of the alarm policy condition of the scaling policy. Valid values: >, <, =.
+        :param pulumi.Input[int] adjustment_value: The adjustment value of the scaling policy. When the value of the `AdjustmentType` parameter is `QuantityChangeInCapacity`: -100 ~ 100, 0 is not allowed, unit: piece. When the value of the `AdjustmentType` parameter is `PercentChangeInCapacity`: -100 ~ 10000, 0 is not allowed, unit: %. When the value of the `AdjustmentType` parameter is `TotalCapacity`: the default is 0 to 100, unit: piece.
+        :param pulumi.Input[str] alarm_policy_condition_comparison_operator: The comparison operator of the alarm policy condition of the scaling policy. Valid values: `>`, `<`, `=`. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
         :param pulumi.Input[str] alarm_policy_condition_metric_name: The metric name of the alarm policy condition of the scaling policy. Valid values: CpuTotal_Max, CpuTotal_Min, CpuTotal_Avg, MemoryUsedUtilization_Max, MemoryUsedUtilization_Min, MemoryUsedUtilization_Avg, Instance_CpuBusy_Max, Instance_CpuBusy_Min, Instance_CpuBusy_Avg.
-        :param pulumi.Input[str] alarm_policy_condition_metric_unit: The comparison operator of the alarm policy condition of the scaling policy.
-        :param pulumi.Input[str] alarm_policy_condition_threshold: The threshold of the alarm policy condition of the scaling policy.
-        :param pulumi.Input[int] alarm_policy_evaluation_count: The evaluation count of the alarm policy of the scaling policy.
-        :param pulumi.Input[str] alarm_policy_rule_type: The rule type of the alarm policy of the scaling policy. Valid value: Static.
-        :param pulumi.Input[int] cooldown: The cooldown of the scaling policy. Default value is the cooldown time of the scaling group.
+        :param pulumi.Input[str] alarm_policy_condition_metric_unit: The comparison operator of the alarm policy condition of the scaling policy. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
+        :param pulumi.Input[str] alarm_policy_condition_threshold: The threshold of the alarm policy condition of the scaling policy. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
+        :param pulumi.Input[int] alarm_policy_evaluation_count: The evaluation count of the alarm policy of the scaling policy. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
+        :param pulumi.Input[str] alarm_policy_rule_type: The rule type of the alarm policy of the scaling policy. Valid value: Static. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
+        :param pulumi.Input[int] cooldown: The cooldown of the scaling policy. Default value is the cooldown time of the scaling group. Value: 0~86400, unit: second, if left blank, the cooling time of the scaling group will be used by default.
         :param pulumi.Input[str] scaling_group_id: The id of the scaling group to which the scaling policy belongs.
         :param pulumi.Input[str] scaling_policy_name: The name of the scaling policy.
         :param pulumi.Input[str] scaling_policy_type: The type of scaling policy. Valid values: Scheduled, Recurrence, Alarm.
         :param pulumi.Input[str] scheduled_policy_launch_time: The launch time of the scheduled policy of the scaling policy.
-        :param pulumi.Input[str] scheduled_policy_recurrence_end_time: The recurrence end time of the scheduled policy of the scaling policy.
+               When the value of `ScalingPolicyType` is `Scheduled`, it means that the trigger time of the scheduled task must be greater than the current time.
+               When the value of `ScalingPolicyType` is `Recurrence`: If `ScheduledPolicy.RecurrenceType` is not specified, it means to execute only once according to the date and time specified here.
+               If `ScheduledPolicy.RecurrenceType` is specified, it indicates the start time of the periodic task. Only the time within 90 days from the date of creation/modification is supported.
+               When the value of `ScalingPolicyType` is `Alarm`, this parameter is invalid.
+        :param pulumi.Input[str] scheduled_policy_recurrence_end_time: The recurrence end time of the scheduled policy of the scaling policy. Valid and required when `ScalingPolicyType` is `Recurrence`. If not configured, it will default to the day/week/month after this moment according to the recurrence period (ScheduledPolicy.RecurrenceType).
         :param pulumi.Input[str] scheduled_policy_recurrence_type: The recurrence type the scheduled policy of the scaling policy. Valid values: Daily, Weekly, Monthly, Cron.
-        :param pulumi.Input[str] scheduled_policy_recurrence_value: The recurrence value the scheduled policy of the scaling policy.
+        :param pulumi.Input[str] scheduled_policy_recurrence_value: The recurrence value the scheduled policy of the scaling policy. Valid and required when `ScalingPolicyType` is `Recurrence`. When the value of the ScheduledPolicy.RecurrenceType parameter is Daily, only one value can be filled in, ranging from 1 to 31.
+               When the value of the ScheduledPolicy.RecurrenceType parameter is Weekly, you can enter multiple values separated by commas (,). The values from Monday to Sunday are: 1,2,3,4,5,6,7.
+               When the value of the ScheduledPolicy.RecurrenceType parameter is Monthly, the format is A-B. The value ranges of A and B are both 1~31, and B must be greater than or equal to A.
+               When the value of the ScheduledPolicy.RecurrenceType parameter is Cron, it means UTC+8 time, supports 5-field expressions of minutes, hours, days, months, and weeks, and supports wildcard English commas (,), English question marks (?), and conjunctions ( -), asterisk (*), pound sign (#), slash (/), L, and W.
         :param pulumi.Input[str] status: The status of the scaling policy. Valid values: Active, InActive.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -872,7 +914,7 @@ class ScalingPolicy(pulumi.CustomResource):
     @pulumi.getter(name="adjustmentValue")
     def adjustment_value(self) -> pulumi.Output[int]:
         """
-        The adjustment value of the scaling policy.
+        The adjustment value of the scaling policy. When the value of the `AdjustmentType` parameter is `QuantityChangeInCapacity`: -100 ~ 100, 0 is not allowed, unit: piece. When the value of the `AdjustmentType` parameter is `PercentChangeInCapacity`: -100 ~ 10000, 0 is not allowed, unit: %. When the value of the `AdjustmentType` parameter is `TotalCapacity`: the default is 0 to 100, unit: piece.
         """
         return pulumi.get(self, "adjustment_value")
 
@@ -880,7 +922,7 @@ class ScalingPolicy(pulumi.CustomResource):
     @pulumi.getter(name="alarmPolicyConditionComparisonOperator")
     def alarm_policy_condition_comparison_operator(self) -> pulumi.Output[Optional[str]]:
         """
-        The comparison operator of the alarm policy condition of the scaling policy. Valid values: >, <, =.
+        The comparison operator of the alarm policy condition of the scaling policy. Valid values: `>`, `<`, `=`. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
         """
         return pulumi.get(self, "alarm_policy_condition_comparison_operator")
 
@@ -896,7 +938,7 @@ class ScalingPolicy(pulumi.CustomResource):
     @pulumi.getter(name="alarmPolicyConditionMetricUnit")
     def alarm_policy_condition_metric_unit(self) -> pulumi.Output[Optional[str]]:
         """
-        The comparison operator of the alarm policy condition of the scaling policy.
+        The comparison operator of the alarm policy condition of the scaling policy. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
         """
         return pulumi.get(self, "alarm_policy_condition_metric_unit")
 
@@ -904,7 +946,7 @@ class ScalingPolicy(pulumi.CustomResource):
     @pulumi.getter(name="alarmPolicyConditionThreshold")
     def alarm_policy_condition_threshold(self) -> pulumi.Output[Optional[str]]:
         """
-        The threshold of the alarm policy condition of the scaling policy.
+        The threshold of the alarm policy condition of the scaling policy. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
         """
         return pulumi.get(self, "alarm_policy_condition_threshold")
 
@@ -912,7 +954,7 @@ class ScalingPolicy(pulumi.CustomResource):
     @pulumi.getter(name="alarmPolicyEvaluationCount")
     def alarm_policy_evaluation_count(self) -> pulumi.Output[Optional[int]]:
         """
-        The evaluation count of the alarm policy of the scaling policy.
+        The evaluation count of the alarm policy of the scaling policy. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
         """
         return pulumi.get(self, "alarm_policy_evaluation_count")
 
@@ -920,7 +962,7 @@ class ScalingPolicy(pulumi.CustomResource):
     @pulumi.getter(name="alarmPolicyRuleType")
     def alarm_policy_rule_type(self) -> pulumi.Output[Optional[str]]:
         """
-        The rule type of the alarm policy of the scaling policy. Valid value: Static.
+        The rule type of the alarm policy of the scaling policy. Valid value: Static. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
         """
         return pulumi.get(self, "alarm_policy_rule_type")
 
@@ -928,7 +970,7 @@ class ScalingPolicy(pulumi.CustomResource):
     @pulumi.getter
     def cooldown(self) -> pulumi.Output[int]:
         """
-        The cooldown of the scaling policy. Default value is the cooldown time of the scaling group.
+        The cooldown of the scaling policy. Default value is the cooldown time of the scaling group. Value: 0~86400, unit: second, if left blank, the cooling time of the scaling group will be used by default.
         """
         return pulumi.get(self, "cooldown")
 
@@ -961,6 +1003,10 @@ class ScalingPolicy(pulumi.CustomResource):
     def scheduled_policy_launch_time(self) -> pulumi.Output[str]:
         """
         The launch time of the scheduled policy of the scaling policy.
+        When the value of `ScalingPolicyType` is `Scheduled`, it means that the trigger time of the scheduled task must be greater than the current time.
+        When the value of `ScalingPolicyType` is `Recurrence`: If `ScheduledPolicy.RecurrenceType` is not specified, it means to execute only once according to the date and time specified here.
+        If `ScheduledPolicy.RecurrenceType` is specified, it indicates the start time of the periodic task. Only the time within 90 days from the date of creation/modification is supported.
+        When the value of `ScalingPolicyType` is `Alarm`, this parameter is invalid.
         """
         return pulumi.get(self, "scheduled_policy_launch_time")
 
@@ -968,7 +1014,7 @@ class ScalingPolicy(pulumi.CustomResource):
     @pulumi.getter(name="scheduledPolicyRecurrenceEndTime")
     def scheduled_policy_recurrence_end_time(self) -> pulumi.Output[Optional[str]]:
         """
-        The recurrence end time of the scheduled policy of the scaling policy.
+        The recurrence end time of the scheduled policy of the scaling policy. Valid and required when `ScalingPolicyType` is `Recurrence`. If not configured, it will default to the day/week/month after this moment according to the recurrence period (ScheduledPolicy.RecurrenceType).
         """
         return pulumi.get(self, "scheduled_policy_recurrence_end_time")
 
@@ -984,7 +1030,10 @@ class ScalingPolicy(pulumi.CustomResource):
     @pulumi.getter(name="scheduledPolicyRecurrenceValue")
     def scheduled_policy_recurrence_value(self) -> pulumi.Output[Optional[str]]:
         """
-        The recurrence value the scheduled policy of the scaling policy.
+        The recurrence value the scheduled policy of the scaling policy. Valid and required when `ScalingPolicyType` is `Recurrence`. When the value of the ScheduledPolicy.RecurrenceType parameter is Daily, only one value can be filled in, ranging from 1 to 31.
+        When the value of the ScheduledPolicy.RecurrenceType parameter is Weekly, you can enter multiple values separated by commas (,). The values from Monday to Sunday are: 1,2,3,4,5,6,7.
+        When the value of the ScheduledPolicy.RecurrenceType parameter is Monthly, the format is A-B. The value ranges of A and B are both 1~31, and B must be greater than or equal to A.
+        When the value of the ScheduledPolicy.RecurrenceType parameter is Cron, it means UTC+8 time, supports 5-field expressions of minutes, hours, days, months, and weeks, and supports wildcard English commas (,), English question marks (?), and conjunctions ( -), asterisk (*), pound sign (#), slash (/), L, and W.
         """
         return pulumi.get(self, "scheduled_policy_recurrence_value")
 

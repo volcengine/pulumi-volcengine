@@ -10,44 +10,52 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as pulumi from "@volcengine/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = new volcengine.vpc.Vpc("foo", {
- *     vpcName: "tf-test-2",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
  * });
- * const foo1Subnet = new volcengine.vpc.Subnet("foo1Subnet", {
- *     subnetName: "subnet-test-1",
- *     cidrBlock: "172.16.1.0/24",
- *     zoneId: "cn-beijing-a",
- *     vpcId: foo.id,
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?[0]?.id),
+ *     vpcId: fooVpc.id,
  * });
- * const foo1SecurityGroup = new volcengine.vpc.SecurityGroup("foo1SecurityGroup", {vpcId: foo.id}, {
- *     dependsOn: [foo1Subnet],
+ * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
+ *     securityGroupName: "acc-test-security-group",
+ *     vpcId: fooVpc.id,
  * });
- * const _default = new volcengine.ecs.Instance("default", {
- *     imageId: "image-aagd56zrw2jtdro3bnrl",
+ * const fooImages = volcengine.ecs.Images({
+ *     osType: "Linux",
+ *     visibility: "public",
+ *     instanceTypeId: "ecs.g1.large",
+ * });
+ * const fooInstance = new volcengine.ecs.Instance("fooInstance", {
+ *     instanceName: "acc-test-ecs",
+ *     description: "acc-test",
+ *     hostName: "tf-acc-test",
+ *     imageId: fooImages.then(fooImages => fooImages.images?[0]?.imageId),
  *     instanceType: "ecs.g1.large",
- *     instanceName: "xym-tf-test-2",
- *     description: "xym-tf-test-desc-1",
  *     password: "93f0cb0614Aab12",
  *     instanceChargeType: "PostPaid",
- *     systemVolumeType: "PTSSD",
- *     systemVolumeSize: 60,
- *     subnetId: foo1Subnet.id,
- *     securityGroupIds: [foo1SecurityGroup.id],
+ *     systemVolumeType: "ESSD_PL0",
+ *     systemVolumeSize: 40,
  *     dataVolumes: [{
- *         volumeType: "PTSSD",
- *         size: 100,
+ *         volumeType: "ESSD_PL0",
+ *         size: 50,
  *         deleteWithInstance: true,
  *     }],
- *     deploymentSetId: "",
- *     ipv6AddressCount: 1,
+ *     subnetId: fooSubnet.id,
+ *     securityGroupIds: [fooSecurityGroup.id],
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
- * //  secondary_network_interfaces {
- * //    subnet_id = volcengine_subnet.foo1.id
- * //    security_group_ids = [volcengine_security_group.foo1.id]
- * //  }
  * ```
  *
  * ## Import
@@ -95,6 +103,10 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly autoRenewPeriod!: pulumi.Output<number | undefined>;
     /**
+     * The option of cpu.
+     */
+    public readonly cpuOptions!: pulumi.Output<outputs.ecs.InstanceCpuOptions>;
+    /**
      * The number of ECS instance CPU cores.
      */
     public /*out*/ readonly cpus!: pulumi.Output<number>;
@@ -105,11 +117,11 @@ export class Instance extends pulumi.CustomResource {
     /**
      * The data volumes collection of  ECS instance.
      */
-    public readonly dataVolumes!: pulumi.Output<outputs.ecs.InstanceDataVolume[] | undefined>;
+    public readonly dataVolumes!: pulumi.Output<outputs.ecs.InstanceDataVolume[]>;
     /**
      * The ID of Ecs Deployment Set.
      */
-    public readonly deploymentSetId!: pulumi.Output<string | undefined>;
+    public readonly deploymentSetId!: pulumi.Output<string>;
     /**
      * The description of ECS instance.
      */
@@ -212,7 +224,7 @@ export class Instance extends pulumi.CustomResource {
     /**
      * The secondary networkInterface detail collection of ECS instance.
      */
-    public readonly secondaryNetworkInterfaces!: pulumi.Output<outputs.ecs.InstanceSecondaryNetworkInterface[] | undefined>;
+    public readonly secondaryNetworkInterfaces!: pulumi.Output<outputs.ecs.InstanceSecondaryNetworkInterface[]>;
     /**
      * The security enhancement strategy of ECS instance. The value can be Active or InActive. Default is Active.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
@@ -242,7 +254,7 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly systemVolumeId!: pulumi.Output<string>;
     /**
-     * The size of system volume.
+     * The size of system volume. The value range of the system volume size is ESSD_PL0: 20~2048, ESSD_FlexPL: 20~2048, PTSSD: 10~500.
      */
     public readonly systemVolumeSize!: pulumi.Output<number>;
     /**
@@ -285,6 +297,7 @@ export class Instance extends pulumi.CustomResource {
             const state = argsOrState as InstanceState | undefined;
             resourceInputs["autoRenew"] = state ? state.autoRenew : undefined;
             resourceInputs["autoRenewPeriod"] = state ? state.autoRenewPeriod : undefined;
+            resourceInputs["cpuOptions"] = state ? state.cpuOptions : undefined;
             resourceInputs["cpus"] = state ? state.cpus : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["dataVolumes"] = state ? state.dataVolumes : undefined;
@@ -350,6 +363,7 @@ export class Instance extends pulumi.CustomResource {
             }
             resourceInputs["autoRenew"] = args ? args.autoRenew : undefined;
             resourceInputs["autoRenewPeriod"] = args ? args.autoRenewPeriod : undefined;
+            resourceInputs["cpuOptions"] = args ? args.cpuOptions : undefined;
             resourceInputs["dataVolumes"] = args ? args.dataVolumes : undefined;
             resourceInputs["deploymentSetId"] = args ? args.deploymentSetId : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
@@ -411,6 +425,10 @@ export interface InstanceState {
      * The auto renew period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     autoRenewPeriod?: pulumi.Input<number>;
+    /**
+     * The option of cpu.
+     */
+    cpuOptions?: pulumi.Input<inputs.ecs.InstanceCpuOptions>;
     /**
      * The number of ECS instance CPU cores.
      */
@@ -559,7 +577,7 @@ export interface InstanceState {
      */
     systemVolumeId?: pulumi.Input<string>;
     /**
-     * The size of system volume.
+     * The size of system volume. The value range of the system volume size is ESSD_PL0: 20~2048, ESSD_FlexPL: 20~2048, PTSSD: 10~500.
      */
     systemVolumeSize?: pulumi.Input<number>;
     /**
@@ -600,6 +618,10 @@ export interface InstanceArgs {
      * The auto renew period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     autoRenewPeriod?: pulumi.Input<number>;
+    /**
+     * The option of cpu.
+     */
+    cpuOptions?: pulumi.Input<inputs.ecs.InstanceCpuOptions>;
     /**
      * The data volumes collection of  ECS instance.
      */
@@ -692,7 +714,7 @@ export interface InstanceArgs {
      */
     subnetId: pulumi.Input<string>;
     /**
-     * The size of system volume.
+     * The size of system volume. The value range of the system volume size is ESSD_PL0: 20~2048, ESSD_FlexPL: 20~2048, PTSSD: 10~500.
      */
     systemVolumeSize: pulumi.Input<number>;
     /**

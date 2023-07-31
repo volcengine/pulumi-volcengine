@@ -17,6 +17,7 @@ export * from "./continuousBackup";
 export * from "./endpoint";
 export * from "./instance";
 export * from "./instances";
+export * from "./pitrTimeWindows";
 export * from "./regions";
 export * from "./state";
 export * from "./zones";

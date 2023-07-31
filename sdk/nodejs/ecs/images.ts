@@ -13,11 +13,10 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultImages = pulumi.output(volcengine.ecs.Images({
- *     ids: [
- *         "image-cm9ssb4eqmhdas306zlp",
- *         "image-ybkzct2rtj4ay5rmlfc3",
- *     ],
+ * const foo = pulumi.output(volcengine.ecs.Images({
+ *     instanceTypeId: "ecs.g1.large",
+ *     osType: "Linux",
+ *     visibility: "public",
  * }));
  * ```
  */

@@ -296,6 +296,8 @@ type BandwidthPackagesBandwidthPackage struct {
 	LocalGeographicRegionSetId string `pulumi:"localGeographicRegionSetId"`
 	// A peer geographic region set id.
 	PeerGeographicRegionSetId string `pulumi:"peerGeographicRegionSetId"`
+	// The ProjectName of the cen bandwidth package.
+	ProjectName string `pulumi:"projectName"`
 	// The remain bandwidth of the cen bandwidth package.
 	RemainingBandwidth int `pulumi:"remainingBandwidth"`
 	// The status of the cen bandwidth package.
@@ -346,6 +348,8 @@ type BandwidthPackagesBandwidthPackageArgs struct {
 	LocalGeographicRegionSetId pulumi.StringInput `pulumi:"localGeographicRegionSetId"`
 	// A peer geographic region set id.
 	PeerGeographicRegionSetId pulumi.StringInput `pulumi:"peerGeographicRegionSetId"`
+	// The ProjectName of the cen bandwidth package.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The remain bandwidth of the cen bandwidth package.
 	RemainingBandwidth pulumi.IntInput `pulumi:"remainingBandwidth"`
 	// The status of the cen bandwidth package.
@@ -475,6 +479,11 @@ func (o BandwidthPackagesBandwidthPackageOutput) LocalGeographicRegionSetId() pu
 // A peer geographic region set id.
 func (o BandwidthPackagesBandwidthPackageOutput) PeerGeographicRegionSetId() pulumi.StringOutput {
 	return o.ApplyT(func(v BandwidthPackagesBandwidthPackage) string { return v.PeerGeographicRegionSetId }).(pulumi.StringOutput)
+}
+
+// The ProjectName of the cen bandwidth package.
+func (o BandwidthPackagesBandwidthPackageOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v BandwidthPackagesBandwidthPackage) string { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 // The remain bandwidth of the cen bandwidth package.
@@ -850,6 +859,8 @@ type CensCen struct {
 	Description string `pulumi:"description"`
 	// The ID of the cen.
 	Id string `pulumi:"id"`
+	// The ProjectName of the cen instance.
+	ProjectName string `pulumi:"projectName"`
 	// The status of the cen.
 	Status string `pulumi:"status"`
 	// Tags.
@@ -884,6 +895,8 @@ type CensCenArgs struct {
 	Description pulumi.StringInput `pulumi:"description"`
 	// The ID of the cen.
 	Id pulumi.StringInput `pulumi:"id"`
+	// The ProjectName of the cen instance.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The status of the cen.
 	Status pulumi.StringInput `pulumi:"status"`
 	// Tags.
@@ -976,6 +989,11 @@ func (o CensCenOutput) Description() pulumi.StringOutput {
 // The ID of the cen.
 func (o CensCenOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v CensCen) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The ProjectName of the cen instance.
+func (o CensCenOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v CensCen) string { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 // The status of the cen.
@@ -1554,6 +1572,407 @@ func (o RouteEntriesCenRouteEntryArrayOutput) Index(i pulumi.IntInput) RouteEntr
 	}).(RouteEntriesCenRouteEntryOutput)
 }
 
+type ServiceRouteEntriesServiceRouteEntry struct {
+	// A cen ID.
+	CenId string `pulumi:"cenId"`
+	// The create time of the cen service route entry.
+	CreationTime string `pulumi:"creationTime"`
+	// The description of the cen service route entry.
+	Description string `pulumi:"description"`
+	// A destination cidr block.
+	DestinationCidrBlock string `pulumi:"destinationCidrBlock"`
+	// Publishing scope of cloud service access routes. Valid values are `LocalDCGW`(default), `Custom`.
+	PublishMode string `pulumi:"publishMode"`
+	// The publish instances. A maximum of 100 can be uploaded in one request.
+	PublishToInstances []ServiceRouteEntriesServiceRouteEntryPublishToInstance `pulumi:"publishToInstances"`
+	// A service region id.
+	ServiceRegionId string `pulumi:"serviceRegionId"`
+	// A service VPC id.
+	ServiceVpcId string `pulumi:"serviceVpcId"`
+	// The status of the cen service route entry.
+	Status string `pulumi:"status"`
+}
+
+// ServiceRouteEntriesServiceRouteEntryInput is an input type that accepts ServiceRouteEntriesServiceRouteEntryArgs and ServiceRouteEntriesServiceRouteEntryOutput values.
+// You can construct a concrete instance of `ServiceRouteEntriesServiceRouteEntryInput` via:
+//
+//	ServiceRouteEntriesServiceRouteEntryArgs{...}
+type ServiceRouteEntriesServiceRouteEntryInput interface {
+	pulumi.Input
+
+	ToServiceRouteEntriesServiceRouteEntryOutput() ServiceRouteEntriesServiceRouteEntryOutput
+	ToServiceRouteEntriesServiceRouteEntryOutputWithContext(context.Context) ServiceRouteEntriesServiceRouteEntryOutput
+}
+
+type ServiceRouteEntriesServiceRouteEntryArgs struct {
+	// A cen ID.
+	CenId pulumi.StringInput `pulumi:"cenId"`
+	// The create time of the cen service route entry.
+	CreationTime pulumi.StringInput `pulumi:"creationTime"`
+	// The description of the cen service route entry.
+	Description pulumi.StringInput `pulumi:"description"`
+	// A destination cidr block.
+	DestinationCidrBlock pulumi.StringInput `pulumi:"destinationCidrBlock"`
+	// Publishing scope of cloud service access routes. Valid values are `LocalDCGW`(default), `Custom`.
+	PublishMode pulumi.StringInput `pulumi:"publishMode"`
+	// The publish instances. A maximum of 100 can be uploaded in one request.
+	PublishToInstances ServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayInput `pulumi:"publishToInstances"`
+	// A service region id.
+	ServiceRegionId pulumi.StringInput `pulumi:"serviceRegionId"`
+	// A service VPC id.
+	ServiceVpcId pulumi.StringInput `pulumi:"serviceVpcId"`
+	// The status of the cen service route entry.
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (ServiceRouteEntriesServiceRouteEntryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceRouteEntriesServiceRouteEntry)(nil)).Elem()
+}
+
+func (i ServiceRouteEntriesServiceRouteEntryArgs) ToServiceRouteEntriesServiceRouteEntryOutput() ServiceRouteEntriesServiceRouteEntryOutput {
+	return i.ToServiceRouteEntriesServiceRouteEntryOutputWithContext(context.Background())
+}
+
+func (i ServiceRouteEntriesServiceRouteEntryArgs) ToServiceRouteEntriesServiceRouteEntryOutputWithContext(ctx context.Context) ServiceRouteEntriesServiceRouteEntryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceRouteEntriesServiceRouteEntryOutput)
+}
+
+// ServiceRouteEntriesServiceRouteEntryArrayInput is an input type that accepts ServiceRouteEntriesServiceRouteEntryArray and ServiceRouteEntriesServiceRouteEntryArrayOutput values.
+// You can construct a concrete instance of `ServiceRouteEntriesServiceRouteEntryArrayInput` via:
+//
+//	ServiceRouteEntriesServiceRouteEntryArray{ ServiceRouteEntriesServiceRouteEntryArgs{...} }
+type ServiceRouteEntriesServiceRouteEntryArrayInput interface {
+	pulumi.Input
+
+	ToServiceRouteEntriesServiceRouteEntryArrayOutput() ServiceRouteEntriesServiceRouteEntryArrayOutput
+	ToServiceRouteEntriesServiceRouteEntryArrayOutputWithContext(context.Context) ServiceRouteEntriesServiceRouteEntryArrayOutput
+}
+
+type ServiceRouteEntriesServiceRouteEntryArray []ServiceRouteEntriesServiceRouteEntryInput
+
+func (ServiceRouteEntriesServiceRouteEntryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceRouteEntriesServiceRouteEntry)(nil)).Elem()
+}
+
+func (i ServiceRouteEntriesServiceRouteEntryArray) ToServiceRouteEntriesServiceRouteEntryArrayOutput() ServiceRouteEntriesServiceRouteEntryArrayOutput {
+	return i.ToServiceRouteEntriesServiceRouteEntryArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceRouteEntriesServiceRouteEntryArray) ToServiceRouteEntriesServiceRouteEntryArrayOutputWithContext(ctx context.Context) ServiceRouteEntriesServiceRouteEntryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceRouteEntriesServiceRouteEntryArrayOutput)
+}
+
+type ServiceRouteEntriesServiceRouteEntryOutput struct{ *pulumi.OutputState }
+
+func (ServiceRouteEntriesServiceRouteEntryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceRouteEntriesServiceRouteEntry)(nil)).Elem()
+}
+
+func (o ServiceRouteEntriesServiceRouteEntryOutput) ToServiceRouteEntriesServiceRouteEntryOutput() ServiceRouteEntriesServiceRouteEntryOutput {
+	return o
+}
+
+func (o ServiceRouteEntriesServiceRouteEntryOutput) ToServiceRouteEntriesServiceRouteEntryOutputWithContext(ctx context.Context) ServiceRouteEntriesServiceRouteEntryOutput {
+	return o
+}
+
+// A cen ID.
+func (o ServiceRouteEntriesServiceRouteEntryOutput) CenId() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceRouteEntriesServiceRouteEntry) string { return v.CenId }).(pulumi.StringOutput)
+}
+
+// The create time of the cen service route entry.
+func (o ServiceRouteEntriesServiceRouteEntryOutput) CreationTime() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceRouteEntriesServiceRouteEntry) string { return v.CreationTime }).(pulumi.StringOutput)
+}
+
+// The description of the cen service route entry.
+func (o ServiceRouteEntriesServiceRouteEntryOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceRouteEntriesServiceRouteEntry) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// A destination cidr block.
+func (o ServiceRouteEntriesServiceRouteEntryOutput) DestinationCidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceRouteEntriesServiceRouteEntry) string { return v.DestinationCidrBlock }).(pulumi.StringOutput)
+}
+
+// Publishing scope of cloud service access routes. Valid values are `LocalDCGW`(default), `Custom`.
+func (o ServiceRouteEntriesServiceRouteEntryOutput) PublishMode() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceRouteEntriesServiceRouteEntry) string { return v.PublishMode }).(pulumi.StringOutput)
+}
+
+// The publish instances. A maximum of 100 can be uploaded in one request.
+func (o ServiceRouteEntriesServiceRouteEntryOutput) PublishToInstances() ServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput {
+	return o.ApplyT(func(v ServiceRouteEntriesServiceRouteEntry) []ServiceRouteEntriesServiceRouteEntryPublishToInstance {
+		return v.PublishToInstances
+	}).(ServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput)
+}
+
+// A service region id.
+func (o ServiceRouteEntriesServiceRouteEntryOutput) ServiceRegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceRouteEntriesServiceRouteEntry) string { return v.ServiceRegionId }).(pulumi.StringOutput)
+}
+
+// A service VPC id.
+func (o ServiceRouteEntriesServiceRouteEntryOutput) ServiceVpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceRouteEntriesServiceRouteEntry) string { return v.ServiceVpcId }).(pulumi.StringOutput)
+}
+
+// The status of the cen service route entry.
+func (o ServiceRouteEntriesServiceRouteEntryOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceRouteEntriesServiceRouteEntry) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type ServiceRouteEntriesServiceRouteEntryArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceRouteEntriesServiceRouteEntryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceRouteEntriesServiceRouteEntry)(nil)).Elem()
+}
+
+func (o ServiceRouteEntriesServiceRouteEntryArrayOutput) ToServiceRouteEntriesServiceRouteEntryArrayOutput() ServiceRouteEntriesServiceRouteEntryArrayOutput {
+	return o
+}
+
+func (o ServiceRouteEntriesServiceRouteEntryArrayOutput) ToServiceRouteEntriesServiceRouteEntryArrayOutputWithContext(ctx context.Context) ServiceRouteEntriesServiceRouteEntryArrayOutput {
+	return o
+}
+
+func (o ServiceRouteEntriesServiceRouteEntryArrayOutput) Index(i pulumi.IntInput) ServiceRouteEntriesServiceRouteEntryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceRouteEntriesServiceRouteEntry {
+		return vs[0].([]ServiceRouteEntriesServiceRouteEntry)[vs[1].(int)]
+	}).(ServiceRouteEntriesServiceRouteEntryOutput)
+}
+
+type ServiceRouteEntriesServiceRouteEntryPublishToInstance struct {
+	// Cloud service access routes need to publish the network instance ID.
+	InstanceId string `pulumi:"instanceId"`
+	// The region where the cloud service access route needs to be published.
+	InstanceRegionId string `pulumi:"instanceRegionId"`
+	// The network instance type that needs to be published for cloud service access routes. The values are as follows: `VPC`, `DCGW`.
+	InstanceType string `pulumi:"instanceType"`
+}
+
+// ServiceRouteEntriesServiceRouteEntryPublishToInstanceInput is an input type that accepts ServiceRouteEntriesServiceRouteEntryPublishToInstanceArgs and ServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput values.
+// You can construct a concrete instance of `ServiceRouteEntriesServiceRouteEntryPublishToInstanceInput` via:
+//
+//	ServiceRouteEntriesServiceRouteEntryPublishToInstanceArgs{...}
+type ServiceRouteEntriesServiceRouteEntryPublishToInstanceInput interface {
+	pulumi.Input
+
+	ToServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput() ServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput
+	ToServiceRouteEntriesServiceRouteEntryPublishToInstanceOutputWithContext(context.Context) ServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput
+}
+
+type ServiceRouteEntriesServiceRouteEntryPublishToInstanceArgs struct {
+	// Cloud service access routes need to publish the network instance ID.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The region where the cloud service access route needs to be published.
+	InstanceRegionId pulumi.StringInput `pulumi:"instanceRegionId"`
+	// The network instance type that needs to be published for cloud service access routes. The values are as follows: `VPC`, `DCGW`.
+	InstanceType pulumi.StringInput `pulumi:"instanceType"`
+}
+
+func (ServiceRouteEntriesServiceRouteEntryPublishToInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceRouteEntriesServiceRouteEntryPublishToInstance)(nil)).Elem()
+}
+
+func (i ServiceRouteEntriesServiceRouteEntryPublishToInstanceArgs) ToServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput() ServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput {
+	return i.ToServiceRouteEntriesServiceRouteEntryPublishToInstanceOutputWithContext(context.Background())
+}
+
+func (i ServiceRouteEntriesServiceRouteEntryPublishToInstanceArgs) ToServiceRouteEntriesServiceRouteEntryPublishToInstanceOutputWithContext(ctx context.Context) ServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput)
+}
+
+// ServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayInput is an input type that accepts ServiceRouteEntriesServiceRouteEntryPublishToInstanceArray and ServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput values.
+// You can construct a concrete instance of `ServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayInput` via:
+//
+//	ServiceRouteEntriesServiceRouteEntryPublishToInstanceArray{ ServiceRouteEntriesServiceRouteEntryPublishToInstanceArgs{...} }
+type ServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayInput interface {
+	pulumi.Input
+
+	ToServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput() ServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput
+	ToServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutputWithContext(context.Context) ServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput
+}
+
+type ServiceRouteEntriesServiceRouteEntryPublishToInstanceArray []ServiceRouteEntriesServiceRouteEntryPublishToInstanceInput
+
+func (ServiceRouteEntriesServiceRouteEntryPublishToInstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceRouteEntriesServiceRouteEntryPublishToInstance)(nil)).Elem()
+}
+
+func (i ServiceRouteEntriesServiceRouteEntryPublishToInstanceArray) ToServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput() ServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput {
+	return i.ToServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceRouteEntriesServiceRouteEntryPublishToInstanceArray) ToServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutputWithContext(ctx context.Context) ServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput)
+}
+
+type ServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput struct{ *pulumi.OutputState }
+
+func (ServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceRouteEntriesServiceRouteEntryPublishToInstance)(nil)).Elem()
+}
+
+func (o ServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput) ToServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput() ServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput {
+	return o
+}
+
+func (o ServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput) ToServiceRouteEntriesServiceRouteEntryPublishToInstanceOutputWithContext(ctx context.Context) ServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput {
+	return o
+}
+
+// Cloud service access routes need to publish the network instance ID.
+func (o ServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceRouteEntriesServiceRouteEntryPublishToInstance) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The region where the cloud service access route needs to be published.
+func (o ServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput) InstanceRegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceRouteEntriesServiceRouteEntryPublishToInstance) string { return v.InstanceRegionId }).(pulumi.StringOutput)
+}
+
+// The network instance type that needs to be published for cloud service access routes. The values are as follows: `VPC`, `DCGW`.
+func (o ServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput) InstanceType() pulumi.StringOutput {
+	return o.ApplyT(func(v ServiceRouteEntriesServiceRouteEntryPublishToInstance) string { return v.InstanceType }).(pulumi.StringOutput)
+}
+
+type ServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceRouteEntriesServiceRouteEntryPublishToInstance)(nil)).Elem()
+}
+
+func (o ServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput) ToServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput() ServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput {
+	return o
+}
+
+func (o ServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput) ToServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutputWithContext(ctx context.Context) ServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput {
+	return o
+}
+
+func (o ServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput) Index(i pulumi.IntInput) ServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceRouteEntriesServiceRouteEntryPublishToInstance {
+		return vs[0].([]ServiceRouteEntriesServiceRouteEntryPublishToInstance)[vs[1].(int)]
+	}).(ServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput)
+}
+
+type ServiceRouteEntryPublishToInstance struct {
+	// Cloud service access routes need to publish the network instance ID.
+	InstanceId *string `pulumi:"instanceId"`
+	// The region where the cloud service access route needs to be published.
+	InstanceRegionId *string `pulumi:"instanceRegionId"`
+	// The network instance type that needs to be published for cloud service access routes. The values are as follows: `VPC`, `DCGW`.
+	InstanceType *string `pulumi:"instanceType"`
+}
+
+// ServiceRouteEntryPublishToInstanceInput is an input type that accepts ServiceRouteEntryPublishToInstanceArgs and ServiceRouteEntryPublishToInstanceOutput values.
+// You can construct a concrete instance of `ServiceRouteEntryPublishToInstanceInput` via:
+//
+//	ServiceRouteEntryPublishToInstanceArgs{...}
+type ServiceRouteEntryPublishToInstanceInput interface {
+	pulumi.Input
+
+	ToServiceRouteEntryPublishToInstanceOutput() ServiceRouteEntryPublishToInstanceOutput
+	ToServiceRouteEntryPublishToInstanceOutputWithContext(context.Context) ServiceRouteEntryPublishToInstanceOutput
+}
+
+type ServiceRouteEntryPublishToInstanceArgs struct {
+	// Cloud service access routes need to publish the network instance ID.
+	InstanceId pulumi.StringPtrInput `pulumi:"instanceId"`
+	// The region where the cloud service access route needs to be published.
+	InstanceRegionId pulumi.StringPtrInput `pulumi:"instanceRegionId"`
+	// The network instance type that needs to be published for cloud service access routes. The values are as follows: `VPC`, `DCGW`.
+	InstanceType pulumi.StringPtrInput `pulumi:"instanceType"`
+}
+
+func (ServiceRouteEntryPublishToInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceRouteEntryPublishToInstance)(nil)).Elem()
+}
+
+func (i ServiceRouteEntryPublishToInstanceArgs) ToServiceRouteEntryPublishToInstanceOutput() ServiceRouteEntryPublishToInstanceOutput {
+	return i.ToServiceRouteEntryPublishToInstanceOutputWithContext(context.Background())
+}
+
+func (i ServiceRouteEntryPublishToInstanceArgs) ToServiceRouteEntryPublishToInstanceOutputWithContext(ctx context.Context) ServiceRouteEntryPublishToInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceRouteEntryPublishToInstanceOutput)
+}
+
+// ServiceRouteEntryPublishToInstanceArrayInput is an input type that accepts ServiceRouteEntryPublishToInstanceArray and ServiceRouteEntryPublishToInstanceArrayOutput values.
+// You can construct a concrete instance of `ServiceRouteEntryPublishToInstanceArrayInput` via:
+//
+//	ServiceRouteEntryPublishToInstanceArray{ ServiceRouteEntryPublishToInstanceArgs{...} }
+type ServiceRouteEntryPublishToInstanceArrayInput interface {
+	pulumi.Input
+
+	ToServiceRouteEntryPublishToInstanceArrayOutput() ServiceRouteEntryPublishToInstanceArrayOutput
+	ToServiceRouteEntryPublishToInstanceArrayOutputWithContext(context.Context) ServiceRouteEntryPublishToInstanceArrayOutput
+}
+
+type ServiceRouteEntryPublishToInstanceArray []ServiceRouteEntryPublishToInstanceInput
+
+func (ServiceRouteEntryPublishToInstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceRouteEntryPublishToInstance)(nil)).Elem()
+}
+
+func (i ServiceRouteEntryPublishToInstanceArray) ToServiceRouteEntryPublishToInstanceArrayOutput() ServiceRouteEntryPublishToInstanceArrayOutput {
+	return i.ToServiceRouteEntryPublishToInstanceArrayOutputWithContext(context.Background())
+}
+
+func (i ServiceRouteEntryPublishToInstanceArray) ToServiceRouteEntryPublishToInstanceArrayOutputWithContext(ctx context.Context) ServiceRouteEntryPublishToInstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServiceRouteEntryPublishToInstanceArrayOutput)
+}
+
+type ServiceRouteEntryPublishToInstanceOutput struct{ *pulumi.OutputState }
+
+func (ServiceRouteEntryPublishToInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServiceRouteEntryPublishToInstance)(nil)).Elem()
+}
+
+func (o ServiceRouteEntryPublishToInstanceOutput) ToServiceRouteEntryPublishToInstanceOutput() ServiceRouteEntryPublishToInstanceOutput {
+	return o
+}
+
+func (o ServiceRouteEntryPublishToInstanceOutput) ToServiceRouteEntryPublishToInstanceOutputWithContext(ctx context.Context) ServiceRouteEntryPublishToInstanceOutput {
+	return o
+}
+
+// Cloud service access routes need to publish the network instance ID.
+func (o ServiceRouteEntryPublishToInstanceOutput) InstanceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceRouteEntryPublishToInstance) *string { return v.InstanceId }).(pulumi.StringPtrOutput)
+}
+
+// The region where the cloud service access route needs to be published.
+func (o ServiceRouteEntryPublishToInstanceOutput) InstanceRegionId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceRouteEntryPublishToInstance) *string { return v.InstanceRegionId }).(pulumi.StringPtrOutput)
+}
+
+// The network instance type that needs to be published for cloud service access routes. The values are as follows: `VPC`, `DCGW`.
+func (o ServiceRouteEntryPublishToInstanceOutput) InstanceType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServiceRouteEntryPublishToInstance) *string { return v.InstanceType }).(pulumi.StringPtrOutput)
+}
+
+type ServiceRouteEntryPublishToInstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (ServiceRouteEntryPublishToInstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServiceRouteEntryPublishToInstance)(nil)).Elem()
+}
+
+func (o ServiceRouteEntryPublishToInstanceArrayOutput) ToServiceRouteEntryPublishToInstanceArrayOutput() ServiceRouteEntryPublishToInstanceArrayOutput {
+	return o
+}
+
+func (o ServiceRouteEntryPublishToInstanceArrayOutput) ToServiceRouteEntryPublishToInstanceArrayOutputWithContext(ctx context.Context) ServiceRouteEntryPublishToInstanceArrayOutput {
+	return o
+}
+
+func (o ServiceRouteEntryPublishToInstanceArrayOutput) Index(i pulumi.IntInput) ServiceRouteEntryPublishToInstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceRouteEntryPublishToInstance {
+		return vs[0].([]ServiceRouteEntryPublishToInstance)[vs[1].(int)]
+	}).(ServiceRouteEntryPublishToInstanceOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AttachInstancesAttachInstanceInput)(nil)).Elem(), AttachInstancesAttachInstanceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AttachInstancesAttachInstanceArrayInput)(nil)).Elem(), AttachInstancesAttachInstanceArray{})
@@ -1577,6 +1996,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InterRegionBandwidthsInterRegionBandwidthArrayInput)(nil)).Elem(), InterRegionBandwidthsInterRegionBandwidthArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteEntriesCenRouteEntryInput)(nil)).Elem(), RouteEntriesCenRouteEntryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteEntriesCenRouteEntryArrayInput)(nil)).Elem(), RouteEntriesCenRouteEntryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceRouteEntriesServiceRouteEntryInput)(nil)).Elem(), ServiceRouteEntriesServiceRouteEntryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceRouteEntriesServiceRouteEntryArrayInput)(nil)).Elem(), ServiceRouteEntriesServiceRouteEntryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceRouteEntriesServiceRouteEntryPublishToInstanceInput)(nil)).Elem(), ServiceRouteEntriesServiceRouteEntryPublishToInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayInput)(nil)).Elem(), ServiceRouteEntriesServiceRouteEntryPublishToInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceRouteEntryPublishToInstanceInput)(nil)).Elem(), ServiceRouteEntryPublishToInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServiceRouteEntryPublishToInstanceArrayInput)(nil)).Elem(), ServiceRouteEntryPublishToInstanceArray{})
 	pulumi.RegisterOutputType(AttachInstancesAttachInstanceOutput{})
 	pulumi.RegisterOutputType(AttachInstancesAttachInstanceArrayOutput{})
 	pulumi.RegisterOutputType(BandwidthPackageTagOutput{})
@@ -1599,4 +2024,10 @@ func init() {
 	pulumi.RegisterOutputType(InterRegionBandwidthsInterRegionBandwidthArrayOutput{})
 	pulumi.RegisterOutputType(RouteEntriesCenRouteEntryOutput{})
 	pulumi.RegisterOutputType(RouteEntriesCenRouteEntryArrayOutput{})
+	pulumi.RegisterOutputType(ServiceRouteEntriesServiceRouteEntryOutput{})
+	pulumi.RegisterOutputType(ServiceRouteEntriesServiceRouteEntryArrayOutput{})
+	pulumi.RegisterOutputType(ServiceRouteEntriesServiceRouteEntryPublishToInstanceOutput{})
+	pulumi.RegisterOutputType(ServiceRouteEntriesServiceRouteEntryPublishToInstanceArrayOutput{})
+	pulumi.RegisterOutputType(ServiceRouteEntryPublishToInstanceOutput{})
+	pulumi.RegisterOutputType(ServiceRouteEntryPublishToInstanceArrayOutput{})
 }

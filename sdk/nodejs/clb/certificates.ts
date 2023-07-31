@@ -31,6 +31,7 @@ export function certificates(args?: CertificatesArgs, opts?: pulumi.InvokeOption
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
         "projectName": args.projectName,
+        "tags": args.tags,
     }, opts);
 }
 
@@ -58,6 +59,10 @@ export interface CertificatesArgs {
      * The ProjectName of Certificate.
      */
     projectName?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.clb.CertificatesTag[];
 }
 
 /**
@@ -83,6 +88,10 @@ export interface CertificatesResult {
      * The ProjectName of the Certificate.
      */
     readonly projectName?: string;
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.clb.CertificatesTag[];
     /**
      * The total count of Certificate query.
      */
@@ -117,4 +126,8 @@ export interface CertificatesOutputArgs {
      * The ProjectName of Certificate.
      */
     projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.clb.CertificatesTagArgs>[]>;
 }

@@ -20,19 +20,23 @@ import (
 //
 //	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/eip"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/eip"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := eip.Addresses(ctx, &eip.AddressesArgs{
-//				Ids: []string{
-//					"eip-2748mbpjqzhfk7fap8teu0k1a",
-//				},
-//			}, nil)
+//			fooAddress, err := eip.NewAddress(ctx, "fooAddress", &eip.AddressArgs{
+//				BillingType: pulumi.String("PostPaidByTraffic"),
+//			})
 //			if err != nil {
 //				return err
 //			}
+//			_ = eip.AddressesOutput(ctx, eip.AddressesOutputArgs{
+//				Ids: pulumi.StringArray{
+//					fooAddress.ID(),
+//				},
+//			}, nil)
 //			return nil
 //		})
 //	}

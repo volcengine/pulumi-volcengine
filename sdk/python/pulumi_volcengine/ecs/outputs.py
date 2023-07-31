@@ -12,6 +12,7 @@ from . import outputs
 __all__ = [
     'DeploymentSetsDeploymentSetResult',
     'ImagesImageResult',
+    'InstanceCpuOptions',
     'InstanceDataVolume',
     'InstanceGpuDevice',
     'InstanceSecondaryNetworkInterface',
@@ -266,6 +267,41 @@ class ImagesImageResult(dict):
 
 
 @pulumi.output_type
+class InstanceCpuOptions(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "threadsPerCore":
+            suggest = "threads_per_core"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in InstanceCpuOptions. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        InstanceCpuOptions.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        InstanceCpuOptions.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 threads_per_core: int):
+        """
+        :param int threads_per_core: The per core of threads.
+        """
+        pulumi.set(__self__, "threads_per_core", threads_per_core)
+
+    @property
+    @pulumi.getter(name="threadsPerCore")
+    def threads_per_core(self) -> int:
+        """
+        The per core of threads.
+        """
+        return pulumi.get(self, "threads_per_core")
+
+
+@pulumi.output_type
 class InstanceDataVolume(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -291,7 +327,7 @@ class InstanceDataVolume(dict):
                  volume_type: str,
                  delete_with_instance: Optional[bool] = None):
         """
-        :param int size: The size of volume.
+        :param int size: The size of volume. The value range of the data volume size is ESSD_PL0: 10~32768, ESSD_FlexPL: 10~32768, PTSSD: 20~8192.
         :param str volume_type: The type of volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         :param bool delete_with_instance: The delete with instance flag of volume.
         """
@@ -304,7 +340,7 @@ class InstanceDataVolume(dict):
     @pulumi.getter
     def size(self) -> int:
         """
-        The size of volume.
+        The size of volume. The value range of the data volume size is ESSD_PL0: 10~32768, ESSD_FlexPL: 10~32768, PTSSD: 20~8192.
         """
         return pulumi.get(self, "size")
 

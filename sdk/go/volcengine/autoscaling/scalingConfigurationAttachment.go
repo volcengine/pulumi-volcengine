@@ -19,8 +19,8 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/autoscaling"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/autoscaling"
 //
 // )
 //
@@ -40,7 +40,7 @@ import (
 //
 // ## Import
 //
-// Scaling Configuration attachment can be imported using the scaling_configuration_id e.g.
+// Scaling Configuration attachment can be imported using the scaling_configuration_id e.g. The launch template and scaling configuration cannot take effect at the same time.
 //
 // ```sh
 //

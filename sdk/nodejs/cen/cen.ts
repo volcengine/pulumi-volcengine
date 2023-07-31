@@ -14,8 +14,9 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  *
  * const foo = new volcengine.cen.Cen("foo", {
- *     cenName: "tf-test",
+ *     cenName: "tf-test-3",
  *     description: "tf-test",
+ *     projectName: "default",
  * });
  * ```
  *
@@ -80,6 +81,10 @@ export class Cen extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string>;
     /**
+     * The ProjectName of the cen instance.
+     */
+    public readonly projectName!: pulumi.Output<string | undefined>;
+    /**
      * The status of the cen.
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
@@ -111,6 +116,7 @@ export class Cen extends pulumi.CustomResource {
             resourceInputs["cenName"] = state ? state.cenName : undefined;
             resourceInputs["creationTime"] = state ? state.creationTime : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["updateTime"] = state ? state.updateTime : undefined;
@@ -118,6 +124,7 @@ export class Cen extends pulumi.CustomResource {
             const args = argsOrState as CenArgs | undefined;
             resourceInputs["cenName"] = args ? args.cenName : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["accountId"] = undefined /*out*/;
             resourceInputs["cenBandwidthPackageIds"] = undefined /*out*/;
@@ -160,6 +167,10 @@ export interface CenState {
      */
     description?: pulumi.Input<string>;
     /**
+     * The ProjectName of the cen instance.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * The status of the cen.
      */
     status?: pulumi.Input<string>;
@@ -185,6 +196,10 @@ export interface CenArgs {
      * The description of the cen.
      */
     description?: pulumi.Input<string>;
+    /**
+     * The ProjectName of the cen instance.
+     */
+    projectName?: pulumi.Input<string>;
     /**
      * Tags.
      */

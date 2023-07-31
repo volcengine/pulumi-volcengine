@@ -20,15 +20,24 @@ import * as utilities from "../utilities";
  *         policy: "accept",
  *         protocol: "all",
  *     }],
- *     ingressAclEntries: [{
- *         networkAclEntryName: "ingress1",
- *         policy: "accept",
- *         protocol: "all",
- *         sourceCidrIp: "192.168.0.0/24",
- *     }],
+ *     ingressAclEntries: [
+ *         {
+ *             networkAclEntryName: "ingress1",
+ *             policy: "accept",
+ *             protocol: "all",
+ *             sourceCidrIp: "192.168.0.0/24",
+ *         },
+ *         {
+ *             networkAclEntryName: "ingress3",
+ *             policy: "accept",
+ *             port: "80/80",
+ *             protocol: "tcp",
+ *             sourceCidrIp: "192.168.0.0/24",
+ *         },
+ *     ],
  *     networkAclName: "tf-test-acl",
  *     projectName: "default",
- *     vpcId: "vpc-12bk4qjc69reo17q7y36shv6z",
+ *     vpcId: "vpc-2d6jskar243k058ozfdae13ne",
  * });
  * ```
  *

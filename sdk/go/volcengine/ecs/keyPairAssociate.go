@@ -21,14 +21,74 @@ import (
 //
 //	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ecs.NewKeyPairAssociate(ctx, "default", &ecs.KeyPairAssociateArgs{
-//				InstanceId: pulumi.String("i-ybskpw36rul8u1yekckh"),
-//				KeyPairId:  pulumi.String("kp-ybvyy1e5msl8u258ovrv"),
+//			fooKeyPair, err := ecs.NewKeyPair(ctx, "fooKeyPair", &ecs.KeyPairArgs{
+//				KeyPairName: pulumi.String("acc-test-key-name"),
+//				Description: pulumi.String("acc-test"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooImages, err := ecs.Images(ctx, &ecs.ImagesArgs{
+//				OsType:         pulumi.StringRef("Linux"),
+//				Visibility:     pulumi.StringRef("public"),
+//				InstanceTypeId: pulumi.StringRef("ecs.g1.large"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSecurityGroup, err := vpc.NewSecurityGroup(ctx, "fooSecurityGroup", &vpc.SecurityGroupArgs{
+//				VpcId:             fooVpc.ID(),
+//				SecurityGroupName: pulumi.String("acc-test-security-group"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooInstance, err := ecs.NewInstance(ctx, "fooInstance", &ecs.InstanceArgs{
+//				ImageId:            pulumi.String(fooImages.Images[0].ImageId),
+//				InstanceType:       pulumi.String("ecs.g1.large"),
+//				InstanceName:       pulumi.String("acc-test-ecs-name"),
+//				Password:           pulumi.String("your password"),
+//				InstanceChargeType: pulumi.String("PostPaid"),
+//				SystemVolumeType:   pulumi.String("ESSD_PL0"),
+//				SystemVolumeSize:   pulumi.Int(40),
+//				SubnetId:           fooSubnet.ID(),
+//				SecurityGroupIds: pulumi.StringArray{
+//					fooSecurityGroup.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ecs.NewKeyPairAssociate(ctx, "fooKeyPairAssociate", &ecs.KeyPairAssociateArgs{
+//				InstanceId: fooInstance.ID(),
+//				KeyPairId:  fooKeyPair.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -41,7 +101,7 @@ import (
 //
 // ## Import
 //
-// ECS key pair associate can be imported using the id, e.g.
+// ECS key pair associate can be imported using the id, e.g. After binding the key pair, the instance needs to be restarted for the key pair to take effect. After the key pair is bound, the password login method will automatically become invalid. If your instance has been set for password login, after the key pair is bound, you will no longer be able to use the password login method.
 //
 // ```sh
 //

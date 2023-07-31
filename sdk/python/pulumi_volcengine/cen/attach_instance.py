@@ -23,7 +23,7 @@ class AttachInstanceArgs:
         :param pulumi.Input[str] cen_id: The ID of the cen.
         :param pulumi.Input[str] instance_id: The ID of the instance.
         :param pulumi.Input[str] instance_region_id: The region ID of the instance.
-        :param pulumi.Input[str] instance_type: The type of the instance.
+        :param pulumi.Input[str] instance_type: The type of the instance. Valid values: `VPC`, `DCGW`.
         :param pulumi.Input[str] instance_owner_id: The owner ID of the instance.
         """
         pulumi.set(__self__, "cen_id", cen_id)
@@ -73,7 +73,7 @@ class AttachInstanceArgs:
     @pulumi.getter(name="instanceType")
     def instance_type(self) -> pulumi.Input[str]:
         """
-        The type of the instance.
+        The type of the instance. Valid values: `VPC`, `DCGW`.
         """
         return pulumi.get(self, "instance_type")
 
@@ -111,7 +111,7 @@ class _AttachInstanceState:
         :param pulumi.Input[str] instance_id: The ID of the instance.
         :param pulumi.Input[str] instance_owner_id: The owner ID of the instance.
         :param pulumi.Input[str] instance_region_id: The region ID of the instance.
-        :param pulumi.Input[str] instance_type: The type of the instance.
+        :param pulumi.Input[str] instance_type: The type of the instance. Valid values: `VPC`, `DCGW`.
         :param pulumi.Input[str] status: The status of the cen attaching instance.
         """
         if cen_id is not None:
@@ -193,7 +193,7 @@ class _AttachInstanceState:
     @pulumi.getter(name="instanceType")
     def instance_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of the instance.
+        The type of the instance. Valid values: `VPC`, `DCGW`.
         """
         return pulumi.get(self, "instance_type")
 
@@ -234,9 +234,14 @@ class AttachInstance(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.cen.AttachInstance("foo",
-            cen_id="cen-2bzrl3srxsv0g2dx0efyoojn3",
-            instance_id="vpc-2d686ofu89pfk58ozfd8z9khe",
-            instance_region_id="cn-guilin-boe",
+            cen_id="cen-12ar8uclj68sg17q7y20v9gil",
+            instance_id="vpc-2fe5dpn0av2m859gp68rhk2dc",
+            instance_region_id="cn-beijing",
+            instance_type="VPC")
+        foo1 = volcengine.cen.AttachInstance("foo1",
+            cen_id="cen-12ar8uclj68sg17q7y20v9gil",
+            instance_id="vpc-in66ktl5t24g8gbssz0sqva1",
+            instance_region_id="cn-beijing",
             instance_type="VPC")
         ```
 
@@ -254,7 +259,7 @@ class AttachInstance(pulumi.CustomResource):
         :param pulumi.Input[str] instance_id: The ID of the instance.
         :param pulumi.Input[str] instance_owner_id: The owner ID of the instance.
         :param pulumi.Input[str] instance_region_id: The region ID of the instance.
-        :param pulumi.Input[str] instance_type: The type of the instance.
+        :param pulumi.Input[str] instance_type: The type of the instance. Valid values: `VPC`, `DCGW`.
         """
         ...
     @overload
@@ -271,9 +276,14 @@ class AttachInstance(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.cen.AttachInstance("foo",
-            cen_id="cen-2bzrl3srxsv0g2dx0efyoojn3",
-            instance_id="vpc-2d686ofu89pfk58ozfd8z9khe",
-            instance_region_id="cn-guilin-boe",
+            cen_id="cen-12ar8uclj68sg17q7y20v9gil",
+            instance_id="vpc-2fe5dpn0av2m859gp68rhk2dc",
+            instance_region_id="cn-beijing",
+            instance_type="VPC")
+        foo1 = volcengine.cen.AttachInstance("foo1",
+            cen_id="cen-12ar8uclj68sg17q7y20v9gil",
+            instance_id="vpc-in66ktl5t24g8gbssz0sqva1",
+            instance_region_id="cn-beijing",
             instance_type="VPC")
         ```
 
@@ -361,7 +371,7 @@ class AttachInstance(pulumi.CustomResource):
         :param pulumi.Input[str] instance_id: The ID of the instance.
         :param pulumi.Input[str] instance_owner_id: The owner ID of the instance.
         :param pulumi.Input[str] instance_region_id: The region ID of the instance.
-        :param pulumi.Input[str] instance_type: The type of the instance.
+        :param pulumi.Input[str] instance_type: The type of the instance. Valid values: `VPC`, `DCGW`.
         :param pulumi.Input[str] status: The status of the cen attaching instance.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -421,7 +431,7 @@ class AttachInstance(pulumi.CustomResource):
     @pulumi.getter(name="instanceType")
     def instance_type(self) -> pulumi.Output[str]:
         """
-        The type of the instance.
+        The type of the instance. Valid values: `VPC`, `DCGW`.
         """
         return pulumi.get(self, "instance_type")
 

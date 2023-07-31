@@ -246,15 +246,24 @@ class NetworkAcl(pulumi.CustomResource):
                 policy="accept",
                 protocol="all",
             )],
-            ingress_acl_entries=[volcengine.vpc.NetworkAclIngressAclEntryArgs(
-                network_acl_entry_name="ingress1",
-                policy="accept",
-                protocol="all",
-                source_cidr_ip="192.168.0.0/24",
-            )],
+            ingress_acl_entries=[
+                volcengine.vpc.NetworkAclIngressAclEntryArgs(
+                    network_acl_entry_name="ingress1",
+                    policy="accept",
+                    protocol="all",
+                    source_cidr_ip="192.168.0.0/24",
+                ),
+                volcengine.vpc.NetworkAclIngressAclEntryArgs(
+                    network_acl_entry_name="ingress3",
+                    policy="accept",
+                    port="80/80",
+                    protocol="tcp",
+                    source_cidr_ip="192.168.0.0/24",
+                ),
+            ],
             network_acl_name="tf-test-acl",
             project_name="default",
-            vpc_id="vpc-12bk4qjc69reo17q7y36shv6z")
+            vpc_id="vpc-2d6jskar243k058ozfdae13ne")
         ```
 
         ## Import
@@ -295,15 +304,24 @@ class NetworkAcl(pulumi.CustomResource):
                 policy="accept",
                 protocol="all",
             )],
-            ingress_acl_entries=[volcengine.vpc.NetworkAclIngressAclEntryArgs(
-                network_acl_entry_name="ingress1",
-                policy="accept",
-                protocol="all",
-                source_cidr_ip="192.168.0.0/24",
-            )],
+            ingress_acl_entries=[
+                volcengine.vpc.NetworkAclIngressAclEntryArgs(
+                    network_acl_entry_name="ingress1",
+                    policy="accept",
+                    protocol="all",
+                    source_cidr_ip="192.168.0.0/24",
+                ),
+                volcengine.vpc.NetworkAclIngressAclEntryArgs(
+                    network_acl_entry_name="ingress3",
+                    policy="accept",
+                    port="80/80",
+                    protocol="tcp",
+                    source_cidr_ip="192.168.0.0/24",
+                ),
+            ],
             network_acl_name="tf-test-acl",
             project_name="default",
-            vpc_id="vpc-12bk4qjc69reo17q7y36shv6z")
+            vpc_id="vpc-2d6jskar243k058ozfdae13ne")
         ```
 
         ## Import

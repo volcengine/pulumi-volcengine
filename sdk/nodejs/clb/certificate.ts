@@ -2,6 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import { input as inputs, output as outputs } from "../types";
 import * as utilities from "../utilities";
 
 /**
@@ -17,6 +18,10 @@ import * as utilities from "../utilities";
  *     description: "This is a clb certificate",
  *     privateKey: "private-key",
  *     publicKey: "public-key",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
  * ```
  *
@@ -76,6 +81,10 @@ export class Certificate extends pulumi.CustomResource {
      * The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     public readonly publicKey!: pulumi.Output<string>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.clb.CertificateTag[] | undefined>;
 
     /**
      * Create a Certificate resource with the given unique name, arguments, and options.
@@ -95,6 +104,7 @@ export class Certificate extends pulumi.CustomResource {
             resourceInputs["privateKey"] = state ? state.privateKey : undefined;
             resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["publicKey"] = state ? state.publicKey : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
         } else {
             const args = argsOrState as CertificateArgs | undefined;
             if ((!args || args.privateKey === undefined) && !opts.urn) {
@@ -108,6 +118,7 @@ export class Certificate extends pulumi.CustomResource {
             resourceInputs["privateKey"] = args ? args.privateKey : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["publicKey"] = args ? args.publicKey : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Certificate.__pulumiType, name, resourceInputs, opts);
@@ -138,6 +149,10 @@ export interface CertificateState {
      * The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     publicKey?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.clb.CertificateTag>[]>;
 }
 
 /**
@@ -164,4 +179,8 @@ export interface CertificateArgs {
      * The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
     publicKey: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.clb.CertificateTag>[]>;
 }

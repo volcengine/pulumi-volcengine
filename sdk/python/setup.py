@@ -48,7 +48,7 @@ setup(name='pulumi_volcengine',
       keywords='pulumi volcengine category/cloud',
       url='https://www.pulumi.com',
       project_urls={
-          'Repository': 'https://github.com/pulumi/pulumi-volcengine'
+          'Repository': 'https://github.com/volcengine/pulumi-volcengine'
       },
       license='Apache-2.0',
       packages=find_packages(),

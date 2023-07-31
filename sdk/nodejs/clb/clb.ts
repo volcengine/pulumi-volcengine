@@ -10,15 +10,40 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as pulumi from "@volcengine/pulumi";
  *
- * const foo = new volcengine.clb.Clb("foo", {
+ * const publicClb = new volcengine.clb.Clb("publicClb", {
+ *     type: "public",
+ *     subnetId: "subnet-mj92ij84m5fk5smt1arvwrtw",
+ *     loadBalancerSpec: "small_1",
  *     description: "Demo",
  *     loadBalancerName: "terraform-auto-create",
- *     loadBalancerSpec: "small_1",
  *     projectName: "yyy",
+ *     eipBillingConfig: {
+ *         isp: "BGP",
+ *         eipBillingType: "PostPaidByBandwidth",
+ *         bandwidth: 1,
+ *     },
+ * });
+ * const privateClb = new volcengine.clb.Clb("privateClb", {
+ *     type: "private",
  *     subnetId: "subnet-mj92ij84m5fk5smt1arvwrtw",
- *     type: "public",
+ *     loadBalancerSpec: "small_1",
+ *     description: "Demo",
+ *     loadBalancerName: "terraform-auto-create",
+ *     projectName: "default",
+ * });
+ * const eip = new volcengine.eip.Address("eip", {
+ *     billingType: "PostPaidByBandwidth",
+ *     bandwidth: 1,
+ *     isp: "BGP",
+ *     description: "tf-test",
+ *     projectName: "default",
+ * });
+ * const associate = new volcengine.eip.Associate("associate", {
+ *     allocationId: eip.id,
+ *     instanceId: privateClb.id,
+ *     instanceType: "ClbInstance",
  * });
  * ```
  *
@@ -63,11 +88,23 @@ export class Clb extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * The Eip address of the Clb.
+     */
+    public /*out*/ readonly eipAddress!: pulumi.Output<string>;
+    /**
+     * The billing configuration of the EIP which automatically associated to CLB. This field is valid when the type of CLB is `public`.When the type of the CLB is `private`, suggest using a combination of resource `volcengine.eip.Address` and `volcengine.eip.Associate` to achieve public network access function.
+     */
+    public readonly eipBillingConfig!: pulumi.Output<outputs.clb.ClbEipBillingConfig>;
+    /**
+     * The Eip ID of the Clb.
+     */
+    public /*out*/ readonly eipId!: pulumi.Output<string>;
+    /**
      * The eni address of the CLB.
      */
     public readonly eniAddress!: pulumi.Output<string>;
     /**
-     * The billing type of the CLB, the value can be `PostPaid`.
+     * The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
      */
     public readonly loadBalancerBillingType!: pulumi.Output<string>;
     /**
@@ -91,6 +128,10 @@ export class Clb extends pulumi.CustomResource {
      */
     public readonly modificationProtectionStatus!: pulumi.Output<string | undefined>;
     /**
+     * The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    public readonly period!: pulumi.Output<number | undefined>;
+    /**
      * The ProjectName of the CLB.
      */
     public readonly projectName!: pulumi.Output<string | undefined>;
@@ -98,6 +139,10 @@ export class Clb extends pulumi.CustomResource {
      * The region of the request.
      */
     public readonly regionId!: pulumi.Output<string>;
+    /**
+     * The renew type of the CLB. When the value of the loadBalancerBillingType is `PrePaid`, the query returns this field.
+     */
+    public /*out*/ readonly renewType!: pulumi.Output<string>;
     /**
      * The slave zone ID of the CLB.
      */
@@ -133,6 +178,9 @@ export class Clb extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as ClbState | undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["eipAddress"] = state ? state.eipAddress : undefined;
+            resourceInputs["eipBillingConfig"] = state ? state.eipBillingConfig : undefined;
+            resourceInputs["eipId"] = state ? state.eipId : undefined;
             resourceInputs["eniAddress"] = state ? state.eniAddress : undefined;
             resourceInputs["loadBalancerBillingType"] = state ? state.loadBalancerBillingType : undefined;
             resourceInputs["loadBalancerName"] = state ? state.loadBalancerName : undefined;
@@ -140,8 +188,10 @@ export class Clb extends pulumi.CustomResource {
             resourceInputs["masterZoneId"] = state ? state.masterZoneId : undefined;
             resourceInputs["modificationProtectionReason"] = state ? state.modificationProtectionReason : undefined;
             resourceInputs["modificationProtectionStatus"] = state ? state.modificationProtectionStatus : undefined;
+            resourceInputs["period"] = state ? state.period : undefined;
             resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["regionId"] = state ? state.regionId : undefined;
+            resourceInputs["renewType"] = state ? state.renewType : undefined;
             resourceInputs["slaveZoneId"] = state ? state.slaveZoneId : undefined;
             resourceInputs["subnetId"] = state ? state.subnetId : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
@@ -159,6 +209,7 @@ export class Clb extends pulumi.CustomResource {
                 throw new Error("Missing required property 'type'");
             }
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["eipBillingConfig"] = args ? args.eipBillingConfig : undefined;
             resourceInputs["eniAddress"] = args ? args.eniAddress : undefined;
             resourceInputs["loadBalancerBillingType"] = args ? args.loadBalancerBillingType : undefined;
             resourceInputs["loadBalancerName"] = args ? args.loadBalancerName : undefined;
@@ -166,6 +217,7 @@ export class Clb extends pulumi.CustomResource {
             resourceInputs["masterZoneId"] = args ? args.masterZoneId : undefined;
             resourceInputs["modificationProtectionReason"] = args ? args.modificationProtectionReason : undefined;
             resourceInputs["modificationProtectionStatus"] = args ? args.modificationProtectionStatus : undefined;
+            resourceInputs["period"] = args ? args.period : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["regionId"] = args ? args.regionId : undefined;
             resourceInputs["slaveZoneId"] = args ? args.slaveZoneId : undefined;
@@ -173,6 +225,9 @@ export class Clb extends pulumi.CustomResource {
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["vpcId"] = args ? args.vpcId : undefined;
+            resourceInputs["eipAddress"] = undefined /*out*/;
+            resourceInputs["eipId"] = undefined /*out*/;
+            resourceInputs["renewType"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Clb.__pulumiType, name, resourceInputs, opts);
@@ -188,11 +243,23 @@ export interface ClbState {
      */
     description?: pulumi.Input<string>;
     /**
+     * The Eip address of the Clb.
+     */
+    eipAddress?: pulumi.Input<string>;
+    /**
+     * The billing configuration of the EIP which automatically associated to CLB. This field is valid when the type of CLB is `public`.When the type of the CLB is `private`, suggest using a combination of resource `volcengine.eip.Address` and `volcengine.eip.Associate` to achieve public network access function.
+     */
+    eipBillingConfig?: pulumi.Input<inputs.clb.ClbEipBillingConfig>;
+    /**
+     * The Eip ID of the Clb.
+     */
+    eipId?: pulumi.Input<string>;
+    /**
      * The eni address of the CLB.
      */
     eniAddress?: pulumi.Input<string>;
     /**
-     * The billing type of the CLB, the value can be `PostPaid`.
+     * The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
      */
     loadBalancerBillingType?: pulumi.Input<string>;
     /**
@@ -216,6 +283,10 @@ export interface ClbState {
      */
     modificationProtectionStatus?: pulumi.Input<string>;
     /**
+     * The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    period?: pulumi.Input<number>;
+    /**
      * The ProjectName of the CLB.
      */
     projectName?: pulumi.Input<string>;
@@ -223,6 +294,10 @@ export interface ClbState {
      * The region of the request.
      */
     regionId?: pulumi.Input<string>;
+    /**
+     * The renew type of the CLB. When the value of the loadBalancerBillingType is `PrePaid`, the query returns this field.
+     */
+    renewType?: pulumi.Input<string>;
     /**
      * The slave zone ID of the CLB.
      */
@@ -254,11 +329,15 @@ export interface ClbArgs {
      */
     description?: pulumi.Input<string>;
     /**
+     * The billing configuration of the EIP which automatically associated to CLB. This field is valid when the type of CLB is `public`.When the type of the CLB is `private`, suggest using a combination of resource `volcengine.eip.Address` and `volcengine.eip.Associate` to achieve public network access function.
+     */
+    eipBillingConfig?: pulumi.Input<inputs.clb.ClbEipBillingConfig>;
+    /**
      * The eni address of the CLB.
      */
     eniAddress?: pulumi.Input<string>;
     /**
-     * The billing type of the CLB, the value can be `PostPaid`.
+     * The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
      */
     loadBalancerBillingType?: pulumi.Input<string>;
     /**
@@ -281,6 +360,10 @@ export interface ClbArgs {
      * The status of the console modification protection, the value can be `NonProtection` or `ConsoleProtection`.
      */
     modificationProtectionStatus?: pulumi.Input<string>;
+    /**
+     * The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    period?: pulumi.Input<number>;
     /**
      * The ProjectName of the CLB.
      */

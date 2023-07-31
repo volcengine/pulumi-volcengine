@@ -21,6 +21,7 @@ import (
 //
 //	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/clb"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/clb"
 //
 // )
 //
@@ -31,6 +32,12 @@ import (
 //				Description:     pulumi.String("This is a clb certificate"),
 //				PrivateKey:      pulumi.String("private-key"),
 //				PublicKey:       pulumi.String("public-key"),
+//				Tags: clb.CertificateTagArray{
+//					&clb.CertificateTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -63,6 +70,8 @@ type Certificate struct {
 	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
 	// The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	PublicKey pulumi.StringOutput `pulumi:"publicKey"`
+	// Tags.
+	Tags CertificateTagArrayOutput `pulumi:"tags"`
 }
 
 // NewCertificate registers a new resource with the given unique name, arguments, and options.
@@ -110,6 +119,8 @@ type certificateState struct {
 	ProjectName *string `pulumi:"projectName"`
 	// The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	PublicKey *string `pulumi:"publicKey"`
+	// Tags.
+	Tags []CertificateTag `pulumi:"tags"`
 }
 
 type CertificateState struct {
@@ -123,6 +134,8 @@ type CertificateState struct {
 	ProjectName pulumi.StringPtrInput
 	// The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	PublicKey pulumi.StringPtrInput
+	// Tags.
+	Tags CertificateTagArrayInput
 }
 
 func (CertificateState) ElementType() reflect.Type {
@@ -140,6 +153,8 @@ type certificateArgs struct {
 	ProjectName *string `pulumi:"projectName"`
 	// The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	PublicKey string `pulumi:"publicKey"`
+	// Tags.
+	Tags []CertificateTag `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a Certificate resource.
@@ -154,6 +169,8 @@ type CertificateArgs struct {
 	ProjectName pulumi.StringPtrInput
 	// The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	PublicKey pulumi.StringInput
+	// Tags.
+	Tags CertificateTagArrayInput
 }
 
 func (CertificateArgs) ElementType() reflect.Type {
@@ -266,6 +283,11 @@ func (o CertificateOutput) ProjectName() pulumi.StringPtrOutput {
 // The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 func (o CertificateOutput) PublicKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *Certificate) pulumi.StringOutput { return v.PublicKey }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o CertificateOutput) Tags() CertificateTagArrayOutput {
+	return o.ApplyT(func(v *Certificate) CertificateTagArrayOutput { return v.Tags }).(CertificateTagArrayOutput)
 }
 
 type CertificateArrayOutput struct{ *pulumi.OutputState }

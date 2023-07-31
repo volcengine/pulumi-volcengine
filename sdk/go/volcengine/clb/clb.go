@@ -20,18 +20,54 @@ import (
 //
 //	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/clb"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/clb"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/eip"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := clb.NewClb(ctx, "foo", &clb.ClbArgs{
+//			_, err := clb.NewClb(ctx, "publicClb", &clb.ClbArgs{
+//				Type:             pulumi.String("public"),
+//				SubnetId:         pulumi.String("subnet-mj92ij84m5fk5smt1arvwrtw"),
+//				LoadBalancerSpec: pulumi.String("small_1"),
 //				Description:      pulumi.String("Demo"),
 //				LoadBalancerName: pulumi.String("terraform-auto-create"),
-//				LoadBalancerSpec: pulumi.String("small_1"),
 //				ProjectName:      pulumi.String("yyy"),
+//				EipBillingConfig: &clb.ClbEipBillingConfigArgs{
+//					Isp:            pulumi.String("BGP"),
+//					EipBillingType: pulumi.String("PostPaidByBandwidth"),
+//					Bandwidth:      pulumi.Int(1),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			privateClb, err := clb.NewClb(ctx, "privateClb", &clb.ClbArgs{
+//				Type:             pulumi.String("private"),
 //				SubnetId:         pulumi.String("subnet-mj92ij84m5fk5smt1arvwrtw"),
-//				Type:             pulumi.String("public"),
+//				LoadBalancerSpec: pulumi.String("small_1"),
+//				Description:      pulumi.String("Demo"),
+//				LoadBalancerName: pulumi.String("terraform-auto-create"),
+//				ProjectName:      pulumi.String("default"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			eip, err := eip.NewAddress(ctx, "eip", &eip.AddressArgs{
+//				BillingType: pulumi.String("PostPaidByBandwidth"),
+//				Bandwidth:   pulumi.Int(1),
+//				Isp:         pulumi.String("BGP"),
+//				Description: pulumi.String("tf-test"),
+//				ProjectName: pulumi.String("default"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = eip.NewAssociate(ctx, "associate", &eip.AssociateArgs{
+//				AllocationId: eip.ID(),
+//				InstanceId:   privateClb.ID(),
+//				InstanceType: pulumi.String("ClbInstance"),
 //			})
 //			if err != nil {
 //				return err
@@ -56,9 +92,15 @@ type Clb struct {
 
 	// The description of the CLB.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// The Eip address of the Clb.
+	EipAddress pulumi.StringOutput `pulumi:"eipAddress"`
+	// The billing configuration of the EIP which automatically associated to CLB. This field is valid when the type of CLB is `public`.When the type of the CLB is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
+	EipBillingConfig ClbEipBillingConfigOutput `pulumi:"eipBillingConfig"`
+	// The Eip ID of the Clb.
+	EipId pulumi.StringOutput `pulumi:"eipId"`
 	// The eni address of the CLB.
 	EniAddress pulumi.StringOutput `pulumi:"eniAddress"`
-	// The billing type of the CLB, the value can be `PostPaid`.
+	// The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
 	LoadBalancerBillingType pulumi.StringOutput `pulumi:"loadBalancerBillingType"`
 	// The name of the CLB.
 	LoadBalancerName pulumi.StringOutput `pulumi:"loadBalancerName"`
@@ -70,10 +112,14 @@ type Clb struct {
 	ModificationProtectionReason pulumi.StringPtrOutput `pulumi:"modificationProtectionReason"`
 	// The status of the console modification protection, the value can be `NonProtection` or `ConsoleProtection`.
 	ModificationProtectionStatus pulumi.StringPtrOutput `pulumi:"modificationProtectionStatus"`
+	// The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	Period pulumi.IntPtrOutput `pulumi:"period"`
 	// The ProjectName of the CLB.
 	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
 	// The region of the request.
 	RegionId pulumi.StringOutput `pulumi:"regionId"`
+	// The renew type of the CLB. When the value of the loadBalancerBillingType is `PrePaid`, the query returns this field.
+	RenewType pulumi.StringOutput `pulumi:"renewType"`
 	// The slave zone ID of the CLB.
 	SlaveZoneId pulumi.StringOutput `pulumi:"slaveZoneId"`
 	// The id of the Subnet.
@@ -126,9 +172,15 @@ func GetClb(ctx *pulumi.Context,
 type clbState struct {
 	// The description of the CLB.
 	Description *string `pulumi:"description"`
+	// The Eip address of the Clb.
+	EipAddress *string `pulumi:"eipAddress"`
+	// The billing configuration of the EIP which automatically associated to CLB. This field is valid when the type of CLB is `public`.When the type of the CLB is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
+	EipBillingConfig *ClbEipBillingConfig `pulumi:"eipBillingConfig"`
+	// The Eip ID of the Clb.
+	EipId *string `pulumi:"eipId"`
 	// The eni address of the CLB.
 	EniAddress *string `pulumi:"eniAddress"`
-	// The billing type of the CLB, the value can be `PostPaid`.
+	// The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
 	LoadBalancerBillingType *string `pulumi:"loadBalancerBillingType"`
 	// The name of the CLB.
 	LoadBalancerName *string `pulumi:"loadBalancerName"`
@@ -140,10 +192,14 @@ type clbState struct {
 	ModificationProtectionReason *string `pulumi:"modificationProtectionReason"`
 	// The status of the console modification protection, the value can be `NonProtection` or `ConsoleProtection`.
 	ModificationProtectionStatus *string `pulumi:"modificationProtectionStatus"`
+	// The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	Period *int `pulumi:"period"`
 	// The ProjectName of the CLB.
 	ProjectName *string `pulumi:"projectName"`
 	// The region of the request.
 	RegionId *string `pulumi:"regionId"`
+	// The renew type of the CLB. When the value of the loadBalancerBillingType is `PrePaid`, the query returns this field.
+	RenewType *string `pulumi:"renewType"`
 	// The slave zone ID of the CLB.
 	SlaveZoneId *string `pulumi:"slaveZoneId"`
 	// The id of the Subnet.
@@ -159,9 +215,15 @@ type clbState struct {
 type ClbState struct {
 	// The description of the CLB.
 	Description pulumi.StringPtrInput
+	// The Eip address of the Clb.
+	EipAddress pulumi.StringPtrInput
+	// The billing configuration of the EIP which automatically associated to CLB. This field is valid when the type of CLB is `public`.When the type of the CLB is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
+	EipBillingConfig ClbEipBillingConfigPtrInput
+	// The Eip ID of the Clb.
+	EipId pulumi.StringPtrInput
 	// The eni address of the CLB.
 	EniAddress pulumi.StringPtrInput
-	// The billing type of the CLB, the value can be `PostPaid`.
+	// The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
 	LoadBalancerBillingType pulumi.StringPtrInput
 	// The name of the CLB.
 	LoadBalancerName pulumi.StringPtrInput
@@ -173,10 +235,14 @@ type ClbState struct {
 	ModificationProtectionReason pulumi.StringPtrInput
 	// The status of the console modification protection, the value can be `NonProtection` or `ConsoleProtection`.
 	ModificationProtectionStatus pulumi.StringPtrInput
+	// The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	Period pulumi.IntPtrInput
 	// The ProjectName of the CLB.
 	ProjectName pulumi.StringPtrInput
 	// The region of the request.
 	RegionId pulumi.StringPtrInput
+	// The renew type of the CLB. When the value of the loadBalancerBillingType is `PrePaid`, the query returns this field.
+	RenewType pulumi.StringPtrInput
 	// The slave zone ID of the CLB.
 	SlaveZoneId pulumi.StringPtrInput
 	// The id of the Subnet.
@@ -196,9 +262,11 @@ func (ClbState) ElementType() reflect.Type {
 type clbArgs struct {
 	// The description of the CLB.
 	Description *string `pulumi:"description"`
+	// The billing configuration of the EIP which automatically associated to CLB. This field is valid when the type of CLB is `public`.When the type of the CLB is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
+	EipBillingConfig *ClbEipBillingConfig `pulumi:"eipBillingConfig"`
 	// The eni address of the CLB.
 	EniAddress *string `pulumi:"eniAddress"`
-	// The billing type of the CLB, the value can be `PostPaid`.
+	// The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
 	LoadBalancerBillingType *string `pulumi:"loadBalancerBillingType"`
 	// The name of the CLB.
 	LoadBalancerName *string `pulumi:"loadBalancerName"`
@@ -210,6 +278,8 @@ type clbArgs struct {
 	ModificationProtectionReason *string `pulumi:"modificationProtectionReason"`
 	// The status of the console modification protection, the value can be `NonProtection` or `ConsoleProtection`.
 	ModificationProtectionStatus *string `pulumi:"modificationProtectionStatus"`
+	// The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	Period *int `pulumi:"period"`
 	// The ProjectName of the CLB.
 	ProjectName *string `pulumi:"projectName"`
 	// The region of the request.
@@ -230,9 +300,11 @@ type clbArgs struct {
 type ClbArgs struct {
 	// The description of the CLB.
 	Description pulumi.StringPtrInput
+	// The billing configuration of the EIP which automatically associated to CLB. This field is valid when the type of CLB is `public`.When the type of the CLB is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
+	EipBillingConfig ClbEipBillingConfigPtrInput
 	// The eni address of the CLB.
 	EniAddress pulumi.StringPtrInput
-	// The billing type of the CLB, the value can be `PostPaid`.
+	// The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
 	LoadBalancerBillingType pulumi.StringPtrInput
 	// The name of the CLB.
 	LoadBalancerName pulumi.StringPtrInput
@@ -244,6 +316,8 @@ type ClbArgs struct {
 	ModificationProtectionReason pulumi.StringPtrInput
 	// The status of the console modification protection, the value can be `NonProtection` or `ConsoleProtection`.
 	ModificationProtectionStatus pulumi.StringPtrInput
+	// The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	Period pulumi.IntPtrInput
 	// The ProjectName of the CLB.
 	ProjectName pulumi.StringPtrInput
 	// The region of the request.
@@ -352,12 +426,27 @@ func (o ClbOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Clb) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// The Eip address of the Clb.
+func (o ClbOutput) EipAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v *Clb) pulumi.StringOutput { return v.EipAddress }).(pulumi.StringOutput)
+}
+
+// The billing configuration of the EIP which automatically associated to CLB. This field is valid when the type of CLB is `public`.When the type of the CLB is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
+func (o ClbOutput) EipBillingConfig() ClbEipBillingConfigOutput {
+	return o.ApplyT(func(v *Clb) ClbEipBillingConfigOutput { return v.EipBillingConfig }).(ClbEipBillingConfigOutput)
+}
+
+// The Eip ID of the Clb.
+func (o ClbOutput) EipId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Clb) pulumi.StringOutput { return v.EipId }).(pulumi.StringOutput)
+}
+
 // The eni address of the CLB.
 func (o ClbOutput) EniAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v *Clb) pulumi.StringOutput { return v.EniAddress }).(pulumi.StringOutput)
 }
 
-// The billing type of the CLB, the value can be `PostPaid`.
+// The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
 func (o ClbOutput) LoadBalancerBillingType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Clb) pulumi.StringOutput { return v.LoadBalancerBillingType }).(pulumi.StringOutput)
 }
@@ -387,6 +476,11 @@ func (o ClbOutput) ModificationProtectionStatus() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Clb) pulumi.StringPtrOutput { return v.ModificationProtectionStatus }).(pulumi.StringPtrOutput)
 }
 
+// The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+func (o ClbOutput) Period() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Clb) pulumi.IntPtrOutput { return v.Period }).(pulumi.IntPtrOutput)
+}
+
 // The ProjectName of the CLB.
 func (o ClbOutput) ProjectName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Clb) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
@@ -395,6 +489,11 @@ func (o ClbOutput) ProjectName() pulumi.StringPtrOutput {
 // The region of the request.
 func (o ClbOutput) RegionId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Clb) pulumi.StringOutput { return v.RegionId }).(pulumi.StringOutput)
+}
+
+// The renew type of the CLB. When the value of the loadBalancerBillingType is `PrePaid`, the query returns this field.
+func (o ClbOutput) RenewType() pulumi.StringOutput {
+	return o.ApplyT(func(v *Clb) pulumi.StringOutput { return v.RenewType }).(pulumi.StringOutput)
 }
 
 // The slave zone ID of the CLB.

@@ -13,6 +13,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  *
  * const foo = new volcengine.nat.Gateway("foo", {
+ *     billingType: "PostPaid",
  *     description: "This nat gateway auto-created by terraform. ",
  *     natGatewayName: "tf-auto-demo-1",
  *     projectName: "default",
@@ -59,7 +60,7 @@ export class Gateway extends pulumi.CustomResource {
     }
 
     /**
-     * The billing type of the NatGateway, the value is `PostPaid`.
+     * The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
      */
     public readonly billingType!: pulumi.Output<string | undefined>;
     /**
@@ -70,6 +71,10 @@ export class Gateway extends pulumi.CustomResource {
      * The name of the NatGateway.
      */
     public readonly natGatewayName!: pulumi.Output<string | undefined>;
+    /**
+     * The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    public readonly period!: pulumi.Output<number | undefined>;
     /**
      * The ProjectName of the NatGateway.
      */
@@ -107,6 +112,7 @@ export class Gateway extends pulumi.CustomResource {
             resourceInputs["billingType"] = state ? state.billingType : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["natGatewayName"] = state ? state.natGatewayName : undefined;
+            resourceInputs["period"] = state ? state.period : undefined;
             resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["spec"] = state ? state.spec : undefined;
             resourceInputs["subnetId"] = state ? state.subnetId : undefined;
@@ -123,6 +129,7 @@ export class Gateway extends pulumi.CustomResource {
             resourceInputs["billingType"] = args ? args.billingType : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["natGatewayName"] = args ? args.natGatewayName : undefined;
+            resourceInputs["period"] = args ? args.period : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["spec"] = args ? args.spec : undefined;
             resourceInputs["subnetId"] = args ? args.subnetId : undefined;
@@ -139,7 +146,7 @@ export class Gateway extends pulumi.CustomResource {
  */
 export interface GatewayState {
     /**
-     * The billing type of the NatGateway, the value is `PostPaid`.
+     * The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
      */
     billingType?: pulumi.Input<string>;
     /**
@@ -150,6 +157,10 @@ export interface GatewayState {
      * The name of the NatGateway.
      */
     natGatewayName?: pulumi.Input<string>;
+    /**
+     * The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    period?: pulumi.Input<number>;
     /**
      * The ProjectName of the NatGateway.
      */
@@ -177,7 +188,7 @@ export interface GatewayState {
  */
 export interface GatewayArgs {
     /**
-     * The billing type of the NatGateway, the value is `PostPaid`.
+     * The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
      */
     billingType?: pulumi.Input<string>;
     /**
@@ -188,6 +199,10 @@ export interface GatewayArgs {
      * The name of the NatGateway.
      */
     natGatewayName?: pulumi.Input<string>;
+    /**
+     * The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    period?: pulumi.Input<number>;
     /**
      * The ProjectName of the NatGateway.
      */

@@ -10,7 +10,7 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as pulumi from "@volcengine/pulumi";
  *
  * const _default = new volcengine.tos.BucketPolicy("default", {
  *     bucketName: "bucket-20230418",

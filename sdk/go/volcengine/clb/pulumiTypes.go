@@ -285,6 +285,112 @@ func (o AclsAclArrayOutput) Index(i pulumi.IntInput) AclsAclOutput {
 	}).(AclsAclOutput)
 }
 
+type CertificateTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// CertificateTagInput is an input type that accepts CertificateTagArgs and CertificateTagOutput values.
+// You can construct a concrete instance of `CertificateTagInput` via:
+//
+//	CertificateTagArgs{...}
+type CertificateTagInput interface {
+	pulumi.Input
+
+	ToCertificateTagOutput() CertificateTagOutput
+	ToCertificateTagOutputWithContext(context.Context) CertificateTagOutput
+}
+
+type CertificateTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (CertificateTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CertificateTag)(nil)).Elem()
+}
+
+func (i CertificateTagArgs) ToCertificateTagOutput() CertificateTagOutput {
+	return i.ToCertificateTagOutputWithContext(context.Background())
+}
+
+func (i CertificateTagArgs) ToCertificateTagOutputWithContext(ctx context.Context) CertificateTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CertificateTagOutput)
+}
+
+// CertificateTagArrayInput is an input type that accepts CertificateTagArray and CertificateTagArrayOutput values.
+// You can construct a concrete instance of `CertificateTagArrayInput` via:
+//
+//	CertificateTagArray{ CertificateTagArgs{...} }
+type CertificateTagArrayInput interface {
+	pulumi.Input
+
+	ToCertificateTagArrayOutput() CertificateTagArrayOutput
+	ToCertificateTagArrayOutputWithContext(context.Context) CertificateTagArrayOutput
+}
+
+type CertificateTagArray []CertificateTagInput
+
+func (CertificateTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CertificateTag)(nil)).Elem()
+}
+
+func (i CertificateTagArray) ToCertificateTagArrayOutput() CertificateTagArrayOutput {
+	return i.ToCertificateTagArrayOutputWithContext(context.Background())
+}
+
+func (i CertificateTagArray) ToCertificateTagArrayOutputWithContext(ctx context.Context) CertificateTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CertificateTagArrayOutput)
+}
+
+type CertificateTagOutput struct{ *pulumi.OutputState }
+
+func (CertificateTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CertificateTag)(nil)).Elem()
+}
+
+func (o CertificateTagOutput) ToCertificateTagOutput() CertificateTagOutput {
+	return o
+}
+
+func (o CertificateTagOutput) ToCertificateTagOutputWithContext(ctx context.Context) CertificateTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o CertificateTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v CertificateTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o CertificateTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v CertificateTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type CertificateTagArrayOutput struct{ *pulumi.OutputState }
+
+func (CertificateTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CertificateTag)(nil)).Elem()
+}
+
+func (o CertificateTagArrayOutput) ToCertificateTagArrayOutput() CertificateTagArrayOutput {
+	return o
+}
+
+func (o CertificateTagArrayOutput) ToCertificateTagArrayOutputWithContext(ctx context.Context) CertificateTagArrayOutput {
+	return o
+}
+
+func (o CertificateTagArrayOutput) Index(i pulumi.IntInput) CertificateTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CertificateTag {
+		return vs[0].([]CertificateTag)[vs[1].(int)]
+	}).(CertificateTagOutput)
+}
+
 type CertificatesCertificate struct {
 	// The ID of the Certificate.
 	CertificateId string `pulumi:"certificateId"`
@@ -304,6 +410,8 @@ type CertificatesCertificate struct {
 	Listeners []string `pulumi:"listeners"`
 	// The ProjectName of Certificate.
 	ProjectName string `pulumi:"projectName"`
+	// Tags.
+	Tags []CertificatesCertificateTag `pulumi:"tags"`
 }
 
 // CertificatesCertificateInput is an input type that accepts CertificatesCertificateArgs and CertificatesCertificateOutput values.
@@ -336,6 +444,8 @@ type CertificatesCertificateArgs struct {
 	Listeners pulumi.StringArrayInput `pulumi:"listeners"`
 	// The ProjectName of Certificate.
 	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// Tags.
+	Tags CertificatesCertificateTagArrayInput `pulumi:"tags"`
 }
 
 func (CertificatesCertificateArgs) ElementType() reflect.Type {
@@ -434,6 +544,11 @@ func (o CertificatesCertificateOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v CertificatesCertificate) string { return v.ProjectName }).(pulumi.StringOutput)
 }
 
+// Tags.
+func (o CertificatesCertificateOutput) Tags() CertificatesCertificateTagArrayOutput {
+	return o.ApplyT(func(v CertificatesCertificate) []CertificatesCertificateTag { return v.Tags }).(CertificatesCertificateTagArrayOutput)
+}
+
 type CertificatesCertificateArrayOutput struct{ *pulumi.OutputState }
 
 func (CertificatesCertificateArrayOutput) ElementType() reflect.Type {
@@ -452,6 +567,393 @@ func (o CertificatesCertificateArrayOutput) Index(i pulumi.IntInput) Certificate
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CertificatesCertificate {
 		return vs[0].([]CertificatesCertificate)[vs[1].(int)]
 	}).(CertificatesCertificateOutput)
+}
+
+type CertificatesCertificateTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// CertificatesCertificateTagInput is an input type that accepts CertificatesCertificateTagArgs and CertificatesCertificateTagOutput values.
+// You can construct a concrete instance of `CertificatesCertificateTagInput` via:
+//
+//	CertificatesCertificateTagArgs{...}
+type CertificatesCertificateTagInput interface {
+	pulumi.Input
+
+	ToCertificatesCertificateTagOutput() CertificatesCertificateTagOutput
+	ToCertificatesCertificateTagOutputWithContext(context.Context) CertificatesCertificateTagOutput
+}
+
+type CertificatesCertificateTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (CertificatesCertificateTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CertificatesCertificateTag)(nil)).Elem()
+}
+
+func (i CertificatesCertificateTagArgs) ToCertificatesCertificateTagOutput() CertificatesCertificateTagOutput {
+	return i.ToCertificatesCertificateTagOutputWithContext(context.Background())
+}
+
+func (i CertificatesCertificateTagArgs) ToCertificatesCertificateTagOutputWithContext(ctx context.Context) CertificatesCertificateTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CertificatesCertificateTagOutput)
+}
+
+// CertificatesCertificateTagArrayInput is an input type that accepts CertificatesCertificateTagArray and CertificatesCertificateTagArrayOutput values.
+// You can construct a concrete instance of `CertificatesCertificateTagArrayInput` via:
+//
+//	CertificatesCertificateTagArray{ CertificatesCertificateTagArgs{...} }
+type CertificatesCertificateTagArrayInput interface {
+	pulumi.Input
+
+	ToCertificatesCertificateTagArrayOutput() CertificatesCertificateTagArrayOutput
+	ToCertificatesCertificateTagArrayOutputWithContext(context.Context) CertificatesCertificateTagArrayOutput
+}
+
+type CertificatesCertificateTagArray []CertificatesCertificateTagInput
+
+func (CertificatesCertificateTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CertificatesCertificateTag)(nil)).Elem()
+}
+
+func (i CertificatesCertificateTagArray) ToCertificatesCertificateTagArrayOutput() CertificatesCertificateTagArrayOutput {
+	return i.ToCertificatesCertificateTagArrayOutputWithContext(context.Background())
+}
+
+func (i CertificatesCertificateTagArray) ToCertificatesCertificateTagArrayOutputWithContext(ctx context.Context) CertificatesCertificateTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CertificatesCertificateTagArrayOutput)
+}
+
+type CertificatesCertificateTagOutput struct{ *pulumi.OutputState }
+
+func (CertificatesCertificateTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CertificatesCertificateTag)(nil)).Elem()
+}
+
+func (o CertificatesCertificateTagOutput) ToCertificatesCertificateTagOutput() CertificatesCertificateTagOutput {
+	return o
+}
+
+func (o CertificatesCertificateTagOutput) ToCertificatesCertificateTagOutputWithContext(ctx context.Context) CertificatesCertificateTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o CertificatesCertificateTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v CertificatesCertificateTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o CertificatesCertificateTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v CertificatesCertificateTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type CertificatesCertificateTagArrayOutput struct{ *pulumi.OutputState }
+
+func (CertificatesCertificateTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CertificatesCertificateTag)(nil)).Elem()
+}
+
+func (o CertificatesCertificateTagArrayOutput) ToCertificatesCertificateTagArrayOutput() CertificatesCertificateTagArrayOutput {
+	return o
+}
+
+func (o CertificatesCertificateTagArrayOutput) ToCertificatesCertificateTagArrayOutputWithContext(ctx context.Context) CertificatesCertificateTagArrayOutput {
+	return o
+}
+
+func (o CertificatesCertificateTagArrayOutput) Index(i pulumi.IntInput) CertificatesCertificateTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CertificatesCertificateTag {
+		return vs[0].([]CertificatesCertificateTag)[vs[1].(int)]
+	}).(CertificatesCertificateTagOutput)
+}
+
+type CertificatesTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// CertificatesTagInput is an input type that accepts CertificatesTagArgs and CertificatesTagOutput values.
+// You can construct a concrete instance of `CertificatesTagInput` via:
+//
+//	CertificatesTagArgs{...}
+type CertificatesTagInput interface {
+	pulumi.Input
+
+	ToCertificatesTagOutput() CertificatesTagOutput
+	ToCertificatesTagOutputWithContext(context.Context) CertificatesTagOutput
+}
+
+type CertificatesTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (CertificatesTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CertificatesTag)(nil)).Elem()
+}
+
+func (i CertificatesTagArgs) ToCertificatesTagOutput() CertificatesTagOutput {
+	return i.ToCertificatesTagOutputWithContext(context.Background())
+}
+
+func (i CertificatesTagArgs) ToCertificatesTagOutputWithContext(ctx context.Context) CertificatesTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CertificatesTagOutput)
+}
+
+// CertificatesTagArrayInput is an input type that accepts CertificatesTagArray and CertificatesTagArrayOutput values.
+// You can construct a concrete instance of `CertificatesTagArrayInput` via:
+//
+//	CertificatesTagArray{ CertificatesTagArgs{...} }
+type CertificatesTagArrayInput interface {
+	pulumi.Input
+
+	ToCertificatesTagArrayOutput() CertificatesTagArrayOutput
+	ToCertificatesTagArrayOutputWithContext(context.Context) CertificatesTagArrayOutput
+}
+
+type CertificatesTagArray []CertificatesTagInput
+
+func (CertificatesTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CertificatesTag)(nil)).Elem()
+}
+
+func (i CertificatesTagArray) ToCertificatesTagArrayOutput() CertificatesTagArrayOutput {
+	return i.ToCertificatesTagArrayOutputWithContext(context.Background())
+}
+
+func (i CertificatesTagArray) ToCertificatesTagArrayOutputWithContext(ctx context.Context) CertificatesTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CertificatesTagArrayOutput)
+}
+
+type CertificatesTagOutput struct{ *pulumi.OutputState }
+
+func (CertificatesTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CertificatesTag)(nil)).Elem()
+}
+
+func (o CertificatesTagOutput) ToCertificatesTagOutput() CertificatesTagOutput {
+	return o
+}
+
+func (o CertificatesTagOutput) ToCertificatesTagOutputWithContext(ctx context.Context) CertificatesTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o CertificatesTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v CertificatesTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o CertificatesTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v CertificatesTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type CertificatesTagArrayOutput struct{ *pulumi.OutputState }
+
+func (CertificatesTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CertificatesTag)(nil)).Elem()
+}
+
+func (o CertificatesTagArrayOutput) ToCertificatesTagArrayOutput() CertificatesTagArrayOutput {
+	return o
+}
+
+func (o CertificatesTagArrayOutput) ToCertificatesTagArrayOutputWithContext(ctx context.Context) CertificatesTagArrayOutput {
+	return o
+}
+
+func (o CertificatesTagArrayOutput) Index(i pulumi.IntInput) CertificatesTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CertificatesTag {
+		return vs[0].([]CertificatesTag)[vs[1].(int)]
+	}).(CertificatesTagOutput)
+}
+
+type ClbEipBillingConfig struct {
+	// The peek bandwidth of the EIP which automatically assigned to CLB. The value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
+	Bandwidth *int `pulumi:"bandwidth"`
+	// The billing type of the EIP which automatically assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.When creating a `PrePaid` public CLB, this field must be specified as `PrePaid` simultaneously.When the LoadBalancerBillingType changes from `PostPaid` to `PrePaid`, please manually modify the value of this field to `PrePaid` simultaneously.
+	EipBillingType string `pulumi:"eipBillingType"`
+	// The ISP of the EIP which automatically associated to CLB, the value can be `BGP`.
+	Isp string `pulumi:"isp"`
+}
+
+// ClbEipBillingConfigInput is an input type that accepts ClbEipBillingConfigArgs and ClbEipBillingConfigOutput values.
+// You can construct a concrete instance of `ClbEipBillingConfigInput` via:
+//
+//	ClbEipBillingConfigArgs{...}
+type ClbEipBillingConfigInput interface {
+	pulumi.Input
+
+	ToClbEipBillingConfigOutput() ClbEipBillingConfigOutput
+	ToClbEipBillingConfigOutputWithContext(context.Context) ClbEipBillingConfigOutput
+}
+
+type ClbEipBillingConfigArgs struct {
+	// The peek bandwidth of the EIP which automatically assigned to CLB. The value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
+	Bandwidth pulumi.IntPtrInput `pulumi:"bandwidth"`
+	// The billing type of the EIP which automatically assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.When creating a `PrePaid` public CLB, this field must be specified as `PrePaid` simultaneously.When the LoadBalancerBillingType changes from `PostPaid` to `PrePaid`, please manually modify the value of this field to `PrePaid` simultaneously.
+	EipBillingType pulumi.StringInput `pulumi:"eipBillingType"`
+	// The ISP of the EIP which automatically associated to CLB, the value can be `BGP`.
+	Isp pulumi.StringInput `pulumi:"isp"`
+}
+
+func (ClbEipBillingConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClbEipBillingConfig)(nil)).Elem()
+}
+
+func (i ClbEipBillingConfigArgs) ToClbEipBillingConfigOutput() ClbEipBillingConfigOutput {
+	return i.ToClbEipBillingConfigOutputWithContext(context.Background())
+}
+
+func (i ClbEipBillingConfigArgs) ToClbEipBillingConfigOutputWithContext(ctx context.Context) ClbEipBillingConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClbEipBillingConfigOutput)
+}
+
+func (i ClbEipBillingConfigArgs) ToClbEipBillingConfigPtrOutput() ClbEipBillingConfigPtrOutput {
+	return i.ToClbEipBillingConfigPtrOutputWithContext(context.Background())
+}
+
+func (i ClbEipBillingConfigArgs) ToClbEipBillingConfigPtrOutputWithContext(ctx context.Context) ClbEipBillingConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClbEipBillingConfigOutput).ToClbEipBillingConfigPtrOutputWithContext(ctx)
+}
+
+// ClbEipBillingConfigPtrInput is an input type that accepts ClbEipBillingConfigArgs, ClbEipBillingConfigPtr and ClbEipBillingConfigPtrOutput values.
+// You can construct a concrete instance of `ClbEipBillingConfigPtrInput` via:
+//
+//	        ClbEipBillingConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type ClbEipBillingConfigPtrInput interface {
+	pulumi.Input
+
+	ToClbEipBillingConfigPtrOutput() ClbEipBillingConfigPtrOutput
+	ToClbEipBillingConfigPtrOutputWithContext(context.Context) ClbEipBillingConfigPtrOutput
+}
+
+type clbEipBillingConfigPtrType ClbEipBillingConfigArgs
+
+func ClbEipBillingConfigPtr(v *ClbEipBillingConfigArgs) ClbEipBillingConfigPtrInput {
+	return (*clbEipBillingConfigPtrType)(v)
+}
+
+func (*clbEipBillingConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClbEipBillingConfig)(nil)).Elem()
+}
+
+func (i *clbEipBillingConfigPtrType) ToClbEipBillingConfigPtrOutput() ClbEipBillingConfigPtrOutput {
+	return i.ToClbEipBillingConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *clbEipBillingConfigPtrType) ToClbEipBillingConfigPtrOutputWithContext(ctx context.Context) ClbEipBillingConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClbEipBillingConfigPtrOutput)
+}
+
+type ClbEipBillingConfigOutput struct{ *pulumi.OutputState }
+
+func (ClbEipBillingConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClbEipBillingConfig)(nil)).Elem()
+}
+
+func (o ClbEipBillingConfigOutput) ToClbEipBillingConfigOutput() ClbEipBillingConfigOutput {
+	return o
+}
+
+func (o ClbEipBillingConfigOutput) ToClbEipBillingConfigOutputWithContext(ctx context.Context) ClbEipBillingConfigOutput {
+	return o
+}
+
+func (o ClbEipBillingConfigOutput) ToClbEipBillingConfigPtrOutput() ClbEipBillingConfigPtrOutput {
+	return o.ToClbEipBillingConfigPtrOutputWithContext(context.Background())
+}
+
+func (o ClbEipBillingConfigOutput) ToClbEipBillingConfigPtrOutputWithContext(ctx context.Context) ClbEipBillingConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClbEipBillingConfig) *ClbEipBillingConfig {
+		return &v
+	}).(ClbEipBillingConfigPtrOutput)
+}
+
+// The peek bandwidth of the EIP which automatically assigned to CLB. The value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
+func (o ClbEipBillingConfigOutput) Bandwidth() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ClbEipBillingConfig) *int { return v.Bandwidth }).(pulumi.IntPtrOutput)
+}
+
+// The billing type of the EIP which automatically assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.When creating a `PrePaid` public CLB, this field must be specified as `PrePaid` simultaneously.When the LoadBalancerBillingType changes from `PostPaid` to `PrePaid`, please manually modify the value of this field to `PrePaid` simultaneously.
+func (o ClbEipBillingConfigOutput) EipBillingType() pulumi.StringOutput {
+	return o.ApplyT(func(v ClbEipBillingConfig) string { return v.EipBillingType }).(pulumi.StringOutput)
+}
+
+// The ISP of the EIP which automatically associated to CLB, the value can be `BGP`.
+func (o ClbEipBillingConfigOutput) Isp() pulumi.StringOutput {
+	return o.ApplyT(func(v ClbEipBillingConfig) string { return v.Isp }).(pulumi.StringOutput)
+}
+
+type ClbEipBillingConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (ClbEipBillingConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClbEipBillingConfig)(nil)).Elem()
+}
+
+func (o ClbEipBillingConfigPtrOutput) ToClbEipBillingConfigPtrOutput() ClbEipBillingConfigPtrOutput {
+	return o
+}
+
+func (o ClbEipBillingConfigPtrOutput) ToClbEipBillingConfigPtrOutputWithContext(ctx context.Context) ClbEipBillingConfigPtrOutput {
+	return o
+}
+
+func (o ClbEipBillingConfigPtrOutput) Elem() ClbEipBillingConfigOutput {
+	return o.ApplyT(func(v *ClbEipBillingConfig) ClbEipBillingConfig {
+		if v != nil {
+			return *v
+		}
+		var ret ClbEipBillingConfig
+		return ret
+	}).(ClbEipBillingConfigOutput)
+}
+
+// The peek bandwidth of the EIP which automatically assigned to CLB. The value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
+func (o ClbEipBillingConfigPtrOutput) Bandwidth() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ClbEipBillingConfig) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Bandwidth
+	}).(pulumi.IntPtrOutput)
+}
+
+// The billing type of the EIP which automatically assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.When creating a `PrePaid` public CLB, this field must be specified as `PrePaid` simultaneously.When the LoadBalancerBillingType changes from `PostPaid` to `PrePaid`, please manually modify the value of this field to `PrePaid` simultaneously.
+func (o ClbEipBillingConfigPtrOutput) EipBillingType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClbEipBillingConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.EipBillingType
+	}).(pulumi.StringPtrOutput)
+}
+
+// The ISP of the EIP which automatically associated to CLB, the value can be `BGP`.
+func (o ClbEipBillingConfigPtrOutput) Isp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClbEipBillingConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Isp
+	}).(pulumi.StringPtrOutput)
 }
 
 type ClbTag struct {
@@ -570,15 +1072,20 @@ type ClbsClb struct {
 	// The description of the Clb.
 	Description string `pulumi:"description"`
 	// The Eip address of the Clb.
-	EipAddress string `pulumi:"eipAddress"`
+	EipAddress        string                    `pulumi:"eipAddress"`
+	EipBillingConfigs []ClbsClbEipBillingConfig `pulumi:"eipBillingConfigs"`
 	// The Eip ID of the Clb.
 	EipId string `pulumi:"eipId"`
 	// The private ip address of the Clb.
 	EniAddress string `pulumi:"eniAddress"`
 	// The Eni ID of the Clb.
 	EniId string `pulumi:"eniId"`
+	// The expired time of the CLB.
+	ExpiredTime string `pulumi:"expiredTime"`
 	// The ID of the Clb.
 	Id string `pulumi:"id"`
+	// The billing status of the CLB.
+	InstanceStatus int `pulumi:"instanceStatus"`
 	// The billing type of the Clb.
 	LoadBalancerBillingType string `pulumi:"loadBalancerBillingType"`
 	// The ID of the Clb.
@@ -595,10 +1102,20 @@ type ClbsClb struct {
 	ModificationProtectionReason string `pulumi:"modificationProtectionReason"`
 	// The modification protection status of the Clb.
 	ModificationProtectionStatus string `pulumi:"modificationProtectionStatus"`
+	// The over reclaim time of the CLB.
+	OverdueReclaimTime string `pulumi:"overdueReclaimTime"`
 	// The overdue time of the Clb.
 	OverdueTime string `pulumi:"overdueTime"`
 	// The ProjectName of Clb.
 	ProjectName string `pulumi:"projectName"`
+	// The reclaim time of the CLB.
+	ReclaimTime string `pulumi:"reclaimTime"`
+	// The remain renew times of the CLB. When the value of the renewType is `AutoRenew`, the query returns this field.
+	RemainRenewTimes int `pulumi:"remainRenewTimes"`
+	// The renew period times of the CLB. When the value of the renewType is `AutoRenew`, the query returns this field.
+	RenewPeriodTimes int `pulumi:"renewPeriodTimes"`
+	// The renew type of the CLB. When the value of the loadBalancerBillingType is `PrePaid`, the query returns this field.
+	RenewType string `pulumi:"renewType"`
 	// The slave zone ID of the CLB.
 	SlaveZoneId string `pulumi:"slaveZoneId"`
 	// The status of the Clb.
@@ -636,15 +1153,20 @@ type ClbsClbArgs struct {
 	// The description of the Clb.
 	Description pulumi.StringInput `pulumi:"description"`
 	// The Eip address of the Clb.
-	EipAddress pulumi.StringInput `pulumi:"eipAddress"`
+	EipAddress        pulumi.StringInput                `pulumi:"eipAddress"`
+	EipBillingConfigs ClbsClbEipBillingConfigArrayInput `pulumi:"eipBillingConfigs"`
 	// The Eip ID of the Clb.
 	EipId pulumi.StringInput `pulumi:"eipId"`
 	// The private ip address of the Clb.
 	EniAddress pulumi.StringInput `pulumi:"eniAddress"`
 	// The Eni ID of the Clb.
 	EniId pulumi.StringInput `pulumi:"eniId"`
+	// The expired time of the CLB.
+	ExpiredTime pulumi.StringInput `pulumi:"expiredTime"`
 	// The ID of the Clb.
 	Id pulumi.StringInput `pulumi:"id"`
+	// The billing status of the CLB.
+	InstanceStatus pulumi.IntInput `pulumi:"instanceStatus"`
 	// The billing type of the Clb.
 	LoadBalancerBillingType pulumi.StringInput `pulumi:"loadBalancerBillingType"`
 	// The ID of the Clb.
@@ -661,10 +1183,20 @@ type ClbsClbArgs struct {
 	ModificationProtectionReason pulumi.StringInput `pulumi:"modificationProtectionReason"`
 	// The modification protection status of the Clb.
 	ModificationProtectionStatus pulumi.StringInput `pulumi:"modificationProtectionStatus"`
+	// The over reclaim time of the CLB.
+	OverdueReclaimTime pulumi.StringInput `pulumi:"overdueReclaimTime"`
 	// The overdue time of the Clb.
 	OverdueTime pulumi.StringInput `pulumi:"overdueTime"`
 	// The ProjectName of Clb.
 	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The reclaim time of the CLB.
+	ReclaimTime pulumi.StringInput `pulumi:"reclaimTime"`
+	// The remain renew times of the CLB. When the value of the renewType is `AutoRenew`, the query returns this field.
+	RemainRenewTimes pulumi.IntInput `pulumi:"remainRenewTimes"`
+	// The renew period times of the CLB. When the value of the renewType is `AutoRenew`, the query returns this field.
+	RenewPeriodTimes pulumi.IntInput `pulumi:"renewPeriodTimes"`
+	// The renew type of the CLB. When the value of the loadBalancerBillingType is `PrePaid`, the query returns this field.
+	RenewType pulumi.StringInput `pulumi:"renewType"`
 	// The slave zone ID of the CLB.
 	SlaveZoneId pulumi.StringInput `pulumi:"slaveZoneId"`
 	// The status of the Clb.
@@ -757,6 +1289,10 @@ func (o ClbsClbOutput) EipAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v ClbsClb) string { return v.EipAddress }).(pulumi.StringOutput)
 }
 
+func (o ClbsClbOutput) EipBillingConfigs() ClbsClbEipBillingConfigArrayOutput {
+	return o.ApplyT(func(v ClbsClb) []ClbsClbEipBillingConfig { return v.EipBillingConfigs }).(ClbsClbEipBillingConfigArrayOutput)
+}
+
 // The Eip ID of the Clb.
 func (o ClbsClbOutput) EipId() pulumi.StringOutput {
 	return o.ApplyT(func(v ClbsClb) string { return v.EipId }).(pulumi.StringOutput)
@@ -772,9 +1308,19 @@ func (o ClbsClbOutput) EniId() pulumi.StringOutput {
 	return o.ApplyT(func(v ClbsClb) string { return v.EniId }).(pulumi.StringOutput)
 }
 
+// The expired time of the CLB.
+func (o ClbsClbOutput) ExpiredTime() pulumi.StringOutput {
+	return o.ApplyT(func(v ClbsClb) string { return v.ExpiredTime }).(pulumi.StringOutput)
+}
+
 // The ID of the Clb.
 func (o ClbsClbOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v ClbsClb) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The billing status of the CLB.
+func (o ClbsClbOutput) InstanceStatus() pulumi.IntOutput {
+	return o.ApplyT(func(v ClbsClb) int { return v.InstanceStatus }).(pulumi.IntOutput)
 }
 
 // The billing type of the Clb.
@@ -817,6 +1363,11 @@ func (o ClbsClbOutput) ModificationProtectionStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v ClbsClb) string { return v.ModificationProtectionStatus }).(pulumi.StringOutput)
 }
 
+// The over reclaim time of the CLB.
+func (o ClbsClbOutput) OverdueReclaimTime() pulumi.StringOutput {
+	return o.ApplyT(func(v ClbsClb) string { return v.OverdueReclaimTime }).(pulumi.StringOutput)
+}
+
 // The overdue time of the Clb.
 func (o ClbsClbOutput) OverdueTime() pulumi.StringOutput {
 	return o.ApplyT(func(v ClbsClb) string { return v.OverdueTime }).(pulumi.StringOutput)
@@ -825,6 +1376,26 @@ func (o ClbsClbOutput) OverdueTime() pulumi.StringOutput {
 // The ProjectName of Clb.
 func (o ClbsClbOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v ClbsClb) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The reclaim time of the CLB.
+func (o ClbsClbOutput) ReclaimTime() pulumi.StringOutput {
+	return o.ApplyT(func(v ClbsClb) string { return v.ReclaimTime }).(pulumi.StringOutput)
+}
+
+// The remain renew times of the CLB. When the value of the renewType is `AutoRenew`, the query returns this field.
+func (o ClbsClbOutput) RemainRenewTimes() pulumi.IntOutput {
+	return o.ApplyT(func(v ClbsClb) int { return v.RemainRenewTimes }).(pulumi.IntOutput)
+}
+
+// The renew period times of the CLB. When the value of the renewType is `AutoRenew`, the query returns this field.
+func (o ClbsClbOutput) RenewPeriodTimes() pulumi.IntOutput {
+	return o.ApplyT(func(v ClbsClb) int { return v.RenewPeriodTimes }).(pulumi.IntOutput)
+}
+
+// The renew type of the CLB. When the value of the loadBalancerBillingType is `PrePaid`, the query returns this field.
+func (o ClbsClbOutput) RenewType() pulumi.StringOutput {
+	return o.ApplyT(func(v ClbsClb) string { return v.RenewType }).(pulumi.StringOutput)
 }
 
 // The slave zone ID of the CLB.
@@ -880,6 +1451,112 @@ func (o ClbsClbArrayOutput) Index(i pulumi.IntInput) ClbsClbOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClbsClb {
 		return vs[0].([]ClbsClb)[vs[1].(int)]
 	}).(ClbsClbOutput)
+}
+
+type ClbsClbEipBillingConfig struct {
+	Bandwidth      int    `pulumi:"bandwidth"`
+	EipBillingType string `pulumi:"eipBillingType"`
+	Isp            string `pulumi:"isp"`
+}
+
+// ClbsClbEipBillingConfigInput is an input type that accepts ClbsClbEipBillingConfigArgs and ClbsClbEipBillingConfigOutput values.
+// You can construct a concrete instance of `ClbsClbEipBillingConfigInput` via:
+//
+//	ClbsClbEipBillingConfigArgs{...}
+type ClbsClbEipBillingConfigInput interface {
+	pulumi.Input
+
+	ToClbsClbEipBillingConfigOutput() ClbsClbEipBillingConfigOutput
+	ToClbsClbEipBillingConfigOutputWithContext(context.Context) ClbsClbEipBillingConfigOutput
+}
+
+type ClbsClbEipBillingConfigArgs struct {
+	Bandwidth      pulumi.IntInput    `pulumi:"bandwidth"`
+	EipBillingType pulumi.StringInput `pulumi:"eipBillingType"`
+	Isp            pulumi.StringInput `pulumi:"isp"`
+}
+
+func (ClbsClbEipBillingConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClbsClbEipBillingConfig)(nil)).Elem()
+}
+
+func (i ClbsClbEipBillingConfigArgs) ToClbsClbEipBillingConfigOutput() ClbsClbEipBillingConfigOutput {
+	return i.ToClbsClbEipBillingConfigOutputWithContext(context.Background())
+}
+
+func (i ClbsClbEipBillingConfigArgs) ToClbsClbEipBillingConfigOutputWithContext(ctx context.Context) ClbsClbEipBillingConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClbsClbEipBillingConfigOutput)
+}
+
+// ClbsClbEipBillingConfigArrayInput is an input type that accepts ClbsClbEipBillingConfigArray and ClbsClbEipBillingConfigArrayOutput values.
+// You can construct a concrete instance of `ClbsClbEipBillingConfigArrayInput` via:
+//
+//	ClbsClbEipBillingConfigArray{ ClbsClbEipBillingConfigArgs{...} }
+type ClbsClbEipBillingConfigArrayInput interface {
+	pulumi.Input
+
+	ToClbsClbEipBillingConfigArrayOutput() ClbsClbEipBillingConfigArrayOutput
+	ToClbsClbEipBillingConfigArrayOutputWithContext(context.Context) ClbsClbEipBillingConfigArrayOutput
+}
+
+type ClbsClbEipBillingConfigArray []ClbsClbEipBillingConfigInput
+
+func (ClbsClbEipBillingConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClbsClbEipBillingConfig)(nil)).Elem()
+}
+
+func (i ClbsClbEipBillingConfigArray) ToClbsClbEipBillingConfigArrayOutput() ClbsClbEipBillingConfigArrayOutput {
+	return i.ToClbsClbEipBillingConfigArrayOutputWithContext(context.Background())
+}
+
+func (i ClbsClbEipBillingConfigArray) ToClbsClbEipBillingConfigArrayOutputWithContext(ctx context.Context) ClbsClbEipBillingConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClbsClbEipBillingConfigArrayOutput)
+}
+
+type ClbsClbEipBillingConfigOutput struct{ *pulumi.OutputState }
+
+func (ClbsClbEipBillingConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClbsClbEipBillingConfig)(nil)).Elem()
+}
+
+func (o ClbsClbEipBillingConfigOutput) ToClbsClbEipBillingConfigOutput() ClbsClbEipBillingConfigOutput {
+	return o
+}
+
+func (o ClbsClbEipBillingConfigOutput) ToClbsClbEipBillingConfigOutputWithContext(ctx context.Context) ClbsClbEipBillingConfigOutput {
+	return o
+}
+
+func (o ClbsClbEipBillingConfigOutput) Bandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v ClbsClbEipBillingConfig) int { return v.Bandwidth }).(pulumi.IntOutput)
+}
+
+func (o ClbsClbEipBillingConfigOutput) EipBillingType() pulumi.StringOutput {
+	return o.ApplyT(func(v ClbsClbEipBillingConfig) string { return v.EipBillingType }).(pulumi.StringOutput)
+}
+
+func (o ClbsClbEipBillingConfigOutput) Isp() pulumi.StringOutput {
+	return o.ApplyT(func(v ClbsClbEipBillingConfig) string { return v.Isp }).(pulumi.StringOutput)
+}
+
+type ClbsClbEipBillingConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (ClbsClbEipBillingConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClbsClbEipBillingConfig)(nil)).Elem()
+}
+
+func (o ClbsClbEipBillingConfigArrayOutput) ToClbsClbEipBillingConfigArrayOutput() ClbsClbEipBillingConfigArrayOutput {
+	return o
+}
+
+func (o ClbsClbEipBillingConfigArrayOutput) ToClbsClbEipBillingConfigArrayOutputWithContext(ctx context.Context) ClbsClbEipBillingConfigArrayOutput {
+	return o
+}
+
+func (o ClbsClbEipBillingConfigArrayOutput) Index(i pulumi.IntInput) ClbsClbEipBillingConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClbsClbEipBillingConfig {
+		return vs[0].([]ClbsClbEipBillingConfig)[vs[1].(int)]
+	}).(ClbsClbEipBillingConfigOutput)
 }
 
 type ClbsClbTag struct {
@@ -1109,6 +1786,10 @@ type ListenerHealthCheck struct {
 	Method *string `pulumi:"method"`
 	// The response timeout of health check, default 2, range in 1~60..
 	Timeout *int `pulumi:"timeout"`
+	// The UDP expect of health check. This field must be specified simultaneously with field `udpRequest`.
+	UdpExpect *string `pulumi:"udpExpect"`
+	// The UDP request of health check. This field must be specified simultaneously with field `udpExpect`.
+	UdpRequest *string `pulumi:"udpRequest"`
 	// The unhealthy threshold of health check, default 3, range in 2~10.
 	UnHealthyThreshold *int `pulumi:"unHealthyThreshold"`
 	// The uri of health check.
@@ -1141,6 +1822,10 @@ type ListenerHealthCheckArgs struct {
 	Method pulumi.StringPtrInput `pulumi:"method"`
 	// The response timeout of health check, default 2, range in 1~60..
 	Timeout pulumi.IntPtrInput `pulumi:"timeout"`
+	// The UDP expect of health check. This field must be specified simultaneously with field `udpRequest`.
+	UdpExpect pulumi.StringPtrInput `pulumi:"udpExpect"`
+	// The UDP request of health check. This field must be specified simultaneously with field `udpExpect`.
+	UdpRequest pulumi.StringPtrInput `pulumi:"udpRequest"`
 	// The unhealthy threshold of health check, default 3, range in 2~10.
 	UnHealthyThreshold pulumi.IntPtrInput `pulumi:"unHealthyThreshold"`
 	// The uri of health check.
@@ -1259,6 +1944,16 @@ func (o ListenerHealthCheckOutput) Timeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ListenerHealthCheck) *int { return v.Timeout }).(pulumi.IntPtrOutput)
 }
 
+// The UDP expect of health check. This field must be specified simultaneously with field `udpRequest`.
+func (o ListenerHealthCheckOutput) UdpExpect() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListenerHealthCheck) *string { return v.UdpExpect }).(pulumi.StringPtrOutput)
+}
+
+// The UDP request of health check. This field must be specified simultaneously with field `udpExpect`.
+func (o ListenerHealthCheckOutput) UdpRequest() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListenerHealthCheck) *string { return v.UdpRequest }).(pulumi.StringPtrOutput)
+}
+
 // The unhealthy threshold of health check, default 3, range in 2~10.
 func (o ListenerHealthCheckOutput) UnHealthyThreshold() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ListenerHealthCheck) *int { return v.UnHealthyThreshold }).(pulumi.IntPtrOutput)
@@ -1361,6 +2056,26 @@ func (o ListenerHealthCheckPtrOutput) Timeout() pulumi.IntPtrOutput {
 		}
 		return v.Timeout
 	}).(pulumi.IntPtrOutput)
+}
+
+// The UDP expect of health check. This field must be specified simultaneously with field `udpRequest`.
+func (o ListenerHealthCheckPtrOutput) UdpExpect() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListenerHealthCheck) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UdpExpect
+	}).(pulumi.StringPtrOutput)
+}
+
+// The UDP request of health check. This field must be specified simultaneously with field `udpExpect`.
+func (o ListenerHealthCheckPtrOutput) UdpRequest() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListenerHealthCheck) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UdpRequest
+	}).(pulumi.StringPtrOutput)
 }
 
 // The unhealthy threshold of health check, default 3, range in 2~10.
@@ -2348,12 +3063,22 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AclAclEntryArrayInput)(nil)).Elem(), AclAclEntryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AclsAclInput)(nil)).Elem(), AclsAclArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AclsAclArrayInput)(nil)).Elem(), AclsAclArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CertificateTagInput)(nil)).Elem(), CertificateTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CertificateTagArrayInput)(nil)).Elem(), CertificateTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CertificatesCertificateInput)(nil)).Elem(), CertificatesCertificateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CertificatesCertificateArrayInput)(nil)).Elem(), CertificatesCertificateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CertificatesCertificateTagInput)(nil)).Elem(), CertificatesCertificateTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CertificatesCertificateTagArrayInput)(nil)).Elem(), CertificatesCertificateTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CertificatesTagInput)(nil)).Elem(), CertificatesTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CertificatesTagArrayInput)(nil)).Elem(), CertificatesTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClbEipBillingConfigInput)(nil)).Elem(), ClbEipBillingConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClbEipBillingConfigPtrInput)(nil)).Elem(), ClbEipBillingConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClbTagInput)(nil)).Elem(), ClbTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClbTagArrayInput)(nil)).Elem(), ClbTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClbsClbInput)(nil)).Elem(), ClbsClbArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClbsClbArrayInput)(nil)).Elem(), ClbsClbArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClbsClbEipBillingConfigInput)(nil)).Elem(), ClbsClbEipBillingConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClbsClbEipBillingConfigArrayInput)(nil)).Elem(), ClbsClbEipBillingConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClbsClbTagInput)(nil)).Elem(), ClbsClbTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClbsClbTagArrayInput)(nil)).Elem(), ClbsClbTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClbsTagInput)(nil)).Elem(), ClbsTagArgs{})
@@ -2376,12 +3101,22 @@ func init() {
 	pulumi.RegisterOutputType(AclAclEntryArrayOutput{})
 	pulumi.RegisterOutputType(AclsAclOutput{})
 	pulumi.RegisterOutputType(AclsAclArrayOutput{})
+	pulumi.RegisterOutputType(CertificateTagOutput{})
+	pulumi.RegisterOutputType(CertificateTagArrayOutput{})
 	pulumi.RegisterOutputType(CertificatesCertificateOutput{})
 	pulumi.RegisterOutputType(CertificatesCertificateArrayOutput{})
+	pulumi.RegisterOutputType(CertificatesCertificateTagOutput{})
+	pulumi.RegisterOutputType(CertificatesCertificateTagArrayOutput{})
+	pulumi.RegisterOutputType(CertificatesTagOutput{})
+	pulumi.RegisterOutputType(CertificatesTagArrayOutput{})
+	pulumi.RegisterOutputType(ClbEipBillingConfigOutput{})
+	pulumi.RegisterOutputType(ClbEipBillingConfigPtrOutput{})
 	pulumi.RegisterOutputType(ClbTagOutput{})
 	pulumi.RegisterOutputType(ClbTagArrayOutput{})
 	pulumi.RegisterOutputType(ClbsClbOutput{})
 	pulumi.RegisterOutputType(ClbsClbArrayOutput{})
+	pulumi.RegisterOutputType(ClbsClbEipBillingConfigOutput{})
+	pulumi.RegisterOutputType(ClbsClbEipBillingConfigArrayOutput{})
 	pulumi.RegisterOutputType(ClbsClbTagOutput{})
 	pulumi.RegisterOutputType(ClbsClbTagArrayOutput{})
 	pulumi.RegisterOutputType(ClbsTagOutput{})

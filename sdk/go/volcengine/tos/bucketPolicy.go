@@ -21,8 +21,8 @@ import (
 //
 //	"encoding/json"
 //
-//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/tos"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/tos"
 //
 // )
 //

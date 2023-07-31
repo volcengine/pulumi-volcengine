@@ -19,59 +19,77 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/ecs"
-//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/vpc"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			foo, err := vpc.NewVpc(ctx, "foo", &vpc.VpcArgs{
-//				VpcName:   pulumi.String("tf-test-2"),
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
 //				CidrBlock: pulumi.String("172.16.0.0/16"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			foo1Subnet, err := vpc.NewSubnet(ctx, "foo1Subnet", &vpc.SubnetArgs{
-//				SubnetName: pulumi.String("subnet-test-1"),
-//				CidrBlock:  pulumi.String("172.16.1.0/24"),
-//				ZoneId:     pulumi.String("cn-beijing-a"),
-//				VpcId:      foo.ID(),
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			foo1SecurityGroup, err := vpc.NewSecurityGroup(ctx, "foo1SecurityGroup", &vpc.SecurityGroupArgs{
-//				VpcId: foo.ID(),
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				foo1Subnet,
-//			}))
+//			fooSecurityGroup, err := vpc.NewSecurityGroup(ctx, "fooSecurityGroup", &vpc.SecurityGroupArgs{
+//				SecurityGroupName: pulumi.String("acc-test-security-group"),
+//				VpcId:             fooVpc.ID(),
+//			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = ecs.NewInstance(ctx, "default", &ecs.InstanceArgs{
-//				ImageId:            pulumi.String("image-aagd56zrw2jtdro3bnrl"),
+//			fooImages, err := ecs.Images(ctx, &ecs.ImagesArgs{
+//				OsType:         pulumi.StringRef("Linux"),
+//				Visibility:     pulumi.StringRef("public"),
+//				InstanceTypeId: pulumi.StringRef("ecs.g1.large"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ecs.NewInstance(ctx, "fooInstance", &ecs.InstanceArgs{
+//				InstanceName:       pulumi.String("acc-test-ecs"),
+//				Description:        pulumi.String("acc-test"),
+//				HostName:           pulumi.String("tf-acc-test"),
+//				ImageId:            pulumi.String(fooImages.Images[0].ImageId),
 //				InstanceType:       pulumi.String("ecs.g1.large"),
-//				InstanceName:       pulumi.String("xym-tf-test-2"),
-//				Description:        pulumi.String("xym-tf-test-desc-1"),
 //				Password:           pulumi.String("93f0cb0614Aab12"),
 //				InstanceChargeType: pulumi.String("PostPaid"),
-//				SystemVolumeType:   pulumi.String("PTSSD"),
-//				SystemVolumeSize:   pulumi.Int(60),
-//				SubnetId:           foo1Subnet.ID(),
-//				SecurityGroupIds: pulumi.StringArray{
-//					foo1SecurityGroup.ID(),
-//				},
+//				SystemVolumeType:   pulumi.String("ESSD_PL0"),
+//				SystemVolumeSize:   pulumi.Int(40),
 //				DataVolumes: ecs.InstanceDataVolumeArray{
 //					&ecs.InstanceDataVolumeArgs{
-//						VolumeType:         pulumi.String("PTSSD"),
-//						Size:               pulumi.Int(100),
+//						VolumeType:         pulumi.String("ESSD_PL0"),
+//						Size:               pulumi.Int(50),
 //						DeleteWithInstance: pulumi.Bool(true),
 //					},
 //				},
-//				DeploymentSetId:  pulumi.String(""),
-//				Ipv6AddressCount: pulumi.Int(1),
+//				SubnetId: fooSubnet.ID(),
+//				SecurityGroupIds: pulumi.StringArray{
+//					fooSecurityGroup.ID(),
+//				},
+//				ProjectName: pulumi.String("default"),
+//				Tags: ecs.InstanceTagArray{
+//					&ecs.InstanceTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -98,6 +116,8 @@ type Instance struct {
 	AutoRenew pulumi.BoolPtrOutput `pulumi:"autoRenew"`
 	// The auto renew period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	AutoRenewPeriod pulumi.IntPtrOutput `pulumi:"autoRenewPeriod"`
+	// The option of cpu.
+	CpuOptions InstanceCpuOptionsOutput `pulumi:"cpuOptions"`
 	// The number of ECS instance CPU cores.
 	Cpus pulumi.IntOutput `pulumi:"cpus"`
 	// The create time of ECS instance.
@@ -105,7 +125,7 @@ type Instance struct {
 	// The data volumes collection of  ECS instance.
 	DataVolumes InstanceDataVolumeArrayOutput `pulumi:"dataVolumes"`
 	// The ID of Ecs Deployment Set.
-	DeploymentSetId pulumi.StringPtrOutput `pulumi:"deploymentSetId"`
+	DeploymentSetId pulumi.StringOutput `pulumi:"deploymentSetId"`
 	// The description of ECS instance.
 	Description pulumi.StringOutput `pulumi:"description"`
 	// The GPU device info of Instance.
@@ -173,7 +193,7 @@ type Instance struct {
 	SubnetId pulumi.StringOutput `pulumi:"subnetId"`
 	// The ID of system volume.
 	SystemVolumeId pulumi.StringOutput `pulumi:"systemVolumeId"`
-	// The size of system volume.
+	// The size of system volume. The value range of the system volume size is ESSD_PL0: 20~2048, ESSD_FlexPL: 20~2048, PTSSD: 10~500.
 	SystemVolumeSize pulumi.IntOutput `pulumi:"systemVolumeSize"`
 	// The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
 	SystemVolumeType pulumi.StringOutput `pulumi:"systemVolumeType"`
@@ -240,6 +260,8 @@ type instanceState struct {
 	AutoRenew *bool `pulumi:"autoRenew"`
 	// The auto renew period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	AutoRenewPeriod *int `pulumi:"autoRenewPeriod"`
+	// The option of cpu.
+	CpuOptions *InstanceCpuOptions `pulumi:"cpuOptions"`
 	// The number of ECS instance CPU cores.
 	Cpus *int `pulumi:"cpus"`
 	// The create time of ECS instance.
@@ -315,7 +337,7 @@ type instanceState struct {
 	SubnetId *string `pulumi:"subnetId"`
 	// The ID of system volume.
 	SystemVolumeId *string `pulumi:"systemVolumeId"`
-	// The size of system volume.
+	// The size of system volume. The value range of the system volume size is ESSD_PL0: 20~2048, ESSD_FlexPL: 20~2048, PTSSD: 10~500.
 	SystemVolumeSize *int `pulumi:"systemVolumeSize"`
 	// The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
 	SystemVolumeType *string `pulumi:"systemVolumeType"`
@@ -336,6 +358,8 @@ type InstanceState struct {
 	AutoRenew pulumi.BoolPtrInput
 	// The auto renew period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	AutoRenewPeriod pulumi.IntPtrInput
+	// The option of cpu.
+	CpuOptions InstanceCpuOptionsPtrInput
 	// The number of ECS instance CPU cores.
 	Cpus pulumi.IntPtrInput
 	// The create time of ECS instance.
@@ -411,7 +435,7 @@ type InstanceState struct {
 	SubnetId pulumi.StringPtrInput
 	// The ID of system volume.
 	SystemVolumeId pulumi.StringPtrInput
-	// The size of system volume.
+	// The size of system volume. The value range of the system volume size is ESSD_PL0: 20~2048, ESSD_FlexPL: 20~2048, PTSSD: 10~500.
 	SystemVolumeSize pulumi.IntPtrInput
 	// The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
 	SystemVolumeType pulumi.StringPtrInput
@@ -436,6 +460,8 @@ type instanceArgs struct {
 	AutoRenew *bool `pulumi:"autoRenew"`
 	// The auto renew period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	AutoRenewPeriod *int `pulumi:"autoRenewPeriod"`
+	// The option of cpu.
+	CpuOptions *InstanceCpuOptions `pulumi:"cpuOptions"`
 	// The data volumes collection of  ECS instance.
 	DataVolumes []InstanceDataVolume `pulumi:"dataVolumes"`
 	// The ID of Ecs Deployment Set.
@@ -483,7 +509,7 @@ type instanceArgs struct {
 	SpotStrategy *string `pulumi:"spotStrategy"`
 	// The subnet ID of primary networkInterface.
 	SubnetId string `pulumi:"subnetId"`
-	// The size of system volume.
+	// The size of system volume. The value range of the system volume size is ESSD_PL0: 20~2048, ESSD_FlexPL: 20~2048, PTSSD: 10~500.
 	SystemVolumeSize int `pulumi:"systemVolumeSize"`
 	// The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
 	SystemVolumeType string `pulumi:"systemVolumeType"`
@@ -501,6 +527,8 @@ type InstanceArgs struct {
 	AutoRenew pulumi.BoolPtrInput
 	// The auto renew period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	AutoRenewPeriod pulumi.IntPtrInput
+	// The option of cpu.
+	CpuOptions InstanceCpuOptionsPtrInput
 	// The data volumes collection of  ECS instance.
 	DataVolumes InstanceDataVolumeArrayInput
 	// The ID of Ecs Deployment Set.
@@ -548,7 +576,7 @@ type InstanceArgs struct {
 	SpotStrategy pulumi.StringPtrInput
 	// The subnet ID of primary networkInterface.
 	SubnetId pulumi.StringInput
-	// The size of system volume.
+	// The size of system volume. The value range of the system volume size is ESSD_PL0: 20~2048, ESSD_FlexPL: 20~2048, PTSSD: 10~500.
 	SystemVolumeSize pulumi.IntInput
 	// The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
 	SystemVolumeType pulumi.StringInput
@@ -657,6 +685,11 @@ func (o InstanceOutput) AutoRenewPeriod() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Instance) pulumi.IntPtrOutput { return v.AutoRenewPeriod }).(pulumi.IntPtrOutput)
 }
 
+// The option of cpu.
+func (o InstanceOutput) CpuOptions() InstanceCpuOptionsOutput {
+	return o.ApplyT(func(v *Instance) InstanceCpuOptionsOutput { return v.CpuOptions }).(InstanceCpuOptionsOutput)
+}
+
 // The number of ECS instance CPU cores.
 func (o InstanceOutput) Cpus() pulumi.IntOutput {
 	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.Cpus }).(pulumi.IntOutput)
@@ -673,8 +706,8 @@ func (o InstanceOutput) DataVolumes() InstanceDataVolumeArrayOutput {
 }
 
 // The ID of Ecs Deployment Set.
-func (o InstanceOutput) DeploymentSetId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.DeploymentSetId }).(pulumi.StringPtrOutput)
+func (o InstanceOutput) DeploymentSetId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.DeploymentSetId }).(pulumi.StringOutput)
 }
 
 // The description of ECS instance.
@@ -840,7 +873,7 @@ func (o InstanceOutput) SystemVolumeId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.SystemVolumeId }).(pulumi.StringOutput)
 }
 
-// The size of system volume.
+// The size of system volume. The value range of the system volume size is ESSD_PL0: 20~2048, ESSD_FlexPL: 20~2048, PTSSD: 10~500.
 func (o InstanceOutput) SystemVolumeSize() pulumi.IntOutput {
 	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.SystemVolumeSize }).(pulumi.IntOutput)
 }

@@ -20,16 +20,16 @@ import (
 //
 //	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := ecs.Images(ctx, &ecs.ImagesArgs{
-//				Ids: []string{
-//					"image-cm9ssb4eqmhdas306zlp",
-//					"image-ybkzct2rtj4ay5rmlfc3",
-//				},
+//				InstanceTypeId: pulumi.StringRef("ecs.g1.large"),
+//				OsType:         pulumi.StringRef("Linux"),
+//				Visibility:     pulumi.StringRef("public"),
 //			}, nil)
 //			if err != nil {
 //				return err

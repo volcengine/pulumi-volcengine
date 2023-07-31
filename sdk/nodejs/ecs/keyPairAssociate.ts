@@ -10,17 +10,53 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as pulumi from "@volcengine/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultKeyPairAssociate = new volcengine.ecs.KeyPairAssociate("default", {
- *     instanceId: "i-ybskpw36rul8u1yekckh",
- *     keyPairId: "kp-ybvyy1e5msl8u258ovrv",
+ * const fooKeyPair = new volcengine.ecs.KeyPair("fooKeyPair", {
+ *     keyPairName: "acc-test-key-name",
+ *     description: "acc-test",
+ * });
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooImages = volcengine.ecs.Images({
+ *     osType: "Linux",
+ *     visibility: "public",
+ *     instanceTypeId: "ecs.g1.large",
+ * });
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
+ *     vpcId: fooVpc.id,
+ *     securityGroupName: "acc-test-security-group",
+ * });
+ * const fooInstance = new volcengine.ecs.Instance("fooInstance", {
+ *     imageId: fooImages.then(fooImages => fooImages.images?[0]?.imageId),
+ *     instanceType: "ecs.g1.large",
+ *     instanceName: "acc-test-ecs-name",
+ *     password: "your password",
+ *     instanceChargeType: "PostPaid",
+ *     systemVolumeType: "ESSD_PL0",
+ *     systemVolumeSize: 40,
+ *     subnetId: fooSubnet.id,
+ *     securityGroupIds: [fooSecurityGroup.id],
+ * });
+ * const fooKeyPairAssociate = new volcengine.ecs.KeyPairAssociate("fooKeyPairAssociate", {
+ *     instanceId: fooInstance.id,
+ *     keyPairId: fooKeyPair.id,
  * });
  * ```
  *
  * ## Import
  *
- * ECS key pair associate can be imported using the id, e.g.
+ * ECS key pair associate can be imported using the id, e.g. After binding the key pair, the instance needs to be restarted for the key pair to take effect. After the key pair is bound, the password login method will automatically become invalid. If your instance has been set for password login, after the key pair is bound, you will no longer be able to use the password login method.
  *
  * ```sh
  *  $ pulumi import volcengine:ecs/keyPairAssociate:KeyPairAssociate default kp-ybti5tkpkv2udbfolrft:i-mizl7m1kqccg5smt1bdpijuj

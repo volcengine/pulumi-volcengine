@@ -203,9 +203,9 @@ class KeyPair(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        default = volcengine.ecs.KeyPair("default",
-            description="tftest21111",
-            key_pair_name="tf-test-key-name1")
+        foo = volcengine.ecs.KeyPair("foo",
+            description="acc-test",
+            key_pair_name="acc-test-key-name")
         ```
 
         ## Import
@@ -237,9 +237,9 @@ class KeyPair(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        default = volcengine.ecs.KeyPair("default",
-            description="tftest21111",
-            key_pair_name="tf-test-key-name1")
+        foo = volcengine.ecs.KeyPair("foo",
+            description="acc-test",
+            key_pair_name="acc-test-key-name")
         ```
 
         ## Import

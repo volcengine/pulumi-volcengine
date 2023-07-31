@@ -21,7 +21,7 @@ class AssociateArgs:
         The set of arguments for constructing a Associate resource.
         :param pulumi.Input[str] allocation_id: The allocation id of the EIP.
         :param pulumi.Input[str] instance_id: The instance id which be associated to the EIP.
-        :param pulumi.Input[str] instance_type: The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
+        :param pulumi.Input[str] instance_type: The type of the associated instance,the value is `Nat` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
         :param pulumi.Input[str] private_ip_address: The private IP address of the instance will be associated to the EIP.
         """
         pulumi.set(__self__, "allocation_id", allocation_id)
@@ -58,7 +58,7 @@ class AssociateArgs:
     @pulumi.getter(name="instanceType")
     def instance_type(self) -> pulumi.Input[str]:
         """
-        The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
+        The type of the associated instance,the value is `Nat` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
         """
         return pulumi.get(self, "instance_type")
 
@@ -90,7 +90,7 @@ class _AssociateState:
         Input properties used for looking up and filtering Associate resources.
         :param pulumi.Input[str] allocation_id: The allocation id of the EIP.
         :param pulumi.Input[str] instance_id: The instance id which be associated to the EIP.
-        :param pulumi.Input[str] instance_type: The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
+        :param pulumi.Input[str] instance_type: The type of the associated instance,the value is `Nat` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
         :param pulumi.Input[str] private_ip_address: The private IP address of the instance will be associated to the EIP.
         """
         if allocation_id is not None:
@@ -130,7 +130,7 @@ class _AssociateState:
     @pulumi.getter(name="instanceType")
     def instance_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
+        The type of the associated instance,the value is `Nat` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
         """
         return pulumi.get(self, "instance_type")
 
@@ -169,9 +169,35 @@ class Associate(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.eip.Associate("foo",
-            allocation_id="eip-273ybrd0oeo007fap8t0nggtx",
-            instance_id="i-cm9tjw9zp9j942mfkczp",
+        foo_zones = volcengine.ecs.zones()
+        foo_images = volcengine.ecs.images(os_type="Linux",
+            visibility="public",
+            instance_type_id="ecs.g1.large")
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+            vpc_id=foo_vpc.id,
+            security_group_name="acc-test-security-group")
+        foo_instance = volcengine.ecs.Instance("fooInstance",
+            image_id=foo_images.images[0].image_id,
+            instance_type="ecs.g1.large",
+            instance_name="acc-test-ecs-name",
+            password="93f0cb0614Aab12",
+            instance_charge_type="PostPaid",
+            system_volume_type="ESSD_PL0",
+            system_volume_size=40,
+            subnet_id=foo_subnet.id,
+            security_group_ids=[foo_security_group.id])
+        foo_address = volcengine.eip.Address("fooAddress", billing_type="PostPaidByTraffic")
+        foo_associate = volcengine.eip.Associate("fooAssociate",
+            allocation_id=foo_address.id,
+            instance_id=foo_instance.id,
             instance_type="EcsInstance")
         ```
 
@@ -187,7 +213,7 @@ class Associate(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] allocation_id: The allocation id of the EIP.
         :param pulumi.Input[str] instance_id: The instance id which be associated to the EIP.
-        :param pulumi.Input[str] instance_type: The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
+        :param pulumi.Input[str] instance_type: The type of the associated instance,the value is `Nat` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
         :param pulumi.Input[str] private_ip_address: The private IP address of the instance will be associated to the EIP.
         """
         ...
@@ -204,9 +230,35 @@ class Associate(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.eip.Associate("foo",
-            allocation_id="eip-273ybrd0oeo007fap8t0nggtx",
-            instance_id="i-cm9tjw9zp9j942mfkczp",
+        foo_zones = volcengine.ecs.zones()
+        foo_images = volcengine.ecs.images(os_type="Linux",
+            visibility="public",
+            instance_type_id="ecs.g1.large")
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+            vpc_id=foo_vpc.id,
+            security_group_name="acc-test-security-group")
+        foo_instance = volcengine.ecs.Instance("fooInstance",
+            image_id=foo_images.images[0].image_id,
+            instance_type="ecs.g1.large",
+            instance_name="acc-test-ecs-name",
+            password="93f0cb0614Aab12",
+            instance_charge_type="PostPaid",
+            system_volume_type="ESSD_PL0",
+            system_volume_size=40,
+            subnet_id=foo_subnet.id,
+            security_group_ids=[foo_security_group.id])
+        foo_address = volcengine.eip.Address("fooAddress", billing_type="PostPaidByTraffic")
+        foo_associate = volcengine.eip.Associate("fooAssociate",
+            allocation_id=foo_address.id,
+            instance_id=foo_instance.id,
             instance_type="EcsInstance")
         ```
 
@@ -282,7 +334,7 @@ class Associate(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] allocation_id: The allocation id of the EIP.
         :param pulumi.Input[str] instance_id: The instance id which be associated to the EIP.
-        :param pulumi.Input[str] instance_type: The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
+        :param pulumi.Input[str] instance_type: The type of the associated instance,the value is `Nat` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
         :param pulumi.Input[str] private_ip_address: The private IP address of the instance will be associated to the EIP.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -315,7 +367,7 @@ class Associate(pulumi.CustomResource):
     @pulumi.getter(name="instanceType")
     def instance_type(self) -> pulumi.Output[str]:
         """
-        The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
+        The type of the associated instance,the value is `Nat` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
         """
         return pulumi.get(self, "instance_type")
 

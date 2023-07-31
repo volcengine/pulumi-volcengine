@@ -16,6 +16,9 @@ export * from "./grantInstance";
 export * from "./interRegionBandwidth";
 export * from "./interRegionBandwidths";
 export * from "./routeEntries";
+export * from "./routeEntry";
+export * from "./serviceRouteEntries";
+export * from "./serviceRouteEntry";
 
 // Import resources to register:
 import { AttachInstance } from "./attachInstance";
@@ -24,6 +27,8 @@ import { BandwidthPackageAssociate } from "./bandwidthPackageAssociate";
 import { Cen } from "./cen";
 import { GrantInstance } from "./grantInstance";
 import { InterRegionBandwidth } from "./interRegionBandwidth";
+import { RouteEntry } from "./routeEntry";
+import { ServiceRouteEntry } from "./serviceRouteEntry";
 
 const _module = {
     version: utilities.getVersion(),
@@ -41,6 +46,10 @@ const _module = {
                 return new GrantInstance(name, <any>undefined, { urn })
             case "volcengine:cen/interRegionBandwidth:InterRegionBandwidth":
                 return new InterRegionBandwidth(name, <any>undefined, { urn })
+            case "volcengine:cen/routeEntry:RouteEntry":
+                return new RouteEntry(name, <any>undefined, { urn })
+            case "volcengine:cen/serviceRouteEntry:ServiceRouteEntry":
+                return new ServiceRouteEntry(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -52,3 +61,5 @@ pulumi.runtime.registerResourceModule("volcengine", "cen/bandwidthPackageAssocia
 pulumi.runtime.registerResourceModule("volcengine", "cen/cen", _module)
 pulumi.runtime.registerResourceModule("volcengine", "cen/grantInstance", _module)
 pulumi.runtime.registerResourceModule("volcengine", "cen/interRegionBandwidth", _module)
+pulumi.runtime.registerResourceModule("volcengine", "cen/routeEntry", _module)
+pulumi.runtime.registerResourceModule("volcengine", "cen/serviceRouteEntry", _module)

@@ -19,17 +19,18 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ecs.NewDeploymentSet(ctx, "default", &ecs.DeploymentSetArgs{
-//				DeploymentSetName: pulumi.String("tf-test"),
-//				Description:       pulumi.String("test1"),
-//				Granularity:       pulumi.String("host"),
+//			_, err := ecs.NewDeploymentSet(ctx, "foo", &ecs.DeploymentSetArgs{
+//				DeploymentSetName: pulumi.String("acc-test-ecs-ds"),
+//				Description:       pulumi.String("acc-test"),
+//				Granularity:       pulumi.String("switch"),
+//				Strategy:          pulumi.String("Availability"),
 //			})
 //			if err != nil {
 //				return err

@@ -13,20 +13,33 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  *
  * const foo = new volcengine.autoscaling.ScalingConfiguration("foo", {
- *     eipBandwidth: 0,
+ *     eipBandwidth: 10,
  *     eipBillingType: "PostPaidByBandwidth",
  *     eipIsp: "ChinaMobile",
  *     hostName: "",
- *     imageId: "image-ybpbrfay1gl8j1srwwyz",
+ *     hpcClusterId: "",
+ *     imageId: "image-ycgud4t4hxgso0e27bdl",
  *     instanceDescription: "",
  *     instanceName: "tf-test",
- *     instanceTypes: ["ecs.g1.4xlarge"],
- *     keyPairName: "renhuaxi",
+ *     instanceTypes: ["ecs.g2i.large"],
+ *     keyPairName: "tf-keypair",
  *     password: "",
+ *     projectName: "default",
  *     scalingConfigurationName: "tf-test",
- *     scalingGroupId: "scg-ybru8pazhgl8j1di4tyd",
+ *     scalingGroupId: "scg-ycinx27x25gh9y31p0fy",
  *     securityEnhancementStrategy: "InActive",
- *     securityGroupIds: ["sg-2ff4fhdtlo8ao59gp67iiq9o3"],
+ *     securityGroupIds: ["sg-2fepz3c793g1s59gp67y21r34"],
+ *     spotStrategy: "NoSpot",
+ *     tags: [
+ *         {
+ *             key: "tf-key1",
+ *             value: "tf-value1",
+ *         },
+ *         {
+ *             key: "tf-key2",
+ *             value: "tf-value2",
+ *         },
+ *     ],
  *     userData: "IyEvYmluL2Jhc2gKZWNobyAidGVzdCI=",
  *     volumes: [
  *         {
@@ -84,7 +97,7 @@ export class ScalingConfiguration extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * The EIP bandwidth which the scaling configuration set.
+     * The EIP bandwidth which the scaling configuration set. When the value of Eip.BillingType is PostPaidByBandwidth, the value is 1 to 500. When the value of Eip.BillingType is PostPaidByTraffic, the value is 1 to 200.
      */
     public readonly eipBandwidth!: pulumi.Output<number>;
     /**
@@ -100,6 +113,10 @@ export class ScalingConfiguration extends pulumi.CustomResource {
      */
     public readonly hostName!: pulumi.Output<string | undefined>;
     /**
+     * The ID of the HPC cluster to which the instance belongs. Valid only when InstanceTypes.N specifies High Performance Computing GPU Type.
+     */
+    public readonly hpcClusterId!: pulumi.Output<string | undefined>;
+    /**
      * The ECS image id which the scaling configuration set.
      */
     public readonly imageId!: pulumi.Output<string>;
@@ -112,7 +129,7 @@ export class ScalingConfiguration extends pulumi.CustomResource {
      */
     public readonly instanceName!: pulumi.Output<string>;
     /**
-     * The list of the ECS instance type which the scaling configuration set.
+     * The list of the ECS instance type which the scaling configuration set. The maximum number of instance types is 10.
      */
     public readonly instanceTypes!: pulumi.Output<string[]>;
     /**
@@ -127,6 +144,10 @@ export class ScalingConfiguration extends pulumi.CustomResource {
      * The ECS password which the scaling configuration set.
      */
     public readonly password!: pulumi.Output<string | undefined>;
+    /**
+     * The project to which the instance created by the scaling configuration belongs.
+     */
+    public readonly projectName!: pulumi.Output<string | undefined>;
     /**
      * The id of the scaling configuration.
      */
@@ -144,9 +165,17 @@ export class ScalingConfiguration extends pulumi.CustomResource {
      */
     public readonly securityEnhancementStrategy!: pulumi.Output<string | undefined>;
     /**
-     * The list of the security group id of the networkInterface which the scaling configuration set.
+     * The list of the security group id of the networkInterface which the scaling configuration set. A maximum of 5 security groups can be bound at the same time, and the value ranges from 1 to 5.
      */
     public readonly securityGroupIds!: pulumi.Output<string[]>;
+    /**
+     * The preemption policy of the instance. Valid Value: NoSpot (default), SpotAsPriceGo.
+     */
+    public readonly spotStrategy!: pulumi.Output<string | undefined>;
+    /**
+     * The label of the instance created by the scaling configuration. Up to 20 tags are supported.
+     */
+    public readonly tags!: pulumi.Output<outputs.autoscaling.ScalingConfigurationTag[] | undefined>;
     /**
      * The create time of the scaling configuration.
      */
@@ -156,7 +185,7 @@ export class ScalingConfiguration extends pulumi.CustomResource {
      */
     public readonly userData!: pulumi.Output<string | undefined>;
     /**
-     * The list of volume of the scaling configuration.
+     * The list of volume of the scaling configuration. The number of supported volumes ranges from 1 to 15.
      */
     public readonly volumes!: pulumi.Output<outputs.autoscaling.ScalingConfigurationVolume[]>;
 
@@ -178,6 +207,7 @@ export class ScalingConfiguration extends pulumi.CustomResource {
             resourceInputs["eipBillingType"] = state ? state.eipBillingType : undefined;
             resourceInputs["eipIsp"] = state ? state.eipIsp : undefined;
             resourceInputs["hostName"] = state ? state.hostName : undefined;
+            resourceInputs["hpcClusterId"] = state ? state.hpcClusterId : undefined;
             resourceInputs["imageId"] = state ? state.imageId : undefined;
             resourceInputs["instanceDescription"] = state ? state.instanceDescription : undefined;
             resourceInputs["instanceName"] = state ? state.instanceName : undefined;
@@ -185,11 +215,14 @@ export class ScalingConfiguration extends pulumi.CustomResource {
             resourceInputs["keyPairName"] = state ? state.keyPairName : undefined;
             resourceInputs["lifecycleState"] = state ? state.lifecycleState : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["scalingConfigurationId"] = state ? state.scalingConfigurationId : undefined;
             resourceInputs["scalingConfigurationName"] = state ? state.scalingConfigurationName : undefined;
             resourceInputs["scalingGroupId"] = state ? state.scalingGroupId : undefined;
             resourceInputs["securityEnhancementStrategy"] = state ? state.securityEnhancementStrategy : undefined;
             resourceInputs["securityGroupIds"] = state ? state.securityGroupIds : undefined;
+            resourceInputs["spotStrategy"] = state ? state.spotStrategy : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
             resourceInputs["userData"] = state ? state.userData : undefined;
             resourceInputs["volumes"] = state ? state.volumes : undefined;
@@ -220,16 +253,20 @@ export class ScalingConfiguration extends pulumi.CustomResource {
             resourceInputs["eipBillingType"] = args ? args.eipBillingType : undefined;
             resourceInputs["eipIsp"] = args ? args.eipIsp : undefined;
             resourceInputs["hostName"] = args ? args.hostName : undefined;
+            resourceInputs["hpcClusterId"] = args ? args.hpcClusterId : undefined;
             resourceInputs["imageId"] = args ? args.imageId : undefined;
             resourceInputs["instanceDescription"] = args ? args.instanceDescription : undefined;
             resourceInputs["instanceName"] = args ? args.instanceName : undefined;
             resourceInputs["instanceTypes"] = args ? args.instanceTypes : undefined;
             resourceInputs["keyPairName"] = args ? args.keyPairName : undefined;
             resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["scalingConfigurationName"] = args ? args.scalingConfigurationName : undefined;
             resourceInputs["scalingGroupId"] = args ? args.scalingGroupId : undefined;
             resourceInputs["securityEnhancementStrategy"] = args ? args.securityEnhancementStrategy : undefined;
             resourceInputs["securityGroupIds"] = args ? args.securityGroupIds : undefined;
+            resourceInputs["spotStrategy"] = args ? args.spotStrategy : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["userData"] = args ? args.userData : undefined;
             resourceInputs["volumes"] = args ? args.volumes : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
@@ -251,7 +288,7 @@ export interface ScalingConfigurationState {
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * The EIP bandwidth which the scaling configuration set.
+     * The EIP bandwidth which the scaling configuration set. When the value of Eip.BillingType is PostPaidByBandwidth, the value is 1 to 500. When the value of Eip.BillingType is PostPaidByTraffic, the value is 1 to 200.
      */
     eipBandwidth?: pulumi.Input<number>;
     /**
@@ -267,6 +304,10 @@ export interface ScalingConfigurationState {
      */
     hostName?: pulumi.Input<string>;
     /**
+     * The ID of the HPC cluster to which the instance belongs. Valid only when InstanceTypes.N specifies High Performance Computing GPU Type.
+     */
+    hpcClusterId?: pulumi.Input<string>;
+    /**
      * The ECS image id which the scaling configuration set.
      */
     imageId?: pulumi.Input<string>;
@@ -279,7 +320,7 @@ export interface ScalingConfigurationState {
      */
     instanceName?: pulumi.Input<string>;
     /**
-     * The list of the ECS instance type which the scaling configuration set.
+     * The list of the ECS instance type which the scaling configuration set. The maximum number of instance types is 10.
      */
     instanceTypes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -294,6 +335,10 @@ export interface ScalingConfigurationState {
      * The ECS password which the scaling configuration set.
      */
     password?: pulumi.Input<string>;
+    /**
+     * The project to which the instance created by the scaling configuration belongs.
+     */
+    projectName?: pulumi.Input<string>;
     /**
      * The id of the scaling configuration.
      */
@@ -311,9 +356,17 @@ export interface ScalingConfigurationState {
      */
     securityEnhancementStrategy?: pulumi.Input<string>;
     /**
-     * The list of the security group id of the networkInterface which the scaling configuration set.
+     * The list of the security group id of the networkInterface which the scaling configuration set. A maximum of 5 security groups can be bound at the same time, and the value ranges from 1 to 5.
      */
     securityGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The preemption policy of the instance. Valid Value: NoSpot (default), SpotAsPriceGo.
+     */
+    spotStrategy?: pulumi.Input<string>;
+    /**
+     * The label of the instance created by the scaling configuration. Up to 20 tags are supported.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.autoscaling.ScalingConfigurationTag>[]>;
     /**
      * The create time of the scaling configuration.
      */
@@ -323,7 +376,7 @@ export interface ScalingConfigurationState {
      */
     userData?: pulumi.Input<string>;
     /**
-     * The list of volume of the scaling configuration.
+     * The list of volume of the scaling configuration. The number of supported volumes ranges from 1 to 15.
      */
     volumes?: pulumi.Input<pulumi.Input<inputs.autoscaling.ScalingConfigurationVolume>[]>;
 }
@@ -333,7 +386,7 @@ export interface ScalingConfigurationState {
  */
 export interface ScalingConfigurationArgs {
     /**
-     * The EIP bandwidth which the scaling configuration set.
+     * The EIP bandwidth which the scaling configuration set. When the value of Eip.BillingType is PostPaidByBandwidth, the value is 1 to 500. When the value of Eip.BillingType is PostPaidByTraffic, the value is 1 to 200.
      */
     eipBandwidth?: pulumi.Input<number>;
     /**
@@ -349,6 +402,10 @@ export interface ScalingConfigurationArgs {
      */
     hostName?: pulumi.Input<string>;
     /**
+     * The ID of the HPC cluster to which the instance belongs. Valid only when InstanceTypes.N specifies High Performance Computing GPU Type.
+     */
+    hpcClusterId?: pulumi.Input<string>;
+    /**
      * The ECS image id which the scaling configuration set.
      */
     imageId: pulumi.Input<string>;
@@ -361,7 +418,7 @@ export interface ScalingConfigurationArgs {
      */
     instanceName: pulumi.Input<string>;
     /**
-     * The list of the ECS instance type which the scaling configuration set.
+     * The list of the ECS instance type which the scaling configuration set. The maximum number of instance types is 10.
      */
     instanceTypes: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -372,6 +429,10 @@ export interface ScalingConfigurationArgs {
      * The ECS password which the scaling configuration set.
      */
     password?: pulumi.Input<string>;
+    /**
+     * The project to which the instance created by the scaling configuration belongs.
+     */
+    projectName?: pulumi.Input<string>;
     /**
      * The name of the scaling configuration.
      */
@@ -385,15 +446,23 @@ export interface ScalingConfigurationArgs {
      */
     securityEnhancementStrategy?: pulumi.Input<string>;
     /**
-     * The list of the security group id of the networkInterface which the scaling configuration set.
+     * The list of the security group id of the networkInterface which the scaling configuration set. A maximum of 5 security groups can be bound at the same time, and the value ranges from 1 to 5.
      */
     securityGroupIds: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The preemption policy of the instance. Valid Value: NoSpot (default), SpotAsPriceGo.
+     */
+    spotStrategy?: pulumi.Input<string>;
+    /**
+     * The label of the instance created by the scaling configuration. Up to 20 tags are supported.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.autoscaling.ScalingConfigurationTag>[]>;
     /**
      * The ECS user data which the scaling configuration set.
      */
     userData?: pulumi.Input<string>;
     /**
-     * The list of volume of the scaling configuration.
+     * The list of volume of the scaling configuration. The number of supported volumes ranges from 1 to 15.
      */
     volumes: pulumi.Input<pulumi.Input<inputs.autoscaling.ScalingConfigurationVolume>[]>;
 }

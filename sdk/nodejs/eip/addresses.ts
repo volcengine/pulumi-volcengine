@@ -11,11 +11,13 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as pulumi from "@volcengine/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultAddresses = pulumi.output(volcengine.eip.Addresses({
- *     ids: ["eip-2748mbpjqzhfk7fap8teu0k1a"],
- * }));
+ * const fooAddress = new volcengine.eip.Address("fooAddress", {billingType: "PostPaidByTraffic"});
+ * const fooAddresses = volcengine.eip.AddressesOutput({
+ *     ids: [fooAddress.id],
+ * });
  * ```
  */
 export function addresses(args?: AddressesArgs, opts?: pulumi.InvokeOptions): Promise<AddressesResult> {

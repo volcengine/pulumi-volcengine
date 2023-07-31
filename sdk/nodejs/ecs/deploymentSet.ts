@@ -12,10 +12,11 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultDeploymentSet = new volcengine.ecs.DeploymentSet("default", {
- *     deploymentSetName: "tf-test",
- *     description: "test1",
- *     granularity: "host",
+ * const foo = new volcengine.ecs.DeploymentSet("foo", {
+ *     deploymentSetName: "acc-test-ecs-ds",
+ *     description: "acc-test",
+ *     granularity: "switch",
+ *     strategy: "Availability",
  * });
  * ```
  *

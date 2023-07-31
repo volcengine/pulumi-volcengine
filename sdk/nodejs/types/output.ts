@@ -91,13 +91,24 @@ export namespace autoscaling {
         status: string;
     }
 
+    export interface ScalingConfigurationTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface ScalingConfigurationVolume {
         /**
          * The delete with instance flag of volume. Valid values: true, false. Default value: true.
          */
         deleteWithInstance?: boolean;
         /**
-         * The size of volume.
+         * The size of volume. System disk value range: 10 - 500. The value range of the data disk: 10 - 8192.
          */
         size: number;
         /**
@@ -128,6 +139,10 @@ export namespace autoscaling {
          */
         hostName: string;
         /**
+         * The ID of the HPC cluster to which the instance belongs. Valid only when InstanceTypes.N specifies High Performance Computing GPU Type.
+         */
+        hpcClusterId: string;
+        /**
          * The id of the scaling configuration.
          */
         id: string;
@@ -156,6 +171,10 @@ export namespace autoscaling {
          */
         lifecycleState: string;
         /**
+         * The project to which the instance created by the scaling configuration belongs.
+         */
+        projectName: string;
+        /**
          * The id of the scaling configuration.
          */
         scalingConfigurationId: string;
@@ -176,6 +195,14 @@ export namespace autoscaling {
          */
         securityGroupIds: string[];
         /**
+         * The preemption policy of the instance. Valid Value: NoSpot (default), SpotAsPriceGo.
+         */
+        spotStrategy: string;
+        /**
+         * The label of the instance created by the scaling configuration.
+         */
+        tags: outputs.autoscaling.ScalingConfigurationsScalingConfigurationTag[];
+        /**
          * The create time of the scaling configuration.
          */
         updatedAt: string;
@@ -187,6 +214,17 @@ export namespace autoscaling {
          * The list of volume of the scaling configuration.
          */
         volumes: outputs.autoscaling.ScalingConfigurationsScalingConfigurationVolume[];
+    }
+
+    export interface ScalingConfigurationsScalingConfigurationTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface ScalingConfigurationsScalingConfigurationVolume {
@@ -207,7 +245,7 @@ export namespace autoscaling {
     export interface ScalingGroupServerGroupAttribute {
         loadBalancerId: string;
         /**
-         * The port receiving request of the server group.
+         * The port receiving request of the server group. Value range: 1 ~ 65535.
          */
         port: number;
         /**
@@ -215,9 +253,20 @@ export namespace autoscaling {
          */
         serverGroupId: string;
         /**
-         * The weight of the instance.
+         * The weight of the instance. Value range: 0 ~ 100.
          */
         weight: number;
+    }
+
+    export interface ScalingGroupTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface ScalingGroupsScalingGroup {
@@ -274,6 +323,10 @@ export namespace autoscaling {
          */
         multiAzPolicy: string;
         /**
+         * The ProjectName of scaling group.
+         */
+        projectName: string;
+        /**
          * The id of the scaling group.
          */
         scalingGroupId: string;
@@ -289,6 +342,10 @@ export namespace autoscaling {
          * The list of the subnet id to which the ENI is connected.
          */
         subnetIds: string[];
+        /**
+         * Tags.
+         */
+        tags: outputs.autoscaling.ScalingGroupsScalingGroupTag[];
         /**
          * The total instance count of the scaling group.
          */
@@ -320,6 +377,17 @@ export namespace autoscaling {
          * The weight of the instance.
          */
         weight: number;
+    }
+
+    export interface ScalingGroupsScalingGroupTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface ScalingInstancesScalingInstance {
@@ -677,6 +745,10 @@ export namespace cen {
          */
         peerGeographicRegionSetId: string;
         /**
+         * The ProjectName of the cen bandwidth package.
+         */
+        projectName: string;
+        /**
          * The remain bandwidth of the cen bandwidth package.
          */
         remainingBandwidth: number;
@@ -756,6 +828,10 @@ export namespace cen {
          * The ID of the cen.
          */
         id: string;
+        /**
+         * The ProjectName of the cen instance.
+         */
+        projectName: string;
         /**
          * The status of the cen.
          */
@@ -866,6 +942,75 @@ export namespace cen {
         status: string;
     }
 
+    export interface ServiceRouteEntriesServiceRouteEntry {
+        /**
+         * A cen ID.
+         */
+        cenId: string;
+        /**
+         * The create time of the cen service route entry.
+         */
+        creationTime: string;
+        /**
+         * The description of the cen service route entry.
+         */
+        description: string;
+        /**
+         * A destination cidr block.
+         */
+        destinationCidrBlock: string;
+        /**
+         * Publishing scope of cloud service access routes. Valid values are `LocalDCGW`(default), `Custom`.
+         */
+        publishMode: string;
+        /**
+         * The publish instances. A maximum of 100 can be uploaded in one request.
+         */
+        publishToInstances: outputs.cen.ServiceRouteEntriesServiceRouteEntryPublishToInstance[];
+        /**
+         * A service region id.
+         */
+        serviceRegionId: string;
+        /**
+         * A service VPC id.
+         */
+        serviceVpcId: string;
+        /**
+         * The status of the cen service route entry.
+         */
+        status: string;
+    }
+
+    export interface ServiceRouteEntriesServiceRouteEntryPublishToInstance {
+        /**
+         * Cloud service access routes need to publish the network instance ID.
+         */
+        instanceId: string;
+        /**
+         * The region where the cloud service access route needs to be published.
+         */
+        instanceRegionId: string;
+        /**
+         * The network instance type that needs to be published for cloud service access routes. The values are as follows: `VPC`, `DCGW`.
+         */
+        instanceType: string;
+    }
+
+    export interface ServiceRouteEntryPublishToInstance {
+        /**
+         * Cloud service access routes need to publish the network instance ID.
+         */
+        instanceId?: string;
+        /**
+         * The region where the cloud service access route needs to be published.
+         */
+        instanceRegionId?: string;
+        /**
+         * The network instance type that needs to be published for cloud service access routes. The values are as follows: `VPC`, `DCGW`.
+         */
+        instanceType?: string;
+    }
+
 }
 
 export namespace clb {
@@ -919,6 +1064,17 @@ export namespace clb {
         updateTime: string;
     }
 
+    export interface CertificateTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface CertificatesCertificate {
         /**
          * The ID of the Certificate.
@@ -956,6 +1112,47 @@ export namespace clb {
          * The ProjectName of Certificate.
          */
         projectName: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.clb.CertificatesCertificateTag[];
+    }
+
+    export interface CertificatesCertificateTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface CertificatesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface ClbEipBillingConfig {
+        /**
+         * The peek bandwidth of the EIP which automatically assigned to CLB. The value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
+         */
+        bandwidth: number;
+        /**
+         * The billing type of the EIP which automatically assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.When creating a `PrePaid` public CLB, this field must be specified as `PrePaid` simultaneously.When the LoadBalancerBillingType changes from `PostPaid` to `PrePaid`, please manually modify the value of this field to `PrePaid` simultaneously.
+         */
+        eipBillingType: string;
+        /**
+         * The ISP of the EIP which automatically associated to CLB, the value can be `BGP`.
+         */
+        isp: string;
     }
 
     export interface ClbTag {
@@ -990,6 +1187,7 @@ export namespace clb {
          * The Eip address of the Clb.
          */
         eipAddress: string;
+        eipBillingConfigs: outputs.clb.ClbsClbEipBillingConfig[];
         /**
          * The Eip ID of the Clb.
          */
@@ -1003,9 +1201,17 @@ export namespace clb {
          */
         eniId: string;
         /**
+         * The expired time of the CLB.
+         */
+        expiredTime: string;
+        /**
          * The ID of the Clb.
          */
         id: string;
+        /**
+         * The billing status of the CLB.
+         */
+        instanceStatus: number;
         /**
          * The billing type of the Clb.
          */
@@ -1039,6 +1245,10 @@ export namespace clb {
          */
         modificationProtectionStatus: string;
         /**
+         * The over reclaim time of the CLB.
+         */
+        overdueReclaimTime: string;
+        /**
          * The overdue time of the Clb.
          */
         overdueTime: string;
@@ -1046,6 +1256,22 @@ export namespace clb {
          * The ProjectName of Clb.
          */
         projectName: string;
+        /**
+         * The reclaim time of the CLB.
+         */
+        reclaimTime: string;
+        /**
+         * The remain renew times of the CLB. When the value of the renewType is `AutoRenew`, the query returns this field.
+         */
+        remainRenewTimes: number;
+        /**
+         * The renew period times of the CLB. When the value of the renewType is `AutoRenew`, the query returns this field.
+         */
+        renewPeriodTimes: number;
+        /**
+         * The renew type of the CLB. When the value of the loadBalancerBillingType is `PrePaid`, the query returns this field.
+         */
+        renewType: string;
         /**
          * The slave zone ID of the CLB.
          */
@@ -1074,6 +1300,12 @@ export namespace clb {
          * The id of the VPC.
          */
         vpcId: string;
+    }
+
+    export interface ClbsClbEipBillingConfig {
+        bandwidth: number;
+        eipBillingType: string;
+        isp: string;
     }
 
     export interface ClbsClbTag {
@@ -1127,6 +1359,14 @@ export namespace clb {
          * The response timeout of health check, default 2, range in 1~60..
          */
         timeout?: number;
+        /**
+         * The UDP expect of health check. This field must be specified simultaneously with field `udpRequest`.
+         */
+        udpExpect?: string;
+        /**
+         * The UDP request of health check. This field must be specified simultaneously with field `udpExpect`.
+         */
+        udpRequest?: string;
         /**
          * The unhealthy threshold of health check, default 3, range in 2~10.
          */
@@ -1805,13 +2045,20 @@ export namespace ecs {
         visibility: string;
     }
 
+    export interface InstanceCpuOptions {
+        /**
+         * The per core of threads.
+         */
+        threadsPerCore: number;
+    }
+
     export interface InstanceDataVolume {
         /**
          * The delete with instance flag of volume.
          */
         deleteWithInstance?: boolean;
         /**
-         * The size of volume.
+         * The size of volume. The value range of the data volume size is ESSD_PL0: 10~32768, ESSD_FlexPL: 10~32768, PTSSD: 20~8192.
          */
         size: number;
         /**
@@ -6363,6 +6610,12 @@ export namespace redis {
         value: string;
     }
 
+    export interface PitrTimeWindowsPeriod {
+        endTime: string;
+        instanceId: string;
+        startTime: string;
+    }
+
     export interface RegionsRegion {
         /**
          * Target region info.
@@ -10736,16 +10989,16 @@ export namespace vpc {
          */
         networkAclEntryName?: string;
         /**
-         * The policy of entry.
+         * The policy of entry. Default is `accept`. The value can be `accept` or `drop`.
          */
         policy?: string;
         /**
-         * The port of entry.
+         * The port of entry. Default is `-1/-1`. When Protocol is `all`, `icmp` or `gre`, the port range is `-1/-1`, which means no port restriction.When the Protocol is `tcp` or `udp`, the port range is `1~65535`, and the format is `1/200`, `80/80`,which means port 1 to port 200, port 80.
          */
         port?: string;
         priority: number;
         /**
-         * The protocol of entry.
+         * The protocol of entry. The value can be `icmp` or `gre` or `tcp` or `udp` or `all`. Default is `all`.
          */
         protocol?: string;
     }
@@ -10761,16 +11014,16 @@ export namespace vpc {
          */
         networkAclEntryName?: string;
         /**
-         * The policy of entry.
+         * The policy of entry, default is `accept`. The value can be `accept` or `drop`.
          */
         policy?: string;
         /**
-         * The port of entry.
+         * The port of entry. Default is `-1/-1`. When Protocol is `all`, `icmp` or `gre`, the port range is `-1/-1`, which means no port restriction. When the Protocol is `tcp` or `udp`, the port range is `1~65535`, and the format is `1/200`, `80/80`, which means port 1 to port 200, port 80.
          */
         port?: string;
         priority: number;
         /**
-         * The protocol of entry.
+         * The protocol of entry, default is `all`. The value can be `icmp` or `gre` or `tcp` or `udp` or `all`.
          */
         protocol?: string;
         /**

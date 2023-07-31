@@ -23,6 +23,7 @@ class InstanceArgs:
                  system_volume_type: pulumi.Input[str],
                  auto_renew: Optional[pulumi.Input[bool]] = None,
                  auto_renew_period: Optional[pulumi.Input[int]] = None,
+                 cpu_options: Optional[pulumi.Input['InstanceCpuOptionsArgs']] = None,
                  data_volumes: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceDataVolumeArgs']]]] = None,
                  deployment_set_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
@@ -50,10 +51,11 @@ class InstanceArgs:
         :param pulumi.Input[str] instance_type: The instance type of ECS instance.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The security group ID set of primary networkInterface.
         :param pulumi.Input[str] subnet_id: The subnet ID of primary networkInterface.
-        :param pulumi.Input[int] system_volume_size: The size of system volume.
+        :param pulumi.Input[int] system_volume_size: The size of system volume. The value range of the system volume size is ESSD_PL0: 20~2048, ESSD_FlexPL: 20~2048, PTSSD: 10~500.
         :param pulumi.Input[str] system_volume_type: The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         :param pulumi.Input[bool] auto_renew: The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[int] auto_renew_period: The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input['InstanceCpuOptionsArgs'] cpu_options: The option of cpu.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceDataVolumeArgs']]] data_volumes: The data volumes collection of  ECS instance.
         :param pulumi.Input[str] deployment_set_id: The ID of Ecs Deployment Set.
         :param pulumi.Input[str] description: The description of ECS instance.
@@ -89,6 +91,8 @@ class InstanceArgs:
             pulumi.set(__self__, "auto_renew", auto_renew)
         if auto_renew_period is not None:
             pulumi.set(__self__, "auto_renew_period", auto_renew_period)
+        if cpu_options is not None:
+            pulumi.set(__self__, "cpu_options", cpu_options)
         if data_volumes is not None:
             pulumi.set(__self__, "data_volumes", data_volumes)
         if deployment_set_id is not None:
@@ -184,7 +188,7 @@ class InstanceArgs:
     @pulumi.getter(name="systemVolumeSize")
     def system_volume_size(self) -> pulumi.Input[int]:
         """
-        The size of system volume.
+        The size of system volume. The value range of the system volume size is ESSD_PL0: 20~2048, ESSD_FlexPL: 20~2048, PTSSD: 10~500.
         """
         return pulumi.get(self, "system_volume_size")
 
@@ -227,6 +231,18 @@ class InstanceArgs:
     @auto_renew_period.setter
     def auto_renew_period(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "auto_renew_period", value)
+
+    @property
+    @pulumi.getter(name="cpuOptions")
+    def cpu_options(self) -> Optional[pulumi.Input['InstanceCpuOptionsArgs']]:
+        """
+        The option of cpu.
+        """
+        return pulumi.get(self, "cpu_options")
+
+    @cpu_options.setter
+    def cpu_options(self, value: Optional[pulumi.Input['InstanceCpuOptionsArgs']]):
+        pulumi.set(self, "cpu_options", value)
 
     @property
     @pulumi.getter(name="dataVolumes")
@@ -489,6 +505,7 @@ class _InstanceState:
     def __init__(__self__, *,
                  auto_renew: Optional[pulumi.Input[bool]] = None,
                  auto_renew_period: Optional[pulumi.Input[int]] = None,
+                 cpu_options: Optional[pulumi.Input['InstanceCpuOptionsArgs']] = None,
                  cpus: Optional[pulumi.Input[int]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  data_volumes: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceDataVolumeArgs']]]] = None,
@@ -536,6 +553,7 @@ class _InstanceState:
         Input properties used for looking up and filtering Instance resources.
         :param pulumi.Input[bool] auto_renew: The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[int] auto_renew_period: The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input['InstanceCpuOptionsArgs'] cpu_options: The option of cpu.
         :param pulumi.Input[int] cpus: The number of ECS instance CPU cores.
         :param pulumi.Input[str] created_at: The create time of ECS instance.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceDataVolumeArgs']]] data_volumes: The data volumes collection of  ECS instance.
@@ -575,7 +593,7 @@ class _InstanceState:
         :param pulumi.Input[str] stopped_mode: The stop mode of ECS instance.
         :param pulumi.Input[str] subnet_id: The subnet ID of primary networkInterface.
         :param pulumi.Input[str] system_volume_id: The ID of system volume.
-        :param pulumi.Input[int] system_volume_size: The size of system volume.
+        :param pulumi.Input[int] system_volume_size: The size of system volume. The value range of the system volume size is ESSD_PL0: 20~2048, ESSD_FlexPL: 20~2048, PTSSD: 10~500.
         :param pulumi.Input[str] system_volume_type: The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]] tags: Tags.
         :param pulumi.Input[str] updated_at: The update time of ECS instance.
@@ -587,6 +605,8 @@ class _InstanceState:
             pulumi.set(__self__, "auto_renew", auto_renew)
         if auto_renew_period is not None:
             pulumi.set(__self__, "auto_renew_period", auto_renew_period)
+        if cpu_options is not None:
+            pulumi.set(__self__, "cpu_options", cpu_options)
         if cpus is not None:
             pulumi.set(__self__, "cpus", cpus)
         if created_at is not None:
@@ -697,6 +717,18 @@ class _InstanceState:
     @auto_renew_period.setter
     def auto_renew_period(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "auto_renew_period", value)
+
+    @property
+    @pulumi.getter(name="cpuOptions")
+    def cpu_options(self) -> Optional[pulumi.Input['InstanceCpuOptionsArgs']]:
+        """
+        The option of cpu.
+        """
+        return pulumi.get(self, "cpu_options")
+
+    @cpu_options.setter
+    def cpu_options(self, value: Optional[pulumi.Input['InstanceCpuOptionsArgs']]):
+        pulumi.set(self, "cpu_options", value)
 
     @property
     @pulumi.getter
@@ -1137,7 +1169,7 @@ class _InstanceState:
     @pulumi.getter(name="systemVolumeSize")
     def system_volume_size(self) -> Optional[pulumi.Input[int]]:
         """
-        The size of system volume.
+        The size of system volume. The value range of the system volume size is ESSD_PL0: 20~2048, ESSD_FlexPL: 20~2048, PTSSD: 10~500.
         """
         return pulumi.get(self, "system_volume_size")
 
@@ -1225,6 +1257,7 @@ class Instance(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_renew: Optional[pulumi.Input[bool]] = None,
                  auto_renew_period: Optional[pulumi.Input[int]] = None,
+                 cpu_options: Optional[pulumi.Input[pulumi.InputType['InstanceCpuOptionsArgs']]] = None,
                  data_volumes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceDataVolumeArgs']]]]] = None,
                  deployment_set_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
@@ -1260,38 +1293,43 @@ class Instance(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.vpc.Vpc("foo",
-            vpc_name="tf-test-2",
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
             cidr_block="172.16.0.0/16")
-        foo1_subnet = volcengine.vpc.Subnet("foo1Subnet",
-            subnet_name="subnet-test-1",
-            cidr_block="172.16.1.0/24",
-            zone_id="cn-beijing-a",
-            vpc_id=foo.id)
-        foo1_security_group = volcengine.vpc.SecurityGroup("foo1SecurityGroup", vpc_id=foo.id,
-        opts=pulumi.ResourceOptions(depends_on=[foo1_subnet]))
-        default = volcengine.ecs.Instance("default",
-            image_id="image-aagd56zrw2jtdro3bnrl",
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+            security_group_name="acc-test-security-group",
+            vpc_id=foo_vpc.id)
+        foo_images = volcengine.ecs.images(os_type="Linux",
+            visibility="public",
+            instance_type_id="ecs.g1.large")
+        foo_instance = volcengine.ecs.Instance("fooInstance",
+            instance_name="acc-test-ecs",
+            description="acc-test",
+            host_name="tf-acc-test",
+            image_id=foo_images.images[0].image_id,
             instance_type="ecs.g1.large",
-            instance_name="xym-tf-test-2",
-            description="xym-tf-test-desc-1",
             password="93f0cb0614Aab12",
             instance_charge_type="PostPaid",
-            system_volume_type="PTSSD",
-            system_volume_size=60,
-            subnet_id=foo1_subnet.id,
-            security_group_ids=[foo1_security_group.id],
+            system_volume_type="ESSD_PL0",
+            system_volume_size=40,
             data_volumes=[volcengine.ecs.InstanceDataVolumeArgs(
-                volume_type="PTSSD",
-                size=100,
+                volume_type="ESSD_PL0",
+                size=50,
                 delete_with_instance=True,
             )],
-            deployment_set_id="",
-            ipv6_address_count=1)
-        #  secondary_network_interfaces {
-        #    subnet_id = volcengine_subnet.foo1.id
-        #    security_group_ids = [volcengine_security_group.foo1.id]
-        #  }
+            subnet_id=foo_subnet.id,
+            security_group_ids=[foo_security_group.id],
+            project_name="default",
+            tags=[volcengine.ecs.InstanceTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -1306,6 +1344,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] auto_renew: The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[int] auto_renew_period: The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[pulumi.InputType['InstanceCpuOptionsArgs']] cpu_options: The option of cpu.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceDataVolumeArgs']]]] data_volumes: The data volumes collection of  ECS instance.
         :param pulumi.Input[str] deployment_set_id: The ID of Ecs Deployment Set.
         :param pulumi.Input[str] description: The description of ECS instance.
@@ -1331,7 +1370,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The security group ID set of primary networkInterface.
         :param pulumi.Input[str] spot_strategy: The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
         :param pulumi.Input[str] subnet_id: The subnet ID of primary networkInterface.
-        :param pulumi.Input[int] system_volume_size: The size of system volume.
+        :param pulumi.Input[int] system_volume_size: The size of system volume. The value range of the system volume size is ESSD_PL0: 20~2048, ESSD_FlexPL: 20~2048, PTSSD: 10~500.
         :param pulumi.Input[str] system_volume_type: The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] user_data: The user data of ECS instance, this field must be encrypted with base64.
@@ -1350,38 +1389,43 @@ class Instance(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.vpc.Vpc("foo",
-            vpc_name="tf-test-2",
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
             cidr_block="172.16.0.0/16")
-        foo1_subnet = volcengine.vpc.Subnet("foo1Subnet",
-            subnet_name="subnet-test-1",
-            cidr_block="172.16.1.0/24",
-            zone_id="cn-beijing-a",
-            vpc_id=foo.id)
-        foo1_security_group = volcengine.vpc.SecurityGroup("foo1SecurityGroup", vpc_id=foo.id,
-        opts=pulumi.ResourceOptions(depends_on=[foo1_subnet]))
-        default = volcengine.ecs.Instance("default",
-            image_id="image-aagd56zrw2jtdro3bnrl",
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+            security_group_name="acc-test-security-group",
+            vpc_id=foo_vpc.id)
+        foo_images = volcengine.ecs.images(os_type="Linux",
+            visibility="public",
+            instance_type_id="ecs.g1.large")
+        foo_instance = volcengine.ecs.Instance("fooInstance",
+            instance_name="acc-test-ecs",
+            description="acc-test",
+            host_name="tf-acc-test",
+            image_id=foo_images.images[0].image_id,
             instance_type="ecs.g1.large",
-            instance_name="xym-tf-test-2",
-            description="xym-tf-test-desc-1",
             password="93f0cb0614Aab12",
             instance_charge_type="PostPaid",
-            system_volume_type="PTSSD",
-            system_volume_size=60,
-            subnet_id=foo1_subnet.id,
-            security_group_ids=[foo1_security_group.id],
+            system_volume_type="ESSD_PL0",
+            system_volume_size=40,
             data_volumes=[volcengine.ecs.InstanceDataVolumeArgs(
-                volume_type="PTSSD",
-                size=100,
+                volume_type="ESSD_PL0",
+                size=50,
                 delete_with_instance=True,
             )],
-            deployment_set_id="",
-            ipv6_address_count=1)
-        #  secondary_network_interfaces {
-        #    subnet_id = volcengine_subnet.foo1.id
-        #    security_group_ids = [volcengine_security_group.foo1.id]
-        #  }
+            subnet_id=foo_subnet.id,
+            security_group_ids=[foo_security_group.id],
+            project_name="default",
+            tags=[volcengine.ecs.InstanceTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -1409,6 +1453,7 @@ class Instance(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_renew: Optional[pulumi.Input[bool]] = None,
                  auto_renew_period: Optional[pulumi.Input[int]] = None,
+                 cpu_options: Optional[pulumi.Input[pulumi.InputType['InstanceCpuOptionsArgs']]] = None,
                  data_volumes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceDataVolumeArgs']]]]] = None,
                  deployment_set_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
@@ -1450,6 +1495,7 @@ class Instance(pulumi.CustomResource):
 
             __props__.__dict__["auto_renew"] = auto_renew
             __props__.__dict__["auto_renew_period"] = auto_renew_period
+            __props__.__dict__["cpu_options"] = cpu_options
             __props__.__dict__["data_volumes"] = data_volumes
             __props__.__dict__["deployment_set_id"] = deployment_set_id
             __props__.__dict__["description"] = description
@@ -1517,6 +1563,7 @@ class Instance(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             auto_renew: Optional[pulumi.Input[bool]] = None,
             auto_renew_period: Optional[pulumi.Input[int]] = None,
+            cpu_options: Optional[pulumi.Input[pulumi.InputType['InstanceCpuOptionsArgs']]] = None,
             cpus: Optional[pulumi.Input[int]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             data_volumes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceDataVolumeArgs']]]]] = None,
@@ -1569,6 +1616,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] auto_renew: The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[int] auto_renew_period: The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[pulumi.InputType['InstanceCpuOptionsArgs']] cpu_options: The option of cpu.
         :param pulumi.Input[int] cpus: The number of ECS instance CPU cores.
         :param pulumi.Input[str] created_at: The create time of ECS instance.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceDataVolumeArgs']]]] data_volumes: The data volumes collection of  ECS instance.
@@ -1608,7 +1656,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] stopped_mode: The stop mode of ECS instance.
         :param pulumi.Input[str] subnet_id: The subnet ID of primary networkInterface.
         :param pulumi.Input[str] system_volume_id: The ID of system volume.
-        :param pulumi.Input[int] system_volume_size: The size of system volume.
+        :param pulumi.Input[int] system_volume_size: The size of system volume. The value range of the system volume size is ESSD_PL0: 20~2048, ESSD_FlexPL: 20~2048, PTSSD: 10~500.
         :param pulumi.Input[str] system_volume_type: The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] updated_at: The update time of ECS instance.
@@ -1622,6 +1670,7 @@ class Instance(pulumi.CustomResource):
 
         __props__.__dict__["auto_renew"] = auto_renew
         __props__.__dict__["auto_renew_period"] = auto_renew_period
+        __props__.__dict__["cpu_options"] = cpu_options
         __props__.__dict__["cpus"] = cpus
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["data_volumes"] = data_volumes
@@ -1684,6 +1733,14 @@ class Instance(pulumi.CustomResource):
         return pulumi.get(self, "auto_renew_period")
 
     @property
+    @pulumi.getter(name="cpuOptions")
+    def cpu_options(self) -> pulumi.Output['outputs.InstanceCpuOptions']:
+        """
+        The option of cpu.
+        """
+        return pulumi.get(self, "cpu_options")
+
+    @property
     @pulumi.getter
     def cpus(self) -> pulumi.Output[int]:
         """
@@ -1701,7 +1758,7 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="dataVolumes")
-    def data_volumes(self) -> pulumi.Output[Optional[Sequence['outputs.InstanceDataVolume']]]:
+    def data_volumes(self) -> pulumi.Output[Sequence['outputs.InstanceDataVolume']]:
         """
         The data volumes collection of  ECS instance.
         """
@@ -1709,7 +1766,7 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="deploymentSetId")
-    def deployment_set_id(self) -> pulumi.Output[Optional[str]]:
+    def deployment_set_id(self) -> pulumi.Output[str]:
         """
         The ID of Ecs Deployment Set.
         """
@@ -1912,7 +1969,7 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="secondaryNetworkInterfaces")
-    def secondary_network_interfaces(self) -> pulumi.Output[Optional[Sequence['outputs.InstanceSecondaryNetworkInterface']]]:
+    def secondary_network_interfaces(self) -> pulumi.Output[Sequence['outputs.InstanceSecondaryNetworkInterface']]:
         """
         The secondary networkInterface detail collection of ECS instance.
         """
@@ -1978,7 +2035,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="systemVolumeSize")
     def system_volume_size(self) -> pulumi.Output[int]:
         """
-        The size of system volume.
+        The size of system volume. The value range of the system volume size is ESSD_PL0: 20~2048, ESSD_FlexPL: 20~2048, PTSSD: 10~500.
         """
         return pulumi.get(self, "system_volume_size")
 

@@ -13,9 +13,15 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  *
  * const foo = new volcengine.cen.AttachInstance("foo", {
- *     cenId: "cen-2bzrl3srxsv0g2dx0efyoojn3",
- *     instanceId: "vpc-2d686ofu89pfk58ozfd8z9khe",
- *     instanceRegionId: "cn-guilin-boe",
+ *     cenId: "cen-12ar8uclj68sg17q7y20v9gil",
+ *     instanceId: "vpc-2fe5dpn0av2m859gp68rhk2dc",
+ *     instanceRegionId: "cn-beijing",
+ *     instanceType: "VPC",
+ * });
+ * const foo1 = new volcengine.cen.AttachInstance("foo1", {
+ *     cenId: "cen-12ar8uclj68sg17q7y20v9gil",
+ *     instanceId: "vpc-in66ktl5t24g8gbssz0sqva1",
+ *     instanceRegionId: "cn-beijing",
  *     instanceType: "VPC",
  * });
  * ```
@@ -77,7 +83,7 @@ export class AttachInstance extends pulumi.CustomResource {
      */
     public readonly instanceRegionId!: pulumi.Output<string>;
     /**
-     * The type of the instance.
+     * The type of the instance. Valid values: `VPC`, `DCGW`.
      */
     public readonly instanceType!: pulumi.Output<string>;
     /**
@@ -157,7 +163,7 @@ export interface AttachInstanceState {
      */
     instanceRegionId?: pulumi.Input<string>;
     /**
-     * The type of the instance.
+     * The type of the instance. Valid values: `VPC`, `DCGW`.
      */
     instanceType?: pulumi.Input<string>;
     /**
@@ -187,7 +193,7 @@ export interface AttachInstanceArgs {
      */
     instanceRegionId: pulumi.Input<string>;
     /**
-     * The type of the instance.
+     * The type of the instance. Valid values: `VPC`, `DCGW`.
      */
     instanceType: pulumi.Input<string>;
 }

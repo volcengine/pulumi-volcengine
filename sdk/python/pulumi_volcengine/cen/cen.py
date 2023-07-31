@@ -17,17 +17,21 @@ class CenArgs:
     def __init__(__self__, *,
                  cen_name: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['CenTagArgs']]]] = None):
         """
         The set of arguments for constructing a Cen resource.
         :param pulumi.Input[str] cen_name: The name of the cen.
         :param pulumi.Input[str] description: The description of the cen.
+        :param pulumi.Input[str] project_name: The ProjectName of the cen instance.
         :param pulumi.Input[Sequence[pulumi.Input['CenTagArgs']]] tags: Tags.
         """
         if cen_name is not None:
             pulumi.set(__self__, "cen_name", cen_name)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
 
@@ -56,6 +60,18 @@ class CenArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of the cen instance.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CenTagArgs']]]]:
         """
@@ -77,6 +93,7 @@ class _CenState:
                  cen_name: Optional[pulumi.Input[str]] = None,
                  creation_time: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['CenTagArgs']]]] = None,
                  update_time: Optional[pulumi.Input[str]] = None):
@@ -88,6 +105,7 @@ class _CenState:
         :param pulumi.Input[str] cen_name: The name of the cen.
         :param pulumi.Input[str] creation_time: The create time of the cen.
         :param pulumi.Input[str] description: The description of the cen.
+        :param pulumi.Input[str] project_name: The ProjectName of the cen instance.
         :param pulumi.Input[str] status: The status of the cen.
         :param pulumi.Input[Sequence[pulumi.Input['CenTagArgs']]] tags: Tags.
         :param pulumi.Input[str] update_time: The update time of the cen.
@@ -104,6 +122,8 @@ class _CenState:
             pulumi.set(__self__, "creation_time", creation_time)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if tags is not None:
@@ -184,6 +204,18 @@ class _CenState:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of the cen instance.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
@@ -227,6 +259,7 @@ class Cen(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cen_name: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CenTagArgs']]]]] = None,
                  __props__=None):
         """
@@ -238,8 +271,9 @@ class Cen(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.cen.Cen("foo",
-            cen_name="tf-test",
-            description="tf-test")
+            cen_name="tf-test-3",
+            description="tf-test",
+            project_name="default")
         ```
 
         ## Import
@@ -254,6 +288,7 @@ class Cen(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cen_name: The name of the cen.
         :param pulumi.Input[str] description: The description of the cen.
+        :param pulumi.Input[str] project_name: The ProjectName of the cen instance.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CenTagArgs']]]] tags: Tags.
         """
         ...
@@ -271,8 +306,9 @@ class Cen(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.cen.Cen("foo",
-            cen_name="tf-test",
-            description="tf-test")
+            cen_name="tf-test-3",
+            description="tf-test",
+            project_name="default")
         ```
 
         ## Import
@@ -300,6 +336,7 @@ class Cen(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cen_name: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CenTagArgs']]]]] = None,
                  __props__=None):
         if opts is None:
@@ -315,6 +352,7 @@ class Cen(pulumi.CustomResource):
 
             __props__.__dict__["cen_name"] = cen_name
             __props__.__dict__["description"] = description
+            __props__.__dict__["project_name"] = project_name
             __props__.__dict__["tags"] = tags
             __props__.__dict__["account_id"] = None
             __props__.__dict__["cen_bandwidth_package_ids"] = None
@@ -338,6 +376,7 @@ class Cen(pulumi.CustomResource):
             cen_name: Optional[pulumi.Input[str]] = None,
             creation_time: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            project_name: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CenTagArgs']]]]] = None,
             update_time: Optional[pulumi.Input[str]] = None) -> 'Cen':
@@ -354,6 +393,7 @@ class Cen(pulumi.CustomResource):
         :param pulumi.Input[str] cen_name: The name of the cen.
         :param pulumi.Input[str] creation_time: The create time of the cen.
         :param pulumi.Input[str] description: The description of the cen.
+        :param pulumi.Input[str] project_name: The ProjectName of the cen instance.
         :param pulumi.Input[str] status: The status of the cen.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CenTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] update_time: The update time of the cen.
@@ -368,6 +408,7 @@ class Cen(pulumi.CustomResource):
         __props__.__dict__["cen_name"] = cen_name
         __props__.__dict__["creation_time"] = creation_time
         __props__.__dict__["description"] = description
+        __props__.__dict__["project_name"] = project_name
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
         __props__.__dict__["update_time"] = update_time
@@ -420,6 +461,14 @@ class Cen(pulumi.CustomResource):
         The description of the cen.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        The ProjectName of the cen instance.
+        """
+        return pulumi.get(self, "project_name")
 
     @property
     @pulumi.getter

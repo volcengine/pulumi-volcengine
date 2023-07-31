@@ -16,5 +16,8 @@ from .grant_instance import *
 from .inter_region_bandwidth import *
 from .inter_region_bandwidths import *
 from .route_entries import *
+from .route_entry import *
+from .service_route_entries import *
+from .service_route_entry import *
 from ._inputs import *
 from . import outputs

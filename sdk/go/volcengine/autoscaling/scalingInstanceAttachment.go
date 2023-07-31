@@ -19,8 +19,8 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/autoscaling"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/autoscaling"
 //
 // )
 //
@@ -44,7 +44,7 @@ import (
 //
 // ## Import
 //
-// Scaling instance attachment can be imported using the scaling_group_id and instance_id, e.g.
+// Scaling instance attachment can be imported using the scaling_group_id and instance_id, e.g. You can choose to remove or detach the instance according to the `delete_type` field.
 //
 // ```sh
 //

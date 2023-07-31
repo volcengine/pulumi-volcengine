@@ -9,9 +9,48 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
+    'ScalingConfigurationTagArgs',
     'ScalingConfigurationVolumeArgs',
     'ScalingGroupServerGroupAttributeArgs',
+    'ScalingGroupTagArgs',
 ]
+
+@pulumi.input_type
+class ScalingConfigurationTagArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
 
 @pulumi.input_type
 class ScalingConfigurationVolumeArgs:
@@ -20,7 +59,7 @@ class ScalingConfigurationVolumeArgs:
                  volume_type: pulumi.Input[str],
                  delete_with_instance: Optional[pulumi.Input[bool]] = None):
         """
-        :param pulumi.Input[int] size: The size of volume.
+        :param pulumi.Input[int] size: The size of volume. System disk value range: 10 - 500. The value range of the data disk: 10 - 8192.
         :param pulumi.Input[str] volume_type: The type of volume.
         :param pulumi.Input[bool] delete_with_instance: The delete with instance flag of volume. Valid values: true, false. Default value: true.
         """
@@ -33,7 +72,7 @@ class ScalingConfigurationVolumeArgs:
     @pulumi.getter
     def size(self) -> pulumi.Input[int]:
         """
-        The size of volume.
+        The size of volume. System disk value range: 10 - 500. The value range of the data disk: 10 - 8192.
         """
         return pulumi.get(self, "size")
 
@@ -74,9 +113,9 @@ class ScalingGroupServerGroupAttributeArgs:
                  weight: pulumi.Input[int],
                  load_balancer_id: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[int] port: The port receiving request of the server group.
+        :param pulumi.Input[int] port: The port receiving request of the server group. Value range: 1 ~ 65535.
         :param pulumi.Input[str] server_group_id: The id of the server group.
-        :param pulumi.Input[int] weight: The weight of the instance.
+        :param pulumi.Input[int] weight: The weight of the instance. Value range: 0 ~ 100.
         """
         pulumi.set(__self__, "port", port)
         pulumi.set(__self__, "server_group_id", server_group_id)
@@ -88,7 +127,7 @@ class ScalingGroupServerGroupAttributeArgs:
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
         """
-        The port receiving request of the server group.
+        The port receiving request of the server group. Value range: 1 ~ 65535.
         """
         return pulumi.get(self, "port")
 
@@ -112,7 +151,7 @@ class ScalingGroupServerGroupAttributeArgs:
     @pulumi.getter
     def weight(self) -> pulumi.Input[int]:
         """
-        The weight of the instance.
+        The weight of the instance. Value range: 0 ~ 100.
         """
         return pulumi.get(self, "weight")
 
@@ -128,5 +167,42 @@ class ScalingGroupServerGroupAttributeArgs:
     @load_balancer_id.setter
     def load_balancer_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "load_balancer_id", value)
+
+
+@pulumi.input_type
+class ScalingGroupTagArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
 
 

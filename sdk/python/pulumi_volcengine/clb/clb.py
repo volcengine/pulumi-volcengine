@@ -19,12 +19,14 @@ class ClbArgs:
                  subnet_id: pulumi.Input[str],
                  type: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
+                 eip_billing_config: Optional[pulumi.Input['ClbEipBillingConfigArgs']] = None,
                  eni_address: Optional[pulumi.Input[str]] = None,
                  load_balancer_billing_type: Optional[pulumi.Input[str]] = None,
                  load_balancer_name: Optional[pulumi.Input[str]] = None,
                  master_zone_id: Optional[pulumi.Input[str]] = None,
                  modification_protection_reason: Optional[pulumi.Input[str]] = None,
                  modification_protection_status: Optional[pulumi.Input[str]] = None,
+                 period: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  region_id: Optional[pulumi.Input[str]] = None,
                  slave_zone_id: Optional[pulumi.Input[str]] = None,
@@ -36,12 +38,14 @@ class ClbArgs:
         :param pulumi.Input[str] subnet_id: The id of the Subnet.
         :param pulumi.Input[str] type: The type of the CLB. And optional choice contains `public` or `private`.
         :param pulumi.Input[str] description: The description of the CLB.
+        :param pulumi.Input['ClbEipBillingConfigArgs'] eip_billing_config: The billing configuration of the EIP which automatically associated to CLB. This field is valid when the type of CLB is `public`.When the type of the CLB is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
         :param pulumi.Input[str] eni_address: The eni address of the CLB.
-        :param pulumi.Input[str] load_balancer_billing_type: The billing type of the CLB, the value can be `PostPaid`.
+        :param pulumi.Input[str] load_balancer_billing_type: The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
         :param pulumi.Input[str] load_balancer_name: The name of the CLB.
         :param pulumi.Input[str] master_zone_id: The master zone ID of the CLB.
         :param pulumi.Input[str] modification_protection_reason: The reason of the console modification protection.
         :param pulumi.Input[str] modification_protection_status: The status of the console modification protection, the value can be `NonProtection` or `ConsoleProtection`.
+        :param pulumi.Input[int] period: The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] project_name: The ProjectName of the CLB.
         :param pulumi.Input[str] region_id: The region of the request.
         :param pulumi.Input[str] slave_zone_id: The slave zone ID of the CLB.
@@ -53,6 +57,8 @@ class ClbArgs:
         pulumi.set(__self__, "type", type)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if eip_billing_config is not None:
+            pulumi.set(__self__, "eip_billing_config", eip_billing_config)
         if eni_address is not None:
             pulumi.set(__self__, "eni_address", eni_address)
         if load_balancer_billing_type is not None:
@@ -65,6 +71,8 @@ class ClbArgs:
             pulumi.set(__self__, "modification_protection_reason", modification_protection_reason)
         if modification_protection_status is not None:
             pulumi.set(__self__, "modification_protection_status", modification_protection_status)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
         if region_id is not None:
@@ -125,6 +133,18 @@ class ClbArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="eipBillingConfig")
+    def eip_billing_config(self) -> Optional[pulumi.Input['ClbEipBillingConfigArgs']]:
+        """
+        The billing configuration of the EIP which automatically associated to CLB. This field is valid when the type of CLB is `public`.When the type of the CLB is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
+        """
+        return pulumi.get(self, "eip_billing_config")
+
+    @eip_billing_config.setter
+    def eip_billing_config(self, value: Optional[pulumi.Input['ClbEipBillingConfigArgs']]):
+        pulumi.set(self, "eip_billing_config", value)
+
+    @property
     @pulumi.getter(name="eniAddress")
     def eni_address(self) -> Optional[pulumi.Input[str]]:
         """
@@ -140,7 +160,7 @@ class ClbArgs:
     @pulumi.getter(name="loadBalancerBillingType")
     def load_balancer_billing_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The billing type of the CLB, the value can be `PostPaid`.
+        The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
         """
         return pulumi.get(self, "load_balancer_billing_type")
 
@@ -195,6 +215,18 @@ class ClbArgs:
     @modification_protection_status.setter
     def modification_protection_status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "modification_protection_status", value)
+
+    @property
+    @pulumi.getter
+    def period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "period")
+
+    @period.setter
+    def period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "period", value)
 
     @property
     @pulumi.getter(name="projectName")
@@ -261,6 +293,9 @@ class ClbArgs:
 class _ClbState:
     def __init__(__self__, *,
                  description: Optional[pulumi.Input[str]] = None,
+                 eip_address: Optional[pulumi.Input[str]] = None,
+                 eip_billing_config: Optional[pulumi.Input['ClbEipBillingConfigArgs']] = None,
+                 eip_id: Optional[pulumi.Input[str]] = None,
                  eni_address: Optional[pulumi.Input[str]] = None,
                  load_balancer_billing_type: Optional[pulumi.Input[str]] = None,
                  load_balancer_name: Optional[pulumi.Input[str]] = None,
@@ -268,8 +303,10 @@ class _ClbState:
                  master_zone_id: Optional[pulumi.Input[str]] = None,
                  modification_protection_reason: Optional[pulumi.Input[str]] = None,
                  modification_protection_status: Optional[pulumi.Input[str]] = None,
+                 period: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  region_id: Optional[pulumi.Input[str]] = None,
+                 renew_type: Optional[pulumi.Input[str]] = None,
                  slave_zone_id: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['ClbTagArgs']]]] = None,
@@ -278,15 +315,20 @@ class _ClbState:
         """
         Input properties used for looking up and filtering Clb resources.
         :param pulumi.Input[str] description: The description of the CLB.
+        :param pulumi.Input[str] eip_address: The Eip address of the Clb.
+        :param pulumi.Input['ClbEipBillingConfigArgs'] eip_billing_config: The billing configuration of the EIP which automatically associated to CLB. This field is valid when the type of CLB is `public`.When the type of the CLB is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
+        :param pulumi.Input[str] eip_id: The Eip ID of the Clb.
         :param pulumi.Input[str] eni_address: The eni address of the CLB.
-        :param pulumi.Input[str] load_balancer_billing_type: The billing type of the CLB, the value can be `PostPaid`.
+        :param pulumi.Input[str] load_balancer_billing_type: The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
         :param pulumi.Input[str] load_balancer_name: The name of the CLB.
         :param pulumi.Input[str] load_balancer_spec: The specification of the CLB, the value can be `small_1`, `small_2`, `medium_1`, `medium_2`, `large_1`, `large_2`.
         :param pulumi.Input[str] master_zone_id: The master zone ID of the CLB.
         :param pulumi.Input[str] modification_protection_reason: The reason of the console modification protection.
         :param pulumi.Input[str] modification_protection_status: The status of the console modification protection, the value can be `NonProtection` or `ConsoleProtection`.
+        :param pulumi.Input[int] period: The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] project_name: The ProjectName of the CLB.
         :param pulumi.Input[str] region_id: The region of the request.
+        :param pulumi.Input[str] renew_type: The renew type of the CLB. When the value of the load_balancer_billing_type is `PrePaid`, the query returns this field.
         :param pulumi.Input[str] slave_zone_id: The slave zone ID of the CLB.
         :param pulumi.Input[str] subnet_id: The id of the Subnet.
         :param pulumi.Input[Sequence[pulumi.Input['ClbTagArgs']]] tags: Tags.
@@ -295,6 +337,12 @@ class _ClbState:
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if eip_address is not None:
+            pulumi.set(__self__, "eip_address", eip_address)
+        if eip_billing_config is not None:
+            pulumi.set(__self__, "eip_billing_config", eip_billing_config)
+        if eip_id is not None:
+            pulumi.set(__self__, "eip_id", eip_id)
         if eni_address is not None:
             pulumi.set(__self__, "eni_address", eni_address)
         if load_balancer_billing_type is not None:
@@ -309,10 +357,14 @@ class _ClbState:
             pulumi.set(__self__, "modification_protection_reason", modification_protection_reason)
         if modification_protection_status is not None:
             pulumi.set(__self__, "modification_protection_status", modification_protection_status)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
         if region_id is not None:
             pulumi.set(__self__, "region_id", region_id)
+        if renew_type is not None:
+            pulumi.set(__self__, "renew_type", renew_type)
         if slave_zone_id is not None:
             pulumi.set(__self__, "slave_zone_id", slave_zone_id)
         if subnet_id is not None:
@@ -337,6 +389,42 @@ class _ClbState:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="eipAddress")
+    def eip_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Eip address of the Clb.
+        """
+        return pulumi.get(self, "eip_address")
+
+    @eip_address.setter
+    def eip_address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "eip_address", value)
+
+    @property
+    @pulumi.getter(name="eipBillingConfig")
+    def eip_billing_config(self) -> Optional[pulumi.Input['ClbEipBillingConfigArgs']]:
+        """
+        The billing configuration of the EIP which automatically associated to CLB. This field is valid when the type of CLB is `public`.When the type of the CLB is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
+        """
+        return pulumi.get(self, "eip_billing_config")
+
+    @eip_billing_config.setter
+    def eip_billing_config(self, value: Optional[pulumi.Input['ClbEipBillingConfigArgs']]):
+        pulumi.set(self, "eip_billing_config", value)
+
+    @property
+    @pulumi.getter(name="eipId")
+    def eip_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Eip ID of the Clb.
+        """
+        return pulumi.get(self, "eip_id")
+
+    @eip_id.setter
+    def eip_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "eip_id", value)
+
+    @property
     @pulumi.getter(name="eniAddress")
     def eni_address(self) -> Optional[pulumi.Input[str]]:
         """
@@ -352,7 +440,7 @@ class _ClbState:
     @pulumi.getter(name="loadBalancerBillingType")
     def load_balancer_billing_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The billing type of the CLB, the value can be `PostPaid`.
+        The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
         """
         return pulumi.get(self, "load_balancer_billing_type")
 
@@ -421,6 +509,18 @@ class _ClbState:
         pulumi.set(self, "modification_protection_status", value)
 
     @property
+    @pulumi.getter
+    def period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "period")
+
+    @period.setter
+    def period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "period", value)
+
+    @property
     @pulumi.getter(name="projectName")
     def project_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -443,6 +543,18 @@ class _ClbState:
     @region_id.setter
     def region_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "region_id", value)
+
+    @property
+    @pulumi.getter(name="renewType")
+    def renew_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The renew type of the CLB. When the value of the load_balancer_billing_type is `PrePaid`, the query returns this field.
+        """
+        return pulumi.get(self, "renew_type")
+
+    @renew_type.setter
+    def renew_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "renew_type", value)
 
     @property
     @pulumi.getter(name="slaveZoneId")
@@ -511,6 +623,7 @@ class Clb(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 eip_billing_config: Optional[pulumi.Input[pulumi.InputType['ClbEipBillingConfigArgs']]] = None,
                  eni_address: Optional[pulumi.Input[str]] = None,
                  load_balancer_billing_type: Optional[pulumi.Input[str]] = None,
                  load_balancer_name: Optional[pulumi.Input[str]] = None,
@@ -518,6 +631,7 @@ class Clb(pulumi.CustomResource):
                  master_zone_id: Optional[pulumi.Input[str]] = None,
                  modification_protection_reason: Optional[pulumi.Input[str]] = None,
                  modification_protection_status: Optional[pulumi.Input[str]] = None,
+                 period: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  region_id: Optional[pulumi.Input[str]] = None,
                  slave_zone_id: Optional[pulumi.Input[str]] = None,
@@ -533,13 +647,35 @@ class Clb(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.clb.Clb("foo",
+        public_clb = volcengine.clb.Clb("publicClb",
+            type="public",
+            subnet_id="subnet-mj92ij84m5fk5smt1arvwrtw",
+            load_balancer_spec="small_1",
             description="Demo",
             load_balancer_name="terraform-auto-create",
-            load_balancer_spec="small_1",
             project_name="yyy",
+            eip_billing_config=volcengine.clb.ClbEipBillingConfigArgs(
+                isp="BGP",
+                eip_billing_type="PostPaidByBandwidth",
+                bandwidth=1,
+            ))
+        private_clb = volcengine.clb.Clb("privateClb",
+            type="private",
             subnet_id="subnet-mj92ij84m5fk5smt1arvwrtw",
-            type="public")
+            load_balancer_spec="small_1",
+            description="Demo",
+            load_balancer_name="terraform-auto-create",
+            project_name="default")
+        eip = volcengine.eip.Address("eip",
+            billing_type="PostPaidByBandwidth",
+            bandwidth=1,
+            isp="BGP",
+            description="tf-test",
+            project_name="default")
+        associate = volcengine.eip.Associate("associate",
+            allocation_id=eip.id,
+            instance_id=private_clb.id,
+            instance_type="ClbInstance")
         ```
 
         ## Import
@@ -553,13 +689,15 @@ class Clb(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the CLB.
+        :param pulumi.Input[pulumi.InputType['ClbEipBillingConfigArgs']] eip_billing_config: The billing configuration of the EIP which automatically associated to CLB. This field is valid when the type of CLB is `public`.When the type of the CLB is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
         :param pulumi.Input[str] eni_address: The eni address of the CLB.
-        :param pulumi.Input[str] load_balancer_billing_type: The billing type of the CLB, the value can be `PostPaid`.
+        :param pulumi.Input[str] load_balancer_billing_type: The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
         :param pulumi.Input[str] load_balancer_name: The name of the CLB.
         :param pulumi.Input[str] load_balancer_spec: The specification of the CLB, the value can be `small_1`, `small_2`, `medium_1`, `medium_2`, `large_1`, `large_2`.
         :param pulumi.Input[str] master_zone_id: The master zone ID of the CLB.
         :param pulumi.Input[str] modification_protection_reason: The reason of the console modification protection.
         :param pulumi.Input[str] modification_protection_status: The status of the console modification protection, the value can be `NonProtection` or `ConsoleProtection`.
+        :param pulumi.Input[int] period: The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] project_name: The ProjectName of the CLB.
         :param pulumi.Input[str] region_id: The region of the request.
         :param pulumi.Input[str] slave_zone_id: The slave zone ID of the CLB.
@@ -581,13 +719,35 @@ class Clb(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.clb.Clb("foo",
+        public_clb = volcengine.clb.Clb("publicClb",
+            type="public",
+            subnet_id="subnet-mj92ij84m5fk5smt1arvwrtw",
+            load_balancer_spec="small_1",
             description="Demo",
             load_balancer_name="terraform-auto-create",
-            load_balancer_spec="small_1",
             project_name="yyy",
+            eip_billing_config=volcengine.clb.ClbEipBillingConfigArgs(
+                isp="BGP",
+                eip_billing_type="PostPaidByBandwidth",
+                bandwidth=1,
+            ))
+        private_clb = volcengine.clb.Clb("privateClb",
+            type="private",
             subnet_id="subnet-mj92ij84m5fk5smt1arvwrtw",
-            type="public")
+            load_balancer_spec="small_1",
+            description="Demo",
+            load_balancer_name="terraform-auto-create",
+            project_name="default")
+        eip = volcengine.eip.Address("eip",
+            billing_type="PostPaidByBandwidth",
+            bandwidth=1,
+            isp="BGP",
+            description="tf-test",
+            project_name="default")
+        associate = volcengine.eip.Associate("associate",
+            allocation_id=eip.id,
+            instance_id=private_clb.id,
+            instance_type="ClbInstance")
         ```
 
         ## Import
@@ -614,6 +774,7 @@ class Clb(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 eip_billing_config: Optional[pulumi.Input[pulumi.InputType['ClbEipBillingConfigArgs']]] = None,
                  eni_address: Optional[pulumi.Input[str]] = None,
                  load_balancer_billing_type: Optional[pulumi.Input[str]] = None,
                  load_balancer_name: Optional[pulumi.Input[str]] = None,
@@ -621,6 +782,7 @@ class Clb(pulumi.CustomResource):
                  master_zone_id: Optional[pulumi.Input[str]] = None,
                  modification_protection_reason: Optional[pulumi.Input[str]] = None,
                  modification_protection_status: Optional[pulumi.Input[str]] = None,
+                 period: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  region_id: Optional[pulumi.Input[str]] = None,
                  slave_zone_id: Optional[pulumi.Input[str]] = None,
@@ -641,6 +803,7 @@ class Clb(pulumi.CustomResource):
             __props__ = ClbArgs.__new__(ClbArgs)
 
             __props__.__dict__["description"] = description
+            __props__.__dict__["eip_billing_config"] = eip_billing_config
             __props__.__dict__["eni_address"] = eni_address
             __props__.__dict__["load_balancer_billing_type"] = load_balancer_billing_type
             __props__.__dict__["load_balancer_name"] = load_balancer_name
@@ -650,6 +813,7 @@ class Clb(pulumi.CustomResource):
             __props__.__dict__["master_zone_id"] = master_zone_id
             __props__.__dict__["modification_protection_reason"] = modification_protection_reason
             __props__.__dict__["modification_protection_status"] = modification_protection_status
+            __props__.__dict__["period"] = period
             __props__.__dict__["project_name"] = project_name
             __props__.__dict__["region_id"] = region_id
             __props__.__dict__["slave_zone_id"] = slave_zone_id
@@ -661,6 +825,9 @@ class Clb(pulumi.CustomResource):
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
             __props__.__dict__["vpc_id"] = vpc_id
+            __props__.__dict__["eip_address"] = None
+            __props__.__dict__["eip_id"] = None
+            __props__.__dict__["renew_type"] = None
         super(Clb, __self__).__init__(
             'volcengine:clb/clb:Clb',
             resource_name,
@@ -672,6 +839,9 @@ class Clb(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             description: Optional[pulumi.Input[str]] = None,
+            eip_address: Optional[pulumi.Input[str]] = None,
+            eip_billing_config: Optional[pulumi.Input[pulumi.InputType['ClbEipBillingConfigArgs']]] = None,
+            eip_id: Optional[pulumi.Input[str]] = None,
             eni_address: Optional[pulumi.Input[str]] = None,
             load_balancer_billing_type: Optional[pulumi.Input[str]] = None,
             load_balancer_name: Optional[pulumi.Input[str]] = None,
@@ -679,8 +849,10 @@ class Clb(pulumi.CustomResource):
             master_zone_id: Optional[pulumi.Input[str]] = None,
             modification_protection_reason: Optional[pulumi.Input[str]] = None,
             modification_protection_status: Optional[pulumi.Input[str]] = None,
+            period: Optional[pulumi.Input[int]] = None,
             project_name: Optional[pulumi.Input[str]] = None,
             region_id: Optional[pulumi.Input[str]] = None,
+            renew_type: Optional[pulumi.Input[str]] = None,
             slave_zone_id: Optional[pulumi.Input[str]] = None,
             subnet_id: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClbTagArgs']]]]] = None,
@@ -694,15 +866,20 @@ class Clb(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the CLB.
+        :param pulumi.Input[str] eip_address: The Eip address of the Clb.
+        :param pulumi.Input[pulumi.InputType['ClbEipBillingConfigArgs']] eip_billing_config: The billing configuration of the EIP which automatically associated to CLB. This field is valid when the type of CLB is `public`.When the type of the CLB is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
+        :param pulumi.Input[str] eip_id: The Eip ID of the Clb.
         :param pulumi.Input[str] eni_address: The eni address of the CLB.
-        :param pulumi.Input[str] load_balancer_billing_type: The billing type of the CLB, the value can be `PostPaid`.
+        :param pulumi.Input[str] load_balancer_billing_type: The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
         :param pulumi.Input[str] load_balancer_name: The name of the CLB.
         :param pulumi.Input[str] load_balancer_spec: The specification of the CLB, the value can be `small_1`, `small_2`, `medium_1`, `medium_2`, `large_1`, `large_2`.
         :param pulumi.Input[str] master_zone_id: The master zone ID of the CLB.
         :param pulumi.Input[str] modification_protection_reason: The reason of the console modification protection.
         :param pulumi.Input[str] modification_protection_status: The status of the console modification protection, the value can be `NonProtection` or `ConsoleProtection`.
+        :param pulumi.Input[int] period: The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] project_name: The ProjectName of the CLB.
         :param pulumi.Input[str] region_id: The region of the request.
+        :param pulumi.Input[str] renew_type: The renew type of the CLB. When the value of the load_balancer_billing_type is `PrePaid`, the query returns this field.
         :param pulumi.Input[str] slave_zone_id: The slave zone ID of the CLB.
         :param pulumi.Input[str] subnet_id: The id of the Subnet.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClbTagArgs']]]] tags: Tags.
@@ -714,6 +891,9 @@ class Clb(pulumi.CustomResource):
         __props__ = _ClbState.__new__(_ClbState)
 
         __props__.__dict__["description"] = description
+        __props__.__dict__["eip_address"] = eip_address
+        __props__.__dict__["eip_billing_config"] = eip_billing_config
+        __props__.__dict__["eip_id"] = eip_id
         __props__.__dict__["eni_address"] = eni_address
         __props__.__dict__["load_balancer_billing_type"] = load_balancer_billing_type
         __props__.__dict__["load_balancer_name"] = load_balancer_name
@@ -721,8 +901,10 @@ class Clb(pulumi.CustomResource):
         __props__.__dict__["master_zone_id"] = master_zone_id
         __props__.__dict__["modification_protection_reason"] = modification_protection_reason
         __props__.__dict__["modification_protection_status"] = modification_protection_status
+        __props__.__dict__["period"] = period
         __props__.__dict__["project_name"] = project_name
         __props__.__dict__["region_id"] = region_id
+        __props__.__dict__["renew_type"] = renew_type
         __props__.__dict__["slave_zone_id"] = slave_zone_id
         __props__.__dict__["subnet_id"] = subnet_id
         __props__.__dict__["tags"] = tags
@@ -739,6 +921,30 @@ class Clb(pulumi.CustomResource):
         return pulumi.get(self, "description")
 
     @property
+    @pulumi.getter(name="eipAddress")
+    def eip_address(self) -> pulumi.Output[str]:
+        """
+        The Eip address of the Clb.
+        """
+        return pulumi.get(self, "eip_address")
+
+    @property
+    @pulumi.getter(name="eipBillingConfig")
+    def eip_billing_config(self) -> pulumi.Output['outputs.ClbEipBillingConfig']:
+        """
+        The billing configuration of the EIP which automatically associated to CLB. This field is valid when the type of CLB is `public`.When the type of the CLB is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
+        """
+        return pulumi.get(self, "eip_billing_config")
+
+    @property
+    @pulumi.getter(name="eipId")
+    def eip_id(self) -> pulumi.Output[str]:
+        """
+        The Eip ID of the Clb.
+        """
+        return pulumi.get(self, "eip_id")
+
+    @property
     @pulumi.getter(name="eniAddress")
     def eni_address(self) -> pulumi.Output[str]:
         """
@@ -750,7 +956,7 @@ class Clb(pulumi.CustomResource):
     @pulumi.getter(name="loadBalancerBillingType")
     def load_balancer_billing_type(self) -> pulumi.Output[str]:
         """
-        The billing type of the CLB, the value can be `PostPaid`.
+        The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
         """
         return pulumi.get(self, "load_balancer_billing_type")
 
@@ -795,6 +1001,14 @@ class Clb(pulumi.CustomResource):
         return pulumi.get(self, "modification_protection_status")
 
     @property
+    @pulumi.getter
+    def period(self) -> pulumi.Output[Optional[int]]:
+        """
+        The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "period")
+
+    @property
     @pulumi.getter(name="projectName")
     def project_name(self) -> pulumi.Output[Optional[str]]:
         """
@@ -809,6 +1023,14 @@ class Clb(pulumi.CustomResource):
         The region of the request.
         """
         return pulumi.get(self, "region_id")
+
+    @property
+    @pulumi.getter(name="renewType")
+    def renew_type(self) -> pulumi.Output[str]:
+        """
+        The renew type of the CLB. When the value of the load_balancer_billing_type is `PrePaid`, the query returns this field.
+        """
+        return pulumi.get(self, "renew_type")
 
     @property
     @pulumi.getter(name="slaveZoneId")

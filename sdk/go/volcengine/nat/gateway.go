@@ -18,14 +18,15 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/nat"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/nat"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := nat.NewGateway(ctx, "foo", &nat.GatewayArgs{
+//				BillingType:    pulumi.String("PostPaid"),
 //				Description:    pulumi.String("This nat gateway auto-created by terraform. "),
 //				NatGatewayName: pulumi.String("tf-auto-demo-1"),
 //				ProjectName:    pulumi.String("default"),
@@ -54,12 +55,14 @@ import (
 type Gateway struct {
 	pulumi.CustomResourceState
 
-	// The billing type of the NatGateway, the value is `PostPaid`.
+	// The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
 	BillingType pulumi.StringPtrOutput `pulumi:"billingType"`
 	// The description of the NatGateway.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The name of the NatGateway.
 	NatGatewayName pulumi.StringPtrOutput `pulumi:"natGatewayName"`
+	// The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	Period pulumi.IntPtrOutput `pulumi:"period"`
 	// The ProjectName of the NatGateway.
 	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
 	// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
@@ -107,12 +110,14 @@ func GetGateway(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Gateway resources.
 type gatewayState struct {
-	// The billing type of the NatGateway, the value is `PostPaid`.
+	// The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
 	BillingType *string `pulumi:"billingType"`
 	// The description of the NatGateway.
 	Description *string `pulumi:"description"`
 	// The name of the NatGateway.
 	NatGatewayName *string `pulumi:"natGatewayName"`
+	// The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	Period *int `pulumi:"period"`
 	// The ProjectName of the NatGateway.
 	ProjectName *string `pulumi:"projectName"`
 	// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
@@ -126,12 +131,14 @@ type gatewayState struct {
 }
 
 type GatewayState struct {
-	// The billing type of the NatGateway, the value is `PostPaid`.
+	// The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
 	BillingType pulumi.StringPtrInput
 	// The description of the NatGateway.
 	Description pulumi.StringPtrInput
 	// The name of the NatGateway.
 	NatGatewayName pulumi.StringPtrInput
+	// The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	Period pulumi.IntPtrInput
 	// The ProjectName of the NatGateway.
 	ProjectName pulumi.StringPtrInput
 	// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
@@ -149,12 +156,14 @@ func (GatewayState) ElementType() reflect.Type {
 }
 
 type gatewayArgs struct {
-	// The billing type of the NatGateway, the value is `PostPaid`.
+	// The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
 	BillingType *string `pulumi:"billingType"`
 	// The description of the NatGateway.
 	Description *string `pulumi:"description"`
 	// The name of the NatGateway.
 	NatGatewayName *string `pulumi:"natGatewayName"`
+	// The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	Period *int `pulumi:"period"`
 	// The ProjectName of the NatGateway.
 	ProjectName *string `pulumi:"projectName"`
 	// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
@@ -169,12 +178,14 @@ type gatewayArgs struct {
 
 // The set of arguments for constructing a Gateway resource.
 type GatewayArgs struct {
-	// The billing type of the NatGateway, the value is `PostPaid`.
+	// The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
 	BillingType pulumi.StringPtrInput
 	// The description of the NatGateway.
 	Description pulumi.StringPtrInput
 	// The name of the NatGateway.
 	NatGatewayName pulumi.StringPtrInput
+	// The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	Period pulumi.IntPtrInput
 	// The ProjectName of the NatGateway.
 	ProjectName pulumi.StringPtrInput
 	// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
@@ -274,7 +285,7 @@ func (o GatewayOutput) ToGatewayOutputWithContext(ctx context.Context) GatewayOu
 	return o
 }
 
-// The billing type of the NatGateway, the value is `PostPaid`.
+// The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
 func (o GatewayOutput) BillingType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.StringPtrOutput { return v.BillingType }).(pulumi.StringPtrOutput)
 }
@@ -287,6 +298,11 @@ func (o GatewayOutput) Description() pulumi.StringPtrOutput {
 // The name of the NatGateway.
 func (o GatewayOutput) NatGatewayName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.StringPtrOutput { return v.NatGatewayName }).(pulumi.StringPtrOutput)
+}
+
+// The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+func (o GatewayOutput) Period() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Gateway) pulumi.IntPtrOutput { return v.Period }).(pulumi.IntPtrOutput)
 }
 
 // The ProjectName of the NatGateway.

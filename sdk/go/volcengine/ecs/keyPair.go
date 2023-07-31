@@ -19,16 +19,16 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ecs.NewKeyPair(ctx, "default", &ecs.KeyPairArgs{
-//				Description: pulumi.String("tftest21111"),
-//				KeyPairName: pulumi.String("tf-test-key-name1"),
+//			_, err := ecs.NewKeyPair(ctx, "foo", &ecs.KeyPairArgs{
+//				Description: pulumi.String("acc-test"),
+//				KeyPairName: pulumi.String("acc-test-key-name"),
 //			})
 //			if err != nil {
 //				return err

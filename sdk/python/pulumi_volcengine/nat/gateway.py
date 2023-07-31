@@ -20,6 +20,7 @@ class GatewayArgs:
                  billing_type: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  nat_gateway_name: Optional[pulumi.Input[str]] = None,
+                 period: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  spec: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['GatewayTagArgs']]]] = None):
@@ -27,9 +28,10 @@ class GatewayArgs:
         The set of arguments for constructing a Gateway resource.
         :param pulumi.Input[str] subnet_id: The ID of the Subnet.
         :param pulumi.Input[str] vpc_id: The ID of the VPC.
-        :param pulumi.Input[str] billing_type: The billing type of the NatGateway, the value is `PostPaid`.
+        :param pulumi.Input[str] billing_type: The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
         :param pulumi.Input[str] description: The description of the NatGateway.
         :param pulumi.Input[str] nat_gateway_name: The name of the NatGateway.
+        :param pulumi.Input[int] period: The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] project_name: The ProjectName of the NatGateway.
         :param pulumi.Input[str] spec: The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
         :param pulumi.Input[Sequence[pulumi.Input['GatewayTagArgs']]] tags: Tags.
@@ -42,6 +44,8 @@ class GatewayArgs:
             pulumi.set(__self__, "description", description)
         if nat_gateway_name is not None:
             pulumi.set(__self__, "nat_gateway_name", nat_gateway_name)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
         if spec is not None:
@@ -77,7 +81,7 @@ class GatewayArgs:
     @pulumi.getter(name="billingType")
     def billing_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The billing type of the NatGateway, the value is `PostPaid`.
+        The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
         """
         return pulumi.get(self, "billing_type")
 
@@ -108,6 +112,18 @@ class GatewayArgs:
     @nat_gateway_name.setter
     def nat_gateway_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "nat_gateway_name", value)
+
+    @property
+    @pulumi.getter
+    def period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "period")
+
+    @period.setter
+    def period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "period", value)
 
     @property
     @pulumi.getter(name="projectName")
@@ -152,6 +168,7 @@ class _GatewayState:
                  billing_type: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  nat_gateway_name: Optional[pulumi.Input[str]] = None,
+                 period: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  spec: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
@@ -159,9 +176,10 @@ class _GatewayState:
                  vpc_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Gateway resources.
-        :param pulumi.Input[str] billing_type: The billing type of the NatGateway, the value is `PostPaid`.
+        :param pulumi.Input[str] billing_type: The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
         :param pulumi.Input[str] description: The description of the NatGateway.
         :param pulumi.Input[str] nat_gateway_name: The name of the NatGateway.
+        :param pulumi.Input[int] period: The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] project_name: The ProjectName of the NatGateway.
         :param pulumi.Input[str] spec: The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
         :param pulumi.Input[str] subnet_id: The ID of the Subnet.
@@ -174,6 +192,8 @@ class _GatewayState:
             pulumi.set(__self__, "description", description)
         if nat_gateway_name is not None:
             pulumi.set(__self__, "nat_gateway_name", nat_gateway_name)
+        if period is not None:
+            pulumi.set(__self__, "period", period)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
         if spec is not None:
@@ -189,7 +209,7 @@ class _GatewayState:
     @pulumi.getter(name="billingType")
     def billing_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The billing type of the NatGateway, the value is `PostPaid`.
+        The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
         """
         return pulumi.get(self, "billing_type")
 
@@ -220,6 +240,18 @@ class _GatewayState:
     @nat_gateway_name.setter
     def nat_gateway_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "nat_gateway_name", value)
+
+    @property
+    @pulumi.getter
+    def period(self) -> Optional[pulumi.Input[int]]:
+        """
+        The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "period")
+
+    @period.setter
+    def period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "period", value)
 
     @property
     @pulumi.getter(name="projectName")
@@ -290,6 +322,7 @@ class Gateway(pulumi.CustomResource):
                  billing_type: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  nat_gateway_name: Optional[pulumi.Input[str]] = None,
+                 period: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  spec: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
@@ -304,6 +337,7 @@ class Gateway(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.nat.Gateway("foo",
+            billing_type="PostPaid",
             description="This nat gateway auto-created by terraform. ",
             nat_gateway_name="tf-auto-demo-1",
             project_name="default",
@@ -322,9 +356,10 @@ class Gateway(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] billing_type: The billing type of the NatGateway, the value is `PostPaid`.
+        :param pulumi.Input[str] billing_type: The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
         :param pulumi.Input[str] description: The description of the NatGateway.
         :param pulumi.Input[str] nat_gateway_name: The name of the NatGateway.
+        :param pulumi.Input[int] period: The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] project_name: The ProjectName of the NatGateway.
         :param pulumi.Input[str] spec: The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
         :param pulumi.Input[str] subnet_id: The ID of the Subnet.
@@ -345,6 +380,7 @@ class Gateway(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.nat.Gateway("foo",
+            billing_type="PostPaid",
             description="This nat gateway auto-created by terraform. ",
             nat_gateway_name="tf-auto-demo-1",
             project_name="default",
@@ -379,6 +415,7 @@ class Gateway(pulumi.CustomResource):
                  billing_type: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  nat_gateway_name: Optional[pulumi.Input[str]] = None,
+                 period: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  spec: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
@@ -399,6 +436,7 @@ class Gateway(pulumi.CustomResource):
             __props__.__dict__["billing_type"] = billing_type
             __props__.__dict__["description"] = description
             __props__.__dict__["nat_gateway_name"] = nat_gateway_name
+            __props__.__dict__["period"] = period
             __props__.__dict__["project_name"] = project_name
             __props__.__dict__["spec"] = spec
             if subnet_id is None and not opts.urn:
@@ -421,6 +459,7 @@ class Gateway(pulumi.CustomResource):
             billing_type: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             nat_gateway_name: Optional[pulumi.Input[str]] = None,
+            period: Optional[pulumi.Input[int]] = None,
             project_name: Optional[pulumi.Input[str]] = None,
             spec: Optional[pulumi.Input[str]] = None,
             subnet_id: Optional[pulumi.Input[str]] = None,
@@ -433,9 +472,10 @@ class Gateway(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] billing_type: The billing type of the NatGateway, the value is `PostPaid`.
+        :param pulumi.Input[str] billing_type: The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
         :param pulumi.Input[str] description: The description of the NatGateway.
         :param pulumi.Input[str] nat_gateway_name: The name of the NatGateway.
+        :param pulumi.Input[int] period: The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] project_name: The ProjectName of the NatGateway.
         :param pulumi.Input[str] spec: The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
         :param pulumi.Input[str] subnet_id: The ID of the Subnet.
@@ -449,6 +489,7 @@ class Gateway(pulumi.CustomResource):
         __props__.__dict__["billing_type"] = billing_type
         __props__.__dict__["description"] = description
         __props__.__dict__["nat_gateway_name"] = nat_gateway_name
+        __props__.__dict__["period"] = period
         __props__.__dict__["project_name"] = project_name
         __props__.__dict__["spec"] = spec
         __props__.__dict__["subnet_id"] = subnet_id
@@ -460,7 +501,7 @@ class Gateway(pulumi.CustomResource):
     @pulumi.getter(name="billingType")
     def billing_type(self) -> pulumi.Output[Optional[str]]:
         """
-        The billing type of the NatGateway, the value is `PostPaid`.
+        The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
         """
         return pulumi.get(self, "billing_type")
 
@@ -479,6 +520,14 @@ class Gateway(pulumi.CustomResource):
         The name of the NatGateway.
         """
         return pulumi.get(self, "nat_gateway_name")
+
+    @property
+    @pulumi.getter
+    def period(self) -> pulumi.Output[Optional[int]]:
+        """
+        The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "period")
 
     @property
     @pulumi.getter(name="projectName")

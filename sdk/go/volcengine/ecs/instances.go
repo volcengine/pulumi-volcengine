@@ -11,33 +11,6 @@ import (
 )
 
 // Use this data source to query detailed information of ecs instances
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/ecs"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ecs.Instances(ctx, &ecs.InstancesArgs{
-//				Ids: []string{
-//					"i-ebgy6xmgjve0384ncgsc",
-//				},
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func Instances(ctx *pulumi.Context, args *InstancesArgs, opts ...pulumi.InvokeOption) (*InstancesResult, error) {
 	var rv InstancesResult
 	err := ctx.Invoke("volcengine:ecs/instances:Instances", args, &rv, opts...)

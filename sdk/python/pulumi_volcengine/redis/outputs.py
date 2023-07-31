@@ -29,6 +29,7 @@ __all__ = [
     'InstancesInstanceTagResult',
     'InstancesInstanceVisitAddrResult',
     'InstancesTagResult',
+    'PitrTimeWindowsPeriodResult',
     'RegionsRegionResult',
     'ZonesZoneResult',
 ]
@@ -1677,6 +1678,32 @@ class InstancesTagResult(dict):
         The Value of Tags.
         """
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class PitrTimeWindowsPeriodResult(dict):
+    def __init__(__self__, *,
+                 end_time: str,
+                 instance_id: str,
+                 start_time: str):
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "start_time", start_time)
+
+    @property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> str:
+        return pulumi.get(self, "end_time")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> str:
+        return pulumi.get(self, "start_time")
 
 
 @pulumi.output_type

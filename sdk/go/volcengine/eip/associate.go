@@ -19,16 +19,76 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/eip"
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/eip"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := eip.NewAssociate(ctx, "foo", &eip.AssociateArgs{
-//				AllocationId: pulumi.String("eip-273ybrd0oeo007fap8t0nggtx"),
-//				InstanceId:   pulumi.String("i-cm9tjw9zp9j942mfkczp"),
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooImages, err := ecs.Images(ctx, &ecs.ImagesArgs{
+//				OsType:         pulumi.StringRef("Linux"),
+//				Visibility:     pulumi.StringRef("public"),
+//				InstanceTypeId: pulumi.StringRef("ecs.g1.large"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSecurityGroup, err := vpc.NewSecurityGroup(ctx, "fooSecurityGroup", &vpc.SecurityGroupArgs{
+//				VpcId:             fooVpc.ID(),
+//				SecurityGroupName: pulumi.String("acc-test-security-group"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooInstance, err := ecs.NewInstance(ctx, "fooInstance", &ecs.InstanceArgs{
+//				ImageId:            pulumi.String(fooImages.Images[0].ImageId),
+//				InstanceType:       pulumi.String("ecs.g1.large"),
+//				InstanceName:       pulumi.String("acc-test-ecs-name"),
+//				Password:           pulumi.String("93f0cb0614Aab12"),
+//				InstanceChargeType: pulumi.String("PostPaid"),
+//				SystemVolumeType:   pulumi.String("ESSD_PL0"),
+//				SystemVolumeSize:   pulumi.Int(40),
+//				SubnetId:           fooSubnet.ID(),
+//				SecurityGroupIds: pulumi.StringArray{
+//					fooSecurityGroup.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooAddress, err := eip.NewAddress(ctx, "fooAddress", &eip.AddressArgs{
+//				BillingType: pulumi.String("PostPaidByTraffic"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = eip.NewAssociate(ctx, "fooAssociate", &eip.AssociateArgs{
+//				AllocationId: fooAddress.ID(),
+//				InstanceId:   fooInstance.ID(),
 //				InstanceType: pulumi.String("EcsInstance"),
 //			})
 //			if err != nil {
@@ -56,7 +116,7 @@ type Associate struct {
 	AllocationId pulumi.StringOutput `pulumi:"allocationId"`
 	// The instance id which be associated to the EIP.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
-	// The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
+	// The type of the associated instance,the value is `Nat` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
 	InstanceType pulumi.StringOutput `pulumi:"instanceType"`
 	// The private IP address of the instance will be associated to the EIP.
 	PrivateIpAddress pulumi.StringOutput `pulumi:"privateIpAddress"`
@@ -104,7 +164,7 @@ type associateState struct {
 	AllocationId *string `pulumi:"allocationId"`
 	// The instance id which be associated to the EIP.
 	InstanceId *string `pulumi:"instanceId"`
-	// The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
+	// The type of the associated instance,the value is `Nat` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
 	InstanceType *string `pulumi:"instanceType"`
 	// The private IP address of the instance will be associated to the EIP.
 	PrivateIpAddress *string `pulumi:"privateIpAddress"`
@@ -115,7 +175,7 @@ type AssociateState struct {
 	AllocationId pulumi.StringPtrInput
 	// The instance id which be associated to the EIP.
 	InstanceId pulumi.StringPtrInput
-	// The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
+	// The type of the associated instance,the value is `Nat` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
 	InstanceType pulumi.StringPtrInput
 	// The private IP address of the instance will be associated to the EIP.
 	PrivateIpAddress pulumi.StringPtrInput
@@ -130,7 +190,7 @@ type associateArgs struct {
 	AllocationId string `pulumi:"allocationId"`
 	// The instance id which be associated to the EIP.
 	InstanceId string `pulumi:"instanceId"`
-	// The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
+	// The type of the associated instance,the value is `Nat` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
 	InstanceType string `pulumi:"instanceType"`
 	// The private IP address of the instance will be associated to the EIP.
 	PrivateIpAddress *string `pulumi:"privateIpAddress"`
@@ -142,7 +202,7 @@ type AssociateArgs struct {
 	AllocationId pulumi.StringInput
 	// The instance id which be associated to the EIP.
 	InstanceId pulumi.StringInput
-	// The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
+	// The type of the associated instance,the value is `Nat` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
 	InstanceType pulumi.StringInput
 	// The private IP address of the instance will be associated to the EIP.
 	PrivateIpAddress pulumi.StringPtrInput
@@ -245,7 +305,7 @@ func (o AssociateOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Associate) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }
 
-// The type of the associated instance,the value is `NAT` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
+// The type of the associated instance,the value is `Nat` or `NetworkInterface` or `ClbInstance` or `EcsInstance` or `HaVip`.
 func (o AssociateOutput) InstanceType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Associate) pulumi.StringOutput { return v.InstanceType }).(pulumi.StringOutput)
 }

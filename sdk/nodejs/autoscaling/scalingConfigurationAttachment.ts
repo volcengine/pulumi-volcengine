@@ -19,7 +19,7 @@ import * as utilities from "../utilities";
  *
  * ## Import
  *
- * Scaling Configuration attachment can be imported using the scaling_configuration_id e.g.
+ * Scaling Configuration attachment can be imported using the scaling_configuration_id e.g. The launch template and scaling configuration cannot take effect at the same time.
  *
  * ```sh
  *  $ pulumi import volcengine:autoscaling/scalingConfigurationAttachment:ScalingConfigurationAttachment default enable:scc-ybrurj4uw6gh9zecj327

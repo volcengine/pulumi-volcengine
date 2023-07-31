@@ -12,9 +12,14 @@ from . import outputs
 __all__ = [
     'AclAclEntry',
     'AclsAclResult',
+    'CertificateTag',
     'CertificatesCertificateResult',
+    'CertificatesCertificateTagResult',
+    'CertificatesTagResult',
+    'ClbEipBillingConfig',
     'ClbTag',
     'ClbsClbResult',
+    'ClbsClbEipBillingConfigResult',
     'ClbsClbTagResult',
     'ClbsTagResult',
     'ListenerHealthCheck',
@@ -163,6 +168,35 @@ class AclsAclResult(dict):
 
 
 @pulumi.output_type
+class CertificateTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class CertificatesCertificateResult(dict):
     def __init__(__self__, *,
                  certificate_id: str,
@@ -173,7 +207,8 @@ class CertificatesCertificateResult(dict):
                  expired_at: str,
                  id: str,
                  listeners: Sequence[str],
-                 project_name: str):
+                 project_name: str,
+                 tags: Sequence['outputs.CertificatesCertificateTagResult']):
         """
         :param str certificate_id: The ID of the Certificate.
         :param str certificate_name: The name of the Certificate.
@@ -184,6 +219,7 @@ class CertificatesCertificateResult(dict):
         :param str id: The ID of the Certificate.
         :param Sequence[str] listeners: The ID list of the Listener.
         :param str project_name: The ProjectName of Certificate.
+        :param Sequence['CertificatesCertificateTagArgs'] tags: Tags.
         """
         pulumi.set(__self__, "certificate_id", certificate_id)
         pulumi.set(__self__, "certificate_name", certificate_name)
@@ -194,6 +230,7 @@ class CertificatesCertificateResult(dict):
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "listeners", listeners)
         pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="certificateId")
@@ -267,6 +304,130 @@ class CertificatesCertificateResult(dict):
         """
         return pulumi.get(self, "project_name")
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.CertificatesCertificateTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class CertificatesCertificateTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class CertificatesTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class ClbEipBillingConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "eipBillingType":
+            suggest = "eip_billing_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ClbEipBillingConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ClbEipBillingConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ClbEipBillingConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 eip_billing_type: str,
+                 isp: str,
+                 bandwidth: Optional[int] = None):
+        """
+        :param str eip_billing_type: The billing type of the EIP which automatically assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.When creating a `PrePaid` public CLB, this field must be specified as `PrePaid` simultaneously.When the LoadBalancerBillingType changes from `PostPaid` to `PrePaid`, please manually modify the value of this field to `PrePaid` simultaneously.
+        :param str isp: The ISP of the EIP which automatically associated to CLB, the value can be `BGP`.
+        :param int bandwidth: The peek bandwidth of the EIP which automatically assigned to CLB. The value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
+        """
+        pulumi.set(__self__, "eip_billing_type", eip_billing_type)
+        pulumi.set(__self__, "isp", isp)
+        if bandwidth is not None:
+            pulumi.set(__self__, "bandwidth", bandwidth)
+
+    @property
+    @pulumi.getter(name="eipBillingType")
+    def eip_billing_type(self) -> str:
+        """
+        The billing type of the EIP which automatically assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.When creating a `PrePaid` public CLB, this field must be specified as `PrePaid` simultaneously.When the LoadBalancerBillingType changes from `PostPaid` to `PrePaid`, please manually modify the value of this field to `PrePaid` simultaneously.
+        """
+        return pulumi.get(self, "eip_billing_type")
+
+    @property
+    @pulumi.getter
+    def isp(self) -> str:
+        """
+        The ISP of the EIP which automatically associated to CLB, the value can be `BGP`.
+        """
+        return pulumi.get(self, "isp")
+
+    @property
+    @pulumi.getter
+    def bandwidth(self) -> Optional[int]:
+        """
+        The peek bandwidth of the EIP which automatically assigned to CLB. The value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
+        """
+        return pulumi.get(self, "bandwidth")
+
 
 @pulumi.output_type
 class ClbTag(dict):
@@ -305,10 +466,13 @@ class ClbsClbResult(dict):
                  deleted_time: str,
                  description: str,
                  eip_address: str,
+                 eip_billing_configs: Sequence['outputs.ClbsClbEipBillingConfigResult'],
                  eip_id: str,
                  eni_address: str,
                  eni_id: str,
+                 expired_time: str,
                  id: str,
+                 instance_status: int,
                  load_balancer_billing_type: str,
                  load_balancer_id: str,
                  load_balancer_name: str,
@@ -317,8 +481,13 @@ class ClbsClbResult(dict):
                  master_zone_id: str,
                  modification_protection_reason: str,
                  modification_protection_status: str,
+                 overdue_reclaim_time: str,
                  overdue_time: str,
                  project_name: str,
+                 reclaim_time: str,
+                 remain_renew_times: int,
+                 renew_period_times: int,
+                 renew_type: str,
                  slave_zone_id: str,
                  status: str,
                  subnet_id: str,
@@ -335,7 +504,9 @@ class ClbsClbResult(dict):
         :param str eip_id: The Eip ID of the Clb.
         :param str eni_address: The private ip address of the Clb.
         :param str eni_id: The Eni ID of the Clb.
+        :param str expired_time: The expired time of the CLB.
         :param str id: The ID of the Clb.
+        :param int instance_status: The billing status of the CLB.
         :param str load_balancer_billing_type: The billing type of the Clb.
         :param str load_balancer_id: The ID of the Clb.
         :param str load_balancer_name: The name of the Clb.
@@ -344,8 +515,13 @@ class ClbsClbResult(dict):
         :param str master_zone_id: The master zone ID of the CLB.
         :param str modification_protection_reason: The modification protection reason of the Clb.
         :param str modification_protection_status: The modification protection status of the Clb.
+        :param str overdue_reclaim_time: The over reclaim time of the CLB.
         :param str overdue_time: The overdue time of the Clb.
         :param str project_name: The ProjectName of Clb.
+        :param str reclaim_time: The reclaim time of the CLB.
+        :param int remain_renew_times: The remain renew times of the CLB. When the value of the renew_type is `AutoRenew`, the query returns this field.
+        :param int renew_period_times: The renew period times of the CLB. When the value of the renew_type is `AutoRenew`, the query returns this field.
+        :param str renew_type: The renew type of the CLB. When the value of the load_balancer_billing_type is `PrePaid`, the query returns this field.
         :param str slave_zone_id: The slave zone ID of the CLB.
         :param str status: The status of the Clb.
         :param str subnet_id: The subnet ID of the Clb.
@@ -359,10 +535,13 @@ class ClbsClbResult(dict):
         pulumi.set(__self__, "deleted_time", deleted_time)
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "eip_address", eip_address)
+        pulumi.set(__self__, "eip_billing_configs", eip_billing_configs)
         pulumi.set(__self__, "eip_id", eip_id)
         pulumi.set(__self__, "eni_address", eni_address)
         pulumi.set(__self__, "eni_id", eni_id)
+        pulumi.set(__self__, "expired_time", expired_time)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "instance_status", instance_status)
         pulumi.set(__self__, "load_balancer_billing_type", load_balancer_billing_type)
         pulumi.set(__self__, "load_balancer_id", load_balancer_id)
         pulumi.set(__self__, "load_balancer_name", load_balancer_name)
@@ -371,8 +550,13 @@ class ClbsClbResult(dict):
         pulumi.set(__self__, "master_zone_id", master_zone_id)
         pulumi.set(__self__, "modification_protection_reason", modification_protection_reason)
         pulumi.set(__self__, "modification_protection_status", modification_protection_status)
+        pulumi.set(__self__, "overdue_reclaim_time", overdue_reclaim_time)
         pulumi.set(__self__, "overdue_time", overdue_time)
         pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "reclaim_time", reclaim_time)
+        pulumi.set(__self__, "remain_renew_times", remain_renew_times)
+        pulumi.set(__self__, "renew_period_times", renew_period_times)
+        pulumi.set(__self__, "renew_type", renew_type)
         pulumi.set(__self__, "slave_zone_id", slave_zone_id)
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "subnet_id", subnet_id)
@@ -422,6 +606,11 @@ class ClbsClbResult(dict):
         return pulumi.get(self, "eip_address")
 
     @property
+    @pulumi.getter(name="eipBillingConfigs")
+    def eip_billing_configs(self) -> Sequence['outputs.ClbsClbEipBillingConfigResult']:
+        return pulumi.get(self, "eip_billing_configs")
+
+    @property
     @pulumi.getter(name="eipId")
     def eip_id(self) -> str:
         """
@@ -446,12 +635,28 @@ class ClbsClbResult(dict):
         return pulumi.get(self, "eni_id")
 
     @property
+    @pulumi.getter(name="expiredTime")
+    def expired_time(self) -> str:
+        """
+        The expired time of the CLB.
+        """
+        return pulumi.get(self, "expired_time")
+
+    @property
     @pulumi.getter
     def id(self) -> str:
         """
         The ID of the Clb.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="instanceStatus")
+    def instance_status(self) -> int:
+        """
+        The billing status of the CLB.
+        """
+        return pulumi.get(self, "instance_status")
 
     @property
     @pulumi.getter(name="loadBalancerBillingType")
@@ -518,6 +723,14 @@ class ClbsClbResult(dict):
         return pulumi.get(self, "modification_protection_status")
 
     @property
+    @pulumi.getter(name="overdueReclaimTime")
+    def overdue_reclaim_time(self) -> str:
+        """
+        The over reclaim time of the CLB.
+        """
+        return pulumi.get(self, "overdue_reclaim_time")
+
+    @property
     @pulumi.getter(name="overdueTime")
     def overdue_time(self) -> str:
         """
@@ -532,6 +745,38 @@ class ClbsClbResult(dict):
         The ProjectName of Clb.
         """
         return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="reclaimTime")
+    def reclaim_time(self) -> str:
+        """
+        The reclaim time of the CLB.
+        """
+        return pulumi.get(self, "reclaim_time")
+
+    @property
+    @pulumi.getter(name="remainRenewTimes")
+    def remain_renew_times(self) -> int:
+        """
+        The remain renew times of the CLB. When the value of the renew_type is `AutoRenew`, the query returns this field.
+        """
+        return pulumi.get(self, "remain_renew_times")
+
+    @property
+    @pulumi.getter(name="renewPeriodTimes")
+    def renew_period_times(self) -> int:
+        """
+        The renew period times of the CLB. When the value of the renew_type is `AutoRenew`, the query returns this field.
+        """
+        return pulumi.get(self, "renew_period_times")
+
+    @property
+    @pulumi.getter(name="renewType")
+    def renew_type(self) -> str:
+        """
+        The renew type of the CLB. When the value of the load_balancer_billing_type is `PrePaid`, the query returns this field.
+        """
+        return pulumi.get(self, "renew_type")
 
     @property
     @pulumi.getter(name="slaveZoneId")
@@ -588,6 +833,32 @@ class ClbsClbResult(dict):
         The id of the VPC.
         """
         return pulumi.get(self, "vpc_id")
+
+
+@pulumi.output_type
+class ClbsClbEipBillingConfigResult(dict):
+    def __init__(__self__, *,
+                 bandwidth: int,
+                 eip_billing_type: str,
+                 isp: str):
+        pulumi.set(__self__, "bandwidth", bandwidth)
+        pulumi.set(__self__, "eip_billing_type", eip_billing_type)
+        pulumi.set(__self__, "isp", isp)
+
+    @property
+    @pulumi.getter
+    def bandwidth(self) -> int:
+        return pulumi.get(self, "bandwidth")
+
+    @property
+    @pulumi.getter(name="eipBillingType")
+    def eip_billing_type(self) -> str:
+        return pulumi.get(self, "eip_billing_type")
+
+    @property
+    @pulumi.getter
+    def isp(self) -> str:
+        return pulumi.get(self, "isp")
 
 
 @pulumi.output_type
@@ -657,6 +928,10 @@ class ListenerHealthCheck(dict):
             suggest = "healthy_threshold"
         elif key == "httpCode":
             suggest = "http_code"
+        elif key == "udpExpect":
+            suggest = "udp_expect"
+        elif key == "udpRequest":
+            suggest = "udp_request"
         elif key == "unHealthyThreshold":
             suggest = "un_healthy_threshold"
 
@@ -679,6 +954,8 @@ class ListenerHealthCheck(dict):
                  interval: Optional[int] = None,
                  method: Optional[str] = None,
                  timeout: Optional[int] = None,
+                 udp_expect: Optional[str] = None,
+                 udp_request: Optional[str] = None,
                  un_healthy_threshold: Optional[int] = None,
                  uri: Optional[str] = None):
         """
@@ -689,6 +966,8 @@ class ListenerHealthCheck(dict):
         :param int interval: The interval executing health check, default 2, range in 1~300.
         :param str method: The method of health check, the value can be `GET` or `HEAD`.
         :param int timeout: The response timeout of health check, default 2, range in 1~60..
+        :param str udp_expect: The UDP expect of health check. This field must be specified simultaneously with field `udp_request`.
+        :param str udp_request: The UDP request of health check. This field must be specified simultaneously with field `udp_expect`.
         :param int un_healthy_threshold: The unhealthy threshold of health check, default 3, range in 2~10.
         :param str uri: The uri of health check.
         """
@@ -706,6 +985,10 @@ class ListenerHealthCheck(dict):
             pulumi.set(__self__, "method", method)
         if timeout is not None:
             pulumi.set(__self__, "timeout", timeout)
+        if udp_expect is not None:
+            pulumi.set(__self__, "udp_expect", udp_expect)
+        if udp_request is not None:
+            pulumi.set(__self__, "udp_request", udp_request)
         if un_healthy_threshold is not None:
             pulumi.set(__self__, "un_healthy_threshold", un_healthy_threshold)
         if uri is not None:
@@ -766,6 +1049,22 @@ class ListenerHealthCheck(dict):
         The response timeout of health check, default 2, range in 1~60..
         """
         return pulumi.get(self, "timeout")
+
+    @property
+    @pulumi.getter(name="udpExpect")
+    def udp_expect(self) -> Optional[str]:
+        """
+        The UDP expect of health check. This field must be specified simultaneously with field `udp_request`.
+        """
+        return pulumi.get(self, "udp_expect")
+
+    @property
+    @pulumi.getter(name="udpRequest")
+    def udp_request(self) -> Optional[str]:
+        """
+        The UDP request of health check. This field must be specified simultaneously with field `udp_expect`.
+        """
+        return pulumi.get(self, "udp_request")
 
     @property
     @pulumi.getter(name="unHealthyThreshold")

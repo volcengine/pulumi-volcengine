@@ -20,8 +20,13 @@ import * as utilities from "../utilities";
  *     maxInstanceNumber: 1,
  *     minInstanceNumber: 0,
  *     multiAzPolicy: "BALANCE",
- *     scalingGroupName: "tf-test",
- *     subnetIds: ["subnet-2ff1n75eyf08w59gp67qhnhqm"],
+ *     projectName: "default",
+ *     scalingGroupName: "test-tf",
+ *     subnetIds: ["subnet-2fe79j7c8o5c059gp68ksxr93"],
+ *     tags: [{
+ *         key: "tf-key1",
+ *         value: "tf-value1",
+ *     }],
  * });
  * ```
  *
@@ -74,7 +79,7 @@ export class ScalingGroup extends pulumi.CustomResource {
      */
     public /*out*/ readonly dbInstanceIds!: pulumi.Output<string[]>;
     /**
-     * The default cooldown interval of the scaling group. Default value: 300.
+     * The default cooldown interval of the scaling group. Value range: 5 ~ 86400, unit: second. Default value: 300.
      */
     public readonly defaultCooldown!: pulumi.Output<number>;
     /**
@@ -86,11 +91,11 @@ export class ScalingGroup extends pulumi.CustomResource {
      */
     public readonly instanceTerminatePolicy!: pulumi.Output<string>;
     /**
-     * The ID of the launch template bound to the scaling group.
+     * The ID of the launch template bound to the scaling group. The launch template and scaling configuration cannot take effect at the same time.
      */
     public readonly launchTemplateId!: pulumi.Output<string | undefined>;
     /**
-     * The version of the launch template bound to the scaling group.
+     * The version of the launch template bound to the scaling group. Valid values are the version number, Latest, or Default.
      */
     public readonly launchTemplateVersion!: pulumi.Output<string | undefined>;
     /**
@@ -98,17 +103,21 @@ export class ScalingGroup extends pulumi.CustomResource {
      */
     public /*out*/ readonly lifecycleState!: pulumi.Output<string>;
     /**
-     * The max instance number of the scaling group.
+     * The max instance number of the scaling group. Value range: 0 ~ 100.
      */
     public readonly maxInstanceNumber!: pulumi.Output<number>;
     /**
-     * The min instance number of the scaling group.
+     * The min instance number of the scaling group. Value range: 0 ~ 100.
      */
     public readonly minInstanceNumber!: pulumi.Output<number>;
     /**
      * The multi az policy of the scaling group. Valid values: PRIORITY, BALANCE. Default value: PRIORITY.
      */
     public readonly multiAzPolicy!: pulumi.Output<string>;
+    /**
+     * The ProjectName of the scaling group.
+     */
+    public readonly projectName!: pulumi.Output<string | undefined>;
     /**
      * The id of the scaling group.
      */
@@ -125,6 +134,10 @@ export class ScalingGroup extends pulumi.CustomResource {
      * The list of the subnet id to which the ENI is connected.
      */
     public readonly subnetIds!: pulumi.Output<string[]>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.autoscaling.ScalingGroupTag[] | undefined>;
     /**
      * The total instance count of the scaling group.
      */
@@ -163,10 +176,12 @@ export class ScalingGroup extends pulumi.CustomResource {
             resourceInputs["maxInstanceNumber"] = state ? state.maxInstanceNumber : undefined;
             resourceInputs["minInstanceNumber"] = state ? state.minInstanceNumber : undefined;
             resourceInputs["multiAzPolicy"] = state ? state.multiAzPolicy : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["scalingGroupId"] = state ? state.scalingGroupId : undefined;
             resourceInputs["scalingGroupName"] = state ? state.scalingGroupName : undefined;
             resourceInputs["serverGroupAttributes"] = state ? state.serverGroupAttributes : undefined;
             resourceInputs["subnetIds"] = state ? state.subnetIds : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["totalInstanceCount"] = state ? state.totalInstanceCount : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
             resourceInputs["vpcId"] = state ? state.vpcId : undefined;
@@ -192,9 +207,11 @@ export class ScalingGroup extends pulumi.CustomResource {
             resourceInputs["maxInstanceNumber"] = args ? args.maxInstanceNumber : undefined;
             resourceInputs["minInstanceNumber"] = args ? args.minInstanceNumber : undefined;
             resourceInputs["multiAzPolicy"] = args ? args.multiAzPolicy : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["scalingGroupName"] = args ? args.scalingGroupName : undefined;
             resourceInputs["serverGroupAttributes"] = args ? args.serverGroupAttributes : undefined;
             resourceInputs["subnetIds"] = args ? args.subnetIds : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["activeScalingConfigurationId"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["dbInstanceIds"] = undefined /*out*/;
@@ -226,7 +243,7 @@ export interface ScalingGroupState {
      */
     dbInstanceIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The default cooldown interval of the scaling group. Default value: 300.
+     * The default cooldown interval of the scaling group. Value range: 5 ~ 86400, unit: second. Default value: 300.
      */
     defaultCooldown?: pulumi.Input<number>;
     /**
@@ -238,11 +255,11 @@ export interface ScalingGroupState {
      */
     instanceTerminatePolicy?: pulumi.Input<string>;
     /**
-     * The ID of the launch template bound to the scaling group.
+     * The ID of the launch template bound to the scaling group. The launch template and scaling configuration cannot take effect at the same time.
      */
     launchTemplateId?: pulumi.Input<string>;
     /**
-     * The version of the launch template bound to the scaling group.
+     * The version of the launch template bound to the scaling group. Valid values are the version number, Latest, or Default.
      */
     launchTemplateVersion?: pulumi.Input<string>;
     /**
@@ -250,17 +267,21 @@ export interface ScalingGroupState {
      */
     lifecycleState?: pulumi.Input<string>;
     /**
-     * The max instance number of the scaling group.
+     * The max instance number of the scaling group. Value range: 0 ~ 100.
      */
     maxInstanceNumber?: pulumi.Input<number>;
     /**
-     * The min instance number of the scaling group.
+     * The min instance number of the scaling group. Value range: 0 ~ 100.
      */
     minInstanceNumber?: pulumi.Input<number>;
     /**
      * The multi az policy of the scaling group. Valid values: PRIORITY, BALANCE. Default value: PRIORITY.
      */
     multiAzPolicy?: pulumi.Input<string>;
+    /**
+     * The ProjectName of the scaling group.
+     */
+    projectName?: pulumi.Input<string>;
     /**
      * The id of the scaling group.
      */
@@ -277,6 +298,10 @@ export interface ScalingGroupState {
      * The list of the subnet id to which the ENI is connected.
      */
     subnetIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.autoscaling.ScalingGroupTag>[]>;
     /**
      * The total instance count of the scaling group.
      */
@@ -296,7 +321,7 @@ export interface ScalingGroupState {
  */
 export interface ScalingGroupArgs {
     /**
-     * The default cooldown interval of the scaling group. Default value: 300.
+     * The default cooldown interval of the scaling group. Value range: 5 ~ 86400, unit: second. Default value: 300.
      */
     defaultCooldown?: pulumi.Input<number>;
     /**
@@ -308,25 +333,29 @@ export interface ScalingGroupArgs {
      */
     instanceTerminatePolicy?: pulumi.Input<string>;
     /**
-     * The ID of the launch template bound to the scaling group.
+     * The ID of the launch template bound to the scaling group. The launch template and scaling configuration cannot take effect at the same time.
      */
     launchTemplateId?: pulumi.Input<string>;
     /**
-     * The version of the launch template bound to the scaling group.
+     * The version of the launch template bound to the scaling group. Valid values are the version number, Latest, or Default.
      */
     launchTemplateVersion?: pulumi.Input<string>;
     /**
-     * The max instance number of the scaling group.
+     * The max instance number of the scaling group. Value range: 0 ~ 100.
      */
     maxInstanceNumber: pulumi.Input<number>;
     /**
-     * The min instance number of the scaling group.
+     * The min instance number of the scaling group. Value range: 0 ~ 100.
      */
     minInstanceNumber: pulumi.Input<number>;
     /**
      * The multi az policy of the scaling group. Valid values: PRIORITY, BALANCE. Default value: PRIORITY.
      */
     multiAzPolicy?: pulumi.Input<string>;
+    /**
+     * The ProjectName of the scaling group.
+     */
+    projectName?: pulumi.Input<string>;
     /**
      * The name of the scaling group.
      */
@@ -339,4 +368,8 @@ export interface ScalingGroupArgs {
      * The list of the subnet id to which the ENI is connected.
      */
     subnetIds: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.autoscaling.ScalingGroupTag>[]>;
 }

@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Immutable;
 
-namespace Pulumi.Volcengine
+namespace Volcengine.PulumiPackage.Volcengine
 {
     public static class Config
     {

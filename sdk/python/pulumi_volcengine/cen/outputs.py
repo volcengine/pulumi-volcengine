@@ -21,6 +21,9 @@ __all__ = [
     'CensTagResult',
     'InterRegionBandwidthsInterRegionBandwidthResult',
     'RouteEntriesCenRouteEntryResult',
+    'ServiceRouteEntriesServiceRouteEntryResult',
+    'ServiceRouteEntriesServiceRouteEntryPublishToInstanceResult',
+    'ServiceRouteEntryPublishToInstance',
 ]
 
 @pulumi.output_type
@@ -153,6 +156,7 @@ class BandwidthPackagesBandwidthPackageResult(dict):
                  id: str,
                  local_geographic_region_set_id: str,
                  peer_geographic_region_set_id: str,
+                 project_name: str,
                  remaining_bandwidth: int,
                  status: str,
                  tags: Sequence['outputs.BandwidthPackagesBandwidthPackageTagResult'],
@@ -172,6 +176,7 @@ class BandwidthPackagesBandwidthPackageResult(dict):
         :param str id: The ID of the cen bandwidth package.
         :param str local_geographic_region_set_id: A local geographic region set id.
         :param str peer_geographic_region_set_id: A peer geographic region set id.
+        :param str project_name: The ProjectName of the cen bandwidth package.
         :param int remaining_bandwidth: The remain bandwidth of the cen bandwidth package.
         :param str status: The status of the cen bandwidth package.
         :param Sequence['BandwidthPackagesBandwidthPackageTagArgs'] tags: Tags.
@@ -191,6 +196,7 @@ class BandwidthPackagesBandwidthPackageResult(dict):
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "local_geographic_region_set_id", local_geographic_region_set_id)
         pulumi.set(__self__, "peer_geographic_region_set_id", peer_geographic_region_set_id)
+        pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "remaining_bandwidth", remaining_bandwidth)
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "tags", tags)
@@ -307,6 +313,14 @@ class BandwidthPackagesBandwidthPackageResult(dict):
         A peer geographic region set id.
         """
         return pulumi.get(self, "peer_geographic_region_set_id")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The ProjectName of the cen bandwidth package.
+        """
+        return pulumi.get(self, "project_name")
 
     @property
     @pulumi.getter(name="remainingBandwidth")
@@ -438,6 +452,7 @@ class CensCenResult(dict):
                  creation_time: str,
                  description: str,
                  id: str,
+                 project_name: str,
                  status: str,
                  tags: Sequence['outputs.CensCenTagResult'],
                  update_time: str):
@@ -449,6 +464,7 @@ class CensCenResult(dict):
         :param str creation_time: The create time of the cen.
         :param str description: The description of the cen.
         :param str id: The ID of the cen.
+        :param str project_name: The ProjectName of the cen instance.
         :param str status: The status of the cen.
         :param Sequence['CensCenTagArgs'] tags: Tags.
         :param str update_time: The update time of the cen.
@@ -460,6 +476,7 @@ class CensCenResult(dict):
         pulumi.set(__self__, "creation_time", creation_time)
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "update_time", update_time)
@@ -519,6 +536,14 @@ class CensCenResult(dict):
         The ID of the cen.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The ProjectName of the cen instance.
+        """
+        return pulumi.get(self, "project_name")
 
     @property
     @pulumi.getter
@@ -802,5 +827,215 @@ class RouteEntriesCenRouteEntryResult(dict):
         The status of the cen route entry.
         """
         return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class ServiceRouteEntriesServiceRouteEntryResult(dict):
+    def __init__(__self__, *,
+                 cen_id: str,
+                 creation_time: str,
+                 description: str,
+                 destination_cidr_block: str,
+                 publish_mode: str,
+                 publish_to_instances: Sequence['outputs.ServiceRouteEntriesServiceRouteEntryPublishToInstanceResult'],
+                 service_region_id: str,
+                 service_vpc_id: str,
+                 status: str):
+        """
+        :param str cen_id: A cen ID.
+        :param str creation_time: The create time of the cen service route entry.
+        :param str description: The description of the cen service route entry.
+        :param str destination_cidr_block: A destination cidr block.
+        :param str publish_mode: Publishing scope of cloud service access routes. Valid values are `LocalDCGW`(default), `Custom`.
+        :param Sequence['ServiceRouteEntriesServiceRouteEntryPublishToInstanceArgs'] publish_to_instances: The publish instances. A maximum of 100 can be uploaded in one request.
+        :param str service_region_id: A service region id.
+        :param str service_vpc_id: A service VPC id.
+        :param str status: The status of the cen service route entry.
+        """
+        pulumi.set(__self__, "cen_id", cen_id)
+        pulumi.set(__self__, "creation_time", creation_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "destination_cidr_block", destination_cidr_block)
+        pulumi.set(__self__, "publish_mode", publish_mode)
+        pulumi.set(__self__, "publish_to_instances", publish_to_instances)
+        pulumi.set(__self__, "service_region_id", service_region_id)
+        pulumi.set(__self__, "service_vpc_id", service_vpc_id)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="cenId")
+    def cen_id(self) -> str:
+        """
+        A cen ID.
+        """
+        return pulumi.get(self, "cen_id")
+
+    @property
+    @pulumi.getter(name="creationTime")
+    def creation_time(self) -> str:
+        """
+        The create time of the cen service route entry.
+        """
+        return pulumi.get(self, "creation_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the cen service route entry.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="destinationCidrBlock")
+    def destination_cidr_block(self) -> str:
+        """
+        A destination cidr block.
+        """
+        return pulumi.get(self, "destination_cidr_block")
+
+    @property
+    @pulumi.getter(name="publishMode")
+    def publish_mode(self) -> str:
+        """
+        Publishing scope of cloud service access routes. Valid values are `LocalDCGW`(default), `Custom`.
+        """
+        return pulumi.get(self, "publish_mode")
+
+    @property
+    @pulumi.getter(name="publishToInstances")
+    def publish_to_instances(self) -> Sequence['outputs.ServiceRouteEntriesServiceRouteEntryPublishToInstanceResult']:
+        """
+        The publish instances. A maximum of 100 can be uploaded in one request.
+        """
+        return pulumi.get(self, "publish_to_instances")
+
+    @property
+    @pulumi.getter(name="serviceRegionId")
+    def service_region_id(self) -> str:
+        """
+        A service region id.
+        """
+        return pulumi.get(self, "service_region_id")
+
+    @property
+    @pulumi.getter(name="serviceVpcId")
+    def service_vpc_id(self) -> str:
+        """
+        A service VPC id.
+        """
+        return pulumi.get(self, "service_vpc_id")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the cen service route entry.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class ServiceRouteEntriesServiceRouteEntryPublishToInstanceResult(dict):
+    def __init__(__self__, *,
+                 instance_id: str,
+                 instance_region_id: str,
+                 instance_type: str):
+        """
+        :param str instance_id: Cloud service access routes need to publish the network instance ID.
+        :param str instance_region_id: The region where the cloud service access route needs to be published.
+        :param str instance_type: The network instance type that needs to be published for cloud service access routes. The values are as follows: `VPC`, `DCGW`.
+        """
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_region_id", instance_region_id)
+        pulumi.set(__self__, "instance_type", instance_type)
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        Cloud service access routes need to publish the network instance ID.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="instanceRegionId")
+    def instance_region_id(self) -> str:
+        """
+        The region where the cloud service access route needs to be published.
+        """
+        return pulumi.get(self, "instance_region_id")
+
+    @property
+    @pulumi.getter(name="instanceType")
+    def instance_type(self) -> str:
+        """
+        The network instance type that needs to be published for cloud service access routes. The values are as follows: `VPC`, `DCGW`.
+        """
+        return pulumi.get(self, "instance_type")
+
+
+@pulumi.output_type
+class ServiceRouteEntryPublishToInstance(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "instanceId":
+            suggest = "instance_id"
+        elif key == "instanceRegionId":
+            suggest = "instance_region_id"
+        elif key == "instanceType":
+            suggest = "instance_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServiceRouteEntryPublishToInstance. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServiceRouteEntryPublishToInstance.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServiceRouteEntryPublishToInstance.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 instance_id: Optional[str] = None,
+                 instance_region_id: Optional[str] = None,
+                 instance_type: Optional[str] = None):
+        """
+        :param str instance_id: Cloud service access routes need to publish the network instance ID.
+        :param str instance_region_id: The region where the cloud service access route needs to be published.
+        :param str instance_type: The network instance type that needs to be published for cloud service access routes. The values are as follows: `VPC`, `DCGW`.
+        """
+        if instance_id is not None:
+            pulumi.set(__self__, "instance_id", instance_id)
+        if instance_region_id is not None:
+            pulumi.set(__self__, "instance_region_id", instance_region_id)
+        if instance_type is not None:
+            pulumi.set(__self__, "instance_type", instance_type)
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> Optional[str]:
+        """
+        Cloud service access routes need to publish the network instance ID.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="instanceRegionId")
+    def instance_region_id(self) -> Optional[str]:
+        """
+        The region where the cloud service access route needs to be published.
+        """
+        return pulumi.get(self, "instance_region_id")
+
+    @property
+    @pulumi.getter(name="instanceType")
+    def instance_type(self) -> Optional[str]:
+        """
+        The network instance type that needs to be published for cloud service access routes. The values are as follows: `VPC`, `DCGW`.
+        """
+        return pulumi.get(self, "instance_type")
 
 
