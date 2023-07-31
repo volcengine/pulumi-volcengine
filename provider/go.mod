@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-volcengine/provider
+module github.com/volcengine/pulumi-volcengine/provider
 
 go 1.17
 
