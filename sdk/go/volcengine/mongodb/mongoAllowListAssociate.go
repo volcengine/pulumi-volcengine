@@ -70,6 +70,7 @@ func NewMongoAllowListAssociate(ctx *pulumi.Context,
 	if args.InstanceId == nil {
 		return nil, errors.New("invalid value for required argument 'InstanceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource MongoAllowListAssociate
 	err := ctx.RegisterResource("volcengine:mongodb/mongoAllowListAssociate:MongoAllowListAssociate", name, args, &resource, opts...)
 	if err != nil {

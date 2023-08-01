@@ -12,6 +12,7 @@ import (
 
 // Use this data source to query detailed information of ecs instances
 func Instances(ctx *pulumi.Context, args *InstancesArgs, opts ...pulumi.InvokeOption) (*InstancesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv InstancesResult
 	err := ctx.Invoke("volcengine:ecs/instances:Instances", args, &rv, opts...)
 	if err != nil {

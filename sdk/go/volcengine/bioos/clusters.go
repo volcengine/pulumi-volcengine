@@ -36,6 +36,7 @@ import (
 //
 // ```
 func Clusters(ctx *pulumi.Context, args *ClustersArgs, opts ...pulumi.InvokeOption) (*ClustersResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv ClustersResult
 	err := ctx.Invoke("volcengine:bioos/clusters:Clusters", args, &rv, opts...)
 	if err != nil {

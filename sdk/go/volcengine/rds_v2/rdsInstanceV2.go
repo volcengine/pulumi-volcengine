@@ -150,6 +150,7 @@ func NewRdsInstanceV2(ctx *pulumi.Context,
 	if args.VpcId == nil {
 		return nil, errors.New("invalid value for required argument 'VpcId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource RdsInstanceV2
 	err := ctx.RegisterResource("volcengine:rds_v2/rdsInstanceV2:RdsInstanceV2", name, args, &resource, opts...)
 	if err != nil {

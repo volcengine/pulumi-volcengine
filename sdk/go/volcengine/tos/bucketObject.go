@@ -105,6 +105,7 @@ func NewBucketObject(ctx *pulumi.Context,
 	if args.ObjectName == nil {
 		return nil, errors.New("invalid value for required argument 'ObjectName'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource BucketObject
 	err := ctx.RegisterResource("volcengine:tos/bucketObject:BucketObject", name, args, &resource, opts...)
 	if err != nil {

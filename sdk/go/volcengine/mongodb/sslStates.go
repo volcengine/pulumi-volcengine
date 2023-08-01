@@ -38,6 +38,7 @@ import (
 //
 // ```
 func SslStates(ctx *pulumi.Context, args *SslStatesArgs, opts ...pulumi.InvokeOption) (*SslStatesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv SslStatesResult
 	err := ctx.Invoke("volcengine:mongodb/sslStates:SslStates", args, &rv, opts...)
 	if err != nil {

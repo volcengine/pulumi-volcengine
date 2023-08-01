@@ -36,6 +36,7 @@ import (
 //
 // ```
 func CloudServers(ctx *pulumi.Context, args *CloudServersArgs, opts ...pulumi.InvokeOption) (*CloudServersResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv CloudServersResult
 	err := ctx.Invoke("volcengine:veenedge/cloudServers:CloudServers", args, &rv, opts...)
 	if err != nil {

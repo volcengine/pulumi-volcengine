@@ -94,6 +94,7 @@ func NewRolePolicyAttachment(ctx *pulumi.Context,
 	if args.RoleName == nil {
 		return nil, errors.New("invalid value for required argument 'RoleName'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource RolePolicyAttachment
 	err := ctx.RegisterResource("volcengine:iam/rolePolicyAttachment:RolePolicyAttachment", name, args, &resource, opts...)
 	if err != nil {

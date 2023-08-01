@@ -106,6 +106,7 @@ func NewVpc(ctx *pulumi.Context,
 	if args.CidrBlock == nil {
 		return nil, errors.New("invalid value for required argument 'CidrBlock'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Vpc
 	err := ctx.RegisterResource("volcengine:vpc/vpc:Vpc", name, args, &resource, opts...)
 	if err != nil {

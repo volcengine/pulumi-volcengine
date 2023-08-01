@@ -40,6 +40,7 @@ import (
 //
 // ```
 func VpcEndpoints(ctx *pulumi.Context, args *VpcEndpointsArgs, opts ...pulumi.InvokeOption) (*VpcEndpointsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv VpcEndpointsResult
 	err := ctx.Invoke("volcengine:privatelink/vpcEndpoints:VpcEndpoints", args, &rv, opts...)
 	if err != nil {

@@ -74,6 +74,7 @@ func NewCluster(ctx *pulumi.Context,
 		args = &ClusterArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Cluster
 	err := ctx.RegisterResource("volcengine:bioos/cluster:Cluster", name, args, &resource, opts...)
 	if err != nil {

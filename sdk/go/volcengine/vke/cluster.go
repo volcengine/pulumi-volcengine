@@ -139,6 +139,7 @@ func NewCluster(ctx *pulumi.Context,
 	if args.ServicesConfig == nil {
 		return nil, errors.New("invalid value for required argument 'ServicesConfig'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Cluster
 	err := ctx.RegisterResource("volcengine:vke/cluster:Cluster", name, args, &resource, opts...)
 	if err != nil {

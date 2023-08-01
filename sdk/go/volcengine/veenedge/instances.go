@@ -41,6 +41,7 @@ import (
 //
 // ```
 func Instances(ctx *pulumi.Context, args *InstancesArgs, opts ...pulumi.InvokeOption) (*InstancesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv InstancesResult
 	err := ctx.Invoke("volcengine:veenedge/instances:Instances", args, &rv, opts...)
 	if err != nil {

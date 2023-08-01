@@ -38,6 +38,7 @@ import (
 //
 // ```
 func NetworkAcls(ctx *pulumi.Context, args *NetworkAclsArgs, opts ...pulumi.InvokeOption) (*NetworkAclsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv NetworkAclsResult
 	err := ctx.Invoke("volcengine:vpc/networkAcls:NetworkAcls", args, &rv, opts...)
 	if err != nil {

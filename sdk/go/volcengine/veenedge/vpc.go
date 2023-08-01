@@ -79,6 +79,7 @@ func NewVpc(ctx *pulumi.Context,
 	if args.VpcName == nil {
 		return nil, errors.New("invalid value for required argument 'VpcName'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Vpc
 	err := ctx.RegisterResource("volcengine:veenedge/vpc:Vpc", name, args, &resource, opts...)
 	if err != nil {

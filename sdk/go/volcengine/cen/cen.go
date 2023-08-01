@@ -80,6 +80,7 @@ func NewCen(ctx *pulumi.Context,
 		args = &CenArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Cen
 	err := ctx.RegisterResource("volcengine:cen/cen:Cen", name, args, &resource, opts...)
 	if err != nil {

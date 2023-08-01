@@ -41,6 +41,7 @@ import (
 //
 // ```
 func Backups(ctx *pulumi.Context, args *BackupsArgs, opts ...pulumi.InvokeOption) (*BackupsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv BackupsResult
 	err := ctx.Invoke("volcengine:redis/backups:Backups", args, &rv, opts...)
 	if err != nil {

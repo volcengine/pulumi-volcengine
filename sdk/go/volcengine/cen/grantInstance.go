@@ -88,6 +88,7 @@ func NewGrantInstance(ctx *pulumi.Context,
 	if args.InstanceType == nil {
 		return nil, errors.New("invalid value for required argument 'InstanceType'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource GrantInstance
 	err := ctx.RegisterResource("volcengine:cen/grantInstance:GrantInstance", name, args, &resource, opts...)
 	if err != nil {

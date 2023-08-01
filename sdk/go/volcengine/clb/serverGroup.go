@@ -72,6 +72,7 @@ func NewServerGroup(ctx *pulumi.Context,
 	if args.LoadBalancerId == nil {
 		return nil, errors.New("invalid value for required argument 'LoadBalancerId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ServerGroup
 	err := ctx.RegisterResource("volcengine:clb/serverGroup:ServerGroup", name, args, &resource, opts...)
 	if err != nil {

@@ -78,6 +78,7 @@ func NewRule(ctx *pulumi.Context,
 	if args.ServerGroupId == nil {
 		return nil, errors.New("invalid value for required argument 'ServerGroupId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Rule
 	err := ctx.RegisterResource("volcengine:clb/rule:Rule", name, args, &resource, opts...)
 	if err != nil {

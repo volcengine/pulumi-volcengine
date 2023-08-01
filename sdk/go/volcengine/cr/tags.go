@@ -43,6 +43,7 @@ import (
 //
 // ```
 func Tags(ctx *pulumi.Context, args *TagsArgs, opts ...pulumi.InvokeOption) (*TagsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv TagsResult
 	err := ctx.Invoke("volcengine:cr/tags:Tags", args, &rv, opts...)
 	if err != nil {

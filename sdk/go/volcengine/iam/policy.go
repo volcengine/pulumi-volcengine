@@ -81,6 +81,7 @@ func NewPolicy(ctx *pulumi.Context,
 	if args.PolicyName == nil {
 		return nil, errors.New("invalid value for required argument 'PolicyName'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Policy
 	err := ctx.RegisterResource("volcengine:iam/policy:Policy", name, args, &resource, opts...)
 	if err != nil {

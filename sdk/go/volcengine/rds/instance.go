@@ -169,6 +169,7 @@ func NewInstance(ctx *pulumi.Context,
 	if args.Zone == nil {
 		return nil, errors.New("invalid value for required argument 'Zone'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Instance
 	err := ctx.RegisterResource("volcengine:rds/instance:Instance", name, args, &resource, opts...)
 	if err != nil {

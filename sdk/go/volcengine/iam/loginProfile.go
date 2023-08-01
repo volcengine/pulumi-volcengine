@@ -76,6 +76,7 @@ func NewLoginProfile(ctx *pulumi.Context,
 	if args.UserName == nil {
 		return nil, errors.New("invalid value for required argument 'UserName'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LoginProfile
 	err := ctx.RegisterResource("volcengine:iam/loginProfile:LoginProfile", name, args, &resource, opts...)
 	if err != nil {

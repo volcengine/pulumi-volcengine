@@ -69,6 +69,7 @@ func NewEndpoint(ctx *pulumi.Context,
 	if args.Registry == nil {
 		return nil, errors.New("invalid value for required argument 'Registry'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Endpoint
 	err := ctx.RegisterResource("volcengine:cr/endpoint:Endpoint", name, args, &resource, opts...)
 	if err != nil {

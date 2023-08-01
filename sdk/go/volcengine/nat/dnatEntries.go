@@ -36,6 +36,7 @@ import (
 //
 // ```
 func DnatEntries(ctx *pulumi.Context, args *DnatEntriesArgs, opts ...pulumi.InvokeOption) (*DnatEntriesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv DnatEntriesResult
 	err := ctx.Invoke("volcengine:nat/dnatEntries:DnatEntries", args, &rv, opts...)
 	if err != nil {

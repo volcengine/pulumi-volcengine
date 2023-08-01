@@ -12,6 +12,7 @@ import (
 
 // Use this data source to query detailed information of ecs deployment sets
 func DeploymentSets(ctx *pulumi.Context, args *DeploymentSetsArgs, opts ...pulumi.InvokeOption) (*DeploymentSetsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv DeploymentSetsResult
 	err := ctx.Invoke("volcengine:ecs/deploymentSets:DeploymentSets", args, &rv, opts...)
 	if err != nil {

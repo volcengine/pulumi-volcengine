@@ -38,6 +38,7 @@ import (
 //
 // ```
 func Projects(ctx *pulumi.Context, args *ProjectsArgs, opts ...pulumi.InvokeOption) (*ProjectsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv ProjectsResult
 	err := ctx.Invoke("volcengine:tls/projects:Projects", args, &rv, opts...)
 	if err != nil {

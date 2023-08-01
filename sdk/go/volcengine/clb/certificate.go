@@ -87,6 +87,7 @@ func NewCertificate(ctx *pulumi.Context,
 	if args.PublicKey == nil {
 		return nil, errors.New("invalid value for required argument 'PublicKey'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Certificate
 	err := ctx.RegisterResource("volcengine:clb/certificate:Certificate", name, args, &resource, opts...)
 	if err != nil {

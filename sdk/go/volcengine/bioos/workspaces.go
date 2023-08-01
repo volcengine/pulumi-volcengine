@@ -36,6 +36,7 @@ import (
 //
 // ```
 func Workspaces(ctx *pulumi.Context, args *WorkspacesArgs, opts ...pulumi.InvokeOption) (*WorkspacesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv WorkspacesResult
 	err := ctx.Invoke("volcengine:bioos/workspaces:Workspaces", args, &rv, opts...)
 	if err != nil {

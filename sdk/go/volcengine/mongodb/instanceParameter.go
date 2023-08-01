@@ -84,6 +84,7 @@ func NewInstanceParameter(ctx *pulumi.Context,
 	if args.ParameterValue == nil {
 		return nil, errors.New("invalid value for required argument 'ParameterValue'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource InstanceParameter
 	err := ctx.RegisterResource("volcengine:mongodb/instanceParameter:InstanceParameter", name, args, &resource, opts...)
 	if err != nil {

@@ -99,6 +99,7 @@ func NewInstance(ctx *pulumi.Context,
 	if args.InstanceConfiguration == nil {
 		return nil, errors.New("invalid value for required argument 'InstanceConfiguration'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Instance
 	err := ctx.RegisterResource("volcengine:escloud/instance:Instance", name, args, &resource, opts...)
 	if err != nil {

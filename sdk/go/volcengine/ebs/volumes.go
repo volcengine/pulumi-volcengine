@@ -40,6 +40,7 @@ import (
 //
 // ```
 func Volumes(ctx *pulumi.Context, args *VolumesArgs, opts ...pulumi.InvokeOption) (*VolumesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv VolumesResult
 	err := ctx.Invoke("volcengine:ebs/volumes:Volumes", args, &rv, opts...)
 	if err != nil {

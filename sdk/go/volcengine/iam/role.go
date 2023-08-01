@@ -84,6 +84,7 @@ func NewRole(ctx *pulumi.Context,
 	if args.TrustPolicyDocument == nil {
 		return nil, errors.New("invalid value for required argument 'TrustPolicyDocument'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Role
 	err := ctx.RegisterResource("volcengine:iam/role:Role", name, args, &resource, opts...)
 	if err != nil {

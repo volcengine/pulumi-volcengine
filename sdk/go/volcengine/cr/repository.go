@@ -82,6 +82,7 @@ func NewRepository(ctx *pulumi.Context,
 	if args.Registry == nil {
 		return nil, errors.New("invalid value for required argument 'Registry'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Repository
 	err := ctx.RegisterResource("volcengine:cr/repository:Repository", name, args, &resource, opts...)
 	if err != nil {

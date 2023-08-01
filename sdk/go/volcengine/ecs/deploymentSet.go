@@ -75,6 +75,7 @@ func NewDeploymentSet(ctx *pulumi.Context,
 	if args.DeploymentSetName == nil {
 		return nil, errors.New("invalid value for required argument 'DeploymentSetName'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource DeploymentSet
 	err := ctx.RegisterResource("volcengine:ecs/deploymentSet:DeploymentSet", name, args, &resource, opts...)
 	if err != nil {

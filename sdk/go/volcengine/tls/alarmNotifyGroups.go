@@ -36,6 +36,7 @@ import (
 //
 // ```
 func AlarmNotifyGroups(ctx *pulumi.Context, args *AlarmNotifyGroupsArgs, opts ...pulumi.InvokeOption) (*AlarmNotifyGroupsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv AlarmNotifyGroupsResult
 	err := ctx.Invoke("volcengine:tls/alarmNotifyGroups:AlarmNotifyGroups", args, &rv, opts...)
 	if err != nil {

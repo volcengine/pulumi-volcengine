@@ -40,6 +40,7 @@ import (
 //
 // ```
 func Clbs(ctx *pulumi.Context, args *ClbsArgs, opts ...pulumi.InvokeOption) (*ClbsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv ClbsResult
 	err := ctx.Invoke("volcengine:clb/clbs:Clbs", args, &rv, opts...)
 	if err != nil {

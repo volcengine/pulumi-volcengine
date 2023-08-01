@@ -78,6 +78,7 @@ func NewInstanceReadonlyNode(ctx *pulumi.Context,
 	if args.ZoneId == nil {
 		return nil, errors.New("invalid value for required argument 'ZoneId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource InstanceReadonlyNode
 	err := ctx.RegisterResource("volcengine:rds_mysql/instanceReadonlyNode:InstanceReadonlyNode", name, args, &resource, opts...)
 	if err != nil {

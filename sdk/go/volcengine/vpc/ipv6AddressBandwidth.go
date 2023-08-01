@@ -113,6 +113,7 @@ func NewIpv6AddressBandwidth(ctx *pulumi.Context,
 	if args.Ipv6Address == nil {
 		return nil, errors.New("invalid value for required argument 'Ipv6Address'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Ipv6AddressBandwidth
 	err := ctx.RegisterResource("volcengine:vpc/ipv6AddressBandwidth:Ipv6AddressBandwidth", name, args, &resource, opts...)
 	if err != nil {

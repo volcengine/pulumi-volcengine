@@ -40,6 +40,7 @@ import (
 //
 // ```
 func Images(ctx *pulumi.Context, args *ImagesArgs, opts ...pulumi.InvokeOption) (*ImagesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv ImagesResult
 	err := ctx.Invoke("volcengine:ecs/images:Images", args, &rv, opts...)
 	if err != nil {

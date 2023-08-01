@@ -79,6 +79,7 @@ func NewRegistry(ctx *pulumi.Context,
 		args = &RegistryArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Registry
 	err := ctx.RegisterResource("volcengine:cr/registry:Registry", name, args, &resource, opts...)
 	if err != nil {

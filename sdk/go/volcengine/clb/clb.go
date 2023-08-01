@@ -148,6 +148,7 @@ func NewClb(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Clb
 	err := ctx.RegisterResource("volcengine:clb/clb:Clb", name, args, &resource, opts...)
 	if err != nil {

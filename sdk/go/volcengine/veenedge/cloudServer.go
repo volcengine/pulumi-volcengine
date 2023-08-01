@@ -155,6 +155,7 @@ func NewCloudServer(ctx *pulumi.Context,
 	if args.StorageConfig == nil {
 		return nil, errors.New("invalid value for required argument 'StorageConfig'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource CloudServer
 	err := ctx.RegisterResource("volcengine:veenedge/cloudServer:CloudServer", name, args, &resource, opts...)
 	if err != nil {

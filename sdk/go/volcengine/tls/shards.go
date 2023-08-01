@@ -38,6 +38,7 @@ import (
 //
 // ```
 func Shards(ctx *pulumi.Context, args *ShardsArgs, opts ...pulumi.InvokeOption) (*ShardsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv ShardsResult
 	err := ctx.Invoke("volcengine:tls/shards:Shards", args, &rv, opts...)
 	if err != nil {

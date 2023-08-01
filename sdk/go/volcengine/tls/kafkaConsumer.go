@@ -68,6 +68,7 @@ func NewKafkaConsumer(ctx *pulumi.Context,
 	if args.TopicId == nil {
 		return nil, errors.New("invalid value for required argument 'TopicId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource KafkaConsumer
 	err := ctx.RegisterResource("volcengine:tls/kafkaConsumer:KafkaConsumer", name, args, &resource, opts...)
 	if err != nil {

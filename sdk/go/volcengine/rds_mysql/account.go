@@ -96,6 +96,7 @@ func NewAccount(ctx *pulumi.Context,
 	if args.InstanceId == nil {
 		return nil, errors.New("invalid value for required argument 'InstanceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Account
 	err := ctx.RegisterResource("volcengine:rds_mysql/account:Account", name, args, &resource, opts...)
 	if err != nil {

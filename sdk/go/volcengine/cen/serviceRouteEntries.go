@@ -38,6 +38,7 @@ import (
 //
 // ```
 func ServiceRouteEntries(ctx *pulumi.Context, args *ServiceRouteEntriesArgs, opts ...pulumi.InvokeOption) (*ServiceRouteEntriesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv ServiceRouteEntriesResult
 	err := ctx.Invoke("volcengine:cen/serviceRouteEntries:ServiceRouteEntries", args, &rv, opts...)
 	if err != nil {

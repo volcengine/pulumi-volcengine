@@ -84,6 +84,7 @@ func NewDefaultNodePoolBatchAttach(ctx *pulumi.Context,
 	if args.DefaultNodePoolId == nil {
 		return nil, errors.New("invalid value for required argument 'DefaultNodePoolId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource DefaultNodePoolBatchAttach
 	err := ctx.RegisterResource("volcengine:vke/defaultNodePoolBatchAttach:DefaultNodePoolBatchAttach", name, args, &resource, opts...)
 	if err != nil {

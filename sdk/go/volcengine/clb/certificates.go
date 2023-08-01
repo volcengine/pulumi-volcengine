@@ -40,6 +40,7 @@ import (
 //
 // ```
 func Certificates(ctx *pulumi.Context, args *CertificatesArgs, opts ...pulumi.InvokeOption) (*CertificatesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv CertificatesResult
 	err := ctx.Invoke("volcengine:clb/certificates:Certificates", args, &rv, opts...)
 	if err != nil {

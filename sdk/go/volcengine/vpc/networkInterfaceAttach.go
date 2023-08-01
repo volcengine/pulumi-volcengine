@@ -70,6 +70,7 @@ func NewNetworkInterfaceAttach(ctx *pulumi.Context,
 	if args.NetworkInterfaceId == nil {
 		return nil, errors.New("invalid value for required argument 'NetworkInterfaceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource NetworkInterfaceAttach
 	err := ctx.RegisterResource("volcengine:vpc/networkInterfaceAttach:NetworkInterfaceAttach", name, args, &resource, opts...)
 	if err != nil {

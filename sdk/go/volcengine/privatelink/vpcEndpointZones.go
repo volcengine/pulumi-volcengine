@@ -38,6 +38,7 @@ import (
 //
 // ```
 func VpcEndpointZones(ctx *pulumi.Context, args *VpcEndpointZonesArgs, opts ...pulumi.InvokeOption) (*VpcEndpointZonesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv VpcEndpointZonesResult
 	err := ctx.Invoke("volcengine:privatelink/vpcEndpointZones:VpcEndpointZones", args, &rv, opts...)
 	if err != nil {

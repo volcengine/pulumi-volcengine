@@ -38,6 +38,7 @@ import (
 //
 // ```
 func AllowLists(ctx *pulumi.Context, args *AllowListsArgs, opts ...pulumi.InvokeOption) (*AllowListsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv AllowListsResult
 	err := ctx.Invoke("volcengine:redis/allowLists:AllowLists", args, &rv, opts...)
 	if err != nil {

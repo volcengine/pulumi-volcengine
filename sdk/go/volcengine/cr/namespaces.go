@@ -41,6 +41,7 @@ import (
 //
 // ```
 func Namespaces(ctx *pulumi.Context, args *NamespacesArgs, opts ...pulumi.InvokeOption) (*NamespacesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv NamespacesResult
 	err := ctx.Invoke("volcengine:cr/namespaces:Namespaces", args, &rv, opts...)
 	if err != nil {

@@ -80,6 +80,7 @@ func NewAddon(ctx *pulumi.Context,
 	if args.ClusterId == nil {
 		return nil, errors.New("invalid value for required argument 'ClusterId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Addon
 	err := ctx.RegisterResource("volcengine:vke/addon:Addon", name, args, &resource, opts...)
 	if err != nil {

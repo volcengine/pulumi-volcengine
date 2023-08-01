@@ -90,6 +90,7 @@ func NewTag(ctx *pulumi.Context,
 	if args.Repository == nil {
 		return nil, errors.New("invalid value for required argument 'Repository'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Tag
 	err := ctx.RegisterResource("volcengine:cr/tag:Tag", name, args, &resource, opts...)
 	if err != nil {

@@ -98,6 +98,7 @@ func NewNetworkInterface(ctx *pulumi.Context,
 	if args.SubnetId == nil {
 		return nil, errors.New("invalid value for required argument 'SubnetId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource NetworkInterface
 	err := ctx.RegisterResource("volcengine:vpc/networkInterface:NetworkInterface", name, args, &resource, opts...)
 	if err != nil {

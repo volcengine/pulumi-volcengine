@@ -54,6 +54,7 @@ import (
 //
 // ```
 func LaunchTemplates(ctx *pulumi.Context, args *LaunchTemplatesArgs, opts ...pulumi.InvokeOption) (*LaunchTemplatesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LaunchTemplatesResult
 	err := ctx.Invoke("volcengine:ecs/launchTemplates:LaunchTemplates", args, &rv, opts...)
 	if err != nil {

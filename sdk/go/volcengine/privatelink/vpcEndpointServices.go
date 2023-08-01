@@ -41,6 +41,7 @@ import (
 //
 // ```
 func VpcEndpointServices(ctx *pulumi.Context, args *VpcEndpointServicesArgs, opts ...pulumi.InvokeOption) (*VpcEndpointServicesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv VpcEndpointServicesResult
 	err := ctx.Invoke("volcengine:privatelink/vpcEndpointServices:VpcEndpointServices", args, &rv, opts...)
 	if err != nil {

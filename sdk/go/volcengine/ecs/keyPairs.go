@@ -42,6 +42,7 @@ import (
 //
 // ```
 func KeyPairs(ctx *pulumi.Context, args *KeyPairsArgs, opts ...pulumi.InvokeOption) (*KeyPairsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv KeyPairsResult
 	err := ctx.Invoke("volcengine:ecs/keyPairs:KeyPairs", args, &rv, opts...)
 	if err != nil {

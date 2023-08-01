@@ -41,6 +41,7 @@ import (
 //
 // ```
 func BandwidthPackages(ctx *pulumi.Context, args *BandwidthPackagesArgs, opts ...pulumi.InvokeOption) (*BandwidthPackagesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv BandwidthPackagesResult
 	err := ctx.Invoke("volcengine:cen/bandwidthPackages:BandwidthPackages", args, &rv, opts...)
 	if err != nil {

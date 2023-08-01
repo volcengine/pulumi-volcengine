@@ -70,6 +70,7 @@ func NewRuleApplier(ctx *pulumi.Context,
 	if args.RuleId == nil {
 		return nil, errors.New("invalid value for required argument 'RuleId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource RuleApplier
 	err := ctx.RegisterResource("volcengine:tls/ruleApplier:RuleApplier", name, args, &resource, opts...)
 	if err != nil {

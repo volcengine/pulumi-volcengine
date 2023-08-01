@@ -40,6 +40,7 @@ import (
 //
 // ```
 func SnatEntries(ctx *pulumi.Context, args *SnatEntriesArgs, opts ...pulumi.InvokeOption) (*SnatEntriesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv SnatEntriesResult
 	err := ctx.Invoke("volcengine:nat/snatEntries:SnatEntries", args, &rv, opts...)
 	if err != nil {

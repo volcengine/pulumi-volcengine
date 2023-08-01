@@ -90,6 +90,7 @@ func NewInterRegionBandwidth(ctx *pulumi.Context,
 	if args.PeerRegionId == nil {
 		return nil, errors.New("invalid value for required argument 'PeerRegionId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource InterRegionBandwidth
 	err := ctx.RegisterResource("volcengine:cen/interRegionBandwidth:InterRegionBandwidth", name, args, &resource, opts...)
 	if err != nil {

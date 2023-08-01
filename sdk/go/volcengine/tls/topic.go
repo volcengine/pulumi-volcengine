@@ -115,6 +115,7 @@ func NewTopic(ctx *pulumi.Context,
 	if args.Ttl == nil {
 		return nil, errors.New("invalid value for required argument 'Ttl'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Topic
 	err := ctx.RegisterResource("volcengine:tls/topic:Topic", name, args, &resource, opts...)
 	if err != nil {

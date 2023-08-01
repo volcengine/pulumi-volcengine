@@ -90,6 +90,7 @@ func NewScalingLifecycleHook(ctx *pulumi.Context,
 	if args.ScalingGroupId == nil {
 		return nil, errors.New("invalid value for required argument 'ScalingGroupId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ScalingLifecycleHook
 	err := ctx.RegisterResource("volcengine:autoscaling/scalingLifecycleHook:ScalingLifecycleHook", name, args, &resource, opts...)
 	if err != nil {

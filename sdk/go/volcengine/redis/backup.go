@@ -80,6 +80,7 @@ func NewBackup(ctx *pulumi.Context,
 	if args.InstanceId == nil {
 		return nil, errors.New("invalid value for required argument 'InstanceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Backup
 	err := ctx.RegisterResource("volcengine:redis/backup:Backup", name, args, &resource, opts...)
 	if err != nil {

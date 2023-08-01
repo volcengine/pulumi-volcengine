@@ -88,6 +88,7 @@ func NewAllowList(ctx *pulumi.Context,
 	if args.AllowLists == nil {
 		return nil, errors.New("invalid value for required argument 'AllowLists'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource AllowList
 	err := ctx.RegisterResource("volcengine:redis/allowList:AllowList", name, args, &resource, opts...)
 	if err != nil {

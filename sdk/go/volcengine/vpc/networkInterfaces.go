@@ -40,6 +40,7 @@ import (
 //
 // ```
 func NetworkInterfaces(ctx *pulumi.Context, args *NetworkInterfacesArgs, opts ...pulumi.InvokeOption) (*NetworkInterfacesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv NetworkInterfacesResult
 	err := ctx.Invoke("volcengine:vpc/networkInterfaces:NetworkInterfaces", args, &rv, opts...)
 	if err != nil {

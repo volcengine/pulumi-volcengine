@@ -70,6 +70,7 @@ func NewSecurityGroup(ctx *pulumi.Context,
 	if args.SecurityGroupId == nil {
 		return nil, errors.New("invalid value for required argument 'SecurityGroupId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SecurityGroup
 	err := ctx.RegisterResource("volcengine:privatelink/securityGroup:SecurityGroup", name, args, &resource, opts...)
 	if err != nil {

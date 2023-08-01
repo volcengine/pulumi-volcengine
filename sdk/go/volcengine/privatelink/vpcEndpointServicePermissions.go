@@ -38,6 +38,7 @@ import (
 //
 // ```
 func VpcEndpointServicePermissions(ctx *pulumi.Context, args *VpcEndpointServicePermissionsArgs, opts ...pulumi.InvokeOption) (*VpcEndpointServicePermissionsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv VpcEndpointServicePermissionsResult
 	err := ctx.Invoke("volcengine:privatelink/vpcEndpointServicePermissions:VpcEndpointServicePermissions", args, &rv, opts...)
 	if err != nil {

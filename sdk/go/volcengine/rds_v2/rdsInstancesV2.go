@@ -36,6 +36,7 @@ import (
 //
 // ```
 func RdsInstancesV2(ctx *pulumi.Context, args *RdsInstancesV2Args, opts ...pulumi.InvokeOption) (*RdsInstancesV2Result, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv RdsInstancesV2Result
 	err := ctx.Invoke("volcengine:rds_v2/rdsInstancesV2:RdsInstancesV2", args, &rv, opts...)
 	if err != nil {

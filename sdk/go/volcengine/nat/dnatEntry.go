@@ -99,6 +99,7 @@ func NewDnatEntry(ctx *pulumi.Context,
 	if args.Protocol == nil {
 		return nil, errors.New("invalid value for required argument 'Protocol'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource DnatEntry
 	err := ctx.RegisterResource("volcengine:nat/dnatEntry:DnatEntry", name, args, &resource, opts...)
 	if err != nil {

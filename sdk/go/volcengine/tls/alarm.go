@@ -129,6 +129,7 @@ func NewAlarm(ctx *pulumi.Context,
 	if args.RequestCycle == nil {
 		return nil, errors.New("invalid value for required argument 'RequestCycle'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Alarm
 	err := ctx.RegisterResource("volcengine:tls/alarm:Alarm", name, args, &resource, opts...)
 	if err != nil {

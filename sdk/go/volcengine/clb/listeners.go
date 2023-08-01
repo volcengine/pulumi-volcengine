@@ -41,6 +41,7 @@ import (
 //
 // ```
 func Listeners(ctx *pulumi.Context, args *ListenersArgs, opts ...pulumi.InvokeOption) (*ListenersResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv ListenersResult
 	err := ctx.Invoke("volcengine:clb/listeners:Listeners", args, &rv, opts...)
 	if err != nil {

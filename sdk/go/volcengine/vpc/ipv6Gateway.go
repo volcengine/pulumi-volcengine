@@ -77,6 +77,7 @@ func NewIpv6Gateway(ctx *pulumi.Context,
 	if args.VpcId == nil {
 		return nil, errors.New("invalid value for required argument 'VpcId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Ipv6Gateway
 	err := ctx.RegisterResource("volcengine:vpc/ipv6Gateway:Ipv6Gateway", name, args, &resource, opts...)
 	if err != nil {

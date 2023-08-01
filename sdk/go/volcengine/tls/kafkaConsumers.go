@@ -42,6 +42,7 @@ import (
 //
 // ```
 func KafkaConsumers(ctx *pulumi.Context, args *KafkaConsumersArgs, opts ...pulumi.InvokeOption) (*KafkaConsumersResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv KafkaConsumersResult
 	err := ctx.Invoke("volcengine:tls/kafkaConsumers:KafkaConsumers", args, &rv, opts...)
 	if err != nil {

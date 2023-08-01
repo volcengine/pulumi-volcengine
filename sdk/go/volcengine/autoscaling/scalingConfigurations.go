@@ -40,6 +40,7 @@ import (
 //
 // ```
 func ScalingConfigurations(ctx *pulumi.Context, args *ScalingConfigurationsArgs, opts ...pulumi.InvokeOption) (*ScalingConfigurationsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv ScalingConfigurationsResult
 	err := ctx.Invoke("volcengine:autoscaling/scalingConfigurations:ScalingConfigurations", args, &rv, opts...)
 	if err != nil {

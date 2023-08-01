@@ -79,6 +79,7 @@ func NewIpList(ctx *pulumi.Context,
 	if args.IpLists == nil {
 		return nil, errors.New("invalid value for required argument 'IpLists'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource IpList
 	err := ctx.RegisterResource("volcengine:rds/ipList:IpList", name, args, &resource, opts...)
 	if err != nil {

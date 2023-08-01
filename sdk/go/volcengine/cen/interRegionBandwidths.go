@@ -40,6 +40,7 @@ import (
 //
 // ```
 func InterRegionBandwidths(ctx *pulumi.Context, args *InterRegionBandwidthsArgs, opts ...pulumi.InvokeOption) (*InterRegionBandwidthsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv InterRegionBandwidthsResult
 	err := ctx.Invoke("volcengine:cen/interRegionBandwidths:InterRegionBandwidths", args, &rv, opts...)
 	if err != nil {

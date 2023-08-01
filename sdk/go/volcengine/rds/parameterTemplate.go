@@ -96,6 +96,7 @@ func NewParameterTemplate(ctx *pulumi.Context,
 	if args.TemplateParams == nil {
 		return nil, errors.New("invalid value for required argument 'TemplateParams'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ParameterTemplate
 	err := ctx.RegisterResource("volcengine:rds/parameterTemplate:ParameterTemplate", name, args, &resource, opts...)
 	if err != nil {
