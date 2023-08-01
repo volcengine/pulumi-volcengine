@@ -85,6 +85,7 @@ func NewProject(ctx *pulumi.Context,
 	if args.ProjectName == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectName'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Project
 	err := ctx.RegisterResource("volcengine:tls/project:Project", name, args, &resource, opts...)
 	if err != nil {

@@ -68,6 +68,7 @@ func NewState(ctx *pulumi.Context,
 	if args.Action == nil {
 		return nil, errors.New("invalid value for required argument 'Action'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource State
 	err := ctx.RegisterResource("volcengine:cr/state:State", name, args, &resource, opts...)
 	if err != nil {

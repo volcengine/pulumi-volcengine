@@ -40,6 +40,7 @@ import (
 //
 // ```
 func Subnets(ctx *pulumi.Context, args *SubnetsArgs, opts ...pulumi.InvokeOption) (*SubnetsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv SubnetsResult
 	err := ctx.Invoke("volcengine:vpc/subnets:Subnets", args, &rv, opts...)
 	if err != nil {

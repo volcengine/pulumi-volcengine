@@ -82,6 +82,7 @@ func NewVpcEndpointConnection(ctx *pulumi.Context,
 	if args.ServiceId == nil {
 		return nil, errors.New("invalid value for required argument 'ServiceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VpcEndpointConnection
 	err := ctx.RegisterResource("volcengine:privatelink/vpcEndpointConnection:VpcEndpointConnection", name, args, &resource, opts...)
 	if err != nil {

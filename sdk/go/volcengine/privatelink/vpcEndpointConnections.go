@@ -39,6 +39,7 @@ import (
 //
 // ```
 func VpcEndpointConnections(ctx *pulumi.Context, args *VpcEndpointConnectionsArgs, opts ...pulumi.InvokeOption) (*VpcEndpointConnectionsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv VpcEndpointConnectionsResult
 	err := ctx.Invoke("volcengine:privatelink/vpcEndpointConnections:VpcEndpointConnections", args, &rv, opts...)
 	if err != nil {

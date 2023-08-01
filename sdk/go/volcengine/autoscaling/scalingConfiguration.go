@@ -171,6 +171,7 @@ func NewScalingConfiguration(ctx *pulumi.Context,
 	if args.Volumes == nil {
 		return nil, errors.New("invalid value for required argument 'Volumes'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ScalingConfiguration
 	err := ctx.RegisterResource("volcengine:autoscaling/scalingConfiguration:ScalingConfiguration", name, args, &resource, opts...)
 	if err != nil {

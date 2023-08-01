@@ -36,6 +36,7 @@ import (
 //
 // ```
 func Zones(ctx *pulumi.Context, args *ZonesArgs, opts ...pulumi.InvokeOption) (*ZonesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv ZonesResult
 	err := ctx.Invoke("volcengine:clb/zones:Zones", args, &rv, opts...)
 	if err != nil {

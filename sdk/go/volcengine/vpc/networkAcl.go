@@ -100,6 +100,7 @@ func NewNetworkAcl(ctx *pulumi.Context,
 	if args.VpcId == nil {
 		return nil, errors.New("invalid value for required argument 'VpcId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource NetworkAcl
 	err := ctx.RegisterResource("volcengine:vpc/networkAcl:NetworkAcl", name, args, &resource, opts...)
 	if err != nil {

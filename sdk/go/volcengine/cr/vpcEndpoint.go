@@ -80,6 +80,7 @@ func NewVpcEndpoint(ctx *pulumi.Context,
 	if args.Vpcs == nil {
 		return nil, errors.New("invalid value for required argument 'Vpcs'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VpcEndpoint
 	err := ctx.RegisterResource("volcengine:cr/vpcEndpoint:VpcEndpoint", name, args, &resource, opts...)
 	if err != nil {

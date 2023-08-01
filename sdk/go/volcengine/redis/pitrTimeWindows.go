@@ -11,6 +11,7 @@ import (
 )
 
 func PitrTimeWindows(ctx *pulumi.Context, args *PitrTimeWindowsArgs, opts ...pulumi.InvokeOption) (*PitrTimeWindowsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv PitrTimeWindowsResult
 	err := ctx.Invoke("volcengine:redis/pitrTimeWindows:PitrTimeWindows", args, &rv, opts...)
 	if err != nil {

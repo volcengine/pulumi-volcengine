@@ -38,6 +38,7 @@ import (
 //
 // ```
 func Policies(ctx *pulumi.Context, args *PoliciesArgs, opts ...pulumi.InvokeOption) (*PoliciesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv PoliciesResult
 	err := ctx.Invoke("volcengine:iam/policies:Policies", args, &rv, opts...)
 	if err != nil {

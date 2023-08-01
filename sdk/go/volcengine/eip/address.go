@@ -91,6 +91,7 @@ func NewAddress(ctx *pulumi.Context,
 	if args.BillingType == nil {
 		return nil, errors.New("invalid value for required argument 'BillingType'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Address
 	err := ctx.RegisterResource("volcengine:eip/address:Address", name, args, &resource, opts...)
 	if err != nil {

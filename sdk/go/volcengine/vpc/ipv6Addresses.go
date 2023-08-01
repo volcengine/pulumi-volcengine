@@ -38,6 +38,7 @@ import (
 //
 // ```
 func Ipv6Addresses(ctx *pulumi.Context, args *Ipv6AddressesArgs, opts ...pulumi.InvokeOption) (*Ipv6AddressesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv Ipv6AddressesResult
 	err := ctx.Invoke("volcengine:vpc/ipv6Addresses:Ipv6Addresses", args, &rv, opts...)
 	if err != nil {

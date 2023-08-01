@@ -45,6 +45,7 @@ import (
 //
 // ```
 func ScalingInstances(ctx *pulumi.Context, args *ScalingInstancesArgs, opts ...pulumi.InvokeOption) (*ScalingInstancesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv ScalingInstancesResult
 	err := ctx.Invoke("volcengine:autoscaling/scalingInstances:ScalingInstances", args, &rv, opts...)
 	if err != nil {

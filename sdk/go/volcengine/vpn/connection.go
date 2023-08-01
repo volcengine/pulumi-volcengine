@@ -172,6 +172,7 @@ func NewConnection(ctx *pulumi.Context,
 	if args.RemoteSubnets == nil {
 		return nil, errors.New("invalid value for required argument 'RemoteSubnets'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Connection
 	err := ctx.RegisterResource("volcengine:vpn/connection:Connection", name, args, &resource, opts...)
 	if err != nil {

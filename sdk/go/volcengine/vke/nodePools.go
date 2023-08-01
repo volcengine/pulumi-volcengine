@@ -41,6 +41,7 @@ import (
 //
 // ```
 func NodePools(ctx *pulumi.Context, args *NodePoolsArgs, opts ...pulumi.InvokeOption) (*NodePoolsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv NodePoolsResult
 	err := ctx.Invoke("volcengine:vke/nodePools:NodePools", args, &rv, opts...)
 	if err != nil {

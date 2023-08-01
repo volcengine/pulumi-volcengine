@@ -40,6 +40,7 @@ import (
 //
 // ```
 func AvailableResources(ctx *pulumi.Context, args *AvailableResourcesArgs, opts ...pulumi.InvokeOption) (*AvailableResourcesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv AvailableResourcesResult
 	err := ctx.Invoke("volcengine:veenedge/availableResources:AvailableResources", args, &rv, opts...)
 	if err != nil {

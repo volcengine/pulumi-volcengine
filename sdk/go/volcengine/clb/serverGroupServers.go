@@ -41,6 +41,7 @@ import (
 //
 // ```
 func ServerGroupServers(ctx *pulumi.Context, args *ServerGroupServersArgs, opts ...pulumi.InvokeOption) (*ServerGroupServersResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv ServerGroupServersResult
 	err := ctx.Invoke("volcengine:clb/serverGroupServers:ServerGroupServers", args, &rv, opts...)
 	if err != nil {

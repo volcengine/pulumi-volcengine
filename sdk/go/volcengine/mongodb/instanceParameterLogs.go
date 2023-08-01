@@ -40,6 +40,7 @@ import (
 //
 // ```
 func InstanceParameterLogs(ctx *pulumi.Context, args *InstanceParameterLogsArgs, opts ...pulumi.InvokeOption) (*InstanceParameterLogsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv InstanceParameterLogsResult
 	err := ctx.Invoke("volcengine:mongodb/instanceParameterLogs:InstanceParameterLogs", args, &rv, opts...)
 	if err != nil {

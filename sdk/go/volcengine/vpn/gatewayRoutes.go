@@ -40,6 +40,7 @@ import (
 //
 // ```
 func GatewayRoutes(ctx *pulumi.Context, args *GatewayRoutesArgs, opts ...pulumi.InvokeOption) (*GatewayRoutesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GatewayRoutesResult
 	err := ctx.Invoke("volcengine:vpn/gatewayRoutes:GatewayRoutes", args, &rv, opts...)
 	if err != nil {

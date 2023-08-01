@@ -41,6 +41,7 @@ import (
 //
 // ```
 func Repositories(ctx *pulumi.Context, args *RepositoriesArgs, opts ...pulumi.InvokeOption) (*RepositoriesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv RepositoriesResult
 	err := ctx.Invoke("volcengine:cr/repositories:Repositories", args, &rv, opts...)
 	if err != nil {

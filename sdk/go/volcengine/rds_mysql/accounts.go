@@ -39,6 +39,7 @@ import (
 //
 // ```
 func Accounts(ctx *pulumi.Context, args *AccountsArgs, opts ...pulumi.InvokeOption) (*AccountsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv AccountsResult
 	err := ctx.Invoke("volcengine:rds_mysql/accounts:Accounts", args, &rv, opts...)
 	if err != nil {

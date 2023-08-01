@@ -72,6 +72,7 @@ func NewKubeconfig(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Kubeconfig
 	err := ctx.RegisterResource("volcengine:vke/kubeconfig:Kubeconfig", name, args, &resource, opts...)
 	if err != nil {

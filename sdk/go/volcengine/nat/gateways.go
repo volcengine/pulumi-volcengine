@@ -41,6 +41,7 @@ import (
 //
 // ```
 func Gateways(ctx *pulumi.Context, args *GatewaysArgs, opts ...pulumi.InvokeOption) (*GatewaysResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GatewaysResult
 	err := ctx.Invoke("volcengine:nat/gateways:Gateways", args, &rv, opts...)
 	if err != nil {

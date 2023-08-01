@@ -181,6 +181,7 @@ func NewInstance(ctx *pulumi.Context,
 	if args.SubnetId == nil {
 		return nil, errors.New("invalid value for required argument 'SubnetId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Instance
 	err := ctx.RegisterResource("volcengine:rds_mysql/instance:Instance", name, args, &resource, opts...)
 	if err != nil {

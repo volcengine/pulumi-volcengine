@@ -42,6 +42,7 @@ import (
 //
 // ```
 func RouteTables(ctx *pulumi.Context, args *RouteTablesArgs, opts ...pulumi.InvokeOption) (*RouteTablesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv RouteTablesResult
 	err := ctx.Invoke("volcengine:vpc/routeTables:RouteTables", args, &rv, opts...)
 	if err != nil {

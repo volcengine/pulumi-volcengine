@@ -38,6 +38,7 @@ import (
 //
 // ```
 func AttachInstances(ctx *pulumi.Context, args *AttachInstancesArgs, opts ...pulumi.InvokeOption) (*AttachInstancesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv AttachInstancesResult
 	err := ctx.Invoke("volcengine:cen/attachInstances:AttachInstances", args, &rv, opts...)
 	if err != nil {

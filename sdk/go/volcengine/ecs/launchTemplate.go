@@ -116,6 +116,7 @@ func NewLaunchTemplate(ctx *pulumi.Context,
 	if args.LaunchTemplateName == nil {
 		return nil, errors.New("invalid value for required argument 'LaunchTemplateName'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LaunchTemplate
 	err := ctx.RegisterResource("volcengine:ecs/launchTemplate:LaunchTemplate", name, args, &resource, opts...)
 	if err != nil {

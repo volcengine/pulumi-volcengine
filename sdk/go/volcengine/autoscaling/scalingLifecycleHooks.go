@@ -38,6 +38,7 @@ import (
 //
 // ```
 func ScalingLifecycleHooks(ctx *pulumi.Context, args *ScalingLifecycleHooksArgs, opts ...pulumi.InvokeOption) (*ScalingLifecycleHooksResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv ScalingLifecycleHooksResult
 	err := ctx.Invoke("volcengine:autoscaling/scalingLifecycleHooks:ScalingLifecycleHooks", args, &rv, opts...)
 	if err != nil {

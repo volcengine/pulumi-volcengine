@@ -54,6 +54,7 @@ func NewProvider(ctx *pulumi.Context,
 	if isZero(args.SecretKey) {
 		args.SecretKey = pulumi.StringPtr(getEnvOrDefault("", nil, "VOLCENGINE_SECRET_KEY").(string))
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:volcengine", name, args, &resource, opts...)
 	if err != nil {

@@ -40,6 +40,7 @@ import (
 //
 // ```
 func Vpcs(ctx *pulumi.Context, args *VpcsArgs, opts ...pulumi.InvokeOption) (*VpcsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv VpcsResult
 	err := ctx.Invoke("volcengine:vpc/vpcs:Vpcs", args, &rv, opts...)
 	if err != nil {

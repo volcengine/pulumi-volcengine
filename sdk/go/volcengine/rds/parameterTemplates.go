@@ -36,6 +36,7 @@ import (
 //
 // ```
 func ParameterTemplates(ctx *pulumi.Context, args *ParameterTemplatesArgs, opts ...pulumi.InvokeOption) (*ParameterTemplatesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv ParameterTemplatesResult
 	err := ctx.Invoke("volcengine:rds/parameterTemplates:ParameterTemplates", args, &rv, opts...)
 	if err != nil {

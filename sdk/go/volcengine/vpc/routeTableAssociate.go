@@ -70,6 +70,7 @@ func NewRouteTableAssociate(ctx *pulumi.Context,
 	if args.SubnetId == nil {
 		return nil, errors.New("invalid value for required argument 'SubnetId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource RouteTableAssociate
 	err := ctx.RegisterResource("volcengine:vpc/routeTableAssociate:RouteTableAssociate", name, args, &resource, opts...)
 	if err != nil {

@@ -1,5 +1,6 @@
 {
     "name": "volcengine",
+    "displayName": "Volcengine",
     "description": "A Pulumi package for creating and managing volcengine cloud resources.",
     "keywords": [
         "pulumi",
@@ -10,7 +11,9 @@
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`volcengine` Terraform Provider](https://github.com/volcengine/terraform-provider-volcengine).",
     "repository": "https://github.com/volcengine/pulumi-volcengine",
-    "publisher": "Pulumi",
+    "logoUrl": "https://avatars.githubusercontent.com/u/67365215",
+    "pluginDownloadURL": "github://api.github.com/volcengine",
+    "publisher": "Volcengine",
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"
     },

@@ -78,6 +78,7 @@ func NewMongoAllowList(ctx *pulumi.Context,
 	if args.AllowListName == nil {
 		return nil, errors.New("invalid value for required argument 'AllowListName'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource MongoAllowList
 	err := ctx.RegisterResource("volcengine:mongodb/mongoAllowList:MongoAllowList", name, args, &resource, opts...)
 	if err != nil {

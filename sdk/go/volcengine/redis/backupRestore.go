@@ -72,6 +72,7 @@ func NewBackupRestore(ctx *pulumi.Context,
 	if args.TimePoint == nil {
 		return nil, errors.New("invalid value for required argument 'TimePoint'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource BackupRestore
 	err := ctx.RegisterResource("volcengine:redis/backupRestore:BackupRestore", name, args, &resource, opts...)
 	if err != nil {

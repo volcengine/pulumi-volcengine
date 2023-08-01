@@ -70,6 +70,7 @@ func NewHost(ctx *pulumi.Context,
 	if args.Ip == nil {
 		return nil, errors.New("invalid value for required argument 'Ip'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Host
 	err := ctx.RegisterResource("volcengine:tls/host:Host", name, args, &resource, opts...)
 	if err != nil {

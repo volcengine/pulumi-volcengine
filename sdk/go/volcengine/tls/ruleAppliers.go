@@ -38,6 +38,7 @@ import (
 //
 // ```
 func RuleAppliers(ctx *pulumi.Context, args *RuleAppliersArgs, opts ...pulumi.InvokeOption) (*RuleAppliersResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv RuleAppliersResult
 	err := ctx.Invoke("volcengine:tls/ruleAppliers:RuleAppliers", args, &rv, opts...)
 	if err != nil {

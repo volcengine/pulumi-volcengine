@@ -158,6 +158,7 @@ func NewListener(ctx *pulumi.Context,
 	if args.ServerGroupId == nil {
 		return nil, errors.New("invalid value for required argument 'ServerGroupId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Listener
 	err := ctx.RegisterResource("volcengine:clb/listener:Listener", name, args, &resource, opts...)
 	if err != nil {

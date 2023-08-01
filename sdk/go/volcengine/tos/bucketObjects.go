@@ -38,6 +38,7 @@ import (
 //
 // ```
 func BucketObjects(ctx *pulumi.Context, args *BucketObjectsArgs, opts ...pulumi.InvokeOption) (*BucketObjectsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv BucketObjectsResult
 	err := ctx.Invoke("volcengine:tos/bucketObjects:BucketObjects", args, &rv, opts...)
 	if err != nil {

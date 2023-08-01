@@ -40,6 +40,7 @@ import (
 //
 // ```
 func ScalingGroups(ctx *pulumi.Context, args *ScalingGroupsArgs, opts ...pulumi.InvokeOption) (*ScalingGroupsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv ScalingGroupsResult
 	err := ctx.Invoke("volcengine:autoscaling/scalingGroups:ScalingGroups", args, &rv, opts...)
 	if err != nil {

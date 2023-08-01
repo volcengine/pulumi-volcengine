@@ -40,6 +40,7 @@ import (
 //
 // ```
 func Acls(ctx *pulumi.Context, args *AclsArgs, opts ...pulumi.InvokeOption) (*AclsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv AclsResult
 	err := ctx.Invoke("volcengine:clb/acls:Acls", args, &rv, opts...)
 	if err != nil {

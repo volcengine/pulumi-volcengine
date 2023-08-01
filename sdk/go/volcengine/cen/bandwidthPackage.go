@@ -106,6 +106,7 @@ func NewBandwidthPackage(ctx *pulumi.Context,
 		args = &BandwidthPackageArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource BandwidthPackage
 	err := ctx.RegisterResource("volcengine:cen/bandwidthPackage:BandwidthPackage", name, args, &resource, opts...)
 	if err != nil {

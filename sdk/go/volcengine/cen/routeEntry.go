@@ -101,6 +101,7 @@ func NewRouteEntry(ctx *pulumi.Context,
 	if args.InstanceRegionId == nil {
 		return nil, errors.New("invalid value for required argument 'InstanceRegionId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource RouteEntry
 	err := ctx.RegisterResource("volcengine:cen/routeEntry:RouteEntry", name, args, &resource, opts...)
 	if err != nil {

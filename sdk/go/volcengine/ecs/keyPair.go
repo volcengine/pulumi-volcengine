@@ -75,6 +75,7 @@ func NewKeyPair(ctx *pulumi.Context,
 	if args.KeyPairName == nil {
 		return nil, errors.New("invalid value for required argument 'KeyPairName'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource KeyPair
 	err := ctx.RegisterResource("volcengine:ecs/keyPair:KeyPair", name, args, &resource, opts...)
 	if err != nil {

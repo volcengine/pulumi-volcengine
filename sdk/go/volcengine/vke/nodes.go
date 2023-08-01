@@ -54,6 +54,7 @@ import (
 //
 // ```
 func Nodes(ctx *pulumi.Context, args *NodesArgs, opts ...pulumi.InvokeOption) (*NodesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv NodesResult
 	err := ctx.Invoke("volcengine:vke/nodes:Nodes", args, &rv, opts...)
 	if err != nil {

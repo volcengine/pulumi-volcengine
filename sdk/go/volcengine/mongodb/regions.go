@@ -36,6 +36,7 @@ import (
 //
 // ```
 func Regions(ctx *pulumi.Context, args *RegionsArgs, opts ...pulumi.InvokeOption) (*RegionsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv RegionsResult
 	err := ctx.Invoke("volcengine:mongodb/regions:Regions", args, &rv, opts...)
 	if err != nil {

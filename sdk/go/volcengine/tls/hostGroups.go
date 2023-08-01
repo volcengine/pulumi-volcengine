@@ -39,6 +39,7 @@ import (
 //
 // ```
 func HostGroups(ctx *pulumi.Context, args *HostGroupsArgs, opts ...pulumi.InvokeOption) (*HostGroupsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv HostGroupsResult
 	err := ctx.Invoke("volcengine:tls/hostGroups:HostGroups", args, &rv, opts...)
 	if err != nil {

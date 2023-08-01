@@ -77,6 +77,7 @@ func NewNetworkAclAssociate(ctx *pulumi.Context,
 	if args.ResourceId == nil {
 		return nil, errors.New("invalid value for required argument 'ResourceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource NetworkAclAssociate
 	err := ctx.RegisterResource("volcengine:vpc/networkAclAssociate:NetworkAclAssociate", name, args, &resource, opts...)
 	if err != nil {

@@ -80,6 +80,7 @@ func NewAclEntry(ctx *pulumi.Context,
 	if args.Entry == nil {
 		return nil, errors.New("invalid value for required argument 'Entry'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource AclEntry
 	err := ctx.RegisterResource("volcengine:clb/aclEntry:AclEntry", name, args, &resource, opts...)
 	if err != nil {

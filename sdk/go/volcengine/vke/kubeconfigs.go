@@ -44,6 +44,7 @@ import (
 //
 // ```
 func Kubeconfigs(ctx *pulumi.Context, args *KubeconfigsArgs, opts ...pulumi.InvokeOption) (*KubeconfigsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv KubeconfigsResult
 	err := ctx.Invoke("volcengine:vke/kubeconfigs:Kubeconfigs", args, &rv, opts...)
 	if err != nil {

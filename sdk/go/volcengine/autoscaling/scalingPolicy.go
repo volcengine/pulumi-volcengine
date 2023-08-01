@@ -133,6 +133,7 @@ func NewScalingPolicy(ctx *pulumi.Context,
 	if args.ScalingPolicyType == nil {
 		return nil, errors.New("invalid value for required argument 'ScalingPolicyType'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ScalingPolicy
 	err := ctx.RegisterResource("volcengine:autoscaling/scalingPolicy:ScalingPolicy", name, args, &resource, opts...)
 	if err != nil {

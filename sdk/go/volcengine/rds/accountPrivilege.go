@@ -105,6 +105,7 @@ func NewAccountPrivilege(ctx *pulumi.Context,
 	if args.InstanceId == nil {
 		return nil, errors.New("invalid value for required argument 'InstanceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource AccountPrivilege
 	err := ctx.RegisterResource("volcengine:rds/accountPrivilege:AccountPrivilege", name, args, &resource, opts...)
 	if err != nil {

@@ -77,6 +77,7 @@ func NewVpcEndpointServicePermission(ctx *pulumi.Context,
 	if args.ServiceId == nil {
 		return nil, errors.New("invalid value for required argument 'ServiceId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VpcEndpointServicePermission
 	err := ctx.RegisterResource("volcengine:privatelink/vpcEndpointServicePermission:VpcEndpointServicePermission", name, args, &resource, opts...)
 	if err != nil {

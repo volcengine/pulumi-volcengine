@@ -70,6 +70,7 @@ func NewBandwidthPackageAssociate(ctx *pulumi.Context,
 	if args.CenId == nil {
 		return nil, errors.New("invalid value for required argument 'CenId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource BandwidthPackageAssociate
 	err := ctx.RegisterResource("volcengine:cen/bandwidthPackageAssociate:BandwidthPackageAssociate", name, args, &resource, opts...)
 	if err != nil {

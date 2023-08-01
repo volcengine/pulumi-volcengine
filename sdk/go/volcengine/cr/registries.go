@@ -43,6 +43,7 @@ import (
 //
 // ```
 func Registries(ctx *pulumi.Context, args *RegistriesArgs, opts ...pulumi.InvokeOption) (*RegistriesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv RegistriesResult
 	err := ctx.Invoke("volcengine:cr/registries:Registries", args, &rv, opts...)
 	if err != nil {

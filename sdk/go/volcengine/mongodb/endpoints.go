@@ -38,6 +38,7 @@ import (
 //
 // ```
 func Endpoints(ctx *pulumi.Context, args *EndpointsArgs, opts ...pulumi.InvokeOption) (*EndpointsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv EndpointsResult
 	err := ctx.Invoke("volcengine:mongodb/endpoints:Endpoints", args, &rv, opts...)
 	if err != nil {

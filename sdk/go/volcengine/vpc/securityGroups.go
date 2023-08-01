@@ -40,6 +40,7 @@ import (
 //
 // ```
 func SecurityGroups(ctx *pulumi.Context, args *SecurityGroupsArgs, opts ...pulumi.InvokeOption) (*SecurityGroupsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv SecurityGroupsResult
 	err := ctx.Invoke("volcengine:vpc/securityGroups:SecurityGroups", args, &rv, opts...)
 	if err != nil {

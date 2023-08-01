@@ -40,6 +40,7 @@ import (
 //
 // ```
 func Indexes(ctx *pulumi.Context, args *IndexesArgs, opts ...pulumi.InvokeOption) (*IndexesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv IndexesResult
 	err := ctx.Invoke("volcengine:tls/indexes:Indexes", args, &rv, opts...)
 	if err != nil {

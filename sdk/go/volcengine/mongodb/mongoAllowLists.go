@@ -39,6 +39,7 @@ import (
 //
 // ```
 func MongoAllowLists(ctx *pulumi.Context, args *MongoAllowListsArgs, opts ...pulumi.InvokeOption) (*MongoAllowListsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv MongoAllowListsResult
 	err := ctx.Invoke("volcengine:mongodb/mongoAllowLists:MongoAllowLists", args, &rv, opts...)
 	if err != nil {

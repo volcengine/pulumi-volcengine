@@ -36,6 +36,7 @@ import (
 //
 // ```
 func Specs(ctx *pulumi.Context, args *SpecsArgs, opts ...pulumi.InvokeOption) (*SpecsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv SpecsResult
 	err := ctx.Invoke("volcengine:mongodb/specs:Specs", args, &rv, opts...)
 	if err != nil {

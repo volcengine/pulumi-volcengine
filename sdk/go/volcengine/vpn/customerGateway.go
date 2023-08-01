@@ -85,6 +85,7 @@ func NewCustomerGateway(ctx *pulumi.Context,
 	if args.IpAddress == nil {
 		return nil, errors.New("invalid value for required argument 'IpAddress'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource CustomerGateway
 	err := ctx.RegisterResource("volcengine:vpn/customerGateway:CustomerGateway", name, args, &resource, opts...)
 	if err != nil {

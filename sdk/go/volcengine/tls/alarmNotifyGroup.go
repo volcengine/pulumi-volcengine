@@ -97,6 +97,7 @@ func NewAlarmNotifyGroup(ctx *pulumi.Context,
 	if args.Receivers == nil {
 		return nil, errors.New("invalid value for required argument 'Receivers'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource AlarmNotifyGroup
 	err := ctx.RegisterResource("volcengine:tls/alarmNotifyGroup:AlarmNotifyGroup", name, args, &resource, opts...)
 	if err != nil {

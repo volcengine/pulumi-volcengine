@@ -101,6 +101,7 @@ func NewHostGroup(ctx *pulumi.Context,
 	if args.HostGroupType == nil {
 		return nil, errors.New("invalid value for required argument 'HostGroupType'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource HostGroup
 	err := ctx.RegisterResource("volcengine:tls/hostGroup:HostGroup", name, args, &resource, opts...)
 	if err != nil {

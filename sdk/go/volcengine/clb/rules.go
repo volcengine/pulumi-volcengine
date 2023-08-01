@@ -42,6 +42,7 @@ import (
 //
 // ```
 func Rules(ctx *pulumi.Context, args *RulesArgs, opts ...pulumi.InvokeOption) (*RulesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv RulesResult
 	err := ctx.Invoke("volcengine:clb/rules:Rules", args, &rv, opts...)
 	if err != nil {

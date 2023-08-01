@@ -40,6 +40,7 @@ import (
 //
 // ```
 func Ipv6Gateways(ctx *pulumi.Context, args *Ipv6GatewaysArgs, opts ...pulumi.InvokeOption) (*Ipv6GatewaysResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv Ipv6GatewaysResult
 	err := ctx.Invoke("volcengine:vpc/ipv6Gateways:Ipv6Gateways", args, &rv, opts...)
 	if err != nil {

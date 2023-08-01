@@ -85,6 +85,7 @@ func NewAccount(ctx *pulumi.Context,
 	if args.RoleName == nil {
 		return nil, errors.New("invalid value for required argument 'RoleName'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Account
 	err := ctx.RegisterResource("volcengine:redis/account:Account", name, args, &resource, opts...)
 	if err != nil {

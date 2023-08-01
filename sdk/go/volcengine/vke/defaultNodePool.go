@@ -146,6 +146,7 @@ func NewDefaultNodePool(ctx *pulumi.Context,
 	if args.NodeConfig == nil {
 		return nil, errors.New("invalid value for required argument 'NodeConfig'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource DefaultNodePool
 	err := ctx.RegisterResource("volcengine:vke/defaultNodePool:DefaultNodePool", name, args, &resource, opts...)
 	if err != nil {

@@ -91,6 +91,7 @@ func NewUserPolicyAttachment(ctx *pulumi.Context,
 	if args.UserName == nil {
 		return nil, errors.New("invalid value for required argument 'UserName'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource UserPolicyAttachment
 	err := ctx.RegisterResource("volcengine:iam/userPolicyAttachment:UserPolicyAttachment", name, args, &resource, opts...)
 	if err != nil {

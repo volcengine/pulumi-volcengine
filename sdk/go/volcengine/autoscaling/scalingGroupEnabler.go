@@ -125,6 +125,7 @@ func NewScalingGroupEnabler(ctx *pulumi.Context,
 	if args.ScalingGroupId == nil {
 		return nil, errors.New("invalid value for required argument 'ScalingGroupId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ScalingGroupEnabler
 	err := ctx.RegisterResource("volcengine:autoscaling/scalingGroupEnabler:ScalingGroupEnabler", name, args, &resource, opts...)
 	if err != nil {

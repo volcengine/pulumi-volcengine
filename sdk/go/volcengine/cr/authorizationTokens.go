@@ -38,6 +38,7 @@ import (
 //
 // ```
 func AuthorizationTokens(ctx *pulumi.Context, args *AuthorizationTokensArgs, opts ...pulumi.InvokeOption) (*AuthorizationTokensResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv AuthorizationTokensResult
 	err := ctx.Invoke("volcengine:cr/authorizationTokens:AuthorizationTokens", args, &rv, opts...)
 	if err != nil {

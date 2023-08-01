@@ -40,6 +40,7 @@ import (
 //
 // ```
 func Connections(ctx *pulumi.Context, args *ConnectionsArgs, opts ...pulumi.InvokeOption) (*ConnectionsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv ConnectionsResult
 	err := ctx.Invoke("volcengine:vpn/connections:Connections", args, &rv, opts...)
 	if err != nil {

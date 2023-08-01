@@ -74,6 +74,7 @@ func NewNamespace(ctx *pulumi.Context,
 	if args.Registry == nil {
 		return nil, errors.New("invalid value for required argument 'Registry'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Namespace
 	err := ctx.RegisterResource("volcengine:cr/namespace:Namespace", name, args, &resource, opts...)
 	if err != nil {

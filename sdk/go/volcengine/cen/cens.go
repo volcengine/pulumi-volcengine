@@ -40,6 +40,7 @@ import (
 //
 // ```
 func Cens(ctx *pulumi.Context, args *CensArgs, opts ...pulumi.InvokeOption) (*CensResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv CensResult
 	err := ctx.Invoke("volcengine:cen/cens:Cens", args, &rv, opts...)
 	if err != nil {

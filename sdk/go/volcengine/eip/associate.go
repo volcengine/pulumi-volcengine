@@ -138,6 +138,7 @@ func NewAssociate(ctx *pulumi.Context,
 	if args.InstanceType == nil {
 		return nil, errors.New("invalid value for required argument 'InstanceType'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Associate
 	err := ctx.RegisterResource("volcengine:eip/associate:Associate", name, args, &resource, opts...)
 	if err != nil {

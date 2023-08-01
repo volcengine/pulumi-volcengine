@@ -36,6 +36,7 @@ import (
 //
 // ```
 func Users(ctx *pulumi.Context, args *UsersArgs, opts ...pulumi.InvokeOption) (*UsersResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv UsersResult
 	err := ctx.Invoke("volcengine:iam/users:Users", args, &rv, opts...)
 	if err != nil {

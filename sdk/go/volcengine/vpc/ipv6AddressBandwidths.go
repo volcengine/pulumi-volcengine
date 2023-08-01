@@ -40,6 +40,7 @@ import (
 //
 // ```
 func Ipv6AddressBandwidths(ctx *pulumi.Context, args *Ipv6AddressBandwidthsArgs, opts ...pulumi.InvokeOption) (*Ipv6AddressBandwidthsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv Ipv6AddressBandwidthsResult
 	err := ctx.Invoke("volcengine:vpc/ipv6AddressBandwidths:Ipv6AddressBandwidths", args, &rv, opts...)
 	if err != nil {

@@ -38,6 +38,7 @@ import (
 //
 // ```
 func Databases(ctx *pulumi.Context, args *DatabasesArgs, opts ...pulumi.InvokeOption) (*DatabasesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv DatabasesResult
 	err := ctx.Invoke("volcengine:rds/databases:Databases", args, &rv, opts...)
 	if err != nil {

@@ -64,6 +64,7 @@ func NewScalingConfigurationAttachment(ctx *pulumi.Context,
 	if args.ScalingConfigurationId == nil {
 		return nil, errors.New("invalid value for required argument 'ScalingConfigurationId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ScalingConfigurationAttachment
 	err := ctx.RegisterResource("volcengine:autoscaling/scalingConfigurationAttachment:ScalingConfigurationAttachment", name, args, &resource, opts...)
 	if err != nil {

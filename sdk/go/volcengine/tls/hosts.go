@@ -38,6 +38,7 @@ import (
 //
 // ```
 func Hosts(ctx *pulumi.Context, args *HostsArgs, opts ...pulumi.InvokeOption) (*HostsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv HostsResult
 	err := ctx.Invoke("volcengine:tls/hosts:Hosts", args, &rv, opts...)
 	if err != nil {

@@ -73,6 +73,7 @@ func NewWorkspace(ctx *pulumi.Context,
 	if args.Description == nil {
 		return nil, errors.New("invalid value for required argument 'Description'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Workspace
 	err := ctx.RegisterResource("volcengine:bioos/workspace:Workspace", name, args, &resource, opts...)
 	if err != nil {

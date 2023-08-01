@@ -130,6 +130,7 @@ func NewScalingGroup(ctx *pulumi.Context,
 	if args.SubnetIds == nil {
 		return nil, errors.New("invalid value for required argument 'SubnetIds'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ScalingGroup
 	err := ctx.RegisterResource("volcengine:autoscaling/scalingGroup:ScalingGroup", name, args, &resource, opts...)
 	if err != nil {

@@ -36,6 +36,7 @@ import (
 //
 // ```
 func Roles(ctx *pulumi.Context, args *RolesArgs, opts ...pulumi.InvokeOption) (*RolesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv RolesResult
 	err := ctx.Invoke("volcengine:iam/roles:Roles", args, &rv, opts...)
 	if err != nil {

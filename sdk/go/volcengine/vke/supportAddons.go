@@ -41,6 +41,7 @@ import (
 //
 // ```
 func SupportAddons(ctx *pulumi.Context, args *SupportAddonsArgs, opts ...pulumi.InvokeOption) (*SupportAddonsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv SupportAddonsResult
 	err := ctx.Invoke("volcengine:vke/supportAddons:SupportAddons", args, &rv, opts...)
 	if err != nil {

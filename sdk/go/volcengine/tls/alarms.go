@@ -38,6 +38,7 @@ import (
 //
 // ```
 func Alarms(ctx *pulumi.Context, args *AlarmsArgs, opts ...pulumi.InvokeOption) (*AlarmsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv AlarmsResult
 	err := ctx.Invoke("volcengine:tls/alarms:Alarms", args, &rv, opts...)
 	if err != nil {

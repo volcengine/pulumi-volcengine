@@ -43,6 +43,7 @@ import (
 //
 // ```
 func Addresses(ctx *pulumi.Context, args *AddressesArgs, opts ...pulumi.InvokeOption) (*AddressesResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv AddressesResult
 	err := ctx.Invoke("volcengine:eip/addresses:Addresses", args, &rv, opts...)
 	if err != nil {

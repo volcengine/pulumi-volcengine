@@ -38,6 +38,7 @@ import (
 //
 // ```
 func IpLists(ctx *pulumi.Context, args *IpListsArgs, opts ...pulumi.InvokeOption) (*IpListsResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv IpListsResult
 	err := ctx.Invoke("volcengine:rds/ipLists:IpLists", args, &rv, opts...)
 	if err != nil {

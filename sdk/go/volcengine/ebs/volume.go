@@ -124,6 +124,7 @@ func NewVolume(ctx *pulumi.Context,
 	if args.ZoneId == nil {
 		return nil, errors.New("invalid value for required argument 'ZoneId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Volume
 	err := ctx.RegisterResource("volcengine:ebs/volume:Volume", name, args, &resource, opts...)
 	if err != nil {
