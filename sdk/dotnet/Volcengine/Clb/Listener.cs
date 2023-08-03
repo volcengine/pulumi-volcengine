@@ -16,70 +16,66 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
     /// 
     /// ```csharp
     /// using Pulumi;
+    /// using Volcengine = Pulumi.Volcengine;
     /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
     /// 
     /// class MyStack : Stack
     /// {
     ///     public MyStack()
     ///     {
-    ///         var foo = new Volcengine.Clb.Listener("foo", new Volcengine.Clb.ListenerArgs
+    ///         var fooZones = Output.Create(Volcengine.Ecs.Zones.InvokeAsync());
+    ///         var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new Volcengine.Vpc.VpcArgs
     ///         {
-    ///             Enabled = "on",
-    ///             HealthCheck = new Volcengine.Clb.Inputs.ListenerHealthCheckArgs
+    ///             VpcName = "acc-test-vpc",
+    ///             CidrBlock = "172.16.0.0/16",
+    ///         });
+    ///         var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new Volcengine.Vpc.SubnetArgs
+    ///         {
+    ///             SubnetName = "acc-test-subnet",
+    ///             CidrBlock = "172.16.0.0/24",
+    ///             ZoneId = fooZones.Apply(fooZones =&gt; fooZones.Zones?[0]?.Id),
+    ///             VpcId = fooVpc.Id,
+    ///         });
+    ///         var fooClb = new Volcengine.Clb.Clb("fooClb", new Volcengine.Clb.ClbArgs
+    ///         {
+    ///             Type = "public",
+    ///             SubnetId = fooSubnet.Id,
+    ///             LoadBalancerSpec = "small_1",
+    ///             Description = "acc0Demo",
+    ///             LoadBalancerName = "acc-test-create",
+    ///             EipBillingConfig = new Volcengine.Clb.Inputs.ClbEipBillingConfigArgs
     ///             {
-    ///                 Domain = "volcengine.com",
-    ///                 Enabled = "on",
-    ///                 HealthyThreshold = 5,
-    ///                 HttpCode = "http_2xx",
-    ///                 Interval = 10,
-    ///                 Method = "GET",
-    ///                 Timeout = 3,
-    ///                 UnHealthyThreshold = 2,
-    ///                 Uri = "/",
+    ///                 Isp = "BGP",
+    ///                 EipBillingType = "PostPaidByBandwidth",
+    ///                 Bandwidth = 1,
     ///             },
-    ///             ListenerName = "Demo-HTTP-90",
-    ///             LoadBalancerId = "clb-274xltt3rfmyo7fap8sv1jq39",
+    ///         });
+    ///         var fooServerGroup = new Volcengine.Clb.ServerGroup("fooServerGroup", new Volcengine.Clb.ServerGroupArgs
+    ///         {
+    ///             LoadBalancerId = fooClb.Id,
+    ///             ServerGroupName = "acc-test-create",
+    ///             Description = "hello demo11",
+    ///         });
+    ///         var fooListener = new Volcengine.Clb.Listener("fooListener", new Volcengine.Clb.ListenerArgs
+    ///         {
+    ///             LoadBalancerId = fooClb.Id,
+    ///             ListenerName = "acc-test-listener",
+    ///             Protocol = "HTTP",
     ///             Port = 90,
-    ///             Protocol = "HTTP",
-    ///             ServerGroupId = "rsp-274xltv2sjoxs7fap8tlv3q3s",
-    ///         });
-    ///         var bar = new Volcengine.Clb.Listener("bar", new Volcengine.Clb.ListenerArgs
-    ///         {
-    ///             Enabled = "on",
+    ///             ServerGroupId = fooServerGroup.Id,
     ///             HealthCheck = new Volcengine.Clb.Inputs.ListenerHealthCheckArgs
     ///             {
-    ///                 Domain = "volcengine.com",
     ///                 Enabled = "on",
-    ///                 HealthyThreshold = 5,
-    ///                 HttpCode = "http_2xx",
     ///                 Interval = 10,
-    ///                 Method = "GET",
     ///                 Timeout = 3,
+    ///                 HealthyThreshold = 5,
     ///                 UnHealthyThreshold = 2,
+    ///                 Domain = "volcengine.com",
+    ///                 HttpCode = "http_2xx",
+    ///                 Method = "GET",
     ///                 Uri = "/",
     ///             },
-    ///             ListenerName = "Demo-HTTP-91",
-    ///             LoadBalancerId = "clb-274xltt3rfmyo7fap8sv1jq39",
-    ///             Port = 91,
-    ///             Protocol = "HTTP",
-    ///             ServerGroupId = "rsp-274xltv2sjoxs7fap8tlv3q3s",
-    ///         });
-    ///         var demo = new Volcengine.Clb.Listener("demo", new Volcengine.Clb.ListenerArgs
-    ///         {
     ///             Enabled = "on",
-    ///             EstablishedTimeout = 10,
-    ///             HealthCheck = new Volcengine.Clb.Inputs.ListenerHealthCheckArgs
-    ///             {
-    ///                 Enabled = "on",
-    ///                 HealthyThreshold = 5,
-    ///                 Interval = 10,
-    ///                 Timeout = 3,
-    ///                 UnHealthyThreshold = 2,
-    ///             },
-    ///             LoadBalancerId = "clb-274xltt3rfmyo7fap8sv1jq39",
-    ///             Port = 92,
-    ///             Protocol = "TCP",
-    ///             ServerGroupId = "rsp-274xltv2sjoxs7fap8tlv3q3s",
     ///         });
     ///     }
     /// 

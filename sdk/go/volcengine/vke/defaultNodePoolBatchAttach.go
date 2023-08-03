@@ -21,27 +21,177 @@ import (
 //
 //	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/vke"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vke"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vke.NewDefaultNodePoolBatchAttach(ctx, "default", &vke.DefaultNodePoolBatchAttachArgs{
-//				ClusterId:         pulumi.String("ccc2umdnqtoflv91lqtq0"),
-//				DefaultNodePoolId: pulumi.String("11111"),
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-project1"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-subnet-test-2"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     pulumi.String("cn-beijing-a"),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSecurityGroup, err := vpc.NewSecurityGroup(ctx, "fooSecurityGroup", &vpc.SecurityGroupArgs{
+//				VpcId:             fooVpc.ID(),
+//				SecurityGroupName: pulumi.String("acc-test-security-group2"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooInstance, err := ecs.NewInstance(ctx, "fooInstance", &ecs.InstanceArgs{
+//				ImageId:            pulumi.String("image-ybqi99s7yq8rx7mnk44b"),
+//				InstanceType:       pulumi.String("ecs.g1ie.large"),
+//				InstanceName:       pulumi.String("acc-test-ecs-name2"),
+//				Password:           pulumi.String("93f0cb0614Aab12"),
+//				InstanceChargeType: pulumi.String("PostPaid"),
+//				SystemVolumeType:   pulumi.String("ESSD_PL0"),
+//				SystemVolumeSize:   pulumi.Int(40),
+//				SubnetId:           fooSubnet.ID(),
+//				SecurityGroupIds: pulumi.StringArray{
+//					fooSecurityGroup.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooCluster, err := vke.NewCluster(ctx, "fooCluster", &vke.ClusterArgs{
+//				Description:             pulumi.String("created by terraform"),
+//				DeleteProtectionEnabled: pulumi.Bool(false),
+//				ClusterConfig: &vke.ClusterClusterConfigArgs{
+//					SubnetIds: pulumi.StringArray{
+//						fooSubnet.ID(),
+//					},
+//					ApiServerPublicAccessEnabled: pulumi.Bool(true),
+//					ApiServerPublicAccessConfig: &vke.ClusterClusterConfigApiServerPublicAccessConfigArgs{
+//						PublicAccessNetworkConfig: &vke.ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs{
+//							BillingType: pulumi.String("PostPaidByBandwidth"),
+//							Bandwidth:   pulumi.Int(1),
+//						},
+//					},
+//					ResourcePublicAccessDefaultEnabled: pulumi.Bool(true),
+//				},
+//				PodsConfig: &vke.ClusterPodsConfigArgs{
+//					PodNetworkMode: pulumi.String("VpcCniShared"),
+//					VpcCniConfig: &vke.ClusterPodsConfigVpcCniConfigArgs{
+//						SubnetIds: pulumi.StringArray{
+//							fooSubnet.ID(),
+//						},
+//					},
+//				},
+//				ServicesConfig: &vke.ClusterServicesConfigArgs{
+//					ServiceCidrsv4s: pulumi.StringArray{
+//						pulumi.String("172.30.0.0/18"),
+//					},
+//				},
+//				Tags: vke.ClusterTagArray{
+//					&vke.ClusterTagArgs{
+//						Key:   pulumi.String("tf-k1"),
+//						Value: pulumi.String("tf-v1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			defaultDefaultNodePool, err := vke.NewDefaultNodePool(ctx, "defaultDefaultNodePool", &vke.DefaultNodePoolArgs{
+//				ClusterId: fooCluster.ID(),
+//				NodeConfig: &vke.DefaultNodePoolNodeConfigArgs{
+//					Security: &vke.DefaultNodePoolNodeConfigSecurityArgs{
+//						Login: &vke.DefaultNodePoolNodeConfigSecurityLoginArgs{
+//							Password: pulumi.String("amw4WTdVcTRJVVFsUXpVTw=="),
+//						},
+//						SecurityGroupIds: pulumi.StringArray{
+//							fooSecurityGroup.ID(),
+//						},
+//						SecurityStrategies: pulumi.StringArray{
+//							pulumi.String("Hids"),
+//						},
+//					},
+//					InitializeScript: pulumi.String("ISMvYmluL2Jhc2gKZWNobyAx"),
+//				},
+//				KubernetesConfig: &vke.DefaultNodePoolKubernetesConfigArgs{
+//					Labels: vke.DefaultNodePoolKubernetesConfigLabelArray{
+//						&vke.DefaultNodePoolKubernetesConfigLabelArgs{
+//							Key:   pulumi.String("tf-key1"),
+//							Value: pulumi.String("tf-value1"),
+//						},
+//						&vke.DefaultNodePoolKubernetesConfigLabelArgs{
+//							Key:   pulumi.String("tf-key2"),
+//							Value: pulumi.String("tf-value2"),
+//						},
+//					},
+//					Taints: vke.DefaultNodePoolKubernetesConfigTaintArray{
+//						&vke.DefaultNodePoolKubernetesConfigTaintArgs{
+//							Key:    pulumi.String("tf-key3"),
+//							Value:  pulumi.String("tf-value3"),
+//							Effect: pulumi.String("NoSchedule"),
+//						},
+//						&vke.DefaultNodePoolKubernetesConfigTaintArgs{
+//							Key:    pulumi.String("tf-key4"),
+//							Value:  pulumi.String("tf-value4"),
+//							Effect: pulumi.String("NoSchedule"),
+//						},
+//					},
+//					Cordon: pulumi.Bool(true),
+//				},
+//				Tags: vke.DefaultNodePoolTagArray{
+//					&vke.DefaultNodePoolTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = vke.NewDefaultNodePoolBatchAttach(ctx, "defaultDefaultNodePoolBatchAttach", &vke.DefaultNodePoolBatchAttachArgs{
+//				ClusterId:         fooCluster.ID(),
+//				DefaultNodePoolId: defaultDefaultNodePool.ID(),
 //				Instances: vke.DefaultNodePoolBatchAttachInstanceArray{
 //					&vke.DefaultNodePoolBatchAttachInstanceArgs{
+//						InstanceId:                        fooInstance.ID(),
+//						KeepInstanceName:                  pulumi.Bool(true),
 //						AdditionalContainerStorageEnabled: pulumi.Bool(false),
-//						InstanceId:                        pulumi.String("i-ybvza90ohwexzk8emaa3"),
-//						KeepInstanceName:                  pulumi.Bool(false),
 //					},
-//					&vke.DefaultNodePoolBatchAttachInstanceArgs{
-//						AdditionalContainerStorageEnabled: pulumi.Bool(true),
-//						ContainerStoragePath:              pulumi.String("/"),
-//						InstanceId:                        pulumi.String("i-ybvza90ohxexzkm4zihf"),
-//						KeepInstanceName:                  pulumi.Bool(false),
+//				},
+//				KubernetesConfig: &vke.DefaultNodePoolBatchAttachKubernetesConfigArgs{
+//					Labels: vke.DefaultNodePoolBatchAttachKubernetesConfigLabelArray{
+//						&vke.DefaultNodePoolBatchAttachKubernetesConfigLabelArgs{
+//							Key:   pulumi.String("tf-key1"),
+//							Value: pulumi.String("tf-value1"),
+//						},
+//						&vke.DefaultNodePoolBatchAttachKubernetesConfigLabelArgs{
+//							Key:   pulumi.String("tf-key2"),
+//							Value: pulumi.String("tf-value2"),
+//						},
 //					},
+//					Taints: vke.DefaultNodePoolBatchAttachKubernetesConfigTaintArray{
+//						&vke.DefaultNodePoolBatchAttachKubernetesConfigTaintArgs{
+//							Key:    pulumi.String("tf-key3"),
+//							Value:  pulumi.String("tf-value3"),
+//							Effect: pulumi.String("NoSchedule"),
+//						},
+//						&vke.DefaultNodePoolBatchAttachKubernetesConfigTaintArgs{
+//							Key:    pulumi.String("tf-key4"),
+//							Value:  pulumi.String("tf-value4"),
+//							Effect: pulumi.String("NoSchedule"),
+//						},
+//					},
+//					Cordon: pulumi.Bool(true),
 //				},
 //			})
 //			if err != nil {
@@ -63,8 +213,8 @@ type DefaultNodePoolBatchAttach struct {
 	Instances DefaultNodePoolBatchAttachInstanceArrayOutput `pulumi:"instances"`
 	// Is import of the DefaultNodePool. It only works when imported, set to true.
 	IsImport pulumi.BoolOutput `pulumi:"isImport"`
-	// The KubernetesConfig of NodeConfig.
-	KubernetesConfigs DefaultNodePoolBatchAttachKubernetesConfigArrayOutput `pulumi:"kubernetesConfigs"`
+	// The KubernetesConfig of NodeConfig. Please note that this field is the configuration of the node. The same key is subject to the config of the node pool. Different keys take effect together.
+	KubernetesConfig DefaultNodePoolBatchAttachKubernetesConfigPtrOutput `pulumi:"kubernetesConfig"`
 	// The Config of NodePool.
 	NodeConfigs DefaultNodePoolBatchAttachNodeConfigArrayOutput `pulumi:"nodeConfigs"`
 	// Tags.
@@ -115,8 +265,8 @@ type defaultNodePoolBatchAttachState struct {
 	Instances []DefaultNodePoolBatchAttachInstance `pulumi:"instances"`
 	// Is import of the DefaultNodePool. It only works when imported, set to true.
 	IsImport *bool `pulumi:"isImport"`
-	// The KubernetesConfig of NodeConfig.
-	KubernetesConfigs []DefaultNodePoolBatchAttachKubernetesConfig `pulumi:"kubernetesConfigs"`
+	// The KubernetesConfig of NodeConfig. Please note that this field is the configuration of the node. The same key is subject to the config of the node pool. Different keys take effect together.
+	KubernetesConfig *DefaultNodePoolBatchAttachKubernetesConfig `pulumi:"kubernetesConfig"`
 	// The Config of NodePool.
 	NodeConfigs []DefaultNodePoolBatchAttachNodeConfig `pulumi:"nodeConfigs"`
 	// Tags.
@@ -132,8 +282,8 @@ type DefaultNodePoolBatchAttachState struct {
 	Instances DefaultNodePoolBatchAttachInstanceArrayInput
 	// Is import of the DefaultNodePool. It only works when imported, set to true.
 	IsImport pulumi.BoolPtrInput
-	// The KubernetesConfig of NodeConfig.
-	KubernetesConfigs DefaultNodePoolBatchAttachKubernetesConfigArrayInput
+	// The KubernetesConfig of NodeConfig. Please note that this field is the configuration of the node. The same key is subject to the config of the node pool. Different keys take effect together.
+	KubernetesConfig DefaultNodePoolBatchAttachKubernetesConfigPtrInput
 	// The Config of NodePool.
 	NodeConfigs DefaultNodePoolBatchAttachNodeConfigArrayInput
 	// Tags.
@@ -151,6 +301,8 @@ type defaultNodePoolBatchAttachArgs struct {
 	DefaultNodePoolId string `pulumi:"defaultNodePoolId"`
 	// The ECS InstanceIds add to NodePool.
 	Instances []DefaultNodePoolBatchAttachInstance `pulumi:"instances"`
+	// The KubernetesConfig of NodeConfig. Please note that this field is the configuration of the node. The same key is subject to the config of the node pool. Different keys take effect together.
+	KubernetesConfig *DefaultNodePoolBatchAttachKubernetesConfig `pulumi:"kubernetesConfig"`
 }
 
 // The set of arguments for constructing a DefaultNodePoolBatchAttach resource.
@@ -161,6 +313,8 @@ type DefaultNodePoolBatchAttachArgs struct {
 	DefaultNodePoolId pulumi.StringInput
 	// The ECS InstanceIds add to NodePool.
 	Instances DefaultNodePoolBatchAttachInstanceArrayInput
+	// The KubernetesConfig of NodeConfig. Please note that this field is the configuration of the node. The same key is subject to the config of the node pool. Different keys take effect together.
+	KubernetesConfig DefaultNodePoolBatchAttachKubernetesConfigPtrInput
 }
 
 func (DefaultNodePoolBatchAttachArgs) ElementType() reflect.Type {
@@ -270,11 +424,11 @@ func (o DefaultNodePoolBatchAttachOutput) IsImport() pulumi.BoolOutput {
 	return o.ApplyT(func(v *DefaultNodePoolBatchAttach) pulumi.BoolOutput { return v.IsImport }).(pulumi.BoolOutput)
 }
 
-// The KubernetesConfig of NodeConfig.
-func (o DefaultNodePoolBatchAttachOutput) KubernetesConfigs() DefaultNodePoolBatchAttachKubernetesConfigArrayOutput {
-	return o.ApplyT(func(v *DefaultNodePoolBatchAttach) DefaultNodePoolBatchAttachKubernetesConfigArrayOutput {
-		return v.KubernetesConfigs
-	}).(DefaultNodePoolBatchAttachKubernetesConfigArrayOutput)
+// The KubernetesConfig of NodeConfig. Please note that this field is the configuration of the node. The same key is subject to the config of the node pool. Different keys take effect together.
+func (o DefaultNodePoolBatchAttachOutput) KubernetesConfig() DefaultNodePoolBatchAttachKubernetesConfigPtrOutput {
+	return o.ApplyT(func(v *DefaultNodePoolBatchAttach) DefaultNodePoolBatchAttachKubernetesConfigPtrOutput {
+		return v.KubernetesConfig
+	}).(DefaultNodePoolBatchAttachKubernetesConfigPtrOutput)
 }
 
 // The Config of NodePool.

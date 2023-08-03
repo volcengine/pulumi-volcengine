@@ -203,11 +203,53 @@ class Rule(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.clb.Rule("foo",
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_clb = volcengine.clb.Clb("fooClb",
+            type="public",
+            subnet_id=foo_subnet.id,
+            load_balancer_spec="small_1",
+            description="acc0Demo",
+            load_balancer_name="acc-test-create",
+            eip_billing_config=volcengine.clb.ClbEipBillingConfigArgs(
+                isp="BGP",
+                eip_billing_type="PostPaidByBandwidth",
+                bandwidth=1,
+            ))
+        foo_server_group = volcengine.clb.ServerGroup("fooServerGroup",
+            load_balancer_id=foo_clb.id,
+            server_group_name="acc-test-create",
+            description="hello demo11")
+        foo_listener = volcengine.clb.Listener("fooListener",
+            load_balancer_id=foo_clb.id,
+            listener_name="acc-test-listener",
+            protocol="HTTP",
+            port=90,
+            server_group_id=foo_server_group.id,
+            health_check=volcengine.clb.ListenerHealthCheckArgs(
+                enabled="on",
+                interval=10,
+                timeout=3,
+                healthy_threshold=5,
+                un_healthy_threshold=2,
+                domain="volcengine.com",
+                http_code="http_2xx",
+                method="GET",
+                uri="/",
+            ),
+            enabled="on")
+        foo_rule = volcengine.clb.Rule("fooRule",
+            listener_id=foo_listener.id,
+            server_group_id=foo_server_group.id,
             domain="test-volc123.com",
-            listener_id="lsn-273ywvnmiu70g7fap8u2xzg9d",
-            server_group_id="rsp-273yxuqfova4g7fap8tyemn6t",
-            url="/yyyy")
+            url="/tftest")
         ```
 
         ## Import
@@ -240,11 +282,53 @@ class Rule(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.clb.Rule("foo",
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_clb = volcengine.clb.Clb("fooClb",
+            type="public",
+            subnet_id=foo_subnet.id,
+            load_balancer_spec="small_1",
+            description="acc0Demo",
+            load_balancer_name="acc-test-create",
+            eip_billing_config=volcengine.clb.ClbEipBillingConfigArgs(
+                isp="BGP",
+                eip_billing_type="PostPaidByBandwidth",
+                bandwidth=1,
+            ))
+        foo_server_group = volcengine.clb.ServerGroup("fooServerGroup",
+            load_balancer_id=foo_clb.id,
+            server_group_name="acc-test-create",
+            description="hello demo11")
+        foo_listener = volcengine.clb.Listener("fooListener",
+            load_balancer_id=foo_clb.id,
+            listener_name="acc-test-listener",
+            protocol="HTTP",
+            port=90,
+            server_group_id=foo_server_group.id,
+            health_check=volcengine.clb.ListenerHealthCheckArgs(
+                enabled="on",
+                interval=10,
+                timeout=3,
+                healthy_threshold=5,
+                un_healthy_threshold=2,
+                domain="volcengine.com",
+                http_code="http_2xx",
+                method="GET",
+                uri="/",
+            ),
+            enabled="on")
+        foo_rule = volcengine.clb.Rule("fooRule",
+            listener_id=foo_listener.id,
+            server_group_id=foo_server_group.id,
             domain="test-volc123.com",
-            listener_id="lsn-273ywvnmiu70g7fap8u2xzg9d",
-            server_group_id="rsp-273yxuqfova4g7fap8tyemn6t",
-            url="/yyyy")
+            url="/tftest")
         ```
 
         ## Import

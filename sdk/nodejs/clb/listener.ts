@@ -11,60 +11,55 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as pulumi from "@volcengine/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = new volcengine.clb.Listener("foo", {
- *     enabled: "on",
- *     healthCheck: {
- *         domain: "volcengine.com",
- *         enabled: "on",
- *         healthyThreshold: 5,
- *         httpCode: "http_2xx",
- *         interval: 10,
- *         method: "GET",
- *         timeout: 3,
- *         unHealthyThreshold: 2,
- *         uri: "/",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooClb = new volcengine.clb.Clb("fooClb", {
+ *     type: "public",
+ *     subnetId: fooSubnet.id,
+ *     loadBalancerSpec: "small_1",
+ *     description: "acc0Demo",
+ *     loadBalancerName: "acc-test-create",
+ *     eipBillingConfig: {
+ *         isp: "BGP",
+ *         eipBillingType: "PostPaidByBandwidth",
+ *         bandwidth: 1,
  *     },
- *     listenerName: "Demo-HTTP-90",
- *     loadBalancerId: "clb-274xltt3rfmyo7fap8sv1jq39",
+ * });
+ * const fooServerGroup = new volcengine.clb.ServerGroup("fooServerGroup", {
+ *     loadBalancerId: fooClb.id,
+ *     serverGroupName: "acc-test-create",
+ *     description: "hello demo11",
+ * });
+ * const fooListener = new volcengine.clb.Listener("fooListener", {
+ *     loadBalancerId: fooClb.id,
+ *     listenerName: "acc-test-listener",
+ *     protocol: "HTTP",
  *     port: 90,
- *     protocol: "HTTP",
- *     serverGroupId: "rsp-274xltv2sjoxs7fap8tlv3q3s",
- * });
- * const bar = new volcengine.clb.Listener("bar", {
- *     enabled: "on",
+ *     serverGroupId: fooServerGroup.id,
  *     healthCheck: {
- *         domain: "volcengine.com",
  *         enabled: "on",
- *         healthyThreshold: 5,
- *         httpCode: "http_2xx",
  *         interval: 10,
- *         method: "GET",
  *         timeout: 3,
+ *         healthyThreshold: 5,
  *         unHealthyThreshold: 2,
+ *         domain: "volcengine.com",
+ *         httpCode: "http_2xx",
+ *         method: "GET",
  *         uri: "/",
  *     },
- *     listenerName: "Demo-HTTP-91",
- *     loadBalancerId: "clb-274xltt3rfmyo7fap8sv1jq39",
- *     port: 91,
- *     protocol: "HTTP",
- *     serverGroupId: "rsp-274xltv2sjoxs7fap8tlv3q3s",
- * });
- * const demo = new volcengine.clb.Listener("demo", {
  *     enabled: "on",
- *     establishedTimeout: 10,
- *     healthCheck: {
- *         enabled: "on",
- *         healthyThreshold: 5,
- *         interval: 10,
- *         timeout: 3,
- *         unHealthyThreshold: 2,
- *     },
- *     loadBalancerId: "clb-274xltt3rfmyo7fap8sv1jq39",
- *     port: 92,
- *     protocol: "TCP",
- *     serverGroupId: "rsp-274xltv2sjoxs7fap8tlv3q3s",
  * });
  * ```
  *

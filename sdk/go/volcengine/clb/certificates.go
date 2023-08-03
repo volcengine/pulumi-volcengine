@@ -11,34 +11,6 @@ import (
 )
 
 // Use this data source to query detailed information of certificates
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/clb"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/clb"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := clb.Certificates(ctx, &clb.CertificatesArgs{
-//				Ids: []string{
-//					"cert-274scdwqufwg07fap8u5fu8pi",
-//				},
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func Certificates(ctx *pulumi.Context, args *CertificatesArgs, opts ...pulumi.InvokeOption) (*CertificatesResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv CertificatesResult

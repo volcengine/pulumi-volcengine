@@ -11,14 +11,59 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as pulumi from "@volcengine/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultListeners = pulumi.output(volcengine.clb.Listeners({
- *     ids: [
- *         "lsn-273yv0mhs5xj47fap8sehiiso",
- *         "lsn-273yw6zps6pz47fap8swa0q2z",
- *     ],
- * }));
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooClb = new volcengine.clb.Clb("fooClb", {
+ *     type: "public",
+ *     subnetId: fooSubnet.id,
+ *     loadBalancerSpec: "small_1",
+ *     description: "acc0Demo",
+ *     loadBalancerName: "acc-test-create",
+ *     eipBillingConfig: {
+ *         isp: "BGP",
+ *         eipBillingType: "PostPaidByBandwidth",
+ *         bandwidth: 1,
+ *     },
+ * });
+ * const fooServerGroup = new volcengine.clb.ServerGroup("fooServerGroup", {
+ *     loadBalancerId: fooClb.id,
+ *     serverGroupName: "acc-test-create",
+ *     description: "hello demo11",
+ * });
+ * const fooListener = new volcengine.clb.Listener("fooListener", {
+ *     loadBalancerId: fooClb.id,
+ *     listenerName: "acc-test-listener",
+ *     protocol: "HTTP",
+ *     port: 90,
+ *     serverGroupId: fooServerGroup.id,
+ *     healthCheck: {
+ *         enabled: "on",
+ *         interval: 10,
+ *         timeout: 3,
+ *         healthyThreshold: 5,
+ *         unHealthyThreshold: 2,
+ *         domain: "volcengine.com",
+ *         httpCode: "http_2xx",
+ *         method: "GET",
+ *         uri: "/",
+ *     },
+ *     enabled: "on",
+ * });
+ * const fooListeners = volcengine.clb.ListenersOutput({
+ *     ids: [fooListener.id],
+ * });
  * ```
  */
 export function listeners(args?: ListenersArgs, opts?: pulumi.InvokeOptions): Promise<ListenersResult> {

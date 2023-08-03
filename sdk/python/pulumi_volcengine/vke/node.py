@@ -23,7 +23,8 @@ class NodeArgs:
                  image_id: Optional[pulumi.Input[str]] = None,
                  initialize_script: Optional[pulumi.Input[str]] = None,
                  keep_instance_name: Optional[pulumi.Input[bool]] = None,
-                 kubernetes_config: Optional[pulumi.Input['NodeKubernetesConfigArgs']] = None):
+                 kubernetes_config: Optional[pulumi.Input['NodeKubernetesConfigArgs']] = None,
+                 node_pool_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Node resource.
         :param pulumi.Input[str] cluster_id: The cluster id.
@@ -35,6 +36,7 @@ class NodeArgs:
         :param pulumi.Input[str] initialize_script: The initializeScript of Node.
         :param pulumi.Input[bool] keep_instance_name: The flag of keep instance name, the value is `true` or `false`.
         :param pulumi.Input['NodeKubernetesConfigArgs'] kubernetes_config: The KubernetesConfig of Node.
+        :param pulumi.Input[str] node_pool_id: The node pool id.
         """
         pulumi.set(__self__, "cluster_id", cluster_id)
         pulumi.set(__self__, "instance_id", instance_id)
@@ -52,6 +54,8 @@ class NodeArgs:
             pulumi.set(__self__, "keep_instance_name", keep_instance_name)
         if kubernetes_config is not None:
             pulumi.set(__self__, "kubernetes_config", kubernetes_config)
+        if node_pool_id is not None:
+            pulumi.set(__self__, "node_pool_id", node_pool_id)
 
     @property
     @pulumi.getter(name="clusterId")
@@ -160,6 +164,18 @@ class NodeArgs:
     @kubernetes_config.setter
     def kubernetes_config(self, value: Optional[pulumi.Input['NodeKubernetesConfigArgs']]):
         pulumi.set(self, "kubernetes_config", value)
+
+    @property
+    @pulumi.getter(name="nodePoolId")
+    def node_pool_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The node pool id.
+        """
+        return pulumi.get(self, "node_pool_id")
+
+    @node_pool_id.setter
+    def node_pool_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "node_pool_id", value)
 
 
 @pulumi.input_type
@@ -344,6 +360,7 @@ class Node(pulumi.CustomResource):
                  instance_id: Optional[pulumi.Input[str]] = None,
                  keep_instance_name: Optional[pulumi.Input[bool]] = None,
                  kubernetes_config: Optional[pulumi.Input[pulumi.InputType['NodeKubernetesConfigArgs']]] = None,
+                 node_pool_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Provides a resource to manage vke node
@@ -353,12 +370,118 @@ class Node(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.vke.Node("foo",
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-project1",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-subnet-test-2",
+            cidr_block="172.16.0.0/24",
+            zone_id="cn-beijing-a",
+            vpc_id=foo_vpc.id)
+        foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+            vpc_id=foo_vpc.id,
+            security_group_name="acc-test-security-group2")
+        foo_instance = volcengine.ecs.Instance("fooInstance",
+            image_id="image-ybqi99s7yq8rx7mnk44b",
+            instance_type="ecs.g1ie.large",
+            instance_name="acc-test-ecs-name2",
+            password="93f0cb0614Aab12",
+            instance_charge_type="PostPaid",
+            system_volume_type="ESSD_PL0",
+            system_volume_size=40,
+            subnet_id=foo_subnet.id,
+            security_group_ids=[foo_security_group.id],
+            project_name="default")
+        foo_cluster = volcengine.vke.Cluster("fooCluster",
+            description="created by terraform",
+            delete_protection_enabled=False,
+            cluster_config=volcengine.vke.ClusterClusterConfigArgs(
+                subnet_ids=[foo_subnet.id],
+                api_server_public_access_enabled=True,
+                api_server_public_access_config=volcengine.vke.ClusterClusterConfigApiServerPublicAccessConfigArgs(
+                    public_access_network_config=volcengine.vke.ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs(
+                        billing_type="PostPaidByBandwidth",
+                        bandwidth=1,
+                    ),
+                ),
+                resource_public_access_default_enabled=True,
+            ),
+            pods_config=volcengine.vke.ClusterPodsConfigArgs(
+                pod_network_mode="VpcCniShared",
+                vpc_cni_config=volcengine.vke.ClusterPodsConfigVpcCniConfigArgs(
+                    subnet_ids=[foo_subnet.id],
+                ),
+            ),
+            services_config=volcengine.vke.ClusterServicesConfigArgs(
+                service_cidrsv4s=["172.30.0.0/18"],
+            ),
+            tags=[volcengine.vke.ClusterTagArgs(
+                key="tf-k1",
+                value="tf-v1",
+            )])
+        foo_node_pool = volcengine.vke.NodePool("fooNodePool",
+            cluster_id=foo_cluster.id,
+            node_config=volcengine.vke.NodePoolNodeConfigArgs(
+                instance_type_ids=["ecs.g1ie.large"],
+                subnet_ids=[foo_subnet.id],
+                security=volcengine.vke.NodePoolNodeConfigSecurityArgs(
+                    login=volcengine.vke.NodePoolNodeConfigSecurityLoginArgs(
+                        password="UHdkMTIzNDU2",
+                    ),
+                    security_group_ids=[foo_security_group.id],
+                ),
+                instance_charge_type="PostPaid",
+                period=1,
+            ),
+            kubernetes_config=volcengine.vke.NodePoolKubernetesConfigArgs(
+                labels=[
+                    volcengine.vke.NodePoolKubernetesConfigLabelArgs(
+                        key="aa",
+                        value="bb",
+                    ),
+                    volcengine.vke.NodePoolKubernetesConfigLabelArgs(
+                        key="cccc",
+                        value="dddd",
+                    ),
+                ],
+                cordon=False,
+            ),
+            tags=[volcengine.vke.NodePoolTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_node = volcengine.vke.Node("fooNode",
+            cluster_id=foo_cluster.id,
+            instance_id=foo_instance.id,
+            keep_instance_name=True,
             additional_container_storage_enabled=False,
-            cluster_id="ccahbr0nqtofhiuuuajn0",
             container_storage_path="",
-            instance_id="i-ybrfa2vu2t7grbv8qa0j",
-            keep_instance_name=True)
+            node_pool_id=foo_node_pool.id,
+            kubernetes_config=volcengine.vke.NodeKubernetesConfigArgs(
+                labels=[
+                    volcengine.vke.NodeKubernetesConfigLabelArgs(
+                        key="tf-key1",
+                        value="tf-value1",
+                    ),
+                    volcengine.vke.NodeKubernetesConfigLabelArgs(
+                        key="tf-key2",
+                        value="tf-value2",
+                    ),
+                ],
+                taints=[
+                    volcengine.vke.NodeKubernetesConfigTaintArgs(
+                        key="tf-key3",
+                        value="tf-value3",
+                        effect="NoSchedule",
+                    ),
+                    volcengine.vke.NodeKubernetesConfigTaintArgs(
+                        key="tf-key4",
+                        value="tf-value4",
+                        effect="NoSchedule",
+                    ),
+                ],
+                cordon=True,
+            ))
         ```
 
         ## Import
@@ -380,6 +503,7 @@ class Node(pulumi.CustomResource):
         :param pulumi.Input[str] instance_id: The instance id.
         :param pulumi.Input[bool] keep_instance_name: The flag of keep instance name, the value is `true` or `false`.
         :param pulumi.Input[pulumi.InputType['NodeKubernetesConfigArgs']] kubernetes_config: The KubernetesConfig of Node.
+        :param pulumi.Input[str] node_pool_id: The node pool id.
         """
         ...
     @overload
@@ -395,12 +519,118 @@ class Node(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.vke.Node("foo",
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-project1",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-subnet-test-2",
+            cidr_block="172.16.0.0/24",
+            zone_id="cn-beijing-a",
+            vpc_id=foo_vpc.id)
+        foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+            vpc_id=foo_vpc.id,
+            security_group_name="acc-test-security-group2")
+        foo_instance = volcengine.ecs.Instance("fooInstance",
+            image_id="image-ybqi99s7yq8rx7mnk44b",
+            instance_type="ecs.g1ie.large",
+            instance_name="acc-test-ecs-name2",
+            password="93f0cb0614Aab12",
+            instance_charge_type="PostPaid",
+            system_volume_type="ESSD_PL0",
+            system_volume_size=40,
+            subnet_id=foo_subnet.id,
+            security_group_ids=[foo_security_group.id],
+            project_name="default")
+        foo_cluster = volcengine.vke.Cluster("fooCluster",
+            description="created by terraform",
+            delete_protection_enabled=False,
+            cluster_config=volcengine.vke.ClusterClusterConfigArgs(
+                subnet_ids=[foo_subnet.id],
+                api_server_public_access_enabled=True,
+                api_server_public_access_config=volcengine.vke.ClusterClusterConfigApiServerPublicAccessConfigArgs(
+                    public_access_network_config=volcengine.vke.ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs(
+                        billing_type="PostPaidByBandwidth",
+                        bandwidth=1,
+                    ),
+                ),
+                resource_public_access_default_enabled=True,
+            ),
+            pods_config=volcengine.vke.ClusterPodsConfigArgs(
+                pod_network_mode="VpcCniShared",
+                vpc_cni_config=volcengine.vke.ClusterPodsConfigVpcCniConfigArgs(
+                    subnet_ids=[foo_subnet.id],
+                ),
+            ),
+            services_config=volcengine.vke.ClusterServicesConfigArgs(
+                service_cidrsv4s=["172.30.0.0/18"],
+            ),
+            tags=[volcengine.vke.ClusterTagArgs(
+                key="tf-k1",
+                value="tf-v1",
+            )])
+        foo_node_pool = volcengine.vke.NodePool("fooNodePool",
+            cluster_id=foo_cluster.id,
+            node_config=volcengine.vke.NodePoolNodeConfigArgs(
+                instance_type_ids=["ecs.g1ie.large"],
+                subnet_ids=[foo_subnet.id],
+                security=volcengine.vke.NodePoolNodeConfigSecurityArgs(
+                    login=volcengine.vke.NodePoolNodeConfigSecurityLoginArgs(
+                        password="UHdkMTIzNDU2",
+                    ),
+                    security_group_ids=[foo_security_group.id],
+                ),
+                instance_charge_type="PostPaid",
+                period=1,
+            ),
+            kubernetes_config=volcengine.vke.NodePoolKubernetesConfigArgs(
+                labels=[
+                    volcengine.vke.NodePoolKubernetesConfigLabelArgs(
+                        key="aa",
+                        value="bb",
+                    ),
+                    volcengine.vke.NodePoolKubernetesConfigLabelArgs(
+                        key="cccc",
+                        value="dddd",
+                    ),
+                ],
+                cordon=False,
+            ),
+            tags=[volcengine.vke.NodePoolTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_node = volcengine.vke.Node("fooNode",
+            cluster_id=foo_cluster.id,
+            instance_id=foo_instance.id,
+            keep_instance_name=True,
             additional_container_storage_enabled=False,
-            cluster_id="ccahbr0nqtofhiuuuajn0",
             container_storage_path="",
-            instance_id="i-ybrfa2vu2t7grbv8qa0j",
-            keep_instance_name=True)
+            node_pool_id=foo_node_pool.id,
+            kubernetes_config=volcengine.vke.NodeKubernetesConfigArgs(
+                labels=[
+                    volcengine.vke.NodeKubernetesConfigLabelArgs(
+                        key="tf-key1",
+                        value="tf-value1",
+                    ),
+                    volcengine.vke.NodeKubernetesConfigLabelArgs(
+                        key="tf-key2",
+                        value="tf-value2",
+                    ),
+                ],
+                taints=[
+                    volcengine.vke.NodeKubernetesConfigTaintArgs(
+                        key="tf-key3",
+                        value="tf-value3",
+                        effect="NoSchedule",
+                    ),
+                    volcengine.vke.NodeKubernetesConfigTaintArgs(
+                        key="tf-key4",
+                        value="tf-value4",
+                        effect="NoSchedule",
+                    ),
+                ],
+                cordon=True,
+            ))
         ```
 
         ## Import
@@ -435,6 +665,7 @@ class Node(pulumi.CustomResource):
                  instance_id: Optional[pulumi.Input[str]] = None,
                  keep_instance_name: Optional[pulumi.Input[bool]] = None,
                  kubernetes_config: Optional[pulumi.Input[pulumi.InputType['NodeKubernetesConfigArgs']]] = None,
+                 node_pool_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -462,7 +693,7 @@ class Node(pulumi.CustomResource):
             __props__.__dict__["instance_id"] = instance_id
             __props__.__dict__["keep_instance_name"] = keep_instance_name
             __props__.__dict__["kubernetes_config"] = kubernetes_config
-            __props__.__dict__["node_pool_id"] = None
+            __props__.__dict__["node_pool_id"] = node_pool_id
         super(Node, __self__).__init__(
             'volcengine:vke/node:Node',
             resource_name,
@@ -559,7 +790,7 @@ class Node(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="initializeScript")
-    def initialize_script(self) -> pulumi.Output[Optional[str]]:
+    def initialize_script(self) -> pulumi.Output[str]:
         """
         The initializeScript of Node.
         """
@@ -583,7 +814,7 @@ class Node(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="kubernetesConfig")
-    def kubernetes_config(self) -> pulumi.Output[Optional['outputs.NodeKubernetesConfig']]:
+    def kubernetes_config(self) -> pulumi.Output['outputs.NodeKubernetesConfig']:
         """
         The KubernetesConfig of Node.
         """

@@ -9415,6 +9415,7 @@ export namespace vke {
          * Cluster API Server public network access configuration, the value is `true` or `false`.
          */
         apiServerPublicAccessEnabled?: boolean;
+        ipFamily: string;
         /**
          * Node public network access configuration, the value is `true` or `false`.
          */
@@ -9664,6 +9665,7 @@ export namespace vke {
          * IPv4 public network access whitelist. A null value means all network segments (0.0.0.0/0) are allowed to pass.
          */
         accessSourceIpsv4s: string[];
+        ipFamily: string;
         /**
          * Public network access network configuration.
          */
@@ -9873,41 +9875,41 @@ export namespace vke {
         /**
          * The Cordon of KubernetesConfig.
          */
-        cordon: boolean;
+        cordon?: boolean;
         /**
          * The Labels of KubernetesConfig.
          */
-        labels: outputs.vke.DefaultNodePoolBatchAttachKubernetesConfigLabel[];
+        labels?: outputs.vke.DefaultNodePoolBatchAttachKubernetesConfigLabel[];
         /**
          * The Taints of KubernetesConfig.
          */
-        taints: outputs.vke.DefaultNodePoolBatchAttachKubernetesConfigTaint[];
+        taints?: outputs.vke.DefaultNodePoolBatchAttachKubernetesConfigTaint[];
     }
 
     export interface DefaultNodePoolBatchAttachKubernetesConfigLabel {
         /**
-         * The Key of Tags.
+         * The Key of Labels.
          */
         key: string;
         /**
-         * The Value of Tags.
+         * The Value of Labels.
          */
-        value: string;
+        value?: string;
     }
 
     export interface DefaultNodePoolBatchAttachKubernetesConfigTaint {
         /**
-         * The Effect of Taints.
+         * The Effect of Taints. The value can be one of the following: `NoSchedule`, `NoExecute`, `PreferNoSchedule`, default value is `NoSchedule`.
          */
-        effect: string;
+        effect?: string;
         /**
-         * The Key of Tags.
+         * The Key of Taints.
          */
         key: string;
         /**
-         * The Value of Tags.
+         * The Value of Taints.
          */
-        value: string;
+        value?: string;
     }
 
     export interface DefaultNodePoolBatchAttachNodeConfig {
@@ -9931,11 +9933,11 @@ export namespace vke {
 
     export interface DefaultNodePoolBatchAttachNodeConfigEcsTag {
         /**
-         * The Key of Tags.
+         * The Key of Labels.
          */
         key: string;
         /**
-         * The Value of Tags.
+         * The Value of Labels.
          */
         value: string;
     }
@@ -9968,11 +9970,11 @@ export namespace vke {
 
     export interface DefaultNodePoolBatchAttachTag {
         /**
-         * The Key of Tags.
+         * The Key of Labels.
          */
         key: string;
         /**
-         * The Value of Tags.
+         * The Value of Labels.
          */
         value: string;
     }
@@ -10152,7 +10154,7 @@ export namespace vke {
         /**
          * The Cordon of KubernetesConfig.
          */
-        cordon?: boolean;
+        cordon: boolean;
         /**
          * The Labels of KubernetesConfig.
          */
@@ -10160,7 +10162,7 @@ export namespace vke {
         /**
          * The Taints of KubernetesConfig.
          */
-        taints?: outputs.vke.NodeKubernetesConfigTaint[];
+        taints: outputs.vke.NodeKubernetesConfigTaint[];
     }
 
     export interface NodeKubernetesConfigLabel {

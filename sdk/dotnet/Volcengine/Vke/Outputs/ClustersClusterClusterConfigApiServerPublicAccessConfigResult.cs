@@ -18,6 +18,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Outputs
         /// IPv4 public network access whitelist. A null value means all network segments (0.0.0.0/0) are allowed to pass.
         /// </summary>
         public readonly ImmutableArray<string> AccessSourceIpsv4s;
+        public readonly string IpFamily;
         /// <summary>
         /// Public network access network configuration.
         /// </summary>
@@ -27,9 +28,12 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Outputs
         private ClustersClusterClusterConfigApiServerPublicAccessConfigResult(
             ImmutableArray<string> accessSourceIpsv4s,
 
+            string ipFamily,
+
             Outputs.ClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigResult publicAccessNetworkConfig)
         {
             AccessSourceIpsv4s = accessSourceIpsv4s;
+            IpFamily = ipFamily;
             PublicAccessNetworkConfig = publicAccessNetworkConfig;
         }
     }

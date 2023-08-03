@@ -22,6 +22,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Outputs
         /// Cluster API Server public network access configuration, the value is `true` or `false`.
         /// </summary>
         public readonly bool? ApiServerPublicAccessEnabled;
+        public readonly string? IpFamily;
         /// <summary>
         /// Node public network access configuration, the value is `true` or `false`.
         /// </summary>
@@ -37,12 +38,15 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Outputs
 
             bool? apiServerPublicAccessEnabled,
 
+            string? ipFamily,
+
             bool? resourcePublicAccessDefaultEnabled,
 
             ImmutableArray<string> subnetIds)
         {
             ApiServerPublicAccessConfig = apiServerPublicAccessConfig;
             ApiServerPublicAccessEnabled = apiServerPublicAccessEnabled;
+            IpFamily = ipFamily;
             ResourcePublicAccessDefaultEnabled = resourcePublicAccessDefaultEnabled;
             SubnetIds = subnetIds;
         }

@@ -11,24 +11,136 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as pulumi from "@volcengine/pulumi";
  *
- * const defaultDefaultNodePoolBatchAttach = new volcengine.vke.DefaultNodePoolBatchAttach("default", {
- *     clusterId: "ccc2umdnqtoflv91lqtq0",
- *     defaultNodePoolId: "11111",
- *     instances: [
- *         {
- *             additionalContainerStorageEnabled: false,
- *             instanceId: "i-ybvza90ohwexzk8emaa3",
- *             keepInstanceName: false,
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-project1",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-subnet-test-2",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: "cn-beijing-a",
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
+ *     vpcId: fooVpc.id,
+ *     securityGroupName: "acc-test-security-group2",
+ * });
+ * const fooInstance = new volcengine.ecs.Instance("fooInstance", {
+ *     imageId: "image-ybqi99s7yq8rx7mnk44b",
+ *     instanceType: "ecs.g1ie.large",
+ *     instanceName: "acc-test-ecs-name2",
+ *     password: "93f0cb0614Aab12",
+ *     instanceChargeType: "PostPaid",
+ *     systemVolumeType: "ESSD_PL0",
+ *     systemVolumeSize: 40,
+ *     subnetId: fooSubnet.id,
+ *     securityGroupIds: [fooSecurityGroup.id],
+ * });
+ * const fooCluster = new volcengine.vke.Cluster("fooCluster", {
+ *     description: "created by terraform",
+ *     deleteProtectionEnabled: false,
+ *     clusterConfig: {
+ *         subnetIds: [fooSubnet.id],
+ *         apiServerPublicAccessEnabled: true,
+ *         apiServerPublicAccessConfig: {
+ *             publicAccessNetworkConfig: {
+ *                 billingType: "PostPaidByBandwidth",
+ *                 bandwidth: 1,
+ *             },
  *         },
- *         {
- *             additionalContainerStorageEnabled: true,
- *             containerStoragePath: "/",
- *             instanceId: "i-ybvza90ohxexzkm4zihf",
- *             keepInstanceName: false,
+ *         resourcePublicAccessDefaultEnabled: true,
+ *     },
+ *     podsConfig: {
+ *         podNetworkMode: "VpcCniShared",
+ *         vpcCniConfig: {
+ *             subnetIds: [fooSubnet.id],
  *         },
- *     ],
+ *     },
+ *     servicesConfig: {
+ *         serviceCidrsv4s: ["172.30.0.0/18"],
+ *     },
+ *     tags: [{
+ *         key: "tf-k1",
+ *         value: "tf-v1",
+ *     }],
+ * });
+ * const defaultDefaultNodePool = new volcengine.vke.DefaultNodePool("defaultDefaultNodePool", {
+ *     clusterId: fooCluster.id,
+ *     nodeConfig: {
+ *         security: {
+ *             login: {
+ *                 password: "amw4WTdVcTRJVVFsUXpVTw==",
+ *             },
+ *             securityGroupIds: [fooSecurityGroup.id],
+ *             securityStrategies: ["Hids"],
+ *         },
+ *         initializeScript: "ISMvYmluL2Jhc2gKZWNobyAx",
+ *     },
+ *     kubernetesConfig: {
+ *         labels: [
+ *             {
+ *                 key: "tf-key1",
+ *                 value: "tf-value1",
+ *             },
+ *             {
+ *                 key: "tf-key2",
+ *                 value: "tf-value2",
+ *             },
+ *         ],
+ *         taints: [
+ *             {
+ *                 key: "tf-key3",
+ *                 value: "tf-value3",
+ *                 effect: "NoSchedule",
+ *             },
+ *             {
+ *                 key: "tf-key4",
+ *                 value: "tf-value4",
+ *                 effect: "NoSchedule",
+ *             },
+ *         ],
+ *         cordon: true,
+ *     },
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const defaultDefaultNodePoolBatchAttach = new volcengine.vke.DefaultNodePoolBatchAttach("defaultDefaultNodePoolBatchAttach", {
+ *     clusterId: fooCluster.id,
+ *     defaultNodePoolId: defaultDefaultNodePool.id,
+ *     instances: [{
+ *         instanceId: fooInstance.id,
+ *         keepInstanceName: true,
+ *         additionalContainerStorageEnabled: false,
+ *     }],
+ *     kubernetesConfig: {
+ *         labels: [
+ *             {
+ *                 key: "tf-key1",
+ *                 value: "tf-value1",
+ *             },
+ *             {
+ *                 key: "tf-key2",
+ *                 value: "tf-value2",
+ *             },
+ *         ],
+ *         taints: [
+ *             {
+ *                 key: "tf-key3",
+ *                 value: "tf-value3",
+ *                 effect: "NoSchedule",
+ *             },
+ *             {
+ *                 key: "tf-key4",
+ *                 value: "tf-value4",
+ *                 effect: "NoSchedule",
+ *             },
+ *         ],
+ *         cordon: true,
+ *     },
  * });
  * ```
  */
@@ -77,9 +189,9 @@ export class DefaultNodePoolBatchAttach extends pulumi.CustomResource {
      */
     public /*out*/ readonly isImport!: pulumi.Output<boolean>;
     /**
-     * The KubernetesConfig of NodeConfig.
+     * The KubernetesConfig of NodeConfig. Please note that this field is the configuration of the node. The same key is subject to the config of the node pool. Different keys take effect together.
      */
-    public /*out*/ readonly kubernetesConfigs!: pulumi.Output<outputs.vke.DefaultNodePoolBatchAttachKubernetesConfig[]>;
+    public readonly kubernetesConfig!: pulumi.Output<outputs.vke.DefaultNodePoolBatchAttachKubernetesConfig | undefined>;
     /**
      * The Config of NodePool.
      */
@@ -106,7 +218,7 @@ export class DefaultNodePoolBatchAttach extends pulumi.CustomResource {
             resourceInputs["defaultNodePoolId"] = state ? state.defaultNodePoolId : undefined;
             resourceInputs["instances"] = state ? state.instances : undefined;
             resourceInputs["isImport"] = state ? state.isImport : undefined;
-            resourceInputs["kubernetesConfigs"] = state ? state.kubernetesConfigs : undefined;
+            resourceInputs["kubernetesConfig"] = state ? state.kubernetesConfig : undefined;
             resourceInputs["nodeConfigs"] = state ? state.nodeConfigs : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
         } else {
@@ -120,8 +232,8 @@ export class DefaultNodePoolBatchAttach extends pulumi.CustomResource {
             resourceInputs["clusterId"] = args ? args.clusterId : undefined;
             resourceInputs["defaultNodePoolId"] = args ? args.defaultNodePoolId : undefined;
             resourceInputs["instances"] = args ? args.instances : undefined;
+            resourceInputs["kubernetesConfig"] = args ? args.kubernetesConfig : undefined;
             resourceInputs["isImport"] = undefined /*out*/;
-            resourceInputs["kubernetesConfigs"] = undefined /*out*/;
             resourceInputs["nodeConfigs"] = undefined /*out*/;
             resourceInputs["tags"] = undefined /*out*/;
         }
@@ -151,9 +263,9 @@ export interface DefaultNodePoolBatchAttachState {
      */
     isImport?: pulumi.Input<boolean>;
     /**
-     * The KubernetesConfig of NodeConfig.
+     * The KubernetesConfig of NodeConfig. Please note that this field is the configuration of the node. The same key is subject to the config of the node pool. Different keys take effect together.
      */
-    kubernetesConfigs?: pulumi.Input<pulumi.Input<inputs.vke.DefaultNodePoolBatchAttachKubernetesConfig>[]>;
+    kubernetesConfig?: pulumi.Input<inputs.vke.DefaultNodePoolBatchAttachKubernetesConfig>;
     /**
      * The Config of NodePool.
      */
@@ -180,4 +292,8 @@ export interface DefaultNodePoolBatchAttachArgs {
      * The ECS InstanceIds add to NodePool.
      */
     instances?: pulumi.Input<pulumi.Input<inputs.vke.DefaultNodePoolBatchAttachInstance>[]>;
+    /**
+     * The KubernetesConfig of NodeConfig. Please note that this field is the configuration of the node. The same key is subject to the config of the node pool. Different keys take effect together.
+     */
+    kubernetesConfig?: pulumi.Input<inputs.vke.DefaultNodePoolBatchAttachKubernetesConfig>;
 }

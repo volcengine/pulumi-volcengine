@@ -19,23 +19,96 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/clb"
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/clb"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_default, err := clb.Rules(ctx, &clb.RulesArgs{
-//				ListenerId: "lsn-273ywvnmiu70g7fap8u2xzg9d",
-//				Ids: []string{
-//					"rule-273z9jo9v3mrk7fap8sq8v5x7",
-//				},
-//			}, nil)
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
-//			ctx.Export("data", _default)
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooClb, err := clb.NewClb(ctx, "fooClb", &clb.ClbArgs{
+//				Type:             pulumi.String("public"),
+//				SubnetId:         fooSubnet.ID(),
+//				LoadBalancerSpec: pulumi.String("small_1"),
+//				Description:      pulumi.String("acc0Demo"),
+//				LoadBalancerName: pulumi.String("acc-test-create"),
+//				EipBillingConfig: &clb.ClbEipBillingConfigArgs{
+//					Isp:            pulumi.String("BGP"),
+//					EipBillingType: pulumi.String("PostPaidByBandwidth"),
+//					Bandwidth:      pulumi.Int(1),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooServerGroup, err := clb.NewServerGroup(ctx, "fooServerGroup", &clb.ServerGroupArgs{
+//				LoadBalancerId:  fooClb.ID(),
+//				ServerGroupName: pulumi.String("acc-test-create"),
+//				Description:     pulumi.String("hello demo11"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooListener, err := clb.NewListener(ctx, "fooListener", &clb.ListenerArgs{
+//				LoadBalancerId: fooClb.ID(),
+//				ListenerName:   pulumi.String("acc-test-listener"),
+//				Protocol:       pulumi.String("HTTP"),
+//				Port:           pulumi.Int(90),
+//				ServerGroupId:  fooServerGroup.ID(),
+//				HealthCheck: &clb.ListenerHealthCheckArgs{
+//					Enabled:            pulumi.String("on"),
+//					Interval:           pulumi.Int(10),
+//					Timeout:            pulumi.Int(3),
+//					HealthyThreshold:   pulumi.Int(5),
+//					UnHealthyThreshold: pulumi.Int(2),
+//					Domain:             pulumi.String("volcengine.com"),
+//					HttpCode:           pulumi.String("http_2xx"),
+//					Method:             pulumi.String("GET"),
+//					Uri:                pulumi.String("/"),
+//				},
+//				Enabled: pulumi.String("on"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooRule, err := clb.NewRule(ctx, "fooRule", &clb.RuleArgs{
+//				ListenerId:    fooListener.ID(),
+//				ServerGroupId: fooServerGroup.ID(),
+//				Domain:        pulumi.String("test-volc123.com"),
+//				Url:           pulumi.String("/yyyy"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = clb.RulesOutput(ctx, clb.RulesOutputArgs{
+//				Ids: pulumi.StringArray{
+//					fooRule.ID(),
+//				},
+//				ListenerId: fooListener.ID(),
+//			}, nil)
 //			return nil
 //		})
 //	}
