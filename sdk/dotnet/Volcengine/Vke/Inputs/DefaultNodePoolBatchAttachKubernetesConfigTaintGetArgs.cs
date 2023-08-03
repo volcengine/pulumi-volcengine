@@ -14,19 +14,19 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
     public sealed class DefaultNodePoolBatchAttachKubernetesConfigTaintGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The Effect of Taints.
+        /// The Effect of Taints. The value can be one of the following: `NoSchedule`, `NoExecute`, `PreferNoSchedule`, default value is `NoSchedule`.
         /// </summary>
         [Input("effect")]
         public Input<string>? Effect { get; set; }
 
         /// <summary>
-        /// The Key of Tags.
+        /// The Key of Taints.
         /// </summary>
-        [Input("key")]
-        public Input<string>? Key { get; set; }
+        [Input("key", required: true)]
+        public Input<string> Key { get; set; } = null!;
 
         /// <summary>
-        /// The Value of Tags.
+        /// The Value of Taints.
         /// </summary>
         [Input("value")]
         public Input<string>? Value { get; set; }

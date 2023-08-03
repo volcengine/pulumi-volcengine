@@ -11,15 +11,40 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as pulumi from "@volcengine/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultServerGroups = pulumi.output(volcengine.clb.ServerGroups({
- *     ids: [
- *         "rsp-273yv0kir1vk07fap8tt9jtwg",
- *         "rsp-273yxuqfova4g7fap8tyemn6t",
- *         "rsp-273z9pt9lpdds7fap8sqdvfrf",
- *     ],
- * }));
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooClb = new volcengine.clb.Clb("fooClb", {
+ *     type: "public",
+ *     subnetId: fooSubnet.id,
+ *     loadBalancerSpec: "small_1",
+ *     description: "acc0Demo",
+ *     loadBalancerName: "acc-test-create",
+ *     eipBillingConfig: {
+ *         isp: "BGP",
+ *         eipBillingType: "PostPaidByBandwidth",
+ *         bandwidth: 1,
+ *     },
+ * });
+ * const fooServerGroup = new volcengine.clb.ServerGroup("fooServerGroup", {
+ *     loadBalancerId: fooClb.id,
+ *     serverGroupName: "acc-test-create",
+ *     description: "hello demo11",
+ * });
+ * const fooServerGroups = volcengine.clb.ServerGroupsOutput({
+ *     ids: [fooServerGroup.id],
+ * });
  * ```
  */
 export function serverGroups(args?: ServerGroupsArgs, opts?: pulumi.InvokeOptions): Promise<ServerGroupsResult> {

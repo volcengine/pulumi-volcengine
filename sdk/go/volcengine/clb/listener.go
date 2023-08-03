@@ -20,71 +20,77 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/clb"
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/clb"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := clb.NewListener(ctx, "foo", &clb.ListenerArgs{
-//				Enabled: pulumi.String("on"),
-//				HealthCheck: &clb.ListenerHealthCheckArgs{
-//					Domain:             pulumi.String("volcengine.com"),
-//					Enabled:            pulumi.String("on"),
-//					HealthyThreshold:   pulumi.Int(5),
-//					HttpCode:           pulumi.String("http_2xx"),
-//					Interval:           pulumi.Int(10),
-//					Method:             pulumi.String("GET"),
-//					Timeout:            pulumi.Int(3),
-//					UnHealthyThreshold: pulumi.Int(2),
-//					Uri:                pulumi.String("/"),
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooClb, err := clb.NewClb(ctx, "fooClb", &clb.ClbArgs{
+//				Type:             pulumi.String("public"),
+//				SubnetId:         fooSubnet.ID(),
+//				LoadBalancerSpec: pulumi.String("small_1"),
+//				Description:      pulumi.String("acc0Demo"),
+//				LoadBalancerName: pulumi.String("acc-test-create"),
+//				EipBillingConfig: &clb.ClbEipBillingConfigArgs{
+//					Isp:            pulumi.String("BGP"),
+//					EipBillingType: pulumi.String("PostPaidByBandwidth"),
+//					Bandwidth:      pulumi.Int(1),
 //				},
-//				ListenerName:   pulumi.String("Demo-HTTP-90"),
-//				LoadBalancerId: pulumi.String("clb-274xltt3rfmyo7fap8sv1jq39"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooServerGroup, err := clb.NewServerGroup(ctx, "fooServerGroup", &clb.ServerGroupArgs{
+//				LoadBalancerId:  fooClb.ID(),
+//				ServerGroupName: pulumi.String("acc-test-create"),
+//				Description:     pulumi.String("hello demo11"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = clb.NewListener(ctx, "fooListener", &clb.ListenerArgs{
+//				LoadBalancerId: fooClb.ID(),
+//				ListenerName:   pulumi.String("acc-test-listener"),
+//				Protocol:       pulumi.String("HTTP"),
 //				Port:           pulumi.Int(90),
-//				Protocol:       pulumi.String("HTTP"),
-//				ServerGroupId:  pulumi.String("rsp-274xltv2sjoxs7fap8tlv3q3s"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = clb.NewListener(ctx, "bar", &clb.ListenerArgs{
-//				Enabled: pulumi.String("on"),
+//				ServerGroupId:  fooServerGroup.ID(),
 //				HealthCheck: &clb.ListenerHealthCheckArgs{
-//					Domain:             pulumi.String("volcengine.com"),
 //					Enabled:            pulumi.String("on"),
-//					HealthyThreshold:   pulumi.Int(5),
-//					HttpCode:           pulumi.String("http_2xx"),
 //					Interval:           pulumi.Int(10),
-//					Method:             pulumi.String("GET"),
 //					Timeout:            pulumi.Int(3),
+//					HealthyThreshold:   pulumi.Int(5),
 //					UnHealthyThreshold: pulumi.Int(2),
+//					Domain:             pulumi.String("volcengine.com"),
+//					HttpCode:           pulumi.String("http_2xx"),
+//					Method:             pulumi.String("GET"),
 //					Uri:                pulumi.String("/"),
 //				},
-//				ListenerName:   pulumi.String("Demo-HTTP-91"),
-//				LoadBalancerId: pulumi.String("clb-274xltt3rfmyo7fap8sv1jq39"),
-//				Port:           pulumi.Int(91),
-//				Protocol:       pulumi.String("HTTP"),
-//				ServerGroupId:  pulumi.String("rsp-274xltv2sjoxs7fap8tlv3q3s"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = clb.NewListener(ctx, "demo", &clb.ListenerArgs{
-//				Enabled:            pulumi.String("on"),
-//				EstablishedTimeout: pulumi.Int(10),
-//				HealthCheck: &clb.ListenerHealthCheckArgs{
-//					Enabled:            pulumi.String("on"),
-//					HealthyThreshold:   pulumi.Int(5),
-//					Interval:           pulumi.Int(10),
-//					Timeout:            pulumi.Int(3),
-//					UnHealthyThreshold: pulumi.Int(2),
-//				},
-//				LoadBalancerId: pulumi.String("clb-274xltt3rfmyo7fap8sv1jq39"),
-//				Port:           pulumi.Int(92),
-//				Protocol:       pulumi.String("TCP"),
-//				ServerGroupId:  pulumi.String("rsp-274xltv2sjoxs7fap8tlv3q3s"),
+//				Enabled: pulumi.String("on"),
 //			})
 //			if err != nil {
 //				return err

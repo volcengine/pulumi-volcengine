@@ -19,20 +19,61 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
         /// 
         /// class MyStack : Stack
         /// {
         ///     public MyStack()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Clb.Clbs.InvokeAsync(new Volcengine.Clb.ClbsArgs
+        ///         var fooZones = Output.Create(Volcengine.Ecs.Zones.InvokeAsync());
+        ///         var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new Volcengine.Vpc.VpcArgs
         ///         {
-        ///             Ids = 
+        ///             VpcName = "acc-test-vpc",
+        ///             CidrBlock = "172.16.0.0/16",
+        ///         });
+        ///         var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new Volcengine.Vpc.SubnetArgs
+        ///         {
+        ///             SubnetName = "acc-test-subnet",
+        ///             CidrBlock = "172.16.0.0/24",
+        ///             ZoneId = fooZones.Apply(fooZones =&gt; fooZones.Zones?[0]?.Id),
+        ///             VpcId = fooVpc.Id,
+        ///         });
+        ///         var fooClb = new List&lt;Volcengine.Clb.Clb&gt;();
+        ///         for (var rangeIndex = 0; rangeIndex &lt; 3; rangeIndex++)
+        ///         {
+        ///             var range = new { Value = rangeIndex };
+        ///             fooClb.Add(new Volcengine.Clb.Clb($"fooClb-{range.Value}", new Volcengine.Clb.ClbArgs
         ///             {
-        ///                 "clb-273y2ok6ets007fap8txvf6us",
-        ///             },
-        ///         }));
+        ///                 Type = "public",
+        ///                 SubnetId = fooSubnet.Id,
+        ///                 LoadBalancerSpec = "small_1",
+        ///                 Description = "acc-test-demo",
+        ///                 LoadBalancerName = $"acc-test-clb-{range.Value}",
+        ///                 LoadBalancerBillingType = "PostPaid",
+        ///                 EipBillingConfig = new Volcengine.Clb.Inputs.ClbEipBillingConfigArgs
+        ///                 {
+        ///                     Isp = "BGP",
+        ///                     EipBillingType = "PostPaidByBandwidth",
+        ///                     Bandwidth = 1,
+        ///                 },
+        ///                 Tags = 
+        ///                 {
+        ///                     new Volcengine.Clb.Inputs.ClbTagArgs
+        ///                     {
+        ///                         Key = "k1",
+        ///                         Value = "v1",
+        ///                     },
+        ///                 },
+        ///             }));
+        ///         }
+        ///         var fooClbs = Volcengine.Clb.Clbs.Invoke(new Volcengine.Clb.ClbsInvokeArgs
+        ///         {
+        ///             Ids = fooClb.Select(__item =&gt; __item.Id).ToList(),
+        ///         });
         ///     }
         /// 
         /// }
@@ -50,20 +91,61 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
         /// 
         /// class MyStack : Stack
         /// {
         ///     public MyStack()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Clb.Clbs.InvokeAsync(new Volcengine.Clb.ClbsArgs
+        ///         var fooZones = Output.Create(Volcengine.Ecs.Zones.InvokeAsync());
+        ///         var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new Volcengine.Vpc.VpcArgs
         ///         {
-        ///             Ids = 
+        ///             VpcName = "acc-test-vpc",
+        ///             CidrBlock = "172.16.0.0/16",
+        ///         });
+        ///         var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new Volcengine.Vpc.SubnetArgs
+        ///         {
+        ///             SubnetName = "acc-test-subnet",
+        ///             CidrBlock = "172.16.0.0/24",
+        ///             ZoneId = fooZones.Apply(fooZones =&gt; fooZones.Zones?[0]?.Id),
+        ///             VpcId = fooVpc.Id,
+        ///         });
+        ///         var fooClb = new List&lt;Volcengine.Clb.Clb&gt;();
+        ///         for (var rangeIndex = 0; rangeIndex &lt; 3; rangeIndex++)
+        ///         {
+        ///             var range = new { Value = rangeIndex };
+        ///             fooClb.Add(new Volcengine.Clb.Clb($"fooClb-{range.Value}", new Volcengine.Clb.ClbArgs
         ///             {
-        ///                 "clb-273y2ok6ets007fap8txvf6us",
-        ///             },
-        ///         }));
+        ///                 Type = "public",
+        ///                 SubnetId = fooSubnet.Id,
+        ///                 LoadBalancerSpec = "small_1",
+        ///                 Description = "acc-test-demo",
+        ///                 LoadBalancerName = $"acc-test-clb-{range.Value}",
+        ///                 LoadBalancerBillingType = "PostPaid",
+        ///                 EipBillingConfig = new Volcengine.Clb.Inputs.ClbEipBillingConfigArgs
+        ///                 {
+        ///                     Isp = "BGP",
+        ///                     EipBillingType = "PostPaidByBandwidth",
+        ///                     Bandwidth = 1,
+        ///                 },
+        ///                 Tags = 
+        ///                 {
+        ///                     new Volcengine.Clb.Inputs.ClbTagArgs
+        ///                     {
+        ///                         Key = "k1",
+        ///                         Value = "v1",
+        ///                     },
+        ///                 },
+        ///             }));
+        ///         }
+        ///         var fooClbs = Volcengine.Clb.Clbs.Invoke(new Volcengine.Clb.ClbsInvokeArgs
+        ///         {
+        ///             Ids = fooClb.Select(__item =&gt; __item.Id).ToList(),
+        ///         });
         ///     }
         /// 
         /// }

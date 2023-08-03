@@ -104,6 +104,7 @@ class ClusterClusterConfigArgs:
                  subnet_ids: pulumi.Input[Sequence[pulumi.Input[str]]],
                  api_server_public_access_config: Optional[pulumi.Input['ClusterClusterConfigApiServerPublicAccessConfigArgs']] = None,
                  api_server_public_access_enabled: Optional[pulumi.Input[bool]] = None,
+                 ip_family: Optional[pulumi.Input[str]] = None,
                  resource_public_access_default_enabled: Optional[pulumi.Input[bool]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input[str]]] subnet_ids: The subnet ID for the cluster control plane to communicate within the private network.
@@ -116,6 +117,8 @@ class ClusterClusterConfigArgs:
             pulumi.set(__self__, "api_server_public_access_config", api_server_public_access_config)
         if api_server_public_access_enabled is not None:
             pulumi.set(__self__, "api_server_public_access_enabled", api_server_public_access_enabled)
+        if ip_family is not None:
+            pulumi.set(__self__, "ip_family", ip_family)
         if resource_public_access_default_enabled is not None:
             pulumi.set(__self__, "resource_public_access_default_enabled", resource_public_access_default_enabled)
 
@@ -154,6 +157,15 @@ class ClusterClusterConfigArgs:
     @api_server_public_access_enabled.setter
     def api_server_public_access_enabled(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "api_server_public_access_enabled", value)
+
+    @property
+    @pulumi.getter(name="ipFamily")
+    def ip_family(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ip_family")
+
+    @ip_family.setter
+    def ip_family(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ip_family", value)
 
     @property
     @pulumi.getter(name="resourcePublicAccessDefaultEnabled")
@@ -762,34 +774,33 @@ class DefaultNodePoolBatchAttachKubernetesConfigArgs:
 @pulumi.input_type
 class DefaultNodePoolBatchAttachKubernetesConfigLabelArgs:
     def __init__(__self__, *,
-                 key: Optional[pulumi.Input[str]] = None,
+                 key: pulumi.Input[str],
                  value: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] key: The Key of Tags.
-        :param pulumi.Input[str] value: The Value of Tags.
+        :param pulumi.Input[str] key: The Key of Labels.
+        :param pulumi.Input[str] value: The Value of Labels.
         """
-        if key is not None:
-            pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "key", key)
         if value is not None:
             pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
-    def key(self) -> Optional[pulumi.Input[str]]:
+    def key(self) -> pulumi.Input[str]:
         """
-        The Key of Tags.
+        The Key of Labels.
         """
         return pulumi.get(self, "key")
 
     @key.setter
-    def key(self, value: Optional[pulumi.Input[str]]):
+    def key(self, value: pulumi.Input[str]):
         pulumi.set(self, "key", value)
 
     @property
     @pulumi.getter
     def value(self) -> Optional[pulumi.Input[str]]:
         """
-        The Value of Tags.
+        The Value of Labels.
         """
         return pulumi.get(self, "value")
 
@@ -801,26 +812,37 @@ class DefaultNodePoolBatchAttachKubernetesConfigLabelArgs:
 @pulumi.input_type
 class DefaultNodePoolBatchAttachKubernetesConfigTaintArgs:
     def __init__(__self__, *,
+                 key: pulumi.Input[str],
                  effect: Optional[pulumi.Input[str]] = None,
-                 key: Optional[pulumi.Input[str]] = None,
                  value: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] effect: The Effect of Taints.
-        :param pulumi.Input[str] key: The Key of Tags.
-        :param pulumi.Input[str] value: The Value of Tags.
+        :param pulumi.Input[str] key: The Key of Taints.
+        :param pulumi.Input[str] effect: The Effect of Taints. The value can be one of the following: `NoSchedule`, `NoExecute`, `PreferNoSchedule`, default value is `NoSchedule`.
+        :param pulumi.Input[str] value: The Value of Taints.
         """
+        pulumi.set(__self__, "key", key)
         if effect is not None:
             pulumi.set(__self__, "effect", effect)
-        if key is not None:
-            pulumi.set(__self__, "key", key)
         if value is not None:
             pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The Key of Taints.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
     def effect(self) -> Optional[pulumi.Input[str]]:
         """
-        The Effect of Taints.
+        The Effect of Taints. The value can be one of the following: `NoSchedule`, `NoExecute`, `PreferNoSchedule`, default value is `NoSchedule`.
         """
         return pulumi.get(self, "effect")
 
@@ -830,21 +852,9 @@ class DefaultNodePoolBatchAttachKubernetesConfigTaintArgs:
 
     @property
     @pulumi.getter
-    def key(self) -> Optional[pulumi.Input[str]]:
-        """
-        The Key of Tags.
-        """
-        return pulumi.get(self, "key")
-
-    @key.setter
-    def key(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "key", value)
-
-    @property
-    @pulumi.getter
     def value(self) -> Optional[pulumi.Input[str]]:
         """
-        The Value of Tags.
+        The Value of Taints.
         """
         return pulumi.get(self, "value")
 
@@ -930,8 +940,8 @@ class DefaultNodePoolBatchAttachNodeConfigEcsTagArgs:
                  key: Optional[pulumi.Input[str]] = None,
                  value: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] key: The Key of Tags.
-        :param pulumi.Input[str] value: The Value of Tags.
+        :param pulumi.Input[str] key: The Key of Labels.
+        :param pulumi.Input[str] value: The Value of Labels.
         """
         if key is not None:
             pulumi.set(__self__, "key", key)
@@ -942,7 +952,7 @@ class DefaultNodePoolBatchAttachNodeConfigEcsTagArgs:
     @pulumi.getter
     def key(self) -> Optional[pulumi.Input[str]]:
         """
-        The Key of Tags.
+        The Key of Labels.
         """
         return pulumi.get(self, "key")
 
@@ -954,7 +964,7 @@ class DefaultNodePoolBatchAttachNodeConfigEcsTagArgs:
     @pulumi.getter
     def value(self) -> Optional[pulumi.Input[str]]:
         """
-        The Value of Tags.
+        The Value of Labels.
         """
         return pulumi.get(self, "value")
 
@@ -1063,8 +1073,8 @@ class DefaultNodePoolBatchAttachTagArgs:
                  key: Optional[pulumi.Input[str]] = None,
                  value: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] key: The Key of Tags.
-        :param pulumi.Input[str] value: The Value of Tags.
+        :param pulumi.Input[str] key: The Key of Labels.
+        :param pulumi.Input[str] value: The Value of Labels.
         """
         if key is not None:
             pulumi.set(__self__, "key", key)
@@ -1075,7 +1085,7 @@ class DefaultNodePoolBatchAttachTagArgs:
     @pulumi.getter
     def key(self) -> Optional[pulumi.Input[str]]:
         """
-        The Key of Tags.
+        The Key of Labels.
         """
         return pulumi.get(self, "key")
 
@@ -1087,7 +1097,7 @@ class DefaultNodePoolBatchAttachTagArgs:
     @pulumi.getter
     def value(self) -> Optional[pulumi.Input[str]]:
         """
-        The Value of Tags.
+        The Value of Labels.
         """
         return pulumi.get(self, "value")
 

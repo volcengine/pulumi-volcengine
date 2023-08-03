@@ -11,35 +11,6 @@ import (
 )
 
 // Use this data source to query detailed information of server group servers
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/clb"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/clb"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := clb.ServerGroupServers(ctx, &clb.ServerGroupServersArgs{
-//				Ids: []string{
-//					"rs-273z9pv8mtfcw7fap8sp6ie8k",
-//				},
-//				ServerGroupId: "rsp-273z9pt9lpdds7fap8sqdvfrf",
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func ServerGroupServers(ctx *pulumi.Context, args *ServerGroupServersArgs, opts ...pulumi.InvokeOption) (*ServerGroupServersResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv ServerGroupServersResult

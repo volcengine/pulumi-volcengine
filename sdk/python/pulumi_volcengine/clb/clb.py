@@ -647,24 +647,53 @@ class Clb(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        public_clb = volcengine.clb.Clb("publicClb",
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_clb = volcengine.clb.Clb("fooClb",
             type="public",
-            subnet_id="subnet-mj92ij84m5fk5smt1arvwrtw",
+            subnet_id=foo_subnet.id,
             load_balancer_spec="small_1",
-            description="Demo",
-            load_balancer_name="terraform-auto-create",
-            project_name="yyy",
+            description="acc-test-demo",
+            load_balancer_name="acc-test-clb",
+            load_balancer_billing_type="PostPaid",
             eip_billing_config=volcengine.clb.ClbEipBillingConfigArgs(
                 isp="BGP",
                 eip_billing_type="PostPaidByBandwidth",
                 bandwidth=1,
-            ))
+            ),
+            tags=[volcengine.clb.ClbTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        public_clb = volcengine.clb.Clb("publicClb",
+            type="public",
+            subnet_id=foo_subnet.id,
+            load_balancer_name="acc-test-clb-public",
+            load_balancer_spec="small_1",
+            description="acc-test-demo",
+            project_name="default",
+            eip_billing_config=volcengine.clb.ClbEipBillingConfigArgs(
+                isp="BGP",
+                eip_billing_type="PostPaidByBandwidth",
+                bandwidth=1,
+            ),
+            tags=[volcengine.clb.ClbTagArgs(
+                key="k1",
+                value="v1",
+            )])
         private_clb = volcengine.clb.Clb("privateClb",
             type="private",
-            subnet_id="subnet-mj92ij84m5fk5smt1arvwrtw",
+            subnet_id=foo_subnet.id,
+            load_balancer_name="acc-test-clb-private",
             load_balancer_spec="small_1",
-            description="Demo",
-            load_balancer_name="terraform-auto-create",
+            description="acc-test-demo",
             project_name="default")
         eip = volcengine.eip.Address("eip",
             billing_type="PostPaidByBandwidth",
@@ -719,24 +748,53 @@ class Clb(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        public_clb = volcengine.clb.Clb("publicClb",
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_clb = volcengine.clb.Clb("fooClb",
             type="public",
-            subnet_id="subnet-mj92ij84m5fk5smt1arvwrtw",
+            subnet_id=foo_subnet.id,
             load_balancer_spec="small_1",
-            description="Demo",
-            load_balancer_name="terraform-auto-create",
-            project_name="yyy",
+            description="acc-test-demo",
+            load_balancer_name="acc-test-clb",
+            load_balancer_billing_type="PostPaid",
             eip_billing_config=volcengine.clb.ClbEipBillingConfigArgs(
                 isp="BGP",
                 eip_billing_type="PostPaidByBandwidth",
                 bandwidth=1,
-            ))
+            ),
+            tags=[volcengine.clb.ClbTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        public_clb = volcengine.clb.Clb("publicClb",
+            type="public",
+            subnet_id=foo_subnet.id,
+            load_balancer_name="acc-test-clb-public",
+            load_balancer_spec="small_1",
+            description="acc-test-demo",
+            project_name="default",
+            eip_billing_config=volcengine.clb.ClbEipBillingConfigArgs(
+                isp="BGP",
+                eip_billing_type="PostPaidByBandwidth",
+                bandwidth=1,
+            ),
+            tags=[volcengine.clb.ClbTagArgs(
+                key="k1",
+                value="v1",
+            )])
         private_clb = volcengine.clb.Clb("privateClb",
             type="private",
-            subnet_id="subnet-mj92ij84m5fk5smt1arvwrtw",
+            subnet_id=foo_subnet.id,
+            load_balancer_name="acc-test-clb-private",
             load_balancer_spec="small_1",
-            description="Demo",
-            load_balancer_name="terraform-auto-create",
+            description="acc-test-demo",
             project_name="default")
         eip = volcengine.eip.Address("eip",
             billing_type="PostPaidByBandwidth",

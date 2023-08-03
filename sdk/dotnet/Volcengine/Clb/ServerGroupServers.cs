@@ -21,19 +21,87 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
         /// ```csharp
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
         /// 
         /// class MyStack : Stack
         /// {
         ///     public MyStack()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Clb.ServerGroupServers.InvokeAsync(new Volcengine.Clb.ServerGroupServersArgs
+        ///         var fooZones = Output.Create(Volcengine.Ecs.Zones.InvokeAsync());
+        ///         var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new Volcengine.Vpc.VpcArgs
+        ///         {
+        ///             VpcName = "acc-test-vpc",
+        ///             CidrBlock = "172.16.0.0/16",
+        ///         });
+        ///         var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new Volcengine.Vpc.SubnetArgs
+        ///         {
+        ///             SubnetName = "acc-test-subnet",
+        ///             CidrBlock = "172.16.0.0/24",
+        ///             ZoneId = fooZones.Apply(fooZones =&gt; fooZones.Zones?[0]?.Id),
+        ///             VpcId = fooVpc.Id,
+        ///         });
+        ///         var fooClb = new Volcengine.Clb.Clb("fooClb", new Volcengine.Clb.ClbArgs
+        ///         {
+        ///             Type = "public",
+        ///             SubnetId = fooSubnet.Id,
+        ///             LoadBalancerSpec = "small_1",
+        ///             Description = "acc0Demo",
+        ///             LoadBalancerName = "acc-test-create",
+        ///             EipBillingConfig = new Volcengine.Clb.Inputs.ClbEipBillingConfigArgs
+        ///             {
+        ///                 Isp = "BGP",
+        ///                 EipBillingType = "PostPaidByBandwidth",
+        ///                 Bandwidth = 1,
+        ///             },
+        ///         });
+        ///         var fooServerGroup = new Volcengine.Clb.ServerGroup("fooServerGroup", new Volcengine.Clb.ServerGroupArgs
+        ///         {
+        ///             LoadBalancerId = fooClb.Id,
+        ///             ServerGroupName = "acc-test-create",
+        ///             Description = "hello demo11",
+        ///         });
+        ///         var fooSecurityGroup = new Volcengine.Vpc.SecurityGroup("fooSecurityGroup", new Volcengine.Vpc.SecurityGroupArgs
+        ///         {
+        ///             VpcId = fooVpc.Id,
+        ///             SecurityGroupName = "acc-test-security-group",
+        ///         });
+        ///         var fooInstance = new Volcengine.Ecs.Instance("fooInstance", new Volcengine.Ecs.InstanceArgs
+        ///         {
+        ///             ImageId = "image-ycjwwciuzy5pkh54xx8f",
+        ///             InstanceType = "ecs.c3i.large",
+        ///             InstanceName = "acc-test-ecs-name",
+        ///             Password = "93f0cb0614Aab12",
+        ///             InstanceChargeType = "PostPaid",
+        ///             SystemVolumeType = "ESSD_PL0",
+        ///             SystemVolumeSize = 40,
+        ///             SubnetId = fooSubnet.Id,
+        ///             SecurityGroupIds = 
+        ///             {
+        ///                 fooSecurityGroup.Id,
+        ///             },
+        ///         });
+        ///         var fooServerGroupServer = new Volcengine.Clb.ServerGroupServer("fooServerGroupServer", new Volcengine.Clb.ServerGroupServerArgs
+        ///         {
+        ///             ServerGroupId = fooServerGroup.Id,
+        ///             InstanceId = fooInstance.Id,
+        ///             Type = "ecs",
+        ///             Weight = 100,
+        ///             Port = 80,
+        ///             Description = "This is a acc test server",
+        ///         });
+        ///         var fooServerGroupServers = Volcengine.Clb.ServerGroupServers.Invoke(new Volcengine.Clb.ServerGroupServersInvokeArgs
         ///         {
         ///             Ids = 
         ///             {
-        ///                 "rs-273z9pv8mtfcw7fap8sp6ie8k",
+        ///                 Output.Tuple(fooServerGroupServer.Id.Apply(id =&gt; id.Split(":")), fooServerGroupServer.Id.Apply(id =&gt; id.Split(":")).Length).Apply(values =&gt;
+        ///                 {
+        ///                     var split = values.Item1;
+        ///                     var length = values.Item2;
+        ///                     return split[length - 1];
+        ///                 }),
         ///             },
-        ///             ServerGroupId = "rsp-273z9pt9lpdds7fap8sqdvfrf",
-        ///         }));
+        ///             ServerGroupId = fooServerGroup.Id,
+        ///         });
         ///     }
         /// 
         /// }
@@ -53,19 +121,87 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
         /// ```csharp
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
         /// 
         /// class MyStack : Stack
         /// {
         ///     public MyStack()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Clb.ServerGroupServers.InvokeAsync(new Volcengine.Clb.ServerGroupServersArgs
+        ///         var fooZones = Output.Create(Volcengine.Ecs.Zones.InvokeAsync());
+        ///         var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new Volcengine.Vpc.VpcArgs
+        ///         {
+        ///             VpcName = "acc-test-vpc",
+        ///             CidrBlock = "172.16.0.0/16",
+        ///         });
+        ///         var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new Volcengine.Vpc.SubnetArgs
+        ///         {
+        ///             SubnetName = "acc-test-subnet",
+        ///             CidrBlock = "172.16.0.0/24",
+        ///             ZoneId = fooZones.Apply(fooZones =&gt; fooZones.Zones?[0]?.Id),
+        ///             VpcId = fooVpc.Id,
+        ///         });
+        ///         var fooClb = new Volcengine.Clb.Clb("fooClb", new Volcengine.Clb.ClbArgs
+        ///         {
+        ///             Type = "public",
+        ///             SubnetId = fooSubnet.Id,
+        ///             LoadBalancerSpec = "small_1",
+        ///             Description = "acc0Demo",
+        ///             LoadBalancerName = "acc-test-create",
+        ///             EipBillingConfig = new Volcengine.Clb.Inputs.ClbEipBillingConfigArgs
+        ///             {
+        ///                 Isp = "BGP",
+        ///                 EipBillingType = "PostPaidByBandwidth",
+        ///                 Bandwidth = 1,
+        ///             },
+        ///         });
+        ///         var fooServerGroup = new Volcengine.Clb.ServerGroup("fooServerGroup", new Volcengine.Clb.ServerGroupArgs
+        ///         {
+        ///             LoadBalancerId = fooClb.Id,
+        ///             ServerGroupName = "acc-test-create",
+        ///             Description = "hello demo11",
+        ///         });
+        ///         var fooSecurityGroup = new Volcengine.Vpc.SecurityGroup("fooSecurityGroup", new Volcengine.Vpc.SecurityGroupArgs
+        ///         {
+        ///             VpcId = fooVpc.Id,
+        ///             SecurityGroupName = "acc-test-security-group",
+        ///         });
+        ///         var fooInstance = new Volcengine.Ecs.Instance("fooInstance", new Volcengine.Ecs.InstanceArgs
+        ///         {
+        ///             ImageId = "image-ycjwwciuzy5pkh54xx8f",
+        ///             InstanceType = "ecs.c3i.large",
+        ///             InstanceName = "acc-test-ecs-name",
+        ///             Password = "93f0cb0614Aab12",
+        ///             InstanceChargeType = "PostPaid",
+        ///             SystemVolumeType = "ESSD_PL0",
+        ///             SystemVolumeSize = 40,
+        ///             SubnetId = fooSubnet.Id,
+        ///             SecurityGroupIds = 
+        ///             {
+        ///                 fooSecurityGroup.Id,
+        ///             },
+        ///         });
+        ///         var fooServerGroupServer = new Volcengine.Clb.ServerGroupServer("fooServerGroupServer", new Volcengine.Clb.ServerGroupServerArgs
+        ///         {
+        ///             ServerGroupId = fooServerGroup.Id,
+        ///             InstanceId = fooInstance.Id,
+        ///             Type = "ecs",
+        ///             Weight = 100,
+        ///             Port = 80,
+        ///             Description = "This is a acc test server",
+        ///         });
+        ///         var fooServerGroupServers = Volcengine.Clb.ServerGroupServers.Invoke(new Volcengine.Clb.ServerGroupServersInvokeArgs
         ///         {
         ///             Ids = 
         ///             {
-        ///                 "rs-273z9pv8mtfcw7fap8sp6ie8k",
+        ///                 Output.Tuple(fooServerGroupServer.Id.Apply(id =&gt; id.Split(":")), fooServerGroupServer.Id.Apply(id =&gt; id.Split(":")).Length).Apply(values =&gt;
+        ///                 {
+        ///                     var split = values.Item1;
+        ///                     var length = values.Item2;
+        ///                     return split[length - 1];
+        ///                 }),
         ///             },
-        ///             ServerGroupId = "rsp-273z9pt9lpdds7fap8sqdvfrf",
-        ///         }));
+        ///             ServerGroupId = fooServerGroup.Id,
+        ///         });
         ///     }
         /// 
         /// }

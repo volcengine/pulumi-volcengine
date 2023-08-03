@@ -25,6 +25,9 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
         [Input("apiServerPublicAccessEnabled")]
         public Input<bool>? ApiServerPublicAccessEnabled { get; set; }
 
+        [Input("ipFamily")]
+        public Input<string>? IpFamily { get; set; }
+
         /// <summary>
         /// Node public network access configuration, the value is `true` or `false`.
         /// </summary>

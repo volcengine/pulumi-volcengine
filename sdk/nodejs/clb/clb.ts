@@ -11,26 +11,59 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as pulumi from "@volcengine/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
  *
- * const publicClb = new volcengine.clb.Clb("publicClb", {
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooClb = new volcengine.clb.Clb("fooClb", {
  *     type: "public",
- *     subnetId: "subnet-mj92ij84m5fk5smt1arvwrtw",
+ *     subnetId: fooSubnet.id,
  *     loadBalancerSpec: "small_1",
- *     description: "Demo",
- *     loadBalancerName: "terraform-auto-create",
- *     projectName: "yyy",
+ *     description: "acc-test-demo",
+ *     loadBalancerName: "acc-test-clb",
+ *     loadBalancerBillingType: "PostPaid",
  *     eipBillingConfig: {
  *         isp: "BGP",
  *         eipBillingType: "PostPaidByBandwidth",
  *         bandwidth: 1,
  *     },
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const publicClb = new volcengine.clb.Clb("publicClb", {
+ *     type: "public",
+ *     subnetId: fooSubnet.id,
+ *     loadBalancerName: "acc-test-clb-public",
+ *     loadBalancerSpec: "small_1",
+ *     description: "acc-test-demo",
+ *     projectName: "default",
+ *     eipBillingConfig: {
+ *         isp: "BGP",
+ *         eipBillingType: "PostPaidByBandwidth",
+ *         bandwidth: 1,
+ *     },
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
  * const privateClb = new volcengine.clb.Clb("privateClb", {
  *     type: "private",
- *     subnetId: "subnet-mj92ij84m5fk5smt1arvwrtw",
+ *     subnetId: fooSubnet.id,
+ *     loadBalancerName: "acc-test-clb-private",
  *     loadBalancerSpec: "small_1",
- *     description: "Demo",
- *     loadBalancerName: "terraform-auto-create",
+ *     description: "acc-test-demo",
  *     projectName: "default",
  * });
  * const eip = new volcengine.eip.Address("eip", {

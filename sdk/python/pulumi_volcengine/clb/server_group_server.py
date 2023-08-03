@@ -283,13 +283,50 @@ class ServerGroupServer(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.clb.ServerGroupServer("foo",
-            description="This is a server",
-            instance_id="i-ybp1scasbe72q1vq35wv",
-            port=80,
-            server_group_id="rsp-274xltv2sjoxs7fap8tlv3q3s",
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_clb = volcengine.clb.Clb("fooClb",
+            type="public",
+            subnet_id=foo_subnet.id,
+            load_balancer_spec="small_1",
+            description="acc0Demo",
+            load_balancer_name="acc-test-create",
+            eip_billing_config=volcengine.clb.ClbEipBillingConfigArgs(
+                isp="BGP",
+                eip_billing_type="PostPaidByBandwidth",
+                bandwidth=1,
+            ))
+        foo_server_group = volcengine.clb.ServerGroup("fooServerGroup",
+            load_balancer_id=foo_clb.id,
+            server_group_name="acc-test-create",
+            description="hello demo11")
+        foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+            vpc_id=foo_vpc.id,
+            security_group_name="acc-test-security-group")
+        foo_instance = volcengine.ecs.Instance("fooInstance",
+            image_id="image-ycjwwciuzy5pkh54xx8f",
+            instance_type="ecs.c3i.large",
+            instance_name="acc-test-ecs-name",
+            password="93f0cb0614Aab12",
+            instance_charge_type="PostPaid",
+            system_volume_type="ESSD_PL0",
+            system_volume_size=40,
+            subnet_id=foo_subnet.id,
+            security_group_ids=[foo_security_group.id])
+        foo_server_group_server = volcengine.clb.ServerGroupServer("fooServerGroupServer",
+            server_group_id=foo_server_group.id,
+            instance_id=foo_instance.id,
             type="ecs",
-            weight=100)
+            weight=100,
+            port=80,
+            description="This is a acc test server")
         ```
 
         ## Import
@@ -324,13 +361,50 @@ class ServerGroupServer(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.clb.ServerGroupServer("foo",
-            description="This is a server",
-            instance_id="i-ybp1scasbe72q1vq35wv",
-            port=80,
-            server_group_id="rsp-274xltv2sjoxs7fap8tlv3q3s",
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_clb = volcengine.clb.Clb("fooClb",
+            type="public",
+            subnet_id=foo_subnet.id,
+            load_balancer_spec="small_1",
+            description="acc0Demo",
+            load_balancer_name="acc-test-create",
+            eip_billing_config=volcengine.clb.ClbEipBillingConfigArgs(
+                isp="BGP",
+                eip_billing_type="PostPaidByBandwidth",
+                bandwidth=1,
+            ))
+        foo_server_group = volcengine.clb.ServerGroup("fooServerGroup",
+            load_balancer_id=foo_clb.id,
+            server_group_name="acc-test-create",
+            description="hello demo11")
+        foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+            vpc_id=foo_vpc.id,
+            security_group_name="acc-test-security-group")
+        foo_instance = volcengine.ecs.Instance("fooInstance",
+            image_id="image-ycjwwciuzy5pkh54xx8f",
+            instance_type="ecs.c3i.large",
+            instance_name="acc-test-ecs-name",
+            password="93f0cb0614Aab12",
+            instance_charge_type="PostPaid",
+            system_volume_type="ESSD_PL0",
+            system_volume_size=40,
+            subnet_id=foo_subnet.id,
+            security_group_ids=[foo_security_group.id])
+        foo_server_group_server = volcengine.clb.ServerGroupServer("fooServerGroupServer",
+            server_group_id=foo_server_group.id,
+            instance_id=foo_instance.id,
             type="ecs",
-            weight=100)
+            weight=100,
+            port=80,
+            description="This is a acc test server")
         ```
 
         ## Import

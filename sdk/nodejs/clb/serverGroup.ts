@@ -10,12 +10,36 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as pulumi from "@volcengine/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = new volcengine.clb.ServerGroup("foo", {
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooClb = new volcengine.clb.Clb("fooClb", {
+ *     type: "public",
+ *     subnetId: fooSubnet.id,
+ *     loadBalancerSpec: "small_1",
+ *     description: "acc0Demo",
+ *     loadBalancerName: "acc-test-create",
+ *     eipBillingConfig: {
+ *         isp: "BGP",
+ *         eipBillingType: "PostPaidByBandwidth",
+ *         bandwidth: 1,
+ *     },
+ * });
+ * const fooServerGroup = new volcengine.clb.ServerGroup("fooServerGroup", {
+ *     loadBalancerId: fooClb.id,
+ *     serverGroupName: "acc-test-create",
  *     description: "hello demo11",
- *     loadBalancerId: "clb-273z7d4r8tvk07fap8tsniyfe",
- *     serverGroupName: "demo-demo11",
  * });
  * ```
  *

@@ -14,13 +14,13 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
     public sealed class DefaultNodePoolBatchAttachKubernetesConfigLabelArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The Key of Tags.
+        /// The Key of Labels.
         /// </summary>
-        [Input("key")]
-        public Input<string>? Key { get; set; }
+        [Input("key", required: true)]
+        public Input<string> Key { get; set; } = null!;
 
         /// <summary>
-        /// The Value of Tags.
+        /// The Value of Labels.
         /// </summary>
         [Input("value")]
         public Input<string>? Value { get; set; }

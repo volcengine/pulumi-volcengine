@@ -11,12 +11,64 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as pulumi from "@volcengine/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultServerGroupServers = pulumi.output(volcengine.clb.ServerGroupServers({
- *     ids: ["rs-273z9pv8mtfcw7fap8sp6ie8k"],
- *     serverGroupId: "rsp-273z9pt9lpdds7fap8sqdvfrf",
- * }));
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooClb = new volcengine.clb.Clb("fooClb", {
+ *     type: "public",
+ *     subnetId: fooSubnet.id,
+ *     loadBalancerSpec: "small_1",
+ *     description: "acc0Demo",
+ *     loadBalancerName: "acc-test-create",
+ *     eipBillingConfig: {
+ *         isp: "BGP",
+ *         eipBillingType: "PostPaidByBandwidth",
+ *         bandwidth: 1,
+ *     },
+ * });
+ * const fooServerGroup = new volcengine.clb.ServerGroup("fooServerGroup", {
+ *     loadBalancerId: fooClb.id,
+ *     serverGroupName: "acc-test-create",
+ *     description: "hello demo11",
+ * });
+ * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
+ *     vpcId: fooVpc.id,
+ *     securityGroupName: "acc-test-security-group",
+ * });
+ * const fooInstance = new volcengine.ecs.Instance("fooInstance", {
+ *     imageId: "image-ycjwwciuzy5pkh54xx8f",
+ *     instanceType: "ecs.c3i.large",
+ *     instanceName: "acc-test-ecs-name",
+ *     password: "93f0cb0614Aab12",
+ *     instanceChargeType: "PostPaid",
+ *     systemVolumeType: "ESSD_PL0",
+ *     systemVolumeSize: 40,
+ *     subnetId: fooSubnet.id,
+ *     securityGroupIds: [fooSecurityGroup.id],
+ * });
+ * const fooServerGroupServer = new volcengine.clb.ServerGroupServer("fooServerGroupServer", {
+ *     serverGroupId: fooServerGroup.id,
+ *     instanceId: fooInstance.id,
+ *     type: "ecs",
+ *     weight: 100,
+ *     port: 80,
+ *     description: "This is a acc test server",
+ * });
+ * const fooServerGroupServers = volcengine.clb.ServerGroupServersOutput({
+ *     ids: [pulumi.all([fooServerGroupServer.id.apply(id => id.split(":")), fooServerGroupServer.id.apply(id => id.split(":")).length]).apply(([split, length]) => split[length - 1])],
+ *     serverGroupId: fooServerGroup.id,
+ * });
  * ```
  */
 export function serverGroupServers(args: ServerGroupServersArgs, opts?: pulumi.InvokeOptions): Promise<ServerGroupServersResult> {

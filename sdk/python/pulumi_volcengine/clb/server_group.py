@@ -171,10 +171,30 @@ class ServerGroup(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.clb.ServerGroup("foo",
-            description="hello demo11",
-            load_balancer_id="clb-273z7d4r8tvk07fap8tsniyfe",
-            server_group_name="demo-demo11")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_clb = volcengine.clb.Clb("fooClb",
+            type="public",
+            subnet_id=foo_subnet.id,
+            load_balancer_spec="small_1",
+            description="acc0Demo",
+            load_balancer_name="acc-test-create",
+            eip_billing_config=volcengine.clb.ClbEipBillingConfigArgs(
+                isp="BGP",
+                eip_billing_type="PostPaidByBandwidth",
+                bandwidth=1,
+            ))
+        foo_server_group = volcengine.clb.ServerGroup("fooServerGroup",
+            load_balancer_id=foo_clb.id,
+            server_group_name="acc-test-create",
+            description="hello demo11")
         ```
 
         ## Import
@@ -206,10 +226,30 @@ class ServerGroup(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.clb.ServerGroup("foo",
-            description="hello demo11",
-            load_balancer_id="clb-273z7d4r8tvk07fap8tsniyfe",
-            server_group_name="demo-demo11")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_clb = volcengine.clb.Clb("fooClb",
+            type="public",
+            subnet_id=foo_subnet.id,
+            load_balancer_spec="small_1",
+            description="acc0Demo",
+            load_balancer_name="acc-test-create",
+            eip_billing_config=volcengine.clb.ClbEipBillingConfigArgs(
+                isp="BGP",
+                eip_billing_type="PostPaidByBandwidth",
+                bandwidth=1,
+            ))
+        foo_server_group = volcengine.clb.ServerGroup("fooServerGroup",
+            load_balancer_id=foo_clb.id,
+            server_group_name="acc-test-create",
+            description="hello demo11")
         ```
 
         ## Import

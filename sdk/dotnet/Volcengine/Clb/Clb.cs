@@ -15,34 +15,79 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
     /// 
     /// ```csharp
     /// using Pulumi;
+    /// using Volcengine = Pulumi.Volcengine;
     /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
     /// 
     /// class MyStack : Stack
     /// {
     ///     public MyStack()
     ///     {
-    ///         var publicClb = new Volcengine.Clb.Clb("publicClb", new Volcengine.Clb.ClbArgs
+    ///         var fooZones = Output.Create(Volcengine.Ecs.Zones.InvokeAsync());
+    ///         var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new Volcengine.Vpc.VpcArgs
+    ///         {
+    ///             VpcName = "acc-test-vpc",
+    ///             CidrBlock = "172.16.0.0/16",
+    ///         });
+    ///         var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new Volcengine.Vpc.SubnetArgs
+    ///         {
+    ///             SubnetName = "acc-test-subnet",
+    ///             CidrBlock = "172.16.0.0/24",
+    ///             ZoneId = fooZones.Apply(fooZones =&gt; fooZones.Zones?[0]?.Id),
+    ///             VpcId = fooVpc.Id,
+    ///         });
+    ///         var fooClb = new Volcengine.Clb.Clb("fooClb", new Volcengine.Clb.ClbArgs
     ///         {
     ///             Type = "public",
-    ///             SubnetId = "subnet-mj92ij84m5fk5smt1arvwrtw",
+    ///             SubnetId = fooSubnet.Id,
     ///             LoadBalancerSpec = "small_1",
-    ///             Description = "Demo",
-    ///             LoadBalancerName = "terraform-auto-create",
-    ///             ProjectName = "yyy",
+    ///             Description = "acc-test-demo",
+    ///             LoadBalancerName = "acc-test-clb",
+    ///             LoadBalancerBillingType = "PostPaid",
     ///             EipBillingConfig = new Volcengine.Clb.Inputs.ClbEipBillingConfigArgs
     ///             {
     ///                 Isp = "BGP",
     ///                 EipBillingType = "PostPaidByBandwidth",
     ///                 Bandwidth = 1,
     ///             },
+    ///             Tags = 
+    ///             {
+    ///                 new Volcengine.Clb.Inputs.ClbTagArgs
+    ///                 {
+    ///                     Key = "k1",
+    ///                     Value = "v1",
+    ///                 },
+    ///             },
+    ///         });
+    ///         var publicClb = new Volcengine.Clb.Clb("publicClb", new Volcengine.Clb.ClbArgs
+    ///         {
+    ///             Type = "public",
+    ///             SubnetId = fooSubnet.Id,
+    ///             LoadBalancerName = "acc-test-clb-public",
+    ///             LoadBalancerSpec = "small_1",
+    ///             Description = "acc-test-demo",
+    ///             ProjectName = "default",
+    ///             EipBillingConfig = new Volcengine.Clb.Inputs.ClbEipBillingConfigArgs
+    ///             {
+    ///                 Isp = "BGP",
+    ///                 EipBillingType = "PostPaidByBandwidth",
+    ///                 Bandwidth = 1,
+    ///             },
+    ///             Tags = 
+    ///             {
+    ///                 new Volcengine.Clb.Inputs.ClbTagArgs
+    ///                 {
+    ///                     Key = "k1",
+    ///                     Value = "v1",
+    ///                 },
+    ///             },
     ///         });
     ///         var privateClb = new Volcengine.Clb.Clb("privateClb", new Volcengine.Clb.ClbArgs
     ///         {
     ///             Type = "private",
-    ///             SubnetId = "subnet-mj92ij84m5fk5smt1arvwrtw",
+    ///             SubnetId = fooSubnet.Id,
+    ///             LoadBalancerName = "acc-test-clb-private",
     ///             LoadBalancerSpec = "small_1",
-    ///             Description = "Demo",
-    ///             LoadBalancerName = "terraform-auto-create",
+    ///             Description = "acc-test-demo",
     ///             ProjectName = "default",
     ///         });
     ///         var eip = new Volcengine.Eip.Address("eip", new Volcengine.Eip.AddressArgs
