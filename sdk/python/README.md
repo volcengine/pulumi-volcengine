@@ -1,8 +1,14 @@
-# Volcengine Resource Provider
+# Pulumi Volcengine Resource Provider
 
-The Volcengine Resource Provider lets you manage  resources.
+The Pulumi Volcengine Resource Provider lets you manage [Volcengine](https://www.volcengine.com/) resources.
 
 ## Installing
+
+### Install volcengine provider
+
+```bash
+pulumi plugin install resource volcengine --server github://api.github.com/volcengine
+```
 
 This package is available for several languages/platforms:
 
@@ -11,13 +17,13 @@ This package is available for several languages/platforms:
 To use from JavaScript or TypeScript in Node.js, install using either `npm`:
 
 ```bash
-npm install @pulumi/volcengine
+npm install @volcengine/pulumi
 ```
 
 or `yarn`:
 
 ```bash
-yarn add @pulumi/volcengine
+yarn add @volcengine/pulumi
 ```
 
 ### Python
@@ -36,21 +42,27 @@ To use from Go, use `go get` to grab the latest version of the library:
 go get github.com/volcengine/pulumi-volcengine/sdk/go/...
 ```
 
-### .NET
+[//]: # (### .NET)
 
-To use from .NET, install using `dotnet add package`:
+[//]: # ()
+[//]: # (To use from .NET, install using `dotnet add package`:)
 
-```bash
-dotnet add package Pulumi.Volcengine
-```
+[//]: # ()
+[//]: # (```bash)
+
+[//]: # (dotnet add package Pulumi.Volcengine)
+
+[//]: # (```)
 
 ## Configuration
 
 The following configuration points are available for the `volcengine` provider:
 
-- `volcengine:accesskey` (environment: `VOLCENGINE_ACCESS_KEY`) - the API key for `volcengine`
+- `volcengine:accessKey` (environment: `VOLCENGINE_ACCESS_KEY`) - the API key for `volcengine`
+- `volcengine:secretKey` (environment: `VOLCENGINE_SECRET_KEY`) - the API Secret Key for `volcengine`
 - `volcengine:region` (environment: `VOLCENGINE_REGION`) - the region in which to deploy resources
 
-## Reference
+[//]: # (## Reference)
 
-For detailed reference documentation, please visit [the Pulumi registry](https://www.pulumi.com/registry/packages/volcengine/api-docs/).
+[//]: # ()
+[//]: # (For detailed reference documentation, please visit [the Pulumi registry]&#40;https://www.pulumi.com/registry/packages/volcengine/api-docs/&#41;.)
