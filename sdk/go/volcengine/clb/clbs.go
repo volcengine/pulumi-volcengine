@@ -11,34 +11,6 @@ import (
 )
 
 // Use this data source to query detailed information of clbs
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/clb"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/clb"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := clb.Clbs(ctx, &clb.ClbsArgs{
-//				Ids: []string{
-//					"clb-273y2ok6ets007fap8txvf6us",
-//				},
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func Clbs(ctx *pulumi.Context, args *ClbsArgs, opts ...pulumi.InvokeOption) (*ClbsResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv ClbsResult

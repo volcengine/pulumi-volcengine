@@ -11,11 +11,43 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as pulumi from "@volcengine/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultClbs = pulumi.output(volcengine.clb.Clbs({
- *     ids: ["clb-273y2ok6ets007fap8txvf6us"],
- * }));
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooClb: volcengine.clb.Clb[];
+ * for (const range = {value: 0}; range.value < 3; range.value++) {
+ *     fooClb.push(new volcengine.clb.Clb(`fooClb-${range.value}`, {
+ *         type: "public",
+ *         subnetId: fooSubnet.id,
+ *         loadBalancerSpec: "small_1",
+ *         description: "acc-test-demo",
+ *         loadBalancerName: `acc-test-clb-${range.value}`,
+ *         loadBalancerBillingType: "PostPaid",
+ *         eipBillingConfig: {
+ *             isp: "BGP",
+ *             eipBillingType: "PostPaidByBandwidth",
+ *             bandwidth: 1,
+ *         },
+ *         tags: [{
+ *             key: "k1",
+ *             value: "v1",
+ *         }],
+ *     }));
+ * }
+ * const fooClbs = volcengine.clb.ClbsOutput({
+ *     ids: fooClb.map(__item => __item.id),
+ * });
  * ```
  */
 export function clbs(args?: ClbsArgs, opts?: pulumi.InvokeOptions): Promise<ClbsResult> {

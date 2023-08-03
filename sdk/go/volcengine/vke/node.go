@@ -19,19 +19,170 @@ import (
 //
 // import (
 //
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/vke"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vke"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vke.NewNode(ctx, "foo", &vke.NodeArgs{
-//				AdditionalContainerStorageEnabled: pulumi.Bool(false),
-//				ClusterId:                         pulumi.String("ccahbr0nqtofhiuuuajn0"),
-//				ContainerStoragePath:              pulumi.String(""),
-//				InstanceId:                        pulumi.String("i-ybrfa2vu2t7grbv8qa0j"),
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-project1"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-subnet-test-2"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     pulumi.String("cn-beijing-a"),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSecurityGroup, err := vpc.NewSecurityGroup(ctx, "fooSecurityGroup", &vpc.SecurityGroupArgs{
+//				VpcId:             fooVpc.ID(),
+//				SecurityGroupName: pulumi.String("acc-test-security-group2"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooInstance, err := ecs.NewInstance(ctx, "fooInstance", &ecs.InstanceArgs{
+//				ImageId:            pulumi.String("image-ybqi99s7yq8rx7mnk44b"),
+//				InstanceType:       pulumi.String("ecs.g1ie.large"),
+//				InstanceName:       pulumi.String("acc-test-ecs-name2"),
+//				Password:           pulumi.String("93f0cb0614Aab12"),
+//				InstanceChargeType: pulumi.String("PostPaid"),
+//				SystemVolumeType:   pulumi.String("ESSD_PL0"),
+//				SystemVolumeSize:   pulumi.Int(40),
+//				SubnetId:           fooSubnet.ID(),
+//				SecurityGroupIds: pulumi.StringArray{
+//					fooSecurityGroup.ID(),
+//				},
+//				ProjectName: pulumi.String("default"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooCluster, err := vke.NewCluster(ctx, "fooCluster", &vke.ClusterArgs{
+//				Description:             pulumi.String("created by terraform"),
+//				DeleteProtectionEnabled: pulumi.Bool(false),
+//				ClusterConfig: &vke.ClusterClusterConfigArgs{
+//					SubnetIds: pulumi.StringArray{
+//						fooSubnet.ID(),
+//					},
+//					ApiServerPublicAccessEnabled: pulumi.Bool(true),
+//					ApiServerPublicAccessConfig: &vke.ClusterClusterConfigApiServerPublicAccessConfigArgs{
+//						PublicAccessNetworkConfig: &vke.ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs{
+//							BillingType: pulumi.String("PostPaidByBandwidth"),
+//							Bandwidth:   pulumi.Int(1),
+//						},
+//					},
+//					ResourcePublicAccessDefaultEnabled: pulumi.Bool(true),
+//				},
+//				PodsConfig: &vke.ClusterPodsConfigArgs{
+//					PodNetworkMode: pulumi.String("VpcCniShared"),
+//					VpcCniConfig: &vke.ClusterPodsConfigVpcCniConfigArgs{
+//						SubnetIds: pulumi.StringArray{
+//							fooSubnet.ID(),
+//						},
+//					},
+//				},
+//				ServicesConfig: &vke.ClusterServicesConfigArgs{
+//					ServiceCidrsv4s: pulumi.StringArray{
+//						pulumi.String("172.30.0.0/18"),
+//					},
+//				},
+//				Tags: vke.ClusterTagArray{
+//					&vke.ClusterTagArgs{
+//						Key:   pulumi.String("tf-k1"),
+//						Value: pulumi.String("tf-v1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooNodePool, err := vke.NewNodePool(ctx, "fooNodePool", &vke.NodePoolArgs{
+//				ClusterId: fooCluster.ID(),
+//				NodeConfig: &vke.NodePoolNodeConfigArgs{
+//					InstanceTypeIds: pulumi.StringArray{
+//						pulumi.String("ecs.g1ie.large"),
+//					},
+//					SubnetIds: pulumi.StringArray{
+//						fooSubnet.ID(),
+//					},
+//					Security: &vke.NodePoolNodeConfigSecurityArgs{
+//						Login: &vke.NodePoolNodeConfigSecurityLoginArgs{
+//							Password: pulumi.String("UHdkMTIzNDU2"),
+//						},
+//						SecurityGroupIds: pulumi.StringArray{
+//							fooSecurityGroup.ID(),
+//						},
+//					},
+//					InstanceChargeType: pulumi.String("PostPaid"),
+//					Period:             pulumi.Int(1),
+//				},
+//				KubernetesConfig: &vke.NodePoolKubernetesConfigArgs{
+//					Labels: vke.NodePoolKubernetesConfigLabelArray{
+//						&vke.NodePoolKubernetesConfigLabelArgs{
+//							Key:   pulumi.String("aa"),
+//							Value: pulumi.String("bb"),
+//						},
+//						&vke.NodePoolKubernetesConfigLabelArgs{
+//							Key:   pulumi.String("cccc"),
+//							Value: pulumi.String("dddd"),
+//						},
+//					},
+//					Cordon: pulumi.Bool(false),
+//				},
+//				Tags: vke.NodePoolTagArray{
+//					&vke.NodePoolTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = vke.NewNode(ctx, "fooNode", &vke.NodeArgs{
+//				ClusterId:                         fooCluster.ID(),
+//				InstanceId:                        fooInstance.ID(),
 //				KeepInstanceName:                  pulumi.Bool(true),
+//				AdditionalContainerStorageEnabled: pulumi.Bool(false),
+//				ContainerStoragePath:              pulumi.String(""),
+//				NodePoolId:                        fooNodePool.ID(),
+//				KubernetesConfig: &vke.NodeKubernetesConfigArgs{
+//					Labels: vke.NodeKubernetesConfigLabelArray{
+//						&vke.NodeKubernetesConfigLabelArgs{
+//							Key:   pulumi.String("tf-key1"),
+//							Value: pulumi.String("tf-value1"),
+//						},
+//						&vke.NodeKubernetesConfigLabelArgs{
+//							Key:   pulumi.String("tf-key2"),
+//							Value: pulumi.String("tf-value2"),
+//						},
+//					},
+//					Taints: vke.NodeKubernetesConfigTaintArray{
+//						&vke.NodeKubernetesConfigTaintArgs{
+//							Key:    pulumi.String("tf-key3"),
+//							Value:  pulumi.String("tf-value3"),
+//							Effect: pulumi.String("NoSchedule"),
+//						},
+//						&vke.NodeKubernetesConfigTaintArgs{
+//							Key:    pulumi.String("tf-key4"),
+//							Value:  pulumi.String("tf-value4"),
+//							Effect: pulumi.String("NoSchedule"),
+//						},
+//					},
+//					Cordon: pulumi.Bool(true),
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -65,13 +216,13 @@ type Node struct {
 	// The ImageId of NodeConfig.
 	ImageId pulumi.StringOutput `pulumi:"imageId"`
 	// The initializeScript of Node.
-	InitializeScript pulumi.StringPtrOutput `pulumi:"initializeScript"`
+	InitializeScript pulumi.StringOutput `pulumi:"initializeScript"`
 	// The instance id.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// The flag of keep instance name, the value is `true` or `false`.
 	KeepInstanceName pulumi.BoolPtrOutput `pulumi:"keepInstanceName"`
 	// The KubernetesConfig of Node.
-	KubernetesConfig NodeKubernetesConfigPtrOutput `pulumi:"kubernetesConfig"`
+	KubernetesConfig NodeKubernetesConfigOutput `pulumi:"kubernetesConfig"`
 	// The node pool id.
 	NodePoolId pulumi.StringOutput `pulumi:"nodePoolId"`
 }
@@ -180,6 +331,8 @@ type nodeArgs struct {
 	KeepInstanceName *bool `pulumi:"keepInstanceName"`
 	// The KubernetesConfig of Node.
 	KubernetesConfig *NodeKubernetesConfig `pulumi:"kubernetesConfig"`
+	// The node pool id.
+	NodePoolId *string `pulumi:"nodePoolId"`
 }
 
 // The set of arguments for constructing a Node resource.
@@ -202,6 +355,8 @@ type NodeArgs struct {
 	KeepInstanceName pulumi.BoolPtrInput
 	// The KubernetesConfig of Node.
 	KubernetesConfig NodeKubernetesConfigPtrInput
+	// The node pool id.
+	NodePoolId pulumi.StringPtrInput
 }
 
 func (NodeArgs) ElementType() reflect.Type {
@@ -317,8 +472,8 @@ func (o NodeOutput) ImageId() pulumi.StringOutput {
 }
 
 // The initializeScript of Node.
-func (o NodeOutput) InitializeScript() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Node) pulumi.StringPtrOutput { return v.InitializeScript }).(pulumi.StringPtrOutput)
+func (o NodeOutput) InitializeScript() pulumi.StringOutput {
+	return o.ApplyT(func(v *Node) pulumi.StringOutput { return v.InitializeScript }).(pulumi.StringOutput)
 }
 
 // The instance id.
@@ -332,8 +487,8 @@ func (o NodeOutput) KeepInstanceName() pulumi.BoolPtrOutput {
 }
 
 // The KubernetesConfig of Node.
-func (o NodeOutput) KubernetesConfig() NodeKubernetesConfigPtrOutput {
-	return o.ApplyT(func(v *Node) NodeKubernetesConfigPtrOutput { return v.KubernetesConfig }).(NodeKubernetesConfigPtrOutput)
+func (o NodeOutput) KubernetesConfig() NodeKubernetesConfigOutput {
+	return o.ApplyT(func(v *Node) NodeKubernetesConfigOutput { return v.KubernetesConfig }).(NodeKubernetesConfigOutput)
 }
 
 // The node pool id.

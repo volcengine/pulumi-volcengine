@@ -15,11 +15,11 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Outputs
     public sealed class DefaultNodePoolBatchAttachNodeConfigEcsTag
     {
         /// <summary>
-        /// The Key of Tags.
+        /// The Key of Labels.
         /// </summary>
         public readonly string? Key;
         /// <summary>
-        /// The Value of Tags.
+        /// The Value of Labels.
         /// </summary>
         public readonly string? Value;
 

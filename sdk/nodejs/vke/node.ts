@@ -11,14 +11,126 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as pulumi from "@volcengine/pulumi";
  *
- * const foo = new volcengine.vke.Node("foo", {
- *     additionalContainerStorageEnabled: false,
- *     clusterId: "ccahbr0nqtofhiuuuajn0",
- *     containerStoragePath: "",
- *     instanceId: "i-ybrfa2vu2t7grbv8qa0j",
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-project1",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-subnet-test-2",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: "cn-beijing-a",
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
+ *     vpcId: fooVpc.id,
+ *     securityGroupName: "acc-test-security-group2",
+ * });
+ * const fooInstance = new volcengine.ecs.Instance("fooInstance", {
+ *     imageId: "image-ybqi99s7yq8rx7mnk44b",
+ *     instanceType: "ecs.g1ie.large",
+ *     instanceName: "acc-test-ecs-name2",
+ *     password: "93f0cb0614Aab12",
+ *     instanceChargeType: "PostPaid",
+ *     systemVolumeType: "ESSD_PL0",
+ *     systemVolumeSize: 40,
+ *     subnetId: fooSubnet.id,
+ *     securityGroupIds: [fooSecurityGroup.id],
+ *     projectName: "default",
+ * });
+ * const fooCluster = new volcengine.vke.Cluster("fooCluster", {
+ *     description: "created by terraform",
+ *     deleteProtectionEnabled: false,
+ *     clusterConfig: {
+ *         subnetIds: [fooSubnet.id],
+ *         apiServerPublicAccessEnabled: true,
+ *         apiServerPublicAccessConfig: {
+ *             publicAccessNetworkConfig: {
+ *                 billingType: "PostPaidByBandwidth",
+ *                 bandwidth: 1,
+ *             },
+ *         },
+ *         resourcePublicAccessDefaultEnabled: true,
+ *     },
+ *     podsConfig: {
+ *         podNetworkMode: "VpcCniShared",
+ *         vpcCniConfig: {
+ *             subnetIds: [fooSubnet.id],
+ *         },
+ *     },
+ *     servicesConfig: {
+ *         serviceCidrsv4s: ["172.30.0.0/18"],
+ *     },
+ *     tags: [{
+ *         key: "tf-k1",
+ *         value: "tf-v1",
+ *     }],
+ * });
+ * const fooNodePool = new volcengine.vke.NodePool("fooNodePool", {
+ *     clusterId: fooCluster.id,
+ *     nodeConfig: {
+ *         instanceTypeIds: ["ecs.g1ie.large"],
+ *         subnetIds: [fooSubnet.id],
+ *         security: {
+ *             login: {
+ *                 password: "UHdkMTIzNDU2",
+ *             },
+ *             securityGroupIds: [fooSecurityGroup.id],
+ *         },
+ *         instanceChargeType: "PostPaid",
+ *         period: 1,
+ *     },
+ *     kubernetesConfig: {
+ *         labels: [
+ *             {
+ *                 key: "aa",
+ *                 value: "bb",
+ *             },
+ *             {
+ *                 key: "cccc",
+ *                 value: "dddd",
+ *             },
+ *         ],
+ *         cordon: false,
+ *     },
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooNode = new volcengine.vke.Node("fooNode", {
+ *     clusterId: fooCluster.id,
+ *     instanceId: fooInstance.id,
  *     keepInstanceName: true,
+ *     additionalContainerStorageEnabled: false,
+ *     containerStoragePath: "",
+ *     nodePoolId: fooNodePool.id,
+ *     kubernetesConfig: {
+ *         labels: [
+ *             {
+ *                 key: "tf-key1",
+ *                 value: "tf-value1",
+ *             },
+ *             {
+ *                 key: "tf-key2",
+ *                 value: "tf-value2",
+ *             },
+ *         ],
+ *         taints: [
+ *             {
+ *                 key: "tf-key3",
+ *                 value: "tf-value3",
+ *                 effect: "NoSchedule",
+ *             },
+ *             {
+ *                 key: "tf-key4",
+ *                 value: "tf-value4",
+ *                 effect: "NoSchedule",
+ *             },
+ *         ],
+ *         cordon: true,
+ *     },
  * });
  * ```
  *
@@ -81,7 +193,7 @@ export class Node extends pulumi.CustomResource {
     /**
      * The initializeScript of Node.
      */
-    public readonly initializeScript!: pulumi.Output<string | undefined>;
+    public readonly initializeScript!: pulumi.Output<string>;
     /**
      * The instance id.
      */
@@ -93,11 +205,11 @@ export class Node extends pulumi.CustomResource {
     /**
      * The KubernetesConfig of Node.
      */
-    public readonly kubernetesConfig!: pulumi.Output<outputs.vke.NodeKubernetesConfig | undefined>;
+    public readonly kubernetesConfig!: pulumi.Output<outputs.vke.NodeKubernetesConfig>;
     /**
      * The node pool id.
      */
-    public /*out*/ readonly nodePoolId!: pulumi.Output<string>;
+    public readonly nodePoolId!: pulumi.Output<string>;
 
     /**
      * Create a Node resource with the given unique name, arguments, and options.
@@ -139,7 +251,7 @@ export class Node extends pulumi.CustomResource {
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
             resourceInputs["keepInstanceName"] = args ? args.keepInstanceName : undefined;
             resourceInputs["kubernetesConfig"] = args ? args.kubernetesConfig : undefined;
-            resourceInputs["nodePoolId"] = undefined /*out*/;
+            resourceInputs["nodePoolId"] = args ? args.nodePoolId : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Node.__pulumiType, name, resourceInputs, opts);
@@ -232,4 +344,8 @@ export interface NodeArgs {
      * The KubernetesConfig of Node.
      */
     kubernetesConfig?: pulumi.Input<inputs.vke.NodeKubernetesConfig>;
+    /**
+     * The node pool id.
+     */
+    nodePoolId?: pulumi.Input<string>;
 }

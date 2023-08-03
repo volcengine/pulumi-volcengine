@@ -314,6 +314,8 @@ class ClusterClusterConfig(dict):
             suggest = "api_server_public_access_config"
         elif key == "apiServerPublicAccessEnabled":
             suggest = "api_server_public_access_enabled"
+        elif key == "ipFamily":
+            suggest = "ip_family"
         elif key == "resourcePublicAccessDefaultEnabled":
             suggest = "resource_public_access_default_enabled"
 
@@ -332,6 +334,7 @@ class ClusterClusterConfig(dict):
                  subnet_ids: Sequence[str],
                  api_server_public_access_config: Optional['outputs.ClusterClusterConfigApiServerPublicAccessConfig'] = None,
                  api_server_public_access_enabled: Optional[bool] = None,
+                 ip_family: Optional[str] = None,
                  resource_public_access_default_enabled: Optional[bool] = None):
         """
         :param Sequence[str] subnet_ids: The subnet ID for the cluster control plane to communicate within the private network.
@@ -344,6 +347,8 @@ class ClusterClusterConfig(dict):
             pulumi.set(__self__, "api_server_public_access_config", api_server_public_access_config)
         if api_server_public_access_enabled is not None:
             pulumi.set(__self__, "api_server_public_access_enabled", api_server_public_access_enabled)
+        if ip_family is not None:
+            pulumi.set(__self__, "ip_family", ip_family)
         if resource_public_access_default_enabled is not None:
             pulumi.set(__self__, "resource_public_access_default_enabled", resource_public_access_default_enabled)
 
@@ -370,6 +375,11 @@ class ClusterClusterConfig(dict):
         Cluster API Server public network access configuration, the value is `true` or `false`.
         """
         return pulumi.get(self, "api_server_public_access_enabled")
+
+    @property
+    @pulumi.getter(name="ipFamily")
+    def ip_family(self) -> Optional[str]:
+        return pulumi.get(self, "ip_family")
 
     @property
     @pulumi.getter(name="resourcePublicAccessDefaultEnabled")
@@ -1173,12 +1183,14 @@ class ClustersClusterClusterConfigApiServerEndpointsPublicIpResult(dict):
 class ClustersClusterClusterConfigApiServerPublicAccessConfigResult(dict):
     def __init__(__self__, *,
                  access_source_ipsv4s: Sequence[str],
+                 ip_family: str,
                  public_access_network_config: 'outputs.ClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigResult'):
         """
         :param Sequence[str] access_source_ipsv4s: IPv4 public network access whitelist. A null value means all network segments (0.0.0.0/0) are allowed to pass.
         :param 'ClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs' public_access_network_config: Public network access network configuration.
         """
         pulumi.set(__self__, "access_source_ipsv4s", access_source_ipsv4s)
+        pulumi.set(__self__, "ip_family", ip_family)
         pulumi.set(__self__, "public_access_network_config", public_access_network_config)
 
     @property
@@ -1188,6 +1200,11 @@ class ClustersClusterClusterConfigApiServerPublicAccessConfigResult(dict):
         IPv4 public network access whitelist. A null value means all network segments (0.0.0.0/0) are allowed to pass.
         """
         return pulumi.get(self, "access_source_ipsv4s")
+
+    @property
+    @pulumi.getter(name="ipFamily")
+    def ip_family(self) -> str:
+        return pulumi.get(self, "ip_family")
 
     @property
     @pulumi.getter(name="publicAccessNetworkConfig")
@@ -1811,22 +1828,21 @@ class DefaultNodePoolBatchAttachKubernetesConfig(dict):
 @pulumi.output_type
 class DefaultNodePoolBatchAttachKubernetesConfigLabel(dict):
     def __init__(__self__, *,
-                 key: Optional[str] = None,
+                 key: str,
                  value: Optional[str] = None):
         """
-        :param str key: The Key of Tags.
-        :param str value: The Value of Tags.
+        :param str key: The Key of Labels.
+        :param str value: The Value of Labels.
         """
-        if key is not None:
-            pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "key", key)
         if value is not None:
             pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
-    def key(self) -> Optional[str]:
+    def key(self) -> str:
         """
-        The Key of Tags.
+        The Key of Labels.
         """
         return pulumi.get(self, "key")
 
@@ -1834,7 +1850,7 @@ class DefaultNodePoolBatchAttachKubernetesConfigLabel(dict):
     @pulumi.getter
     def value(self) -> Optional[str]:
         """
-        The Value of Tags.
+        The Value of Labels.
         """
         return pulumi.get(self, "value")
 
@@ -1842,42 +1858,41 @@ class DefaultNodePoolBatchAttachKubernetesConfigLabel(dict):
 @pulumi.output_type
 class DefaultNodePoolBatchAttachKubernetesConfigTaint(dict):
     def __init__(__self__, *,
+                 key: str,
                  effect: Optional[str] = None,
-                 key: Optional[str] = None,
                  value: Optional[str] = None):
         """
-        :param str effect: The Effect of Taints.
-        :param str key: The Key of Tags.
-        :param str value: The Value of Tags.
+        :param str key: The Key of Taints.
+        :param str effect: The Effect of Taints. The value can be one of the following: `NoSchedule`, `NoExecute`, `PreferNoSchedule`, default value is `NoSchedule`.
+        :param str value: The Value of Taints.
         """
+        pulumi.set(__self__, "key", key)
         if effect is not None:
             pulumi.set(__self__, "effect", effect)
-        if key is not None:
-            pulumi.set(__self__, "key", key)
         if value is not None:
             pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
-    def effect(self) -> Optional[str]:
+    def key(self) -> str:
         """
-        The Effect of Taints.
-        """
-        return pulumi.get(self, "effect")
-
-    @property
-    @pulumi.getter
-    def key(self) -> Optional[str]:
-        """
-        The Key of Tags.
+        The Key of Taints.
         """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
+    def effect(self) -> Optional[str]:
+        """
+        The Effect of Taints. The value can be one of the following: `NoSchedule`, `NoExecute`, `PreferNoSchedule`, default value is `NoSchedule`.
+        """
+        return pulumi.get(self, "effect")
+
+    @property
+    @pulumi.getter
     def value(self) -> Optional[str]:
         """
-        The Value of Tags.
+        The Value of Taints.
         """
         return pulumi.get(self, "value")
 
@@ -1964,8 +1979,8 @@ class DefaultNodePoolBatchAttachNodeConfigEcsTag(dict):
                  key: Optional[str] = None,
                  value: Optional[str] = None):
         """
-        :param str key: The Key of Tags.
-        :param str value: The Value of Tags.
+        :param str key: The Key of Labels.
+        :param str value: The Value of Labels.
         """
         if key is not None:
             pulumi.set(__self__, "key", key)
@@ -1976,7 +1991,7 @@ class DefaultNodePoolBatchAttachNodeConfigEcsTag(dict):
     @pulumi.getter
     def key(self) -> Optional[str]:
         """
-        The Key of Tags.
+        The Key of Labels.
         """
         return pulumi.get(self, "key")
 
@@ -1984,7 +1999,7 @@ class DefaultNodePoolBatchAttachNodeConfigEcsTag(dict):
     @pulumi.getter
     def value(self) -> Optional[str]:
         """
-        The Value of Tags.
+        The Value of Labels.
         """
         return pulumi.get(self, "value")
 
@@ -2105,8 +2120,8 @@ class DefaultNodePoolBatchAttachTag(dict):
                  key: Optional[str] = None,
                  value: Optional[str] = None):
         """
-        :param str key: The Key of Tags.
-        :param str value: The Value of Tags.
+        :param str key: The Key of Labels.
+        :param str value: The Value of Labels.
         """
         if key is not None:
             pulumi.set(__self__, "key", key)
@@ -2117,7 +2132,7 @@ class DefaultNodePoolBatchAttachTag(dict):
     @pulumi.getter
     def key(self) -> Optional[str]:
         """
-        The Key of Tags.
+        The Key of Labels.
         """
         return pulumi.get(self, "key")
 
@@ -2125,7 +2140,7 @@ class DefaultNodePoolBatchAttachTag(dict):
     @pulumi.getter
     def value(self) -> Optional[str]:
         """
-        The Value of Tags.
+        The Value of Labels.
         """
         return pulumi.get(self, "value")
 

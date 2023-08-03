@@ -11,13 +11,66 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as pulumi from "@volcengine/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.clb.Rules({
- *     listenerId: "lsn-273ywvnmiu70g7fap8u2xzg9d",
- *     ids: ["rule-273z9jo9v3mrk7fap8sq8v5x7"],
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
  * });
- * export const data = _default;
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooClb = new volcengine.clb.Clb("fooClb", {
+ *     type: "public",
+ *     subnetId: fooSubnet.id,
+ *     loadBalancerSpec: "small_1",
+ *     description: "acc0Demo",
+ *     loadBalancerName: "acc-test-create",
+ *     eipBillingConfig: {
+ *         isp: "BGP",
+ *         eipBillingType: "PostPaidByBandwidth",
+ *         bandwidth: 1,
+ *     },
+ * });
+ * const fooServerGroup = new volcengine.clb.ServerGroup("fooServerGroup", {
+ *     loadBalancerId: fooClb.id,
+ *     serverGroupName: "acc-test-create",
+ *     description: "hello demo11",
+ * });
+ * const fooListener = new volcengine.clb.Listener("fooListener", {
+ *     loadBalancerId: fooClb.id,
+ *     listenerName: "acc-test-listener",
+ *     protocol: "HTTP",
+ *     port: 90,
+ *     serverGroupId: fooServerGroup.id,
+ *     healthCheck: {
+ *         enabled: "on",
+ *         interval: 10,
+ *         timeout: 3,
+ *         healthyThreshold: 5,
+ *         unHealthyThreshold: 2,
+ *         domain: "volcengine.com",
+ *         httpCode: "http_2xx",
+ *         method: "GET",
+ *         uri: "/",
+ *     },
+ *     enabled: "on",
+ * });
+ * const fooRule = new volcengine.clb.Rule("fooRule", {
+ *     listenerId: fooListener.id,
+ *     serverGroupId: fooServerGroup.id,
+ *     domain: "test-volc123.com",
+ *     url: "/yyyy",
+ * });
+ * const fooRules = volcengine.clb.RulesOutput({
+ *     ids: [fooRule.id],
+ *     listenerId: fooListener.id,
+ * });
  * ```
  */
 export function rules(args: RulesArgs, opts?: pulumi.InvokeOptions): Promise<RulesResult> {

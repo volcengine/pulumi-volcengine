@@ -15,15 +15,15 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Outputs
     public sealed class DefaultNodePoolBatchAttachKubernetesConfigTaint
     {
         /// <summary>
-        /// The Effect of Taints.
+        /// The Effect of Taints. The value can be one of the following: `NoSchedule`, `NoExecute`, `PreferNoSchedule`, default value is `NoSchedule`.
         /// </summary>
         public readonly string? Effect;
         /// <summary>
-        /// The Key of Tags.
+        /// The Key of Taints.
         /// </summary>
-        public readonly string? Key;
+        public readonly string Key;
         /// <summary>
-        /// The Value of Tags.
+        /// The Value of Taints.
         /// </summary>
         public readonly string? Value;
 
@@ -31,7 +31,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Outputs
         private DefaultNodePoolBatchAttachKubernetesConfigTaint(
             string? effect,
 
-            string? key,
+            string key,
 
             string? value)
         {

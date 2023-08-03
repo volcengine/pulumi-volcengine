@@ -19,25 +19,76 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/clb"
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/clb"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/eip"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := clb.NewClb(ctx, "publicClb", &clb.ClbArgs{
-//				Type:             pulumi.String("public"),
-//				SubnetId:         pulumi.String("subnet-mj92ij84m5fk5smt1arvwrtw"),
-//				LoadBalancerSpec: pulumi.String("small_1"),
-//				Description:      pulumi.String("Demo"),
-//				LoadBalancerName: pulumi.String("terraform-auto-create"),
-//				ProjectName:      pulumi.String("yyy"),
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = clb.NewClb(ctx, "fooClb", &clb.ClbArgs{
+//				Type:                    pulumi.String("public"),
+//				SubnetId:                fooSubnet.ID(),
+//				LoadBalancerSpec:        pulumi.String("small_1"),
+//				Description:             pulumi.String("acc-test-demo"),
+//				LoadBalancerName:        pulumi.String("acc-test-clb"),
+//				LoadBalancerBillingType: pulumi.String("PostPaid"),
 //				EipBillingConfig: &clb.ClbEipBillingConfigArgs{
 //					Isp:            pulumi.String("BGP"),
 //					EipBillingType: pulumi.String("PostPaidByBandwidth"),
 //					Bandwidth:      pulumi.Int(1),
+//				},
+//				Tags: clb.ClbTagArray{
+//					&clb.ClbTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = clb.NewClb(ctx, "publicClb", &clb.ClbArgs{
+//				Type:             pulumi.String("public"),
+//				SubnetId:         fooSubnet.ID(),
+//				LoadBalancerName: pulumi.String("acc-test-clb-public"),
+//				LoadBalancerSpec: pulumi.String("small_1"),
+//				Description:      pulumi.String("acc-test-demo"),
+//				ProjectName:      pulumi.String("default"),
+//				EipBillingConfig: &clb.ClbEipBillingConfigArgs{
+//					Isp:            pulumi.String("BGP"),
+//					EipBillingType: pulumi.String("PostPaidByBandwidth"),
+//					Bandwidth:      pulumi.Int(1),
+//				},
+//				Tags: clb.ClbTagArray{
+//					&clb.ClbTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
 //				},
 //			})
 //			if err != nil {
@@ -45,10 +96,10 @@ import (
 //			}
 //			privateClb, err := clb.NewClb(ctx, "privateClb", &clb.ClbArgs{
 //				Type:             pulumi.String("private"),
-//				SubnetId:         pulumi.String("subnet-mj92ij84m5fk5smt1arvwrtw"),
+//				SubnetId:         fooSubnet.ID(),
+//				LoadBalancerName: pulumi.String("acc-test-clb-private"),
 //				LoadBalancerSpec: pulumi.String("small_1"),
-//				Description:      pulumi.String("Demo"),
-//				LoadBalancerName: pulumi.String("terraform-auto-create"),
+//				Description:      pulumi.String("acc-test-demo"),
 //				ProjectName:      pulumi.String("default"),
 //			})
 //			if err != nil {

@@ -465,7 +465,8 @@ type ClusterClusterConfig struct {
 	// Cluster API Server public network access configuration.
 	ApiServerPublicAccessConfig *ClusterClusterConfigApiServerPublicAccessConfig `pulumi:"apiServerPublicAccessConfig"`
 	// Cluster API Server public network access configuration, the value is `true` or `false`.
-	ApiServerPublicAccessEnabled *bool `pulumi:"apiServerPublicAccessEnabled"`
+	ApiServerPublicAccessEnabled *bool   `pulumi:"apiServerPublicAccessEnabled"`
+	IpFamily                     *string `pulumi:"ipFamily"`
 	// Node public network access configuration, the value is `true` or `false`.
 	ResourcePublicAccessDefaultEnabled *bool `pulumi:"resourcePublicAccessDefaultEnabled"`
 	// The subnet ID for the cluster control plane to communicate within the private network.
@@ -487,7 +488,8 @@ type ClusterClusterConfigArgs struct {
 	// Cluster API Server public network access configuration.
 	ApiServerPublicAccessConfig ClusterClusterConfigApiServerPublicAccessConfigPtrInput `pulumi:"apiServerPublicAccessConfig"`
 	// Cluster API Server public network access configuration, the value is `true` or `false`.
-	ApiServerPublicAccessEnabled pulumi.BoolPtrInput `pulumi:"apiServerPublicAccessEnabled"`
+	ApiServerPublicAccessEnabled pulumi.BoolPtrInput   `pulumi:"apiServerPublicAccessEnabled"`
+	IpFamily                     pulumi.StringPtrInput `pulumi:"ipFamily"`
 	// Node public network access configuration, the value is `true` or `false`.
 	ResourcePublicAccessDefaultEnabled pulumi.BoolPtrInput `pulumi:"resourcePublicAccessDefaultEnabled"`
 	// The subnet ID for the cluster control plane to communicate within the private network.
@@ -583,6 +585,10 @@ func (o ClusterClusterConfigOutput) ApiServerPublicAccessEnabled() pulumi.BoolPt
 	return o.ApplyT(func(v ClusterClusterConfig) *bool { return v.ApiServerPublicAccessEnabled }).(pulumi.BoolPtrOutput)
 }
 
+func (o ClusterClusterConfigOutput) IpFamily() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterClusterConfig) *string { return v.IpFamily }).(pulumi.StringPtrOutput)
+}
+
 // Node public network access configuration, the value is `true` or `false`.
 func (o ClusterClusterConfigOutput) ResourcePublicAccessDefaultEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfig) *bool { return v.ResourcePublicAccessDefaultEnabled }).(pulumi.BoolPtrOutput)
@@ -635,6 +641,15 @@ func (o ClusterClusterConfigPtrOutput) ApiServerPublicAccessEnabled() pulumi.Boo
 		}
 		return v.ApiServerPublicAccessEnabled
 	}).(pulumi.BoolPtrOutput)
+}
+
+func (o ClusterClusterConfigPtrOutput) IpFamily() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClusterClusterConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.IpFamily
+	}).(pulumi.StringPtrOutput)
 }
 
 // Node public network access configuration, the value is `true` or `false`.
@@ -2498,6 +2513,7 @@ func (o ClustersClusterClusterConfigApiServerEndpointsPublicIpOutput) Ipv4() pul
 type ClustersClusterClusterConfigApiServerPublicAccessConfig struct {
 	// IPv4 public network access whitelist. A null value means all network segments (0.0.0.0/0) are allowed to pass.
 	AccessSourceIpsv4s []string `pulumi:"accessSourceIpsv4s"`
+	IpFamily           string   `pulumi:"ipFamily"`
 	// Public network access network configuration.
 	PublicAccessNetworkConfig ClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfig `pulumi:"publicAccessNetworkConfig"`
 }
@@ -2516,6 +2532,7 @@ type ClustersClusterClusterConfigApiServerPublicAccessConfigInput interface {
 type ClustersClusterClusterConfigApiServerPublicAccessConfigArgs struct {
 	// IPv4 public network access whitelist. A null value means all network segments (0.0.0.0/0) are allowed to pass.
 	AccessSourceIpsv4s pulumi.StringArrayInput `pulumi:"accessSourceIpsv4s"`
+	IpFamily           pulumi.StringInput      `pulumi:"ipFamily"`
 	// Public network access network configuration.
 	PublicAccessNetworkConfig ClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigInput `pulumi:"publicAccessNetworkConfig"`
 }
@@ -2549,6 +2566,10 @@ func (o ClustersClusterClusterConfigApiServerPublicAccessConfigOutput) ToCluster
 // IPv4 public network access whitelist. A null value means all network segments (0.0.0.0/0) are allowed to pass.
 func (o ClustersClusterClusterConfigApiServerPublicAccessConfigOutput) AccessSourceIpsv4s() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ClustersClusterClusterConfigApiServerPublicAccessConfig) []string { return v.AccessSourceIpsv4s }).(pulumi.StringArrayOutput)
+}
+
+func (o ClustersClusterClusterConfigApiServerPublicAccessConfigOutput) IpFamily() pulumi.StringOutput {
+	return o.ApplyT(func(v ClustersClusterClusterConfigApiServerPublicAccessConfig) string { return v.IpFamily }).(pulumi.StringOutput)
 }
 
 // Public network access network configuration.
@@ -3879,29 +3900,45 @@ func (i DefaultNodePoolBatchAttachKubernetesConfigArgs) ToDefaultNodePoolBatchAt
 	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolBatchAttachKubernetesConfigOutput)
 }
 
-// DefaultNodePoolBatchAttachKubernetesConfigArrayInput is an input type that accepts DefaultNodePoolBatchAttachKubernetesConfigArray and DefaultNodePoolBatchAttachKubernetesConfigArrayOutput values.
-// You can construct a concrete instance of `DefaultNodePoolBatchAttachKubernetesConfigArrayInput` via:
+func (i DefaultNodePoolBatchAttachKubernetesConfigArgs) ToDefaultNodePoolBatchAttachKubernetesConfigPtrOutput() DefaultNodePoolBatchAttachKubernetesConfigPtrOutput {
+	return i.ToDefaultNodePoolBatchAttachKubernetesConfigPtrOutputWithContext(context.Background())
+}
+
+func (i DefaultNodePoolBatchAttachKubernetesConfigArgs) ToDefaultNodePoolBatchAttachKubernetesConfigPtrOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachKubernetesConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolBatchAttachKubernetesConfigOutput).ToDefaultNodePoolBatchAttachKubernetesConfigPtrOutputWithContext(ctx)
+}
+
+// DefaultNodePoolBatchAttachKubernetesConfigPtrInput is an input type that accepts DefaultNodePoolBatchAttachKubernetesConfigArgs, DefaultNodePoolBatchAttachKubernetesConfigPtr and DefaultNodePoolBatchAttachKubernetesConfigPtrOutput values.
+// You can construct a concrete instance of `DefaultNodePoolBatchAttachKubernetesConfigPtrInput` via:
 //
-//	DefaultNodePoolBatchAttachKubernetesConfigArray{ DefaultNodePoolBatchAttachKubernetesConfigArgs{...} }
-type DefaultNodePoolBatchAttachKubernetesConfigArrayInput interface {
+//	        DefaultNodePoolBatchAttachKubernetesConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type DefaultNodePoolBatchAttachKubernetesConfigPtrInput interface {
 	pulumi.Input
 
-	ToDefaultNodePoolBatchAttachKubernetesConfigArrayOutput() DefaultNodePoolBatchAttachKubernetesConfigArrayOutput
-	ToDefaultNodePoolBatchAttachKubernetesConfigArrayOutputWithContext(context.Context) DefaultNodePoolBatchAttachKubernetesConfigArrayOutput
+	ToDefaultNodePoolBatchAttachKubernetesConfigPtrOutput() DefaultNodePoolBatchAttachKubernetesConfigPtrOutput
+	ToDefaultNodePoolBatchAttachKubernetesConfigPtrOutputWithContext(context.Context) DefaultNodePoolBatchAttachKubernetesConfigPtrOutput
 }
 
-type DefaultNodePoolBatchAttachKubernetesConfigArray []DefaultNodePoolBatchAttachKubernetesConfigInput
+type defaultNodePoolBatchAttachKubernetesConfigPtrType DefaultNodePoolBatchAttachKubernetesConfigArgs
 
-func (DefaultNodePoolBatchAttachKubernetesConfigArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DefaultNodePoolBatchAttachKubernetesConfig)(nil)).Elem()
+func DefaultNodePoolBatchAttachKubernetesConfigPtr(v *DefaultNodePoolBatchAttachKubernetesConfigArgs) DefaultNodePoolBatchAttachKubernetesConfigPtrInput {
+	return (*defaultNodePoolBatchAttachKubernetesConfigPtrType)(v)
 }
 
-func (i DefaultNodePoolBatchAttachKubernetesConfigArray) ToDefaultNodePoolBatchAttachKubernetesConfigArrayOutput() DefaultNodePoolBatchAttachKubernetesConfigArrayOutput {
-	return i.ToDefaultNodePoolBatchAttachKubernetesConfigArrayOutputWithContext(context.Background())
+func (*defaultNodePoolBatchAttachKubernetesConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DefaultNodePoolBatchAttachKubernetesConfig)(nil)).Elem()
 }
 
-func (i DefaultNodePoolBatchAttachKubernetesConfigArray) ToDefaultNodePoolBatchAttachKubernetesConfigArrayOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachKubernetesConfigArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolBatchAttachKubernetesConfigArrayOutput)
+func (i *defaultNodePoolBatchAttachKubernetesConfigPtrType) ToDefaultNodePoolBatchAttachKubernetesConfigPtrOutput() DefaultNodePoolBatchAttachKubernetesConfigPtrOutput {
+	return i.ToDefaultNodePoolBatchAttachKubernetesConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *defaultNodePoolBatchAttachKubernetesConfigPtrType) ToDefaultNodePoolBatchAttachKubernetesConfigPtrOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachKubernetesConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DefaultNodePoolBatchAttachKubernetesConfigPtrOutput)
 }
 
 type DefaultNodePoolBatchAttachKubernetesConfigOutput struct{ *pulumi.OutputState }
@@ -3916,6 +3953,16 @@ func (o DefaultNodePoolBatchAttachKubernetesConfigOutput) ToDefaultNodePoolBatch
 
 func (o DefaultNodePoolBatchAttachKubernetesConfigOutput) ToDefaultNodePoolBatchAttachKubernetesConfigOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachKubernetesConfigOutput {
 	return o
+}
+
+func (o DefaultNodePoolBatchAttachKubernetesConfigOutput) ToDefaultNodePoolBatchAttachKubernetesConfigPtrOutput() DefaultNodePoolBatchAttachKubernetesConfigPtrOutput {
+	return o.ToDefaultNodePoolBatchAttachKubernetesConfigPtrOutputWithContext(context.Background())
+}
+
+func (o DefaultNodePoolBatchAttachKubernetesConfigOutput) ToDefaultNodePoolBatchAttachKubernetesConfigPtrOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachKubernetesConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DefaultNodePoolBatchAttachKubernetesConfig) *DefaultNodePoolBatchAttachKubernetesConfig {
+		return &v
+	}).(DefaultNodePoolBatchAttachKubernetesConfigPtrOutput)
 }
 
 // The Cordon of KubernetesConfig.
@@ -3937,30 +3984,64 @@ func (o DefaultNodePoolBatchAttachKubernetesConfigOutput) Taints() DefaultNodePo
 	}).(DefaultNodePoolBatchAttachKubernetesConfigTaintArrayOutput)
 }
 
-type DefaultNodePoolBatchAttachKubernetesConfigArrayOutput struct{ *pulumi.OutputState }
+type DefaultNodePoolBatchAttachKubernetesConfigPtrOutput struct{ *pulumi.OutputState }
 
-func (DefaultNodePoolBatchAttachKubernetesConfigArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DefaultNodePoolBatchAttachKubernetesConfig)(nil)).Elem()
+func (DefaultNodePoolBatchAttachKubernetesConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DefaultNodePoolBatchAttachKubernetesConfig)(nil)).Elem()
 }
 
-func (o DefaultNodePoolBatchAttachKubernetesConfigArrayOutput) ToDefaultNodePoolBatchAttachKubernetesConfigArrayOutput() DefaultNodePoolBatchAttachKubernetesConfigArrayOutput {
+func (o DefaultNodePoolBatchAttachKubernetesConfigPtrOutput) ToDefaultNodePoolBatchAttachKubernetesConfigPtrOutput() DefaultNodePoolBatchAttachKubernetesConfigPtrOutput {
 	return o
 }
 
-func (o DefaultNodePoolBatchAttachKubernetesConfigArrayOutput) ToDefaultNodePoolBatchAttachKubernetesConfigArrayOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachKubernetesConfigArrayOutput {
+func (o DefaultNodePoolBatchAttachKubernetesConfigPtrOutput) ToDefaultNodePoolBatchAttachKubernetesConfigPtrOutputWithContext(ctx context.Context) DefaultNodePoolBatchAttachKubernetesConfigPtrOutput {
 	return o
 }
 
-func (o DefaultNodePoolBatchAttachKubernetesConfigArrayOutput) Index(i pulumi.IntInput) DefaultNodePoolBatchAttachKubernetesConfigOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DefaultNodePoolBatchAttachKubernetesConfig {
-		return vs[0].([]DefaultNodePoolBatchAttachKubernetesConfig)[vs[1].(int)]
+func (o DefaultNodePoolBatchAttachKubernetesConfigPtrOutput) Elem() DefaultNodePoolBatchAttachKubernetesConfigOutput {
+	return o.ApplyT(func(v *DefaultNodePoolBatchAttachKubernetesConfig) DefaultNodePoolBatchAttachKubernetesConfig {
+		if v != nil {
+			return *v
+		}
+		var ret DefaultNodePoolBatchAttachKubernetesConfig
+		return ret
 	}).(DefaultNodePoolBatchAttachKubernetesConfigOutput)
 }
 
+// The Cordon of KubernetesConfig.
+func (o DefaultNodePoolBatchAttachKubernetesConfigPtrOutput) Cordon() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *DefaultNodePoolBatchAttachKubernetesConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Cordon
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The Labels of KubernetesConfig.
+func (o DefaultNodePoolBatchAttachKubernetesConfigPtrOutput) Labels() DefaultNodePoolBatchAttachKubernetesConfigLabelArrayOutput {
+	return o.ApplyT(func(v *DefaultNodePoolBatchAttachKubernetesConfig) []DefaultNodePoolBatchAttachKubernetesConfigLabel {
+		if v == nil {
+			return nil
+		}
+		return v.Labels
+	}).(DefaultNodePoolBatchAttachKubernetesConfigLabelArrayOutput)
+}
+
+// The Taints of KubernetesConfig.
+func (o DefaultNodePoolBatchAttachKubernetesConfigPtrOutput) Taints() DefaultNodePoolBatchAttachKubernetesConfigTaintArrayOutput {
+	return o.ApplyT(func(v *DefaultNodePoolBatchAttachKubernetesConfig) []DefaultNodePoolBatchAttachKubernetesConfigTaint {
+		if v == nil {
+			return nil
+		}
+		return v.Taints
+	}).(DefaultNodePoolBatchAttachKubernetesConfigTaintArrayOutput)
+}
+
 type DefaultNodePoolBatchAttachKubernetesConfigLabel struct {
-	// The Key of Tags.
-	Key *string `pulumi:"key"`
-	// The Value of Tags.
+	// The Key of Labels.
+	Key string `pulumi:"key"`
+	// The Value of Labels.
 	Value *string `pulumi:"value"`
 }
 
@@ -3976,9 +4057,9 @@ type DefaultNodePoolBatchAttachKubernetesConfigLabelInput interface {
 }
 
 type DefaultNodePoolBatchAttachKubernetesConfigLabelArgs struct {
-	// The Key of Tags.
-	Key pulumi.StringPtrInput `pulumi:"key"`
-	// The Value of Tags.
+	// The Key of Labels.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Labels.
 	Value pulumi.StringPtrInput `pulumi:"value"`
 }
 
@@ -4033,12 +4114,12 @@ func (o DefaultNodePoolBatchAttachKubernetesConfigLabelOutput) ToDefaultNodePool
 	return o
 }
 
-// The Key of Tags.
-func (o DefaultNodePoolBatchAttachKubernetesConfigLabelOutput) Key() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DefaultNodePoolBatchAttachKubernetesConfigLabel) *string { return v.Key }).(pulumi.StringPtrOutput)
+// The Key of Labels.
+func (o DefaultNodePoolBatchAttachKubernetesConfigLabelOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v DefaultNodePoolBatchAttachKubernetesConfigLabel) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// The Value of Tags.
+// The Value of Labels.
 func (o DefaultNodePoolBatchAttachKubernetesConfigLabelOutput) Value() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DefaultNodePoolBatchAttachKubernetesConfigLabel) *string { return v.Value }).(pulumi.StringPtrOutput)
 }
@@ -4064,11 +4145,11 @@ func (o DefaultNodePoolBatchAttachKubernetesConfigLabelArrayOutput) Index(i pulu
 }
 
 type DefaultNodePoolBatchAttachKubernetesConfigTaint struct {
-	// The Effect of Taints.
+	// The Effect of Taints. The value can be one of the following: `NoSchedule`, `NoExecute`, `PreferNoSchedule`, default value is `NoSchedule`.
 	Effect *string `pulumi:"effect"`
-	// The Key of Tags.
-	Key *string `pulumi:"key"`
-	// The Value of Tags.
+	// The Key of Taints.
+	Key string `pulumi:"key"`
+	// The Value of Taints.
 	Value *string `pulumi:"value"`
 }
 
@@ -4084,11 +4165,11 @@ type DefaultNodePoolBatchAttachKubernetesConfigTaintInput interface {
 }
 
 type DefaultNodePoolBatchAttachKubernetesConfigTaintArgs struct {
-	// The Effect of Taints.
+	// The Effect of Taints. The value can be one of the following: `NoSchedule`, `NoExecute`, `PreferNoSchedule`, default value is `NoSchedule`.
 	Effect pulumi.StringPtrInput `pulumi:"effect"`
-	// The Key of Tags.
-	Key pulumi.StringPtrInput `pulumi:"key"`
-	// The Value of Tags.
+	// The Key of Taints.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Taints.
 	Value pulumi.StringPtrInput `pulumi:"value"`
 }
 
@@ -4143,17 +4224,17 @@ func (o DefaultNodePoolBatchAttachKubernetesConfigTaintOutput) ToDefaultNodePool
 	return o
 }
 
-// The Effect of Taints.
+// The Effect of Taints. The value can be one of the following: `NoSchedule`, `NoExecute`, `PreferNoSchedule`, default value is `NoSchedule`.
 func (o DefaultNodePoolBatchAttachKubernetesConfigTaintOutput) Effect() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DefaultNodePoolBatchAttachKubernetesConfigTaint) *string { return v.Effect }).(pulumi.StringPtrOutput)
 }
 
-// The Key of Tags.
-func (o DefaultNodePoolBatchAttachKubernetesConfigTaintOutput) Key() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v DefaultNodePoolBatchAttachKubernetesConfigTaint) *string { return v.Key }).(pulumi.StringPtrOutput)
+// The Key of Taints.
+func (o DefaultNodePoolBatchAttachKubernetesConfigTaintOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v DefaultNodePoolBatchAttachKubernetesConfigTaint) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// The Value of Tags.
+// The Value of Taints.
 func (o DefaultNodePoolBatchAttachKubernetesConfigTaintOutput) Value() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DefaultNodePoolBatchAttachKubernetesConfigTaint) *string { return v.Value }).(pulumi.StringPtrOutput)
 }
@@ -4307,9 +4388,9 @@ func (o DefaultNodePoolBatchAttachNodeConfigArrayOutput) Index(i pulumi.IntInput
 }
 
 type DefaultNodePoolBatchAttachNodeConfigEcsTag struct {
-	// The Key of Tags.
+	// The Key of Labels.
 	Key *string `pulumi:"key"`
-	// The Value of Tags.
+	// The Value of Labels.
 	Value *string `pulumi:"value"`
 }
 
@@ -4325,9 +4406,9 @@ type DefaultNodePoolBatchAttachNodeConfigEcsTagInput interface {
 }
 
 type DefaultNodePoolBatchAttachNodeConfigEcsTagArgs struct {
-	// The Key of Tags.
+	// The Key of Labels.
 	Key pulumi.StringPtrInput `pulumi:"key"`
-	// The Value of Tags.
+	// The Value of Labels.
 	Value pulumi.StringPtrInput `pulumi:"value"`
 }
 
@@ -4382,12 +4463,12 @@ func (o DefaultNodePoolBatchAttachNodeConfigEcsTagOutput) ToDefaultNodePoolBatch
 	return o
 }
 
-// The Key of Tags.
+// The Key of Labels.
 func (o DefaultNodePoolBatchAttachNodeConfigEcsTagOutput) Key() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DefaultNodePoolBatchAttachNodeConfigEcsTag) *string { return v.Key }).(pulumi.StringPtrOutput)
 }
 
-// The Value of Tags.
+// The Value of Labels.
 func (o DefaultNodePoolBatchAttachNodeConfigEcsTagOutput) Value() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DefaultNodePoolBatchAttachNodeConfigEcsTag) *string { return v.Value }).(pulumi.StringPtrOutput)
 }
@@ -4636,9 +4717,9 @@ func (o DefaultNodePoolBatchAttachNodeConfigSecurityLoginArrayOutput) Index(i pu
 }
 
 type DefaultNodePoolBatchAttachTag struct {
-	// The Key of Tags.
+	// The Key of Labels.
 	Key *string `pulumi:"key"`
-	// The Value of Tags.
+	// The Value of Labels.
 	Value *string `pulumi:"value"`
 }
 
@@ -4654,9 +4735,9 @@ type DefaultNodePoolBatchAttachTagInput interface {
 }
 
 type DefaultNodePoolBatchAttachTagArgs struct {
-	// The Key of Tags.
+	// The Key of Labels.
 	Key pulumi.StringPtrInput `pulumi:"key"`
-	// The Value of Tags.
+	// The Value of Labels.
 	Value pulumi.StringPtrInput `pulumi:"value"`
 }
 
@@ -4711,12 +4792,12 @@ func (o DefaultNodePoolBatchAttachTagOutput) ToDefaultNodePoolBatchAttachTagOutp
 	return o
 }
 
-// The Key of Tags.
+// The Key of Labels.
 func (o DefaultNodePoolBatchAttachTagOutput) Key() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DefaultNodePoolBatchAttachTag) *string { return v.Key }).(pulumi.StringPtrOutput)
 }
 
-// The Value of Tags.
+// The Value of Labels.
 func (o DefaultNodePoolBatchAttachTagOutput) Value() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DefaultNodePoolBatchAttachTag) *string { return v.Value }).(pulumi.StringPtrOutput)
 }
@@ -10828,7 +10909,7 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolBatchAttachInstanceInput)(nil)).Elem(), DefaultNodePoolBatchAttachInstanceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolBatchAttachInstanceArrayInput)(nil)).Elem(), DefaultNodePoolBatchAttachInstanceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolBatchAttachKubernetesConfigInput)(nil)).Elem(), DefaultNodePoolBatchAttachKubernetesConfigArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolBatchAttachKubernetesConfigArrayInput)(nil)).Elem(), DefaultNodePoolBatchAttachKubernetesConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolBatchAttachKubernetesConfigPtrInput)(nil)).Elem(), DefaultNodePoolBatchAttachKubernetesConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolBatchAttachKubernetesConfigLabelInput)(nil)).Elem(), DefaultNodePoolBatchAttachKubernetesConfigLabelArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolBatchAttachKubernetesConfigLabelArrayInput)(nil)).Elem(), DefaultNodePoolBatchAttachKubernetesConfigLabelArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DefaultNodePoolBatchAttachKubernetesConfigTaintInput)(nil)).Elem(), DefaultNodePoolBatchAttachKubernetesConfigTaintArgs{})
@@ -10979,7 +11060,7 @@ func init() {
 	pulumi.RegisterOutputType(DefaultNodePoolBatchAttachInstanceOutput{})
 	pulumi.RegisterOutputType(DefaultNodePoolBatchAttachInstanceArrayOutput{})
 	pulumi.RegisterOutputType(DefaultNodePoolBatchAttachKubernetesConfigOutput{})
-	pulumi.RegisterOutputType(DefaultNodePoolBatchAttachKubernetesConfigArrayOutput{})
+	pulumi.RegisterOutputType(DefaultNodePoolBatchAttachKubernetesConfigPtrOutput{})
 	pulumi.RegisterOutputType(DefaultNodePoolBatchAttachKubernetesConfigLabelOutput{})
 	pulumi.RegisterOutputType(DefaultNodePoolBatchAttachKubernetesConfigLabelArrayOutput{})
 	pulumi.RegisterOutputType(DefaultNodePoolBatchAttachKubernetesConfigTaintOutput{})

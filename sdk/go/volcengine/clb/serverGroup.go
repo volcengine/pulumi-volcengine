@@ -19,17 +19,56 @@ import (
 //
 // import (
 //
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/clb"
+//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/clb"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := clb.NewServerGroup(ctx, "foo", &clb.ServerGroupArgs{
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooClb, err := clb.NewClb(ctx, "fooClb", &clb.ClbArgs{
+//				Type:             pulumi.String("public"),
+//				SubnetId:         fooSubnet.ID(),
+//				LoadBalancerSpec: pulumi.String("small_1"),
+//				Description:      pulumi.String("acc0Demo"),
+//				LoadBalancerName: pulumi.String("acc-test-create"),
+//				EipBillingConfig: &clb.ClbEipBillingConfigArgs{
+//					Isp:            pulumi.String("BGP"),
+//					EipBillingType: pulumi.String("PostPaidByBandwidth"),
+//					Bandwidth:      pulumi.Int(1),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = clb.NewServerGroup(ctx, "fooServerGroup", &clb.ServerGroupArgs{
+//				LoadBalancerId:  fooClb.ID(),
+//				ServerGroupName: pulumi.String("acc-test-create"),
 //				Description:     pulumi.String("hello demo11"),
-//				LoadBalancerId:  pulumi.String("clb-273z7d4r8tvk07fap8tsniyfe"),
-//				ServerGroupName: pulumi.String("demo-demo11"),
 //			})
 //			if err != nil {
 //				return err

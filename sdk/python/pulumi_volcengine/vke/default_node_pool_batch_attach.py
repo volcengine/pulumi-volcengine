@@ -17,17 +17,21 @@ class DefaultNodePoolBatchAttachArgs:
     def __init__(__self__, *,
                  cluster_id: pulumi.Input[str],
                  default_node_pool_id: pulumi.Input[str],
-                 instances: Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachInstanceArgs']]]] = None):
+                 instances: Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachInstanceArgs']]]] = None,
+                 kubernetes_config: Optional[pulumi.Input['DefaultNodePoolBatchAttachKubernetesConfigArgs']] = None):
         """
         The set of arguments for constructing a DefaultNodePoolBatchAttach resource.
         :param pulumi.Input[str] cluster_id: The ClusterId of NodePool.
         :param pulumi.Input[str] default_node_pool_id: The default NodePool ID.
         :param pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachInstanceArgs']]] instances: The ECS InstanceIds add to NodePool.
+        :param pulumi.Input['DefaultNodePoolBatchAttachKubernetesConfigArgs'] kubernetes_config: The KubernetesConfig of NodeConfig. Please note that this field is the configuration of the node. The same key is subject to the config of the node pool. Different keys take effect together.
         """
         pulumi.set(__self__, "cluster_id", cluster_id)
         pulumi.set(__self__, "default_node_pool_id", default_node_pool_id)
         if instances is not None:
             pulumi.set(__self__, "instances", instances)
+        if kubernetes_config is not None:
+            pulumi.set(__self__, "kubernetes_config", kubernetes_config)
 
     @property
     @pulumi.getter(name="clusterId")
@@ -65,6 +69,18 @@ class DefaultNodePoolBatchAttachArgs:
     def instances(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachInstanceArgs']]]]):
         pulumi.set(self, "instances", value)
 
+    @property
+    @pulumi.getter(name="kubernetesConfig")
+    def kubernetes_config(self) -> Optional[pulumi.Input['DefaultNodePoolBatchAttachKubernetesConfigArgs']]:
+        """
+        The KubernetesConfig of NodeConfig. Please note that this field is the configuration of the node. The same key is subject to the config of the node pool. Different keys take effect together.
+        """
+        return pulumi.get(self, "kubernetes_config")
+
+    @kubernetes_config.setter
+    def kubernetes_config(self, value: Optional[pulumi.Input['DefaultNodePoolBatchAttachKubernetesConfigArgs']]):
+        pulumi.set(self, "kubernetes_config", value)
+
 
 @pulumi.input_type
 class _DefaultNodePoolBatchAttachState:
@@ -73,7 +89,7 @@ class _DefaultNodePoolBatchAttachState:
                  default_node_pool_id: Optional[pulumi.Input[str]] = None,
                  instances: Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachInstanceArgs']]]] = None,
                  is_import: Optional[pulumi.Input[bool]] = None,
-                 kubernetes_configs: Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachKubernetesConfigArgs']]]] = None,
+                 kubernetes_config: Optional[pulumi.Input['DefaultNodePoolBatchAttachKubernetesConfigArgs']] = None,
                  node_configs: Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachNodeConfigArgs']]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachTagArgs']]]] = None):
         """
@@ -82,7 +98,7 @@ class _DefaultNodePoolBatchAttachState:
         :param pulumi.Input[str] default_node_pool_id: The default NodePool ID.
         :param pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachInstanceArgs']]] instances: The ECS InstanceIds add to NodePool.
         :param pulumi.Input[bool] is_import: Is import of the DefaultNodePool. It only works when imported, set to true.
-        :param pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachKubernetesConfigArgs']]] kubernetes_configs: The KubernetesConfig of NodeConfig.
+        :param pulumi.Input['DefaultNodePoolBatchAttachKubernetesConfigArgs'] kubernetes_config: The KubernetesConfig of NodeConfig. Please note that this field is the configuration of the node. The same key is subject to the config of the node pool. Different keys take effect together.
         :param pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachNodeConfigArgs']]] node_configs: The Config of NodePool.
         :param pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachTagArgs']]] tags: Tags.
         """
@@ -94,8 +110,8 @@ class _DefaultNodePoolBatchAttachState:
             pulumi.set(__self__, "instances", instances)
         if is_import is not None:
             pulumi.set(__self__, "is_import", is_import)
-        if kubernetes_configs is not None:
-            pulumi.set(__self__, "kubernetes_configs", kubernetes_configs)
+        if kubernetes_config is not None:
+            pulumi.set(__self__, "kubernetes_config", kubernetes_config)
         if node_configs is not None:
             pulumi.set(__self__, "node_configs", node_configs)
         if tags is not None:
@@ -150,16 +166,16 @@ class _DefaultNodePoolBatchAttachState:
         pulumi.set(self, "is_import", value)
 
     @property
-    @pulumi.getter(name="kubernetesConfigs")
-    def kubernetes_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachKubernetesConfigArgs']]]]:
+    @pulumi.getter(name="kubernetesConfig")
+    def kubernetes_config(self) -> Optional[pulumi.Input['DefaultNodePoolBatchAttachKubernetesConfigArgs']]:
         """
-        The KubernetesConfig of NodeConfig.
+        The KubernetesConfig of NodeConfig. Please note that this field is the configuration of the node. The same key is subject to the config of the node pool. Different keys take effect together.
         """
-        return pulumi.get(self, "kubernetes_configs")
+        return pulumi.get(self, "kubernetes_config")
 
-    @kubernetes_configs.setter
-    def kubernetes_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolBatchAttachKubernetesConfigArgs']]]]):
-        pulumi.set(self, "kubernetes_configs", value)
+    @kubernetes_config.setter
+    def kubernetes_config(self, value: Optional[pulumi.Input['DefaultNodePoolBatchAttachKubernetesConfigArgs']]):
+        pulumi.set(self, "kubernetes_config", value)
 
     @property
     @pulumi.getter(name="nodeConfigs")
@@ -194,6 +210,7 @@ class DefaultNodePoolBatchAttach(pulumi.CustomResource):
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  default_node_pool_id: Optional[pulumi.Input[str]] = None,
                  instances: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DefaultNodePoolBatchAttachInstanceArgs']]]]] = None,
+                 kubernetes_config: Optional[pulumi.Input[pulumi.InputType['DefaultNodePoolBatchAttachKubernetesConfigArgs']]] = None,
                  __props__=None):
         """
         Provides a resource to manage vke default node pool batch attach
@@ -203,22 +220,128 @@ class DefaultNodePoolBatchAttach(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        default = volcengine.vke.DefaultNodePoolBatchAttach("default",
-            cluster_id="ccc2umdnqtoflv91lqtq0",
-            default_node_pool_id="11111",
-            instances=[
-                volcengine.vke.DefaultNodePoolBatchAttachInstanceArgs(
-                    additional_container_storage_enabled=False,
-                    instance_id="i-ybvza90ohwexzk8emaa3",
-                    keep_instance_name=False,
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-project1",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-subnet-test-2",
+            cidr_block="172.16.0.0/24",
+            zone_id="cn-beijing-a",
+            vpc_id=foo_vpc.id)
+        foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+            vpc_id=foo_vpc.id,
+            security_group_name="acc-test-security-group2")
+        foo_instance = volcengine.ecs.Instance("fooInstance",
+            image_id="image-ybqi99s7yq8rx7mnk44b",
+            instance_type="ecs.g1ie.large",
+            instance_name="acc-test-ecs-name2",
+            password="93f0cb0614Aab12",
+            instance_charge_type="PostPaid",
+            system_volume_type="ESSD_PL0",
+            system_volume_size=40,
+            subnet_id=foo_subnet.id,
+            security_group_ids=[foo_security_group.id])
+        foo_cluster = volcengine.vke.Cluster("fooCluster",
+            description="created by terraform",
+            delete_protection_enabled=False,
+            cluster_config=volcengine.vke.ClusterClusterConfigArgs(
+                subnet_ids=[foo_subnet.id],
+                api_server_public_access_enabled=True,
+                api_server_public_access_config=volcengine.vke.ClusterClusterConfigApiServerPublicAccessConfigArgs(
+                    public_access_network_config=volcengine.vke.ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs(
+                        billing_type="PostPaidByBandwidth",
+                        bandwidth=1,
+                    ),
                 ),
-                volcengine.vke.DefaultNodePoolBatchAttachInstanceArgs(
-                    additional_container_storage_enabled=True,
-                    container_storage_path="/",
-                    instance_id="i-ybvza90ohxexzkm4zihf",
-                    keep_instance_name=False,
+                resource_public_access_default_enabled=True,
+            ),
+            pods_config=volcengine.vke.ClusterPodsConfigArgs(
+                pod_network_mode="VpcCniShared",
+                vpc_cni_config=volcengine.vke.ClusterPodsConfigVpcCniConfigArgs(
+                    subnet_ids=[foo_subnet.id],
                 ),
-            ])
+            ),
+            services_config=volcengine.vke.ClusterServicesConfigArgs(
+                service_cidrsv4s=["172.30.0.0/18"],
+            ),
+            tags=[volcengine.vke.ClusterTagArgs(
+                key="tf-k1",
+                value="tf-v1",
+            )])
+        default_default_node_pool = volcengine.vke.DefaultNodePool("defaultDefaultNodePool",
+            cluster_id=foo_cluster.id,
+            node_config=volcengine.vke.DefaultNodePoolNodeConfigArgs(
+                security=volcengine.vke.DefaultNodePoolNodeConfigSecurityArgs(
+                    login=volcengine.vke.DefaultNodePoolNodeConfigSecurityLoginArgs(
+                        password="amw4WTdVcTRJVVFsUXpVTw==",
+                    ),
+                    security_group_ids=[foo_security_group.id],
+                    security_strategies=["Hids"],
+                ),
+                initialize_script="ISMvYmluL2Jhc2gKZWNobyAx",
+            ),
+            kubernetes_config=volcengine.vke.DefaultNodePoolKubernetesConfigArgs(
+                labels=[
+                    volcengine.vke.DefaultNodePoolKubernetesConfigLabelArgs(
+                        key="tf-key1",
+                        value="tf-value1",
+                    ),
+                    volcengine.vke.DefaultNodePoolKubernetesConfigLabelArgs(
+                        key="tf-key2",
+                        value="tf-value2",
+                    ),
+                ],
+                taints=[
+                    volcengine.vke.DefaultNodePoolKubernetesConfigTaintArgs(
+                        key="tf-key3",
+                        value="tf-value3",
+                        effect="NoSchedule",
+                    ),
+                    volcengine.vke.DefaultNodePoolKubernetesConfigTaintArgs(
+                        key="tf-key4",
+                        value="tf-value4",
+                        effect="NoSchedule",
+                    ),
+                ],
+                cordon=True,
+            ),
+            tags=[volcengine.vke.DefaultNodePoolTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        default_default_node_pool_batch_attach = volcengine.vke.DefaultNodePoolBatchAttach("defaultDefaultNodePoolBatchAttach",
+            cluster_id=foo_cluster.id,
+            default_node_pool_id=default_default_node_pool.id,
+            instances=[volcengine.vke.DefaultNodePoolBatchAttachInstanceArgs(
+                instance_id=foo_instance.id,
+                keep_instance_name=True,
+                additional_container_storage_enabled=False,
+            )],
+            kubernetes_config=volcengine.vke.DefaultNodePoolBatchAttachKubernetesConfigArgs(
+                labels=[
+                    volcengine.vke.DefaultNodePoolBatchAttachKubernetesConfigLabelArgs(
+                        key="tf-key1",
+                        value="tf-value1",
+                    ),
+                    volcengine.vke.DefaultNodePoolBatchAttachKubernetesConfigLabelArgs(
+                        key="tf-key2",
+                        value="tf-value2",
+                    ),
+                ],
+                taints=[
+                    volcengine.vke.DefaultNodePoolBatchAttachKubernetesConfigTaintArgs(
+                        key="tf-key3",
+                        value="tf-value3",
+                        effect="NoSchedule",
+                    ),
+                    volcengine.vke.DefaultNodePoolBatchAttachKubernetesConfigTaintArgs(
+                        key="tf-key4",
+                        value="tf-value4",
+                        effect="NoSchedule",
+                    ),
+                ],
+                cordon=True,
+            ))
         ```
 
         :param str resource_name: The name of the resource.
@@ -226,6 +349,7 @@ class DefaultNodePoolBatchAttach(pulumi.CustomResource):
         :param pulumi.Input[str] cluster_id: The ClusterId of NodePool.
         :param pulumi.Input[str] default_node_pool_id: The default NodePool ID.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DefaultNodePoolBatchAttachInstanceArgs']]]] instances: The ECS InstanceIds add to NodePool.
+        :param pulumi.Input[pulumi.InputType['DefaultNodePoolBatchAttachKubernetesConfigArgs']] kubernetes_config: The KubernetesConfig of NodeConfig. Please note that this field is the configuration of the node. The same key is subject to the config of the node pool. Different keys take effect together.
         """
         ...
     @overload
@@ -241,22 +365,128 @@ class DefaultNodePoolBatchAttach(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        default = volcengine.vke.DefaultNodePoolBatchAttach("default",
-            cluster_id="ccc2umdnqtoflv91lqtq0",
-            default_node_pool_id="11111",
-            instances=[
-                volcengine.vke.DefaultNodePoolBatchAttachInstanceArgs(
-                    additional_container_storage_enabled=False,
-                    instance_id="i-ybvza90ohwexzk8emaa3",
-                    keep_instance_name=False,
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-project1",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-subnet-test-2",
+            cidr_block="172.16.0.0/24",
+            zone_id="cn-beijing-a",
+            vpc_id=foo_vpc.id)
+        foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+            vpc_id=foo_vpc.id,
+            security_group_name="acc-test-security-group2")
+        foo_instance = volcengine.ecs.Instance("fooInstance",
+            image_id="image-ybqi99s7yq8rx7mnk44b",
+            instance_type="ecs.g1ie.large",
+            instance_name="acc-test-ecs-name2",
+            password="93f0cb0614Aab12",
+            instance_charge_type="PostPaid",
+            system_volume_type="ESSD_PL0",
+            system_volume_size=40,
+            subnet_id=foo_subnet.id,
+            security_group_ids=[foo_security_group.id])
+        foo_cluster = volcengine.vke.Cluster("fooCluster",
+            description="created by terraform",
+            delete_protection_enabled=False,
+            cluster_config=volcengine.vke.ClusterClusterConfigArgs(
+                subnet_ids=[foo_subnet.id],
+                api_server_public_access_enabled=True,
+                api_server_public_access_config=volcengine.vke.ClusterClusterConfigApiServerPublicAccessConfigArgs(
+                    public_access_network_config=volcengine.vke.ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs(
+                        billing_type="PostPaidByBandwidth",
+                        bandwidth=1,
+                    ),
                 ),
-                volcengine.vke.DefaultNodePoolBatchAttachInstanceArgs(
-                    additional_container_storage_enabled=True,
-                    container_storage_path="/",
-                    instance_id="i-ybvza90ohxexzkm4zihf",
-                    keep_instance_name=False,
+                resource_public_access_default_enabled=True,
+            ),
+            pods_config=volcengine.vke.ClusterPodsConfigArgs(
+                pod_network_mode="VpcCniShared",
+                vpc_cni_config=volcengine.vke.ClusterPodsConfigVpcCniConfigArgs(
+                    subnet_ids=[foo_subnet.id],
                 ),
-            ])
+            ),
+            services_config=volcengine.vke.ClusterServicesConfigArgs(
+                service_cidrsv4s=["172.30.0.0/18"],
+            ),
+            tags=[volcengine.vke.ClusterTagArgs(
+                key="tf-k1",
+                value="tf-v1",
+            )])
+        default_default_node_pool = volcengine.vke.DefaultNodePool("defaultDefaultNodePool",
+            cluster_id=foo_cluster.id,
+            node_config=volcengine.vke.DefaultNodePoolNodeConfigArgs(
+                security=volcengine.vke.DefaultNodePoolNodeConfigSecurityArgs(
+                    login=volcengine.vke.DefaultNodePoolNodeConfigSecurityLoginArgs(
+                        password="amw4WTdVcTRJVVFsUXpVTw==",
+                    ),
+                    security_group_ids=[foo_security_group.id],
+                    security_strategies=["Hids"],
+                ),
+                initialize_script="ISMvYmluL2Jhc2gKZWNobyAx",
+            ),
+            kubernetes_config=volcengine.vke.DefaultNodePoolKubernetesConfigArgs(
+                labels=[
+                    volcengine.vke.DefaultNodePoolKubernetesConfigLabelArgs(
+                        key="tf-key1",
+                        value="tf-value1",
+                    ),
+                    volcengine.vke.DefaultNodePoolKubernetesConfigLabelArgs(
+                        key="tf-key2",
+                        value="tf-value2",
+                    ),
+                ],
+                taints=[
+                    volcengine.vke.DefaultNodePoolKubernetesConfigTaintArgs(
+                        key="tf-key3",
+                        value="tf-value3",
+                        effect="NoSchedule",
+                    ),
+                    volcengine.vke.DefaultNodePoolKubernetesConfigTaintArgs(
+                        key="tf-key4",
+                        value="tf-value4",
+                        effect="NoSchedule",
+                    ),
+                ],
+                cordon=True,
+            ),
+            tags=[volcengine.vke.DefaultNodePoolTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        default_default_node_pool_batch_attach = volcengine.vke.DefaultNodePoolBatchAttach("defaultDefaultNodePoolBatchAttach",
+            cluster_id=foo_cluster.id,
+            default_node_pool_id=default_default_node_pool.id,
+            instances=[volcengine.vke.DefaultNodePoolBatchAttachInstanceArgs(
+                instance_id=foo_instance.id,
+                keep_instance_name=True,
+                additional_container_storage_enabled=False,
+            )],
+            kubernetes_config=volcengine.vke.DefaultNodePoolBatchAttachKubernetesConfigArgs(
+                labels=[
+                    volcengine.vke.DefaultNodePoolBatchAttachKubernetesConfigLabelArgs(
+                        key="tf-key1",
+                        value="tf-value1",
+                    ),
+                    volcengine.vke.DefaultNodePoolBatchAttachKubernetesConfigLabelArgs(
+                        key="tf-key2",
+                        value="tf-value2",
+                    ),
+                ],
+                taints=[
+                    volcengine.vke.DefaultNodePoolBatchAttachKubernetesConfigTaintArgs(
+                        key="tf-key3",
+                        value="tf-value3",
+                        effect="NoSchedule",
+                    ),
+                    volcengine.vke.DefaultNodePoolBatchAttachKubernetesConfigTaintArgs(
+                        key="tf-key4",
+                        value="tf-value4",
+                        effect="NoSchedule",
+                    ),
+                ],
+                cordon=True,
+            ))
         ```
 
         :param str resource_name: The name of the resource.
@@ -277,6 +507,7 @@ class DefaultNodePoolBatchAttach(pulumi.CustomResource):
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  default_node_pool_id: Optional[pulumi.Input[str]] = None,
                  instances: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DefaultNodePoolBatchAttachInstanceArgs']]]]] = None,
+                 kubernetes_config: Optional[pulumi.Input[pulumi.InputType['DefaultNodePoolBatchAttachKubernetesConfigArgs']]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -298,8 +529,8 @@ class DefaultNodePoolBatchAttach(pulumi.CustomResource):
                 raise TypeError("Missing required property 'default_node_pool_id'")
             __props__.__dict__["default_node_pool_id"] = default_node_pool_id
             __props__.__dict__["instances"] = instances
+            __props__.__dict__["kubernetes_config"] = kubernetes_config
             __props__.__dict__["is_import"] = None
-            __props__.__dict__["kubernetes_configs"] = None
             __props__.__dict__["node_configs"] = None
             __props__.__dict__["tags"] = None
         super(DefaultNodePoolBatchAttach, __self__).__init__(
@@ -316,7 +547,7 @@ class DefaultNodePoolBatchAttach(pulumi.CustomResource):
             default_node_pool_id: Optional[pulumi.Input[str]] = None,
             instances: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DefaultNodePoolBatchAttachInstanceArgs']]]]] = None,
             is_import: Optional[pulumi.Input[bool]] = None,
-            kubernetes_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DefaultNodePoolBatchAttachKubernetesConfigArgs']]]]] = None,
+            kubernetes_config: Optional[pulumi.Input[pulumi.InputType['DefaultNodePoolBatchAttachKubernetesConfigArgs']]] = None,
             node_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DefaultNodePoolBatchAttachNodeConfigArgs']]]]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DefaultNodePoolBatchAttachTagArgs']]]]] = None) -> 'DefaultNodePoolBatchAttach':
         """
@@ -330,7 +561,7 @@ class DefaultNodePoolBatchAttach(pulumi.CustomResource):
         :param pulumi.Input[str] default_node_pool_id: The default NodePool ID.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DefaultNodePoolBatchAttachInstanceArgs']]]] instances: The ECS InstanceIds add to NodePool.
         :param pulumi.Input[bool] is_import: Is import of the DefaultNodePool. It only works when imported, set to true.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DefaultNodePoolBatchAttachKubernetesConfigArgs']]]] kubernetes_configs: The KubernetesConfig of NodeConfig.
+        :param pulumi.Input[pulumi.InputType['DefaultNodePoolBatchAttachKubernetesConfigArgs']] kubernetes_config: The KubernetesConfig of NodeConfig. Please note that this field is the configuration of the node. The same key is subject to the config of the node pool. Different keys take effect together.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DefaultNodePoolBatchAttachNodeConfigArgs']]]] node_configs: The Config of NodePool.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DefaultNodePoolBatchAttachTagArgs']]]] tags: Tags.
         """
@@ -342,7 +573,7 @@ class DefaultNodePoolBatchAttach(pulumi.CustomResource):
         __props__.__dict__["default_node_pool_id"] = default_node_pool_id
         __props__.__dict__["instances"] = instances
         __props__.__dict__["is_import"] = is_import
-        __props__.__dict__["kubernetes_configs"] = kubernetes_configs
+        __props__.__dict__["kubernetes_config"] = kubernetes_config
         __props__.__dict__["node_configs"] = node_configs
         __props__.__dict__["tags"] = tags
         return DefaultNodePoolBatchAttach(resource_name, opts=opts, __props__=__props__)
@@ -380,12 +611,12 @@ class DefaultNodePoolBatchAttach(pulumi.CustomResource):
         return pulumi.get(self, "is_import")
 
     @property
-    @pulumi.getter(name="kubernetesConfigs")
-    def kubernetes_configs(self) -> pulumi.Output[Sequence['outputs.DefaultNodePoolBatchAttachKubernetesConfig']]:
+    @pulumi.getter(name="kubernetesConfig")
+    def kubernetes_config(self) -> pulumi.Output[Optional['outputs.DefaultNodePoolBatchAttachKubernetesConfig']]:
         """
-        The KubernetesConfig of NodeConfig.
+        The KubernetesConfig of NodeConfig. Please note that this field is the configuration of the node. The same key is subject to the config of the node pool. Different keys take effect together.
         """
-        return pulumi.get(self, "kubernetes_configs")
+        return pulumi.get(self, "kubernetes_config")
 
     @property
     @pulumi.getter(name="nodeConfigs")

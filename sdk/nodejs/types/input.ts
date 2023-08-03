@@ -1984,6 +1984,7 @@ export namespace vke {
          * Cluster API Server public network access configuration, the value is `true` or `false`.
          */
         apiServerPublicAccessEnabled?: pulumi.Input<boolean>;
+        ipFamily?: pulumi.Input<string>;
         /**
          * Node public network access configuration, the value is `true` or `false`.
          */
@@ -2182,26 +2183,26 @@ export namespace vke {
 
     export interface DefaultNodePoolBatchAttachKubernetesConfigLabel {
         /**
-         * The Key of Tags.
+         * The Key of Labels.
          */
-        key?: pulumi.Input<string>;
+        key: pulumi.Input<string>;
         /**
-         * The Value of Tags.
+         * The Value of Labels.
          */
         value?: pulumi.Input<string>;
     }
 
     export interface DefaultNodePoolBatchAttachKubernetesConfigTaint {
         /**
-         * The Effect of Taints.
+         * The Effect of Taints. The value can be one of the following: `NoSchedule`, `NoExecute`, `PreferNoSchedule`, default value is `NoSchedule`.
          */
         effect?: pulumi.Input<string>;
         /**
-         * The Key of Tags.
+         * The Key of Taints.
          */
-        key?: pulumi.Input<string>;
+        key: pulumi.Input<string>;
         /**
-         * The Value of Tags.
+         * The Value of Taints.
          */
         value?: pulumi.Input<string>;
     }
@@ -2227,11 +2228,11 @@ export namespace vke {
 
     export interface DefaultNodePoolBatchAttachNodeConfigEcsTag {
         /**
-         * The Key of Tags.
+         * The Key of Labels.
          */
         key?: pulumi.Input<string>;
         /**
-         * The Value of Tags.
+         * The Value of Labels.
          */
         value?: pulumi.Input<string>;
     }
@@ -2264,11 +2265,11 @@ export namespace vke {
 
     export interface DefaultNodePoolBatchAttachTag {
         /**
-         * The Key of Tags.
+         * The Key of Labels.
          */
         key?: pulumi.Input<string>;
         /**
-         * The Value of Tags.
+         * The Value of Labels.
          */
         value?: pulumi.Input<string>;
     }
