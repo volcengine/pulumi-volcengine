@@ -42,17 +42,17 @@ To use from Go, use `go get` to grab the latest version of the library:
 go get github.com/volcengine/pulumi-volcengine/sdk/go/...
 ```
 
-[//]: # (### .NET)
+### .NET
 
-[//]: # ()
-[//]: # (To use from .NET, install using `dotnet add package`:)
 
-[//]: # ()
-[//]: # (```bash)
+To use from .NET, install using `dotnet add package`:
 
-[//]: # (dotnet add package Pulumi.Volcengine)
 
-[//]: # (```)
+```bash
+
+dotnet add package Volcengine.Pulumi.Volcengine
+
+```
 
 ## Configuration
 
