@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
+namespace Volcengine.Pulumi.Volcengine.Vke.Inputs
 {
 
-    public sealed class DefaultNodePoolNodeConfigSecurityLoginGetArgs : Pulumi.ResourceArgs
+    public sealed class DefaultNodePoolNodeConfigSecurityLoginGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Password of Security.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
         public DefaultNodePoolNodeConfigSecurityLoginGetArgs()
         {
         }
+        public static new DefaultNodePoolNodeConfigSecurityLoginGetArgs Empty => new DefaultNodePoolNodeConfigSecurityLoginGetArgs();
     }
 }

@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Bioos.Inputs
+namespace Volcengine.Pulumi.Volcengine.Bioos.Inputs
 {
 
-    public sealed class ClusterVkeConfigArgs : Pulumi.ResourceArgs
+    public sealed class ClusterVkeConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of the vke cluster.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Bioos.Inputs
         public ClusterVkeConfigArgs()
         {
         }
+        public static new ClusterVkeConfigArgs Empty => new ClusterVkeConfigArgs();
     }
 }

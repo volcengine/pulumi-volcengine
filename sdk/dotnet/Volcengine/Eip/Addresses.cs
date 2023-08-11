@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Eip
+namespace Volcengine.Pulumi.Volcengine.Eip
 {
     public static class Addresses
     {
@@ -19,34 +19,34 @@ namespace Volcengine.PulumiPackage.Volcengine.Eip
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
-        /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var fooAddress = new Volcengine.Eip.Address("fooAddress", new()
         ///     {
-        ///         var fooAddress = new Volcengine.Eip.Address("fooAddress", new Volcengine.Eip.AddressArgs
-        ///         {
-        ///             BillingType = "PostPaidByTraffic",
-        ///         });
-        ///         var fooAddresses = Volcengine.Eip.Addresses.Invoke(new Volcengine.Eip.AddressesInvokeArgs
-        ///         {
-        ///             Ids = 
-        ///             {
-        ///                 fooAddress.Id,
-        ///             },
-        ///         });
-        ///     }
+        ///         BillingType = "PostPaidByTraffic",
+        ///     });
         /// 
-        /// }
+        ///     var fooAddresses = Volcengine.Eip.Addresses.Invoke(new()
+        ///     {
+        ///         Ids = new[]
+        ///         {
+        ///             fooAddress.Id,
+        ///         },
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<AddressesResult> InvokeAsync(AddressesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<AddressesResult>("volcengine:eip/addresses:Addresses", args ?? new AddressesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<AddressesResult>("volcengine:eip/addresses:Addresses", args ?? new AddressesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of eip addresses
@@ -55,38 +55,38 @@ namespace Volcengine.PulumiPackage.Volcengine.Eip
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
-        /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var fooAddress = new Volcengine.Eip.Address("fooAddress", new()
         ///     {
-        ///         var fooAddress = new Volcengine.Eip.Address("fooAddress", new Volcengine.Eip.AddressArgs
-        ///         {
-        ///             BillingType = "PostPaidByTraffic",
-        ///         });
-        ///         var fooAddresses = Volcengine.Eip.Addresses.Invoke(new Volcengine.Eip.AddressesInvokeArgs
-        ///         {
-        ///             Ids = 
-        ///             {
-        ///                 fooAddress.Id,
-        ///             },
-        ///         });
-        ///     }
+        ///         BillingType = "PostPaidByTraffic",
+        ///     });
         /// 
-        /// }
+        ///     var fooAddresses = Volcengine.Eip.Addresses.Invoke(new()
+        ///     {
+        ///         Ids = new[]
+        ///         {
+        ///             fooAddress.Id,
+        ///         },
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<AddressesResult> Invoke(AddressesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<AddressesResult>("volcengine:eip/addresses:Addresses", args ?? new AddressesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<AddressesResult>("volcengine:eip/addresses:Addresses", args ?? new AddressesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class AddressesArgs : Pulumi.InvokeArgs
+    public sealed class AddressesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// An id of associated instance.
@@ -169,9 +169,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Eip
         public AddressesArgs()
         {
         }
+        public static new AddressesArgs Empty => new AddressesArgs();
     }
 
-    public sealed class AddressesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class AddressesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// An id of associated instance.
@@ -254,6 +255,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Eip
         public AddressesInvokeArgs()
         {
         }
+        public static new AddressesInvokeArgs Empty => new AddressesInvokeArgs();
     }
 
 

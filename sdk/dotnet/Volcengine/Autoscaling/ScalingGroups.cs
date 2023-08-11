@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
+namespace Volcengine.Pulumi.Volcengine.Autoscaling
 {
     public static class ScalingGroups
     {
@@ -19,29 +19,28 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Autoscaling.ScalingGroups.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Autoscaling.ScalingGroups.InvokeAsync(new Volcengine.Autoscaling.ScalingGroupsArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "scg-ybru8pazhgl8j1di4tyd",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "scg-ybru8pazhgl8j1di4tyd",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<ScalingGroupsResult> InvokeAsync(ScalingGroupsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<ScalingGroupsResult>("volcengine:autoscaling/scalingGroups:ScalingGroups", args ?? new ScalingGroupsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<ScalingGroupsResult>("volcengine:autoscaling/scalingGroups:ScalingGroups", args ?? new ScalingGroupsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of scaling groups
@@ -50,33 +49,32 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Autoscaling.ScalingGroups.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Autoscaling.ScalingGroups.InvokeAsync(new Volcengine.Autoscaling.ScalingGroupsArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "scg-ybru8pazhgl8j1di4tyd",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "scg-ybru8pazhgl8j1di4tyd",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<ScalingGroupsResult> Invoke(ScalingGroupsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<ScalingGroupsResult>("volcengine:autoscaling/scalingGroups:ScalingGroups", args ?? new ScalingGroupsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<ScalingGroupsResult>("volcengine:autoscaling/scalingGroups:ScalingGroups", args ?? new ScalingGroupsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class ScalingGroupsArgs : Pulumi.InvokeArgs
+    public sealed class ScalingGroupsArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private List<string>? _ids;
@@ -117,9 +115,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         public ScalingGroupsArgs()
         {
         }
+        public static new ScalingGroupsArgs Empty => new ScalingGroupsArgs();
     }
 
-    public sealed class ScalingGroupsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class ScalingGroupsInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private InputList<string>? _ids;
@@ -160,6 +159,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         public ScalingGroupsInvokeArgs()
         {
         }
+        public static new ScalingGroupsInvokeArgs Empty => new ScalingGroupsInvokeArgs();
     }
 
 

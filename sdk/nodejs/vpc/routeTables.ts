@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,22 +14,19 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultRouteTables = pulumi.output(volcengine.vpc.RouteTables({
+ * const default = volcengine.vpc.RouteTables({
  *     ids: [
  *         "vtb-274e19skkuhog7fap8u4i8ird",
  *         "vtb-2744hslq5b7r47fap8tjomgnj",
  *     ],
  *     routeTableName: "vpc-fast",
- * }));
+ * });
  * ```
  */
 export function routeTables(args?: RouteTablesArgs, opts?: pulumi.InvokeOptions): Promise<RouteTablesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:vpc/routeTables:RouteTables", {
         "ids": args.ids,
         "outputFile": args.outputFile,
@@ -95,9 +93,25 @@ export interface RouteTablesResult {
      */
     readonly vpcId?: string;
 }
-
+/**
+ * Use this data source to query detailed information of route tables
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.vpc.RouteTables({
+ *     ids: [
+ *         "vtb-274e19skkuhog7fap8u4i8ird",
+ *         "vtb-2744hslq5b7r47fap8tjomgnj",
+ *     ],
+ *     routeTableName: "vpc-fast",
+ * });
+ * ```
+ */
 export function routeTablesOutput(args?: RouteTablesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<RouteTablesResult> {
-    return pulumi.output(args).apply(a => routeTables(a, opts))
+    return pulumi.output(args).apply((a: any) => routeTables(a, opts))
 }
 
 /**

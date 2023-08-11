@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,7 +19,6 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/privatelink"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/privatelink"
 //
@@ -30,8 +29,8 @@ import (
 //			_, err := privatelink.NewVpcEndpointService(ctx, "foo", &privatelink.VpcEndpointServiceArgs{
 //				AutoAcceptEnabled: pulumi.Bool(true),
 //				Description:       pulumi.String("tftest"),
-//				Resources: privatelink.VpcEndpointServiceResourceArray{
-//					&privatelink.VpcEndpointServiceResourceArgs{
+//				Resources: privatelink.VpcEndpointServiceResourceTypeArray{
+//					&privatelink.VpcEndpointServiceResourceTypeArgs{
 //						ResourceId:   pulumi.String("clb-2bzxccdjo9uyo2dx0eg0orzla"),
 //						ResourceType: pulumi.String("CLB"),
 //					},

@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -49,7 +49,7 @@ import (
 //				return err
 //			}
 //			json0 := string(tmpJSON0)
-//			_, err := tos.NewBucketPolicy(ctx, "default", &tos.BucketPolicyArgs{
+//			_, err = tos.NewBucketPolicy(ctx, "default", &tos.BucketPolicyArgs{
 //				BucketName: pulumi.String("bucket-20230418"),
 //				Policy:     pulumi.String(json0),
 //			})

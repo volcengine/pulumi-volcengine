@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cen
+namespace Volcengine.Pulumi.Volcengine.Cen
 {
     public static class ServiceRouteEntries
     {
@@ -19,26 +19,25 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Cen.ServiceRouteEntries.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Cen.ServiceRouteEntries.InvokeAsync(new Volcengine.Cen.ServiceRouteEntriesArgs
-        ///         {
-        ///             CenId = "cen-12ar8uclj68sg17q7y20v9gil",
-        ///         }));
-        ///     }
+        ///         CenId = "cen-12ar8uclj68sg17q7y20v9gil",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<ServiceRouteEntriesResult> InvokeAsync(ServiceRouteEntriesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<ServiceRouteEntriesResult>("volcengine:cen/serviceRouteEntries:ServiceRouteEntries", args ?? new ServiceRouteEntriesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<ServiceRouteEntriesResult>("volcengine:cen/serviceRouteEntries:ServiceRouteEntries", args ?? new ServiceRouteEntriesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cen service route entries
@@ -47,30 +46,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Cen.ServiceRouteEntries.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Cen.ServiceRouteEntries.InvokeAsync(new Volcengine.Cen.ServiceRouteEntriesArgs
-        ///         {
-        ///             CenId = "cen-12ar8uclj68sg17q7y20v9gil",
-        ///         }));
-        ///     }
+        ///         CenId = "cen-12ar8uclj68sg17q7y20v9gil",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<ServiceRouteEntriesResult> Invoke(ServiceRouteEntriesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<ServiceRouteEntriesResult>("volcengine:cen/serviceRouteEntries:ServiceRouteEntries", args ?? new ServiceRouteEntriesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<ServiceRouteEntriesResult>("volcengine:cen/serviceRouteEntries:ServiceRouteEntries", args ?? new ServiceRouteEntriesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class ServiceRouteEntriesArgs : Pulumi.InvokeArgs
+    public sealed class ServiceRouteEntriesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// A cen ID.
@@ -105,9 +103,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         public ServiceRouteEntriesArgs()
         {
         }
+        public static new ServiceRouteEntriesArgs Empty => new ServiceRouteEntriesArgs();
     }
 
-    public sealed class ServiceRouteEntriesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class ServiceRouteEntriesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// A cen ID.
@@ -142,6 +141,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         public ServiceRouteEntriesInvokeArgs()
         {
         }
+        public static new ServiceRouteEntriesInvokeArgs Empty => new ServiceRouteEntriesInvokeArgs();
     }
 
 

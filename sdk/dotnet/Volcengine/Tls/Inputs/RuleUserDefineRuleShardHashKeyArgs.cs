@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
+namespace Volcengine.Pulumi.Volcengine.Tls.Inputs
 {
 
-    public sealed class RuleUserDefineRuleShardHashKeyArgs : Pulumi.ResourceArgs
+    public sealed class RuleUserDefineRuleShardHashKeyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The HashKey of the log group is used to specify the partition (shard) to be written to by the current log group.
@@ -22,5 +22,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
         public RuleUserDefineRuleShardHashKeyArgs()
         {
         }
+        public static new RuleUserDefineRuleShardHashKeyArgs Empty => new RuleUserDefineRuleShardHashKeyArgs();
     }
 }

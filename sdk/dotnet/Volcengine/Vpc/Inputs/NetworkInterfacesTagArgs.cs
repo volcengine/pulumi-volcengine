@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpc.Inputs
+namespace Volcengine.Pulumi.Volcengine.Vpc.Inputs
 {
 
-    public sealed class NetworkInterfacesTagInputArgs : Pulumi.ResourceArgs
+    public sealed class NetworkInterfacesTagInputArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Key of Tags.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc.Inputs
         public NetworkInterfacesTagInputArgs()
         {
         }
+        public static new NetworkInterfacesTagInputArgs Empty => new NetworkInterfacesTagInputArgs();
     }
 }

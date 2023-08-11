@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Escloud
+namespace Volcengine.Pulumi.Volcengine.Escloud
 {
     public static class Zones
     {
@@ -19,26 +19,25 @@ namespace Volcengine.PulumiPackage.Volcengine.Escloud
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Escloud.Zones.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Escloud.Zones.InvokeAsync(new Volcengine.Escloud.ZonesArgs
-        ///         {
-        ///             RegionId = "xxx",
-        ///         }));
-        ///     }
+        ///         RegionId = "xxx",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<ZonesResult> InvokeAsync(ZonesArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<ZonesResult>("volcengine:escloud/zones:Zones", args ?? new ZonesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<ZonesResult>("volcengine:escloud/zones:Zones", args ?? new ZonesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of escloud zones
@@ -47,30 +46,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Escloud
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Escloud.Zones.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Escloud.Zones.InvokeAsync(new Volcengine.Escloud.ZonesArgs
-        ///         {
-        ///             RegionId = "xxx",
-        ///         }));
-        ///     }
+        ///         RegionId = "xxx",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<ZonesResult> Invoke(ZonesInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<ZonesResult>("volcengine:escloud/zones:Zones", args ?? new ZonesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<ZonesResult>("volcengine:escloud/zones:Zones", args ?? new ZonesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class ZonesArgs : Pulumi.InvokeArgs
+    public sealed class ZonesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// File name where to save data source results.
@@ -87,9 +85,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Escloud
         public ZonesArgs()
         {
         }
+        public static new ZonesArgs Empty => new ZonesArgs();
     }
 
-    public sealed class ZonesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class ZonesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// File name where to save data source results.
@@ -106,6 +105,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Escloud
         public ZonesInvokeArgs()
         {
         }
+        public static new ZonesInvokeArgs Empty => new ZonesInvokeArgs();
     }
 
 

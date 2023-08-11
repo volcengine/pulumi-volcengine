@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Clb.Inputs
+namespace Volcengine.Pulumi.Volcengine.Clb.Inputs
 {
 
-    public sealed class ClbTagGetArgs : Pulumi.ResourceArgs
+    public sealed class ClbTagGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Key of Tags.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb.Inputs
         public ClbTagGetArgs()
         {
         }
+        public static new ClbTagGetArgs Empty => new ClbTagGetArgs();
     }
 }

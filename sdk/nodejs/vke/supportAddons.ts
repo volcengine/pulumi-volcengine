@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,19 +14,16 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultSupportAddons = pulumi.output(volcengine.vke.SupportAddons({
+ * const default = volcengine.vke.SupportAddons({
  *     categories: ["Monitor"],
  *     name: "metrics-server",
- * }));
+ * });
  * ```
  */
 export function supportAddons(args?: SupportAddonsArgs, opts?: pulumi.InvokeOptions): Promise<SupportAddonsResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:vke/supportAddons:SupportAddons", {
         "categories": args.categories,
         "deployModes": args.deployModes,
@@ -110,9 +108,22 @@ export interface SupportAddonsResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of vke support addons
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.vke.SupportAddons({
+ *     categories: ["Monitor"],
+ *     name: "metrics-server",
+ * });
+ * ```
+ */
 export function supportAddonsOutput(args?: SupportAddonsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<SupportAddonsResult> {
-    return pulumi.output(args).apply(a => supportAddons(a, opts))
+    return pulumi.output(args).apply((a: any) => supportAddons(a, opts))
 }
 
 /**

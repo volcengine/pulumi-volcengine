@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cr
+namespace Volcengine.Pulumi.Volcengine.Cr
 {
     public static class Registries
     {
@@ -19,33 +19,32 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Cr.Registries.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Cr.Registries.InvokeAsync(new Volcengine.Cr.RegistriesArgs
+        ///         Statuses = new[]
         ///         {
-        ///             Statuses = 
+        ///             new Volcengine.Cr.Inputs.RegistriesStatusInputArgs
         ///             {
-        ///                 new Volcengine.Cr.Inputs.RegistriesStatusArgs
-        ///                 {
-        ///                     Condition = "Ok",
-        ///                     Phase = "Running",
-        ///                 },
+        ///                 Condition = "Ok",
+        ///                 Phase = "Running",
         ///             },
-        ///         }));
-        ///     }
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<RegistriesResult> InvokeAsync(RegistriesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<RegistriesResult>("volcengine:cr/registries:Registries", args ?? new RegistriesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<RegistriesResult>("volcengine:cr/registries:Registries", args ?? new RegistriesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cr registries
@@ -54,37 +53,36 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Cr.Registries.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Cr.Registries.InvokeAsync(new Volcengine.Cr.RegistriesArgs
+        ///         Statuses = new[]
         ///         {
-        ///             Statuses = 
+        ///             new Volcengine.Cr.Inputs.RegistriesStatusInputArgs
         ///             {
-        ///                 new Volcengine.Cr.Inputs.RegistriesStatusArgs
-        ///                 {
-        ///                     Condition = "Ok",
-        ///                     Phase = "Running",
-        ///                 },
+        ///                 Condition = "Ok",
+        ///                 Phase = "Running",
         ///             },
-        ///         }));
-        ///     }
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<RegistriesResult> Invoke(RegistriesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<RegistriesResult>("volcengine:cr/registries:Registries", args ?? new RegistriesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<RegistriesResult>("volcengine:cr/registries:Registries", args ?? new RegistriesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class RegistriesArgs : Pulumi.InvokeArgs
+    public sealed class RegistriesArgs : global::Pulumi.InvokeArgs
     {
         [Input("names")]
         private List<string>? _names;
@@ -131,9 +129,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         public RegistriesArgs()
         {
         }
+        public static new RegistriesArgs Empty => new RegistriesArgs();
     }
 
-    public sealed class RegistriesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class RegistriesInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("names")]
         private InputList<string>? _names;
@@ -180,6 +179,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         public RegistriesInvokeArgs()
         {
         }
+        public static new RegistriesInvokeArgs Empty => new RegistriesInvokeArgs();
     }
 
 

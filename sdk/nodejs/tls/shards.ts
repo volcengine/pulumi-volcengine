@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,17 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultShards = pulumi.output(volcengine.tls.Shards({
+ * const default = volcengine.tls.Shards({
  *     topicId: "edf051ed-3c46-49ba-9339-bea628fedc15",
- * }));
+ * });
  * ```
  */
 export function shards(args: ShardsArgs, opts?: pulumi.InvokeOptions): Promise<ShardsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:tls/shards:Shards", {
         "outputFile": args.outputFile,
         "topicId": args.topicId,
@@ -66,9 +64,21 @@ export interface ShardsResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of tls shards
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.tls.Shards({
+ *     topicId: "edf051ed-3c46-49ba-9339-bea628fedc15",
+ * });
+ * ```
+ */
 export function shardsOutput(args: ShardsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ShardsResult> {
-    return pulumi.output(args).apply(a => shards(a, opts))
+    return pulumi.output(args).apply((a: any) => shards(a, opts))
 }
 
 /**

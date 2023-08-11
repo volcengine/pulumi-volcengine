@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,17 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultAccounts = pulumi.output(volcengine.rds.Accounts({
+ * const default = volcengine.rds.Accounts({
  *     instanceId: "mysql-0fdd3bab2e7c",
- * }));
+ * });
  * ```
  */
 export function accounts(args: AccountsArgs, opts?: pulumi.InvokeOptions): Promise<AccountsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:rds/accounts:Accounts", {
         "accountName": args.accountName,
         "instanceId": args.instanceId,
@@ -78,9 +76,21 @@ export interface AccountsResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * (Deprecated! Recommend use volcengine_rds_mysql_*** replace) Use this data source to query detailed information of rds accounts
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.rds.Accounts({
+ *     instanceId: "mysql-0fdd3bab2e7c",
+ * });
+ * ```
+ */
 export function accountsOutput(args: AccountsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AccountsResult> {
-    return pulumi.output(args).apply(a => accounts(a, opts))
+    return pulumi.output(args).apply((a: any) => accounts(a, opts))
 }
 
 /**

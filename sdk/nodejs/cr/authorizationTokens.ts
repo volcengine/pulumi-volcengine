@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,17 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = pulumi.output(volcengine.cr.AuthorizationTokens({
+ * const foo = volcengine.cr.AuthorizationTokens({
  *     registry: "tf-1",
- * }));
+ * });
  * ```
  */
 export function authorizationTokens(args: AuthorizationTokensArgs, opts?: pulumi.InvokeOptions): Promise<AuthorizationTokensResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:cr/authorizationTokens:AuthorizationTokens", {
         "outputFile": args.outputFile,
         "registry": args.registry,
@@ -63,9 +61,21 @@ export interface AuthorizationTokensResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of cr authorization tokens
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const foo = volcengine.cr.AuthorizationTokens({
+ *     registry: "tf-1",
+ * });
+ * ```
+ */
 export function authorizationTokensOutput(args: AuthorizationTokensOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AuthorizationTokensResult> {
-    return pulumi.output(args).apply(a => authorizationTokens(a, opts))
+    return pulumi.output(args).apply((a: any) => authorizationTokens(a, opts))
 }
 
 /**

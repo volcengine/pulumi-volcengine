@@ -8,30 +8,29 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds
+namespace Volcengine.Pulumi.Volcengine.Rds
 {
     /// <summary>
     /// (Deprecated! Recommend use volcengine_rds_mysql_*** replace) Provides a resource to manage rds account
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Rds.Account("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Rds.Account("foo", new Volcengine.Rds.AccountArgs
-    ///         {
-    ///             AccountName = "test",
-    ///             AccountPassword = "Aatest123",
-    ///             AccountType = "Normal",
-    ///             InstanceId = "mysql-0fdd3bab2e7c",
-    ///         });
-    ///     }
+    ///         AccountName = "test",
+    ///         AccountPassword = "Aatest123",
+    ///         AccountType = "Normal",
+    ///         InstanceId = "mysql-0fdd3bab2e7c",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -43,7 +42,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:rds/account:Account")]
-    public partial class Account : Pulumi.CustomResource
+    public partial class Account : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Database account name. The rules are as follows:
@@ -126,7 +125,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds
         }
     }
 
-    public sealed class AccountArgs : Pulumi.ResourceArgs
+    public sealed class AccountArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Database account name. The rules are as follows:
@@ -167,9 +166,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds
         public AccountArgs()
         {
         }
+        public static new AccountArgs Empty => new AccountArgs();
     }
 
-    public sealed class AccountState : Pulumi.ResourceArgs
+    public sealed class AccountState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Database account name. The rules are as follows:
@@ -210,5 +210,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds
         public AccountState()
         {
         }
+        public static new AccountState Empty => new AccountState();
     }
 }

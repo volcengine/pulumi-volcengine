@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Ecs.Inputs
+namespace Volcengine.Pulumi.Volcengine.Ecs.Inputs
 {
 
-    public sealed class InstanceGpuDeviceArgs : Pulumi.ResourceArgs
+    public sealed class InstanceGpuDeviceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Count of GPU device.
@@ -40,5 +40,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs.Inputs
         public InstanceGpuDeviceArgs()
         {
         }
+        public static new InstanceGpuDeviceArgs Empty => new InstanceGpuDeviceArgs();
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpc
+namespace Volcengine.Pulumi.Volcengine.Vpc
 {
     public static class Ipv6Addresses
     {
@@ -19,26 +19,25 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vpc.Ipv6Addresses.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vpc.Ipv6Addresses.InvokeAsync(new Volcengine.Vpc.Ipv6AddressesArgs
-        ///         {
-        ///             AssociatedInstanceId = "i-yca53yuhj6gh9zl53kav",
-        ///         }));
-        ///     }
+        ///         AssociatedInstanceId = "i-yca53yuhj6gh9zl53kav",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<Ipv6AddressesResult> InvokeAsync(Ipv6AddressesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<Ipv6AddressesResult>("volcengine:vpc/ipv6Addresses:Ipv6Addresses", args ?? new Ipv6AddressesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Ipv6AddressesResult>("volcengine:vpc/ipv6Addresses:Ipv6Addresses", args ?? new Ipv6AddressesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of vpc ipv6 addresses
@@ -47,30 +46,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vpc.Ipv6Addresses.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vpc.Ipv6Addresses.InvokeAsync(new Volcengine.Vpc.Ipv6AddressesArgs
-        ///         {
-        ///             AssociatedInstanceId = "i-yca53yuhj6gh9zl53kav",
-        ///         }));
-        ///     }
+        ///         AssociatedInstanceId = "i-yca53yuhj6gh9zl53kav",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<Ipv6AddressesResult> Invoke(Ipv6AddressesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<Ipv6AddressesResult>("volcengine:vpc/ipv6Addresses:Ipv6Addresses", args ?? new Ipv6AddressesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<Ipv6AddressesResult>("volcengine:vpc/ipv6Addresses:Ipv6Addresses", args ?? new Ipv6AddressesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class Ipv6AddressesArgs : Pulumi.InvokeArgs
+    public sealed class Ipv6AddressesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The ID of the ECS instance that is assigned the IPv6 address.
@@ -87,9 +85,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public Ipv6AddressesArgs()
         {
         }
+        public static new Ipv6AddressesArgs Empty => new Ipv6AddressesArgs();
     }
 
-    public sealed class Ipv6AddressesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class Ipv6AddressesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The ID of the ECS instance that is assigned the IPv6 address.
@@ -106,6 +105,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public Ipv6AddressesInvokeArgs()
         {
         }
+        public static new Ipv6AddressesInvokeArgs Empty => new Ipv6AddressesInvokeArgs();
     }
 
 

@@ -10,9 +10,9 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const defaultEndpoint = new volcengine.cr.Endpoint("default", {
+ * const _default = new volcengine.cr.Endpoint("default", {
  *     enabled: true,
  *     registry: "tf-1",
  * });

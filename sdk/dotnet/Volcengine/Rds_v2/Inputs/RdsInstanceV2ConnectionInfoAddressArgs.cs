@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds_v2.Inputs
+namespace Volcengine.Pulumi.Volcengine.Rds_v2.Inputs
 {
 
-    public sealed class RdsInstanceV2ConnectionInfoAddressArgs : Pulumi.ResourceArgs
+    public sealed class RdsInstanceV2ConnectionInfoAddressArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Connect domain name.
@@ -52,5 +52,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_v2.Inputs
         public RdsInstanceV2ConnectionInfoAddressArgs()
         {
         }
+        public static new RdsInstanceV2ConnectionInfoAddressArgs Empty => new RdsInstanceV2ConnectionInfoAddressArgs();
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Iam
+namespace Volcengine.Pulumi.Volcengine.Iam
 {
     public static class Policies
     {
@@ -19,26 +19,25 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Iam.Policies.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Iam.Policies.InvokeAsync(new Volcengine.Iam.PoliciesArgs
-        ///         {
-        ///             Query = "AdministratorAccess",
-        ///         }));
-        ///     }
+        ///         Query = "AdministratorAccess",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<PoliciesResult> InvokeAsync(PoliciesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<PoliciesResult>("volcengine:iam/policies:Policies", args ?? new PoliciesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<PoliciesResult>("volcengine:iam/policies:Policies", args ?? new PoliciesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of iam policies
@@ -47,30 +46,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Iam.Policies.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Iam.Policies.InvokeAsync(new Volcengine.Iam.PoliciesArgs
-        ///         {
-        ///             Query = "AdministratorAccess",
-        ///         }));
-        ///     }
+        ///         Query = "AdministratorAccess",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<PoliciesResult> Invoke(PoliciesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<PoliciesResult>("volcengine:iam/policies:Policies", args ?? new PoliciesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<PoliciesResult>("volcengine:iam/policies:Policies", args ?? new PoliciesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class PoliciesArgs : Pulumi.InvokeArgs
+    public sealed class PoliciesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// A Name Regex of Policy.
@@ -117,9 +115,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         public PoliciesArgs()
         {
         }
+        public static new PoliciesArgs Empty => new PoliciesArgs();
     }
 
-    public sealed class PoliciesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class PoliciesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// A Name Regex of Policy.
@@ -166,6 +165,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         public PoliciesInvokeArgs()
         {
         }
+        public static new PoliciesInvokeArgs Empty => new PoliciesInvokeArgs();
     }
 
 

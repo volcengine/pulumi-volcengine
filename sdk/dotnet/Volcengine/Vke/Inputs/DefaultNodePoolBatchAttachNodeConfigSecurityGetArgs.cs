@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
+namespace Volcengine.Pulumi.Volcengine.Vke.Inputs
 {
 
-    public sealed class DefaultNodePoolBatchAttachNodeConfigSecurityGetArgs : Pulumi.ResourceArgs
+    public sealed class DefaultNodePoolBatchAttachNodeConfigSecurityGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("logins")]
         private InputList<Inputs.DefaultNodePoolBatchAttachNodeConfigSecurityLoginGetArgs>? _logins;
@@ -52,5 +52,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
         public DefaultNodePoolBatchAttachNodeConfigSecurityGetArgs()
         {
         }
+        public static new DefaultNodePoolBatchAttachNodeConfigSecurityGetArgs Empty => new DefaultNodePoolBatchAttachNodeConfigSecurityGetArgs();
     }
 }

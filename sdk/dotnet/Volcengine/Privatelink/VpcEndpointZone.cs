@@ -8,29 +8,28 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Privatelink
+namespace Volcengine.Pulumi.Volcengine.Privatelink
 {
     /// <summary>
     /// Provides a resource to manage privatelink vpc endpoint zone
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Privatelink.VpcEndpointZone("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Privatelink.VpcEndpointZone("foo", new Volcengine.Privatelink.VpcEndpointZoneArgs
-    ///         {
-    ///             EndpointId = "ep-2byz5nlkimc5c2dx0ef9g****",
-    ///             PrivateIpAddress = "172.16.0.251",
-    ///             SubnetId = "subnet-2bz47q19zhx4w2dx0eevn****",
-    ///         });
-    ///     }
+    ///         EndpointId = "ep-2byz5nlkimc5c2dx0ef9g****",
+    ///         PrivateIpAddress = "172.16.0.251",
+    ///         SubnetId = "subnet-2bz47q19zhx4w2dx0eevn****",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -42,7 +41,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:privatelink/vpcEndpointZone:VpcEndpointZone")]
-    public partial class VpcEndpointZone : Pulumi.CustomResource
+    public partial class VpcEndpointZone : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The endpoint id of vpc endpoint zone.
@@ -131,7 +130,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         }
     }
 
-    public sealed class VpcEndpointZoneArgs : Pulumi.ResourceArgs
+    public sealed class VpcEndpointZoneArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The endpoint id of vpc endpoint zone.
@@ -154,9 +153,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         public VpcEndpointZoneArgs()
         {
         }
+        public static new VpcEndpointZoneArgs Empty => new VpcEndpointZoneArgs();
     }
 
-    public sealed class VpcEndpointZoneState : Pulumi.ResourceArgs
+    public sealed class VpcEndpointZoneState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The endpoint id of vpc endpoint zone.
@@ -203,5 +203,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         public VpcEndpointZoneState()
         {
         }
+        public static new VpcEndpointZoneState Empty => new VpcEndpointZoneState();
     }
 }

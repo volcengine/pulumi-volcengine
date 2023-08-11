@@ -8,28 +8,27 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpc
+namespace Volcengine.Pulumi.Volcengine.Vpc
 {
     /// <summary>
     /// Provides a resource to manage security group
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var g1test1 = new Volcengine.Vpc.SecurityGroup("g1test1", new()
     ///     {
-    ///         var g1test1 = new Volcengine.Vpc.SecurityGroup("g1test1", new Volcengine.Vpc.SecurityGroupArgs
-    ///         {
-    ///             ProjectName = "yuwenhao",
-    ///             VpcId = "vpc-2feppmy1ugt1c59gp688n1fld",
-    ///         });
-    ///     }
+    ///         ProjectName = "yuwenhao",
+    ///         VpcId = "vpc-2feppmy1ugt1c59gp688n1fld",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -41,7 +40,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vpc/securityGroup:SecurityGroup")]
-    public partial class SecurityGroup : Pulumi.CustomResource
+    public partial class SecurityGroup : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Creation time of SecurityGroup.
@@ -130,7 +129,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         }
     }
 
-    public sealed class SecurityGroupArgs : Pulumi.ResourceArgs
+    public sealed class SecurityGroupArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Description of SecurityGroup.
@@ -171,9 +170,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public SecurityGroupArgs()
         {
         }
+        public static new SecurityGroupArgs Empty => new SecurityGroupArgs();
     }
 
-    public sealed class SecurityGroupState : Pulumi.ResourceArgs
+    public sealed class SecurityGroupState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Creation time of SecurityGroup.
@@ -226,5 +226,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public SecurityGroupState()
         {
         }
+        public static new SecurityGroupState Empty => new SecurityGroupState();
     }
 }

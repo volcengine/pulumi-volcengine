@@ -8,43 +8,44 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Iam
+namespace Volcengine.Pulumi.Volcengine.Iam
 {
     /// <summary>
     /// Provides a resource to manage iam role policy attachment
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var role = new Volcengine.Iam.Role("role", new()
     ///     {
-    ///         var role = new Volcengine.Iam.Role("role", new Volcengine.Iam.RoleArgs
-    ///         {
-    ///             RoleName = "TerraformTestRole",
-    ///             DisplayName = "terraform role",
-    ///             TrustPolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"auto_scaling\"]}}]}",
-    ///             Description = "created by terraform",
-    ///             MaxSessionDuration = 43200,
-    ///         });
-    ///         var policy = new Volcengine.Iam.Policy("policy", new Volcengine.Iam.PolicyArgs
-    ///         {
-    ///             PolicyName = "TerraformResourceTest1",
-    ///             Description = "created by terraform 1",
-    ///             PolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}",
-    ///         });
-    ///         var foo = new Volcengine.Iam.RolePolicyAttachment("foo", new Volcengine.Iam.RolePolicyAttachmentArgs
-    ///         {
-    ///             RoleName = role.Id,
-    ///             PolicyName = policy.Id,
-    ///             PolicyType = policy.PolicyType,
-    ///         });
-    ///     }
+    ///         RoleName = "TerraformTestRole",
+    ///         DisplayName = "terraform role",
+    ///         TrustPolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"auto_scaling\"]}}]}",
+    ///         Description = "created by terraform",
+    ///         MaxSessionDuration = 43200,
+    ///     });
     /// 
-    /// }
+    ///     var policy = new Volcengine.Iam.Policy("policy", new()
+    ///     {
+    ///         PolicyName = "TerraformResourceTest1",
+    ///         Description = "created by terraform 1",
+    ///         PolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}",
+    ///     });
+    /// 
+    ///     var foo = new Volcengine.Iam.RolePolicyAttachment("foo", new()
+    ///     {
+    ///         RoleName = role.Id,
+    ///         PolicyName = policy.Id,
+    ///         PolicyType = policy.PolicyType,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -56,7 +57,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:iam/rolePolicyAttachment:RolePolicyAttachment")]
-    public partial class RolePolicyAttachment : Pulumi.CustomResource
+    public partial class RolePolicyAttachment : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The name of the Policy.
@@ -121,7 +122,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         }
     }
 
-    public sealed class RolePolicyAttachmentArgs : Pulumi.ResourceArgs
+    public sealed class RolePolicyAttachmentArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the Policy.
@@ -144,9 +145,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         public RolePolicyAttachmentArgs()
         {
         }
+        public static new RolePolicyAttachmentArgs Empty => new RolePolicyAttachmentArgs();
     }
 
-    public sealed class RolePolicyAttachmentState : Pulumi.ResourceArgs
+    public sealed class RolePolicyAttachmentState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the Policy.
@@ -169,5 +171,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         public RolePolicyAttachmentState()
         {
         }
+        public static new RolePolicyAttachmentState Empty => new RolePolicyAttachmentState();
     }
 }

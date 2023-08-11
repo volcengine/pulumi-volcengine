@@ -8,44 +8,43 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls
+namespace Volcengine.Pulumi.Volcengine.Tls
 {
     /// <summary>
     /// Provides a resource to manage tls topic
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Tls.Topic("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Tls.Topic("foo", new Volcengine.Tls.TopicArgs
+    ///         AutoSplit = true,
+    ///         Description = "test",
+    ///         EnableTracking = true,
+    ///         MaxSplitShard = 10,
+    ///         ProjectId = "e020c978-4f05-40e1-9167-0113d3ef****",
+    ///         ShardCount = 2,
+    ///         Tags = new[]
     ///         {
-    ///             AutoSplit = true,
-    ///             Description = "test",
-    ///             EnableTracking = true,
-    ///             MaxSplitShard = 10,
-    ///             ProjectId = "e020c978-4f05-40e1-9167-0113d3ef****",
-    ///             ShardCount = 2,
-    ///             Tags = 
+    ///             new Volcengine.Tls.Inputs.TopicTagArgs
     ///             {
-    ///                 new Volcengine.Tls.Inputs.TopicTagArgs
-    ///                 {
-    ///                     Key = "k1",
-    ///                     Value = "v1",
-    ///                 },
+    ///                 Key = "k1",
+    ///                 Value = "v1",
     ///             },
-    ///             TimeFormat = "%Y-%m-%dT%H:%M:%S,%f",
-    ///             TimeKey = "request_time",
-    ///             TopicName = "tf-test-topic",
-    ///             Ttl = 10,
-    ///         });
-    ///     }
+    ///         },
+    ///         TimeFormat = "%Y-%m-%dT%H:%M:%S,%f",
+    ///         TimeKey = "request_time",
+    ///         TopicName = "tf-test-topic",
+    ///         Ttl = 10,
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -57,7 +56,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:tls/topic:Topic")]
-    public partial class Topic : Pulumi.CustomResource
+    public partial class Topic : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Whether to enable automatic partition splitting function of the tls topic.
@@ -182,7 +181,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         }
     }
 
-    public sealed class TopicArgs : Pulumi.ResourceArgs
+    public sealed class TopicArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether to enable automatic partition splitting function of the tls topic.
@@ -259,9 +258,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public TopicArgs()
         {
         }
+        public static new TopicArgs Empty => new TopicArgs();
     }
 
-    public sealed class TopicState : Pulumi.ResourceArgs
+    public sealed class TopicState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether to enable automatic partition splitting function of the tls topic.
@@ -350,5 +350,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public TopicState()
         {
         }
+        public static new TopicState Empty => new TopicState();
     }
 }

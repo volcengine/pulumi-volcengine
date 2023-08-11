@@ -8,29 +8,28 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Iam
+namespace Volcengine.Pulumi.Volcengine.Iam
 {
     /// <summary>
     /// Provides a resource to manage iam policy
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Iam.Policy("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Iam.Policy("foo", new Volcengine.Iam.PolicyArgs
-    ///         {
-    ///             Description = "created by terraform 1",
-    ///             PolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}",
-    ///             PolicyName = "TerraformResourceTest1",
-    ///         });
-    ///     }
+    ///         Description = "created by terraform 1",
+    ///         PolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}",
+    ///         PolicyName = "TerraformResourceTest1",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -42,7 +41,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:iam/policy:Policy")]
-    public partial class Policy : Pulumi.CustomResource
+    public partial class Policy : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The create time of the Policy.
@@ -131,7 +130,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         }
     }
 
-    public sealed class PolicyArgs : Pulumi.ResourceArgs
+    public sealed class PolicyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The description of the Policy.
@@ -154,9 +153,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         public PolicyArgs()
         {
         }
+        public static new PolicyArgs Empty => new PolicyArgs();
     }
 
-    public sealed class PolicyState : Pulumi.ResourceArgs
+    public sealed class PolicyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The create time of the Policy.
@@ -203,5 +203,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         public PolicyState()
         {
         }
+        public static new PolicyState Empty => new PolicyState();
     }
 }

@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = pulumi.output(volcengine.vpn.CustomerGateways({
+ * const foo = volcengine.vpn.CustomerGateways({
  *     ids: ["cgw-2d68c4zglycjk58ozfe96norh"],
- * }));
+ * });
  * ```
  */
 export function customerGateways(args?: CustomerGatewaysArgs, opts?: pulumi.InvokeOptions): Promise<CustomerGatewaysResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:vpn/customerGateways:CustomerGateways", {
         "customerGatewayNames": args.customerGatewayNames,
         "ids": args.ids,
@@ -85,9 +83,21 @@ export interface CustomerGatewaysResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of customer gateways
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const foo = volcengine.vpn.CustomerGateways({
+ *     ids: ["cgw-2d68c4zglycjk58ozfe96norh"],
+ * });
+ * ```
+ */
 export function customerGatewaysOutput(args?: CustomerGatewaysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<CustomerGatewaysResult> {
-    return pulumi.output(args).apply(a => customerGateways(a, opts))
+    return pulumi.output(args).apply((a: any) => customerGateways(a, opts))
 }
 
 /**

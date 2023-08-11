@@ -8,32 +8,31 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Mongodb
+namespace Volcengine.Pulumi.Volcengine.Mongodb
 {
     /// <summary>
     /// Provides a resource to manage mongodb endpoint
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Mongodb.Endpoint("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Mongodb.Endpoint("foo", new Volcengine.Mongodb.EndpointArgs
+    ///         EipIds = new[]
     ///         {
-    ///             EipIds = 
-    ///             {
-    ///                 "eip-3rfe12dvmz8qo5zsk2h91q05p",
-    ///             },
-    ///             InstanceId = "mongo-replica-38cf5badeb9e",
-    ///             NetworkType = "Public",
-    ///         });
-    ///     }
+    ///             "eip-3rfe12dvmz8qo5zsk2h91q05p",
+    ///         },
+    ///         InstanceId = "mongo-replica-38cf5badeb9e",
+    ///         NetworkType = "Public",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -45,7 +44,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:mongodb/endpoint:Endpoint")]
-    public partial class Endpoint : Pulumi.CustomResource
+    public partial class Endpoint : global::Pulumi.CustomResource
     {
         /// <summary>
         /// A list of EIP IDs that need to be bound when applying for endpoint.
@@ -128,7 +127,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         }
     }
 
-    public sealed class EndpointArgs : Pulumi.ResourceArgs
+    public sealed class EndpointArgs : global::Pulumi.ResourceArgs
     {
         [Input("eipIds")]
         private InputList<string>? _eipIds;
@@ -175,9 +174,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         public EndpointArgs()
         {
         }
+        public static new EndpointArgs Empty => new EndpointArgs();
     }
 
-    public sealed class EndpointState : Pulumi.ResourceArgs
+    public sealed class EndpointState : global::Pulumi.ResourceArgs
     {
         [Input("eipIds")]
         private InputList<string>? _eipIds;
@@ -230,5 +230,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         public EndpointState()
         {
         }
+        public static new EndpointState Empty => new EndpointState();
     }
 }

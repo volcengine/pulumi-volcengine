@@ -5,28 +5,71 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./addon";
-export * from "./addons";
-export * from "./cluster";
-export * from "./clusters";
-export * from "./defaultNodePool";
-export * from "./defaultNodePoolBatchAttach";
-export * from "./kubeconfig";
-export * from "./kubeconfigs";
-export * from "./node";
-export * from "./nodePool";
-export * from "./nodePools";
-export * from "./nodes";
-export * from "./supportAddons";
+export { AddonArgs, AddonState } from "./addon";
+export type Addon = import("./addon").Addon;
+export const Addon: typeof import("./addon").Addon = null as any;
+utilities.lazyLoad(exports, ["Addon"], () => require("./addon"));
 
-// Import resources to register:
-import { Addon } from "./addon";
-import { Cluster } from "./cluster";
-import { DefaultNodePool } from "./defaultNodePool";
-import { DefaultNodePoolBatchAttach } from "./defaultNodePoolBatchAttach";
-import { Kubeconfig } from "./kubeconfig";
-import { Node } from "./node";
-import { NodePool } from "./nodePool";
+export { AddonsArgs, AddonsResult, AddonsOutputArgs } from "./addons";
+export const addons: typeof import("./addons").addons = null as any;
+export const addonsOutput: typeof import("./addons").addonsOutput = null as any;
+utilities.lazyLoad(exports, ["addons","addonsOutput"], () => require("./addons"));
+
+export { ClusterArgs, ClusterState } from "./cluster";
+export type Cluster = import("./cluster").Cluster;
+export const Cluster: typeof import("./cluster").Cluster = null as any;
+utilities.lazyLoad(exports, ["Cluster"], () => require("./cluster"));
+
+export { ClustersArgs, ClustersResult, ClustersOutputArgs } from "./clusters";
+export const clusters: typeof import("./clusters").clusters = null as any;
+export const clustersOutput: typeof import("./clusters").clustersOutput = null as any;
+utilities.lazyLoad(exports, ["clusters","clustersOutput"], () => require("./clusters"));
+
+export { DefaultNodePoolArgs, DefaultNodePoolState } from "./defaultNodePool";
+export type DefaultNodePool = import("./defaultNodePool").DefaultNodePool;
+export const DefaultNodePool: typeof import("./defaultNodePool").DefaultNodePool = null as any;
+utilities.lazyLoad(exports, ["DefaultNodePool"], () => require("./defaultNodePool"));
+
+export { DefaultNodePoolBatchAttachArgs, DefaultNodePoolBatchAttachState } from "./defaultNodePoolBatchAttach";
+export type DefaultNodePoolBatchAttach = import("./defaultNodePoolBatchAttach").DefaultNodePoolBatchAttach;
+export const DefaultNodePoolBatchAttach: typeof import("./defaultNodePoolBatchAttach").DefaultNodePoolBatchAttach = null as any;
+utilities.lazyLoad(exports, ["DefaultNodePoolBatchAttach"], () => require("./defaultNodePoolBatchAttach"));
+
+export { KubeconfigArgs, KubeconfigState } from "./kubeconfig";
+export type Kubeconfig = import("./kubeconfig").Kubeconfig;
+export const Kubeconfig: typeof import("./kubeconfig").Kubeconfig = null as any;
+utilities.lazyLoad(exports, ["Kubeconfig"], () => require("./kubeconfig"));
+
+export { KubeconfigsArgs, KubeconfigsResult, KubeconfigsOutputArgs } from "./kubeconfigs";
+export const kubeconfigs: typeof import("./kubeconfigs").kubeconfigs = null as any;
+export const kubeconfigsOutput: typeof import("./kubeconfigs").kubeconfigsOutput = null as any;
+utilities.lazyLoad(exports, ["kubeconfigs","kubeconfigsOutput"], () => require("./kubeconfigs"));
+
+export { NodeArgs, NodeState } from "./node";
+export type Node = import("./node").Node;
+export const Node: typeof import("./node").Node = null as any;
+utilities.lazyLoad(exports, ["Node"], () => require("./node"));
+
+export { NodePoolArgs, NodePoolState } from "./nodePool";
+export type NodePool = import("./nodePool").NodePool;
+export const NodePool: typeof import("./nodePool").NodePool = null as any;
+utilities.lazyLoad(exports, ["NodePool"], () => require("./nodePool"));
+
+export { NodePoolsArgs, NodePoolsResult, NodePoolsOutputArgs } from "./nodePools";
+export const nodePools: typeof import("./nodePools").nodePools = null as any;
+export const nodePoolsOutput: typeof import("./nodePools").nodePoolsOutput = null as any;
+utilities.lazyLoad(exports, ["nodePools","nodePoolsOutput"], () => require("./nodePools"));
+
+export { NodesArgs, NodesResult, NodesOutputArgs } from "./nodes";
+export const nodes: typeof import("./nodes").nodes = null as any;
+export const nodesOutput: typeof import("./nodes").nodesOutput = null as any;
+utilities.lazyLoad(exports, ["nodes","nodesOutput"], () => require("./nodes"));
+
+export { SupportAddonsArgs, SupportAddonsResult, SupportAddonsOutputArgs } from "./supportAddons";
+export const supportAddons: typeof import("./supportAddons").supportAddons = null as any;
+export const supportAddonsOutput: typeof import("./supportAddons").supportAddonsOutput = null as any;
+utilities.lazyLoad(exports, ["supportAddons","supportAddonsOutput"], () => require("./supportAddons"));
+
 
 const _module = {
     version: utilities.getVersion(),

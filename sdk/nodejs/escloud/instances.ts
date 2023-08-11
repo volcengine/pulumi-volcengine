@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,19 +14,16 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultInstances = pulumi.output(volcengine.escloud.Instances({
+ * const default = volcengine.escloud.Instances({
  *     ids: ["d3gftqjvnah74eie"],
  *     statuses: ["Running"],
- * }));
+ * });
  * ```
  */
 export function instances(args?: InstancesArgs, opts?: pulumi.InvokeOptions): Promise<InstancesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:escloud/instances:Instances", {
         "chargeTypes": args.chargeTypes,
         "ids": args.ids,
@@ -95,9 +93,22 @@ export interface InstancesResult {
     readonly versions?: string[];
     readonly zoneIds?: string[];
 }
-
+/**
+ * Use this data source to query detailed information of escloud instances
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.escloud.Instances({
+ *     ids: ["d3gftqjvnah74eie"],
+ *     statuses: ["Running"],
+ * });
+ * ```
+ */
 export function instancesOutput(args?: InstancesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<InstancesResult> {
-    return pulumi.output(args).apply(a => instances(a, opts))
+    return pulumi.output(args).apply((a: any) => instances(a, opts))
 }
 
 /**

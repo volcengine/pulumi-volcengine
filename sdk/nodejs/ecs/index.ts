@@ -5,28 +5,71 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./deploymentSet";
-export * from "./deploymentSetAssociate";
-export * from "./deploymentSets";
-export * from "./images";
-export * from "./instance";
-export * from "./instances";
-export * from "./keyPair";
-export * from "./keyPairAssociate";
-export * from "./keyPairs";
-export * from "./launchTemplate";
-export * from "./launchTemplates";
-export * from "./state";
-export * from "./zones";
+export { DeploymentSetArgs, DeploymentSetState } from "./deploymentSet";
+export type DeploymentSet = import("./deploymentSet").DeploymentSet;
+export const DeploymentSet: typeof import("./deploymentSet").DeploymentSet = null as any;
+utilities.lazyLoad(exports, ["DeploymentSet"], () => require("./deploymentSet"));
 
-// Import resources to register:
-import { DeploymentSet } from "./deploymentSet";
-import { DeploymentSetAssociate } from "./deploymentSetAssociate";
-import { Instance } from "./instance";
-import { KeyPair } from "./keyPair";
-import { KeyPairAssociate } from "./keyPairAssociate";
-import { LaunchTemplate } from "./launchTemplate";
-import { State } from "./state";
+export { DeploymentSetAssociateArgs, DeploymentSetAssociateState } from "./deploymentSetAssociate";
+export type DeploymentSetAssociate = import("./deploymentSetAssociate").DeploymentSetAssociate;
+export const DeploymentSetAssociate: typeof import("./deploymentSetAssociate").DeploymentSetAssociate = null as any;
+utilities.lazyLoad(exports, ["DeploymentSetAssociate"], () => require("./deploymentSetAssociate"));
+
+export { DeploymentSetsArgs, DeploymentSetsResult, DeploymentSetsOutputArgs } from "./deploymentSets";
+export const deploymentSets: typeof import("./deploymentSets").deploymentSets = null as any;
+export const deploymentSetsOutput: typeof import("./deploymentSets").deploymentSetsOutput = null as any;
+utilities.lazyLoad(exports, ["deploymentSets","deploymentSetsOutput"], () => require("./deploymentSets"));
+
+export { ImagesArgs, ImagesResult, ImagesOutputArgs } from "./images";
+export const images: typeof import("./images").images = null as any;
+export const imagesOutput: typeof import("./images").imagesOutput = null as any;
+utilities.lazyLoad(exports, ["images","imagesOutput"], () => require("./images"));
+
+export { InstanceArgs, InstanceState } from "./instance";
+export type Instance = import("./instance").Instance;
+export const Instance: typeof import("./instance").Instance = null as any;
+utilities.lazyLoad(exports, ["Instance"], () => require("./instance"));
+
+export { InstancesArgs, InstancesResult, InstancesOutputArgs } from "./instances";
+export const instances: typeof import("./instances").instances = null as any;
+export const instancesOutput: typeof import("./instances").instancesOutput = null as any;
+utilities.lazyLoad(exports, ["instances","instancesOutput"], () => require("./instances"));
+
+export { KeyPairArgs, KeyPairState } from "./keyPair";
+export type KeyPair = import("./keyPair").KeyPair;
+export const KeyPair: typeof import("./keyPair").KeyPair = null as any;
+utilities.lazyLoad(exports, ["KeyPair"], () => require("./keyPair"));
+
+export { KeyPairAssociateArgs, KeyPairAssociateState } from "./keyPairAssociate";
+export type KeyPairAssociate = import("./keyPairAssociate").KeyPairAssociate;
+export const KeyPairAssociate: typeof import("./keyPairAssociate").KeyPairAssociate = null as any;
+utilities.lazyLoad(exports, ["KeyPairAssociate"], () => require("./keyPairAssociate"));
+
+export { KeyPairsArgs, KeyPairsResult, KeyPairsOutputArgs } from "./keyPairs";
+export const keyPairs: typeof import("./keyPairs").keyPairs = null as any;
+export const keyPairsOutput: typeof import("./keyPairs").keyPairsOutput = null as any;
+utilities.lazyLoad(exports, ["keyPairs","keyPairsOutput"], () => require("./keyPairs"));
+
+export { LaunchTemplateArgs, LaunchTemplateState } from "./launchTemplate";
+export type LaunchTemplate = import("./launchTemplate").LaunchTemplate;
+export const LaunchTemplate: typeof import("./launchTemplate").LaunchTemplate = null as any;
+utilities.lazyLoad(exports, ["LaunchTemplate"], () => require("./launchTemplate"));
+
+export { LaunchTemplatesArgs, LaunchTemplatesResult, LaunchTemplatesOutputArgs } from "./launchTemplates";
+export const launchTemplates: typeof import("./launchTemplates").launchTemplates = null as any;
+export const launchTemplatesOutput: typeof import("./launchTemplates").launchTemplatesOutput = null as any;
+utilities.lazyLoad(exports, ["launchTemplates","launchTemplatesOutput"], () => require("./launchTemplates"));
+
+export { StateArgs, StateState } from "./state";
+export type State = import("./state").State;
+export const State: typeof import("./state").State = null as any;
+utilities.lazyLoad(exports, ["State"], () => require("./state"));
+
+export { ZonesArgs, ZonesResult, ZonesOutputArgs } from "./zones";
+export const zones: typeof import("./zones").zones = null as any;
+export const zonesOutput: typeof import("./zones").zonesOutput = null as any;
+utilities.lazyLoad(exports, ["zones","zonesOutput"], () => require("./zones"));
+
 
 const _module = {
     version: utilities.getVersion(),

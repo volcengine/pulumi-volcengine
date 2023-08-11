@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = pulumi.output(volcengine.cen.InterRegionBandwidths({
+ * const foo = volcengine.cen.InterRegionBandwidths({
  *     ids: ["cirb-274q484wxao007fap8tlvl6si"],
- * }));
+ * });
  * ```
  */
 export function interRegionBandwidths(args?: InterRegionBandwidthsArgs, opts?: pulumi.InvokeOptions): Promise<InterRegionBandwidthsResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:cen/interRegionBandwidths:InterRegionBandwidths", {
         "ids": args.ids,
         "outputFile": args.outputFile,
@@ -64,9 +62,21 @@ export interface InterRegionBandwidthsResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of cen inter region bandwidths
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const foo = volcengine.cen.InterRegionBandwidths({
+ *     ids: ["cirb-274q484wxao007fap8tlvl6si"],
+ * });
+ * ```
+ */
 export function interRegionBandwidthsOutput(args?: InterRegionBandwidthsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<InterRegionBandwidthsResult> {
-    return pulumi.output(args).apply(a => interRegionBandwidths(a, opts))
+    return pulumi.output(args).apply((a: any) => interRegionBandwidths(a, opts))
 }
 
 /**

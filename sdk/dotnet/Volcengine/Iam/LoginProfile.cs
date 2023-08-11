@@ -8,30 +8,29 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Iam
+namespace Volcengine.Pulumi.Volcengine.Iam
 {
     /// <summary>
     /// Provides a resource to manage iam login profile
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Iam.LoginProfile("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Iam.LoginProfile("foo", new Volcengine.Iam.LoginProfileArgs
-    ///         {
-    ///             LoginAllowed = true,
-    ///             Password = "******",
-    ///             PasswordResetRequired = false,
-    ///             UserName = "tf-test",
-    ///         });
-    ///     }
+    ///         LoginAllowed = true,
+    ///         Password = "******",
+    ///         PasswordResetRequired = false,
+    ///         UserName = "tf-test",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -43,7 +42,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:iam/loginProfile:LoginProfile")]
-    public partial class LoginProfile : Pulumi.CustomResource
+    public partial class LoginProfile : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The flag of login allowed.
@@ -93,6 +92,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/volcengine",
+                AdditionalSecretOutputs =
+                {
+                    "password",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -114,7 +117,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         }
     }
 
-    public sealed class LoginProfileArgs : Pulumi.ResourceArgs
+    public sealed class LoginProfileArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The flag of login allowed.
@@ -122,11 +125,21 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         [Input("loginAllowed")]
         public Input<bool>? LoginAllowed { get; set; }
 
+        [Input("password", required: true)]
+        private Input<string>? _password;
+
         /// <summary>
         /// The password.
         /// </summary>
-        [Input("password", required: true)]
-        public Input<string> Password { get; set; } = null!;
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Is required reset password when next time login in.
@@ -143,9 +156,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         public LoginProfileArgs()
         {
         }
+        public static new LoginProfileArgs Empty => new LoginProfileArgs();
     }
 
-    public sealed class LoginProfileState : Pulumi.ResourceArgs
+    public sealed class LoginProfileState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The flag of login allowed.
@@ -153,11 +167,21 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         [Input("loginAllowed")]
         public Input<bool>? LoginAllowed { get; set; }
 
+        [Input("password")]
+        private Input<string>? _password;
+
         /// <summary>
         /// The password.
         /// </summary>
-        [Input("password")]
-        public Input<string>? Password { get; set; }
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Is required reset password when next time login in.
@@ -174,5 +198,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         public LoginProfileState()
         {
         }
+        public static new LoginProfileState Empty => new LoginProfileState();
     }
 }

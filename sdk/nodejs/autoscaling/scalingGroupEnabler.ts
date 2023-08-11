@@ -10,9 +10,9 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi from "@volcengine/pulumi";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * // 创建步骤：terraform init -> terraform plan -> terraform apply
+ * // 创建步骤：terraform init -> pulumi preview -> pulumi up
  * // 删除步骤: terraform state rm volcengine_scaling_configuration.foo1 -> terraform destroy
  * // 创建伸缩组
  * const foo = new volcengine.autoscaling.ScalingGroup("foo", {

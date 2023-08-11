@@ -782,7 +782,7 @@ func (o CertificatesTagArrayOutput) Index(i pulumi.IntInput) CertificatesTagOutp
 }
 
 type ClbEipBillingConfig struct {
-	// The peek bandwidth of the EIP which automatically assigned to CLB. The value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
+	// The peek bandwidth of the EIP which automatically assigned to CLB.
 	Bandwidth *int `pulumi:"bandwidth"`
 	// The billing type of the EIP which automatically assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.When creating a `PrePaid` public CLB, this field must be specified as `PrePaid` simultaneously.When the LoadBalancerBillingType changes from `PostPaid` to `PrePaid`, please manually modify the value of this field to `PrePaid` simultaneously.
 	EipBillingType string `pulumi:"eipBillingType"`
@@ -802,7 +802,7 @@ type ClbEipBillingConfigInput interface {
 }
 
 type ClbEipBillingConfigArgs struct {
-	// The peek bandwidth of the EIP which automatically assigned to CLB. The value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
+	// The peek bandwidth of the EIP which automatically assigned to CLB.
 	Bandwidth pulumi.IntPtrInput `pulumi:"bandwidth"`
 	// The billing type of the EIP which automatically assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.When creating a `PrePaid` public CLB, this field must be specified as `PrePaid` simultaneously.When the LoadBalancerBillingType changes from `PostPaid` to `PrePaid`, please manually modify the value of this field to `PrePaid` simultaneously.
 	EipBillingType pulumi.StringInput `pulumi:"eipBillingType"`
@@ -887,7 +887,7 @@ func (o ClbEipBillingConfigOutput) ToClbEipBillingConfigPtrOutputWithContext(ctx
 	}).(ClbEipBillingConfigPtrOutput)
 }
 
-// The peek bandwidth of the EIP which automatically assigned to CLB. The value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
+// The peek bandwidth of the EIP which automatically assigned to CLB.
 func (o ClbEipBillingConfigOutput) Bandwidth() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ClbEipBillingConfig) *int { return v.Bandwidth }).(pulumi.IntPtrOutput)
 }
@@ -926,7 +926,7 @@ func (o ClbEipBillingConfigPtrOutput) Elem() ClbEipBillingConfigOutput {
 	}).(ClbEipBillingConfigOutput)
 }
 
-// The peek bandwidth of the EIP which automatically assigned to CLB. The value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
+// The peek bandwidth of the EIP which automatically assigned to CLB.
 func (o ClbEipBillingConfigPtrOutput) Bandwidth() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ClbEipBillingConfig) *int {
 		if v == nil {

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cr
+namespace Volcengine.Pulumi.Volcengine.Cr
 {
     public static class Tags
     {
@@ -19,32 +19,31 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Cr.Tags.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Cr.Tags.InvokeAsync(new Volcengine.Cr.TagsArgs
+        ///         Namespace = "test",
+        ///         Registry = "enterprise-1",
+        ///         Repository = "repo",
+        ///         Types = new[]
         ///         {
-        ///             Namespace = "test",
-        ///             Registry = "enterprise-1",
-        ///             Repository = "repo",
-        ///             Types = 
-        ///             {
-        ///                 "Image",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "Image",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<TagsResult> InvokeAsync(TagsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<TagsResult>("volcengine:cr/tags:Tags", args ?? new TagsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<TagsResult>("volcengine:cr/tags:Tags", args ?? new TagsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cr tags
@@ -53,36 +52,35 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Cr.Tags.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Cr.Tags.InvokeAsync(new Volcengine.Cr.TagsArgs
+        ///         Namespace = "test",
+        ///         Registry = "enterprise-1",
+        ///         Repository = "repo",
+        ///         Types = new[]
         ///         {
-        ///             Namespace = "test",
-        ///             Registry = "enterprise-1",
-        ///             Repository = "repo",
-        ///             Types = 
-        ///             {
-        ///                 "Image",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "Image",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<TagsResult> Invoke(TagsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<TagsResult>("volcengine:cr/tags:Tags", args ?? new TagsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<TagsResult>("volcengine:cr/tags:Tags", args ?? new TagsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class TagsArgs : Pulumi.InvokeArgs
+    public sealed class TagsArgs : global::Pulumi.InvokeArgs
     {
         [Input("names")]
         private List<string>? _names;
@@ -135,9 +133,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         public TagsArgs()
         {
         }
+        public static new TagsArgs Empty => new TagsArgs();
     }
 
-    public sealed class TagsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class TagsInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("names")]
         private InputList<string>? _names;
@@ -190,6 +189,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         public TagsInvokeArgs()
         {
         }
+        public static new TagsInvokeArgs Empty => new TagsInvokeArgs();
     }
 
 

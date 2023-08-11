@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,19 +14,16 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = pulumi.output(volcengine.mongodb.InstanceParameters({
- *     instanceId: "mongo-replica-f16e9298b121", // 必填
- *     parameterNames: "connPoolMaxConnsPerHost", // 选填
- *     parameterRole: "Node", // 选填
- * }));
+ * const foo = volcengine.mongodb.InstanceParameters({
+ *     instanceId: "mongo-replica-f16e9298b121",
+ *     parameterNames: "connPoolMaxConnsPerHost",
+ *     parameterRole: "Node",
+ * });
  * ```
  */
 export function instanceParameters(args: InstanceParametersArgs, opts?: pulumi.InvokeOptions): Promise<InstanceParametersResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:mongodb/instanceParameters:InstanceParameters", {
         "instanceId": args.instanceId,
         "outputFile": args.outputFile,
@@ -83,9 +81,23 @@ export interface InstanceParametersResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of mongodb instance parameters
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const foo = volcengine.mongodb.InstanceParameters({
+ *     instanceId: "mongo-replica-f16e9298b121",
+ *     parameterNames: "connPoolMaxConnsPerHost",
+ *     parameterRole: "Node",
+ * });
+ * ```
+ */
 export function instanceParametersOutput(args: InstanceParametersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<InstanceParametersResult> {
-    return pulumi.output(args).apply(a => instanceParameters(a, opts))
+    return pulumi.output(args).apply((a: any) => instanceParameters(a, opts))
 }
 
 /**

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cr
+namespace Volcengine.Pulumi.Volcengine.Cr
 {
     public static class Repositories
     {
@@ -19,30 +19,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Cr.Repositories.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Cr.Repositories.InvokeAsync(new Volcengine.Cr.RepositoriesArgs
+        ///         Names = new[]
         ///         {
-        ///             Names = 
-        ///             {
-        ///                 "repo*",
-        ///             },
-        ///             Registry = "tf-1",
-        ///         }));
-        ///     }
+        ///             "repo*",
+        ///         },
+        ///         Registry = "tf-1",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<RepositoriesResult> InvokeAsync(RepositoriesArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<RepositoriesResult>("volcengine:cr/repositories:Repositories", args ?? new RepositoriesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<RepositoriesResult>("volcengine:cr/repositories:Repositories", args ?? new RepositoriesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cr repositories
@@ -51,34 +50,33 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Cr.Repositories.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Cr.Repositories.InvokeAsync(new Volcengine.Cr.RepositoriesArgs
+        ///         Names = new[]
         ///         {
-        ///             Names = 
-        ///             {
-        ///                 "repo*",
-        ///             },
-        ///             Registry = "tf-1",
-        ///         }));
-        ///     }
+        ///             "repo*",
+        ///         },
+        ///         Registry = "tf-1",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<RepositoriesResult> Invoke(RepositoriesInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<RepositoriesResult>("volcengine:cr/repositories:Repositories", args ?? new RepositoriesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<RepositoriesResult>("volcengine:cr/repositories:Repositories", args ?? new RepositoriesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class RepositoriesArgs : Pulumi.InvokeArgs
+    public sealed class RepositoriesArgs : global::Pulumi.InvokeArgs
     {
         [Input("accessLevels")]
         private List<string>? _accessLevels;
@@ -131,9 +129,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         public RepositoriesArgs()
         {
         }
+        public static new RepositoriesArgs Empty => new RepositoriesArgs();
     }
 
-    public sealed class RepositoriesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class RepositoriesInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("accessLevels")]
         private InputList<string>? _accessLevels;
@@ -186,6 +185,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         public RepositoriesInvokeArgs()
         {
         }
+        public static new RepositoriesInvokeArgs Empty => new RepositoriesInvokeArgs();
     }
 
 

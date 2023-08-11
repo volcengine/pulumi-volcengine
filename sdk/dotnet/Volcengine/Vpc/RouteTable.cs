@@ -8,30 +8,29 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpc
+namespace Volcengine.Pulumi.Volcengine.Vpc
 {
     /// <summary>
     /// Provides a resource to manage route table
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Vpc.RouteTable("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Vpc.RouteTable("foo", new Volcengine.Vpc.RouteTableArgs
-    ///         {
-    ///             Description = "tf-test1",
-    ///             ProjectName = "yuwao",
-    ///             RouteTableName = "tf-project-1",
-    ///             VpcId = "vpc-2feppmy1ugt1c59gp688n1fld",
-    ///         });
-    ///     }
+    ///         Description = "tf-test1",
+    ///         ProjectName = "yuwao",
+    ///         RouteTableName = "tf-project-1",
+    ///         VpcId = "vpc-2feppmy1ugt1c59gp688n1fld",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -43,7 +42,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vpc/routeTable:RouteTable")]
-    public partial class RouteTable : Pulumi.CustomResource
+    public partial class RouteTable : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The description of the route table.
@@ -114,7 +113,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         }
     }
 
-    public sealed class RouteTableArgs : Pulumi.ResourceArgs
+    public sealed class RouteTableArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The description of the route table.
@@ -143,9 +142,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public RouteTableArgs()
         {
         }
+        public static new RouteTableArgs Empty => new RouteTableArgs();
     }
 
-    public sealed class RouteTableState : Pulumi.ResourceArgs
+    public sealed class RouteTableState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The description of the route table.
@@ -174,5 +174,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public RouteTableState()
         {
         }
+        public static new RouteTableState Empty => new RouteTableState();
     }
 }

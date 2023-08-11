@@ -8,30 +8,29 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cen
+namespace Volcengine.Pulumi.Volcengine.Cen
 {
     /// <summary>
     /// Provides a resource to manage cen inter region bandwidth
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Cen.InterRegionBandwidth("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Cen.InterRegionBandwidth("foo", new Volcengine.Cen.InterRegionBandwidthArgs
-    ///         {
-    ///             Bandwidth = 1,
-    ///             CenId = "cen-274vsbhwvvb407fap8sp611w7",
-    ///             LocalRegionId = "cn-north-3",
-    ///             PeerRegionId = "cn-zhangjiakou",
-    ///         });
-    ///     }
+    ///         Bandwidth = 1,
+    ///         CenId = "cen-274vsbhwvvb407fap8sp611w7",
+    ///         LocalRegionId = "cn-north-3",
+    ///         PeerRegionId = "cn-zhangjiakou",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -43,7 +42,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:cen/interRegionBandwidth:InterRegionBandwidth")]
-    public partial class InterRegionBandwidth : Pulumi.CustomResource
+    public partial class InterRegionBandwidth : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The bandwidth of the cen inter region bandwidth.
@@ -138,7 +137,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         }
     }
 
-    public sealed class InterRegionBandwidthArgs : Pulumi.ResourceArgs
+    public sealed class InterRegionBandwidthArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The bandwidth of the cen inter region bandwidth.
@@ -167,9 +166,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         public InterRegionBandwidthArgs()
         {
         }
+        public static new InterRegionBandwidthArgs Empty => new InterRegionBandwidthArgs();
     }
 
-    public sealed class InterRegionBandwidthState : Pulumi.ResourceArgs
+    public sealed class InterRegionBandwidthState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The bandwidth of the cen inter region bandwidth.
@@ -222,5 +222,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         public InterRegionBandwidthState()
         {
         }
+        public static new InterRegionBandwidthState Empty => new InterRegionBandwidthState();
     }
 }

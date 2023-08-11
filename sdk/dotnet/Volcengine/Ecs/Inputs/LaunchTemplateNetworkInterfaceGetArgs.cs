@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Ecs.Inputs
+namespace Volcengine.Pulumi.Volcengine.Ecs.Inputs
 {
 
-    public sealed class LaunchTemplateNetworkInterfaceGetArgs : Pulumi.ResourceArgs
+    public sealed class LaunchTemplateNetworkInterfaceGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("securityGroupIds")]
         private InputList<string>? _securityGroupIds;
@@ -34,5 +34,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs.Inputs
         public LaunchTemplateNetworkInterfaceGetArgs()
         {
         }
+        public static new LaunchTemplateNetworkInterfaceGetArgs Empty => new LaunchTemplateNetworkInterfaceGetArgs();
     }
 }

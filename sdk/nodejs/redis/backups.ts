@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultBackups = pulumi.output(volcengine.redis.Backups({
+ * const default = volcengine.redis.Backups({
  *     backupStrategyLists: ["ManualBackup"],
  *     instanceId: "redis-cnlfvrv4qye6u4lpa",
- * }));
+ * });
  * ```
  */
 export function backups(args: BackupsArgs, opts?: pulumi.InvokeOptions): Promise<BackupsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:redis/backups:Backups", {
         "backupStrategyLists": args.backupStrategyLists,
         "endTime": args.endTime,
@@ -91,9 +89,22 @@ export interface BackupsResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of redis backups
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.redis.Backups({
+ *     backupStrategyLists: ["ManualBackup"],
+ *     instanceId: "redis-cnlfvrv4qye6u4lpa",
+ * });
+ * ```
+ */
 export function backupsOutput(args: BackupsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<BackupsResult> {
-    return pulumi.output(args).apply(a => backups(a, opts))
+    return pulumi.output(args).apply((a: any) => backups(a, opts))
 }
 
 /**

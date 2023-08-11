@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Redis
+namespace Volcengine.Pulumi.Volcengine.Redis
 {
     public static class Backups
     {
@@ -19,30 +19,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Redis.Backups.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Redis.Backups.InvokeAsync(new Volcengine.Redis.BackupsArgs
+        ///         BackupStrategyLists = new[]
         ///         {
-        ///             BackupStrategyLists = 
-        ///             {
-        ///                 "ManualBackup",
-        ///             },
-        ///             InstanceId = "redis-cnlfvrv4qye6u4lpa",
-        ///         }));
-        ///     }
+        ///             "ManualBackup",
+        ///         },
+        ///         InstanceId = "redis-cnlfvrv4qye6u4lpa",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<BackupsResult> InvokeAsync(BackupsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<BackupsResult>("volcengine:redis/backups:Backups", args ?? new BackupsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<BackupsResult>("volcengine:redis/backups:Backups", args ?? new BackupsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of redis backups
@@ -51,34 +50,33 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Redis.Backups.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Redis.Backups.InvokeAsync(new Volcengine.Redis.BackupsArgs
+        ///         BackupStrategyLists = new[]
         ///         {
-        ///             BackupStrategyLists = 
-        ///             {
-        ///                 "ManualBackup",
-        ///             },
-        ///             InstanceId = "redis-cnlfvrv4qye6u4lpa",
-        ///         }));
-        ///     }
+        ///             "ManualBackup",
+        ///         },
+        ///         InstanceId = "redis-cnlfvrv4qye6u4lpa",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<BackupsResult> Invoke(BackupsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<BackupsResult>("volcengine:redis/backups:Backups", args ?? new BackupsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<BackupsResult>("volcengine:redis/backups:Backups", args ?? new BackupsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class BackupsArgs : Pulumi.InvokeArgs
+    public sealed class BackupsArgs : global::Pulumi.InvokeArgs
     {
         [Input("backupStrategyLists")]
         private List<string>? _backupStrategyLists;
@@ -119,9 +117,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         public BackupsArgs()
         {
         }
+        public static new BackupsArgs Empty => new BackupsArgs();
     }
 
-    public sealed class BackupsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class BackupsInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("backupStrategyLists")]
         private InputList<string>? _backupStrategyLists;
@@ -162,6 +161,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         public BackupsInvokeArgs()
         {
         }
+        public static new BackupsInvokeArgs Empty => new BackupsInvokeArgs();
     }
 
 

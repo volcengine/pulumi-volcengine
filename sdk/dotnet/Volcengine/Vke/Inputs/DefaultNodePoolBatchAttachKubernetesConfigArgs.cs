@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
+namespace Volcengine.Pulumi.Volcengine.Vke.Inputs
 {
 
-    public sealed class DefaultNodePoolBatchAttachKubernetesConfigArgs : Pulumi.ResourceArgs
+    public sealed class DefaultNodePoolBatchAttachKubernetesConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Cordon of KubernetesConfig.
@@ -46,5 +46,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
         public DefaultNodePoolBatchAttachKubernetesConfigArgs()
         {
         }
+        public static new DefaultNodePoolBatchAttachKubernetesConfigArgs Empty => new DefaultNodePoolBatchAttachKubernetesConfigArgs();
     }
 }

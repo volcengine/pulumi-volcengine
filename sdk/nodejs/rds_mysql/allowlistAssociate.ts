@@ -10,7 +10,7 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.rds_mysql.AllowlistAssociate("foo", {
  *     allowListId: "acl-15451212dcfa473baeda24be4baa02fe",

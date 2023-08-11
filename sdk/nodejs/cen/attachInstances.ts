@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = pulumi.output(volcengine.cen.AttachInstances({
+ * const foo = volcengine.cen.AttachInstances({
  *     cenId: "cen-2bzrl3srxsv0g2dx0efyoojn3",
- * }));
+ * });
  * ```
  */
 export function attachInstances(args?: AttachInstancesArgs, opts?: pulumi.InvokeOptions): Promise<AttachInstancesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:cen/attachInstances:AttachInstances", {
         "cenId": args.cenId,
         "instanceId": args.instanceId,
@@ -94,9 +92,21 @@ export interface AttachInstancesResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of cen attach instances
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const foo = volcengine.cen.AttachInstances({
+ *     cenId: "cen-2bzrl3srxsv0g2dx0efyoojn3",
+ * });
+ * ```
+ */
 export function attachInstancesOutput(args?: AttachInstancesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AttachInstancesResult> {
-    return pulumi.output(args).apply(a => attachInstances(a, opts))
+    return pulumi.output(args).apply((a: any) => attachInstances(a, opts))
 }
 
 /**

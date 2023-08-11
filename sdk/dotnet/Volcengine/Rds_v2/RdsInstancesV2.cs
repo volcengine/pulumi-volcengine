@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds_v2
+namespace Volcengine.Pulumi.Volcengine.Rds_v2
 {
     public static class RdsInstancesV2
     {
@@ -19,23 +19,22 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_v2
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var @default = Output.Create(Volcengine.Rds_v2.RdsInstancesV2.InvokeAsync());
-        ///     }
+        ///     var @default = Volcengine.Rds_v2.RdsInstancesV2.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<RdsInstancesV2Result> InvokeAsync(RdsInstancesV2Args? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<RdsInstancesV2Result>("volcengine:rds_v2/rdsInstancesV2:RdsInstancesV2", args ?? new RdsInstancesV2Args(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<RdsInstancesV2Result>("volcengine:rds_v2/rdsInstancesV2:RdsInstancesV2", args ?? new RdsInstancesV2Args(), options.WithDefaults());
 
         /// <summary>
         /// (Deprecated! Recommend use volcengine_rds_mysql_*** replace) Use this data source to query detailed information of rds instances v2
@@ -44,27 +43,26 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_v2
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var @default = Output.Create(Volcengine.Rds_v2.RdsInstancesV2.InvokeAsync());
-        ///     }
+        ///     var @default = Volcengine.Rds_v2.RdsInstancesV2.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<RdsInstancesV2Result> Invoke(RdsInstancesV2InvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<RdsInstancesV2Result>("volcengine:rds_v2/rdsInstancesV2:RdsInstancesV2", args ?? new RdsInstancesV2InvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<RdsInstancesV2Result>("volcengine:rds_v2/rdsInstancesV2:RdsInstancesV2", args ?? new RdsInstancesV2InvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class RdsInstancesV2Args : Pulumi.InvokeArgs
+    public sealed class RdsInstancesV2Args : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The charge type of the RDS instance.
@@ -170,9 +168,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_v2
         public RdsInstancesV2Args()
         {
         }
+        public static new RdsInstancesV2Args Empty => new RdsInstancesV2Args();
     }
 
-    public sealed class RdsInstancesV2InvokeArgs : Pulumi.InvokeArgs
+    public sealed class RdsInstancesV2InvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The charge type of the RDS instance.
@@ -278,6 +277,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_v2
         public RdsInstancesV2InvokeArgs()
         {
         }
+        public static new RdsInstancesV2InvokeArgs Empty => new RdsInstancesV2InvokeArgs();
     }
 
 

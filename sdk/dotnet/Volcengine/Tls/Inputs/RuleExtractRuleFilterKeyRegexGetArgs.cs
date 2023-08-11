@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
+namespace Volcengine.Pulumi.Volcengine.Tls.Inputs
 {
 
-    public sealed class RuleExtractRuleFilterKeyRegexGetArgs : Pulumi.ResourceArgs
+    public sealed class RuleExtractRuleFilterKeyRegexGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the filter key.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
         public RuleExtractRuleFilterKeyRegexGetArgs()
         {
         }
+        public static new RuleExtractRuleFilterKeyRegexGetArgs Empty => new RuleExtractRuleFilterKeyRegexGetArgs();
     }
 }

@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultIpv6Addresses = pulumi.output(volcengine.vpc.Ipv6Addresses({
+ * const default = volcengine.vpc.Ipv6Addresses({
  *     associatedInstanceId: "i-yca53yuhj6gh9zl53kav",
- * }));
+ * });
  * ```
  */
 export function ipv6Addresses(args?: Ipv6AddressesArgs, opts?: pulumi.InvokeOptions): Promise<Ipv6AddressesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:vpc/ipv6Addresses:Ipv6Addresses", {
         "associatedInstanceId": args.associatedInstanceId,
         "outputFile": args.outputFile,
@@ -64,9 +62,21 @@ export interface Ipv6AddressesResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of vpc ipv6 addresses
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.vpc.Ipv6Addresses({
+ *     associatedInstanceId: "i-yca53yuhj6gh9zl53kav",
+ * });
+ * ```
+ */
 export function ipv6AddressesOutput(args?: Ipv6AddressesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<Ipv6AddressesResult> {
-    return pulumi.output(args).apply(a => ipv6Addresses(a, opts))
+    return pulumi.output(args).apply((a: any) => ipv6Addresses(a, opts))
 }
 
 /**

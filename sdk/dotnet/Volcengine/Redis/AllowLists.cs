@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Redis
+namespace Volcengine.Pulumi.Volcengine.Redis
 {
     public static class AllowLists
     {
@@ -19,26 +19,25 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Redis.AllowLists.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Redis.AllowLists.InvokeAsync(new Volcengine.Redis.AllowListsArgs
-        ///         {
-        ///             RegionId = "cn-beijing",
-        ///         }));
-        ///     }
+        ///         RegionId = "cn-beijing",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<AllowListsResult> InvokeAsync(AllowListsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<AllowListsResult>("volcengine:redis/allowLists:AllowLists", args ?? new AllowListsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<AllowListsResult>("volcengine:redis/allowLists:AllowLists", args ?? new AllowListsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of redis allow lists
@@ -47,30 +46,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Redis.AllowLists.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Redis.AllowLists.InvokeAsync(new Volcengine.Redis.AllowListsArgs
-        ///         {
-        ///             RegionId = "cn-beijing",
-        ///         }));
-        ///     }
+        ///         RegionId = "cn-beijing",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<AllowListsResult> Invoke(AllowListsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<AllowListsResult>("volcengine:redis/allowLists:AllowLists", args ?? new AllowListsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<AllowListsResult>("volcengine:redis/allowLists:AllowLists", args ?? new AllowListsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class AllowListsArgs : Pulumi.InvokeArgs
+    public sealed class AllowListsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The Id of instance.
@@ -99,9 +97,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         public AllowListsArgs()
         {
         }
+        public static new AllowListsArgs Empty => new AllowListsArgs();
     }
 
-    public sealed class AllowListsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class AllowListsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The Id of instance.
@@ -130,6 +129,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         public AllowListsInvokeArgs()
         {
         }
+        public static new AllowListsInvokeArgs Empty => new AllowListsInvokeArgs();
     }
 
 

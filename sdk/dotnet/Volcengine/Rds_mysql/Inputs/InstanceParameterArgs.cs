@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql.Inputs
+namespace Volcengine.Pulumi.Volcengine.Rds_mysql.Inputs
 {
 
-    public sealed class InstanceParameterArgs : Pulumi.ResourceArgs
+    public sealed class InstanceParameterArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Parameter name.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql.Inputs
         public InstanceParameterArgs()
         {
         }
+        public static new InstanceParameterArgs Empty => new InstanceParameterArgs();
     }
 }

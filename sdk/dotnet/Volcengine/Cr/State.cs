@@ -8,27 +8,26 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cr
+namespace Volcengine.Pulumi.Volcengine.Cr
 {
     /// <summary>
     /// Provides a resource to manage cr registry state
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Cr.State("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Cr.State("foo", new Volcengine.Cr.StateArgs
-    ///         {
-    ///             Action = "Start",
-    ///         });
-    ///     }
+    ///         Action = "Start",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -40,7 +39,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:cr/state:State")]
-    public partial class State : Pulumi.CustomResource
+    public partial class State : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Start cr instance action,the value must be `Start`.
@@ -105,7 +104,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         }
     }
 
-    public sealed class StateArgs : Pulumi.ResourceArgs
+    public sealed class StateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Start cr instance action,the value must be `Start`.
@@ -122,9 +121,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         public StateArgs()
         {
         }
+        public static new StateArgs Empty => new StateArgs();
     }
 
-    public sealed class StateState : Pulumi.ResourceArgs
+    public sealed class StateState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Start cr instance action,the value must be `Start`.
@@ -147,5 +147,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         public StateState()
         {
         }
+        public static new StateState Empty => new StateState();
     }
 }

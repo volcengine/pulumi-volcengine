@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultIpv6Gateways = pulumi.output(volcengine.vpc.Ipv6Gateways({
+ * const default = volcengine.vpc.Ipv6Gateways({
  *     ids: ["ipv6gw-12bcapllb5ukg17q7y2sd3thx"],
- * }));
+ * });
  * ```
  */
 export function ipv6Gateways(args?: Ipv6GatewaysArgs, opts?: pulumi.InvokeOptions): Promise<Ipv6GatewaysResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:vpc/ipv6Gateways:Ipv6Gateways", {
         "ids": args.ids,
         "name": args.name,
@@ -85,9 +83,21 @@ export interface Ipv6GatewaysResult {
     readonly totalCount: number;
     readonly vpcIds?: string[];
 }
-
+/**
+ * Use this data source to query detailed information of vpc ipv6 gateways
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.vpc.Ipv6Gateways({
+ *     ids: ["ipv6gw-12bcapllb5ukg17q7y2sd3thx"],
+ * });
+ * ```
+ */
 export function ipv6GatewaysOutput(args?: Ipv6GatewaysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<Ipv6GatewaysResult> {
-    return pulumi.output(args).apply(a => ipv6Gateways(a, opts))
+    return pulumi.output(args).apply((a: any) => ipv6Gateways(a, opts))
 }
 
 /**

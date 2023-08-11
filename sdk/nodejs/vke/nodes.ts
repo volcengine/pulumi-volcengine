@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,7 +14,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultNodes = pulumi.output(volcengine.vke.Nodes({
+ * const default = volcengine.vke.Nodes({
  *     clusterIds: [
  *         "c123",
  *         "c456",
@@ -29,16 +30,13 @@ import * as utilities from "../utilities";
  *             phase: "Creating123",
  *         },
  *     ],
- * }));
+ * });
  * ```
  */
 export function nodes(args?: NodesArgs, opts?: pulumi.InvokeOptions): Promise<NodesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:vke/nodes:Nodes", {
         "clusterIds": args.clusterIds,
         "createClientToken": args.createClientToken,
@@ -126,9 +124,35 @@ export interface NodesResult {
     readonly totalCount: number;
     readonly zoneIds?: string[];
 }
-
+/**
+ * Use this data source to query detailed information of vke nodes
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.vke.Nodes({
+ *     clusterIds: [
+ *         "c123",
+ *         "c456",
+ *     ],
+ *     ids: ["ncaa3e5mrsferqkomi190"],
+ *     statuses: [
+ *         {
+ *             conditionsType: "Progressing",
+ *             phase: "Creating",
+ *         },
+ *         {
+ *             conditionsType: "Progressing123",
+ *             phase: "Creating123",
+ *         },
+ *     ],
+ * });
+ * ```
+ */
 export function nodesOutput(args?: NodesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<NodesResult> {
-    return pulumi.output(args).apply(a => nodes(a, opts))
+    return pulumi.output(args).apply((a: any) => nodes(a, opts))
 }
 
 /**

@@ -8,28 +8,27 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cen
+namespace Volcengine.Pulumi.Volcengine.Cen
 {
     /// <summary>
     /// Provides a resource to manage cen bandwidth package associate
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Cen.BandwidthPackageAssociate("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Cen.BandwidthPackageAssociate("foo", new Volcengine.Cen.BandwidthPackageAssociateArgs
-    ///         {
-    ///             CenBandwidthPackageId = "cbp-2bzeew3s8p79c2dx0eeohej4x",
-    ///             CenId = "cen-2bzrl3srxsv0g2dx0efyoojn3",
-    ///         });
-    ///     }
+    ///         CenBandwidthPackageId = "cbp-2bzeew3s8p79c2dx0eeohej4x",
+    ///         CenId = "cen-2bzrl3srxsv0g2dx0efyoojn3",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -41,7 +40,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:cen/bandwidthPackageAssociate:BandwidthPackageAssociate")]
-    public partial class BandwidthPackageAssociate : Pulumi.CustomResource
+    public partial class BandwidthPackageAssociate : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The ID of the cen bandwidth package.
@@ -100,7 +99,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         }
     }
 
-    public sealed class BandwidthPackageAssociateArgs : Pulumi.ResourceArgs
+    public sealed class BandwidthPackageAssociateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of the cen bandwidth package.
@@ -117,9 +116,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         public BandwidthPackageAssociateArgs()
         {
         }
+        public static new BandwidthPackageAssociateArgs Empty => new BandwidthPackageAssociateArgs();
     }
 
-    public sealed class BandwidthPackageAssociateState : Pulumi.ResourceArgs
+    public sealed class BandwidthPackageAssociateState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of the cen bandwidth package.
@@ -136,5 +136,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         public BandwidthPackageAssociateState()
         {
         }
+        public static new BandwidthPackageAssociateState Empty => new BandwidthPackageAssociateState();
     }
 }

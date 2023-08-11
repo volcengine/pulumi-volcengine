@@ -10,13 +10,14 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
  * const example = new volcengine.bioos.ClusterBind("example", {
- *     clusterId: "ucfhp1nteig48u8ufv8s0", //必填
- *     type: "workflow", //必填, workflow 或 notebook
- *     workspaceId: "wcfhp1vdeig48u8ufv8sg", //必填
+ *     clusterId: "ucfhp1nteig48u8ufv8s0",
+ *     type: "workflow",
+ *     workspaceId: "wcfhp1vdeig48u8ufv8sg",
  * });
+ * //必填
  * ```
  *
  * ## Import

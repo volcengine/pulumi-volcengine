@@ -9,17 +9,17 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi from "@volcengine/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
  * const dataEcs = volcengine.ecs.Instances({
  *     ids: ["i-ycal1mtpucl8j0hjiihy"],
  * });
  * const dataIpv6 = dataEcs.then(dataEcs => volcengine.vpc.Ipv6Addresses({
- *     associatedInstanceId: dataEcs.instances?[0]?.instanceId,
+ *     associatedInstanceId: dataEcs.instances?.[0]?.instanceId,
  * }));
  * const foo = new volcengine.vpc.Ipv6AddressBandwidth("foo", {
- *     ipv6Address: dataIpv6.then(dataIpv6 => dataIpv6.ipv6Addresses?[0]?.ipv6Address),
+ *     ipv6Address: dataIpv6.then(dataIpv6 => dataIpv6.ipv6Addresses?.[0]?.ipv6Address),
  *     billingType: "PostPaidByBandwidth",
  *     bandwidth: 5,
  * });

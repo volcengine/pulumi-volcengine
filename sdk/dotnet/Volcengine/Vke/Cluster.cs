@@ -8,85 +8,84 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke
+namespace Volcengine.Pulumi.Volcengine.Vke
 {
     /// <summary>
     /// Provides a resource to manage vke cluster
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Vke.Cluster("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Vke.Cluster("foo", new Volcengine.Vke.ClusterArgs
+    ///         ClusterConfig = new Volcengine.Vke.Inputs.ClusterClusterConfigArgs
     ///         {
-    ///             ClusterConfig = new Volcengine.Vke.Inputs.ClusterClusterConfigArgs
+    ///             ApiServerPublicAccessConfig = new Volcengine.Vke.Inputs.ClusterClusterConfigApiServerPublicAccessConfigArgs
     ///             {
-    ///                 ApiServerPublicAccessConfig = new Volcengine.Vke.Inputs.ClusterClusterConfigApiServerPublicAccessConfigArgs
+    ///                 PublicAccessNetworkConfig = new Volcengine.Vke.Inputs.ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs
     ///                 {
-    ///                     PublicAccessNetworkConfig = new Volcengine.Vke.Inputs.ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs
-    ///                     {
-    ///                         Bandwidth = 1,
-    ///                         BillingType = "PostPaidByBandwidth",
-    ///                     },
+    ///                     Bandwidth = 1,
+    ///                     BillingType = "PostPaidByBandwidth",
     ///                 },
-    ///                 ApiServerPublicAccessEnabled = true,
-    ///                 ResourcePublicAccessDefaultEnabled = true,
-    ///                 SubnetIds = 
+    ///             },
+    ///             ApiServerPublicAccessEnabled = true,
+    ///             ResourcePublicAccessDefaultEnabled = true,
+    ///             SubnetIds = new[]
+    ///             {
+    ///                 "subnet-rrqvkt2nq1hcv0x57ccqf3x",
+    ///             },
+    ///         },
+    ///         DeleteProtectionEnabled = false,
+    ///         Description = "created by terraform",
+    ///         LoggingConfig = new Volcengine.Vke.Inputs.ClusterLoggingConfigArgs
+    ///         {
+    ///             LogSetups = new[]
+    ///             {
+    ///                 new Volcengine.Vke.Inputs.ClusterLoggingConfigLogSetupArgs
+    ///                 {
+    ///                     Enabled = false,
+    ///                     LogTtl = 30,
+    ///                     LogType = "Audit",
+    ///                 },
+    ///             },
+    ///         },
+    ///         PodsConfig = new Volcengine.Vke.Inputs.ClusterPodsConfigArgs
+    ///         {
+    ///             PodNetworkMode = "VpcCniShared",
+    ///             VpcCniConfig = new Volcengine.Vke.Inputs.ClusterPodsConfigVpcCniConfigArgs
+    ///             {
+    ///                 SubnetIds = new[]
     ///                 {
     ///                     "subnet-rrqvkt2nq1hcv0x57ccqf3x",
+    ///                     "subnet-miklcqh75vcw5smt1amo4ik5",
+    ///                     "subnet-13g0x0ytpm0hs3n6nu5j591lv",
     ///                 },
     ///             },
-    ///             DeleteProtectionEnabled = false,
-    ///             Description = "created by terraform",
-    ///             LoggingConfig = new Volcengine.Vke.Inputs.ClusterLoggingConfigArgs
+    ///         },
+    ///         ServicesConfig = new Volcengine.Vke.Inputs.ClusterServicesConfigArgs
+    ///         {
+    ///             ServiceCidrsv4s = new[]
     ///             {
-    ///                 LogSetups = 
-    ///                 {
-    ///                     new Volcengine.Vke.Inputs.ClusterLoggingConfigLogSetupArgs
-    ///                     {
-    ///                         Enabled = false,
-    ///                         LogTtl = 30,
-    ///                         LogType = "Audit",
-    ///                     },
-    ///                 },
+    ///                 "172.30.0.0/18",
     ///             },
-    ///             PodsConfig = new Volcengine.Vke.Inputs.ClusterPodsConfigArgs
+    ///         },
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Vke.Inputs.ClusterTagArgs
     ///             {
-    ///                 PodNetworkMode = "VpcCniShared",
-    ///                 VpcCniConfig = new Volcengine.Vke.Inputs.ClusterPodsConfigVpcCniConfigArgs
-    ///                 {
-    ///                     SubnetIds = 
-    ///                     {
-    ///                         "subnet-rrqvkt2nq1hcv0x57ccqf3x",
-    ///                         "subnet-miklcqh75vcw5smt1amo4ik5",
-    ///                         "subnet-13g0x0ytpm0hs3n6nu5j591lv",
-    ///                     },
-    ///                 },
+    ///                 Key = "k1",
+    ///                 Value = "v1",
     ///             },
-    ///             ServicesConfig = new Volcengine.Vke.Inputs.ClusterServicesConfigArgs
-    ///             {
-    ///                 ServiceCidrsv4s = 
-    ///                 {
-    ///                     "172.30.0.0/18",
-    ///                 },
-    ///             },
-    ///             Tags = 
-    ///             {
-    ///                 new Volcengine.Vke.Inputs.ClusterTagArgs
-    ///                 {
-    ///                     Key = "k1",
-    ///                     Value = "v1",
-    ///                 },
-    ///             },
-    ///         });
-    ///     }
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -98,7 +97,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vke/cluster:Cluster")]
-    public partial class Cluster : Pulumi.CustomResource
+    public partial class Cluster : global::Pulumi.CustomResource
     {
         /// <summary>
         /// ClientToken is a case-sensitive string of no more than 64 ASCII characters passed in by the caller.
@@ -223,7 +222,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         }
     }
 
-    public sealed class ClusterArgs : Pulumi.ResourceArgs
+    public sealed class ClusterArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// ClientToken is a case-sensitive string of no more than 64 ASCII characters passed in by the caller.
@@ -294,9 +293,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         public ClusterArgs()
         {
         }
+        public static new ClusterArgs Empty => new ClusterArgs();
     }
 
-    public sealed class ClusterState : Pulumi.ResourceArgs
+    public sealed class ClusterState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// ClientToken is a case-sensitive string of no more than 64 ASCII characters passed in by the caller.
@@ -385,5 +385,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         public ClusterState()
         {
         }
+        public static new ClusterState Empty => new ClusterState();
     }
 }

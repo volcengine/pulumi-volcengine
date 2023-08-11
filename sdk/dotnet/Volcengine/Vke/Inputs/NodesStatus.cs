@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
+namespace Volcengine.Pulumi.Volcengine.Vke.Inputs
 {
 
-    public sealed class NodesStatusArgs : Pulumi.InvokeArgs
+    public sealed class NodesStatusArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The Type of Node Condition, the value is `Progressing` or `Ok` or `Unschedulable` or `InitilizeFailed` or `Unknown` or `NotReady` or `Security` or `Balance` or `ResourceCleanupFailed`.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
         public NodesStatusArgs()
         {
         }
+        public static new NodesStatusArgs Empty => new NodesStatusArgs();
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Privatelink
+namespace Volcengine.Pulumi.Volcengine.Privatelink
 {
     public static class VpcEndpointZones
     {
@@ -19,26 +19,25 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Privatelink.VpcEndpointZones.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Privatelink.VpcEndpointZones.InvokeAsync(new Volcengine.Privatelink.VpcEndpointZonesArgs
-        ///         {
-        ///             EndpointId = "ep-2byz5npiuu1hc2dx0efkv****",
-        ///         }));
-        ///     }
+        ///         EndpointId = "ep-2byz5npiuu1hc2dx0efkv****",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<VpcEndpointZonesResult> InvokeAsync(VpcEndpointZonesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<VpcEndpointZonesResult>("volcengine:privatelink/vpcEndpointZones:VpcEndpointZones", args ?? new VpcEndpointZonesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<VpcEndpointZonesResult>("volcengine:privatelink/vpcEndpointZones:VpcEndpointZones", args ?? new VpcEndpointZonesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of privatelink vpc endpoint zones
@@ -47,30 +46,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Privatelink.VpcEndpointZones.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Privatelink.VpcEndpointZones.InvokeAsync(new Volcengine.Privatelink.VpcEndpointZonesArgs
-        ///         {
-        ///             EndpointId = "ep-2byz5npiuu1hc2dx0efkv****",
-        ///         }));
-        ///     }
+        ///         EndpointId = "ep-2byz5npiuu1hc2dx0efkv****",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<VpcEndpointZonesResult> Invoke(VpcEndpointZonesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<VpcEndpointZonesResult>("volcengine:privatelink/vpcEndpointZones:VpcEndpointZones", args ?? new VpcEndpointZonesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<VpcEndpointZonesResult>("volcengine:privatelink/vpcEndpointZones:VpcEndpointZones", args ?? new VpcEndpointZonesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class VpcEndpointZonesArgs : Pulumi.InvokeArgs
+    public sealed class VpcEndpointZonesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The endpoint id of query.
@@ -87,9 +85,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         public VpcEndpointZonesArgs()
         {
         }
+        public static new VpcEndpointZonesArgs Empty => new VpcEndpointZonesArgs();
     }
 
-    public sealed class VpcEndpointZonesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class VpcEndpointZonesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The endpoint id of query.
@@ -106,6 +105,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         public VpcEndpointZonesInvokeArgs()
         {
         }
+        public static new VpcEndpointZonesInvokeArgs Empty => new VpcEndpointZonesInvokeArgs();
     }
 
 

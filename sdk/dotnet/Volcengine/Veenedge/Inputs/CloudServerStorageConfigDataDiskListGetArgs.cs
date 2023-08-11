@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Veenedge.Inputs
+namespace Volcengine.Pulumi.Volcengine.Veenedge.Inputs
 {
 
-    public sealed class CloudServerStorageConfigDataDiskListGetArgs : Pulumi.ResourceArgs
+    public sealed class CloudServerStorageConfigDataDiskListGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The capacity of storage.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge.Inputs
         public CloudServerStorageConfigDataDiskListGetArgs()
         {
         }
+        public static new CloudServerStorageConfigDataDiskListGetArgs Empty => new CloudServerStorageConfigDataDiskListGetArgs();
     }
 }

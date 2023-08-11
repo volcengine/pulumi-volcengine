@@ -8,33 +8,32 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds
+namespace Volcengine.Pulumi.Volcengine.Rds
 {
     /// <summary>
     /// (Deprecated! Recommend use volcengine_rds_mysql_*** replace) Provides a resource to manage rds ip list
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Rds.IpList("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Rds.IpList("foo", new Volcengine.Rds.IpListArgs
+    ///         GroupName = "foo",
+    ///         InstanceId = "mysql-0fdd3bab2e7c",
+    ///         IpLists = new[]
     ///         {
-    ///             GroupName = "foo",
-    ///             InstanceId = "mysql-0fdd3bab2e7c",
-    ///             IpLists = 
-    ///             {
-    ///                 "1.1.1.1",
-    ///                 "2.2.2.2",
-    ///             },
-    ///         });
-    ///     }
+    ///             "1.1.1.1",
+    ///             "2.2.2.2",
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -46,7 +45,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:rds/ipList:IpList")]
-    public partial class IpList : Pulumi.CustomResource
+    public partial class IpList : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The name of the RDS ip list.
@@ -111,7 +110,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds
         }
     }
 
-    public sealed class IpListArgs : Pulumi.ResourceArgs
+    public sealed class IpListArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the RDS ip list.
@@ -140,9 +139,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds
         public IpListArgs()
         {
         }
+        public static new IpListArgs Empty => new IpListArgs();
     }
 
-    public sealed class IpListState : Pulumi.ResourceArgs
+    public sealed class IpListState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the RDS ip list.
@@ -171,5 +171,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds
         public IpListState()
         {
         }
+        public static new IpListState Empty => new IpListState();
     }
 }

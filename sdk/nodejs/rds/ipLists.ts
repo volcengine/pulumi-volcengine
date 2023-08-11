@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,17 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultIpLists = pulumi.output(volcengine.rds.IpLists({
+ * const default = volcengine.rds.IpLists({
  *     instanceId: "mysql-0fdd3bab2e7c",
- * }));
+ * });
  * ```
  */
 export function ipLists(args: IpListsArgs, opts?: pulumi.InvokeOptions): Promise<IpListsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:rds/ipLists:IpLists", {
         "instanceId": args.instanceId,
         "nameRegex": args.nameRegex,
@@ -69,9 +67,21 @@ export interface IpListsResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * (Deprecated! Recommend use volcengine_rds_mysql_*** replace) Use this data source to query detailed information of rds ip lists
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.rds.IpLists({
+ *     instanceId: "mysql-0fdd3bab2e7c",
+ * });
+ * ```
+ */
 export function ipListsOutput(args: IpListsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<IpListsResult> {
-    return pulumi.output(args).apply(a => ipLists(a, opts))
+    return pulumi.output(args).apply((a: any) => ipLists(a, opts))
 }
 
 /**

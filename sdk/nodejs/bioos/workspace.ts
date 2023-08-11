@@ -10,12 +10,13 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.bioos.Workspace("foo", {
- *     coverPath: "template-cover/pic5.png", //选填
- *     description: "test-description23", //必填
+ *     coverPath: "template-cover/pic5.png",
+ *     description: "test-description23",
  * });
+ * //必填
  * ```
  *
  * ## Import

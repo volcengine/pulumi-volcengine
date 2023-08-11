@@ -79,6 +79,13 @@ func NewRegistry(ctx *pulumi.Context,
 		args = &RegistryArgs{}
 	}
 
+	if args.Password != nil {
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"password",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource Registry
 	err := ctx.RegisterResource("volcengine:cr/registry:Registry", name, args, &resource, opts...)

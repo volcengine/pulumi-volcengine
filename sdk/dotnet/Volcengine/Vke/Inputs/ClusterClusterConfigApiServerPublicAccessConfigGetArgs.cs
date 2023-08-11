@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
+namespace Volcengine.Pulumi.Volcengine.Vke.Inputs
 {
 
-    public sealed class ClusterClusterConfigApiServerPublicAccessConfigGetArgs : Pulumi.ResourceArgs
+    public sealed class ClusterClusterConfigApiServerPublicAccessConfigGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Public network access network configuration.
@@ -22,5 +22,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
         public ClusterClusterConfigApiServerPublicAccessConfigGetArgs()
         {
         }
+        public static new ClusterClusterConfigApiServerPublicAccessConfigGetArgs Empty => new ClusterClusterConfigApiServerPublicAccessConfigGetArgs();
     }
 }

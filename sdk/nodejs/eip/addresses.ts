@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -11,8 +12,8 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi from "@volcengine/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
  * const fooAddress = new volcengine.eip.Address("fooAddress", {billingType: "PostPaidByTraffic"});
  * const fooAddresses = volcengine.eip.AddressesOutput({
@@ -22,11 +23,8 @@ import * as utilities from "../utilities";
  */
 export function addresses(args?: AddressesArgs, opts?: pulumi.InvokeOptions): Promise<AddressesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:eip/addresses:Addresses", {
         "associatedInstanceId": args.associatedInstanceId,
         "associatedInstanceType": args.associatedInstanceType,
@@ -129,9 +127,23 @@ export interface AddressesResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of eip addresses
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
+ *
+ * const fooAddress = new volcengine.eip.Address("fooAddress", {billingType: "PostPaidByTraffic"});
+ * const fooAddresses = volcengine.eip.AddressesOutput({
+ *     ids: [fooAddress.id],
+ * });
+ * ```
+ */
 export function addressesOutput(args?: AddressesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AddressesResult> {
-    return pulumi.output(args).apply(a => addresses(a, opts))
+    return pulumi.output(args).apply((a: any) => addresses(a, opts))
 }
 
 /**

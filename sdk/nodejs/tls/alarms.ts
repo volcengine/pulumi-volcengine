@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,17 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultAlarms = pulumi.output(volcengine.tls.Alarms({
+ * const default = volcengine.tls.Alarms({
  *     projectId: "cc44f8b6-0328-4622-b043-023fca735cd4",
- * }));
+ * });
  * ```
  */
 export function alarms(args: AlarmsArgs, opts?: pulumi.InvokeOptions): Promise<AlarmsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:tls/alarms:Alarms", {
         "alarmId": args.alarmId,
         "alarmName": args.alarmName,
@@ -111,9 +109,21 @@ export interface AlarmsResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of tls alarms
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.tls.Alarms({
+ *     projectId: "cc44f8b6-0328-4622-b043-023fca735cd4",
+ * });
+ * ```
+ */
 export function alarmsOutput(args: AlarmsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AlarmsResult> {
-    return pulumi.output(args).apply(a => alarms(a, opts))
+    return pulumi.output(args).apply((a: any) => alarms(a, opts))
 }
 
 /**

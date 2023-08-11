@@ -8,40 +8,41 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpc
+namespace Volcengine.Pulumi.Volcengine.Vpc
 {
     /// <summary>
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Volcengine = Pulumi.Volcengine;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var dataEcs = Volcengine.Ecs.Instances.Invoke(new()
     ///     {
-    ///         var dataEcs = Output.Create(Volcengine.Ecs.Instances.InvokeAsync(new Volcengine.Ecs.InstancesArgs
+    ///         Ids = new[]
     ///         {
-    ///             Ids = 
-    ///             {
-    ///                 "i-ycal1mtpucl8j0hjiihy",
-    ///             },
-    ///         }));
-    ///         var dataIpv6 = dataEcs.Apply(dataEcs =&gt; Output.Create(Volcengine.Vpc.Ipv6Addresses.InvokeAsync(new Volcengine.Vpc.Ipv6AddressesArgs
-    ///         {
-    ///             AssociatedInstanceId = dataEcs.Instances?[0]?.InstanceId,
-    ///         })));
-    ///         var foo = new Volcengine.Vpc.Ipv6AddressBandwidth("foo", new Volcengine.Vpc.Ipv6AddressBandwidthArgs
-    ///         {
-    ///             Ipv6Address = dataIpv6.Apply(dataIpv6 =&gt; dataIpv6.Ipv6Addresses?[0]?.Ipv6Address),
-    ///             BillingType = "PostPaidByBandwidth",
-    ///             Bandwidth = 5,
-    ///         });
-    ///     }
+    ///             "i-ycal1mtpucl8j0hjiihy",
+    ///         },
+    ///     });
     /// 
-    /// }
+    ///     var dataIpv6 = Volcengine.Vpc.Ipv6Addresses.Invoke(new()
+    ///     {
+    ///         AssociatedInstanceId = dataEcs.Apply(instancesResult =&gt; instancesResult.Instances[0]?.InstanceId),
+    ///     });
+    /// 
+    ///     var foo = new Volcengine.Vpc.Ipv6AddressBandwidth("foo", new()
+    ///     {
+    ///         Ipv6Address = dataIpv6.Apply(ipv6AddressesResult =&gt; ipv6AddressesResult.Ipv6Addresses[0]?.Ipv6Address),
+    ///         BillingType = "PostPaidByBandwidth",
+    ///         Bandwidth = 5,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -53,7 +54,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vpc/ipv6AddressBandwidth:Ipv6AddressBandwidth")]
-    public partial class Ipv6AddressBandwidth : Pulumi.CustomResource
+    public partial class Ipv6AddressBandwidth : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The ID of the Ipv6AddressBandwidth.
@@ -190,7 +191,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         }
     }
 
-    public sealed class Ipv6AddressBandwidthArgs : Pulumi.ResourceArgs
+    public sealed class Ipv6AddressBandwidthArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Peek bandwidth of the Ipv6 address. Valid values: 1 to 200. Unit: Mbit/s.
@@ -213,9 +214,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public Ipv6AddressBandwidthArgs()
         {
         }
+        public static new Ipv6AddressBandwidthArgs Empty => new Ipv6AddressBandwidthArgs();
     }
 
-    public sealed class Ipv6AddressBandwidthState : Pulumi.ResourceArgs
+    public sealed class Ipv6AddressBandwidthState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of the Ipv6AddressBandwidth.
@@ -310,5 +312,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public Ipv6AddressBandwidthState()
         {
         }
+        public static new Ipv6AddressBandwidthState Empty => new Ipv6AddressBandwidthState();
     }
 }

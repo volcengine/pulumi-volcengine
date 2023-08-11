@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultScalingPolicies = pulumi.output(volcengine.autoscaling.ScalingPolicies({
+ * const default = volcengine.autoscaling.ScalingPolicies({
  *     ids: ["sp-ybruzckr8bgh9zrxw29v"],
  *     scalingGroupId: "scg-ybqm0b6kcigh9zu9ce6t",
- * }));
+ * });
  * ```
  */
 export function scalingPolicies(args: ScalingPoliciesArgs, opts?: pulumi.InvokeOptions): Promise<ScalingPoliciesResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:autoscaling/scalingPolicies:ScalingPolicies", {
         "ids": args.ids,
         "nameRegex": args.nameRegex,
@@ -94,9 +92,22 @@ export interface ScalingPoliciesResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of scaling policies
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.autoscaling.ScalingPolicies({
+ *     ids: ["sp-ybruzckr8bgh9zrxw29v"],
+ *     scalingGroupId: "scg-ybqm0b6kcigh9zu9ce6t",
+ * });
+ * ```
+ */
 export function scalingPoliciesOutput(args: ScalingPoliciesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ScalingPoliciesResult> {
-    return pulumi.output(args).apply(a => scalingPolicies(a, opts))
+    return pulumi.output(args).apply((a: any) => scalingPolicies(a, opts))
 }
 
 /**

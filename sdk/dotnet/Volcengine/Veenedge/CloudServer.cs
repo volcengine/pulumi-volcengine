@@ -8,65 +8,64 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Veenedge
+namespace Volcengine.Pulumi.Volcengine.Veenedge
 {
     /// <summary>
     /// Provides a resource to manage veenedge cloud server
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Veenedge.CloudServer("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Veenedge.CloudServer("foo", new Volcengine.Veenedge.CloudServerArgs
+    ///         BillingConfig = new Volcengine.Veenedge.Inputs.CloudServerBillingConfigArgs
     ///         {
-    ///             BillingConfig = new Volcengine.Veenedge.Inputs.CloudServerBillingConfigArgs
+    ///             BandwidthBillingMethod = "MonthlyP95",
+    ///             ComputingBillingMethod = "MonthlyPeak",
+    ///         },
+    ///         CloudserverName = "tf-test",
+    ///         DefaultAreaName = "C******na",
+    ///         DefaultIsp = "CMCC",
+    ///         ImageId = "image*****viqm",
+    ///         NetworkConfig = new Volcengine.Veenedge.Inputs.CloudServerNetworkConfigArgs
+    ///         {
+    ///             BandwidthPeak = "5",
+    ///         },
+    ///         ScheduleStrategy = new Volcengine.Veenedge.Inputs.CloudServerScheduleStrategyArgs
+    ///         {
+    ///             NetworkStrategy = "region",
+    ///             PriceStrategy = "high_priority",
+    ///             ScheduleStrategy = "dispersion",
+    ///         },
+    ///         SecretData = "sshkey-47*****wgc",
+    ///         SecretType = "KeyPair",
+    ///         ServerAreaLevel = "region",
+    ///         SpecName = "veEN****rge",
+    ///         StorageConfig = new Volcengine.Veenedge.Inputs.CloudServerStorageConfigArgs
+    ///         {
+    ///             DataDiskLists = new[]
     ///             {
-    ///                 BandwidthBillingMethod = "MonthlyP95",
-    ///                 ComputingBillingMethod = "MonthlyPeak",
-    ///             },
-    ///             CloudserverName = "tf-test",
-    ///             DefaultAreaName = "C******na",
-    ///             DefaultIsp = "CMCC",
-    ///             ImageId = "image*****viqm",
-    ///             NetworkConfig = new Volcengine.Veenedge.Inputs.CloudServerNetworkConfigArgs
-    ///             {
-    ///                 BandwidthPeak = "5",
-    ///             },
-    ///             ScheduleStrategy = new Volcengine.Veenedge.Inputs.CloudServerScheduleStrategyArgs
-    ///             {
-    ///                 NetworkStrategy = "region",
-    ///                 PriceStrategy = "high_priority",
-    ///                 ScheduleStrategy = "dispersion",
-    ///             },
-    ///             SecretData = "sshkey-47*****wgc",
-    ///             SecretType = "KeyPair",
-    ///             ServerAreaLevel = "region",
-    ///             SpecName = "veEN****rge",
-    ///             StorageConfig = new Volcengine.Veenedge.Inputs.CloudServerStorageConfigArgs
-    ///             {
-    ///                 DataDiskLists = 
+    ///                 new Volcengine.Veenedge.Inputs.CloudServerStorageConfigDataDiskListArgs
     ///                 {
-    ///                     new Volcengine.Veenedge.Inputs.CloudServerStorageConfigDataDiskListArgs
-    ///                     {
-    ///                         Capacity = "20",
-    ///                         StorageType = "CloudBlockSSD",
-    ///                     },
-    ///                 },
-    ///                 SystemDisk = new Volcengine.Veenedge.Inputs.CloudServerStorageConfigSystemDiskArgs
-    ///                 {
-    ///                     Capacity = "40",
+    ///                     Capacity = "20",
     ///                     StorageType = "CloudBlockSSD",
     ///                 },
     ///             },
-    ///         });
-    ///     }
+    ///             SystemDisk = new Volcengine.Veenedge.Inputs.CloudServerStorageConfigSystemDiskArgs
+    ///             {
+    ///                 Capacity = "40",
+    ///                 StorageType = "CloudBlockSSD",
+    ///             },
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -82,7 +81,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge
     ///  instance_id = volcengine_veenedge_cloud_server.foo.default_instance_id }
     /// </summary>
     [VolcengineResourceType("volcengine:veenedge/cloudServer:CloudServer")]
-    public partial class CloudServer : Pulumi.CustomResource
+    public partial class CloudServer : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The config of the billing.
@@ -219,7 +218,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge
         }
     }
 
-    public sealed class CloudServerArgs : Pulumi.ResourceArgs
+    public sealed class CloudServerArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The config of the billing.
@@ -308,9 +307,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge
         public CloudServerArgs()
         {
         }
+        public static new CloudServerArgs Empty => new CloudServerArgs();
     }
 
-    public sealed class CloudServerState : Pulumi.ResourceArgs
+    public sealed class CloudServerState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The config of the billing.
@@ -405,5 +405,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge
         public CloudServerState()
         {
         }
+        public static new CloudServerState Empty => new CloudServerState();
     }
 }

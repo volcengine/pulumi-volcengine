@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls
+namespace Volcengine.Pulumi.Volcengine.Tls
 {
     public static class Indexes
     {
@@ -19,29 +19,28 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Tls.Indexes.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Tls.Indexes.InvokeAsync(new Volcengine.Tls.IndexesArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "65d67d34-c5b4-4ec8-b3a9-175d3366****",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "65d67d34-c5b4-4ec8-b3a9-175d3366****",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<IndexesResult> InvokeAsync(IndexesArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<IndexesResult>("volcengine:tls/indexes:Indexes", args ?? new IndexesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<IndexesResult>("volcengine:tls/indexes:Indexes", args ?? new IndexesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of tls indexes
@@ -50,33 +49,32 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Tls.Indexes.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Tls.Indexes.InvokeAsync(new Volcengine.Tls.IndexesArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "65d67d34-c5b4-4ec8-b3a9-175d3366****",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "65d67d34-c5b4-4ec8-b3a9-175d3366****",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<IndexesResult> Invoke(IndexesInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<IndexesResult>("volcengine:tls/indexes:Indexes", args ?? new IndexesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<IndexesResult>("volcengine:tls/indexes:Indexes", args ?? new IndexesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class IndexesArgs : Pulumi.InvokeArgs
+    public sealed class IndexesArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids", required: true)]
         private List<string>? _ids;
@@ -99,9 +97,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public IndexesArgs()
         {
         }
+        public static new IndexesArgs Empty => new IndexesArgs();
     }
 
-    public sealed class IndexesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class IndexesInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids", required: true)]
         private InputList<string>? _ids;
@@ -124,6 +123,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public IndexesInvokeArgs()
         {
         }
+        public static new IndexesInvokeArgs Empty => new IndexesInvokeArgs();
     }
 
 

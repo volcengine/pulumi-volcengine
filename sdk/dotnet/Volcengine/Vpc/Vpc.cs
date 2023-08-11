@@ -8,34 +8,33 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpc
+namespace Volcengine.Pulumi.Volcengine.Vpc
 {
     /// <summary>
     /// Provides a resource to manage vpc
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Vpc.Vpc("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Vpc.Vpc("foo", new Volcengine.Vpc.VpcArgs
+    ///         CidrBlock = "172.16.0.0/16",
+    ///         DnsServers = new[]
     ///         {
-    ///             CidrBlock = "172.16.0.0/16",
-    ///             DnsServers = 
-    ///             {
-    ///                 "8.8.8.8",
-    ///                 "114.114.114.114",
-    ///             },
-    ///             ProjectName = "AS_test",
-    ///             VpcName = "tf-project-1",
-    ///         });
-    ///     }
+    ///             "8.8.8.8",
+    ///             "114.114.114.114",
+    ///         },
+    ///         ProjectName = "AS_test",
+    ///         VpcName = "tf-project-1",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -47,7 +46,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vpc/vpc:Vpc")]
-    public partial class Vpc : Pulumi.CustomResource
+    public partial class Vpc : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The account ID of VPC.
@@ -208,7 +207,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         }
     }
 
-    public sealed class VpcArgs : Pulumi.ResourceArgs
+    public sealed class VpcArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// A network address block which should be a subnet of the three internal network segments (10.0.0.0/16, 172.16.0.0/12 and 192.168.0.0/16).
@@ -273,9 +272,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public VpcArgs()
         {
         }
+        public static new VpcArgs Empty => new VpcArgs();
     }
 
-    public sealed class VpcState : Pulumi.ResourceArgs
+    public sealed class VpcState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The account ID of VPC.
@@ -442,5 +442,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public VpcState()
         {
         }
+        public static new VpcState Empty => new VpcState();
     }
 }

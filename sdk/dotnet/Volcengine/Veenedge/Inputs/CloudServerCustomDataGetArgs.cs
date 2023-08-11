@@ -8,19 +8,30 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Veenedge.Inputs
+namespace Volcengine.Pulumi.Volcengine.Veenedge.Inputs
 {
 
-    public sealed class CloudServerCustomDataGetArgs : Pulumi.ResourceArgs
+    public sealed class CloudServerCustomDataGetArgs : global::Pulumi.ResourceArgs
     {
+        [Input("data", required: true)]
+        private Input<string>? _data;
+
         /// <summary>
         /// The custom data info.
         /// </summary>
-        [Input("data", required: true)]
-        public Input<string> Data { get; set; } = null!;
+        public Input<string>? Data
+        {
+            get => _data;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _data = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public CloudServerCustomDataGetArgs()
         {
         }
+        public static new CloudServerCustomDataGetArgs Empty => new CloudServerCustomDataGetArgs();
     }
 }

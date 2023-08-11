@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultVpcs = pulumi.output(volcengine.vpc.Vpcs({
+ * const default = volcengine.vpc.Vpcs({
  *     ids: ["vpc-mizl7m1kqccg5smt1bdpijuj"],
- * }));
+ * });
  * ```
  */
 export function vpcs(args?: VpcsArgs, opts?: pulumi.InvokeOptions): Promise<VpcsResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:vpc/vpcs:Vpcs", {
         "ids": args.ids,
         "nameRegex": args.nameRegex,
@@ -97,9 +95,21 @@ export interface VpcsResult {
      */
     readonly vpcs: outputs.vpc.VpcsVpc[];
 }
-
+/**
+ * Use this data source to query detailed information of vpcs
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.vpc.Vpcs({
+ *     ids: ["vpc-mizl7m1kqccg5smt1bdpijuj"],
+ * });
+ * ```
+ */
 export function vpcsOutput(args?: VpcsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<VpcsResult> {
-    return pulumi.output(args).apply(a => vpcs(a, opts))
+    return pulumi.output(args).apply((a: any) => vpcs(a, opts))
 }
 
 /**

@@ -10,7 +10,7 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.tls.RuleApplier("foo", {
  *     hostGroupId: "a2a9e8c5-9835-434f-b866-2c1cfa82887d",

@@ -8,31 +8,30 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cen
+namespace Volcengine.Pulumi.Volcengine.Cen
 {
     /// <summary>
     /// Provides a resource to manage cen grant instance
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Cen.GrantInstance("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Cen.GrantInstance("foo", new Volcengine.Cen.GrantInstanceArgs
-    ///         {
-    ///             CenId = "cen-2d6zdn0c1z5s058ozfcyf4lee",
-    ///             CenOwnerId = "210000****",
-    ///             InstanceId = "vpc-2bysvq1xx543k2dx0eeulpeiv",
-    ///             InstanceRegionId = "cn-guilin-boe",
-    ///             InstanceType = "VPC",
-    ///         });
-    ///     }
+    ///         CenId = "cen-2d6zdn0c1z5s058ozfcyf4lee",
+    ///         CenOwnerId = "210000****",
+    ///         InstanceId = "vpc-2bysvq1xx543k2dx0eeulpeiv",
+    ///         InstanceRegionId = "cn-guilin-boe",
+    ///         InstanceType = "VPC",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -44,7 +43,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:cen/grantInstance:GrantInstance")]
-    public partial class GrantInstance : Pulumi.CustomResource
+    public partial class GrantInstance : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The ID of the cen.
@@ -121,7 +120,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         }
     }
 
-    public sealed class GrantInstanceArgs : Pulumi.ResourceArgs
+    public sealed class GrantInstanceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of the cen.
@@ -156,9 +155,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         public GrantInstanceArgs()
         {
         }
+        public static new GrantInstanceArgs Empty => new GrantInstanceArgs();
     }
 
-    public sealed class GrantInstanceState : Pulumi.ResourceArgs
+    public sealed class GrantInstanceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of the cen.
@@ -193,5 +193,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         public GrantInstanceState()
         {
         }
+        public static new GrantInstanceState Empty => new GrantInstanceState();
     }
 }

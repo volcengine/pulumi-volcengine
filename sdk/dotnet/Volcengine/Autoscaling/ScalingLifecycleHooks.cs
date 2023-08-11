@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
+namespace Volcengine.Pulumi.Volcengine.Autoscaling
 {
     public static class ScalingLifecycleHooks
     {
@@ -19,26 +19,25 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Autoscaling.ScalingLifecycleHooks.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Autoscaling.ScalingLifecycleHooks.InvokeAsync(new Volcengine.Autoscaling.ScalingLifecycleHooksArgs
-        ///         {
-        ///             ScalingGroupId = "scg-ybru8pazhgl8j1di4tyd",
-        ///         }));
-        ///     }
+        ///         ScalingGroupId = "scg-ybru8pazhgl8j1di4tyd",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<ScalingLifecycleHooksResult> InvokeAsync(ScalingLifecycleHooksArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<ScalingLifecycleHooksResult>("volcengine:autoscaling/scalingLifecycleHooks:ScalingLifecycleHooks", args ?? new ScalingLifecycleHooksArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<ScalingLifecycleHooksResult>("volcengine:autoscaling/scalingLifecycleHooks:ScalingLifecycleHooks", args ?? new ScalingLifecycleHooksArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of scaling lifecycle hooks
@@ -47,30 +46,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Autoscaling.ScalingLifecycleHooks.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Autoscaling.ScalingLifecycleHooks.InvokeAsync(new Volcengine.Autoscaling.ScalingLifecycleHooksArgs
-        ///         {
-        ///             ScalingGroupId = "scg-ybru8pazhgl8j1di4tyd",
-        ///         }));
-        ///     }
+        ///         ScalingGroupId = "scg-ybru8pazhgl8j1di4tyd",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<ScalingLifecycleHooksResult> Invoke(ScalingLifecycleHooksInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<ScalingLifecycleHooksResult>("volcengine:autoscaling/scalingLifecycleHooks:ScalingLifecycleHooks", args ?? new ScalingLifecycleHooksInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<ScalingLifecycleHooksResult>("volcengine:autoscaling/scalingLifecycleHooks:ScalingLifecycleHooks", args ?? new ScalingLifecycleHooksInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class ScalingLifecycleHooksArgs : Pulumi.InvokeArgs
+    public sealed class ScalingLifecycleHooksArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private List<string>? _ids;
@@ -117,9 +115,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         public ScalingLifecycleHooksArgs()
         {
         }
+        public static new ScalingLifecycleHooksArgs Empty => new ScalingLifecycleHooksArgs();
     }
 
-    public sealed class ScalingLifecycleHooksInvokeArgs : Pulumi.InvokeArgs
+    public sealed class ScalingLifecycleHooksInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private InputList<string>? _ids;
@@ -166,6 +165,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         public ScalingLifecycleHooksInvokeArgs()
         {
         }
+        public static new ScalingLifecycleHooksInvokeArgs Empty => new ScalingLifecycleHooksInvokeArgs();
     }
 
 

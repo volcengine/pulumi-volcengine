@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Nat
+namespace Volcengine.Pulumi.Volcengine.Nat
 {
     public static class DnatEntries
     {
@@ -19,23 +19,22 @@ namespace Volcengine.PulumiPackage.Volcengine.Nat
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var @default = Output.Create(Volcengine.Nat.DnatEntries.InvokeAsync());
-        ///     }
+        ///     var @default = Volcengine.Nat.DnatEntries.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<DnatEntriesResult> InvokeAsync(DnatEntriesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<DnatEntriesResult>("volcengine:nat/dnatEntries:DnatEntries", args ?? new DnatEntriesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<DnatEntriesResult>("volcengine:nat/dnatEntries:DnatEntries", args ?? new DnatEntriesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of dnat entries
@@ -44,27 +43,26 @@ namespace Volcengine.PulumiPackage.Volcengine.Nat
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var @default = Output.Create(Volcengine.Nat.DnatEntries.InvokeAsync());
-        ///     }
+        ///     var @default = Volcengine.Nat.DnatEntries.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<DnatEntriesResult> Invoke(DnatEntriesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<DnatEntriesResult>("volcengine:nat/dnatEntries:DnatEntries", args ?? new DnatEntriesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<DnatEntriesResult>("volcengine:nat/dnatEntries:DnatEntries", args ?? new DnatEntriesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class DnatEntriesArgs : Pulumi.InvokeArgs
+    public sealed class DnatEntriesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name of the DNAT entry.
@@ -129,9 +127,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Nat
         public DnatEntriesArgs()
         {
         }
+        public static new DnatEntriesArgs Empty => new DnatEntriesArgs();
     }
 
-    public sealed class DnatEntriesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class DnatEntriesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name of the DNAT entry.
@@ -196,6 +195,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Nat
         public DnatEntriesInvokeArgs()
         {
         }
+        public static new DnatEntriesInvokeArgs Empty => new DnatEntriesInvokeArgs();
     }
 
 

@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,16 +14,13 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultWorkspaces = pulumi.output(volcengine.bioos.Workspaces());
+ * const default = volcengine.bioos.Workspaces({});
  * ```
  */
 export function workspaces(args?: WorkspacesArgs, opts?: pulumi.InvokeOptions): Promise<WorkspacesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:bioos/workspaces:Workspaces", {
         "ids": args.ids,
         "keyword": args.keyword,
@@ -80,9 +78,19 @@ export interface WorkspacesResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of bioos workspaces
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.bioos.Workspaces({});
+ * ```
+ */
 export function workspacesOutput(args?: WorkspacesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<WorkspacesResult> {
-    return pulumi.output(args).apply(a => workspaces(a, opts))
+    return pulumi.output(args).apply((a: any) => workspaces(a, opts))
 }
 
 /**

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpc
+namespace Volcengine.Pulumi.Volcengine.Vpc
 {
     public static class Ipv6AddressBandwidths
     {
@@ -19,29 +19,28 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vpc.Ipv6AddressBandwidths.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vpc.Ipv6AddressBandwidths.InvokeAsync(new Volcengine.Vpc.Ipv6AddressBandwidthsArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "eip-in2y2duvtlhc8gbssyfnhfre",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "eip-in2y2duvtlhc8gbssyfnhfre",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<Ipv6AddressBandwidthsResult> InvokeAsync(Ipv6AddressBandwidthsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<Ipv6AddressBandwidthsResult>("volcengine:vpc/ipv6AddressBandwidths:Ipv6AddressBandwidths", args ?? new Ipv6AddressBandwidthsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Ipv6AddressBandwidthsResult>("volcengine:vpc/ipv6AddressBandwidths:Ipv6AddressBandwidths", args ?? new Ipv6AddressBandwidthsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of vpc ipv6 address bandwidths
@@ -50,33 +49,32 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vpc.Ipv6AddressBandwidths.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vpc.Ipv6AddressBandwidths.InvokeAsync(new Volcengine.Vpc.Ipv6AddressBandwidthsArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "eip-in2y2duvtlhc8gbssyfnhfre",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "eip-in2y2duvtlhc8gbssyfnhfre",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<Ipv6AddressBandwidthsResult> Invoke(Ipv6AddressBandwidthsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<Ipv6AddressBandwidthsResult>("volcengine:vpc/ipv6AddressBandwidths:Ipv6AddressBandwidths", args ?? new Ipv6AddressBandwidthsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<Ipv6AddressBandwidthsResult>("volcengine:vpc/ipv6AddressBandwidths:Ipv6AddressBandwidths", args ?? new Ipv6AddressBandwidthsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class Ipv6AddressBandwidthsArgs : Pulumi.InvokeArgs
+    public sealed class Ipv6AddressBandwidthsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The ID of the associated instance.
@@ -141,9 +139,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public Ipv6AddressBandwidthsArgs()
         {
         }
+        public static new Ipv6AddressBandwidthsArgs Empty => new Ipv6AddressBandwidthsArgs();
     }
 
-    public sealed class Ipv6AddressBandwidthsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class Ipv6AddressBandwidthsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The ID of the associated instance.
@@ -208,6 +207,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public Ipv6AddressBandwidthsInvokeArgs()
         {
         }
+        public static new Ipv6AddressBandwidthsInvokeArgs Empty => new Ipv6AddressBandwidthsInvokeArgs();
     }
 
 

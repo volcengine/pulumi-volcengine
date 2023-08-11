@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Clb.Inputs
+namespace Volcengine.Pulumi.Volcengine.Clb.Inputs
 {
 
-    public sealed class ClbEipBillingConfigGetArgs : Pulumi.ResourceArgs
+    public sealed class ClbEipBillingConfigGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The peek bandwidth of the EIP which automatically assigned to CLB. The value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
+        /// The peek bandwidth of the EIP which automatically assigned to CLB.
         /// </summary>
         [Input("bandwidth")]
         public Input<int>? Bandwidth { get; set; }
@@ -34,5 +34,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb.Inputs
         public ClbEipBillingConfigGetArgs()
         {
         }
+        public static new ClbEipBillingConfigGetArgs Empty => new ClbEipBillingConfigGetArgs();
     }
 }

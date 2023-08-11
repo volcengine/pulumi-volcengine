@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cen
+namespace Volcengine.Pulumi.Volcengine.Cen
 {
     public static class BandwidthPackages
     {
@@ -19,30 +19,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Cen.BandwidthPackages.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Cen.BandwidthPackages.InvokeAsync(new Volcengine.Cen.BandwidthPackagesArgs
+        ///         CenId = "cen-2bzrl3srxsv0g2dx0efyoojn3",
+        ///         Ids = new[]
         ///         {
-        ///             CenId = "cen-2bzrl3srxsv0g2dx0efyoojn3",
-        ///             Ids = 
-        ///             {
-        ///                 "cbp-2bzeew3s8p79c2dx0eeohej4x",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "cbp-2bzeew3s8p79c2dx0eeohej4x",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<BandwidthPackagesResult> InvokeAsync(BandwidthPackagesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<BandwidthPackagesResult>("volcengine:cen/bandwidthPackages:BandwidthPackages", args ?? new BandwidthPackagesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<BandwidthPackagesResult>("volcengine:cen/bandwidthPackages:BandwidthPackages", args ?? new BandwidthPackagesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cen bandwidth packages
@@ -51,34 +50,33 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Cen.BandwidthPackages.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Cen.BandwidthPackages.InvokeAsync(new Volcengine.Cen.BandwidthPackagesArgs
+        ///         CenId = "cen-2bzrl3srxsv0g2dx0efyoojn3",
+        ///         Ids = new[]
         ///         {
-        ///             CenId = "cen-2bzrl3srxsv0g2dx0efyoojn3",
-        ///             Ids = 
-        ///             {
-        ///                 "cbp-2bzeew3s8p79c2dx0eeohej4x",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "cbp-2bzeew3s8p79c2dx0eeohej4x",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<BandwidthPackagesResult> Invoke(BandwidthPackagesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<BandwidthPackagesResult>("volcengine:cen/bandwidthPackages:BandwidthPackages", args ?? new BandwidthPackagesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<BandwidthPackagesResult>("volcengine:cen/bandwidthPackages:BandwidthPackages", args ?? new BandwidthPackagesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class BandwidthPackagesArgs : Pulumi.InvokeArgs
+    public sealed class BandwidthPackagesArgs : global::Pulumi.InvokeArgs
     {
         [Input("cenBandwidthPackageNames")]
         private List<string>? _cenBandwidthPackageNames;
@@ -149,9 +147,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         public BandwidthPackagesArgs()
         {
         }
+        public static new BandwidthPackagesArgs Empty => new BandwidthPackagesArgs();
     }
 
-    public sealed class BandwidthPackagesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class BandwidthPackagesInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("cenBandwidthPackageNames")]
         private InputList<string>? _cenBandwidthPackageNames;
@@ -222,6 +221,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         public BandwidthPackagesInvokeArgs()
         {
         }
+        public static new BandwidthPackagesInvokeArgs Empty => new BandwidthPackagesInvokeArgs();
     }
 
 

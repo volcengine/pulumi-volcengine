@@ -8,30 +8,29 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpc
+namespace Volcengine.Pulumi.Volcengine.Vpc
 {
     /// <summary>
     /// Provides a resource to manage subnet
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Vpc.Subnet("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Vpc.Subnet("foo", new Volcengine.Vpc.SubnetArgs
-    ///         {
-    ///             CidrBlock = "192.168.1.0/24",
-    ///             SubnetName = "subnet-test-2",
-    ///             VpcId = "vpc-2749wnlhro3y87fap8u5ztvt5",
-    ///             ZoneId = "cn-beijing",
-    ///         });
-    ///     }
+    ///         CidrBlock = "192.168.1.0/24",
+    ///         SubnetName = "subnet-test-2",
+    ///         VpcId = "vpc-2749wnlhro3y87fap8u5ztvt5",
+    ///         ZoneId = "cn-beijing",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -43,7 +42,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vpc/subnet:Subnet")]
-    public partial class Subnet : Pulumi.CustomResource
+    public partial class Subnet : global::Pulumi.CustomResource
     {
         /// <summary>
         /// A network address block which should be a subnet of the three internal network segments (10.0.0.0/16, 172.16.0.0/12 and 192.168.0.0/16).
@@ -144,7 +143,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         }
     }
 
-    public sealed class SubnetArgs : Pulumi.ResourceArgs
+    public sealed class SubnetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// A network address block which should be a subnet of the three internal network segments (10.0.0.0/16, 172.16.0.0/12 and 192.168.0.0/16).
@@ -191,9 +190,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public SubnetArgs()
         {
         }
+        public static new SubnetArgs Empty => new SubnetArgs();
     }
 
-    public sealed class SubnetState : Pulumi.ResourceArgs
+    public sealed class SubnetState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// A network address block which should be a subnet of the three internal network segments (10.0.0.0/16, 172.16.0.0/12 and 192.168.0.0/16).
@@ -252,5 +252,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public SubnetState()
         {
         }
+        public static new SubnetState Empty => new SubnetState();
     }
 }

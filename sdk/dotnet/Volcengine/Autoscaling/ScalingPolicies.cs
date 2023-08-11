@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
+namespace Volcengine.Pulumi.Volcengine.Autoscaling
 {
     public static class ScalingPolicies
     {
@@ -19,30 +19,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Autoscaling.ScalingPolicies.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Autoscaling.ScalingPolicies.InvokeAsync(new Volcengine.Autoscaling.ScalingPoliciesArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "sp-ybruzckr8bgh9zrxw29v",
-        ///             },
-        ///             ScalingGroupId = "scg-ybqm0b6kcigh9zu9ce6t",
-        ///         }));
-        ///     }
+        ///             "sp-ybruzckr8bgh9zrxw29v",
+        ///         },
+        ///         ScalingGroupId = "scg-ybqm0b6kcigh9zu9ce6t",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<ScalingPoliciesResult> InvokeAsync(ScalingPoliciesArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<ScalingPoliciesResult>("volcengine:autoscaling/scalingPolicies:ScalingPolicies", args ?? new ScalingPoliciesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<ScalingPoliciesResult>("volcengine:autoscaling/scalingPolicies:ScalingPolicies", args ?? new ScalingPoliciesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of scaling policies
@@ -51,34 +50,33 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Autoscaling.ScalingPolicies.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Autoscaling.ScalingPolicies.InvokeAsync(new Volcengine.Autoscaling.ScalingPoliciesArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "sp-ybruzckr8bgh9zrxw29v",
-        ///             },
-        ///             ScalingGroupId = "scg-ybqm0b6kcigh9zu9ce6t",
-        ///         }));
-        ///     }
+        ///             "sp-ybruzckr8bgh9zrxw29v",
+        ///         },
+        ///         ScalingGroupId = "scg-ybqm0b6kcigh9zu9ce6t",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<ScalingPoliciesResult> Invoke(ScalingPoliciesInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<ScalingPoliciesResult>("volcengine:autoscaling/scalingPolicies:ScalingPolicies", args ?? new ScalingPoliciesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<ScalingPoliciesResult>("volcengine:autoscaling/scalingPolicies:ScalingPolicies", args ?? new ScalingPoliciesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class ScalingPoliciesArgs : Pulumi.InvokeArgs
+    public sealed class ScalingPoliciesArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private List<string>? _ids;
@@ -131,9 +129,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         public ScalingPoliciesArgs()
         {
         }
+        public static new ScalingPoliciesArgs Empty => new ScalingPoliciesArgs();
     }
 
-    public sealed class ScalingPoliciesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class ScalingPoliciesInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private InputList<string>? _ids;
@@ -186,6 +185,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         public ScalingPoliciesInvokeArgs()
         {
         }
+        public static new ScalingPoliciesInvokeArgs Empty => new ScalingPoliciesInvokeArgs();
     }
 
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Mongodb
+namespace Volcengine.Pulumi.Volcengine.Mongodb
 {
     public static class Endpoints
     {
@@ -19,26 +19,25 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Mongodb.Endpoints.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Mongodb.Endpoints.InvokeAsync(new Volcengine.Mongodb.EndpointsArgs
-        ///         {
-        ///             InstanceId = "mongo-shard-xxx",
-        ///         }));
-        ///     }
+        ///         InstanceId = "mongo-shard-xxx",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<EndpointsResult> InvokeAsync(EndpointsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<EndpointsResult>("volcengine:mongodb/endpoints:Endpoints", args ?? new EndpointsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<EndpointsResult>("volcengine:mongodb/endpoints:Endpoints", args ?? new EndpointsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of mongodb endpoints
@@ -47,30 +46,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Mongodb.Endpoints.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Mongodb.Endpoints.InvokeAsync(new Volcengine.Mongodb.EndpointsArgs
-        ///         {
-        ///             InstanceId = "mongo-shard-xxx",
-        ///         }));
-        ///     }
+        ///         InstanceId = "mongo-shard-xxx",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<EndpointsResult> Invoke(EndpointsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<EndpointsResult>("volcengine:mongodb/endpoints:Endpoints", args ?? new EndpointsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<EndpointsResult>("volcengine:mongodb/endpoints:Endpoints", args ?? new EndpointsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class EndpointsArgs : Pulumi.InvokeArgs
+    public sealed class EndpointsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The instance ID to query.
@@ -87,9 +85,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         public EndpointsArgs()
         {
         }
+        public static new EndpointsArgs Empty => new EndpointsArgs();
     }
 
-    public sealed class EndpointsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class EndpointsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The instance ID to query.
@@ -106,6 +105,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         public EndpointsInvokeArgs()
         {
         }
+        public static new EndpointsInvokeArgs Empty => new EndpointsInvokeArgs();
     }
 
 

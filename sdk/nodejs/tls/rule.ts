@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -11,7 +12,7 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi from "@volcengine/pulumi";
+ * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.tls.Rule("foo", {
  *     topicId: "7bfa2cdc-4f8b-4cf9-b4c9-0ed05c33349f",

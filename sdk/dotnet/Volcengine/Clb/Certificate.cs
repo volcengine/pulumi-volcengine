@@ -8,25 +8,25 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Clb
+namespace Volcengine.Pulumi.Volcengine.Clb
 {
     /// <summary>
     /// Provides a resource to manage certificate
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Clb.Certificate("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Clb.Certificate("foo", new Volcengine.Clb.CertificateArgs
-    ///         {
-    ///             CertificateName = "acc-test-certificate",
-    ///             Description = "acc-test-demo",
-    ///             PrivateKey = @"-----BEGIN RSA PRIVATE KEY-----
+    ///         CertificateName = "acc-test-certificate",
+    ///         Description = "acc-test-demo",
+    ///         PrivateKey = @"-----BEGIN RSA PRIVATE KEY-----
     /// MIICXAIBAAKBgQDEdoyaJ0kdtjtbLRx5X9qwI7FblhJPRcScvhQSE8P5y/b/T8J9
     /// BVuFIBoU8nrPY9ABz4JFklZ6SznxLbFBqtXoJTmzV6ixyjjH+AGEw6hCiA8Pqy2C
     /// NIzxr9DjCzN5tWruiHqO60O3Bve6cHipH0VyLAhrB85mflvOZSH4xGsJkwIDAQAB
@@ -42,8 +42,8 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
     /// V4JpNm8dpi4CiMWLasF6TYlVMgX+aPxYRUWc/qqf1/Q=
     /// -----END RSA PRIVATE KEY-----
     /// ",
-    ///             ProjectName = "default",
-    ///             PublicKey = @"-----BEGIN CERTIFICATE-----
+    ///         ProjectName = "default",
+    ///         PublicKey = @"-----BEGIN CERTIFICATE-----
     /// MIICWDCCAcGgAwIBAgIJAP7vOtjPtQIjMA0GCSqGSIb3DQEBCwUAMEUxCzAJBgNV
     /// BAYTAkNOMRMwEQYDVQQIDApjbi1iZWlqaW5nMSEwHwYDVQQKDBhJbnRlcm5ldCBX
     /// aWRnaXRzIFB0eSBMdGQwHhcNMjAxMDIwMDYxOTUxWhcNMjAxMTE5MDYxOTUxWjBF
@@ -59,18 +59,17 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
     /// t07tlBL+dtzrrohHpfLeuNyYb40g8VQdp3RRRQ==
     /// -----END CERTIFICATE-----
     /// ",
-    ///             Tags = 
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Clb.Inputs.CertificateTagArgs
     ///             {
-    ///                 new Volcengine.Clb.Inputs.CertificateTagArgs
-    ///                 {
-    ///                     Key = "k1",
-    ///                     Value = "v1",
-    ///                 },
+    ///                 Key = "k1",
+    ///                 Value = "v1",
     ///             },
-    ///         });
-    ///     }
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -82,7 +81,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:clb/certificate:Certificate")]
-    public partial class Certificate : Pulumi.CustomResource
+    public partial class Certificate : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The name of the Certificate.
@@ -165,7 +164,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
         }
     }
 
-    public sealed class CertificateArgs : Pulumi.ResourceArgs
+    public sealed class CertificateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the Certificate.
@@ -212,9 +211,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
         public CertificateArgs()
         {
         }
+        public static new CertificateArgs Empty => new CertificateArgs();
     }
 
-    public sealed class CertificateState : Pulumi.ResourceArgs
+    public sealed class CertificateState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the Certificate.
@@ -261,5 +261,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
         public CertificateState()
         {
         }
+        public static new CertificateState Empty => new CertificateState();
     }
 }

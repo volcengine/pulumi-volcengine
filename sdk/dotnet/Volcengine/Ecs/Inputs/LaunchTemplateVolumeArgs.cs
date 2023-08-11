@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Ecs.Inputs
+namespace Volcengine.Pulumi.Volcengine.Ecs.Inputs
 {
 
-    public sealed class LaunchTemplateVolumeArgs : Pulumi.ResourceArgs
+    public sealed class LaunchTemplateVolumeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The delete with instance flag of volume. Valid values: true, false. Default value: true.
@@ -34,5 +34,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs.Inputs
         public LaunchTemplateVolumeArgs()
         {
         }
+        public static new LaunchTemplateVolumeArgs Empty => new LaunchTemplateVolumeArgs();
     }
 }

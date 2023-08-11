@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,22 +14,19 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultKubeconfigs = pulumi.output(volcengine.vke.Kubeconfigs({
+ * const default = volcengine.vke.Kubeconfigs({
  *     clusterIds: ["cce7hb97qtofmj1oi4udg"],
  *     types: [
  *         "Private",
  *         "Public",
  *     ],
- * }));
+ * });
  * ```
  */
 export function kubeconfigs(args?: KubeconfigsArgs, opts?: pulumi.InvokeOptions): Promise<KubeconfigsResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:vke/kubeconfigs:Kubeconfigs", {
         "clusterIds": args.clusterIds,
         "ids": args.ids,
@@ -98,9 +96,25 @@ export interface KubeconfigsResult {
     readonly totalCount: number;
     readonly types?: string[];
 }
-
+/**
+ * Use this data source to query detailed information of vke kubeconfigs
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.vke.Kubeconfigs({
+ *     clusterIds: ["cce7hb97qtofmj1oi4udg"],
+ *     types: [
+ *         "Private",
+ *         "Public",
+ *     ],
+ * });
+ * ```
+ */
 export function kubeconfigsOutput(args?: KubeconfigsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<KubeconfigsResult> {
-    return pulumi.output(args).apply(a => kubeconfigs(a, opts))
+    return pulumi.output(args).apply((a: any) => kubeconfigs(a, opts))
 }
 
 /**

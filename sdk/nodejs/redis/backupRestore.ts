@@ -10,9 +10,9 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const defaultBackupRestore = new volcengine.redis.BackupRestore("default", {
+ * const _default = new volcengine.redis.BackupRestore("default", {
  *     instanceId: "redis-cnlfvrv4qye6u4lpa",
  *     timePoint: "2023-04-14T02:51:51Z",
  * });

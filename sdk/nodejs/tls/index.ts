@@ -5,39 +5,111 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./alarm";
-export * from "./alarmNotifyGroup";
-export * from "./alarmNotifyGroups";
-export * from "./alarms";
-export * from "./host";
-export * from "./hostGroup";
-export * from "./hostGroups";
-export * from "./hosts";
-export * from "./index_";
-export * from "./indexes";
-export * from "./kafkaConsumer";
-export * from "./kafkaConsumers";
-export * from "./project";
-export * from "./projects";
-export * from "./rule";
-export * from "./ruleApplier";
-export * from "./ruleAppliers";
-export * from "./rules";
-export * from "./shards";
-export * from "./topic";
-export * from "./topics";
+export { AlarmArgs, AlarmState } from "./alarm";
+export type Alarm = import("./alarm").Alarm;
+export const Alarm: typeof import("./alarm").Alarm = null as any;
+utilities.lazyLoad(exports, ["Alarm"], () => require("./alarm"));
 
-// Import resources to register:
-import { Alarm } from "./alarm";
-import { AlarmNotifyGroup } from "./alarmNotifyGroup";
-import { Host } from "./host";
-import { HostGroup } from "./hostGroup";
-import { Index } from "./index_";
-import { KafkaConsumer } from "./kafkaConsumer";
-import { Project } from "./project";
-import { Rule } from "./rule";
-import { RuleApplier } from "./ruleApplier";
-import { Topic } from "./topic";
+export { AlarmNotifyGroupArgs, AlarmNotifyGroupState } from "./alarmNotifyGroup";
+export type AlarmNotifyGroup = import("./alarmNotifyGroup").AlarmNotifyGroup;
+export const AlarmNotifyGroup: typeof import("./alarmNotifyGroup").AlarmNotifyGroup = null as any;
+utilities.lazyLoad(exports, ["AlarmNotifyGroup"], () => require("./alarmNotifyGroup"));
+
+export { AlarmNotifyGroupsArgs, AlarmNotifyGroupsResult, AlarmNotifyGroupsOutputArgs } from "./alarmNotifyGroups";
+export const alarmNotifyGroups: typeof import("./alarmNotifyGroups").alarmNotifyGroups = null as any;
+export const alarmNotifyGroupsOutput: typeof import("./alarmNotifyGroups").alarmNotifyGroupsOutput = null as any;
+utilities.lazyLoad(exports, ["alarmNotifyGroups","alarmNotifyGroupsOutput"], () => require("./alarmNotifyGroups"));
+
+export { AlarmsArgs, AlarmsResult, AlarmsOutputArgs } from "./alarms";
+export const alarms: typeof import("./alarms").alarms = null as any;
+export const alarmsOutput: typeof import("./alarms").alarmsOutput = null as any;
+utilities.lazyLoad(exports, ["alarms","alarmsOutput"], () => require("./alarms"));
+
+export { HostArgs, HostState } from "./host";
+export type Host = import("./host").Host;
+export const Host: typeof import("./host").Host = null as any;
+utilities.lazyLoad(exports, ["Host"], () => require("./host"));
+
+export { HostGroupArgs, HostGroupState } from "./hostGroup";
+export type HostGroup = import("./hostGroup").HostGroup;
+export const HostGroup: typeof import("./hostGroup").HostGroup = null as any;
+utilities.lazyLoad(exports, ["HostGroup"], () => require("./hostGroup"));
+
+export { HostGroupsArgs, HostGroupsResult, HostGroupsOutputArgs } from "./hostGroups";
+export const hostGroups: typeof import("./hostGroups").hostGroups = null as any;
+export const hostGroupsOutput: typeof import("./hostGroups").hostGroupsOutput = null as any;
+utilities.lazyLoad(exports, ["hostGroups","hostGroupsOutput"], () => require("./hostGroups"));
+
+export { HostsArgs, HostsResult, HostsOutputArgs } from "./hosts";
+export const hosts: typeof import("./hosts").hosts = null as any;
+export const hostsOutput: typeof import("./hosts").hostsOutput = null as any;
+utilities.lazyLoad(exports, ["hosts","hostsOutput"], () => require("./hosts"));
+
+export { IndexArgs, IndexState } from "./index_";
+export type Index = import("./index_").Index;
+export const Index: typeof import("./index_").Index = null as any;
+utilities.lazyLoad(exports, ["Index"], () => require("./index_"));
+
+export { IndexesArgs, IndexesResult, IndexesOutputArgs } from "./indexes";
+export const indexes: typeof import("./indexes").indexes = null as any;
+export const indexesOutput: typeof import("./indexes").indexesOutput = null as any;
+utilities.lazyLoad(exports, ["indexes","indexesOutput"], () => require("./indexes"));
+
+export { KafkaConsumerArgs, KafkaConsumerState } from "./kafkaConsumer";
+export type KafkaConsumer = import("./kafkaConsumer").KafkaConsumer;
+export const KafkaConsumer: typeof import("./kafkaConsumer").KafkaConsumer = null as any;
+utilities.lazyLoad(exports, ["KafkaConsumer"], () => require("./kafkaConsumer"));
+
+export { KafkaConsumersArgs, KafkaConsumersResult, KafkaConsumersOutputArgs } from "./kafkaConsumers";
+export const kafkaConsumers: typeof import("./kafkaConsumers").kafkaConsumers = null as any;
+export const kafkaConsumersOutput: typeof import("./kafkaConsumers").kafkaConsumersOutput = null as any;
+utilities.lazyLoad(exports, ["kafkaConsumers","kafkaConsumersOutput"], () => require("./kafkaConsumers"));
+
+export { ProjectArgs, ProjectState } from "./project";
+export type Project = import("./project").Project;
+export const Project: typeof import("./project").Project = null as any;
+utilities.lazyLoad(exports, ["Project"], () => require("./project"));
+
+export { ProjectsArgs, ProjectsResult, ProjectsOutputArgs } from "./projects";
+export const projects: typeof import("./projects").projects = null as any;
+export const projectsOutput: typeof import("./projects").projectsOutput = null as any;
+utilities.lazyLoad(exports, ["projects","projectsOutput"], () => require("./projects"));
+
+export { RuleArgs, RuleState } from "./rule";
+export type Rule = import("./rule").Rule;
+export const Rule: typeof import("./rule").Rule = null as any;
+utilities.lazyLoad(exports, ["Rule"], () => require("./rule"));
+
+export { RuleApplierArgs, RuleApplierState } from "./ruleApplier";
+export type RuleApplier = import("./ruleApplier").RuleApplier;
+export const RuleApplier: typeof import("./ruleApplier").RuleApplier = null as any;
+utilities.lazyLoad(exports, ["RuleApplier"], () => require("./ruleApplier"));
+
+export { RuleAppliersArgs, RuleAppliersResult, RuleAppliersOutputArgs } from "./ruleAppliers";
+export const ruleAppliers: typeof import("./ruleAppliers").ruleAppliers = null as any;
+export const ruleAppliersOutput: typeof import("./ruleAppliers").ruleAppliersOutput = null as any;
+utilities.lazyLoad(exports, ["ruleAppliers","ruleAppliersOutput"], () => require("./ruleAppliers"));
+
+export { RulesArgs, RulesResult, RulesOutputArgs } from "./rules";
+export const rules: typeof import("./rules").rules = null as any;
+export const rulesOutput: typeof import("./rules").rulesOutput = null as any;
+utilities.lazyLoad(exports, ["rules","rulesOutput"], () => require("./rules"));
+
+export { ShardsArgs, ShardsResult, ShardsOutputArgs } from "./shards";
+export const shards: typeof import("./shards").shards = null as any;
+export const shardsOutput: typeof import("./shards").shardsOutput = null as any;
+utilities.lazyLoad(exports, ["shards","shardsOutput"], () => require("./shards"));
+
+export { TopicArgs, TopicState } from "./topic";
+export type Topic = import("./topic").Topic;
+export const Topic: typeof import("./topic").Topic = null as any;
+utilities.lazyLoad(exports, ["Topic"], () => require("./topic"));
+
+export { TopicsArgs, TopicsResult, TopicsOutputArgs } from "./topics";
+export const topics: typeof import("./topics").topics = null as any;
+export const topicsOutput: typeof import("./topics").topicsOutput = null as any;
+utilities.lazyLoad(exports, ["topics","topicsOutput"], () => require("./topics"));
+
 
 const _module = {
     version: utilities.getVersion(),

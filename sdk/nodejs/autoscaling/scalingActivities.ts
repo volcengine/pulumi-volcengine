@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,17 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultScalingActivities = pulumi.output(volcengine.autoscaling.ScalingActivities({
+ * const default = volcengine.autoscaling.ScalingActivities({
  *     scalingGroupId: "scg-ybqm0b6kcigh9zu9ce6t",
- * }));
+ * });
  * ```
  */
 export function scalingActivities(args: ScalingActivitiesArgs, opts?: pulumi.InvokeOptions): Promise<ScalingActivitiesResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:autoscaling/scalingActivities:ScalingActivities", {
         "endTime": args.endTime,
         "ids": args.ids,
@@ -93,9 +91,21 @@ export interface ScalingActivitiesResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of scaling activities
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.autoscaling.ScalingActivities({
+ *     scalingGroupId: "scg-ybqm0b6kcigh9zu9ce6t",
+ * });
+ * ```
+ */
 export function scalingActivitiesOutput(args: ScalingActivitiesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ScalingActivitiesResult> {
-    return pulumi.output(args).apply(a => scalingActivities(a, opts))
+    return pulumi.output(args).apply((a: any) => scalingActivities(a, opts))
 }
 
 /**

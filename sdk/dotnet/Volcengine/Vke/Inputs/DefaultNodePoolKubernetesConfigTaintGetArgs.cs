@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
+namespace Volcengine.Pulumi.Volcengine.Vke.Inputs
 {
 
-    public sealed class DefaultNodePoolKubernetesConfigTaintGetArgs : Pulumi.ResourceArgs
+    public sealed class DefaultNodePoolKubernetesConfigTaintGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Effect of Taints.
@@ -34,5 +34,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
         public DefaultNodePoolKubernetesConfigTaintGetArgs()
         {
         }
+        public static new DefaultNodePoolKubernetesConfigTaintGetArgs Empty => new DefaultNodePoolKubernetesConfigTaintGetArgs();
     }
 }

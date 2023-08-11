@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultProjects = pulumi.output(volcengine.tls.Projects({
+ * const default = volcengine.tls.Projects({
  *     projectId: "e020c978-4f05-40e1-9167-0113d3ef****",
- * }));
+ * });
  * ```
  */
 export function projects(args?: ProjectsArgs, opts?: pulumi.InvokeOptions): Promise<ProjectsResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:tls/projects:Projects", {
         "iamProjectName": args.iamProjectName,
         "isFullName": args.isFullName,
@@ -106,9 +104,21 @@ export interface ProjectsResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of tls projects
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.tls.Projects({
+ *     projectId: "e020c978-4f05-40e1-9167-0113d3ef****",
+ * });
+ * ```
+ */
 export function projectsOutput(args?: ProjectsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ProjectsResult> {
-    return pulumi.output(args).apply(a => projects(a, opts))
+    return pulumi.output(args).apply((a: any) => projects(a, opts))
 }
 
 /**

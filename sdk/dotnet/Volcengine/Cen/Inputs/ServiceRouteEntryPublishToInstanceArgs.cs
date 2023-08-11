@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cen.Inputs
+namespace Volcengine.Pulumi.Volcengine.Cen.Inputs
 {
 
-    public sealed class ServiceRouteEntryPublishToInstanceArgs : Pulumi.ResourceArgs
+    public sealed class ServiceRouteEntryPublishToInstanceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Cloud service access routes need to publish the network instance ID.
@@ -34,5 +34,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen.Inputs
         public ServiceRouteEntryPublishToInstanceArgs()
         {
         }
+        public static new ServiceRouteEntryPublishToInstanceArgs Empty => new ServiceRouteEntryPublishToInstanceArgs();
     }
 }

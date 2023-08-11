@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Bioos.Outputs
+namespace Volcengine.Pulumi.Volcengine.Bioos.Outputs
 {
 
     [OutputType]

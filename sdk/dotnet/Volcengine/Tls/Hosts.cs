@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls
+namespace Volcengine.Pulumi.Volcengine.Tls
 {
     public static class Hosts
     {
@@ -19,26 +19,25 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Tls.Hosts.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Tls.Hosts.InvokeAsync(new Volcengine.Tls.HostsArgs
-        ///         {
-        ///             HostGroupId = "527102e2-1e4f-45f4-a990-751152125da7",
-        ///         }));
-        ///     }
+        ///         HostGroupId = "527102e2-1e4f-45f4-a990-751152125da7",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<HostsResult> InvokeAsync(HostsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<HostsResult>("volcengine:tls/hosts:Hosts", args ?? new HostsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<HostsResult>("volcengine:tls/hosts:Hosts", args ?? new HostsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of tls hosts
@@ -47,30 +46,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Tls.Hosts.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Tls.Hosts.InvokeAsync(new Volcengine.Tls.HostsArgs
-        ///         {
-        ///             HostGroupId = "527102e2-1e4f-45f4-a990-751152125da7",
-        ///         }));
-        ///     }
+        ///         HostGroupId = "527102e2-1e4f-45f4-a990-751152125da7",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<HostsResult> Invoke(HostsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<HostsResult>("volcengine:tls/hosts:Hosts", args ?? new HostsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<HostsResult>("volcengine:tls/hosts:Hosts", args ?? new HostsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class HostsArgs : Pulumi.InvokeArgs
+    public sealed class HostsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The the heartbeat status.
@@ -99,9 +97,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public HostsArgs()
         {
         }
+        public static new HostsArgs Empty => new HostsArgs();
     }
 
-    public sealed class HostsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class HostsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The the heartbeat status.
@@ -130,6 +129,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public HostsInvokeArgs()
         {
         }
+        public static new HostsInvokeArgs Empty => new HostsInvokeArgs();
     }
 
 

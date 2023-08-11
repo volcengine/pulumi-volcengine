@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Mongodb
+namespace Volcengine.Pulumi.Volcengine.Mongodb
 {
     public static class Accounts
     {
@@ -19,26 +19,25 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Mongodb.Accounts.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Mongodb.Accounts.InvokeAsync(new Volcengine.Mongodb.AccountsArgs
-        ///         {
-        ///             InstanceId = "mongo-replica-xxx",
-        ///         }));
-        ///     }
+        ///         InstanceId = "mongo-replica-xxx",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<AccountsResult> InvokeAsync(AccountsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<AccountsResult>("volcengine:mongodb/accounts:Accounts", args ?? new AccountsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<AccountsResult>("volcengine:mongodb/accounts:Accounts", args ?? new AccountsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of mongodb accounts
@@ -47,30 +46,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Mongodb.Accounts.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Mongodb.Accounts.InvokeAsync(new Volcengine.Mongodb.AccountsArgs
-        ///         {
-        ///             InstanceId = "mongo-replica-xxx",
-        ///         }));
-        ///     }
+        ///         InstanceId = "mongo-replica-xxx",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<AccountsResult> Invoke(AccountsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<AccountsResult>("volcengine:mongodb/accounts:Accounts", args ?? new AccountsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<AccountsResult>("volcengine:mongodb/accounts:Accounts", args ?? new AccountsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class AccountsArgs : Pulumi.InvokeArgs
+    public sealed class AccountsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name of account, current support only `root`.
@@ -93,9 +91,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         public AccountsArgs()
         {
         }
+        public static new AccountsArgs Empty => new AccountsArgs();
     }
 
-    public sealed class AccountsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class AccountsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name of account, current support only `root`.
@@ -118,6 +117,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         public AccountsInvokeArgs()
         {
         }
+        public static new AccountsInvokeArgs Empty => new AccountsInvokeArgs();
     }
 
 

@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql.Inputs
+namespace Volcengine.Pulumi.Volcengine.Rds_mysql.Inputs
 {
 
-    public sealed class InstanceChargeDetailArgs : Pulumi.ResourceArgs
+    public sealed class InstanceChargeDetailArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether to automatically renew in prepaid scenarios.
@@ -77,5 +77,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql.Inputs
         public InstanceChargeDetailArgs()
         {
         }
+        public static new InstanceChargeDetailArgs Empty => new InstanceChargeDetailArgs();
     }
 }

@@ -8,33 +8,32 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Nat
+namespace Volcengine.Pulumi.Volcengine.Nat
 {
     /// <summary>
     /// Provides a resource to manage dnat entry
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Nat.DnatEntry("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Nat.DnatEntry("foo", new Volcengine.Nat.DnatEntryArgs
-    ///         {
-    ///             DnatEntryName = "terraform-test2",
-    ///             ExternalIp = "10.249.186.68",
-    ///             ExternalPort = "23",
-    ///             InternalIp = "193.168.1.1",
-    ///             InternalPort = "24",
-    ///             NatGatewayId = "ngw-imw3aej7e96o8gbssxkfbybv",
-    ///             Protocol = "tcp",
-    ///         });
-    ///     }
+    ///         DnatEntryName = "terraform-test2",
+    ///         ExternalIp = "10.249.186.68",
+    ///         ExternalPort = "23",
+    ///         InternalIp = "193.168.1.1",
+    ///         InternalPort = "24",
+    ///         NatGatewayId = "ngw-imw3aej7e96o8gbssxkfbybv",
+    ///         Protocol = "tcp",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -46,7 +45,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Nat
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:nat/dnatEntry:DnatEntry")]
-    public partial class DnatEntry : Pulumi.CustomResource
+    public partial class DnatEntry : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The id of the DNAT rule.
@@ -141,7 +140,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Nat
         }
     }
 
-    public sealed class DnatEntryArgs : Pulumi.ResourceArgs
+    public sealed class DnatEntryArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the DNAT rule.
@@ -188,9 +187,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Nat
         public DnatEntryArgs()
         {
         }
+        public static new DnatEntryArgs Empty => new DnatEntryArgs();
     }
 
-    public sealed class DnatEntryState : Pulumi.ResourceArgs
+    public sealed class DnatEntryState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of the DNAT rule.
@@ -243,5 +243,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Nat
         public DnatEntryState()
         {
         }
+        public static new DnatEntryState Empty => new DnatEntryState();
     }
 }

@@ -8,37 +8,36 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls
+namespace Volcengine.Pulumi.Volcengine.Tls
 {
     /// <summary>
     /// Provides a resource to manage tls project
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Tls.Project("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Tls.Project("foo", new Volcengine.Tls.ProjectArgs
+    ///         Description = "tf-desc",
+    ///         IamProjectName = "default",
+    ///         ProjectName = "tf-test",
+    ///         Tags = new[]
     ///         {
-    ///             Description = "tf-desc",
-    ///             IamProjectName = "default",
-    ///             ProjectName = "tf-test",
-    ///             Tags = 
+    ///             new Volcengine.Tls.Inputs.ProjectTagArgs
     ///             {
-    ///                 new Volcengine.Tls.Inputs.ProjectTagArgs
-    ///                 {
-    ///                     Key = "k1",
-    ///                     Value = "v1",
-    ///                 },
+    ///                 Key = "k1",
+    ///                 Value = "v1",
     ///             },
-    ///         });
-    ///     }
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -50,7 +49,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:tls/project:Project")]
-    public partial class Project : Pulumi.CustomResource
+    public partial class Project : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The create time of the tls project.
@@ -139,7 +138,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         }
     }
 
-    public sealed class ProjectArgs : Pulumi.ResourceArgs
+    public sealed class ProjectArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The description of the tls project.
@@ -174,9 +173,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public ProjectArgs()
         {
         }
+        public static new ProjectArgs Empty => new ProjectArgs();
     }
 
-    public sealed class ProjectState : Pulumi.ResourceArgs
+    public sealed class ProjectState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The create time of the tls project.
@@ -229,5 +229,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public ProjectState()
         {
         }
+        public static new ProjectState Empty => new ProjectState();
     }
 }

@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Bioos.Inputs
+namespace Volcengine.Pulumi.Volcengine.Bioos.Inputs
 {
 
-    public sealed class ClusterSharedConfigArgs : Pulumi.ResourceArgs
+    public sealed class ClusterSharedConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether to enable a shared cluster.
@@ -22,5 +22,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Bioos.Inputs
         public ClusterSharedConfigArgs()
         {
         }
+        public static new ClusterSharedConfigArgs Empty => new ClusterSharedConfigArgs();
     }
 }

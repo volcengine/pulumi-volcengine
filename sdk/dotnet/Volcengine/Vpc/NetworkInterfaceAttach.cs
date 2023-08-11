@@ -8,28 +8,27 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpc
+namespace Volcengine.Pulumi.Volcengine.Vpc
 {
     /// <summary>
     /// Provides a resource to manage network interface attach
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Vpc.NetworkInterfaceAttach("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Vpc.NetworkInterfaceAttach("foo", new Volcengine.Vpc.NetworkInterfaceAttachArgs
-    ///         {
-    ///             InstanceId = "i-72q20hi6s082wcafdem8",
-    ///             NetworkInterfaceId = "eni-274ecj646ylts7fap8t6xbba1",
-    ///         });
-    ///     }
+    ///         InstanceId = "i-72q20hi6s082wcafdem8",
+    ///         NetworkInterfaceId = "eni-274ecj646ylts7fap8t6xbba1",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -41,7 +40,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vpc/networkInterfaceAttach:NetworkInterfaceAttach")]
-    public partial class NetworkInterfaceAttach : Pulumi.CustomResource
+    public partial class NetworkInterfaceAttach : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The id of the instance to which the ENI is bound.
@@ -100,7 +99,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         }
     }
 
-    public sealed class NetworkInterfaceAttachArgs : Pulumi.ResourceArgs
+    public sealed class NetworkInterfaceAttachArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of the instance to which the ENI is bound.
@@ -117,9 +116,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public NetworkInterfaceAttachArgs()
         {
         }
+        public static new NetworkInterfaceAttachArgs Empty => new NetworkInterfaceAttachArgs();
     }
 
-    public sealed class NetworkInterfaceAttachState : Pulumi.ResourceArgs
+    public sealed class NetworkInterfaceAttachState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of the instance to which the ENI is bound.
@@ -136,5 +136,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public NetworkInterfaceAttachState()
         {
         }
+        public static new NetworkInterfaceAttachState Empty => new NetworkInterfaceAttachState();
     }
 }

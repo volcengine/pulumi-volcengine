@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql.Inputs
+namespace Volcengine.Pulumi.Volcengine.Rds_mysql.Inputs
 {
 
-    public sealed class InstanceEndpointArgs : Pulumi.ResourceArgs
+    public sealed class InstanceEndpointArgs : global::Pulumi.ResourceArgs
     {
         [Input("addresses")]
         private InputList<Inputs.InstanceEndpointAddressArgs>? _addresses;
@@ -95,5 +95,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql.Inputs
         public InstanceEndpointArgs()
         {
         }
+        public static new InstanceEndpointArgs Empty => new InstanceEndpointArgs();
     }
 }

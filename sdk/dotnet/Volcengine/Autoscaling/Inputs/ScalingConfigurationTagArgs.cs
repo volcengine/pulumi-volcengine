@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Autoscaling.Inputs
+namespace Volcengine.Pulumi.Volcengine.Autoscaling.Inputs
 {
 
-    public sealed class ScalingConfigurationTagArgs : Pulumi.ResourceArgs
+    public sealed class ScalingConfigurationTagArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Key of Tags.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling.Inputs
         public ScalingConfigurationTagArgs()
         {
         }
+        public static new ScalingConfigurationTagArgs Empty => new ScalingConfigurationTagArgs();
     }
 }

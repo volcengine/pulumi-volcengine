@@ -8,57 +8,56 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpc
+namespace Volcengine.Pulumi.Volcengine.Vpc
 {
     /// <summary>
     /// Provides a resource to manage network acl
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Vpc.NetworkAcl("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Vpc.NetworkAcl("foo", new Volcengine.Vpc.NetworkAclArgs
+    ///         EgressAclEntries = new[]
     ///         {
-    ///             EgressAclEntries = 
+    ///             new Volcengine.Vpc.Inputs.NetworkAclEgressAclEntryArgs
     ///             {
-    ///                 new Volcengine.Vpc.Inputs.NetworkAclEgressAclEntryArgs
-    ///                 {
-    ///                     DestinationCidrIp = "192.168.0.0/16",
-    ///                     NetworkAclEntryName = "egress2",
-    ///                     Policy = "accept",
-    ///                     Protocol = "all",
-    ///                 },
+    ///                 DestinationCidrIp = "192.168.0.0/16",
+    ///                 NetworkAclEntryName = "egress2",
+    ///                 Policy = "accept",
+    ///                 Protocol = "all",
     ///             },
-    ///             IngressAclEntries = 
+    ///         },
+    ///         IngressAclEntries = new[]
+    ///         {
+    ///             new Volcengine.Vpc.Inputs.NetworkAclIngressAclEntryArgs
     ///             {
-    ///                 new Volcengine.Vpc.Inputs.NetworkAclIngressAclEntryArgs
-    ///                 {
-    ///                     NetworkAclEntryName = "ingress1",
-    ///                     Policy = "accept",
-    ///                     Protocol = "all",
-    ///                     SourceCidrIp = "192.168.0.0/24",
-    ///                 },
-    ///                 new Volcengine.Vpc.Inputs.NetworkAclIngressAclEntryArgs
-    ///                 {
-    ///                     NetworkAclEntryName = "ingress3",
-    ///                     Policy = "accept",
-    ///                     Port = "80/80",
-    ///                     Protocol = "tcp",
-    ///                     SourceCidrIp = "192.168.0.0/24",
-    ///                 },
+    ///                 NetworkAclEntryName = "ingress1",
+    ///                 Policy = "accept",
+    ///                 Protocol = "all",
+    ///                 SourceCidrIp = "192.168.0.0/24",
     ///             },
-    ///             NetworkAclName = "tf-test-acl",
-    ///             ProjectName = "default",
-    ///             VpcId = "vpc-2d6jskar243k058ozfdae13ne",
-    ///         });
-    ///     }
+    ///             new Volcengine.Vpc.Inputs.NetworkAclIngressAclEntryArgs
+    ///             {
+    ///                 NetworkAclEntryName = "ingress3",
+    ///                 Policy = "accept",
+    ///                 Port = "80/80",
+    ///                 Protocol = "tcp",
+    ///                 SourceCidrIp = "192.168.0.0/24",
+    ///             },
+    ///         },
+    ///         NetworkAclName = "tf-test-acl",
+    ///         ProjectName = "default",
+    ///         VpcId = "vpc-2d6jskar243k058ozfdae13ne",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -70,7 +69,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vpc/networkAcl:NetworkAcl")]
-    public partial class NetworkAcl : Pulumi.CustomResource
+    public partial class NetworkAcl : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The description of the Network Acl.
@@ -153,7 +152,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         }
     }
 
-    public sealed class NetworkAclArgs : Pulumi.ResourceArgs
+    public sealed class NetworkAclArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The description of the Network Acl.
@@ -206,9 +205,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public NetworkAclArgs()
         {
         }
+        public static new NetworkAclArgs Empty => new NetworkAclArgs();
     }
 
-    public sealed class NetworkAclState : Pulumi.ResourceArgs
+    public sealed class NetworkAclState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The description of the Network Acl.
@@ -261,5 +261,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public NetworkAclState()
         {
         }
+        public static new NetworkAclState Empty => new NetworkAclState();
     }
 }

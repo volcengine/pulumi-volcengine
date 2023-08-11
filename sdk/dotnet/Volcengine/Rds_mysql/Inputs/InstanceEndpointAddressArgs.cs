@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql.Inputs
+namespace Volcengine.Pulumi.Volcengine.Rds_mysql.Inputs
 {
 
-    public sealed class InstanceEndpointAddressArgs : Pulumi.ResourceArgs
+    public sealed class InstanceEndpointAddressArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// DNS Visibility.
@@ -58,5 +58,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql.Inputs
         public InstanceEndpointAddressArgs()
         {
         }
+        public static new InstanceEndpointAddressArgs Empty => new InstanceEndpointAddressArgs();
     }
 }

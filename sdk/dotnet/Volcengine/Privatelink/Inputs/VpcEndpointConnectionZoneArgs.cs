@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Privatelink.Inputs
+namespace Volcengine.Pulumi.Volcengine.Privatelink.Inputs
 {
 
-    public sealed class VpcEndpointConnectionZoneArgs : Pulumi.ResourceArgs
+    public sealed class VpcEndpointConnectionZoneArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of the network interface.
@@ -58,5 +58,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink.Inputs
         public VpcEndpointConnectionZoneArgs()
         {
         }
+        public static new VpcEndpointConnectionZoneArgs Empty => new VpcEndpointConnectionZoneArgs();
     }
 }

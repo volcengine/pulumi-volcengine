@@ -8,32 +8,31 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpc
+namespace Volcengine.Pulumi.Volcengine.Vpc
 {
     /// <summary>
     /// Provides a resource to manage route entry
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Vpc.RouteEntry("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Vpc.RouteEntry("foo", new Volcengine.Vpc.RouteEntryArgs
-    ///         {
-    ///             Description = "tf-test-up",
-    ///             DestinationCidrBlock = "0.0.0.0/2",
-    ///             NextHopId = "ngw-274gwbqe340zk7fap8spkzo7x",
-    ///             NextHopType = "NatGW",
-    ///             RouteEntryName = "tf-test-up",
-    ///             RouteTableId = "vtb-2744hslq5b7r47fap8tjomgnj",
-    ///         });
-    ///     }
+    ///         Description = "tf-test-up",
+    ///         DestinationCidrBlock = "0.0.0.0/2",
+    ///         NextHopId = "ngw-274gwbqe340zk7fap8spkzo7x",
+    ///         NextHopType = "NatGW",
+    ///         RouteEntryName = "tf-test-up",
+    ///         RouteTableId = "vtb-2744hslq5b7r47fap8tjomgnj",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -45,7 +44,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vpc/routeEntry:RouteEntry")]
-    public partial class RouteEntry : Pulumi.CustomResource
+    public partial class RouteEntry : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The description of the route entry.
@@ -140,7 +139,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         }
     }
 
-    public sealed class RouteEntryArgs : Pulumi.ResourceArgs
+    public sealed class RouteEntryArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The description of the route entry.
@@ -181,9 +180,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public RouteEntryArgs()
         {
         }
+        public static new RouteEntryArgs Empty => new RouteEntryArgs();
     }
 
-    public sealed class RouteEntryState : Pulumi.ResourceArgs
+    public sealed class RouteEntryState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The description of the route entry.
@@ -236,5 +236,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public RouteEntryState()
         {
         }
+        public static new RouteEntryState Empty => new RouteEntryState();
     }
 }

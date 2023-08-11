@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
+namespace Volcengine.Pulumi.Volcengine.Vke.Inputs
 {
 
-    public sealed class ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs : Pulumi.ResourceArgs
+    public sealed class ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The peak bandwidth of the public IP, unit: Mbps.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
         public ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs()
         {
         }
+        public static new ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs Empty => new ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs();
     }
 }

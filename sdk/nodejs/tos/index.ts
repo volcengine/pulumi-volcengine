@@ -5,16 +5,31 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./bucket";
-export * from "./bucketObject";
-export * from "./bucketObjects";
-export * from "./bucketPolicy";
-export * from "./buckets";
+export { BucketArgs, BucketState } from "./bucket";
+export type Bucket = import("./bucket").Bucket;
+export const Bucket: typeof import("./bucket").Bucket = null as any;
+utilities.lazyLoad(exports, ["Bucket"], () => require("./bucket"));
 
-// Import resources to register:
-import { Bucket } from "./bucket";
-import { BucketObject } from "./bucketObject";
-import { BucketPolicy } from "./bucketPolicy";
+export { BucketObjectArgs, BucketObjectState } from "./bucketObject";
+export type BucketObject = import("./bucketObject").BucketObject;
+export const BucketObject: typeof import("./bucketObject").BucketObject = null as any;
+utilities.lazyLoad(exports, ["BucketObject"], () => require("./bucketObject"));
+
+export { BucketObjectsArgs, BucketObjectsResult, BucketObjectsOutputArgs } from "./bucketObjects";
+export const bucketObjects: typeof import("./bucketObjects").bucketObjects = null as any;
+export const bucketObjectsOutput: typeof import("./bucketObjects").bucketObjectsOutput = null as any;
+utilities.lazyLoad(exports, ["bucketObjects","bucketObjectsOutput"], () => require("./bucketObjects"));
+
+export { BucketPolicyArgs, BucketPolicyState } from "./bucketPolicy";
+export type BucketPolicy = import("./bucketPolicy").BucketPolicy;
+export const BucketPolicy: typeof import("./bucketPolicy").BucketPolicy = null as any;
+utilities.lazyLoad(exports, ["BucketPolicy"], () => require("./bucketPolicy"));
+
+export { BucketsArgs, BucketsResult, BucketsOutputArgs } from "./buckets";
+export const buckets: typeof import("./buckets").buckets = null as any;
+export const bucketsOutput: typeof import("./buckets").bucketsOutput = null as any;
+utilities.lazyLoad(exports, ["buckets","bucketsOutput"], () => require("./buckets"));
+
 
 const _module = {
     version: utilities.getVersion(),

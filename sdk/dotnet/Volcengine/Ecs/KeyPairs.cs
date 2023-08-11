@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Ecs
+namespace Volcengine.Pulumi.Volcengine.Ecs
 {
     public static class KeyPairs
     {
@@ -19,32 +19,32 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
-        /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var fooKeyPair = new Volcengine.Ecs.KeyPair("fooKeyPair", new()
         ///     {
-        ///         var fooKeyPair = new Volcengine.Ecs.KeyPair("fooKeyPair", new Volcengine.Ecs.KeyPairArgs
-        ///         {
-        ///             KeyPairName = "acc-test-key-name",
-        ///             Description = "acc-test",
-        ///         });
-        ///         var fooKeyPairs = Volcengine.Ecs.KeyPairs.Invoke(new Volcengine.Ecs.KeyPairsInvokeArgs
-        ///         {
-        ///             KeyPairName = fooKeyPair.KeyPairName,
-        ///         });
-        ///     }
+        ///         KeyPairName = "acc-test-key-name",
+        ///         Description = "acc-test",
+        ///     });
         /// 
-        /// }
+        ///     var fooKeyPairs = Volcengine.Ecs.KeyPairs.Invoke(new()
+        ///     {
+        ///         KeyPairName = fooKeyPair.KeyPairName,
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<KeyPairsResult> InvokeAsync(KeyPairsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<KeyPairsResult>("volcengine:ecs/keyPairs:KeyPairs", args ?? new KeyPairsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<KeyPairsResult>("volcengine:ecs/keyPairs:KeyPairs", args ?? new KeyPairsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of ecs key pairs
@@ -53,36 +53,36 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
-        /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var fooKeyPair = new Volcengine.Ecs.KeyPair("fooKeyPair", new()
         ///     {
-        ///         var fooKeyPair = new Volcengine.Ecs.KeyPair("fooKeyPair", new Volcengine.Ecs.KeyPairArgs
-        ///         {
-        ///             KeyPairName = "acc-test-key-name",
-        ///             Description = "acc-test",
-        ///         });
-        ///         var fooKeyPairs = Volcengine.Ecs.KeyPairs.Invoke(new Volcengine.Ecs.KeyPairsInvokeArgs
-        ///         {
-        ///             KeyPairName = fooKeyPair.KeyPairName,
-        ///         });
-        ///     }
+        ///         KeyPairName = "acc-test-key-name",
+        ///         Description = "acc-test",
+        ///     });
         /// 
-        /// }
+        ///     var fooKeyPairs = Volcengine.Ecs.KeyPairs.Invoke(new()
+        ///     {
+        ///         KeyPairName = fooKeyPair.KeyPairName,
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<KeyPairsResult> Invoke(KeyPairsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<KeyPairsResult>("volcengine:ecs/keyPairs:KeyPairs", args ?? new KeyPairsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<KeyPairsResult>("volcengine:ecs/keyPairs:KeyPairs", args ?? new KeyPairsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class KeyPairsArgs : Pulumi.InvokeArgs
+    public sealed class KeyPairsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The finger print info.
@@ -135,9 +135,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         public KeyPairsArgs()
         {
         }
+        public static new KeyPairsArgs Empty => new KeyPairsArgs();
     }
 
-    public sealed class KeyPairsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class KeyPairsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The finger print info.
@@ -190,6 +191,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         public KeyPairsInvokeArgs()
         {
         }
+        public static new KeyPairsInvokeArgs Empty => new KeyPairsInvokeArgs();
     }
 
 

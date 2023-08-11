@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultAddons = pulumi.output(volcengine.vke.Addons({
+ * const default = volcengine.vke.Addons({
  *     clusterIds: ["cccctv1vqtofp49d96ujg"],
- * }));
+ * });
  * ```
  */
 export function addons(args?: AddonsArgs, opts?: pulumi.InvokeOptions): Promise<AddonsResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:vke/addons:Addons", {
         "clusterIds": args.clusterIds,
         "createClientToken": args.createClientToken,
@@ -106,9 +104,21 @@ export interface AddonsResult {
     readonly totalCount: number;
     readonly updateClientToken?: string;
 }
-
+/**
+ * Use this data source to query detailed information of vke addons
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.vke.Addons({
+ *     clusterIds: ["cccctv1vqtofp49d96ujg"],
+ * });
+ * ```
+ */
 export function addonsOutput(args?: AddonsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AddonsResult> {
-    return pulumi.output(args).apply(a => addons(a, opts))
+    return pulumi.output(args).apply((a: any) => addons(a, opts))
 }
 
 /**

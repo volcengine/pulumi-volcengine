@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -78,6 +78,10 @@ type Instance struct {
 	// MySQL_8_0.
 	DbEngineVersion pulumi.StringOutput `pulumi:"dbEngineVersion"`
 	// Set the name of the instance. The naming rules are as follows:
+	//
+	// Cannot start with a number, a dash (-).
+	// It can only contain Chinese characters, letters, numbers, underscores (_) and underscores (-).
+	// The length needs to be within 1~128 characters.
 	InstanceName pulumi.StringPtrOutput `pulumi:"instanceName"`
 	// Instance specification name, you can specify the specification name of the instance to be created. Value:
 	// rds.mysql.1c2g
@@ -210,6 +214,10 @@ type instanceState struct {
 	// MySQL_8_0.
 	DbEngineVersion *string `pulumi:"dbEngineVersion"`
 	// Set the name of the instance. The naming rules are as follows:
+	//
+	// Cannot start with a number, a dash (-).
+	// It can only contain Chinese characters, letters, numbers, underscores (_) and underscores (-).
+	// The length needs to be within 1~128 characters.
 	InstanceName *string `pulumi:"instanceName"`
 	// Instance specification name, you can specify the specification name of the instance to be created. Value:
 	// rds.mysql.1c2g
@@ -286,6 +294,10 @@ type InstanceState struct {
 	// MySQL_8_0.
 	DbEngineVersion pulumi.StringPtrInput
 	// Set the name of the instance. The naming rules are as follows:
+	//
+	// Cannot start with a number, a dash (-).
+	// It can only contain Chinese characters, letters, numbers, underscores (_) and underscores (-).
+	// The length needs to be within 1~128 characters.
 	InstanceName pulumi.StringPtrInput
 	// Instance specification name, you can specify the specification name of the instance to be created. Value:
 	// rds.mysql.1c2g
@@ -364,6 +376,10 @@ type instanceArgs struct {
 	// MySQL_8_0.
 	DbEngineVersion string `pulumi:"dbEngineVersion"`
 	// Set the name of the instance. The naming rules are as follows:
+	//
+	// Cannot start with a number, a dash (-).
+	// It can only contain Chinese characters, letters, numbers, underscores (_) and underscores (-).
+	// The length needs to be within 1~128 characters.
 	InstanceName *string `pulumi:"instanceName"`
 	// Instance specification name, you can specify the specification name of the instance to be created. Value:
 	// rds.mysql.1c2g
@@ -439,6 +455,10 @@ type InstanceArgs struct {
 	// MySQL_8_0.
 	DbEngineVersion pulumi.StringInput
 	// Set the name of the instance. The naming rules are as follows:
+	//
+	// Cannot start with a number, a dash (-).
+	// It can only contain Chinese characters, letters, numbers, underscores (_) and underscores (-).
+	// The length needs to be within 1~128 characters.
 	InstanceName pulumi.StringPtrInput
 	// Instance specification name, you can specify the specification name of the instance to be created. Value:
 	// rds.mysql.1c2g
@@ -616,6 +636,10 @@ func (o InstanceOutput) DbEngineVersion() pulumi.StringOutput {
 }
 
 // Set the name of the instance. The naming rules are as follows:
+//
+// Cannot start with a number, a dash (-).
+// It can only contain Chinese characters, letters, numbers, underscores (_) and underscores (-).
+// The length needs to be within 1~128 characters.
 func (o InstanceOutput) InstanceName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.InstanceName }).(pulumi.StringPtrOutput)
 }

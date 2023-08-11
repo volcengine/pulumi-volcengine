@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultTopics = pulumi.output(volcengine.tls.Topics({
+ * const default = volcengine.tls.Topics({
  *     projectId: "e020c978-4f05-40e1-9167-0113d3ef****",
  *     topicId: "edf051ed-3c46-49ba-9339-bea628fe****",
- * }));
+ * });
  * ```
  */
 export function topics(args: TopicsArgs, opts?: pulumi.InvokeOptions): Promise<TopicsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:tls/topics:Topics", {
         "isFullName": args.isFullName,
         "nameRegex": args.nameRegex,
@@ -106,9 +104,22 @@ export interface TopicsResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of tls topics
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.tls.Topics({
+ *     projectId: "e020c978-4f05-40e1-9167-0113d3ef****",
+ *     topicId: "edf051ed-3c46-49ba-9339-bea628fe****",
+ * });
+ * ```
+ */
 export function topicsOutput(args: TopicsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<TopicsResult> {
-    return pulumi.output(args).apply(a => topics(a, opts))
+    return pulumi.output(args).apply((a: any) => topics(a, opts))
 }
 
 /**

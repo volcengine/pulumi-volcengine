@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cr.Inputs
+namespace Volcengine.Pulumi.Volcengine.Cr.Inputs
 {
 
-    public sealed class TagImageAttributeArgs : Pulumi.ResourceArgs
+    public sealed class TagImageAttributeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The image architecture.
@@ -40,5 +40,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr.Inputs
         public TagImageAttributeArgs()
         {
         }
+        public static new TagImageAttributeArgs Empty => new TagImageAttributeArgs();
     }
 }

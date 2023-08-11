@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Ecs
+namespace Volcengine.Pulumi.Volcengine.Ecs
 {
     public static class Images
     {
@@ -19,28 +19,27 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Ecs.Images.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Ecs.Images.InvokeAsync(new Volcengine.Ecs.ImagesArgs
-        ///         {
-        ///             InstanceTypeId = "ecs.g1.large",
-        ///             OsType = "Linux",
-        ///             Visibility = "public",
-        ///         }));
-        ///     }
+        ///         InstanceTypeId = "ecs.g1.large",
+        ///         OsType = "Linux",
+        ///         Visibility = "public",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<ImagesResult> InvokeAsync(ImagesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<ImagesResult>("volcengine:ecs/images:Images", args ?? new ImagesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<ImagesResult>("volcengine:ecs/images:Images", args ?? new ImagesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of images
@@ -49,32 +48,31 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Ecs.Images.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Ecs.Images.InvokeAsync(new Volcengine.Ecs.ImagesArgs
-        ///         {
-        ///             InstanceTypeId = "ecs.g1.large",
-        ///             OsType = "Linux",
-        ///             Visibility = "public",
-        ///         }));
-        ///     }
+        ///         InstanceTypeId = "ecs.g1.large",
+        ///         OsType = "Linux",
+        ///         Visibility = "public",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<ImagesResult> Invoke(ImagesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<ImagesResult>("volcengine:ecs/images:Images", args ?? new ImagesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<ImagesResult>("volcengine:ecs/images:Images", args ?? new ImagesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class ImagesArgs : Pulumi.InvokeArgs
+    public sealed class ImagesArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private List<string>? _ids;
@@ -139,9 +137,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         public ImagesArgs()
         {
         }
+        public static new ImagesArgs Empty => new ImagesArgs();
     }
 
-    public sealed class ImagesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class ImagesInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private InputList<string>? _ids;
@@ -206,6 +205,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         public ImagesInvokeArgs()
         {
         }
+        public static new ImagesInvokeArgs Empty => new ImagesInvokeArgs();
     }
 
 

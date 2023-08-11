@@ -10,12 +10,13 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.mongodb.SslState("foo", {
- *     instanceId: "mongo-replica-f16e9298b121", // 必填
- *     sslAction: "Update", // 选填 仅支持Update 
+ *     instanceId: "mongo-replica-f16e9298b121",
+ *     sslAction: "Update",
  * });
+ * // 选填 仅支持Update
  * ```
  *
  * ## Import
@@ -26,7 +27,7 @@ import * as utilities from "../utilities";
  *  $ pulumi import volcengine:mongodb/sslState:SslState default ssl:mongo-shard-d050db19xxx
  * ```
  *
- *  Set `ssl_action` to `Update` will update ssl always when terraform apply.
+ *  Set `ssl_action` to `Update` will update ssl always when pulumi up.
  */
 export class SslState extends pulumi.CustomResource {
     /**
@@ -65,8 +66,7 @@ export class SslState extends pulumi.CustomResource {
      */
     public /*out*/ readonly isValid!: pulumi.Output<boolean>;
     /**
-     * The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will update ssl always when terraform
-     * apply.
+     * The action of ssl, valid value contains `Update`. Set `sslAction` to `Update` will update ssl always when pulumi up.
      */
     public readonly sslAction!: pulumi.Output<string | undefined>;
     /**
@@ -125,8 +125,7 @@ export interface SslStateState {
      */
     isValid?: pulumi.Input<boolean>;
     /**
-     * The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will update ssl always when terraform
-     * apply.
+     * The action of ssl, valid value contains `Update`. Set `sslAction` to `Update` will update ssl always when pulumi up.
      */
     sslAction?: pulumi.Input<string>;
     /**
@@ -148,8 +147,7 @@ export interface SslStateArgs {
      */
     instanceId: pulumi.Input<string>;
     /**
-     * The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will update ssl always when terraform
-     * apply.
+     * The action of ssl, valid value contains `Update`. Set `sslAction` to `Update` will update ssl always when pulumi up.
      */
     sslAction?: pulumi.Input<string>;
 }

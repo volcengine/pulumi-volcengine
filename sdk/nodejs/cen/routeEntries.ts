@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,17 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = pulumi.output(volcengine.cen.RouteEntries({
+ * const foo = volcengine.cen.RouteEntries({
  *     cenId: "cen-12ar8uclj68sg17q7y20v9gil",
- * }));
+ * });
  * ```
  */
 export function routeEntries(args: RouteEntriesArgs, opts?: pulumi.InvokeOptions): Promise<RouteEntriesResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:cen/routeEntries:RouteEntries", {
         "cenId": args.cenId,
         "destinationCidrBlock": args.destinationCidrBlock,
@@ -102,9 +100,21 @@ export interface RouteEntriesResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of cen route entries
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const foo = volcengine.cen.RouteEntries({
+ *     cenId: "cen-12ar8uclj68sg17q7y20v9gil",
+ * });
+ * ```
+ */
 export function routeEntriesOutput(args: RouteEntriesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<RouteEntriesResult> {
-    return pulumi.output(args).apply(a => routeEntries(a, opts))
+    return pulumi.output(args).apply((a: any) => routeEntries(a, opts))
 }
 
 /**

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls
+namespace Volcengine.Pulumi.Volcengine.Tls
 {
     public static class Projects
     {
@@ -19,26 +19,25 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Tls.Projects.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Tls.Projects.InvokeAsync(new Volcengine.Tls.ProjectsArgs
-        ///         {
-        ///             ProjectId = "e020c978-4f05-40e1-9167-0113d3ef****",
-        ///         }));
-        ///     }
+        ///         ProjectId = "e020c978-4f05-40e1-9167-0113d3ef****",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<ProjectsResult> InvokeAsync(ProjectsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<ProjectsResult>("volcengine:tls/projects:Projects", args ?? new ProjectsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<ProjectsResult>("volcengine:tls/projects:Projects", args ?? new ProjectsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of tls projects
@@ -47,30 +46,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Tls.Projects.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Tls.Projects.InvokeAsync(new Volcengine.Tls.ProjectsArgs
-        ///         {
-        ///             ProjectId = "e020c978-4f05-40e1-9167-0113d3ef****",
-        ///         }));
-        ///     }
+        ///         ProjectId = "e020c978-4f05-40e1-9167-0113d3ef****",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<ProjectsResult> Invoke(ProjectsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<ProjectsResult>("volcengine:tls/projects:Projects", args ?? new ProjectsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<ProjectsResult>("volcengine:tls/projects:Projects", args ?? new ProjectsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class ProjectsArgs : Pulumi.InvokeArgs
+    public sealed class ProjectsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The IAM project name of the tls project.
@@ -123,9 +121,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public ProjectsArgs()
         {
         }
+        public static new ProjectsArgs Empty => new ProjectsArgs();
     }
 
-    public sealed class ProjectsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class ProjectsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The IAM project name of the tls project.
@@ -178,6 +177,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public ProjectsInvokeArgs()
         {
         }
+        public static new ProjectsInvokeArgs Empty => new ProjectsInvokeArgs();
     }
 
 

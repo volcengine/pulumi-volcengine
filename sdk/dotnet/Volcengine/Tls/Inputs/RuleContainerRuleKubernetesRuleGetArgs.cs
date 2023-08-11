@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
+namespace Volcengine.Pulumi.Volcengine.Tls.Inputs
 {
 
-    public sealed class RuleContainerRuleKubernetesRuleGetArgs : Pulumi.ResourceArgs
+    public sealed class RuleContainerRuleKubernetesRuleGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("annotationTag")]
         private InputMap<string>? _annotationTag;
@@ -88,5 +88,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
         public RuleContainerRuleKubernetesRuleGetArgs()
         {
         }
+        public static new RuleContainerRuleKubernetesRuleGetArgs Empty => new RuleContainerRuleKubernetesRuleGetArgs();
     }
 }

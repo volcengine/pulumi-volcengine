@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -12,37 +13,42 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.rds_v2.RdsInstanceV2("foo", {
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooRdsInstanceV2 = new volcengine.rds_v2.RdsInstanceV2("fooRdsInstanceV2", {
+ *     dbEngineVersion: "MySQL_5_7",
+ *     nodeInfos: [
+ *         {
+ *             nodeType: "Primary",
+ *             nodeSpec: "rds.mysql.2c4g",
+ *             zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *         },
+ *         {
+ *             nodeType: "Secondary",
+ *             nodeSpec: "rds.mysql.2c4g",
+ *             zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *         },
+ *     ],
+ *     storageType: "LocalSSD",
+ *     storageSpace: 100,
+ *     vpcId: fooVpc.id,
+ *     subnetId: fooSubnet.id,
+ *     instanceName: "tf-test-v2",
+ *     lowerCaseTableNames: "1",
  *     chargeInfo: {
  *         chargeType: "PostPaid",
  *     },
- *     dbEngineVersion: "MySQL_5_7",
- *     instanceName: "tf-test-v2",
- *     instanceType: "HA",
- *     lowerCaseTableNames: "1",
- *     nodeInfos: [
- *         {
- *             nodeSpec: "rds.mysql.2c4g",
- *             nodeType: "Primary",
- *             zoneId: "cn-beijing-a",
- *         },
- *         {
- *             nodeSpec: "rds.mysql.2c4g",
- *             nodeType: "Secondary",
- *             zoneId: "cn-beijing-a",
- *         },
- *         {
- *             nodeSpec: "rds.mysql.1c2g",
- *             nodeType: "ReadOnly",
- *             zoneId: "cn-beijing-a",
- *         },
- *     ],
- *     projectName: "yyy",
- *     storageSpace: 100,
- *     storageType: "LocalSSD",
- *     subnetId: "subnet-mj92ij84m5fk5smt1arvwrtw",
- *     vpcId: "vpc-13fawddpwi41s3n6nu4g2y8bt",
  * });
  * ```
  *
@@ -111,8 +117,9 @@ export class RdsInstanceV2 extends pulumi.CustomResource {
      */
     public readonly instanceName!: pulumi.Output<string | undefined>;
     /**
-     * Instance type. Value:
-     * HA: High availability version.
+     * The field instanceType is no longer support. The type of Instance.
+     *
+     * @deprecated The field instance_type is no longer support.
      */
     public readonly instanceType!: pulumi.Output<string>;
     /**
@@ -129,7 +136,7 @@ export class RdsInstanceV2 extends pulumi.CustomResource {
     /**
      * Subordinate to the project.
      */
-    public readonly projectName!: pulumi.Output<string | undefined>;
+    public readonly projectName!: pulumi.Output<string>;
     /**
      * Instance storage space.
      * When the database type is MySQL/PostgreSQL/SQL_Server/MySQL Sharding, value range: [20, 3000], unit: GB, increments every 100GB.
@@ -186,9 +193,6 @@ export class RdsInstanceV2 extends pulumi.CustomResource {
             }
             if ((!args || args.dbEngineVersion === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'dbEngineVersion'");
-            }
-            if ((!args || args.instanceType === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'instanceType'");
             }
             if ((!args || args.nodeInfos === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'nodeInfos'");
@@ -255,8 +259,9 @@ export interface RdsInstanceV2State {
      */
     instanceName?: pulumi.Input<string>;
     /**
-     * Instance type. Value:
-     * HA: High availability version.
+     * The field instanceType is no longer support. The type of Instance.
+     *
+     * @deprecated The field instance_type is no longer support.
      */
     instanceType?: pulumi.Input<string>;
     /**
@@ -326,10 +331,11 @@ export interface RdsInstanceV2Args {
      */
     instanceName?: pulumi.Input<string>;
     /**
-     * Instance type. Value:
-     * HA: High availability version.
+     * The field instanceType is no longer support. The type of Instance.
+     *
+     * @deprecated The field instance_type is no longer support.
      */
-    instanceType: pulumi.Input<string>;
+    instanceType?: pulumi.Input<string>;
     /**
      * Whether the table name is case sensitive, the default value is 1.
      * Ranges:

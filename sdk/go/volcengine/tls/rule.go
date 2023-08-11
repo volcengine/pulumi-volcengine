@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -21,7 +21,6 @@ import (
 //
 //	"encoding/json"
 //
-//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/tls"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/tls"
 //
@@ -67,7 +66,7 @@ import (
 //				return err
 //			}
 //			json1 := string(tmpJSON1)
-//			_, err := tls.NewRule(ctx, "foo", &tls.RuleArgs{
+//			_, err = tls.NewRule(ctx, "foo", &tls.RuleArgs{
 //				TopicId:   pulumi.String("7bfa2cdc-4f8b-4cf9-b4c9-0ed05c33349f"),
 //				RuleName:  pulumi.String("test"),
 //				LogType:   pulumi.String("minimalist_log"),

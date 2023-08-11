@@ -8,30 +8,29 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Eip
+namespace Volcengine.Pulumi.Volcengine.Eip
 {
     /// <summary>
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Eip.Address("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Eip.Address("foo", new Volcengine.Eip.AddressArgs
-    ///         {
-    ///             Bandwidth = 1,
-    ///             BillingType = "PostPaidByBandwidth",
-    ///             Description = "acc-test",
-    ///             Isp = "ChinaUnicom",
-    ///             ProjectName = "default",
-    ///         });
-    ///     }
+    ///         Bandwidth = 1,
+    ///         BillingType = "PostPaidByBandwidth",
+    ///         Description = "acc-test",
+    ///         Isp = "ChinaUnicom",
+    ///         ProjectName = "default",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -43,10 +42,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Eip
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:eip/address:Address")]
-    public partial class Address : Pulumi.CustomResource
+    public partial class Address : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
+        /// The peek bandwidth of the EIP.
         /// </summary>
         [Output("bandwidth")]
         public Output<int> Bandwidth { get; private set; } = null!;
@@ -168,10 +167,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Eip
         }
     }
 
-    public sealed class AddressArgs : Pulumi.ResourceArgs
+    public sealed class AddressArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
+        /// The peek bandwidth of the EIP.
         /// </summary>
         [Input("bandwidth")]
         public Input<int>? Bandwidth { get; set; }
@@ -227,12 +226,13 @@ namespace Volcengine.PulumiPackage.Volcengine.Eip
         public AddressArgs()
         {
         }
+        public static new AddressArgs Empty => new AddressArgs();
     }
 
-    public sealed class AddressState : Pulumi.ResourceArgs
+    public sealed class AddressState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
+        /// The peek bandwidth of the EIP.
         /// </summary>
         [Input("bandwidth")]
         public Input<int>? Bandwidth { get; set; }
@@ -318,5 +318,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Eip
         public AddressState()
         {
         }
+        public static new AddressState Empty => new AddressState();
     }
 }

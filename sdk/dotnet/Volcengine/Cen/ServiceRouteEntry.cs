@@ -8,95 +8,96 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cen
+namespace Volcengine.Pulumi.Volcengine.Cen
 {
     /// <summary>
     /// Provides a resource to manage cen service route entry
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Cen.ServiceRouteEntry("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Cen.ServiceRouteEntry("foo", new Volcengine.Cen.ServiceRouteEntryArgs
+    ///         CenId = "cen-12ar8uclj68sg17q7y20v9gil",
+    ///         Description = "test-tf",
+    ///         DestinationCidrBlock = "100.64.0.0/11",
+    ///         PublishMode = "Custom",
+    ///         PublishToInstances = new[]
     ///         {
-    ///             CenId = "cen-12ar8uclj68sg17q7y20v9gil",
-    ///             Description = "test-tf",
-    ///             DestinationCidrBlock = "100.64.0.0/11",
-    ///             PublishMode = "Custom",
-    ///             PublishToInstances = 
+    ///             new Volcengine.Cen.Inputs.ServiceRouteEntryPublishToInstanceArgs
     ///             {
-    ///                 new Volcengine.Cen.Inputs.ServiceRouteEntryPublishToInstanceArgs
-    ///                 {
-    ///                     InstanceId = "vpc-2fepz36a5ra4g59gp67w197xo",
-    ///                     InstanceRegionId = "cn-beijing",
-    ///                     InstanceType = "VPC",
-    ///                 },
-    ///                 new Volcengine.Cen.Inputs.ServiceRouteEntryPublishToInstanceArgs
-    ///                 {
-    ///                     InstanceId = "vpc-im67wjcikxkw8gbssx8ufpj8",
-    ///                     InstanceRegionId = "cn-beijing",
-    ///                     InstanceType = "VPC",
-    ///                 },
+    ///                 InstanceId = "vpc-2fepz36a5ra4g59gp67w197xo",
+    ///                 InstanceRegionId = "cn-beijing",
+    ///                 InstanceType = "VPC",
     ///             },
-    ///             ServiceRegionId = "cn-beijing",
-    ///             ServiceVpcId = "vpc-im67wjcikxkw8gbssx8ufpj8",
-    ///         });
-    ///         var foo1 = new Volcengine.Cen.ServiceRouteEntry("foo1", new Volcengine.Cen.ServiceRouteEntryArgs
-    ///         {
-    ///             CenId = "cen-12ar8uclj68sg17q7y20v9gil",
-    ///             Description = "test-tf",
-    ///             DestinationCidrBlock = "100.64.0.0/10",
-    ///             PublishMode = "Custom",
-    ///             PublishToInstances = 
+    ///             new Volcengine.Cen.Inputs.ServiceRouteEntryPublishToInstanceArgs
     ///             {
-    ///                 new Volcengine.Cen.Inputs.ServiceRouteEntryPublishToInstanceArgs
-    ///                 {
-    ///                     InstanceId = "vpc-2fepz36a5ra4g59gp67w197xo",
-    ///                     InstanceRegionId = "cn-beijing",
-    ///                     InstanceType = "VPC",
-    ///                 },
-    ///                 new Volcengine.Cen.Inputs.ServiceRouteEntryPublishToInstanceArgs
-    ///                 {
-    ///                     InstanceId = "vpc-im67wjcikxkw8gbssx8ufpj8",
-    ///                     InstanceRegionId = "cn-beijing",
-    ///                     InstanceType = "VPC",
-    ///                 },
+    ///                 InstanceId = "vpc-im67wjcikxkw8gbssx8ufpj8",
+    ///                 InstanceRegionId = "cn-beijing",
+    ///                 InstanceType = "VPC",
     ///             },
-    ///             ServiceRegionId = "cn-beijing",
-    ///             ServiceVpcId = "vpc-im67wjcikxkw8gbssx8ufpj8",
-    ///         });
-    ///         var foo2 = new Volcengine.Cen.ServiceRouteEntry("foo2", new Volcengine.Cen.ServiceRouteEntryArgs
-    ///         {
-    ///             CenId = "cen-12ar8uclj68sg17q7y20v9gil",
-    ///             Description = "test-tf",
-    ///             DestinationCidrBlock = "100.64.0.0/12",
-    ///             PublishMode = "Custom",
-    ///             PublishToInstances = 
-    ///             {
-    ///                 new Volcengine.Cen.Inputs.ServiceRouteEntryPublishToInstanceArgs
-    ///                 {
-    ///                     InstanceId = "vpc-2fepz36a5ra4g59gp67w197xo",
-    ///                     InstanceRegionId = "cn-beijing",
-    ///                     InstanceType = "VPC",
-    ///                 },
-    ///                 new Volcengine.Cen.Inputs.ServiceRouteEntryPublishToInstanceArgs
-    ///                 {
-    ///                     InstanceId = "vpc-im67wjcikxkw8gbssx8ufpj8",
-    ///                     InstanceRegionId = "cn-beijing",
-    ///                     InstanceType = "VPC",
-    ///                 },
-    ///             },
-    ///             ServiceRegionId = "cn-beijing",
-    ///             ServiceVpcId = "vpc-im67wjcikxkw8gbssx8ufpj8",
-    ///         });
-    ///     }
+    ///         },
+    ///         ServiceRegionId = "cn-beijing",
+    ///         ServiceVpcId = "vpc-im67wjcikxkw8gbssx8ufpj8",
+    ///     });
     /// 
-    /// }
+    ///     var foo1 = new Volcengine.Cen.ServiceRouteEntry("foo1", new()
+    ///     {
+    ///         CenId = "cen-12ar8uclj68sg17q7y20v9gil",
+    ///         Description = "test-tf",
+    ///         DestinationCidrBlock = "100.64.0.0/10",
+    ///         PublishMode = "Custom",
+    ///         PublishToInstances = new[]
+    ///         {
+    ///             new Volcengine.Cen.Inputs.ServiceRouteEntryPublishToInstanceArgs
+    ///             {
+    ///                 InstanceId = "vpc-2fepz36a5ra4g59gp67w197xo",
+    ///                 InstanceRegionId = "cn-beijing",
+    ///                 InstanceType = "VPC",
+    ///             },
+    ///             new Volcengine.Cen.Inputs.ServiceRouteEntryPublishToInstanceArgs
+    ///             {
+    ///                 InstanceId = "vpc-im67wjcikxkw8gbssx8ufpj8",
+    ///                 InstanceRegionId = "cn-beijing",
+    ///                 InstanceType = "VPC",
+    ///             },
+    ///         },
+    ///         ServiceRegionId = "cn-beijing",
+    ///         ServiceVpcId = "vpc-im67wjcikxkw8gbssx8ufpj8",
+    ///     });
+    /// 
+    ///     var foo2 = new Volcengine.Cen.ServiceRouteEntry("foo2", new()
+    ///     {
+    ///         CenId = "cen-12ar8uclj68sg17q7y20v9gil",
+    ///         Description = "test-tf",
+    ///         DestinationCidrBlock = "100.64.0.0/12",
+    ///         PublishMode = "Custom",
+    ///         PublishToInstances = new[]
+    ///         {
+    ///             new Volcengine.Cen.Inputs.ServiceRouteEntryPublishToInstanceArgs
+    ///             {
+    ///                 InstanceId = "vpc-2fepz36a5ra4g59gp67w197xo",
+    ///                 InstanceRegionId = "cn-beijing",
+    ///                 InstanceType = "VPC",
+    ///             },
+    ///             new Volcengine.Cen.Inputs.ServiceRouteEntryPublishToInstanceArgs
+    ///             {
+    ///                 InstanceId = "vpc-im67wjcikxkw8gbssx8ufpj8",
+    ///                 InstanceRegionId = "cn-beijing",
+    ///                 InstanceType = "VPC",
+    ///             },
+    ///         },
+    ///         ServiceRegionId = "cn-beijing",
+    ///         ServiceVpcId = "vpc-im67wjcikxkw8gbssx8ufpj8",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -108,7 +109,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:cen/serviceRouteEntry:ServiceRouteEntry")]
-    public partial class ServiceRouteEntry : Pulumi.CustomResource
+    public partial class ServiceRouteEntry : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The cen ID of the cen service route entry.
@@ -209,7 +210,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         }
     }
 
-    public sealed class ServiceRouteEntryArgs : Pulumi.ResourceArgs
+    public sealed class ServiceRouteEntryArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The cen ID of the cen service route entry.
@@ -262,9 +263,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         public ServiceRouteEntryArgs()
         {
         }
+        public static new ServiceRouteEntryArgs Empty => new ServiceRouteEntryArgs();
     }
 
-    public sealed class ServiceRouteEntryState : Pulumi.ResourceArgs
+    public sealed class ServiceRouteEntryState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The cen ID of the cen service route entry.
@@ -329,5 +331,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         public ServiceRouteEntryState()
         {
         }
+        public static new ServiceRouteEntryState Empty => new ServiceRouteEntryState();
     }
 }

@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
+namespace Volcengine.Pulumi.Volcengine.Vke.Inputs
 {
 
-    public sealed class NodePoolKubernetesConfigTaintGetArgs : Pulumi.ResourceArgs
+    public sealed class NodePoolKubernetesConfigTaintGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Effect of Taints, the value can be `NoSchedule` or `NoExecute` or `PreferNoSchedule`.
@@ -34,5 +34,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
         public NodePoolKubernetesConfigTaintGetArgs()
         {
         }
+        public static new NodePoolKubernetesConfigTaintGetArgs Empty => new NodePoolKubernetesConfigTaintGetArgs();
     }
 }

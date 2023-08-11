@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultServiceRouteEntries = pulumi.output(volcengine.cen.ServiceRouteEntries({
+ * const default = volcengine.cen.ServiceRouteEntries({
  *     cenId: "cen-12ar8uclj68sg17q7y20v9gil",
- * }));
+ * });
  * ```
  */
 export function serviceRouteEntries(args?: ServiceRouteEntriesArgs, opts?: pulumi.InvokeOptions): Promise<ServiceRouteEntriesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:cen/serviceRouteEntries:ServiceRouteEntries", {
         "cenId": args.cenId,
         "destinationCidrBlock": args.destinationCidrBlock,
@@ -94,9 +92,21 @@ export interface ServiceRouteEntriesResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of cen service route entries
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.cen.ServiceRouteEntries({
+ *     cenId: "cen-12ar8uclj68sg17q7y20v9gil",
+ * });
+ * ```
+ */
 export function serviceRouteEntriesOutput(args?: ServiceRouteEntriesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ServiceRouteEntriesResult> {
-    return pulumi.output(args).apply(a => serviceRouteEntries(a, opts))
+    return pulumi.output(args).apply((a: any) => serviceRouteEntries(a, opts))
 }
 
 /**

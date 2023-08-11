@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
+namespace Volcengine.Pulumi.Volcengine.Tls.Inputs
 {
 
-    public sealed class RuleUserDefineRuleParsePathRuleArgs : Pulumi.ResourceArgs
+    public sealed class RuleUserDefineRuleParsePathRuleArgs : global::Pulumi.ResourceArgs
     {
         [Input("keys")]
         private InputList<string>? _keys;
@@ -40,5 +40,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
         public RuleUserDefineRuleParsePathRuleArgs()
         {
         }
+        public static new RuleUserDefineRuleParsePathRuleArgs Empty => new RuleUserDefineRuleParsePathRuleArgs();
     }
 }

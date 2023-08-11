@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Privatelink.Inputs
+namespace Volcengine.Pulumi.Volcengine.Privatelink.Inputs
 {
 
-    public sealed class VpcEndpointServiceResourceGetArgs : Pulumi.ResourceArgs
+    public sealed class VpcEndpointServiceResourceGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of resource.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink.Inputs
         public VpcEndpointServiceResourceGetArgs()
         {
         }
+        public static new VpcEndpointServiceResourceGetArgs Empty => new VpcEndpointServiceResourceGetArgs();
     }
 }

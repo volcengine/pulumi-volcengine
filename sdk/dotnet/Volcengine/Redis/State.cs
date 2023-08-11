@@ -8,28 +8,27 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Redis
+namespace Volcengine.Pulumi.Volcengine.Redis
 {
     /// <summary>
     /// Provides a resource to manage redis instance state
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Redis.State("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Redis.State("foo", new Volcengine.Redis.StateArgs
-    ///         {
-    ///             Action = "Restart",
-    ///             InstanceId = "redis-cnlficlt4974swtbz",
-    ///         });
-    ///     }
+    ///         Action = "Restart",
+    ///         InstanceId = "redis-cnlficlt4974swtbz",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -41,7 +40,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:redis/state:State")]
-    public partial class State : Pulumi.CustomResource
+    public partial class State : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Instance Action, the value can be `Restart`.
@@ -100,7 +99,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         }
     }
 
-    public sealed class StateArgs : Pulumi.ResourceArgs
+    public sealed class StateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Instance Action, the value can be `Restart`.
@@ -117,9 +116,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         public StateArgs()
         {
         }
+        public static new StateArgs Empty => new StateArgs();
     }
 
-    public sealed class StateState : Pulumi.ResourceArgs
+    public sealed class StateState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Instance Action, the value can be `Restart`.
@@ -136,5 +136,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         public StateState()
         {
         }
+        public static new StateState Empty => new StateState();
     }
 }

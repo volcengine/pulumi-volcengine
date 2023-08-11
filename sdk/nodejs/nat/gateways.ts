@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,21 +14,18 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultGateways = pulumi.output(volcengine.nat.Gateways({
+ * const default = volcengine.nat.Gateways({
  *     ids: [
  *         "ngw-2743w1f6iqby87fap8tvm9kop",
  *         "ngw-274gwbqe340zk7fap8spkzo7x",
  *     ],
- * }));
+ * });
  * ```
  */
 export function gateways(args?: GatewaysArgs, opts?: pulumi.InvokeOptions): Promise<GatewaysResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:nat/gateways:Gateways", {
         "description": args.description,
         "ids": args.ids,
@@ -127,9 +125,24 @@ export interface GatewaysResult {
      */
     readonly vpcId?: string;
 }
-
+/**
+ * Use this data source to query detailed information of nat gateways
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.nat.Gateways({
+ *     ids: [
+ *         "ngw-2743w1f6iqby87fap8tvm9kop",
+ *         "ngw-274gwbqe340zk7fap8spkzo7x",
+ *     ],
+ * });
+ * ```
+ */
 export function gatewaysOutput(args?: GatewaysOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GatewaysResult> {
-    return pulumi.output(args).apply(a => gateways(a, opts))
+    return pulumi.output(args).apply((a: any) => gateways(a, opts))
 }
 
 /**

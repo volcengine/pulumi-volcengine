@@ -5,30 +5,76 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./attachInstance";
-export * from "./attachInstances";
-export * from "./bandwidthPackage";
-export * from "./bandwidthPackageAssociate";
-export * from "./bandwidthPackages";
-export * from "./cen";
-export * from "./cens";
-export * from "./grantInstance";
-export * from "./interRegionBandwidth";
-export * from "./interRegionBandwidths";
-export * from "./routeEntries";
-export * from "./routeEntry";
-export * from "./serviceRouteEntries";
-export * from "./serviceRouteEntry";
+export { AttachInstanceArgs, AttachInstanceState } from "./attachInstance";
+export type AttachInstance = import("./attachInstance").AttachInstance;
+export const AttachInstance: typeof import("./attachInstance").AttachInstance = null as any;
+utilities.lazyLoad(exports, ["AttachInstance"], () => require("./attachInstance"));
 
-// Import resources to register:
-import { AttachInstance } from "./attachInstance";
-import { BandwidthPackage } from "./bandwidthPackage";
-import { BandwidthPackageAssociate } from "./bandwidthPackageAssociate";
-import { Cen } from "./cen";
-import { GrantInstance } from "./grantInstance";
-import { InterRegionBandwidth } from "./interRegionBandwidth";
-import { RouteEntry } from "./routeEntry";
-import { ServiceRouteEntry } from "./serviceRouteEntry";
+export { AttachInstancesArgs, AttachInstancesResult, AttachInstancesOutputArgs } from "./attachInstances";
+export const attachInstances: typeof import("./attachInstances").attachInstances = null as any;
+export const attachInstancesOutput: typeof import("./attachInstances").attachInstancesOutput = null as any;
+utilities.lazyLoad(exports, ["attachInstances","attachInstancesOutput"], () => require("./attachInstances"));
+
+export { BandwidthPackageArgs, BandwidthPackageState } from "./bandwidthPackage";
+export type BandwidthPackage = import("./bandwidthPackage").BandwidthPackage;
+export const BandwidthPackage: typeof import("./bandwidthPackage").BandwidthPackage = null as any;
+utilities.lazyLoad(exports, ["BandwidthPackage"], () => require("./bandwidthPackage"));
+
+export { BandwidthPackageAssociateArgs, BandwidthPackageAssociateState } from "./bandwidthPackageAssociate";
+export type BandwidthPackageAssociate = import("./bandwidthPackageAssociate").BandwidthPackageAssociate;
+export const BandwidthPackageAssociate: typeof import("./bandwidthPackageAssociate").BandwidthPackageAssociate = null as any;
+utilities.lazyLoad(exports, ["BandwidthPackageAssociate"], () => require("./bandwidthPackageAssociate"));
+
+export { BandwidthPackagesArgs, BandwidthPackagesResult, BandwidthPackagesOutputArgs } from "./bandwidthPackages";
+export const bandwidthPackages: typeof import("./bandwidthPackages").bandwidthPackages = null as any;
+export const bandwidthPackagesOutput: typeof import("./bandwidthPackages").bandwidthPackagesOutput = null as any;
+utilities.lazyLoad(exports, ["bandwidthPackages","bandwidthPackagesOutput"], () => require("./bandwidthPackages"));
+
+export { CenArgs, CenState } from "./cen";
+export type Cen = import("./cen").Cen;
+export const Cen: typeof import("./cen").Cen = null as any;
+utilities.lazyLoad(exports, ["Cen"], () => require("./cen"));
+
+export { CensArgs, CensResult, CensOutputArgs } from "./cens";
+export const cens: typeof import("./cens").cens = null as any;
+export const censOutput: typeof import("./cens").censOutput = null as any;
+utilities.lazyLoad(exports, ["cens","censOutput"], () => require("./cens"));
+
+export { GrantInstanceArgs, GrantInstanceState } from "./grantInstance";
+export type GrantInstance = import("./grantInstance").GrantInstance;
+export const GrantInstance: typeof import("./grantInstance").GrantInstance = null as any;
+utilities.lazyLoad(exports, ["GrantInstance"], () => require("./grantInstance"));
+
+export { InterRegionBandwidthArgs, InterRegionBandwidthState } from "./interRegionBandwidth";
+export type InterRegionBandwidth = import("./interRegionBandwidth").InterRegionBandwidth;
+export const InterRegionBandwidth: typeof import("./interRegionBandwidth").InterRegionBandwidth = null as any;
+utilities.lazyLoad(exports, ["InterRegionBandwidth"], () => require("./interRegionBandwidth"));
+
+export { InterRegionBandwidthsArgs, InterRegionBandwidthsResult, InterRegionBandwidthsOutputArgs } from "./interRegionBandwidths";
+export const interRegionBandwidths: typeof import("./interRegionBandwidths").interRegionBandwidths = null as any;
+export const interRegionBandwidthsOutput: typeof import("./interRegionBandwidths").interRegionBandwidthsOutput = null as any;
+utilities.lazyLoad(exports, ["interRegionBandwidths","interRegionBandwidthsOutput"], () => require("./interRegionBandwidths"));
+
+export { RouteEntriesArgs, RouteEntriesResult, RouteEntriesOutputArgs } from "./routeEntries";
+export const routeEntries: typeof import("./routeEntries").routeEntries = null as any;
+export const routeEntriesOutput: typeof import("./routeEntries").routeEntriesOutput = null as any;
+utilities.lazyLoad(exports, ["routeEntries","routeEntriesOutput"], () => require("./routeEntries"));
+
+export { RouteEntryArgs, RouteEntryState } from "./routeEntry";
+export type RouteEntry = import("./routeEntry").RouteEntry;
+export const RouteEntry: typeof import("./routeEntry").RouteEntry = null as any;
+utilities.lazyLoad(exports, ["RouteEntry"], () => require("./routeEntry"));
+
+export { ServiceRouteEntriesArgs, ServiceRouteEntriesResult, ServiceRouteEntriesOutputArgs } from "./serviceRouteEntries";
+export const serviceRouteEntries: typeof import("./serviceRouteEntries").serviceRouteEntries = null as any;
+export const serviceRouteEntriesOutput: typeof import("./serviceRouteEntries").serviceRouteEntriesOutput = null as any;
+utilities.lazyLoad(exports, ["serviceRouteEntries","serviceRouteEntriesOutput"], () => require("./serviceRouteEntries"));
+
+export { ServiceRouteEntryArgs, ServiceRouteEntryState } from "./serviceRouteEntry";
+export type ServiceRouteEntry = import("./serviceRouteEntry").ServiceRouteEntry;
+export const ServiceRouteEntry: typeof import("./serviceRouteEntry").ServiceRouteEntry = null as any;
+utilities.lazyLoad(exports, ["ServiceRouteEntry"], () => require("./serviceRouteEntry"));
+
 
 const _module = {
     version: utilities.getVersion(),

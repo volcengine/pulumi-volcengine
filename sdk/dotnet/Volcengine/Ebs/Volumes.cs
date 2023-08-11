@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Ebs
+namespace Volcengine.Pulumi.Volcengine.Ebs
 {
     public static class Volumes
     {
@@ -19,29 +19,28 @@ namespace Volcengine.PulumiPackage.Volcengine.Ebs
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Ebs.Volumes.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Ebs.Volumes.InvokeAsync(new Volcengine.Ebs.VolumesArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "vol-3tzg6y5imn3b9fchkedb",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "vol-3tzg6y5imn3b9fchkedb",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<VolumesResult> InvokeAsync(VolumesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<VolumesResult>("volcengine:ebs/volumes:Volumes", args ?? new VolumesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<VolumesResult>("volcengine:ebs/volumes:Volumes", args ?? new VolumesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of volumes
@@ -50,33 +49,32 @@ namespace Volcengine.PulumiPackage.Volcengine.Ebs
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Ebs.Volumes.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Ebs.Volumes.InvokeAsync(new Volcengine.Ebs.VolumesArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "vol-3tzg6y5imn3b9fchkedb",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "vol-3tzg6y5imn3b9fchkedb",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<VolumesResult> Invoke(VolumesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<VolumesResult>("volcengine:ebs/volumes:Volumes", args ?? new VolumesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<VolumesResult>("volcengine:ebs/volumes:Volumes", args ?? new VolumesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class VolumesArgs : Pulumi.InvokeArgs
+    public sealed class VolumesArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private List<string>? _ids;
@@ -141,9 +139,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Ebs
         public VolumesArgs()
         {
         }
+        public static new VolumesArgs Empty => new VolumesArgs();
     }
 
-    public sealed class VolumesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class VolumesInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private InputList<string>? _ids;
@@ -208,6 +207,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Ebs
         public VolumesInvokeArgs()
         {
         }
+        public static new VolumesInvokeArgs Empty => new VolumesInvokeArgs();
     }
 
 

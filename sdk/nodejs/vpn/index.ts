@@ -5,20 +5,46 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./connection";
-export * from "./connections";
-export * from "./customerGateway";
-export * from "./customerGateways";
-export * from "./gateway";
-export * from "./gatewayRoute";
-export * from "./gatewayRoutes";
-export * from "./gateways";
+export { ConnectionArgs, ConnectionState } from "./connection";
+export type Connection = import("./connection").Connection;
+export const Connection: typeof import("./connection").Connection = null as any;
+utilities.lazyLoad(exports, ["Connection"], () => require("./connection"));
 
-// Import resources to register:
-import { Connection } from "./connection";
-import { CustomerGateway } from "./customerGateway";
-import { Gateway } from "./gateway";
-import { GatewayRoute } from "./gatewayRoute";
+export { ConnectionsArgs, ConnectionsResult, ConnectionsOutputArgs } from "./connections";
+export const connections: typeof import("./connections").connections = null as any;
+export const connectionsOutput: typeof import("./connections").connectionsOutput = null as any;
+utilities.lazyLoad(exports, ["connections","connectionsOutput"], () => require("./connections"));
+
+export { CustomerGatewayArgs, CustomerGatewayState } from "./customerGateway";
+export type CustomerGateway = import("./customerGateway").CustomerGateway;
+export const CustomerGateway: typeof import("./customerGateway").CustomerGateway = null as any;
+utilities.lazyLoad(exports, ["CustomerGateway"], () => require("./customerGateway"));
+
+export { CustomerGatewaysArgs, CustomerGatewaysResult, CustomerGatewaysOutputArgs } from "./customerGateways";
+export const customerGateways: typeof import("./customerGateways").customerGateways = null as any;
+export const customerGatewaysOutput: typeof import("./customerGateways").customerGatewaysOutput = null as any;
+utilities.lazyLoad(exports, ["customerGateways","customerGatewaysOutput"], () => require("./customerGateways"));
+
+export { GatewayArgs, GatewayState } from "./gateway";
+export type Gateway = import("./gateway").Gateway;
+export const Gateway: typeof import("./gateway").Gateway = null as any;
+utilities.lazyLoad(exports, ["Gateway"], () => require("./gateway"));
+
+export { GatewayRouteArgs, GatewayRouteState } from "./gatewayRoute";
+export type GatewayRoute = import("./gatewayRoute").GatewayRoute;
+export const GatewayRoute: typeof import("./gatewayRoute").GatewayRoute = null as any;
+utilities.lazyLoad(exports, ["GatewayRoute"], () => require("./gatewayRoute"));
+
+export { GatewayRoutesArgs, GatewayRoutesResult, GatewayRoutesOutputArgs } from "./gatewayRoutes";
+export const gatewayRoutes: typeof import("./gatewayRoutes").gatewayRoutes = null as any;
+export const gatewayRoutesOutput: typeof import("./gatewayRoutes").gatewayRoutesOutput = null as any;
+utilities.lazyLoad(exports, ["gatewayRoutes","gatewayRoutesOutput"], () => require("./gatewayRoutes"));
+
+export { GatewaysArgs, GatewaysResult, GatewaysOutputArgs } from "./gateways";
+export const gateways: typeof import("./gateways").gateways = null as any;
+export const gatewaysOutput: typeof import("./gateways").gatewaysOutput = null as any;
+utilities.lazyLoad(exports, ["gateways","gatewaysOutput"], () => require("./gateways"));
+
 
 const _module = {
     version: utilities.getVersion(),

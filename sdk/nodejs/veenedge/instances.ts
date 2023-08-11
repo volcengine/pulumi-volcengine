@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,21 +14,18 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultInstances = pulumi.output(volcengine.veenedge.Instances({
+ * const default = volcengine.veenedge.Instances({
  *     ids: [
  *         "veen28*****21",
  *         "veen177110*****172",
  *     ],
- * }));
+ * });
  * ```
  */
 export function instances(args?: InstancesArgs, opts?: pulumi.InvokeOptions): Promise<InstancesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:veenedge/instances:Instances", {
         "cloudServerIds": args.cloudServerIds,
         "ids": args.ids,
@@ -85,9 +83,24 @@ export interface InstancesResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of veenedge instances
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.veenedge.Instances({
+ *     ids: [
+ *         "veen28*****21",
+ *         "veen177110*****172",
+ *     ],
+ * });
+ * ```
+ */
 export function instancesOutput(args?: InstancesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<InstancesResult> {
-    return pulumi.output(args).apply(a => instances(a, opts))
+    return pulumi.output(args).apply((a: any) => instances(a, opts))
 }
 
 /**

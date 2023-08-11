@@ -8,39 +8,39 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Privatelink
+namespace Volcengine.Pulumi.Volcengine.Privatelink
 {
     /// <summary>
     /// Provides a resource to manage privatelink vpc endpoint
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var endpoint = new Volcengine.Privatelink.VpcEndpoint("endpoint", new()
     ///     {
-    ///         var endpoint = new Volcengine.Privatelink.VpcEndpoint("endpoint", new Volcengine.Privatelink.VpcEndpointArgs
+    ///         SecurityGroupIds = new[]
     ///         {
-    ///             SecurityGroupIds = 
-    ///             {
-    ///                 "sg-2d5z8cr53k45c58ozfdum****",
-    ///             },
-    ///             ServiceId = "epsvc-2byz5nzgiansw2dx0eehh****",
-    ///             EndpointName = "tf-test-ep",
-    ///             Description = "tf-test",
-    ///         });
-    ///         var zone = new Volcengine.Privatelink.VpcEndpointZone("zone", new Volcengine.Privatelink.VpcEndpointZoneArgs
-    ///         {
-    ///             EndpointId = endpoint.Id,
-    ///             SubnetId = "subnet-2bz47q19zhx4w2dx0eevn****",
-    ///             PrivateIpAddress = "172.16.0.252",
-    ///         });
-    ///     }
+    ///             "sg-2d5z8cr53k45c58ozfdum****",
+    ///         },
+    ///         ServiceId = "epsvc-2byz5nzgiansw2dx0eehh****",
+    ///         EndpointName = "tf-test-ep",
+    ///         Description = "tf-test",
+    ///     });
     /// 
-    /// }
+    ///     var zone = new Volcengine.Privatelink.VpcEndpointZone("zone", new()
+    ///     {
+    ///         EndpointId = endpoint.Id,
+    ///         SubnetId = "subnet-2bz47q19zhx4w2dx0eevn****",
+    ///         PrivateIpAddress = "172.16.0.252",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -52,7 +52,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:privatelink/vpcEndpoint:VpcEndpoint")]
-    public partial class VpcEndpoint : Pulumi.CustomResource
+    public partial class VpcEndpoint : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Whether the vpc endpoint is locked.
@@ -183,7 +183,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         }
     }
 
-    public sealed class VpcEndpointArgs : Pulumi.ResourceArgs
+    public sealed class VpcEndpointArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The description of vpc endpoint.
@@ -224,9 +224,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         public VpcEndpointArgs()
         {
         }
+        public static new VpcEndpointArgs Empty => new VpcEndpointArgs();
     }
 
-    public sealed class VpcEndpointState : Pulumi.ResourceArgs
+    public sealed class VpcEndpointState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether the vpc endpoint is locked.
@@ -321,5 +322,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         public VpcEndpointState()
         {
         }
+        public static new VpcEndpointState Empty => new VpcEndpointState();
     }
 }

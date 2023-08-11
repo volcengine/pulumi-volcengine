@@ -8,47 +8,48 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Ebs
+namespace Volcengine.Pulumi.Volcengine.Ebs
 {
     /// <summary>
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var fooVolume = new Volcengine.Ebs.Volume("fooVolume", new()
     ///     {
-    ///         var fooVolume = new Volcengine.Ebs.Volume("fooVolume", new Volcengine.Ebs.VolumeArgs
-    ///         {
-    ///             VolumeName = "terraform-test",
-    ///             ZoneId = "cn-xx-a",
-    ///             VolumeType = "ESSD_PL0",
-    ///             Kind = "data",
-    ///             Size = 40,
-    ///             VolumeChargeType = "PostPaid",
-    ///             ProjectName = "default",
-    ///         });
-    ///         var fooVolumeAttach = new Volcengine.Ebs.VolumeAttach("fooVolumeAttach", new Volcengine.Ebs.VolumeAttachArgs
-    ///         {
-    ///             VolumeId = fooVolume.Id,
-    ///             InstanceId = "i-yc8pfhbafwijutv6s1fv",
-    ///         });
-    ///         var foo2 = new Volcengine.Ebs.Volume("foo2", new Volcengine.Ebs.VolumeArgs
-    ///         {
-    ///             VolumeName = "terraform-test3",
-    ///             ZoneId = "cn-beijing-b",
-    ///             VolumeType = "ESSD_PL0",
-    ///             Kind = "data",
-    ///             Size = 40,
-    ///             VolumeChargeType = "PrePaid",
-    ///             InstanceId = "i-yc8pfhbafwijutv6s1fv",
-    ///         });
-    ///     }
+    ///         VolumeName = "terraform-test",
+    ///         ZoneId = "cn-xx-a",
+    ///         VolumeType = "ESSD_PL0",
+    ///         Kind = "data",
+    ///         Size = 40,
+    ///         VolumeChargeType = "PostPaid",
+    ///         ProjectName = "default",
+    ///     });
     /// 
-    /// }
+    ///     var fooVolumeAttach = new Volcengine.Ebs.VolumeAttach("fooVolumeAttach", new()
+    ///     {
+    ///         VolumeId = fooVolume.Id,
+    ///         InstanceId = "i-yc8pfhbafwijutv6s1fv",
+    ///     });
+    /// 
+    ///     var foo2 = new Volcengine.Ebs.Volume("foo2", new()
+    ///     {
+    ///         VolumeName = "terraform-test3",
+    ///         ZoneId = "cn-beijing-b",
+    ///         VolumeType = "ESSD_PL0",
+    ///         Kind = "data",
+    ///         Size = 40,
+    ///         VolumeChargeType = "PrePaid",
+    ///         InstanceId = "i-yc8pfhbafwijutv6s1fv",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -60,7 +61,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Ebs
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:ebs/volume:Volume")]
-    public partial class Volume : Pulumi.CustomResource
+    public partial class Volume : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Creation time of Volume.
@@ -185,7 +186,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Ebs
         }
     }
 
-    public sealed class VolumeArgs : Pulumi.ResourceArgs
+    public sealed class VolumeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Delete Volume with Attached Instance.
@@ -250,9 +251,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Ebs
         public VolumeArgs()
         {
         }
+        public static new VolumeArgs Empty => new VolumeArgs();
     }
 
-    public sealed class VolumeState : Pulumi.ResourceArgs
+    public sealed class VolumeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Creation time of Volume.
@@ -335,5 +337,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Ebs
         public VolumeState()
         {
         }
+        public static new VolumeState Empty => new VolumeState();
     }
 }

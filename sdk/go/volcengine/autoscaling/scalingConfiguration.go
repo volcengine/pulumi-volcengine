@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -18,7 +18,6 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/autoscaling"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/autoscaling"
 //
@@ -171,6 +170,13 @@ func NewScalingConfiguration(ctx *pulumi.Context,
 	if args.Volumes == nil {
 		return nil, errors.New("invalid value for required argument 'Volumes'")
 	}
+	if args.Password != nil {
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"password",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource ScalingConfiguration
 	err := ctx.RegisterResource("volcengine:autoscaling/scalingConfiguration:ScalingConfiguration", name, args, &resource, opts...)

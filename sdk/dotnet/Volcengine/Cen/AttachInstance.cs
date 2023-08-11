@@ -8,37 +8,37 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cen
+namespace Volcengine.Pulumi.Volcengine.Cen
 {
     /// <summary>
     /// Provides a resource to manage cen attach instance
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Cen.AttachInstance("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Cen.AttachInstance("foo", new Volcengine.Cen.AttachInstanceArgs
-    ///         {
-    ///             CenId = "cen-12ar8uclj68sg17q7y20v9gil",
-    ///             InstanceId = "vpc-2fe5dpn0av2m859gp68rhk2dc",
-    ///             InstanceRegionId = "cn-beijing",
-    ///             InstanceType = "VPC",
-    ///         });
-    ///         var foo1 = new Volcengine.Cen.AttachInstance("foo1", new Volcengine.Cen.AttachInstanceArgs
-    ///         {
-    ///             CenId = "cen-12ar8uclj68sg17q7y20v9gil",
-    ///             InstanceId = "vpc-in66ktl5t24g8gbssz0sqva1",
-    ///             InstanceRegionId = "cn-beijing",
-    ///             InstanceType = "VPC",
-    ///         });
-    ///     }
+    ///         CenId = "cen-12ar8uclj68sg17q7y20v9gil",
+    ///         InstanceId = "vpc-2fe5dpn0av2m859gp68rhk2dc",
+    ///         InstanceRegionId = "cn-beijing",
+    ///         InstanceType = "VPC",
+    ///     });
     /// 
-    /// }
+    ///     var foo1 = new Volcengine.Cen.AttachInstance("foo1", new()
+    ///     {
+    ///         CenId = "cen-12ar8uclj68sg17q7y20v9gil",
+    ///         InstanceId = "vpc-in66ktl5t24g8gbssz0sqva1",
+    ///         InstanceRegionId = "cn-beijing",
+    ///         InstanceType = "VPC",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -50,7 +50,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:cen/attachInstance:AttachInstance")]
-    public partial class AttachInstance : Pulumi.CustomResource
+    public partial class AttachInstance : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The ID of the cen.
@@ -139,7 +139,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         }
     }
 
-    public sealed class AttachInstanceArgs : Pulumi.ResourceArgs
+    public sealed class AttachInstanceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of the cen.
@@ -174,9 +174,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         public AttachInstanceArgs()
         {
         }
+        public static new AttachInstanceArgs Empty => new AttachInstanceArgs();
     }
 
-    public sealed class AttachInstanceState : Pulumi.ResourceArgs
+    public sealed class AttachInstanceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of the cen.
@@ -223,5 +224,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         public AttachInstanceState()
         {
         }
+        public static new AttachInstanceState Empty => new AttachInstanceState();
     }
 }

@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,19 +14,16 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = pulumi.output(volcengine.cen.BandwidthPackages({
+ * const foo = volcengine.cen.BandwidthPackages({
  *     cenId: "cen-2bzrl3srxsv0g2dx0efyoojn3",
  *     ids: ["cbp-2bzeew3s8p79c2dx0eeohej4x"],
- * }));
+ * });
  * ```
  */
 export function bandwidthPackages(args?: BandwidthPackagesArgs, opts?: pulumi.InvokeOptions): Promise<BandwidthPackagesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:cen/bandwidthPackages:BandwidthPackages", {
         "cenBandwidthPackageNames": args.cenBandwidthPackageNames,
         "cenId": args.cenId,
@@ -110,9 +108,22 @@ export interface BandwidthPackagesResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of cen bandwidth packages
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const foo = volcengine.cen.BandwidthPackages({
+ *     cenId: "cen-2bzrl3srxsv0g2dx0efyoojn3",
+ *     ids: ["cbp-2bzeew3s8p79c2dx0eeohej4x"],
+ * });
+ * ```
+ */
 export function bandwidthPackagesOutput(args?: BandwidthPackagesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<BandwidthPackagesResult> {
-    return pulumi.output(args).apply(a => bandwidthPackages(a, opts))
+    return pulumi.output(args).apply((a: any) => bandwidthPackages(a, opts))
 }
 
 /**

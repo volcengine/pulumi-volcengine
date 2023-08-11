@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cr
+namespace Volcengine.Pulumi.Volcengine.Cr
 {
     public static class Namespaces
     {
@@ -19,30 +19,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Cr.Namespaces.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Cr.Namespaces.InvokeAsync(new Volcengine.Cr.NamespacesArgs
+        ///         Names = new[]
         ///         {
-        ///             Names = 
-        ///             {
-        ///                 "namespace-*",
-        ///             },
-        ///             Registry = "tf-1",
-        ///         }));
-        ///     }
+        ///             "namespace-*",
+        ///         },
+        ///         Registry = "tf-1",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<NamespacesResult> InvokeAsync(NamespacesArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<NamespacesResult>("volcengine:cr/namespaces:Namespaces", args ?? new NamespacesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<NamespacesResult>("volcengine:cr/namespaces:Namespaces", args ?? new NamespacesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cr namespaces
@@ -51,34 +50,33 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Cr.Namespaces.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Cr.Namespaces.InvokeAsync(new Volcengine.Cr.NamespacesArgs
+        ///         Names = new[]
         ///         {
-        ///             Names = 
-        ///             {
-        ///                 "namespace-*",
-        ///             },
-        ///             Registry = "tf-1",
-        ///         }));
-        ///     }
+        ///             "namespace-*",
+        ///         },
+        ///         Registry = "tf-1",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<NamespacesResult> Invoke(NamespacesInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<NamespacesResult>("volcengine:cr/namespaces:Namespaces", args ?? new NamespacesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<NamespacesResult>("volcengine:cr/namespaces:Namespaces", args ?? new NamespacesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class NamespacesArgs : Pulumi.InvokeArgs
+    public sealed class NamespacesArgs : global::Pulumi.InvokeArgs
     {
         [Input("names")]
         private List<string>? _names;
@@ -107,9 +105,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         public NamespacesArgs()
         {
         }
+        public static new NamespacesArgs Empty => new NamespacesArgs();
     }
 
-    public sealed class NamespacesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class NamespacesInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("names")]
         private InputList<string>? _names;
@@ -138,6 +137,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         public NamespacesInvokeArgs()
         {
         }
+        public static new NamespacesInvokeArgs Empty => new NamespacesInvokeArgs();
     }
 
 

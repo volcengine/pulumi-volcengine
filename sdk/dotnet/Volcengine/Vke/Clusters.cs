@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke
+namespace Volcengine.Pulumi.Volcengine.Vke
 {
     public static class Clusters
     {
@@ -19,34 +19,33 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vke.Clusters.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vke.Clusters.InvokeAsync(new Volcengine.Vke.ClustersArgs
+        ///         PodsConfigPodNetworkMode = "VpcCniShared",
+        ///         Statuses = new[]
         ///         {
-        ///             PodsConfigPodNetworkMode = "VpcCniShared",
-        ///             Statuses = 
+        ///             new Volcengine.Vke.Inputs.ClustersStatusInputArgs
         ///             {
-        ///                 new Volcengine.Vke.Inputs.ClustersStatusArgs
-        ///                 {
-        ///                     ConditionsType = "Progressing",
-        ///                     Phase = "Creating",
-        ///                 },
+        ///                 ConditionsType = "Progressing",
+        ///                 Phase = "Creating",
         ///             },
-        ///         }));
-        ///     }
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<ClustersResult> InvokeAsync(ClustersArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<ClustersResult>("volcengine:vke/clusters:Clusters", args ?? new ClustersArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<ClustersResult>("volcengine:vke/clusters:Clusters", args ?? new ClustersArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of vke clusters
@@ -55,38 +54,37 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vke.Clusters.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vke.Clusters.InvokeAsync(new Volcengine.Vke.ClustersArgs
+        ///         PodsConfigPodNetworkMode = "VpcCniShared",
+        ///         Statuses = new[]
         ///         {
-        ///             PodsConfigPodNetworkMode = "VpcCniShared",
-        ///             Statuses = 
+        ///             new Volcengine.Vke.Inputs.ClustersStatusInputArgs
         ///             {
-        ///                 new Volcengine.Vke.Inputs.ClustersStatusArgs
-        ///                 {
-        ///                     ConditionsType = "Progressing",
-        ///                     Phase = "Creating",
-        ///                 },
+        ///                 ConditionsType = "Progressing",
+        ///                 Phase = "Creating",
         ///             },
-        ///         }));
-        ///     }
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<ClustersResult> Invoke(ClustersInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<ClustersResult>("volcengine:vke/clusters:Clusters", args ?? new ClustersInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<ClustersResult>("volcengine:vke/clusters:Clusters", args ?? new ClustersInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class ClustersArgs : Pulumi.InvokeArgs
+    public sealed class ClustersArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// ClientToken when the cluster is created successfully. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
@@ -181,9 +179,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         public ClustersArgs()
         {
         }
+        public static new ClustersArgs Empty => new ClustersArgs();
     }
 
-    public sealed class ClustersInvokeArgs : Pulumi.InvokeArgs
+    public sealed class ClustersInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// ClientToken when the cluster is created successfully. ClientToken is a string that guarantees the idempotency of the request. This string is passed in by the caller.
@@ -278,6 +277,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         public ClustersInvokeArgs()
         {
         }
+        public static new ClustersInvokeArgs Empty => new ClustersInvokeArgs();
     }
 
 

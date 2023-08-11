@@ -8,34 +8,33 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cen
+namespace Volcengine.Pulumi.Volcengine.Cen
 {
     /// <summary>
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Cen.BandwidthPackage("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Cen.BandwidthPackage("foo", new Volcengine.Cen.BandwidthPackageArgs
-    ///         {
-    ///             Bandwidth = 32,
-    ///             BillingType = "PrePaid",
-    ///             CenBandwidthPackageName = "tf-test",
-    ///             Description = "tf-test1",
-    ///             LocalGeographicRegionSetId = "China",
-    ///             PeerGeographicRegionSetId = "China",
-    ///             Period = 1,
-    ///             PeriodUnit = "Year",
-    ///             ProjectName = "default",
-    ///         });
-    ///     }
+    ///         Bandwidth = 32,
+    ///         BillingType = "PrePaid",
+    ///         CenBandwidthPackageName = "tf-test",
+    ///         Description = "tf-test1",
+    ///         LocalGeographicRegionSetId = "China",
+    ///         PeerGeographicRegionSetId = "China",
+    ///         Period = 1,
+    ///         PeriodUnit = "Year",
+    ///         ProjectName = "default",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -47,7 +46,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:cen/bandwidthPackage:BandwidthPackage")]
-    public partial class BandwidthPackage : Pulumi.CustomResource
+    public partial class BandwidthPackage : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The account ID of the cen bandwidth package.
@@ -215,7 +214,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         }
     }
 
-    public sealed class BandwidthPackageArgs : Pulumi.ResourceArgs
+    public sealed class BandwidthPackageArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The bandwidth of the cen bandwidth package. Value: 2~10000.
@@ -287,9 +286,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         public BandwidthPackageArgs()
         {
         }
+        public static new BandwidthPackageArgs Empty => new BandwidthPackageArgs();
     }
 
-    public sealed class BandwidthPackageState : Pulumi.ResourceArgs
+    public sealed class BandwidthPackageState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The account ID of the cen bandwidth package.
@@ -427,5 +427,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         public BandwidthPackageState()
         {
         }
+        public static new BandwidthPackageState Empty => new BandwidthPackageState();
     }
 }

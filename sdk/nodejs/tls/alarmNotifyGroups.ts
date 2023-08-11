@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,16 +14,13 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultAlarmNotifyGroups = pulumi.output(volcengine.tls.AlarmNotifyGroups());
+ * const default = volcengine.tls.AlarmNotifyGroups({});
  * ```
  */
 export function alarmNotifyGroups(args?: AlarmNotifyGroupsArgs, opts?: pulumi.InvokeOptions): Promise<AlarmNotifyGroupsResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:tls/alarmNotifyGroups:AlarmNotifyGroups", {
         "alarmNotifyGroupId": args.alarmNotifyGroupId,
         "alarmNotifyGroupName": args.alarmNotifyGroupName,
@@ -89,9 +87,19 @@ export interface AlarmNotifyGroupsResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of tls alarm notify groups
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.tls.AlarmNotifyGroups({});
+ * ```
+ */
 export function alarmNotifyGroupsOutput(args?: AlarmNotifyGroupsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AlarmNotifyGroupsResult> {
-    return pulumi.output(args).apply(a => alarmNotifyGroups(a, opts))
+    return pulumi.output(args).apply((a: any) => alarmNotifyGroups(a, opts))
 }
 
 /**

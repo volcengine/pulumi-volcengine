@@ -8,62 +8,62 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
+namespace Volcengine.Pulumi.Volcengine.Rds_mysql
 {
     /// <summary>
     /// Provides a resource to manage rds mysql instance
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Rds_mysql.Instance("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Rds_mysql.Instance("foo", new Volcengine.Rds_mysql.InstanceArgs
+    ///         DbEngineVersion = "MySQL_5_7",
+    ///         NodeSpec = "rds.mysql.1c2g",
+    ///         PrimaryZoneId = "cn-guilin-a",
+    ///         SecondaryZoneId = "cn-guilin-b",
+    ///         StorageSpace = 80,
+    ///         SubnetId = "subnet-2d72yi377stts58ozfdrlk9f6",
+    ///         InstanceName = "tf-test",
+    ///         LowerCaseTableNames = "1",
+    ///         ChargeInfo = new Volcengine.Rds_mysql.Inputs.InstanceChargeInfoArgs
     ///         {
-    ///             DbEngineVersion = "MySQL_5_7",
-    ///             NodeSpec = "rds.mysql.1c2g",
-    ///             PrimaryZoneId = "cn-guilin-a",
-    ///             SecondaryZoneId = "cn-guilin-b",
-    ///             StorageSpace = 80,
-    ///             SubnetId = "subnet-2d72yi377stts58ozfdrlk9f6",
-    ///             InstanceName = "tf-test",
-    ///             LowerCaseTableNames = "1",
-    ///             ChargeInfo = new Volcengine.Rds_mysql.Inputs.InstanceChargeInfoArgs
-    ///             {
-    ///                 ChargeType = "PostPaid",
-    ///             },
-    ///             AllowListIds = 
-    ///             {
-    ///                 "acl-2dd8f8317e4d4159b21630d13ae2e6ec",
-    ///                 "acl-2eaa2a053b2a4a58b988e38ae975e81c",
-    ///             },
-    ///             Parameters = 
-    ///             {
-    ///                 new Volcengine.Rds_mysql.Inputs.InstanceParameterArgs
-    ///                 {
-    ///                     ParameterName = "auto_increment_increment",
-    ///                     ParameterValue = "2",
-    ///                 },
-    ///                 new Volcengine.Rds_mysql.Inputs.InstanceParameterArgs
-    ///                 {
-    ///                     ParameterName = "auto_increment_offset",
-    ///                     ParameterValue = "4",
-    ///                 },
-    ///             },
-    ///         });
-    ///         var @readonly = new Volcengine.Rds_mysql.InstanceReadonlyNode("readonly", new Volcengine.Rds_mysql.InstanceReadonlyNodeArgs
+    ///             ChargeType = "PostPaid",
+    ///         },
+    ///         AllowListIds = new[]
     ///         {
-    ///             InstanceId = foo.Id,
-    ///             NodeSpec = "rds.mysql.2c4g",
-    ///             ZoneId = "cn-guilin-a",
-    ///         });
-    ///     }
+    ///             "acl-2dd8f8317e4d4159b21630d13ae2e6ec",
+    ///             "acl-2eaa2a053b2a4a58b988e38ae975e81c",
+    ///         },
+    ///         Parameters = new[]
+    ///         {
+    ///             new Volcengine.Rds_mysql.Inputs.InstanceParameterArgs
+    ///             {
+    ///                 ParameterName = "auto_increment_increment",
+    ///                 ParameterValue = "2",
+    ///             },
+    ///             new Volcengine.Rds_mysql.Inputs.InstanceParameterArgs
+    ///             {
+    ///                 ParameterName = "auto_increment_offset",
+    ///                 ParameterValue = "4",
+    ///             },
+    ///         },
+    ///     });
     /// 
-    /// }
+    ///     var @readonly = new Volcengine.Rds_mysql.InstanceReadonlyNode("readonly", new()
+    ///     {
+    ///         InstanceId = foo.Id,
+    ///         NodeSpec = "rds.mysql.2c4g",
+    ///         ZoneId = "cn-guilin-a",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -75,7 +75,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:rds_mysql/instance:Instance")]
-    public partial class Instance : Pulumi.CustomResource
+    public partial class Instance : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Allow list Ids of the RDS instance.
@@ -321,7 +321,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         }
     }
 
-    public sealed class InstanceArgs : Pulumi.ResourceArgs
+    public sealed class InstanceArgs : global::Pulumi.ResourceArgs
     {
         [Input("allowListIds")]
         private InputList<string>? _allowListIds;
@@ -417,9 +417,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         public InstanceArgs()
         {
         }
+        public static new InstanceArgs Empty => new InstanceArgs();
     }
 
-    public sealed class InstanceState : Pulumi.ResourceArgs
+    public sealed class InstanceState : global::Pulumi.ResourceArgs
     {
         [Input("allowListIds")]
         private InputList<string>? _allowListIds;
@@ -659,5 +660,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         public InstanceState()
         {
         }
+        public static new InstanceState Empty => new InstanceState();
     }
 }

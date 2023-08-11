@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultNetworkInterfaces = pulumi.output(volcengine.vpc.NetworkInterfaces({
+ * const default = volcengine.vpc.NetworkInterfaces({
  *     ids: ["eni-2744htx2w0j5s7fap8t3ivwze"],
- * }));
+ * });
  * ```
  */
 export function networkInterfaces(args?: NetworkInterfacesArgs, opts?: pulumi.InvokeOptions): Promise<NetworkInterfacesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:vpc/networkInterfaces:NetworkInterfaces", {
         "ids": args.ids,
         "instanceId": args.instanceId,
@@ -166,9 +164,21 @@ export interface NetworkInterfacesResult {
      */
     readonly zoneId?: string;
 }
-
+/**
+ * Use this data source to query detailed information of network interfaces
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.vpc.NetworkInterfaces({
+ *     ids: ["eni-2744htx2w0j5s7fap8t3ivwze"],
+ * });
+ * ```
+ */
 export function networkInterfacesOutput(args?: NetworkInterfacesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<NetworkInterfacesResult> {
-    return pulumi.output(args).apply(a => networkInterfaces(a, opts))
+    return pulumi.output(args).apply((a: any) => networkInterfaces(a, opts))
 }
 
 /**

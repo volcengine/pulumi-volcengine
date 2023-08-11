@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Redis.Inputs
+namespace Volcengine.Pulumi.Volcengine.Redis.Inputs
 {
 
-    public sealed class AllowListAssociatedInstanceArgs : Pulumi.ResourceArgs
+    public sealed class AllowListAssociatedInstanceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Id of instance.
@@ -34,5 +34,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis.Inputs
         public AllowListAssociatedInstanceArgs()
         {
         }
+        public static new AllowListAssociatedInstanceArgs Empty => new AllowListAssociatedInstanceArgs();
     }
 }

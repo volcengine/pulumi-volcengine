@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,21 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultNetworkAcls = pulumi.output(volcengine.vpc.NetworkAcls({
- *     //  ids = ["nacl-172leak37mi9s4d1w33pswqkh"]
- *     //  vpc_id = "vpc-ru0wv9alfoxsu3nuld85rpp"
- *     //  subnet_id = "subnet-637jxq81u5mon3gd6ivc7rj"
+ * const default = volcengine.vpc.NetworkAcls({
  *     networkAclName: "ms-tf-acl",
- * }));
+ * });
  * ```
  */
 export function networkAcls(args?: NetworkAclsArgs, opts?: pulumi.InvokeOptions): Promise<NetworkAclsResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:vpc/networkAcls:NetworkAcls", {
         "ids": args.ids,
         "nameRegex": args.nameRegex,
@@ -97,9 +92,21 @@ export interface NetworkAclsResult {
      */
     readonly vpcId?: string;
 }
-
+/**
+ * Use this data source to query detailed information of network acls
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.vpc.NetworkAcls({
+ *     networkAclName: "ms-tf-acl",
+ * });
+ * ```
+ */
 export function networkAclsOutput(args?: NetworkAclsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<NetworkAclsResult> {
-    return pulumi.output(args).apply(a => networkAcls(a, opts))
+    return pulumi.output(args).apply((a: any) => networkAcls(a, opts))
 }
 
 /**

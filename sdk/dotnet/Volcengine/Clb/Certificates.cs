@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Clb
+namespace Volcengine.Pulumi.Volcengine.Clb
 {
     public static class Certificates
     {
@@ -23,21 +23,19 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
-        /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var fooCertificate = new List&lt;Volcengine.Clb.Certificate&gt;();
+        ///     for (var rangeIndex = 0; rangeIndex &lt; 3; rangeIndex++)
         ///     {
-        ///         var fooCertificate = new List&lt;Volcengine.Clb.Certificate&gt;();
-        ///         for (var rangeIndex = 0; rangeIndex &lt; 3; rangeIndex++)
+        ///         var range = new { Value = rangeIndex };
+        ///         fooCertificate.Add(new Volcengine.Clb.Certificate($"fooCertificate-{range.Value}", new()
         ///         {
-        ///             var range = new { Value = rangeIndex };
-        ///             fooCertificate.Add(new Volcengine.Clb.Certificate($"fooCertificate-{range.Value}", new Volcengine.Clb.CertificateArgs
-        ///             {
-        ///                 CertificateName = $"acc-test-certificate-{range.Value}",
-        ///                 Description = "acc-test-demo",
-        ///                 PublicKey = @"-----BEGIN CERTIFICATE-----
+        ///             CertificateName = $"acc-test-certificate-{range.Value}",
+        ///             Description = "acc-test-demo",
+        ///             PublicKey = @"-----BEGIN CERTIFICATE-----
         /// MIICWDCCAcGgAwIBAgIJAP7vOtjPtQIjMA0GCSqGSIb3DQEBCwUAMEUxCzAJBgNV
         /// BAYTAkNOMRMwEQYDVQQIDApjbi1iZWlqaW5nMSEwHwYDVQQKDBhJbnRlcm5ldCBX
         /// aWRnaXRzIFB0eSBMdGQwHhcNMjAxMDIwMDYxOTUxWhcNMjAxMTE5MDYxOTUxWjBF
@@ -52,7 +50,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
         /// lKvCAjhPmnNdfd/l9GrmAWNDWEDPLdUTkGSkKAScMpdS+mLmOBuYWgdnOtq3eQGf
         /// t07tlBL+dtzrrohHpfLeuNyYb40g8VQdp3RRRQ==
         /// -----END CERTIFICATE-----",
-        ///                 PrivateKey = @"-----BEGIN RSA PRIVATE KEY-----
+        ///             PrivateKey = @"-----BEGIN RSA PRIVATE KEY-----
         /// MIICXAIBAAKBgQDEdoyaJ0kdtjtbLRx5X9qwI7FblhJPRcScvhQSE8P5y/b/T8J9
         /// BVuFIBoU8nrPY9ABz4JFklZ6SznxLbFBqtXoJTmzV6ixyjjH+AGEw6hCiA8Pqy2C
         /// NIzxr9DjCzN5tWruiHqO60O3Bve6cHipH0VyLAhrB85mflvOZSH4xGsJkwIDAQAB
@@ -67,30 +65,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
         /// rmRy3tQMWf0mixAo0QJBAN4IcZChanq8cZyNqqoNbxGm4hkxUmE0W4hxHmLC2CYZ
         /// V4JpNm8dpi4CiMWLasF6TYlVMgX+aPxYRUWc/qqf1/Q=
         /// -----END RSA PRIVATE KEY-----",
-        ///                 ProjectName = "default",
-        ///                 Tags = 
+        ///             ProjectName = "default",
+        ///             Tags = new[]
+        ///             {
+        ///                 new Volcengine.Clb.Inputs.CertificateTagArgs
         ///                 {
-        ///                     new Volcengine.Clb.Inputs.CertificateTagArgs
-        ///                     {
-        ///                         Key = "k1",
-        ///                         Value = "v1",
-        ///                     },
+        ///                     Key = "k1",
+        ///                     Value = "v1",
         ///                 },
-        ///             }));
-        ///         }
-        ///         var fooCertificates = Volcengine.Clb.Certificates.Invoke(new Volcengine.Clb.CertificatesInvokeArgs
-        ///         {
-        ///             Ids = fooCertificate.Select(__item =&gt; __item.Id).ToList(),
-        ///         });
+        ///             },
+        ///         }));
         ///     }
+        ///     var fooCertificates = Volcengine.Clb.Certificates.Invoke(new()
+        ///     {
+        ///         Ids = fooCertificate.Select(__item =&gt; __item.Id).ToList(),
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<CertificatesResult> InvokeAsync(CertificatesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<CertificatesResult>("volcengine:clb/certificates:Certificates", args ?? new CertificatesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<CertificatesResult>("volcengine:clb/certificates:Certificates", args ?? new CertificatesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of certificates
@@ -103,21 +100,19 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
-        /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var fooCertificate = new List&lt;Volcengine.Clb.Certificate&gt;();
+        ///     for (var rangeIndex = 0; rangeIndex &lt; 3; rangeIndex++)
         ///     {
-        ///         var fooCertificate = new List&lt;Volcengine.Clb.Certificate&gt;();
-        ///         for (var rangeIndex = 0; rangeIndex &lt; 3; rangeIndex++)
+        ///         var range = new { Value = rangeIndex };
+        ///         fooCertificate.Add(new Volcengine.Clb.Certificate($"fooCertificate-{range.Value}", new()
         ///         {
-        ///             var range = new { Value = rangeIndex };
-        ///             fooCertificate.Add(new Volcengine.Clb.Certificate($"fooCertificate-{range.Value}", new Volcengine.Clb.CertificateArgs
-        ///             {
-        ///                 CertificateName = $"acc-test-certificate-{range.Value}",
-        ///                 Description = "acc-test-demo",
-        ///                 PublicKey = @"-----BEGIN CERTIFICATE-----
+        ///             CertificateName = $"acc-test-certificate-{range.Value}",
+        ///             Description = "acc-test-demo",
+        ///             PublicKey = @"-----BEGIN CERTIFICATE-----
         /// MIICWDCCAcGgAwIBAgIJAP7vOtjPtQIjMA0GCSqGSIb3DQEBCwUAMEUxCzAJBgNV
         /// BAYTAkNOMRMwEQYDVQQIDApjbi1iZWlqaW5nMSEwHwYDVQQKDBhJbnRlcm5ldCBX
         /// aWRnaXRzIFB0eSBMdGQwHhcNMjAxMDIwMDYxOTUxWhcNMjAxMTE5MDYxOTUxWjBF
@@ -132,7 +127,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
         /// lKvCAjhPmnNdfd/l9GrmAWNDWEDPLdUTkGSkKAScMpdS+mLmOBuYWgdnOtq3eQGf
         /// t07tlBL+dtzrrohHpfLeuNyYb40g8VQdp3RRRQ==
         /// -----END CERTIFICATE-----",
-        ///                 PrivateKey = @"-----BEGIN RSA PRIVATE KEY-----
+        ///             PrivateKey = @"-----BEGIN RSA PRIVATE KEY-----
         /// MIICXAIBAAKBgQDEdoyaJ0kdtjtbLRx5X9qwI7FblhJPRcScvhQSE8P5y/b/T8J9
         /// BVuFIBoU8nrPY9ABz4JFklZ6SznxLbFBqtXoJTmzV6ixyjjH+AGEw6hCiA8Pqy2C
         /// NIzxr9DjCzN5tWruiHqO60O3Bve6cHipH0VyLAhrB85mflvOZSH4xGsJkwIDAQAB
@@ -147,34 +142,33 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
         /// rmRy3tQMWf0mixAo0QJBAN4IcZChanq8cZyNqqoNbxGm4hkxUmE0W4hxHmLC2CYZ
         /// V4JpNm8dpi4CiMWLasF6TYlVMgX+aPxYRUWc/qqf1/Q=
         /// -----END RSA PRIVATE KEY-----",
-        ///                 ProjectName = "default",
-        ///                 Tags = 
+        ///             ProjectName = "default",
+        ///             Tags = new[]
+        ///             {
+        ///                 new Volcengine.Clb.Inputs.CertificateTagArgs
         ///                 {
-        ///                     new Volcengine.Clb.Inputs.CertificateTagArgs
-        ///                     {
-        ///                         Key = "k1",
-        ///                         Value = "v1",
-        ///                     },
+        ///                     Key = "k1",
+        ///                     Value = "v1",
         ///                 },
-        ///             }));
-        ///         }
-        ///         var fooCertificates = Volcengine.Clb.Certificates.Invoke(new Volcengine.Clb.CertificatesInvokeArgs
-        ///         {
-        ///             Ids = fooCertificate.Select(__item =&gt; __item.Id).ToList(),
-        ///         });
+        ///             },
+        ///         }));
         ///     }
+        ///     var fooCertificates = Volcengine.Clb.Certificates.Invoke(new()
+        ///     {
+        ///         Ids = fooCertificate.Select(__item =&gt; __item.Id).ToList(),
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<CertificatesResult> Invoke(CertificatesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<CertificatesResult>("volcengine:clb/certificates:Certificates", args ?? new CertificatesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<CertificatesResult>("volcengine:clb/certificates:Certificates", args ?? new CertificatesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class CertificatesArgs : Pulumi.InvokeArgs
+    public sealed class CertificatesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name of the Certificate.
@@ -227,9 +221,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
         public CertificatesArgs()
         {
         }
+        public static new CertificatesArgs Empty => new CertificatesArgs();
     }
 
-    public sealed class CertificatesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class CertificatesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name of the Certificate.
@@ -282,6 +277,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
         public CertificatesInvokeArgs()
         {
         }
+        public static new CertificatesInvokeArgs Empty => new CertificatesInvokeArgs();
     }
 
 

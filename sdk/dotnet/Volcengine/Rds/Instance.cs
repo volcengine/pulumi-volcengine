@@ -8,37 +8,36 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds
+namespace Volcengine.Pulumi.Volcengine.Rds
 {
     /// <summary>
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Rds.Instance("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Rds.Instance("foo", new Volcengine.Rds.InstanceArgs
-    ///         {
-    ///             ChargeType = "PostPaid",
-    ///             DbEngine = "MySQL",
-    ///             DbEngineVersion = "MySQL_Community_5_7",
-    ///             InstanceName = "tf-test",
-    ///             InstanceSpecName = "rds.mysql.1c2g",
-    ///             InstanceType = "HA",
-    ///             Region = "cn-north-4",
-    ///             StorageSpaceGb = 100,
-    ///             StorageType = "LocalSSD",
-    ///             SubnetId = "subnet-1g0d4fkh1nabk8ibuxx1jtvss",
-    ///             VpcId = "vpc-3cj17x7u9bzeo6c6rrtzfpaeb",
-    ///             Zone = "cn-langfang-b",
-    ///         });
-    ///     }
+    ///         ChargeType = "PostPaid",
+    ///         DbEngine = "MySQL",
+    ///         DbEngineVersion = "MySQL_Community_5_7",
+    ///         InstanceName = "tf-test",
+    ///         InstanceSpecName = "rds.mysql.1c2g",
+    ///         InstanceType = "HA",
+    ///         Region = "cn-north-4",
+    ///         StorageSpaceGb = 100,
+    ///         StorageType = "LocalSSD",
+    ///         SubnetId = "subnet-1g0d4fkh1nabk8ibuxx1jtvss",
+    ///         VpcId = "vpc-3cj17x7u9bzeo6c6rrtzfpaeb",
+    ///         Zone = "cn-langfang-b",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -50,7 +49,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:rds/instance:Instance")]
-    public partial class Instance : Pulumi.CustomResource
+    public partial class Instance : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Whether to automatically renew. Default: false. Value:
@@ -91,6 +90,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds
 
         /// <summary>
         /// Set the name of the instance. The naming rules are as follows:
+        /// 
+        /// Cannot start with a number, a dash (-).
+        /// It can only contain Chinese characters, letters, numbers, underscores (_) and underscores (-).
+        /// The length needs to be within 1~128 characters.
         /// </summary>
         [Output("instanceName")]
         public Output<string?> InstanceName { get; private set; } = null!;
@@ -248,7 +251,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds
         }
     }
 
-    public sealed class InstanceArgs : Pulumi.ResourceArgs
+    public sealed class InstanceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether to automatically renew. Default: false. Value:
@@ -283,6 +286,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds
 
         /// <summary>
         /// Set the name of the instance. The naming rules are as follows:
+        /// 
+        /// Cannot start with a number, a dash (-).
+        /// It can only contain Chinese characters, letters, numbers, underscores (_) and underscores (-).
+        /// The length needs to be within 1~128 characters.
         /// </summary>
         [Input("instanceName")]
         public Input<string>? InstanceName { get; set; }
@@ -398,9 +405,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds
         public InstanceArgs()
         {
         }
+        public static new InstanceArgs Empty => new InstanceArgs();
     }
 
-    public sealed class InstanceState : Pulumi.ResourceArgs
+    public sealed class InstanceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether to automatically renew. Default: false. Value:
@@ -441,6 +449,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds
 
         /// <summary>
         /// Set the name of the instance. The naming rules are as follows:
+        /// 
+        /// Cannot start with a number, a dash (-).
+        /// It can only contain Chinese characters, letters, numbers, underscores (_) and underscores (-).
+        /// The length needs to be within 1~128 characters.
         /// </summary>
         [Input("instanceName")]
         public Input<string>? InstanceName { get; set; }
@@ -556,5 +568,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds
         public InstanceState()
         {
         }
+        public static new InstanceState Empty => new InstanceState();
     }
 }

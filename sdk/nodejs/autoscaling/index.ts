@@ -5,28 +5,71 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./scalingActivities";
-export * from "./scalingConfiguration";
-export * from "./scalingConfigurationAttachment";
-export * from "./scalingConfigurations";
-export * from "./scalingGroup";
-export * from "./scalingGroupEnabler";
-export * from "./scalingGroups";
-export * from "./scalingInstanceAttachment";
-export * from "./scalingInstances";
-export * from "./scalingLifecycleHook";
-export * from "./scalingLifecycleHooks";
-export * from "./scalingPolicies";
-export * from "./scalingPolicy";
+export { ScalingActivitiesArgs, ScalingActivitiesResult, ScalingActivitiesOutputArgs } from "./scalingActivities";
+export const scalingActivities: typeof import("./scalingActivities").scalingActivities = null as any;
+export const scalingActivitiesOutput: typeof import("./scalingActivities").scalingActivitiesOutput = null as any;
+utilities.lazyLoad(exports, ["scalingActivities","scalingActivitiesOutput"], () => require("./scalingActivities"));
 
-// Import resources to register:
-import { ScalingConfiguration } from "./scalingConfiguration";
-import { ScalingConfigurationAttachment } from "./scalingConfigurationAttachment";
-import { ScalingGroup } from "./scalingGroup";
-import { ScalingGroupEnabler } from "./scalingGroupEnabler";
-import { ScalingInstanceAttachment } from "./scalingInstanceAttachment";
-import { ScalingLifecycleHook } from "./scalingLifecycleHook";
-import { ScalingPolicy } from "./scalingPolicy";
+export { ScalingConfigurationArgs, ScalingConfigurationState } from "./scalingConfiguration";
+export type ScalingConfiguration = import("./scalingConfiguration").ScalingConfiguration;
+export const ScalingConfiguration: typeof import("./scalingConfiguration").ScalingConfiguration = null as any;
+utilities.lazyLoad(exports, ["ScalingConfiguration"], () => require("./scalingConfiguration"));
+
+export { ScalingConfigurationAttachmentArgs, ScalingConfigurationAttachmentState } from "./scalingConfigurationAttachment";
+export type ScalingConfigurationAttachment = import("./scalingConfigurationAttachment").ScalingConfigurationAttachment;
+export const ScalingConfigurationAttachment: typeof import("./scalingConfigurationAttachment").ScalingConfigurationAttachment = null as any;
+utilities.lazyLoad(exports, ["ScalingConfigurationAttachment"], () => require("./scalingConfigurationAttachment"));
+
+export { ScalingConfigurationsArgs, ScalingConfigurationsResult, ScalingConfigurationsOutputArgs } from "./scalingConfigurations";
+export const scalingConfigurations: typeof import("./scalingConfigurations").scalingConfigurations = null as any;
+export const scalingConfigurationsOutput: typeof import("./scalingConfigurations").scalingConfigurationsOutput = null as any;
+utilities.lazyLoad(exports, ["scalingConfigurations","scalingConfigurationsOutput"], () => require("./scalingConfigurations"));
+
+export { ScalingGroupArgs, ScalingGroupState } from "./scalingGroup";
+export type ScalingGroup = import("./scalingGroup").ScalingGroup;
+export const ScalingGroup: typeof import("./scalingGroup").ScalingGroup = null as any;
+utilities.lazyLoad(exports, ["ScalingGroup"], () => require("./scalingGroup"));
+
+export { ScalingGroupEnablerArgs, ScalingGroupEnablerState } from "./scalingGroupEnabler";
+export type ScalingGroupEnabler = import("./scalingGroupEnabler").ScalingGroupEnabler;
+export const ScalingGroupEnabler: typeof import("./scalingGroupEnabler").ScalingGroupEnabler = null as any;
+utilities.lazyLoad(exports, ["ScalingGroupEnabler"], () => require("./scalingGroupEnabler"));
+
+export { ScalingGroupsArgs, ScalingGroupsResult, ScalingGroupsOutputArgs } from "./scalingGroups";
+export const scalingGroups: typeof import("./scalingGroups").scalingGroups = null as any;
+export const scalingGroupsOutput: typeof import("./scalingGroups").scalingGroupsOutput = null as any;
+utilities.lazyLoad(exports, ["scalingGroups","scalingGroupsOutput"], () => require("./scalingGroups"));
+
+export { ScalingInstanceAttachmentArgs, ScalingInstanceAttachmentState } from "./scalingInstanceAttachment";
+export type ScalingInstanceAttachment = import("./scalingInstanceAttachment").ScalingInstanceAttachment;
+export const ScalingInstanceAttachment: typeof import("./scalingInstanceAttachment").ScalingInstanceAttachment = null as any;
+utilities.lazyLoad(exports, ["ScalingInstanceAttachment"], () => require("./scalingInstanceAttachment"));
+
+export { ScalingInstancesArgs, ScalingInstancesResult, ScalingInstancesOutputArgs } from "./scalingInstances";
+export const scalingInstances: typeof import("./scalingInstances").scalingInstances = null as any;
+export const scalingInstancesOutput: typeof import("./scalingInstances").scalingInstancesOutput = null as any;
+utilities.lazyLoad(exports, ["scalingInstances","scalingInstancesOutput"], () => require("./scalingInstances"));
+
+export { ScalingLifecycleHookArgs, ScalingLifecycleHookState } from "./scalingLifecycleHook";
+export type ScalingLifecycleHook = import("./scalingLifecycleHook").ScalingLifecycleHook;
+export const ScalingLifecycleHook: typeof import("./scalingLifecycleHook").ScalingLifecycleHook = null as any;
+utilities.lazyLoad(exports, ["ScalingLifecycleHook"], () => require("./scalingLifecycleHook"));
+
+export { ScalingLifecycleHooksArgs, ScalingLifecycleHooksResult, ScalingLifecycleHooksOutputArgs } from "./scalingLifecycleHooks";
+export const scalingLifecycleHooks: typeof import("./scalingLifecycleHooks").scalingLifecycleHooks = null as any;
+export const scalingLifecycleHooksOutput: typeof import("./scalingLifecycleHooks").scalingLifecycleHooksOutput = null as any;
+utilities.lazyLoad(exports, ["scalingLifecycleHooks","scalingLifecycleHooksOutput"], () => require("./scalingLifecycleHooks"));
+
+export { ScalingPoliciesArgs, ScalingPoliciesResult, ScalingPoliciesOutputArgs } from "./scalingPolicies";
+export const scalingPolicies: typeof import("./scalingPolicies").scalingPolicies = null as any;
+export const scalingPoliciesOutput: typeof import("./scalingPolicies").scalingPoliciesOutput = null as any;
+utilities.lazyLoad(exports, ["scalingPolicies","scalingPoliciesOutput"], () => require("./scalingPolicies"));
+
+export { ScalingPolicyArgs, ScalingPolicyState } from "./scalingPolicy";
+export type ScalingPolicy = import("./scalingPolicy").ScalingPolicy;
+export const ScalingPolicy: typeof import("./scalingPolicy").ScalingPolicy = null as any;
+utilities.lazyLoad(exports, ["ScalingPolicy"], () => require("./scalingPolicy"));
+
 
 const _module = {
     version: utilities.getVersion(),

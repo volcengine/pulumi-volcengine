@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cen
+namespace Volcengine.Pulumi.Volcengine.Cen
 {
     public static class Cens
     {
@@ -19,29 +19,28 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Cen.Cens.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Cen.Cens.InvokeAsync(new Volcengine.Cen.CensArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "cen-2bzrl3srxsv0g2dx0efyoojn3",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "cen-2bzrl3srxsv0g2dx0efyoojn3",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<CensResult> InvokeAsync(CensArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<CensResult>("volcengine:cen/cens:Cens", args ?? new CensArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<CensResult>("volcengine:cen/cens:Cens", args ?? new CensArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cens
@@ -50,33 +49,32 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Cen.Cens.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Cen.Cens.InvokeAsync(new Volcengine.Cen.CensArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "cen-2bzrl3srxsv0g2dx0efyoojn3",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "cen-2bzrl3srxsv0g2dx0efyoojn3",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<CensResult> Invoke(CensInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<CensResult>("volcengine:cen/cens:Cens", args ?? new CensInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<CensResult>("volcengine:cen/cens:Cens", args ?? new CensInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class CensArgs : Pulumi.InvokeArgs
+    public sealed class CensArgs : global::Pulumi.InvokeArgs
     {
         [Input("cenNames")]
         private List<string>? _cenNames;
@@ -129,9 +127,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         public CensArgs()
         {
         }
+        public static new CensArgs Empty => new CensArgs();
     }
 
-    public sealed class CensInvokeArgs : Pulumi.InvokeArgs
+    public sealed class CensInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("cenNames")]
         private InputList<string>? _cenNames;
@@ -184,6 +183,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         public CensInvokeArgs()
         {
         }
+        public static new CensInvokeArgs Empty => new CensInvokeArgs();
     }
 
 
