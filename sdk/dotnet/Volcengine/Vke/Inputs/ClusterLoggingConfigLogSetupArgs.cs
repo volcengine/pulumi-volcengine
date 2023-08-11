@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
+namespace Volcengine.Pulumi.Volcengine.Vke.Inputs
 {
 
-    public sealed class ClusterLoggingConfigLogSetupArgs : Pulumi.ResourceArgs
+    public sealed class ClusterLoggingConfigLogSetupArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
@@ -34,5 +34,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
         public ClusterLoggingConfigLogSetupArgs()
         {
         }
+        public static new ClusterLoggingConfigLogSetupArgs Empty => new ClusterLoggingConfigLogSetupArgs();
     }
 }

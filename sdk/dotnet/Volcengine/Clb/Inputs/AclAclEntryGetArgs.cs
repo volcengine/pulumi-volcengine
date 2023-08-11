@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Clb.Inputs
+namespace Volcengine.Pulumi.Volcengine.Clb.Inputs
 {
 
-    public sealed class AclAclEntryGetArgs : Pulumi.ResourceArgs
+    public sealed class AclAclEntryGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The description of the AclEntry.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb.Inputs
         public AclAclEntryGetArgs()
         {
         }
+        public static new AclAclEntryGetArgs Empty => new AclAclEntryGetArgs();
     }
 }

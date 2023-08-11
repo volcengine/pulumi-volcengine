@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,16 +14,13 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = pulumi.output(volcengine.mongodb.Specs());
+ * const foo = volcengine.mongodb.Specs({});
  * ```
  */
 export function specs(args?: SpecsArgs, opts?: pulumi.InvokeOptions): Promise<SpecsResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:mongodb/specs:Specs", {
         "outputFile": args.outputFile,
         "regionId": args.regionId,
@@ -62,9 +60,19 @@ export interface SpecsResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of mongodb specs
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const foo = volcengine.mongodb.Specs({});
+ * ```
+ */
 export function specsOutput(args?: SpecsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<SpecsResult> {
-    return pulumi.output(args).apply(a => specs(a, opts))
+    return pulumi.output(args).apply((a: any) => specs(a, opts))
 }
 
 /**

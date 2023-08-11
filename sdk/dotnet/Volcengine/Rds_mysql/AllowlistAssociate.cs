@@ -8,28 +8,27 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
+namespace Volcengine.Pulumi.Volcengine.Rds_mysql
 {
     /// <summary>
     /// Provides a resource to manage rds mysql allowlist associate
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Rds_mysql.AllowlistAssociate("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Rds_mysql.AllowlistAssociate("foo", new Volcengine.Rds_mysql.AllowlistAssociateArgs
-    ///         {
-    ///             AllowListId = "acl-15451212dcfa473baeda24be4baa02fe",
-    ///             InstanceId = "mysql-1b2c7b2d7583",
-    ///         });
-    ///     }
+    ///         AllowListId = "acl-15451212dcfa473baeda24be4baa02fe",
+    ///         InstanceId = "mysql-1b2c7b2d7583",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -41,7 +40,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:rds_mysql/allowlistAssociate:AllowlistAssociate")]
-    public partial class AllowlistAssociate : Pulumi.CustomResource
+    public partial class AllowlistAssociate : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The id of the allow list.
@@ -100,7 +99,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         }
     }
 
-    public sealed class AllowlistAssociateArgs : Pulumi.ResourceArgs
+    public sealed class AllowlistAssociateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of the allow list.
@@ -117,9 +116,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         public AllowlistAssociateArgs()
         {
         }
+        public static new AllowlistAssociateArgs Empty => new AllowlistAssociateArgs();
     }
 
-    public sealed class AllowlistAssociateState : Pulumi.ResourceArgs
+    public sealed class AllowlistAssociateState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of the allow list.
@@ -136,5 +136,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         public AllowlistAssociateState()
         {
         }
+        public static new AllowlistAssociateState Empty => new AllowlistAssociateState();
     }
 }

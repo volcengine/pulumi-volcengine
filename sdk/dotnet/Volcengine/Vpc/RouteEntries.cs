@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpc
+namespace Volcengine.Pulumi.Volcengine.Vpc
 {
     public static class RouteEntries
     {
@@ -19,27 +19,26 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vpc.RouteEntries.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vpc.RouteEntries.InvokeAsync(new Volcengine.Vpc.RouteEntriesArgs
-        ///         {
-        ///             Ids = {},
-        ///             RouteTableId = "vtb-274e19skkuhog7fap8u4i8ird",
-        ///         }));
-        ///     }
+        ///         Ids = new[] {},
+        ///         RouteTableId = "vtb-274e19skkuhog7fap8u4i8ird",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<RouteEntriesResult> InvokeAsync(RouteEntriesArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<RouteEntriesResult>("volcengine:vpc/routeEntries:RouteEntries", args ?? new RouteEntriesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<RouteEntriesResult>("volcengine:vpc/routeEntries:RouteEntries", args ?? new RouteEntriesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of route entries
@@ -48,31 +47,30 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vpc.RouteEntries.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vpc.RouteEntries.InvokeAsync(new Volcengine.Vpc.RouteEntriesArgs
-        ///         {
-        ///             Ids = {},
-        ///             RouteTableId = "vtb-274e19skkuhog7fap8u4i8ird",
-        ///         }));
-        ///     }
+        ///         Ids = new[] {},
+        ///         RouteTableId = "vtb-274e19skkuhog7fap8u4i8ird",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<RouteEntriesResult> Invoke(RouteEntriesInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<RouteEntriesResult>("volcengine:vpc/routeEntries:RouteEntries", args ?? new RouteEntriesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<RouteEntriesResult>("volcengine:vpc/routeEntries:RouteEntries", args ?? new RouteEntriesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class RouteEntriesArgs : Pulumi.InvokeArgs
+    public sealed class RouteEntriesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// A destination CIDR block of route entry.
@@ -131,9 +129,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public RouteEntriesArgs()
         {
         }
+        public static new RouteEntriesArgs Empty => new RouteEntriesArgs();
     }
 
-    public sealed class RouteEntriesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class RouteEntriesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// A destination CIDR block of route entry.
@@ -192,6 +191,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public RouteEntriesInvokeArgs()
         {
         }
+        public static new RouteEntriesInvokeArgs Empty => new RouteEntriesInvokeArgs();
     }
 
 

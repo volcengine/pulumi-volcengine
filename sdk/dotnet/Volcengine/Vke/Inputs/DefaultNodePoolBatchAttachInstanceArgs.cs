@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
+namespace Volcengine.Pulumi.Volcengine.Vke.Inputs
 {
 
-    public sealed class DefaultNodePoolBatchAttachInstanceArgs : Pulumi.ResourceArgs
+    public sealed class DefaultNodePoolBatchAttachInstanceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The flag of additional container storage enable, the value is `true` or `false`..Default is `false`.
@@ -55,5 +55,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
         public DefaultNodePoolBatchAttachInstanceArgs()
         {
         }
+        public static new DefaultNodePoolBatchAttachInstanceArgs Empty => new DefaultNodePoolBatchAttachInstanceArgs();
     }
 }

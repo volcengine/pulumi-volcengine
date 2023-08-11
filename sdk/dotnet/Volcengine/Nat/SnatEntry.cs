@@ -8,30 +8,29 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Nat
+namespace Volcengine.Pulumi.Volcengine.Nat
 {
     /// <summary>
     /// Provides a resource to manage snat entry
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Nat.SnatEntry("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Nat.SnatEntry("foo", new Volcengine.Nat.SnatEntryArgs
-    ///         {
-    ///             EipId = "eip-274zlae117nr47fap8tzl24v4",
-    ///             NatGatewayId = "ngw-2743w1f6iqby87fap8tvm9kop",
-    ///             SnatEntryName = "tf-test-up",
-    ///             SubnetId = "subnet-2744i7u9alnnk7fap8tkq8aft",
-    ///         });
-    ///     }
+    ///         EipId = "eip-274zlae117nr47fap8tzl24v4",
+    ///         NatGatewayId = "ngw-2743w1f6iqby87fap8tvm9kop",
+    ///         SnatEntryName = "tf-test-up",
+    ///         SubnetId = "subnet-2744i7u9alnnk7fap8tkq8aft",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -43,7 +42,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Nat
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:nat/snatEntry:SnatEntry")]
-    public partial class SnatEntry : Pulumi.CustomResource
+    public partial class SnatEntry : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The id of the public ip address used by the SNAT entry.
@@ -126,7 +125,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Nat
         }
     }
 
-    public sealed class SnatEntryArgs : Pulumi.ResourceArgs
+    public sealed class SnatEntryArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of the public ip address used by the SNAT entry.
@@ -161,9 +160,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Nat
         public SnatEntryArgs()
         {
         }
+        public static new SnatEntryArgs Empty => new SnatEntryArgs();
     }
 
-    public sealed class SnatEntryState : Pulumi.ResourceArgs
+    public sealed class SnatEntryState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of the public ip address used by the SNAT entry.
@@ -204,5 +204,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Nat
         public SnatEntryState()
         {
         }
+        public static new SnatEntryState Empty => new SnatEntryState();
     }
 }

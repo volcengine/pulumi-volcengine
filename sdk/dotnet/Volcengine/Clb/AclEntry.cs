@@ -8,34 +8,34 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Clb
+namespace Volcengine.Pulumi.Volcengine.Clb
 {
     /// <summary>
     /// Provides a resource to manage acl entry
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var fooAcl = new Volcengine.Clb.Acl("fooAcl", new()
     ///     {
-    ///         var fooAcl = new Volcengine.Clb.Acl("fooAcl", new Volcengine.Clb.AclArgs
-    ///         {
-    ///             AclName = "tf-test-3",
-    ///             Description = "tf-test",
-    ///         });
-    ///         var fooAclEntry = new Volcengine.Clb.AclEntry("fooAclEntry", new Volcengine.Clb.AclEntryArgs
-    ///         {
-    ///             AclId = fooAcl.Id,
-    ///             Description = "tf acl entry desc demo",
-    ///             Entry = "192.2.2.1/32",
-    ///         });
-    ///     }
+    ///         AclName = "tf-test-3",
+    ///         Description = "tf-test",
+    ///     });
     /// 
-    /// }
+    ///     var fooAclEntry = new Volcengine.Clb.AclEntry("fooAclEntry", new()
+    ///     {
+    ///         AclId = fooAcl.Id,
+    ///         Description = "tf acl entry desc demo",
+    ///         Entry = "192.2.2.1/32",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -47,7 +47,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:clb/aclEntry:AclEntry")]
-    public partial class AclEntry : Pulumi.CustomResource
+    public partial class AclEntry : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The ID of Acl.
@@ -112,7 +112,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
         }
     }
 
-    public sealed class AclEntryArgs : Pulumi.ResourceArgs
+    public sealed class AclEntryArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of Acl.
@@ -135,9 +135,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
         public AclEntryArgs()
         {
         }
+        public static new AclEntryArgs Empty => new AclEntryArgs();
     }
 
-    public sealed class AclEntryState : Pulumi.ResourceArgs
+    public sealed class AclEntryState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of Acl.
@@ -160,5 +161,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
         public AclEntryState()
         {
         }
+        public static new AclEntryState Empty => new AclEntryState();
     }
 }

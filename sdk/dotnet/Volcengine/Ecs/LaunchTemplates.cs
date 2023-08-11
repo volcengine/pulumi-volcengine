@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Ecs
+namespace Volcengine.Pulumi.Volcengine.Ecs
 {
     public static class LaunchTemplates
     {
@@ -19,45 +19,45 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
-        /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var fooLaunchTemplate = new Volcengine.Ecs.LaunchTemplate("fooLaunchTemplate", new()
         ///     {
-        ///         var fooLaunchTemplate = new Volcengine.Ecs.LaunchTemplate("fooLaunchTemplate", new Volcengine.Ecs.LaunchTemplateArgs
-        ///         {
-        ///             Description = "acc-test-desc",
-        ///             EipBandwidth = 1,
-        ///             EipBillingType = "PostPaidByBandwidth",
-        ///             EipIsp = "ChinaMobile",
-        ///             HostName = "tf-host-name",
-        ///             HpcClusterId = "hpcCluster-l8u24ovdmoab6opf",
-        ///             ImageId = "image-ycjwwciuzy5pkh54xx8f",
-        ///             InstanceChargeType = "PostPaid",
-        ///             InstanceName = "tf-acc-name",
-        ///             InstanceTypeId = "ecs.g1.large",
-        ///             KeyPairName = "tf-key-pair",
-        ///             LaunchTemplateName = "tf-acc-template",
-        ///         });
-        ///         var fooLaunchTemplates = Volcengine.Ecs.LaunchTemplates.Invoke(new Volcengine.Ecs.LaunchTemplatesInvokeArgs
-        ///         {
-        ///             Ids = 
-        ///             {
-        ///                 fooLaunchTemplate.Id,
-        ///             },
-        ///         });
-        ///     }
+        ///         Description = "acc-test-desc",
+        ///         EipBandwidth = 1,
+        ///         EipBillingType = "PostPaidByBandwidth",
+        ///         EipIsp = "ChinaMobile",
+        ///         HostName = "tf-host-name",
+        ///         HpcClusterId = "hpcCluster-l8u24ovdmoab6opf",
+        ///         ImageId = "image-ycjwwciuzy5pkh54xx8f",
+        ///         InstanceChargeType = "PostPaid",
+        ///         InstanceName = "tf-acc-name",
+        ///         InstanceTypeId = "ecs.g1.large",
+        ///         KeyPairName = "tf-key-pair",
+        ///         LaunchTemplateName = "tf-acc-template",
+        ///     });
         /// 
-        /// }
+        ///     var fooLaunchTemplates = Volcengine.Ecs.LaunchTemplates.Invoke(new()
+        ///     {
+        ///         Ids = new[]
+        ///         {
+        ///             fooLaunchTemplate.Id,
+        ///         },
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<LaunchTemplatesResult> InvokeAsync(LaunchTemplatesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<LaunchTemplatesResult>("volcengine:ecs/launchTemplates:LaunchTemplates", args ?? new LaunchTemplatesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<LaunchTemplatesResult>("volcengine:ecs/launchTemplates:LaunchTemplates", args ?? new LaunchTemplatesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of ecs launch templates
@@ -66,49 +66,49 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
-        /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var fooLaunchTemplate = new Volcengine.Ecs.LaunchTemplate("fooLaunchTemplate", new()
         ///     {
-        ///         var fooLaunchTemplate = new Volcengine.Ecs.LaunchTemplate("fooLaunchTemplate", new Volcengine.Ecs.LaunchTemplateArgs
-        ///         {
-        ///             Description = "acc-test-desc",
-        ///             EipBandwidth = 1,
-        ///             EipBillingType = "PostPaidByBandwidth",
-        ///             EipIsp = "ChinaMobile",
-        ///             HostName = "tf-host-name",
-        ///             HpcClusterId = "hpcCluster-l8u24ovdmoab6opf",
-        ///             ImageId = "image-ycjwwciuzy5pkh54xx8f",
-        ///             InstanceChargeType = "PostPaid",
-        ///             InstanceName = "tf-acc-name",
-        ///             InstanceTypeId = "ecs.g1.large",
-        ///             KeyPairName = "tf-key-pair",
-        ///             LaunchTemplateName = "tf-acc-template",
-        ///         });
-        ///         var fooLaunchTemplates = Volcengine.Ecs.LaunchTemplates.Invoke(new Volcengine.Ecs.LaunchTemplatesInvokeArgs
-        ///         {
-        ///             Ids = 
-        ///             {
-        ///                 fooLaunchTemplate.Id,
-        ///             },
-        ///         });
-        ///     }
+        ///         Description = "acc-test-desc",
+        ///         EipBandwidth = 1,
+        ///         EipBillingType = "PostPaidByBandwidth",
+        ///         EipIsp = "ChinaMobile",
+        ///         HostName = "tf-host-name",
+        ///         HpcClusterId = "hpcCluster-l8u24ovdmoab6opf",
+        ///         ImageId = "image-ycjwwciuzy5pkh54xx8f",
+        ///         InstanceChargeType = "PostPaid",
+        ///         InstanceName = "tf-acc-name",
+        ///         InstanceTypeId = "ecs.g1.large",
+        ///         KeyPairName = "tf-key-pair",
+        ///         LaunchTemplateName = "tf-acc-template",
+        ///     });
         /// 
-        /// }
+        ///     var fooLaunchTemplates = Volcengine.Ecs.LaunchTemplates.Invoke(new()
+        ///     {
+        ///         Ids = new[]
+        ///         {
+        ///             fooLaunchTemplate.Id,
+        ///         },
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<LaunchTemplatesResult> Invoke(LaunchTemplatesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<LaunchTemplatesResult>("volcengine:ecs/launchTemplates:LaunchTemplates", args ?? new LaunchTemplatesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<LaunchTemplatesResult>("volcengine:ecs/launchTemplates:LaunchTemplates", args ?? new LaunchTemplatesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class LaunchTemplatesArgs : Pulumi.InvokeArgs
+    public sealed class LaunchTemplatesArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private List<string>? _ids;
@@ -149,9 +149,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         public LaunchTemplatesArgs()
         {
         }
+        public static new LaunchTemplatesArgs Empty => new LaunchTemplatesArgs();
     }
 
-    public sealed class LaunchTemplatesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class LaunchTemplatesInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private InputList<string>? _ids;
@@ -192,6 +193,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         public LaunchTemplatesInvokeArgs()
         {
         }
+        public static new LaunchTemplatesInvokeArgs Empty => new LaunchTemplatesInvokeArgs();
     }
 
 

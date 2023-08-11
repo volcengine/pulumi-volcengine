@@ -5,32 +5,86 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./acl";
-export * from "./aclEntry";
-export * from "./acls";
-export * from "./certificate";
-export * from "./certificates";
-export * from "./clb";
-export * from "./clbs";
-export * from "./listener";
-export * from "./listeners";
-export * from "./rule";
-export * from "./rules";
-export * from "./serverGroup";
-export * from "./serverGroupServer";
-export * from "./serverGroupServers";
-export * from "./serverGroups";
-export * from "./zones";
+export { AclArgs, AclState } from "./acl";
+export type Acl = import("./acl").Acl;
+export const Acl: typeof import("./acl").Acl = null as any;
+utilities.lazyLoad(exports, ["Acl"], () => require("./acl"));
 
-// Import resources to register:
-import { Acl } from "./acl";
-import { AclEntry } from "./aclEntry";
-import { Certificate } from "./certificate";
-import { Clb } from "./clb";
-import { Listener } from "./listener";
-import { Rule } from "./rule";
-import { ServerGroup } from "./serverGroup";
-import { ServerGroupServer } from "./serverGroupServer";
+export { AclEntryArgs, AclEntryState } from "./aclEntry";
+export type AclEntry = import("./aclEntry").AclEntry;
+export const AclEntry: typeof import("./aclEntry").AclEntry = null as any;
+utilities.lazyLoad(exports, ["AclEntry"], () => require("./aclEntry"));
+
+export { AclsArgs, AclsResult, AclsOutputArgs } from "./acls";
+export const acls: typeof import("./acls").acls = null as any;
+export const aclsOutput: typeof import("./acls").aclsOutput = null as any;
+utilities.lazyLoad(exports, ["acls","aclsOutput"], () => require("./acls"));
+
+export { CertificateArgs, CertificateState } from "./certificate";
+export type Certificate = import("./certificate").Certificate;
+export const Certificate: typeof import("./certificate").Certificate = null as any;
+utilities.lazyLoad(exports, ["Certificate"], () => require("./certificate"));
+
+export { CertificatesArgs, CertificatesResult, CertificatesOutputArgs } from "./certificates";
+export const certificates: typeof import("./certificates").certificates = null as any;
+export const certificatesOutput: typeof import("./certificates").certificatesOutput = null as any;
+utilities.lazyLoad(exports, ["certificates","certificatesOutput"], () => require("./certificates"));
+
+export { ClbArgs, ClbState } from "./clb";
+export type Clb = import("./clb").Clb;
+export const Clb: typeof import("./clb").Clb = null as any;
+utilities.lazyLoad(exports, ["Clb"], () => require("./clb"));
+
+export { ClbsArgs, ClbsResult, ClbsOutputArgs } from "./clbs";
+export const clbs: typeof import("./clbs").clbs = null as any;
+export const clbsOutput: typeof import("./clbs").clbsOutput = null as any;
+utilities.lazyLoad(exports, ["clbs","clbsOutput"], () => require("./clbs"));
+
+export { ListenerArgs, ListenerState } from "./listener";
+export type Listener = import("./listener").Listener;
+export const Listener: typeof import("./listener").Listener = null as any;
+utilities.lazyLoad(exports, ["Listener"], () => require("./listener"));
+
+export { ListenersArgs, ListenersResult, ListenersOutputArgs } from "./listeners";
+export const listeners: typeof import("./listeners").listeners = null as any;
+export const listenersOutput: typeof import("./listeners").listenersOutput = null as any;
+utilities.lazyLoad(exports, ["listeners","listenersOutput"], () => require("./listeners"));
+
+export { RuleArgs, RuleState } from "./rule";
+export type Rule = import("./rule").Rule;
+export const Rule: typeof import("./rule").Rule = null as any;
+utilities.lazyLoad(exports, ["Rule"], () => require("./rule"));
+
+export { RulesArgs, RulesResult, RulesOutputArgs } from "./rules";
+export const rules: typeof import("./rules").rules = null as any;
+export const rulesOutput: typeof import("./rules").rulesOutput = null as any;
+utilities.lazyLoad(exports, ["rules","rulesOutput"], () => require("./rules"));
+
+export { ServerGroupArgs, ServerGroupState } from "./serverGroup";
+export type ServerGroup = import("./serverGroup").ServerGroup;
+export const ServerGroup: typeof import("./serverGroup").ServerGroup = null as any;
+utilities.lazyLoad(exports, ["ServerGroup"], () => require("./serverGroup"));
+
+export { ServerGroupServerArgs, ServerGroupServerState } from "./serverGroupServer";
+export type ServerGroupServer = import("./serverGroupServer").ServerGroupServer;
+export const ServerGroupServer: typeof import("./serverGroupServer").ServerGroupServer = null as any;
+utilities.lazyLoad(exports, ["ServerGroupServer"], () => require("./serverGroupServer"));
+
+export { ServerGroupServersArgs, ServerGroupServersResult, ServerGroupServersOutputArgs } from "./serverGroupServers";
+export const serverGroupServers: typeof import("./serverGroupServers").serverGroupServers = null as any;
+export const serverGroupServersOutput: typeof import("./serverGroupServers").serverGroupServersOutput = null as any;
+utilities.lazyLoad(exports, ["serverGroupServers","serverGroupServersOutput"], () => require("./serverGroupServers"));
+
+export { ServerGroupsArgs, ServerGroupsResult, ServerGroupsOutputArgs } from "./serverGroups";
+export const serverGroups: typeof import("./serverGroups").serverGroups = null as any;
+export const serverGroupsOutput: typeof import("./serverGroups").serverGroupsOutput = null as any;
+utilities.lazyLoad(exports, ["serverGroups","serverGroupsOutput"], () => require("./serverGroups"));
+
+export { ZonesArgs, ZonesResult, ZonesOutputArgs } from "./zones";
+export const zones: typeof import("./zones").zones = null as any;
+export const zonesOutput: typeof import("./zones").zonesOutput = null as any;
+utilities.lazyLoad(exports, ["zones","zonesOutput"], () => require("./zones"));
+
 
 const _module = {
     version: utilities.getVersion(),

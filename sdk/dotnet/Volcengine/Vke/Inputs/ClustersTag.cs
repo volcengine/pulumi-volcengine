@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
+namespace Volcengine.Pulumi.Volcengine.Vke.Inputs
 {
 
-    public sealed class ClustersTagArgs : Pulumi.InvokeArgs
+    public sealed class ClustersTagArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The Key of Tags.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
         public ClustersTagArgs()
         {
         }
+        public static new ClustersTagArgs Empty => new ClustersTagArgs();
     }
 }

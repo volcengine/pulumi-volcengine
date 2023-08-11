@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Mongodb
+namespace Volcengine.Pulumi.Volcengine.Mongodb
 {
     public static class MongoAllowLists
     {
@@ -19,27 +19,26 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Mongodb.MongoAllowLists.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Mongodb.MongoAllowLists.InvokeAsync(new Volcengine.Mongodb.MongoAllowListsArgs
-        ///         {
-        ///             InstanceId = "mongo-replica-xxx",
-        ///             RegionId = "cn-xxx",
-        ///         }));
-        ///     }
+        ///         InstanceId = "mongo-replica-xxx",
+        ///         RegionId = "cn-xxx",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<MongoAllowListsResult> InvokeAsync(MongoAllowListsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<MongoAllowListsResult>("volcengine:mongodb/mongoAllowLists:MongoAllowLists", args ?? new MongoAllowListsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<MongoAllowListsResult>("volcengine:mongodb/mongoAllowLists:MongoAllowLists", args ?? new MongoAllowListsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of mongodb allow lists
@@ -48,31 +47,30 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Mongodb.MongoAllowLists.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Mongodb.MongoAllowLists.InvokeAsync(new Volcengine.Mongodb.MongoAllowListsArgs
-        ///         {
-        ///             InstanceId = "mongo-replica-xxx",
-        ///             RegionId = "cn-xxx",
-        ///         }));
-        ///     }
+        ///         InstanceId = "mongo-replica-xxx",
+        ///         RegionId = "cn-xxx",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<MongoAllowListsResult> Invoke(MongoAllowListsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<MongoAllowListsResult>("volcengine:mongodb/mongoAllowLists:MongoAllowLists", args ?? new MongoAllowListsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<MongoAllowListsResult>("volcengine:mongodb/mongoAllowLists:MongoAllowLists", args ?? new MongoAllowListsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class MongoAllowListsArgs : Pulumi.InvokeArgs
+    public sealed class MongoAllowListsArgs : global::Pulumi.InvokeArgs
     {
         [Input("allowListIds")]
         private List<string>? _allowListIds;
@@ -107,9 +105,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         public MongoAllowListsArgs()
         {
         }
+        public static new MongoAllowListsArgs Empty => new MongoAllowListsArgs();
     }
 
-    public sealed class MongoAllowListsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class MongoAllowListsInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("allowListIds")]
         private InputList<string>? _allowListIds;
@@ -144,6 +143,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         public MongoAllowListsInvokeArgs()
         {
         }
+        public static new MongoAllowListsInvokeArgs Empty => new MongoAllowListsInvokeArgs();
     }
 
 

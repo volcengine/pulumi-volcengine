@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpc.Inputs
+namespace Volcengine.Pulumi.Volcengine.Vpc.Inputs
 {
 
-    public sealed class SecurityGroupTagGetArgs : Pulumi.ResourceArgs
+    public sealed class SecurityGroupTagGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Key of Tags.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc.Inputs
         public SecurityGroupTagGetArgs()
         {
         }
+        public static new SecurityGroupTagGetArgs Empty => new SecurityGroupTagGetArgs();
     }
 }

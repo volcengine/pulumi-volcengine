@@ -8,28 +8,27 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpc
+namespace Volcengine.Pulumi.Volcengine.Vpc
 {
     /// <summary>
     /// Provides a resource to manage route table associate
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Vpc.RouteTableAssociate("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Vpc.RouteTableAssociate("foo", new Volcengine.Vpc.RouteTableAssociateArgs
-    ///         {
-    ///             RouteTableId = "vtb-274e19skkuhog7fap8u4i8ird",
-    ///             SubnetId = "subnet-2744ht7fhjthc7fap8tm10eqg",
-    ///         });
-    ///     }
+    ///         RouteTableId = "vtb-274e19skkuhog7fap8u4i8ird",
+    ///         SubnetId = "subnet-2744ht7fhjthc7fap8tm10eqg",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -41,7 +40,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vpc/routeTableAssociate:RouteTableAssociate")]
-    public partial class RouteTableAssociate : Pulumi.CustomResource
+    public partial class RouteTableAssociate : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The id of the route table.
@@ -100,7 +99,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         }
     }
 
-    public sealed class RouteTableAssociateArgs : Pulumi.ResourceArgs
+    public sealed class RouteTableAssociateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of the route table.
@@ -117,9 +116,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public RouteTableAssociateArgs()
         {
         }
+        public static new RouteTableAssociateArgs Empty => new RouteTableAssociateArgs();
     }
 
-    public sealed class RouteTableAssociateState : Pulumi.ResourceArgs
+    public sealed class RouteTableAssociateState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of the route table.
@@ -136,5 +136,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public RouteTableAssociateState()
         {
         }
+        public static new RouteTableAssociateState Empty => new RouteTableAssociateState();
     }
 }

@@ -8,16 +8,26 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Escloud.Inputs
+namespace Volcengine.Pulumi.Volcengine.Escloud.Inputs
 {
 
-    public sealed class InstanceInstanceConfigurationGetArgs : Pulumi.ResourceArgs
+    public sealed class InstanceInstanceConfigurationGetArgs : global::Pulumi.ResourceArgs
     {
+        [Input("adminPassword", required: true)]
+        private Input<string>? _adminPassword;
+
         /// <summary>
         /// The password of administrator account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
-        [Input("adminPassword", required: true)]
-        public Input<string> AdminPassword { get; set; } = null!;
+        public Input<string>? AdminPassword
+        {
+            get => _adminPassword;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _adminPassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The name of administrator account(should be admin).
@@ -130,5 +140,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Escloud.Inputs
         public InstanceInstanceConfigurationGetArgs()
         {
         }
+        public static new InstanceInstanceConfigurationGetArgs Empty => new InstanceInstanceConfigurationGetArgs();
     }
 }

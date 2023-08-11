@@ -8,32 +8,31 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Nat
+namespace Volcengine.Pulumi.Volcengine.Nat
 {
     /// <summary>
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Nat.Gateway("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Nat.Gateway("foo", new Volcengine.Nat.GatewayArgs
-    ///         {
-    ///             BillingType = "PostPaid",
-    ///             Description = "This nat gateway auto-created by terraform. ",
-    ///             NatGatewayName = "tf-auto-demo-1",
-    ///             ProjectName = "default",
-    ///             Spec = "Medium",
-    ///             SubnetId = "subnet-im67x70vxla88gbssz1hy1z2",
-    ///             VpcId = "vpc-im67wjcikxkw8gbssx8ufpj8",
-    ///         });
-    ///     }
+    ///         BillingType = "PostPaid",
+    ///         Description = "This nat gateway auto-created by terraform. ",
+    ///         NatGatewayName = "tf-auto-demo-1",
+    ///         ProjectName = "default",
+    ///         Spec = "Medium",
+    ///         SubnetId = "subnet-im67x70vxla88gbssz1hy1z2",
+    ///         VpcId = "vpc-im67wjcikxkw8gbssx8ufpj8",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -45,7 +44,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Nat
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:nat/gateway:Gateway")]
-    public partial class Gateway : Pulumi.CustomResource
+    public partial class Gateway : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
@@ -146,7 +145,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Nat
         }
     }
 
-    public sealed class GatewayArgs : Pulumi.ResourceArgs
+    public sealed class GatewayArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
@@ -211,9 +210,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Nat
         public GatewayArgs()
         {
         }
+        public static new GatewayArgs Empty => new GatewayArgs();
     }
 
-    public sealed class GatewayState : Pulumi.ResourceArgs
+    public sealed class GatewayState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The billing type of the NatGateway, the value is `PostPaid` or `PrePaid`.
@@ -278,5 +278,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Nat
         public GatewayState()
         {
         }
+        public static new GatewayState Empty => new GatewayState();
     }
 }

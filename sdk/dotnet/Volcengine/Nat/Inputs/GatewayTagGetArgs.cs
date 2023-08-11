@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Nat.Inputs
+namespace Volcengine.Pulumi.Volcengine.Nat.Inputs
 {
 
-    public sealed class GatewayTagGetArgs : Pulumi.ResourceArgs
+    public sealed class GatewayTagGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Key of Tags.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Nat.Inputs
         public GatewayTagGetArgs()
         {
         }
+        public static new GatewayTagGetArgs Empty => new GatewayTagGetArgs();
     }
 }

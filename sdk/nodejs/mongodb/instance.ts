@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -10,7 +11,7 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.mongodb.Instance("foo", {
  *     chargeType: "PostPaid",
@@ -19,9 +20,6 @@ import * as utilities from "../utilities";
  *     instanceType: "ReplicaSet",
  *     nodeSpec: "mongo.2c4g",
  *     projectName: "default",
- *     //    mongos_node_spec="mongo.mongos.2c4g"
- *     //    mongos_node_number = 3
- *     //    shard_number=3
  *     storageSpaceGb: 20,
  *     subnetId: "subnet-rrx4ns6abw1sv0x57wq6h47",
  *     superAccountPassword: "******",
@@ -198,12 +196,14 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["shardNumber"] = args ? args.shardNumber : undefined;
             resourceInputs["storageSpaceGb"] = args ? args.storageSpaceGb : undefined;
             resourceInputs["subnetId"] = args ? args.subnetId : undefined;
-            resourceInputs["superAccountPassword"] = args ? args.superAccountPassword : undefined;
+            resourceInputs["superAccountPassword"] = args?.superAccountPassword ? pulumi.secret(args.superAccountPassword) : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["vpcId"] = args ? args.vpcId : undefined;
             resourceInputs["zoneId"] = args ? args.zoneId : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["superAccountPassword"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Instance.__pulumiType, name, resourceInputs, opts);
     }
 }

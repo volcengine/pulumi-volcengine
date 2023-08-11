@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tos
+namespace Volcengine.Pulumi.Volcengine.Tos
 {
     public static class Buckets
     {
@@ -19,26 +19,25 @@ namespace Volcengine.PulumiPackage.Volcengine.Tos
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Tos.Buckets.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Tos.Buckets.InvokeAsync(new Volcengine.Tos.BucketsArgs
-        ///         {
-        ///             NameRegex = "test",
-        ///         }));
-        ///     }
+        ///         NameRegex = "test",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<BucketsResult> InvokeAsync(BucketsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<BucketsResult>("volcengine:tos/buckets:Buckets", args ?? new BucketsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<BucketsResult>("volcengine:tos/buckets:Buckets", args ?? new BucketsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of tos buckets
@@ -47,30 +46,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Tos
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Tos.Buckets.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Tos.Buckets.InvokeAsync(new Volcengine.Tos.BucketsArgs
-        ///         {
-        ///             NameRegex = "test",
-        ///         }));
-        ///     }
+        ///         NameRegex = "test",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<BucketsResult> Invoke(BucketsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<BucketsResult>("volcengine:tos/buckets:Buckets", args ?? new BucketsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<BucketsResult>("volcengine:tos/buckets:Buckets", args ?? new BucketsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class BucketsArgs : Pulumi.InvokeArgs
+    public sealed class BucketsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name the TOS bucket.
@@ -93,9 +91,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Tos
         public BucketsArgs()
         {
         }
+        public static new BucketsArgs Empty => new BucketsArgs();
     }
 
-    public sealed class BucketsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class BucketsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name the TOS bucket.
@@ -118,6 +117,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tos
         public BucketsInvokeArgs()
         {
         }
+        public static new BucketsInvokeArgs Empty => new BucketsInvokeArgs();
     }
 
 

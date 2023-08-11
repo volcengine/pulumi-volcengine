@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -10,7 +11,7 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.rds.Instance("foo", {
  *     chargeType: "PostPaid",
@@ -93,6 +94,10 @@ export class Instance extends pulumi.CustomResource {
     public readonly dbEngineVersion!: pulumi.Output<string>;
     /**
      * Set the name of the instance. The naming rules are as follows:
+     *
+     * Cannot start with a number, a dash (-).
+     * It can only contain Chinese characters, letters, numbers, underscores (_) and underscores (-).
+     * The length needs to be within 1~128 characters.
      */
     public readonly instanceName!: pulumi.Output<string | undefined>;
     /**
@@ -299,6 +304,10 @@ export interface InstanceState {
     dbEngineVersion?: pulumi.Input<string>;
     /**
      * Set the name of the instance. The naming rules are as follows:
+     *
+     * Cannot start with a number, a dash (-).
+     * It can only contain Chinese characters, letters, numbers, underscores (_) and underscores (-).
+     * The length needs to be within 1~128 characters.
      */
     instanceName?: pulumi.Input<string>;
     /**
@@ -414,6 +423,10 @@ export interface InstanceArgs {
     dbEngineVersion: pulumi.Input<string>;
     /**
      * Set the name of the instance. The naming rules are as follows:
+     *
+     * Cannot start with a number, a dash (-).
+     * It can only contain Chinese characters, letters, numbers, underscores (_) and underscores (-).
+     * The length needs to be within 1~128 characters.
      */
     instanceName?: pulumi.Input<string>;
     /**

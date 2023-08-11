@@ -8,28 +8,27 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cr
+namespace Volcengine.Pulumi.Volcengine.Cr
 {
     /// <summary>
     /// Provides a resource to manage cr endpoint
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var @default = new Volcengine.Cr.Endpoint("default", new()
     ///     {
-    ///         var @default = new Volcengine.Cr.Endpoint("default", new Volcengine.Cr.EndpointArgs
-    ///         {
-    ///             Enabled = true,
-    ///             Registry = "tf-1",
-    ///         });
-    ///     }
+    ///         Enabled = true,
+    ///         Registry = "tf-1",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -41,7 +40,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:cr/endpoint:Endpoint")]
-    public partial class Endpoint : Pulumi.CustomResource
+    public partial class Endpoint : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Whether enable public endpoint.
@@ -106,7 +105,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         }
     }
 
-    public sealed class EndpointArgs : Pulumi.ResourceArgs
+    public sealed class EndpointArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether enable public endpoint.
@@ -123,9 +122,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         public EndpointArgs()
         {
         }
+        public static new EndpointArgs Empty => new EndpointArgs();
     }
 
-    public sealed class EndpointState : Pulumi.ResourceArgs
+    public sealed class EndpointState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether enable public endpoint.
@@ -148,5 +148,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         public EndpointState()
         {
         }
+        public static new EndpointState Empty => new EndpointState();
     }
 }

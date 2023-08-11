@@ -24,6 +24,7 @@
     },
     "pulumi": {
         "resource": true,
-        "pluginDownloadURL": "github://api.github.com/volcengine"
+        "name": "volcengine",
+        "server": "github://api.github.com/volcengine"
     }
 }

@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -11,8 +12,8 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi from "@volcengine/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
  * const fooLaunchTemplate = new volcengine.ecs.LaunchTemplate("fooLaunchTemplate", {
  *     description: "acc-test-desc",
@@ -35,11 +36,8 @@ import * as utilities from "../utilities";
  */
 export function launchTemplates(args?: LaunchTemplatesArgs, opts?: pulumi.InvokeOptions): Promise<LaunchTemplatesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:ecs/launchTemplates:LaunchTemplates", {
         "ids": args.ids,
         "launchTemplateNames": args.launchTemplateNames,
@@ -91,9 +89,36 @@ export interface LaunchTemplatesResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of ecs launch templates
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
+ *
+ * const fooLaunchTemplate = new volcengine.ecs.LaunchTemplate("fooLaunchTemplate", {
+ *     description: "acc-test-desc",
+ *     eipBandwidth: 1,
+ *     eipBillingType: "PostPaidByBandwidth",
+ *     eipIsp: "ChinaMobile",
+ *     hostName: "tf-host-name",
+ *     hpcClusterId: "hpcCluster-l8u24ovdmoab6opf",
+ *     imageId: "image-ycjwwciuzy5pkh54xx8f",
+ *     instanceChargeType: "PostPaid",
+ *     instanceName: "tf-acc-name",
+ *     instanceTypeId: "ecs.g1.large",
+ *     keyPairName: "tf-key-pair",
+ *     launchTemplateName: "tf-acc-template",
+ * });
+ * const fooLaunchTemplates = volcengine.ecs.LaunchTemplatesOutput({
+ *     ids: [fooLaunchTemplate.id],
+ * });
+ * ```
+ */
 export function launchTemplatesOutput(args?: LaunchTemplatesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<LaunchTemplatesResult> {
-    return pulumi.output(args).apply(a => launchTemplates(a, opts))
+    return pulumi.output(args).apply((a: any) => launchTemplates(a, opts))
 }
 
 /**

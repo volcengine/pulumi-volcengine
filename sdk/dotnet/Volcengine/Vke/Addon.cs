@@ -8,31 +8,30 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke
+namespace Volcengine.Pulumi.Volcengine.Vke
 {
     /// <summary>
     /// Provides a resource to manage vke addon
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Vke.Addon("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Vke.Addon("foo", new Volcengine.Vke.AddonArgs
-    ///         {
-    ///             ClusterId = "cccctv1vqtofp49d96ujg",
-    ///             Config = "{\"xxx\":\"true\"}",
-    ///             DeployMode = "Unmanaged",
-    ///             DeployNodeType = "Node",
-    ///             Version = "v0.1.3",
-    ///         });
-    ///     }
+    ///         ClusterId = "cccctv1vqtofp49d96ujg",
+    ///         Config = "{\"xxx\":\"true\"}",
+    ///         DeployMode = "Unmanaged",
+    ///         DeployNodeType = "Node",
+    ///         Version = "v0.1.3",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -46,7 +45,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
     ///  Notice Some kind of VKEAddon can not be removed from volcengine, and it will make a forbidden error when try to destroy. If you want to remove it from terraform state, please use command $ terraform state rm volcengine_vke_addon.${name}
     /// </summary>
     [VolcengineResourceType("volcengine:vke/addon:Addon")]
-    public partial class Addon : Pulumi.CustomResource
+    public partial class Addon : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The cluster id of the addon.
@@ -129,7 +128,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         }
     }
 
-    public sealed class AddonArgs : Pulumi.ResourceArgs
+    public sealed class AddonArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The cluster id of the addon.
@@ -170,9 +169,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         public AddonArgs()
         {
         }
+        public static new AddonArgs Empty => new AddonArgs();
     }
 
-    public sealed class AddonState : Pulumi.ResourceArgs
+    public sealed class AddonState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The cluster id of the addon.
@@ -213,5 +213,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         public AddonState()
         {
         }
+        public static new AddonState Empty => new AddonState();
     }
 }

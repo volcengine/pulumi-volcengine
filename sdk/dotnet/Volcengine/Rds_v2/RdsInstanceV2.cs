@@ -8,60 +8,68 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds_v2
+namespace Volcengine.Pulumi.Volcengine.Rds_v2
 {
     /// <summary>
     /// (Deprecated! Recommend use volcengine_rds_mysql_*** replace) Provides a resource to manage rds instance v2
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Pulumi.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
-    ///     {
-    ///         var foo = new Volcengine.Rds_v2.RdsInstanceV2("foo", new Volcengine.Rds_v2.RdsInstanceV2Args
-    ///         {
-    ///             ChargeInfo = new Volcengine.Rds_v2.Inputs.RdsInstanceV2ChargeInfoArgs
-    ///             {
-    ///                 ChargeType = "PostPaid",
-    ///             },
-    ///             DbEngineVersion = "MySQL_5_7",
-    ///             InstanceName = "tf-test-v2",
-    ///             InstanceType = "HA",
-    ///             LowerCaseTableNames = "1",
-    ///             NodeInfos = 
-    ///             {
-    ///                 new Volcengine.Rds_v2.Inputs.RdsInstanceV2NodeInfoArgs
-    ///                 {
-    ///                     NodeSpec = "rds.mysql.2c4g",
-    ///                     NodeType = "Primary",
-    ///                     ZoneId = "cn-beijing-a",
-    ///                 },
-    ///                 new Volcengine.Rds_v2.Inputs.RdsInstanceV2NodeInfoArgs
-    ///                 {
-    ///                     NodeSpec = "rds.mysql.2c4g",
-    ///                     NodeType = "Secondary",
-    ///                     ZoneId = "cn-beijing-a",
-    ///                 },
-    ///                 new Volcengine.Rds_v2.Inputs.RdsInstanceV2NodeInfoArgs
-    ///                 {
-    ///                     NodeSpec = "rds.mysql.1c2g",
-    ///                     NodeType = "ReadOnly",
-    ///                     ZoneId = "cn-beijing-a",
-    ///                 },
-    ///             },
-    ///             ProjectName = "yyy",
-    ///             StorageSpace = 100,
-    ///             StorageType = "LocalSSD",
-    ///             SubnetId = "subnet-mj92ij84m5fk5smt1arvwrtw",
-    ///             VpcId = "vpc-13fawddpwi41s3n6nu4g2y8bt",
-    ///         });
-    ///     }
+    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
     /// 
-    /// }
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
+    ///     {
+    ///         VpcName = "acc-test-vpc",
+    ///         CidrBlock = "172.16.0.0/16",
+    ///     });
+    /// 
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooRdsInstanceV2 = new Volcengine.Rds_v2.RdsInstanceV2("fooRdsInstanceV2", new()
+    ///     {
+    ///         DbEngineVersion = "MySQL_5_7",
+    ///         NodeInfos = new[]
+    ///         {
+    ///             new Volcengine.Rds_v2.Inputs.RdsInstanceV2NodeInfoArgs
+    ///             {
+    ///                 NodeType = "Primary",
+    ///                 NodeSpec = "rds.mysql.2c4g",
+    ///                 ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///             },
+    ///             new Volcengine.Rds_v2.Inputs.RdsInstanceV2NodeInfoArgs
+    ///             {
+    ///                 NodeType = "Secondary",
+    ///                 NodeSpec = "rds.mysql.2c4g",
+    ///                 ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///             },
+    ///         },
+    ///         StorageType = "LocalSSD",
+    ///         StorageSpace = 100,
+    ///         VpcId = fooVpc.Id,
+    ///         SubnetId = fooSubnet.Id,
+    ///         InstanceName = "tf-test-v2",
+    ///         LowerCaseTableNames = "1",
+    ///         ChargeInfo = new Volcengine.Rds_v2.Inputs.RdsInstanceV2ChargeInfoArgs
+    ///         {
+    ///             ChargeType = "PostPaid",
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -73,7 +81,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_v2
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:rds_v2/rdsInstanceV2:RdsInstanceV2")]
-    public partial class RdsInstanceV2 : Pulumi.CustomResource
+    public partial class RdsInstanceV2 : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Payment methods.
@@ -116,8 +124,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_v2
         public Output<string?> InstanceName { get; private set; } = null!;
 
         /// <summary>
-        /// Instance type. Value:
-        /// HA: High availability version.
+        /// The field instance_type is no longer support. The type of Instance.
         /// </summary>
         [Output("instanceType")]
         public Output<string> InstanceType { get; private set; } = null!;
@@ -141,7 +148,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_v2
         /// Subordinate to the project.
         /// </summary>
         [Output("projectName")]
-        public Output<string?> ProjectName { get; private set; } = null!;
+        public Output<string> ProjectName { get; private set; } = null!;
 
         /// <summary>
         /// Instance storage space.
@@ -217,7 +224,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_v2
         }
     }
 
-    public sealed class RdsInstanceV2Args : Pulumi.ResourceArgs
+    public sealed class RdsInstanceV2Args : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Payment methods.
@@ -254,11 +261,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_v2
         public Input<string>? InstanceName { get; set; }
 
         /// <summary>
-        /// Instance type. Value:
-        /// HA: High availability version.
+        /// The field instance_type is no longer support. The type of Instance.
         /// </summary>
-        [Input("instanceType", required: true)]
-        public Input<string> InstanceType { get; set; } = null!;
+        [Input("instanceType")]
+        public Input<string>? InstanceType { get; set; }
 
         /// <summary>
         /// Whether the table name is case sensitive, the default value is 1.
@@ -319,9 +325,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_v2
         public RdsInstanceV2Args()
         {
         }
+        public static new RdsInstanceV2Args Empty => new RdsInstanceV2Args();
     }
 
-    public sealed class RdsInstanceV2State : Pulumi.ResourceArgs
+    public sealed class RdsInstanceV2State : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Payment methods.
@@ -370,8 +377,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_v2
         public Input<string>? InstanceName { get; set; }
 
         /// <summary>
-        /// Instance type. Value:
-        /// HA: High availability version.
+        /// The field instance_type is no longer support. The type of Instance.
         /// </summary>
         [Input("instanceType")]
         public Input<string>? InstanceType { get; set; }
@@ -435,5 +441,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_v2
         public RdsInstanceV2State()
         {
         }
+        public static new RdsInstanceV2State Empty => new RdsInstanceV2State();
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke
+namespace Volcengine.Pulumi.Volcengine.Vke
 {
     public static class Addons
     {
@@ -19,29 +19,28 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vke.Addons.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vke.Addons.InvokeAsync(new Volcengine.Vke.AddonsArgs
+        ///         ClusterIds = new[]
         ///         {
-        ///             ClusterIds = 
-        ///             {
-        ///                 "cccctv1vqtofp49d96ujg",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "cccctv1vqtofp49d96ujg",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<AddonsResult> InvokeAsync(AddonsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<AddonsResult>("volcengine:vke/addons:Addons", args ?? new AddonsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<AddonsResult>("volcengine:vke/addons:Addons", args ?? new AddonsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of vke addons
@@ -50,33 +49,32 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vke.Addons.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vke.Addons.InvokeAsync(new Volcengine.Vke.AddonsArgs
+        ///         ClusterIds = new[]
         ///         {
-        ///             ClusterIds = 
-        ///             {
-        ///                 "cccctv1vqtofp49d96ujg",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "cccctv1vqtofp49d96ujg",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<AddonsResult> Invoke(AddonsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<AddonsResult>("volcengine:vke/addons:Addons", args ?? new AddonsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<AddonsResult>("volcengine:vke/addons:Addons", args ?? new AddonsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class AddonsArgs : Pulumi.InvokeArgs
+    public sealed class AddonsArgs : global::Pulumi.InvokeArgs
     {
         [Input("clusterIds")]
         private List<string>? _clusterIds;
@@ -165,9 +163,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         public AddonsArgs()
         {
         }
+        public static new AddonsArgs Empty => new AddonsArgs();
     }
 
-    public sealed class AddonsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class AddonsInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("clusterIds")]
         private InputList<string>? _clusterIds;
@@ -256,6 +255,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         public AddonsInvokeArgs()
         {
         }
+        public static new AddonsInvokeArgs Empty => new AddonsInvokeArgs();
     }
 
 

@@ -8,29 +8,28 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
+namespace Volcengine.Pulumi.Volcengine.Rds_mysql
 {
     /// <summary>
     /// Provides a resource to manage rds mysql instance readonly node
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Rds_mysql.InstanceReadonlyNode("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Rds_mysql.InstanceReadonlyNode("foo", new Volcengine.Rds_mysql.InstanceReadonlyNodeArgs
-    ///         {
-    ///             InstanceId = "mysql-b3fca7f571d6",
-    ///             NodeSpec = "rds.mysql.1c2g",
-    ///             ZoneId = "cn-guilin-b",
-    ///         });
-    ///     }
+    ///         InstanceId = "mysql-b3fca7f571d6",
+    ///         NodeSpec = "rds.mysql.1c2g",
+    ///         ZoneId = "cn-guilin-b",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -42,7 +41,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:rds_mysql/instanceReadonlyNode:InstanceReadonlyNode")]
-    public partial class InstanceReadonlyNode : Pulumi.CustomResource
+    public partial class InstanceReadonlyNode : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The RDS mysql instance id of the readonly node.
@@ -113,7 +112,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         }
     }
 
-    public sealed class InstanceReadonlyNodeArgs : Pulumi.ResourceArgs
+    public sealed class InstanceReadonlyNodeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The RDS mysql instance id of the readonly node.
@@ -136,9 +135,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         public InstanceReadonlyNodeArgs()
         {
         }
+        public static new InstanceReadonlyNodeArgs Empty => new InstanceReadonlyNodeArgs();
     }
 
-    public sealed class InstanceReadonlyNodeState : Pulumi.ResourceArgs
+    public sealed class InstanceReadonlyNodeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The RDS mysql instance id of the readonly node.
@@ -167,5 +167,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         public InstanceReadonlyNodeState()
         {
         }
+        public static new InstanceReadonlyNodeState Empty => new InstanceReadonlyNodeState();
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cr
+namespace Volcengine.Pulumi.Volcengine.Cr
 {
     public static class VpcEndpoints
     {
@@ -19,33 +19,32 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Cr.VpcEndpoints.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Cr.VpcEndpoints.InvokeAsync(new Volcengine.Cr.VpcEndpointsArgs
+        ///         Registry = "enterprise-1",
+        ///         Statuses = new[]
         ///         {
-        ///             Registry = "enterprise-1",
-        ///             Statuses = 
-        ///             {
-        ///                 "Enabled",
-        ///                 "Enabling",
-        ///                 "Disabling",
-        ///                 "Failed",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "Enabled",
+        ///             "Enabling",
+        ///             "Disabling",
+        ///             "Failed",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<VpcEndpointsResult> InvokeAsync(VpcEndpointsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<VpcEndpointsResult>("volcengine:cr/vpcEndpoints:VpcEndpoints", args ?? new VpcEndpointsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<VpcEndpointsResult>("volcengine:cr/vpcEndpoints:VpcEndpoints", args ?? new VpcEndpointsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cr vpc endpoints
@@ -54,37 +53,36 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Cr.VpcEndpoints.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Cr.VpcEndpoints.InvokeAsync(new Volcengine.Cr.VpcEndpointsArgs
+        ///         Registry = "enterprise-1",
+        ///         Statuses = new[]
         ///         {
-        ///             Registry = "enterprise-1",
-        ///             Statuses = 
-        ///             {
-        ///                 "Enabled",
-        ///                 "Enabling",
-        ///                 "Disabling",
-        ///                 "Failed",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "Enabled",
+        ///             "Enabling",
+        ///             "Disabling",
+        ///             "Failed",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<VpcEndpointsResult> Invoke(VpcEndpointsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<VpcEndpointsResult>("volcengine:cr/vpcEndpoints:VpcEndpoints", args ?? new VpcEndpointsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<VpcEndpointsResult>("volcengine:cr/vpcEndpoints:VpcEndpoints", args ?? new VpcEndpointsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class VpcEndpointsArgs : Pulumi.InvokeArgs
+    public sealed class VpcEndpointsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// File name where to save data source results.
@@ -113,9 +111,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         public VpcEndpointsArgs()
         {
         }
+        public static new VpcEndpointsArgs Empty => new VpcEndpointsArgs();
     }
 
-    public sealed class VpcEndpointsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class VpcEndpointsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// File name where to save data source results.
@@ -144,6 +143,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         public VpcEndpointsInvokeArgs()
         {
         }
+        public static new VpcEndpointsInvokeArgs Empty => new VpcEndpointsInvokeArgs();
     }
 
 

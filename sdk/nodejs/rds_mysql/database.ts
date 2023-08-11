@@ -10,9 +10,9 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const defaultDatabase = new volcengine.rds_mysql.Database("default", {
+ * const _default = new volcengine.rds_mysql.Database("default", {
  *     characterSetName: "utf8",
  *     dbName: "xxx",
  *     instanceId: "mysql-xxx",

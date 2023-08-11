@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Escloud
+namespace Volcengine.Pulumi.Volcengine.Escloud
 {
     public static class Instances
     {
@@ -19,33 +19,32 @@ namespace Volcengine.PulumiPackage.Volcengine.Escloud
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Escloud.Instances.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Escloud.Instances.InvokeAsync(new Volcengine.Escloud.InstancesArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "d3gftqjvnah74eie",
-        ///             },
-        ///             Statuses = 
-        ///             {
-        ///                 "Running",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "d3gftqjvnah74eie",
+        ///         },
+        ///         Statuses = new[]
+        ///         {
+        ///             "Running",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<InstancesResult> InvokeAsync(InstancesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<InstancesResult>("volcengine:escloud/instances:Instances", args ?? new InstancesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<InstancesResult>("volcengine:escloud/instances:Instances", args ?? new InstancesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of escloud instances
@@ -54,37 +53,36 @@ namespace Volcengine.PulumiPackage.Volcengine.Escloud
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Escloud.Instances.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Escloud.Instances.InvokeAsync(new Volcengine.Escloud.InstancesArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "d3gftqjvnah74eie",
-        ///             },
-        ///             Statuses = 
-        ///             {
-        ///                 "Running",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "d3gftqjvnah74eie",
+        ///         },
+        ///         Statuses = new[]
+        ///         {
+        ///             "Running",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<InstancesResult> Invoke(InstancesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<InstancesResult>("volcengine:escloud/instances:Instances", args ?? new InstancesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<InstancesResult>("volcengine:escloud/instances:Instances", args ?? new InstancesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class InstancesArgs : Pulumi.InvokeArgs
+    public sealed class InstancesArgs : global::Pulumi.InvokeArgs
     {
         [Input("chargeTypes")]
         private List<string>? _chargeTypes;
@@ -167,9 +165,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Escloud
         public InstancesArgs()
         {
         }
+        public static new InstancesArgs Empty => new InstancesArgs();
     }
 
-    public sealed class InstancesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class InstancesInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("chargeTypes")]
         private InputList<string>? _chargeTypes;
@@ -252,6 +251,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Escloud
         public InstancesInvokeArgs()
         {
         }
+        public static new InstancesInvokeArgs Empty => new InstancesInvokeArgs();
     }
 
 

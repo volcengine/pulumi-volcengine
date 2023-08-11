@@ -8,30 +8,29 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cr
+namespace Volcengine.Pulumi.Volcengine.Cr
 {
     /// <summary>
     /// Provides a resource to manage cr tag
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     // Tag cannot be created,please import by command `terraform import volcengine_cr_tag.default registry:namespace:repository:tag`
+    ///     var @default = new Volcengine.Cr.Tag("default", new()
     ///     {
-    ///         // Tag cannot be created,please import by command `terraform import volcengine_cr_tag.default registry:namespace:repository:tag`
-    ///         var @default = new Volcengine.Cr.Tag("default", new Volcengine.Cr.TagArgs
-    ///         {
-    ///             Namespace = "langyu",
-    ///             Registry = "enterprise-1",
-    ///             Repository = "repo",
-    ///         });
-    ///     }
+    ///         Namespace = "langyu",
+    ///         Registry = "enterprise-1",
+    ///         Repository = "repo",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -43,7 +42,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:cr/tag:Tag")]
-    public partial class Tag : Pulumi.CustomResource
+    public partial class Tag : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The chart attribute,valid when tag type is Chart.
@@ -150,7 +149,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         }
     }
 
-    public sealed class TagArgs : Pulumi.ResourceArgs
+    public sealed class TagArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of OCI product.
@@ -179,9 +178,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         public TagArgs()
         {
         }
+        public static new TagArgs Empty => new TagArgs();
     }
 
-    public sealed class TagState : Pulumi.ResourceArgs
+    public sealed class TagState : global::Pulumi.ResourceArgs
     {
         [Input("chartAttributes")]
         private InputList<Inputs.TagChartAttributeGetArgs>? _chartAttributes;
@@ -258,5 +258,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         public TagState()
         {
         }
+        public static new TagState Empty => new TagState();
     }
 }

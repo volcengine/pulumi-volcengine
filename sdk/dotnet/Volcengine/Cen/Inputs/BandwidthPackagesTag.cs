@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cen.Inputs
+namespace Volcengine.Pulumi.Volcengine.Cen.Inputs
 {
 
-    public sealed class BandwidthPackagesTagArgs : Pulumi.InvokeArgs
+    public sealed class BandwidthPackagesTagArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The Key of Tags.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen.Inputs
         public BandwidthPackagesTagArgs()
         {
         }
+        public static new BandwidthPackagesTagArgs Empty => new BandwidthPackagesTagArgs();
     }
 }

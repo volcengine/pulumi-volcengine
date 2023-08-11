@@ -8,33 +8,33 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Privatelink
+namespace Volcengine.Pulumi.Volcengine.Privatelink
 {
     /// <summary>
     /// Provides a resource to manage privatelink vpc endpoint service permission
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Privatelink.VpcEndpointServicePermission("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Privatelink.VpcEndpointServicePermission("foo", new Volcengine.Privatelink.VpcEndpointServicePermissionArgs
-    ///         {
-    ///             PermitAccountId = "210000000",
-    ///             ServiceId = "epsvc-3rel73uf2ewao5zsk2j2l58ro",
-    ///         });
-    ///         var foo1 = new Volcengine.Privatelink.VpcEndpointServicePermission("foo1", new Volcengine.Privatelink.VpcEndpointServicePermissionArgs
-    ///         {
-    ///             PermitAccountId = "210000001",
-    ///             ServiceId = "epsvc-3rel73uf2ewao5zsk2j2l58ro",
-    ///         });
-    ///     }
+    ///         PermitAccountId = "210000000",
+    ///         ServiceId = "epsvc-3rel73uf2ewao5zsk2j2l58ro",
+    ///     });
     /// 
-    /// }
+    ///     var foo1 = new Volcengine.Privatelink.VpcEndpointServicePermission("foo1", new()
+    ///     {
+    ///         PermitAccountId = "210000001",
+    ///         ServiceId = "epsvc-3rel73uf2ewao5zsk2j2l58ro",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -46,7 +46,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:privatelink/vpcEndpointServicePermission:VpcEndpointServicePermission")]
-    public partial class VpcEndpointServicePermission : Pulumi.CustomResource
+    public partial class VpcEndpointServicePermission : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The id of account.
@@ -105,7 +105,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         }
     }
 
-    public sealed class VpcEndpointServicePermissionArgs : Pulumi.ResourceArgs
+    public sealed class VpcEndpointServicePermissionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of account.
@@ -122,9 +122,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         public VpcEndpointServicePermissionArgs()
         {
         }
+        public static new VpcEndpointServicePermissionArgs Empty => new VpcEndpointServicePermissionArgs();
     }
 
-    public sealed class VpcEndpointServicePermissionState : Pulumi.ResourceArgs
+    public sealed class VpcEndpointServicePermissionState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of account.
@@ -141,5 +142,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         public VpcEndpointServicePermissionState()
         {
         }
+        public static new VpcEndpointServicePermissionState Empty => new VpcEndpointServicePermissionState();
     }
 }

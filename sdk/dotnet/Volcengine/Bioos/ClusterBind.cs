@@ -8,30 +8,29 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Bioos
+namespace Volcengine.Pulumi.Volcengine.Bioos
 {
     /// <summary>
     /// Provides a resource to manage bioos cluster bind
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var example = new Volcengine.Bioos.ClusterBind("example", new()
     ///     {
-    ///         var example = new Volcengine.Bioos.ClusterBind("example", new Volcengine.Bioos.ClusterBindArgs
-    ///         {
-    ///             ClusterId = "ucfhp1nteig48u8ufv8s0",
-    ///             Type = "workflow",
-    ///             WorkspaceId = "wcfhp1vdeig48u8ufv8sg",
-    ///         });
-    ///         //必填
-    ///     }
+    ///         ClusterId = "ucfhp1nteig48u8ufv8s0",
+    ///         Type = "workflow",
+    ///         WorkspaceId = "wcfhp1vdeig48u8ufv8sg",
+    ///     });
     /// 
-    /// }
+    ///     //必填
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -43,7 +42,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Bioos
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:bioos/clusterBind:ClusterBind")]
-    public partial class ClusterBind : Pulumi.CustomResource
+    public partial class ClusterBind : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The id of the cluster.
@@ -108,7 +107,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Bioos
         }
     }
 
-    public sealed class ClusterBindArgs : Pulumi.ResourceArgs
+    public sealed class ClusterBindArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of the cluster.
@@ -131,9 +130,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Bioos
         public ClusterBindArgs()
         {
         }
+        public static new ClusterBindArgs Empty => new ClusterBindArgs();
     }
 
-    public sealed class ClusterBindState : Pulumi.ResourceArgs
+    public sealed class ClusterBindState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of the cluster.
@@ -156,5 +156,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Bioos
         public ClusterBindState()
         {
         }
+        public static new ClusterBindState Empty => new ClusterBindState();
     }
 }

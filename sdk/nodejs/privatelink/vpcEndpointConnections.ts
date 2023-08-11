@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultVpcEndpointConnections = pulumi.output(volcengine.privatelink.VpcEndpointConnections({
+ * const default = volcengine.privatelink.VpcEndpointConnections({
  *     endpointId: "ep-3rel74u229dz45zsk2i6l69qa",
  *     serviceId: "epsvc-2byz5mykk9y4g2dx0efs4aqz3",
- * }));
+ * });
  * ```
  */
 export function vpcEndpointConnections(args: VpcEndpointConnectionsArgs, opts?: pulumi.InvokeOptions): Promise<VpcEndpointConnectionsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:privatelink/vpcEndpointConnections:VpcEndpointConnections", {
         "endpointId": args.endpointId,
         "endpointOwnerAccountId": args.endpointOwnerAccountId,
@@ -85,9 +83,22 @@ export interface VpcEndpointConnectionsResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of privatelink vpc endpoint connections
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.privatelink.VpcEndpointConnections({
+ *     endpointId: "ep-3rel74u229dz45zsk2i6l69qa",
+ *     serviceId: "epsvc-2byz5mykk9y4g2dx0efs4aqz3",
+ * });
+ * ```
+ */
 export function vpcEndpointConnectionsOutput(args: VpcEndpointConnectionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<VpcEndpointConnectionsResult> {
-    return pulumi.output(args).apply(a => vpcEndpointConnections(a, opts))
+    return pulumi.output(args).apply((a: any) => vpcEndpointConnections(a, opts))
 }
 
 /**

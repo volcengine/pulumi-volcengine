@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,16 +14,13 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultInstanceTypes = pulumi.output(volcengine.veenedge.InstanceTypes());
+ * const default = volcengine.veenedge.InstanceTypes({});
  * ```
  */
 export function instanceTypes(args?: InstanceTypesArgs, opts?: pulumi.InvokeOptions): Promise<InstanceTypesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:veenedge/instanceTypes:InstanceTypes", {
         "outputFile": args.outputFile,
     }, opts);
@@ -56,9 +54,19 @@ export interface InstanceTypesResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of veenedge instance types
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.veenedge.InstanceTypes({});
+ * ```
+ */
 export function instanceTypesOutput(args?: InstanceTypesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<InstanceTypesResult> {
-    return pulumi.output(args).apply(a => instanceTypes(a, opts))
+    return pulumi.output(args).apply((a: any) => instanceTypes(a, opts))
 }
 
 /**

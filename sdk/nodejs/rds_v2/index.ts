@@ -5,11 +5,16 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./rdsInstanceV2";
-export * from "./rdsInstancesV2";
+export { RdsInstanceV2Args, RdsInstanceV2State } from "./rdsInstanceV2";
+export type RdsInstanceV2 = import("./rdsInstanceV2").RdsInstanceV2;
+export const RdsInstanceV2: typeof import("./rdsInstanceV2").RdsInstanceV2 = null as any;
+utilities.lazyLoad(exports, ["RdsInstanceV2"], () => require("./rdsInstanceV2"));
 
-// Import resources to register:
-import { RdsInstanceV2 } from "./rdsInstanceV2";
+export { RdsInstancesV2Args, RdsInstancesV2Result, RdsInstancesV2OutputArgs } from "./rdsInstancesV2";
+export const rdsInstancesV2: typeof import("./rdsInstancesV2").rdsInstancesV2 = null as any;
+export const rdsInstancesV2Output: typeof import("./rdsInstancesV2").rdsInstancesV2Output = null as any;
+utilities.lazyLoad(exports, ["rdsInstancesV2","rdsInstancesV2Output"], () => require("./rdsInstancesV2"));
+
 
 const _module = {
     version: utilities.getVersion(),

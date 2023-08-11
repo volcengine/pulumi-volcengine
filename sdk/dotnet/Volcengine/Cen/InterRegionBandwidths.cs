@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cen
+namespace Volcengine.Pulumi.Volcengine.Cen
 {
     public static class InterRegionBandwidths
     {
@@ -19,29 +19,28 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Cen.InterRegionBandwidths.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Cen.InterRegionBandwidths.InvokeAsync(new Volcengine.Cen.InterRegionBandwidthsArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "cirb-274q484wxao007fap8tlvl6si",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "cirb-274q484wxao007fap8tlvl6si",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<InterRegionBandwidthsResult> InvokeAsync(InterRegionBandwidthsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<InterRegionBandwidthsResult>("volcengine:cen/interRegionBandwidths:InterRegionBandwidths", args ?? new InterRegionBandwidthsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<InterRegionBandwidthsResult>("volcengine:cen/interRegionBandwidths:InterRegionBandwidths", args ?? new InterRegionBandwidthsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cen inter region bandwidths
@@ -50,33 +49,32 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Cen.InterRegionBandwidths.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Cen.InterRegionBandwidths.InvokeAsync(new Volcengine.Cen.InterRegionBandwidthsArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "cirb-274q484wxao007fap8tlvl6si",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "cirb-274q484wxao007fap8tlvl6si",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<InterRegionBandwidthsResult> Invoke(InterRegionBandwidthsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<InterRegionBandwidthsResult>("volcengine:cen/interRegionBandwidths:InterRegionBandwidths", args ?? new InterRegionBandwidthsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<InterRegionBandwidthsResult>("volcengine:cen/interRegionBandwidths:InterRegionBandwidths", args ?? new InterRegionBandwidthsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class InterRegionBandwidthsArgs : Pulumi.InvokeArgs
+    public sealed class InterRegionBandwidthsArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private List<string>? _ids;
@@ -99,9 +97,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         public InterRegionBandwidthsArgs()
         {
         }
+        public static new InterRegionBandwidthsArgs Empty => new InterRegionBandwidthsArgs();
     }
 
-    public sealed class InterRegionBandwidthsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class InterRegionBandwidthsInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private InputList<string>? _ids;
@@ -124,6 +123,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         public InterRegionBandwidthsInvokeArgs()
         {
         }
+        public static new InterRegionBandwidthsInvokeArgs Empty => new InterRegionBandwidthsInvokeArgs();
     }
 
 

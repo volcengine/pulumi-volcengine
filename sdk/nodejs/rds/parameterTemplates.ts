@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,16 +14,13 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultParameterTemplates = pulumi.output(volcengine.rds.ParameterTemplates());
+ * const default = volcengine.rds.ParameterTemplates({});
  * ```
  */
 export function parameterTemplates(args?: ParameterTemplatesArgs, opts?: pulumi.InvokeOptions): Promise<ParameterTemplatesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:rds/parameterTemplates:ParameterTemplates", {
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
@@ -101,9 +99,19 @@ export interface ParameterTemplatesResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * (Deprecated! Recommend use volcengine_rds_mysql_*** replace) Use this data source to query detailed information of rds parameter templates
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.rds.ParameterTemplates({});
+ * ```
+ */
 export function parameterTemplatesOutput(args?: ParameterTemplatesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ParameterTemplatesResult> {
-    return pulumi.output(args).apply(a => parameterTemplates(a, opts))
+    return pulumi.output(args).apply((a: any) => parameterTemplates(a, opts))
 }
 
 /**

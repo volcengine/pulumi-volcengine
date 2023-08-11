@@ -8,35 +8,34 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Redis
+namespace Volcengine.Pulumi.Volcengine.Redis
 {
     /// <summary>
     /// Provides a resource to manage redis allow list
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Redis.AllowList("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Redis.AllowList("foo", new Volcengine.Redis.AllowListArgs
+    ///         AllowLists = new[]
     ///         {
-    ///             AllowLists = 
-    ///             {
-    ///                 "0.0.0.0/0",
-    ///                 "192.168.0.0/24",
-    ///                 "192.168.1.1",
-    ///                 "192.168.2.22",
-    ///             },
-    ///             AllowListDesc = "renxin terraform测试白xxxxxxx",
-    ///             AllowListName = "rx_test_tf_allowlist_create",
-    ///         });
-    ///     }
+    ///             "0.0.0.0/0",
+    ///             "192.168.0.0/24",
+    ///             "192.168.1.1",
+    ///             "192.168.2.22",
+    ///         },
+    ///         AllowListDesc = "renxin terraform测试白xxxxxxx",
+    ///         AllowListName = "rx_test_tf_allowlist_create",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -48,7 +47,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:redis/allowList:AllowList")]
-    public partial class AllowList : Pulumi.CustomResource
+    public partial class AllowList : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Description of allow list.
@@ -143,7 +142,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         }
     }
 
-    public sealed class AllowListArgs : Pulumi.ResourceArgs
+    public sealed class AllowListArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Description of allow list.
@@ -172,9 +171,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         public AllowListArgs()
         {
         }
+        public static new AllowListArgs Empty => new AllowListArgs();
     }
 
-    public sealed class AllowListState : Pulumi.ResourceArgs
+    public sealed class AllowListState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Description of allow list.
@@ -239,5 +239,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         public AllowListState()
         {
         }
+        public static new AllowListState Empty => new AllowListState();
     }
 }

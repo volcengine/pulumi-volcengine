@@ -8,31 +8,30 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
+namespace Volcengine.Pulumi.Volcengine.Autoscaling
 {
     /// <summary>
     /// Provides a resource to manage scaling lifecycle hook
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Autoscaling.ScalingLifecycleHook("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Autoscaling.ScalingLifecycleHook("foo", new Volcengine.Autoscaling.ScalingLifecycleHookArgs
-    ///         {
-    ///             LifecycleHookName = "tf-test",
-    ///             LifecycleHookPolicy = "CONTINUE",
-    ///             LifecycleHookTimeout = 30,
-    ///             LifecycleHookType = "SCALE_IN",
-    ///             ScalingGroupId = "scg-ybru8pazhgl8j1di4tyd",
-    ///         });
-    ///     }
+    ///         LifecycleHookName = "tf-test",
+    ///         LifecycleHookPolicy = "CONTINUE",
+    ///         LifecycleHookTimeout = 30,
+    ///         LifecycleHookType = "SCALE_IN",
+    ///         ScalingGroupId = "scg-ybru8pazhgl8j1di4tyd",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -44,7 +43,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:autoscaling/scalingLifecycleHook:ScalingLifecycleHook")]
-    public partial class ScalingLifecycleHook : Pulumi.CustomResource
+    public partial class ScalingLifecycleHook : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The id of the lifecycle hook.
@@ -127,7 +126,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         }
     }
 
-    public sealed class ScalingLifecycleHookArgs : Pulumi.ResourceArgs
+    public sealed class ScalingLifecycleHookArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the lifecycle hook.
@@ -162,9 +161,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         public ScalingLifecycleHookArgs()
         {
         }
+        public static new ScalingLifecycleHookArgs Empty => new ScalingLifecycleHookArgs();
     }
 
-    public sealed class ScalingLifecycleHookState : Pulumi.ResourceArgs
+    public sealed class ScalingLifecycleHookState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of the lifecycle hook.
@@ -205,5 +205,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         public ScalingLifecycleHookState()
         {
         }
+        public static new ScalingLifecycleHookState Empty => new ScalingLifecycleHookState();
     }
 }

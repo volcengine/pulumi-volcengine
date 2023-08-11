@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -11,14 +12,10 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.bioos.Cluster("foo", {
- *     description: "test-description", //选填
- *     //  vke_config { //选填，和shared_config二者中必填一个
- *     //    cluster_id = "ccerdh8fqtofh16uf6q60" //也可替换成volcengine_vke_cluster.example.id
- *     //    storage_class = "ebs-ssd"
- *     //  }
+ *     description: "test-description",
  *     sharedConfigs: [{
  *         enable: true,
  *     }],

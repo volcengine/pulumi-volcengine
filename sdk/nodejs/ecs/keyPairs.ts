@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -11,8 +12,8 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi from "@volcengine/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
  * const fooKeyPair = new volcengine.ecs.KeyPair("fooKeyPair", {
  *     keyPairName: "acc-test-key-name",
@@ -25,11 +26,8 @@ import * as utilities from "../utilities";
  */
 export function keyPairs(args?: KeyPairsArgs, opts?: pulumi.InvokeOptions): Promise<KeyPairsResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:ecs/keyPairs:KeyPairs", {
         "fingerPrint": args.fingerPrint,
         "keyPairIds": args.keyPairIds,
@@ -99,9 +97,26 @@ export interface KeyPairsResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of ecs key pairs
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
+ *
+ * const fooKeyPair = new volcengine.ecs.KeyPair("fooKeyPair", {
+ *     keyPairName: "acc-test-key-name",
+ *     description: "acc-test",
+ * });
+ * const fooKeyPairs = volcengine.ecs.KeyPairsOutput({
+ *     keyPairName: fooKeyPair.keyPairName,
+ * });
+ * ```
+ */
 export function keyPairsOutput(args?: KeyPairsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<KeyPairsResult> {
-    return pulumi.output(args).apply(a => keyPairs(a, opts))
+    return pulumi.output(args).apply((a: any) => keyPairs(a, opts))
 }
 
 /**

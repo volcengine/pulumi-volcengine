@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Redis.Inputs
+namespace Volcengine.Pulumi.Volcengine.Redis.Inputs
 {
 
-    public sealed class InstanceParamValueGetArgs : Pulumi.ResourceArgs
+    public sealed class InstanceParamValueGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of configuration parameter.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis.Inputs
         public InstanceParamValueGetArgs()
         {
         }
+        public static new InstanceParamValueGetArgs Empty => new InstanceParamValueGetArgs();
     }
 }

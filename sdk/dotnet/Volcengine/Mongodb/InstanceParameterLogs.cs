@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Mongodb
+namespace Volcengine.Pulumi.Volcengine.Mongodb
 {
     public static class InstanceParameterLogs
     {
@@ -19,28 +19,27 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Mongodb.InstanceParameterLogs.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Mongodb.InstanceParameterLogs.InvokeAsync(new Volcengine.Mongodb.InstanceParameterLogsArgs
-        ///         {
-        ///             EndTime = "2023-11-14 18:15Z",
-        ///             InstanceId = "mongo-replica-f16e9298b121",
-        ///             StartTime = "2022-11-14 00:00Z",
-        ///         }));
-        ///     }
+        ///         EndTime = "2023-11-14 18:15Z",
+        ///         InstanceId = "mongo-replica-f16e9298b121",
+        ///         StartTime = "2022-11-14 00:00Z",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<InstanceParameterLogsResult> InvokeAsync(InstanceParameterLogsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<InstanceParameterLogsResult>("volcengine:mongodb/instanceParameterLogs:InstanceParameterLogs", args ?? new InstanceParameterLogsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<InstanceParameterLogsResult>("volcengine:mongodb/instanceParameterLogs:InstanceParameterLogs", args ?? new InstanceParameterLogsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of mongodb instance parameter logs
@@ -49,32 +48,31 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Mongodb.InstanceParameterLogs.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Mongodb.InstanceParameterLogs.InvokeAsync(new Volcengine.Mongodb.InstanceParameterLogsArgs
-        ///         {
-        ///             EndTime = "2023-11-14 18:15Z",
-        ///             InstanceId = "mongo-replica-f16e9298b121",
-        ///             StartTime = "2022-11-14 00:00Z",
-        ///         }));
-        ///     }
+        ///         EndTime = "2023-11-14 18:15Z",
+        ///         InstanceId = "mongo-replica-f16e9298b121",
+        ///         StartTime = "2022-11-14 00:00Z",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<InstanceParameterLogsResult> Invoke(InstanceParameterLogsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<InstanceParameterLogsResult>("volcengine:mongodb/instanceParameterLogs:InstanceParameterLogs", args ?? new InstanceParameterLogsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<InstanceParameterLogsResult>("volcengine:mongodb/instanceParameterLogs:InstanceParameterLogs", args ?? new InstanceParameterLogsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class InstanceParameterLogsArgs : Pulumi.InvokeArgs
+    public sealed class InstanceParameterLogsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The end time to query.
@@ -103,9 +101,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         public InstanceParameterLogsArgs()
         {
         }
+        public static new InstanceParameterLogsArgs Empty => new InstanceParameterLogsArgs();
     }
 
-    public sealed class InstanceParameterLogsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class InstanceParameterLogsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The end time to query.
@@ -134,6 +133,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         public InstanceParameterLogsInvokeArgs()
         {
         }
+        public static new InstanceParameterLogsInvokeArgs Empty => new InstanceParameterLogsInvokeArgs();
     }
 
 

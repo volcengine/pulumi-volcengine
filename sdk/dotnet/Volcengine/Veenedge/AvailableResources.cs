@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Veenedge
+namespace Volcengine.Pulumi.Volcengine.Veenedge
 {
     public static class AvailableResources
     {
@@ -19,28 +19,27 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Veenedge.AvailableResources.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Veenedge.AvailableResources.InvokeAsync(new Volcengine.Veenedge.AvailableResourcesArgs
-        ///         {
-        ///             BandwithLimit = 20,
-        ///             CloudDiskType = "CloudSSD",
-        ///             InstanceType = "ve******rge",
-        ///         }));
-        ///     }
+        ///         BandwithLimit = 20,
+        ///         CloudDiskType = "CloudSSD",
+        ///         InstanceType = "ve******rge",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<AvailableResourcesResult> InvokeAsync(AvailableResourcesArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<AvailableResourcesResult>("volcengine:veenedge/availableResources:AvailableResources", args ?? new AvailableResourcesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<AvailableResourcesResult>("volcengine:veenedge/availableResources:AvailableResources", args ?? new AvailableResourcesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of veenedge available resources
@@ -49,32 +48,31 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Veenedge.AvailableResources.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Veenedge.AvailableResources.InvokeAsync(new Volcengine.Veenedge.AvailableResourcesArgs
-        ///         {
-        ///             BandwithLimit = 20,
-        ///             CloudDiskType = "CloudSSD",
-        ///             InstanceType = "ve******rge",
-        ///         }));
-        ///     }
+        ///         BandwithLimit = 20,
+        ///         CloudDiskType = "CloudSSD",
+        ///         InstanceType = "ve******rge",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<AvailableResourcesResult> Invoke(AvailableResourcesInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<AvailableResourcesResult>("volcengine:veenedge/availableResources:AvailableResources", args ?? new AvailableResourcesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<AvailableResourcesResult>("volcengine:veenedge/availableResources:AvailableResources", args ?? new AvailableResourcesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class AvailableResourcesArgs : Pulumi.InvokeArgs
+    public sealed class AvailableResourcesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The limit of bandwidth.
@@ -103,9 +101,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge
         public AvailableResourcesArgs()
         {
         }
+        public static new AvailableResourcesArgs Empty => new AvailableResourcesArgs();
     }
 
-    public sealed class AvailableResourcesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class AvailableResourcesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The limit of bandwidth.
@@ -134,6 +133,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge
         public AvailableResourcesInvokeArgs()
         {
         }
+        public static new AvailableResourcesInvokeArgs Empty => new AvailableResourcesInvokeArgs();
     }
 
 

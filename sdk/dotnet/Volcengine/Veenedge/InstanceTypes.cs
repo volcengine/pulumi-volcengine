@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Veenedge
+namespace Volcengine.Pulumi.Volcengine.Veenedge
 {
     public static class InstanceTypes
     {
@@ -19,23 +19,22 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var @default = Output.Create(Volcengine.Veenedge.InstanceTypes.InvokeAsync());
-        ///     }
+        ///     var @default = Volcengine.Veenedge.InstanceTypes.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<InstanceTypesResult> InvokeAsync(InstanceTypesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<InstanceTypesResult>("volcengine:veenedge/instanceTypes:InstanceTypes", args ?? new InstanceTypesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<InstanceTypesResult>("volcengine:veenedge/instanceTypes:InstanceTypes", args ?? new InstanceTypesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of veenedge instance types
@@ -44,27 +43,26 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var @default = Output.Create(Volcengine.Veenedge.InstanceTypes.InvokeAsync());
-        ///     }
+        ///     var @default = Volcengine.Veenedge.InstanceTypes.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<InstanceTypesResult> Invoke(InstanceTypesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<InstanceTypesResult>("volcengine:veenedge/instanceTypes:InstanceTypes", args ?? new InstanceTypesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<InstanceTypesResult>("volcengine:veenedge/instanceTypes:InstanceTypes", args ?? new InstanceTypesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class InstanceTypesArgs : Pulumi.InvokeArgs
+    public sealed class InstanceTypesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// File name where to save data source results.
@@ -75,9 +73,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge
         public InstanceTypesArgs()
         {
         }
+        public static new InstanceTypesArgs Empty => new InstanceTypesArgs();
     }
 
-    public sealed class InstanceTypesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class InstanceTypesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// File name where to save data source results.
@@ -88,6 +87,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge
         public InstanceTypesInvokeArgs()
         {
         }
+        public static new InstanceTypesInvokeArgs Empty => new InstanceTypesInvokeArgs();
     }
 
 

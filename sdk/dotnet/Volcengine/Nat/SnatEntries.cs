@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Nat
+namespace Volcengine.Pulumi.Volcengine.Nat
 {
     public static class SnatEntries
     {
@@ -19,29 +19,28 @@ namespace Volcengine.PulumiPackage.Volcengine.Nat
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Nat.SnatEntries.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Nat.SnatEntries.InvokeAsync(new Volcengine.Nat.SnatEntriesArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "snat-274zl8b1kxzb47fap8u35uune",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "snat-274zl8b1kxzb47fap8u35uune",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<SnatEntriesResult> InvokeAsync(SnatEntriesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<SnatEntriesResult>("volcengine:nat/snatEntries:SnatEntries", args ?? new SnatEntriesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<SnatEntriesResult>("volcengine:nat/snatEntries:SnatEntries", args ?? new SnatEntriesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of snat entries
@@ -50,33 +49,32 @@ namespace Volcengine.PulumiPackage.Volcengine.Nat
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Nat.SnatEntries.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Nat.SnatEntries.InvokeAsync(new Volcengine.Nat.SnatEntriesArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "snat-274zl8b1kxzb47fap8u35uune",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "snat-274zl8b1kxzb47fap8u35uune",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<SnatEntriesResult> Invoke(SnatEntriesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<SnatEntriesResult>("volcengine:nat/snatEntries:SnatEntries", args ?? new SnatEntriesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<SnatEntriesResult>("volcengine:nat/snatEntries:SnatEntries", args ?? new SnatEntriesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class SnatEntriesArgs : Pulumi.InvokeArgs
+    public sealed class SnatEntriesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// An id of the public ip address used by the SNAT entry.
@@ -129,9 +127,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Nat
         public SnatEntriesArgs()
         {
         }
+        public static new SnatEntriesArgs Empty => new SnatEntriesArgs();
     }
 
-    public sealed class SnatEntriesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class SnatEntriesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// An id of the public ip address used by the SNAT entry.
@@ -184,6 +183,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Nat
         public SnatEntriesInvokeArgs()
         {
         }
+        public static new SnatEntriesInvokeArgs Empty => new SnatEntriesInvokeArgs();
     }
 
 

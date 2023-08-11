@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
+namespace Volcengine.Pulumi.Volcengine.Tls.Inputs
 {
 
-    public sealed class AlarmRequestCycleGetArgs : Pulumi.ResourceArgs
+    public sealed class AlarmRequestCycleGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The cycle of alarm task execution, or the time point of periodic execution. The unit is minutes, and the value range is 1~1440.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
         public AlarmRequestCycleGetArgs()
         {
         }
+        public static new AlarmRequestCycleGetArgs Empty => new AlarmRequestCycleGetArgs();
     }
 }

@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -11,8 +12,8 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi from "@volcengine/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
  * const fooZones = volcengine.ecs.Zones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
@@ -22,10 +23,10 @@ import * as utilities from "../utilities";
  * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
  *     subnetName: "acc-test-subnet",
  *     cidrBlock: "172.16.0.0/24",
- *     zoneId: fooZones.then(fooZones => fooZones.zones?[0]?.id),
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
  *     vpcId: fooVpc.id,
  * });
- * const fooClb: volcengine.clb.Clb[];
+ * const fooClb: volcengine.clb.Clb[] = [];
  * for (const range = {value: 0}; range.value < 3; range.value++) {
  *     fooClb.push(new volcengine.clb.Clb(`fooClb-${range.value}`, {
  *         type: "public",
@@ -52,11 +53,8 @@ import * as utilities from "../utilities";
  */
 export function clbs(args?: ClbsArgs, opts?: pulumi.InvokeOptions): Promise<ClbsResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:clb/clbs:Clbs", {
         "eniAddress": args.eniAddress,
         "ids": args.ids,
@@ -147,9 +145,53 @@ export interface ClbsResult {
      */
     readonly vpcId?: string;
 }
-
+/**
+ * Use this data source to query detailed information of clbs
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
+ *
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooClb: volcengine.clb.Clb[] = [];
+ * for (const range = {value: 0}; range.value < 3; range.value++) {
+ *     fooClb.push(new volcengine.clb.Clb(`fooClb-${range.value}`, {
+ *         type: "public",
+ *         subnetId: fooSubnet.id,
+ *         loadBalancerSpec: "small_1",
+ *         description: "acc-test-demo",
+ *         loadBalancerName: `acc-test-clb-${range.value}`,
+ *         loadBalancerBillingType: "PostPaid",
+ *         eipBillingConfig: {
+ *             isp: "BGP",
+ *             eipBillingType: "PostPaidByBandwidth",
+ *             bandwidth: 1,
+ *         },
+ *         tags: [{
+ *             key: "k1",
+ *             value: "v1",
+ *         }],
+ *     }));
+ * }
+ * const fooClbs = volcengine.clb.ClbsOutput({
+ *     ids: fooClb.map(__item => __item.id),
+ * });
+ * ```
+ */
 export function clbsOutput(args?: ClbsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ClbsResult> {
-    return pulumi.output(args).apply(a => clbs(a, opts))
+    return pulumi.output(args).apply((a: any) => clbs(a, opts))
 }
 
 /**

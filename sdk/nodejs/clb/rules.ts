@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -11,8 +12,8 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi from "@volcengine/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
  * const fooZones = volcengine.ecs.Zones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
@@ -22,7 +23,7 @@ import * as utilities from "../utilities";
  * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
  *     subnetName: "acc-test-subnet",
  *     cidrBlock: "172.16.0.0/24",
- *     zoneId: fooZones.then(fooZones => fooZones.zones?[0]?.id),
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
  *     vpcId: fooVpc.id,
  * });
  * const fooClb = new volcengine.clb.Clb("fooClb", {
@@ -74,11 +75,8 @@ import * as utilities from "../utilities";
  * ```
  */
 export function rules(args: RulesArgs, opts?: pulumi.InvokeOptions): Promise<RulesResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:clb/rules:Rules", {
         "ids": args.ids,
         "listenerId": args.listenerId,
@@ -120,9 +118,76 @@ export interface RulesResult {
      */
     readonly rules: outputs.clb.RulesRule[];
 }
-
+/**
+ * Use this data source to query detailed information of clb rules
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
+ *
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooClb = new volcengine.clb.Clb("fooClb", {
+ *     type: "public",
+ *     subnetId: fooSubnet.id,
+ *     loadBalancerSpec: "small_1",
+ *     description: "acc0Demo",
+ *     loadBalancerName: "acc-test-create",
+ *     eipBillingConfig: {
+ *         isp: "BGP",
+ *         eipBillingType: "PostPaidByBandwidth",
+ *         bandwidth: 1,
+ *     },
+ * });
+ * const fooServerGroup = new volcengine.clb.ServerGroup("fooServerGroup", {
+ *     loadBalancerId: fooClb.id,
+ *     serverGroupName: "acc-test-create",
+ *     description: "hello demo11",
+ * });
+ * const fooListener = new volcengine.clb.Listener("fooListener", {
+ *     loadBalancerId: fooClb.id,
+ *     listenerName: "acc-test-listener",
+ *     protocol: "HTTP",
+ *     port: 90,
+ *     serverGroupId: fooServerGroup.id,
+ *     healthCheck: {
+ *         enabled: "on",
+ *         interval: 10,
+ *         timeout: 3,
+ *         healthyThreshold: 5,
+ *         unHealthyThreshold: 2,
+ *         domain: "volcengine.com",
+ *         httpCode: "http_2xx",
+ *         method: "GET",
+ *         uri: "/",
+ *     },
+ *     enabled: "on",
+ * });
+ * const fooRule = new volcengine.clb.Rule("fooRule", {
+ *     listenerId: fooListener.id,
+ *     serverGroupId: fooServerGroup.id,
+ *     domain: "test-volc123.com",
+ *     url: "/yyyy",
+ * });
+ * const fooRules = volcengine.clb.RulesOutput({
+ *     ids: [fooRule.id],
+ *     listenerId: fooListener.id,
+ * });
+ * ```
+ */
 export function rulesOutput(args: RulesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<RulesResult> {
-    return pulumi.output(args).apply(a => rules(a, opts))
+    return pulumi.output(args).apply((a: any) => rules(a, opts))
 }
 
 /**

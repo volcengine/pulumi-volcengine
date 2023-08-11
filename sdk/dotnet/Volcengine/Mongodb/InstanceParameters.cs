@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Mongodb
+namespace Volcengine.Pulumi.Volcengine.Mongodb
 {
     public static class InstanceParameters
     {
@@ -19,28 +19,27 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Mongodb.InstanceParameters.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Mongodb.InstanceParameters.InvokeAsync(new Volcengine.Mongodb.InstanceParametersArgs
-        ///         {
-        ///             InstanceId = "mongo-replica-f16e9298b121",
-        ///             ParameterNames = "connPoolMaxConnsPerHost",
-        ///             ParameterRole = "Node",
-        ///         }));
-        ///     }
+        ///         InstanceId = "mongo-replica-f16e9298b121",
+        ///         ParameterNames = "connPoolMaxConnsPerHost",
+        ///         ParameterRole = "Node",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<InstanceParametersResult> InvokeAsync(InstanceParametersArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<InstanceParametersResult>("volcengine:mongodb/instanceParameters:InstanceParameters", args ?? new InstanceParametersArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<InstanceParametersResult>("volcengine:mongodb/instanceParameters:InstanceParameters", args ?? new InstanceParametersArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of mongodb instance parameters
@@ -49,32 +48,31 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Mongodb.InstanceParameters.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Mongodb.InstanceParameters.InvokeAsync(new Volcengine.Mongodb.InstanceParametersArgs
-        ///         {
-        ///             InstanceId = "mongo-replica-f16e9298b121",
-        ///             ParameterNames = "connPoolMaxConnsPerHost",
-        ///             ParameterRole = "Node",
-        ///         }));
-        ///     }
+        ///         InstanceId = "mongo-replica-f16e9298b121",
+        ///         ParameterNames = "connPoolMaxConnsPerHost",
+        ///         ParameterRole = "Node",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<InstanceParametersResult> Invoke(InstanceParametersInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<InstanceParametersResult>("volcengine:mongodb/instanceParameters:InstanceParameters", args ?? new InstanceParametersInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<InstanceParametersResult>("volcengine:mongodb/instanceParameters:InstanceParameters", args ?? new InstanceParametersInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class InstanceParametersArgs : Pulumi.InvokeArgs
+    public sealed class InstanceParametersArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The instance ID to query.
@@ -103,9 +101,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         public InstanceParametersArgs()
         {
         }
+        public static new InstanceParametersArgs Empty => new InstanceParametersArgs();
     }
 
-    public sealed class InstanceParametersInvokeArgs : Pulumi.InvokeArgs
+    public sealed class InstanceParametersInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The instance ID to query.
@@ -134,6 +133,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         public InstanceParametersInvokeArgs()
         {
         }
+        public static new InstanceParametersInvokeArgs Empty => new InstanceParametersInvokeArgs();
     }
 
 

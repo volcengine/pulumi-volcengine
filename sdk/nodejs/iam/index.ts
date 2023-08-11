@@ -5,25 +5,56 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./accessKey";
-export * from "./loginProfile";
-export * from "./policies";
-export * from "./policy";
-export * from "./role";
-export * from "./rolePolicyAttachment";
-export * from "./roles";
-export * from "./user";
-export * from "./userPolicyAttachment";
-export * from "./users";
+export { AccessKeyArgs, AccessKeyState } from "./accessKey";
+export type AccessKey = import("./accessKey").AccessKey;
+export const AccessKey: typeof import("./accessKey").AccessKey = null as any;
+utilities.lazyLoad(exports, ["AccessKey"], () => require("./accessKey"));
 
-// Import resources to register:
-import { AccessKey } from "./accessKey";
-import { LoginProfile } from "./loginProfile";
-import { Policy } from "./policy";
-import { Role } from "./role";
-import { RolePolicyAttachment } from "./rolePolicyAttachment";
-import { User } from "./user";
-import { UserPolicyAttachment } from "./userPolicyAttachment";
+export { LoginProfileArgs, LoginProfileState } from "./loginProfile";
+export type LoginProfile = import("./loginProfile").LoginProfile;
+export const LoginProfile: typeof import("./loginProfile").LoginProfile = null as any;
+utilities.lazyLoad(exports, ["LoginProfile"], () => require("./loginProfile"));
+
+export { PoliciesArgs, PoliciesResult, PoliciesOutputArgs } from "./policies";
+export const policies: typeof import("./policies").policies = null as any;
+export const policiesOutput: typeof import("./policies").policiesOutput = null as any;
+utilities.lazyLoad(exports, ["policies","policiesOutput"], () => require("./policies"));
+
+export { PolicyArgs, PolicyState } from "./policy";
+export type Policy = import("./policy").Policy;
+export const Policy: typeof import("./policy").Policy = null as any;
+utilities.lazyLoad(exports, ["Policy"], () => require("./policy"));
+
+export { RoleArgs, RoleState } from "./role";
+export type Role = import("./role").Role;
+export const Role: typeof import("./role").Role = null as any;
+utilities.lazyLoad(exports, ["Role"], () => require("./role"));
+
+export { RolePolicyAttachmentArgs, RolePolicyAttachmentState } from "./rolePolicyAttachment";
+export type RolePolicyAttachment = import("./rolePolicyAttachment").RolePolicyAttachment;
+export const RolePolicyAttachment: typeof import("./rolePolicyAttachment").RolePolicyAttachment = null as any;
+utilities.lazyLoad(exports, ["RolePolicyAttachment"], () => require("./rolePolicyAttachment"));
+
+export { RolesArgs, RolesResult, RolesOutputArgs } from "./roles";
+export const roles: typeof import("./roles").roles = null as any;
+export const rolesOutput: typeof import("./roles").rolesOutput = null as any;
+utilities.lazyLoad(exports, ["roles","rolesOutput"], () => require("./roles"));
+
+export { UserArgs, UserState } from "./user";
+export type User = import("./user").User;
+export const User: typeof import("./user").User = null as any;
+utilities.lazyLoad(exports, ["User"], () => require("./user"));
+
+export { UserPolicyAttachmentArgs, UserPolicyAttachmentState } from "./userPolicyAttachment";
+export type UserPolicyAttachment = import("./userPolicyAttachment").UserPolicyAttachment;
+export const UserPolicyAttachment: typeof import("./userPolicyAttachment").UserPolicyAttachment = null as any;
+utilities.lazyLoad(exports, ["UserPolicyAttachment"], () => require("./userPolicyAttachment"));
+
+export { UsersArgs, UsersResult, UsersOutputArgs } from "./users";
+export const users: typeof import("./users").users = null as any;
+export const usersOutput: typeof import("./users").usersOutput = null as any;
+utilities.lazyLoad(exports, ["users","usersOutput"], () => require("./users"));
+
 
 const _module = {
     version: utilities.getVersion(),

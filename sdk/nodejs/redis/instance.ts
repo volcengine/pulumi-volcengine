@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -10,7 +11,7 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.redis.Instance("foo", {
  *     applyImmediately: true,
@@ -38,8 +39,6 @@ import * as utilities from "../utilities";
  *         },
  *     ],
  *     password: "1qaz!QAZ12",
- *     //     purchase_months = 1
- *     //     auto_renew = false
  *     port: 6381,
  *     projectName: "default",
  *     shardCapacity: 1024,
@@ -268,7 +267,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["instanceName"] = args ? args.instanceName : undefined;
             resourceInputs["nodeNumber"] = args ? args.nodeNumber : undefined;
             resourceInputs["paramValues"] = args ? args.paramValues : undefined;
-            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["port"] = args ? args.port : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["purchaseMonths"] = args ? args.purchaseMonths : undefined;
@@ -281,6 +280,8 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["zoneIds"] = args ? args.zoneIds : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["password"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Instance.__pulumiType, name, resourceInputs, opts);
     }
 }

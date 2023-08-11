@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -11,10 +12,10 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi from "@volcengine/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooDeploymentSet: volcengine.ecs.DeploymentSet[];
+ * const fooDeploymentSet: volcengine.ecs.DeploymentSet[] = [];
  * for (const range = {value: 0}; range.value < 3; range.value++) {
  *     fooDeploymentSet.push(new volcengine.ecs.DeploymentSet(`fooDeploymentSet-${range.value}`, {
  *         deploymentSetName: `acc-test-ecs-ds-${range.value}`,
@@ -31,11 +32,8 @@ import * as utilities from "../utilities";
  */
 export function deploymentSets(args?: DeploymentSetsArgs, opts?: pulumi.InvokeOptions): Promise<DeploymentSetsResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:ecs/deploymentSets:DeploymentSets", {
         "granularity": args.granularity,
         "ids": args.ids,
@@ -90,9 +88,32 @@ export interface DeploymentSetsResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of ecs deployment sets
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
+ *
+ * const fooDeploymentSet: volcengine.ecs.DeploymentSet[] = [];
+ * for (const range = {value: 0}; range.value < 3; range.value++) {
+ *     fooDeploymentSet.push(new volcengine.ecs.DeploymentSet(`fooDeploymentSet-${range.value}`, {
+ *         deploymentSetName: `acc-test-ecs-ds-${range.value}`,
+ *         description: "acc-test",
+ *         granularity: "switch",
+ *         strategy: "Availability",
+ *     }));
+ * }
+ * const fooDeploymentSets = volcengine.ecs.DeploymentSetsOutput({
+ *     granularity: "switch",
+ *     ids: fooDeploymentSet.map(__item => __item.id),
+ * });
+ * ```
+ */
 export function deploymentSetsOutput(args?: DeploymentSetsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<DeploymentSetsResult> {
-    return pulumi.output(args).apply(a => deploymentSets(a, opts))
+    return pulumi.output(args).apply((a: any) => deploymentSets(a, opts))
 }
 
 /**

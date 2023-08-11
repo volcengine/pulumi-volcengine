@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,17 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultScalingLifecycleHooks = pulumi.output(volcengine.autoscaling.ScalingLifecycleHooks({
+ * const default = volcengine.autoscaling.ScalingLifecycleHooks({
  *     scalingGroupId: "scg-ybru8pazhgl8j1di4tyd",
- * }));
+ * });
  * ```
  */
 export function scalingLifecycleHooks(args: ScalingLifecycleHooksArgs, opts?: pulumi.InvokeOptions): Promise<ScalingLifecycleHooksResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:autoscaling/scalingLifecycleHooks:ScalingLifecycleHooks", {
         "ids": args.ids,
         "lifecycleHookNames": args.lifecycleHookNames,
@@ -84,9 +82,21 @@ export interface ScalingLifecycleHooksResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of scaling lifecycle hooks
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.autoscaling.ScalingLifecycleHooks({
+ *     scalingGroupId: "scg-ybru8pazhgl8j1di4tyd",
+ * });
+ * ```
+ */
 export function scalingLifecycleHooksOutput(args: ScalingLifecycleHooksOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ScalingLifecycleHooksResult> {
-    return pulumi.output(args).apply(a => scalingLifecycleHooks(a, opts))
+    return pulumi.output(args).apply((a: any) => scalingLifecycleHooks(a, opts))
 }
 
 /**

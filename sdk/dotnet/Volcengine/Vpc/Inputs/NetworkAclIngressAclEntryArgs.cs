@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpc.Inputs
+namespace Volcengine.Pulumi.Volcengine.Vpc.Inputs
 {
 
-    public sealed class NetworkAclIngressAclEntryArgs : Pulumi.ResourceArgs
+    public sealed class NetworkAclIngressAclEntryArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The description of entry.
@@ -58,5 +58,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc.Inputs
         public NetworkAclIngressAclEntryArgs()
         {
         }
+        public static new NetworkAclIngressAclEntryArgs Empty => new NetworkAclIngressAclEntryArgs();
     }
 }

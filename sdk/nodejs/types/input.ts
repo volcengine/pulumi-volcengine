@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 
 export namespace autoscaling {
     export interface ScalingConfigurationTag {
@@ -211,7 +212,7 @@ export namespace clb {
 
     export interface ClbEipBillingConfig {
         /**
-         * The peek bandwidth of the EIP which automatically assigned to CLB. The value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
+         * The peek bandwidth of the EIP which automatically assigned to CLB.
          */
         bandwidth?: pulumi.Input<number>;
         /**

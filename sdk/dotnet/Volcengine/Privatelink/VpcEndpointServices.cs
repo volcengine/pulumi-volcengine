@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Privatelink
+namespace Volcengine.Pulumi.Volcengine.Privatelink
 {
     public static class VpcEndpointServices
     {
@@ -19,30 +19,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Privatelink.VpcEndpointServices.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Privatelink.VpcEndpointServices.InvokeAsync(new Volcengine.Privatelink.VpcEndpointServicesArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "epsvc-3rel73uf2ewao5zsk2j2l58ro",
-        ///                 "epsvc-2d72mxjgq02yo58ozfe5tndeh",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "epsvc-3rel73uf2ewao5zsk2j2l58ro",
+        ///             "epsvc-2d72mxjgq02yo58ozfe5tndeh",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<VpcEndpointServicesResult> InvokeAsync(VpcEndpointServicesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<VpcEndpointServicesResult>("volcengine:privatelink/vpcEndpointServices:VpcEndpointServices", args ?? new VpcEndpointServicesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<VpcEndpointServicesResult>("volcengine:privatelink/vpcEndpointServices:VpcEndpointServices", args ?? new VpcEndpointServicesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of privatelink vpc endpoint services
@@ -51,34 +50,33 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Privatelink.VpcEndpointServices.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Privatelink.VpcEndpointServices.InvokeAsync(new Volcengine.Privatelink.VpcEndpointServicesArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "epsvc-3rel73uf2ewao5zsk2j2l58ro",
-        ///                 "epsvc-2d72mxjgq02yo58ozfe5tndeh",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "epsvc-3rel73uf2ewao5zsk2j2l58ro",
+        ///             "epsvc-2d72mxjgq02yo58ozfe5tndeh",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<VpcEndpointServicesResult> Invoke(VpcEndpointServicesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<VpcEndpointServicesResult>("volcengine:privatelink/vpcEndpointServices:VpcEndpointServices", args ?? new VpcEndpointServicesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<VpcEndpointServicesResult>("volcengine:privatelink/vpcEndpointServices:VpcEndpointServices", args ?? new VpcEndpointServicesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class VpcEndpointServicesArgs : Pulumi.InvokeArgs
+    public sealed class VpcEndpointServicesArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private List<string>? _ids;
@@ -113,9 +111,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         public VpcEndpointServicesArgs()
         {
         }
+        public static new VpcEndpointServicesArgs Empty => new VpcEndpointServicesArgs();
     }
 
-    public sealed class VpcEndpointServicesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class VpcEndpointServicesInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private InputList<string>? _ids;
@@ -150,6 +149,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         public VpcEndpointServicesInvokeArgs()
         {
         }
+        public static new VpcEndpointServicesInvokeArgs Empty => new VpcEndpointServicesInvokeArgs();
     }
 
 

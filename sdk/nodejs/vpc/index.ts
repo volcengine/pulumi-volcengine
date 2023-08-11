@@ -5,45 +5,126 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./ipv6AddressBandwidth";
-export * from "./ipv6AddressBandwidths";
-export * from "./ipv6Addresses";
-export * from "./ipv6Gateway";
-export * from "./ipv6Gateways";
-export * from "./networkAcl";
-export * from "./networkAclAssociate";
-export * from "./networkAcls";
-export * from "./networkInterface";
-export * from "./networkInterfaceAttach";
-export * from "./networkInterfaces";
-export * from "./routeEntries";
-export * from "./routeEntry";
-export * from "./routeTable";
-export * from "./routeTableAssociate";
-export * from "./routeTables";
-export * from "./securityGroup";
-export * from "./securityGroupRule";
-export * from "./securityGroupRules";
-export * from "./securityGroups";
-export * from "./subnet";
-export * from "./subnets";
-export * from "./vpc";
-export * from "./vpcs";
+export { Ipv6AddressBandwidthArgs, Ipv6AddressBandwidthState } from "./ipv6AddressBandwidth";
+export type Ipv6AddressBandwidth = import("./ipv6AddressBandwidth").Ipv6AddressBandwidth;
+export const Ipv6AddressBandwidth: typeof import("./ipv6AddressBandwidth").Ipv6AddressBandwidth = null as any;
+utilities.lazyLoad(exports, ["Ipv6AddressBandwidth"], () => require("./ipv6AddressBandwidth"));
 
-// Import resources to register:
-import { Ipv6AddressBandwidth } from "./ipv6AddressBandwidth";
-import { Ipv6Gateway } from "./ipv6Gateway";
-import { NetworkAcl } from "./networkAcl";
-import { NetworkAclAssociate } from "./networkAclAssociate";
-import { NetworkInterface } from "./networkInterface";
-import { NetworkInterfaceAttach } from "./networkInterfaceAttach";
-import { RouteEntry } from "./routeEntry";
-import { RouteTable } from "./routeTable";
-import { RouteTableAssociate } from "./routeTableAssociate";
-import { SecurityGroup } from "./securityGroup";
-import { SecurityGroupRule } from "./securityGroupRule";
-import { Subnet } from "./subnet";
-import { Vpc } from "./vpc";
+export { Ipv6AddressBandwidthsArgs, Ipv6AddressBandwidthsResult, Ipv6AddressBandwidthsOutputArgs } from "./ipv6AddressBandwidths";
+export const ipv6AddressBandwidths: typeof import("./ipv6AddressBandwidths").ipv6AddressBandwidths = null as any;
+export const ipv6AddressBandwidthsOutput: typeof import("./ipv6AddressBandwidths").ipv6AddressBandwidthsOutput = null as any;
+utilities.lazyLoad(exports, ["ipv6AddressBandwidths","ipv6AddressBandwidthsOutput"], () => require("./ipv6AddressBandwidths"));
+
+export { Ipv6AddressesArgs, Ipv6AddressesResult, Ipv6AddressesOutputArgs } from "./ipv6Addresses";
+export const ipv6Addresses: typeof import("./ipv6Addresses").ipv6Addresses = null as any;
+export const ipv6AddressesOutput: typeof import("./ipv6Addresses").ipv6AddressesOutput = null as any;
+utilities.lazyLoad(exports, ["ipv6Addresses","ipv6AddressesOutput"], () => require("./ipv6Addresses"));
+
+export { Ipv6GatewayArgs, Ipv6GatewayState } from "./ipv6Gateway";
+export type Ipv6Gateway = import("./ipv6Gateway").Ipv6Gateway;
+export const Ipv6Gateway: typeof import("./ipv6Gateway").Ipv6Gateway = null as any;
+utilities.lazyLoad(exports, ["Ipv6Gateway"], () => require("./ipv6Gateway"));
+
+export { Ipv6GatewaysArgs, Ipv6GatewaysResult, Ipv6GatewaysOutputArgs } from "./ipv6Gateways";
+export const ipv6Gateways: typeof import("./ipv6Gateways").ipv6Gateways = null as any;
+export const ipv6GatewaysOutput: typeof import("./ipv6Gateways").ipv6GatewaysOutput = null as any;
+utilities.lazyLoad(exports, ["ipv6Gateways","ipv6GatewaysOutput"], () => require("./ipv6Gateways"));
+
+export { NetworkAclArgs, NetworkAclState } from "./networkAcl";
+export type NetworkAcl = import("./networkAcl").NetworkAcl;
+export const NetworkAcl: typeof import("./networkAcl").NetworkAcl = null as any;
+utilities.lazyLoad(exports, ["NetworkAcl"], () => require("./networkAcl"));
+
+export { NetworkAclAssociateArgs, NetworkAclAssociateState } from "./networkAclAssociate";
+export type NetworkAclAssociate = import("./networkAclAssociate").NetworkAclAssociate;
+export const NetworkAclAssociate: typeof import("./networkAclAssociate").NetworkAclAssociate = null as any;
+utilities.lazyLoad(exports, ["NetworkAclAssociate"], () => require("./networkAclAssociate"));
+
+export { NetworkAclsArgs, NetworkAclsResult, NetworkAclsOutputArgs } from "./networkAcls";
+export const networkAcls: typeof import("./networkAcls").networkAcls = null as any;
+export const networkAclsOutput: typeof import("./networkAcls").networkAclsOutput = null as any;
+utilities.lazyLoad(exports, ["networkAcls","networkAclsOutput"], () => require("./networkAcls"));
+
+export { NetworkInterfaceArgs, NetworkInterfaceState } from "./networkInterface";
+export type NetworkInterface = import("./networkInterface").NetworkInterface;
+export const NetworkInterface: typeof import("./networkInterface").NetworkInterface = null as any;
+utilities.lazyLoad(exports, ["NetworkInterface"], () => require("./networkInterface"));
+
+export { NetworkInterfaceAttachArgs, NetworkInterfaceAttachState } from "./networkInterfaceAttach";
+export type NetworkInterfaceAttach = import("./networkInterfaceAttach").NetworkInterfaceAttach;
+export const NetworkInterfaceAttach: typeof import("./networkInterfaceAttach").NetworkInterfaceAttach = null as any;
+utilities.lazyLoad(exports, ["NetworkInterfaceAttach"], () => require("./networkInterfaceAttach"));
+
+export { NetworkInterfacesArgs, NetworkInterfacesResult, NetworkInterfacesOutputArgs } from "./networkInterfaces";
+export const networkInterfaces: typeof import("./networkInterfaces").networkInterfaces = null as any;
+export const networkInterfacesOutput: typeof import("./networkInterfaces").networkInterfacesOutput = null as any;
+utilities.lazyLoad(exports, ["networkInterfaces","networkInterfacesOutput"], () => require("./networkInterfaces"));
+
+export { RouteEntriesArgs, RouteEntriesResult, RouteEntriesOutputArgs } from "./routeEntries";
+export const routeEntries: typeof import("./routeEntries").routeEntries = null as any;
+export const routeEntriesOutput: typeof import("./routeEntries").routeEntriesOutput = null as any;
+utilities.lazyLoad(exports, ["routeEntries","routeEntriesOutput"], () => require("./routeEntries"));
+
+export { RouteEntryArgs, RouteEntryState } from "./routeEntry";
+export type RouteEntry = import("./routeEntry").RouteEntry;
+export const RouteEntry: typeof import("./routeEntry").RouteEntry = null as any;
+utilities.lazyLoad(exports, ["RouteEntry"], () => require("./routeEntry"));
+
+export { RouteTableArgs, RouteTableState } from "./routeTable";
+export type RouteTable = import("./routeTable").RouteTable;
+export const RouteTable: typeof import("./routeTable").RouteTable = null as any;
+utilities.lazyLoad(exports, ["RouteTable"], () => require("./routeTable"));
+
+export { RouteTableAssociateArgs, RouteTableAssociateState } from "./routeTableAssociate";
+export type RouteTableAssociate = import("./routeTableAssociate").RouteTableAssociate;
+export const RouteTableAssociate: typeof import("./routeTableAssociate").RouteTableAssociate = null as any;
+utilities.lazyLoad(exports, ["RouteTableAssociate"], () => require("./routeTableAssociate"));
+
+export { RouteTablesArgs, RouteTablesResult, RouteTablesOutputArgs } from "./routeTables";
+export const routeTables: typeof import("./routeTables").routeTables = null as any;
+export const routeTablesOutput: typeof import("./routeTables").routeTablesOutput = null as any;
+utilities.lazyLoad(exports, ["routeTables","routeTablesOutput"], () => require("./routeTables"));
+
+export { SecurityGroupArgs, SecurityGroupState } from "./securityGroup";
+export type SecurityGroup = import("./securityGroup").SecurityGroup;
+export const SecurityGroup: typeof import("./securityGroup").SecurityGroup = null as any;
+utilities.lazyLoad(exports, ["SecurityGroup"], () => require("./securityGroup"));
+
+export { SecurityGroupRuleArgs, SecurityGroupRuleState } from "./securityGroupRule";
+export type SecurityGroupRule = import("./securityGroupRule").SecurityGroupRule;
+export const SecurityGroupRule: typeof import("./securityGroupRule").SecurityGroupRule = null as any;
+utilities.lazyLoad(exports, ["SecurityGroupRule"], () => require("./securityGroupRule"));
+
+export { SecurityGroupRulesArgs, SecurityGroupRulesResult, SecurityGroupRulesOutputArgs } from "./securityGroupRules";
+export const securityGroupRules: typeof import("./securityGroupRules").securityGroupRules = null as any;
+export const securityGroupRulesOutput: typeof import("./securityGroupRules").securityGroupRulesOutput = null as any;
+utilities.lazyLoad(exports, ["securityGroupRules","securityGroupRulesOutput"], () => require("./securityGroupRules"));
+
+export { SecurityGroupsArgs, SecurityGroupsResult, SecurityGroupsOutputArgs } from "./securityGroups";
+export const securityGroups: typeof import("./securityGroups").securityGroups = null as any;
+export const securityGroupsOutput: typeof import("./securityGroups").securityGroupsOutput = null as any;
+utilities.lazyLoad(exports, ["securityGroups","securityGroupsOutput"], () => require("./securityGroups"));
+
+export { SubnetArgs, SubnetState } from "./subnet";
+export type Subnet = import("./subnet").Subnet;
+export const Subnet: typeof import("./subnet").Subnet = null as any;
+utilities.lazyLoad(exports, ["Subnet"], () => require("./subnet"));
+
+export { SubnetsArgs, SubnetsResult, SubnetsOutputArgs } from "./subnets";
+export const subnets: typeof import("./subnets").subnets = null as any;
+export const subnetsOutput: typeof import("./subnets").subnetsOutput = null as any;
+utilities.lazyLoad(exports, ["subnets","subnetsOutput"], () => require("./subnets"));
+
+export { VpcArgs, VpcState } from "./vpc";
+export type Vpc = import("./vpc").Vpc;
+export const Vpc: typeof import("./vpc").Vpc = null as any;
+utilities.lazyLoad(exports, ["Vpc"], () => require("./vpc"));
+
+export { VpcsArgs, VpcsResult, VpcsOutputArgs } from "./vpcs";
+export const vpcs: typeof import("./vpcs").vpcs = null as any;
+export const vpcsOutput: typeof import("./vpcs").vpcsOutput = null as any;
+utilities.lazyLoad(exports, ["vpcs","vpcsOutput"], () => require("./vpcs"));
+
 
 const _module = {
     version: utilities.getVersion(),

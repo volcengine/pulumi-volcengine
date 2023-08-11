@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpc
+namespace Volcengine.Pulumi.Volcengine.Vpc
 {
     public static class SecurityGroups
     {
@@ -19,29 +19,28 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vpc.SecurityGroups.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vpc.SecurityGroups.InvokeAsync(new Volcengine.Vpc.SecurityGroupsArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "sg-273ycgql3ig3k7fap8t3dyvqx",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "sg-273ycgql3ig3k7fap8t3dyvqx",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<SecurityGroupsResult> InvokeAsync(SecurityGroupsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<SecurityGroupsResult>("volcengine:vpc/securityGroups:SecurityGroups", args ?? new SecurityGroupsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<SecurityGroupsResult>("volcengine:vpc/securityGroups:SecurityGroups", args ?? new SecurityGroupsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of security groups
@@ -50,33 +49,32 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vpc.SecurityGroups.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vpc.SecurityGroups.InvokeAsync(new Volcengine.Vpc.SecurityGroupsArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "sg-273ycgql3ig3k7fap8t3dyvqx",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "sg-273ycgql3ig3k7fap8t3dyvqx",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<SecurityGroupsResult> Invoke(SecurityGroupsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<SecurityGroupsResult>("volcengine:vpc/securityGroups:SecurityGroups", args ?? new SecurityGroupsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<SecurityGroupsResult>("volcengine:vpc/securityGroups:SecurityGroups", args ?? new SecurityGroupsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class SecurityGroupsArgs : Pulumi.InvokeArgs
+    public sealed class SecurityGroupsArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private List<string>? _ids;
@@ -141,9 +139,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public SecurityGroupsArgs()
         {
         }
+        public static new SecurityGroupsArgs Empty => new SecurityGroupsArgs();
     }
 
-    public sealed class SecurityGroupsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class SecurityGroupsInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private InputList<string>? _ids;
@@ -208,6 +207,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public SecurityGroupsInvokeArgs()
         {
         }
+        public static new SecurityGroupsInvokeArgs Empty => new SecurityGroupsInvokeArgs();
     }
 
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpc
+namespace Volcengine.Pulumi.Volcengine.Vpc
 {
     public static class NetworkAcls
     {
@@ -19,26 +19,25 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vpc.NetworkAcls.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vpc.NetworkAcls.InvokeAsync(new Volcengine.Vpc.NetworkAclsArgs
-        ///         {
-        ///             NetworkAclName = "ms-tf-acl",
-        ///         }));
-        ///     }
+        ///         NetworkAclName = "ms-tf-acl",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<NetworkAclsResult> InvokeAsync(NetworkAclsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<NetworkAclsResult>("volcengine:vpc/networkAcls:NetworkAcls", args ?? new NetworkAclsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<NetworkAclsResult>("volcengine:vpc/networkAcls:NetworkAcls", args ?? new NetworkAclsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of network acls
@@ -47,30 +46,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vpc.NetworkAcls.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vpc.NetworkAcls.InvokeAsync(new Volcengine.Vpc.NetworkAclsArgs
-        ///         {
-        ///             NetworkAclName = "ms-tf-acl",
-        ///         }));
-        ///     }
+        ///         NetworkAclName = "ms-tf-acl",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<NetworkAclsResult> Invoke(NetworkAclsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<NetworkAclsResult>("volcengine:vpc/networkAcls:NetworkAcls", args ?? new NetworkAclsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<NetworkAclsResult>("volcengine:vpc/networkAcls:NetworkAcls", args ?? new NetworkAclsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class NetworkAclsArgs : Pulumi.InvokeArgs
+    public sealed class NetworkAclsArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private List<string>? _ids;
@@ -117,9 +115,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public NetworkAclsArgs()
         {
         }
+        public static new NetworkAclsArgs Empty => new NetworkAclsArgs();
     }
 
-    public sealed class NetworkAclsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class NetworkAclsInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private InputList<string>? _ids;
@@ -166,6 +165,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public NetworkAclsInvokeArgs()
         {
         }
+        public static new NetworkAclsInvokeArgs Empty => new NetworkAclsInvokeArgs();
     }
 
 

@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Veenedge.Inputs
+namespace Volcengine.Pulumi.Volcengine.Veenedge.Inputs
 {
 
-    public sealed class CloudServerStorageConfigGetArgs : Pulumi.ResourceArgs
+    public sealed class CloudServerStorageConfigGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("dataDiskLists")]
         private InputList<Inputs.CloudServerStorageConfigDataDiskListGetArgs>? _dataDiskLists;
@@ -34,5 +34,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge.Inputs
         public CloudServerStorageConfigGetArgs()
         {
         }
+        public static new CloudServerStorageConfigGetArgs Empty => new CloudServerStorageConfigGetArgs();
     }
 }

@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultAcls = pulumi.output(volcengine.clb.Acls({
+ * const default = volcengine.clb.Acls({
  *     ids: ["acl-3ti8n0rurx4bwbh9jzdy"],
- * }));
+ * });
  * ```
  */
 export function acls(args?: AclsArgs, opts?: pulumi.InvokeOptions): Promise<AclsResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:clb/acls:Acls", {
         "aclName": args.aclName,
         "ids": args.ids,
@@ -88,9 +86,21 @@ export interface AclsResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of acls
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.clb.Acls({
+ *     ids: ["acl-3ti8n0rurx4bwbh9jzdy"],
+ * });
+ * ```
+ */
 export function aclsOutput(args?: AclsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AclsResult> {
-    return pulumi.output(args).apply(a => acls(a, opts))
+    return pulumi.output(args).apply((a: any) => acls(a, opts))
 }
 
 /**

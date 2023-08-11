@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultConnections = pulumi.output(volcengine.vpn.Connections({
+ * const default = volcengine.vpn.Connections({
  *     ids: ["vgc-2d5wwids8cdts58ozfe63k2uq"],
- * }));
+ * });
  * ```
  */
 export function connections(args?: ConnectionsArgs, opts?: pulumi.InvokeOptions): Promise<ConnectionsResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:vpn/connections:Connections", {
         "customerGatewayId": args.customerGatewayId,
         "ids": args.ids,
@@ -94,9 +92,21 @@ export interface ConnectionsResult {
      */
     readonly vpnGatewayId?: string;
 }
-
+/**
+ * Use this data source to query detailed information of vpn connections
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.vpn.Connections({
+ *     ids: ["vgc-2d5wwids8cdts58ozfe63k2uq"],
+ * });
+ * ```
+ */
 export function connectionsOutput(args?: ConnectionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ConnectionsResult> {
-    return pulumi.output(args).apply(a => connections(a, opts))
+    return pulumi.output(args).apply((a: any) => connections(a, opts))
 }
 
 /**

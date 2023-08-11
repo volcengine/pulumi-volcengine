@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
+namespace Volcengine.Pulumi.Volcengine.Autoscaling
 {
     public static class ScalingInstances
     {
@@ -19,34 +19,33 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Autoscaling.ScalingInstances.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Autoscaling.ScalingInstances.InvokeAsync(new Volcengine.Autoscaling.ScalingInstancesArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "i-ybzl4u5uogl8j07hgcbg",
-        ///                 "i-ybyncrcpzpgh9zmlct0w",
-        ///                 "i-ybyncrcpzogh9z4ax9tv",
-        ///             },
-        ///             ScalingConfigurationId = "scc-ybtawzucw95pkgon0wst",
-        ///             ScalingGroupId = "scg-ybtawtznszgh9yv8agcp",
-        ///             Status = "InService",
-        ///         }));
-        ///     }
+        ///             "i-ybzl4u5uogl8j07hgcbg",
+        ///             "i-ybyncrcpzpgh9zmlct0w",
+        ///             "i-ybyncrcpzogh9z4ax9tv",
+        ///         },
+        ///         ScalingConfigurationId = "scc-ybtawzucw95pkgon0wst",
+        ///         ScalingGroupId = "scg-ybtawtznszgh9yv8agcp",
+        ///         Status = "InService",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<ScalingInstancesResult> InvokeAsync(ScalingInstancesArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<ScalingInstancesResult>("volcengine:autoscaling/scalingInstances:ScalingInstances", args ?? new ScalingInstancesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<ScalingInstancesResult>("volcengine:autoscaling/scalingInstances:ScalingInstances", args ?? new ScalingInstancesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of scaling instances
@@ -55,38 +54,37 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Autoscaling.ScalingInstances.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Autoscaling.ScalingInstances.InvokeAsync(new Volcengine.Autoscaling.ScalingInstancesArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "i-ybzl4u5uogl8j07hgcbg",
-        ///                 "i-ybyncrcpzpgh9zmlct0w",
-        ///                 "i-ybyncrcpzogh9z4ax9tv",
-        ///             },
-        ///             ScalingConfigurationId = "scc-ybtawzucw95pkgon0wst",
-        ///             ScalingGroupId = "scg-ybtawtznszgh9yv8agcp",
-        ///             Status = "InService",
-        ///         }));
-        ///     }
+        ///             "i-ybzl4u5uogl8j07hgcbg",
+        ///             "i-ybyncrcpzpgh9zmlct0w",
+        ///             "i-ybyncrcpzogh9z4ax9tv",
+        ///         },
+        ///         ScalingConfigurationId = "scc-ybtawzucw95pkgon0wst",
+        ///         ScalingGroupId = "scg-ybtawtznszgh9yv8agcp",
+        ///         Status = "InService",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<ScalingInstancesResult> Invoke(ScalingInstancesInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<ScalingInstancesResult>("volcengine:autoscaling/scalingInstances:ScalingInstances", args ?? new ScalingInstancesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<ScalingInstancesResult>("volcengine:autoscaling/scalingInstances:ScalingInstances", args ?? new ScalingInstancesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class ScalingInstancesArgs : Pulumi.InvokeArgs
+    public sealed class ScalingInstancesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The creation type of the instances. Valid values: AutoCreated, Attached.
@@ -133,9 +131,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         public ScalingInstancesArgs()
         {
         }
+        public static new ScalingInstancesArgs Empty => new ScalingInstancesArgs();
     }
 
-    public sealed class ScalingInstancesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class ScalingInstancesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The creation type of the instances. Valid values: AutoCreated, Attached.
@@ -182,6 +181,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         public ScalingInstancesInvokeArgs()
         {
         }
+        public static new ScalingInstancesInvokeArgs Empty => new ScalingInstancesInvokeArgs();
     }
 
 

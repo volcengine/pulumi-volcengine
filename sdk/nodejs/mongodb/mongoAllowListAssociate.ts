@@ -10,7 +10,7 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.mongodb.MongoAllowListAssociate("foo", {
  *     allowListId: "acl-9e307ce4efe843fb9ffd8cb6a6cb225f",

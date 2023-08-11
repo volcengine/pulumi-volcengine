@@ -8,31 +8,30 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
+namespace Volcengine.Pulumi.Volcengine.Autoscaling
 {
     /// <summary>
     /// Provides a resource to manage scaling instance attachment
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Autoscaling.ScalingInstanceAttachment("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Autoscaling.ScalingInstanceAttachment("foo", new Volcengine.Autoscaling.ScalingInstanceAttachmentArgs
-    ///         {
-    ///             DeleteType = "Remove",
-    ///             DetachOption = "none",
-    ///             Entrusted = true,
-    ///             InstanceId = "i-yc23soxj50gsnz7rxnjp",
-    ///             ScalingGroupId = "scg-yc23rtcea88hcchybf8g",
-    ///         });
-    ///     }
+    ///         DeleteType = "Remove",
+    ///         DetachOption = "none",
+    ///         Entrusted = true,
+    ///         InstanceId = "i-yc23soxj50gsnz7rxnjp",
+    ///         ScalingGroupId = "scg-yc23rtcea88hcchybf8g",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -44,7 +43,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:autoscaling/scalingInstanceAttachment:ScalingInstanceAttachment")]
-    public partial class ScalingInstanceAttachment : Pulumi.CustomResource
+    public partial class ScalingInstanceAttachment : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The type of delete activity. Valid values: Remove, Detach. Default value is Remove.
@@ -121,7 +120,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         }
     }
 
-    public sealed class ScalingInstanceAttachmentArgs : Pulumi.ResourceArgs
+    public sealed class ScalingInstanceAttachmentArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The type of delete activity. Valid values: Remove, Detach. Default value is Remove.
@@ -156,9 +155,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         public ScalingInstanceAttachmentArgs()
         {
         }
+        public static new ScalingInstanceAttachmentArgs Empty => new ScalingInstanceAttachmentArgs();
     }
 
-    public sealed class ScalingInstanceAttachmentState : Pulumi.ResourceArgs
+    public sealed class ScalingInstanceAttachmentState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The type of delete activity. Valid values: Remove, Detach. Default value is Remove.
@@ -193,5 +193,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         public ScalingInstanceAttachmentState()
         {
         }
+        public static new ScalingInstanceAttachmentState Empty => new ScalingInstanceAttachmentState();
     }
 }

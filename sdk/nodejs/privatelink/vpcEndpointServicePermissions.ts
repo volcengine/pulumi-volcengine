@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,17 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultVpcEndpointServicePermissions = pulumi.output(volcengine.privatelink.VpcEndpointServicePermissions({
+ * const default = volcengine.privatelink.VpcEndpointServicePermissions({
  *     serviceId: "epsvc-3rel73uf2ewao5zsk2j2l58ro",
- * }));
+ * });
  * ```
  */
 export function vpcEndpointServicePermissions(args: VpcEndpointServicePermissionsArgs, opts?: pulumi.InvokeOptions): Promise<VpcEndpointServicePermissionsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:privatelink/vpcEndpointServicePermissions:VpcEndpointServicePermissions", {
         "outputFile": args.outputFile,
         "permitAccountId": args.permitAccountId,
@@ -72,9 +70,21 @@ export interface VpcEndpointServicePermissionsResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of privatelink vpc endpoint service permissions
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.privatelink.VpcEndpointServicePermissions({
+ *     serviceId: "epsvc-3rel73uf2ewao5zsk2j2l58ro",
+ * });
+ * ```
+ */
 export function vpcEndpointServicePermissionsOutput(args: VpcEndpointServicePermissionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<VpcEndpointServicePermissionsResult> {
-    return pulumi.output(args).apply(a => vpcEndpointServicePermissions(a, opts))
+    return pulumi.output(args).apply((a: any) => vpcEndpointServicePermissions(a, opts))
 }
 
 /**

@@ -8,28 +8,27 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Redis
+namespace Volcengine.Pulumi.Volcengine.Redis
 {
     /// <summary>
     /// Provides a resource to manage redis endpoint
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Redis.Endpoint("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Redis.Endpoint("foo", new Volcengine.Redis.EndpointArgs
-    ///         {
-    ///             EipId = "eip-274ho3mtx543k7fap8tyi****",
-    ///             InstanceId = "redis-cn03bb67g3tr2****",
-    ///         });
-    ///     }
+    ///         EipId = "eip-274ho3mtx543k7fap8tyi****",
+    ///         InstanceId = "redis-cn03bb67g3tr2****",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -41,7 +40,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:redis/endpoint:Endpoint")]
-    public partial class Endpoint : Pulumi.CustomResource
+    public partial class Endpoint : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Id of eip.
@@ -100,7 +99,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         }
     }
 
-    public sealed class EndpointArgs : Pulumi.ResourceArgs
+    public sealed class EndpointArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Id of eip.
@@ -117,9 +116,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         public EndpointArgs()
         {
         }
+        public static new EndpointArgs Empty => new EndpointArgs();
     }
 
-    public sealed class EndpointState : Pulumi.ResourceArgs
+    public sealed class EndpointState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Id of eip.
@@ -136,5 +136,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         public EndpointState()
         {
         }
+        public static new EndpointState Empty => new EndpointState();
     }
 }

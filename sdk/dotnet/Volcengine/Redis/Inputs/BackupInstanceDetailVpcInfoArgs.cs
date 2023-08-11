@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Redis.Inputs
+namespace Volcengine.Pulumi.Volcengine.Redis.Inputs
 {
 
-    public sealed class BackupInstanceDetailVpcInfoArgs : Pulumi.ResourceArgs
+    public sealed class BackupInstanceDetailVpcInfoArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Id of vpc.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis.Inputs
         public BackupInstanceDetailVpcInfoArgs()
         {
         }
+        public static new BackupInstanceDetailVpcInfoArgs Empty => new BackupInstanceDetailVpcInfoArgs();
     }
 }

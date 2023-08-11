@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Privatelink
+namespace Volcengine.Pulumi.Volcengine.Privatelink
 {
     public static class VpcEndpointServicePermissions
     {
@@ -19,26 +19,25 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Privatelink.VpcEndpointServicePermissions.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Privatelink.VpcEndpointServicePermissions.InvokeAsync(new Volcengine.Privatelink.VpcEndpointServicePermissionsArgs
-        ///         {
-        ///             ServiceId = "epsvc-3rel73uf2ewao5zsk2j2l58ro",
-        ///         }));
-        ///     }
+        ///         ServiceId = "epsvc-3rel73uf2ewao5zsk2j2l58ro",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<VpcEndpointServicePermissionsResult> InvokeAsync(VpcEndpointServicePermissionsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<VpcEndpointServicePermissionsResult>("volcengine:privatelink/vpcEndpointServicePermissions:VpcEndpointServicePermissions", args ?? new VpcEndpointServicePermissionsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<VpcEndpointServicePermissionsResult>("volcengine:privatelink/vpcEndpointServicePermissions:VpcEndpointServicePermissions", args ?? new VpcEndpointServicePermissionsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of privatelink vpc endpoint service permissions
@@ -47,30 +46,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Privatelink.VpcEndpointServicePermissions.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Privatelink.VpcEndpointServicePermissions.InvokeAsync(new Volcengine.Privatelink.VpcEndpointServicePermissionsArgs
-        ///         {
-        ///             ServiceId = "epsvc-3rel73uf2ewao5zsk2j2l58ro",
-        ///         }));
-        ///     }
+        ///         ServiceId = "epsvc-3rel73uf2ewao5zsk2j2l58ro",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<VpcEndpointServicePermissionsResult> Invoke(VpcEndpointServicePermissionsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<VpcEndpointServicePermissionsResult>("volcengine:privatelink/vpcEndpointServicePermissions:VpcEndpointServicePermissions", args ?? new VpcEndpointServicePermissionsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<VpcEndpointServicePermissionsResult>("volcengine:privatelink/vpcEndpointServicePermissions:VpcEndpointServicePermissions", args ?? new VpcEndpointServicePermissionsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class VpcEndpointServicePermissionsArgs : Pulumi.InvokeArgs
+    public sealed class VpcEndpointServicePermissionsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// File name where to save data source results.
@@ -93,9 +91,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         public VpcEndpointServicePermissionsArgs()
         {
         }
+        public static new VpcEndpointServicePermissionsArgs Empty => new VpcEndpointServicePermissionsArgs();
     }
 
-    public sealed class VpcEndpointServicePermissionsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class VpcEndpointServicePermissionsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// File name where to save data source results.
@@ -118,6 +117,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         public VpcEndpointServicePermissionsInvokeArgs()
         {
         }
+        public static new VpcEndpointServicePermissionsInvokeArgs Empty => new VpcEndpointServicePermissionsInvokeArgs();
     }
 
 

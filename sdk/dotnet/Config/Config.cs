@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Immutable;
 
-namespace Volcengine.PulumiPackage.Volcengine
+namespace Volcengine.Pulumi.Volcengine
 {
     public static class Config
     {
@@ -30,7 +30,7 @@ namespace Volcengine.PulumiPackage.Volcengine
             }
         }
 
-        private static readonly Pulumi.Config __config = new Pulumi.Config("volcengine");
+        private static readonly global::Pulumi.Config __config = new global::Pulumi.Config("volcengine");
 
         private static readonly __Value<string?> _accessKey = new __Value<string?>(() => __config.Get("accessKey") ?? Utilities.GetEnv("VOLCENGINE_ACCESS_KEY"));
         /// <summary>

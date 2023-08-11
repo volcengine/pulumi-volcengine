@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultInstances = pulumi.output(volcengine.rds.Instances({
+ * const default = volcengine.rds.Instances({
  *     instanceId: "mysql-0fdd3bab2e7c",
- * }));
+ * });
  * ```
  */
 export function instances(args?: InstancesArgs, opts?: pulumi.InvokeOptions): Promise<InstancesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:rds/instances:Instances", {
         "createEndTime": args.createEndTime,
         "createStartTime": args.createStartTime,
@@ -121,9 +119,21 @@ export interface InstancesResult {
      */
     readonly zone?: string;
 }
-
+/**
+ * (Deprecated! Recommend use volcengine_rds_mysql_*** replace) Use this data source to query detailed information of rds instances
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.rds.Instances({
+ *     instanceId: "mysql-0fdd3bab2e7c",
+ * });
+ * ```
+ */
 export function instancesOutput(args?: InstancesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<InstancesResult> {
-    return pulumi.output(args).apply(a => instances(a, opts))
+    return pulumi.output(args).apply((a: any) => instances(a, opts))
 }
 
 /**

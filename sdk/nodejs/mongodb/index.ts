@@ -5,30 +5,86 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./accounts";
-export * from "./endpoint";
-export * from "./endpoints";
-export * from "./instance";
-export * from "./instanceParameter";
-export * from "./instanceParameterLogs";
-export * from "./instanceParameters";
-export * from "./instances";
-export * from "./mongoAllowList";
-export * from "./mongoAllowListAssociate";
-export * from "./mongoAllowLists";
-export * from "./regions";
-export * from "./specs";
-export * from "./sslState";
-export * from "./sslStates";
-export * from "./zones";
+export { AccountsArgs, AccountsResult, AccountsOutputArgs } from "./accounts";
+export const accounts: typeof import("./accounts").accounts = null as any;
+export const accountsOutput: typeof import("./accounts").accountsOutput = null as any;
+utilities.lazyLoad(exports, ["accounts","accountsOutput"], () => require("./accounts"));
 
-// Import resources to register:
-import { Endpoint } from "./endpoint";
-import { Instance } from "./instance";
-import { InstanceParameter } from "./instanceParameter";
-import { MongoAllowList } from "./mongoAllowList";
-import { MongoAllowListAssociate } from "./mongoAllowListAssociate";
-import { SslState } from "./sslState";
+export { EndpointArgs, EndpointState } from "./endpoint";
+export type Endpoint = import("./endpoint").Endpoint;
+export const Endpoint: typeof import("./endpoint").Endpoint = null as any;
+utilities.lazyLoad(exports, ["Endpoint"], () => require("./endpoint"));
+
+export { EndpointsArgs, EndpointsResult, EndpointsOutputArgs } from "./endpoints";
+export const endpoints: typeof import("./endpoints").endpoints = null as any;
+export const endpointsOutput: typeof import("./endpoints").endpointsOutput = null as any;
+utilities.lazyLoad(exports, ["endpoints","endpointsOutput"], () => require("./endpoints"));
+
+export { InstanceArgs, InstanceState } from "./instance";
+export type Instance = import("./instance").Instance;
+export const Instance: typeof import("./instance").Instance = null as any;
+utilities.lazyLoad(exports, ["Instance"], () => require("./instance"));
+
+export { InstanceParameterArgs, InstanceParameterState } from "./instanceParameter";
+export type InstanceParameter = import("./instanceParameter").InstanceParameter;
+export const InstanceParameter: typeof import("./instanceParameter").InstanceParameter = null as any;
+utilities.lazyLoad(exports, ["InstanceParameter"], () => require("./instanceParameter"));
+
+export { InstanceParameterLogsArgs, InstanceParameterLogsResult, InstanceParameterLogsOutputArgs } from "./instanceParameterLogs";
+export const instanceParameterLogs: typeof import("./instanceParameterLogs").instanceParameterLogs = null as any;
+export const instanceParameterLogsOutput: typeof import("./instanceParameterLogs").instanceParameterLogsOutput = null as any;
+utilities.lazyLoad(exports, ["instanceParameterLogs","instanceParameterLogsOutput"], () => require("./instanceParameterLogs"));
+
+export { InstanceParametersArgs, InstanceParametersResult, InstanceParametersOutputArgs } from "./instanceParameters";
+export const instanceParameters: typeof import("./instanceParameters").instanceParameters = null as any;
+export const instanceParametersOutput: typeof import("./instanceParameters").instanceParametersOutput = null as any;
+utilities.lazyLoad(exports, ["instanceParameters","instanceParametersOutput"], () => require("./instanceParameters"));
+
+export { InstancesArgs, InstancesResult, InstancesOutputArgs } from "./instances";
+export const instances: typeof import("./instances").instances = null as any;
+export const instancesOutput: typeof import("./instances").instancesOutput = null as any;
+utilities.lazyLoad(exports, ["instances","instancesOutput"], () => require("./instances"));
+
+export { MongoAllowListArgs, MongoAllowListState } from "./mongoAllowList";
+export type MongoAllowList = import("./mongoAllowList").MongoAllowList;
+export const MongoAllowList: typeof import("./mongoAllowList").MongoAllowList = null as any;
+utilities.lazyLoad(exports, ["MongoAllowList"], () => require("./mongoAllowList"));
+
+export { MongoAllowListAssociateArgs, MongoAllowListAssociateState } from "./mongoAllowListAssociate";
+export type MongoAllowListAssociate = import("./mongoAllowListAssociate").MongoAllowListAssociate;
+export const MongoAllowListAssociate: typeof import("./mongoAllowListAssociate").MongoAllowListAssociate = null as any;
+utilities.lazyLoad(exports, ["MongoAllowListAssociate"], () => require("./mongoAllowListAssociate"));
+
+export { MongoAllowListsArgs, MongoAllowListsResult, MongoAllowListsOutputArgs } from "./mongoAllowLists";
+export const mongoAllowLists: typeof import("./mongoAllowLists").mongoAllowLists = null as any;
+export const mongoAllowListsOutput: typeof import("./mongoAllowLists").mongoAllowListsOutput = null as any;
+utilities.lazyLoad(exports, ["mongoAllowLists","mongoAllowListsOutput"], () => require("./mongoAllowLists"));
+
+export { RegionsArgs, RegionsResult, RegionsOutputArgs } from "./regions";
+export const regions: typeof import("./regions").regions = null as any;
+export const regionsOutput: typeof import("./regions").regionsOutput = null as any;
+utilities.lazyLoad(exports, ["regions","regionsOutput"], () => require("./regions"));
+
+export { SpecsArgs, SpecsResult, SpecsOutputArgs } from "./specs";
+export const specs: typeof import("./specs").specs = null as any;
+export const specsOutput: typeof import("./specs").specsOutput = null as any;
+utilities.lazyLoad(exports, ["specs","specsOutput"], () => require("./specs"));
+
+export { SslStateArgs, SslStateState } from "./sslState";
+export type SslState = import("./sslState").SslState;
+export const SslState: typeof import("./sslState").SslState = null as any;
+utilities.lazyLoad(exports, ["SslState"], () => require("./sslState"));
+
+export { SslStatesArgs, SslStatesResult, SslStatesOutputArgs } from "./sslStates";
+export const sslStates: typeof import("./sslStates").sslStates = null as any;
+export const sslStatesOutput: typeof import("./sslStates").sslStatesOutput = null as any;
+utilities.lazyLoad(exports, ["sslStates","sslStatesOutput"], () => require("./sslStates"));
+
+export { ZonesArgs, ZonesResult, ZonesOutputArgs } from "./zones";
+export const zones: typeof import("./zones").zones = null as any;
+export const zonesOutput: typeof import("./zones").zonesOutput = null as any;
+utilities.lazyLoad(exports, ["zones","zonesOutput"], () => require("./zones"));
+
 
 const _module = {
     version: utilities.getVersion(),

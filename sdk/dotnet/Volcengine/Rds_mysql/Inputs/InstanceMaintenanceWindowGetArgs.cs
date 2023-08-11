@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql.Inputs
+namespace Volcengine.Pulumi.Volcengine.Rds_mysql.Inputs
 {
 
-    public sealed class InstanceMaintenanceWindowGetArgs : Pulumi.ResourceArgs
+    public sealed class InstanceMaintenanceWindowGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// DayKind of maintainable window. Value: Week. Month.
@@ -52,5 +52,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql.Inputs
         public InstanceMaintenanceWindowGetArgs()
         {
         }
+        public static new InstanceMaintenanceWindowGetArgs Empty => new InstanceMaintenanceWindowGetArgs();
     }
 }

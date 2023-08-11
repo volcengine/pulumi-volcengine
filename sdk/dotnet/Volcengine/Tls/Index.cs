@@ -8,67 +8,66 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls
+namespace Volcengine.Pulumi.Volcengine.Tls
 {
     /// <summary>
     /// Provides a resource to manage tls index
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Tls.Index("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Tls.Index("foo", new Volcengine.Tls.IndexArgs
+    ///         FullText = new Volcengine.Tls.Inputs.IndexFullTextArgs
     ///         {
-    ///             FullText = new Volcengine.Tls.Inputs.IndexFullTextArgs
+    ///             CaseSensitive = true,
+    ///             Delimiter = "!",
+    ///             IncludeChinese = false,
+    ///         },
+    ///         KeyValues = new[]
+    ///         {
+    ///             new Volcengine.Tls.Inputs.IndexKeyValueArgs
     ///             {
     ///                 CaseSensitive = true,
     ///                 Delimiter = "!",
     ///                 IncludeChinese = false,
-    ///             },
-    ///             KeyValues = 
-    ///             {
-    ///                 new Volcengine.Tls.Inputs.IndexKeyValueArgs
+    ///                 JsonKeys = new[]
     ///                 {
-    ///                     CaseSensitive = true,
-    ///                     Delimiter = "!",
-    ///                     IncludeChinese = false,
-    ///                     JsonKeys = 
+    ///                     new Volcengine.Tls.Inputs.IndexKeyValueJsonKeyArgs
     ///                     {
-    ///                         new Volcengine.Tls.Inputs.IndexKeyValueJsonKeyArgs
-    ///                         {
-    ///                             Key = "k2.k4",
-    ///                             ValueType = "text",
-    ///                         },
-    ///                         new Volcengine.Tls.Inputs.IndexKeyValueJsonKeyArgs
-    ///                         {
-    ///                             Key = "k3.k4",
-    ///                             ValueType = "long",
-    ///                         },
+    ///                         Key = "k2.k4",
+    ///                         ValueType = "text",
     ///                     },
-    ///                     Key = "k1",
-    ///                     SqlFlag = false,
-    ///                     ValueType = "json",
+    ///                     new Volcengine.Tls.Inputs.IndexKeyValueJsonKeyArgs
+    ///                     {
+    ///                         Key = "k3.k4",
+    ///                         ValueType = "long",
+    ///                     },
     ///                 },
-    ///                 new Volcengine.Tls.Inputs.IndexKeyValueArgs
-    ///                 {
-    ///                     CaseSensitive = true,
-    ///                     Delimiter = "!",
-    ///                     IncludeChinese = false,
-    ///                     Key = "k5",
-    ///                     SqlFlag = false,
-    ///                     ValueType = "text",
-    ///                 },
+    ///                 Key = "k1",
+    ///                 SqlFlag = false,
+    ///                 ValueType = "json",
     ///             },
-    ///             TopicId = "65d67d34-c5b4-4ec8-b3a9-175d3366****",
-    ///         });
-    ///     }
+    ///             new Volcengine.Tls.Inputs.IndexKeyValueArgs
+    ///             {
+    ///                 CaseSensitive = true,
+    ///                 Delimiter = "!",
+    ///                 IncludeChinese = false,
+    ///                 Key = "k5",
+    ///                 SqlFlag = false,
+    ///                 ValueType = "text",
+    ///             },
+    ///         },
+    ///         TopicId = "65d67d34-c5b4-4ec8-b3a9-175d3366****",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -80,7 +79,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:tls/index:Index")]
-    public partial class Index : Pulumi.CustomResource
+    public partial class Index : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The create time of the tls index.
@@ -157,7 +156,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         }
     }
 
-    public sealed class IndexArgs : Pulumi.ResourceArgs
+    public sealed class IndexArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The full text info of the tls index.
@@ -186,9 +185,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public IndexArgs()
         {
         }
+        public static new IndexArgs Empty => new IndexArgs();
     }
 
-    public sealed class IndexState : Pulumi.ResourceArgs
+    public sealed class IndexState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The create time of the tls index.
@@ -229,5 +229,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public IndexState()
         {
         }
+        public static new IndexState Empty => new IndexState();
     }
 }

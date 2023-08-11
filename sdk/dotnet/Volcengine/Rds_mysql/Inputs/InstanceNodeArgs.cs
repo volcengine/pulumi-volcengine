@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql.Inputs
+namespace Volcengine.Pulumi.Volcengine.Rds_mysql.Inputs
 {
 
-    public sealed class InstanceNodeArgs : Pulumi.ResourceArgs
+    public sealed class InstanceNodeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Node creation local time.
@@ -84,5 +84,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql.Inputs
         public InstanceNodeArgs()
         {
         }
+        public static new InstanceNodeArgs Empty => new InstanceNodeArgs();
     }
 }

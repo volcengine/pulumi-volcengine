@@ -70,6 +70,10 @@ func NewAccessKey(ctx *pulumi.Context,
 		args = &AccessKeyArgs{}
 	}
 
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"secret",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource AccessKey
 	err := ctx.RegisterResource("volcengine:iam/accessKey:AccessKey", name, args, &resource, opts...)

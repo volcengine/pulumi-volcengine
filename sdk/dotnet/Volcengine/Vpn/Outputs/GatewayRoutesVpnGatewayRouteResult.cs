@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpn.Outputs
+namespace Volcengine.Pulumi.Volcengine.Vpn.Outputs
 {
 
     [OutputType]

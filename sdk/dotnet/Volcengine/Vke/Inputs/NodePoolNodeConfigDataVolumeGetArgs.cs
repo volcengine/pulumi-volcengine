@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
+namespace Volcengine.Pulumi.Volcengine.Vke.Inputs
 {
 
-    public sealed class NodePoolNodeConfigDataVolumeGetArgs : Pulumi.ResourceArgs
+    public sealed class NodePoolNodeConfigDataVolumeGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The target mount directory of the disk. Must start with `/`.
@@ -34,5 +34,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
         public NodePoolNodeConfigDataVolumeGetArgs()
         {
         }
+        public static new NodePoolNodeConfigDataVolumeGetArgs Empty => new NodePoolNodeConfigDataVolumeGetArgs();
     }
 }

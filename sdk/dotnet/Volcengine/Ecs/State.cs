@@ -8,69 +8,74 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Ecs
+namespace Volcengine.Pulumi.Volcengine.Ecs
 {
     /// <summary>
     /// Provides a resource to manage ecs instance state
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Volcengine = Pulumi.Volcengine;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
-    ///     {
-    ///         var fooZones = Output.Create(Volcengine.Ecs.Zones.InvokeAsync());
-    ///         var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new Volcengine.Vpc.VpcArgs
-    ///         {
-    ///             VpcName = "acc-test-vpc",
-    ///             CidrBlock = "172.16.0.0/16",
-    ///         });
-    ///         var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new Volcengine.Vpc.SubnetArgs
-    ///         {
-    ///             SubnetName = "acc-test-subnet",
-    ///             CidrBlock = "172.16.0.0/24",
-    ///             ZoneId = fooZones.Apply(fooZones =&gt; fooZones.Zones?[0]?.Id),
-    ///             VpcId = fooVpc.Id,
-    ///         });
-    ///         var fooSecurityGroup = new Volcengine.Vpc.SecurityGroup("fooSecurityGroup", new Volcengine.Vpc.SecurityGroupArgs
-    ///         {
-    ///             SecurityGroupName = "acc-test-security-group",
-    ///             VpcId = fooVpc.Id,
-    ///         });
-    ///         var fooImages = Output.Create(Volcengine.Ecs.Images.InvokeAsync(new Volcengine.Ecs.ImagesArgs
-    ///         {
-    ///             OsType = "Linux",
-    ///             Visibility = "public",
-    ///             InstanceTypeId = "ecs.g1.large",
-    ///         }));
-    ///         var fooInstance = new Volcengine.Ecs.Instance("fooInstance", new Volcengine.Ecs.InstanceArgs
-    ///         {
-    ///             InstanceName = "acc-test-ecs",
-    ///             ImageId = fooImages.Apply(fooImages =&gt; fooImages.Images?[0]?.ImageId),
-    ///             InstanceType = "ecs.g1.large",
-    ///             Password = "93f0cb0614Aab12",
-    ///             InstanceChargeType = "PostPaid",
-    ///             SystemVolumeType = "ESSD_PL0",
-    ///             SystemVolumeSize = 40,
-    ///             SubnetId = fooSubnet.Id,
-    ///             SecurityGroupIds = 
-    ///             {
-    ///                 fooSecurityGroup.Id,
-    ///             },
-    ///         });
-    ///         var fooState = new Volcengine.Ecs.State("fooState", new Volcengine.Ecs.StateArgs
-    ///         {
-    ///             InstanceId = fooInstance.Id,
-    ///             Action = "Stop",
-    ///             StoppedMode = "KeepCharging",
-    ///         });
-    ///     }
+    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
     /// 
-    /// }
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
+    ///     {
+    ///         VpcName = "acc-test-vpc",
+    ///         CidrBlock = "172.16.0.0/16",
+    ///     });
+    /// 
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooSecurityGroup = new Volcengine.Vpc.SecurityGroup("fooSecurityGroup", new()
+    ///     {
+    ///         SecurityGroupName = "acc-test-security-group",
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooImages = Volcengine.Ecs.Images.Invoke(new()
+    ///     {
+    ///         OsType = "Linux",
+    ///         Visibility = "public",
+    ///         InstanceTypeId = "ecs.g1.large",
+    ///     });
+    /// 
+    ///     var fooInstance = new Volcengine.Ecs.Instance("fooInstance", new()
+    ///     {
+    ///         InstanceName = "acc-test-ecs",
+    ///         ImageId = fooImages.Apply(imagesResult =&gt; imagesResult.Images[0]?.ImageId),
+    ///         InstanceType = "ecs.g1.large",
+    ///         Password = "93f0cb0614Aab12",
+    ///         InstanceChargeType = "PostPaid",
+    ///         SystemVolumeType = "ESSD_PL0",
+    ///         SystemVolumeSize = 40,
+    ///         SubnetId = fooSubnet.Id,
+    ///         SecurityGroupIds = new[]
+    ///         {
+    ///             fooSecurityGroup.Id,
+    ///         },
+    ///     });
+    /// 
+    ///     var fooState = new Volcengine.Ecs.State("fooState", new()
+    ///     {
+    ///         InstanceId = fooInstance.Id,
+    ///         Action = "Stop",
+    ///         StoppedMode = "KeepCharging",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -82,7 +87,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:ecs/state:State")]
-    public partial class State : Pulumi.CustomResource
+    public partial class State : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
@@ -153,7 +158,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         }
     }
 
-    public sealed class StateArgs : Pulumi.ResourceArgs
+    public sealed class StateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
@@ -176,9 +181,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         public StateArgs()
         {
         }
+        public static new StateArgs Empty => new StateArgs();
     }
 
-    public sealed class StateState : Pulumi.ResourceArgs
+    public sealed class StateState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
@@ -207,5 +213,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         public StateState()
         {
         }
+        public static new StateState Empty => new StateState();
     }
 }

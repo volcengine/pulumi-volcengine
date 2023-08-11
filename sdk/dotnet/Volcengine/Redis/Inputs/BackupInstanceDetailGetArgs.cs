@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Redis.Inputs
+namespace Volcengine.Pulumi.Volcengine.Redis.Inputs
 {
 
-    public sealed class BackupInstanceDetailGetArgs : Pulumi.ResourceArgs
+    public sealed class BackupInstanceDetailGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Id of account.
@@ -142,5 +142,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis.Inputs
         public BackupInstanceDetailGetArgs()
         {
         }
+        public static new BackupInstanceDetailGetArgs Empty => new BackupInstanceDetailGetArgs();
     }
 }

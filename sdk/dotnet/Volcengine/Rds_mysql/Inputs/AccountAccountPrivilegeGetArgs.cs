@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql.Inputs
+namespace Volcengine.Pulumi.Volcengine.Rds_mysql.Inputs
 {
 
-    public sealed class AccountAccountPrivilegeGetArgs : Pulumi.ResourceArgs
+    public sealed class AccountAccountPrivilegeGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The privilege type of the account.
@@ -34,5 +34,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql.Inputs
         public AccountAccountPrivilegeGetArgs()
         {
         }
+        public static new AccountAccountPrivilegeGetArgs Empty => new AccountAccountPrivilegeGetArgs();
     }
 }

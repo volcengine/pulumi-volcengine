@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cen
+namespace Volcengine.Pulumi.Volcengine.Cen
 {
     public static class AttachInstances
     {
@@ -19,26 +19,25 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Cen.AttachInstances.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Cen.AttachInstances.InvokeAsync(new Volcengine.Cen.AttachInstancesArgs
-        ///         {
-        ///             CenId = "cen-2bzrl3srxsv0g2dx0efyoojn3",
-        ///         }));
-        ///     }
+        ///         CenId = "cen-2bzrl3srxsv0g2dx0efyoojn3",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<AttachInstancesResult> InvokeAsync(AttachInstancesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<AttachInstancesResult>("volcengine:cen/attachInstances:AttachInstances", args ?? new AttachInstancesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<AttachInstancesResult>("volcengine:cen/attachInstances:AttachInstances", args ?? new AttachInstancesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cen attach instances
@@ -47,30 +46,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Cen.AttachInstances.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Cen.AttachInstances.InvokeAsync(new Volcengine.Cen.AttachInstancesArgs
-        ///         {
-        ///             CenId = "cen-2bzrl3srxsv0g2dx0efyoojn3",
-        ///         }));
-        ///     }
+        ///         CenId = "cen-2bzrl3srxsv0g2dx0efyoojn3",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<AttachInstancesResult> Invoke(AttachInstancesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<AttachInstancesResult>("volcengine:cen/attachInstances:AttachInstances", args ?? new AttachInstancesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<AttachInstancesResult>("volcengine:cen/attachInstances:AttachInstances", args ?? new AttachInstancesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class AttachInstancesArgs : Pulumi.InvokeArgs
+    public sealed class AttachInstancesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// A cen ID.
@@ -105,9 +103,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         public AttachInstancesArgs()
         {
         }
+        public static new AttachInstancesArgs Empty => new AttachInstancesArgs();
     }
 
-    public sealed class AttachInstancesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class AttachInstancesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// A cen ID.
@@ -142,6 +141,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         public AttachInstancesInvokeArgs()
         {
         }
+        public static new AttachInstancesInvokeArgs Empty => new AttachInstancesInvokeArgs();
     }
 
 

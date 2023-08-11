@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,20 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = pulumi.output(volcengine.cr.Repositories({
- *     // access_levels = ["Private"]
- *     // namespaces = ["namespace*"]
+ * const foo = volcengine.cr.Repositories({
  *     names: ["repo*"],
  *     registry: "tf-1",
- * }));
+ * });
  * ```
  */
 export function repositories(args: RepositoriesArgs, opts?: pulumi.InvokeOptions): Promise<RepositoriesResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:cr/repositories:Repositories", {
         "accessLevels": args.accessLevels,
         "names": args.names,
@@ -84,9 +80,22 @@ export interface RepositoriesResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of cr repositories
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const foo = volcengine.cr.Repositories({
+ *     names: ["repo*"],
+ *     registry: "tf-1",
+ * });
+ * ```
+ */
 export function repositoriesOutput(args: RepositoriesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<RepositoriesResult> {
-    return pulumi.output(args).apply(a => repositories(a, opts))
+    return pulumi.output(args).apply((a: any) => repositories(a, opts))
 }
 
 /**

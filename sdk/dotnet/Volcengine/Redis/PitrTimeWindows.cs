@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Redis
+namespace Volcengine.Pulumi.Volcengine.Redis
 {
     public static class PitrTimeWindows
     {
         public static Task<PitrTimeWindowsResult> InvokeAsync(PitrTimeWindowsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<PitrTimeWindowsResult>("volcengine:redis/pitrTimeWindows:PitrTimeWindows", args ?? new PitrTimeWindowsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<PitrTimeWindowsResult>("volcengine:redis/pitrTimeWindows:PitrTimeWindows", args ?? new PitrTimeWindowsArgs(), options.WithDefaults());
 
         public static Output<PitrTimeWindowsResult> Invoke(PitrTimeWindowsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<PitrTimeWindowsResult>("volcengine:redis/pitrTimeWindows:PitrTimeWindows", args ?? new PitrTimeWindowsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<PitrTimeWindowsResult>("volcengine:redis/pitrTimeWindows:PitrTimeWindows", args ?? new PitrTimeWindowsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class PitrTimeWindowsArgs : Pulumi.InvokeArgs
+    public sealed class PitrTimeWindowsArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids", required: true)]
         private List<string>? _ids;
@@ -36,9 +36,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         public PitrTimeWindowsArgs()
         {
         }
+        public static new PitrTimeWindowsArgs Empty => new PitrTimeWindowsArgs();
     }
 
-    public sealed class PitrTimeWindowsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class PitrTimeWindowsInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids", required: true)]
         private InputList<string>? _ids;
@@ -54,6 +55,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         public PitrTimeWindowsInvokeArgs()
         {
         }
+        public static new PitrTimeWindowsInvokeArgs Empty => new PitrTimeWindowsInvokeArgs();
     }
 
 

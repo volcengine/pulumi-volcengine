@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultVpcEndpoints = pulumi.output(volcengine.privatelink.VpcEndpoints({
+ * const default = volcengine.privatelink.VpcEndpoints({
  *     ids: ["ep-3rel74u229dz45zsk2i6l****"],
- * }));
+ * });
  * ```
  */
 export function vpcEndpoints(args?: VpcEndpointsArgs, opts?: pulumi.InvokeOptions): Promise<VpcEndpointsResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:privatelink/vpcEndpoints:VpcEndpoints", {
         "endpointName": args.endpointName,
         "ids": args.ids,
@@ -106,9 +104,21 @@ export interface VpcEndpointsResult {
      */
     readonly vpcId?: string;
 }
-
+/**
+ * Use this data source to query detailed information of privatelink vpc endpoints
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.privatelink.VpcEndpoints({
+ *     ids: ["ep-3rel74u229dz45zsk2i6l****"],
+ * });
+ * ```
+ */
 export function vpcEndpointsOutput(args?: VpcEndpointsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<VpcEndpointsResult> {
-    return pulumi.output(args).apply(a => vpcEndpoints(a, opts))
+    return pulumi.output(args).apply((a: any) => vpcEndpoints(a, opts))
 }
 
 /**

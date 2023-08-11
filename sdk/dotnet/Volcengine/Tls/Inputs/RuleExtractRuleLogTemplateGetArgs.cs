@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
+namespace Volcengine.Pulumi.Volcengine.Tls.Inputs
 {
 
-    public sealed class RuleExtractRuleLogTemplateGetArgs : Pulumi.ResourceArgs
+    public sealed class RuleExtractRuleLogTemplateGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Log template content.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
         public RuleExtractRuleLogTemplateGetArgs()
         {
         }
+        public static new RuleExtractRuleLogTemplateGetArgs Empty => new RuleExtractRuleLogTemplateGetArgs();
     }
 }

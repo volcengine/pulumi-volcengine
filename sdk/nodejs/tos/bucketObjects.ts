@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,17 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultBucketObjects = pulumi.output(volcengine.tos.BucketObjects({
+ * const default = volcengine.tos.BucketObjects({
  *     bucketName: "test",
- * }));
+ * });
  * ```
  */
 export function bucketObjects(args: BucketObjectsArgs, opts?: pulumi.InvokeOptions): Promise<BucketObjectsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:tos/bucketObjects:BucketObjects", {
         "bucketName": args.bucketName,
         "nameRegex": args.nameRegex,
@@ -75,9 +73,21 @@ export interface BucketObjectsResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of tos objects
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.tos.BucketObjects({
+ *     bucketName: "test",
+ * });
+ * ```
+ */
 export function bucketObjectsOutput(args: BucketObjectsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<BucketObjectsResult> {
-    return pulumi.output(args).apply(a => bucketObjects(a, opts))
+    return pulumi.output(args).apply((a: any) => bucketObjects(a, opts))
 }
 
 /**

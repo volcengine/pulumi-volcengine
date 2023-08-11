@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
+namespace Volcengine.Pulumi.Volcengine.Tls.Inputs
 {
 
-    public sealed class IndexFullTextGetArgs : Pulumi.ResourceArgs
+    public sealed class IndexFullTextGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether the FullTextInfo is case sensitive.
@@ -34,5 +34,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
         public IndexFullTextGetArgs()
         {
         }
+        public static new IndexFullTextGetArgs Empty => new IndexFullTextGetArgs();
     }
 }

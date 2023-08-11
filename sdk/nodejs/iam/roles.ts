@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,16 +14,13 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultRoles = pulumi.output(volcengine.iam.Roles());
+ * const default = volcengine.iam.Roles({});
  * ```
  */
 export function roles(args?: RolesArgs, opts?: pulumi.InvokeOptions): Promise<RolesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:iam/roles:Roles", {
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
@@ -77,9 +75,19 @@ export interface RolesResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of iam roles
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.iam.Roles({});
+ * ```
+ */
 export function rolesOutput(args?: RolesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<RolesResult> {
-    return pulumi.output(args).apply(a => roles(a, opts))
+    return pulumi.output(args).apply((a: any) => roles(a, opts))
 }
 
 /**

@@ -11,6 +11,44 @@ import (
 )
 
 // Use this data source to query detailed information of ecs deployment sets
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// "fmt"
+//
+// "github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// "github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// var fooDeploymentSet []*ecs.DeploymentSet
+//
+//	for index := 0; index < 3; index++ {
+//	    key0 := index
+//	    val0 := index
+//
+// __res, err := ecs.NewDeploymentSet(ctx, fmt.Sprintf("fooDeploymentSet-%v", key0), &ecs.DeploymentSetArgs{
+// DeploymentSetName: pulumi.String(fmt.Sprintf("acc-test-ecs-ds-%v", val0)),
+// Description: pulumi.String("acc-test"),
+// Granularity: pulumi.String("switch"),
+// Strategy: pulumi.String("Availability"),
+// })
+// if err != nil {
+// return err
+// }
+// fooDeploymentSet = append(fooDeploymentSet, __res)
+// }
+// _ = ecs.DeploymentSetsOutput(ctx, ecs.DeploymentSetsOutputArgs{
+// Granularity: pulumi.String("switch"),
+// Ids: %!v(PANIC=Format method: fatal: A failure has occurred: unlowered splat expression @ #-functions-volcengine:ecs-deploymentSets:DeploymentSets.pp:12,17-39),
+// }, nil);
+// return nil
+// })
+// }
+// ```
 func DeploymentSets(ctx *pulumi.Context, args *DeploymentSetsArgs, opts ...pulumi.InvokeOption) (*DeploymentSetsResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv DeploymentSetsResult

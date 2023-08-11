@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql.Outputs
+namespace Volcengine.Pulumi.Volcengine.Rds_mysql.Outputs
 {
 
     [OutputType]

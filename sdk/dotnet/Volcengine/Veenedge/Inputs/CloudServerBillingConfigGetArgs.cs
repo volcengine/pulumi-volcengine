@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Veenedge.Inputs
+namespace Volcengine.Pulumi.Volcengine.Veenedge.Inputs
 {
 
-    public sealed class CloudServerBillingConfigGetArgs : Pulumi.ResourceArgs
+    public sealed class CloudServerBillingConfigGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The method of bandwidth billing. The value can be `MonthlyP95` or `DailyPeak`.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge.Inputs
         public CloudServerBillingConfigGetArgs()
         {
         }
+        public static new CloudServerBillingConfigGetArgs Empty => new CloudServerBillingConfigGetArgs();
     }
 }

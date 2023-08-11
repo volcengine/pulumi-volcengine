@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = pulumi.output(volcengine.cr.Namespaces({
+ * const foo = volcengine.cr.Namespaces({
  *     names: ["namespace-*"],
  *     registry: "tf-1",
- * }));
+ * });
  * ```
  */
 export function namespaces(args: NamespacesArgs, opts?: pulumi.InvokeOptions): Promise<NamespacesResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:cr/namespaces:Namespaces", {
         "names": args.names,
         "outputFile": args.outputFile,
@@ -70,9 +68,22 @@ export interface NamespacesResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of cr namespaces
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const foo = volcengine.cr.Namespaces({
+ *     names: ["namespace-*"],
+ *     registry: "tf-1",
+ * });
+ * ```
+ */
 export function namespacesOutput(args: NamespacesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<NamespacesResult> {
-    return pulumi.output(args).apply(a => namespaces(a, opts))
+    return pulumi.output(args).apply((a: any) => namespaces(a, opts))
 }
 
 /**

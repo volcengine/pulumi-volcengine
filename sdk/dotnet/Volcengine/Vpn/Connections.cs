@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpn
+namespace Volcengine.Pulumi.Volcengine.Vpn
 {
     public static class Connections
     {
@@ -19,29 +19,28 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpn
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vpn.Connections.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vpn.Connections.InvokeAsync(new Volcengine.Vpn.ConnectionsArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "vgc-2d5wwids8cdts58ozfe63k2uq",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "vgc-2d5wwids8cdts58ozfe63k2uq",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<ConnectionsResult> InvokeAsync(ConnectionsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<ConnectionsResult>("volcengine:vpn/connections:Connections", args ?? new ConnectionsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<ConnectionsResult>("volcengine:vpn/connections:Connections", args ?? new ConnectionsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of vpn connections
@@ -50,33 +49,32 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpn
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vpn.Connections.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vpn.Connections.InvokeAsync(new Volcengine.Vpn.ConnectionsArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "vgc-2d5wwids8cdts58ozfe63k2uq",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "vgc-2d5wwids8cdts58ozfe63k2uq",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<ConnectionsResult> Invoke(ConnectionsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<ConnectionsResult>("volcengine:vpn/connections:Connections", args ?? new ConnectionsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<ConnectionsResult>("volcengine:vpn/connections:Connections", args ?? new ConnectionsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class ConnectionsArgs : Pulumi.InvokeArgs
+    public sealed class ConnectionsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// An ID of customer gateway.
@@ -129,9 +127,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpn
         public ConnectionsArgs()
         {
         }
+        public static new ConnectionsArgs Empty => new ConnectionsArgs();
     }
 
-    public sealed class ConnectionsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class ConnectionsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// An ID of customer gateway.
@@ -184,6 +183,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpn
         public ConnectionsInvokeArgs()
         {
         }
+        public static new ConnectionsInvokeArgs Empty => new ConnectionsInvokeArgs();
     }
 
 

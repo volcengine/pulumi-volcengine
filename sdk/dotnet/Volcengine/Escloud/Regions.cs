@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Escloud
+namespace Volcengine.Pulumi.Volcengine.Escloud
 {
     public static class Regions
     {
@@ -19,23 +19,22 @@ namespace Volcengine.PulumiPackage.Volcengine.Escloud
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var @default = Output.Create(Volcengine.Escloud.Regions.InvokeAsync());
-        ///     }
+        ///     var @default = Volcengine.Escloud.Regions.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<RegionsResult> InvokeAsync(RegionsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<RegionsResult>("volcengine:escloud/regions:Regions", args ?? new RegionsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<RegionsResult>("volcengine:escloud/regions:Regions", args ?? new RegionsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of escloud regions
@@ -44,27 +43,26 @@ namespace Volcengine.PulumiPackage.Volcengine.Escloud
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var @default = Output.Create(Volcengine.Escloud.Regions.InvokeAsync());
-        ///     }
+        ///     var @default = Volcengine.Escloud.Regions.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<RegionsResult> Invoke(RegionsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<RegionsResult>("volcengine:escloud/regions:Regions", args ?? new RegionsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<RegionsResult>("volcengine:escloud/regions:Regions", args ?? new RegionsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class RegionsArgs : Pulumi.InvokeArgs
+    public sealed class RegionsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// File name where to save data source results.
@@ -75,9 +73,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Escloud
         public RegionsArgs()
         {
         }
+        public static new RegionsArgs Empty => new RegionsArgs();
     }
 
-    public sealed class RegionsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class RegionsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// File name where to save data source results.
@@ -88,6 +87,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Escloud
         public RegionsInvokeArgs()
         {
         }
+        public static new RegionsInvokeArgs Empty => new RegionsInvokeArgs();
     }
 
 

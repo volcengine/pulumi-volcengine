@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Clb
+namespace Volcengine.Pulumi.Volcengine.Clb
 {
     public static class Acls
     {
@@ -19,29 +19,28 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Clb.Acls.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Clb.Acls.InvokeAsync(new Volcengine.Clb.AclsArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "acl-3ti8n0rurx4bwbh9jzdy",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "acl-3ti8n0rurx4bwbh9jzdy",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<AclsResult> InvokeAsync(AclsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<AclsResult>("volcengine:clb/acls:Acls", args ?? new AclsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<AclsResult>("volcengine:clb/acls:Acls", args ?? new AclsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of acls
@@ -50,33 +49,32 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Clb.Acls.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Clb.Acls.InvokeAsync(new Volcengine.Clb.AclsArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "acl-3ti8n0rurx4bwbh9jzdy",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "acl-3ti8n0rurx4bwbh9jzdy",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<AclsResult> Invoke(AclsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<AclsResult>("volcengine:clb/acls:Acls", args ?? new AclsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<AclsResult>("volcengine:clb/acls:Acls", args ?? new AclsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class AclsArgs : Pulumi.InvokeArgs
+    public sealed class AclsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name of acl.
@@ -117,9 +115,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
         public AclsArgs()
         {
         }
+        public static new AclsArgs Empty => new AclsArgs();
     }
 
-    public sealed class AclsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class AclsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name of acl.
@@ -160,6 +159,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
         public AclsInvokeArgs()
         {
         }
+        public static new AclsInvokeArgs Empty => new AclsInvokeArgs();
     }
 
 

@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,22 +14,19 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultKafkaConsumers = pulumi.output(volcengine.tls.KafkaConsumers({
+ * const default = volcengine.tls.KafkaConsumers({
  *     ids: [
  *         "65d67d34-c5b4-4ec8-b3a9-175d33668b45",
  *         "cfb5c08b-0c7a-44fa-8971-8afc12f1b123",
  *         "edf051ed-3c46-49ba-9339-bea628fedc15",
  *     ],
- * }));
+ * });
  * ```
  */
 export function kafkaConsumers(args?: KafkaConsumersArgs, opts?: pulumi.InvokeOptions): Promise<KafkaConsumersResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:tls/kafkaConsumers:KafkaConsumers", {
         "ids": args.ids,
         "outputFile": args.outputFile,
@@ -68,9 +66,25 @@ export interface KafkaConsumersResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of tls kafka consumers
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.tls.KafkaConsumers({
+ *     ids: [
+ *         "65d67d34-c5b4-4ec8-b3a9-175d33668b45",
+ *         "cfb5c08b-0c7a-44fa-8971-8afc12f1b123",
+ *         "edf051ed-3c46-49ba-9339-bea628fedc15",
+ *     ],
+ * });
+ * ```
+ */
 export function kafkaConsumersOutput(args?: KafkaConsumersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<KafkaConsumersResult> {
-    return pulumi.output(args).apply(a => kafkaConsumers(a, opts))
+    return pulumi.output(args).apply((a: any) => kafkaConsumers(a, opts))
 }
 
 /**

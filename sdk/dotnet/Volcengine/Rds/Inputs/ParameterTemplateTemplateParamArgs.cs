@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds.Inputs
+namespace Volcengine.Pulumi.Volcengine.Rds.Inputs
 {
 
-    public sealed class ParameterTemplateTemplateParamArgs : Pulumi.ResourceArgs
+    public sealed class ParameterTemplateTemplateParamArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Parameter name.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds.Inputs
         public ParameterTemplateTemplateParamArgs()
         {
         }
+        public static new ParameterTemplateTemplateParamArgs Empty => new ParameterTemplateTemplateParamArgs();
     }
 }

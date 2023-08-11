@@ -5,16 +5,31 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./cluster";
-export * from "./clusterBind";
-export * from "./clusters";
-export * from "./workspace";
-export * from "./workspaces";
+export { ClusterArgs, ClusterState } from "./cluster";
+export type Cluster = import("./cluster").Cluster;
+export const Cluster: typeof import("./cluster").Cluster = null as any;
+utilities.lazyLoad(exports, ["Cluster"], () => require("./cluster"));
 
-// Import resources to register:
-import { Cluster } from "./cluster";
-import { ClusterBind } from "./clusterBind";
-import { Workspace } from "./workspace";
+export { ClusterBindArgs, ClusterBindState } from "./clusterBind";
+export type ClusterBind = import("./clusterBind").ClusterBind;
+export const ClusterBind: typeof import("./clusterBind").ClusterBind = null as any;
+utilities.lazyLoad(exports, ["ClusterBind"], () => require("./clusterBind"));
+
+export { ClustersArgs, ClustersResult, ClustersOutputArgs } from "./clusters";
+export const clusters: typeof import("./clusters").clusters = null as any;
+export const clustersOutput: typeof import("./clusters").clustersOutput = null as any;
+utilities.lazyLoad(exports, ["clusters","clustersOutput"], () => require("./clusters"));
+
+export { WorkspaceArgs, WorkspaceState } from "./workspace";
+export type Workspace = import("./workspace").Workspace;
+export const Workspace: typeof import("./workspace").Workspace = null as any;
+utilities.lazyLoad(exports, ["Workspace"], () => require("./workspace"));
+
+export { WorkspacesArgs, WorkspacesResult, WorkspacesOutputArgs } from "./workspaces";
+export const workspaces: typeof import("./workspaces").workspaces = null as any;
+export const workspacesOutput: typeof import("./workspaces").workspacesOutput = null as any;
+utilities.lazyLoad(exports, ["workspaces","workspacesOutput"], () => require("./workspaces"));
+
 
 const _module = {
     version: utilities.getVersion(),

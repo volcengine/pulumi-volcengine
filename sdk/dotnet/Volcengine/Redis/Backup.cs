@@ -8,27 +8,26 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Redis
+namespace Volcengine.Pulumi.Volcengine.Redis
 {
     /// <summary>
     /// Provides a resource to manage redis backup
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var @default = new Volcengine.Redis.Backup("default", new()
     ///     {
-    ///         var @default = new Volcengine.Redis.Backup("default", new Volcengine.Redis.BackupArgs
-    ///         {
-    ///             InstanceId = "redis-cnlfvrv4qye6u4lpa",
-    ///         });
-    ///     }
+    ///         InstanceId = "redis-cnlfvrv4qye6u4lpa",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -40,7 +39,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:redis/backup:Backup")]
-    public partial class Backup : Pulumi.CustomResource
+    public partial class Backup : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The id of backup point.
@@ -141,7 +140,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         }
     }
 
-    public sealed class BackupArgs : Pulumi.ResourceArgs
+    public sealed class BackupArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Id of instance to create backup.
@@ -152,9 +151,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         public BackupArgs()
         {
         }
+        public static new BackupArgs Empty => new BackupArgs();
     }
 
-    public sealed class BackupState : Pulumi.ResourceArgs
+    public sealed class BackupState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of backup point.
@@ -219,5 +219,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         public BackupState()
         {
         }
+        public static new BackupState Empty => new BackupState();
     }
 }

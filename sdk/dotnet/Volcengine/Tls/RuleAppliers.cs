@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls
+namespace Volcengine.Pulumi.Volcengine.Tls
 {
     public static class RuleAppliers
     {
@@ -19,26 +19,25 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Tls.RuleAppliers.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Tls.RuleAppliers.InvokeAsync(new Volcengine.Tls.RuleAppliersArgs
-        ///         {
-        ///             HostGroupId = "fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
-        ///         }));
-        ///     }
+        ///         HostGroupId = "fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<RuleAppliersResult> InvokeAsync(RuleAppliersArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<RuleAppliersResult>("volcengine:tls/ruleAppliers:RuleAppliers", args ?? new RuleAppliersArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<RuleAppliersResult>("volcengine:tls/ruleAppliers:RuleAppliers", args ?? new RuleAppliersArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of tls rule appliers
@@ -47,30 +46,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Tls.RuleAppliers.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Tls.RuleAppliers.InvokeAsync(new Volcengine.Tls.RuleAppliersArgs
-        ///         {
-        ///             HostGroupId = "fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
-        ///         }));
-        ///     }
+        ///         HostGroupId = "fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<RuleAppliersResult> Invoke(RuleAppliersInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<RuleAppliersResult>("volcengine:tls/ruleAppliers:RuleAppliers", args ?? new RuleAppliersInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<RuleAppliersResult>("volcengine:tls/ruleAppliers:RuleAppliers", args ?? new RuleAppliersInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class RuleAppliersArgs : Pulumi.InvokeArgs
+    public sealed class RuleAppliersArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The host group id.
@@ -87,9 +85,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public RuleAppliersArgs()
         {
         }
+        public static new RuleAppliersArgs Empty => new RuleAppliersArgs();
     }
 
-    public sealed class RuleAppliersInvokeArgs : Pulumi.InvokeArgs
+    public sealed class RuleAppliersInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The host group id.
@@ -106,6 +105,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public RuleAppliersInvokeArgs()
         {
         }
+        public static new RuleAppliersInvokeArgs Empty => new RuleAppliersInvokeArgs();
     }
 
 

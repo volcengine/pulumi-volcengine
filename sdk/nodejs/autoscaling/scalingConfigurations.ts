@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultScalingConfigurations = pulumi.output(volcengine.autoscaling.ScalingConfigurations({
+ * const default = volcengine.autoscaling.ScalingConfigurations({
  *     ids: ["scc-ybrurj4uw6gh9zecj327"],
- * }));
+ * });
  * ```
  */
 export function scalingConfigurations(args?: ScalingConfigurationsArgs, opts?: pulumi.InvokeOptions): Promise<ScalingConfigurationsResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:autoscaling/scalingConfigurations:ScalingConfigurations", {
         "ids": args.ids,
         "nameRegex": args.nameRegex,
@@ -85,9 +83,21 @@ export interface ScalingConfigurationsResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of scaling configurations
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.autoscaling.ScalingConfigurations({
+ *     ids: ["scc-ybrurj4uw6gh9zecj327"],
+ * });
+ * ```
+ */
 export function scalingConfigurationsOutput(args?: ScalingConfigurationsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ScalingConfigurationsResult> {
-    return pulumi.output(args).apply(a => scalingConfigurations(a, opts))
+    return pulumi.output(args).apply((a: any) => scalingConfigurations(a, opts))
 }
 
 /**

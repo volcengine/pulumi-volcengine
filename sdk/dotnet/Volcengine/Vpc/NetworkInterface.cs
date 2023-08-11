@@ -8,40 +8,39 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpc
+namespace Volcengine.Pulumi.Volcengine.Vpc
 {
     /// <summary>
     /// Provides a resource to manage network interface
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Vpc.NetworkInterface("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Vpc.NetworkInterface("foo", new Volcengine.Vpc.NetworkInterfaceArgs
+    ///         Description = "tf-test-up",
+    ///         NetworkInterfaceName = "tf-test-up",
+    ///         PortSecurityEnabled = false,
+    ///         PrimaryIpAddress = "192.168.5.253",
+    ///         PrivateIpAddresses = new[]
     ///         {
-    ///             Description = "tf-test-up",
-    ///             NetworkInterfaceName = "tf-test-up",
-    ///             PortSecurityEnabled = false,
-    ///             PrimaryIpAddress = "192.168.5.253",
-    ///             PrivateIpAddresses = 
-    ///             {
-    ///                 "192.168.5.2",
-    ///             },
-    ///             ProjectName = "default",
-    ///             SecurityGroupIds = 
-    ///             {
-    ///                 "sg-2fepz3c793g1s59gp67y21r34",
-    ///             },
-    ///             SubnetId = "subnet-2fe79j7c8o5c059gp68ksxr93",
-    ///         });
-    ///     }
+    ///             "192.168.5.2",
+    ///         },
+    ///         ProjectName = "default",
+    ///         SecurityGroupIds = new[]
+    ///         {
+    ///             "sg-2fepz3c793g1s59gp67y21r34",
+    ///         },
+    ///         SubnetId = "subnet-2fe79j7c8o5c059gp68ksxr93",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -53,7 +52,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vpc/networkInterface:NetworkInterface")]
-    public partial class NetworkInterface : Pulumi.CustomResource
+    public partial class NetworkInterface : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The description of the ENI.
@@ -166,7 +165,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         }
     }
 
-    public sealed class NetworkInterfaceArgs : Pulumi.ResourceArgs
+    public sealed class NetworkInterfaceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The description of the ENI.
@@ -249,9 +248,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public NetworkInterfaceArgs()
         {
         }
+        public static new NetworkInterfaceArgs Empty => new NetworkInterfaceArgs();
     }
 
-    public sealed class NetworkInterfaceState : Pulumi.ResourceArgs
+    public sealed class NetworkInterfaceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The description of the ENI.
@@ -340,5 +340,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public NetworkInterfaceState()
         {
         }
+        public static new NetworkInterfaceState Empty => new NetworkInterfaceState();
     }
 }

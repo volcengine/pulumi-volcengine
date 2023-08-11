@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpc
+namespace Volcengine.Pulumi.Volcengine.Vpc
 {
     public static class Ipv6Gateways
     {
@@ -19,29 +19,28 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vpc.Ipv6Gateways.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vpc.Ipv6Gateways.InvokeAsync(new Volcengine.Vpc.Ipv6GatewaysArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "ipv6gw-12bcapllb5ukg17q7y2sd3thx",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "ipv6gw-12bcapllb5ukg17q7y2sd3thx",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<Ipv6GatewaysResult> InvokeAsync(Ipv6GatewaysArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<Ipv6GatewaysResult>("volcengine:vpc/ipv6Gateways:Ipv6Gateways", args ?? new Ipv6GatewaysArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<Ipv6GatewaysResult>("volcengine:vpc/ipv6Gateways:Ipv6Gateways", args ?? new Ipv6GatewaysArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of vpc ipv6 gateways
@@ -50,33 +49,32 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vpc.Ipv6Gateways.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vpc.Ipv6Gateways.InvokeAsync(new Volcengine.Vpc.Ipv6GatewaysArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "ipv6gw-12bcapllb5ukg17q7y2sd3thx",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "ipv6gw-12bcapllb5ukg17q7y2sd3thx",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<Ipv6GatewaysResult> Invoke(Ipv6GatewaysInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<Ipv6GatewaysResult>("volcengine:vpc/ipv6Gateways:Ipv6Gateways", args ?? new Ipv6GatewaysInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<Ipv6GatewaysResult>("volcengine:vpc/ipv6Gateways:Ipv6Gateways", args ?? new Ipv6GatewaysInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class Ipv6GatewaysArgs : Pulumi.InvokeArgs
+    public sealed class Ipv6GatewaysArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private List<string>? _ids;
@@ -123,9 +121,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public Ipv6GatewaysArgs()
         {
         }
+        public static new Ipv6GatewaysArgs Empty => new Ipv6GatewaysArgs();
     }
 
-    public sealed class Ipv6GatewaysInvokeArgs : Pulumi.InvokeArgs
+    public sealed class Ipv6GatewaysInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private InputList<string>? _ids;
@@ -172,6 +171,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public Ipv6GatewaysInvokeArgs()
         {
         }
+        public static new Ipv6GatewaysInvokeArgs Empty => new Ipv6GatewaysInvokeArgs();
     }
 
 

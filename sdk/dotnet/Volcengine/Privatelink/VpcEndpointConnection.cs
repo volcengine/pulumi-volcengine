@@ -8,28 +8,27 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Privatelink
+namespace Volcengine.Pulumi.Volcengine.Privatelink
 {
     /// <summary>
     /// Provides a resource to manage privatelink vpc endpoint connection
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Privatelink.VpcEndpointConnection("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Privatelink.VpcEndpointConnection("foo", new Volcengine.Privatelink.VpcEndpointConnectionArgs
-    ///         {
-    ///             EndpointId = "ep-3rel74u229dz45zsk2i6l69qa",
-    ///             ServiceId = "epsvc-2byz5mykk9y4g2dx0efs4aqz3",
-    ///         });
-    ///     }
+    ///         EndpointId = "ep-3rel74u229dz45zsk2i6l69qa",
+    ///         ServiceId = "epsvc-2byz5mykk9y4g2dx0efs4aqz3",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -41,7 +40,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:privatelink/vpcEndpointConnection:VpcEndpointConnection")]
-    public partial class VpcEndpointConnection : Pulumi.CustomResource
+    public partial class VpcEndpointConnection : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The status of the connection.
@@ -136,7 +135,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         }
     }
 
-    public sealed class VpcEndpointConnectionArgs : Pulumi.ResourceArgs
+    public sealed class VpcEndpointConnectionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of the endpoint.
@@ -153,9 +152,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         public VpcEndpointConnectionArgs()
         {
         }
+        public static new VpcEndpointConnectionArgs Empty => new VpcEndpointConnectionArgs();
     }
 
-    public sealed class VpcEndpointConnectionState : Pulumi.ResourceArgs
+    public sealed class VpcEndpointConnectionState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The status of the connection.
@@ -214,5 +214,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         public VpcEndpointConnectionState()
         {
         }
+        public static new VpcEndpointConnectionState Empty => new VpcEndpointConnectionState();
     }
 }

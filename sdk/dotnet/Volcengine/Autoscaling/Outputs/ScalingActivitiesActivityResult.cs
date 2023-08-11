@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Autoscaling.Outputs
+namespace Volcengine.Pulumi.Volcengine.Autoscaling.Outputs
 {
 
     [OutputType]

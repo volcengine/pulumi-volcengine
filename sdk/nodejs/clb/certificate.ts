@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -11,7 +12,7 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.clb.Certificate("foo", {
  *     certificateName: "acc-test-certificate",
@@ -30,7 +31,8 @@ import * as utilities from "../utilities";
  * jY5x3SkFkHl3Hq9q2CKpQxUbCd7FXqg1wum/xj5GmqfSpNjHE3+jUkwbdrJMTrWP
  * rmRy3tQMWf0mixAo0QJBAN4IcZChanq8cZyNqqoNbxGm4hkxUmE0W4hxHmLC2CYZ
  * V4JpNm8dpi4CiMWLasF6TYlVMgX+aPxYRUWc/qqf1/Q=
- * -----END RSA PRIVATE KEY-----`,
+ * -----END RSA PRIVATE KEY-----
+ * `,
  *     projectName: "default",
  *     publicKey: `-----BEGIN CERTIFICATE-----
  * MIICWDCCAcGgAwIBAgIJAP7vOtjPtQIjMA0GCSqGSIb3DQEBCwUAMEUxCzAJBgNV
@@ -46,7 +48,8 @@ import * as utilities from "../utilities";
  * 5JRKrg7lYR/KlTuKHmozfyL9UER0/dpTSoqsCyt8yc1BbtAKUJWh09BujBE1H22f
  * lKvCAjhPmnNdfd/l9GrmAWNDWEDPLdUTkGSkKAScMpdS+mLmOBuYWgdnOtq3eQGf
  * t07tlBL+dtzrrohHpfLeuNyYb40g8VQdp3RRRQ==
- * -----END CERTIFICATE-----`,
+ * -----END CERTIFICATE-----
+ * `,
  *     tags: [{
  *         key: "k1",
  *         value: "v1",

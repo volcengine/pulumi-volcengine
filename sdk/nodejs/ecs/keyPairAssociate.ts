@@ -10,8 +10,8 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi from "@volcengine/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
  * const fooKeyPair = new volcengine.ecs.KeyPair("fooKeyPair", {
  *     keyPairName: "acc-test-key-name",
@@ -30,7 +30,7 @@ import * as utilities from "../utilities";
  * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
  *     subnetName: "acc-test-subnet",
  *     cidrBlock: "172.16.0.0/24",
- *     zoneId: fooZones.then(fooZones => fooZones.zones?[0]?.id),
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
  *     vpcId: fooVpc.id,
  * });
  * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
@@ -38,7 +38,7 @@ import * as utilities from "../utilities";
  *     securityGroupName: "acc-test-security-group",
  * });
  * const fooInstance = new volcengine.ecs.Instance("fooInstance", {
- *     imageId: fooImages.then(fooImages => fooImages.images?[0]?.imageId),
+ *     imageId: fooImages.then(fooImages => fooImages.images?.[0]?.imageId),
  *     instanceType: "ecs.g1.large",
  *     instanceName: "acc-test-ecs-name",
  *     password: "your password",

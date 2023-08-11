@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpc
+namespace Volcengine.Pulumi.Volcengine.Vpc
 {
     public static class SecurityGroupRules
     {
@@ -19,26 +19,25 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vpc.SecurityGroupRules.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vpc.SecurityGroupRules.InvokeAsync(new Volcengine.Vpc.SecurityGroupRulesArgs
-        ///         {
-        ///             SecurityGroupId = "sg-13f2nau7x93wg3n6nu3z5sxib",
-        ///         }));
-        ///     }
+        ///         SecurityGroupId = "sg-13f2nau7x93wg3n6nu3z5sxib",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<SecurityGroupRulesResult> InvokeAsync(SecurityGroupRulesArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<SecurityGroupRulesResult>("volcengine:vpc/securityGroupRules:SecurityGroupRules", args ?? new SecurityGroupRulesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<SecurityGroupRulesResult>("volcengine:vpc/securityGroupRules:SecurityGroupRules", args ?? new SecurityGroupRulesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of security group rules
@@ -47,30 +46,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vpc.SecurityGroupRules.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vpc.SecurityGroupRules.InvokeAsync(new Volcengine.Vpc.SecurityGroupRulesArgs
-        ///         {
-        ///             SecurityGroupId = "sg-13f2nau7x93wg3n6nu3z5sxib",
-        ///         }));
-        ///     }
+        ///         SecurityGroupId = "sg-13f2nau7x93wg3n6nu3z5sxib",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<SecurityGroupRulesResult> Invoke(SecurityGroupRulesInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<SecurityGroupRulesResult>("volcengine:vpc/securityGroupRules:SecurityGroupRules", args ?? new SecurityGroupRulesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<SecurityGroupRulesResult>("volcengine:vpc/securityGroupRules:SecurityGroupRules", args ?? new SecurityGroupRulesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class SecurityGroupRulesArgs : Pulumi.InvokeArgs
+    public sealed class SecurityGroupRulesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Cidr ip of egress/ingress Rule.
@@ -111,9 +109,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public SecurityGroupRulesArgs()
         {
         }
+        public static new SecurityGroupRulesArgs Empty => new SecurityGroupRulesArgs();
     }
 
-    public sealed class SecurityGroupRulesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class SecurityGroupRulesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Cidr ip of egress/ingress Rule.
@@ -154,6 +153,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public SecurityGroupRulesInvokeArgs()
         {
         }
+        public static new SecurityGroupRulesInvokeArgs Empty => new SecurityGroupRulesInvokeArgs();
     }
 
 

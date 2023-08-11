@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
+namespace Volcengine.Pulumi.Volcengine.Vke.Inputs
 {
 
-    public sealed class AddonsStatusInputArgs : Pulumi.ResourceArgs
+    public sealed class AddonsStatusInputArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The state condition in the current main state of the addon, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`,`Unknown`, `ClusterNotRunning`, `CrashLoopBackOff`, `SchedulingFailed`, `NameConflict`, `ResourceCleanupFailed`, `ClusterVersionUpgrading`.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
         public AddonsStatusInputArgs()
         {
         }
+        public static new AddonsStatusInputArgs Empty => new AddonsStatusInputArgs();
     }
 }

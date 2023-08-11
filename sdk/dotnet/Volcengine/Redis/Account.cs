@@ -8,31 +8,30 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Redis
+namespace Volcengine.Pulumi.Volcengine.Redis
 {
     /// <summary>
     /// Provides a resource to manage redis account
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Redis.Account("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Redis.Account("foo", new Volcengine.Redis.AccountArgs
-    ///         {
-    ///             AccountName = "test",
-    ///             Description = "test12345",
-    ///             InstanceId = "redis-cn0398aizj8cwmopx",
-    ///             Password = "1qaz!QAZ",
-    ///             RoleName = "ReadOnly",
-    ///         });
-    ///     }
+    ///         AccountName = "test",
+    ///         Description = "test12345",
+    ///         InstanceId = "redis-cn0398aizj8cwmopx",
+    ///         Password = "1qaz!QAZ",
+    ///         RoleName = "ReadOnly",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -44,7 +43,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:redis/account:Account")]
-    public partial class Account : Pulumi.CustomResource
+    public partial class Account : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Redis account name.
@@ -100,6 +99,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/volcengine",
+                AdditionalSecretOutputs =
+                {
+                    "password",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -121,7 +124,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         }
     }
 
-    public sealed class AccountArgs : Pulumi.ResourceArgs
+    public sealed class AccountArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Redis account name.
@@ -141,11 +144,21 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
 
+        [Input("password", required: true)]
+        private Input<string>? _password;
+
         /// <summary>
         /// The password of the redis account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
-        [Input("password", required: true)]
-        public Input<string> Password { get; set; } = null!;
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Role type, the valid value can be `Administrator`, `ReadWrite`, `ReadOnly`, `NotDangerous`.
@@ -156,9 +169,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         public AccountArgs()
         {
         }
+        public static new AccountArgs Empty => new AccountArgs();
     }
 
-    public sealed class AccountState : Pulumi.ResourceArgs
+    public sealed class AccountState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Redis account name.
@@ -178,11 +192,21 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
 
+        [Input("password")]
+        private Input<string>? _password;
+
         /// <summary>
         /// The password of the redis account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
-        [Input("password")]
-        public Input<string>? Password { get; set; }
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Role type, the valid value can be `Administrator`, `ReadWrite`, `ReadOnly`, `NotDangerous`.
@@ -193,5 +217,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         public AccountState()
         {
         }
+        public static new AccountState Empty => new AccountState();
     }
 }

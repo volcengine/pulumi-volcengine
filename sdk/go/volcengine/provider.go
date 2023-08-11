@@ -42,17 +42,25 @@ func NewProvider(ctx *pulumi.Context,
 		args = &ProviderArgs{}
 	}
 
-	if isZero(args.AccessKey) {
-		args.AccessKey = pulumi.StringPtr(getEnvOrDefault("", nil, "VOLCENGINE_ACCESS_KEY").(string))
+	if args.AccessKey == nil {
+		if d := getEnvOrDefault(nil, nil, "VOLCENGINE_ACCESS_KEY"); d != nil {
+			args.AccessKey = pulumi.StringPtr(d.(string))
+		}
 	}
-	if isZero(args.Endpoint) {
-		args.Endpoint = pulumi.StringPtr(getEnvOrDefault("", nil, "VOLCENGINE_ENDPOINT").(string))
+	if args.Endpoint == nil {
+		if d := getEnvOrDefault(nil, nil, "VOLCENGINE_ENDPOINT"); d != nil {
+			args.Endpoint = pulumi.StringPtr(d.(string))
+		}
 	}
-	if isZero(args.Region) {
-		args.Region = pulumi.StringPtr(getEnvOrDefault("", nil, "VOLCENGINE_REGION").(string))
+	if args.Region == nil {
+		if d := getEnvOrDefault(nil, nil, "VOLCENGINE_REGION"); d != nil {
+			args.Region = pulumi.StringPtr(d.(string))
+		}
 	}
-	if isZero(args.SecretKey) {
-		args.SecretKey = pulumi.StringPtr(getEnvOrDefault("", nil, "VOLCENGINE_SECRET_KEY").(string))
+	if args.SecretKey == nil {
+		if d := getEnvOrDefault(nil, nil, "VOLCENGINE_SECRET_KEY"); d != nil {
+			args.SecretKey = pulumi.StringPtr(d.(string))
+		}
 	}
 	opts = pkgResourceDefaultOpts(opts)
 	var resource Provider

@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds_v2.Inputs
+namespace Volcengine.Pulumi.Volcengine.Rds_v2.Inputs
 {
 
-    public sealed class RdsInstanceV2NodeInfoArgs : Pulumi.ResourceArgs
+    public sealed class RdsInstanceV2NodeInfoArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of the node.
@@ -41,5 +41,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_v2.Inputs
         public RdsInstanceV2NodeInfoArgs()
         {
         }
+        public static new RdsInstanceV2NodeInfoArgs Empty => new RdsInstanceV2NodeInfoArgs();
     }
 }

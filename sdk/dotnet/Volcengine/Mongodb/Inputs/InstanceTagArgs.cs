@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Mongodb.Inputs
+namespace Volcengine.Pulumi.Volcengine.Mongodb.Inputs
 {
 
-    public sealed class InstanceTagArgs : Pulumi.ResourceArgs
+    public sealed class InstanceTagArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Key of Tags.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb.Inputs
         public InstanceTagArgs()
         {
         }
+        public static new InstanceTagArgs Empty => new InstanceTagArgs();
     }
 }

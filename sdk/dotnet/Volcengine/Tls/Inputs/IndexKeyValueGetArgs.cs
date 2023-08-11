@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
+namespace Volcengine.Pulumi.Volcengine.Tls.Inputs
 {
 
-    public sealed class IndexKeyValueGetArgs : Pulumi.ResourceArgs
+    public sealed class IndexKeyValueGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether the value is case sensitive.
@@ -64,5 +64,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
         public IndexKeyValueGetArgs()
         {
         }
+        public static new IndexKeyValueGetArgs Empty => new IndexKeyValueGetArgs();
     }
 }

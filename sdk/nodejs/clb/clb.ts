@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -10,8 +11,8 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi from "@volcengine/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
  * const fooZones = volcengine.ecs.Zones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
@@ -21,7 +22,7 @@ import * as utilities from "../utilities";
  * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
  *     subnetName: "acc-test-subnet",
  *     cidrBlock: "172.16.0.0/24",
- *     zoneId: fooZones.then(fooZones => fooZones.zones?[0]?.id),
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
  *     vpcId: fooVpc.id,
  * });
  * const fooClb = new volcengine.clb.Clb("fooClb", {

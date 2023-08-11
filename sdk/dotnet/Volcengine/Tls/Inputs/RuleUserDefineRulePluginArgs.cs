@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
+namespace Volcengine.Pulumi.Volcengine.Tls.Inputs
 {
 
-    public sealed class RuleUserDefineRulePluginArgs : Pulumi.ResourceArgs
+    public sealed class RuleUserDefineRulePluginArgs : global::Pulumi.ResourceArgs
     {
         [Input("processors", required: true)]
         private InputList<string>? _processors;
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
         public RuleUserDefineRulePluginArgs()
         {
         }
+        public static new RuleUserDefineRulePluginArgs Empty => new RuleUserDefineRulePluginArgs();
     }
 }

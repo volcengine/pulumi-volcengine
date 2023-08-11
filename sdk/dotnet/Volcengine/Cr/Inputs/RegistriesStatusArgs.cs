@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cr.Inputs
+namespace Volcengine.Pulumi.Volcengine.Cr.Inputs
 {
 
-    public sealed class RegistriesStatusInputArgs : Pulumi.ResourceArgs
+    public sealed class RegistriesStatusInputArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The condition of registry.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr.Inputs
         public RegistriesStatusInputArgs()
         {
         }
+        public static new RegistriesStatusInputArgs Empty => new RegistriesStatusInputArgs();
     }
 }

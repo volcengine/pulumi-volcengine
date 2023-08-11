@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
+namespace Volcengine.Pulumi.Volcengine.Tls.Inputs
 {
 
-    public sealed class RuleUserDefineRuleGetArgs : Pulumi.ResourceArgs
+    public sealed class RuleUserDefineRuleGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// LogCollector extension configuration.
@@ -64,5 +64,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
         public RuleUserDefineRuleGetArgs()
         {
         }
+        public static new RuleUserDefineRuleGetArgs Empty => new RuleUserDefineRuleGetArgs();
     }
 }

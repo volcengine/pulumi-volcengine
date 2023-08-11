@@ -11,6 +11,118 @@ import (
 )
 
 // Use this data source to query detailed information of server group servers
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/clb"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooClb, err := clb.NewClb(ctx, "fooClb", &clb.ClbArgs{
+//				Type:             pulumi.String("public"),
+//				SubnetId:         fooSubnet.ID(),
+//				LoadBalancerSpec: pulumi.String("small_1"),
+//				Description:      pulumi.String("acc0Demo"),
+//				LoadBalancerName: pulumi.String("acc-test-create"),
+//				EipBillingConfig: &clb.ClbEipBillingConfigArgs{
+//					Isp:            pulumi.String("BGP"),
+//					EipBillingType: pulumi.String("PostPaidByBandwidth"),
+//					Bandwidth:      pulumi.Int(1),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooServerGroup, err := clb.NewServerGroup(ctx, "fooServerGroup", &clb.ServerGroupArgs{
+//				LoadBalancerId:  fooClb.ID(),
+//				ServerGroupName: pulumi.String("acc-test-create"),
+//				Description:     pulumi.String("hello demo11"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSecurityGroup, err := vpc.NewSecurityGroup(ctx, "fooSecurityGroup", &vpc.SecurityGroupArgs{
+//				VpcId:             fooVpc.ID(),
+//				SecurityGroupName: pulumi.String("acc-test-security-group"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooInstance, err := ecs.NewInstance(ctx, "fooInstance", &ecs.InstanceArgs{
+//				ImageId:            pulumi.String("image-ycjwwciuzy5pkh54xx8f"),
+//				InstanceType:       pulumi.String("ecs.c3i.large"),
+//				InstanceName:       pulumi.String("acc-test-ecs-name"),
+//				Password:           pulumi.String("93f0cb0614Aab12"),
+//				InstanceChargeType: pulumi.String("PostPaid"),
+//				SystemVolumeType:   pulumi.String("ESSD_PL0"),
+//				SystemVolumeSize:   pulumi.Int(40),
+//				SubnetId:           fooSubnet.ID(),
+//				SecurityGroupIds: pulumi.StringArray{
+//					fooSecurityGroup.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooServerGroupServer, err := clb.NewServerGroupServer(ctx, "fooServerGroupServer", &clb.ServerGroupServerArgs{
+//				ServerGroupId: fooServerGroup.ID(),
+//				InstanceId:    fooInstance.ID(),
+//				Type:          pulumi.String("ecs"),
+//				Weight:        pulumi.Int(100),
+//				Port:          pulumi.Int(80),
+//				Description:   pulumi.String("This is a acc test server"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = clb.ServerGroupServersOutput(ctx, clb.ServerGroupServersOutputArgs{
+//				Ids: pulumi.StringArray{
+//					pulumi.All(fooServerGroupServer.ID().ApplyT(func(id string) (pulumi.StringArray, error) {
+//						return pulumi.StringArray("TODO: call split"), nil
+//					}).(pulumi.StringArrayOutput), len(fooServerGroupServer.ID().ApplyT(func(id string) (pulumi.StringArray, error) {
+//						return pulumi.StringArray("TODO: call split"), nil
+//					}).(pulumi.StringArrayOutput))).ApplyT(func(_args []interface{}) (string, error) {
+//						split := _args[0].([]string)
+//						length := _args[1].(int)
+//						return "TODO: element", nil
+//					}).(pulumi.StringOutput),
+//				},
+//				ServerGroupId: fooServerGroup.ID(),
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
 func ServerGroupServers(ctx *pulumi.Context, args *ServerGroupServersArgs, opts ...pulumi.InvokeOption) (*ServerGroupServersResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv ServerGroupServersResult

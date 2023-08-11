@@ -10,11 +10,9 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.tls.KafkaConsumer("foo", {
- *     topicId: "cfb5c08b-0c7a-44fa-8971-8afc12f1b123",
- * });
+ * const foo = new volcengine.tls.KafkaConsumer("foo", {topicId: "cfb5c08b-0c7a-44fa-8971-8afc12f1b123"});
  * ```
  *
  * ## Import

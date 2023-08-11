@@ -8,28 +8,27 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Redis
+namespace Volcengine.Pulumi.Volcengine.Redis
 {
     /// <summary>
     /// Provides a resource to manage redis backup restore
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var @default = new Volcengine.Redis.BackupRestore("default", new()
     ///     {
-    ///         var @default = new Volcengine.Redis.BackupRestore("default", new Volcengine.Redis.BackupRestoreArgs
-    ///         {
-    ///             InstanceId = "redis-cnlfvrv4qye6u4lpa",
-    ///             TimePoint = "2023-04-14T02:51:51Z",
-    ///         });
-    ///     }
+    ///         InstanceId = "redis-cnlfvrv4qye6u4lpa",
+    ///         TimePoint = "2023-04-14T02:51:51Z",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -41,7 +40,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:redis/backupRestore:BackupRestore")]
-    public partial class BackupRestore : Pulumi.CustomResource
+    public partial class BackupRestore : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The type of backup. The value can be Full or Inc.
@@ -106,7 +105,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         }
     }
 
-    public sealed class BackupRestoreArgs : Pulumi.ResourceArgs
+    public sealed class BackupRestoreArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The type of backup. The value can be Full or Inc.
@@ -129,9 +128,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         public BackupRestoreArgs()
         {
         }
+        public static new BackupRestoreArgs Empty => new BackupRestoreArgs();
     }
 
-    public sealed class BackupRestoreState : Pulumi.ResourceArgs
+    public sealed class BackupRestoreState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The type of backup. The value can be Full or Inc.
@@ -154,5 +154,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         public BackupRestoreState()
         {
         }
+        public static new BackupRestoreState Empty => new BackupRestoreState();
     }
 }

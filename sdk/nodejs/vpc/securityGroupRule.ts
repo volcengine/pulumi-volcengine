@@ -10,7 +10,7 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
  * const g1test3 = new volcengine.vpc.SecurityGroupRule("g1test3", {
  *     cidrIp: "10.0.0.0/8",

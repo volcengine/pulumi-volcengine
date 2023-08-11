@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
+namespace Volcengine.Pulumi.Volcengine.Vke.Inputs
 {
 
-    public sealed class ClusterServicesConfigGetArgs : Pulumi.ResourceArgs
+    public sealed class ClusterServicesConfigGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("serviceCidrsv4s", required: true)]
         private InputList<string>? _serviceCidrsv4s;
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
         public ClusterServicesConfigGetArgs()
         {
         }
+        public static new ClusterServicesConfigGetArgs Empty => new ClusterServicesConfigGetArgs();
     }
 }

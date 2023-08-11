@@ -8,66 +8,65 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Escloud
+namespace Volcengine.Pulumi.Volcengine.Escloud
 {
     /// <summary>
     /// Provides a resource to manage escloud instance
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Escloud.Instance("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Escloud.Instance("foo", new Volcengine.Escloud.InstanceArgs
+    ///         InstanceConfiguration = new Volcengine.Escloud.Inputs.InstanceInstanceConfigurationArgs
     ///         {
-    ///             InstanceConfiguration = new Volcengine.Escloud.Inputs.InstanceInstanceConfigurationArgs
+    ///             AdminPassword = "xxxx",
+    ///             AdminUserName = "admin",
+    ///             ChargeType = "PostPaid",
+    ///             ConfigurationCode = "es.standard",
+    ///             EnableHttps = true,
+    ///             EnablePureMaster = true,
+    ///             ForceRestartAfterScale = false,
+    ///             InstanceName = "from-tf4",
+    ///             NodeSpecsAssigns = new[]
     ///             {
-    ///                 AdminPassword = "xxxx",
-    ///                 AdminUserName = "admin",
-    ///                 ChargeType = "PostPaid",
-    ///                 ConfigurationCode = "es.standard",
-    ///                 EnableHttps = true,
-    ///                 EnablePureMaster = true,
-    ///                 ForceRestartAfterScale = false,
-    ///                 InstanceName = "from-tf4",
-    ///                 NodeSpecsAssigns = 
+    ///                 new Volcengine.Escloud.Inputs.InstanceInstanceConfigurationNodeSpecsAssignArgs
     ///                 {
-    ///                     new Volcengine.Escloud.Inputs.InstanceInstanceConfigurationNodeSpecsAssignArgs
-    ///                     {
-    ///                         Number = 3,
-    ///                         ResourceSpecName = "es.x4.medium",
-    ///                         StorageSize = 100,
-    ///                         StorageSpecName = "es.volume.essd.pl0",
-    ///                         Type = "Master",
-    ///                     },
-    ///                     new Volcengine.Escloud.Inputs.InstanceInstanceConfigurationNodeSpecsAssignArgs
-    ///                     {
-    ///                         Number = 2,
-    ///                         ResourceSpecName = "es.x4.large",
-    ///                         StorageSize = 100,
-    ///                         StorageSpecName = "es.volume.essd.pl0",
-    ///                         Type = "Hot",
-    ///                     },
-    ///                     new Volcengine.Escloud.Inputs.InstanceInstanceConfigurationNodeSpecsAssignArgs
-    ///                     {
-    ///                         Number = 1,
-    ///                         ResourceSpecName = "kibana.x2.small",
-    ///                         Type = "Kibana",
-    ///                     },
+    ///                     Number = 3,
+    ///                     ResourceSpecName = "es.x4.medium",
+    ///                     StorageSize = 100,
+    ///                     StorageSpecName = "es.volume.essd.pl0",
+    ///                     Type = "Master",
     ///                 },
-    ///                 ProjectName = "default",
-    ///                 SubnetId = "subnet-2bz9vxrixqigw2dx0eextz50p",
-    ///                 Version = "V6_7",
-    ///                 ZoneNumber = 1,
+    ///                 new Volcengine.Escloud.Inputs.InstanceInstanceConfigurationNodeSpecsAssignArgs
+    ///                 {
+    ///                     Number = 2,
+    ///                     ResourceSpecName = "es.x4.large",
+    ///                     StorageSize = 100,
+    ///                     StorageSpecName = "es.volume.essd.pl0",
+    ///                     Type = "Hot",
+    ///                 },
+    ///                 new Volcengine.Escloud.Inputs.InstanceInstanceConfigurationNodeSpecsAssignArgs
+    ///                 {
+    ///                     Number = 1,
+    ///                     ResourceSpecName = "kibana.x2.small",
+    ///                     Type = "Kibana",
+    ///                 },
     ///             },
-    ///         });
-    ///     }
+    ///             ProjectName = "default",
+    ///             SubnetId = "subnet-2bz9vxrixqigw2dx0eextz50p",
+    ///             Version = "V6_7",
+    ///             ZoneNumber = 1,
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -79,7 +78,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Escloud
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:escloud/instance:Instance")]
-    public partial class Instance : Pulumi.CustomResource
+    public partial class Instance : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The configuration of ESCloud instance.
@@ -132,7 +131,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Escloud
         }
     }
 
-    public sealed class InstanceArgs : Pulumi.ResourceArgs
+    public sealed class InstanceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The configuration of ESCloud instance.
@@ -143,9 +142,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Escloud
         public InstanceArgs()
         {
         }
+        public static new InstanceArgs Empty => new InstanceArgs();
     }
 
-    public sealed class InstanceState : Pulumi.ResourceArgs
+    public sealed class InstanceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The configuration of ESCloud instance.
@@ -156,5 +156,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Escloud
         public InstanceState()
         {
         }
+        public static new InstanceState Empty => new InstanceState();
     }
 }

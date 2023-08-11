@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
+namespace Volcengine.Pulumi.Volcengine.Tls.Inputs
 {
 
-    public sealed class AlarmQueryRequestGetArgs : Pulumi.ResourceArgs
+    public sealed class AlarmQueryRequestGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The end time of the query range is relative to the current historical time. The unit is minutes. The value is not positive and must be greater than StartTimeOffset. The maximum value is 0 and the minimum value is -1440.
@@ -46,5 +46,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
         public AlarmQueryRequestGetArgs()
         {
         }
+        public static new AlarmQueryRequestGetArgs Empty => new AlarmQueryRequestGetArgs();
     }
 }

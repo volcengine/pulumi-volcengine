@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
+namespace Volcengine.Pulumi.Volcengine.Tls.Inputs
 {
 
-    public sealed class AlarmAlarmPeriodDetailGetArgs : Pulumi.ResourceArgs
+    public sealed class AlarmAlarmPeriodDetailGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Email alarm period, the unit is minutes, and the value range is 1~1440.
@@ -40,5 +40,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
         public AlarmAlarmPeriodDetailGetArgs()
         {
         }
+        public static new AlarmAlarmPeriodDetailGetArgs Empty => new AlarmAlarmPeriodDetailGetArgs();
     }
 }

@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultGatewayRoutes = pulumi.output(volcengine.vpn.GatewayRoutes({
+ * const default = volcengine.vpn.GatewayRoutes({
  *     ids: ["vgr-2byssu52dktts2dx0ee90r5hp]"],
- * }));
+ * });
  * ```
  */
 export function gatewayRoutes(args?: GatewayRoutesArgs, opts?: pulumi.InvokeOptions): Promise<GatewayRoutesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:vpn/gatewayRoutes:GatewayRoutes", {
         "destinationCidrBlock": args.destinationCidrBlock,
         "ids": args.ids,
@@ -91,9 +89,21 @@ export interface GatewayRoutesResult {
      */
     readonly vpnGatewayRoutes: outputs.vpn.GatewayRoutesVpnGatewayRoute[];
 }
-
+/**
+ * Use this data source to query detailed information of vpn gateway routes
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.vpn.GatewayRoutes({
+ *     ids: ["vgr-2byssu52dktts2dx0ee90r5hp]"],
+ * });
+ * ```
+ */
 export function gatewayRoutesOutput(args?: GatewayRoutesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GatewayRoutesResult> {
-    return pulumi.output(args).apply(a => gatewayRoutes(a, opts))
+    return pulumi.output(args).apply((a: any) => gatewayRoutes(a, opts))
 }
 
 /**

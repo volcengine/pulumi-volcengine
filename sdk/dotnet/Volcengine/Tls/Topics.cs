@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls
+namespace Volcengine.Pulumi.Volcengine.Tls
 {
     public static class Topics
     {
@@ -19,27 +19,26 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Tls.Topics.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Tls.Topics.InvokeAsync(new Volcengine.Tls.TopicsArgs
-        ///         {
-        ///             ProjectId = "e020c978-4f05-40e1-9167-0113d3ef****",
-        ///             TopicId = "edf051ed-3c46-49ba-9339-bea628fe****",
-        ///         }));
-        ///     }
+        ///         ProjectId = "e020c978-4f05-40e1-9167-0113d3ef****",
+        ///         TopicId = "edf051ed-3c46-49ba-9339-bea628fe****",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<TopicsResult> InvokeAsync(TopicsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<TopicsResult>("volcengine:tls/topics:Topics", args ?? new TopicsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<TopicsResult>("volcengine:tls/topics:Topics", args ?? new TopicsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of tls topics
@@ -48,31 +47,30 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Tls.Topics.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Tls.Topics.InvokeAsync(new Volcengine.Tls.TopicsArgs
-        ///         {
-        ///             ProjectId = "e020c978-4f05-40e1-9167-0113d3ef****",
-        ///             TopicId = "edf051ed-3c46-49ba-9339-bea628fe****",
-        ///         }));
-        ///     }
+        ///         ProjectId = "e020c978-4f05-40e1-9167-0113d3ef****",
+        ///         TopicId = "edf051ed-3c46-49ba-9339-bea628fe****",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<TopicsResult> Invoke(TopicsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<TopicsResult>("volcengine:tls/topics:Topics", args ?? new TopicsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<TopicsResult>("volcengine:tls/topics:Topics", args ?? new TopicsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class TopicsArgs : Pulumi.InvokeArgs
+    public sealed class TopicsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Whether to match accurately when filtering based on TopicName.
@@ -125,9 +123,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public TopicsArgs()
         {
         }
+        public static new TopicsArgs Empty => new TopicsArgs();
     }
 
-    public sealed class TopicsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class TopicsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Whether to match accurately when filtering based on TopicName.
@@ -180,6 +179,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public TopicsInvokeArgs()
         {
         }
+        public static new TopicsInvokeArgs Empty => new TopicsInvokeArgs();
     }
 
 

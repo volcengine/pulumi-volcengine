@@ -8,29 +8,28 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpn
+namespace Volcengine.Pulumi.Volcengine.Vpn
 {
     /// <summary>
     /// Provides a resource to manage vpn gateway route
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Vpn.GatewayRoute("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Vpn.GatewayRoute("foo", new Volcengine.Vpn.GatewayRouteArgs
-    ///         {
-    ///             DestinationCidrBlock = "192.168.0.0/20",
-    ///             NextHopId = "vgc-2d5ww3ww2lwcg58ozfe61ppc3",
-    ///             VpnGatewayId = "vgw-2c012ea9fm5mo2dx0efxg46qi",
-    ///         });
-    ///     }
+    ///         DestinationCidrBlock = "192.168.0.0/20",
+    ///         NextHopId = "vgc-2d5ww3ww2lwcg58ozfe61ppc3",
+    ///         VpnGatewayId = "vgw-2c012ea9fm5mo2dx0efxg46qi",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -42,7 +41,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpn
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vpn/gatewayRoute:GatewayRoute")]
-    public partial class GatewayRoute : Pulumi.CustomResource
+    public partial class GatewayRoute : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The create time of VPN gateway route.
@@ -131,7 +130,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpn
         }
     }
 
-    public sealed class GatewayRouteArgs : Pulumi.ResourceArgs
+    public sealed class GatewayRouteArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The destination cidr block of the VPN gateway route.
@@ -154,9 +153,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpn
         public GatewayRouteArgs()
         {
         }
+        public static new GatewayRouteArgs Empty => new GatewayRouteArgs();
     }
 
-    public sealed class GatewayRouteState : Pulumi.ResourceArgs
+    public sealed class GatewayRouteState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The create time of VPN gateway route.
@@ -203,5 +203,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpn
         public GatewayRouteState()
         {
         }
+        public static new GatewayRouteState Empty => new GatewayRouteState();
     }
 }

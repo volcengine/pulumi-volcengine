@@ -8,27 +8,26 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls
+namespace Volcengine.Pulumi.Volcengine.Tls
 {
     /// <summary>
     /// Provides a resource to manage tls kafka consumer
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Tls.KafkaConsumer("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Tls.KafkaConsumer("foo", new Volcengine.Tls.KafkaConsumerArgs
-    ///         {
-    ///             TopicId = "cfb5c08b-0c7a-44fa-8971-8afc12f1b123",
-    ///         });
-    ///     }
+    ///         TopicId = "cfb5c08b-0c7a-44fa-8971-8afc12f1b123",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -40,7 +39,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:tls/kafkaConsumer:KafkaConsumer")]
-    public partial class KafkaConsumer : Pulumi.CustomResource
+    public partial class KafkaConsumer : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Whether allow consume.
@@ -105,7 +104,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         }
     }
 
-    public sealed class KafkaConsumerArgs : Pulumi.ResourceArgs
+    public sealed class KafkaConsumerArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of topic.
@@ -116,9 +115,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public KafkaConsumerArgs()
         {
         }
+        public static new KafkaConsumerArgs Empty => new KafkaConsumerArgs();
     }
 
-    public sealed class KafkaConsumerState : Pulumi.ResourceArgs
+    public sealed class KafkaConsumerState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether allow consume.
@@ -141,5 +141,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public KafkaConsumerState()
         {
         }
+        public static new KafkaConsumerState Empty => new KafkaConsumerState();
     }
 }

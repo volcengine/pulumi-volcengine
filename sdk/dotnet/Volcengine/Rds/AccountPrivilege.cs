@@ -8,54 +8,54 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds
+namespace Volcengine.Pulumi.Volcengine.Rds
 {
     /// <summary>
     /// (Deprecated! Recommend use volcengine_rds_mysql_*** replace) Provides a resource to manage rds account privilege
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var appName = new Volcengine.Rds.Account("appName", new()
     ///     {
-    ///         var appName = new Volcengine.Rds.Account("appName", new Volcengine.Rds.AccountArgs
-    ///         {
-    ///             InstanceId = "mysql-0fdd3bab2e7c",
-    ///             AccountName = "terraform-test-app",
-    ///             AccountPassword = "Aatest123",
-    ///             AccountType = "Normal",
-    ///         });
-    ///         var foo = new Volcengine.Rds.AccountPrivilege("foo", new Volcengine.Rds.AccountPrivilegeArgs
-    ///         {
-    ///             InstanceId = "mysql-0fdd3bab2e7c",
-    ///             AccountName = appName.AccountName,
-    ///             DbPrivileges = 
-    ///             {
-    ///                 new Volcengine.Rds.Inputs.AccountPrivilegeDbPrivilegeArgs
-    ///                 {
-    ///                     DbName = "foo",
-    ///                     AccountPrivilege = "Custom",
-    ///                     AccountPrivilegeStr = "ALTER,ALTER ROUTINE,CREATE,CREATE ROUTINE,CREATE TEMPORARY TABLES",
-    ///                 },
-    ///                 new Volcengine.Rds.Inputs.AccountPrivilegeDbPrivilegeArgs
-    ///                 {
-    ///                     DbName = "bar",
-    ///                     AccountPrivilege = "DDLOnly",
-    ///                 },
-    ///                 new Volcengine.Rds.Inputs.AccountPrivilegeDbPrivilegeArgs
-    ///                 {
-    ///                     DbName = "demo",
-    ///                     AccountPrivilege = "ReadWrite",
-    ///                 },
-    ///             },
-    ///         });
-    ///     }
+    ///         InstanceId = "mysql-0fdd3bab2e7c",
+    ///         AccountName = "terraform-test-app",
+    ///         AccountPassword = "Aatest123",
+    ///         AccountType = "Normal",
+    ///     });
     /// 
-    /// }
+    ///     var foo = new Volcengine.Rds.AccountPrivilege("foo", new()
+    ///     {
+    ///         InstanceId = "mysql-0fdd3bab2e7c",
+    ///         AccountName = appName.AccountName,
+    ///         DbPrivileges = new[]
+    ///         {
+    ///             new Volcengine.Rds.Inputs.AccountPrivilegeDbPrivilegeArgs
+    ///             {
+    ///                 DbName = "foo",
+    ///                 AccountPrivilege = "Custom",
+    ///                 AccountPrivilegeStr = "ALTER,ALTER ROUTINE,CREATE,CREATE ROUTINE,CREATE TEMPORARY TABLES",
+    ///             },
+    ///             new Volcengine.Rds.Inputs.AccountPrivilegeDbPrivilegeArgs
+    ///             {
+    ///                 DbName = "bar",
+    ///                 AccountPrivilege = "DDLOnly",
+    ///             },
+    ///             new Volcengine.Rds.Inputs.AccountPrivilegeDbPrivilegeArgs
+    ///             {
+    ///                 DbName = "demo",
+    ///                 AccountPrivilege = "ReadWrite",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -67,7 +67,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:rds/accountPrivilege:AccountPrivilege")]
-    public partial class AccountPrivilege : Pulumi.CustomResource
+    public partial class AccountPrivilege : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Database account name. The rules are as follows:
@@ -137,7 +137,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds
         }
     }
 
-    public sealed class AccountPrivilegeArgs : Pulumi.ResourceArgs
+    public sealed class AccountPrivilegeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Database account name. The rules are as follows:
@@ -171,9 +171,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds
         public AccountPrivilegeArgs()
         {
         }
+        public static new AccountPrivilegeArgs Empty => new AccountPrivilegeArgs();
     }
 
-    public sealed class AccountPrivilegeState : Pulumi.ResourceArgs
+    public sealed class AccountPrivilegeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Database account name. The rules are as follows:
@@ -207,5 +208,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds
         public AccountPrivilegeState()
         {
         }
+        public static new AccountPrivilegeState Empty => new AccountPrivilegeState();
     }
 }

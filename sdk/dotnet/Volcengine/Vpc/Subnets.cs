@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpc
+namespace Volcengine.Pulumi.Volcengine.Vpc
 {
     public static class Subnets
     {
@@ -19,29 +19,28 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vpc.Subnets.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vpc.Subnets.InvokeAsync(new Volcengine.Vpc.SubnetsArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "subnet-274zsa5kfmj287fap8soo5e19",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "subnet-274zsa5kfmj287fap8soo5e19",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<SubnetsResult> InvokeAsync(SubnetsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<SubnetsResult>("volcengine:vpc/subnets:Subnets", args ?? new SubnetsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<SubnetsResult>("volcengine:vpc/subnets:Subnets", args ?? new SubnetsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of subnets
@@ -50,33 +49,32 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vpc.Subnets.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vpc.Subnets.InvokeAsync(new Volcengine.Vpc.SubnetsArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "subnet-274zsa5kfmj287fap8soo5e19",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "subnet-274zsa5kfmj287fap8soo5e19",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<SubnetsResult> Invoke(SubnetsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<SubnetsResult>("volcengine:vpc/subnets:Subnets", args ?? new SubnetsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<SubnetsResult>("volcengine:vpc/subnets:Subnets", args ?? new SubnetsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class SubnetsArgs : Pulumi.InvokeArgs
+    public sealed class SubnetsArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private List<string>? _ids;
@@ -129,9 +127,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public SubnetsArgs()
         {
         }
+        public static new SubnetsArgs Empty => new SubnetsArgs();
     }
 
-    public sealed class SubnetsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class SubnetsInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private InputList<string>? _ids;
@@ -184,6 +183,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public SubnetsInvokeArgs()
         {
         }
+        public static new SubnetsInvokeArgs Empty => new SubnetsInvokeArgs();
     }
 
 

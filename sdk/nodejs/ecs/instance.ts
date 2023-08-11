@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -10,8 +11,8 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi from "@volcengine/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
  * const fooZones = volcengine.ecs.Zones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
@@ -21,7 +22,7 @@ import * as utilities from "../utilities";
  * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
  *     subnetName: "acc-test-subnet",
  *     cidrBlock: "172.16.0.0/24",
- *     zoneId: fooZones.then(fooZones => fooZones.zones?[0]?.id),
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
  *     vpcId: fooVpc.id,
  * });
  * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
@@ -37,7 +38,7 @@ import * as utilities from "../utilities";
  *     instanceName: "acc-test-ecs",
  *     description: "acc-test",
  *     hostName: "tf-acc-test",
- *     imageId: fooImages.then(fooImages => fooImages.images?[0]?.imageId),
+ *     imageId: fooImages.then(fooImages => fooImages.images?.[0]?.imageId),
  *     instanceType: "ecs.g1.large",
  *     password: "93f0cb0614Aab12",
  *     instanceChargeType: "PostPaid",
@@ -378,7 +379,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["ipv6Addresses"] = args ? args.ipv6Addresses : undefined;
             resourceInputs["keepImageCredential"] = args ? args.keepImageCredential : undefined;
             resourceInputs["keyPairName"] = args ? args.keyPairName : undefined;
-            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["period"] = args ? args.period : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["secondaryNetworkInterfaces"] = args ? args.secondaryNetworkInterfaces : undefined;
@@ -409,6 +410,8 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["vpcId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["password"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Instance.__pulumiType, name, resourceInputs, opts);
     }
 }

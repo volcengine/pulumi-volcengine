@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpc
+namespace Volcengine.Pulumi.Volcengine.Vpc
 {
     public static class Vpcs
     {
@@ -19,29 +19,28 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vpc.Vpcs.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vpc.Vpcs.InvokeAsync(new Volcengine.Vpc.VpcsArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "vpc-mizl7m1kqccg5smt1bdpijuj",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "vpc-mizl7m1kqccg5smt1bdpijuj",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<VpcsResult> InvokeAsync(VpcsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<VpcsResult>("volcengine:vpc/vpcs:Vpcs", args ?? new VpcsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<VpcsResult>("volcengine:vpc/vpcs:Vpcs", args ?? new VpcsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of vpcs
@@ -50,33 +49,32 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vpc.Vpcs.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vpc.Vpcs.InvokeAsync(new Volcengine.Vpc.VpcsArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "vpc-mizl7m1kqccg5smt1bdpijuj",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "vpc-mizl7m1kqccg5smt1bdpijuj",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<VpcsResult> Invoke(VpcsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<VpcsResult>("volcengine:vpc/vpcs:Vpcs", args ?? new VpcsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<VpcsResult>("volcengine:vpc/vpcs:Vpcs", args ?? new VpcsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class VpcsArgs : Pulumi.InvokeArgs
+    public sealed class VpcsArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private List<string>? _ids;
@@ -129,9 +127,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public VpcsArgs()
         {
         }
+        public static new VpcsArgs Empty => new VpcsArgs();
     }
 
-    public sealed class VpcsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class VpcsInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private InputList<string>? _ids;
@@ -184,6 +183,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public VpcsInvokeArgs()
         {
         }
+        public static new VpcsInvokeArgs Empty => new VpcsInvokeArgs();
     }
 
 

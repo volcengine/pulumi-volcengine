@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
+namespace Volcengine.Pulumi.Volcengine.Vke.Inputs
 {
 
-    public sealed class ClusterLoggingConfigArgs : Pulumi.ResourceArgs
+    public sealed class ClusterLoggingConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The TLS log item ID of the collection target.
@@ -34,5 +34,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
         public ClusterLoggingConfigArgs()
         {
         }
+        public static new ClusterLoggingConfigArgs Empty => new ClusterLoggingConfigArgs();
     }
 }

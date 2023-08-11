@@ -8,111 +8,110 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke
+namespace Volcengine.Pulumi.Volcengine.Vke
 {
     /// <summary>
     /// Provides a resource to manage vke default node pool
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var @default = new Volcengine.Vke.DefaultNodePool("default", new()
     ///     {
-    ///         var @default = new Volcengine.Vke.DefaultNodePool("default", new Volcengine.Vke.DefaultNodePoolArgs
+    ///         ClusterId = "ccc2umdnqtoflv91lqtq0",
+    ///         Instances = new[]
     ///         {
-    ///             ClusterId = "ccc2umdnqtoflv91lqtq0",
-    ///             Instances = 
+    ///             new Volcengine.Vke.Inputs.DefaultNodePoolInstanceArgs
     ///             {
-    ///                 new Volcengine.Vke.Inputs.DefaultNodePoolInstanceArgs
+    ///                 AdditionalContainerStorageEnabled = false,
+    ///                 InstanceId = "i-ybvza90ohwexzk8emaa3",
+    ///                 KeepInstanceName = false,
+    ///             },
+    ///             new Volcengine.Vke.Inputs.DefaultNodePoolInstanceArgs
+    ///             {
+    ///                 AdditionalContainerStorageEnabled = true,
+    ///                 ContainerStoragePath = "/",
+    ///                 InstanceId = "i-ybvza90ohxexzkm4zihf",
+    ///                 KeepInstanceName = false,
+    ///             },
+    ///         },
+    ///         KubernetesConfig = new Volcengine.Vke.Inputs.DefaultNodePoolKubernetesConfigArgs
+    ///         {
+    ///             Cordon = true,
+    ///             Labels = new[]
+    ///             {
+    ///                 new Volcengine.Vke.Inputs.DefaultNodePoolKubernetesConfigLabelArgs
     ///                 {
-    ///                     AdditionalContainerStorageEnabled = false,
-    ///                     InstanceId = "i-ybvza90ohwexzk8emaa3",
-    ///                     KeepInstanceName = false,
+    ///                     Key = "aa",
+    ///                     Value = "bb",
     ///                 },
-    ///                 new Volcengine.Vke.Inputs.DefaultNodePoolInstanceArgs
+    ///                 new Volcengine.Vke.Inputs.DefaultNodePoolKubernetesConfigLabelArgs
     ///                 {
-    ///                     AdditionalContainerStorageEnabled = true,
-    ///                     ContainerStoragePath = "/",
-    ///                     InstanceId = "i-ybvza90ohxexzkm4zihf",
-    ///                     KeepInstanceName = false,
+    ///                     Key = "cccc",
+    ///                     Value = "dddd",
     ///                 },
     ///             },
-    ///             KubernetesConfig = new Volcengine.Vke.Inputs.DefaultNodePoolKubernetesConfigArgs
+    ///             Taints = new[]
     ///             {
-    ///                 Cordon = true,
-    ///                 Labels = 
+    ///                 new Volcengine.Vke.Inputs.DefaultNodePoolKubernetesConfigTaintArgs
     ///                 {
-    ///                     new Volcengine.Vke.Inputs.DefaultNodePoolKubernetesConfigLabelArgs
-    ///                     {
-    ///                         Key = "aa",
-    ///                         Value = "bb",
-    ///                     },
-    ///                     new Volcengine.Vke.Inputs.DefaultNodePoolKubernetesConfigLabelArgs
-    ///                     {
-    ///                         Key = "cccc",
-    ///                         Value = "dddd",
-    ///                     },
+    ///                     Effect = "NoSchedule",
+    ///                     Key = "cccc",
+    ///                     Value = "dddd",
     ///                 },
-    ///                 Taints = 
+    ///                 new Volcengine.Vke.Inputs.DefaultNodePoolKubernetesConfigTaintArgs
     ///                 {
-    ///                     new Volcengine.Vke.Inputs.DefaultNodePoolKubernetesConfigTaintArgs
-    ///                     {
-    ///                         Effect = "NoSchedule",
-    ///                         Key = "cccc",
-    ///                         Value = "dddd",
-    ///                     },
-    ///                     new Volcengine.Vke.Inputs.DefaultNodePoolKubernetesConfigTaintArgs
-    ///                     {
-    ///                         Effect = "NoSchedule",
-    ///                         Key = "aa11",
-    ///                         Value = "111",
-    ///                     },
+    ///                     Effect = "NoSchedule",
+    ///                     Key = "aa11",
+    ///                     Value = "111",
     ///                 },
     ///             },
-    ///             NodeConfig = new Volcengine.Vke.Inputs.DefaultNodePoolNodeConfigArgs
+    ///         },
+    ///         NodeConfig = new Volcengine.Vke.Inputs.DefaultNodePoolNodeConfigArgs
+    ///         {
+    ///             EcsTags = new[]
     ///             {
-    ///                 EcsTags = 
+    ///                 new Volcengine.Vke.Inputs.DefaultNodePoolNodeConfigEcsTagArgs
     ///                 {
-    ///                     new Volcengine.Vke.Inputs.DefaultNodePoolNodeConfigEcsTagArgs
-    ///                     {
-    ///                         Key = "ecs_k1",
-    ///                         Value = "ecs_v1",
-    ///                     },
-    ///                 },
-    ///                 InitializeScript = "ISMvYmluL2Jhc2gKZWNobyAx",
-    ///                 Security = new Volcengine.Vke.Inputs.DefaultNodePoolNodeConfigSecurityArgs
-    ///                 {
-    ///                     Login = new Volcengine.Vke.Inputs.DefaultNodePoolNodeConfigSecurityLoginArgs
-    ///                     {
-    ///                         Password = "amw4WTdVcTRJVVFsUXpVTw==",
-    ///                     },
-    ///                     SecurityGroupIds = 
-    ///                     {
-    ///                         "sg-2d6t6djr2wge858ozfczv41xq",
-    ///                         "sg-3re6v4lz76yv45zsk2hjvvwcj",
-    ///                     },
-    ///                     SecurityStrategies = 
-    ///                     {
-    ///                         "Hids",
-    ///                     },
+    ///                     Key = "ecs_k1",
+    ///                     Value = "ecs_v1",
     ///                 },
     ///             },
-    ///             Tags = 
+    ///             InitializeScript = "ISMvYmluL2Jhc2gKZWNobyAx",
+    ///             Security = new Volcengine.Vke.Inputs.DefaultNodePoolNodeConfigSecurityArgs
     ///             {
-    ///                 new Volcengine.Vke.Inputs.DefaultNodePoolTagArgs
+    ///                 Login = new Volcengine.Vke.Inputs.DefaultNodePoolNodeConfigSecurityLoginArgs
     ///                 {
-    ///                     Key = "k1",
-    ///                     Value = "v1",
+    ///                     Password = "amw4WTdVcTRJVVFsUXpVTw==",
+    ///                 },
+    ///                 SecurityGroupIds = new[]
+    ///                 {
+    ///                     "sg-2d6t6djr2wge858ozfczv41xq",
+    ///                     "sg-3re6v4lz76yv45zsk2hjvvwcj",
+    ///                 },
+    ///                 SecurityStrategies = new[]
+    ///                 {
+    ///                     "Hids",
     ///                 },
     ///             },
-    ///         });
-    ///     }
+    ///         },
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Vke.Inputs.DefaultNodePoolTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -124,7 +123,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vke/defaultNodePool:DefaultNodePool")]
-    public partial class DefaultNodePool : Pulumi.CustomResource
+    public partial class DefaultNodePool : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The ClusterId of NodePool.
@@ -207,7 +206,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         }
     }
 
-    public sealed class DefaultNodePoolArgs : Pulumi.ResourceArgs
+    public sealed class DefaultNodePoolArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ClusterId of NodePool.
@@ -254,9 +253,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         public DefaultNodePoolArgs()
         {
         }
+        public static new DefaultNodePoolArgs Empty => new DefaultNodePoolArgs();
     }
 
-    public sealed class DefaultNodePoolState : Pulumi.ResourceArgs
+    public sealed class DefaultNodePoolState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ClusterId of NodePool.
@@ -309,5 +309,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         public DefaultNodePoolState()
         {
         }
+        public static new DefaultNodePoolState Empty => new DefaultNodePoolState();
     }
 }

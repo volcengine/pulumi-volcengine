@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,7 +14,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultScalingInstances = pulumi.output(volcengine.autoscaling.ScalingInstances({
+ * const default = volcengine.autoscaling.ScalingInstances({
  *     ids: [
  *         "i-ybzl4u5uogl8j07hgcbg",
  *         "i-ybyncrcpzpgh9zmlct0w",
@@ -22,15 +23,12 @@ import * as utilities from "../utilities";
  *     scalingConfigurationId: "scc-ybtawzucw95pkgon0wst",
  *     scalingGroupId: "scg-ybtawtznszgh9yv8agcp",
  *     status: "InService",
- * }));
+ * });
  * ```
  */
 export function scalingInstances(args: ScalingInstancesArgs, opts?: pulumi.InvokeOptions): Promise<ScalingInstancesResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:autoscaling/scalingInstances:ScalingInstances", {
         "creationType": args.creationType,
         "ids": args.ids,
@@ -106,9 +104,28 @@ export interface ScalingInstancesResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of scaling instances
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.autoscaling.ScalingInstances({
+ *     ids: [
+ *         "i-ybzl4u5uogl8j07hgcbg",
+ *         "i-ybyncrcpzpgh9zmlct0w",
+ *         "i-ybyncrcpzogh9z4ax9tv",
+ *     ],
+ *     scalingConfigurationId: "scc-ybtawzucw95pkgon0wst",
+ *     scalingGroupId: "scg-ybtawtznszgh9yv8agcp",
+ *     status: "InService",
+ * });
+ * ```
+ */
 export function scalingInstancesOutput(args: ScalingInstancesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ScalingInstancesResult> {
-    return pulumi.output(args).apply(a => scalingInstances(a, opts))
+    return pulumi.output(args).apply((a: any) => scalingInstances(a, opts))
 }
 
 /**

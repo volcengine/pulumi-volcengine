@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -53,7 +53,7 @@ import (
 type Address struct {
 	pulumi.CustomResourceState
 
-	// The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
+	// The peek bandwidth of the EIP.
 	Bandwidth pulumi.IntOutput `pulumi:"bandwidth"`
 	// The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
 	BillingType pulumi.StringOutput `pulumi:"billingType"`
@@ -114,7 +114,7 @@ func GetAddress(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Address resources.
 type addressState struct {
-	// The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
+	// The peek bandwidth of the EIP.
 	Bandwidth *int `pulumi:"bandwidth"`
 	// The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
 	BillingType *string `pulumi:"billingType"`
@@ -143,7 +143,7 @@ type addressState struct {
 }
 
 type AddressState struct {
-	// The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
+	// The peek bandwidth of the EIP.
 	Bandwidth pulumi.IntPtrInput
 	// The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
 	BillingType pulumi.StringPtrInput
@@ -176,7 +176,7 @@ func (AddressState) ElementType() reflect.Type {
 }
 
 type addressArgs struct {
-	// The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
+	// The peek bandwidth of the EIP.
 	Bandwidth *int `pulumi:"bandwidth"`
 	// The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
 	BillingType string `pulumi:"billingType"`
@@ -196,7 +196,7 @@ type addressArgs struct {
 
 // The set of arguments for constructing a Address resource.
 type AddressArgs struct {
-	// The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
+	// The peek bandwidth of the EIP.
 	Bandwidth pulumi.IntPtrInput
 	// The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
 	BillingType pulumi.StringInput
@@ -301,7 +301,7 @@ func (o AddressOutput) ToAddressOutputWithContext(ctx context.Context) AddressOu
 	return o
 }
 
-// The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
+// The peek bandwidth of the EIP.
 func (o AddressOutput) Bandwidth() pulumi.IntOutput {
 	return o.ApplyT(func(v *Address) pulumi.IntOutput { return v.Bandwidth }).(pulumi.IntOutput)
 }

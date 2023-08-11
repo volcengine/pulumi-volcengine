@@ -8,44 +8,43 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tos
+namespace Volcengine.Pulumi.Volcengine.Tos
 {
     /// <summary>
     /// Provides a resource to manage tos object
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var @default = new Volcengine.Tos.BucketObject("default", new()
     ///     {
-    ///         var @default = new Volcengine.Tos.BucketObject("default", new Volcengine.Tos.BucketObjectArgs
+    ///         AccountAcls = new[]
     ///         {
-    ///             AccountAcls = 
+    ///             new Volcengine.Tos.Inputs.BucketObjectAccountAclArgs
     ///             {
-    ///                 new Volcengine.Tos.Inputs.BucketObjectAccountAclArgs
-    ///                 {
-    ///                     AccountId = "1",
-    ///                     Permission = "READ",
-    ///                 },
-    ///                 new Volcengine.Tos.Inputs.BucketObjectAccountAclArgs
-    ///                 {
-    ///                     AccountId = "2001",
-    ///                     Permission = "WRITE_ACP",
-    ///                 },
+    ///                 AccountId = "1",
+    ///                 Permission = "READ",
     ///             },
-    ///             BucketName = "test-xym-1",
-    ///             Encryption = "AES256",
-    ///             FilePath = "/Users/bytedance/Work/Go/build/test.txt",
-    ///             ObjectName = "demo_xym",
-    ///             PublicAcl = "private",
-    ///         });
-    ///     }
+    ///             new Volcengine.Tos.Inputs.BucketObjectAccountAclArgs
+    ///             {
+    ///                 AccountId = "2001",
+    ///                 Permission = "WRITE_ACP",
+    ///             },
+    ///         },
+    ///         BucketName = "test-xym-1",
+    ///         Encryption = "AES256",
+    ///         FilePath = "/Users/bytedance/Work/Go/build/test.txt",
+    ///         ObjectName = "demo_xym",
+    ///         PublicAcl = "private",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -57,7 +56,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tos
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:tos/bucketObject:BucketObject")]
-    public partial class BucketObject : Pulumi.CustomResource
+    public partial class BucketObject : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The user set of grant full control.
@@ -170,7 +169,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tos
         }
     }
 
-    public sealed class BucketObjectArgs : Pulumi.ResourceArgs
+    public sealed class BucketObjectArgs : global::Pulumi.ResourceArgs
     {
         [Input("accountAcls")]
         private InputList<Inputs.BucketObjectAccountAclArgs>? _accountAcls;
@@ -235,9 +234,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Tos
         public BucketObjectArgs()
         {
         }
+        public static new BucketObjectArgs Empty => new BucketObjectArgs();
     }
 
-    public sealed class BucketObjectState : Pulumi.ResourceArgs
+    public sealed class BucketObjectState : global::Pulumi.ResourceArgs
     {
         [Input("accountAcls")]
         private InputList<Inputs.BucketObjectAccountAclGetArgs>? _accountAcls;
@@ -320,5 +320,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tos
         public BucketObjectState()
         {
         }
+        public static new BucketObjectState Empty => new BucketObjectState();
     }
 }

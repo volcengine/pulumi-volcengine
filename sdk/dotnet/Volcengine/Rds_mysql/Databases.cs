@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
+namespace Volcengine.Pulumi.Volcengine.Rds_mysql
 {
     public static class Databases
     {
@@ -19,27 +19,26 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Rds_mysql.Databases.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Rds_mysql.Databases.InvokeAsync(new Volcengine.Rds_mysql.DatabasesArgs
-        ///         {
-        ///             DbName = "",
-        ///             InstanceId = "",
-        ///         }));
-        ///     }
+        ///         DbName = "",
+        ///         InstanceId = "",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<DatabasesResult> InvokeAsync(DatabasesArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<DatabasesResult>("volcengine:rds_mysql/databases:Databases", args ?? new DatabasesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<DatabasesResult>("volcengine:rds_mysql/databases:Databases", args ?? new DatabasesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of rds mysql databases
@@ -48,31 +47,30 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Rds_mysql.Databases.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Rds_mysql.Databases.InvokeAsync(new Volcengine.Rds_mysql.DatabasesArgs
-        ///         {
-        ///             DbName = "",
-        ///             InstanceId = "",
-        ///         }));
-        ///     }
+        ///         DbName = "",
+        ///         InstanceId = "",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<DatabasesResult> Invoke(DatabasesInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<DatabasesResult>("volcengine:rds_mysql/databases:Databases", args ?? new DatabasesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<DatabasesResult>("volcengine:rds_mysql/databases:Databases", args ?? new DatabasesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class DatabasesArgs : Pulumi.InvokeArgs
+    public sealed class DatabasesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name of the RDS database.
@@ -101,9 +99,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         public DatabasesArgs()
         {
         }
+        public static new DatabasesArgs Empty => new DatabasesArgs();
     }
 
-    public sealed class DatabasesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class DatabasesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name of the RDS database.
@@ -132,6 +131,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         public DatabasesInvokeArgs()
         {
         }
+        public static new DatabasesInvokeArgs Empty => new DatabasesInvokeArgs();
     }
 
 

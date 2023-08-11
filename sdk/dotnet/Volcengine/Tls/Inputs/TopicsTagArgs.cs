@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
+namespace Volcengine.Pulumi.Volcengine.Tls.Inputs
 {
 
-    public sealed class TopicsTagInputArgs : Pulumi.ResourceArgs
+    public sealed class TopicsTagInputArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Key of Tags.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
         public TopicsTagInputArgs()
         {
         }
+        public static new TopicsTagInputArgs Empty => new TopicsTagInputArgs();
     }
 }

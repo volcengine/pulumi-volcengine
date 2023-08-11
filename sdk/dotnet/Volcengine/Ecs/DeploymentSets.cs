@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Ecs
+namespace Volcengine.Pulumi.Volcengine.Ecs
 {
     public static class DeploymentSets
     {
@@ -23,38 +23,35 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
-        /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var fooDeploymentSet = new List&lt;Volcengine.Ecs.DeploymentSet&gt;();
+        ///     for (var rangeIndex = 0; rangeIndex &lt; 3; rangeIndex++)
         ///     {
-        ///         var fooDeploymentSet = new List&lt;Volcengine.Ecs.DeploymentSet&gt;();
-        ///         for (var rangeIndex = 0; rangeIndex &lt; 3; rangeIndex++)
+        ///         var range = new { Value = rangeIndex };
+        ///         fooDeploymentSet.Add(new Volcengine.Ecs.DeploymentSet($"fooDeploymentSet-{range.Value}", new()
         ///         {
-        ///             var range = new { Value = rangeIndex };
-        ///             fooDeploymentSet.Add(new Volcengine.Ecs.DeploymentSet($"fooDeploymentSet-{range.Value}", new Volcengine.Ecs.DeploymentSetArgs
-        ///             {
-        ///                 DeploymentSetName = $"acc-test-ecs-ds-{range.Value}",
-        ///                 Description = "acc-test",
-        ///                 Granularity = "switch",
-        ///                 Strategy = "Availability",
-        ///             }));
-        ///         }
-        ///         var fooDeploymentSets = Volcengine.Ecs.DeploymentSets.Invoke(new Volcengine.Ecs.DeploymentSetsInvokeArgs
-        ///         {
+        ///             DeploymentSetName = $"acc-test-ecs-ds-{range.Value}",
+        ///             Description = "acc-test",
         ///             Granularity = "switch",
-        ///             Ids = fooDeploymentSet.Select(__item =&gt; __item.Id).ToList(),
-        ///         });
+        ///             Strategy = "Availability",
+        ///         }));
         ///     }
+        ///     var fooDeploymentSets = Volcengine.Ecs.DeploymentSets.Invoke(new()
+        ///     {
+        ///         Granularity = "switch",
+        ///         Ids = fooDeploymentSet.Select(__item =&gt; __item.Id).ToList(),
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<DeploymentSetsResult> InvokeAsync(DeploymentSetsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<DeploymentSetsResult>("volcengine:ecs/deploymentSets:DeploymentSets", args ?? new DeploymentSetsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<DeploymentSetsResult>("volcengine:ecs/deploymentSets:DeploymentSets", args ?? new DeploymentSetsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of ecs deployment sets
@@ -67,42 +64,39 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
-        /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var fooDeploymentSet = new List&lt;Volcengine.Ecs.DeploymentSet&gt;();
+        ///     for (var rangeIndex = 0; rangeIndex &lt; 3; rangeIndex++)
         ///     {
-        ///         var fooDeploymentSet = new List&lt;Volcengine.Ecs.DeploymentSet&gt;();
-        ///         for (var rangeIndex = 0; rangeIndex &lt; 3; rangeIndex++)
+        ///         var range = new { Value = rangeIndex };
+        ///         fooDeploymentSet.Add(new Volcengine.Ecs.DeploymentSet($"fooDeploymentSet-{range.Value}", new()
         ///         {
-        ///             var range = new { Value = rangeIndex };
-        ///             fooDeploymentSet.Add(new Volcengine.Ecs.DeploymentSet($"fooDeploymentSet-{range.Value}", new Volcengine.Ecs.DeploymentSetArgs
-        ///             {
-        ///                 DeploymentSetName = $"acc-test-ecs-ds-{range.Value}",
-        ///                 Description = "acc-test",
-        ///                 Granularity = "switch",
-        ///                 Strategy = "Availability",
-        ///             }));
-        ///         }
-        ///         var fooDeploymentSets = Volcengine.Ecs.DeploymentSets.Invoke(new Volcengine.Ecs.DeploymentSetsInvokeArgs
-        ///         {
+        ///             DeploymentSetName = $"acc-test-ecs-ds-{range.Value}",
+        ///             Description = "acc-test",
         ///             Granularity = "switch",
-        ///             Ids = fooDeploymentSet.Select(__item =&gt; __item.Id).ToList(),
-        ///         });
+        ///             Strategy = "Availability",
+        ///         }));
         ///     }
+        ///     var fooDeploymentSets = Volcengine.Ecs.DeploymentSets.Invoke(new()
+        ///     {
+        ///         Granularity = "switch",
+        ///         Ids = fooDeploymentSet.Select(__item =&gt; __item.Id).ToList(),
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<DeploymentSetsResult> Invoke(DeploymentSetsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<DeploymentSetsResult>("volcengine:ecs/deploymentSets:DeploymentSets", args ?? new DeploymentSetsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<DeploymentSetsResult>("volcengine:ecs/deploymentSets:DeploymentSets", args ?? new DeploymentSetsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class DeploymentSetsArgs : Pulumi.InvokeArgs
+    public sealed class DeploymentSetsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The granularity of ECS DeploymentSet.Valid values: switch, host, rack.
@@ -137,9 +131,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         public DeploymentSetsArgs()
         {
         }
+        public static new DeploymentSetsArgs Empty => new DeploymentSetsArgs();
     }
 
-    public sealed class DeploymentSetsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class DeploymentSetsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The granularity of ECS DeploymentSet.Valid values: switch, host, rack.
@@ -174,6 +169,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         public DeploymentSetsInvokeArgs()
         {
         }
+        public static new DeploymentSetsInvokeArgs Empty => new DeploymentSetsInvokeArgs();
     }
 
 

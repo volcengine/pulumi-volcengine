@@ -18,7 +18,6 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/vke"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vke"
 //
@@ -29,7 +28,7 @@ import (
 //			_, err := vke.Clusters(ctx, &vke.ClustersArgs{
 //				PodsConfigPodNetworkMode: pulumi.StringRef("VpcCniShared"),
 //				Statuses: []vke.ClustersStatus{
-//					vke.ClustersStatus{
+//					{
 //						ConditionsType: pulumi.StringRef("Progressing"),
 //						Phase:          pulumi.StringRef("Creating"),
 //					},

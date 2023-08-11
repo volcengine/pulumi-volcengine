@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -11,45 +12,43 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.escloud.Instance("foo", {
- *     instanceConfiguration: {
- *         adminPassword: "xxxx",
- *         adminUserName: "admin",
- *         chargeType: "PostPaid",
- *         configurationCode: "es.standard",
- *         enableHttps: true,
- *         enablePureMaster: true,
- *         forceRestartAfterScale: false,
- *         instanceName: "from-tf4",
- *         nodeSpecsAssigns: [
- *             {
- *                 number: 3,
- *                 resourceSpecName: "es.x4.medium",
- *                 storageSize: 100,
- *                 storageSpecName: "es.volume.essd.pl0",
- *                 type: "Master",
- *             },
- *             {
- *                 number: 2,
- *                 resourceSpecName: "es.x4.large",
- *                 storageSize: 100,
- *                 storageSpecName: "es.volume.essd.pl0",
- *                 type: "Hot",
- *             },
- *             {
- *                 number: 1,
- *                 resourceSpecName: "kibana.x2.small",
- *                 type: "Kibana",
- *             },
- *         ],
- *         projectName: "default",
- *         subnetId: "subnet-2bz9vxrixqigw2dx0eextz50p",
- *         version: "V6_7",
- *         zoneNumber: 1,
- *     },
- * });
+ * const foo = new volcengine.escloud.Instance("foo", {instanceConfiguration: {
+ *     adminPassword: "xxxx",
+ *     adminUserName: "admin",
+ *     chargeType: "PostPaid",
+ *     configurationCode: "es.standard",
+ *     enableHttps: true,
+ *     enablePureMaster: true,
+ *     forceRestartAfterScale: false,
+ *     instanceName: "from-tf4",
+ *     nodeSpecsAssigns: [
+ *         {
+ *             number: 3,
+ *             resourceSpecName: "es.x4.medium",
+ *             storageSize: 100,
+ *             storageSpecName: "es.volume.essd.pl0",
+ *             type: "Master",
+ *         },
+ *         {
+ *             number: 2,
+ *             resourceSpecName: "es.x4.large",
+ *             storageSize: 100,
+ *             storageSpecName: "es.volume.essd.pl0",
+ *             type: "Hot",
+ *         },
+ *         {
+ *             number: 1,
+ *             resourceSpecName: "kibana.x2.small",
+ *             type: "Kibana",
+ *         },
+ *     ],
+ *     projectName: "default",
+ *     subnetId: "subnet-2bz9vxrixqigw2dx0eextz50p",
+ *     version: "V6_7",
+ *     zoneNumber: 1,
+ * }});
  * ```
  *
  * ## Import

@@ -8,54 +8,53 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpn
+namespace Volcengine.Pulumi.Volcengine.Vpn
 {
     /// <summary>
     /// Provides a resource to manage vpn connection
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Vpn.Connection("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Vpn.Connection("foo", new Volcengine.Vpn.ConnectionArgs
+    ///         CustomerGatewayId = "cgw-12ayj1s157gn417q7y29bixqy",
+    ///         Description = "tf-test",
+    ///         DpdAction = "none",
+    ///         IkeConfigAuthAlg = "md5",
+    ///         IkeConfigDhGroup = "group2",
+    ///         IkeConfigEncAlg = "aes",
+    ///         IkeConfigLifetime = 9000,
+    ///         IkeConfigLocalId = "tf_test",
+    ///         IkeConfigMode = "main",
+    ///         IkeConfigPsk = "tftest@!3",
+    ///         IkeConfigRemoteId = "tf_test",
+    ///         IkeConfigVersion = "ikev1",
+    ///         IpsecConfigAuthAlg = "sha256",
+    ///         IpsecConfigDhGroup = "group2",
+    ///         IpsecConfigEncAlg = "aes",
+    ///         IpsecConfigLifetime = 9000,
+    ///         LocalSubnets = new[]
     ///         {
-    ///             CustomerGatewayId = "cgw-12ayj1s157gn417q7y29bixqy",
-    ///             Description = "tf-test",
-    ///             DpdAction = "none",
-    ///             IkeConfigAuthAlg = "md5",
-    ///             IkeConfigDhGroup = "group2",
-    ///             IkeConfigEncAlg = "aes",
-    ///             IkeConfigLifetime = 9000,
-    ///             IkeConfigLocalId = "tf_test",
-    ///             IkeConfigMode = "main",
-    ///             IkeConfigPsk = "tftest@!3",
-    ///             IkeConfigRemoteId = "tf_test",
-    ///             IkeConfigVersion = "ikev1",
-    ///             IpsecConfigAuthAlg = "sha256",
-    ///             IpsecConfigDhGroup = "group2",
-    ///             IpsecConfigEncAlg = "aes",
-    ///             IpsecConfigLifetime = 9000,
-    ///             LocalSubnets = 
-    ///             {
-    ///                 "192.168.0.0/22",
-    ///             },
-    ///             NatTraversal = true,
-    ///             ProjectName = "default",
-    ///             RemoteSubnets = 
-    ///             {
-    ///                 "192.161.0.0/20",
-    ///             },
-    ///             VpnConnectionName = "tf-test",
-    ///             VpnGatewayId = "vgw-2feq19gnyc9hc59gp68914u6o",
-    ///         });
-    ///     }
+    ///             "192.168.0.0/22",
+    ///         },
+    ///         NatTraversal = true,
+    ///         ProjectName = "default",
+    ///         RemoteSubnets = new[]
+    ///         {
+    ///             "192.161.0.0/20",
+    ///         },
+    ///         VpnConnectionName = "tf-test",
+    ///         VpnGatewayId = "vgw-2feq19gnyc9hc59gp68914u6o",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -67,7 +66,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpn
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vpn/connection:Connection")]
-    public partial class Connection : Pulumi.CustomResource
+    public partial class Connection : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The account ID of the VPN connection.
@@ -342,7 +341,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpn
         }
     }
 
-    public sealed class ConnectionArgs : Pulumi.ResourceArgs
+    public sealed class ConnectionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The attach type of the VPN connection, the value can be `VpnGateway` or `TransitRouter`.
@@ -509,9 +508,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpn
         public ConnectionArgs()
         {
         }
+        public static new ConnectionArgs Empty => new ConnectionArgs();
     }
 
-    public sealed class ConnectionState : Pulumi.ResourceArgs
+    public sealed class ConnectionState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The account ID of the VPN connection.
@@ -756,5 +756,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpn
         public ConnectionState()
         {
         }
+        public static new ConnectionState Empty => new ConnectionState();
     }
 }

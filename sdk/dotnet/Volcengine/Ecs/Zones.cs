@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Ecs
+namespace Volcengine.Pulumi.Volcengine.Ecs
 {
     public static class Zones
     {
@@ -19,29 +19,28 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Ecs.Zones.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Ecs.Zones.InvokeAsync(new Volcengine.Ecs.ZonesArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "cn-beijing-a",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "cn-beijing-a",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<ZonesResult> InvokeAsync(ZonesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<ZonesResult>("volcengine:ecs/zones:Zones", args ?? new ZonesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<ZonesResult>("volcengine:ecs/zones:Zones", args ?? new ZonesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of zones
@@ -50,33 +49,32 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Ecs.Zones.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Ecs.Zones.InvokeAsync(new Volcengine.Ecs.ZonesArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "cn-beijing-a",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "cn-beijing-a",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<ZonesResult> Invoke(ZonesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<ZonesResult>("volcengine:ecs/zones:Zones", args ?? new ZonesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<ZonesResult>("volcengine:ecs/zones:Zones", args ?? new ZonesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class ZonesArgs : Pulumi.InvokeArgs
+    public sealed class ZonesArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private List<string>? _ids;
@@ -99,9 +97,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         public ZonesArgs()
         {
         }
+        public static new ZonesArgs Empty => new ZonesArgs();
     }
 
-    public sealed class ZonesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class ZonesInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private InputList<string>? _ids;
@@ -124,6 +123,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         public ZonesInvokeArgs()
         {
         }
+        public static new ZonesInvokeArgs Empty => new ZonesInvokeArgs();
     }
 
 

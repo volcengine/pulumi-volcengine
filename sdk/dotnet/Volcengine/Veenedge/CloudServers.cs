@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Veenedge
+namespace Volcengine.Pulumi.Volcengine.Veenedge
 {
     public static class CloudServers
     {
@@ -19,23 +19,22 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var @default = Output.Create(Volcengine.Veenedge.CloudServers.InvokeAsync());
-        ///     }
+        ///     var @default = Volcengine.Veenedge.CloudServers.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<CloudServersResult> InvokeAsync(CloudServersArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<CloudServersResult>("volcengine:veenedge/cloudServers:CloudServers", args ?? new CloudServersArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<CloudServersResult>("volcengine:veenedge/cloudServers:CloudServers", args ?? new CloudServersArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of veenedge cloud servers
@@ -44,27 +43,26 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var @default = Output.Create(Volcengine.Veenedge.CloudServers.InvokeAsync());
-        ///     }
+        ///     var @default = Volcengine.Veenedge.CloudServers.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<CloudServersResult> Invoke(CloudServersInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<CloudServersResult>("volcengine:veenedge/cloudServers:CloudServers", args ?? new CloudServersInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<CloudServersResult>("volcengine:veenedge/cloudServers:CloudServers", args ?? new CloudServersInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class CloudServersArgs : Pulumi.InvokeArgs
+    public sealed class CloudServersArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private List<string>? _ids;
@@ -93,9 +91,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge
         public CloudServersArgs()
         {
         }
+        public static new CloudServersArgs Empty => new CloudServersArgs();
     }
 
-    public sealed class CloudServersInvokeArgs : Pulumi.InvokeArgs
+    public sealed class CloudServersInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private InputList<string>? _ids;
@@ -124,6 +123,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge
         public CloudServersInvokeArgs()
         {
         }
+        public static new CloudServersInvokeArgs Empty => new CloudServersInvokeArgs();
     }
 
 

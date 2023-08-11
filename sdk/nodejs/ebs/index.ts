@@ -5,13 +5,21 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./volume";
-export * from "./volumeAttach";
-export * from "./volumes";
+export { VolumeArgs, VolumeState } from "./volume";
+export type Volume = import("./volume").Volume;
+export const Volume: typeof import("./volume").Volume = null as any;
+utilities.lazyLoad(exports, ["Volume"], () => require("./volume"));
 
-// Import resources to register:
-import { Volume } from "./volume";
-import { VolumeAttach } from "./volumeAttach";
+export { VolumeAttachArgs, VolumeAttachState } from "./volumeAttach";
+export type VolumeAttach = import("./volumeAttach").VolumeAttach;
+export const VolumeAttach: typeof import("./volumeAttach").VolumeAttach = null as any;
+utilities.lazyLoad(exports, ["VolumeAttach"], () => require("./volumeAttach"));
+
+export { VolumesArgs, VolumesResult, VolumesOutputArgs } from "./volumes";
+export const volumes: typeof import("./volumes").volumes = null as any;
+export const volumesOutput: typeof import("./volumes").volumesOutput = null as any;
+utilities.lazyLoad(exports, ["volumes","volumesOutput"], () => require("./volumes"));
+
 
 const _module = {
     version: utilities.getVersion(),

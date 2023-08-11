@@ -8,37 +8,36 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Ecs
+namespace Volcengine.Pulumi.Volcengine.Ecs
 {
     /// <summary>
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Ecs.LaunchTemplate("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Ecs.LaunchTemplate("foo", new Volcengine.Ecs.LaunchTemplateArgs
-    ///         {
-    ///             Description = "acc-test-desc",
-    ///             EipBandwidth = 1,
-    ///             EipBillingType = "PostPaidByBandwidth",
-    ///             EipIsp = "ChinaMobile",
-    ///             HostName = "tf-host-name",
-    ///             HpcClusterId = "hpcCluster-l8u24ovdmoab6opf",
-    ///             ImageId = "image-ycjwwciuzy5pkh54xx8f",
-    ///             InstanceChargeType = "PostPaid",
-    ///             InstanceName = "tf-acc-name",
-    ///             InstanceTypeId = "ecs.g1.large",
-    ///             KeyPairName = "tf-key-pair",
-    ///             LaunchTemplateName = "tf-acc-template",
-    ///         });
-    ///     }
+    ///         Description = "acc-test-desc",
+    ///         EipBandwidth = 1,
+    ///         EipBillingType = "PostPaidByBandwidth",
+    ///         EipIsp = "ChinaMobile",
+    ///         HostName = "tf-host-name",
+    ///         HpcClusterId = "hpcCluster-l8u24ovdmoab6opf",
+    ///         ImageId = "image-ycjwwciuzy5pkh54xx8f",
+    ///         InstanceChargeType = "PostPaid",
+    ///         InstanceName = "tf-acc-name",
+    ///         InstanceTypeId = "ecs.g1.large",
+    ///         KeyPairName = "tf-key-pair",
+    ///         LaunchTemplateName = "tf-acc-template",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -50,7 +49,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:ecs/launchTemplate:LaunchTemplate")]
-    public partial class LaunchTemplate : Pulumi.CustomResource
+    public partial class LaunchTemplate : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The description of the instance.
@@ -229,7 +228,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         }
     }
 
-    public sealed class LaunchTemplateArgs : Pulumi.ResourceArgs
+    public sealed class LaunchTemplateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The description of the instance.
@@ -372,9 +371,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         public LaunchTemplateArgs()
         {
         }
+        public static new LaunchTemplateArgs Empty => new LaunchTemplateArgs();
     }
 
-    public sealed class LaunchTemplateState : Pulumi.ResourceArgs
+    public sealed class LaunchTemplateState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The description of the instance.
@@ -523,5 +523,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         public LaunchTemplateState()
         {
         }
+        public static new LaunchTemplateState Empty => new LaunchTemplateState();
     }
 }

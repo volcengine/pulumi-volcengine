@@ -10,12 +10,11 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.mongodb.Endpoint("foo", {
  *     eipIds: ["eip-3rfe12dvmz8qo5zsk2h91q05p"],
  *     instanceId: "mongo-replica-38cf5badeb9e",
- *     // object_id="mongo-shard-8ad9f45e173e"
  *     networkType: "Public",
  * });
  * ```

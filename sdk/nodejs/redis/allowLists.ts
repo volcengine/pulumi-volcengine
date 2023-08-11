@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,17 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultAllowLists = pulumi.output(volcengine.redis.AllowLists({
+ * const default = volcengine.redis.AllowLists({
  *     regionId: "cn-beijing",
- * }));
+ * });
  * ```
  */
 export function allowLists(args: AllowListsArgs, opts?: pulumi.InvokeOptions): Promise<AllowListsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:redis/allowLists:AllowLists", {
         "instanceId": args.instanceId,
         "nameRegex": args.nameRegex,
@@ -78,9 +76,21 @@ export interface AllowListsResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of redis allow lists
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.redis.AllowLists({
+ *     regionId: "cn-beijing",
+ * });
+ * ```
+ */
 export function allowListsOutput(args: AllowListsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AllowListsResult> {
-    return pulumi.output(args).apply(a => allowLists(a, opts))
+    return pulumi.output(args).apply((a: any) => allowLists(a, opts))
 }
 
 /**

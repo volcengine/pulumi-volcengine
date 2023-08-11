@@ -8,27 +8,26 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
+namespace Volcengine.Pulumi.Volcengine.Autoscaling
 {
     /// <summary>
     /// Provides a resource to manage scaling configuration attachment
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo1 = new Volcengine.Autoscaling.ScalingConfigurationAttachment("foo1", new()
     ///     {
-    ///         var foo1 = new Volcengine.Autoscaling.ScalingConfigurationAttachment("foo1", new Volcengine.Autoscaling.ScalingConfigurationAttachmentArgs
-    ///         {
-    ///             ScalingConfigurationId = "scc-ybrurj4uw6gh9zecj327",
-    ///         });
-    ///     }
+    ///         ScalingConfigurationId = "scc-ybrurj4uw6gh9zecj327",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -40,7 +39,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:autoscaling/scalingConfigurationAttachment:ScalingConfigurationAttachment")]
-    public partial class ScalingConfigurationAttachment : Pulumi.CustomResource
+    public partial class ScalingConfigurationAttachment : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The id of the scaling configuration.
@@ -93,7 +92,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         }
     }
 
-    public sealed class ScalingConfigurationAttachmentArgs : Pulumi.ResourceArgs
+    public sealed class ScalingConfigurationAttachmentArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of the scaling configuration.
@@ -104,9 +103,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         public ScalingConfigurationAttachmentArgs()
         {
         }
+        public static new ScalingConfigurationAttachmentArgs Empty => new ScalingConfigurationAttachmentArgs();
     }
 
-    public sealed class ScalingConfigurationAttachmentState : Pulumi.ResourceArgs
+    public sealed class ScalingConfigurationAttachmentState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of the scaling configuration.
@@ -117,5 +117,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         public ScalingConfigurationAttachmentState()
         {
         }
+        public static new ScalingConfigurationAttachmentState Empty => new ScalingConfigurationAttachmentState();
     }
 }

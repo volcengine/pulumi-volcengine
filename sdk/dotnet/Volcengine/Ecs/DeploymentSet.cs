@@ -8,30 +8,29 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Ecs
+namespace Volcengine.Pulumi.Volcengine.Ecs
 {
     /// <summary>
     /// Provides a resource to manage ecs deployment set
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Ecs.DeploymentSet("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Ecs.DeploymentSet("foo", new Volcengine.Ecs.DeploymentSetArgs
-    ///         {
-    ///             DeploymentSetName = "acc-test-ecs-ds",
-    ///             Description = "acc-test",
-    ///             Granularity = "switch",
-    ///             Strategy = "Availability",
-    ///         });
-    ///     }
+    ///         DeploymentSetName = "acc-test-ecs-ds",
+    ///         Description = "acc-test",
+    ///         Granularity = "switch",
+    ///         Strategy = "Availability",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -43,7 +42,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:ecs/deploymentSet:DeploymentSet")]
-    public partial class DeploymentSet : Pulumi.CustomResource
+    public partial class DeploymentSet : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The ID of ECS DeploymentSet.
@@ -120,7 +119,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         }
     }
 
-    public sealed class DeploymentSetArgs : Pulumi.ResourceArgs
+    public sealed class DeploymentSetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of ECS DeploymentSet.
@@ -149,9 +148,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         public DeploymentSetArgs()
         {
         }
+        public static new DeploymentSetArgs Empty => new DeploymentSetArgs();
     }
 
-    public sealed class DeploymentSetState : Pulumi.ResourceArgs
+    public sealed class DeploymentSetState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of ECS DeploymentSet.
@@ -186,5 +186,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         public DeploymentSetState()
         {
         }
+        public static new DeploymentSetState Empty => new DeploymentSetState();
     }
 }

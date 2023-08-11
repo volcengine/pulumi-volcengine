@@ -8,28 +8,27 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Ecs
+namespace Volcengine.Pulumi.Volcengine.Ecs
 {
     /// <summary>
     /// Provides a resource to manage ecs key pair
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Ecs.KeyPair("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Ecs.KeyPair("foo", new Volcengine.Ecs.KeyPairArgs
-    ///         {
-    ///             Description = "acc-test",
-    ///             KeyPairName = "acc-test-key-name",
-    ///         });
-    ///     }
+    ///         Description = "acc-test",
+    ///         KeyPairName = "acc-test-key-name",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -41,7 +40,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:ecs/keyPair:KeyPair")]
-    public partial class KeyPair : Pulumi.CustomResource
+    public partial class KeyPair : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The description of key pair.
@@ -124,7 +123,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         }
     }
 
-    public sealed class KeyPairArgs : Pulumi.ResourceArgs
+    public sealed class KeyPairArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The description of key pair.
@@ -153,9 +152,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         public KeyPairArgs()
         {
         }
+        public static new KeyPairArgs Empty => new KeyPairArgs();
     }
 
-    public sealed class KeyPairState : Pulumi.ResourceArgs
+    public sealed class KeyPairState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The description of key pair.
@@ -196,5 +196,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         public KeyPairState()
         {
         }
+        public static new KeyPairState Empty => new KeyPairState();
     }
 }

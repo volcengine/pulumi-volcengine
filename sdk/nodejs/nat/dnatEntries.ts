@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,16 +14,13 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultDnatEntries = pulumi.output(volcengine.nat.DnatEntries());
+ * const default = volcengine.nat.DnatEntries({});
  * ```
  */
 export function dnatEntries(args?: DnatEntriesArgs, opts?: pulumi.InvokeOptions): Promise<DnatEntriesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:nat/dnatEntries:DnatEntries", {
         "dnatEntryName": args.dnatEntryName,
         "externalIp": args.externalIp,
@@ -125,9 +123,19 @@ export interface DnatEntriesResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of dnat entries
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.nat.DnatEntries({});
+ * ```
+ */
 export function dnatEntriesOutput(args?: DnatEntriesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<DnatEntriesResult> {
-    return pulumi.output(args).apply(a => dnatEntries(a, opts))
+    return pulumi.output(args).apply((a: any) => dnatEntries(a, opts))
 }
 
 /**

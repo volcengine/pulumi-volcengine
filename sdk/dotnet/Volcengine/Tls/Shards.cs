@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls
+namespace Volcengine.Pulumi.Volcengine.Tls
 {
     public static class Shards
     {
@@ -19,26 +19,25 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Tls.Shards.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Tls.Shards.InvokeAsync(new Volcengine.Tls.ShardsArgs
-        ///         {
-        ///             TopicId = "edf051ed-3c46-49ba-9339-bea628fedc15",
-        ///         }));
-        ///     }
+        ///         TopicId = "edf051ed-3c46-49ba-9339-bea628fedc15",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<ShardsResult> InvokeAsync(ShardsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<ShardsResult>("volcengine:tls/shards:Shards", args ?? new ShardsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<ShardsResult>("volcengine:tls/shards:Shards", args ?? new ShardsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of tls shards
@@ -47,30 +46,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Tls.Shards.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Tls.Shards.InvokeAsync(new Volcengine.Tls.ShardsArgs
-        ///         {
-        ///             TopicId = "edf051ed-3c46-49ba-9339-bea628fedc15",
-        ///         }));
-        ///     }
+        ///         TopicId = "edf051ed-3c46-49ba-9339-bea628fedc15",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<ShardsResult> Invoke(ShardsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<ShardsResult>("volcengine:tls/shards:Shards", args ?? new ShardsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<ShardsResult>("volcengine:tls/shards:Shards", args ?? new ShardsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class ShardsArgs : Pulumi.InvokeArgs
+    public sealed class ShardsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// File name where to save data source results.
@@ -87,9 +85,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public ShardsArgs()
         {
         }
+        public static new ShardsArgs Empty => new ShardsArgs();
     }
 
-    public sealed class ShardsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class ShardsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// File name where to save data source results.
@@ -106,6 +105,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public ShardsInvokeArgs()
         {
         }
+        public static new ShardsInvokeArgs Empty => new ShardsInvokeArgs();
     }
 
 

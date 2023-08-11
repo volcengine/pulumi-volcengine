@@ -8,82 +8,86 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Ecs
+namespace Volcengine.Pulumi.Volcengine.Ecs
 {
     /// <summary>
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Volcengine = Pulumi.Volcengine;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
-    ///     {
-    ///         var fooZones = Output.Create(Volcengine.Ecs.Zones.InvokeAsync());
-    ///         var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new Volcengine.Vpc.VpcArgs
-    ///         {
-    ///             VpcName = "acc-test-vpc",
-    ///             CidrBlock = "172.16.0.0/16",
-    ///         });
-    ///         var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new Volcengine.Vpc.SubnetArgs
-    ///         {
-    ///             SubnetName = "acc-test-subnet",
-    ///             CidrBlock = "172.16.0.0/24",
-    ///             ZoneId = fooZones.Apply(fooZones =&gt; fooZones.Zones?[0]?.Id),
-    ///             VpcId = fooVpc.Id,
-    ///         });
-    ///         var fooSecurityGroup = new Volcengine.Vpc.SecurityGroup("fooSecurityGroup", new Volcengine.Vpc.SecurityGroupArgs
-    ///         {
-    ///             SecurityGroupName = "acc-test-security-group",
-    ///             VpcId = fooVpc.Id,
-    ///         });
-    ///         var fooImages = Output.Create(Volcengine.Ecs.Images.InvokeAsync(new Volcengine.Ecs.ImagesArgs
-    ///         {
-    ///             OsType = "Linux",
-    ///             Visibility = "public",
-    ///             InstanceTypeId = "ecs.g1.large",
-    ///         }));
-    ///         var fooInstance = new Volcengine.Ecs.Instance("fooInstance", new Volcengine.Ecs.InstanceArgs
-    ///         {
-    ///             InstanceName = "acc-test-ecs",
-    ///             Description = "acc-test",
-    ///             HostName = "tf-acc-test",
-    ///             ImageId = fooImages.Apply(fooImages =&gt; fooImages.Images?[0]?.ImageId),
-    ///             InstanceType = "ecs.g1.large",
-    ///             Password = "93f0cb0614Aab12",
-    ///             InstanceChargeType = "PostPaid",
-    ///             SystemVolumeType = "ESSD_PL0",
-    ///             SystemVolumeSize = 40,
-    ///             DataVolumes = 
-    ///             {
-    ///                 new Volcengine.Ecs.Inputs.InstanceDataVolumeArgs
-    ///                 {
-    ///                     VolumeType = "ESSD_PL0",
-    ///                     Size = 50,
-    ///                     DeleteWithInstance = true,
-    ///                 },
-    ///             },
-    ///             SubnetId = fooSubnet.Id,
-    ///             SecurityGroupIds = 
-    ///             {
-    ///                 fooSecurityGroup.Id,
-    ///             },
-    ///             ProjectName = "default",
-    ///             Tags = 
-    ///             {
-    ///                 new Volcengine.Ecs.Inputs.InstanceTagArgs
-    ///                 {
-    ///                     Key = "k1",
-    ///                     Value = "v1",
-    ///                 },
-    ///             },
-    ///         });
-    ///     }
+    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
     /// 
-    /// }
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
+    ///     {
+    ///         VpcName = "acc-test-vpc",
+    ///         CidrBlock = "172.16.0.0/16",
+    ///     });
+    /// 
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooSecurityGroup = new Volcengine.Vpc.SecurityGroup("fooSecurityGroup", new()
+    ///     {
+    ///         SecurityGroupName = "acc-test-security-group",
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooImages = Volcengine.Ecs.Images.Invoke(new()
+    ///     {
+    ///         OsType = "Linux",
+    ///         Visibility = "public",
+    ///         InstanceTypeId = "ecs.g1.large",
+    ///     });
+    /// 
+    ///     var fooInstance = new Volcengine.Ecs.Instance("fooInstance", new()
+    ///     {
+    ///         InstanceName = "acc-test-ecs",
+    ///         Description = "acc-test",
+    ///         HostName = "tf-acc-test",
+    ///         ImageId = fooImages.Apply(imagesResult =&gt; imagesResult.Images[0]?.ImageId),
+    ///         InstanceType = "ecs.g1.large",
+    ///         Password = "93f0cb0614Aab12",
+    ///         InstanceChargeType = "PostPaid",
+    ///         SystemVolumeType = "ESSD_PL0",
+    ///         SystemVolumeSize = 40,
+    ///         DataVolumes = new[]
+    ///         {
+    ///             new Volcengine.Ecs.Inputs.InstanceDataVolumeArgs
+    ///             {
+    ///                 VolumeType = "ESSD_PL0",
+    ///                 Size = 50,
+    ///                 DeleteWithInstance = true,
+    ///             },
+    ///         },
+    ///         SubnetId = fooSubnet.Id,
+    ///         SecurityGroupIds = new[]
+    ///         {
+    ///             fooSecurityGroup.Id,
+    ///         },
+    ///         ProjectName = "default",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Ecs.Inputs.InstanceTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -95,7 +99,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:ecs/instance:Instance")]
-    public partial class Instance : Pulumi.CustomResource
+    public partial class Instance : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
@@ -400,6 +404,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/volcengine",
+                AdditionalSecretOutputs =
+                {
+                    "password",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -421,7 +429,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         }
     }
 
-    public sealed class InstanceArgs : Pulumi.ResourceArgs
+    public sealed class InstanceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
@@ -540,11 +548,21 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         [Input("keyPairName")]
         public Input<string>? KeyPairName { get; set; }
 
+        [Input("password")]
+        private Input<string>? _password;
+
         /// <summary>
         /// The password of ECS instance.
         /// </summary>
-        [Input("password")]
-        public Input<string>? Password { get; set; }
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 12. Unit is Month.
@@ -639,9 +657,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         public InstanceArgs()
         {
         }
+        public static new InstanceArgs Empty => new InstanceArgs();
     }
 
-    public sealed class InstanceState : Pulumi.ResourceArgs
+    public sealed class InstanceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
@@ -826,11 +845,21 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         [Input("osType")]
         public Input<string>? OsType { get; set; }
 
+        [Input("password")]
+        private Input<string>? _password;
+
         /// <summary>
         /// The password of ECS instance.
         /// </summary>
-        [Input("password")]
-        public Input<string>? Password { get; set; }
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 12. Unit is Month.
@@ -961,5 +990,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         public InstanceState()
         {
         }
+        public static new InstanceState Empty => new InstanceState();
     }
 }

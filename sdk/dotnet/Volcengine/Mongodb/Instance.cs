@@ -8,43 +8,42 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Mongodb
+namespace Volcengine.Pulumi.Volcengine.Mongodb
 {
     /// <summary>
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Mongodb.Instance("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Mongodb.Instance("foo", new Volcengine.Mongodb.InstanceArgs
+    ///         ChargeType = "PostPaid",
+    ///         DbEngineVersion = "MongoDB_4_0",
+    ///         InstanceName = "mongo-replica-be9995d32e4a",
+    ///         InstanceType = "ReplicaSet",
+    ///         NodeSpec = "mongo.2c4g",
+    ///         ProjectName = "default",
+    ///         StorageSpaceGb = 20,
+    ///         SubnetId = "subnet-rrx4ns6abw1sv0x57wq6h47",
+    ///         SuperAccountPassword = "******",
+    ///         Tags = new[]
     ///         {
-    ///             ChargeType = "PostPaid",
-    ///             DbEngineVersion = "MongoDB_4_0",
-    ///             InstanceName = "mongo-replica-be9995d32e4a",
-    ///             InstanceType = "ReplicaSet",
-    ///             NodeSpec = "mongo.2c4g",
-    ///             ProjectName = "default",
-    ///             StorageSpaceGb = 20,
-    ///             SubnetId = "subnet-rrx4ns6abw1sv0x57wq6h47",
-    ///             SuperAccountPassword = "******",
-    ///             Tags = 
+    ///             new Volcengine.Mongodb.Inputs.InstanceTagArgs
     ///             {
-    ///                 new Volcengine.Mongodb.Inputs.InstanceTagArgs
-    ///                 {
-    ///                     Key = "k1",
-    ///                     Value = "v1",
-    ///                 },
+    ///                 Key = "k1",
+    ///                 Value = "v1",
     ///             },
-    ///             ZoneId = "cn-beijing-a",
-    ///         });
-    ///     }
+    ///         },
+    ///         ZoneId = "cn-beijing-a",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -56,7 +55,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:mongodb/instance:Instance")]
-    public partial class Instance : Pulumi.CustomResource
+    public partial class Instance : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Whether to enable automatic renewal.
@@ -190,6 +189,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/volcengine",
+                AdditionalSecretOutputs =
+                {
+                    "superAccountPassword",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -211,7 +214,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         }
     }
 
-    public sealed class InstanceArgs : Pulumi.ResourceArgs
+    public sealed class InstanceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether to enable automatic renewal.
@@ -297,11 +300,21 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         [Input("subnetId", required: true)]
         public Input<string> SubnetId { get; set; } = null!;
 
+        [Input("superAccountPassword")]
+        private Input<string>? _superAccountPassword;
+
         /// <summary>
         /// The password of database account.
         /// </summary>
-        [Input("superAccountPassword")]
-        public Input<string>? SuperAccountPassword { get; set; }
+        public Input<string>? SuperAccountPassword
+        {
+            get => _superAccountPassword;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _superAccountPassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("tags")]
         private InputList<Inputs.InstanceTagArgs>? _tags;
@@ -330,9 +343,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         public InstanceArgs()
         {
         }
+        public static new InstanceArgs Empty => new InstanceArgs();
     }
 
-    public sealed class InstanceState : Pulumi.ResourceArgs
+    public sealed class InstanceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether to enable automatic renewal.
@@ -418,11 +432,21 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         [Input("subnetId")]
         public Input<string>? SubnetId { get; set; }
 
+        [Input("superAccountPassword")]
+        private Input<string>? _superAccountPassword;
+
         /// <summary>
         /// The password of database account.
         /// </summary>
-        [Input("superAccountPassword")]
-        public Input<string>? SuperAccountPassword { get; set; }
+        public Input<string>? SuperAccountPassword
+        {
+            get => _superAccountPassword;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _superAccountPassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("tags")]
         private InputList<Inputs.InstanceTagGetArgs>? _tags;
@@ -451,5 +475,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         public InstanceState()
         {
         }
+        public static new InstanceState Empty => new InstanceState();
     }
 }

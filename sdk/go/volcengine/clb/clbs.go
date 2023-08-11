@@ -11,6 +11,78 @@ import (
 )
 
 // Use this data source to query detailed information of clbs
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// "fmt"
+//
+// "github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// "github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/clb"
+// "github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
+// "github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// fooZones, err := ecs.Zones(ctx, nil, nil);
+// if err != nil {
+// return err
+// }
+// fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+// VpcName: pulumi.String("acc-test-vpc"),
+// CidrBlock: pulumi.String("172.16.0.0/16"),
+// })
+// if err != nil {
+// return err
+// }
+// fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+// SubnetName: pulumi.String("acc-test-subnet"),
+// CidrBlock: pulumi.String("172.16.0.0/24"),
+// ZoneId: *pulumi.String(fooZones.Zones[0].Id),
+// VpcId: fooVpc.ID(),
+// })
+// if err != nil {
+// return err
+// }
+// var fooClb []*clb.Clb
+//
+//	for index := 0; index < 3; index++ {
+//	    key0 := index
+//	    val0 := index
+//
+// __res, err := clb.NewClb(ctx, fmt.Sprintf("fooClb-%v", key0), &clb.ClbArgs{
+// Type: pulumi.String("public"),
+// SubnetId: fooSubnet.ID(),
+// LoadBalancerSpec: pulumi.String("small_1"),
+// Description: pulumi.String("acc-test-demo"),
+// LoadBalancerName: pulumi.String(fmt.Sprintf("acc-test-clb-%v", val0)),
+// LoadBalancerBillingType: pulumi.String("PostPaid"),
+// EipBillingConfig: &clb.ClbEipBillingConfigArgs{
+// Isp: pulumi.String("BGP"),
+// EipBillingType: pulumi.String("PostPaidByBandwidth"),
+// Bandwidth: pulumi.Int(1),
+// },
+// Tags: clb.ClbTagArray{
+// &clb.ClbTagArgs{
+// Key: pulumi.String("k1"),
+// Value: pulumi.String("v1"),
+// },
+// },
+// })
+// if err != nil {
+// return err
+// }
+// fooClb = append(fooClb, __res)
+// }
+// _ = clb.ClbsOutput(ctx, clb.ClbsOutputArgs{
+// Ids: %!v(PANIC=Format method: fatal: A failure has occurred: unlowered splat expression @ #-functions-volcengine:clb-clbs:Clbs.pp:34,9-21),
+// }, nil);
+// return nil
+// })
+// }
+// ```
 func Clbs(ctx *pulumi.Context, args *ClbsArgs, opts ...pulumi.InvokeOption) (*ClbsResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv ClbsResult

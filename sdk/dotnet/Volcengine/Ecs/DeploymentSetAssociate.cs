@@ -8,87 +8,94 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Ecs
+namespace Volcengine.Pulumi.Volcengine.Ecs
 {
     /// <summary>
     /// Provides a resource to manage ecs deployment set associate
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Volcengine = Pulumi.Volcengine;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
-    ///     {
-    ///         var fooZones = Output.Create(Volcengine.Ecs.Zones.InvokeAsync());
-    ///         var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new Volcengine.Vpc.VpcArgs
-    ///         {
-    ///             VpcName = "acc-test-vpc",
-    ///             CidrBlock = "172.16.0.0/16",
-    ///         });
-    ///         var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new Volcengine.Vpc.SubnetArgs
-    ///         {
-    ///             SubnetName = "acc-test-subnet",
-    ///             CidrBlock = "172.16.0.0/24",
-    ///             ZoneId = fooZones.Apply(fooZones =&gt; fooZones.Zones?[0]?.Id),
-    ///             VpcId = fooVpc.Id,
-    ///         });
-    ///         var fooSecurityGroup = new Volcengine.Vpc.SecurityGroup("fooSecurityGroup", new Volcengine.Vpc.SecurityGroupArgs
-    ///         {
-    ///             SecurityGroupName = "acc-test-security-group",
-    ///             VpcId = fooVpc.Id,
-    ///         });
-    ///         var fooImages = Output.Create(Volcengine.Ecs.Images.InvokeAsync(new Volcengine.Ecs.ImagesArgs
-    ///         {
-    ///             OsType = "Linux",
-    ///             Visibility = "public",
-    ///             InstanceTypeId = "ecs.g1.large",
-    ///         }));
-    ///         var fooInstance = new Volcengine.Ecs.Instance("fooInstance", new Volcengine.Ecs.InstanceArgs
-    ///         {
-    ///             InstanceName = "acc-test-ecs",
-    ///             ImageId = fooImages.Apply(fooImages =&gt; fooImages.Images?[0]?.ImageId),
-    ///             InstanceType = "ecs.g1.large",
-    ///             Password = "93f0cb0614Aab12",
-    ///             InstanceChargeType = "PostPaid",
-    ///             SystemVolumeType = "ESSD_PL0",
-    ///             SystemVolumeSize = 40,
-    ///             SubnetId = fooSubnet.Id,
-    ///             SecurityGroupIds = 
-    ///             {
-    ///                 fooSecurityGroup.Id,
-    ///             },
-    ///         });
-    ///         var fooState = new Volcengine.Ecs.State("fooState", new Volcengine.Ecs.StateArgs
-    ///         {
-    ///             InstanceId = fooInstance.Id,
-    ///             Action = "Stop",
-    ///             StoppedMode = "KeepCharging",
-    ///         });
-    ///         var fooDeploymentSet = new Volcengine.Ecs.DeploymentSet("fooDeploymentSet", new Volcengine.Ecs.DeploymentSetArgs
-    ///         {
-    ///             DeploymentSetName = "acc-test-ecs-ds",
-    ///             Description = "acc-test",
-    ///             Granularity = "switch",
-    ///             Strategy = "Availability",
-    ///         });
-    ///         var fooDeploymentSetAssociate = new Volcengine.Ecs.DeploymentSetAssociate("fooDeploymentSetAssociate", new Volcengine.Ecs.DeploymentSetAssociateArgs
-    ///         {
-    ///             DeploymentSetId = fooDeploymentSet.Id,
-    ///             InstanceId = fooInstance.Id,
-    ///         }, new CustomResourceOptions
-    ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 fooState,
-    ///             },
-    ///         });
-    ///     }
+    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
     /// 
-    /// }
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
+    ///     {
+    ///         VpcName = "acc-test-vpc",
+    ///         CidrBlock = "172.16.0.0/16",
+    ///     });
+    /// 
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooSecurityGroup = new Volcengine.Vpc.SecurityGroup("fooSecurityGroup", new()
+    ///     {
+    ///         SecurityGroupName = "acc-test-security-group",
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooImages = Volcengine.Ecs.Images.Invoke(new()
+    ///     {
+    ///         OsType = "Linux",
+    ///         Visibility = "public",
+    ///         InstanceTypeId = "ecs.g1.large",
+    ///     });
+    /// 
+    ///     var fooInstance = new Volcengine.Ecs.Instance("fooInstance", new()
+    ///     {
+    ///         InstanceName = "acc-test-ecs",
+    ///         ImageId = fooImages.Apply(imagesResult =&gt; imagesResult.Images[0]?.ImageId),
+    ///         InstanceType = "ecs.g1.large",
+    ///         Password = "93f0cb0614Aab12",
+    ///         InstanceChargeType = "PostPaid",
+    ///         SystemVolumeType = "ESSD_PL0",
+    ///         SystemVolumeSize = 40,
+    ///         SubnetId = fooSubnet.Id,
+    ///         SecurityGroupIds = new[]
+    ///         {
+    ///             fooSecurityGroup.Id,
+    ///         },
+    ///     });
+    /// 
+    ///     var fooState = new Volcengine.Ecs.State("fooState", new()
+    ///     {
+    ///         InstanceId = fooInstance.Id,
+    ///         Action = "Stop",
+    ///         StoppedMode = "KeepCharging",
+    ///     });
+    /// 
+    ///     var fooDeploymentSet = new Volcengine.Ecs.DeploymentSet("fooDeploymentSet", new()
+    ///     {
+    ///         DeploymentSetName = "acc-test-ecs-ds",
+    ///         Description = "acc-test",
+    ///         Granularity = "switch",
+    ///         Strategy = "Availability",
+    ///     });
+    /// 
+    ///     var fooDeploymentSetAssociate = new Volcengine.Ecs.DeploymentSetAssociate("fooDeploymentSetAssociate", new()
+    ///     {
+    ///         DeploymentSetId = fooDeploymentSet.Id,
+    ///         InstanceId = fooInstance.Id,
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             fooState,
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -100,7 +107,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:ecs/deploymentSetAssociate:DeploymentSetAssociate")]
-    public partial class DeploymentSetAssociate : Pulumi.CustomResource
+    public partial class DeploymentSetAssociate : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The ID of ECS DeploymentSet Associate.
@@ -159,7 +166,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         }
     }
 
-    public sealed class DeploymentSetAssociateArgs : Pulumi.ResourceArgs
+    public sealed class DeploymentSetAssociateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of ECS DeploymentSet Associate.
@@ -176,9 +183,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         public DeploymentSetAssociateArgs()
         {
         }
+        public static new DeploymentSetAssociateArgs Empty => new DeploymentSetAssociateArgs();
     }
 
-    public sealed class DeploymentSetAssociateState : Pulumi.ResourceArgs
+    public sealed class DeploymentSetAssociateState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of ECS DeploymentSet Associate.
@@ -195,5 +203,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         public DeploymentSetAssociateState()
         {
         }
+        public static new DeploymentSetAssociateState Empty => new DeploymentSetAssociateState();
     }
 }

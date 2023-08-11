@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -49,7 +49,7 @@ import (
 //
 // ```
 //
-//	Set `ssl_action` to `Update` will update ssl always when terraform apply.
+//	Set `ssl_action` to `Update` will update ssl always when pulumi up.
 type SslState struct {
 	pulumi.CustomResourceState
 
@@ -57,8 +57,7 @@ type SslState struct {
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// Whetehr SSL is valid.
 	IsValid pulumi.BoolOutput `pulumi:"isValid"`
-	// The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will update ssl always when terraform
-	// apply.
+	// The action of ssl, valid value contains `Update`. Set `sslAction` to `Update` will update ssl always when pulumi up.
 	SslAction pulumi.StringPtrOutput `pulumi:"sslAction"`
 	// Whether SSL is enabled.
 	SslEnable pulumi.BoolOutput `pulumi:"sslEnable"`
@@ -103,8 +102,7 @@ type sslStateState struct {
 	InstanceId *string `pulumi:"instanceId"`
 	// Whetehr SSL is valid.
 	IsValid *bool `pulumi:"isValid"`
-	// The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will update ssl always when terraform
-	// apply.
+	// The action of ssl, valid value contains `Update`. Set `sslAction` to `Update` will update ssl always when pulumi up.
 	SslAction *string `pulumi:"sslAction"`
 	// Whether SSL is enabled.
 	SslEnable *bool `pulumi:"sslEnable"`
@@ -117,8 +115,7 @@ type SslStateState struct {
 	InstanceId pulumi.StringPtrInput
 	// Whetehr SSL is valid.
 	IsValid pulumi.BoolPtrInput
-	// The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will update ssl always when terraform
-	// apply.
+	// The action of ssl, valid value contains `Update`. Set `sslAction` to `Update` will update ssl always when pulumi up.
 	SslAction pulumi.StringPtrInput
 	// Whether SSL is enabled.
 	SslEnable pulumi.BoolPtrInput
@@ -133,8 +130,7 @@ func (SslStateState) ElementType() reflect.Type {
 type sslStateArgs struct {
 	// The ID of mongodb instance.
 	InstanceId string `pulumi:"instanceId"`
-	// The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will update ssl always when terraform
-	// apply.
+	// The action of ssl, valid value contains `Update`. Set `sslAction` to `Update` will update ssl always when pulumi up.
 	SslAction *string `pulumi:"sslAction"`
 }
 
@@ -142,8 +138,7 @@ type sslStateArgs struct {
 type SslStateArgs struct {
 	// The ID of mongodb instance.
 	InstanceId pulumi.StringInput
-	// The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will update ssl always when terraform
-	// apply.
+	// The action of ssl, valid value contains `Update`. Set `sslAction` to `Update` will update ssl always when pulumi up.
 	SslAction pulumi.StringPtrInput
 }
 
@@ -244,8 +239,7 @@ func (o SslStateOutput) IsValid() pulumi.BoolOutput {
 	return o.ApplyT(func(v *SslState) pulumi.BoolOutput { return v.IsValid }).(pulumi.BoolOutput)
 }
 
-// The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will update ssl always when terraform
-// apply.
+// The action of ssl, valid value contains `Update`. Set `sslAction` to `Update` will update ssl always when pulumi up.
 func (o SslStateOutput) SslAction() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SslState) pulumi.StringPtrOutput { return v.SslAction }).(pulumi.StringPtrOutput)
 }

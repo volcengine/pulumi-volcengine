@@ -5,29 +5,76 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./authorizationTokens";
-export * from "./endpoint";
-export * from "./endpoints";
-export * from "./namespace";
-export * from "./namespaces";
-export * from "./registries";
-export * from "./registry";
-export * from "./repositories";
-export * from "./repository";
-export * from "./state";
-export * from "./tag";
-export * from "./tags";
-export * from "./vpcEndpoint";
-export * from "./vpcEndpoints";
+export { AuthorizationTokensArgs, AuthorizationTokensResult, AuthorizationTokensOutputArgs } from "./authorizationTokens";
+export const authorizationTokens: typeof import("./authorizationTokens").authorizationTokens = null as any;
+export const authorizationTokensOutput: typeof import("./authorizationTokens").authorizationTokensOutput = null as any;
+utilities.lazyLoad(exports, ["authorizationTokens","authorizationTokensOutput"], () => require("./authorizationTokens"));
 
-// Import resources to register:
-import { Endpoint } from "./endpoint";
-import { Namespace } from "./namespace";
-import { Registry } from "./registry";
-import { Repository } from "./repository";
-import { State } from "./state";
-import { Tag } from "./tag";
-import { VpcEndpoint } from "./vpcEndpoint";
+export { EndpointArgs, EndpointState } from "./endpoint";
+export type Endpoint = import("./endpoint").Endpoint;
+export const Endpoint: typeof import("./endpoint").Endpoint = null as any;
+utilities.lazyLoad(exports, ["Endpoint"], () => require("./endpoint"));
+
+export { EndpointsArgs, EndpointsResult, EndpointsOutputArgs } from "./endpoints";
+export const endpoints: typeof import("./endpoints").endpoints = null as any;
+export const endpointsOutput: typeof import("./endpoints").endpointsOutput = null as any;
+utilities.lazyLoad(exports, ["endpoints","endpointsOutput"], () => require("./endpoints"));
+
+export { NamespaceArgs, NamespaceState } from "./namespace";
+export type Namespace = import("./namespace").Namespace;
+export const Namespace: typeof import("./namespace").Namespace = null as any;
+utilities.lazyLoad(exports, ["Namespace"], () => require("./namespace"));
+
+export { NamespacesArgs, NamespacesResult, NamespacesOutputArgs } from "./namespaces";
+export const namespaces: typeof import("./namespaces").namespaces = null as any;
+export const namespacesOutput: typeof import("./namespaces").namespacesOutput = null as any;
+utilities.lazyLoad(exports, ["namespaces","namespacesOutput"], () => require("./namespaces"));
+
+export { RegistriesArgs, RegistriesResult, RegistriesOutputArgs } from "./registries";
+export const registries: typeof import("./registries").registries = null as any;
+export const registriesOutput: typeof import("./registries").registriesOutput = null as any;
+utilities.lazyLoad(exports, ["registries","registriesOutput"], () => require("./registries"));
+
+export { RegistryArgs, RegistryState } from "./registry";
+export type Registry = import("./registry").Registry;
+export const Registry: typeof import("./registry").Registry = null as any;
+utilities.lazyLoad(exports, ["Registry"], () => require("./registry"));
+
+export { RepositoriesArgs, RepositoriesResult, RepositoriesOutputArgs } from "./repositories";
+export const repositories: typeof import("./repositories").repositories = null as any;
+export const repositoriesOutput: typeof import("./repositories").repositoriesOutput = null as any;
+utilities.lazyLoad(exports, ["repositories","repositoriesOutput"], () => require("./repositories"));
+
+export { RepositoryArgs, RepositoryState } from "./repository";
+export type Repository = import("./repository").Repository;
+export const Repository: typeof import("./repository").Repository = null as any;
+utilities.lazyLoad(exports, ["Repository"], () => require("./repository"));
+
+export { StateArgs, StateState } from "./state";
+export type State = import("./state").State;
+export const State: typeof import("./state").State = null as any;
+utilities.lazyLoad(exports, ["State"], () => require("./state"));
+
+export { TagArgs, TagState } from "./tag";
+export type Tag = import("./tag").Tag;
+export const Tag: typeof import("./tag").Tag = null as any;
+utilities.lazyLoad(exports, ["Tag"], () => require("./tag"));
+
+export { TagsArgs, TagsResult, TagsOutputArgs } from "./tags";
+export const tags: typeof import("./tags").tags = null as any;
+export const tagsOutput: typeof import("./tags").tagsOutput = null as any;
+utilities.lazyLoad(exports, ["tags","tagsOutput"], () => require("./tags"));
+
+export { VpcEndpointArgs, VpcEndpointState } from "./vpcEndpoint";
+export type VpcEndpoint = import("./vpcEndpoint").VpcEndpoint;
+export const VpcEndpoint: typeof import("./vpcEndpoint").VpcEndpoint = null as any;
+utilities.lazyLoad(exports, ["VpcEndpoint"], () => require("./vpcEndpoint"));
+
+export { VpcEndpointsArgs, VpcEndpointsResult, VpcEndpointsOutputArgs } from "./vpcEndpoints";
+export const vpcEndpoints: typeof import("./vpcEndpoints").vpcEndpoints = null as any;
+export const vpcEndpointsOutput: typeof import("./vpcEndpoints").vpcEndpointsOutput = null as any;
+utilities.lazyLoad(exports, ["vpcEndpoints","vpcEndpointsOutput"], () => require("./vpcEndpoints"));
+
 
 const _module = {
     version: utilities.getVersion(),

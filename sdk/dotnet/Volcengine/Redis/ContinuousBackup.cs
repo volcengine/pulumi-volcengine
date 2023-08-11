@@ -8,27 +8,26 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Redis
+namespace Volcengine.Pulumi.Volcengine.Redis
 {
     /// <summary>
     /// Provides a resource to manage redis continuous backup
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Redis.ContinuousBackup("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Redis.ContinuousBackup("foo", new Volcengine.Redis.ContinuousBackupArgs
-    ///         {
-    ///             InstanceId = "redis-cnlficlt4974s****",
-    ///         });
-    ///     }
+    ///         InstanceId = "redis-cnlficlt4974s****",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -40,7 +39,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:redis/continuousBackup:ContinuousBackup")]
-    public partial class ContinuousBackup : Pulumi.CustomResource
+    public partial class ContinuousBackup : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The Id of redis instance.
@@ -93,7 +92,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         }
     }
 
-    public sealed class ContinuousBackupArgs : Pulumi.ResourceArgs
+    public sealed class ContinuousBackupArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Id of redis instance.
@@ -104,9 +103,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         public ContinuousBackupArgs()
         {
         }
+        public static new ContinuousBackupArgs Empty => new ContinuousBackupArgs();
     }
 
-    public sealed class ContinuousBackupState : Pulumi.ResourceArgs
+    public sealed class ContinuousBackupState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Id of redis instance.
@@ -117,5 +117,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         public ContinuousBackupState()
         {
         }
+        public static new ContinuousBackupState Empty => new ContinuousBackupState();
     }
 }

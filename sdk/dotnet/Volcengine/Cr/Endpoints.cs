@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cr
+namespace Volcengine.Pulumi.Volcengine.Cr
 {
     public static class Endpoints
     {
@@ -19,26 +19,25 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Cr.Endpoints.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Cr.Endpoints.InvokeAsync(new Volcengine.Cr.EndpointsArgs
-        ///         {
-        ///             Registry = "tf-1",
-        ///         }));
-        ///     }
+        ///         Registry = "tf-1",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<EndpointsResult> InvokeAsync(EndpointsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<EndpointsResult>("volcengine:cr/endpoints:Endpoints", args ?? new EndpointsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<EndpointsResult>("volcengine:cr/endpoints:Endpoints", args ?? new EndpointsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cr endpoints
@@ -47,30 +46,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Cr.Endpoints.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Cr.Endpoints.InvokeAsync(new Volcengine.Cr.EndpointsArgs
-        ///         {
-        ///             Registry = "tf-1",
-        ///         }));
-        ///     }
+        ///         Registry = "tf-1",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<EndpointsResult> Invoke(EndpointsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<EndpointsResult>("volcengine:cr/endpoints:Endpoints", args ?? new EndpointsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<EndpointsResult>("volcengine:cr/endpoints:Endpoints", args ?? new EndpointsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class EndpointsArgs : Pulumi.InvokeArgs
+    public sealed class EndpointsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// File name where to save data source results.
@@ -87,9 +85,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         public EndpointsArgs()
         {
         }
+        public static new EndpointsArgs Empty => new EndpointsArgs();
     }
 
-    public sealed class EndpointsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class EndpointsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// File name where to save data source results.
@@ -106,6 +105,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         public EndpointsInvokeArgs()
         {
         }
+        public static new EndpointsInvokeArgs Empty => new EndpointsInvokeArgs();
     }
 
 
