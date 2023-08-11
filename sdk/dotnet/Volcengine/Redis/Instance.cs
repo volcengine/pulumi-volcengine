@@ -8,79 +8,78 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Redis
+namespace Volcengine.Pulumi.Volcengine.Redis
 {
     /// <summary>
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Redis.Instance("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Redis.Instance("foo", new Volcengine.Redis.InstanceArgs
+    ///         ApplyImmediately = true,
+    ///         BackupActive = true,
+    ///         BackupHour = 4,
+    ///         BackupPeriods = new[]
     ///         {
-    ///             ApplyImmediately = true,
-    ///             BackupActive = true,
-    ///             BackupHour = 4,
-    ///             BackupPeriods = 
+    ///             1,
+    ///             2,
+    ///             3,
+    ///         },
+    ///         ChargeType = "PostPaid",
+    ///         CreateBackup = false,
+    ///         DeletionProtection = "disabled",
+    ///         EngineVersion = "5.0",
+    ///         InstanceName = "tf-test",
+    ///         NodeNumber = 2,
+    ///         ParamValues = new[]
+    ///         {
+    ///             new Volcengine.Redis.Inputs.InstanceParamValueArgs
     ///             {
-    ///                 1,
-    ///                 2,
-    ///                 3,
+    ///                 Name = "active-defrag-cycle-min",
+    ///                 Value = "5",
     ///             },
-    ///             ChargeType = "PostPaid",
-    ///             CreateBackup = false,
-    ///             DeletionProtection = "disabled",
-    ///             EngineVersion = "5.0",
-    ///             InstanceName = "tf-test",
-    ///             NodeNumber = 2,
-    ///             ParamValues = 
+    ///             new Volcengine.Redis.Inputs.InstanceParamValueArgs
     ///             {
-    ///                 new Volcengine.Redis.Inputs.InstanceParamValueArgs
-    ///                 {
-    ///                     Name = "active-defrag-cycle-min",
-    ///                     Value = "5",
-    ///                 },
-    ///                 new Volcengine.Redis.Inputs.InstanceParamValueArgs
-    ///                 {
-    ///                     Name = "active-defrag-cycle-max",
-    ///                     Value = "28",
-    ///                 },
+    ///                 Name = "active-defrag-cycle-max",
+    ///                 Value = "28",
     ///             },
-    ///             Password = "1qaz!QAZ12",
-    ///             Port = 6381,
-    ///             ProjectName = "default",
-    ///             ShardCapacity = 1024,
-    ///             ShardNumber = 2,
-    ///             ShardedCluster = 1,
-    ///             SubnetId = "subnet-13g7c3lot0lc03n6nu4wj****",
-    ///             Tags = 
+    ///         },
+    ///         Password = "1qaz!QAZ12",
+    ///         Port = 6381,
+    ///         ProjectName = "default",
+    ///         ShardCapacity = 1024,
+    ///         ShardNumber = 2,
+    ///         ShardedCluster = 1,
+    ///         SubnetId = "subnet-13g7c3lot0lc03n6nu4wj****",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Redis.Inputs.InstanceTagArgs
     ///             {
-    ///                 new Volcengine.Redis.Inputs.InstanceTagArgs
-    ///                 {
-    ///                     Key = "k1",
-    ///                     Value = "v1",
-    ///                 },
-    ///                 new Volcengine.Redis.Inputs.InstanceTagArgs
-    ///                 {
-    ///                     Key = "k3",
-    ///                     Value = "v3",
-    ///                 },
+    ///                 Key = "k1",
+    ///                 Value = "v1",
     ///             },
-    ///             VpcAuthMode = "close",
-    ///             ZoneIds = 
+    ///             new Volcengine.Redis.Inputs.InstanceTagArgs
     ///             {
-    ///                 "cn-beijing-a",
-    ///                 "cn-beijing-b",
+    ///                 Key = "k3",
+    ///                 Value = "v3",
     ///             },
-    ///         });
-    ///     }
+    ///         },
+    ///         VpcAuthMode = "close",
+    ///         ZoneIds = new[]
+    ///         {
+    ///             "cn-beijing-a",
+    ///             "cn-beijing-b",
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -92,7 +91,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:redis/instance:Instance")]
-    public partial class Instance : Pulumi.CustomResource
+    public partial class Instance : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Whether to apply the instance configuration change operation immediately. The value of this field is false, means that the change operation will be applied within maintenance time.
@@ -260,6 +259,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/volcengine",
+                AdditionalSecretOutputs =
+                {
+                    "password",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -281,7 +284,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         }
     }
 
-    public sealed class InstanceArgs : Pulumi.ResourceArgs
+    public sealed class InstanceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether to apply the instance configuration change operation immediately. The value of this field is false, means that the change operation will be applied within maintenance time.
@@ -370,11 +373,21 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
             set => _paramValues = value;
         }
 
+        [Input("password", required: true)]
+        private Input<string>? _password;
+
         /// <summary>
         /// The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
-        [Input("password", required: true)]
-        public Input<string> Password { get; set; } = null!;
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The port of custom define private network address. The valid value range is `1024-65535`. The default value is `6379`.
@@ -452,9 +465,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         public InstanceArgs()
         {
         }
+        public static new InstanceArgs Empty => new InstanceArgs();
     }
 
-    public sealed class InstanceState : Pulumi.ResourceArgs
+    public sealed class InstanceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether to apply the instance configuration change operation immediately. The value of this field is false, means that the change operation will be applied within maintenance time.
@@ -543,11 +557,21 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
             set => _paramValues = value;
         }
 
+        [Input("password")]
+        private Input<string>? _password;
+
         /// <summary>
         /// The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
-        [Input("password")]
-        public Input<string>? Password { get; set; }
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The port of custom define private network address. The valid value range is `1024-65535`. The default value is `6379`.
@@ -625,5 +649,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         public InstanceState()
         {
         }
+        public static new InstanceState Empty => new InstanceState();
     }
 }

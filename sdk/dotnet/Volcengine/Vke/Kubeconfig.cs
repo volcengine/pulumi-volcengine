@@ -8,28 +8,27 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke
+namespace Volcengine.Pulumi.Volcengine.Vke
 {
     /// <summary>
     /// Provides a resource to manage vke kubeconfig
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Vke.Kubeconfig("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Vke.Kubeconfig("foo", new Volcengine.Vke.KubeconfigArgs
-    ///         {
-    ///             ClusterId = "cce7hb97qtofmj1oi4udg",
-    ///             Type = "Private",
-    ///         });
-    ///     }
+    ///         ClusterId = "cce7hb97qtofmj1oi4udg",
+    ///         Type = "Private",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -41,7 +40,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vke/kubeconfig:Kubeconfig")]
-    public partial class Kubeconfig : Pulumi.CustomResource
+    public partial class Kubeconfig : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The cluster id of the Kubeconfig.
@@ -106,7 +105,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         }
     }
 
-    public sealed class KubeconfigArgs : Pulumi.ResourceArgs
+    public sealed class KubeconfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The cluster id of the Kubeconfig.
@@ -129,9 +128,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         public KubeconfigArgs()
         {
         }
+        public static new KubeconfigArgs Empty => new KubeconfigArgs();
     }
 
-    public sealed class KubeconfigState : Pulumi.ResourceArgs
+    public sealed class KubeconfigState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The cluster id of the Kubeconfig.
@@ -154,5 +154,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         public KubeconfigState()
         {
         }
+        public static new KubeconfigState Empty => new KubeconfigState();
     }
 }

@@ -8,33 +8,33 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpc
+namespace Volcengine.Pulumi.Volcengine.Vpc
 {
     /// <summary>
     /// Provides a resource to manage network acl associate
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Vpc.NetworkAcl("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Vpc.NetworkAcl("foo", new Volcengine.Vpc.NetworkAclArgs
-    ///         {
-    ///             VpcId = "vpc-ru0wv9alfoxsu3nuld85rpp",
-    ///             NetworkAclName = "tf-test-acl",
-    ///         });
-    ///         var foo1 = new Volcengine.Vpc.NetworkAclAssociate("foo1", new Volcengine.Vpc.NetworkAclAssociateArgs
-    ///         {
-    ///             NetworkAclId = foo.Id,
-    ///             ResourceId = "subnet-637jxq81u5mon3gd6ivc7rj",
-    ///         });
-    ///     }
+    ///         VpcId = "vpc-ru0wv9alfoxsu3nuld85rpp",
+    ///         NetworkAclName = "tf-test-acl",
+    ///     });
     /// 
-    /// }
+    ///     var foo1 = new Volcengine.Vpc.NetworkAclAssociate("foo1", new()
+    ///     {
+    ///         NetworkAclId = foo.Id,
+    ///         ResourceId = "subnet-637jxq81u5mon3gd6ivc7rj",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -46,7 +46,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vpc/networkAclAssociate:NetworkAclAssociate")]
-    public partial class NetworkAclAssociate : Pulumi.CustomResource
+    public partial class NetworkAclAssociate : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The id of Network Acl.
@@ -105,7 +105,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         }
     }
 
-    public sealed class NetworkAclAssociateArgs : Pulumi.ResourceArgs
+    public sealed class NetworkAclAssociateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of Network Acl.
@@ -122,9 +122,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public NetworkAclAssociateArgs()
         {
         }
+        public static new NetworkAclAssociateArgs Empty => new NetworkAclAssociateArgs();
     }
 
-    public sealed class NetworkAclAssociateState : Pulumi.ResourceArgs
+    public sealed class NetworkAclAssociateState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of Network Acl.
@@ -141,5 +142,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public NetworkAclAssociateState()
         {
         }
+        public static new NetworkAclAssociateState Empty => new NetworkAclAssociateState();
     }
 }

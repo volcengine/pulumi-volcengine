@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Mongodb
+namespace Volcengine.Pulumi.Volcengine.Mongodb
 {
     public static class SslStates
     {
@@ -19,26 +19,25 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Mongodb.SslStates.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Mongodb.SslStates.InvokeAsync(new Volcengine.Mongodb.SslStatesArgs
-        ///         {
-        ///             InstanceId = "mongo-replica-f16e9298b121",
-        ///         }));
-        ///     }
+        ///         InstanceId = "mongo-replica-f16e9298b121",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<SslStatesResult> InvokeAsync(SslStatesArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<SslStatesResult>("volcengine:mongodb/sslStates:SslStates", args ?? new SslStatesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<SslStatesResult>("volcengine:mongodb/sslStates:SslStates", args ?? new SslStatesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of mongodb ssl states
@@ -47,30 +46,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Mongodb.SslStates.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Mongodb.SslStates.InvokeAsync(new Volcengine.Mongodb.SslStatesArgs
-        ///         {
-        ///             InstanceId = "mongo-replica-f16e9298b121",
-        ///         }));
-        ///     }
+        ///         InstanceId = "mongo-replica-f16e9298b121",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<SslStatesResult> Invoke(SslStatesInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<SslStatesResult>("volcengine:mongodb/sslStates:SslStates", args ?? new SslStatesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<SslStatesResult>("volcengine:mongodb/sslStates:SslStates", args ?? new SslStatesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class SslStatesArgs : Pulumi.InvokeArgs
+    public sealed class SslStatesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The mongodb instance ID to query.
@@ -87,9 +85,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         public SslStatesArgs()
         {
         }
+        public static new SslStatesArgs Empty => new SslStatesArgs();
     }
 
-    public sealed class SslStatesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class SslStatesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The mongodb instance ID to query.
@@ -106,6 +105,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         public SslStatesInvokeArgs()
         {
         }
+        public static new SslStatesInvokeArgs Empty => new SslStatesInvokeArgs();
     }
 
 

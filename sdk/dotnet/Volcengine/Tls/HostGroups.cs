@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls
+namespace Volcengine.Pulumi.Volcengine.Tls
 {
     public static class HostGroups
     {
@@ -19,27 +19,26 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Tls.HostGroups.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Tls.HostGroups.InvokeAsync(new Volcengine.Tls.HostGroupsArgs
-        ///         {
-        ///             HostGroupId = "fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
-        ///             HostGroupName = "cn",
-        ///         }));
-        ///     }
+        ///         HostGroupId = "fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
+        ///         HostGroupName = "cn",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<HostGroupsResult> InvokeAsync(HostGroupsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<HostGroupsResult>("volcengine:tls/hostGroups:HostGroups", args ?? new HostGroupsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<HostGroupsResult>("volcengine:tls/hostGroups:HostGroups", args ?? new HostGroupsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of tls host groups
@@ -48,31 +47,30 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Tls.HostGroups.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Tls.HostGroups.InvokeAsync(new Volcengine.Tls.HostGroupsArgs
-        ///         {
-        ///             HostGroupId = "fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
-        ///             HostGroupName = "cn",
-        ///         }));
-        ///     }
+        ///         HostGroupId = "fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
+        ///         HostGroupName = "cn",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<HostGroupsResult> Invoke(HostGroupsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<HostGroupsResult>("volcengine:tls/hostGroups:HostGroups", args ?? new HostGroupsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<HostGroupsResult>("volcengine:tls/hostGroups:HostGroups", args ?? new HostGroupsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class HostGroupsArgs : Pulumi.InvokeArgs
+    public sealed class HostGroupsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Whether enable auto update.
@@ -119,9 +117,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public HostGroupsArgs()
         {
         }
+        public static new HostGroupsArgs Empty => new HostGroupsArgs();
     }
 
-    public sealed class HostGroupsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class HostGroupsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Whether enable auto update.
@@ -168,6 +167,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public HostGroupsInvokeArgs()
         {
         }
+        public static new HostGroupsInvokeArgs Empty => new HostGroupsInvokeArgs();
     }
 
 

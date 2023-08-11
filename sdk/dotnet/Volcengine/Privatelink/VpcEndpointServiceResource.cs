@@ -8,38 +8,39 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Privatelink
+namespace Volcengine.Pulumi.Volcengine.Privatelink
 {
     /// <summary>
     /// Provides a resource to manage privatelink vpc endpoint service resource
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Privatelink.VpcEndpointServiceResource("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Privatelink.VpcEndpointServiceResource("foo", new Volcengine.Privatelink.VpcEndpointServiceResourceArgs
-    ///         {
-    ///             ResourceId = "clb-3reii8qfbp7gg5zsk2hsrbe3c",
-    ///             ServiceId = "epsvc-3rel73uf2ewao5zsk2j2l58ro",
-    ///         });
-    ///         var foo1 = new Volcengine.Privatelink.VpcEndpointServiceResource("foo1", new Volcengine.Privatelink.VpcEndpointServiceResourceArgs
-    ///         {
-    ///             ResourceId = "clb-2d6sfye98rzls58ozfducee1o",
-    ///             ServiceId = "epsvc-3rel73uf2ewao5zsk2j2l58ro",
-    ///         });
-    ///         var foo2 = new Volcengine.Privatelink.VpcEndpointServiceResource("foo2", new Volcengine.Privatelink.VpcEndpointServiceResourceArgs
-    ///         {
-    ///             ResourceId = "clb-3refkvae02gow5zsk2ilaev5y",
-    ///             ServiceId = "epsvc-3rel73uf2ewao5zsk2j2l58ro",
-    ///         });
-    ///     }
+    ///         ResourceId = "clb-3reii8qfbp7gg5zsk2hsrbe3c",
+    ///         ServiceId = "epsvc-3rel73uf2ewao5zsk2j2l58ro",
+    ///     });
     /// 
-    /// }
+    ///     var foo1 = new Volcengine.Privatelink.VpcEndpointServiceResource("foo1", new()
+    ///     {
+    ///         ResourceId = "clb-2d6sfye98rzls58ozfducee1o",
+    ///         ServiceId = "epsvc-3rel73uf2ewao5zsk2j2l58ro",
+    ///     });
+    /// 
+    ///     var foo2 = new Volcengine.Privatelink.VpcEndpointServiceResource("foo2", new()
+    ///     {
+    ///         ResourceId = "clb-3refkvae02gow5zsk2ilaev5y",
+    ///         ServiceId = "epsvc-3rel73uf2ewao5zsk2j2l58ro",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -51,7 +52,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:privatelink/vpcEndpointServiceResource:VpcEndpointServiceResource")]
-    public partial class VpcEndpointServiceResource : Pulumi.CustomResource
+    public partial class VpcEndpointServiceResource : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The id of resource.
@@ -110,7 +111,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         }
     }
 
-    public sealed class VpcEndpointServiceResourceArgs : Pulumi.ResourceArgs
+    public sealed class VpcEndpointServiceResourceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of resource.
@@ -127,9 +128,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         public VpcEndpointServiceResourceArgs()
         {
         }
+        public static new VpcEndpointServiceResourceArgs Empty => new VpcEndpointServiceResourceArgs();
     }
 
-    public sealed class VpcEndpointServiceResourceState : Pulumi.ResourceArgs
+    public sealed class VpcEndpointServiceResourceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of resource.
@@ -146,5 +148,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         public VpcEndpointServiceResourceState()
         {
         }
+        public static new VpcEndpointServiceResourceState Empty => new VpcEndpointServiceResourceState();
     }
 }

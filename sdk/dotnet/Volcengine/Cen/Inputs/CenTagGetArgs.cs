@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cen.Inputs
+namespace Volcengine.Pulumi.Volcengine.Cen.Inputs
 {
 
-    public sealed class CenTagGetArgs : Pulumi.ResourceArgs
+    public sealed class CenTagGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Key of Tags.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen.Inputs
         public CenTagGetArgs()
         {
         }
+        public static new CenTagGetArgs Empty => new CenTagGetArgs();
     }
 }

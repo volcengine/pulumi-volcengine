@@ -8,73 +8,79 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Eip
+namespace Volcengine.Pulumi.Volcengine.Eip
 {
     /// <summary>
     /// Provides a resource to manage eip associate
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Volcengine = Pulumi.Volcengine;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
-    ///     {
-    ///         var fooZones = Output.Create(Volcengine.Ecs.Zones.InvokeAsync());
-    ///         var fooImages = Output.Create(Volcengine.Ecs.Images.InvokeAsync(new Volcengine.Ecs.ImagesArgs
-    ///         {
-    ///             OsType = "Linux",
-    ///             Visibility = "public",
-    ///             InstanceTypeId = "ecs.g1.large",
-    ///         }));
-    ///         var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new Volcengine.Vpc.VpcArgs
-    ///         {
-    ///             VpcName = "acc-test-vpc",
-    ///             CidrBlock = "172.16.0.0/16",
-    ///         });
-    ///         var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new Volcengine.Vpc.SubnetArgs
-    ///         {
-    ///             SubnetName = "acc-test-subnet",
-    ///             CidrBlock = "172.16.0.0/24",
-    ///             ZoneId = fooZones.Apply(fooZones =&gt; fooZones.Zones?[0]?.Id),
-    ///             VpcId = fooVpc.Id,
-    ///         });
-    ///         var fooSecurityGroup = new Volcengine.Vpc.SecurityGroup("fooSecurityGroup", new Volcengine.Vpc.SecurityGroupArgs
-    ///         {
-    ///             VpcId = fooVpc.Id,
-    ///             SecurityGroupName = "acc-test-security-group",
-    ///         });
-    ///         var fooInstance = new Volcengine.Ecs.Instance("fooInstance", new Volcengine.Ecs.InstanceArgs
-    ///         {
-    ///             ImageId = fooImages.Apply(fooImages =&gt; fooImages.Images?[0]?.ImageId),
-    ///             InstanceType = "ecs.g1.large",
-    ///             InstanceName = "acc-test-ecs-name",
-    ///             Password = "93f0cb0614Aab12",
-    ///             InstanceChargeType = "PostPaid",
-    ///             SystemVolumeType = "ESSD_PL0",
-    ///             SystemVolumeSize = 40,
-    ///             SubnetId = fooSubnet.Id,
-    ///             SecurityGroupIds = 
-    ///             {
-    ///                 fooSecurityGroup.Id,
-    ///             },
-    ///         });
-    ///         var fooAddress = new Volcengine.Eip.Address("fooAddress", new Volcengine.Eip.AddressArgs
-    ///         {
-    ///             BillingType = "PostPaidByTraffic",
-    ///         });
-    ///         var fooAssociate = new Volcengine.Eip.Associate("fooAssociate", new Volcengine.Eip.AssociateArgs
-    ///         {
-    ///             AllocationId = fooAddress.Id,
-    ///             InstanceId = fooInstance.Id,
-    ///             InstanceType = "EcsInstance",
-    ///         });
-    ///     }
+    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
     /// 
-    /// }
+    ///     var fooImages = Volcengine.Ecs.Images.Invoke(new()
+    ///     {
+    ///         OsType = "Linux",
+    ///         Visibility = "public",
+    ///         InstanceTypeId = "ecs.g1.large",
+    ///     });
+    /// 
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
+    ///     {
+    ///         VpcName = "acc-test-vpc",
+    ///         CidrBlock = "172.16.0.0/16",
+    ///     });
+    /// 
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooSecurityGroup = new Volcengine.Vpc.SecurityGroup("fooSecurityGroup", new()
+    ///     {
+    ///         VpcId = fooVpc.Id,
+    ///         SecurityGroupName = "acc-test-security-group",
+    ///     });
+    /// 
+    ///     var fooInstance = new Volcengine.Ecs.Instance("fooInstance", new()
+    ///     {
+    ///         ImageId = fooImages.Apply(imagesResult =&gt; imagesResult.Images[0]?.ImageId),
+    ///         InstanceType = "ecs.g1.large",
+    ///         InstanceName = "acc-test-ecs-name",
+    ///         Password = "93f0cb0614Aab12",
+    ///         InstanceChargeType = "PostPaid",
+    ///         SystemVolumeType = "ESSD_PL0",
+    ///         SystemVolumeSize = 40,
+    ///         SubnetId = fooSubnet.Id,
+    ///         SecurityGroupIds = new[]
+    ///         {
+    ///             fooSecurityGroup.Id,
+    ///         },
+    ///     });
+    /// 
+    ///     var fooAddress = new Volcengine.Eip.Address("fooAddress", new()
+    ///     {
+    ///         BillingType = "PostPaidByTraffic",
+    ///     });
+    /// 
+    ///     var fooAssociate = new Volcengine.Eip.Associate("fooAssociate", new()
+    ///     {
+    ///         AllocationId = fooAddress.Id,
+    ///         InstanceId = fooInstance.Id,
+    ///         InstanceType = "EcsInstance",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -86,7 +92,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Eip
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:eip/associate:Associate")]
-    public partial class Associate : Pulumi.CustomResource
+    public partial class Associate : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The allocation id of the EIP.
@@ -157,7 +163,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Eip
         }
     }
 
-    public sealed class AssociateArgs : Pulumi.ResourceArgs
+    public sealed class AssociateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The allocation id of the EIP.
@@ -186,9 +192,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Eip
         public AssociateArgs()
         {
         }
+        public static new AssociateArgs Empty => new AssociateArgs();
     }
 
-    public sealed class AssociateState : Pulumi.ResourceArgs
+    public sealed class AssociateState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The allocation id of the EIP.
@@ -217,5 +224,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Eip
         public AssociateState()
         {
         }
+        public static new AssociateState Empty => new AssociateState();
     }
 }

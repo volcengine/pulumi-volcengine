@@ -8,73 +8,79 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Ecs
+namespace Volcengine.Pulumi.Volcengine.Ecs
 {
     /// <summary>
     /// Provides a resource to manage ecs key pair associate
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Volcengine = Pulumi.Volcengine;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var fooKeyPair = new Volcengine.Ecs.KeyPair("fooKeyPair", new()
     ///     {
-    ///         var fooKeyPair = new Volcengine.Ecs.KeyPair("fooKeyPair", new Volcengine.Ecs.KeyPairArgs
-    ///         {
-    ///             KeyPairName = "acc-test-key-name",
-    ///             Description = "acc-test",
-    ///         });
-    ///         var fooZones = Output.Create(Volcengine.Ecs.Zones.InvokeAsync());
-    ///         var fooImages = Output.Create(Volcengine.Ecs.Images.InvokeAsync(new Volcengine.Ecs.ImagesArgs
-    ///         {
-    ///             OsType = "Linux",
-    ///             Visibility = "public",
-    ///             InstanceTypeId = "ecs.g1.large",
-    ///         }));
-    ///         var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new Volcengine.Vpc.VpcArgs
-    ///         {
-    ///             VpcName = "acc-test-vpc",
-    ///             CidrBlock = "172.16.0.0/16",
-    ///         });
-    ///         var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new Volcengine.Vpc.SubnetArgs
-    ///         {
-    ///             SubnetName = "acc-test-subnet",
-    ///             CidrBlock = "172.16.0.0/24",
-    ///             ZoneId = fooZones.Apply(fooZones =&gt; fooZones.Zones?[0]?.Id),
-    ///             VpcId = fooVpc.Id,
-    ///         });
-    ///         var fooSecurityGroup = new Volcengine.Vpc.SecurityGroup("fooSecurityGroup", new Volcengine.Vpc.SecurityGroupArgs
-    ///         {
-    ///             VpcId = fooVpc.Id,
-    ///             SecurityGroupName = "acc-test-security-group",
-    ///         });
-    ///         var fooInstance = new Volcengine.Ecs.Instance("fooInstance", new Volcengine.Ecs.InstanceArgs
-    ///         {
-    ///             ImageId = fooImages.Apply(fooImages =&gt; fooImages.Images?[0]?.ImageId),
-    ///             InstanceType = "ecs.g1.large",
-    ///             InstanceName = "acc-test-ecs-name",
-    ///             Password = "your password",
-    ///             InstanceChargeType = "PostPaid",
-    ///             SystemVolumeType = "ESSD_PL0",
-    ///             SystemVolumeSize = 40,
-    ///             SubnetId = fooSubnet.Id,
-    ///             SecurityGroupIds = 
-    ///             {
-    ///                 fooSecurityGroup.Id,
-    ///             },
-    ///         });
-    ///         var fooKeyPairAssociate = new Volcengine.Ecs.KeyPairAssociate("fooKeyPairAssociate", new Volcengine.Ecs.KeyPairAssociateArgs
-    ///         {
-    ///             InstanceId = fooInstance.Id,
-    ///             KeyPairId = fooKeyPair.Id,
-    ///         });
-    ///     }
+    ///         KeyPairName = "acc-test-key-name",
+    ///         Description = "acc-test",
+    ///     });
     /// 
-    /// }
+    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+    /// 
+    ///     var fooImages = Volcengine.Ecs.Images.Invoke(new()
+    ///     {
+    ///         OsType = "Linux",
+    ///         Visibility = "public",
+    ///         InstanceTypeId = "ecs.g1.large",
+    ///     });
+    /// 
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
+    ///     {
+    ///         VpcName = "acc-test-vpc",
+    ///         CidrBlock = "172.16.0.0/16",
+    ///     });
+    /// 
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooSecurityGroup = new Volcengine.Vpc.SecurityGroup("fooSecurityGroup", new()
+    ///     {
+    ///         VpcId = fooVpc.Id,
+    ///         SecurityGroupName = "acc-test-security-group",
+    ///     });
+    /// 
+    ///     var fooInstance = new Volcengine.Ecs.Instance("fooInstance", new()
+    ///     {
+    ///         ImageId = fooImages.Apply(imagesResult =&gt; imagesResult.Images[0]?.ImageId),
+    ///         InstanceType = "ecs.g1.large",
+    ///         InstanceName = "acc-test-ecs-name",
+    ///         Password = "your password",
+    ///         InstanceChargeType = "PostPaid",
+    ///         SystemVolumeType = "ESSD_PL0",
+    ///         SystemVolumeSize = 40,
+    ///         SubnetId = fooSubnet.Id,
+    ///         SecurityGroupIds = new[]
+    ///         {
+    ///             fooSecurityGroup.Id,
+    ///         },
+    ///     });
+    /// 
+    ///     var fooKeyPairAssociate = new Volcengine.Ecs.KeyPairAssociate("fooKeyPairAssociate", new()
+    ///     {
+    ///         InstanceId = fooInstance.Id,
+    ///         KeyPairId = fooKeyPair.Id,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -86,7 +92,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:ecs/keyPairAssociate:KeyPairAssociate")]
-    public partial class KeyPairAssociate : Pulumi.CustomResource
+    public partial class KeyPairAssociate : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The ID of ECS Instance.
@@ -145,7 +151,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         }
     }
 
-    public sealed class KeyPairAssociateArgs : Pulumi.ResourceArgs
+    public sealed class KeyPairAssociateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of ECS Instance.
@@ -162,9 +168,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         public KeyPairAssociateArgs()
         {
         }
+        public static new KeyPairAssociateArgs Empty => new KeyPairAssociateArgs();
     }
 
-    public sealed class KeyPairAssociateState : Pulumi.ResourceArgs
+    public sealed class KeyPairAssociateState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of ECS Instance.
@@ -181,5 +188,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         public KeyPairAssociateState()
         {
         }
+        public static new KeyPairAssociateState Empty => new KeyPairAssociateState();
     }
 }

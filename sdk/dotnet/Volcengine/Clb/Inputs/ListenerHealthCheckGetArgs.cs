@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Clb.Inputs
+namespace Volcengine.Pulumi.Volcengine.Clb.Inputs
 {
 
-    public sealed class ListenerHealthCheckGetArgs : Pulumi.ResourceArgs
+    public sealed class ListenerHealthCheckGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The domain of health check.
@@ -82,5 +82,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb.Inputs
         public ListenerHealthCheckGetArgs()
         {
         }
+        public static new ListenerHealthCheckGetArgs Empty => new ListenerHealthCheckGetArgs();
     }
 }

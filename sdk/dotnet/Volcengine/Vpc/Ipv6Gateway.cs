@@ -8,28 +8,27 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpc
+namespace Volcengine.Pulumi.Volcengine.Vpc
 {
     /// <summary>
     /// Provides a resource to manage vpc ipv6 gateway
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Vpc.Ipv6Gateway("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Vpc.Ipv6Gateway("foo", new Volcengine.Vpc.Ipv6GatewayArgs
-    ///         {
-    ///             Description = "test",
-    ///             VpcId = "vpc-12afxho4sxyio17q7y2kkp8ej",
-    ///         });
-    ///     }
+    ///         Description = "test",
+    ///         VpcId = "vpc-12afxho4sxyio17q7y2kkp8ej",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -41,7 +40,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vpc/ipv6Gateway:Ipv6Gateway")]
-    public partial class Ipv6Gateway : Pulumi.CustomResource
+    public partial class Ipv6Gateway : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Creation time of the Ipv6Gateway.
@@ -130,7 +129,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         }
     }
 
-    public sealed class Ipv6GatewayArgs : Pulumi.ResourceArgs
+    public sealed class Ipv6GatewayArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The description of the Ipv6Gateway.
@@ -153,9 +152,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public Ipv6GatewayArgs()
         {
         }
+        public static new Ipv6GatewayArgs Empty => new Ipv6GatewayArgs();
     }
 
-    public sealed class Ipv6GatewayState : Pulumi.ResourceArgs
+    public sealed class Ipv6GatewayState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Creation time of the Ipv6Gateway.
@@ -202,5 +202,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public Ipv6GatewayState()
         {
         }
+        public static new Ipv6GatewayState Empty => new Ipv6GatewayState();
     }
 }

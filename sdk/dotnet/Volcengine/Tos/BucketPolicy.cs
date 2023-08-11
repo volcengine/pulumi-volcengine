@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tos
+namespace Volcengine.Pulumi.Volcengine.Tos
 {
     /// <summary>
     /// Provides a resource to manage tos bucket policy
@@ -16,48 +16,42 @@ namespace Volcengine.PulumiPackage.Volcengine.Tos
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using System.Text.Json;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var @default = new Volcengine.Tos.BucketPolicy("default", new()
     ///     {
-    ///         var @default = new Volcengine.Tos.BucketPolicy("default", new Volcengine.Tos.BucketPolicyArgs
+    ///         BucketName = "bucket-20230418",
+    ///         Policy = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///         {
-    ///             BucketName = "bucket-20230418",
-    ///             Policy = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///             ["Statement"] = new[]
     ///             {
-    ///                 { "Statement", new[]
+    ///                 new Dictionary&lt;string, object?&gt;
+    ///                 {
+    ///                     ["Sid"] = "test",
+    ///                     ["Effect"] = "Allow",
+    ///                     ["Principal"] = new[]
     ///                     {
-    ///                         new Dictionary&lt;string, object?&gt;
-    ///                         {
-    ///                             { "Sid", "test" },
-    ///                             { "Effect", "Allow" },
-    ///                             { "Principal", new[]
-    ///                                 {
-    ///                                     "AccountId/subUserName",
-    ///                                 }
-    ///                              },
-    ///                             { "Action", new[]
-    ///                                 {
-    ///                                     "tos:List*",
-    ///                                 }
-    ///                              },
-    ///                             { "Resource", new[]
-    ///                                 {
-    ///                                     "trn:tos:::bucket-20230418",
-    ///                                 }
-    ///                              },
-    ///                         },
-    ///                     }
-    ///                  },
-    ///             }),
-    ///         });
-    ///     }
+    ///                         "AccountId/subUserName",
+    ///                     },
+    ///                     ["Action"] = new[]
+    ///                     {
+    ///                         "tos:List*",
+    ///                     },
+    ///                     ["Resource"] = new[]
+    ///                     {
+    ///                         "trn:tos:::bucket-20230418",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         }),
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -69,7 +63,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tos
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:tos/bucketPolicy:BucketPolicy")]
-    public partial class BucketPolicy : Pulumi.CustomResource
+    public partial class BucketPolicy : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The name of the bucket.
@@ -129,7 +123,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tos
         }
     }
 
-    public sealed class BucketPolicyArgs : Pulumi.ResourceArgs
+    public sealed class BucketPolicyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the bucket.
@@ -147,9 +141,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Tos
         public BucketPolicyArgs()
         {
         }
+        public static new BucketPolicyArgs Empty => new BucketPolicyArgs();
     }
 
-    public sealed class BucketPolicyState : Pulumi.ResourceArgs
+    public sealed class BucketPolicyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the bucket.
@@ -167,5 +162,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tos
         public BucketPolicyState()
         {
         }
+        public static new BucketPolicyState Empty => new BucketPolicyState();
     }
 }

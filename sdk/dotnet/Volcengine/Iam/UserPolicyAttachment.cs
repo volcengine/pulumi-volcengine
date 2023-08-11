@@ -8,40 +8,41 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Iam
+namespace Volcengine.Pulumi.Volcengine.Iam
 {
     /// <summary>
     /// Provides a resource to manage iam user policy attachment
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var user = new Volcengine.Iam.User("user", new()
     ///     {
-    ///         var user = new Volcengine.Iam.User("user", new Volcengine.Iam.UserArgs
-    ///         {
-    ///             UserName = "TfTest",
-    ///             Description = "test",
-    ///         });
-    ///         var policy = new Volcengine.Iam.Policy("policy", new Volcengine.Iam.PolicyArgs
-    ///         {
-    ///             PolicyName = "TerraformResourceTest1",
-    ///             Description = "created by terraform 1",
-    ///             PolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}",
-    ///         });
-    ///         var foo = new Volcengine.Iam.UserPolicyAttachment("foo", new Volcengine.Iam.UserPolicyAttachmentArgs
-    ///         {
-    ///             UserName = user.UserName,
-    ///             PolicyName = policy.PolicyName,
-    ///             PolicyType = policy.PolicyType,
-    ///         });
-    ///     }
+    ///         UserName = "TfTest",
+    ///         Description = "test",
+    ///     });
     /// 
-    /// }
+    ///     var policy = new Volcengine.Iam.Policy("policy", new()
+    ///     {
+    ///         PolicyName = "TerraformResourceTest1",
+    ///         Description = "created by terraform 1",
+    ///         PolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}",
+    ///     });
+    /// 
+    ///     var foo = new Volcengine.Iam.UserPolicyAttachment("foo", new()
+    ///     {
+    ///         UserName = user.UserName,
+    ///         PolicyName = policy.PolicyName,
+    ///         PolicyType = policy.PolicyType,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -53,7 +54,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:iam/userPolicyAttachment:UserPolicyAttachment")]
-    public partial class UserPolicyAttachment : Pulumi.CustomResource
+    public partial class UserPolicyAttachment : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The name of the Policy.
@@ -118,7 +119,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         }
     }
 
-    public sealed class UserPolicyAttachmentArgs : Pulumi.ResourceArgs
+    public sealed class UserPolicyAttachmentArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the Policy.
@@ -141,9 +142,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         public UserPolicyAttachmentArgs()
         {
         }
+        public static new UserPolicyAttachmentArgs Empty => new UserPolicyAttachmentArgs();
     }
 
-    public sealed class UserPolicyAttachmentState : Pulumi.ResourceArgs
+    public sealed class UserPolicyAttachmentState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the Policy.
@@ -166,5 +168,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         public UserPolicyAttachmentState()
         {
         }
+        public static new UserPolicyAttachmentState Empty => new UserPolicyAttachmentState();
     }
 }

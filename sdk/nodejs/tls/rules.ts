@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,17 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultRules = pulumi.output(volcengine.tls.Rules({
+ * const default = volcengine.tls.Rules({
  *     projectId: "cc44f8b6-0328-4622-b043-023fca735cd4",
- * }));
+ * });
  * ```
  */
 export function rules(args: RulesArgs, opts?: pulumi.InvokeOptions): Promise<RulesResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:tls/rules:Rules", {
         "outputFile": args.outputFile,
         "projectId": args.projectId,
@@ -99,9 +97,21 @@ export interface RulesResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of tls rules
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.tls.Rules({
+ *     projectId: "cc44f8b6-0328-4622-b043-023fca735cd4",
+ * });
+ * ```
+ */
 export function rulesOutput(args: RulesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<RulesResult> {
-    return pulumi.output(args).apply(a => rules(a, opts))
+    return pulumi.output(args).apply((a: any) => rules(a, opts))
 }
 
 /**

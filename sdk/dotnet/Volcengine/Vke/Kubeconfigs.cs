@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke
+namespace Volcengine.Pulumi.Volcengine.Vke
 {
     public static class Kubeconfigs
     {
@@ -19,34 +19,33 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vke.Kubeconfigs.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vke.Kubeconfigs.InvokeAsync(new Volcengine.Vke.KubeconfigsArgs
+        ///         ClusterIds = new[]
         ///         {
-        ///             ClusterIds = 
-        ///             {
-        ///                 "cce7hb97qtofmj1oi4udg",
-        ///             },
-        ///             Types = 
-        ///             {
-        ///                 "Private",
-        ///                 "Public",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "cce7hb97qtofmj1oi4udg",
+        ///         },
+        ///         Types = new[]
+        ///         {
+        ///             "Private",
+        ///             "Public",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<KubeconfigsResult> InvokeAsync(KubeconfigsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<KubeconfigsResult>("volcengine:vke/kubeconfigs:Kubeconfigs", args ?? new KubeconfigsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<KubeconfigsResult>("volcengine:vke/kubeconfigs:Kubeconfigs", args ?? new KubeconfigsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of vke kubeconfigs
@@ -55,38 +54,37 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vke.Kubeconfigs.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vke.Kubeconfigs.InvokeAsync(new Volcengine.Vke.KubeconfigsArgs
+        ///         ClusterIds = new[]
         ///         {
-        ///             ClusterIds = 
-        ///             {
-        ///                 "cce7hb97qtofmj1oi4udg",
-        ///             },
-        ///             Types = 
-        ///             {
-        ///                 "Private",
-        ///                 "Public",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "cce7hb97qtofmj1oi4udg",
+        ///         },
+        ///         Types = new[]
+        ///         {
+        ///             "Private",
+        ///             "Public",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<KubeconfigsResult> Invoke(KubeconfigsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<KubeconfigsResult>("volcengine:vke/kubeconfigs:Kubeconfigs", args ?? new KubeconfigsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<KubeconfigsResult>("volcengine:vke/kubeconfigs:Kubeconfigs", args ?? new KubeconfigsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class KubeconfigsArgs : Pulumi.InvokeArgs
+    public sealed class KubeconfigsArgs : global::Pulumi.InvokeArgs
     {
         [Input("clusterIds")]
         private List<string>? _clusterIds;
@@ -151,9 +149,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         public KubeconfigsArgs()
         {
         }
+        public static new KubeconfigsArgs Empty => new KubeconfigsArgs();
     }
 
-    public sealed class KubeconfigsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class KubeconfigsInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("clusterIds")]
         private InputList<string>? _clusterIds;
@@ -218,6 +217,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         public KubeconfigsInvokeArgs()
         {
         }
+        public static new KubeconfigsInvokeArgs Empty => new KubeconfigsInvokeArgs();
     }
 
 

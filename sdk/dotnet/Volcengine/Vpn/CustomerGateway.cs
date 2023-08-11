@@ -8,30 +8,29 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpn
+namespace Volcengine.Pulumi.Volcengine.Vpn
 {
     /// <summary>
     /// Provides a resource to manage customer gateway
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Vpn.CustomerGateway("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Vpn.CustomerGateway("foo", new Volcengine.Vpn.CustomerGatewayArgs
-    ///         {
-    ///             CustomerGatewayName = "tf-test",
-    ///             Description = "tf-test",
-    ///             IpAddress = "192.0.1.3",
-    ///             ProjectName = "default",
-    ///         });
-    ///     }
+    ///         CustomerGatewayName = "tf-test",
+    ///         Description = "tf-test",
+    ///         IpAddress = "192.0.1.3",
+    ///         ProjectName = "default",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -43,7 +42,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpn
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vpn/customerGateway:CustomerGateway")]
-    public partial class CustomerGateway : Pulumi.CustomResource
+    public partial class CustomerGateway : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The account ID of the customer gateway.
@@ -150,7 +149,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpn
         }
     }
 
-    public sealed class CustomerGatewayArgs : Pulumi.ResourceArgs
+    public sealed class CustomerGatewayArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the customer gateway.
@@ -179,9 +178,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpn
         public CustomerGatewayArgs()
         {
         }
+        public static new CustomerGatewayArgs Empty => new CustomerGatewayArgs();
     }
 
-    public sealed class CustomerGatewayState : Pulumi.ResourceArgs
+    public sealed class CustomerGatewayState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The account ID of the customer gateway.
@@ -246,5 +246,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpn
         public CustomerGatewayState()
         {
         }
+        public static new CustomerGatewayState Empty => new CustomerGatewayState();
     }
 }

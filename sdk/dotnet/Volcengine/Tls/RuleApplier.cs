@@ -8,28 +8,27 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls
+namespace Volcengine.Pulumi.Volcengine.Tls
 {
     /// <summary>
     /// Provides a resource to manage tls rule applier
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Tls.RuleApplier("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Tls.RuleApplier("foo", new Volcengine.Tls.RuleApplierArgs
-    ///         {
-    ///             HostGroupId = "a2a9e8c5-9835-434f-b866-2c1cfa82887d",
-    ///             RuleId = "25104b0f-28b7-4a5c-8339-7f9c431d77c8",
-    ///         });
-    ///     }
+    ///         HostGroupId = "a2a9e8c5-9835-434f-b866-2c1cfa82887d",
+    ///         RuleId = "25104b0f-28b7-4a5c-8339-7f9c431d77c8",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -41,7 +40,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:tls/ruleApplier:RuleApplier")]
-    public partial class RuleApplier : Pulumi.CustomResource
+    public partial class RuleApplier : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The id of the host group.
@@ -100,7 +99,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         }
     }
 
-    public sealed class RuleApplierArgs : Pulumi.ResourceArgs
+    public sealed class RuleApplierArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of the host group.
@@ -117,9 +116,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public RuleApplierArgs()
         {
         }
+        public static new RuleApplierArgs Empty => new RuleApplierArgs();
     }
 
-    public sealed class RuleApplierState : Pulumi.ResourceArgs
+    public sealed class RuleApplierState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of the host group.
@@ -136,5 +136,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public RuleApplierState()
         {
         }
+        public static new RuleApplierState Empty => new RuleApplierState();
     }
 }

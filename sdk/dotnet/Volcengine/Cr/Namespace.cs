@@ -8,31 +8,31 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cr
+namespace Volcengine.Pulumi.Volcengine.Cr
 {
     /// <summary>
     /// Provides a resource to manage cr namespace
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Cr.Namespace("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Cr.Namespace("foo", new Volcengine.Cr.NamespaceArgs
-    ///         {
-    ///             Registry = "tf-2",
-    ///         });
-    ///         var foo1 = new Volcengine.Cr.Namespace("foo1", new Volcengine.Cr.NamespaceArgs
-    ///         {
-    ///             Registry = "tf-1",
-    ///         });
-    ///     }
+    ///         Registry = "tf-2",
+    ///     });
     /// 
-    /// }
+    ///     var foo1 = new Volcengine.Cr.Namespace("foo1", new()
+    ///     {
+    ///         Registry = "tf-1",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -44,7 +44,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:cr/namespace:Namespace")]
-    public partial class Namespace : Pulumi.CustomResource
+    public partial class Namespace : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The time when namespace created.
@@ -109,7 +109,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         }
     }
 
-    public sealed class NamespaceArgs : Pulumi.ResourceArgs
+    public sealed class NamespaceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of CrNamespace.
@@ -126,9 +126,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         public NamespaceArgs()
         {
         }
+        public static new NamespaceArgs Empty => new NamespaceArgs();
     }
 
-    public sealed class NamespaceState : Pulumi.ResourceArgs
+    public sealed class NamespaceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The time when namespace created.
@@ -151,5 +152,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         public NamespaceState()
         {
         }
+        public static new NamespaceState Empty => new NamespaceState();
     }
 }

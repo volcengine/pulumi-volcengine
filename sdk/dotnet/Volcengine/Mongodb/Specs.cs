@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Mongodb
+namespace Volcengine.Pulumi.Volcengine.Mongodb
 {
     public static class Specs
     {
@@ -19,23 +19,22 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var foo = Output.Create(Volcengine.Mongodb.Specs.InvokeAsync());
-        ///     }
+        ///     var foo = Volcengine.Mongodb.Specs.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<SpecsResult> InvokeAsync(SpecsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<SpecsResult>("volcengine:mongodb/specs:Specs", args ?? new SpecsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<SpecsResult>("volcengine:mongodb/specs:Specs", args ?? new SpecsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of mongodb specs
@@ -44,27 +43,26 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var foo = Output.Create(Volcengine.Mongodb.Specs.InvokeAsync());
-        ///     }
+        ///     var foo = Volcengine.Mongodb.Specs.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<SpecsResult> Invoke(SpecsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<SpecsResult>("volcengine:mongodb/specs:Specs", args ?? new SpecsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<SpecsResult>("volcengine:mongodb/specs:Specs", args ?? new SpecsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class SpecsArgs : Pulumi.InvokeArgs
+    public sealed class SpecsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// File name where to save data source results.
@@ -81,9 +79,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         public SpecsArgs()
         {
         }
+        public static new SpecsArgs Empty => new SpecsArgs();
     }
 
-    public sealed class SpecsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class SpecsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// File name where to save data source results.
@@ -100,6 +99,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         public SpecsInvokeArgs()
         {
         }
+        public static new SpecsInvokeArgs Empty => new SpecsInvokeArgs();
     }
 
 

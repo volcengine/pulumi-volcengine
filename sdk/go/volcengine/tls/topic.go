@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,9 +19,6 @@ import (
 //
 // import (
 //
-//	"fmt"
-//
-//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/tls"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/tls"
 //
@@ -42,7 +39,7 @@ import (
 //						Value: pulumi.String("v1"),
 //					},
 //				},
-//				TimeFormat: pulumi.String(fmt.Sprintf("%v%v%v%v%v%v%v%v%v%v%v%v%v%v", "%", "Y-", "%", "m-", "%", "dT", "%", "H:", "%", "M:", "%", "S,", "%", "f")),
+//				TimeFormat: pulumi.String("%Y-%m-%dT%H:%M:%S,%f"),
 //				TimeKey:    pulumi.String("request_time"),
 //				TopicName:  pulumi.String("tf-test-topic"),
 //				Ttl:        pulumi.Int(10),

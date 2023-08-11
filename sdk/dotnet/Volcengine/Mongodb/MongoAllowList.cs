@@ -8,30 +8,29 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Mongodb
+namespace Volcengine.Pulumi.Volcengine.Mongodb
 {
     /// <summary>
     /// Provides a resource to manage mongodb allow list
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Mongodb.MongoAllowList("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Mongodb.MongoAllowList("foo", new Volcengine.Mongodb.MongoAllowListArgs
-    ///         {
-    ///             AllowList = "10.1.1.3,10.2.3.0/24,10.1.1.1",
-    ///             AllowListDesc = "test1",
-    ///             AllowListName = "tf-test-hh",
-    ///             AllowListType = "IPv4",
-    ///         });
-    ///     }
+    ///         AllowList = "10.1.1.3,10.2.3.0/24,10.1.1.1",
+    ///         AllowListDesc = "test1",
+    ///         AllowListName = "tf-test-hh",
+    ///         AllowListType = "IPv4",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -43,7 +42,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:mongodb/mongoAllowList:MongoAllowList")]
-    public partial class MongoAllowList : Pulumi.CustomResource
+    public partial class MongoAllowList : global::Pulumi.CustomResource
     {
         /// <summary>
         /// IP address or IP address segment in CIDR format.
@@ -120,7 +119,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         }
     }
 
-    public sealed class MongoAllowListArgs : Pulumi.ResourceArgs
+    public sealed class MongoAllowListArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// IP address or IP address segment in CIDR format.
@@ -155,9 +154,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         public MongoAllowListArgs()
         {
         }
+        public static new MongoAllowListArgs Empty => new MongoAllowListArgs();
     }
 
-    public sealed class MongoAllowListState : Pulumi.ResourceArgs
+    public sealed class MongoAllowListState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// IP address or IP address segment in CIDR format.
@@ -192,5 +192,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         public MongoAllowListState()
         {
         }
+        public static new MongoAllowListState Empty => new MongoAllowListState();
     }
 }

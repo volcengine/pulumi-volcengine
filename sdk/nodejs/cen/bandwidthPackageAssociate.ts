@@ -10,7 +10,7 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.cen.BandwidthPackageAssociate("foo", {
  *     cenBandwidthPackageId: "cbp-2bzeew3s8p79c2dx0eeohej4x",

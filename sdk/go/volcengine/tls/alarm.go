@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,9 +19,6 @@ import (
 //
 // import (
 //
-//	"fmt"
-//
-//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/tls"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/tls"
 //
@@ -40,7 +37,7 @@ import (
 //					Phone:          pulumi.Int(10),
 //					Sms:            pulumi.Int(10),
 //				},
-//				Condition: pulumi.String(fmt.Sprintf("%v%v", "$", "1.errNum>0")),
+//				Condition: pulumi.String("$1.errNum>0"),
 //				ProjectId: pulumi.String("cc44f8b6-0328-4622-b043-023fca735cd4"),
 //				QueryRequests: tls.AlarmQueryRequestArray{
 //					&tls.AlarmQueryRequestArgs{

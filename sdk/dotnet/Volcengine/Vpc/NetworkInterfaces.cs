@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpc
+namespace Volcengine.Pulumi.Volcengine.Vpc
 {
     public static class NetworkInterfaces
     {
@@ -19,29 +19,28 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vpc.NetworkInterfaces.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vpc.NetworkInterfaces.InvokeAsync(new Volcengine.Vpc.NetworkInterfacesArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "eni-2744htx2w0j5s7fap8t3ivwze",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "eni-2744htx2w0j5s7fap8t3ivwze",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<NetworkInterfacesResult> InvokeAsync(NetworkInterfacesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<NetworkInterfacesResult>("volcengine:vpc/networkInterfaces:NetworkInterfaces", args ?? new NetworkInterfacesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<NetworkInterfacesResult>("volcengine:vpc/networkInterfaces:NetworkInterfaces", args ?? new NetworkInterfacesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of network interfaces
@@ -50,33 +49,32 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vpc.NetworkInterfaces.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vpc.NetworkInterfaces.InvokeAsync(new Volcengine.Vpc.NetworkInterfacesArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "eni-2744htx2w0j5s7fap8t3ivwze",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "eni-2744htx2w0j5s7fap8t3ivwze",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<NetworkInterfacesResult> Invoke(NetworkInterfacesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<NetworkInterfacesResult>("volcengine:vpc/networkInterfaces:NetworkInterfaces", args ?? new NetworkInterfacesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<NetworkInterfacesResult>("volcengine:vpc/networkInterfaces:NetworkInterfaces", args ?? new NetworkInterfacesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class NetworkInterfacesArgs : Pulumi.InvokeArgs
+    public sealed class NetworkInterfacesArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private List<string>? _ids;
@@ -201,9 +199,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public NetworkInterfacesArgs()
         {
         }
+        public static new NetworkInterfacesArgs Empty => new NetworkInterfacesArgs();
     }
 
-    public sealed class NetworkInterfacesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class NetworkInterfacesInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private InputList<string>? _ids;
@@ -328,6 +327,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public NetworkInterfacesInvokeArgs()
         {
         }
+        public static new NetworkInterfacesInvokeArgs Empty => new NetworkInterfacesInvokeArgs();
     }
 
 

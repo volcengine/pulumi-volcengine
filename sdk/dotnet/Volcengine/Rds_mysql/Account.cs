@@ -8,30 +8,29 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
+namespace Volcengine.Pulumi.Volcengine.Rds_mysql
 {
     /// <summary>
     /// Provides a resource to manage rds mysql account
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var @default = new Volcengine.Rds_mysql.Account("default", new()
     ///     {
-    ///         var @default = new Volcengine.Rds_mysql.Account("default", new Volcengine.Rds_mysql.AccountArgs
-    ///         {
-    ///             AccountName = "test",
-    ///             AccountPassword = "xdjsuiahHUH@",
-    ///             AccountType = "Normal",
-    ///             InstanceId = "mysql-e9293705eed6",
-    ///         });
-    ///     }
+    ///         AccountName = "test",
+    ///         AccountPassword = "xdjsuiahHUH@",
+    ///         AccountType = "Normal",
+    ///         InstanceId = "mysql-e9293705eed6",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -43,7 +42,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:rds_mysql/account:Account")]
-    public partial class Account : Pulumi.CustomResource
+    public partial class Account : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Database account name. The rules are as follows:
@@ -111,6 +110,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/volcengine",
+                AdditionalSecretOutputs =
+                {
+                    "accountPassword",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -132,7 +135,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         }
     }
 
-    public sealed class AccountArgs : Pulumi.ResourceArgs
+    public sealed class AccountArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Database account name. The rules are as follows:
@@ -145,6 +148,9 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         [Input("accountName", required: true)]
         public Input<string> AccountName { get; set; } = null!;
 
+        [Input("accountPassword", required: true)]
+        private Input<string>? _accountPassword;
+
         /// <summary>
         /// The password of the database account.
         /// Illustrate:
@@ -153,8 +159,15 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         /// It consists of any three of uppercase letters, lowercase letters, numbers, and special characters.
         /// The special characters are `!@#$%^*()_+-=`. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
-        [Input("accountPassword", required: true)]
-        public Input<string> AccountPassword { get; set; } = null!;
+        public Input<string>? AccountPassword
+        {
+            get => _accountPassword;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _accountPassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("accountPrivileges")]
         private InputList<Inputs.AccountAccountPrivilegeArgs>? _accountPrivileges;
@@ -185,9 +198,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         public AccountArgs()
         {
         }
+        public static new AccountArgs Empty => new AccountArgs();
     }
 
-    public sealed class AccountState : Pulumi.ResourceArgs
+    public sealed class AccountState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Database account name. The rules are as follows:
@@ -200,6 +214,9 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         [Input("accountName")]
         public Input<string>? AccountName { get; set; }
 
+        [Input("accountPassword")]
+        private Input<string>? _accountPassword;
+
         /// <summary>
         /// The password of the database account.
         /// Illustrate:
@@ -208,8 +225,15 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         /// It consists of any three of uppercase letters, lowercase letters, numbers, and special characters.
         /// The special characters are `!@#$%^*()_+-=`. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
-        [Input("accountPassword")]
-        public Input<string>? AccountPassword { get; set; }
+        public Input<string>? AccountPassword
+        {
+            get => _accountPassword;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _accountPassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("accountPrivileges")]
         private InputList<Inputs.AccountAccountPrivilegeGetArgs>? _accountPrivileges;
@@ -240,5 +264,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         public AccountState()
         {
         }
+        public static new AccountState Empty => new AccountState();
     }
 }

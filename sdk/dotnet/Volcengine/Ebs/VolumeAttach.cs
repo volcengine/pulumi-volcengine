@@ -8,28 +8,27 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Ebs
+namespace Volcengine.Pulumi.Volcengine.Ebs
 {
     /// <summary>
     /// Provides a resource to manage volume attach
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Ebs.VolumeAttach("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Ebs.VolumeAttach("foo", new Volcengine.Ebs.VolumeAttachArgs
-    ///         {
-    ///             InstanceId = "i-4ay59ww7dq8dt9c29hd4",
-    ///             VolumeId = "vol-3tzl52wubz3b9fciw7ev",
-    ///         });
-    ///     }
+    ///         InstanceId = "i-4ay59ww7dq8dt9c29hd4",
+    ///         VolumeId = "vol-3tzl52wubz3b9fciw7ev",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -41,7 +40,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Ebs
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:ebs/volumeAttach:VolumeAttach")]
-    public partial class VolumeAttach : Pulumi.CustomResource
+    public partial class VolumeAttach : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Creation time of Volume.
@@ -124,7 +123,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Ebs
         }
     }
 
-    public sealed class VolumeAttachArgs : Pulumi.ResourceArgs
+    public sealed class VolumeAttachArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Delete Volume with Attached Instance.
@@ -147,9 +146,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Ebs
         public VolumeAttachArgs()
         {
         }
+        public static new VolumeAttachArgs Empty => new VolumeAttachArgs();
     }
 
-    public sealed class VolumeAttachState : Pulumi.ResourceArgs
+    public sealed class VolumeAttachState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Creation time of Volume.
@@ -190,5 +190,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Ebs
         public VolumeAttachState()
         {
         }
+        public static new VolumeAttachState Empty => new VolumeAttachState();
     }
 }

@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds.Inputs
+namespace Volcengine.Pulumi.Volcengine.Rds.Inputs
 {
 
-    public sealed class InstanceConnectionInfoArgs : Pulumi.ResourceArgs
+    public sealed class InstanceConnectionInfoArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether global read-only is enabled.
@@ -52,5 +52,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds.Inputs
         public InstanceConnectionInfoArgs()
         {
         }
+        public static new InstanceConnectionInfoArgs Empty => new InstanceConnectionInfoArgs();
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
+namespace Volcengine.Pulumi.Volcengine.Rds_mysql
 {
     public static class Instances
     {
@@ -19,26 +19,25 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Rds_mysql.Instances.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Rds_mysql.Instances.InvokeAsync(new Volcengine.Rds_mysql.InstancesArgs
-        ///         {
-        ///             InstanceId = "mysql-72da4258c2c7",
-        ///         }));
-        ///     }
+        ///         InstanceId = "mysql-72da4258c2c7",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<InstancesResult> InvokeAsync(InstancesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<InstancesResult>("volcengine:rds_mysql/instances:Instances", args ?? new InstancesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<InstancesResult>("volcengine:rds_mysql/instances:Instances", args ?? new InstancesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of rds mysql instances
@@ -47,30 +46,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Rds_mysql.Instances.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Rds_mysql.Instances.InvokeAsync(new Volcengine.Rds_mysql.InstancesArgs
-        ///         {
-        ///             InstanceId = "mysql-72da4258c2c7",
-        ///         }));
-        ///     }
+        ///         InstanceId = "mysql-72da4258c2c7",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<InstancesResult> Invoke(InstancesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<InstancesResult>("volcengine:rds_mysql/instances:Instances", args ?? new InstancesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<InstancesResult>("volcengine:rds_mysql/instances:Instances", args ?? new InstancesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class InstancesArgs : Pulumi.InvokeArgs
+    public sealed class InstancesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The charge type of the RDS instance.
@@ -135,9 +133,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         public InstancesArgs()
         {
         }
+        public static new InstancesArgs Empty => new InstancesArgs();
     }
 
-    public sealed class InstancesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class InstancesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The charge type of the RDS instance.
@@ -202,6 +201,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         public InstancesInvokeArgs()
         {
         }
+        public static new InstancesInvokeArgs Empty => new InstancesInvokeArgs();
     }
 
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke
+namespace Volcengine.Pulumi.Volcengine.Vke
 {
     public static class SupportAddons
     {
@@ -19,30 +19,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vke.SupportAddons.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vke.SupportAddons.InvokeAsync(new Volcengine.Vke.SupportAddonsArgs
+        ///         Categories = new[]
         ///         {
-        ///             Categories = 
-        ///             {
-        ///                 "Monitor",
-        ///             },
-        ///             Name = "metrics-server",
-        ///         }));
-        ///     }
+        ///             "Monitor",
+        ///         },
+        ///         Name = "metrics-server",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<SupportAddonsResult> InvokeAsync(SupportAddonsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<SupportAddonsResult>("volcengine:vke/supportAddons:SupportAddons", args ?? new SupportAddonsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<SupportAddonsResult>("volcengine:vke/supportAddons:SupportAddons", args ?? new SupportAddonsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of vke support addons
@@ -51,34 +50,33 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vke.SupportAddons.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vke.SupportAddons.InvokeAsync(new Volcengine.Vke.SupportAddonsArgs
+        ///         Categories = new[]
         ///         {
-        ///             Categories = 
-        ///             {
-        ///                 "Monitor",
-        ///             },
-        ///             Name = "metrics-server",
-        ///         }));
-        ///     }
+        ///             "Monitor",
+        ///         },
+        ///         Name = "metrics-server",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<SupportAddonsResult> Invoke(SupportAddonsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<SupportAddonsResult>("volcengine:vke/supportAddons:SupportAddons", args ?? new SupportAddonsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<SupportAddonsResult>("volcengine:vke/supportAddons:SupportAddons", args ?? new SupportAddonsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class SupportAddonsArgs : Pulumi.InvokeArgs
+    public sealed class SupportAddonsArgs : global::Pulumi.InvokeArgs
     {
         [Input("categories")]
         private List<string>? _categories;
@@ -167,9 +165,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         public SupportAddonsArgs()
         {
         }
+        public static new SupportAddonsArgs Empty => new SupportAddonsArgs();
     }
 
-    public sealed class SupportAddonsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class SupportAddonsInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("categories")]
         private InputList<string>? _categories;
@@ -258,6 +257,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         public SupportAddonsInvokeArgs()
         {
         }
+        public static new SupportAddonsInvokeArgs Empty => new SupportAddonsInvokeArgs();
     }
 
 

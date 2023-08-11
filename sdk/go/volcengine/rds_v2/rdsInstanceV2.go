@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,44 +19,58 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/rds_v2"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/rds_v2"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := rds_v2.NewRdsInstanceV2(ctx, "foo", &rds_v2.RdsInstanceV2Args{
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = rds_v2.NewRdsInstanceV2(ctx, "fooRdsInstanceV2", &rds_v2.RdsInstanceV2Args{
+//				DbEngineVersion: pulumi.String("MySQL_5_7"),
+//				NodeInfos: rds_v2.RdsInstanceV2NodeInfoArray{
+//					&rds_v2.RdsInstanceV2NodeInfoArgs{
+//						NodeType: pulumi.String("Primary"),
+//						NodeSpec: pulumi.String("rds.mysql.2c4g"),
+//						ZoneId:   *pulumi.String(fooZones.Zones[0].Id),
+//					},
+//					&rds_v2.RdsInstanceV2NodeInfoArgs{
+//						NodeType: pulumi.String("Secondary"),
+//						NodeSpec: pulumi.String("rds.mysql.2c4g"),
+//						ZoneId:   *pulumi.String(fooZones.Zones[0].Id),
+//					},
+//				},
+//				StorageType:         pulumi.String("LocalSSD"),
+//				StorageSpace:        pulumi.Int(100),
+//				VpcId:               fooVpc.ID(),
+//				SubnetId:            fooSubnet.ID(),
+//				InstanceName:        pulumi.String("tf-test-v2"),
+//				LowerCaseTableNames: pulumi.String("1"),
 //				ChargeInfo: &rds_v2.RdsInstanceV2ChargeInfoArgs{
 //					ChargeType: pulumi.String("PostPaid"),
 //				},
-//				DbEngineVersion:     pulumi.String("MySQL_5_7"),
-//				InstanceName:        pulumi.String("tf-test-v2"),
-//				InstanceType:        pulumi.String("HA"),
-//				LowerCaseTableNames: pulumi.String("1"),
-//				NodeInfos: rds_v2.RdsInstanceV2NodeInfoArray{
-//					&rds_v2.RdsInstanceV2NodeInfoArgs{
-//						NodeSpec: pulumi.String("rds.mysql.2c4g"),
-//						NodeType: pulumi.String("Primary"),
-//						ZoneId:   pulumi.String("cn-beijing-a"),
-//					},
-//					&rds_v2.RdsInstanceV2NodeInfoArgs{
-//						NodeSpec: pulumi.String("rds.mysql.2c4g"),
-//						NodeType: pulumi.String("Secondary"),
-//						ZoneId:   pulumi.String("cn-beijing-a"),
-//					},
-//					&rds_v2.RdsInstanceV2NodeInfoArgs{
-//						NodeSpec: pulumi.String("rds.mysql.1c2g"),
-//						NodeType: pulumi.String("ReadOnly"),
-//						ZoneId:   pulumi.String("cn-beijing-a"),
-//					},
-//				},
-//				ProjectName:  pulumi.String("yyy"),
-//				StorageSpace: pulumi.Int(100),
-//				StorageType:  pulumi.String("LocalSSD"),
-//				SubnetId:     pulumi.String("subnet-mj92ij84m5fk5smt1arvwrtw"),
-//				VpcId:        pulumi.String("vpc-13fawddpwi41s3n6nu4g2y8bt"),
 //			})
 //			if err != nil {
 //				return err
@@ -95,8 +109,9 @@ type RdsInstanceV2 struct {
 	// Can only contain Chinese characters, letters, numbers, underscores and dashes
 	// The length is limited between 1 ~ 128.
 	InstanceName pulumi.StringPtrOutput `pulumi:"instanceName"`
-	// Instance type. Value:
-	// HA: High availability version.
+	// The field instanceType is no longer support. The type of Instance.
+	//
+	// Deprecated: The field instance_type is no longer support.
 	InstanceType pulumi.StringOutput `pulumi:"instanceType"`
 	// Whether the table name is case sensitive, the default value is 1.
 	// Ranges:
@@ -106,7 +121,7 @@ type RdsInstanceV2 struct {
 	// Instance specification configuration. This parameter is required for RDS for MySQL, RDS for PostgreSQL and MySQL Sharding. There is one and only one Primary node, one and only one Secondary node, and 0-10 Read-Only nodes.
 	NodeInfos RdsInstanceV2NodeInfoArrayOutput `pulumi:"nodeInfos"`
 	// Subordinate to the project.
-	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// Instance storage space.
 	// When the database type is MySQL/PostgreSQL/SQL_Server/MySQL Sharding, value range: [20, 3000], unit: GB, increments every 100GB.
 	// When the database type is veDB_MySQL/veDB_PostgreSQL, this parameter does not need to be passed.
@@ -134,9 +149,6 @@ func NewRdsInstanceV2(ctx *pulumi.Context,
 	}
 	if args.DbEngineVersion == nil {
 		return nil, errors.New("invalid value for required argument 'DbEngineVersion'")
-	}
-	if args.InstanceType == nil {
-		return nil, errors.New("invalid value for required argument 'InstanceType'")
 	}
 	if args.NodeInfos == nil {
 		return nil, errors.New("invalid value for required argument 'NodeInfos'")
@@ -189,8 +201,9 @@ type rdsInstanceV2State struct {
 	// Can only contain Chinese characters, letters, numbers, underscores and dashes
 	// The length is limited between 1 ~ 128.
 	InstanceName *string `pulumi:"instanceName"`
-	// Instance type. Value:
-	// HA: High availability version.
+	// The field instanceType is no longer support. The type of Instance.
+	//
+	// Deprecated: The field instance_type is no longer support.
 	InstanceType *string `pulumi:"instanceType"`
 	// Whether the table name is case sensitive, the default value is 1.
 	// Ranges:
@@ -233,8 +246,9 @@ type RdsInstanceV2State struct {
 	// Can only contain Chinese characters, letters, numbers, underscores and dashes
 	// The length is limited between 1 ~ 128.
 	InstanceName pulumi.StringPtrInput
-	// Instance type. Value:
-	// HA: High availability version.
+	// The field instanceType is no longer support. The type of Instance.
+	//
+	// Deprecated: The field instance_type is no longer support.
 	InstanceType pulumi.StringPtrInput
 	// Whether the table name is case sensitive, the default value is 1.
 	// Ranges:
@@ -279,9 +293,10 @@ type rdsInstanceV2Args struct {
 	// Can only contain Chinese characters, letters, numbers, underscores and dashes
 	// The length is limited between 1 ~ 128.
 	InstanceName *string `pulumi:"instanceName"`
-	// Instance type. Value:
-	// HA: High availability version.
-	InstanceType string `pulumi:"instanceType"`
+	// The field instanceType is no longer support. The type of Instance.
+	//
+	// Deprecated: The field instance_type is no longer support.
+	InstanceType *string `pulumi:"instanceType"`
 	// Whether the table name is case sensitive, the default value is 1.
 	// Ranges:
 	// 0: Table names are stored as fixed and table names are case-sensitive.
@@ -322,9 +337,10 @@ type RdsInstanceV2Args struct {
 	// Can only contain Chinese characters, letters, numbers, underscores and dashes
 	// The length is limited between 1 ~ 128.
 	InstanceName pulumi.StringPtrInput
-	// Instance type. Value:
-	// HA: High availability version.
-	InstanceType pulumi.StringInput
+	// The field instanceType is no longer support. The type of Instance.
+	//
+	// Deprecated: The field instance_type is no longer support.
+	InstanceType pulumi.StringPtrInput
 	// Whether the table name is case sensitive, the default value is 1.
 	// Ranges:
 	// 0: Table names are stored as fixed and table names are case-sensitive.
@@ -470,8 +486,9 @@ func (o RdsInstanceV2Output) InstanceName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RdsInstanceV2) pulumi.StringPtrOutput { return v.InstanceName }).(pulumi.StringPtrOutput)
 }
 
-// Instance type. Value:
-// HA: High availability version.
+// The field instanceType is no longer support. The type of Instance.
+//
+// Deprecated: The field instance_type is no longer support.
 func (o RdsInstanceV2Output) InstanceType() pulumi.StringOutput {
 	return o.ApplyT(func(v *RdsInstanceV2) pulumi.StringOutput { return v.InstanceType }).(pulumi.StringOutput)
 }
@@ -490,8 +507,8 @@ func (o RdsInstanceV2Output) NodeInfos() RdsInstanceV2NodeInfoArrayOutput {
 }
 
 // Subordinate to the project.
-func (o RdsInstanceV2Output) ProjectName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *RdsInstanceV2) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
+func (o RdsInstanceV2Output) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *RdsInstanceV2) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 // Instance storage space.

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Iam
+namespace Volcengine.Pulumi.Volcengine.Iam
 {
     public static class Users
     {
@@ -19,23 +19,22 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var @default = Output.Create(Volcengine.Iam.Users.InvokeAsync());
-        ///     }
+        ///     var @default = Volcengine.Iam.Users.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<UsersResult> InvokeAsync(UsersArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<UsersResult>("volcengine:iam/users:Users", args ?? new UsersArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<UsersResult>("volcengine:iam/users:Users", args ?? new UsersArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of iam users
@@ -44,27 +43,26 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var @default = Output.Create(Volcengine.Iam.Users.InvokeAsync());
-        ///     }
+        ///     var @default = Volcengine.Iam.Users.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<UsersResult> Invoke(UsersInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<UsersResult>("volcengine:iam/users:Users", args ?? new UsersInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<UsersResult>("volcengine:iam/users:Users", args ?? new UsersInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class UsersArgs : Pulumi.InvokeArgs
+    public sealed class UsersArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// A Name Regex of IAM.
@@ -93,9 +91,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         public UsersArgs()
         {
         }
+        public static new UsersArgs Empty => new UsersArgs();
     }
 
-    public sealed class UsersInvokeArgs : Pulumi.InvokeArgs
+    public sealed class UsersInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// A Name Regex of IAM.
@@ -124,6 +123,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         public UsersInvokeArgs()
         {
         }
+        public static new UsersInvokeArgs Empty => new UsersInvokeArgs();
     }
 
 

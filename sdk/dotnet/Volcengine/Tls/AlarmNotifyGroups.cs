@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls
+namespace Volcengine.Pulumi.Volcengine.Tls
 {
     public static class AlarmNotifyGroups
     {
@@ -19,23 +19,22 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var @default = Output.Create(Volcengine.Tls.AlarmNotifyGroups.InvokeAsync());
-        ///     }
+        ///     var @default = Volcengine.Tls.AlarmNotifyGroups.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<AlarmNotifyGroupsResult> InvokeAsync(AlarmNotifyGroupsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<AlarmNotifyGroupsResult>("volcengine:tls/alarmNotifyGroups:AlarmNotifyGroups", args ?? new AlarmNotifyGroupsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<AlarmNotifyGroupsResult>("volcengine:tls/alarmNotifyGroups:AlarmNotifyGroups", args ?? new AlarmNotifyGroupsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of tls alarm notify groups
@@ -44,27 +43,26 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var @default = Output.Create(Volcengine.Tls.AlarmNotifyGroups.InvokeAsync());
-        ///     }
+        ///     var @default = Volcengine.Tls.AlarmNotifyGroups.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<AlarmNotifyGroupsResult> Invoke(AlarmNotifyGroupsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<AlarmNotifyGroupsResult>("volcengine:tls/alarmNotifyGroups:AlarmNotifyGroups", args ?? new AlarmNotifyGroupsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<AlarmNotifyGroupsResult>("volcengine:tls/alarmNotifyGroups:AlarmNotifyGroups", args ?? new AlarmNotifyGroupsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class AlarmNotifyGroupsArgs : Pulumi.InvokeArgs
+    public sealed class AlarmNotifyGroupsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The id of the alarm notify group.
@@ -99,9 +97,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public AlarmNotifyGroupsArgs()
         {
         }
+        public static new AlarmNotifyGroupsArgs Empty => new AlarmNotifyGroupsArgs();
     }
 
-    public sealed class AlarmNotifyGroupsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class AlarmNotifyGroupsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The id of the alarm notify group.
@@ -136,6 +135,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public AlarmNotifyGroupsInvokeArgs()
         {
         }
+        public static new AlarmNotifyGroupsInvokeArgs Empty => new AlarmNotifyGroupsInvokeArgs();
     }
 
 

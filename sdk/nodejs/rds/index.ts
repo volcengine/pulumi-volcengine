@@ -5,25 +5,61 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./account";
-export * from "./accountPrivilege";
-export * from "./accounts";
-export * from "./database";
-export * from "./databases";
-export * from "./instance";
-export * from "./instances";
-export * from "./ipList";
-export * from "./ipLists";
-export * from "./parameterTemplate";
-export * from "./parameterTemplates";
+export { AccountArgs, AccountState } from "./account";
+export type Account = import("./account").Account;
+export const Account: typeof import("./account").Account = null as any;
+utilities.lazyLoad(exports, ["Account"], () => require("./account"));
 
-// Import resources to register:
-import { Account } from "./account";
-import { AccountPrivilege } from "./accountPrivilege";
-import { Database } from "./database";
-import { Instance } from "./instance";
-import { IpList } from "./ipList";
-import { ParameterTemplate } from "./parameterTemplate";
+export { AccountPrivilegeArgs, AccountPrivilegeState } from "./accountPrivilege";
+export type AccountPrivilege = import("./accountPrivilege").AccountPrivilege;
+export const AccountPrivilege: typeof import("./accountPrivilege").AccountPrivilege = null as any;
+utilities.lazyLoad(exports, ["AccountPrivilege"], () => require("./accountPrivilege"));
+
+export { AccountsArgs, AccountsResult, AccountsOutputArgs } from "./accounts";
+export const accounts: typeof import("./accounts").accounts = null as any;
+export const accountsOutput: typeof import("./accounts").accountsOutput = null as any;
+utilities.lazyLoad(exports, ["accounts","accountsOutput"], () => require("./accounts"));
+
+export { DatabaseArgs, DatabaseState } from "./database";
+export type Database = import("./database").Database;
+export const Database: typeof import("./database").Database = null as any;
+utilities.lazyLoad(exports, ["Database"], () => require("./database"));
+
+export { DatabasesArgs, DatabasesResult, DatabasesOutputArgs } from "./databases";
+export const databases: typeof import("./databases").databases = null as any;
+export const databasesOutput: typeof import("./databases").databasesOutput = null as any;
+utilities.lazyLoad(exports, ["databases","databasesOutput"], () => require("./databases"));
+
+export { InstanceArgs, InstanceState } from "./instance";
+export type Instance = import("./instance").Instance;
+export const Instance: typeof import("./instance").Instance = null as any;
+utilities.lazyLoad(exports, ["Instance"], () => require("./instance"));
+
+export { InstancesArgs, InstancesResult, InstancesOutputArgs } from "./instances";
+export const instances: typeof import("./instances").instances = null as any;
+export const instancesOutput: typeof import("./instances").instancesOutput = null as any;
+utilities.lazyLoad(exports, ["instances","instancesOutput"], () => require("./instances"));
+
+export { IpListArgs, IpListState } from "./ipList";
+export type IpList = import("./ipList").IpList;
+export const IpList: typeof import("./ipList").IpList = null as any;
+utilities.lazyLoad(exports, ["IpList"], () => require("./ipList"));
+
+export { IpListsArgs, IpListsResult, IpListsOutputArgs } from "./ipLists";
+export const ipLists: typeof import("./ipLists").ipLists = null as any;
+export const ipListsOutput: typeof import("./ipLists").ipListsOutput = null as any;
+utilities.lazyLoad(exports, ["ipLists","ipListsOutput"], () => require("./ipLists"));
+
+export { ParameterTemplateArgs, ParameterTemplateState } from "./parameterTemplate";
+export type ParameterTemplate = import("./parameterTemplate").ParameterTemplate;
+export const ParameterTemplate: typeof import("./parameterTemplate").ParameterTemplate = null as any;
+utilities.lazyLoad(exports, ["ParameterTemplate"], () => require("./parameterTemplate"));
+
+export { ParameterTemplatesArgs, ParameterTemplatesResult, ParameterTemplatesOutputArgs } from "./parameterTemplates";
+export const parameterTemplates: typeof import("./parameterTemplates").parameterTemplates = null as any;
+export const parameterTemplatesOutput: typeof import("./parameterTemplates").parameterTemplatesOutput = null as any;
+utilities.lazyLoad(exports, ["parameterTemplates","parameterTemplatesOutput"], () => require("./parameterTemplates"));
+
 
 const _module = {
     version: utilities.getVersion(),

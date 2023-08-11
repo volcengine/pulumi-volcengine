@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Iam
+namespace Volcengine.Pulumi.Volcengine.Iam
 {
     public static class Roles
     {
@@ -19,23 +19,22 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var @default = Output.Create(Volcengine.Iam.Roles.InvokeAsync());
-        ///     }
+        ///     var @default = Volcengine.Iam.Roles.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<RolesResult> InvokeAsync(RolesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<RolesResult>("volcengine:iam/roles:Roles", args ?? new RolesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<RolesResult>("volcengine:iam/roles:Roles", args ?? new RolesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of iam roles
@@ -44,27 +43,26 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var @default = Output.Create(Volcengine.Iam.Roles.InvokeAsync());
-        ///     }
+        ///     var @default = Volcengine.Iam.Roles.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<RolesResult> Invoke(RolesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<RolesResult>("volcengine:iam/roles:Roles", args ?? new RolesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<RolesResult>("volcengine:iam/roles:Roles", args ?? new RolesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class RolesArgs : Pulumi.InvokeArgs
+    public sealed class RolesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// A Name Regex of Role.
@@ -93,9 +91,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         public RolesArgs()
         {
         }
+        public static new RolesArgs Empty => new RolesArgs();
     }
 
-    public sealed class RolesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class RolesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// A Name Regex of Role.
@@ -124,6 +123,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         public RolesInvokeArgs()
         {
         }
+        public static new RolesInvokeArgs Empty => new RolesInvokeArgs();
     }
 
 

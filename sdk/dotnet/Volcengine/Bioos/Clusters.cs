@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Bioos
+namespace Volcengine.Pulumi.Volcengine.Bioos
 {
     public static class Clusters
     {
@@ -19,23 +19,22 @@ namespace Volcengine.PulumiPackage.Volcengine.Bioos
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var @default = Output.Create(Volcengine.Bioos.Clusters.InvokeAsync());
-        ///     }
+        ///     var @default = Volcengine.Bioos.Clusters.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<ClustersResult> InvokeAsync(ClustersArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<ClustersResult>("volcengine:bioos/clusters:Clusters", args ?? new ClustersArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<ClustersResult>("volcengine:bioos/clusters:Clusters", args ?? new ClustersArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of bioos clusters
@@ -44,27 +43,26 @@ namespace Volcengine.PulumiPackage.Volcengine.Bioos
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var @default = Output.Create(Volcengine.Bioos.Clusters.InvokeAsync());
-        ///     }
+        ///     var @default = Volcengine.Bioos.Clusters.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<ClustersResult> Invoke(ClustersInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<ClustersResult>("volcengine:bioos/clusters:Clusters", args ?? new ClustersInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<ClustersResult>("volcengine:bioos/clusters:Clusters", args ?? new ClustersInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class ClustersArgs : Pulumi.InvokeArgs
+    public sealed class ClustersArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private List<string>? _ids;
@@ -117,9 +115,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Bioos
         public ClustersArgs()
         {
         }
+        public static new ClustersArgs Empty => new ClustersArgs();
     }
 
-    public sealed class ClustersInvokeArgs : Pulumi.InvokeArgs
+    public sealed class ClustersInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private InputList<string>? _ids;
@@ -172,6 +171,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Bioos
         public ClustersInvokeArgs()
         {
         }
+        public static new ClustersInvokeArgs Empty => new ClustersInvokeArgs();
     }
 
 

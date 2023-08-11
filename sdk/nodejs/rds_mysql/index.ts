@@ -5,24 +5,56 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./account";
-export * from "./accounts";
-export * from "./allowlist";
-export * from "./allowlistAssociate";
-export * from "./allowlists";
-export * from "./database";
-export * from "./databases";
-export * from "./instance";
-export * from "./instanceReadonlyNode";
-export * from "./instances";
+export { AccountArgs, AccountState } from "./account";
+export type Account = import("./account").Account;
+export const Account: typeof import("./account").Account = null as any;
+utilities.lazyLoad(exports, ["Account"], () => require("./account"));
 
-// Import resources to register:
-import { Account } from "./account";
-import { Allowlist } from "./allowlist";
-import { AllowlistAssociate } from "./allowlistAssociate";
-import { Database } from "./database";
-import { Instance } from "./instance";
-import { InstanceReadonlyNode } from "./instanceReadonlyNode";
+export { AccountsArgs, AccountsResult, AccountsOutputArgs } from "./accounts";
+export const accounts: typeof import("./accounts").accounts = null as any;
+export const accountsOutput: typeof import("./accounts").accountsOutput = null as any;
+utilities.lazyLoad(exports, ["accounts","accountsOutput"], () => require("./accounts"));
+
+export { AllowlistArgs, AllowlistState } from "./allowlist";
+export type Allowlist = import("./allowlist").Allowlist;
+export const Allowlist: typeof import("./allowlist").Allowlist = null as any;
+utilities.lazyLoad(exports, ["Allowlist"], () => require("./allowlist"));
+
+export { AllowlistAssociateArgs, AllowlistAssociateState } from "./allowlistAssociate";
+export type AllowlistAssociate = import("./allowlistAssociate").AllowlistAssociate;
+export const AllowlistAssociate: typeof import("./allowlistAssociate").AllowlistAssociate = null as any;
+utilities.lazyLoad(exports, ["AllowlistAssociate"], () => require("./allowlistAssociate"));
+
+export { AllowlistsArgs, AllowlistsResult, AllowlistsOutputArgs } from "./allowlists";
+export const allowlists: typeof import("./allowlists").allowlists = null as any;
+export const allowlistsOutput: typeof import("./allowlists").allowlistsOutput = null as any;
+utilities.lazyLoad(exports, ["allowlists","allowlistsOutput"], () => require("./allowlists"));
+
+export { DatabaseArgs, DatabaseState } from "./database";
+export type Database = import("./database").Database;
+export const Database: typeof import("./database").Database = null as any;
+utilities.lazyLoad(exports, ["Database"], () => require("./database"));
+
+export { DatabasesArgs, DatabasesResult, DatabasesOutputArgs } from "./databases";
+export const databases: typeof import("./databases").databases = null as any;
+export const databasesOutput: typeof import("./databases").databasesOutput = null as any;
+utilities.lazyLoad(exports, ["databases","databasesOutput"], () => require("./databases"));
+
+export { InstanceArgs, InstanceState } from "./instance";
+export type Instance = import("./instance").Instance;
+export const Instance: typeof import("./instance").Instance = null as any;
+utilities.lazyLoad(exports, ["Instance"], () => require("./instance"));
+
+export { InstanceReadonlyNodeArgs, InstanceReadonlyNodeState } from "./instanceReadonlyNode";
+export type InstanceReadonlyNode = import("./instanceReadonlyNode").InstanceReadonlyNode;
+export const InstanceReadonlyNode: typeof import("./instanceReadonlyNode").InstanceReadonlyNode = null as any;
+utilities.lazyLoad(exports, ["InstanceReadonlyNode"], () => require("./instanceReadonlyNode"));
+
+export { InstancesArgs, InstancesResult, InstancesOutputArgs } from "./instances";
+export const instances: typeof import("./instances").instances = null as any;
+export const instancesOutput: typeof import("./instances").instancesOutput = null as any;
+utilities.lazyLoad(exports, ["instances","instancesOutput"], () => require("./instances"));
+
 
 const _module = {
     version: utilities.getVersion(),

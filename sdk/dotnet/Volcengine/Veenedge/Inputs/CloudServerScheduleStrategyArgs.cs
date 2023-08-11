@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Veenedge.Inputs
+namespace Volcengine.Pulumi.Volcengine.Veenedge.Inputs
 {
 
-    public sealed class CloudServerScheduleStrategyArgs : Pulumi.ResourceArgs
+    public sealed class CloudServerScheduleStrategyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The network strategy.
@@ -34,5 +34,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge.Inputs
         public CloudServerScheduleStrategyArgs()
         {
         }
+        public static new CloudServerScheduleStrategyArgs Empty => new CloudServerScheduleStrategyArgs();
     }
 }

@@ -8,39 +8,39 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cen
+namespace Volcengine.Pulumi.Volcengine.Cen
 {
     /// <summary>
     /// Provides a resource to manage cen route entry
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Cen.RouteEntry("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Cen.RouteEntry("foo", new Volcengine.Cen.RouteEntryArgs
-    ///         {
-    ///             CenId = "cen-12ar8uclj68sg17q7y20v9gil",
-    ///             DestinationCidrBlock = "192.168.0.0/24",
-    ///             InstanceId = "vpc-im67wjcikxkw8gbssx8ufpj8",
-    ///             InstanceRegionId = "cn-beijing",
-    ///             InstanceType = "VPC",
-    ///         });
-    ///         var foo1 = new Volcengine.Cen.RouteEntry("foo1", new Volcengine.Cen.RouteEntryArgs
-    ///         {
-    ///             CenId = "cen-12ar8uclj68sg17q7y20v9gil",
-    ///             DestinationCidrBlock = "192.168.17.0/24",
-    ///             InstanceId = "vpc-im67wjcikxkw8gbssx8ufpj8",
-    ///             InstanceRegionId = "cn-beijing",
-    ///             InstanceType = "VPC",
-    ///         });
-    ///     }
+    ///         CenId = "cen-12ar8uclj68sg17q7y20v9gil",
+    ///         DestinationCidrBlock = "192.168.0.0/24",
+    ///         InstanceId = "vpc-im67wjcikxkw8gbssx8ufpj8",
+    ///         InstanceRegionId = "cn-beijing",
+    ///         InstanceType = "VPC",
+    ///     });
     /// 
-    /// }
+    ///     var foo1 = new Volcengine.Cen.RouteEntry("foo1", new()
+    ///     {
+    ///         CenId = "cen-12ar8uclj68sg17q7y20v9gil",
+    ///         DestinationCidrBlock = "192.168.17.0/24",
+    ///         InstanceId = "vpc-im67wjcikxkw8gbssx8ufpj8",
+    ///         InstanceRegionId = "cn-beijing",
+    ///         InstanceType = "VPC",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -52,7 +52,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:cen/routeEntry:RouteEntry")]
-    public partial class RouteEntry : Pulumi.CustomResource
+    public partial class RouteEntry : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The AS path of the cen route entry.
@@ -147,7 +147,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         }
     }
 
-    public sealed class RouteEntryArgs : Pulumi.ResourceArgs
+    public sealed class RouteEntryArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The cen ID of the cen route entry.
@@ -182,9 +182,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         public RouteEntryArgs()
         {
         }
+        public static new RouteEntryArgs Empty => new RouteEntryArgs();
     }
 
-    public sealed class RouteEntryState : Pulumi.ResourceArgs
+    public sealed class RouteEntryState : global::Pulumi.ResourceArgs
     {
         [Input("asPaths")]
         private InputList<string>? _asPaths;
@@ -243,5 +244,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         public RouteEntryState()
         {
         }
+        public static new RouteEntryState Empty => new RouteEntryState();
     }
 }

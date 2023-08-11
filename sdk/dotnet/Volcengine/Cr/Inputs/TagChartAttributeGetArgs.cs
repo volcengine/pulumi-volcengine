@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cr.Inputs
+namespace Volcengine.Pulumi.Volcengine.Cr.Inputs
 {
 
-    public sealed class TagChartAttributeGetArgs : Pulumi.ResourceArgs
+    public sealed class TagChartAttributeGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Helm version.
@@ -34,5 +34,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr.Inputs
         public TagChartAttributeGetArgs()
         {
         }
+        public static new TagChartAttributeGetArgs Empty => new TagChartAttributeGetArgs();
     }
 }

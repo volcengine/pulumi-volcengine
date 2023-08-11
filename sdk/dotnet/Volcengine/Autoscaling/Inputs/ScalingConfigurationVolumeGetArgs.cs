@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Autoscaling.Inputs
+namespace Volcengine.Pulumi.Volcengine.Autoscaling.Inputs
 {
 
-    public sealed class ScalingConfigurationVolumeGetArgs : Pulumi.ResourceArgs
+    public sealed class ScalingConfigurationVolumeGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The delete with instance flag of volume. Valid values: true, false. Default value: true.
@@ -34,5 +34,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling.Inputs
         public ScalingConfigurationVolumeGetArgs()
         {
         }
+        public static new ScalingConfigurationVolumeGetArgs Empty => new ScalingConfigurationVolumeGetArgs();
     }
 }

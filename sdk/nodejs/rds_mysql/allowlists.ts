@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,17 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultAllowlists = pulumi.output(volcengine.rds_mysql.Allowlists({
+ * const default = volcengine.rds_mysql.Allowlists({
  *     regionId: "cn-guilin-boe",
- * }));
+ * });
  * ```
  */
 export function allowlists(args: AllowlistsArgs, opts?: pulumi.InvokeOptions): Promise<AllowlistsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:rds_mysql/allowlists:Allowlists", {
         "instanceId": args.instanceId,
         "outputFile": args.outputFile,
@@ -72,9 +70,21 @@ export interface AllowlistsResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of rds mysql allowlists
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.rds_mysql.Allowlists({
+ *     regionId: "cn-guilin-boe",
+ * });
+ * ```
+ */
 export function allowlistsOutput(args: AllowlistsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<AllowlistsResult> {
-    return pulumi.output(args).apply(a => allowlists(a, opts))
+    return pulumi.output(args).apply((a: any) => allowlists(a, opts))
 }
 
 /**

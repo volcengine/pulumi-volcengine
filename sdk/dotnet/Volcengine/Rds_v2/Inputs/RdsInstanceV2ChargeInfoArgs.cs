@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds_v2.Inputs
+namespace Volcengine.Pulumi.Volcengine.Rds_v2.Inputs
 {
 
-    public sealed class RdsInstanceV2ChargeInfoArgs : Pulumi.ResourceArgs
+    public sealed class RdsInstanceV2ChargeInfoArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether to automatically renew in prepaid scenarios.
@@ -44,5 +44,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_v2.Inputs
         public RdsInstanceV2ChargeInfoArgs()
         {
         }
+        public static new RdsInstanceV2ChargeInfoArgs Empty => new RdsInstanceV2ChargeInfoArgs();
     }
 }

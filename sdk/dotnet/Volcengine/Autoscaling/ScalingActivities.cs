@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
+namespace Volcengine.Pulumi.Volcengine.Autoscaling
 {
     public static class ScalingActivities
     {
@@ -19,26 +19,25 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Autoscaling.ScalingActivities.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Autoscaling.ScalingActivities.InvokeAsync(new Volcengine.Autoscaling.ScalingActivitiesArgs
-        ///         {
-        ///             ScalingGroupId = "scg-ybqm0b6kcigh9zu9ce6t",
-        ///         }));
-        ///     }
+        ///         ScalingGroupId = "scg-ybqm0b6kcigh9zu9ce6t",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<ScalingActivitiesResult> InvokeAsync(ScalingActivitiesArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<ScalingActivitiesResult>("volcengine:autoscaling/scalingActivities:ScalingActivities", args ?? new ScalingActivitiesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<ScalingActivitiesResult>("volcengine:autoscaling/scalingActivities:ScalingActivities", args ?? new ScalingActivitiesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of scaling activities
@@ -47,30 +46,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Autoscaling.ScalingActivities.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Autoscaling.ScalingActivities.InvokeAsync(new Volcengine.Autoscaling.ScalingActivitiesArgs
-        ///         {
-        ///             ScalingGroupId = "scg-ybqm0b6kcigh9zu9ce6t",
-        ///         }));
-        ///     }
+        ///         ScalingGroupId = "scg-ybqm0b6kcigh9zu9ce6t",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<ScalingActivitiesResult> Invoke(ScalingActivitiesInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<ScalingActivitiesResult>("volcengine:autoscaling/scalingActivities:ScalingActivities", args ?? new ScalingActivitiesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<ScalingActivitiesResult>("volcengine:autoscaling/scalingActivities:ScalingActivities", args ?? new ScalingActivitiesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class ScalingActivitiesArgs : Pulumi.InvokeArgs
+    public sealed class ScalingActivitiesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// An end time to start a Scaling Activity.
@@ -117,9 +115,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         public ScalingActivitiesArgs()
         {
         }
+        public static new ScalingActivitiesArgs Empty => new ScalingActivitiesArgs();
     }
 
-    public sealed class ScalingActivitiesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class ScalingActivitiesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// An end time to start a Scaling Activity.
@@ -166,6 +165,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         public ScalingActivitiesInvokeArgs()
         {
         }
+        public static new ScalingActivitiesInvokeArgs Empty => new ScalingActivitiesInvokeArgs();
     }
 
 

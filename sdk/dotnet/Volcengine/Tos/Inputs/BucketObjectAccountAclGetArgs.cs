@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tos.Inputs
+namespace Volcengine.Pulumi.Volcengine.Tos.Inputs
 {
 
-    public sealed class BucketObjectAccountAclGetArgs : Pulumi.ResourceArgs
+    public sealed class BucketObjectAccountAclGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The accountId to control.
@@ -34,5 +34,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tos.Inputs
         public BucketObjectAccountAclGetArgs()
         {
         }
+        public static new BucketObjectAccountAclGetArgs Empty => new BucketObjectAccountAclGetArgs();
     }
 }

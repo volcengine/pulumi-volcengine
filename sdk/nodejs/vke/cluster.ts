@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -11,7 +12,7 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.vke.Cluster("foo", {
  *     clusterConfig: {
@@ -28,7 +29,6 @@ import * as utilities from "../utilities";
  *     deleteProtectionEnabled: false,
  *     description: "created by terraform",
  *     loggingConfig: {
- *         //log_project_id = "3189316d-a1ee-4892-a8fc-9a566489d590"
  *         logSetups: [{
  *             enabled: false,
  *             logTtl: 30,
@@ -37,10 +37,6 @@ import * as utilities from "../utilities";
  *     },
  *     podsConfig: {
  *         podNetworkMode: "VpcCniShared",
- *         //    flannel_config {
- *         //      pod_cidrs = ["172.27.224.0/19"]
- *         //      max_pods_per_node = 64
- *         //    }
  *         vpcCniConfig: {
  *             subnetIds: [
  *                 "subnet-rrqvkt2nq1hcv0x57ccqf3x",

@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Ecs.Inputs
+namespace Volcengine.Pulumi.Volcengine.Ecs.Inputs
 {
 
-    public sealed class InstanceCpuOptionsGetArgs : Pulumi.ResourceArgs
+    public sealed class InstanceCpuOptionsGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The per core of threads.
@@ -22,5 +22,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs.Inputs
         public InstanceCpuOptionsGetArgs()
         {
         }
+        public static new InstanceCpuOptionsGetArgs Empty => new InstanceCpuOptionsGetArgs();
     }
 }

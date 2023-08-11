@@ -8,46 +8,45 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
+namespace Volcengine.Pulumi.Volcengine.Autoscaling
 {
     /// <summary>
     /// Provides a resource to manage scaling group
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Autoscaling.ScalingGroup("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Autoscaling.ScalingGroup("foo", new Volcengine.Autoscaling.ScalingGroupArgs
+    ///         DefaultCooldown = 10,
+    ///         DesireInstanceNumber = 0,
+    ///         InstanceTerminatePolicy = "OldestInstance",
+    ///         MaxInstanceNumber = 1,
+    ///         MinInstanceNumber = 0,
+    ///         MultiAzPolicy = "BALANCE",
+    ///         ProjectName = "default",
+    ///         ScalingGroupName = "test-tf",
+    ///         SubnetIds = new[]
     ///         {
-    ///             DefaultCooldown = 10,
-    ///             DesireInstanceNumber = 0,
-    ///             InstanceTerminatePolicy = "OldestInstance",
-    ///             MaxInstanceNumber = 1,
-    ///             MinInstanceNumber = 0,
-    ///             MultiAzPolicy = "BALANCE",
-    ///             ProjectName = "default",
-    ///             ScalingGroupName = "test-tf",
-    ///             SubnetIds = 
+    ///             "subnet-2fe79j7c8o5c059gp68ksxr93",
+    ///         },
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Autoscaling.Inputs.ScalingGroupTagArgs
     ///             {
-    ///                 "subnet-2fe79j7c8o5c059gp68ksxr93",
+    ///                 Key = "tf-key1",
+    ///                 Value = "tf-value1",
     ///             },
-    ///             Tags = 
-    ///             {
-    ///                 new Volcengine.Autoscaling.Inputs.ScalingGroupTagArgs
-    ///                 {
-    ///                     Key = "tf-key1",
-    ///                     Value = "tf-value1",
-    ///                 },
-    ///             },
-    ///         });
-    ///     }
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -59,7 +58,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:autoscaling/scalingGroup:ScalingGroup")]
-    public partial class ScalingGroup : Pulumi.CustomResource
+    public partial class ScalingGroup : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The scaling configuration id which used by the scaling group.
@@ -232,7 +231,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         }
     }
 
-    public sealed class ScalingGroupArgs : Pulumi.ResourceArgs
+    public sealed class ScalingGroupArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The default cooldown interval of the scaling group. Value range: 5 ~ 86400, unit: second. Default value: 300.
@@ -333,9 +332,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         public ScalingGroupArgs()
         {
         }
+        public static new ScalingGroupArgs Empty => new ScalingGroupArgs();
     }
 
-    public sealed class ScalingGroupState : Pulumi.ResourceArgs
+    public sealed class ScalingGroupState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The scaling configuration id which used by the scaling group.
@@ -490,5 +490,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         public ScalingGroupState()
         {
         }
+        public static new ScalingGroupState Empty => new ScalingGroupState();
     }
 }

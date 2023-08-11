@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
+namespace Volcengine.Pulumi.Volcengine.Vke.Inputs
 {
 
-    public sealed class DefaultNodePoolNodeConfigGetArgs : Pulumi.ResourceArgs
+    public sealed class DefaultNodePoolNodeConfigGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("ecsTags")]
         private InputList<Inputs.DefaultNodePoolNodeConfigEcsTagGetArgs>? _ecsTags;
@@ -46,5 +46,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
         public DefaultNodePoolNodeConfigGetArgs()
         {
         }
+        public static new DefaultNodePoolNodeConfigGetArgs Empty => new DefaultNodePoolNodeConfigGetArgs();
     }
 }

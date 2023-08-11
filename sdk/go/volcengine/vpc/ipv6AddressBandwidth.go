@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -18,8 +18,6 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/ecs"
-//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/vpc"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
@@ -43,7 +41,7 @@ import (
 //				return err
 //			}
 //			_, err = vpc.NewIpv6AddressBandwidth(ctx, "foo", &vpc.Ipv6AddressBandwidthArgs{
-//				Ipv6Address: pulumi.String(dataIpv6.Ipv6Addresses[0].Ipv6Address),
+//				Ipv6Address: *pulumi.String(dataIpv6.Ipv6Addresses[0].Ipv6Address),
 //				BillingType: pulumi.String("PostPaidByBandwidth"),
 //				Bandwidth:   pulumi.Int(5),
 //			})

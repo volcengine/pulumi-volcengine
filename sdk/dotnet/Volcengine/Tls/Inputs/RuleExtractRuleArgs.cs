@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
+namespace Volcengine.Pulumi.Volcengine.Tls.Inputs
 {
 
-    public sealed class RuleExtractRuleArgs : Pulumi.ResourceArgs
+    public sealed class RuleExtractRuleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The first log line needs to match the regular expression.
@@ -88,5 +88,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
         public RuleExtractRuleArgs()
         {
         }
+        public static new RuleExtractRuleArgs Empty => new RuleExtractRuleArgs();
     }
 }

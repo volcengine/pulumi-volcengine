@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultRegions = pulumi.output(volcengine.redis.Regions({
+ * const default = volcengine.redis.Regions({
  *     regionId: "cn-north-3",
- * }));
+ * });
  * ```
  */
 export function regions(args?: RegionsArgs, opts?: pulumi.InvokeOptions): Promise<RegionsResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:redis/regions:Regions", {
         "outputFile": args.outputFile,
         "regionId": args.regionId,
@@ -67,9 +65,21 @@ export interface RegionsResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of redis regions
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.redis.Regions({
+ *     regionId: "cn-north-3",
+ * });
+ * ```
+ */
 export function regionsOutput(args?: RegionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<RegionsResult> {
-    return pulumi.output(args).apply(a => regions(a, opts))
+    return pulumi.output(args).apply((a: any) => regions(a, opts))
 }
 
 /**

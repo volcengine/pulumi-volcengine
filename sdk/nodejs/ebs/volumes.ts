@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultVolumes = pulumi.output(volcengine.ebs.Volumes({
+ * const default = volcengine.ebs.Volumes({
  *     ids: ["vol-3tzg6y5imn3b9fchkedb"],
- * }));
+ * });
  * ```
  */
 export function volumes(args?: VolumesArgs, opts?: pulumi.InvokeOptions): Promise<VolumesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:ebs/volumes:Volumes", {
         "ids": args.ids,
         "instanceId": args.instanceId,
@@ -106,9 +104,21 @@ export interface VolumesResult {
     readonly volumes: outputs.ebs.VolumesVolume[];
     readonly zoneId?: string;
 }
-
+/**
+ * Use this data source to query detailed information of volumes
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.ebs.Volumes({
+ *     ids: ["vol-3tzg6y5imn3b9fchkedb"],
+ * });
+ * ```
+ */
 export function volumesOutput(args?: VolumesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<VolumesResult> {
-    return pulumi.output(args).apply(a => volumes(a, opts))
+    return pulumi.output(args).apply((a: any) => volumes(a, opts))
 }
 
 /**

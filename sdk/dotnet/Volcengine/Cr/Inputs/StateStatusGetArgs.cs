@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cr.Inputs
+namespace Volcengine.Pulumi.Volcengine.Cr.Inputs
 {
 
-    public sealed class StateStatusGetArgs : Pulumi.ResourceArgs
+    public sealed class StateStatusGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("conditions")]
         private InputList<string>? _conditions;
@@ -34,5 +34,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr.Inputs
         public StateStatusGetArgs()
         {
         }
+        public static new StateStatusGetArgs Empty => new StateStatusGetArgs();
     }
 }

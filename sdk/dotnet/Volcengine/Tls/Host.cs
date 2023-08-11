@@ -8,28 +8,27 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls
+namespace Volcengine.Pulumi.Volcengine.Tls
 {
     /// <summary>
     /// Provides a resource to manage tls host
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Tls.Host("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Tls.Host("foo", new Volcengine.Tls.HostArgs
-    ///         {
-    ///             HostGroupId = "fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
-    ///             Ip = "10.180.50.18",
-    ///         });
-    ///     }
+    ///         HostGroupId = "fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
+    ///         Ip = "10.180.50.18",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -41,7 +40,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:tls/host:Host")]
-    public partial class Host : Pulumi.CustomResource
+    public partial class Host : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The id of host group.
@@ -100,7 +99,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         }
     }
 
-    public sealed class HostArgs : Pulumi.ResourceArgs
+    public sealed class HostArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of host group.
@@ -117,9 +116,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public HostArgs()
         {
         }
+        public static new HostArgs Empty => new HostArgs();
     }
 
-    public sealed class HostState : Pulumi.ResourceArgs
+    public sealed class HostState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of host group.
@@ -136,5 +136,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public HostState()
         {
         }
+        public static new HostState Empty => new HostState();
     }
 }

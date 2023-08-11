@@ -8,29 +8,28 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Iam
+namespace Volcengine.Pulumi.Volcengine.Iam
 {
     /// <summary>
     /// Provides a resource to manage iam user
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Iam.User("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Iam.User("foo", new Volcengine.Iam.UserArgs
-    ///         {
-    ///             Description = "test",
-    ///             DisplayName = "name",
-    ///             UserName = "tf-test",
-    ///         });
-    ///     }
+    ///         Description = "test",
+    ///         DisplayName = "name",
+    ///         UserName = "tf-test",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -42,7 +41,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:iam/user:User")]
-    public partial class User : Pulumi.CustomResource
+    public partial class User : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The account id of the user.
@@ -143,7 +142,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         }
     }
 
-    public sealed class UserArgs : Pulumi.ResourceArgs
+    public sealed class UserArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The description of the user.
@@ -178,9 +177,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         public UserArgs()
         {
         }
+        public static new UserArgs Empty => new UserArgs();
     }
 
-    public sealed class UserState : Pulumi.ResourceArgs
+    public sealed class UserState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The account id of the user.
@@ -239,5 +239,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         public UserState()
         {
         }
+        public static new UserState Empty => new UserState();
     }
 }

@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql.Inputs
+namespace Volcengine.Pulumi.Volcengine.Rds_mysql.Inputs
 {
 
-    public sealed class InstanceEndpointNodeWeightArgs : Pulumi.ResourceArgs
+    public sealed class InstanceEndpointNodeWeightArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Node ID.
@@ -36,5 +36,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql.Inputs
         public InstanceEndpointNodeWeightArgs()
         {
         }
+        public static new InstanceEndpointNodeWeightArgs Empty => new InstanceEndpointNodeWeightArgs();
     }
 }

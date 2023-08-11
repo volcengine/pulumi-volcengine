@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -11,10 +12,10 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
  * // Tag cannot be created,please import by command `terraform import volcengine_cr_tag.default registry:namespace:repository:tag`
- * const defaultTag = new volcengine.cr.Tag("default", {
+ * const _default = new volcengine.cr.Tag("default", {
  *     namespace: "langyu",
  *     registry: "enterprise-1",
  *     repository: "repo",

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Redis
+namespace Volcengine.Pulumi.Volcengine.Redis
 {
     public static class Instances
     {
@@ -19,26 +19,25 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Redis.Instances.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Redis.Instances.InvokeAsync(new Volcengine.Redis.InstancesArgs
-        ///         {
-        ///             InstanceId = "redis-cnlf2lh1kksvv****",
-        ///         }));
-        ///     }
+        ///         InstanceId = "redis-cnlf2lh1kksvv****",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<InstancesResult> InvokeAsync(InstancesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<InstancesResult>("volcengine:redis/instances:Instances", args ?? new InstancesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<InstancesResult>("volcengine:redis/instances:Instances", args ?? new InstancesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of redis instances
@@ -47,30 +46,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Redis.Instances.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Redis.Instances.InvokeAsync(new Volcengine.Redis.InstancesArgs
-        ///         {
-        ///             InstanceId = "redis-cnlf2lh1kksvv****",
-        ///         }));
-        ///     }
+        ///         InstanceId = "redis-cnlf2lh1kksvv****",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<InstancesResult> Invoke(InstancesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<InstancesResult>("volcengine:redis/instances:Instances", args ?? new InstancesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<InstancesResult>("volcengine:redis/instances:Instances", args ?? new InstancesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class InstancesArgs : Pulumi.InvokeArgs
+    public sealed class InstancesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The charge type of redis instance to query. Valid values: `PostPaid`, `PrePaid`.
@@ -153,9 +151,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         public InstancesArgs()
         {
         }
+        public static new InstancesArgs Empty => new InstancesArgs();
     }
 
-    public sealed class InstancesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class InstancesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The charge type of redis instance to query. Valid values: `PostPaid`, `PrePaid`.
@@ -238,6 +237,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         public InstancesInvokeArgs()
         {
         }
+        public static new InstancesInvokeArgs Empty => new InstancesInvokeArgs();
     }
 
 

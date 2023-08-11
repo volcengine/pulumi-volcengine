@@ -8,42 +8,41 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tos
+namespace Volcengine.Pulumi.Volcengine.Tos
 {
     /// <summary>
     /// Provides a resource to manage tos bucket
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var @default = new Volcengine.Tos.Bucket("default", new()
     ///     {
-    ///         var @default = new Volcengine.Tos.Bucket("default", new Volcengine.Tos.BucketArgs
+    ///         AccountAcls = new[]
     ///         {
-    ///             AccountAcls = 
+    ///             new Volcengine.Tos.Inputs.BucketAccountAclArgs
     ///             {
-    ///                 new Volcengine.Tos.Inputs.BucketAccountAclArgs
-    ///                 {
-    ///                     AccountId = "1",
-    ///                     Permission = "READ",
-    ///                 },
-    ///                 new Volcengine.Tos.Inputs.BucketAccountAclArgs
-    ///                 {
-    ///                     AccountId = "2001",
-    ///                     Permission = "WRITE_ACP",
-    ///                 },
+    ///                 AccountId = "1",
+    ///                 Permission = "READ",
     ///             },
-    ///             BucketName = "test-xym-1",
-    ///             EnableVersion = true,
-    ///             PublicAcl = "private",
-    ///         });
-    ///     }
+    ///             new Volcengine.Tos.Inputs.BucketAccountAclArgs
+    ///             {
+    ///                 AccountId = "2001",
+    ///                 Permission = "WRITE_ACP",
+    ///             },
+    ///         },
+    ///         BucketName = "test-xym-1",
+    ///         EnableVersion = true,
+    ///         PublicAcl = "private",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -55,7 +54,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tos
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:tos/bucket:Bucket")]
-    public partial class Bucket : Pulumi.CustomResource
+    public partial class Bucket : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The user set of grant full control.
@@ -156,7 +155,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tos
         }
     }
 
-    public sealed class BucketArgs : Pulumi.ResourceArgs
+    public sealed class BucketArgs : global::Pulumi.ResourceArgs
     {
         [Input("accountAcls")]
         private InputList<Inputs.BucketAccountAclArgs>? _accountAcls;
@@ -197,9 +196,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Tos
         public BucketArgs()
         {
         }
+        public static new BucketArgs Empty => new BucketArgs();
     }
 
-    public sealed class BucketState : Pulumi.ResourceArgs
+    public sealed class BucketState : global::Pulumi.ResourceArgs
     {
         [Input("accountAcls")]
         private InputList<Inputs.BucketAccountAclGetArgs>? _accountAcls;
@@ -264,5 +264,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tos
         public BucketState()
         {
         }
+        public static new BucketState Empty => new BucketState();
     }
 }

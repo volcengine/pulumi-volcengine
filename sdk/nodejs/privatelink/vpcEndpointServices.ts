@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,21 +14,18 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultVpcEndpointServices = pulumi.output(volcengine.privatelink.VpcEndpointServices({
+ * const default = volcengine.privatelink.VpcEndpointServices({
  *     ids: [
  *         "epsvc-3rel73uf2ewao5zsk2j2l58ro",
  *         "epsvc-2d72mxjgq02yo58ozfe5tndeh",
  *     ],
- * }));
+ * });
  * ```
  */
 export function vpcEndpointServices(args?: VpcEndpointServicesArgs, opts?: pulumi.InvokeOptions): Promise<VpcEndpointServicesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:privatelink/vpcEndpointServices:VpcEndpointServices", {
         "ids": args.ids,
         "nameRegex": args.nameRegex,
@@ -82,9 +80,24 @@ export interface VpcEndpointServicesResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of privatelink vpc endpoint services
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.privatelink.VpcEndpointServices({
+ *     ids: [
+ *         "epsvc-3rel73uf2ewao5zsk2j2l58ro",
+ *         "epsvc-2d72mxjgq02yo58ozfe5tndeh",
+ *     ],
+ * });
+ * ```
+ */
 export function vpcEndpointServicesOutput(args?: VpcEndpointServicesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<VpcEndpointServicesResult> {
-    return pulumi.output(args).apply(a => vpcEndpointServices(a, opts))
+    return pulumi.output(args).apply((a: any) => vpcEndpointServices(a, opts))
 }
 
 /**

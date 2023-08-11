@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls
+namespace Volcengine.Pulumi.Volcengine.Tls
 {
     public static class Alarms
     {
@@ -19,26 +19,25 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Tls.Alarms.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Tls.Alarms.InvokeAsync(new Volcengine.Tls.AlarmsArgs
-        ///         {
-        ///             ProjectId = "cc44f8b6-0328-4622-b043-023fca735cd4",
-        ///         }));
-        ///     }
+        ///         ProjectId = "cc44f8b6-0328-4622-b043-023fca735cd4",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<AlarmsResult> InvokeAsync(AlarmsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<AlarmsResult>("volcengine:tls/alarms:Alarms", args ?? new AlarmsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<AlarmsResult>("volcengine:tls/alarms:Alarms", args ?? new AlarmsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of tls alarms
@@ -47,30 +46,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Tls.Alarms.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Tls.Alarms.InvokeAsync(new Volcengine.Tls.AlarmsArgs
-        ///         {
-        ///             ProjectId = "cc44f8b6-0328-4622-b043-023fca735cd4",
-        ///         }));
-        ///     }
+        ///         ProjectId = "cc44f8b6-0328-4622-b043-023fca735cd4",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<AlarmsResult> Invoke(AlarmsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<AlarmsResult>("volcengine:tls/alarms:Alarms", args ?? new AlarmsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<AlarmsResult>("volcengine:tls/alarms:Alarms", args ?? new AlarmsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class AlarmsArgs : Pulumi.InvokeArgs
+    public sealed class AlarmsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The alarm id.
@@ -117,9 +115,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public AlarmsArgs()
         {
         }
+        public static new AlarmsArgs Empty => new AlarmsArgs();
     }
 
-    public sealed class AlarmsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class AlarmsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The alarm id.
@@ -166,6 +165,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public AlarmsInvokeArgs()
         {
         }
+        public static new AlarmsInvokeArgs Empty => new AlarmsInvokeArgs();
     }
 
 

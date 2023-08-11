@@ -8,34 +8,33 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Bioos
+namespace Volcengine.Pulumi.Volcengine.Bioos
 {
     /// <summary>
     /// Provides a resource to manage bioos cluster
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Bioos.Cluster("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Bioos.Cluster("foo", new Volcengine.Bioos.ClusterArgs
+    ///         Description = "test-description",
+    ///         SharedConfigs = new[]
     ///         {
-    ///             Description = "test-description",
-    ///             SharedConfigs = 
+    ///             new Volcengine.Bioos.Inputs.ClusterSharedConfigArgs
     ///             {
-    ///                 new Volcengine.Bioos.Inputs.ClusterSharedConfigArgs
-    ///                 {
-    ///                     Enable = true,
-    ///                 },
+    ///                 Enable = true,
     ///             },
-    ///         });
-    ///     }
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -47,7 +46,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Bioos
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:bioos/cluster:Cluster")]
-    public partial class Cluster : Pulumi.CustomResource
+    public partial class Cluster : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The id of the vke cluster.
@@ -124,7 +123,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Bioos
         }
     }
 
-    public sealed class ClusterArgs : Pulumi.ResourceArgs
+    public sealed class ClusterArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The description of the cluster.
@@ -165,9 +164,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Bioos
         public ClusterArgs()
         {
         }
+        public static new ClusterArgs Empty => new ClusterArgs();
     }
 
-    public sealed class ClusterState : Pulumi.ResourceArgs
+    public sealed class ClusterState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of the vke cluster.
@@ -214,5 +214,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Bioos
         public ClusterState()
         {
         }
+        public static new ClusterState Empty => new ClusterState();
     }
 }

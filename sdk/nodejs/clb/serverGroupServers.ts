@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -11,8 +12,8 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi from "@volcengine/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
  * const fooZones = volcengine.ecs.Zones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
@@ -22,7 +23,7 @@ import * as utilities from "../utilities";
  * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
  *     subnetName: "acc-test-subnet",
  *     cidrBlock: "172.16.0.0/24",
- *     zoneId: fooZones.then(fooZones => fooZones.zones?[0]?.id),
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
  *     vpcId: fooVpc.id,
  * });
  * const fooClb = new volcengine.clb.Clb("fooClb", {
@@ -72,11 +73,8 @@ import * as utilities from "../utilities";
  * ```
  */
 export function serverGroupServers(args: ServerGroupServersArgs, opts?: pulumi.InvokeOptions): Promise<ServerGroupServersResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:clb/serverGroupServers:ServerGroupServers", {
         "ids": args.ids,
         "nameRegex": args.nameRegex,
@@ -128,9 +126,74 @@ export interface ServerGroupServersResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of server group servers
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
+ *
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooClb = new volcengine.clb.Clb("fooClb", {
+ *     type: "public",
+ *     subnetId: fooSubnet.id,
+ *     loadBalancerSpec: "small_1",
+ *     description: "acc0Demo",
+ *     loadBalancerName: "acc-test-create",
+ *     eipBillingConfig: {
+ *         isp: "BGP",
+ *         eipBillingType: "PostPaidByBandwidth",
+ *         bandwidth: 1,
+ *     },
+ * });
+ * const fooServerGroup = new volcengine.clb.ServerGroup("fooServerGroup", {
+ *     loadBalancerId: fooClb.id,
+ *     serverGroupName: "acc-test-create",
+ *     description: "hello demo11",
+ * });
+ * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
+ *     vpcId: fooVpc.id,
+ *     securityGroupName: "acc-test-security-group",
+ * });
+ * const fooInstance = new volcengine.ecs.Instance("fooInstance", {
+ *     imageId: "image-ycjwwciuzy5pkh54xx8f",
+ *     instanceType: "ecs.c3i.large",
+ *     instanceName: "acc-test-ecs-name",
+ *     password: "93f0cb0614Aab12",
+ *     instanceChargeType: "PostPaid",
+ *     systemVolumeType: "ESSD_PL0",
+ *     systemVolumeSize: 40,
+ *     subnetId: fooSubnet.id,
+ *     securityGroupIds: [fooSecurityGroup.id],
+ * });
+ * const fooServerGroupServer = new volcengine.clb.ServerGroupServer("fooServerGroupServer", {
+ *     serverGroupId: fooServerGroup.id,
+ *     instanceId: fooInstance.id,
+ *     type: "ecs",
+ *     weight: 100,
+ *     port: 80,
+ *     description: "This is a acc test server",
+ * });
+ * const fooServerGroupServers = volcengine.clb.ServerGroupServersOutput({
+ *     ids: [pulumi.all([fooServerGroupServer.id.apply(id => id.split(":")), fooServerGroupServer.id.apply(id => id.split(":")).length]).apply(([split, length]) => split[length - 1])],
+ *     serverGroupId: fooServerGroup.id,
+ * });
+ * ```
+ */
 export function serverGroupServersOutput(args: ServerGroupServersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ServerGroupServersResult> {
-    return pulumi.output(args).apply(a => serverGroupServers(a, opts))
+    return pulumi.output(args).apply((a: any) => serverGroupServers(a, opts))
 }
 
 /**

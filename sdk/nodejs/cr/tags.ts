@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,20 +14,17 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = pulumi.output(volcengine.cr.Tags({
+ * const foo = volcengine.cr.Tags({
  *     namespace: "test",
  *     registry: "enterprise-1",
  *     repository: "repo",
  *     types: ["Image"],
- * }));
+ * });
  * ```
  */
 export function tags(args: TagsArgs, opts?: pulumi.InvokeOptions): Promise<TagsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:cr/tags:Tags", {
         "names": args.names,
         "namespace": args.namespace,
@@ -90,9 +88,24 @@ export interface TagsResult {
     readonly totalCount: number;
     readonly types?: string[];
 }
-
+/**
+ * Use this data source to query detailed information of cr tags
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const foo = volcengine.cr.Tags({
+ *     namespace: "test",
+ *     registry: "enterprise-1",
+ *     repository: "repo",
+ *     types: ["Image"],
+ * });
+ * ```
+ */
 export function tagsOutput(args: TagsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<TagsResult> {
-    return pulumi.output(args).apply(a => tags(a, opts))
+    return pulumi.output(args).apply((a: any) => tags(a, opts))
 }
 
 /**

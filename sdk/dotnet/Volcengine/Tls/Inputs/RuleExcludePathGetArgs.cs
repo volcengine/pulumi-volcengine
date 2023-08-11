@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
+namespace Volcengine.Pulumi.Volcengine.Tls.Inputs
 {
 
-    public sealed class RuleExcludePathGetArgs : Pulumi.ResourceArgs
+    public sealed class RuleExcludePathGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Collection path type. The path type can be `File` or `Path`.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
         public RuleExcludePathGetArgs()
         {
         }
+        public static new RuleExcludePathGetArgs Empty => new RuleExcludePathGetArgs();
     }
 }

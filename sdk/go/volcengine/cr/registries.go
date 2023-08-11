@@ -18,7 +18,6 @@ import (
 //
 // import (
 //
-//	"github.com/pulumi/pulumi-volcengine/sdk/go/volcengine/cr"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/cr"
 //
@@ -28,7 +27,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cr.Registries(ctx, &cr.RegistriesArgs{
 //				Statuses: []cr.RegistriesStatus{
-//					cr.RegistriesStatus{
+//					{
 //						Condition: pulumi.StringRef("Ok"),
 //						Phase:     pulumi.StringRef("Running"),
 //					},

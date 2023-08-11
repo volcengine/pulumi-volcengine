@@ -8,77 +8,76 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
+namespace Volcengine.Pulumi.Volcengine.Autoscaling
 {
     /// <summary>
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Autoscaling.ScalingConfiguration("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Autoscaling.ScalingConfiguration("foo", new Volcengine.Autoscaling.ScalingConfigurationArgs
+    ///         EipBandwidth = 10,
+    ///         EipBillingType = "PostPaidByBandwidth",
+    ///         EipIsp = "ChinaMobile",
+    ///         HostName = "",
+    ///         HpcClusterId = "",
+    ///         ImageId = "image-ycgud4t4hxgso0e27bdl",
+    ///         InstanceDescription = "",
+    ///         InstanceName = "tf-test",
+    ///         InstanceTypes = new[]
     ///         {
-    ///             EipBandwidth = 10,
-    ///             EipBillingType = "PostPaidByBandwidth",
-    ///             EipIsp = "ChinaMobile",
-    ///             HostName = "",
-    ///             HpcClusterId = "",
-    ///             ImageId = "image-ycgud4t4hxgso0e27bdl",
-    ///             InstanceDescription = "",
-    ///             InstanceName = "tf-test",
-    ///             InstanceTypes = 
+    ///             "ecs.g2i.large",
+    ///         },
+    ///         KeyPairName = "tf-keypair",
+    ///         Password = "",
+    ///         ProjectName = "default",
+    ///         ScalingConfigurationName = "tf-test",
+    ///         ScalingGroupId = "scg-ycinx27x25gh9y31p0fy",
+    ///         SecurityEnhancementStrategy = "InActive",
+    ///         SecurityGroupIds = new[]
+    ///         {
+    ///             "sg-2fepz3c793g1s59gp67y21r34",
+    ///         },
+    ///         SpotStrategy = "NoSpot",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Autoscaling.Inputs.ScalingConfigurationTagArgs
     ///             {
-    ///                 "ecs.g2i.large",
+    ///                 Key = "tf-key1",
+    ///                 Value = "tf-value1",
     ///             },
-    ///             KeyPairName = "tf-keypair",
-    ///             Password = "",
-    ///             ProjectName = "default",
-    ///             ScalingConfigurationName = "tf-test",
-    ///             ScalingGroupId = "scg-ycinx27x25gh9y31p0fy",
-    ///             SecurityEnhancementStrategy = "InActive",
-    ///             SecurityGroupIds = 
+    ///             new Volcengine.Autoscaling.Inputs.ScalingConfigurationTagArgs
     ///             {
-    ///                 "sg-2fepz3c793g1s59gp67y21r34",
+    ///                 Key = "tf-key2",
+    ///                 Value = "tf-value2",
     ///             },
-    ///             SpotStrategy = "NoSpot",
-    ///             Tags = 
+    ///         },
+    ///         UserData = "IyEvYmluL2Jhc2gKZWNobyAidGVzdCI=",
+    ///         Volumes = new[]
+    ///         {
+    ///             new Volcengine.Autoscaling.Inputs.ScalingConfigurationVolumeArgs
     ///             {
-    ///                 new Volcengine.Autoscaling.Inputs.ScalingConfigurationTagArgs
-    ///                 {
-    ///                     Key = "tf-key1",
-    ///                     Value = "tf-value1",
-    ///                 },
-    ///                 new Volcengine.Autoscaling.Inputs.ScalingConfigurationTagArgs
-    ///                 {
-    ///                     Key = "tf-key2",
-    ///                     Value = "tf-value2",
-    ///                 },
+    ///                 DeleteWithInstance = false,
+    ///                 Size = 20,
+    ///                 VolumeType = "ESSD_PL0",
     ///             },
-    ///             UserData = "IyEvYmluL2Jhc2gKZWNobyAidGVzdCI=",
-    ///             Volumes = 
+    ///             new Volcengine.Autoscaling.Inputs.ScalingConfigurationVolumeArgs
     ///             {
-    ///                 new Volcengine.Autoscaling.Inputs.ScalingConfigurationVolumeArgs
-    ///                 {
-    ///                     DeleteWithInstance = false,
-    ///                     Size = 20,
-    ///                     VolumeType = "ESSD_PL0",
-    ///                 },
-    ///                 new Volcengine.Autoscaling.Inputs.ScalingConfigurationVolumeArgs
-    ///                 {
-    ///                     DeleteWithInstance = true,
-    ///                     Size = 20,
-    ///                     VolumeType = "ESSD_PL0",
-    ///                 },
+    ///                 DeleteWithInstance = true,
+    ///                 Size = 20,
+    ///                 VolumeType = "ESSD_PL0",
     ///             },
-    ///         });
-    ///     }
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -90,7 +89,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:autoscaling/scalingConfiguration:ScalingConfiguration")]
-    public partial class ScalingConfiguration : Pulumi.CustomResource
+    public partial class ScalingConfiguration : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The create time of the scaling configuration.
@@ -260,6 +259,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/volcengine",
+                AdditionalSecretOutputs =
+                {
+                    "password",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -281,7 +284,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         }
     }
 
-    public sealed class ScalingConfigurationArgs : Pulumi.ResourceArgs
+    public sealed class ScalingConfigurationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The EIP bandwidth which the scaling configuration set. When the value of Eip.BillingType is PostPaidByBandwidth, the value is 1 to 500. When the value of Eip.BillingType is PostPaidByTraffic, the value is 1 to 200.
@@ -349,11 +352,21 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         [Input("keyPairName")]
         public Input<string>? KeyPairName { get; set; }
 
+        [Input("password")]
+        private Input<string>? _password;
+
         /// <summary>
         /// The ECS password which the scaling configuration set.
         /// </summary>
-        [Input("password")]
-        public Input<string>? Password { get; set; }
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The project to which the instance created by the scaling configuration belongs.
@@ -430,9 +443,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         public ScalingConfigurationArgs()
         {
         }
+        public static new ScalingConfigurationArgs Empty => new ScalingConfigurationArgs();
     }
 
-    public sealed class ScalingConfigurationState : Pulumi.ResourceArgs
+    public sealed class ScalingConfigurationState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The create time of the scaling configuration.
@@ -512,11 +526,21 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         [Input("lifecycleState")]
         public Input<string>? LifecycleState { get; set; }
 
+        [Input("password")]
+        private Input<string>? _password;
+
         /// <summary>
         /// The ECS password which the scaling configuration set.
         /// </summary>
-        [Input("password")]
-        public Input<string>? Password { get; set; }
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The project to which the instance created by the scaling configuration belongs.
@@ -605,5 +629,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         public ScalingConfigurationState()
         {
         }
+        public static new ScalingConfigurationState Empty => new ScalingConfigurationState();
     }
 }

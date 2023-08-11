@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,17 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultHosts = pulumi.output(volcengine.tls.Hosts({
+ * const default = volcengine.tls.Hosts({
  *     hostGroupId: "527102e2-1e4f-45f4-a990-751152125da7",
- * }));
+ * });
  * ```
  */
 export function hosts(args: HostsArgs, opts?: pulumi.InvokeOptions): Promise<HostsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:tls/hosts:Hosts", {
         "heartbeatStatus": args.heartbeatStatus,
         "hostGroupId": args.hostGroupId,
@@ -84,9 +82,21 @@ export interface HostsResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of tls hosts
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.tls.Hosts({
+ *     hostGroupId: "527102e2-1e4f-45f4-a990-751152125da7",
+ * });
+ * ```
+ */
 export function hostsOutput(args: HostsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<HostsResult> {
-    return pulumi.output(args).apply(a => hosts(a, opts))
+    return pulumi.output(args).apply((a: any) => hosts(a, opts))
 }
 
 /**

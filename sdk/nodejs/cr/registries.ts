@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,23 +14,18 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = pulumi.output(volcengine.cr.Registries({
- *     // names=["liaoliuqing-prune-test"]
- *     // types=["Enterprise"]
+ * const foo = volcengine.cr.Registries({
  *     statuses: [{
  *         condition: "Ok",
  *         phase: "Running",
  *     }],
- * }));
+ * });
  * ```
  */
 export function registries(args?: RegistriesArgs, opts?: pulumi.InvokeOptions): Promise<RegistriesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:cr/registries:Registries", {
         "names": args.names,
         "outputFile": args.outputFile,
@@ -81,9 +77,24 @@ export interface RegistriesResult {
     readonly totalCount: number;
     readonly types?: string[];
 }
-
+/**
+ * Use this data source to query detailed information of cr registries
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const foo = volcengine.cr.Registries({
+ *     statuses: [{
+ *         condition: "Ok",
+ *         phase: "Running",
+ *     }],
+ * });
+ * ```
+ */
 export function registriesOutput(args?: RegistriesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<RegistriesResult> {
-    return pulumi.output(args).apply(a => registries(a, opts))
+    return pulumi.output(args).apply((a: any) => registries(a, opts))
 }
 
 /**

@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
+namespace Volcengine.Pulumi.Volcengine.Vke.Inputs
 {
 
-    public sealed class ClusterPodsConfigVpcCniConfigGetArgs : Pulumi.ResourceArgs
+    public sealed class ClusterPodsConfigVpcCniConfigGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("subnetIds")]
         private InputList<string>? _subnetIds;
@@ -34,5 +34,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
         public ClusterPodsConfigVpcCniConfigGetArgs()
         {
         }
+        public static new ClusterPodsConfigVpcCniConfigGetArgs Empty => new ClusterPodsConfigVpcCniConfigGetArgs();
     }
 }

@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Veenedge.Inputs
+namespace Volcengine.Pulumi.Volcengine.Veenedge.Inputs
 {
 
-    public sealed class CloudServerNetworkConfigArgs : Pulumi.ResourceArgs
+    public sealed class CloudServerNetworkConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The peak of bandwidth.
@@ -46,5 +46,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge.Inputs
         public CloudServerNetworkConfigArgs()
         {
         }
+        public static new CloudServerNetworkConfigArgs Empty => new CloudServerNetworkConfigArgs();
     }
 }

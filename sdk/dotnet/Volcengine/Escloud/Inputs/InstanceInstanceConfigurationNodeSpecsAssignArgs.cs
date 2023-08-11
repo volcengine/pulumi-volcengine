@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Escloud.Inputs
+namespace Volcengine.Pulumi.Volcengine.Escloud.Inputs
 {
 
-    public sealed class InstanceInstanceConfigurationNodeSpecsAssignArgs : Pulumi.ResourceArgs
+    public sealed class InstanceInstanceConfigurationNodeSpecsAssignArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The number of node.
@@ -46,5 +46,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Escloud.Inputs
         public InstanceInstanceConfigurationNodeSpecsAssignArgs()
         {
         }
+        public static new InstanceInstanceConfigurationNodeSpecsAssignArgs Empty => new InstanceInstanceConfigurationNodeSpecsAssignArgs();
     }
 }

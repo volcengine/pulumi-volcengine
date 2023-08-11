@@ -8,57 +8,56 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls
+namespace Volcengine.Pulumi.Volcengine.Tls
 {
     /// <summary>
     /// Provides a resource to manage tls alarm
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Tls.Alarm("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Tls.Alarm("foo", new Volcengine.Tls.AlarmArgs
+    ///         AlarmName = "test",
+    ///         AlarmNotifyGroups = new[]
     ///         {
-    ///             AlarmName = "test",
-    ///             AlarmNotifyGroups = 
+    ///             "3019107f-28a2-4208-a2b6-c33fcb97ac3a",
+    ///         },
+    ///         AlarmPeriodDetail = new Volcengine.Tls.Inputs.AlarmAlarmPeriodDetailArgs
+    ///         {
+    ///             Email = 2,
+    ///             GeneralWebhook = 3,
+    ///             Phone = 10,
+    ///             Sms = 10,
+    ///         },
+    ///         Condition = "$1.errNum&gt;0",
+    ///         ProjectId = "cc44f8b6-0328-4622-b043-023fca735cd4",
+    ///         QueryRequests = new[]
+    ///         {
+    ///             new Volcengine.Tls.Inputs.AlarmQueryRequestArgs
     ///             {
-    ///                 "3019107f-28a2-4208-a2b6-c33fcb97ac3a",
+    ///                 EndTimeOffset = 0,
+    ///                 Number = 1,
+    ///                 Query = "Failed | select count(*) as errNum",
+    ///                 StartTimeOffset = -15,
+    ///                 TopicId = "af1a2240-ba62-4f18-b421-bde2f9684e57",
     ///             },
-    ///             AlarmPeriodDetail = new Volcengine.Tls.Inputs.AlarmAlarmPeriodDetailArgs
-    ///             {
-    ///                 Email = 2,
-    ///                 GeneralWebhook = 3,
-    ///                 Phone = 10,
-    ///                 Sms = 10,
-    ///             },
-    ///             Condition = "$1.errNum&gt;0",
-    ///             ProjectId = "cc44f8b6-0328-4622-b043-023fca735cd4",
-    ///             QueryRequests = 
-    ///             {
-    ///                 new Volcengine.Tls.Inputs.AlarmQueryRequestArgs
-    ///                 {
-    ///                     EndTimeOffset = 0,
-    ///                     Number = 1,
-    ///                     Query = "Failed | select count(*) as errNum",
-    ///                     StartTimeOffset = -15,
-    ///                     TopicId = "af1a2240-ba62-4f18-b421-bde2f9684e57",
-    ///                 },
-    ///             },
-    ///             RequestCycle = new Volcengine.Tls.Inputs.AlarmRequestCycleArgs
-    ///             {
-    ///                 Time = 11,
-    ///                 Type = "Period",
-    ///             },
-    ///             UserDefineMsg = "test for terraform",
-    ///         });
-    ///     }
+    ///         },
+    ///         RequestCycle = new Volcengine.Tls.Inputs.AlarmRequestCycleArgs
+    ///         {
+    ///             Time = 11,
+    ///             Type = "Period",
+    ///         },
+    ///         UserDefineMsg = "test for terraform",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -70,7 +69,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:tls/alarm:Alarm")]
-    public partial class Alarm : Pulumi.CustomResource
+    public partial class Alarm : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The alarm id.
@@ -189,7 +188,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         }
     }
 
-    public sealed class AlarmArgs : Pulumi.ResourceArgs
+    public sealed class AlarmArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the alarm.
@@ -272,9 +271,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public AlarmArgs()
         {
         }
+        public static new AlarmArgs Empty => new AlarmArgs();
     }
 
-    public sealed class AlarmState : Pulumi.ResourceArgs
+    public sealed class AlarmState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The alarm id.
@@ -363,5 +363,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public AlarmState()
         {
         }
+        public static new AlarmState Empty => new AlarmState();
     }
 }

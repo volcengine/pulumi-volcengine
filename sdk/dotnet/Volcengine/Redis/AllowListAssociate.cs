@@ -8,33 +8,33 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Redis
+namespace Volcengine.Pulumi.Volcengine.Redis
 {
     /// <summary>
     /// Provides a resource to manage redis allow list associate
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var @default = new Volcengine.Redis.AllowListAssociate("default", new()
     ///     {
-    ///         var @default = new Volcengine.Redis.AllowListAssociate("default", new Volcengine.Redis.AllowListAssociateArgs
-    ///         {
-    ///             AllowListId = "acl-cnlfc5zsxscu1gg2ajh",
-    ///             InstanceId = "redis-cnlfbzifs7bpvundz",
-    ///         });
-    ///         var default1 = new Volcengine.Redis.AllowListAssociate("default1", new Volcengine.Redis.AllowListAssociateArgs
-    ///         {
-    ///             AllowListId = "acl-cnlff2mb31zo85p5am7",
-    ///             InstanceId = "redis-cnlfbzifs7bpvundz",
-    ///         });
-    ///     }
+    ///         AllowListId = "acl-cnlfc5zsxscu1gg2ajh",
+    ///         InstanceId = "redis-cnlfbzifs7bpvundz",
+    ///     });
     /// 
-    /// }
+    ///     var default1 = new Volcengine.Redis.AllowListAssociate("default1", new()
+    ///     {
+    ///         AllowListId = "acl-cnlff2mb31zo85p5am7",
+    ///         InstanceId = "redis-cnlfbzifs7bpvundz",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -46,7 +46,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:redis/allowListAssociate:AllowListAssociate")]
-    public partial class AllowListAssociate : Pulumi.CustomResource
+    public partial class AllowListAssociate : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Id of allow list to associate.
@@ -105,7 +105,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         }
     }
 
-    public sealed class AllowListAssociateArgs : Pulumi.ResourceArgs
+    public sealed class AllowListAssociateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Id of allow list to associate.
@@ -122,9 +122,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         public AllowListAssociateArgs()
         {
         }
+        public static new AllowListAssociateArgs Empty => new AllowListAssociateArgs();
     }
 
-    public sealed class AllowListAssociateState : Pulumi.ResourceArgs
+    public sealed class AllowListAssociateState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Id of allow list to associate.
@@ -141,5 +142,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         public AllowListAssociateState()
         {
         }
+        public static new AllowListAssociateState Empty => new AllowListAssociateState();
     }
 }

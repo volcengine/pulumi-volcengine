@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cr.Inputs
+namespace Volcengine.Pulumi.Volcengine.Cr.Inputs
 {
 
-    public sealed class RegistryDomainGetArgs : Pulumi.ResourceArgs
+    public sealed class RegistryDomainGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The domain of registry.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr.Inputs
         public RegistryDomainGetArgs()
         {
         }
+        public static new RegistryDomainGetArgs Empty => new RegistryDomainGetArgs();
     }
 }

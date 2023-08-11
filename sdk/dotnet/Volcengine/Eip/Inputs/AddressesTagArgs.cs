@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Eip.Inputs
+namespace Volcengine.Pulumi.Volcengine.Eip.Inputs
 {
 
-    public sealed class AddressesTagInputArgs : Pulumi.ResourceArgs
+    public sealed class AddressesTagInputArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Key of Tags.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Eip.Inputs
         public AddressesTagInputArgs()
         {
         }
+        public static new AddressesTagInputArgs Empty => new AddressesTagInputArgs();
     }
 }

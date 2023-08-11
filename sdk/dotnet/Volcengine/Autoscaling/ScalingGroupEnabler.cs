@@ -8,101 +8,103 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
+namespace Volcengine.Pulumi.Volcengine.Autoscaling
 {
     /// <summary>
     /// Provides a resource to manage scaling group enabler
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     // 创建步骤：terraform init -&gt; pulumi preview -&gt; pulumi up
+    ///     // 删除步骤: terraform state rm volcengine_scaling_configuration.foo1 -&gt; terraform destroy
+    ///     // 创建伸缩组
+    ///     var foo = new Volcengine.Autoscaling.ScalingGroup("foo", new()
     ///     {
-    ///         // 创建步骤：terraform init -&gt; terraform plan -&gt; terraform apply
-    ///         // 删除步骤: terraform state rm volcengine_scaling_configuration.foo1 -&gt; terraform destroy
-    ///         // 创建伸缩组
-    ///         var foo = new Volcengine.Autoscaling.ScalingGroup("foo", new Volcengine.Autoscaling.ScalingGroupArgs
+    ///         ScalingGroupName = "zzm-tf-test",
+    ///         SubnetIds = new[]
     ///         {
-    ///             ScalingGroupName = "zzm-tf-test",
-    ///             SubnetIds = 
-    ///             {
-    ///                 "subnet-2fegl9waotzi859gp67relkhv",
-    ///             },
-    ///             MultiAzPolicy = "BALANCE",
-    ///             DesireInstanceNumber = 0,
-    ///             MinInstanceNumber = 0,
-    ///             MaxInstanceNumber = 1,
-    ///             InstanceTerminatePolicy = "OldestInstance",
-    ///             DefaultCooldown = 10,
-    ///         });
-    ///         // 创建伸缩配置
-    ///         var foo1 = new Volcengine.Autoscaling.ScalingConfiguration("foo1", new Volcengine.Autoscaling.ScalingConfigurationArgs
-    ///         {
-    ///             ScalingConfigurationName = "terraform-test",
-    ///             ScalingGroupId = foo.ScalingGroupId,
-    ///             ImageId = "image-ybx2d38wdfl8j1pupx7b",
-    ///             InstanceTypes = 
-    ///             {
-    ///                 "ecs.g1.2xlarge",
-    ///             },
-    ///             InstanceName = "tf-test",
-    ///             InstanceDescription = "",
-    ///             HostName = "",
-    ///             Password = "",
-    ///             KeyPairName = "zktest",
-    ///             SecurityEnhancementStrategy = "InActive",
-    ///             Volumes = 
-    ///             {
-    ///                 new Volcengine.Autoscaling.Inputs.ScalingConfigurationVolumeArgs
-    ///                 {
-    ///                     VolumeType = "ESSD_PL0",
-    ///                     Size = 20,
-    ///                     DeleteWithInstance = false,
-    ///                 },
-    ///                 new Volcengine.Autoscaling.Inputs.ScalingConfigurationVolumeArgs
-    ///                 {
-    ///                     VolumeType = "ESSD_PL0",
-    ///                     Size = 20,
-    ///                     DeleteWithInstance = true,
-    ///                 },
-    ///             },
-    ///             SecurityGroupIds = 
-    ///             {
-    ///                 "sg-12b8llnkn1la817q7y1be4kop",
-    ///             },
-    ///             EipBandwidth = 0,
-    ///             EipIsp = "ChinaMobile",
-    ///             EipBillingType = "PostPaidByBandwidth",
-    ///         });
-    ///         // 绑定伸缩配置
-    ///         var foo2 = new Volcengine.Autoscaling.ScalingConfigurationAttachment("foo2", new Volcengine.Autoscaling.ScalingConfigurationAttachmentArgs
-    ///         {
-    ///             ScalingConfigurationId = foo1.ScalingConfigurationId,
-    ///         }, new CustomResourceOptions
-    ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 foo1,
-    ///             },
-    ///         });
-    ///         // 启用伸缩组
-    ///         var foo3 = new Volcengine.Autoscaling.ScalingGroupEnabler("foo3", new Volcengine.Autoscaling.ScalingGroupEnablerArgs
-    ///         {
-    ///             ScalingGroupId = foo.ScalingGroupId,
-    ///         }, new CustomResourceOptions
-    ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 foo2,
-    ///             },
-    ///         });
-    ///     }
+    ///             "subnet-2fegl9waotzi859gp67relkhv",
+    ///         },
+    ///         MultiAzPolicy = "BALANCE",
+    ///         DesireInstanceNumber = 0,
+    ///         MinInstanceNumber = 0,
+    ///         MaxInstanceNumber = 1,
+    ///         InstanceTerminatePolicy = "OldestInstance",
+    ///         DefaultCooldown = 10,
+    ///     });
     /// 
-    /// }
+    ///     // 创建伸缩配置
+    ///     var foo1 = new Volcengine.Autoscaling.ScalingConfiguration("foo1", new()
+    ///     {
+    ///         ScalingConfigurationName = "terraform-test",
+    ///         ScalingGroupId = foo.ScalingGroupId,
+    ///         ImageId = "image-ybx2d38wdfl8j1pupx7b",
+    ///         InstanceTypes = new[]
+    ///         {
+    ///             "ecs.g1.2xlarge",
+    ///         },
+    ///         InstanceName = "tf-test",
+    ///         InstanceDescription = "",
+    ///         HostName = "",
+    ///         Password = "",
+    ///         KeyPairName = "zktest",
+    ///         SecurityEnhancementStrategy = "InActive",
+    ///         Volumes = new[]
+    ///         {
+    ///             new Volcengine.Autoscaling.Inputs.ScalingConfigurationVolumeArgs
+    ///             {
+    ///                 VolumeType = "ESSD_PL0",
+    ///                 Size = 20,
+    ///                 DeleteWithInstance = false,
+    ///             },
+    ///             new Volcengine.Autoscaling.Inputs.ScalingConfigurationVolumeArgs
+    ///             {
+    ///                 VolumeType = "ESSD_PL0",
+    ///                 Size = 20,
+    ///                 DeleteWithInstance = true,
+    ///             },
+    ///         },
+    ///         SecurityGroupIds = new[]
+    ///         {
+    ///             "sg-12b8llnkn1la817q7y1be4kop",
+    ///         },
+    ///         EipBandwidth = 0,
+    ///         EipIsp = "ChinaMobile",
+    ///         EipBillingType = "PostPaidByBandwidth",
+    ///     });
+    /// 
+    ///     // 绑定伸缩配置
+    ///     var foo2 = new Volcengine.Autoscaling.ScalingConfigurationAttachment("foo2", new()
+    ///     {
+    ///         ScalingConfigurationId = foo1.ScalingConfigurationId,
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             foo1,
+    ///         },
+    ///     });
+    /// 
+    ///     // 启用伸缩组
+    ///     var foo3 = new Volcengine.Autoscaling.ScalingGroupEnabler("foo3", new()
+    ///     {
+    ///         ScalingGroupId = foo.ScalingGroupId,
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             foo2,
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -114,7 +116,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:autoscaling/scalingGroupEnabler:ScalingGroupEnabler")]
-    public partial class ScalingGroupEnabler : Pulumi.CustomResource
+    public partial class ScalingGroupEnabler : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The id of the scaling group.
@@ -167,7 +169,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         }
     }
 
-    public sealed class ScalingGroupEnablerArgs : Pulumi.ResourceArgs
+    public sealed class ScalingGroupEnablerArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of the scaling group.
@@ -178,9 +180,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         public ScalingGroupEnablerArgs()
         {
         }
+        public static new ScalingGroupEnablerArgs Empty => new ScalingGroupEnablerArgs();
     }
 
-    public sealed class ScalingGroupEnablerState : Pulumi.ResourceArgs
+    public sealed class ScalingGroupEnablerState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of the scaling group.
@@ -191,5 +194,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         public ScalingGroupEnablerState()
         {
         }
+        public static new ScalingGroupEnablerState Empty => new ScalingGroupEnablerState();
     }
 }

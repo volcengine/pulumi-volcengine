@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -11,10 +12,10 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as pulumi from "@volcengine/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooCertificate: volcengine.clb.Certificate[];
+ * const fooCertificate: volcengine.clb.Certificate[] = [];
  * for (const range = {value: 0}; range.value < 3; range.value++) {
  *     fooCertificate.push(new volcengine.clb.Certificate(`fooCertificate-${range.value}`, {
  *         certificateName: `acc-test-certificate-${range.value}`,
@@ -63,11 +64,8 @@ import * as utilities from "../utilities";
  */
 export function certificates(args?: CertificatesArgs, opts?: pulumi.InvokeOptions): Promise<CertificatesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:clb/certificates:Certificates", {
         "certificateName": args.certificateName,
         "ids": args.ids,
@@ -140,9 +138,64 @@ export interface CertificatesResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of certificates
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
+ *
+ * const fooCertificate: volcengine.clb.Certificate[] = [];
+ * for (const range = {value: 0}; range.value < 3; range.value++) {
+ *     fooCertificate.push(new volcengine.clb.Certificate(`fooCertificate-${range.value}`, {
+ *         certificateName: `acc-test-certificate-${range.value}`,
+ *         description: "acc-test-demo",
+ *         publicKey: `-----BEGIN CERTIFICATE-----
+ * MIICWDCCAcGgAwIBAgIJAP7vOtjPtQIjMA0GCSqGSIb3DQEBCwUAMEUxCzAJBgNV
+ * BAYTAkNOMRMwEQYDVQQIDApjbi1iZWlqaW5nMSEwHwYDVQQKDBhJbnRlcm5ldCBX
+ * aWRnaXRzIFB0eSBMdGQwHhcNMjAxMDIwMDYxOTUxWhcNMjAxMTE5MDYxOTUxWjBF
+ * MQswCQYDVQQGEwJDTjETMBEGA1UECAwKY24tYmVpamluZzEhMB8GA1UECgwYSW50
+ * ZXJuZXQgV2lkZ2l0cyBQdHkgTHRkMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKB
+ * gQDEdoyaJ0kdtjtbLRx5X9qwI7FblhJPRcScvhQSE8P5y/b/T8J9BVuFIBoU8nrP
+ * Y9ABz4JFklZ6SznxLbFBqtXoJTmzV6ixyjjH+AGEw6hCiA8Pqy2CNIzxr9DjCzN5
+ * tWruiHqO60O3Bve6cHipH0VyLAhrB85mflvOZSH4xGsJkwIDAQABo1AwTjAdBgNV
+ * HQ4EFgQUYDwuuqC2a2UPrfm1v31vE7+GRM4wHwYDVR0jBBgwFoAUYDwuuqC2a2UP
+ * rfm1v31vE7+GRM4wDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQsFAAOBgQAovSB0
+ * 5JRKrg7lYR/KlTuKHmozfyL9UER0/dpTSoqsCyt8yc1BbtAKUJWh09BujBE1H22f
+ * lKvCAjhPmnNdfd/l9GrmAWNDWEDPLdUTkGSkKAScMpdS+mLmOBuYWgdnOtq3eQGf
+ * t07tlBL+dtzrrohHpfLeuNyYb40g8VQdp3RRRQ==
+ * -----END CERTIFICATE-----`,
+ *         privateKey: `-----BEGIN RSA PRIVATE KEY-----
+ * MIICXAIBAAKBgQDEdoyaJ0kdtjtbLRx5X9qwI7FblhJPRcScvhQSE8P5y/b/T8J9
+ * BVuFIBoU8nrPY9ABz4JFklZ6SznxLbFBqtXoJTmzV6ixyjjH+AGEw6hCiA8Pqy2C
+ * NIzxr9DjCzN5tWruiHqO60O3Bve6cHipH0VyLAhrB85mflvOZSH4xGsJkwIDAQAB
+ * AoGARe2oaCo5lTDK+c4Zx3392hoqQ94r0DmWHPBvNmwAooYd+YxLPrLMe5sMjY4t
+ * dmohnLNevCK1Uzw5eIX6BNSo5CORBcIDRmiAgwiYiS3WOv2+qi9g5uIdMiDr+EED
+ * K8wZJjB5E2WyfxL507vtW4T5L36yfr8SkmqH3GvzpI2jCqECQQDsy0AmBzyfK0tG
+ * Nw1+iF9SReJWgb1f5iHvz+6Dt5ueVQngrl/5++Gp5bNoaQMkLEDsy0iHIj9j43ji
+ * 0DON05uDAkEA1GXgGn8MXXKyuzYuoyYXCBH7aF579d7KEGET/jjnXx9DHcfRJZBY
+ * B9ghMnnonSOGboF04Zsdd3xwYF/3OHYssQJAekd/SeQEzyE5TvoQ8t2Tc9X4yrlW
+ * xNX/gmp6/fPr3biGUEtb7qi+4NBodCt+XsingmB7hKUP3RJTk7T2WnAC5wJAMqHi
+ * jY5x3SkFkHl3Hq9q2CKpQxUbCd7FXqg1wum/xj5GmqfSpNjHE3+jUkwbdrJMTrWP
+ * rmRy3tQMWf0mixAo0QJBAN4IcZChanq8cZyNqqoNbxGm4hkxUmE0W4hxHmLC2CYZ
+ * V4JpNm8dpi4CiMWLasF6TYlVMgX+aPxYRUWc/qqf1/Q=
+ * -----END RSA PRIVATE KEY-----`,
+ *         projectName: "default",
+ *         tags: [{
+ *             key: "k1",
+ *             value: "v1",
+ *         }],
+ *     }));
+ * }
+ * const fooCertificates = volcengine.clb.CertificatesOutput({
+ *     ids: fooCertificate.map(__item => __item.id),
+ * });
+ * ```
+ */
 export function certificatesOutput(args?: CertificatesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<CertificatesResult> {
-    return pulumi.output(args).apply(a => certificates(a, opts))
+    return pulumi.output(args).apply((a: any) => certificates(a, opts))
 }
 
 /**

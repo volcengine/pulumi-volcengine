@@ -8,31 +8,30 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls
+namespace Volcengine.Pulumi.Volcengine.Tls
 {
     /// <summary>
     /// Provides a resource to manage tls host group
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Tls.HostGroup("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Tls.HostGroup("foo", new Volcengine.Tls.HostGroupArgs
-    ///         {
-    ///             AutoUpdate = false,
-    ///             HostGroupName = "tfgroup",
-    ///             HostGroupType = "Label",
-    ///             HostIdentifier = "tf-controller",
-    ///             ServiceLogging = false,
-    ///         });
-    ///     }
+    ///         AutoUpdate = false,
+    ///         HostGroupName = "tfgroup",
+    ///         HostGroupType = "Label",
+    ///         HostIdentifier = "tf-controller",
+    ///         ServiceLogging = false,
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -44,7 +43,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:tls/hostGroup:HostGroup")]
-    public partial class HostGroup : Pulumi.CustomResource
+    public partial class HostGroup : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The abnormal heartbeat status count of host.
@@ -187,7 +186,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         }
     }
 
-    public sealed class HostGroupArgs : Pulumi.ResourceArgs
+    public sealed class HostGroupArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether enable auto update.
@@ -252,9 +251,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public HostGroupArgs()
         {
         }
+        public static new HostGroupArgs Empty => new HostGroupArgs();
     }
 
-    public sealed class HostGroupState : Pulumi.ResourceArgs
+    public sealed class HostGroupState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The abnormal heartbeat status count of host.
@@ -361,5 +361,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public HostGroupState()
         {
         }
+        public static new HostGroupState Empty => new HostGroupState();
     }
 }

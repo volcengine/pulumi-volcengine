@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
+namespace Volcengine.Pulumi.Volcengine.Vke.Inputs
 {
 
-    public sealed class ClusterPodsConfigFlannelConfigGetArgs : Pulumi.ResourceArgs
+    public sealed class ClusterPodsConfigFlannelConfigGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The maximum number of single-node Pod instances for a Flannel container network, the value can be `16` or `32` or `64` or `128` or `256`.
@@ -34,5 +34,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
         public ClusterPodsConfigFlannelConfigGetArgs()
         {
         }
+        public static new ClusterPodsConfigFlannelConfigGetArgs Empty => new ClusterPodsConfigFlannelConfigGetArgs();
     }
 }

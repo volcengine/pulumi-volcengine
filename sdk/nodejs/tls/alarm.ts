@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -11,13 +12,10 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.tls.Alarm("foo", {
  *     alarmName: "test",
- *     //status = true
- *     //trigger_period = 1
- *     //alarm_period = 10
  *     alarmNotifyGroups: ["3019107f-28a2-4208-a2b6-c33fcb97ac3a"],
  *     alarmPeriodDetail: {
  *         email: 2,

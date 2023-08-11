@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,17 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultSecurityGroupRules = pulumi.output(volcengine.vpc.SecurityGroupRules({
+ * const default = volcengine.vpc.SecurityGroupRules({
  *     securityGroupId: "sg-13f2nau7x93wg3n6nu3z5sxib",
- * }));
+ * });
  * ```
  */
 export function securityGroupRules(args: SecurityGroupRulesArgs, opts?: pulumi.InvokeOptions): Promise<SecurityGroupRulesResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:vpc/securityGroupRules:SecurityGroupRules", {
         "cidrIp": args.cidrIp,
         "direction": args.direction,
@@ -98,9 +96,21 @@ export interface SecurityGroupRulesResult {
      */
     readonly sourceGroupId?: string;
 }
-
+/**
+ * Use this data source to query detailed information of security group rules
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.vpc.SecurityGroupRules({
+ *     securityGroupId: "sg-13f2nau7x93wg3n6nu3z5sxib",
+ * });
+ * ```
+ */
 export function securityGroupRulesOutput(args: SecurityGroupRulesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<SecurityGroupRulesResult> {
-    return pulumi.output(args).apply(a => securityGroupRules(a, opts))
+    return pulumi.output(args).apply((a: any) => securityGroupRules(a, opts))
 }
 
 /**

@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
+namespace Volcengine.Pulumi.Volcengine.Vke.Inputs
 {
 
-    public sealed class NodePoolNodeConfigSystemVolumeArgs : Pulumi.ResourceArgs
+    public sealed class NodePoolNodeConfigSystemVolumeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Size of SystemVolume, the value range in 20~2048.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
         public NodePoolNodeConfigSystemVolumeArgs()
         {
         }
+        public static new NodePoolNodeConfigSystemVolumeArgs Empty => new NodePoolNodeConfigSystemVolumeArgs();
     }
 }

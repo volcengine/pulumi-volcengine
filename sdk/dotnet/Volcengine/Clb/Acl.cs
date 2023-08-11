@@ -8,41 +8,40 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Clb
+namespace Volcengine.Pulumi.Volcengine.Clb
 {
     /// <summary>
     /// Provides a resource to manage acl
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Clb.Acl("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Clb.Acl("foo", new Volcengine.Clb.AclArgs
+    ///         AclEntries = new[]
     ///         {
-    ///             AclEntries = 
+    ///             new Volcengine.Clb.Inputs.AclAclEntryArgs
     ///             {
-    ///                 new Volcengine.Clb.Inputs.AclAclEntryArgs
-    ///                 {
-    ///                     Description = "e1",
-    ///                     Entry = "172.20.1.0/24",
-    ///                 },
-    ///                 new Volcengine.Clb.Inputs.AclAclEntryArgs
-    ///                 {
-    ///                     Description = "e3",
-    ///                     Entry = "172.20.3.0/24",
-    ///                 },
+    ///                 Description = "e1",
+    ///                 Entry = "172.20.1.0/24",
     ///             },
-    ///             AclName = "tf-test-2",
-    ///             ProjectName = "default",
-    ///         });
-    ///     }
+    ///             new Volcengine.Clb.Inputs.AclAclEntryArgs
+    ///             {
+    ///                 Description = "e3",
+    ///                 Entry = "172.20.3.0/24",
+    ///             },
+    ///         },
+    ///         AclName = "tf-test-2",
+    ///         ProjectName = "default",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -54,7 +53,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:clb/acl:Acl")]
-    public partial class Acl : Pulumi.CustomResource
+    public partial class Acl : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The acl entry set of the Acl.
@@ -131,7 +130,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
         }
     }
 
-    public sealed class AclArgs : Pulumi.ResourceArgs
+    public sealed class AclArgs : global::Pulumi.ResourceArgs
     {
         [Input("aclEntries")]
         private InputList<Inputs.AclAclEntryArgs>? _aclEntries;
@@ -166,9 +165,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
         public AclArgs()
         {
         }
+        public static new AclArgs Empty => new AclArgs();
     }
 
-    public sealed class AclState : Pulumi.ResourceArgs
+    public sealed class AclState : global::Pulumi.ResourceArgs
     {
         [Input("aclEntries")]
         private InputList<Inputs.AclAclEntryGetArgs>? _aclEntries;
@@ -209,5 +209,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
         public AclState()
         {
         }
+        public static new AclState Empty => new AclState();
     }
 }

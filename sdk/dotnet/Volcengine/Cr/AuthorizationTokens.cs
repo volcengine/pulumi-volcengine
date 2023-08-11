@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cr
+namespace Volcengine.Pulumi.Volcengine.Cr
 {
     public static class AuthorizationTokens
     {
@@ -19,26 +19,25 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Cr.AuthorizationTokens.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Cr.AuthorizationTokens.InvokeAsync(new Volcengine.Cr.AuthorizationTokensArgs
-        ///         {
-        ///             Registry = "tf-1",
-        ///         }));
-        ///     }
+        ///         Registry = "tf-1",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<AuthorizationTokensResult> InvokeAsync(AuthorizationTokensArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<AuthorizationTokensResult>("volcengine:cr/authorizationTokens:AuthorizationTokens", args ?? new AuthorizationTokensArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<AuthorizationTokensResult>("volcengine:cr/authorizationTokens:AuthorizationTokens", args ?? new AuthorizationTokensArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cr authorization tokens
@@ -47,30 +46,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Cr.AuthorizationTokens.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Cr.AuthorizationTokens.InvokeAsync(new Volcengine.Cr.AuthorizationTokensArgs
-        ///         {
-        ///             Registry = "tf-1",
-        ///         }));
-        ///     }
+        ///         Registry = "tf-1",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<AuthorizationTokensResult> Invoke(AuthorizationTokensInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<AuthorizationTokensResult>("volcengine:cr/authorizationTokens:AuthorizationTokens", args ?? new AuthorizationTokensInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<AuthorizationTokensResult>("volcengine:cr/authorizationTokens:AuthorizationTokens", args ?? new AuthorizationTokensInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class AuthorizationTokensArgs : Pulumi.InvokeArgs
+    public sealed class AuthorizationTokensArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// File name where to save data source results.
@@ -87,9 +85,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         public AuthorizationTokensArgs()
         {
         }
+        public static new AuthorizationTokensArgs Empty => new AuthorizationTokensArgs();
     }
 
-    public sealed class AuthorizationTokensInvokeArgs : Pulumi.InvokeArgs
+    public sealed class AuthorizationTokensInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// File name where to save data source results.
@@ -106,6 +105,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         public AuthorizationTokensInvokeArgs()
         {
         }
+        public static new AuthorizationTokensInvokeArgs Empty => new AuthorizationTokensInvokeArgs();
     }
 
 

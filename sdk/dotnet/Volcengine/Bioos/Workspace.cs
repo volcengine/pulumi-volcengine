@@ -8,29 +8,28 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Bioos
+namespace Volcengine.Pulumi.Volcengine.Bioos
 {
     /// <summary>
     /// Provides a resource to manage bioos workspace
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Bioos.Workspace("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Bioos.Workspace("foo", new Volcengine.Bioos.WorkspaceArgs
-    ///         {
-    ///             CoverPath = "template-cover/pic5.png",
-    ///             Description = "test-description23",
-    ///         });
-    ///         //必填
-    ///     }
+    ///         CoverPath = "template-cover/pic5.png",
+    ///         Description = "test-description23",
+    ///     });
     /// 
-    /// }
+    ///     //必填
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -42,7 +41,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Bioos
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:bioos/workspace:Workspace")]
-    public partial class Workspace : Pulumi.CustomResource
+    public partial class Workspace : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Cover path (relative path in tos bucket).
@@ -119,7 +118,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Bioos
         }
     }
 
-    public sealed class WorkspaceArgs : Pulumi.ResourceArgs
+    public sealed class WorkspaceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Cover path (relative path in tos bucket).
@@ -142,9 +141,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Bioos
         public WorkspaceArgs()
         {
         }
+        public static new WorkspaceArgs Empty => new WorkspaceArgs();
     }
 
-    public sealed class WorkspaceState : Pulumi.ResourceArgs
+    public sealed class WorkspaceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Cover path (relative path in tos bucket).
@@ -179,5 +179,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Bioos
         public WorkspaceState()
         {
         }
+        public static new WorkspaceState Empty => new WorkspaceState();
     }
 }

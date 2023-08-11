@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultZones = pulumi.output(volcengine.ecs.Zones({
+ * const default = volcengine.ecs.Zones({
  *     ids: ["cn-beijing-a"],
- * }));
+ * });
  * ```
  */
 export function zones(args?: ZonesArgs, opts?: pulumi.InvokeOptions): Promise<ZonesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:ecs/zones:Zones", {
         "ids": args.ids,
         "outputFile": args.outputFile,
@@ -64,9 +62,21 @@ export interface ZonesResult {
      */
     readonly zones: outputs.ecs.ZonesZone[];
 }
-
+/**
+ * Use this data source to query detailed information of zones
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.ecs.Zones({
+ *     ids: ["cn-beijing-a"],
+ * });
+ * ```
+ */
 export function zonesOutput(args?: ZonesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ZonesResult> {
-    return pulumi.output(args).apply(a => zones(a, opts))
+    return pulumi.output(args).apply((a: any) => zones(a, opts))
 }
 
 /**

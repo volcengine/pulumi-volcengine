@@ -5,13 +5,21 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./address";
-export * from "./addresses";
-export * from "./associate";
+export { AddressArgs, AddressState } from "./address";
+export type Address = import("./address").Address;
+export const Address: typeof import("./address").Address = null as any;
+utilities.lazyLoad(exports, ["Address"], () => require("./address"));
 
-// Import resources to register:
-import { Address } from "./address";
-import { Associate } from "./associate";
+export { AddressesArgs, AddressesResult, AddressesOutputArgs } from "./addresses";
+export const addresses: typeof import("./addresses").addresses = null as any;
+export const addressesOutput: typeof import("./addresses").addressesOutput = null as any;
+utilities.lazyLoad(exports, ["addresses","addressesOutput"], () => require("./addresses"));
+
+export { AssociateArgs, AssociateState } from "./associate";
+export type Associate = import("./associate").Associate;
+export const Associate: typeof import("./associate").Associate = null as any;
+utilities.lazyLoad(exports, ["Associate"], () => require("./associate"));
+
 
 const _module = {
     version: utilities.getVersion(),

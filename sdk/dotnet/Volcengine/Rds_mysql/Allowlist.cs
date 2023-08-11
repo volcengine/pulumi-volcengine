@@ -8,32 +8,31 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
+namespace Volcengine.Pulumi.Volcengine.Rds_mysql
 {
     /// <summary>
     /// Provides a resource to manage rds mysql allowlist
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Rds_mysql.Allowlist("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Rds_mysql.Allowlist("foo", new Volcengine.Rds_mysql.AllowlistArgs
+    ///         AllowLists = new[]
     ///         {
-    ///             AllowLists = 
-    ///             {
-    ///                 "127.0.0.1",
-    ///             },
-    ///             AllowListDesc = "terraform test zzm",
-    ///             AllowListName = "tf-test-opt",
-    ///         });
-    ///     }
+    ///             "127.0.0.1",
+    ///         },
+    ///         AllowListDesc = "terraform test zzm",
+    ///         AllowListName = "tf-test-opt",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -45,7 +44,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:rds_mysql/allowlist:Allowlist")]
-    public partial class Allowlist : Pulumi.CustomResource
+    public partial class Allowlist : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The description of the allow list.
@@ -122,7 +121,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         }
     }
 
-    public sealed class AllowlistArgs : Pulumi.ResourceArgs
+    public sealed class AllowlistArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The description of the allow list.
@@ -157,9 +156,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         public AllowlistArgs()
         {
         }
+        public static new AllowlistArgs Empty => new AllowlistArgs();
     }
 
-    public sealed class AllowlistState : Pulumi.ResourceArgs
+    public sealed class AllowlistState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The description of the allow list.
@@ -200,5 +200,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         public AllowlistState()
         {
         }
+        public static new AllowlistState Empty => new AllowlistState();
     }
 }

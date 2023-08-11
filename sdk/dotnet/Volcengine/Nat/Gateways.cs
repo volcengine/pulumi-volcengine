@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Nat
+namespace Volcengine.Pulumi.Volcengine.Nat
 {
     public static class Gateways
     {
@@ -19,30 +19,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Nat
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Nat.Gateways.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Nat.Gateways.InvokeAsync(new Volcengine.Nat.GatewaysArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "ngw-2743w1f6iqby87fap8tvm9kop",
-        ///                 "ngw-274gwbqe340zk7fap8spkzo7x",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "ngw-2743w1f6iqby87fap8tvm9kop",
+        ///             "ngw-274gwbqe340zk7fap8spkzo7x",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GatewaysResult> InvokeAsync(GatewaysArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GatewaysResult>("volcengine:nat/gateways:Gateways", args ?? new GatewaysArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GatewaysResult>("volcengine:nat/gateways:Gateways", args ?? new GatewaysArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of nat gateways
@@ -51,34 +50,33 @@ namespace Volcengine.PulumiPackage.Volcengine.Nat
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Nat.Gateways.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Nat.Gateways.InvokeAsync(new Volcengine.Nat.GatewaysArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "ngw-2743w1f6iqby87fap8tvm9kop",
-        ///                 "ngw-274gwbqe340zk7fap8spkzo7x",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "ngw-2743w1f6iqby87fap8tvm9kop",
+        ///             "ngw-274gwbqe340zk7fap8spkzo7x",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GatewaysResult> Invoke(GatewaysInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GatewaysResult>("volcengine:nat/gateways:Gateways", args ?? new GatewaysInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GatewaysResult>("volcengine:nat/gateways:Gateways", args ?? new GatewaysInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GatewaysArgs : Pulumi.InvokeArgs
+    public sealed class GatewaysArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The description of the NatGateway.
@@ -149,9 +147,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Nat
         public GatewaysArgs()
         {
         }
+        public static new GatewaysArgs Empty => new GatewaysArgs();
     }
 
-    public sealed class GatewaysInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GatewaysInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The description of the NatGateway.
@@ -222,6 +221,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Nat
         public GatewaysInvokeArgs()
         {
         }
+        public static new GatewaysInvokeArgs Empty => new GatewaysInvokeArgs();
     }
 
 

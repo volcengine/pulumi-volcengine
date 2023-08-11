@@ -8,32 +8,31 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpn
+namespace Volcengine.Pulumi.Volcengine.Vpn
 {
     /// <summary>
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Vpn.Gateway("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Vpn.Gateway("foo", new Volcengine.Vpn.GatewayArgs
-    ///         {
-    ///             Bandwidth = 20,
-    ///             Description = "tf-test",
-    ///             Period = 2,
-    ///             ProjectName = "default",
-    ///             SubnetId = "subnet-12bh8g2d7fshs17q7y2nx82uk",
-    ///             VpcId = "vpc-12b31m7z2kc8w17q7y2fih9ts",
-    ///             VpnGatewayName = "tf-test",
-    ///         });
-    ///     }
+    ///         Bandwidth = 20,
+    ///         Description = "tf-test",
+    ///         Period = 2,
+    ///         ProjectName = "default",
+    ///         SubnetId = "subnet-12bh8g2d7fshs17q7y2nx82uk",
+    ///         VpcId = "vpc-12b31m7z2kc8w17q7y2fih9ts",
+    ///         VpnGatewayName = "tf-test",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -45,7 +44,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpn
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vpn/gateway:Gateway")]
-    public partial class Gateway : Pulumi.CustomResource
+    public partial class Gateway : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The account ID of the VPN gateway.
@@ -226,7 +225,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpn
         }
     }
 
-    public sealed class GatewayArgs : Pulumi.ResourceArgs
+    public sealed class GatewayArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The bandwidth of the VPN gateway. Unit: Mbps. Values: 5, 10, 20, 50, 100, 200, 500.
@@ -293,9 +292,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpn
         public GatewayArgs()
         {
         }
+        public static new GatewayArgs Empty => new GatewayArgs();
     }
 
-    public sealed class GatewayState : Pulumi.ResourceArgs
+    public sealed class GatewayState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The account ID of the VPN gateway.
@@ -440,5 +440,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpn
         public GatewayState()
         {
         }
+        public static new GatewayState Empty => new GatewayState();
     }
 }

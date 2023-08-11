@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine
+namespace Volcengine.Pulumi.Volcengine
 {
     /// <summary>
     /// The provider type for the volcengine package. By default, resources use package-wide configuration
@@ -17,7 +17,7 @@ namespace Volcengine.PulumiPackage.Volcengine
     /// [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
     /// </summary>
     [VolcengineResourceType("pulumi:providers:volcengine")]
-    public partial class Provider : Pulumi.ProviderResource
+    public partial class Provider : global::Pulumi.ProviderResource
     {
         /// <summary>
         /// The Access Key for Volcengine Provider
@@ -94,7 +94,7 @@ namespace Volcengine.PulumiPackage.Volcengine
         }
     }
 
-    public sealed class ProviderArgs : Pulumi.ResourceArgs
+    public sealed class ProviderArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Access Key for Volcengine Provider
@@ -157,5 +157,6 @@ namespace Volcengine.PulumiPackage.Volcengine
             Region = Utilities.GetEnv("VOLCENGINE_REGION");
             SecretKey = Utilities.GetEnv("VOLCENGINE_SECRET_KEY");
         }
+        public static new ProviderArgs Empty => new ProviderArgs();
     }
 }

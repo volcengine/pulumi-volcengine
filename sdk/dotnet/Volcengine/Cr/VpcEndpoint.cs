@@ -8,40 +8,39 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cr
+namespace Volcengine.Pulumi.Volcengine.Cr
 {
     /// <summary>
     /// Provides a resource to manage cr vpc endpoint
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Cr.VpcEndpoint("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Cr.VpcEndpoint("foo", new Volcengine.Cr.VpcEndpointArgs
+    ///         Registry = "enterprise-1",
+    ///         Vpcs = new[]
     ///         {
-    ///             Registry = "enterprise-1",
-    ///             Vpcs = 
+    ///             new Volcengine.Cr.Inputs.VpcEndpointVpcArgs
     ///             {
-    ///                 new Volcengine.Cr.Inputs.VpcEndpointVpcArgs
-    ///                 {
-    ///                     AccountId = 0,
-    ///                     VpcId = "vpc-3resbfzl3xgjk5zsk2iuq3vhk",
-    ///                 },
-    ///                 new Volcengine.Cr.Inputs.VpcEndpointVpcArgs
-    ///                 {
-    ///                     SubnetId = "subnet-2d62do4697i8058ozfdszxl30",
-    ///                     VpcId = "vpc-3red9li8dd8g05zsk2iadytvy",
-    ///                 },
+    ///                 AccountId = 0,
+    ///                 VpcId = "vpc-3resbfzl3xgjk5zsk2iuq3vhk",
     ///             },
-    ///         });
-    ///     }
+    ///             new Volcengine.Cr.Inputs.VpcEndpointVpcArgs
+    ///             {
+    ///                 SubnetId = "subnet-2d62do4697i8058ozfdszxl30",
+    ///                 VpcId = "vpc-3red9li8dd8g05zsk2iadytvy",
+    ///             },
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -53,7 +52,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:cr/vpcEndpoint:VpcEndpoint")]
-    public partial class VpcEndpoint : Pulumi.CustomResource
+    public partial class VpcEndpoint : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The Cr Registry name.
@@ -112,7 +111,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         }
     }
 
-    public sealed class VpcEndpointArgs : Pulumi.ResourceArgs
+    public sealed class VpcEndpointArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Cr Registry name.
@@ -135,9 +134,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         public VpcEndpointArgs()
         {
         }
+        public static new VpcEndpointArgs Empty => new VpcEndpointArgs();
     }
 
-    public sealed class VpcEndpointState : Pulumi.ResourceArgs
+    public sealed class VpcEndpointState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Cr Registry name.
@@ -160,5 +160,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         public VpcEndpointState()
         {
         }
+        public static new VpcEndpointState Empty => new VpcEndpointState();
     }
 }

@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpc.Inputs
+namespace Volcengine.Pulumi.Volcengine.Vpc.Inputs
 {
 
-    public sealed class VpcAssociateCenArgs : Pulumi.ResourceArgs
+    public sealed class VpcAssociateCenArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of CEN.
@@ -34,5 +34,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc.Inputs
         public VpcAssociateCenArgs()
         {
         }
+        public static new VpcAssociateCenArgs Empty => new VpcAssociateCenArgs();
     }
 }

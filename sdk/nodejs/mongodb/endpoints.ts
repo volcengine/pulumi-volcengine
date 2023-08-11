@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = pulumi.output(volcengine.mongodb.Endpoints({
+ * const foo = volcengine.mongodb.Endpoints({
  *     instanceId: "mongo-shard-xxx",
- * }));
+ * });
  * ```
  */
 export function endpoints(args?: EndpointsArgs, opts?: pulumi.InvokeOptions): Promise<EndpointsResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:mongodb/endpoints:Endpoints", {
         "instanceId": args.instanceId,
         "outputFile": args.outputFile,
@@ -64,9 +62,21 @@ export interface EndpointsResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of mongodb endpoints
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const foo = volcengine.mongodb.Endpoints({
+ *     instanceId: "mongo-shard-xxx",
+ * });
+ * ```
+ */
 export function endpointsOutput(args?: EndpointsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<EndpointsResult> {
-    return pulumi.output(args).apply(a => endpoints(a, opts))
+    return pulumi.output(args).apply((a: any) => endpoints(a, opts))
 }
 
 /**

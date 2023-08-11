@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpn
+namespace Volcengine.Pulumi.Volcengine.Vpn
 {
     public static class GatewayRoutes
     {
@@ -19,29 +19,28 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpn
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vpn.GatewayRoutes.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vpn.GatewayRoutes.InvokeAsync(new Volcengine.Vpn.GatewayRoutesArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "vgr-2byssu52dktts2dx0ee90r5hp]",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "vgr-2byssu52dktts2dx0ee90r5hp]",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GatewayRoutesResult> InvokeAsync(GatewayRoutesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GatewayRoutesResult>("volcengine:vpn/gatewayRoutes:GatewayRoutes", args ?? new GatewayRoutesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GatewayRoutesResult>("volcengine:vpn/gatewayRoutes:GatewayRoutes", args ?? new GatewayRoutesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of vpn gateway routes
@@ -50,33 +49,32 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpn
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vpn.GatewayRoutes.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vpn.GatewayRoutes.InvokeAsync(new Volcengine.Vpn.GatewayRoutesArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "vgr-2byssu52dktts2dx0ee90r5hp]",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "vgr-2byssu52dktts2dx0ee90r5hp]",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GatewayRoutesResult> Invoke(GatewayRoutesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GatewayRoutesResult>("volcengine:vpn/gatewayRoutes:GatewayRoutes", args ?? new GatewayRoutesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GatewayRoutesResult>("volcengine:vpn/gatewayRoutes:GatewayRoutes", args ?? new GatewayRoutesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GatewayRoutesArgs : Pulumi.InvokeArgs
+    public sealed class GatewayRoutesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// A destination cidr block.
@@ -117,9 +115,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpn
         public GatewayRoutesArgs()
         {
         }
+        public static new GatewayRoutesArgs Empty => new GatewayRoutesArgs();
     }
 
-    public sealed class GatewayRoutesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GatewayRoutesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// A destination cidr block.
@@ -160,6 +159,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpn
         public GatewayRoutesInvokeArgs()
         {
         }
+        public static new GatewayRoutesInvokeArgs Empty => new GatewayRoutesInvokeArgs();
     }
 
 

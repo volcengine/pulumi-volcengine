@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,19 +14,16 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const foo = pulumi.output(volcengine.mongodb.InstanceParameterLogs({
- *     endTime: "2023-11-14 18:15Z", // 必填
- *     instanceId: "mongo-replica-f16e9298b121", // 必填
- *     startTime: "2022-11-14 00:00Z", // 必填
- * }));
+ * const foo = volcengine.mongodb.InstanceParameterLogs({
+ *     endTime: "2023-11-14 18:15Z",
+ *     instanceId: "mongo-replica-f16e9298b121",
+ *     startTime: "2022-11-14 00:00Z",
+ * });
  * ```
  */
 export function instanceParameterLogs(args: InstanceParameterLogsArgs, opts?: pulumi.InvokeOptions): Promise<InstanceParameterLogsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:mongodb/instanceParameterLogs:InstanceParameterLogs", {
         "endTime": args.endTime,
         "instanceId": args.instanceId,
@@ -77,9 +75,23 @@ export interface InstanceParameterLogsResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of mongodb instance parameter logs
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const foo = volcengine.mongodb.InstanceParameterLogs({
+ *     endTime: "2023-11-14 18:15Z",
+ *     instanceId: "mongo-replica-f16e9298b121",
+ *     startTime: "2022-11-14 00:00Z",
+ * });
+ * ```
+ */
 export function instanceParameterLogsOutput(args: InstanceParameterLogsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<InstanceParameterLogsResult> {
-    return pulumi.output(args).apply(a => instanceParameterLogs(a, opts))
+    return pulumi.output(args).apply((a: any) => instanceParameterLogs(a, opts))
 }
 
 /**

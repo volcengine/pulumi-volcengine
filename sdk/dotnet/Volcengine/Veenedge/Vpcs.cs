@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Veenedge
+namespace Volcengine.Pulumi.Volcengine.Veenedge
 {
     public static class Vpcs
     {
@@ -19,23 +19,22 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var foo = Output.Create(Volcengine.Veenedge.Vpcs.InvokeAsync());
-        ///     }
+        ///     var foo = Volcengine.Veenedge.Vpcs.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<VpcsResult> InvokeAsync(VpcsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<VpcsResult>("volcengine:veenedge/vpcs:Vpcs", args ?? new VpcsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<VpcsResult>("volcengine:veenedge/vpcs:Vpcs", args ?? new VpcsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of veenedge vpcs
@@ -44,27 +43,26 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var foo = Output.Create(Volcengine.Veenedge.Vpcs.InvokeAsync());
-        ///     }
+        ///     var foo = Volcengine.Veenedge.Vpcs.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<VpcsResult> Invoke(VpcsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<VpcsResult>("volcengine:veenedge/vpcs:Vpcs", args ?? new VpcsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<VpcsResult>("volcengine:veenedge/vpcs:Vpcs", args ?? new VpcsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class VpcsArgs : Pulumi.InvokeArgs
+    public sealed class VpcsArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private List<string>? _ids;
@@ -93,9 +91,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge
         public VpcsArgs()
         {
         }
+        public static new VpcsArgs Empty => new VpcsArgs();
     }
 
-    public sealed class VpcsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class VpcsInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private InputList<string>? _ids;
@@ -124,6 +123,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge
         public VpcsInvokeArgs()
         {
         }
+        public static new VpcsInvokeArgs Empty => new VpcsInvokeArgs();
     }
 
 

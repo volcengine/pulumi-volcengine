@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
+namespace Volcengine.Pulumi.Volcengine.Vke.Inputs
 {
 
-    public sealed class DefaultNodePoolBatchAttachKubernetesConfigTaintArgs : Pulumi.ResourceArgs
+    public sealed class DefaultNodePoolBatchAttachKubernetesConfigTaintArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Effect of Taints. The value can be one of the following: `NoSchedule`, `NoExecute`, `PreferNoSchedule`, default value is `NoSchedule`.
@@ -34,5 +34,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
         public DefaultNodePoolBatchAttachKubernetesConfigTaintArgs()
         {
         }
+        public static new DefaultNodePoolBatchAttachKubernetesConfigTaintArgs Empty => new DefaultNodePoolBatchAttachKubernetesConfigTaintArgs();
     }
 }

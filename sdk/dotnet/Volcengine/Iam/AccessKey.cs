@@ -8,29 +8,28 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Iam
+namespace Volcengine.Pulumi.Volcengine.Iam
 {
     /// <summary>
     /// Provides a resource to manage iam access key
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Iam.AccessKey("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Iam.AccessKey("foo", new Volcengine.Iam.AccessKeyArgs
-    ///         {
-    ///             SecretFile = "./sk",
-    ///             Status = "active",
-    ///             UserName = "",
-    ///         });
-    ///     }
+    ///         SecretFile = "./sk",
+    ///         Status = "active",
+    ///         UserName = "",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -38,7 +37,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
     /// Iam access key don't support import
     /// </summary>
     [VolcengineResourceType("volcengine:iam/accessKey:AccessKey")]
-    public partial class AccessKey : Pulumi.CustomResource
+    public partial class AccessKey : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The create date of the access key.
@@ -112,6 +111,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/volcengine",
+                AdditionalSecretOutputs =
+                {
+                    "secret",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -133,7 +136,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         }
     }
 
-    public sealed class AccessKeyArgs : Pulumi.ResourceArgs
+    public sealed class AccessKeyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Either a base-64 encoded PGP public key, or a keybase username in the form `keybase:some_person_that_exists`.
@@ -162,9 +165,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         public AccessKeyArgs()
         {
         }
+        public static new AccessKeyArgs Empty => new AccessKeyArgs();
     }
 
-    public sealed class AccessKeyState : Pulumi.ResourceArgs
+    public sealed class AccessKeyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The create date of the access key.
@@ -190,11 +194,21 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         [Input("pgpKey")]
         public Input<string>? PgpKey { get; set; }
 
+        [Input("secret")]
+        private Input<string>? _secret;
+
         /// <summary>
         /// The secret of the access key.
         /// </summary>
-        [Input("secret")]
-        public Input<string>? Secret { get; set; }
+        public Input<string>? Secret
+        {
+            get => _secret;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The file to save the access id and secret. Strongly suggest you to specified it when you creating access key, otherwise, you wouldn't get its secret ever.
@@ -217,5 +231,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Iam
         public AccessKeyState()
         {
         }
+        public static new AccessKeyState Empty => new AccessKeyState();
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Mongodb
+namespace Volcengine.Pulumi.Volcengine.Mongodb
 {
     public static class Instances
     {
@@ -19,26 +19,25 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Mongodb.Instances.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Mongodb.Instances.InvokeAsync(new Volcengine.Mongodb.InstancesArgs
-        ///         {
-        ///             InstanceId = "mongo-replica-xxx",
-        ///         }));
-        ///     }
+        ///         InstanceId = "mongo-replica-xxx",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<InstancesResult> InvokeAsync(InstancesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<InstancesResult>("volcengine:mongodb/instances:Instances", args ?? new InstancesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<InstancesResult>("volcengine:mongodb/instances:Instances", args ?? new InstancesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of mongodb instances
@@ -47,30 +46,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Mongodb.Instances.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Mongodb.Instances.InvokeAsync(new Volcengine.Mongodb.InstancesArgs
-        ///         {
-        ///             InstanceId = "mongo-replica-xxx",
-        ///         }));
-        ///     }
+        ///         InstanceId = "mongo-replica-xxx",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<InstancesResult> Invoke(InstancesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<InstancesResult>("volcengine:mongodb/instances:Instances", args ?? new InstancesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<InstancesResult>("volcengine:mongodb/instances:Instances", args ?? new InstancesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class InstancesArgs : Pulumi.InvokeArgs
+    public sealed class InstancesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The end time of creation to query.
@@ -171,9 +169,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         public InstancesArgs()
         {
         }
+        public static new InstancesArgs Empty => new InstancesArgs();
     }
 
-    public sealed class InstancesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class InstancesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The end time of creation to query.
@@ -274,6 +273,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         public InstancesInvokeArgs()
         {
         }
+        public static new InstancesInvokeArgs Empty => new InstancesInvokeArgs();
     }
 
 

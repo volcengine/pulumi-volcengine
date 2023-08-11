@@ -8,36 +8,35 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Privatelink
+namespace Volcengine.Pulumi.Volcengine.Privatelink
 {
     /// <summary>
     /// Provides a resource to manage privatelink vpc endpoint service
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Privatelink.VpcEndpointService("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Privatelink.VpcEndpointService("foo", new Volcengine.Privatelink.VpcEndpointServiceArgs
+    ///         AutoAcceptEnabled = true,
+    ///         Description = "tftest",
+    ///         Resources = new[]
     ///         {
-    ///             AutoAcceptEnabled = true,
-    ///             Description = "tftest",
-    ///             Resources = 
+    ///             new Volcengine.Privatelink.Inputs.VpcEndpointServiceResourceArgs
     ///             {
-    ///                 new Volcengine.Privatelink.Inputs.VpcEndpointServiceResourceArgs
-    ///                 {
-    ///                     ResourceId = "clb-2bzxccdjo9uyo2dx0eg0orzla",
-    ///                     ResourceType = "CLB",
-    ///                 },
+    ///                 ResourceId = "clb-2bzxccdjo9uyo2dx0eg0orzla",
+    ///                 ResourceType = "CLB",
     ///             },
-    ///         });
-    ///     }
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -49,7 +48,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:privatelink/vpcEndpointService:VpcEndpointService")]
-    public partial class VpcEndpointService : Pulumi.CustomResource
+    public partial class VpcEndpointService : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Whether auto accept node connect.
@@ -168,7 +167,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         }
     }
 
-    public sealed class VpcEndpointServiceArgs : Pulumi.ResourceArgs
+    public sealed class VpcEndpointServiceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether auto accept node connect.
@@ -197,9 +196,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         public VpcEndpointServiceArgs()
         {
         }
+        public static new VpcEndpointServiceArgs Empty => new VpcEndpointServiceArgs();
     }
 
-    public sealed class VpcEndpointServiceState : Pulumi.ResourceArgs
+    public sealed class VpcEndpointServiceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether auto accept node connect.
@@ -288,5 +288,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         public VpcEndpointServiceState()
         {
         }
+        public static new VpcEndpointServiceState Empty => new VpcEndpointServiceState();
     }
 }

@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
+namespace Volcengine.Pulumi.Volcengine.Vke.Inputs
 {
 
-    public sealed class NodePoolNodeConfigEcsTagGetArgs : Pulumi.ResourceArgs
+    public sealed class NodePoolNodeConfigEcsTagGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Key of Tags.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
         public NodePoolNodeConfigEcsTagGetArgs()
         {
         }
+        public static new NodePoolNodeConfigEcsTagGetArgs Empty => new NodePoolNodeConfigEcsTagGetArgs();
     }
 }

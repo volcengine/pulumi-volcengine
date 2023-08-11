@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Clb
+namespace Volcengine.Pulumi.Volcengine.Clb
 {
     public static class Zones
     {
@@ -19,23 +19,22 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var @default = Output.Create(Volcengine.Clb.Zones.InvokeAsync());
-        ///     }
+        ///     var @default = Volcengine.Clb.Zones.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<ZonesResult> InvokeAsync(ZonesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<ZonesResult>("volcengine:clb/zones:Zones", args ?? new ZonesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<ZonesResult>("volcengine:clb/zones:Zones", args ?? new ZonesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of clb zones
@@ -44,27 +43,26 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var @default = Output.Create(Volcengine.Clb.Zones.InvokeAsync());
-        ///     }
+        ///     var @default = Volcengine.Clb.Zones.Invoke();
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<ZonesResult> Invoke(ZonesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<ZonesResult>("volcengine:clb/zones:Zones", args ?? new ZonesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<ZonesResult>("volcengine:clb/zones:Zones", args ?? new ZonesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class ZonesArgs : Pulumi.InvokeArgs
+    public sealed class ZonesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// File name where to save data source results.
@@ -75,9 +73,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
         public ZonesArgs()
         {
         }
+        public static new ZonesArgs Empty => new ZonesArgs();
     }
 
-    public sealed class ZonesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class ZonesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// File name where to save data source results.
@@ -88,6 +87,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
         public ZonesInvokeArgs()
         {
         }
+        public static new ZonesInvokeArgs Empty => new ZonesInvokeArgs();
     }
 
 

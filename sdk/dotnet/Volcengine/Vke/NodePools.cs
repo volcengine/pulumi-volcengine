@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke
+namespace Volcengine.Pulumi.Volcengine.Vke
 {
     public static class NodePools
     {
@@ -19,30 +19,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var vkeTest = Volcengine.Vke.NodePools.Invoke(new()
         ///     {
-        ///         var vkeTest = Output.Create(Volcengine.Vke.NodePools.InvokeAsync(new Volcengine.Vke.NodePoolsArgs
+        ///         ClusterIds = new[]
         ///         {
-        ///             ClusterIds = 
-        ///             {
-        ///                 "ccabe57fqtofgrbln3dog",
-        ///             },
-        ///             Name = "demo",
-        ///         }));
-        ///     }
+        ///             "ccabe57fqtofgrbln3dog",
+        ///         },
+        ///         Name = "demo",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<NodePoolsResult> InvokeAsync(NodePoolsArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<NodePoolsResult>("volcengine:vke/nodePools:NodePools", args ?? new NodePoolsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<NodePoolsResult>("volcengine:vke/nodePools:NodePools", args ?? new NodePoolsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of vke node pools
@@ -51,34 +50,33 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var vkeTest = Volcengine.Vke.NodePools.Invoke(new()
         ///     {
-        ///         var vkeTest = Output.Create(Volcengine.Vke.NodePools.InvokeAsync(new Volcengine.Vke.NodePoolsArgs
+        ///         ClusterIds = new[]
         ///         {
-        ///             ClusterIds = 
-        ///             {
-        ///                 "ccabe57fqtofgrbln3dog",
-        ///             },
-        ///             Name = "demo",
-        ///         }));
-        ///     }
+        ///             "ccabe57fqtofgrbln3dog",
+        ///         },
+        ///         Name = "demo",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<NodePoolsResult> Invoke(NodePoolsInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<NodePoolsResult>("volcengine:vke/nodePools:NodePools", args ?? new NodePoolsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<NodePoolsResult>("volcengine:vke/nodePools:NodePools", args ?? new NodePoolsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class NodePoolsArgs : Pulumi.InvokeArgs
+    public sealed class NodePoolsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Is enabled of AutoScaling.
@@ -173,9 +171,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         public NodePoolsArgs()
         {
         }
+        public static new NodePoolsArgs Empty => new NodePoolsArgs();
     }
 
-    public sealed class NodePoolsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class NodePoolsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Is enabled of AutoScaling.
@@ -270,6 +269,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         public NodePoolsInvokeArgs()
         {
         }
+        public static new NodePoolsInvokeArgs Empty => new NodePoolsInvokeArgs();
     }
 
 

@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -10,7 +11,7 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.eip.Address("foo", {
  *     bandwidth: 1,
@@ -58,7 +59,7 @@ export class Address extends pulumi.CustomResource {
     }
 
     /**
-     * The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
+     * The peek bandwidth of the EIP.
      */
     public readonly bandwidth!: pulumi.Output<number>;
     /**
@@ -165,7 +166,7 @@ export class Address extends pulumi.CustomResource {
  */
 export interface AddressState {
     /**
-     * The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
+     * The peek bandwidth of the EIP.
      */
     bandwidth?: pulumi.Input<number>;
     /**
@@ -223,7 +224,7 @@ export interface AddressState {
  */
 export interface AddressArgs {
     /**
-     * The peek bandwidth of the EIP, the value range in 1~500 for PostPaidByBandwidth, and 1~200 for PostPaidByTraffic.
+     * The peek bandwidth of the EIP.
      */
     bandwidth?: pulumi.Input<number>;
     /**

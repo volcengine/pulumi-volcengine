@@ -8,48 +8,47 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds
+namespace Volcengine.Pulumi.Volcengine.Rds
 {
     /// <summary>
     /// (Deprecated! Recommend use volcengine_rds_mysql_*** replace) Provides a resource to manage rds parameter template
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Rds.ParameterTemplate("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Rds.ParameterTemplate("foo", new Volcengine.Rds.ParameterTemplateArgs
+    ///         TemplateDesc = "created by terraform",
+    ///         TemplateName = "tf-template",
+    ///         TemplateParams = new[]
     ///         {
-    ///             TemplateDesc = "created by terraform",
-    ///             TemplateName = "tf-template",
-    ///             TemplateParams = 
+    ///             new Volcengine.Rds.Inputs.ParameterTemplateTemplateParamArgs
     ///             {
-    ///                 new Volcengine.Rds.Inputs.ParameterTemplateTemplateParamArgs
-    ///                 {
-    ///                     Name = "auto_increment_increment",
-    ///                     RunningValue = "2",
-    ///                 },
-    ///                 new Volcengine.Rds.Inputs.ParameterTemplateTemplateParamArgs
-    ///                 {
-    ///                     Name = "slow_query_log",
-    ///                     RunningValue = "ON",
-    ///                 },
-    ///                 new Volcengine.Rds.Inputs.ParameterTemplateTemplateParamArgs
-    ///                 {
-    ///                     Name = "net_retry_count",
-    ///                     RunningValue = "33",
-    ///                 },
+    ///                 Name = "auto_increment_increment",
+    ///                 RunningValue = "2",
     ///             },
-    ///             TemplateType = "MySQL",
-    ///             TemplateTypeVersion = "MySQL_Community_5_7",
-    ///         });
-    ///     }
+    ///             new Volcengine.Rds.Inputs.ParameterTemplateTemplateParamArgs
+    ///             {
+    ///                 Name = "slow_query_log",
+    ///                 RunningValue = "ON",
+    ///             },
+    ///             new Volcengine.Rds.Inputs.ParameterTemplateTemplateParamArgs
+    ///             {
+    ///                 Name = "net_retry_count",
+    ///                 RunningValue = "33",
+    ///             },
+    ///         },
+    ///         TemplateType = "MySQL",
+    ///         TemplateTypeVersion = "MySQL_Community_5_7",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -61,7 +60,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:rds/parameterTemplate:ParameterTemplate")]
-    public partial class ParameterTemplate : Pulumi.CustomResource
+    public partial class ParameterTemplate : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Parameter template description.
@@ -141,7 +140,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds
         }
     }
 
-    public sealed class ParameterTemplateArgs : Pulumi.ResourceArgs
+    public sealed class ParameterTemplateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Parameter template description.
@@ -185,9 +184,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds
         public ParameterTemplateArgs()
         {
         }
+        public static new ParameterTemplateArgs Empty => new ParameterTemplateArgs();
     }
 
-    public sealed class ParameterTemplateState : Pulumi.ResourceArgs
+    public sealed class ParameterTemplateState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Parameter template description.
@@ -231,5 +231,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds
         public ParameterTemplateState()
         {
         }
+        public static new ParameterTemplateState Empty => new ParameterTemplateState();
     }
 }

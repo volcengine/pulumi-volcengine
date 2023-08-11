@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
+namespace Volcengine.Pulumi.Volcengine.Tls.Inputs
 {
 
-    public sealed class IndexKeyValueJsonKeyGetArgs : Pulumi.ResourceArgs
+    public sealed class IndexKeyValueJsonKeyGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The key of the subfield key value index.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
         public IndexKeyValueJsonKeyGetArgs()
         {
         }
+        public static new IndexKeyValueJsonKeyGetArgs Empty => new IndexKeyValueJsonKeyGetArgs();
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Redis
+namespace Volcengine.Pulumi.Volcengine.Redis
 {
     public static class Accounts
     {
@@ -19,26 +19,25 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Redis.Accounts.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Redis.Accounts.InvokeAsync(new Volcengine.Redis.AccountsArgs
-        ///         {
-        ///             InstanceId = "redis-cn0398aizj8cwmopx",
-        ///         }));
-        ///     }
+        ///         InstanceId = "redis-cn0398aizj8cwmopx",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<AccountsResult> InvokeAsync(AccountsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<AccountsResult>("volcengine:redis/accounts:Accounts", args ?? new AccountsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<AccountsResult>("volcengine:redis/accounts:Accounts", args ?? new AccountsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of redis accounts
@@ -47,30 +46,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Redis.Accounts.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Redis.Accounts.InvokeAsync(new Volcengine.Redis.AccountsArgs
-        ///         {
-        ///             InstanceId = "redis-cn0398aizj8cwmopx",
-        ///         }));
-        ///     }
+        ///         InstanceId = "redis-cn0398aizj8cwmopx",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<AccountsResult> Invoke(AccountsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<AccountsResult>("volcengine:redis/accounts:Accounts", args ?? new AccountsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<AccountsResult>("volcengine:redis/accounts:Accounts", args ?? new AccountsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class AccountsArgs : Pulumi.InvokeArgs
+    public sealed class AccountsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name of the redis account.
@@ -93,9 +91,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         public AccountsArgs()
         {
         }
+        public static new AccountsArgs Empty => new AccountsArgs();
     }
 
-    public sealed class AccountsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class AccountsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name of the redis account.
@@ -118,6 +117,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Redis
         public AccountsInvokeArgs()
         {
         }
+        public static new AccountsInvokeArgs Empty => new AccountsInvokeArgs();
     }
 
 

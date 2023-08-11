@@ -8,29 +8,28 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Mongodb
+namespace Volcengine.Pulumi.Volcengine.Mongodb
 {
     /// <summary>
     /// Provides a resource to manage mongodb ssl state
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Mongodb.SslState("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Mongodb.SslState("foo", new Volcengine.Mongodb.SslStateArgs
-    ///         {
-    ///             InstanceId = "mongo-replica-f16e9298b121",
-    ///             SslAction = "Update",
-    ///         });
-    ///         // 选填 仅支持Update 
-    ///     }
+    ///         InstanceId = "mongo-replica-f16e9298b121",
+    ///         SslAction = "Update",
+    ///     });
     /// 
-    /// }
+    ///     // 选填 仅支持Update 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -41,10 +40,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
     ///  $ pulumi import volcengine:mongodb/sslState:SslState default ssl:mongo-shard-d050db19xxx
     /// ```
     /// 
-    ///  Set `ssl_action` to `Update` will update ssl always when terraform apply.
+    ///  Set `ssl_action` to `Update` will update ssl always when pulumi up.
     /// </summary>
     [VolcengineResourceType("volcengine:mongodb/sslState:SslState")]
-    public partial class SslState : Pulumi.CustomResource
+    public partial class SslState : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The ID of mongodb instance.
@@ -59,8 +58,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         public Output<bool> IsValid { get; private set; } = null!;
 
         /// <summary>
-        /// The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will update ssl always when terraform
-        /// apply.
+        /// The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will update ssl always when pulumi up.
         /// </summary>
         [Output("sslAction")]
         public Output<string?> SslAction { get; private set; } = null!;
@@ -122,7 +120,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         }
     }
 
-    public sealed class SslStateArgs : Pulumi.ResourceArgs
+    public sealed class SslStateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of mongodb instance.
@@ -131,8 +129,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         public Input<string> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will update ssl always when terraform
-        /// apply.
+        /// The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will update ssl always when pulumi up.
         /// </summary>
         [Input("sslAction")]
         public Input<string>? SslAction { get; set; }
@@ -140,9 +137,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         public SslStateArgs()
         {
         }
+        public static new SslStateArgs Empty => new SslStateArgs();
     }
 
-    public sealed class SslStateState : Pulumi.ResourceArgs
+    public sealed class SslStateState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of mongodb instance.
@@ -157,8 +155,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         public Input<bool>? IsValid { get; set; }
 
         /// <summary>
-        /// The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will update ssl always when terraform
-        /// apply.
+        /// The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will update ssl always when pulumi up.
         /// </summary>
         [Input("sslAction")]
         public Input<string>? SslAction { get; set; }
@@ -178,5 +175,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         public SslStateState()
         {
         }
+        public static new SslStateState Empty => new SslStateState();
     }
 }

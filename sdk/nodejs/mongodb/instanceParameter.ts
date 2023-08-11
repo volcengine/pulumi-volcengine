@@ -10,17 +10,18 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
  * //    该资源无法创建，需先import资源
  * //    $ terraform import volcengine_mongodb_instance_parameter.default param:mongo-replica-f16e9298b121:connPoolMaxConnsPerHost
  * //    请注意instance_id和parameter_name需与上述import的ID对应
- * const defaultInstanceParameter = new volcengine.mongodb.InstanceParameter("default", {
- *     instanceId: "mongo-replica-f16e9298b121", // 必填 import之后不允许修改
- *     parameterName: "connPoolMaxConnsPerHost", // 必填 import之后不允许修改
- *     parameterRole: "Node", // 必填
- *     parameterValue: "600", // 必填
+ * const _default = new volcengine.mongodb.InstanceParameter("default", {
+ *     instanceId: "mongo-replica-f16e9298b121",
+ *     parameterName: "connPoolMaxConnsPerHost",
+ *     parameterRole: "Node",
+ *     parameterValue: "600",
  * });
+ * // 必填
  * ```
  *
  * ## Import

@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
+namespace Volcengine.Pulumi.Volcengine.Vke.Inputs
 {
 
-    public sealed class ClustersStatusInputArgs : Pulumi.ResourceArgs
+    public sealed class ClustersStatusInputArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The state condition in the current main state of the cluster, that is, the reason for entering the main state, there can be multiple reasons, the value contains `Progressing`, `Ok`, `Degraded`, `SetByProvider`, `Balance`, `Security`, `CreateError`, `ResourceCleanupFailed`, `LimitedByQuota`, `StockOut`,`Unknown`.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
         public ClustersStatusInputArgs()
         {
         }
+        public static new ClustersStatusInputArgs Empty => new ClustersStatusInputArgs();
     }
 }

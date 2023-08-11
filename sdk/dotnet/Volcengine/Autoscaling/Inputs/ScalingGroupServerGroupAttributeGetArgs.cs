@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Autoscaling.Inputs
+namespace Volcengine.Pulumi.Volcengine.Autoscaling.Inputs
 {
 
-    public sealed class ScalingGroupServerGroupAttributeGetArgs : Pulumi.ResourceArgs
+    public sealed class ScalingGroupServerGroupAttributeGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("loadBalancerId")]
         public Input<string>? LoadBalancerId { get; set; }
@@ -37,5 +37,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling.Inputs
         public ScalingGroupServerGroupAttributeGetArgs()
         {
         }
+        public static new ScalingGroupServerGroupAttributeGetArgs Empty => new ScalingGroupServerGroupAttributeGetArgs();
     }
 }

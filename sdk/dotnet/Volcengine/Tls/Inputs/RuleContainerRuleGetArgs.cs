@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
+namespace Volcengine.Pulumi.Volcengine.Tls.Inputs
 {
 
-    public sealed class RuleContainerRuleGetArgs : Pulumi.ResourceArgs
+    public sealed class RuleContainerRuleGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the container to be collected.
@@ -94,5 +94,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
         public RuleContainerRuleGetArgs()
         {
         }
+        public static new RuleContainerRuleGetArgs Empty => new RuleContainerRuleGetArgs();
     }
 }

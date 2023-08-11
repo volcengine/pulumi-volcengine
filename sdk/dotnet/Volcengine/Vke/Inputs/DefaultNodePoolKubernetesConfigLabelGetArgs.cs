@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
+namespace Volcengine.Pulumi.Volcengine.Vke.Inputs
 {
 
-    public sealed class DefaultNodePoolKubernetesConfigLabelGetArgs : Pulumi.ResourceArgs
+    public sealed class DefaultNodePoolKubernetesConfigLabelGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Key of Labels.
@@ -28,5 +28,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
         public DefaultNodePoolKubernetesConfigLabelGetArgs()
         {
         }
+        public static new DefaultNodePoolKubernetesConfigLabelGetArgs Empty => new DefaultNodePoolKubernetesConfigLabelGetArgs();
     }
 }

@@ -8,30 +8,29 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cr
+namespace Volcengine.Pulumi.Volcengine.Cr
 {
     /// <summary>
     /// Provides a resource to manage cr repository
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Cr.Repository("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Cr.Repository("foo", new Volcengine.Cr.RepositoryArgs
-    ///         {
-    ///             AccessLevel = "Public",
-    ///             Description = "A test repository created by terraform.",
-    ///             Namespace = "namespace-1",
-    ///             Registry = "tf-2",
-    ///         });
-    ///     }
+    ///         AccessLevel = "Public",
+    ///         Description = "A test repository created by terraform.",
+    ///         Namespace = "namespace-1",
+    ///         Registry = "tf-2",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -43,7 +42,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:cr/repository:Repository")]
-    public partial class Repository : Pulumi.CustomResource
+    public partial class Repository : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The access level of CrRepository.
@@ -132,7 +131,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         }
     }
 
-    public sealed class RepositoryArgs : Pulumi.ResourceArgs
+    public sealed class RepositoryArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The access level of CrRepository.
@@ -167,9 +166,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         public RepositoryArgs()
         {
         }
+        public static new RepositoryArgs Empty => new RepositoryArgs();
     }
 
-    public sealed class RepositoryState : Pulumi.ResourceArgs
+    public sealed class RepositoryState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The access level of CrRepository.
@@ -216,5 +216,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         public RepositoryState()
         {
         }
+        public static new RepositoryState Empty => new RepositoryState();
     }
 }

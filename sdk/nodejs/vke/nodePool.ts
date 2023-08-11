@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -11,9 +12,9 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const vkeTest = new volcengine.vke.NodePool("vke_test", {
+ * const vkeTest = new volcengine.vke.NodePool("vkeTest", {
  *     autoScaling: {
  *         enabled: true,
  *         subnetPolicy: "ZoneBalance",
@@ -46,7 +47,6 @@ import * as utilities from "../utilities";
  *         period: 1,
  *         security: {
  *             login: {
- *                 //      ssh_key_pair_name = "ssh-6fbl66fxqm"
  *                 password: "UHdkMTIzNDU2",
  *             },
  *             securityGroupIds: [

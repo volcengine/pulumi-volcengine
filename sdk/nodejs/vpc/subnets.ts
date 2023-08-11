@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultSubnets = pulumi.output(volcengine.vpc.Subnets({
+ * const default = volcengine.vpc.Subnets({
  *     ids: ["subnet-274zsa5kfmj287fap8soo5e19"],
- * }));
+ * });
  * ```
  */
 export function subnets(args?: SubnetsArgs, opts?: pulumi.InvokeOptions): Promise<SubnetsResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:vpc/subnets:Subnets", {
         "ids": args.ids,
         "nameRegex": args.nameRegex,
@@ -106,9 +104,21 @@ export interface SubnetsResult {
      */
     readonly zoneId?: string;
 }
-
+/**
+ * Use this data source to query detailed information of subnets
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.vpc.Subnets({
+ *     ids: ["subnet-274zsa5kfmj287fap8soo5e19"],
+ * });
+ * ```
+ */
 export function subnetsOutput(args?: SubnetsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<SubnetsResult> {
-    return pulumi.output(args).apply(a => subnets(a, opts))
+    return pulumi.output(args).apply((a: any) => subnets(a, opts))
 }
 
 /**

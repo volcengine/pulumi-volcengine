@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls
+namespace Volcengine.Pulumi.Volcengine.Tls
 {
     public static class Rules
     {
@@ -19,26 +19,25 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Tls.Rules.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Tls.Rules.InvokeAsync(new Volcengine.Tls.RulesArgs
-        ///         {
-        ///             ProjectId = "cc44f8b6-0328-4622-b043-023fca735cd4",
-        ///         }));
-        ///     }
+        ///         ProjectId = "cc44f8b6-0328-4622-b043-023fca735cd4",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<RulesResult> InvokeAsync(RulesArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<RulesResult>("volcengine:tls/rules:Rules", args ?? new RulesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<RulesResult>("volcengine:tls/rules:Rules", args ?? new RulesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of tls rules
@@ -47,30 +46,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Tls.Rules.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Tls.Rules.InvokeAsync(new Volcengine.Tls.RulesArgs
-        ///         {
-        ///             ProjectId = "cc44f8b6-0328-4622-b043-023fca735cd4",
-        ///         }));
-        ///     }
+        ///         ProjectId = "cc44f8b6-0328-4622-b043-023fca735cd4",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<RulesResult> Invoke(RulesInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<RulesResult>("volcengine:tls/rules:Rules", args ?? new RulesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<RulesResult>("volcengine:tls/rules:Rules", args ?? new RulesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class RulesArgs : Pulumi.InvokeArgs
+    public sealed class RulesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// File name where to save data source results.
@@ -111,9 +109,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public RulesArgs()
         {
         }
+        public static new RulesArgs Empty => new RulesArgs();
     }
 
-    public sealed class RulesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class RulesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// File name where to save data source results.
@@ -154,6 +153,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public RulesInvokeArgs()
         {
         }
+        public static new RulesInvokeArgs Empty => new RulesInvokeArgs();
     }
 
 

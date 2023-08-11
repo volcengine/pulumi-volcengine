@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
+namespace Volcengine.Pulumi.Volcengine.Tls.Inputs
 {
 
-    public sealed class AlarmNotifyGroupReceiverArgs : Pulumi.ResourceArgs
+    public sealed class AlarmNotifyGroupReceiverArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The end time.
@@ -58,5 +58,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
         public AlarmNotifyGroupReceiverArgs()
         {
         }
+        public static new AlarmNotifyGroupReceiverArgs Empty => new AlarmNotifyGroupReceiverArgs();
     }
 }

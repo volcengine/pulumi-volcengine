@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultPolicies = pulumi.output(volcengine.iam.Policies({
+ * const default = volcengine.iam.Policies({
  *     query: "AdministratorAccess",
- * }));
+ * });
  * ```
  */
 export function policies(args?: PoliciesArgs, opts?: pulumi.InvokeOptions): Promise<PoliciesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:iam/policies:Policies", {
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
@@ -100,9 +98,21 @@ export interface PoliciesResult {
      */
     readonly userName?: string;
 }
-
+/**
+ * Use this data source to query detailed information of iam policies
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.iam.Policies({
+ *     query: "AdministratorAccess",
+ * });
+ * ```
+ */
 export function policiesOutput(args?: PoliciesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<PoliciesResult> {
-    return pulumi.output(args).apply(a => policies(a, opts))
+    return pulumi.output(args).apply((a: any) => policies(a, opts))
 }
 
 /**

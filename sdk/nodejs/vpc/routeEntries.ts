@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultRouteEntries = pulumi.output(volcengine.vpc.RouteEntries({
+ * const default = volcengine.vpc.RouteEntries({
  *     ids: [],
  *     routeTableId: "vtb-274e19skkuhog7fap8u4i8ird",
- * }));
+ * });
  * ```
  */
 export function routeEntries(args: RouteEntriesArgs, opts?: pulumi.InvokeOptions): Promise<RouteEntriesResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:vpc/routeEntries:RouteEntries", {
         "destinationCidrBlock": args.destinationCidrBlock,
         "ids": args.ids,
@@ -115,9 +113,22 @@ export interface RouteEntriesResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of route entries
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.vpc.RouteEntries({
+ *     ids: [],
+ *     routeTableId: "vtb-274e19skkuhog7fap8u4i8ird",
+ * });
+ * ```
+ */
 export function routeEntriesOutput(args: RouteEntriesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<RouteEntriesResult> {
-    return pulumi.output(args).apply(a => routeEntries(a, opts))
+    return pulumi.output(args).apply((a: any) => routeEntries(a, opts))
 }
 
 /**

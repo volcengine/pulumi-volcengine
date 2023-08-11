@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,17 +14,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultDatabases = pulumi.output(volcengine.rds.Databases({
+ * const default = volcengine.rds.Databases({
  *     instanceId: "mysql-0fdd3bab2e7c",
- * }));
+ * });
  * ```
  */
 export function databases(args: DatabasesArgs, opts?: pulumi.InvokeOptions): Promise<DatabasesResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:rds/databases:Databases", {
         "dbStatus": args.dbStatus,
         "instanceId": args.instanceId,
@@ -78,9 +76,21 @@ export interface DatabasesResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * (Deprecated! Recommend use volcengine_rds_mysql_*** replace) Use this data source to query detailed information of rds databases
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.rds.Databases({
+ *     instanceId: "mysql-0fdd3bab2e7c",
+ * });
+ * ```
+ */
 export function databasesOutput(args: DatabasesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<DatabasesResult> {
-    return pulumi.output(args).apply(a => databases(a, opts))
+    return pulumi.output(args).apply((a: any) => databases(a, opts))
 }
 
 /**

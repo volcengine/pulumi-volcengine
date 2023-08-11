@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultIpv6AddressBandwidths = pulumi.output(volcengine.vpc.Ipv6AddressBandwidths({
+ * const default = volcengine.vpc.Ipv6AddressBandwidths({
  *     ids: ["eip-in2y2duvtlhc8gbssyfnhfre"],
- * }));
+ * });
  * ```
  */
 export function ipv6AddressBandwidths(args?: Ipv6AddressBandwidthsArgs, opts?: pulumi.InvokeOptions): Promise<Ipv6AddressBandwidthsResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:vpc/ipv6AddressBandwidths:Ipv6AddressBandwidths", {
         "associatedInstanceId": args.associatedInstanceId,
         "associatedInstanceType": args.associatedInstanceType,
@@ -106,9 +104,21 @@ export interface Ipv6AddressBandwidthsResult {
     readonly totalCount: number;
     readonly vpcId?: string;
 }
-
+/**
+ * Use this data source to query detailed information of vpc ipv6 address bandwidths
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.vpc.Ipv6AddressBandwidths({
+ *     ids: ["eip-in2y2duvtlhc8gbssyfnhfre"],
+ * });
+ * ```
+ */
 export function ipv6AddressBandwidthsOutput(args?: Ipv6AddressBandwidthsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<Ipv6AddressBandwidthsResult> {
-    return pulumi.output(args).apply(a => ipv6AddressBandwidths(a, opts))
+    return pulumi.output(args).apply((a: any) => ipv6AddressBandwidths(a, opts))
 }
 
 /**

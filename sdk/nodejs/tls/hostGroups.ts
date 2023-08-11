@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,19 +14,16 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultHostGroups = pulumi.output(volcengine.tls.HostGroups({
+ * const default = volcengine.tls.HostGroups({
  *     hostGroupId: "fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
  *     hostGroupName: "cn",
- * }));
+ * });
  * ```
  */
 export function hostGroups(args?: HostGroupsArgs, opts?: pulumi.InvokeOptions): Promise<HostGroupsResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:tls/hostGroups:HostGroups", {
         "autoUpdate": args.autoUpdate,
         "hostGroupId": args.hostGroupId,
@@ -113,9 +111,22 @@ export interface HostGroupsResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of tls host groups
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.tls.HostGroups({
+ *     hostGroupId: "fbea6619-7b0c-40f3-ac7e-45c63e3f676e",
+ *     hostGroupName: "cn",
+ * });
+ * ```
+ */
 export function hostGroupsOutput(args?: HostGroupsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<HostGroupsResult> {
-    return pulumi.output(args).apply(a => hostGroups(a, opts))
+    return pulumi.output(args).apply((a: any) => hostGroups(a, opts))
 }
 
 /**

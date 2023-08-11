@@ -8,76 +8,79 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpc
+namespace Volcengine.Pulumi.Volcengine.Vpc
 {
     /// <summary>
     /// Provides a resource to manage security group rule
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var g1test3 = new Volcengine.Vpc.SecurityGroupRule("g1test3", new()
     ///     {
-    ///         var g1test3 = new Volcengine.Vpc.SecurityGroupRule("g1test3", new Volcengine.Vpc.SecurityGroupRuleArgs
-    ///         {
-    ///             CidrIp = "10.0.0.0/8",
-    ///             Description = "tft1234",
-    ///             Direction = "egress",
-    ///             PortEnd = 9003,
-    ///             PortStart = 8000,
-    ///             Protocol = "tcp",
-    ///             SecurityGroupId = "sg-2d6722jpp55og58ozfd1sqtdb",
-    ///         });
-    ///         var g1test2 = new Volcengine.Vpc.SecurityGroupRule("g1test2", new Volcengine.Vpc.SecurityGroupRuleArgs
-    ///         {
-    ///             CidrIp = "10.0.0.0/24",
-    ///             Direction = "egress",
-    ///             PortEnd = 9003,
-    ///             PortStart = 8000,
-    ///             Protocol = "tcp",
-    ///             SecurityGroupId = "sg-2d6722jpp55og58ozfd1sqtdb",
-    ///         });
-    ///         var g1test1 = new Volcengine.Vpc.SecurityGroupRule("g1test1", new Volcengine.Vpc.SecurityGroupRuleArgs
-    ///         {
-    ///             CidrIp = "10.0.0.0/24",
-    ///             Direction = "egress",
-    ///             PortEnd = 9003,
-    ///             PortStart = 8000,
-    ///             Priority = 2,
-    ///             Protocol = "tcp",
-    ///             SecurityGroupId = "sg-2d6722jpp55og58ozfd1sqtdb",
-    ///         });
-    ///         var g1test0 = new Volcengine.Vpc.SecurityGroupRule("g1test0", new Volcengine.Vpc.SecurityGroupRuleArgs
-    ///         {
-    ///             CidrIp = "10.0.0.0/24",
-    ///             Description = "tft",
-    ///             Direction = "ingress",
-    ///             Policy = "drop",
-    ///             PortEnd = 80,
-    ///             PortStart = 80,
-    ///             Priority = 2,
-    ///             Protocol = "tcp",
-    ///             SecurityGroupId = "sg-2d6722jpp55og58ozfd1sqtdb",
-    ///         });
-    ///         var g1test06 = new Volcengine.Vpc.SecurityGroupRule("g1test06", new Volcengine.Vpc.SecurityGroupRuleArgs
-    ///         {
-    ///             Description = "tft",
-    ///             Direction = "ingress",
-    ///             Policy = "drop",
-    ///             PortEnd = 9003,
-    ///             PortStart = 8000,
-    ///             Priority = 2,
-    ///             Protocol = "tcp",
-    ///             SecurityGroupId = "sg-2d6722jpp55og58ozfd1sqtdb",
-    ///             SourceGroupId = "sg-3rfe5j4xdnklc5zsk2hcw5c6q",
-    ///         });
-    ///     }
+    ///         CidrIp = "10.0.0.0/8",
+    ///         Description = "tft1234",
+    ///         Direction = "egress",
+    ///         PortEnd = 9003,
+    ///         PortStart = 8000,
+    ///         Protocol = "tcp",
+    ///         SecurityGroupId = "sg-2d6722jpp55og58ozfd1sqtdb",
+    ///     });
     /// 
-    /// }
+    ///     var g1test2 = new Volcengine.Vpc.SecurityGroupRule("g1test2", new()
+    ///     {
+    ///         CidrIp = "10.0.0.0/24",
+    ///         Direction = "egress",
+    ///         PortEnd = 9003,
+    ///         PortStart = 8000,
+    ///         Protocol = "tcp",
+    ///         SecurityGroupId = "sg-2d6722jpp55og58ozfd1sqtdb",
+    ///     });
+    /// 
+    ///     var g1test1 = new Volcengine.Vpc.SecurityGroupRule("g1test1", new()
+    ///     {
+    ///         CidrIp = "10.0.0.0/24",
+    ///         Direction = "egress",
+    ///         PortEnd = 9003,
+    ///         PortStart = 8000,
+    ///         Priority = 2,
+    ///         Protocol = "tcp",
+    ///         SecurityGroupId = "sg-2d6722jpp55og58ozfd1sqtdb",
+    ///     });
+    /// 
+    ///     var g1test0 = new Volcengine.Vpc.SecurityGroupRule("g1test0", new()
+    ///     {
+    ///         CidrIp = "10.0.0.0/24",
+    ///         Description = "tft",
+    ///         Direction = "ingress",
+    ///         Policy = "drop",
+    ///         PortEnd = 80,
+    ///         PortStart = 80,
+    ///         Priority = 2,
+    ///         Protocol = "tcp",
+    ///         SecurityGroupId = "sg-2d6722jpp55og58ozfd1sqtdb",
+    ///     });
+    /// 
+    ///     var g1test06 = new Volcengine.Vpc.SecurityGroupRule("g1test06", new()
+    ///     {
+    ///         Description = "tft",
+    ///         Direction = "ingress",
+    ///         Policy = "drop",
+    ///         PortEnd = 9003,
+    ///         PortStart = 8000,
+    ///         Priority = 2,
+    ///         Protocol = "tcp",
+    ///         SecurityGroupId = "sg-2d6722jpp55og58ozfd1sqtdb",
+    ///         SourceGroupId = "sg-3rfe5j4xdnklc5zsk2hcw5c6q",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -89,7 +92,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vpc/securityGroupRule:SecurityGroupRule")]
-    public partial class SecurityGroupRule : Pulumi.CustomResource
+    public partial class SecurityGroupRule : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Cidr ip of egress/ingress Rule.
@@ -202,7 +205,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         }
     }
 
-    public sealed class SecurityGroupRuleArgs : Pulumi.ResourceArgs
+    public sealed class SecurityGroupRuleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Cidr ip of egress/ingress Rule.
@@ -267,9 +270,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public SecurityGroupRuleArgs()
         {
         }
+        public static new SecurityGroupRuleArgs Empty => new SecurityGroupRuleArgs();
     }
 
-    public sealed class SecurityGroupRuleState : Pulumi.ResourceArgs
+    public sealed class SecurityGroupRuleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Cidr ip of egress/ingress Rule.
@@ -340,5 +344,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public SecurityGroupRuleState()
         {
         }
+        public static new SecurityGroupRuleState Empty => new SecurityGroupRuleState();
     }
 }

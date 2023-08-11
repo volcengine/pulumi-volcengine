@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds
+namespace Volcengine.Pulumi.Volcengine.Rds
 {
     public static class IpLists
     {
@@ -19,26 +19,25 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Rds.IpLists.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Rds.IpLists.InvokeAsync(new Volcengine.Rds.IpListsArgs
-        ///         {
-        ///             InstanceId = "mysql-0fdd3bab2e7c",
-        ///         }));
-        ///     }
+        ///         InstanceId = "mysql-0fdd3bab2e7c",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<IpListsResult> InvokeAsync(IpListsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<IpListsResult>("volcengine:rds/ipLists:IpLists", args ?? new IpListsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<IpListsResult>("volcengine:rds/ipLists:IpLists", args ?? new IpListsArgs(), options.WithDefaults());
 
         /// <summary>
         /// (Deprecated! Recommend use volcengine_rds_mysql_*** replace) Use this data source to query detailed information of rds ip lists
@@ -47,30 +46,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Rds.IpLists.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Rds.IpLists.InvokeAsync(new Volcengine.Rds.IpListsArgs
-        ///         {
-        ///             InstanceId = "mysql-0fdd3bab2e7c",
-        ///         }));
-        ///     }
+        ///         InstanceId = "mysql-0fdd3bab2e7c",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<IpListsResult> Invoke(IpListsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<IpListsResult>("volcengine:rds/ipLists:IpLists", args ?? new IpListsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<IpListsResult>("volcengine:rds/ipLists:IpLists", args ?? new IpListsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class IpListsArgs : Pulumi.InvokeArgs
+    public sealed class IpListsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The id of the RDS instance.
@@ -93,9 +91,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds
         public IpListsArgs()
         {
         }
+        public static new IpListsArgs Empty => new IpListsArgs();
     }
 
-    public sealed class IpListsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class IpListsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The id of the RDS instance.
@@ -118,6 +117,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds
         public IpListsInvokeArgs()
         {
         }
+        public static new IpListsInvokeArgs Empty => new IpListsInvokeArgs();
     }
 
 

@@ -8,105 +8,111 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Clb
+namespace Volcengine.Pulumi.Volcengine.Clb
 {
     /// <summary>
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Volcengine = Pulumi.Volcengine;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
-    ///     {
-    ///         var fooZones = Output.Create(Volcengine.Ecs.Zones.InvokeAsync());
-    ///         var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new Volcengine.Vpc.VpcArgs
-    ///         {
-    ///             VpcName = "acc-test-vpc",
-    ///             CidrBlock = "172.16.0.0/16",
-    ///         });
-    ///         var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new Volcengine.Vpc.SubnetArgs
-    ///         {
-    ///             SubnetName = "acc-test-subnet",
-    ///             CidrBlock = "172.16.0.0/24",
-    ///             ZoneId = fooZones.Apply(fooZones =&gt; fooZones.Zones?[0]?.Id),
-    ///             VpcId = fooVpc.Id,
-    ///         });
-    ///         var fooClb = new Volcengine.Clb.Clb("fooClb", new Volcengine.Clb.ClbArgs
-    ///         {
-    ///             Type = "public",
-    ///             SubnetId = fooSubnet.Id,
-    ///             LoadBalancerSpec = "small_1",
-    ///             Description = "acc-test-demo",
-    ///             LoadBalancerName = "acc-test-clb",
-    ///             LoadBalancerBillingType = "PostPaid",
-    ///             EipBillingConfig = new Volcengine.Clb.Inputs.ClbEipBillingConfigArgs
-    ///             {
-    ///                 Isp = "BGP",
-    ///                 EipBillingType = "PostPaidByBandwidth",
-    ///                 Bandwidth = 1,
-    ///             },
-    ///             Tags = 
-    ///             {
-    ///                 new Volcengine.Clb.Inputs.ClbTagArgs
-    ///                 {
-    ///                     Key = "k1",
-    ///                     Value = "v1",
-    ///                 },
-    ///             },
-    ///         });
-    ///         var publicClb = new Volcengine.Clb.Clb("publicClb", new Volcengine.Clb.ClbArgs
-    ///         {
-    ///             Type = "public",
-    ///             SubnetId = fooSubnet.Id,
-    ///             LoadBalancerName = "acc-test-clb-public",
-    ///             LoadBalancerSpec = "small_1",
-    ///             Description = "acc-test-demo",
-    ///             ProjectName = "default",
-    ///             EipBillingConfig = new Volcengine.Clb.Inputs.ClbEipBillingConfigArgs
-    ///             {
-    ///                 Isp = "BGP",
-    ///                 EipBillingType = "PostPaidByBandwidth",
-    ///                 Bandwidth = 1,
-    ///             },
-    ///             Tags = 
-    ///             {
-    ///                 new Volcengine.Clb.Inputs.ClbTagArgs
-    ///                 {
-    ///                     Key = "k1",
-    ///                     Value = "v1",
-    ///                 },
-    ///             },
-    ///         });
-    ///         var privateClb = new Volcengine.Clb.Clb("privateClb", new Volcengine.Clb.ClbArgs
-    ///         {
-    ///             Type = "private",
-    ///             SubnetId = fooSubnet.Id,
-    ///             LoadBalancerName = "acc-test-clb-private",
-    ///             LoadBalancerSpec = "small_1",
-    ///             Description = "acc-test-demo",
-    ///             ProjectName = "default",
-    ///         });
-    ///         var eip = new Volcengine.Eip.Address("eip", new Volcengine.Eip.AddressArgs
-    ///         {
-    ///             BillingType = "PostPaidByBandwidth",
-    ///             Bandwidth = 1,
-    ///             Isp = "BGP",
-    ///             Description = "tf-test",
-    ///             ProjectName = "default",
-    ///         });
-    ///         var associate = new Volcengine.Eip.Associate("associate", new Volcengine.Eip.AssociateArgs
-    ///         {
-    ///             AllocationId = eip.Id,
-    ///             InstanceId = privateClb.Id,
-    ///             InstanceType = "ClbInstance",
-    ///         });
-    ///     }
+    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
     /// 
-    /// }
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
+    ///     {
+    ///         VpcName = "acc-test-vpc",
+    ///         CidrBlock = "172.16.0.0/16",
+    ///     });
+    /// 
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooClb = new Volcengine.Clb.Clb("fooClb", new()
+    ///     {
+    ///         Type = "public",
+    ///         SubnetId = fooSubnet.Id,
+    ///         LoadBalancerSpec = "small_1",
+    ///         Description = "acc-test-demo",
+    ///         LoadBalancerName = "acc-test-clb",
+    ///         LoadBalancerBillingType = "PostPaid",
+    ///         EipBillingConfig = new Volcengine.Clb.Inputs.ClbEipBillingConfigArgs
+    ///         {
+    ///             Isp = "BGP",
+    ///             EipBillingType = "PostPaidByBandwidth",
+    ///             Bandwidth = 1,
+    ///         },
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Clb.Inputs.ClbTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var publicClb = new Volcengine.Clb.Clb("publicClb", new()
+    ///     {
+    ///         Type = "public",
+    ///         SubnetId = fooSubnet.Id,
+    ///         LoadBalancerName = "acc-test-clb-public",
+    ///         LoadBalancerSpec = "small_1",
+    ///         Description = "acc-test-demo",
+    ///         ProjectName = "default",
+    ///         EipBillingConfig = new Volcengine.Clb.Inputs.ClbEipBillingConfigArgs
+    ///         {
+    ///             Isp = "BGP",
+    ///             EipBillingType = "PostPaidByBandwidth",
+    ///             Bandwidth = 1,
+    ///         },
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Clb.Inputs.ClbTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var privateClb = new Volcengine.Clb.Clb("privateClb", new()
+    ///     {
+    ///         Type = "private",
+    ///         SubnetId = fooSubnet.Id,
+    ///         LoadBalancerName = "acc-test-clb-private",
+    ///         LoadBalancerSpec = "small_1",
+    ///         Description = "acc-test-demo",
+    ///         ProjectName = "default",
+    ///     });
+    /// 
+    ///     var eip = new Volcengine.Eip.Address("eip", new()
+    ///     {
+    ///         BillingType = "PostPaidByBandwidth",
+    ///         Bandwidth = 1,
+    ///         Isp = "BGP",
+    ///         Description = "tf-test",
+    ///         ProjectName = "default",
+    ///     });
+    /// 
+    ///     var associate = new Volcengine.Eip.Associate("associate", new()
+    ///     {
+    ///         AllocationId = eip.Id,
+    ///         InstanceId = privateClb.Id,
+    ///         InstanceType = "ClbInstance",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -118,7 +124,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:clb/clb:Clb")]
-    public partial class Clb : Pulumi.CustomResource
+    public partial class Clb : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The description of the CLB.
@@ -285,7 +291,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
         }
     }
 
-    public sealed class ClbArgs : Pulumi.ResourceArgs
+    public sealed class ClbArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The description of the CLB.
@@ -398,9 +404,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
         public ClbArgs()
         {
         }
+        public static new ClbArgs Empty => new ClbArgs();
     }
 
-    public sealed class ClbState : Pulumi.ResourceArgs
+    public sealed class ClbState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The description of the CLB.
@@ -531,5 +538,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Clb
         public ClbState()
         {
         }
+        public static new ClbState Empty => new ClbState();
     }
 }

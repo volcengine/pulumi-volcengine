@@ -8,28 +8,27 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cr
+namespace Volcengine.Pulumi.Volcengine.Cr
 {
     /// <summary>
     /// Provides a resource to manage cr registry
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Cr.Registry("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Cr.Registry("foo", new Volcengine.Cr.RegistryArgs
-    ///         {
-    ///             DeleteImmediately = false,
-    ///             Password = "1qaz!QAZ",
-    ///         });
-    ///     }
+    ///         DeleteImmediately = false,
+    ///         Password = "1qaz!QAZ",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -41,7 +40,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:cr/registry:Registry")]
-    public partial class Registry : Pulumi.CustomResource
+    public partial class Registry : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The charge type of registry.
@@ -127,6 +126,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/volcengine",
+                AdditionalSecretOutputs =
+                {
+                    "password",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -148,7 +151,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         }
     }
 
-    public sealed class RegistryArgs : Pulumi.ResourceArgs
+    public sealed class RegistryArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether delete registry immediately. Only effected in delete action.
@@ -162,18 +165,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        [Input("password")]
+        private Input<string>? _password;
+
         /// <summary>
         /// The password of registry user.
         /// </summary>
-        [Input("password")]
-        public Input<string>? Password { get; set; }
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public RegistryArgs()
         {
         }
+        public static new RegistryArgs Empty => new RegistryArgs();
     }
 
-    public sealed class RegistryState : Pulumi.ResourceArgs
+    public sealed class RegistryState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The charge type of registry.
@@ -211,11 +225,21 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        [Input("password")]
+        private Input<string>? _password;
+
         /// <summary>
         /// The password of registry user.
         /// </summary>
-        [Input("password")]
-        public Input<string>? Password { get; set; }
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("statuses")]
         private InputList<Inputs.RegistryStatusGetArgs>? _statuses;
@@ -250,5 +274,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr
         public RegistryState()
         {
         }
+        public static new RegistryState Empty => new RegistryState();
     }
 }

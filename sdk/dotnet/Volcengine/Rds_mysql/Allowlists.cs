@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
+namespace Volcengine.Pulumi.Volcengine.Rds_mysql
 {
     public static class Allowlists
     {
@@ -19,26 +19,25 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Rds_mysql.Allowlists.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Rds_mysql.Allowlists.InvokeAsync(new Volcengine.Rds_mysql.AllowlistsArgs
-        ///         {
-        ///             RegionId = "cn-guilin-boe",
-        ///         }));
-        ///     }
+        ///         RegionId = "cn-guilin-boe",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<AllowlistsResult> InvokeAsync(AllowlistsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<AllowlistsResult>("volcengine:rds_mysql/allowlists:Allowlists", args ?? new AllowlistsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<AllowlistsResult>("volcengine:rds_mysql/allowlists:Allowlists", args ?? new AllowlistsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of rds mysql allowlists
@@ -47,30 +46,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Rds_mysql.Allowlists.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Rds_mysql.Allowlists.InvokeAsync(new Volcengine.Rds_mysql.AllowlistsArgs
-        ///         {
-        ///             RegionId = "cn-guilin-boe",
-        ///         }));
-        ///     }
+        ///         RegionId = "cn-guilin-boe",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<AllowlistsResult> Invoke(AllowlistsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<AllowlistsResult>("volcengine:rds_mysql/allowlists:Allowlists", args ?? new AllowlistsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<AllowlistsResult>("volcengine:rds_mysql/allowlists:Allowlists", args ?? new AllowlistsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class AllowlistsArgs : Pulumi.InvokeArgs
+    public sealed class AllowlistsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Instance ID. When an InstanceId is specified, the DescribeAllowLists interface will return the whitelist bound to the specified instance.
@@ -93,9 +91,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         public AllowlistsArgs()
         {
         }
+        public static new AllowlistsArgs Empty => new AllowlistsArgs();
     }
 
-    public sealed class AllowlistsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class AllowlistsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// Instance ID. When an InstanceId is specified, the DescribeAllowLists interface will return the whitelist bound to the specified instance.
@@ -118,6 +117,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         public AllowlistsInvokeArgs()
         {
         }
+        public static new AllowlistsInvokeArgs Empty => new AllowlistsInvokeArgs();
     }
 
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls
+namespace Volcengine.Pulumi.Volcengine.Tls
 {
     /// <summary>
     /// Provides a resource to manage tls rule
@@ -16,143 +16,141 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using System.Text.Json;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Tls.Rule("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Tls.Rule("foo", new Volcengine.Tls.RuleArgs
+    ///         TopicId = "7bfa2cdc-4f8b-4cf9-b4c9-0ed05c33349f",
+    ///         RuleName = "test",
+    ///         LogType = "minimalist_log",
+    ///         LogSample = "2018-05-22 15:35:53.850 INFO XXXX",
+    ///         InputType = 1,
+    ///         UserDefineRule = new Volcengine.Tls.Inputs.RuleUserDefineRuleArgs
     ///         {
-    ///             TopicId = "7bfa2cdc-4f8b-4cf9-b4c9-0ed05c33349f",
-    ///             RuleName = "test",
-    ///             LogType = "minimalist_log",
-    ///             LogSample = "2018-05-22 15:35:53.850 INFO XXXX",
-    ///             InputType = 1,
-    ///             UserDefineRule = new Volcengine.Tls.Inputs.RuleUserDefineRuleArgs
+    ///             EnableRawLog = false,
+    ///             TailFiles = true,
+    ///             ShardHashKey = new Volcengine.Tls.Inputs.RuleUserDefineRuleShardHashKeyArgs
     ///             {
-    ///                 EnableRawLog = false,
-    ///                 TailFiles = true,
-    ///                 ShardHashKey = new Volcengine.Tls.Inputs.RuleUserDefineRuleShardHashKeyArgs
+    ///                 HashKey = "3C",
+    ///             },
+    ///             Plugin = new Volcengine.Tls.Inputs.RuleUserDefineRulePluginArgs
+    ///             {
+    ///                 Processors = new[]
     ///                 {
-    ///                     HashKey = "3C",
-    ///                 },
-    ///                 Plugin = new Volcengine.Tls.Inputs.RuleUserDefineRulePluginArgs
-    ///                 {
-    ///                     Processors = 
+    ///                     JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
     ///                     {
-    ///                         JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///                         ["json"] = new Dictionary&lt;string, object?&gt;
     ///                         {
-    ///                             { "json", new Dictionary&lt;string, object?&gt;
+    ///                             ["field"] = "__content__",
+    ///                             ["trim_keys"] = new Dictionary&lt;string, object?&gt;
     ///                             {
-    ///                                 { "field", "__content__" },
-    ///                                 { "trim_keys", new Dictionary&lt;string, object?&gt;
-    ///                                 {
-    ///                                     { "mode", "all" },
-    ///                                     { "chars", "#" },
-    ///                                 } },
-    ///                                 { "trim_values", new Dictionary&lt;string, object?&gt;
-    ///                                 {
-    ///                                     { "mode", "all" },
-    ///                                     { "chars", "#t" },
-    ///                                 } },
-    ///                                 { "allow_overwrite_keys", true },
-    ///                                 { "allow_empty_values", true },
-    ///                             } },
-    ///                         }),
-    ///                         JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///                                 ["mode"] = "all",
+    ///                                 ["chars"] = "#",
+    ///                             },
+    ///                             ["trim_values"] = new Dictionary&lt;string, object?&gt;
+    ///                             {
+    ///                                 ["mode"] = "all",
+    ///                                 ["chars"] = "#t",
+    ///                             },
+    ///                             ["allow_overwrite_keys"] = true,
+    ///                             ["allow_empty_values"] = true,
+    ///                         },
+    ///                     }),
+    ///                     JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///                     {
+    ///                         ["json"] = new Dictionary&lt;string, object?&gt;
     ///                         {
-    ///                             { "json", new Dictionary&lt;string, object?&gt;
+    ///                             ["field"] = "__content__",
+    ///                             ["trim_keys"] = new Dictionary&lt;string, object?&gt;
     ///                             {
-    ///                                 { "field", "__content__" },
-    ///                                 { "trim_keys", new Dictionary&lt;string, object?&gt;
-    ///                                 {
-    ///                                     { "mode", "all" },
-    ///                                     { "chars", "#xx" },
-    ///                                 } },
-    ///                                 { "trim_values", new Dictionary&lt;string, object?&gt;
-    ///                                 {
-    ///                                     { "mode", "all" },
-    ///                                     { "chars", "#txxxt" },
-    ///                                 } },
-    ///                                 { "allow_overwrite_keys", true },
-    ///                                 { "allow_empty_values", true },
-    ///                             } },
-    ///                         }),
-    ///                     },
-    ///                 },
-    ///                 Advanced = new Volcengine.Tls.Inputs.RuleUserDefineRuleAdvancedArgs
-    ///                 {
-    ///                     CloseInactive = 10,
-    ///                     CloseRemoved = false,
-    ///                     CloseRenamed = false,
-    ///                     CloseEof = false,
-    ///                     CloseTimeout = 1,
+    ///                                 ["mode"] = "all",
+    ///                                 ["chars"] = "#xx",
+    ///                             },
+    ///                             ["trim_values"] = new Dictionary&lt;string, object?&gt;
+    ///                             {
+    ///                                 ["mode"] = "all",
+    ///                                 ["chars"] = "#txxxt",
+    ///                             },
+    ///                             ["allow_overwrite_keys"] = true,
+    ///                             ["allow_empty_values"] = true,
+    ///                         },
+    ///                     }),
     ///                 },
     ///             },
-    ///             ContainerRule = new Volcengine.Tls.Inputs.RuleContainerRuleArgs
+    ///             Advanced = new Volcengine.Tls.Inputs.RuleUserDefineRuleAdvancedArgs
     ///             {
-    ///                 Stream = "all",
-    ///                 ContainerNameRegex = ".*test.*",
-    ///                 IncludeContainerLabelRegex = 
-    ///                 {
-    ///                     { "Key1", "Value12" },
-    ///                     { "Key2", "Value23" },
-    ///                 },
-    ///                 ExcludeContainerLabelRegex = 
-    ///                 {
-    ///                     { "Key1", "Value12" },
-    ///                     { "Key2", "Value22" },
-    ///                 },
-    ///                 IncludeContainerEnvRegex = 
+    ///                 CloseInactive = 10,
+    ///                 CloseRemoved = false,
+    ///                 CloseRenamed = false,
+    ///                 CloseEof = false,
+    ///                 CloseTimeout = 1,
+    ///             },
+    ///         },
+    ///         ContainerRule = new Volcengine.Tls.Inputs.RuleContainerRuleArgs
+    ///         {
+    ///             Stream = "all",
+    ///             ContainerNameRegex = ".*test.*",
+    ///             IncludeContainerLabelRegex = 
+    ///             {
+    ///                 { "Key1", "Value12" },
+    ///                 { "Key2", "Value23" },
+    ///             },
+    ///             ExcludeContainerLabelRegex = 
+    ///             {
+    ///                 { "Key1", "Value12" },
+    ///                 { "Key2", "Value22" },
+    ///             },
+    ///             IncludeContainerEnvRegex = 
+    ///             {
+    ///                 { "Key1", "Value1" },
+    ///                 { "Key2", "Value2" },
+    ///             },
+    ///             ExcludeContainerEnvRegex = 
+    ///             {
+    ///                 { "Key1", "Value1" },
+    ///                 { "Key2", "Value2" },
+    ///             },
+    ///             EnvTag = 
+    ///             {
+    ///                 { "Key1", "Value1" },
+    ///                 { "Key2", "Value2" },
+    ///             },
+    ///             KubernetesRule = new Volcengine.Tls.Inputs.RuleContainerRuleKubernetesRuleArgs
+    ///             {
+    ///                 NamespaceNameRegex = ".*test.*",
+    ///                 WorkloadType = "Deployment",
+    ///                 WorkloadNameRegex = ".*test.*",
+    ///                 IncludePodLabelRegex = 
     ///                 {
     ///                     { "Key1", "Value1" },
     ///                     { "Key2", "Value2" },
     ///                 },
-    ///                 ExcludeContainerEnvRegex = 
+    ///                 ExcludePodLabelRegex = 
     ///                 {
     ///                     { "Key1", "Value1" },
     ///                     { "Key2", "Value2" },
     ///                 },
-    ///                 EnvTag = 
+    ///                 PodNameRegex = ".*test.*",
+    ///                 LabelTag = 
     ///                 {
     ///                     { "Key1", "Value1" },
     ///                     { "Key2", "Value2" },
     ///                 },
-    ///                 KubernetesRule = new Volcengine.Tls.Inputs.RuleContainerRuleKubernetesRuleArgs
+    ///                 AnnotationTag = 
     ///                 {
-    ///                     NamespaceNameRegex = ".*test.*",
-    ///                     WorkloadType = "Deployment",
-    ///                     WorkloadNameRegex = ".*test.*",
-    ///                     IncludePodLabelRegex = 
-    ///                     {
-    ///                         { "Key1", "Value1" },
-    ///                         { "Key2", "Value2" },
-    ///                     },
-    ///                     ExcludePodLabelRegex = 
-    ///                     {
-    ///                         { "Key1", "Value1" },
-    ///                         { "Key2", "Value2" },
-    ///                     },
-    ///                     PodNameRegex = ".*test.*",
-    ///                     LabelTag = 
-    ///                     {
-    ///                         { "Key1", "Value1" },
-    ///                         { "Key2", "Value2" },
-    ///                     },
-    ///                     AnnotationTag = 
-    ///                     {
-    ///                         { "Key1", "Value1" },
-    ///                         { "Key2", "Value2" },
-    ///                     },
+    ///                     { "Key1", "Value1" },
+    ///                     { "Key2", "Value2" },
     ///                 },
     ///             },
-    ///         });
-    ///     }
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -164,7 +162,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:tls/rule:Rule")]
-    public partial class Rule : Pulumi.CustomResource
+    public partial class Rule : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Container collection rules.
@@ -277,7 +275,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         }
     }
 
-    public sealed class RuleArgs : Pulumi.ResourceArgs
+    public sealed class RuleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Container collection rules.
@@ -354,9 +352,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public RuleArgs()
         {
         }
+        public static new RuleArgs Empty => new RuleArgs();
     }
 
-    public sealed class RuleState : Pulumi.ResourceArgs
+    public sealed class RuleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Container collection rules.
@@ -439,5 +438,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public RuleState()
         {
         }
+        public static new RuleState Empty => new RuleState();
     }
 }

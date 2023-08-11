@@ -8,33 +8,33 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Veenedge
+namespace Volcengine.Pulumi.Volcengine.Veenedge
 {
     /// <summary>
     /// Provides a resource to manage veenedge instance
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Veenedge.Instance("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Veenedge.Instance("foo", new Volcengine.Veenedge.InstanceArgs
-    ///         {
-    ///             AreaName = "*****",
-    ///             CloudserverId = "cloudserver-x92*****jcc8f",
-    ///             Isp = "CMCC",
-    ///         });
-    ///         var foo1 = new Volcengine.Veenedge.Instance("foo1", new Volcengine.Veenedge.InstanceArgs
-    ///         {
-    ///             InstanceId = "veen0*****0111112",
-    ///         });
-    ///     }
+    ///         AreaName = "*****",
+    ///         CloudserverId = "cloudserver-x92*****jcc8f",
+    ///         Isp = "CMCC",
+    ///     });
     /// 
-    /// }
+    ///     var foo1 = new Volcengine.Veenedge.Instance("foo1", new()
+    ///     {
+    ///         InstanceId = "veen0*****0111112",
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -46,7 +46,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:veenedge/instance:Instance")]
-    public partial class Instance : Pulumi.CustomResource
+    public partial class Instance : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The area name.
@@ -147,7 +147,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge
         }
     }
 
-    public sealed class InstanceArgs : Pulumi.ResourceArgs
+    public sealed class InstanceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The area name.
@@ -206,9 +206,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge
         public InstanceArgs()
         {
         }
+        public static new InstanceArgs Empty => new InstanceArgs();
     }
 
-    public sealed class InstanceState : Pulumi.ResourceArgs
+    public sealed class InstanceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The area name.
@@ -267,5 +268,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge
         public InstanceState()
         {
         }
+        public static new InstanceState Empty => new InstanceState();
     }
 }

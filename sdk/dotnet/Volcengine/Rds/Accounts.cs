@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds
+namespace Volcengine.Pulumi.Volcengine.Rds
 {
     public static class Accounts
     {
@@ -19,26 +19,25 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Rds.Accounts.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Rds.Accounts.InvokeAsync(new Volcengine.Rds.AccountsArgs
-        ///         {
-        ///             InstanceId = "mysql-0fdd3bab2e7c",
-        ///         }));
-        ///     }
+        ///         InstanceId = "mysql-0fdd3bab2e7c",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<AccountsResult> InvokeAsync(AccountsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<AccountsResult>("volcengine:rds/accounts:Accounts", args ?? new AccountsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<AccountsResult>("volcengine:rds/accounts:Accounts", args ?? new AccountsArgs(), options.WithDefaults());
 
         /// <summary>
         /// (Deprecated! Recommend use volcengine_rds_mysql_*** replace) Use this data source to query detailed information of rds accounts
@@ -47,30 +46,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Rds.Accounts.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Rds.Accounts.InvokeAsync(new Volcengine.Rds.AccountsArgs
-        ///         {
-        ///             InstanceId = "mysql-0fdd3bab2e7c",
-        ///         }));
-        ///     }
+        ///         InstanceId = "mysql-0fdd3bab2e7c",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<AccountsResult> Invoke(AccountsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<AccountsResult>("volcengine:rds/accounts:Accounts", args ?? new AccountsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<AccountsResult>("volcengine:rds/accounts:Accounts", args ?? new AccountsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class AccountsArgs : Pulumi.InvokeArgs
+    public sealed class AccountsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name of the database account.
@@ -99,9 +97,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds
         public AccountsArgs()
         {
         }
+        public static new AccountsArgs Empty => new AccountsArgs();
     }
 
-    public sealed class AccountsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class AccountsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name of the database account.
@@ -130,6 +129,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds
         public AccountsInvokeArgs()
         {
         }
+        public static new AccountsInvokeArgs Empty => new AccountsInvokeArgs();
     }
 
 

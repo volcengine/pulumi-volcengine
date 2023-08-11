@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,16 +14,13 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultZones = pulumi.output(volcengine.clb.Zones());
+ * const default = volcengine.clb.Zones({});
  * ```
  */
 export function zones(args?: ZonesArgs, opts?: pulumi.InvokeOptions): Promise<ZonesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:clb/zones:Zones", {
         "outputFile": args.outputFile,
     }, opts);
@@ -56,9 +54,19 @@ export interface ZonesResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of clb zones
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.clb.Zones({});
+ * ```
+ */
 export function zonesOutput(args?: ZonesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ZonesResult> {
-    return pulumi.output(args).apply(a => zones(a, opts))
+    return pulumi.output(args).apply((a: any) => zones(a, opts))
 }
 
 /**

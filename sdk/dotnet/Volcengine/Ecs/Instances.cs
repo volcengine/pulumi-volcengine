@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Ecs
+namespace Volcengine.Pulumi.Volcengine.Ecs
 {
     public static class Instances
     {
@@ -23,89 +23,91 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
-        /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var fooZones = Output.Create(Volcengine.Ecs.Zones.InvokeAsync());
-        ///         var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new Volcengine.Vpc.VpcArgs
-        ///         {
-        ///             VpcName = "acc-test-vpc",
-        ///             CidrBlock = "172.16.0.0/16",
-        ///         });
-        ///         var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new Volcengine.Vpc.SubnetArgs
-        ///         {
-        ///             SubnetName = "acc-test-subnet",
-        ///             CidrBlock = "172.16.0.0/24",
-        ///             ZoneId = fooZones.Apply(fooZones =&gt; fooZones.Zones?[0]?.Id),
-        ///             VpcId = fooVpc.Id,
-        ///         });
-        ///         var fooSecurityGroup = new Volcengine.Vpc.SecurityGroup("fooSecurityGroup", new Volcengine.Vpc.SecurityGroupArgs
-        ///         {
-        ///             SecurityGroupName = "acc-test-security-group",
-        ///             VpcId = fooVpc.Id,
-        ///         });
-        ///         var fooImages = Output.Create(Volcengine.Ecs.Images.InvokeAsync(new Volcengine.Ecs.ImagesArgs
-        ///         {
-        ///             OsType = "Linux",
-        ///             Visibility = "public",
-        ///             InstanceTypeId = "ecs.g1.large",
-        ///         }));
-        ///         var fooInstance = new List&lt;Volcengine.Ecs.Instance&gt;();
-        ///         for (var rangeIndex = 0; rangeIndex &lt; 2; rangeIndex++)
-        ///         {
-        ///             var range = new { Value = rangeIndex };
-        ///             fooInstance.Add(new Volcengine.Ecs.Instance($"fooInstance-{range.Value}", new Volcengine.Ecs.InstanceArgs
-        ///             {
-        ///                 InstanceName = $"acc-test-ecs-{range.Value}",
-        ///                 Description = "acc-test",
-        ///                 HostName = "tf-acc-test",
-        ///                 ImageId = fooImages.Apply(fooImages =&gt; fooImages.Images?[0]?.ImageId),
-        ///                 InstanceType = "ecs.g1.large",
-        ///                 Password = "93f0cb0614Aab12",
-        ///                 InstanceChargeType = "PostPaid",
-        ///                 SystemVolumeType = "ESSD_PL0",
-        ///                 SystemVolumeSize = 40,
-        ///                 DataVolumes = 
-        ///                 {
-        ///                     new Volcengine.Ecs.Inputs.InstanceDataVolumeArgs
-        ///                     {
-        ///                         VolumeType = "ESSD_PL0",
-        ///                         Size = 50,
-        ///                         DeleteWithInstance = true,
-        ///                     },
-        ///                 },
-        ///                 SubnetId = fooSubnet.Id,
-        ///                 SecurityGroupIds = 
-        ///                 {
-        ///                     fooSecurityGroup.Id,
-        ///                 },
-        ///                 ProjectName = "default",
-        ///                 Tags = 
-        ///                 {
-        ///                     new Volcengine.Ecs.Inputs.InstanceTagArgs
-        ///                     {
-        ///                         Key = "k1",
-        ///                         Value = "v1",
-        ///                     },
-        ///                 },
-        ///             }));
-        ///         }
-        ///         var fooInstances = Volcengine.Ecs.Instances.Invoke(new Volcengine.Ecs.InstancesInvokeArgs
-        ///         {
-        ///             Ids = fooInstance.Select(__item =&gt; __item.Id).ToList(),
-        ///         });
-        ///     }
+        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
         /// 
-        /// }
+        ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
+        ///     {
+        ///         VpcName = "acc-test-vpc",
+        ///         CidrBlock = "172.16.0.0/16",
+        ///     });
+        /// 
+        ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+        ///     {
+        ///         SubnetName = "acc-test-subnet",
+        ///         CidrBlock = "172.16.0.0/24",
+        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooSecurityGroup = new Volcengine.Vpc.SecurityGroup("fooSecurityGroup", new()
+        ///     {
+        ///         SecurityGroupName = "acc-test-security-group",
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooImages = Volcengine.Ecs.Images.Invoke(new()
+        ///     {
+        ///         OsType = "Linux",
+        ///         Visibility = "public",
+        ///         InstanceTypeId = "ecs.g1.large",
+        ///     });
+        /// 
+        ///     var fooInstance = new List&lt;Volcengine.Ecs.Instance&gt;();
+        ///     for (var rangeIndex = 0; rangeIndex &lt; 2; rangeIndex++)
+        ///     {
+        ///         var range = new { Value = rangeIndex };
+        ///         fooInstance.Add(new Volcengine.Ecs.Instance($"fooInstance-{range.Value}", new()
+        ///         {
+        ///             InstanceName = $"acc-test-ecs-{range.Value}",
+        ///             Description = "acc-test",
+        ///             HostName = "tf-acc-test",
+        ///             ImageId = fooImages.Apply(imagesResult =&gt; imagesResult.Images[0]?.ImageId),
+        ///             InstanceType = "ecs.g1.large",
+        ///             Password = "93f0cb0614Aab12",
+        ///             InstanceChargeType = "PostPaid",
+        ///             SystemVolumeType = "ESSD_PL0",
+        ///             SystemVolumeSize = 40,
+        ///             DataVolumes = new[]
+        ///             {
+        ///                 new Volcengine.Ecs.Inputs.InstanceDataVolumeArgs
+        ///                 {
+        ///                     VolumeType = "ESSD_PL0",
+        ///                     Size = 50,
+        ///                     DeleteWithInstance = true,
+        ///                 },
+        ///             },
+        ///             SubnetId = fooSubnet.Id,
+        ///             SecurityGroupIds = new[]
+        ///             {
+        ///                 fooSecurityGroup.Id,
+        ///             },
+        ///             ProjectName = "default",
+        ///             Tags = new[]
+        ///             {
+        ///                 new Volcengine.Ecs.Inputs.InstanceTagArgs
+        ///                 {
+        ///                     Key = "k1",
+        ///                     Value = "v1",
+        ///                 },
+        ///             },
+        ///         }));
+        ///     }
+        ///     var fooInstances = Volcengine.Ecs.Instances.Invoke(new()
+        ///     {
+        ///         Ids = fooInstance.Select(__item =&gt; __item.Id).ToList(),
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<InstancesResult> InvokeAsync(InstancesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<InstancesResult>("volcengine:ecs/instances:Instances", args ?? new InstancesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<InstancesResult>("volcengine:ecs/instances:Instances", args ?? new InstancesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of ecs instances
@@ -118,93 +120,95 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
-        /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
-        ///     {
-        ///         var fooZones = Output.Create(Volcengine.Ecs.Zones.InvokeAsync());
-        ///         var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new Volcengine.Vpc.VpcArgs
-        ///         {
-        ///             VpcName = "acc-test-vpc",
-        ///             CidrBlock = "172.16.0.0/16",
-        ///         });
-        ///         var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new Volcengine.Vpc.SubnetArgs
-        ///         {
-        ///             SubnetName = "acc-test-subnet",
-        ///             CidrBlock = "172.16.0.0/24",
-        ///             ZoneId = fooZones.Apply(fooZones =&gt; fooZones.Zones?[0]?.Id),
-        ///             VpcId = fooVpc.Id,
-        ///         });
-        ///         var fooSecurityGroup = new Volcengine.Vpc.SecurityGroup("fooSecurityGroup", new Volcengine.Vpc.SecurityGroupArgs
-        ///         {
-        ///             SecurityGroupName = "acc-test-security-group",
-        ///             VpcId = fooVpc.Id,
-        ///         });
-        ///         var fooImages = Output.Create(Volcengine.Ecs.Images.InvokeAsync(new Volcengine.Ecs.ImagesArgs
-        ///         {
-        ///             OsType = "Linux",
-        ///             Visibility = "public",
-        ///             InstanceTypeId = "ecs.g1.large",
-        ///         }));
-        ///         var fooInstance = new List&lt;Volcengine.Ecs.Instance&gt;();
-        ///         for (var rangeIndex = 0; rangeIndex &lt; 2; rangeIndex++)
-        ///         {
-        ///             var range = new { Value = rangeIndex };
-        ///             fooInstance.Add(new Volcengine.Ecs.Instance($"fooInstance-{range.Value}", new Volcengine.Ecs.InstanceArgs
-        ///             {
-        ///                 InstanceName = $"acc-test-ecs-{range.Value}",
-        ///                 Description = "acc-test",
-        ///                 HostName = "tf-acc-test",
-        ///                 ImageId = fooImages.Apply(fooImages =&gt; fooImages.Images?[0]?.ImageId),
-        ///                 InstanceType = "ecs.g1.large",
-        ///                 Password = "93f0cb0614Aab12",
-        ///                 InstanceChargeType = "PostPaid",
-        ///                 SystemVolumeType = "ESSD_PL0",
-        ///                 SystemVolumeSize = 40,
-        ///                 DataVolumes = 
-        ///                 {
-        ///                     new Volcengine.Ecs.Inputs.InstanceDataVolumeArgs
-        ///                     {
-        ///                         VolumeType = "ESSD_PL0",
-        ///                         Size = 50,
-        ///                         DeleteWithInstance = true,
-        ///                     },
-        ///                 },
-        ///                 SubnetId = fooSubnet.Id,
-        ///                 SecurityGroupIds = 
-        ///                 {
-        ///                     fooSecurityGroup.Id,
-        ///                 },
-        ///                 ProjectName = "default",
-        ///                 Tags = 
-        ///                 {
-        ///                     new Volcengine.Ecs.Inputs.InstanceTagArgs
-        ///                     {
-        ///                         Key = "k1",
-        ///                         Value = "v1",
-        ///                     },
-        ///                 },
-        ///             }));
-        ///         }
-        ///         var fooInstances = Volcengine.Ecs.Instances.Invoke(new Volcengine.Ecs.InstancesInvokeArgs
-        ///         {
-        ///             Ids = fooInstance.Select(__item =&gt; __item.Id).ToList(),
-        ///         });
-        ///     }
+        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
         /// 
-        /// }
+        ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
+        ///     {
+        ///         VpcName = "acc-test-vpc",
+        ///         CidrBlock = "172.16.0.0/16",
+        ///     });
+        /// 
+        ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+        ///     {
+        ///         SubnetName = "acc-test-subnet",
+        ///         CidrBlock = "172.16.0.0/24",
+        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooSecurityGroup = new Volcengine.Vpc.SecurityGroup("fooSecurityGroup", new()
+        ///     {
+        ///         SecurityGroupName = "acc-test-security-group",
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooImages = Volcengine.Ecs.Images.Invoke(new()
+        ///     {
+        ///         OsType = "Linux",
+        ///         Visibility = "public",
+        ///         InstanceTypeId = "ecs.g1.large",
+        ///     });
+        /// 
+        ///     var fooInstance = new List&lt;Volcengine.Ecs.Instance&gt;();
+        ///     for (var rangeIndex = 0; rangeIndex &lt; 2; rangeIndex++)
+        ///     {
+        ///         var range = new { Value = rangeIndex };
+        ///         fooInstance.Add(new Volcengine.Ecs.Instance($"fooInstance-{range.Value}", new()
+        ///         {
+        ///             InstanceName = $"acc-test-ecs-{range.Value}",
+        ///             Description = "acc-test",
+        ///             HostName = "tf-acc-test",
+        ///             ImageId = fooImages.Apply(imagesResult =&gt; imagesResult.Images[0]?.ImageId),
+        ///             InstanceType = "ecs.g1.large",
+        ///             Password = "93f0cb0614Aab12",
+        ///             InstanceChargeType = "PostPaid",
+        ///             SystemVolumeType = "ESSD_PL0",
+        ///             SystemVolumeSize = 40,
+        ///             DataVolumes = new[]
+        ///             {
+        ///                 new Volcengine.Ecs.Inputs.InstanceDataVolumeArgs
+        ///                 {
+        ///                     VolumeType = "ESSD_PL0",
+        ///                     Size = 50,
+        ///                     DeleteWithInstance = true,
+        ///                 },
+        ///             },
+        ///             SubnetId = fooSubnet.Id,
+        ///             SecurityGroupIds = new[]
+        ///             {
+        ///                 fooSecurityGroup.Id,
+        ///             },
+        ///             ProjectName = "default",
+        ///             Tags = new[]
+        ///             {
+        ///                 new Volcengine.Ecs.Inputs.InstanceTagArgs
+        ///                 {
+        ///                     Key = "k1",
+        ///                     Value = "v1",
+        ///                 },
+        ///             },
+        ///         }));
+        ///     }
+        ///     var fooInstances = Volcengine.Ecs.Instances.Invoke(new()
+        ///     {
+        ///         Ids = fooInstance.Select(__item =&gt; __item.Id).ToList(),
+        ///     });
+        /// 
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<InstancesResult> Invoke(InstancesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<InstancesResult>("volcengine:ecs/instances:Instances", args ?? new InstancesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<InstancesResult>("volcengine:ecs/instances:Instances", args ?? new InstancesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class InstancesArgs : Pulumi.InvokeArgs
+    public sealed class InstancesArgs : global::Pulumi.InvokeArgs
     {
         [Input("deploymentSetIds")]
         private List<string>? _deploymentSetIds;
@@ -305,9 +309,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         public InstancesArgs()
         {
         }
+        public static new InstancesArgs Empty => new InstancesArgs();
     }
 
-    public sealed class InstancesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class InstancesInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("deploymentSetIds")]
         private InputList<string>? _deploymentSetIds;
@@ -408,6 +413,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs
         public InstancesInvokeArgs()
         {
         }
+        public static new InstancesInvokeArgs Empty => new InstancesInvokeArgs();
     }
 
 

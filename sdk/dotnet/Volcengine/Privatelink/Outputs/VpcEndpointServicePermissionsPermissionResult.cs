@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Privatelink.Outputs
+namespace Volcengine.Pulumi.Volcengine.Privatelink.Outputs
 {
 
     [OutputType]

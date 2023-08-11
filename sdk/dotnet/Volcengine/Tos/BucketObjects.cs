@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tos
+namespace Volcengine.Pulumi.Volcengine.Tos
 {
     public static class BucketObjects
     {
@@ -19,26 +19,25 @@ namespace Volcengine.PulumiPackage.Volcengine.Tos
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Tos.BucketObjects.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Tos.BucketObjects.InvokeAsync(new Volcengine.Tos.BucketObjectsArgs
-        ///         {
-        ///             BucketName = "test",
-        ///         }));
-        ///     }
+        ///         BucketName = "test",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<BucketObjectsResult> InvokeAsync(BucketObjectsArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<BucketObjectsResult>("volcengine:tos/bucketObjects:BucketObjects", args ?? new BucketObjectsArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<BucketObjectsResult>("volcengine:tos/bucketObjects:BucketObjects", args ?? new BucketObjectsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of tos objects
@@ -47,30 +46,29 @@ namespace Volcengine.PulumiPackage.Volcengine.Tos
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Tos.BucketObjects.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Tos.BucketObjects.InvokeAsync(new Volcengine.Tos.BucketObjectsArgs
-        ///         {
-        ///             BucketName = "test",
-        ///         }));
-        ///     }
+        ///         BucketName = "test",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<BucketObjectsResult> Invoke(BucketObjectsInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<BucketObjectsResult>("volcengine:tos/bucketObjects:BucketObjects", args ?? new BucketObjectsInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<BucketObjectsResult>("volcengine:tos/bucketObjects:BucketObjects", args ?? new BucketObjectsInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class BucketObjectsArgs : Pulumi.InvokeArgs
+    public sealed class BucketObjectsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name the TOS bucket.
@@ -99,9 +97,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Tos
         public BucketObjectsArgs()
         {
         }
+        public static new BucketObjectsArgs Empty => new BucketObjectsArgs();
     }
 
-    public sealed class BucketObjectsInvokeArgs : Pulumi.InvokeArgs
+    public sealed class BucketObjectsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The name the TOS bucket.
@@ -130,6 +129,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tos
         public BucketObjectsInvokeArgs()
         {
         }
+        public static new BucketObjectsInvokeArgs Empty => new BucketObjectsInvokeArgs();
     }
 
 

@@ -5,17 +5,36 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export * from "./dnatEntries";
-export * from "./dnatEntry";
-export * from "./gateway";
-export * from "./gateways";
-export * from "./snatEntries";
-export * from "./snatEntry";
+export { DnatEntriesArgs, DnatEntriesResult, DnatEntriesOutputArgs } from "./dnatEntries";
+export const dnatEntries: typeof import("./dnatEntries").dnatEntries = null as any;
+export const dnatEntriesOutput: typeof import("./dnatEntries").dnatEntriesOutput = null as any;
+utilities.lazyLoad(exports, ["dnatEntries","dnatEntriesOutput"], () => require("./dnatEntries"));
 
-// Import resources to register:
-import { DnatEntry } from "./dnatEntry";
-import { Gateway } from "./gateway";
-import { SnatEntry } from "./snatEntry";
+export { DnatEntryArgs, DnatEntryState } from "./dnatEntry";
+export type DnatEntry = import("./dnatEntry").DnatEntry;
+export const DnatEntry: typeof import("./dnatEntry").DnatEntry = null as any;
+utilities.lazyLoad(exports, ["DnatEntry"], () => require("./dnatEntry"));
+
+export { GatewayArgs, GatewayState } from "./gateway";
+export type Gateway = import("./gateway").Gateway;
+export const Gateway: typeof import("./gateway").Gateway = null as any;
+utilities.lazyLoad(exports, ["Gateway"], () => require("./gateway"));
+
+export { GatewaysArgs, GatewaysResult, GatewaysOutputArgs } from "./gateways";
+export const gateways: typeof import("./gateways").gateways = null as any;
+export const gatewaysOutput: typeof import("./gateways").gatewaysOutput = null as any;
+utilities.lazyLoad(exports, ["gateways","gatewaysOutput"], () => require("./gateways"));
+
+export { SnatEntriesArgs, SnatEntriesResult, SnatEntriesOutputArgs } from "./snatEntries";
+export const snatEntries: typeof import("./snatEntries").snatEntries = null as any;
+export const snatEntriesOutput: typeof import("./snatEntries").snatEntriesOutput = null as any;
+utilities.lazyLoad(exports, ["snatEntries","snatEntriesOutput"], () => require("./snatEntries"));
+
+export { SnatEntryArgs, SnatEntryState } from "./snatEntry";
+export type SnatEntry = import("./snatEntry").SnatEntry;
+export const SnatEntry: typeof import("./snatEntry").SnatEntry = null as any;
+utilities.lazyLoad(exports, ["SnatEntry"], () => require("./snatEntry"));
+
 
 const _module = {
     version: utilities.getVersion(),

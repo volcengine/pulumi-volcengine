@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpn
+namespace Volcengine.Pulumi.Volcengine.Vpn
 {
     public static class CustomerGateways
     {
@@ -19,29 +19,28 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpn
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Vpn.CustomerGateways.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Vpn.CustomerGateways.InvokeAsync(new Volcengine.Vpn.CustomerGatewaysArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "cgw-2d68c4zglycjk58ozfe96norh",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "cgw-2d68c4zglycjk58ozfe96norh",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<CustomerGatewaysResult> InvokeAsync(CustomerGatewaysArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<CustomerGatewaysResult>("volcengine:vpn/customerGateways:CustomerGateways", args ?? new CustomerGatewaysArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<CustomerGatewaysResult>("volcengine:vpn/customerGateways:CustomerGateways", args ?? new CustomerGatewaysArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of customer gateways
@@ -50,33 +49,32 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpn
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var foo = Volcengine.Vpn.CustomerGateways.Invoke(new()
         ///     {
-        ///         var foo = Output.Create(Volcengine.Vpn.CustomerGateways.InvokeAsync(new Volcengine.Vpn.CustomerGatewaysArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "cgw-2d68c4zglycjk58ozfe96norh",
-        ///             },
-        ///         }));
-        ///     }
+        ///             "cgw-2d68c4zglycjk58ozfe96norh",
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<CustomerGatewaysResult> Invoke(CustomerGatewaysInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<CustomerGatewaysResult>("volcengine:vpn/customerGateways:CustomerGateways", args ?? new CustomerGatewaysInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<CustomerGatewaysResult>("volcengine:vpn/customerGateways:CustomerGateways", args ?? new CustomerGatewaysInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class CustomerGatewaysArgs : Pulumi.InvokeArgs
+    public sealed class CustomerGatewaysArgs : global::Pulumi.InvokeArgs
     {
         [Input("customerGatewayNames")]
         private List<string>? _customerGatewayNames;
@@ -123,9 +121,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpn
         public CustomerGatewaysArgs()
         {
         }
+        public static new CustomerGatewaysArgs Empty => new CustomerGatewaysArgs();
     }
 
-    public sealed class CustomerGatewaysInvokeArgs : Pulumi.InvokeArgs
+    public sealed class CustomerGatewaysInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("customerGatewayNames")]
         private InputList<string>? _customerGatewayNames;
@@ -172,6 +171,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpn
         public CustomerGatewaysInvokeArgs()
         {
         }
+        public static new CustomerGatewaysInvokeArgs Empty => new CustomerGatewaysInvokeArgs();
     }
 
 

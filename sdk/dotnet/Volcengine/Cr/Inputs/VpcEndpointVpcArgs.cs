@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cr.Inputs
+namespace Volcengine.Pulumi.Volcengine.Cr.Inputs
 {
 
-    public sealed class VpcEndpointVpcArgs : Pulumi.ResourceArgs
+    public sealed class VpcEndpointVpcArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of the account. When you need to expose the Enterprise Edition instance to a VPC under another primary account, you need to specify the ID of the primary account to which the VPC belongs.
@@ -34,5 +34,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Cr.Inputs
         public VpcEndpointVpcArgs()
         {
         }
+        public static new VpcEndpointVpcArgs Empty => new VpcEndpointVpcArgs();
     }
 }

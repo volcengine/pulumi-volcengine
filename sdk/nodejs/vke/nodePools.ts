@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,19 +14,16 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const vkeTest = pulumi.output(volcengine.vke.NodePools({
+ * const vkeTest = volcengine.vke.NodePools({
  *     clusterIds: ["ccabe57fqtofgrbln3dog"],
  *     name: "demo",
- * }));
+ * });
  * ```
  */
 export function nodePools(args?: NodePoolsArgs, opts?: pulumi.InvokeOptions): Promise<NodePoolsResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:vke/nodePools:NodePools", {
         "autoScalingEnabled": args.autoScalingEnabled,
         "clusterId": args.clusterId,
@@ -134,9 +132,22 @@ export interface NodePoolsResult {
      */
     readonly updateClientToken?: string;
 }
-
+/**
+ * Use this data source to query detailed information of vke node pools
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const vkeTest = volcengine.vke.NodePools({
+ *     clusterIds: ["ccabe57fqtofgrbln3dog"],
+ *     name: "demo",
+ * });
+ * ```
+ */
 export function nodePoolsOutput(args?: NodePoolsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<NodePoolsResult> {
-    return pulumi.output(args).apply(a => nodePools(a, opts))
+    return pulumi.output(args).apply((a: any) => nodePools(a, opts))
 }
 
 /**

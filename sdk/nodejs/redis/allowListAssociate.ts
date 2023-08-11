@@ -10,9 +10,9 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const defaultAllowListAssociate = new volcengine.redis.AllowListAssociate("default", {
+ * const _default = new volcengine.redis.AllowListAssociate("default", {
  *     allowListId: "acl-cnlfc5zsxscu1gg2ajh",
  *     instanceId: "redis-cnlfbzifs7bpvundz",
  * });

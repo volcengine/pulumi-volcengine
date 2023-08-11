@@ -8,29 +8,28 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Cen
+namespace Volcengine.Pulumi.Volcengine.Cen
 {
     /// <summary>
     /// Provides a resource to manage cen
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Cen.Cen("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Cen.Cen("foo", new Volcengine.Cen.CenArgs
-    ///         {
-    ///             CenName = "tf-test-3",
-    ///             Description = "tf-test",
-    ///             ProjectName = "default",
-    ///         });
-    ///     }
+    ///         CenName = "tf-test-3",
+    ///         Description = "tf-test",
+    ///         ProjectName = "default",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -42,7 +41,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:cen/cen:Cen")]
-    public partial class Cen : Pulumi.CustomResource
+    public partial class Cen : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The account ID of the cen.
@@ -149,7 +148,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         }
     }
 
-    public sealed class CenArgs : Pulumi.ResourceArgs
+    public sealed class CenArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the cen.
@@ -184,9 +183,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         public CenArgs()
         {
         }
+        public static new CenArgs Empty => new CenArgs();
     }
 
-    public sealed class CenState : Pulumi.ResourceArgs
+    public sealed class CenState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The account ID of the cen.
@@ -263,5 +263,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Cen
         public CenState()
         {
         }
+        public static new CenState Empty => new CenState();
     }
 }

@@ -8,29 +8,28 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
+namespace Volcengine.Pulumi.Volcengine.Rds_mysql
 {
     /// <summary>
     /// Provides a resource to manage rds mysql database
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var @default = new Volcengine.Rds_mysql.Database("default", new()
     ///     {
-    ///         var @default = new Volcengine.Rds_mysql.Database("default", new Volcengine.Rds_mysql.DatabaseArgs
-    ///         {
-    ///             CharacterSetName = "utf8",
-    ///             DbName = "xxx",
-    ///             InstanceId = "mysql-xxx",
-    ///         });
-    ///     }
+    ///         CharacterSetName = "utf8",
+    ///         DbName = "xxx",
+    ///         InstanceId = "mysql-xxx",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -42,7 +41,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:rds_mysql/database:Database")]
-    public partial class Database : Pulumi.CustomResource
+    public partial class Database : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Database character set. Currently supported character sets include: utf8, utf8mb4, latin1, ascii.
@@ -113,7 +112,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         }
     }
 
-    public sealed class DatabaseArgs : Pulumi.ResourceArgs
+    public sealed class DatabaseArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Database character set. Currently supported character sets include: utf8, utf8mb4, latin1, ascii.
@@ -142,9 +141,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         public DatabaseArgs()
         {
         }
+        public static new DatabaseArgs Empty => new DatabaseArgs();
     }
 
-    public sealed class DatabaseState : Pulumi.ResourceArgs
+    public sealed class DatabaseState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Database character set. Currently supported character sets include: utf8, utf8mb4, latin1, ascii.
@@ -173,5 +173,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds_mysql
         public DatabaseState()
         {
         }
+        public static new DatabaseState Empty => new DatabaseState();
     }
 }

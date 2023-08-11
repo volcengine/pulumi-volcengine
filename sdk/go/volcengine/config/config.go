@@ -14,7 +14,11 @@ func GetAccessKey(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "VOLCENGINE_ACCESS_KEY").(string)
+	var value string
+	if d := getEnvOrDefault(nil, nil, "VOLCENGINE_ACCESS_KEY"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // CUSTOMER ENDPOINTS for Volcengine Provider
@@ -38,7 +42,11 @@ func GetEndpoint(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "VOLCENGINE_ENDPOINT").(string)
+	var value string
+	if d := getEnvOrDefault(nil, nil, "VOLCENGINE_ENDPOINT"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // PROXY URL for Volcengine Provider
@@ -52,7 +60,11 @@ func GetRegion(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "VOLCENGINE_REGION").(string)
+	var value string
+	if d := getEnvOrDefault(nil, nil, "VOLCENGINE_REGION"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // The Secret Key for Volcengine Provider
@@ -61,7 +73,11 @@ func GetSecretKey(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "VOLCENGINE_SECRET_KEY").(string)
+	var value string
+	if d := getEnvOrDefault(nil, nil, "VOLCENGINE_SECRET_KEY"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // The Session Token for Volcengine Provider

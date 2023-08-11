@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke
+namespace Volcengine.Pulumi.Volcengine.Vke
 {
     public static class Nodes
     {
@@ -19,47 +19,46 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vke.Nodes.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vke.Nodes.InvokeAsync(new Volcengine.Vke.NodesArgs
+        ///         ClusterIds = new[]
         ///         {
-        ///             ClusterIds = 
+        ///             "c123",
+        ///             "c456",
+        ///         },
+        ///         Ids = new[]
+        ///         {
+        ///             "ncaa3e5mrsferqkomi190",
+        ///         },
+        ///         Statuses = new[]
+        ///         {
+        ///             new Volcengine.Vke.Inputs.NodesStatusInputArgs
         ///             {
-        ///                 "c123",
-        ///                 "c456",
+        ///                 ConditionsType = "Progressing",
+        ///                 Phase = "Creating",
         ///             },
-        ///             Ids = 
+        ///             new Volcengine.Vke.Inputs.NodesStatusInputArgs
         ///             {
-        ///                 "ncaa3e5mrsferqkomi190",
+        ///                 ConditionsType = "Progressing123",
+        ///                 Phase = "Creating123",
         ///             },
-        ///             Statuses = 
-        ///             {
-        ///                 new Volcengine.Vke.Inputs.NodesStatusArgs
-        ///                 {
-        ///                     ConditionsType = "Progressing",
-        ///                     Phase = "Creating",
-        ///                 },
-        ///                 new Volcengine.Vke.Inputs.NodesStatusArgs
-        ///                 {
-        ///                     ConditionsType = "Progressing123",
-        ///                     Phase = "Creating123",
-        ///                 },
-        ///             },
-        ///         }));
-        ///     }
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<NodesResult> InvokeAsync(NodesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<NodesResult>("volcengine:vke/nodes:Nodes", args ?? new NodesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<NodesResult>("volcengine:vke/nodes:Nodes", args ?? new NodesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of vke nodes
@@ -68,51 +67,50 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vke.Nodes.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vke.Nodes.InvokeAsync(new Volcengine.Vke.NodesArgs
+        ///         ClusterIds = new[]
         ///         {
-        ///             ClusterIds = 
+        ///             "c123",
+        ///             "c456",
+        ///         },
+        ///         Ids = new[]
+        ///         {
+        ///             "ncaa3e5mrsferqkomi190",
+        ///         },
+        ///         Statuses = new[]
+        ///         {
+        ///             new Volcengine.Vke.Inputs.NodesStatusInputArgs
         ///             {
-        ///                 "c123",
-        ///                 "c456",
+        ///                 ConditionsType = "Progressing",
+        ///                 Phase = "Creating",
         ///             },
-        ///             Ids = 
+        ///             new Volcengine.Vke.Inputs.NodesStatusInputArgs
         ///             {
-        ///                 "ncaa3e5mrsferqkomi190",
+        ///                 ConditionsType = "Progressing123",
+        ///                 Phase = "Creating123",
         ///             },
-        ///             Statuses = 
-        ///             {
-        ///                 new Volcengine.Vke.Inputs.NodesStatusArgs
-        ///                 {
-        ///                     ConditionsType = "Progressing",
-        ///                     Phase = "Creating",
-        ///                 },
-        ///                 new Volcengine.Vke.Inputs.NodesStatusArgs
-        ///                 {
-        ///                     ConditionsType = "Progressing123",
-        ///                     Phase = "Creating123",
-        ///                 },
-        ///             },
-        ///         }));
-        ///     }
+        ///         },
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<NodesResult> Invoke(NodesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<NodesResult>("volcengine:vke/nodes:Nodes", args ?? new NodesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<NodesResult>("volcengine:vke/nodes:Nodes", args ?? new NodesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class NodesArgs : Pulumi.InvokeArgs
+    public sealed class NodesArgs : global::Pulumi.InvokeArgs
     {
         [Input("clusterIds")]
         private List<string>? _clusterIds;
@@ -201,9 +199,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         public NodesArgs()
         {
         }
+        public static new NodesArgs Empty => new NodesArgs();
     }
 
-    public sealed class NodesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class NodesInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("clusterIds")]
         private InputList<string>? _clusterIds;
@@ -292,6 +291,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke
         public NodesInvokeArgs()
         {
         }
+        public static new NodesInvokeArgs Empty => new NodesInvokeArgs();
     }
 
 

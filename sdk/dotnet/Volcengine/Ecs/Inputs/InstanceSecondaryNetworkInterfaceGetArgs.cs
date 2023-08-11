@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Ecs.Inputs
+namespace Volcengine.Pulumi.Volcengine.Ecs.Inputs
 {
 
-    public sealed class InstanceSecondaryNetworkInterfaceGetArgs : Pulumi.ResourceArgs
+    public sealed class InstanceSecondaryNetworkInterfaceGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The private ip address of primary networkInterface.
@@ -40,5 +40,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Ecs.Inputs
         public InstanceSecondaryNetworkInterfaceGetArgs()
         {
         }
+        public static new InstanceSecondaryNetworkInterfaceGetArgs Empty => new InstanceSecondaryNetworkInterfaceGetArgs();
     }
 }

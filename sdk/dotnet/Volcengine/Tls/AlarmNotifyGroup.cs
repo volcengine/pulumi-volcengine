@@ -8,50 +8,49 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls
+namespace Volcengine.Pulumi.Volcengine.Tls
 {
     /// <summary>
     /// Provides a resource to manage tls alarm notify group
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Tls.AlarmNotifyGroup("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Tls.AlarmNotifyGroup("foo", new Volcengine.Tls.AlarmNotifyGroupArgs
+    ///         AlarmNotifyGroupName = "tf-test",
+    ///         IamProjectName = "yyy",
+    ///         NotifyTypes = new[]
     ///         {
-    ///             AlarmNotifyGroupName = "tf-test",
-    ///             IamProjectName = "yyy",
-    ///             NotifyTypes = 
+    ///             "Trigger",
+    ///         },
+    ///         Receivers = new[]
+    ///         {
+    ///             new Volcengine.Tls.Inputs.AlarmNotifyGroupReceiverArgs
     ///             {
-    ///                 "Trigger",
-    ///             },
-    ///             Receivers = 
-    ///             {
-    ///                 new Volcengine.Tls.Inputs.AlarmNotifyGroupReceiverArgs
+    ///                 EndTime = "23:59:59",
+    ///                 ReceiverChannels = new[]
     ///                 {
-    ///                     EndTime = "23:59:59",
-    ///                     ReceiverChannels = 
-    ///                     {
-    ///                         "Email",
-    ///                         "Sms",
-    ///                     },
-    ///                     ReceiverNames = 
-    ///                     {
-    ///                         "vke-qs",
-    ///                     },
-    ///                     ReceiverType = "User",
-    ///                     StartTime = "23:00:00",
+    ///                     "Email",
+    ///                     "Sms",
     ///                 },
+    ///                 ReceiverNames = new[]
+    ///                 {
+    ///                     "vke-qs",
+    ///                 },
+    ///                 ReceiverType = "User",
+    ///                 StartTime = "23:00:00",
     ///             },
-    ///         });
-    ///     }
+    ///         },
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -63,7 +62,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:tls/alarmNotifyGroup:AlarmNotifyGroup")]
-    public partial class AlarmNotifyGroup : Pulumi.CustomResource
+    public partial class AlarmNotifyGroup : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The alarm notification group id.
@@ -140,7 +139,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         }
     }
 
-    public sealed class AlarmNotifyGroupArgs : Pulumi.ResourceArgs
+    public sealed class AlarmNotifyGroupArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the notify group.
@@ -181,9 +180,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public AlarmNotifyGroupArgs()
         {
         }
+        public static new AlarmNotifyGroupArgs Empty => new AlarmNotifyGroupArgs();
     }
 
-    public sealed class AlarmNotifyGroupState : Pulumi.ResourceArgs
+    public sealed class AlarmNotifyGroupState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The alarm notification group id.
@@ -230,5 +230,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls
         public AlarmNotifyGroupState()
         {
         }
+        public static new AlarmNotifyGroupState Empty => new AlarmNotifyGroupState();
     }
 }

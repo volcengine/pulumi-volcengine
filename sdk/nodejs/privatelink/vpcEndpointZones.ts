@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultVpcEndpointZones = pulumi.output(volcengine.privatelink.VpcEndpointZones({
+ * const default = volcengine.privatelink.VpcEndpointZones({
  *     endpointId: "ep-2byz5npiuu1hc2dx0efkv****",
- * }));
+ * });
  * ```
  */
 export function vpcEndpointZones(args?: VpcEndpointZonesArgs, opts?: pulumi.InvokeOptions): Promise<VpcEndpointZonesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:privatelink/vpcEndpointZones:VpcEndpointZones", {
         "endpointId": args.endpointId,
         "outputFile": args.outputFile,
@@ -64,9 +62,21 @@ export interface VpcEndpointZonesResult {
      */
     readonly vpcEndpointZones: outputs.privatelink.VpcEndpointZonesVpcEndpointZone[];
 }
-
+/**
+ * Use this data source to query detailed information of privatelink vpc endpoint zones
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.privatelink.VpcEndpointZones({
+ *     endpointId: "ep-2byz5npiuu1hc2dx0efkv****",
+ * });
+ * ```
+ */
 export function vpcEndpointZonesOutput(args?: VpcEndpointZonesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<VpcEndpointZonesResult> {
-    return pulumi.output(args).apply(a => vpcEndpointZones(a, opts))
+    return pulumi.output(args).apply((a: any) => vpcEndpointZones(a, opts))
 }
 
 /**

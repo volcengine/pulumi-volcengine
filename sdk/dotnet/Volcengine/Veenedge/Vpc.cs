@@ -8,28 +8,27 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Veenedge
+namespace Volcengine.Pulumi.Volcengine.Veenedge
 {
     /// <summary>
     /// Provides a resource to manage veenedge vpc
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Veenedge.Vpc("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Veenedge.Vpc("foo", new Volcengine.Veenedge.VpcArgs
-    ///         {
-    ///             ClusterName = "b****t02",
-    ///             VpcName = "tf-test-2",
-    ///         });
-    ///     }
+    ///         ClusterName = "b****t02",
+    ///         VpcName = "tf-test-2",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -43,7 +42,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge
     ///  If you need to create a VPC, you need to apply for permission from the administrator in advance. You can only delete the vpc from web consul
     /// </summary>
     [VolcengineResourceType("volcengine:veenedge/vpc:Vpc")]
-    public partial class Vpc : Pulumi.CustomResource
+    public partial class Vpc : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The cidr info.
@@ -114,7 +113,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge
         }
     }
 
-    public sealed class VpcArgs : Pulumi.ResourceArgs
+    public sealed class VpcArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The cidr info.
@@ -143,9 +142,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge
         public VpcArgs()
         {
         }
+        public static new VpcArgs Empty => new VpcArgs();
     }
 
-    public sealed class VpcState : Pulumi.ResourceArgs
+    public sealed class VpcState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The cidr info.
@@ -174,5 +174,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Veenedge
         public VpcState()
         {
         }
+        public static new VpcState Empty => new VpcState();
     }
 }

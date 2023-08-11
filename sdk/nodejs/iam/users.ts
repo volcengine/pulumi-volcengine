@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,16 +14,13 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultUsers = pulumi.output(volcengine.iam.Users());
+ * const default = volcengine.iam.Users({});
  * ```
  */
 export function users(args?: UsersArgs, opts?: pulumi.InvokeOptions): Promise<UsersResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:iam/users:Users", {
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
@@ -68,9 +66,19 @@ export interface UsersResult {
      */
     readonly users: outputs.iam.UsersUser[];
 }
-
+/**
+ * Use this data source to query detailed information of iam users
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.iam.Users({});
+ * ```
+ */
 export function usersOutput(args?: UsersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<UsersResult> {
-    return pulumi.output(args).apply(a => users(a, opts))
+    return pulumi.output(args).apply((a: any) => users(a, opts))
 }
 
 /**

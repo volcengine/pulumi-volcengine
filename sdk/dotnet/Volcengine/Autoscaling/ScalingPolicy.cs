@@ -8,43 +8,42 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
+namespace Volcengine.Pulumi.Volcengine.Autoscaling
 {
     /// <summary>
     /// Provides a resource to manage scaling policy
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Autoscaling.ScalingPolicy("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Autoscaling.ScalingPolicy("foo", new Volcengine.Autoscaling.ScalingPolicyArgs
-    ///         {
-    ///             Active = false,
-    ///             AdjustmentType = "QuantityChangeInCapacity",
-    ///             AdjustmentValue = 100,
-    ///             AlarmPolicyConditionComparisonOperator = "=",
-    ///             AlarmPolicyConditionMetricName = "Instance_CpuBusy_Avg",
-    ///             AlarmPolicyConditionMetricUnit = "Percent",
-    ///             AlarmPolicyConditionThreshold = "100",
-    ///             AlarmPolicyEvaluationCount = 1,
-    ///             AlarmPolicyRuleType = "Static",
-    ///             Cooldown = 10,
-    ///             ScalingGroupId = "scg-ybqm0b6kcigh9zu9ce6t",
-    ///             ScalingPolicyName = "tf-test",
-    ///             ScalingPolicyType = "Alarm",
-    ///             ScheduledPolicyLaunchTime = "2022-07-09T09:59Z",
-    ///             ScheduledPolicyRecurrenceEndTime = "2022-07-24T09:25Z",
-    ///             ScheduledPolicyRecurrenceType = "Daily",
-    ///             ScheduledPolicyRecurrenceValue = "10",
-    ///         });
-    ///     }
+    ///         Active = false,
+    ///         AdjustmentType = "QuantityChangeInCapacity",
+    ///         AdjustmentValue = 100,
+    ///         AlarmPolicyConditionComparisonOperator = "=",
+    ///         AlarmPolicyConditionMetricName = "Instance_CpuBusy_Avg",
+    ///         AlarmPolicyConditionMetricUnit = "Percent",
+    ///         AlarmPolicyConditionThreshold = "100",
+    ///         AlarmPolicyEvaluationCount = 1,
+    ///         AlarmPolicyRuleType = "Static",
+    ///         Cooldown = 10,
+    ///         ScalingGroupId = "scg-ybqm0b6kcigh9zu9ce6t",
+    ///         ScalingPolicyName = "tf-test",
+    ///         ScalingPolicyType = "Alarm",
+    ///         ScheduledPolicyLaunchTime = "2022-07-09T09:59Z",
+    ///         ScheduledPolicyRecurrenceEndTime = "2022-07-24T09:25Z",
+    ///         ScheduledPolicyRecurrenceType = "Daily",
+    ///         ScheduledPolicyRecurrenceValue = "10",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -56,7 +55,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:autoscaling/scalingPolicy:ScalingPolicy")]
-    public partial class ScalingPolicy : Pulumi.CustomResource
+    public partial class ScalingPolicy : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The active flag of the scaling policy. [Warning] the scaling policy can be active only when the scaling group be active otherwise will fail.
@@ -218,7 +217,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         }
     }
 
-    public sealed class ScalingPolicyArgs : Pulumi.ResourceArgs
+    public sealed class ScalingPolicyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The active flag of the scaling policy. [Warning] the scaling policy can be active only when the scaling group be active otherwise will fail.
@@ -332,9 +331,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         public ScalingPolicyArgs()
         {
         }
+        public static new ScalingPolicyArgs Empty => new ScalingPolicyArgs();
     }
 
-    public sealed class ScalingPolicyState : Pulumi.ResourceArgs
+    public sealed class ScalingPolicyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The active flag of the scaling policy. [Warning] the scaling policy can be active only when the scaling group be active otherwise will fail.
@@ -454,5 +454,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Autoscaling
         public ScalingPolicyState()
         {
         }
+        public static new ScalingPolicyState Empty => new ScalingPolicyState();
     }
 }

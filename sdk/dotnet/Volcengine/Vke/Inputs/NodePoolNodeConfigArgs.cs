@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
+namespace Volcengine.Pulumi.Volcengine.Vke.Inputs
 {
 
-    public sealed class NodePoolNodeConfigArgs : Pulumi.ResourceArgs
+    public sealed class NodePoolNodeConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The AdditionalContainerStorageEnabled of NodeConfig.
@@ -136,5 +136,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
         public NodePoolNodeConfigArgs()
         {
         }
+        public static new NodePoolNodeConfigArgs Empty => new NodePoolNodeConfigArgs();
     }
 }

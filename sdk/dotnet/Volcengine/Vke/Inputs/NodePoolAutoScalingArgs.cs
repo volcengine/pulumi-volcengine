@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
+namespace Volcengine.Pulumi.Volcengine.Vke.Inputs
 {
 
-    public sealed class NodePoolAutoScalingArgs : Pulumi.ResourceArgs
+    public sealed class NodePoolAutoScalingArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The DesiredReplicas of AutoScaling, default 0, range in min_replicas to max_replicas.
@@ -52,5 +52,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
         public NodePoolAutoScalingArgs()
         {
         }
+        public static new NodePoolAutoScalingArgs Empty => new NodePoolAutoScalingArgs();
     }
 }

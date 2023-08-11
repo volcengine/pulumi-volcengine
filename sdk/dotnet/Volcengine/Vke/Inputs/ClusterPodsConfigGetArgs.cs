@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
+namespace Volcengine.Pulumi.Volcengine.Vke.Inputs
 {
 
-    public sealed class ClusterPodsConfigGetArgs : Pulumi.ResourceArgs
+    public sealed class ClusterPodsConfigGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Flannel network configuration.
@@ -34,5 +34,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Vke.Inputs
         public ClusterPodsConfigGetArgs()
         {
         }
+        public static new ClusterPodsConfigGetArgs Empty => new ClusterPodsConfigGetArgs();
     }
 }

@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -13,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const defaultSnatEntries = pulumi.output(volcengine.nat.SnatEntries({
+ * const default = volcengine.nat.SnatEntries({
  *     ids: ["snat-274zl8b1kxzb47fap8u35uune"],
- * }));
+ * });
  * ```
  */
 export function snatEntries(args?: SnatEntriesArgs, opts?: pulumi.InvokeOptions): Promise<SnatEntriesResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:nat/snatEntries:SnatEntries", {
         "eipId": args.eipId,
         "ids": args.ids,
@@ -109,9 +107,21 @@ export interface SnatEntriesResult {
      */
     readonly totalCount: number;
 }
-
+/**
+ * Use this data source to query detailed information of snat entries
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ *
+ * const default = volcengine.nat.SnatEntries({
+ *     ids: ["snat-274zl8b1kxzb47fap8u35uune"],
+ * });
+ * ```
+ */
 export function snatEntriesOutput(args?: SnatEntriesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<SnatEntriesResult> {
-    return pulumi.output(args).apply(a => snatEntries(a, opts))
+    return pulumi.output(args).apply((a: any) => snatEntries(a, opts))
 }
 
 /**

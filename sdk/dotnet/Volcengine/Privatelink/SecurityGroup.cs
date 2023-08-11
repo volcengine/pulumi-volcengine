@@ -8,28 +8,27 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Privatelink
+namespace Volcengine.Pulumi.Volcengine.Privatelink
 {
     /// <summary>
     /// Provides a resource to manage privatelink security group
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Privatelink.SecurityGroup("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Privatelink.SecurityGroup("foo", new Volcengine.Privatelink.SecurityGroupArgs
-    ///         {
-    ///             EndpointId = "ep-2byz5npiuu1hc2dx0efkv7ehc",
-    ///             SecurityGroupId = "sg-2d6722jpp55og58ozfd1sqtdb",
-    ///         });
-    ///     }
+    ///         EndpointId = "ep-2byz5npiuu1hc2dx0efkv7ehc",
+    ///         SecurityGroupId = "sg-2d6722jpp55og58ozfd1sqtdb",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -41,7 +40,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:privatelink/securityGroup:SecurityGroup")]
-    public partial class SecurityGroup : Pulumi.CustomResource
+    public partial class SecurityGroup : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The id of the endpoint.
@@ -100,7 +99,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         }
     }
 
-    public sealed class SecurityGroupArgs : Pulumi.ResourceArgs
+    public sealed class SecurityGroupArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of the endpoint.
@@ -117,9 +116,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         public SecurityGroupArgs()
         {
         }
+        public static new SecurityGroupArgs Empty => new SecurityGroupArgs();
     }
 
-    public sealed class SecurityGroupState : Pulumi.ResourceArgs
+    public sealed class SecurityGroupState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The id of the endpoint.
@@ -136,5 +136,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Privatelink
         public SecurityGroupState()
         {
         }
+        public static new SecurityGroupState Empty => new SecurityGroupState();
     }
 }

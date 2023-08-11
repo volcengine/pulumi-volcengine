@@ -10,7 +10,7 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.iam.LoginProfile("foo", {
  *     loginAllowed: true,
@@ -99,11 +99,13 @@ export class LoginProfile extends pulumi.CustomResource {
                 throw new Error("Missing required property 'userName'");
             }
             resourceInputs["loginAllowed"] = args ? args.loginAllowed : undefined;
-            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["passwordResetRequired"] = args ? args.passwordResetRequired : undefined;
             resourceInputs["userName"] = args ? args.userName : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["password"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(LoginProfile.__pulumiType, name, resourceInputs, opts);
     }
 }

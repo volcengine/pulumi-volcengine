@@ -8,28 +8,27 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Mongodb
+namespace Volcengine.Pulumi.Volcengine.Mongodb
 {
     /// <summary>
     /// Provides a resource to manage mongodb allow list associate
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
-    /// using Volcengine = Volcengine.PulumiPackage.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var foo = new Volcengine.Mongodb.MongoAllowListAssociate("foo", new()
     ///     {
-    ///         var foo = new Volcengine.Mongodb.MongoAllowListAssociate("foo", new Volcengine.Mongodb.MongoAllowListAssociateArgs
-    ///         {
-    ///             AllowListId = "acl-9e307ce4efe843fb9ffd8cb6a6cb225f",
-    ///             InstanceId = "mongo-replica-f16e9298b121",
-    ///         });
-    ///     }
+    ///         AllowListId = "acl-9e307ce4efe843fb9ffd8cb6a6cb225f",
+    ///         InstanceId = "mongo-replica-f16e9298b121",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -41,7 +40,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:mongodb/mongoAllowListAssociate:MongoAllowListAssociate")]
-    public partial class MongoAllowListAssociate : Pulumi.CustomResource
+    public partial class MongoAllowListAssociate : global::Pulumi.CustomResource
     {
         /// <summary>
         /// Id of allow list to associate.
@@ -100,7 +99,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         }
     }
 
-    public sealed class MongoAllowListAssociateArgs : Pulumi.ResourceArgs
+    public sealed class MongoAllowListAssociateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Id of allow list to associate.
@@ -117,9 +116,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         public MongoAllowListAssociateArgs()
         {
         }
+        public static new MongoAllowListAssociateArgs Empty => new MongoAllowListAssociateArgs();
     }
 
-    public sealed class MongoAllowListAssociateState : Pulumi.ResourceArgs
+    public sealed class MongoAllowListAssociateState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Id of allow list to associate.
@@ -136,5 +136,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Mongodb
         public MongoAllowListAssociateState()
         {
         }
+        public static new MongoAllowListAssociateState Empty => new MongoAllowListAssociateState();
     }
 }

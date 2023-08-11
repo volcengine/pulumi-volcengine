@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
+namespace Volcengine.Pulumi.Volcengine.Tls.Inputs
 {
 
-    public sealed class RuleUserDefineRuleAdvancedArgs : Pulumi.ResourceArgs
+    public sealed class RuleUserDefineRuleAdvancedArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Whether to release the log file handle after reading to the end of the log file. The default is false.
@@ -46,5 +46,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Tls.Inputs
         public RuleUserDefineRuleAdvancedArgs()
         {
         }
+        public static new RuleUserDefineRuleAdvancedArgs Empty => new RuleUserDefineRuleAdvancedArgs();
     }
 }

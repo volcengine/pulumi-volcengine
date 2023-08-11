@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Vpc
+namespace Volcengine.Pulumi.Volcengine.Vpc
 {
     public static class RouteTables
     {
@@ -19,31 +19,30 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vpc.RouteTables.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vpc.RouteTables.InvokeAsync(new Volcengine.Vpc.RouteTablesArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "vtb-274e19skkuhog7fap8u4i8ird",
-        ///                 "vtb-2744hslq5b7r47fap8tjomgnj",
-        ///             },
-        ///             RouteTableName = "vpc-fast",
-        ///         }));
-        ///     }
+        ///             "vtb-274e19skkuhog7fap8u4i8ird",
+        ///             "vtb-2744hslq5b7r47fap8tjomgnj",
+        ///         },
+        ///         RouteTableName = "vpc-fast",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<RouteTablesResult> InvokeAsync(RouteTablesArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<RouteTablesResult>("volcengine:vpc/routeTables:RouteTables", args ?? new RouteTablesArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<RouteTablesResult>("volcengine:vpc/routeTables:RouteTables", args ?? new RouteTablesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of route tables
@@ -52,35 +51,34 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var @default = Volcengine.Vpc.RouteTables.Invoke(new()
         ///     {
-        ///         var @default = Output.Create(Volcengine.Vpc.RouteTables.InvokeAsync(new Volcengine.Vpc.RouteTablesArgs
+        ///         Ids = new[]
         ///         {
-        ///             Ids = 
-        ///             {
-        ///                 "vtb-274e19skkuhog7fap8u4i8ird",
-        ///                 "vtb-2744hslq5b7r47fap8tjomgnj",
-        ///             },
-        ///             RouteTableName = "vpc-fast",
-        ///         }));
-        ///     }
+        ///             "vtb-274e19skkuhog7fap8u4i8ird",
+        ///             "vtb-2744hslq5b7r47fap8tjomgnj",
+        ///         },
+        ///         RouteTableName = "vpc-fast",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<RouteTablesResult> Invoke(RouteTablesInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<RouteTablesResult>("volcengine:vpc/routeTables:RouteTables", args ?? new RouteTablesInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<RouteTablesResult>("volcengine:vpc/routeTables:RouteTables", args ?? new RouteTablesInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class RouteTablesArgs : Pulumi.InvokeArgs
+    public sealed class RouteTablesArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private List<string>? _ids;
@@ -121,9 +119,10 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public RouteTablesArgs()
         {
         }
+        public static new RouteTablesArgs Empty => new RouteTablesArgs();
     }
 
-    public sealed class RouteTablesInvokeArgs : Pulumi.InvokeArgs
+    public sealed class RouteTablesInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("ids")]
         private InputList<string>? _ids;
@@ -164,6 +163,7 @@ namespace Volcengine.PulumiPackage.Volcengine.Vpc
         public RouteTablesInvokeArgs()
         {
         }
+        public static new RouteTablesInvokeArgs Empty => new RouteTablesInvokeArgs();
     }
 
 

@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Volcengine.PulumiPackage.Volcengine.Rds.Inputs
+namespace Volcengine.Pulumi.Volcengine.Rds.Inputs
 {
 
-    public sealed class AccountPrivilegeDbPrivilegeArgs : Pulumi.ResourceArgs
+    public sealed class AccountPrivilegeDbPrivilegeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The privilege type of the account.
@@ -34,5 +34,6 @@ namespace Volcengine.PulumiPackage.Volcengine.Rds.Inputs
         public AccountPrivilegeDbPrivilegeArgs()
         {
         }
+        public static new AccountPrivilegeDbPrivilegeArgs Empty => new AccountPrivilegeDbPrivilegeArgs();
     }
 }
