@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage iam login profile
@@ -83,7 +84,7 @@ func NewLoginProfile(ctx *pulumi.Context,
 		"password",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource LoginProfile
 	err := ctx.RegisterResource("volcengine:iam/loginProfile:LoginProfile", name, args, &resource, opts...)
 	if err != nil {

@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of cen route entries
@@ -37,7 +38,7 @@ import (
 //
 // ```
 func RouteEntries(ctx *pulumi.Context, args *RouteEntriesArgs, opts ...pulumi.InvokeOption) (*RouteEntriesResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv RouteEntriesResult
 	err := ctx.Invoke("volcengine:cen/routeEntries:RouteEntries", args, &rv, opts...)
 	if err != nil {

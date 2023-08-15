@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // ## Example Usage
@@ -20,33 +21,95 @@ import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/autoscaling"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := autoscaling.NewScalingConfiguration(ctx, "foo", &autoscaling.ScalingConfigurationArgs{
-//				EipBandwidth:        pulumi.Int(10),
-//				EipBillingType:      pulumi.String("PostPaidByBandwidth"),
-//				EipIsp:              pulumi.String("ChinaMobile"),
-//				HostName:            pulumi.String(""),
-//				HpcClusterId:        pulumi.String(""),
-//				ImageId:             pulumi.String("image-ycgud4t4hxgso0e27bdl"),
-//				InstanceDescription: pulumi.String(""),
-//				InstanceName:        pulumi.String("tf-test"),
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSecurityGroup, err := vpc.NewSecurityGroup(ctx, "fooSecurityGroup", &vpc.SecurityGroupArgs{
+//				SecurityGroupName: pulumi.String("acc-test-security-group"),
+//				VpcId:             fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooImages, err := ecs.Images(ctx, &ecs.ImagesArgs{
+//				OsType:         pulumi.StringRef("Linux"),
+//				Visibility:     pulumi.StringRef("public"),
+//				InstanceTypeId: pulumi.StringRef("ecs.g1.large"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooScalingGroup, err := autoscaling.NewScalingGroup(ctx, "fooScalingGroup", &autoscaling.ScalingGroupArgs{
+//				ScalingGroupName: pulumi.String("acc-test-scaling-group"),
+//				SubnetIds: pulumi.StringArray{
+//					fooSubnet.ID(),
+//				},
+//				MultiAzPolicy:           pulumi.String("BALANCE"),
+//				DesireInstanceNumber:    pulumi.Int(0),
+//				MinInstanceNumber:       pulumi.Int(0),
+//				MaxInstanceNumber:       pulumi.Int(1),
+//				InstanceTerminatePolicy: pulumi.String("OldestInstance"),
+//				DefaultCooldown:         pulumi.Int(10),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = autoscaling.NewScalingConfiguration(ctx, "fooScalingConfiguration", &autoscaling.ScalingConfigurationArgs{
+//				ScalingConfigurationName: pulumi.String("tf-test"),
+//				ScalingGroupId:           fooScalingGroup.ID(),
+//				ImageId:                  *pulumi.String(fooImages.Images[0].ImageId),
 //				InstanceTypes: pulumi.StringArray{
 //					pulumi.String("ecs.g2i.large"),
 //				},
-//				KeyPairName:                 pulumi.String("tf-keypair"),
+//				InstanceName:                pulumi.String("tf-test"),
+//				InstanceDescription:         pulumi.String(""),
+//				HostName:                    pulumi.String(""),
 //				Password:                    pulumi.String(""),
-//				ProjectName:                 pulumi.String("default"),
-//				ScalingConfigurationName:    pulumi.String("tf-test"),
-//				ScalingGroupId:              pulumi.String("scg-ycinx27x25gh9y31p0fy"),
+//				KeyPairName:                 pulumi.String("tf-keypair"),
 //				SecurityEnhancementStrategy: pulumi.String("InActive"),
-//				SecurityGroupIds: pulumi.StringArray{
-//					pulumi.String("sg-2fepz3c793g1s59gp67y21r34"),
+//				Volumes: autoscaling.ScalingConfigurationVolumeArray{
+//					&autoscaling.ScalingConfigurationVolumeArgs{
+//						VolumeType:         pulumi.String("ESSD_PL0"),
+//						Size:               pulumi.Int(20),
+//						DeleteWithInstance: pulumi.Bool(false),
+//					},
+//					&autoscaling.ScalingConfigurationVolumeArgs{
+//						VolumeType:         pulumi.String("ESSD_PL0"),
+//						Size:               pulumi.Int(50),
+//						DeleteWithInstance: pulumi.Bool(true),
+//					},
 //				},
-//				SpotStrategy: pulumi.String("NoSpot"),
+//				SecurityGroupIds: pulumi.StringArray{
+//					fooSecurityGroup.ID(),
+//				},
+//				EipBandwidth:   pulumi.Int(10),
+//				EipIsp:         pulumi.String("ChinaMobile"),
+//				EipBillingType: pulumi.String("PostPaidByBandwidth"),
+//				UserData:       pulumi.String("IyEvYmluL2Jhc2gKZWNobyAidGVzdCI="),
 //				Tags: autoscaling.ScalingConfigurationTagArray{
 //					&autoscaling.ScalingConfigurationTagArgs{
 //						Key:   pulumi.String("tf-key1"),
@@ -57,19 +120,9 @@ import (
 //						Value: pulumi.String("tf-value2"),
 //					},
 //				},
-//				UserData: pulumi.String("IyEvYmluL2Jhc2gKZWNobyAidGVzdCI="),
-//				Volumes: autoscaling.ScalingConfigurationVolumeArray{
-//					&autoscaling.ScalingConfigurationVolumeArgs{
-//						DeleteWithInstance: pulumi.Bool(false),
-//						Size:               pulumi.Int(20),
-//						VolumeType:         pulumi.String("ESSD_PL0"),
-//					},
-//					&autoscaling.ScalingConfigurationVolumeArgs{
-//						DeleteWithInstance: pulumi.Bool(true),
-//						Size:               pulumi.Int(20),
-//						VolumeType:         pulumi.String("ESSD_PL0"),
-//					},
-//				},
+//				ProjectName:  pulumi.String("default"),
+//				HpcClusterId: pulumi.String(""),
+//				SpotStrategy: pulumi.String("NoSpot"),
 //			})
 //			if err != nil {
 //				return err
@@ -177,7 +230,7 @@ func NewScalingConfiguration(ctx *pulumi.Context,
 		"password",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ScalingConfiguration
 	err := ctx.RegisterResource("volcengine:autoscaling/scalingConfiguration:ScalingConfiguration", name, args, &resource, opts...)
 	if err != nil {

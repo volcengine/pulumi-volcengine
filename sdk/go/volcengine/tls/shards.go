@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of tls shards
@@ -37,7 +38,7 @@ import (
 //
 // ```
 func Shards(ctx *pulumi.Context, args *ShardsArgs, opts ...pulumi.InvokeOption) (*ShardsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ShardsResult
 	err := ctx.Invoke("volcengine:tls/shards:Shards", args, &rv, opts...)
 	if err != nil {

@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage tls alarm
@@ -126,7 +127,7 @@ func NewAlarm(ctx *pulumi.Context,
 	if args.RequestCycle == nil {
 		return nil, errors.New("invalid value for required argument 'RequestCycle'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Alarm
 	err := ctx.RegisterResource("volcengine:tls/alarm:Alarm", name, args, &resource, opts...)
 	if err != nil {

@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of cr repositories
@@ -40,7 +41,7 @@ import (
 //
 // ```
 func Repositories(ctx *pulumi.Context, args *RepositoriesArgs, opts ...pulumi.InvokeOption) (*RepositoriesResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv RepositoriesResult
 	err := ctx.Invoke("volcengine:cr/repositories:Repositories", args, &rv, opts...)
 	if err != nil {

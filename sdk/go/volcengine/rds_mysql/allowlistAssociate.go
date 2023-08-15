@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage rds mysql allowlist associate
@@ -70,7 +71,7 @@ func NewAllowlistAssociate(ctx *pulumi.Context,
 	if args.InstanceId == nil {
 		return nil, errors.New("invalid value for required argument 'InstanceId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AllowlistAssociate
 	err := ctx.RegisterResource("volcengine:rds_mysql/allowlistAssociate:AllowlistAssociate", name, args, &resource, opts...)
 	if err != nil {

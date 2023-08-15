@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of vke node pools
@@ -40,7 +41,7 @@ import (
 //
 // ```
 func NodePools(ctx *pulumi.Context, args *NodePoolsArgs, opts ...pulumi.InvokeOption) (*NodePoolsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv NodePoolsResult
 	err := ctx.Invoke("volcengine:vke/nodePools:NodePools", args, &rv, opts...)
 	if err != nil {

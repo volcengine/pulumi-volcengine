@@ -11,16 +11,32 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.nat.Gateway("foo", {
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooGateway = new volcengine.nat.Gateway("fooGateway", {
+ *     vpcId: fooVpc.id,
+ *     subnetId: fooSubnet.id,
+ *     spec: "Small",
+ *     natGatewayName: "acc-test-ng",
+ *     description: "acc-test",
  *     billingType: "PostPaid",
- *     description: "This nat gateway auto-created by terraform. ",
- *     natGatewayName: "tf-auto-demo-1",
  *     projectName: "default",
- *     spec: "Medium",
- *     subnetId: "subnet-im67x70vxla88gbssz1hy1z2",
- *     vpcId: "vpc-im67wjcikxkw8gbssx8ufpj8",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
  * ```
  *

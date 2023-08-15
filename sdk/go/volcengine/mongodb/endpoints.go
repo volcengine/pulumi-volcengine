@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of mongodb endpoints
@@ -37,7 +38,7 @@ import (
 //
 // ```
 func Endpoints(ctx *pulumi.Context, args *EndpointsArgs, opts ...pulumi.InvokeOption) (*EndpointsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv EndpointsResult
 	err := ctx.Invoke("volcengine:mongodb/endpoints:Endpoints", args, &rv, opts...)
 	if err != nil {

@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // ## Example Usage
@@ -106,7 +107,7 @@ func NewBandwidthPackage(ctx *pulumi.Context,
 		args = &BandwidthPackageArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource BandwidthPackage
 	err := ctx.RegisterResource("volcengine:cen/bandwidthPackage:BandwidthPackage", name, args, &resource, opts...)
 	if err != nil {

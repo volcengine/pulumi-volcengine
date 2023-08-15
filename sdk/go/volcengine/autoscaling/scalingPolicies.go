@@ -8,39 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of scaling policies
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/autoscaling"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := autoscaling.ScalingPolicies(ctx, &autoscaling.ScalingPoliciesArgs{
-//				Ids: []string{
-//					"sp-ybruzckr8bgh9zrxw29v",
-//				},
-//				ScalingGroupId: "scg-ybqm0b6kcigh9zu9ce6t",
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func ScalingPolicies(ctx *pulumi.Context, args *ScalingPoliciesArgs, opts ...pulumi.InvokeOption) (*ScalingPoliciesResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ScalingPoliciesResult
 	err := ctx.Invoke("volcengine:autoscaling/scalingPolicies:ScalingPolicies", args, &rv, opts...)
 	if err != nil {

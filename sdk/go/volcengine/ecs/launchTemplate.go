@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // ## Example Usage
@@ -116,7 +117,7 @@ func NewLaunchTemplate(ctx *pulumi.Context,
 	if args.LaunchTemplateName == nil {
 		return nil, errors.New("invalid value for required argument 'LaunchTemplateName'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource LaunchTemplate
 	err := ctx.RegisterResource("volcengine:ecs/launchTemplate:LaunchTemplate", name, args, &resource, opts...)
 	if err != nil {

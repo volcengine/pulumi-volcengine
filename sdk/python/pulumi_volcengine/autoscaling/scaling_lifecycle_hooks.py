@@ -125,14 +125,6 @@ def scaling_lifecycle_hooks(ids: Optional[Sequence[str]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableScalingLifecycleHooksResult:
     """
     Use this data source to query detailed information of scaling lifecycle hooks
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_volcengine as volcengine
-
-    default = volcengine.autoscaling.scaling_lifecycle_hooks(scaling_group_id="scg-ybru8pazhgl8j1di4tyd")
-    ```
 
 
     :param Sequence[str] ids: A list of lifecycle hook ids.
@@ -170,14 +162,6 @@ def scaling_lifecycle_hooks_output(ids: Optional[pulumi.Input[Optional[Sequence[
                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ScalingLifecycleHooksResult]:
     """
     Use this data source to query detailed information of scaling lifecycle hooks
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_volcengine as volcengine
-
-    default = volcengine.autoscaling.scaling_lifecycle_hooks(scaling_group_id="scg-ybru8pazhgl8j1di4tyd")
-    ```
 
 
     :param Sequence[str] ids: A list of lifecycle hook ids.

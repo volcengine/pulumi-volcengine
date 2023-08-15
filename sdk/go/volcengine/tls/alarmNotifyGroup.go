@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage tls alarm notify group
@@ -96,7 +97,7 @@ func NewAlarmNotifyGroup(ctx *pulumi.Context,
 	if args.Receivers == nil {
 		return nil, errors.New("invalid value for required argument 'Receivers'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AlarmNotifyGroup
 	err := ctx.RegisterResource("volcengine:tls/alarmNotifyGroup:AlarmNotifyGroup", name, args, &resource, opts...)
 	if err != nil {

@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage cen
@@ -80,7 +81,7 @@ func NewCen(ctx *pulumi.Context,
 		args = &CenArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Cen
 	err := ctx.RegisterResource("volcengine:cen/cen:Cen", name, args, &resource, opts...)
 	if err != nil {

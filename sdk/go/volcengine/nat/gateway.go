@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // ## Example Usage
@@ -19,20 +20,48 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/nat"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := nat.NewGateway(ctx, "foo", &nat.GatewayArgs{
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = nat.NewGateway(ctx, "fooGateway", &nat.GatewayArgs{
+//				VpcId:          fooVpc.ID(),
+//				SubnetId:       fooSubnet.ID(),
+//				Spec:           pulumi.String("Small"),
+//				NatGatewayName: pulumi.String("acc-test-ng"),
+//				Description:    pulumi.String("acc-test"),
 //				BillingType:    pulumi.String("PostPaid"),
-//				Description:    pulumi.String("This nat gateway auto-created by terraform. "),
-//				NatGatewayName: pulumi.String("tf-auto-demo-1"),
 //				ProjectName:    pulumi.String("default"),
-//				Spec:           pulumi.String("Medium"),
-//				SubnetId:       pulumi.String("subnet-im67x70vxla88gbssz1hy1z2"),
-//				VpcId:          pulumi.String("vpc-im67wjcikxkw8gbssx8ufpj8"),
+//				Tags: nat.GatewayTagArray{
+//					&nat.GatewayTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -88,7 +117,7 @@ func NewGateway(ctx *pulumi.Context,
 	if args.VpcId == nil {
 		return nil, errors.New("invalid value for required argument 'VpcId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Gateway
 	err := ctx.RegisterResource("volcengine:nat/gateway:Gateway", name, args, &resource, opts...)
 	if err != nil {

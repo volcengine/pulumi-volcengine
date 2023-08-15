@@ -131,7 +131,12 @@ def customer_gateways(customer_gateway_names: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.vpn.customer_gateways(ids=["cgw-2d68c4zglycjk58ozfe96norh"])
+    foo_customer_gateway = volcengine.vpn.CustomerGateway("fooCustomerGateway",
+        ip_address="192.0.1.3",
+        customer_gateway_name="acc-test",
+        description="acc-test",
+        project_name="default")
+    foo_customer_gateways = volcengine.vpn.customer_gateways_output(ids=[foo_customer_gateway.id])
     ```
 
 
@@ -176,7 +181,12 @@ def customer_gateways_output(customer_gateway_names: Optional[pulumi.Input[Optio
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.vpn.customer_gateways(ids=["cgw-2d68c4zglycjk58ozfe96norh"])
+    foo_customer_gateway = volcengine.vpn.CustomerGateway("fooCustomerGateway",
+        ip_address="192.0.1.3",
+        customer_gateway_name="acc-test",
+        description="acc-test",
+        project_name="default")
+    foo_customer_gateways = volcengine.vpn.customer_gateways_output(ids=[foo_customer_gateway.id])
     ```
 
 

@@ -8,7 +8,10 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
+
+var _ = internal.GetEnvOrDefault
 
 type AlarmAlarmPeriodDetail struct {
 	// Email alarm period, the unit is minutes, and the value range is 1~1440.

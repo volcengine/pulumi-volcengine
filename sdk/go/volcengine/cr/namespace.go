@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage cr namespace
@@ -74,7 +75,7 @@ func NewNamespace(ctx *pulumi.Context,
 	if args.Registry == nil {
 		return nil, errors.New("invalid value for required argument 'Registry'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Namespace
 	err := ctx.RegisterResource("volcengine:cr/namespace:Namespace", name, args, &resource, opts...)
 	if err != nil {

@@ -18,16 +18,73 @@ namespace Volcengine.Pulumi.Volcengine.Nat
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
+    /// using Volcengine = Pulumi.Volcengine;
     /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var foo = new Volcengine.Nat.SnatEntry("foo", new()
+    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+    /// 
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
-    ///         EipId = "eip-274zlae117nr47fap8tzl24v4",
-    ///         NatGatewayId = "ngw-2743w1f6iqby87fap8tvm9kop",
-    ///         SnatEntryName = "tf-test-up",
-    ///         SubnetId = "subnet-2744i7u9alnnk7fap8tkq8aft",
+    ///         VpcName = "acc-test-vpc",
+    ///         CidrBlock = "172.16.0.0/16",
+    ///     });
+    /// 
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooGateway = new Volcengine.Nat.Gateway("fooGateway", new()
+    ///     {
+    ///         VpcId = fooVpc.Id,
+    ///         SubnetId = fooSubnet.Id,
+    ///         Spec = "Small",
+    ///         NatGatewayName = "acc-test-ng",
+    ///         Description = "acc-test",
+    ///         BillingType = "PostPaid",
+    ///         ProjectName = "default",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Nat.Inputs.GatewayTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var fooAddress = new Volcengine.Eip.Address("fooAddress", new()
+    ///     {
+    ///         Description = "acc-test",
+    ///         Bandwidth = 1,
+    ///         BillingType = "PostPaidByBandwidth",
+    ///         Isp = "BGP",
+    ///     });
+    /// 
+    ///     var fooAssociate = new Volcengine.Eip.Associate("fooAssociate", new()
+    ///     {
+    ///         AllocationId = fooAddress.Id,
+    ///         InstanceId = fooGateway.Id,
+    ///         InstanceType = "Nat",
+    ///     });
+    /// 
+    ///     var fooSnatEntry = new Volcengine.Nat.SnatEntry("fooSnatEntry", new()
+    ///     {
+    ///         SnatEntryName = "acc-test-snat-entry",
+    ///         NatGatewayId = fooGateway.Id,
+    ///         EipId = fooAddress.Id,
+    ///         SourceCidr = "172.16.0.0/24",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             "volcengine_eip_associate.foo",
+    ///         },
     ///     });
     /// 
     /// });
@@ -66,7 +123,7 @@ namespace Volcengine.Pulumi.Volcengine.Nat
         /// The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
         /// </summary>
         [Output("sourceCidr")]
-        public Output<string?> SourceCidr { get; private set; } = null!;
+        public Output<string> SourceCidr { get; private set; } = null!;
 
         /// <summary>
         /// The status of the SNAT entry.
@@ -78,7 +135,7 @@ namespace Volcengine.Pulumi.Volcengine.Nat
         /// The id of the subnet that is required to access the internet. Only one of `subnet_id,source_cidr` can be specified.
         /// </summary>
         [Output("subnetId")]
-        public Output<string?> SubnetId { get; private set; } = null!;
+        public Output<string> SubnetId { get; private set; } = null!;
 
 
         /// <summary>

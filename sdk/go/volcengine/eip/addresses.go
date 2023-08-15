@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of eip addresses
@@ -42,7 +43,7 @@ import (
 //
 // ```
 func Addresses(ctx *pulumi.Context, args *AddressesArgs, opts ...pulumi.InvokeOption) (*AddressesResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv AddressesResult
 	err := ctx.Invoke("volcengine:eip/addresses:Addresses", args, &rv, opts...)
 	if err != nil {

@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of tos buckets
@@ -37,7 +38,7 @@ import (
 //
 // ```
 func Buckets(ctx *pulumi.Context, args *BucketsArgs, opts ...pulumi.InvokeOption) (*BucketsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv BucketsResult
 	err := ctx.Invoke("volcengine:tos/buckets:Buckets", args, &rv, opts...)
 	if err != nil {

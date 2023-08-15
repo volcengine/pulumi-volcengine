@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage cen service route entry
@@ -152,7 +153,7 @@ func NewServiceRouteEntry(ctx *pulumi.Context,
 	if args.ServiceVpcId == nil {
 		return nil, errors.New("invalid value for required argument 'ServiceVpcId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ServiceRouteEntry
 	err := ctx.RegisterResource("volcengine:cen/serviceRouteEntry:ServiceRouteEntry", name, args, &resource, opts...)
 	if err != nil {

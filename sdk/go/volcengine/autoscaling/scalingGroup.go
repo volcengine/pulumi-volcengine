@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage scaling group
@@ -19,34 +20,67 @@ import (
 //
 // import (
 //
+//	"fmt"
+//
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/autoscaling"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := autoscaling.NewScalingGroup(ctx, "foo", &autoscaling.ScalingGroupArgs{
-//				DefaultCooldown:         pulumi.Int(10),
-//				DesireInstanceNumber:    pulumi.Int(0),
-//				InstanceTerminatePolicy: pulumi.String("OldestInstance"),
-//				MaxInstanceNumber:       pulumi.Int(1),
-//				MinInstanceNumber:       pulumi.Int(0),
-//				MultiAzPolicy:           pulumi.String("BALANCE"),
-//				ProjectName:             pulumi.String("default"),
-//				ScalingGroupName:        pulumi.String("test-tf"),
-//				SubnetIds: pulumi.StringArray{
-//					pulumi.String("subnet-2fe79j7c8o5c059gp68ksxr93"),
-//				},
-//				Tags: autoscaling.ScalingGroupTagArray{
-//					&autoscaling.ScalingGroupTagArgs{
-//						Key:   pulumi.String("tf-key1"),
-//						Value: pulumi.String("tf-value1"),
-//					},
-//				},
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
 //			})
 //			if err != nil {
 //				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			var fooScalingGroup []*autoscaling.ScalingGroup
+//			for index := 0; index < 3; index++ {
+//				key0 := index
+//				val0 := index
+//				__res, err := autoscaling.NewScalingGroup(ctx, fmt.Sprintf("fooScalingGroup-%v", key0), &autoscaling.ScalingGroupArgs{
+//					ScalingGroupName: pulumi.String(fmt.Sprintf("acc-test-scaling-group-%v", val0)),
+//					SubnetIds: pulumi.StringArray{
+//						fooSubnet.ID(),
+//					},
+//					MultiAzPolicy:           pulumi.String("BALANCE"),
+//					DesireInstanceNumber:    pulumi.Int(0),
+//					MinInstanceNumber:       pulumi.Int(0),
+//					MaxInstanceNumber:       pulumi.Int(10),
+//					InstanceTerminatePolicy: pulumi.String("OldestInstance"),
+//					DefaultCooldown:         pulumi.Int(30),
+//					Tags: autoscaling.ScalingGroupTagArray{
+//						&autoscaling.ScalingGroupTagArgs{
+//							Key:   pulumi.String("k2"),
+//							Value: pulumi.String("v2"),
+//						},
+//						&autoscaling.ScalingGroupTagArgs{
+//							Key:   pulumi.String("k1"),
+//							Value: pulumi.String("v1"),
+//						},
+//					},
+//				})
+//				if err != nil {
+//					return err
+//				}
+//				fooScalingGroup = append(fooScalingGroup, __res)
 //			}
 //			return nil
 //		})
@@ -129,7 +163,7 @@ func NewScalingGroup(ctx *pulumi.Context,
 	if args.SubnetIds == nil {
 		return nil, errors.New("invalid value for required argument 'SubnetIds'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ScalingGroup
 	err := ctx.RegisterResource("volcengine:autoscaling/scalingGroup:ScalingGroup", name, args, &resource, opts...)
 	if err != nil {

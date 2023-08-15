@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of ecs deployment sets
@@ -17,10 +18,12 @@ import (
 // package main
 //
 // import (
-// "fmt"
 //
-// "github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// "github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
+//
 // )
 // func main() {
 // pulumi.Run(func(ctx *pulumi.Context) error {
@@ -50,7 +53,7 @@ import (
 // }
 // ```
 func DeploymentSets(ctx *pulumi.Context, args *DeploymentSetsArgs, opts ...pulumi.InvokeOption) (*DeploymentSetsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv DeploymentSetsResult
 	err := ctx.Invoke("volcengine:ecs/deploymentSets:DeploymentSets", args, &rv, opts...)
 	if err != nil {

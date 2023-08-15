@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage scaling configuration attachment
@@ -21,13 +22,88 @@ import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/autoscaling"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := autoscaling.NewScalingConfigurationAttachment(ctx, "foo1", &autoscaling.ScalingConfigurationAttachmentArgs{
-//				ScalingConfigurationId: pulumi.String("scc-ybrurj4uw6gh9zecj327"),
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSecurityGroup, err := vpc.NewSecurityGroup(ctx, "fooSecurityGroup", &vpc.SecurityGroupArgs{
+//				SecurityGroupName: pulumi.String("acc-test-security-group"),
+//				VpcId:             fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooImages, err := ecs.Images(ctx, &ecs.ImagesArgs{
+//				OsType:         pulumi.StringRef("Linux"),
+//				Visibility:     pulumi.StringRef("public"),
+//				InstanceTypeId: pulumi.StringRef("ecs.g1.large"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooScalingGroup, err := autoscaling.NewScalingGroup(ctx, "fooScalingGroup", &autoscaling.ScalingGroupArgs{
+//				ScalingGroupName: pulumi.String("acc-test-scaling-group"),
+//				SubnetIds: pulumi.StringArray{
+//					fooSubnet.ID(),
+//				},
+//				MultiAzPolicy:           pulumi.String("BALANCE"),
+//				DesireInstanceNumber:    pulumi.Int(0),
+//				MinInstanceNumber:       pulumi.Int(0),
+//				MaxInstanceNumber:       pulumi.Int(1),
+//				InstanceTerminatePolicy: pulumi.String("OldestInstance"),
+//				DefaultCooldown:         pulumi.Int(10),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooScalingConfiguration, err := autoscaling.NewScalingConfiguration(ctx, "fooScalingConfiguration", &autoscaling.ScalingConfigurationArgs{
+//				ImageId:      *pulumi.String(fooImages.Images[0].ImageId),
+//				InstanceName: pulumi.String("acc-test-instance"),
+//				InstanceTypes: pulumi.StringArray{
+//					pulumi.String("ecs.g1.large"),
+//				},
+//				Password:                 pulumi.String("93f0cb0614Aab12"),
+//				ScalingConfigurationName: pulumi.String("acc-test-scaling-config"),
+//				ScalingGroupId:           fooScalingGroup.ID(),
+//				SecurityGroupIds: pulumi.StringArray{
+//					fooSecurityGroup.ID(),
+//				},
+//				Volumes: autoscaling.ScalingConfigurationVolumeArray{
+//					&autoscaling.ScalingConfigurationVolumeArgs{
+//						VolumeType:         pulumi.String("ESSD_PL0"),
+//						Size:               pulumi.Int(50),
+//						DeleteWithInstance: pulumi.Bool(true),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = autoscaling.NewScalingConfigurationAttachment(ctx, "fooScalingConfigurationAttachment", &autoscaling.ScalingConfigurationAttachmentArgs{
+//				ScalingConfigurationId: fooScalingConfiguration.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -64,7 +140,7 @@ func NewScalingConfigurationAttachment(ctx *pulumi.Context,
 	if args.ScalingConfigurationId == nil {
 		return nil, errors.New("invalid value for required argument 'ScalingConfigurationId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ScalingConfigurationAttachment
 	err := ctx.RegisterResource("volcengine:autoscaling/scalingConfigurationAttachment:ScalingConfigurationAttachment", name, args, &resource, opts...)
 	if err != nil {

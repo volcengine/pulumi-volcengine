@@ -12,10 +12,60 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.vpn.GatewayRoute("foo", {
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: "cn-beijing-a",
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooGateway = new volcengine.vpn.Gateway("fooGateway", {
+ *     vpcId: fooVpc.id,
+ *     subnetId: fooSubnet.id,
+ *     bandwidth: 20,
+ *     vpnGatewayName: "acc-test",
+ *     description: "acc-test",
+ *     period: 2,
+ *     projectName: "default",
+ * });
+ * const fooCustomerGateway = new volcengine.vpn.CustomerGateway("fooCustomerGateway", {
+ *     ipAddress: "192.0.1.3",
+ *     customerGatewayName: "acc-test",
+ *     description: "acc-test",
+ *     projectName: "default",
+ * });
+ * const fooConnection = new volcengine.vpn.Connection("fooConnection", {
+ *     vpnConnectionName: "acc-tf-test",
+ *     description: "acc-tf-test",
+ *     vpnGatewayId: fooGateway.id,
+ *     customerGatewayId: fooCustomerGateway.id,
+ *     localSubnets: ["192.168.0.0/22"],
+ *     remoteSubnets: ["192.161.0.0/20"],
+ *     dpdAction: "none",
+ *     natTraversal: true,
+ *     ikeConfigPsk: "acctest@!3",
+ *     ikeConfigVersion: "ikev1",
+ *     ikeConfigMode: "main",
+ *     ikeConfigEncAlg: "aes",
+ *     ikeConfigAuthAlg: "md5",
+ *     ikeConfigDhGroup: "group2",
+ *     ikeConfigLifetime: 9000,
+ *     ikeConfigLocalId: "acc_test",
+ *     ikeConfigRemoteId: "acc_test",
+ *     ipsecConfigEncAlg: "aes",
+ *     ipsecConfigAuthAlg: "sha256",
+ *     ipsecConfigDhGroup: "group2",
+ *     ipsecConfigLifetime: 9000,
+ *     projectName: "default",
+ *     logEnabled: false,
+ * });
+ * const fooGatewayRoute = new volcengine.vpn.GatewayRoute("fooGatewayRoute", {
+ *     vpnGatewayId: fooGateway.id,
  *     destinationCidrBlock: "192.168.0.0/20",
- *     nextHopId: "vgc-2d5ww3ww2lwcg58ozfe61ppc3",
- *     vpnGatewayId: "vgw-2c012ea9fm5mo2dx0efxg46qi",
+ *     nextHopId: fooConnection.id,
  * });
  * ```
  *

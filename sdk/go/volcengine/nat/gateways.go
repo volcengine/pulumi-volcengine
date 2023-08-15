@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of nat gateways
@@ -18,29 +19,71 @@ import (
 //
 // import (
 //
+//	"fmt"
+//
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/nat"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// fooZones, err := ecs.Zones(ctx, nil, nil);
+// if err != nil {
+// return err
+// }
+// fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+// VpcName: pulumi.String("acc-test-vpc"),
+// CidrBlock: pulumi.String("172.16.0.0/16"),
+// })
+// if err != nil {
+// return err
+// }
+// fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+// SubnetName: pulumi.String("acc-test-subnet"),
+// CidrBlock: pulumi.String("172.16.0.0/24"),
+// ZoneId: *pulumi.String(fooZones.Zones[0].Id),
+// VpcId: fooVpc.ID(),
+// })
+// if err != nil {
+// return err
+// }
+// var fooGateway []*nat.Gateway
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := nat.Gateways(ctx, &nat.GatewaysArgs{
-//				Ids: []string{
-//					"ngw-2743w1f6iqby87fap8tvm9kop",
-//					"ngw-274gwbqe340zk7fap8spkzo7x",
-//				},
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
+//	for index := 0; index < 3; index++ {
+//	    key0 := index
+//	    val0 := index
 //
+// __res, err := nat.NewGateway(ctx, fmt.Sprintf("fooGateway-%v", key0), &nat.GatewayArgs{
+// VpcId: fooVpc.ID(),
+// SubnetId: fooSubnet.ID(),
+// Spec: pulumi.String("Small"),
+// NatGatewayName: pulumi.String(fmt.Sprintf("acc-test-ng-%v", val0)),
+// Description: pulumi.String("acc-test"),
+// BillingType: pulumi.String("PostPaid"),
+// ProjectName: pulumi.String("default"),
+// Tags: nat.GatewayTagArray{
+// &nat.GatewayTagArgs{
+// Key: pulumi.String("k1"),
+// Value: pulumi.String("v1"),
+// },
+// },
+// })
+// if err != nil {
+// return err
+// }
+// fooGateway = append(fooGateway, __res)
+// }
+// _ = nat.GatewaysOutput(ctx, nat.GatewaysOutputArgs{
+// Ids: %!v(PANIC=Format method: fatal: A failure has occurred: unlowered splat expression @ #-functions-volcengine:nat-gateways:Gateways.pp:30,9-25),
+// }, nil);
+// return nil
+// })
+// }
 // ```
 func Gateways(ctx *pulumi.Context, args *GatewaysArgs, opts ...pulumi.InvokeOption) (*GatewaysResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GatewaysResult
 	err := ctx.Invoke("volcengine:nat/gateways:Gateways", args, &rv, opts...)
 	if err != nil {

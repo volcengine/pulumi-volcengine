@@ -18,34 +18,59 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
+    /// using Volcengine = Pulumi.Volcengine;
     /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var foo = new Volcengine.Autoscaling.ScalingGroup("foo", new()
+    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+    /// 
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
-    ///         DefaultCooldown = 10,
-    ///         DesireInstanceNumber = 0,
-    ///         InstanceTerminatePolicy = "OldestInstance",
-    ///         MaxInstanceNumber = 1,
-    ///         MinInstanceNumber = 0,
-    ///         MultiAzPolicy = "BALANCE",
-    ///         ProjectName = "default",
-    ///         ScalingGroupName = "test-tf",
-    ///         SubnetIds = new[]
-    ///         {
-    ///             "subnet-2fe79j7c8o5c059gp68ksxr93",
-    ///         },
-    ///         Tags = new[]
-    ///         {
-    ///             new Volcengine.Autoscaling.Inputs.ScalingGroupTagArgs
-    ///             {
-    ///                 Key = "tf-key1",
-    ///                 Value = "tf-value1",
-    ///             },
-    ///         },
+    ///         VpcName = "acc-test-vpc",
+    ///         CidrBlock = "172.16.0.0/16",
     ///     });
     /// 
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooScalingGroup = new List&lt;Volcengine.Autoscaling.ScalingGroup&gt;();
+    ///     for (var rangeIndex = 0; rangeIndex &lt; 3; rangeIndex++)
+    ///     {
+    ///         var range = new { Value = rangeIndex };
+    ///         fooScalingGroup.Add(new Volcengine.Autoscaling.ScalingGroup($"fooScalingGroup-{range.Value}", new()
+    ///         {
+    ///             ScalingGroupName = $"acc-test-scaling-group-{range.Value}",
+    ///             SubnetIds = new[]
+    ///             {
+    ///                 fooSubnet.Id,
+    ///             },
+    ///             MultiAzPolicy = "BALANCE",
+    ///             DesireInstanceNumber = 0,
+    ///             MinInstanceNumber = 0,
+    ///             MaxInstanceNumber = 10,
+    ///             InstanceTerminatePolicy = "OldestInstance",
+    ///             DefaultCooldown = 30,
+    ///             Tags = new[]
+    ///             {
+    ///                 new Volcengine.Autoscaling.Inputs.ScalingGroupTagArgs
+    ///                 {
+    ///                     Key = "k2",
+    ///                     Value = "v2",
+    ///                 },
+    ///                 new Volcengine.Autoscaling.Inputs.ScalingGroupTagArgs
+    ///                 {
+    ///                     Key = "k1",
+    ///                     Value = "v1",
+    ///                 },
+    ///             },
+    ///         }));
+    ///     }
     /// });
     /// ```
     /// 

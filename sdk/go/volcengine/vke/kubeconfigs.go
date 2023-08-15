@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of vke kubeconfigs
@@ -43,7 +44,7 @@ import (
 //
 // ```
 func Kubeconfigs(ctx *pulumi.Context, args *KubeconfigsArgs, opts ...pulumi.InvokeOption) (*KubeconfigsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv KubeconfigsResult
 	err := ctx.Invoke("volcengine:vke/kubeconfigs:Kubeconfigs", args, &rv, opts...)
 	if err != nil {

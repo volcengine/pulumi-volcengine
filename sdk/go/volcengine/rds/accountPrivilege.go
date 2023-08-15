@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // (Deprecated! Recommend use volcengine_rds_mysql_*** replace) Provides a resource to manage rds account privilege
@@ -104,7 +105,7 @@ func NewAccountPrivilege(ctx *pulumi.Context,
 	if args.InstanceId == nil {
 		return nil, errors.New("invalid value for required argument 'InstanceId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AccountPrivilege
 	err := ctx.RegisterResource("volcengine:rds/accountPrivilege:AccountPrivilege", name, args, &resource, opts...)
 	if err != nil {

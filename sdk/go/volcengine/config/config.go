@@ -6,7 +6,10 @@ package config
 import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
+
+var _ = internal.GetEnvOrDefault
 
 // The Access Key for Volcengine Provider
 func GetAccessKey(ctx *pulumi.Context) string {
@@ -15,7 +18,7 @@ func GetAccessKey(ctx *pulumi.Context) string {
 		return v
 	}
 	var value string
-	if d := getEnvOrDefault(nil, nil, "VOLCENGINE_ACCESS_KEY"); d != nil {
+	if d := internal.GetEnvOrDefault(nil, nil, "VOLCENGINE_ACCESS_KEY"); d != nil {
 		value = d.(string)
 	}
 	return value
@@ -43,7 +46,7 @@ func GetEndpoint(ctx *pulumi.Context) string {
 		return v
 	}
 	var value string
-	if d := getEnvOrDefault(nil, nil, "VOLCENGINE_ENDPOINT"); d != nil {
+	if d := internal.GetEnvOrDefault(nil, nil, "VOLCENGINE_ENDPOINT"); d != nil {
 		value = d.(string)
 	}
 	return value
@@ -61,7 +64,7 @@ func GetRegion(ctx *pulumi.Context) string {
 		return v
 	}
 	var value string
-	if d := getEnvOrDefault(nil, nil, "VOLCENGINE_REGION"); d != nil {
+	if d := internal.GetEnvOrDefault(nil, nil, "VOLCENGINE_REGION"); d != nil {
 		value = d.(string)
 	}
 	return value
@@ -74,7 +77,7 @@ func GetSecretKey(ctx *pulumi.Context) string {
 		return v
 	}
 	var value string
-	if d := getEnvOrDefault(nil, nil, "VOLCENGINE_SECRET_KEY"); d != nil {
+	if d := internal.GetEnvOrDefault(nil, nil, "VOLCENGINE_SECRET_KEY"); d != nil {
 		value = d.(string)
 	}
 	return value

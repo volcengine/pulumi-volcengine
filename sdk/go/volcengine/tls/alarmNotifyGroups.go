@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of tls alarm notify groups
@@ -35,7 +36,7 @@ import (
 //
 // ```
 func AlarmNotifyGroups(ctx *pulumi.Context, args *AlarmNotifyGroupsArgs, opts ...pulumi.InvokeOption) (*AlarmNotifyGroupsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv AlarmNotifyGroupsResult
 	err := ctx.Invoke("volcengine:tls/alarmNotifyGroups:AlarmNotifyGroups", args, &rv, opts...)
 	if err != nil {

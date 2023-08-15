@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of listeners
@@ -103,7 +104,7 @@ import (
 //
 // ```
 func Listeners(ctx *pulumi.Context, args *ListenersArgs, opts ...pulumi.InvokeOption) (*ListenersResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListenersResult
 	err := ctx.Invoke("volcengine:clb/listeners:Listeners", args, &rv, opts...)
 	if err != nil {

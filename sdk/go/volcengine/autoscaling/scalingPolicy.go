@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage scaling policy
@@ -21,29 +22,62 @@ import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/autoscaling"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := autoscaling.NewScalingPolicy(ctx, "foo", &autoscaling.ScalingPolicyArgs{
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooScalingGroup, err := autoscaling.NewScalingGroup(ctx, "fooScalingGroup", &autoscaling.ScalingGroupArgs{
+//				ScalingGroupName: pulumi.String("acc-test-scaling-group"),
+//				SubnetIds: pulumi.StringArray{
+//					fooSubnet.ID(),
+//				},
+//				MultiAzPolicy:           pulumi.String("BALANCE"),
+//				DesireInstanceNumber:    pulumi.Int(0),
+//				MinInstanceNumber:       pulumi.Int(0),
+//				MaxInstanceNumber:       pulumi.Int(1),
+//				InstanceTerminatePolicy: pulumi.String("OldestInstance"),
+//				DefaultCooldown:         pulumi.Int(10),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = autoscaling.NewScalingPolicy(ctx, "fooScalingPolicy", &autoscaling.ScalingPolicyArgs{
 //				Active:                                 pulumi.Bool(false),
+//				ScalingGroupId:                         fooScalingGroup.ID(),
+//				ScalingPolicyName:                      pulumi.String("acc-tf-sg-policy-test"),
+//				ScalingPolicyType:                      pulumi.String("Alarm"),
 //				AdjustmentType:                         pulumi.String("QuantityChangeInCapacity"),
 //				AdjustmentValue:                        pulumi.Int(100),
-//				AlarmPolicyConditionComparisonOperator: pulumi.String("="),
+//				Cooldown:                               pulumi.Int(10),
+//				AlarmPolicyRuleType:                    pulumi.String("Static"),
+//				AlarmPolicyEvaluationCount:             pulumi.Int(1),
 //				AlarmPolicyConditionMetricName:         pulumi.String("Instance_CpuBusy_Avg"),
 //				AlarmPolicyConditionMetricUnit:         pulumi.String("Percent"),
+//				AlarmPolicyConditionComparisonOperator: pulumi.String("="),
 //				AlarmPolicyConditionThreshold:          pulumi.String("100"),
-//				AlarmPolicyEvaluationCount:             pulumi.Int(1),
-//				AlarmPolicyRuleType:                    pulumi.String("Static"),
-//				Cooldown:                               pulumi.Int(10),
-//				ScalingGroupId:                         pulumi.String("scg-ybqm0b6kcigh9zu9ce6t"),
-//				ScalingPolicyName:                      pulumi.String("tf-test"),
-//				ScalingPolicyType:                      pulumi.String("Alarm"),
-//				ScheduledPolicyLaunchTime:              pulumi.String("2022-07-09T09:59Z"),
-//				ScheduledPolicyRecurrenceEndTime:       pulumi.String("2022-07-24T09:25Z"),
-//				ScheduledPolicyRecurrenceType:          pulumi.String("Daily"),
-//				ScheduledPolicyRecurrenceValue:         pulumi.String("10"),
 //			})
 //			if err != nil {
 //				return err
@@ -88,6 +122,8 @@ type ScalingPolicy struct {
 	Cooldown pulumi.IntOutput `pulumi:"cooldown"`
 	// The id of the scaling group to which the scaling policy belongs.
 	ScalingGroupId pulumi.StringOutput `pulumi:"scalingGroupId"`
+	// The id of the scaling policy.
+	ScalingPolicyId pulumi.StringOutput `pulumi:"scalingPolicyId"`
 	// The name of the scaling policy.
 	ScalingPolicyName pulumi.StringOutput `pulumi:"scalingPolicyName"`
 	// The type of scaling policy. Valid values: Scheduled, Recurrence, Alarm.
@@ -133,7 +169,7 @@ func NewScalingPolicy(ctx *pulumi.Context,
 	if args.ScalingPolicyType == nil {
 		return nil, errors.New("invalid value for required argument 'ScalingPolicyType'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ScalingPolicy
 	err := ctx.RegisterResource("volcengine:autoscaling/scalingPolicy:ScalingPolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -178,6 +214,8 @@ type scalingPolicyState struct {
 	Cooldown *int `pulumi:"cooldown"`
 	// The id of the scaling group to which the scaling policy belongs.
 	ScalingGroupId *string `pulumi:"scalingGroupId"`
+	// The id of the scaling policy.
+	ScalingPolicyId *string `pulumi:"scalingPolicyId"`
 	// The name of the scaling policy.
 	ScalingPolicyName *string `pulumi:"scalingPolicyName"`
 	// The type of scaling policy. Valid values: Scheduled, Recurrence, Alarm.
@@ -224,6 +262,8 @@ type ScalingPolicyState struct {
 	Cooldown pulumi.IntPtrInput
 	// The id of the scaling group to which the scaling policy belongs.
 	ScalingGroupId pulumi.StringPtrInput
+	// The id of the scaling policy.
+	ScalingPolicyId pulumi.StringPtrInput
 	// The name of the scaling policy.
 	ScalingPolicyName pulumi.StringPtrInput
 	// The type of scaling policy. Valid values: Scheduled, Recurrence, Alarm.
@@ -480,6 +520,11 @@ func (o ScalingPolicyOutput) Cooldown() pulumi.IntOutput {
 // The id of the scaling group to which the scaling policy belongs.
 func (o ScalingPolicyOutput) ScalingGroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ScalingPolicy) pulumi.StringOutput { return v.ScalingGroupId }).(pulumi.StringOutput)
+}
+
+// The id of the scaling policy.
+func (o ScalingPolicyOutput) ScalingPolicyId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ScalingPolicy) pulumi.StringOutput { return v.ScalingPolicyId }).(pulumi.StringOutput)
 }
 
 // The name of the scaling policy.

@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage vke cluster
@@ -138,7 +139,7 @@ func NewCluster(ctx *pulumi.Context,
 	if args.ServicesConfig == nil {
 		return nil, errors.New("invalid value for required argument 'ServicesConfig'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Cluster
 	err := ctx.RegisterResource("volcengine:vke/cluster:Cluster", name, args, &resource, opts...)
 	if err != nil {

@@ -163,7 +163,52 @@ def snat_entries(eip_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.nat.snat_entries(ids=["snat-274zl8b1kxzb47fap8u35uune"])
+    foo_zones = volcengine.ecs.zones()
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-vpc",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-test-subnet",
+        cidr_block="172.16.0.0/24",
+        zone_id=foo_zones.zones[0].id,
+        vpc_id=foo_vpc.id)
+    foo_gateway = volcengine.nat.Gateway("fooGateway",
+        vpc_id=foo_vpc.id,
+        subnet_id=foo_subnet.id,
+        spec="Small",
+        nat_gateway_name="acc-test-ng",
+        description="acc-test",
+        billing_type="PostPaid",
+        project_name="default",
+        tags=[volcengine.nat.GatewayTagArgs(
+            key="k1",
+            value="v1",
+        )])
+    foo_address = volcengine.eip.Address("fooAddress",
+        description="acc-test",
+        bandwidth=1,
+        billing_type="PostPaidByBandwidth",
+        isp="BGP")
+    foo_associate = volcengine.eip.Associate("fooAssociate",
+        allocation_id=foo_address.id,
+        instance_id=foo_gateway.id,
+        instance_type="Nat")
+    foo1 = volcengine.nat.SnatEntry("foo1",
+        snat_entry_name="acc-test-snat-entry",
+        nat_gateway_id=foo_gateway.id,
+        eip_id=foo_address.id,
+        source_cidr="172.16.0.0/24",
+        opts=pulumi.ResourceOptions(depends_on=["volcengine_eip_associate.foo"]))
+    foo2 = volcengine.nat.SnatEntry("foo2",
+        snat_entry_name="acc-test-snat-entry",
+        nat_gateway_id=foo_gateway.id,
+        eip_id=foo_address.id,
+        source_cidr="172.16.0.0/16",
+        opts=pulumi.ResourceOptions(depends_on=["volcengine_eip_associate.foo"]))
+    foo_snat_entries = volcengine.nat.snat_entries_output(ids=[
+        foo1.id,
+        foo2.id,
+    ])
     ```
 
 
@@ -216,7 +261,52 @@ def snat_entries_output(eip_id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.nat.snat_entries(ids=["snat-274zl8b1kxzb47fap8u35uune"])
+    foo_zones = volcengine.ecs.zones()
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-vpc",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-test-subnet",
+        cidr_block="172.16.0.0/24",
+        zone_id=foo_zones.zones[0].id,
+        vpc_id=foo_vpc.id)
+    foo_gateway = volcengine.nat.Gateway("fooGateway",
+        vpc_id=foo_vpc.id,
+        subnet_id=foo_subnet.id,
+        spec="Small",
+        nat_gateway_name="acc-test-ng",
+        description="acc-test",
+        billing_type="PostPaid",
+        project_name="default",
+        tags=[volcengine.nat.GatewayTagArgs(
+            key="k1",
+            value="v1",
+        )])
+    foo_address = volcengine.eip.Address("fooAddress",
+        description="acc-test",
+        bandwidth=1,
+        billing_type="PostPaidByBandwidth",
+        isp="BGP")
+    foo_associate = volcengine.eip.Associate("fooAssociate",
+        allocation_id=foo_address.id,
+        instance_id=foo_gateway.id,
+        instance_type="Nat")
+    foo1 = volcengine.nat.SnatEntry("foo1",
+        snat_entry_name="acc-test-snat-entry",
+        nat_gateway_id=foo_gateway.id,
+        eip_id=foo_address.id,
+        source_cidr="172.16.0.0/24",
+        opts=pulumi.ResourceOptions(depends_on=["volcengine_eip_associate.foo"]))
+    foo2 = volcengine.nat.SnatEntry("foo2",
+        snat_entry_name="acc-test-snat-entry",
+        nat_gateway_id=foo_gateway.id,
+        eip_id=foo_address.id,
+        source_cidr="172.16.0.0/16",
+        opts=pulumi.ResourceOptions(depends_on=["volcengine_eip_associate.foo"]))
+    foo_snat_entries = volcengine.nat.snat_entries_output(ids=[
+        foo1.id,
+        foo2.id,
+    ])
     ```
 
 

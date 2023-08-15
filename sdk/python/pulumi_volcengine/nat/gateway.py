@@ -337,14 +337,27 @@ class Gateway(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.nat.Gateway("foo",
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_gateway = volcengine.nat.Gateway("fooGateway",
+            vpc_id=foo_vpc.id,
+            subnet_id=foo_subnet.id,
+            spec="Small",
+            nat_gateway_name="acc-test-ng",
+            description="acc-test",
             billing_type="PostPaid",
-            description="This nat gateway auto-created by terraform. ",
-            nat_gateway_name="tf-auto-demo-1",
             project_name="default",
-            spec="Medium",
-            subnet_id="subnet-im67x70vxla88gbssz1hy1z2",
-            vpc_id="vpc-im67wjcikxkw8gbssx8ufpj8")
+            tags=[volcengine.nat.GatewayTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -380,14 +393,27 @@ class Gateway(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.nat.Gateway("foo",
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_gateway = volcengine.nat.Gateway("fooGateway",
+            vpc_id=foo_vpc.id,
+            subnet_id=foo_subnet.id,
+            spec="Small",
+            nat_gateway_name="acc-test-ng",
+            description="acc-test",
             billing_type="PostPaid",
-            description="This nat gateway auto-created by terraform. ",
-            nat_gateway_name="tf-auto-demo-1",
             project_name="default",
-            spec="Medium",
-            subnet_id="subnet-im67x70vxla88gbssz1hy1z2",
-            vpc_id="vpc-im67wjcikxkw8gbssx8ufpj8")
+            tags=[volcengine.nat.GatewayTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import

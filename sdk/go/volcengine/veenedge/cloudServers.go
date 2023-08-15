@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of veenedge cloud servers
@@ -35,7 +36,7 @@ import (
 //
 // ```
 func CloudServers(ctx *pulumi.Context, args *CloudServersArgs, opts ...pulumi.InvokeOption) (*CloudServersResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv CloudServersResult
 	err := ctx.Invoke("volcengine:veenedge/cloudServers:CloudServers", args, &rv, opts...)
 	if err != nil {

@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage snat entry
@@ -20,18 +21,78 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/eip"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/nat"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := nat.NewSnatEntry(ctx, "foo", &nat.SnatEntryArgs{
-//				EipId:         pulumi.String("eip-274zlae117nr47fap8tzl24v4"),
-//				NatGatewayId:  pulumi.String("ngw-2743w1f6iqby87fap8tvm9kop"),
-//				SnatEntryName: pulumi.String("tf-test-up"),
-//				SubnetId:      pulumi.String("subnet-2744i7u9alnnk7fap8tkq8aft"),
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
 //			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooGateway, err := nat.NewGateway(ctx, "fooGateway", &nat.GatewayArgs{
+//				VpcId:          fooVpc.ID(),
+//				SubnetId:       fooSubnet.ID(),
+//				Spec:           pulumi.String("Small"),
+//				NatGatewayName: pulumi.String("acc-test-ng"),
+//				Description:    pulumi.String("acc-test"),
+//				BillingType:    pulumi.String("PostPaid"),
+//				ProjectName:    pulumi.String("default"),
+//				Tags: nat.GatewayTagArray{
+//					&nat.GatewayTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooAddress, err := eip.NewAddress(ctx, "fooAddress", &eip.AddressArgs{
+//				Description: pulumi.String("acc-test"),
+//				Bandwidth:   pulumi.Int(1),
+//				BillingType: pulumi.String("PostPaidByBandwidth"),
+//				Isp:         pulumi.String("BGP"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = eip.NewAssociate(ctx, "fooAssociate", &eip.AssociateArgs{
+//				AllocationId: fooAddress.ID(),
+//				InstanceId:   fooGateway.ID(),
+//				InstanceType: pulumi.String("Nat"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = nat.NewSnatEntry(ctx, "fooSnatEntry", &nat.SnatEntryArgs{
+//				SnatEntryName: pulumi.String("acc-test-snat-entry"),
+//				NatGatewayId:  fooGateway.ID(),
+//				EipId:         fooAddress.ID(),
+//				SourceCidr:    pulumi.String("172.16.0.0/24"),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				pulumi.Resource("volcengine_eip_associate.foo"),
+//			}))
 //			if err != nil {
 //				return err
 //			}
@@ -60,11 +121,11 @@ type SnatEntry struct {
 	// The name of the SNAT entry.
 	SnatEntryName pulumi.StringOutput `pulumi:"snatEntryName"`
 	// The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
-	SourceCidr pulumi.StringPtrOutput `pulumi:"sourceCidr"`
+	SourceCidr pulumi.StringOutput `pulumi:"sourceCidr"`
 	// The status of the SNAT entry.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The id of the subnet that is required to access the internet. Only one of `subnet_id,source_cidr` can be specified.
-	SubnetId pulumi.StringPtrOutput `pulumi:"subnetId"`
+	SubnetId pulumi.StringOutput `pulumi:"subnetId"`
 }
 
 // NewSnatEntry registers a new resource with the given unique name, arguments, and options.
@@ -80,7 +141,7 @@ func NewSnatEntry(ctx *pulumi.Context,
 	if args.NatGatewayId == nil {
 		return nil, errors.New("invalid value for required argument 'NatGatewayId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SnatEntry
 	err := ctx.RegisterResource("volcengine:nat/snatEntry:SnatEntry", name, args, &resource, opts...)
 	if err != nil {
@@ -266,8 +327,8 @@ func (o SnatEntryOutput) SnatEntryName() pulumi.StringOutput {
 }
 
 // The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
-func (o SnatEntryOutput) SourceCidr() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *SnatEntry) pulumi.StringPtrOutput { return v.SourceCidr }).(pulumi.StringPtrOutput)
+func (o SnatEntryOutput) SourceCidr() pulumi.StringOutput {
+	return o.ApplyT(func(v *SnatEntry) pulumi.StringOutput { return v.SourceCidr }).(pulumi.StringOutput)
 }
 
 // The status of the SNAT entry.
@@ -276,8 +337,8 @@ func (o SnatEntryOutput) Status() pulumi.StringOutput {
 }
 
 // The id of the subnet that is required to access the internet. Only one of `subnet_id,source_cidr` can be specified.
-func (o SnatEntryOutput) SubnetId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *SnatEntry) pulumi.StringPtrOutput { return v.SubnetId }).(pulumi.StringPtrOutput)
+func (o SnatEntryOutput) SubnetId() pulumi.StringOutput {
+	return o.ApplyT(func(v *SnatEntry) pulumi.StringOutput { return v.SubnetId }).(pulumi.StringOutput)
 }
 
 type SnatEntryArrayOutput struct{ *pulumi.OutputState }

@@ -187,10 +187,30 @@ def gateways(description: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.nat.gateways(ids=[
-        "ngw-2743w1f6iqby87fap8tvm9kop",
-        "ngw-274gwbqe340zk7fap8spkzo7x",
-    ])
+    foo_zones = volcengine.ecs.zones()
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-vpc",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-test-subnet",
+        cidr_block="172.16.0.0/24",
+        zone_id=foo_zones.zones[0].id,
+        vpc_id=foo_vpc.id)
+    foo_gateway = []
+    for range in [{"value": i} for i in range(0, 3)]:
+        foo_gateway.append(volcengine.nat.Gateway(f"fooGateway-{range['value']}",
+            vpc_id=foo_vpc.id,
+            subnet_id=foo_subnet.id,
+            spec="Small",
+            nat_gateway_name=f"acc-test-ng-{range['value']}",
+            description="acc-test",
+            billing_type="PostPaid",
+            project_name="default",
+            tags=[volcengine.nat.GatewayTagArgs(
+                key="k1",
+                value="v1",
+            )]))
+    foo_gateways = volcengine.nat.gateways_output(ids=[__item.id for __item in foo_gateway])
     ```
 
 
@@ -251,10 +271,30 @@ def gateways_output(description: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.nat.gateways(ids=[
-        "ngw-2743w1f6iqby87fap8tvm9kop",
-        "ngw-274gwbqe340zk7fap8spkzo7x",
-    ])
+    foo_zones = volcengine.ecs.zones()
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-vpc",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-test-subnet",
+        cidr_block="172.16.0.0/24",
+        zone_id=foo_zones.zones[0].id,
+        vpc_id=foo_vpc.id)
+    foo_gateway = []
+    for range in [{"value": i} for i in range(0, 3)]:
+        foo_gateway.append(volcengine.nat.Gateway(f"fooGateway-{range['value']}",
+            vpc_id=foo_vpc.id,
+            subnet_id=foo_subnet.id,
+            spec="Small",
+            nat_gateway_name=f"acc-test-ng-{range['value']}",
+            description="acc-test",
+            billing_type="PostPaid",
+            project_name="default",
+            tags=[volcengine.nat.GatewayTagArgs(
+                key="k1",
+                value="v1",
+            )]))
+    foo_gateways = volcengine.nat.gateways_output(ids=[__item.id for __item in foo_gateway])
     ```
 
 

@@ -21,15 +21,29 @@ namespace Volcengine.Pulumi.Volcengine.Vpn
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var foo = new Volcengine.Vpn.Gateway("foo", new()
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
-    ///         Bandwidth = 20,
-    ///         Description = "tf-test",
-    ///         Period = 2,
+    ///         VpcName = "acc-test-vpc",
+    ///         CidrBlock = "172.16.0.0/16",
+    ///     });
+    /// 
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = "cn-beijing-a",
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooGateway = new Volcengine.Vpn.Gateway("fooGateway", new()
+    ///     {
+    ///         VpcId = fooVpc.Id,
+    ///         SubnetId = fooSubnet.Id,
+    ///         Bandwidth = 50,
+    ///         VpnGatewayName = "acc-test1",
+    ///         Description = "acc-test1",
+    ///         Period = 7,
     ///         ProjectName = "default",
-    ///         SubnetId = "subnet-12bh8g2d7fshs17q7y2nx82uk",
-    ///         VpcId = "vpc-12b31m7z2kc8w17q7y2fih9ts",
-    ///         VpnGatewayName = "tf-test",
     ///     });
     /// 
     /// });

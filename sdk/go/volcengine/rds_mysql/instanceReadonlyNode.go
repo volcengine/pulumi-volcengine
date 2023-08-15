@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage rds mysql instance readonly node
@@ -78,7 +79,7 @@ func NewInstanceReadonlyNode(ctx *pulumi.Context,
 	if args.ZoneId == nil {
 		return nil, errors.New("invalid value for required argument 'ZoneId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource InstanceReadonlyNode
 	err := ctx.RegisterResource("volcengine:rds_mysql/instanceReadonlyNode:InstanceReadonlyNode", name, args, &resource, opts...)
 	if err != nil {

@@ -13,12 +13,37 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.nat.Gateways({
- *     ids: [
- *         "ngw-2743w1f6iqby87fap8tvm9kop",
- *         "ngw-274gwbqe340zk7fap8spkzo7x",
- *     ],
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooGateway: volcengine.nat.Gateway[] = [];
+ * for (const range = {value: 0}; range.value < 3; range.value++) {
+ *     fooGateway.push(new volcengine.nat.Gateway(`fooGateway-${range.value}`, {
+ *         vpcId: fooVpc.id,
+ *         subnetId: fooSubnet.id,
+ *         spec: "Small",
+ *         natGatewayName: `acc-test-ng-${range.value}`,
+ *         description: "acc-test",
+ *         billingType: "PostPaid",
+ *         projectName: "default",
+ *         tags: [{
+ *             key: "k1",
+ *             value: "v1",
+ *         }],
+ *     }));
+ * }
+ * const fooGateways = volcengine.nat.GatewaysOutput({
+ *     ids: fooGateway.map(__item => __item.id),
  * });
  * ```
  */
@@ -132,12 +157,37 @@ export interface GatewaysResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.nat.Gateways({
- *     ids: [
- *         "ngw-2743w1f6iqby87fap8tvm9kop",
- *         "ngw-274gwbqe340zk7fap8spkzo7x",
- *     ],
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooGateway: volcengine.nat.Gateway[] = [];
+ * for (const range = {value: 0}; range.value < 3; range.value++) {
+ *     fooGateway.push(new volcengine.nat.Gateway(`fooGateway-${range.value}`, {
+ *         vpcId: fooVpc.id,
+ *         subnetId: fooSubnet.id,
+ *         spec: "Small",
+ *         natGatewayName: `acc-test-ng-${range.value}`,
+ *         description: "acc-test",
+ *         billingType: "PostPaid",
+ *         projectName: "default",
+ *         tags: [{
+ *             key: "k1",
+ *             value: "v1",
+ *         }],
+ *     }));
+ * }
+ * const fooGateways = volcengine.nat.GatewaysOutput({
+ *     ids: fooGateway.map(__item => __item.id),
  * });
  * ```
  */

@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of images
@@ -39,7 +40,7 @@ import (
 //
 // ```
 func Images(ctx *pulumi.Context, args *ImagesArgs, opts ...pulumi.InvokeOption) (*ImagesResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ImagesResult
 	err := ctx.Invoke("volcengine:ecs/images:Images", args, &rv, opts...)
 	if err != nil {

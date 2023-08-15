@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of ecs launch templates
@@ -53,7 +54,7 @@ import (
 //
 // ```
 func LaunchTemplates(ctx *pulumi.Context, args *LaunchTemplatesArgs, opts ...pulumi.InvokeOption) (*LaunchTemplatesResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LaunchTemplatesResult
 	err := ctx.Invoke("volcengine:ecs/launchTemplates:LaunchTemplates", args, &rv, opts...)
 	if err != nil {

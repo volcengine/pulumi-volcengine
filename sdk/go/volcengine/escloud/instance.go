@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage escloud instance
@@ -98,7 +99,7 @@ func NewInstance(ctx *pulumi.Context,
 	if args.InstanceConfiguration == nil {
 		return nil, errors.New("invalid value for required argument 'InstanceConfiguration'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Instance
 	err := ctx.RegisterResource("volcengine:escloud/instance:Instance", name, args, &resource, opts...)
 	if err != nil {

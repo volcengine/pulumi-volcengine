@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // (Deprecated! Recommend use volcengine_rds_mysql_*** replace) Provides a resource to manage rds parameter template
@@ -95,7 +96,7 @@ func NewParameterTemplate(ctx *pulumi.Context,
 	if args.TemplateParams == nil {
 		return nil, errors.New("invalid value for required argument 'TemplateParams'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ParameterTemplate
 	err := ctx.RegisterResource("volcengine:rds/parameterTemplate:ParameterTemplate", name, args, &resource, opts...)
 	if err != nil {

@@ -13,9 +13,44 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.autoscaling.ScalingGroups({
- *     ids: ["scg-ybru8pazhgl8j1di4tyd"],
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooScalingGroup: volcengine.autoscaling.ScalingGroup[] = [];
+ * for (const range = {value: 0}; range.value < 3; range.value++) {
+ *     fooScalingGroup.push(new volcengine.autoscaling.ScalingGroup(`fooScalingGroup-${range.value}`, {
+ *         scalingGroupName: `acc-test-scaling-group-${range.value}`,
+ *         subnetIds: [fooSubnet.id],
+ *         multiAzPolicy: "BALANCE",
+ *         desireInstanceNumber: 0,
+ *         minInstanceNumber: 0,
+ *         maxInstanceNumber: 10,
+ *         instanceTerminatePolicy: "OldestInstance",
+ *         defaultCooldown: 30,
+ *         tags: [
+ *             {
+ *                 key: "k2",
+ *                 value: "v2",
+ *             },
+ *             {
+ *                 key: "k1",
+ *                 value: "v1",
+ *             },
+ *         ],
+ *     }));
+ * }
+ * const default = volcengine.autoscaling.ScalingGroupsOutput({
+ *     ids: fooScalingGroup.map(__item => __item.id),
  * });
  * ```
  */
@@ -81,9 +116,44 @@ export interface ScalingGroupsResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.autoscaling.ScalingGroups({
- *     ids: ["scg-ybru8pazhgl8j1di4tyd"],
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooScalingGroup: volcengine.autoscaling.ScalingGroup[] = [];
+ * for (const range = {value: 0}; range.value < 3; range.value++) {
+ *     fooScalingGroup.push(new volcengine.autoscaling.ScalingGroup(`fooScalingGroup-${range.value}`, {
+ *         scalingGroupName: `acc-test-scaling-group-${range.value}`,
+ *         subnetIds: [fooSubnet.id],
+ *         multiAzPolicy: "BALANCE",
+ *         desireInstanceNumber: 0,
+ *         minInstanceNumber: 0,
+ *         maxInstanceNumber: 10,
+ *         instanceTerminatePolicy: "OldestInstance",
+ *         defaultCooldown: 30,
+ *         tags: [
+ *             {
+ *                 key: "k2",
+ *                 value: "v2",
+ *             },
+ *             {
+ *                 key: "k1",
+ *                 value: "v1",
+ *             },
+ *         ],
+ *     }));
+ * }
+ * const default = volcengine.autoscaling.ScalingGroupsOutput({
+ *     ids: fooScalingGroup.map(__item => __item.id),
  * });
  * ```
  */

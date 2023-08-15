@@ -220,11 +220,42 @@ class SnatEntry(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.nat.SnatEntry("foo",
-            eip_id="eip-274zlae117nr47fap8tzl24v4",
-            nat_gateway_id="ngw-2743w1f6iqby87fap8tvm9kop",
-            snat_entry_name="tf-test-up",
-            subnet_id="subnet-2744i7u9alnnk7fap8tkq8aft")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_gateway = volcengine.nat.Gateway("fooGateway",
+            vpc_id=foo_vpc.id,
+            subnet_id=foo_subnet.id,
+            spec="Small",
+            nat_gateway_name="acc-test-ng",
+            description="acc-test",
+            billing_type="PostPaid",
+            project_name="default",
+            tags=[volcengine.nat.GatewayTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_address = volcengine.eip.Address("fooAddress",
+            description="acc-test",
+            bandwidth=1,
+            billing_type="PostPaidByBandwidth",
+            isp="BGP")
+        foo_associate = volcengine.eip.Associate("fooAssociate",
+            allocation_id=foo_address.id,
+            instance_id=foo_gateway.id,
+            instance_type="Nat")
+        foo_snat_entry = volcengine.nat.SnatEntry("fooSnatEntry",
+            snat_entry_name="acc-test-snat-entry",
+            nat_gateway_id=foo_gateway.id,
+            eip_id=foo_address.id,
+            source_cidr="172.16.0.0/24",
+            opts=pulumi.ResourceOptions(depends_on=["volcengine_eip_associate.foo"]))
         ```
 
         ## Import
@@ -257,11 +288,42 @@ class SnatEntry(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.nat.SnatEntry("foo",
-            eip_id="eip-274zlae117nr47fap8tzl24v4",
-            nat_gateway_id="ngw-2743w1f6iqby87fap8tvm9kop",
-            snat_entry_name="tf-test-up",
-            subnet_id="subnet-2744i7u9alnnk7fap8tkq8aft")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_gateway = volcengine.nat.Gateway("fooGateway",
+            vpc_id=foo_vpc.id,
+            subnet_id=foo_subnet.id,
+            spec="Small",
+            nat_gateway_name="acc-test-ng",
+            description="acc-test",
+            billing_type="PostPaid",
+            project_name="default",
+            tags=[volcengine.nat.GatewayTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_address = volcengine.eip.Address("fooAddress",
+            description="acc-test",
+            bandwidth=1,
+            billing_type="PostPaidByBandwidth",
+            isp="BGP")
+        foo_associate = volcengine.eip.Associate("fooAssociate",
+            allocation_id=foo_address.id,
+            instance_id=foo_gateway.id,
+            instance_type="Nat")
+        foo_snat_entry = volcengine.nat.SnatEntry("fooSnatEntry",
+            snat_entry_name="acc-test-snat-entry",
+            nat_gateway_id=foo_gateway.id,
+            eip_id=foo_address.id,
+            source_cidr="172.16.0.0/24",
+            opts=pulumi.ResourceOptions(depends_on=["volcengine_eip_associate.foo"]))
         ```
 
         ## Import
@@ -379,7 +441,7 @@ class SnatEntry(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="sourceCidr")
-    def source_cidr(self) -> pulumi.Output[Optional[str]]:
+    def source_cidr(self) -> pulumi.Output[str]:
         """
         The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
         """
@@ -395,7 +457,7 @@ class SnatEntry(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="subnetId")
-    def subnet_id(self) -> pulumi.Output[Optional[str]]:
+    def subnet_id(self) -> pulumi.Output[str]:
         """
         The id of the subnet that is required to access the internet. Only one of `subnet_id,source_cidr` can be specified.
         """

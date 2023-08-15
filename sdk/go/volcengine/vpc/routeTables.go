@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of route tables
@@ -41,7 +42,7 @@ import (
 //
 // ```
 func RouteTables(ctx *pulumi.Context, args *RouteTablesArgs, opts ...pulumi.InvokeOption) (*RouteTablesResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv RouteTablesResult
 	err := ctx.Invoke("volcengine:vpc/routeTables:RouteTables", args, &rv, opts...)
 	if err != nil {

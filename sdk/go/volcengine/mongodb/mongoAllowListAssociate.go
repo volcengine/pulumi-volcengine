@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage mongodb allow list associate
@@ -70,7 +71,7 @@ func NewMongoAllowListAssociate(ctx *pulumi.Context,
 	if args.InstanceId == nil {
 		return nil, errors.New("invalid value for required argument 'InstanceId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource MongoAllowListAssociate
 	err := ctx.RegisterResource("volcengine:mongodb/mongoAllowListAssociate:MongoAllowListAssociate", name, args, &resource, opts...)
 	if err != nil {

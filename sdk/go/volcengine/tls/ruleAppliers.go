@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of tls rule appliers
@@ -37,7 +38,7 @@ import (
 //
 // ```
 func RuleAppliers(ctx *pulumi.Context, args *RuleAppliersArgs, opts ...pulumi.InvokeOption) (*RuleAppliersResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv RuleAppliersResult
 	err := ctx.Invoke("volcengine:tls/ruleAppliers:RuleAppliers", args, &rv, opts...)
 	if err != nil {

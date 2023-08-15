@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // ## Example Usage
@@ -20,38 +21,98 @@ import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ebs"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooVolume, err := ebs.NewVolume(ctx, "fooVolume", &ebs.VolumeArgs{
-//				VolumeName:       pulumi.String("terraform-test"),
-//				ZoneId:           pulumi.String("cn-xx-a"),
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSecurityGroup, err := vpc.NewSecurityGroup(ctx, "fooSecurityGroup", &vpc.SecurityGroupArgs{
+//				SecurityGroupName: pulumi.String("acc-test-security-group"),
+//				VpcId:             fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooImages, err := ecs.Images(ctx, &ecs.ImagesArgs{
+//				OsType:         pulumi.StringRef("Linux"),
+//				Visibility:     pulumi.StringRef("public"),
+//				InstanceTypeId: pulumi.StringRef("ecs.g1.large"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooInstance, err := ecs.NewInstance(ctx, "fooInstance", &ecs.InstanceArgs{
+//				InstanceName:       pulumi.String("acc-test-ecs"),
+//				Description:        pulumi.String("acc-test"),
+//				HostName:           pulumi.String("tf-acc-test"),
+//				ImageId:            *pulumi.String(fooImages.Images[0].ImageId),
+//				InstanceType:       pulumi.String("ecs.g1.large"),
+//				Password:           pulumi.String("93f0cb0614Aab12"),
+//				InstanceChargeType: pulumi.String("PrePaid"),
+//				Period:             pulumi.Int(1),
+//				SystemVolumeType:   pulumi.String("ESSD_PL0"),
+//				SystemVolumeSize:   pulumi.Int(40),
+//				SubnetId:           fooSubnet.ID(),
+//				SecurityGroupIds: pulumi.StringArray{
+//					fooSecurityGroup.ID(),
+//				},
+//				ProjectName: pulumi.String("default"),
+//				Tags: ecs.InstanceTagArray{
+//					&ecs.InstanceTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ebs.NewVolume(ctx, "preVolume", &ebs.VolumeArgs{
+//				VolumeName:         pulumi.String("acc-test-volume"),
+//				VolumeType:         pulumi.String("ESSD_PL0"),
+//				Description:        pulumi.String("acc-test"),
+//				Kind:               pulumi.String("data"),
+//				Size:               pulumi.Int(40),
+//				ZoneId:             *pulumi.String(fooZones.Zones[0].Id),
+//				VolumeChargeType:   pulumi.String("PrePaid"),
+//				InstanceId:         fooInstance.ID(),
+//				ProjectName:        pulumi.String("default"),
+//				DeleteWithInstance: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ebs.NewVolume(ctx, "postVolume", &ebs.VolumeArgs{
+//				VolumeName:       pulumi.String("acc-test-volume"),
 //				VolumeType:       pulumi.String("ESSD_PL0"),
+//				Description:      pulumi.String("acc-test"),
 //				Kind:             pulumi.String("data"),
 //				Size:             pulumi.Int(40),
+//				ZoneId:           *pulumi.String(fooZones.Zones[0].Id),
 //				VolumeChargeType: pulumi.String("PostPaid"),
 //				ProjectName:      pulumi.String("default"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = ebs.NewVolumeAttach(ctx, "fooVolumeAttach", &ebs.VolumeAttachArgs{
-//				VolumeId:   fooVolume.ID(),
-//				InstanceId: pulumi.String("i-yc8pfhbafwijutv6s1fv"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = ebs.NewVolume(ctx, "foo2", &ebs.VolumeArgs{
-//				VolumeName:       pulumi.String("terraform-test3"),
-//				ZoneId:           pulumi.String("cn-beijing-b"),
-//				VolumeType:       pulumi.String("ESSD_PL0"),
-//				Kind:             pulumi.String("data"),
-//				Size:             pulumi.Int(40),
-//				VolumeChargeType: pulumi.String("PrePaid"),
-//				InstanceId:       pulumi.String("i-yc8pfhbafwijutv6s1fv"),
 //			})
 //			if err != nil {
 //				return err
@@ -80,7 +141,10 @@ type Volume struct {
 	DeleteWithInstance pulumi.BoolOutput `pulumi:"deleteWithInstance"`
 	// The description of the Volume.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+	// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
+	// system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
+	// deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
+	// terraform state file and management.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// The kind of Volume, the value is `data`.
 	Kind pulumi.StringOutput `pulumi:"kind"`
@@ -124,7 +188,7 @@ func NewVolume(ctx *pulumi.Context,
 	if args.ZoneId == nil {
 		return nil, errors.New("invalid value for required argument 'ZoneId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Volume
 	err := ctx.RegisterResource("volcengine:ebs/volume:Volume", name, args, &resource, opts...)
 	if err != nil {
@@ -153,7 +217,10 @@ type volumeState struct {
 	DeleteWithInstance *bool `pulumi:"deleteWithInstance"`
 	// The description of the Volume.
 	Description *string `pulumi:"description"`
-	// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+	// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
+	// system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
+	// deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
+	// terraform state file and management.
 	InstanceId *string `pulumi:"instanceId"`
 	// The kind of Volume, the value is `data`.
 	Kind *string `pulumi:"kind"`
@@ -182,7 +249,10 @@ type VolumeState struct {
 	DeleteWithInstance pulumi.BoolPtrInput
 	// The description of the Volume.
 	Description pulumi.StringPtrInput
-	// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+	// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
+	// system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
+	// deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
+	// terraform state file and management.
 	InstanceId pulumi.StringPtrInput
 	// The kind of Volume, the value is `data`.
 	Kind pulumi.StringPtrInput
@@ -213,7 +283,10 @@ type volumeArgs struct {
 	DeleteWithInstance *bool `pulumi:"deleteWithInstance"`
 	// The description of the Volume.
 	Description *string `pulumi:"description"`
-	// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+	// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
+	// system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
+	// deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
+	// terraform state file and management.
 	InstanceId *string `pulumi:"instanceId"`
 	// The kind of Volume, the value is `data`.
 	Kind string `pulumi:"kind"`
@@ -237,7 +310,10 @@ type VolumeArgs struct {
 	DeleteWithInstance pulumi.BoolPtrInput
 	// The description of the Volume.
 	Description pulumi.StringPtrInput
-	// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+	// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
+	// system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
+	// deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
+	// terraform state file and management.
 	InstanceId pulumi.StringPtrInput
 	// The kind of Volume, the value is `data`.
 	Kind pulumi.StringInput
@@ -357,7 +433,10 @@ func (o VolumeOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
+// system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
+// deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
+// terraform state file and management.
 func (o VolumeOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }

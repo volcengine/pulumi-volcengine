@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // ## Example Usage
@@ -91,7 +92,7 @@ func NewAddress(ctx *pulumi.Context,
 	if args.BillingType == nil {
 		return nil, errors.New("invalid value for required argument 'BillingType'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Address
 	err := ctx.RegisterResource("volcengine:eip/address:Address", name, args, &resource, opts...)
 	if err != nil {

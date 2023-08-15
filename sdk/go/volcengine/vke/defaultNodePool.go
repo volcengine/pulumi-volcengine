@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage vke default node pool
@@ -145,7 +146,7 @@ func NewDefaultNodePool(ctx *pulumi.Context,
 	if args.NodeConfig == nil {
 		return nil, errors.New("invalid value for required argument 'NodeConfig'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DefaultNodePool
 	err := ctx.RegisterResource("volcengine:vke/defaultNodePool:DefaultNodePool", name, args, &resource, opts...)
 	if err != nil {
