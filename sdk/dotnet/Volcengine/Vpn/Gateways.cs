@@ -23,14 +23,40 @@ namespace Volcengine.Pulumi.Volcengine.Vpn
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Vpn.Gateways.Invoke(new()
+        ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
+        ///     {
+        ///         VpcName = "acc-test-vpc",
+        ///         CidrBlock = "172.16.0.0/16",
+        ///     });
+        /// 
+        ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+        ///     {
+        ///         SubnetName = "acc-test-subnet",
+        ///         CidrBlock = "172.16.0.0/24",
+        ///         ZoneId = "cn-beijing-a",
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooGateway = new Volcengine.Vpn.Gateway("fooGateway", new()
+        ///     {
+        ///         VpcId = fooVpc.Id,
+        ///         SubnetId = fooSubnet.Id,
+        ///         Bandwidth = 20,
+        ///         VpnGatewayName = "acc-test",
+        ///         Description = "acc-test",
+        ///         Period = 2,
+        ///         ProjectName = "default",
+        ///     });
+        /// 
+        ///     var fooGateways = Volcengine.Vpn.Gateways.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
-        ///             "vgw-2c012ea9fm5mo2dx0efxg46qi",
+        ///             fooGateway.Id,
         ///         },
         ///     });
         /// 
@@ -53,14 +79,40 @@ namespace Volcengine.Pulumi.Volcengine.Vpn
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Vpn.Gateways.Invoke(new()
+        ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
+        ///     {
+        ///         VpcName = "acc-test-vpc",
+        ///         CidrBlock = "172.16.0.0/16",
+        ///     });
+        /// 
+        ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+        ///     {
+        ///         SubnetName = "acc-test-subnet",
+        ///         CidrBlock = "172.16.0.0/24",
+        ///         ZoneId = "cn-beijing-a",
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooGateway = new Volcengine.Vpn.Gateway("fooGateway", new()
+        ///     {
+        ///         VpcId = fooVpc.Id,
+        ///         SubnetId = fooSubnet.Id,
+        ///         Bandwidth = 20,
+        ///         VpnGatewayName = "acc-test",
+        ///         Description = "acc-test",
+        ///         Period = 2,
+        ///         ProjectName = "default",
+        ///     });
+        /// 
+        ///     var fooGateways = Volcengine.Vpn.Gateways.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
-        ///             "vgw-2c012ea9fm5mo2dx0efxg46qi",
+        ///             fooGateway.Id,
         ///         },
         ///     });
         /// 

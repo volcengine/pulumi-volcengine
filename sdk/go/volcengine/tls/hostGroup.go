@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage tls host group
@@ -101,7 +102,7 @@ func NewHostGroup(ctx *pulumi.Context,
 	if args.HostGroupType == nil {
 		return nil, errors.New("invalid value for required argument 'HostGroupType'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource HostGroup
 	err := ctx.RegisterResource("volcengine:tls/hostGroup:HostGroup", name, args, &resource, opts...)
 	if err != nil {

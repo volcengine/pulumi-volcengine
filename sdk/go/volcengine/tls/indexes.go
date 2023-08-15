@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of tls indexes
@@ -39,7 +40,7 @@ import (
 //
 // ```
 func Indexes(ctx *pulumi.Context, args *IndexesArgs, opts ...pulumi.InvokeOption) (*IndexesResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv IndexesResult
 	err := ctx.Invoke("volcengine:tls/indexes:Indexes", args, &rv, opts...)
 	if err != nil {

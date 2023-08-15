@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage redis allow list
@@ -88,7 +89,7 @@ func NewAllowList(ctx *pulumi.Context,
 	if args.AllowLists == nil {
 		return nil, errors.New("invalid value for required argument 'AllowLists'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AllowList
 	err := ctx.RegisterResource("volcengine:redis/allowList:AllowList", name, args, &resource, opts...)
 	if err != nil {

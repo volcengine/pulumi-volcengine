@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of iam roles
@@ -35,7 +36,7 @@ import (
 //
 // ```
 func Roles(ctx *pulumi.Context, args *RolesArgs, opts ...pulumi.InvokeOption) (*RolesResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv RolesResult
 	err := ctx.Invoke("volcengine:iam/roles:Roles", args, &rv, opts...)
 	if err != nil {

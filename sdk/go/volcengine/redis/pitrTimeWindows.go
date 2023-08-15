@@ -8,10 +8,11 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 func PitrTimeWindows(ctx *pulumi.Context, args *PitrTimeWindowsArgs, opts ...pulumi.InvokeOption) (*PitrTimeWindowsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv PitrTimeWindowsResult
 	err := ctx.Invoke("volcengine:redis/pitrTimeWindows:PitrTimeWindows", args, &rv, opts...)
 	if err != nil {

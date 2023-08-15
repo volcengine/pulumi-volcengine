@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage volume attach
@@ -21,14 +22,89 @@ import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ebs"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ebs.NewVolumeAttach(ctx, "foo", &ebs.VolumeAttachArgs{
-//				InstanceId: pulumi.String("i-4ay59ww7dq8dt9c29hd4"),
-//				VolumeId:   pulumi.String("vol-3tzl52wubz3b9fciw7ev"),
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSecurityGroup, err := vpc.NewSecurityGroup(ctx, "fooSecurityGroup", &vpc.SecurityGroupArgs{
+//				SecurityGroupName: pulumi.String("acc-test-security-group"),
+//				VpcId:             fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooImages, err := ecs.Images(ctx, &ecs.ImagesArgs{
+//				OsType:         pulumi.StringRef("Linux"),
+//				Visibility:     pulumi.StringRef("public"),
+//				InstanceTypeId: pulumi.StringRef("ecs.g1.large"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooInstance, err := ecs.NewInstance(ctx, "fooInstance", &ecs.InstanceArgs{
+//				InstanceName:       pulumi.String("acc-test-ecs"),
+//				Description:        pulumi.String("acc-test"),
+//				HostName:           pulumi.String("tf-acc-test"),
+//				ImageId:            *pulumi.String(fooImages.Images[0].ImageId),
+//				InstanceType:       pulumi.String("ecs.g1.large"),
+//				Password:           pulumi.String("93f0cb0614Aab12"),
+//				InstanceChargeType: pulumi.String("PostPaid"),
+//				SystemVolumeType:   pulumi.String("ESSD_PL0"),
+//				SystemVolumeSize:   pulumi.Int(40),
+//				SubnetId:           fooSubnet.ID(),
+//				SecurityGroupIds: pulumi.StringArray{
+//					fooSecurityGroup.ID(),
+//				},
+//				ProjectName: pulumi.String("default"),
+//				Tags: ecs.InstanceTagArray{
+//					&ecs.InstanceTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooVolume, err := ebs.NewVolume(ctx, "fooVolume", &ebs.VolumeArgs{
+//				VolumeName:       pulumi.String("acc-test-volume"),
+//				VolumeType:       pulumi.String("ESSD_PL0"),
+//				Description:      pulumi.String("acc-test"),
+//				Kind:             pulumi.String("data"),
+//				Size:             pulumi.Int(40),
+//				ZoneId:           *pulumi.String(fooZones.Zones[0].Id),
+//				VolumeChargeType: pulumi.String("PostPaid"),
+//				ProjectName:      pulumi.String("default"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ebs.NewVolumeAttach(ctx, "fooVolumeAttach", &ebs.VolumeAttachArgs{
+//				InstanceId: fooInstance.ID(),
+//				VolumeId:   fooVolume.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -53,7 +129,7 @@ type VolumeAttach struct {
 
 	// Creation time of Volume.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// Delete Volume with Attached Instance.
+	// Delete Volume with Attached Instance.It is not recommended to use this field. If used, please ensure that the value of this field is consistent with the value of `deleteWithInstance` in volcengine_volume.
 	DeleteWithInstance pulumi.BoolOutput `pulumi:"deleteWithInstance"`
 	// The Id of Instance.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
@@ -78,7 +154,7 @@ func NewVolumeAttach(ctx *pulumi.Context,
 	if args.VolumeId == nil {
 		return nil, errors.New("invalid value for required argument 'VolumeId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource VolumeAttach
 	err := ctx.RegisterResource("volcengine:ebs/volumeAttach:VolumeAttach", name, args, &resource, opts...)
 	if err != nil {
@@ -103,7 +179,7 @@ func GetVolumeAttach(ctx *pulumi.Context,
 type volumeAttachState struct {
 	// Creation time of Volume.
 	CreatedAt *string `pulumi:"createdAt"`
-	// Delete Volume with Attached Instance.
+	// Delete Volume with Attached Instance.It is not recommended to use this field. If used, please ensure that the value of this field is consistent with the value of `deleteWithInstance` in volcengine_volume.
 	DeleteWithInstance *bool `pulumi:"deleteWithInstance"`
 	// The Id of Instance.
 	InstanceId *string `pulumi:"instanceId"`
@@ -118,7 +194,7 @@ type volumeAttachState struct {
 type VolumeAttachState struct {
 	// Creation time of Volume.
 	CreatedAt pulumi.StringPtrInput
-	// Delete Volume with Attached Instance.
+	// Delete Volume with Attached Instance.It is not recommended to use this field. If used, please ensure that the value of this field is consistent with the value of `deleteWithInstance` in volcengine_volume.
 	DeleteWithInstance pulumi.BoolPtrInput
 	// The Id of Instance.
 	InstanceId pulumi.StringPtrInput
@@ -135,7 +211,7 @@ func (VolumeAttachState) ElementType() reflect.Type {
 }
 
 type volumeAttachArgs struct {
-	// Delete Volume with Attached Instance.
+	// Delete Volume with Attached Instance.It is not recommended to use this field. If used, please ensure that the value of this field is consistent with the value of `deleteWithInstance` in volcengine_volume.
 	DeleteWithInstance *bool `pulumi:"deleteWithInstance"`
 	// The Id of Instance.
 	InstanceId string `pulumi:"instanceId"`
@@ -145,7 +221,7 @@ type volumeAttachArgs struct {
 
 // The set of arguments for constructing a VolumeAttach resource.
 type VolumeAttachArgs struct {
-	// Delete Volume with Attached Instance.
+	// Delete Volume with Attached Instance.It is not recommended to use this field. If used, please ensure that the value of this field is consistent with the value of `deleteWithInstance` in volcengine_volume.
 	DeleteWithInstance pulumi.BoolPtrInput
 	// The Id of Instance.
 	InstanceId pulumi.StringInput
@@ -245,7 +321,7 @@ func (o VolumeAttachOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *VolumeAttach) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// Delete Volume with Attached Instance.
+// Delete Volume with Attached Instance.It is not recommended to use this field. If used, please ensure that the value of this field is consistent with the value of `deleteWithInstance` in volcengine_volume.
 func (o VolumeAttachOutput) DeleteWithInstance() pulumi.BoolOutput {
 	return o.ApplyT(func(v *VolumeAttach) pulumi.BoolOutput { return v.DeleteWithInstance }).(pulumi.BoolOutput)
 }

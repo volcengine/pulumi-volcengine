@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage mongodb allow list
@@ -78,7 +79,7 @@ func NewMongoAllowList(ctx *pulumi.Context,
 	if args.AllowListName == nil {
 		return nil, errors.New("invalid value for required argument 'AllowListName'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource MongoAllowList
 	err := ctx.RegisterResource("volcengine:mongodb/mongoAllowList:MongoAllowList", name, args, &resource, opts...)
 	if err != nil {

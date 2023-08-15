@@ -24,8 +24,8 @@ namespace Volcengine.Pulumi.Volcengine.Vpn
     /// {
     ///     var foo = new Volcengine.Vpn.CustomerGateway("foo", new()
     ///     {
-    ///         CustomerGatewayName = "tf-test",
-    ///         Description = "tf-test",
+    ///         CustomerGatewayName = "acc-test",
+    ///         Description = "acc-test",
     ///         IpAddress = "192.0.1.3",
     ///         ProjectName = "default",
     ///     });

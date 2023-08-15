@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of mongodb ssl states
@@ -37,7 +38,7 @@ import (
 //
 // ```
 func SslStates(ctx *pulumi.Context, args *SslStatesArgs, opts ...pulumi.InvokeOption) (*SslStatesResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv SslStatesResult
 	err := ctx.Invoke("volcengine:mongodb/sslStates:SslStates", args, &rv, opts...)
 	if err != nil {

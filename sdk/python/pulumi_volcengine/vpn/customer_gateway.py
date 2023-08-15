@@ -269,8 +269,8 @@ class CustomerGateway(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.vpn.CustomerGateway("foo",
-            customer_gateway_name="tf-test",
-            description="tf-test",
+            customer_gateway_name="acc-test",
+            description="acc-test",
             ip_address="192.0.1.3",
             project_name="default")
         ```
@@ -305,8 +305,8 @@ class CustomerGateway(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.vpn.CustomerGateway("foo",
-            customer_gateway_name="tf-test",
-            description="tf-test",
+            customer_gateway_name="acc-test",
+            description="acc-test",
             ip_address="192.0.1.3",
             project_name="default")
         ```

@@ -8,36 +8,12 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of scaling lifecycle hooks
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/autoscaling"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := autoscaling.ScalingLifecycleHooks(ctx, &autoscaling.ScalingLifecycleHooksArgs{
-//				ScalingGroupId: "scg-ybru8pazhgl8j1di4tyd",
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func ScalingLifecycleHooks(ctx *pulumi.Context, args *ScalingLifecycleHooksArgs, opts ...pulumi.InvokeOption) (*ScalingLifecycleHooksResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ScalingLifecycleHooksResult
 	err := ctx.Invoke("volcengine:autoscaling/scalingLifecycleHooks:ScalingLifecycleHooks", args, &rv, opts...)
 	if err != nil {

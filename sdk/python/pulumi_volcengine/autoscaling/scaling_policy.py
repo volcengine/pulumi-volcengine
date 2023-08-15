@@ -314,6 +314,7 @@ class _ScalingPolicyState:
                  alarm_policy_rule_type: Optional[pulumi.Input[str]] = None,
                  cooldown: Optional[pulumi.Input[int]] = None,
                  scaling_group_id: Optional[pulumi.Input[str]] = None,
+                 scaling_policy_id: Optional[pulumi.Input[str]] = None,
                  scaling_policy_name: Optional[pulumi.Input[str]] = None,
                  scaling_policy_type: Optional[pulumi.Input[str]] = None,
                  scheduled_policy_launch_time: Optional[pulumi.Input[str]] = None,
@@ -334,6 +335,7 @@ class _ScalingPolicyState:
         :param pulumi.Input[str] alarm_policy_rule_type: The rule type of the alarm policy of the scaling policy. Valid value: Static. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
         :param pulumi.Input[int] cooldown: The cooldown of the scaling policy. Default value is the cooldown time of the scaling group. Value: 0~86400, unit: second, if left blank, the cooling time of the scaling group will be used by default.
         :param pulumi.Input[str] scaling_group_id: The id of the scaling group to which the scaling policy belongs.
+        :param pulumi.Input[str] scaling_policy_id: The id of the scaling policy.
         :param pulumi.Input[str] scaling_policy_name: The name of the scaling policy.
         :param pulumi.Input[str] scaling_policy_type: The type of scaling policy. Valid values: Scheduled, Recurrence, Alarm.
         :param pulumi.Input[str] scheduled_policy_launch_time: The launch time of the scheduled policy of the scaling policy.
@@ -371,6 +373,8 @@ class _ScalingPolicyState:
             pulumi.set(__self__, "cooldown", cooldown)
         if scaling_group_id is not None:
             pulumi.set(__self__, "scaling_group_id", scaling_group_id)
+        if scaling_policy_id is not None:
+            pulumi.set(__self__, "scaling_policy_id", scaling_policy_id)
         if scaling_policy_name is not None:
             pulumi.set(__self__, "scaling_policy_name", scaling_policy_name)
         if scaling_policy_type is not None:
@@ -519,6 +523,18 @@ class _ScalingPolicyState:
         pulumi.set(self, "scaling_group_id", value)
 
     @property
+    @pulumi.getter(name="scalingPolicyId")
+    def scaling_policy_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The id of the scaling policy.
+        """
+        return pulumi.get(self, "scaling_policy_id")
+
+    @scaling_policy_id.setter
+    def scaling_policy_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "scaling_policy_id", value)
+
+    @property
     @pulumi.getter(name="scalingPolicyName")
     def scaling_policy_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -641,24 +657,38 @@ class ScalingPolicy(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.autoscaling.ScalingPolicy("foo",
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_scaling_group = volcengine.autoscaling.ScalingGroup("fooScalingGroup",
+            scaling_group_name="acc-test-scaling-group",
+            subnet_ids=[foo_subnet.id],
+            multi_az_policy="BALANCE",
+            desire_instance_number=0,
+            min_instance_number=0,
+            max_instance_number=1,
+            instance_terminate_policy="OldestInstance",
+            default_cooldown=10)
+        foo_scaling_policy = volcengine.autoscaling.ScalingPolicy("fooScalingPolicy",
             active=False,
+            scaling_group_id=foo_scaling_group.id,
+            scaling_policy_name="acc-tf-sg-policy-test",
+            scaling_policy_type="Alarm",
             adjustment_type="QuantityChangeInCapacity",
             adjustment_value=100,
-            alarm_policy_condition_comparison_operator="=",
+            cooldown=10,
+            alarm_policy_rule_type="Static",
+            alarm_policy_evaluation_count=1,
             alarm_policy_condition_metric_name="Instance_CpuBusy_Avg",
             alarm_policy_condition_metric_unit="Percent",
-            alarm_policy_condition_threshold="100",
-            alarm_policy_evaluation_count=1,
-            alarm_policy_rule_type="Static",
-            cooldown=10,
-            scaling_group_id="scg-ybqm0b6kcigh9zu9ce6t",
-            scaling_policy_name="tf-test",
-            scaling_policy_type="Alarm",
-            scheduled_policy_launch_time="2022-07-09T09:59Z",
-            scheduled_policy_recurrence_end_time="2022-07-24T09:25Z",
-            scheduled_policy_recurrence_type="Daily",
-            scheduled_policy_recurrence_value="10")
+            alarm_policy_condition_comparison_operator="=",
+            alarm_policy_condition_threshold="100")
         ```
 
         ## Import
@@ -710,24 +740,38 @@ class ScalingPolicy(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.autoscaling.ScalingPolicy("foo",
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_scaling_group = volcengine.autoscaling.ScalingGroup("fooScalingGroup",
+            scaling_group_name="acc-test-scaling-group",
+            subnet_ids=[foo_subnet.id],
+            multi_az_policy="BALANCE",
+            desire_instance_number=0,
+            min_instance_number=0,
+            max_instance_number=1,
+            instance_terminate_policy="OldestInstance",
+            default_cooldown=10)
+        foo_scaling_policy = volcengine.autoscaling.ScalingPolicy("fooScalingPolicy",
             active=False,
+            scaling_group_id=foo_scaling_group.id,
+            scaling_policy_name="acc-tf-sg-policy-test",
+            scaling_policy_type="Alarm",
             adjustment_type="QuantityChangeInCapacity",
             adjustment_value=100,
-            alarm_policy_condition_comparison_operator="=",
+            cooldown=10,
+            alarm_policy_rule_type="Static",
+            alarm_policy_evaluation_count=1,
             alarm_policy_condition_metric_name="Instance_CpuBusy_Avg",
             alarm_policy_condition_metric_unit="Percent",
-            alarm_policy_condition_threshold="100",
-            alarm_policy_evaluation_count=1,
-            alarm_policy_rule_type="Static",
-            cooldown=10,
-            scaling_group_id="scg-ybqm0b6kcigh9zu9ce6t",
-            scaling_policy_name="tf-test",
-            scaling_policy_type="Alarm",
-            scheduled_policy_launch_time="2022-07-09T09:59Z",
-            scheduled_policy_recurrence_end_time="2022-07-24T09:25Z",
-            scheduled_policy_recurrence_type="Daily",
-            scheduled_policy_recurrence_value="10")
+            alarm_policy_condition_comparison_operator="=",
+            alarm_policy_condition_threshold="100")
         ```
 
         ## Import
@@ -806,6 +850,7 @@ class ScalingPolicy(pulumi.CustomResource):
             __props__.__dict__["scheduled_policy_recurrence_end_time"] = scheduled_policy_recurrence_end_time
             __props__.__dict__["scheduled_policy_recurrence_type"] = scheduled_policy_recurrence_type
             __props__.__dict__["scheduled_policy_recurrence_value"] = scheduled_policy_recurrence_value
+            __props__.__dict__["scaling_policy_id"] = None
             __props__.__dict__["status"] = None
         super(ScalingPolicy, __self__).__init__(
             'volcengine:autoscaling/scalingPolicy:ScalingPolicy',
@@ -828,6 +873,7 @@ class ScalingPolicy(pulumi.CustomResource):
             alarm_policy_rule_type: Optional[pulumi.Input[str]] = None,
             cooldown: Optional[pulumi.Input[int]] = None,
             scaling_group_id: Optional[pulumi.Input[str]] = None,
+            scaling_policy_id: Optional[pulumi.Input[str]] = None,
             scaling_policy_name: Optional[pulumi.Input[str]] = None,
             scaling_policy_type: Optional[pulumi.Input[str]] = None,
             scheduled_policy_launch_time: Optional[pulumi.Input[str]] = None,
@@ -853,6 +899,7 @@ class ScalingPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] alarm_policy_rule_type: The rule type of the alarm policy of the scaling policy. Valid value: Static. It is only valid and required when the value of `ScalingPolicyType` is `Alarm`.
         :param pulumi.Input[int] cooldown: The cooldown of the scaling policy. Default value is the cooldown time of the scaling group. Value: 0~86400, unit: second, if left blank, the cooling time of the scaling group will be used by default.
         :param pulumi.Input[str] scaling_group_id: The id of the scaling group to which the scaling policy belongs.
+        :param pulumi.Input[str] scaling_policy_id: The id of the scaling policy.
         :param pulumi.Input[str] scaling_policy_name: The name of the scaling policy.
         :param pulumi.Input[str] scaling_policy_type: The type of scaling policy. Valid values: Scheduled, Recurrence, Alarm.
         :param pulumi.Input[str] scheduled_policy_launch_time: The launch time of the scheduled policy of the scaling policy.
@@ -883,6 +930,7 @@ class ScalingPolicy(pulumi.CustomResource):
         __props__.__dict__["alarm_policy_rule_type"] = alarm_policy_rule_type
         __props__.__dict__["cooldown"] = cooldown
         __props__.__dict__["scaling_group_id"] = scaling_group_id
+        __props__.__dict__["scaling_policy_id"] = scaling_policy_id
         __props__.__dict__["scaling_policy_name"] = scaling_policy_name
         __props__.__dict__["scaling_policy_type"] = scaling_policy_type
         __props__.__dict__["scheduled_policy_launch_time"] = scheduled_policy_launch_time
@@ -979,6 +1027,14 @@ class ScalingPolicy(pulumi.CustomResource):
         The id of the scaling group to which the scaling policy belongs.
         """
         return pulumi.get(self, "scaling_group_id")
+
+    @property
+    @pulumi.getter(name="scalingPolicyId")
+    def scaling_policy_id(self) -> pulumi.Output[str]:
+        """
+        The id of the scaling policy.
+        """
+        return pulumi.get(self, "scaling_policy_id")
 
     @property
     @pulumi.getter(name="scalingPolicyName")

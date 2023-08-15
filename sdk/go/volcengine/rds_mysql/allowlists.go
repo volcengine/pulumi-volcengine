@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of rds mysql allowlists
@@ -37,7 +38,7 @@ import (
 //
 // ```
 func Allowlists(ctx *pulumi.Context, args *AllowlistsArgs, opts ...pulumi.InvokeOption) (*AllowlistsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv AllowlistsResult
 	err := ctx.Invoke("volcengine:rds_mysql/allowlists:Allowlists", args, &rv, opts...)
 	if err != nil {

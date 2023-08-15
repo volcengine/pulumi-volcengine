@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // (Deprecated! Recommend use volcengine_rds_mysql_*** replace) Use this data source to query detailed information of rds instances v2
@@ -35,7 +36,7 @@ import (
 //
 // ```
 func RdsInstancesV2(ctx *pulumi.Context, args *RdsInstancesV2Args, opts ...pulumi.InvokeOption) (*RdsInstancesV2Result, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv RdsInstancesV2Result
 	err := ctx.Invoke("volcengine:rds_v2/rdsInstancesV2:RdsInstancesV2", args, &rv, opts...)
 	if err != nil {

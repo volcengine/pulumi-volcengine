@@ -13,9 +13,29 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.vpn.Gateways({
- *     ids: ["vgw-2c012ea9fm5mo2dx0efxg46qi"],
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: "cn-beijing-a",
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooGateway = new volcengine.vpn.Gateway("fooGateway", {
+ *     vpcId: fooVpc.id,
+ *     subnetId: fooSubnet.id,
+ *     bandwidth: 20,
+ *     vpnGatewayName: "acc-test",
+ *     description: "acc-test",
+ *     period: 2,
+ *     projectName: "default",
+ * });
+ * const fooGateways = volcengine.vpn.GatewaysOutput({
+ *     ids: [fooGateway.id],
  * });
  * ```
  */
@@ -114,9 +134,29 @@ export interface GatewaysResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.vpn.Gateways({
- *     ids: ["vgw-2c012ea9fm5mo2dx0efxg46qi"],
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: "cn-beijing-a",
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooGateway = new volcengine.vpn.Gateway("fooGateway", {
+ *     vpcId: fooVpc.id,
+ *     subnetId: fooSubnet.id,
+ *     bandwidth: 20,
+ *     vpnGatewayName: "acc-test",
+ *     description: "acc-test",
+ *     period: 2,
+ *     projectName: "default",
+ * });
+ * const fooGateways = volcengine.vpn.GatewaysOutput({
+ *     ids: [fooGateway.id],
  * });
  * ```
  */

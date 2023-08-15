@@ -13,8 +13,8 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.vpn.CustomerGateway("foo", {
- *     customerGatewayName: "tf-test",
- *     description: "tf-test",
+ *     customerGatewayName: "acc-test",
+ *     description: "acc-test",
  *     ipAddress: "192.0.1.3",
  *     projectName: "default",
  * });

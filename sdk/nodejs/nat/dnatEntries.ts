@@ -13,8 +13,57 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.nat.DnatEntries({});
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooGateway = new volcengine.nat.Gateway("fooGateway", {
+ *     vpcId: fooVpc.id,
+ *     subnetId: fooSubnet.id,
+ *     spec: "Small",
+ *     natGatewayName: "acc-test-ng",
+ *     description: "acc-test",
+ *     billingType: "PostPaid",
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooAddress = new volcengine.eip.Address("fooAddress", {
+ *     description: "acc-test",
+ *     bandwidth: 1,
+ *     billingType: "PostPaidByBandwidth",
+ *     isp: "BGP",
+ * });
+ * const fooAssociate = new volcengine.eip.Associate("fooAssociate", {
+ *     allocationId: fooAddress.id,
+ *     instanceId: fooGateway.id,
+ *     instanceType: "Nat",
+ * });
+ * const fooDnatEntry = new volcengine.nat.DnatEntry("fooDnatEntry", {
+ *     dnatEntryName: "acc-test-dnat-entry",
+ *     externalIp: fooAddress.eipAddress,
+ *     externalPort: "80",
+ *     internalIp: "172.16.0.10",
+ *     internalPort: "80",
+ *     natGatewayId: fooGateway.id,
+ *     protocol: "tcp",
+ * }, {
+ *     dependsOn: [fooAssociate],
+ * });
+ * const fooDnatEntries = volcengine.nat.DnatEntriesOutput({
+ *     ids: [fooDnatEntry.id],
+ * });
  * ```
  */
 export function dnatEntries(args?: DnatEntriesArgs, opts?: pulumi.InvokeOptions): Promise<DnatEntriesResult> {
@@ -130,8 +179,57 @@ export interface DnatEntriesResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.nat.DnatEntries({});
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooGateway = new volcengine.nat.Gateway("fooGateway", {
+ *     vpcId: fooVpc.id,
+ *     subnetId: fooSubnet.id,
+ *     spec: "Small",
+ *     natGatewayName: "acc-test-ng",
+ *     description: "acc-test",
+ *     billingType: "PostPaid",
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooAddress = new volcengine.eip.Address("fooAddress", {
+ *     description: "acc-test",
+ *     bandwidth: 1,
+ *     billingType: "PostPaidByBandwidth",
+ *     isp: "BGP",
+ * });
+ * const fooAssociate = new volcengine.eip.Associate("fooAssociate", {
+ *     allocationId: fooAddress.id,
+ *     instanceId: fooGateway.id,
+ *     instanceType: "Nat",
+ * });
+ * const fooDnatEntry = new volcengine.nat.DnatEntry("fooDnatEntry", {
+ *     dnatEntryName: "acc-test-dnat-entry",
+ *     externalIp: fooAddress.eipAddress,
+ *     externalPort: "80",
+ *     internalIp: "172.16.0.10",
+ *     internalPort: "80",
+ *     natGatewayId: fooGateway.id,
+ *     protocol: "tcp",
+ * }, {
+ *     dependsOn: [fooAssociate],
+ * });
+ * const fooDnatEntries = volcengine.nat.DnatEntriesOutput({
+ *     ids: [fooDnatEntry.id],
+ * });
  * ```
  */
 export function dnatEntriesOutput(args?: DnatEntriesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<DnatEntriesResult> {

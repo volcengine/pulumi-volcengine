@@ -12,23 +12,43 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.autoscaling.ScalingGroup("foo", {
- *     defaultCooldown: 10,
- *     desireInstanceNumber: 0,
- *     instanceTerminatePolicy: "OldestInstance",
- *     maxInstanceNumber: 1,
- *     minInstanceNumber: 0,
- *     multiAzPolicy: "BALANCE",
- *     projectName: "default",
- *     scalingGroupName: "test-tf",
- *     subnetIds: ["subnet-2fe79j7c8o5c059gp68ksxr93"],
- *     tags: [{
- *         key: "tf-key1",
- *         value: "tf-value1",
- *     }],
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
  * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooScalingGroup: volcengine.autoscaling.ScalingGroup[] = [];
+ * for (const range = {value: 0}; range.value < 3; range.value++) {
+ *     fooScalingGroup.push(new volcengine.autoscaling.ScalingGroup(`fooScalingGroup-${range.value}`, {
+ *         scalingGroupName: `acc-test-scaling-group-${range.value}`,
+ *         subnetIds: [fooSubnet.id],
+ *         multiAzPolicy: "BALANCE",
+ *         desireInstanceNumber: 0,
+ *         minInstanceNumber: 0,
+ *         maxInstanceNumber: 10,
+ *         instanceTerminatePolicy: "OldestInstance",
+ *         defaultCooldown: 30,
+ *         tags: [
+ *             {
+ *                 key: "k2",
+ *                 value: "v2",
+ *             },
+ *             {
+ *                 key: "k1",
+ *                 value: "v1",
+ *             },
+ *         ],
+ *     }));
+ * }
  * ```
  *
  * ## Import

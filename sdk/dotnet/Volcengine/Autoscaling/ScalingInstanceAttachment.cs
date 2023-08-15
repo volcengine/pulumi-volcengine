@@ -18,17 +18,132 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
+    /// using Volcengine = Pulumi.Volcengine;
     /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var foo = new Volcengine.Autoscaling.ScalingInstanceAttachment("foo", new()
+    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+    /// 
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
-    ///         DeleteType = "Remove",
-    ///         DetachOption = "none",
+    ///         VpcName = "acc-test-vpc",
+    ///         CidrBlock = "172.16.0.0/16",
+    ///     });
+    /// 
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooSecurityGroup = new Volcengine.Vpc.SecurityGroup("fooSecurityGroup", new()
+    ///     {
+    ///         SecurityGroupName = "acc-test-security-group",
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooImages = Volcengine.Ecs.Images.Invoke(new()
+    ///     {
+    ///         OsType = "Linux",
+    ///         Visibility = "public",
+    ///         InstanceTypeId = "ecs.g1.large",
+    ///     });
+    /// 
+    ///     var fooKeyPair = new Volcengine.Ecs.KeyPair("fooKeyPair", new()
+    ///     {
+    ///         Description = "acc-test-2",
+    ///         KeyPairName = "acc-test-key-pair-name",
+    ///     });
+    /// 
+    ///     var fooLaunchTemplate = new Volcengine.Ecs.LaunchTemplate("fooLaunchTemplate", new()
+    ///     {
+    ///         Description = "acc-test-desc",
+    ///         EipBandwidth = 200,
+    ///         EipBillingType = "PostPaidByBandwidth",
+    ///         EipIsp = "BGP",
+    ///         HostName = "acc-hostname",
+    ///         ImageId = fooImages.Apply(imagesResult =&gt; imagesResult.Images[0]?.ImageId),
+    ///         InstanceChargeType = "PostPaid",
+    ///         InstanceName = "acc-instance-name",
+    ///         InstanceTypeId = "ecs.g1.large",
+    ///         KeyPairName = fooKeyPair.KeyPairName,
+    ///         LaunchTemplateName = "acc-test-template",
+    ///         NetworkInterfaces = new[]
+    ///         {
+    ///             new Volcengine.Ecs.Inputs.LaunchTemplateNetworkInterfaceArgs
+    ///             {
+    ///                 SubnetId = fooSubnet.Id,
+    ///                 SecurityGroupIds = new[]
+    ///                 {
+    ///                     fooSecurityGroup.Id,
+    ///                 },
+    ///             },
+    ///         },
+    ///         Volumes = new[]
+    ///         {
+    ///             new Volcengine.Ecs.Inputs.LaunchTemplateVolumeArgs
+    ///             {
+    ///                 VolumeType = "ESSD_PL0",
+    ///                 Size = 50,
+    ///                 DeleteWithInstance = true,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var fooScalingGroup = new Volcengine.Autoscaling.ScalingGroup("fooScalingGroup", new()
+    ///     {
+    ///         ScalingGroupName = "acc-test-scaling-group",
+    ///         SubnetIds = new[]
+    ///         {
+    ///             fooSubnet.Id,
+    ///         },
+    ///         MultiAzPolicy = "BALANCE",
+    ///         DesireInstanceNumber = -1,
+    ///         MinInstanceNumber = 0,
+    ///         MaxInstanceNumber = 1,
+    ///         InstanceTerminatePolicy = "OldestInstance",
+    ///         DefaultCooldown = 10,
+    ///         LaunchTemplateId = fooLaunchTemplate.Id,
+    ///         LaunchTemplateVersion = "Default",
+    ///     });
+    /// 
+    ///     var fooScalingGroupEnabler = new Volcengine.Autoscaling.ScalingGroupEnabler("fooScalingGroupEnabler", new()
+    ///     {
+    ///         ScalingGroupId = fooScalingGroup.Id,
+    ///     });
+    /// 
+    ///     var fooInstance = new Volcengine.Ecs.Instance("fooInstance", new()
+    ///     {
+    ///         InstanceName = "acc-test-ecs",
+    ///         Description = "acc-test",
+    ///         HostName = "tf-acc-test",
+    ///         ImageId = fooImages.Apply(imagesResult =&gt; imagesResult.Images[0]?.ImageId),
+    ///         InstanceType = "ecs.g1.large",
+    ///         Password = "93f0cb0614Aab12",
+    ///         InstanceChargeType = "PostPaid",
+    ///         SystemVolumeType = "ESSD_PL0",
+    ///         SystemVolumeSize = 40,
+    ///         SubnetId = fooSubnet.Id,
+    ///         SecurityGroupIds = new[]
+    ///         {
+    ///             fooSecurityGroup.Id,
+    ///         },
+    ///     });
+    /// 
+    ///     var fooScalingInstanceAttachment = new Volcengine.Autoscaling.ScalingInstanceAttachment("fooScalingInstanceAttachment", new()
+    ///     {
+    ///         InstanceId = fooInstance.Id,
+    ///         ScalingGroupId = fooScalingGroup.Id,
     ///         Entrusted = true,
-    ///         InstanceId = "i-yc23soxj50gsnz7rxnjp",
-    ///         ScalingGroupId = "scg-yc23rtcea88hcchybf8g",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             fooScalingGroupEnabler,
+    ///         },
     ///     });
     /// 
     /// });

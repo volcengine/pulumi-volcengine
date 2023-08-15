@@ -23,14 +23,94 @@ namespace Volcengine.Pulumi.Volcengine.Nat
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Nat.SnatEntries.Invoke(new()
+        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        /// 
+        ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
+        ///     {
+        ///         VpcName = "acc-test-vpc",
+        ///         CidrBlock = "172.16.0.0/16",
+        ///     });
+        /// 
+        ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+        ///     {
+        ///         SubnetName = "acc-test-subnet",
+        ///         CidrBlock = "172.16.0.0/24",
+        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooGateway = new Volcengine.Nat.Gateway("fooGateway", new()
+        ///     {
+        ///         VpcId = fooVpc.Id,
+        ///         SubnetId = fooSubnet.Id,
+        ///         Spec = "Small",
+        ///         NatGatewayName = "acc-test-ng",
+        ///         Description = "acc-test",
+        ///         BillingType = "PostPaid",
+        ///         ProjectName = "default",
+        ///         Tags = new[]
+        ///         {
+        ///             new Volcengine.Nat.Inputs.GatewayTagArgs
+        ///             {
+        ///                 Key = "k1",
+        ///                 Value = "v1",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var fooAddress = new Volcengine.Eip.Address("fooAddress", new()
+        ///     {
+        ///         Description = "acc-test",
+        ///         Bandwidth = 1,
+        ///         BillingType = "PostPaidByBandwidth",
+        ///         Isp = "BGP",
+        ///     });
+        /// 
+        ///     var fooAssociate = new Volcengine.Eip.Associate("fooAssociate", new()
+        ///     {
+        ///         AllocationId = fooAddress.Id,
+        ///         InstanceId = fooGateway.Id,
+        ///         InstanceType = "Nat",
+        ///     });
+        /// 
+        ///     var foo1 = new Volcengine.Nat.SnatEntry("foo1", new()
+        ///     {
+        ///         SnatEntryName = "acc-test-snat-entry",
+        ///         NatGatewayId = fooGateway.Id,
+        ///         EipId = fooAddress.Id,
+        ///         SourceCidr = "172.16.0.0/24",
+        ///     }, new CustomResourceOptions
+        ///     {
+        ///         DependsOn = new[]
+        ///         {
+        ///             "volcengine_eip_associate.foo",
+        ///         },
+        ///     });
+        /// 
+        ///     var foo2 = new Volcengine.Nat.SnatEntry("foo2", new()
+        ///     {
+        ///         SnatEntryName = "acc-test-snat-entry",
+        ///         NatGatewayId = fooGateway.Id,
+        ///         EipId = fooAddress.Id,
+        ///         SourceCidr = "172.16.0.0/16",
+        ///     }, new CustomResourceOptions
+        ///     {
+        ///         DependsOn = new[]
+        ///         {
+        ///             "volcengine_eip_associate.foo",
+        ///         },
+        ///     });
+        /// 
+        ///     var fooSnatEntries = Volcengine.Nat.SnatEntries.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
-        ///             "snat-274zl8b1kxzb47fap8u35uune",
+        ///             foo1.Id,
+        ///             foo2.Id,
         ///         },
         ///     });
         /// 
@@ -53,14 +133,94 @@ namespace Volcengine.Pulumi.Volcengine.Nat
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Nat.SnatEntries.Invoke(new()
+        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        /// 
+        ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
+        ///     {
+        ///         VpcName = "acc-test-vpc",
+        ///         CidrBlock = "172.16.0.0/16",
+        ///     });
+        /// 
+        ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+        ///     {
+        ///         SubnetName = "acc-test-subnet",
+        ///         CidrBlock = "172.16.0.0/24",
+        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooGateway = new Volcengine.Nat.Gateway("fooGateway", new()
+        ///     {
+        ///         VpcId = fooVpc.Id,
+        ///         SubnetId = fooSubnet.Id,
+        ///         Spec = "Small",
+        ///         NatGatewayName = "acc-test-ng",
+        ///         Description = "acc-test",
+        ///         BillingType = "PostPaid",
+        ///         ProjectName = "default",
+        ///         Tags = new[]
+        ///         {
+        ///             new Volcengine.Nat.Inputs.GatewayTagArgs
+        ///             {
+        ///                 Key = "k1",
+        ///                 Value = "v1",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var fooAddress = new Volcengine.Eip.Address("fooAddress", new()
+        ///     {
+        ///         Description = "acc-test",
+        ///         Bandwidth = 1,
+        ///         BillingType = "PostPaidByBandwidth",
+        ///         Isp = "BGP",
+        ///     });
+        /// 
+        ///     var fooAssociate = new Volcengine.Eip.Associate("fooAssociate", new()
+        ///     {
+        ///         AllocationId = fooAddress.Id,
+        ///         InstanceId = fooGateway.Id,
+        ///         InstanceType = "Nat",
+        ///     });
+        /// 
+        ///     var foo1 = new Volcengine.Nat.SnatEntry("foo1", new()
+        ///     {
+        ///         SnatEntryName = "acc-test-snat-entry",
+        ///         NatGatewayId = fooGateway.Id,
+        ///         EipId = fooAddress.Id,
+        ///         SourceCidr = "172.16.0.0/24",
+        ///     }, new CustomResourceOptions
+        ///     {
+        ///         DependsOn = new[]
+        ///         {
+        ///             "volcengine_eip_associate.foo",
+        ///         },
+        ///     });
+        /// 
+        ///     var foo2 = new Volcengine.Nat.SnatEntry("foo2", new()
+        ///     {
+        ///         SnatEntryName = "acc-test-snat-entry",
+        ///         NatGatewayId = fooGateway.Id,
+        ///         EipId = fooAddress.Id,
+        ///         SourceCidr = "172.16.0.0/16",
+        ///     }, new CustomResourceOptions
+        ///     {
+        ///         DependsOn = new[]
+        ///         {
+        ///             "volcengine_eip_associate.foo",
+        ///         },
+        ///     });
+        /// 
+        ///     var fooSnatEntries = Volcengine.Nat.SnatEntries.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
-        ///             "snat-274zl8b1kxzb47fap8u35uune",
+        ///             foo1.Id,
+        ///             foo2.Id,
         ///         },
         ///     });
         /// 

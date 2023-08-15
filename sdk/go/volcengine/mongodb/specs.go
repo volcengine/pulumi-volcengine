@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of mongodb specs
@@ -35,7 +36,7 @@ import (
 //
 // ```
 func Specs(ctx *pulumi.Context, args *SpecsArgs, opts ...pulumi.InvokeOption) (*SpecsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv SpecsResult
 	err := ctx.Invoke("volcengine:mongodb/specs:Specs", args, &rv, opts...)
 	if err != nil {

@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage network interface attach
@@ -70,7 +71,7 @@ func NewNetworkInterfaceAttach(ctx *pulumi.Context,
 	if args.NetworkInterfaceId == nil {
 		return nil, errors.New("invalid value for required argument 'NetworkInterfaceId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource NetworkInterfaceAttach
 	err := ctx.RegisterResource("volcengine:vpc/networkInterfaceAttach:NetworkInterfaceAttach", name, args, &resource, opts...)
 	if err != nil {

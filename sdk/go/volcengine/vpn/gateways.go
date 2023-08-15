@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of vpn gateways
@@ -19,27 +20,53 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpn"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vpn.Gateways(ctx, &vpn.GatewaysArgs{
-//				Ids: []string{
-//					"vgw-2c012ea9fm5mo2dx0efxg46qi",
-//				},
-//			}, nil)
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
 //			if err != nil {
 //				return err
 //			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     pulumi.String("cn-beijing-a"),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooGateway, err := vpn.NewGateway(ctx, "fooGateway", &vpn.GatewayArgs{
+//				VpcId:          fooVpc.ID(),
+//				SubnetId:       fooSubnet.ID(),
+//				Bandwidth:      pulumi.Int(20),
+//				VpnGatewayName: pulumi.String("acc-test"),
+//				Description:    pulumi.String("acc-test"),
+//				Period:         pulumi.Int(2),
+//				ProjectName:    pulumi.String("default"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = vpn.GatewaysOutput(ctx, vpn.GatewaysOutputArgs{
+//				Ids: pulumi.StringArray{
+//					fooGateway.ID(),
+//				},
+//			}, nil)
 //			return nil
 //		})
 //	}
 //
 // ```
 func Gateways(ctx *pulumi.Context, args *GatewaysArgs, opts ...pulumi.InvokeOption) (*GatewaysResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GatewaysResult
 	err := ctx.Invoke("volcengine:vpn/gateways:Gateways", args, &rv, opts...)
 	if err != nil {

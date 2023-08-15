@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of tls topics
@@ -38,7 +39,7 @@ import (
 //
 // ```
 func Topics(ctx *pulumi.Context, args *TopicsArgs, opts ...pulumi.InvokeOption) (*TopicsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv TopicsResult
 	err := ctx.Invoke("volcengine:tls/topics:Topics", args, &rv, opts...)
 	if err != nil {

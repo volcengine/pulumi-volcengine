@@ -73,7 +73,44 @@ class ScalingConfigurationAttachment(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo1 = volcengine.autoscaling.ScalingConfigurationAttachment("foo1", scaling_configuration_id="scc-ybrurj4uw6gh9zecj327")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+            security_group_name="acc-test-security-group",
+            vpc_id=foo_vpc.id)
+        foo_images = volcengine.ecs.images(os_type="Linux",
+            visibility="public",
+            instance_type_id="ecs.g1.large")
+        foo_scaling_group = volcengine.autoscaling.ScalingGroup("fooScalingGroup",
+            scaling_group_name="acc-test-scaling-group",
+            subnet_ids=[foo_subnet.id],
+            multi_az_policy="BALANCE",
+            desire_instance_number=0,
+            min_instance_number=0,
+            max_instance_number=1,
+            instance_terminate_policy="OldestInstance",
+            default_cooldown=10)
+        foo_scaling_configuration = volcengine.autoscaling.ScalingConfiguration("fooScalingConfiguration",
+            image_id=foo_images.images[0].image_id,
+            instance_name="acc-test-instance",
+            instance_types=["ecs.g1.large"],
+            password="93f0cb0614Aab12",
+            scaling_configuration_name="acc-test-scaling-config",
+            scaling_group_id=foo_scaling_group.id,
+            security_group_ids=[foo_security_group.id],
+            volumes=[volcengine.autoscaling.ScalingConfigurationVolumeArgs(
+                volume_type="ESSD_PL0",
+                size=50,
+                delete_with_instance=True,
+            )])
+        foo_scaling_configuration_attachment = volcengine.autoscaling.ScalingConfigurationAttachment("fooScalingConfigurationAttachment", scaling_configuration_id=foo_scaling_configuration.id)
         ```
 
         ## Import
@@ -102,7 +139,44 @@ class ScalingConfigurationAttachment(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo1 = volcengine.autoscaling.ScalingConfigurationAttachment("foo1", scaling_configuration_id="scc-ybrurj4uw6gh9zecj327")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+            security_group_name="acc-test-security-group",
+            vpc_id=foo_vpc.id)
+        foo_images = volcengine.ecs.images(os_type="Linux",
+            visibility="public",
+            instance_type_id="ecs.g1.large")
+        foo_scaling_group = volcengine.autoscaling.ScalingGroup("fooScalingGroup",
+            scaling_group_name="acc-test-scaling-group",
+            subnet_ids=[foo_subnet.id],
+            multi_az_policy="BALANCE",
+            desire_instance_number=0,
+            min_instance_number=0,
+            max_instance_number=1,
+            instance_terminate_policy="OldestInstance",
+            default_cooldown=10)
+        foo_scaling_configuration = volcengine.autoscaling.ScalingConfiguration("fooScalingConfiguration",
+            image_id=foo_images.images[0].image_id,
+            instance_name="acc-test-instance",
+            instance_types=["ecs.g1.large"],
+            password="93f0cb0614Aab12",
+            scaling_configuration_name="acc-test-scaling-config",
+            scaling_group_id=foo_scaling_group.id,
+            security_group_ids=[foo_security_group.id],
+            volumes=[volcengine.autoscaling.ScalingConfigurationVolumeArgs(
+                volume_type="ESSD_PL0",
+                size=50,
+                delete_with_instance=True,
+            )])
+        foo_scaling_configuration_attachment = volcengine.autoscaling.ScalingConfigurationAttachment("fooScalingConfigurationAttachment", scaling_configuration_id=foo_scaling_configuration.id)
         ```
 
         ## Import

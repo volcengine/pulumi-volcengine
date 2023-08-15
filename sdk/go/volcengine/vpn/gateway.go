@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // ## Example Usage
@@ -19,20 +20,37 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpn"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vpn.NewGateway(ctx, "foo", &vpn.GatewayArgs{
-//				Bandwidth:      pulumi.Int(20),
-//				Description:    pulumi.String("tf-test"),
-//				Period:         pulumi.Int(2),
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     pulumi.String("cn-beijing-a"),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = vpn.NewGateway(ctx, "fooGateway", &vpn.GatewayArgs{
+//				VpcId:          fooVpc.ID(),
+//				SubnetId:       fooSubnet.ID(),
+//				Bandwidth:      pulumi.Int(50),
+//				VpnGatewayName: pulumi.String("acc-test1"),
+//				Description:    pulumi.String("acc-test1"),
+//				Period:         pulumi.Int(7),
 //				ProjectName:    pulumi.String("default"),
-//				SubnetId:       pulumi.String("subnet-12bh8g2d7fshs17q7y2nx82uk"),
-//				VpcId:          pulumi.String("vpc-12b31m7z2kc8w17q7y2fih9ts"),
-//				VpnGatewayName: pulumi.String("tf-test"),
 //			})
 //			if err != nil {
 //				return err
@@ -119,7 +137,7 @@ func NewGateway(ctx *pulumi.Context,
 	if args.VpcId == nil {
 		return nil, errors.New("invalid value for required argument 'VpcId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Gateway
 	err := ctx.RegisterResource("volcengine:vpn/gateway:Gateway", name, args, &resource, opts...)
 	if err != nil {

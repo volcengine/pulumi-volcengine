@@ -118,7 +118,37 @@ def scaling_groups(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.autoscaling.scaling_groups(ids=["scg-ybru8pazhgl8j1di4tyd"])
+    foo_zones = volcengine.ecs.zones()
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-vpc",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-test-subnet",
+        cidr_block="172.16.0.0/24",
+        zone_id=foo_zones.zones[0].id,
+        vpc_id=foo_vpc.id)
+    foo_scaling_group = []
+    for range in [{"value": i} for i in range(0, 3)]:
+        foo_scaling_group.append(volcengine.autoscaling.ScalingGroup(f"fooScalingGroup-{range['value']}",
+            scaling_group_name=f"acc-test-scaling-group-{range['value']}",
+            subnet_ids=[foo_subnet.id],
+            multi_az_policy="BALANCE",
+            desire_instance_number=0,
+            min_instance_number=0,
+            max_instance_number=10,
+            instance_terminate_policy="OldestInstance",
+            default_cooldown=30,
+            tags=[
+                volcengine.autoscaling.ScalingGroupTagArgs(
+                    key="k2",
+                    value="v2",
+                ),
+                volcengine.autoscaling.ScalingGroupTagArgs(
+                    key="k1",
+                    value="v1",
+                ),
+            ]))
+    default = volcengine.autoscaling.scaling_groups_output(ids=[__item.id for __item in foo_scaling_group])
     ```
 
 
@@ -159,7 +189,37 @@ def scaling_groups_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] =
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.autoscaling.scaling_groups(ids=["scg-ybru8pazhgl8j1di4tyd"])
+    foo_zones = volcengine.ecs.zones()
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-vpc",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-test-subnet",
+        cidr_block="172.16.0.0/24",
+        zone_id=foo_zones.zones[0].id,
+        vpc_id=foo_vpc.id)
+    foo_scaling_group = []
+    for range in [{"value": i} for i in range(0, 3)]:
+        foo_scaling_group.append(volcengine.autoscaling.ScalingGroup(f"fooScalingGroup-{range['value']}",
+            scaling_group_name=f"acc-test-scaling-group-{range['value']}",
+            subnet_ids=[foo_subnet.id],
+            multi_az_policy="BALANCE",
+            desire_instance_number=0,
+            min_instance_number=0,
+            max_instance_number=10,
+            instance_terminate_policy="OldestInstance",
+            default_cooldown=30,
+            tags=[
+                volcengine.autoscaling.ScalingGroupTagArgs(
+                    key="k2",
+                    value="v2",
+                ),
+                volcengine.autoscaling.ScalingGroupTagArgs(
+                    key="k1",
+                    value="v1",
+                ),
+            ]))
+    default = volcengine.autoscaling.scaling_groups_output(ids=[__item.id for __item in foo_scaling_group])
     ```
 
 

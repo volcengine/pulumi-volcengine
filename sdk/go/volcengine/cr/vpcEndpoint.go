@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage cr vpc endpoint
@@ -79,7 +80,7 @@ func NewVpcEndpoint(ctx *pulumi.Context,
 	if args.Vpcs == nil {
 		return nil, errors.New("invalid value for required argument 'Vpcs'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource VpcEndpoint
 	err := ctx.RegisterResource("volcengine:cr/vpcEndpoint:VpcEndpoint", name, args, &resource, opts...)
 	if err != nil {

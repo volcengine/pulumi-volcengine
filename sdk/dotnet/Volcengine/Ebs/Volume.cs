@@ -17,36 +17,92 @@ namespace Volcengine.Pulumi.Volcengine.Ebs
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
+    /// using Volcengine = Pulumi.Volcengine;
     /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var fooVolume = new Volcengine.Ebs.Volume("fooVolume", new()
+    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+    /// 
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
-    ///         VolumeName = "terraform-test",
-    ///         ZoneId = "cn-xx-a",
+    ///         VpcName = "acc-test-vpc",
+    ///         CidrBlock = "172.16.0.0/16",
+    ///     });
+    /// 
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooSecurityGroup = new Volcengine.Vpc.SecurityGroup("fooSecurityGroup", new()
+    ///     {
+    ///         SecurityGroupName = "acc-test-security-group",
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooImages = Volcengine.Ecs.Images.Invoke(new()
+    ///     {
+    ///         OsType = "Linux",
+    ///         Visibility = "public",
+    ///         InstanceTypeId = "ecs.g1.large",
+    ///     });
+    /// 
+    ///     var fooInstance = new Volcengine.Ecs.Instance("fooInstance", new()
+    ///     {
+    ///         InstanceName = "acc-test-ecs",
+    ///         Description = "acc-test",
+    ///         HostName = "tf-acc-test",
+    ///         ImageId = fooImages.Apply(imagesResult =&gt; imagesResult.Images[0]?.ImageId),
+    ///         InstanceType = "ecs.g1.large",
+    ///         Password = "93f0cb0614Aab12",
+    ///         InstanceChargeType = "PrePaid",
+    ///         Period = 1,
+    ///         SystemVolumeType = "ESSD_PL0",
+    ///         SystemVolumeSize = 40,
+    ///         SubnetId = fooSubnet.Id,
+    ///         SecurityGroupIds = new[]
+    ///         {
+    ///             fooSecurityGroup.Id,
+    ///         },
+    ///         ProjectName = "default",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Ecs.Inputs.InstanceTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var preVolume = new Volcengine.Ebs.Volume("preVolume", new()
+    ///     {
+    ///         VolumeName = "acc-test-volume",
     ///         VolumeType = "ESSD_PL0",
+    ///         Description = "acc-test",
     ///         Kind = "data",
     ///         Size = 40,
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         VolumeChargeType = "PrePaid",
+    ///         InstanceId = fooInstance.Id,
+    ///         ProjectName = "default",
+    ///         DeleteWithInstance = true,
+    ///     });
+    /// 
+    ///     var postVolume = new Volcengine.Ebs.Volume("postVolume", new()
+    ///     {
+    ///         VolumeName = "acc-test-volume",
+    ///         VolumeType = "ESSD_PL0",
+    ///         Description = "acc-test",
+    ///         Kind = "data",
+    ///         Size = 40,
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
     ///         VolumeChargeType = "PostPaid",
     ///         ProjectName = "default",
-    ///     });
-    /// 
-    ///     var fooVolumeAttach = new Volcengine.Ebs.VolumeAttach("fooVolumeAttach", new()
-    ///     {
-    ///         VolumeId = fooVolume.Id,
-    ///         InstanceId = "i-yc8pfhbafwijutv6s1fv",
-    ///     });
-    /// 
-    ///     var foo2 = new Volcengine.Ebs.Volume("foo2", new()
-    ///     {
-    ///         VolumeName = "terraform-test3",
-    ///         ZoneId = "cn-beijing-b",
-    ///         VolumeType = "ESSD_PL0",
-    ///         Kind = "data",
-    ///         Size = 40,
-    ///         VolumeChargeType = "PrePaid",
-    ///         InstanceId = "i-yc8pfhbafwijutv6s1fv",
     ///     });
     /// 
     /// });
@@ -82,7 +138,10 @@ namespace Volcengine.Pulumi.Volcengine.Ebs
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+        /// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
+        /// system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
+        /// deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
+        /// terraform state file and management.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
@@ -201,7 +260,10 @@ namespace Volcengine.Pulumi.Volcengine.Ebs
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+        /// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
+        /// system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
+        /// deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
+        /// terraform state file and management.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
@@ -275,7 +337,10 @@ namespace Volcengine.Pulumi.Volcengine.Ebs
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+        /// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
+        /// system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
+        /// deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
+        /// terraform state file and management.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }

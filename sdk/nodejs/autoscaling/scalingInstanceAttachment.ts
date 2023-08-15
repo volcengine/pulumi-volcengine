@@ -10,14 +10,87 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.autoscaling.ScalingInstanceAttachment("foo", {
- *     deleteType: "Remove",
- *     detachOption: "none",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
+ *     securityGroupName: "acc-test-security-group",
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooImages = volcengine.ecs.Images({
+ *     osType: "Linux",
+ *     visibility: "public",
+ *     instanceTypeId: "ecs.g1.large",
+ * });
+ * const fooKeyPair = new volcengine.ecs.KeyPair("fooKeyPair", {
+ *     description: "acc-test-2",
+ *     keyPairName: "acc-test-key-pair-name",
+ * });
+ * const fooLaunchTemplate = new volcengine.ecs.LaunchTemplate("fooLaunchTemplate", {
+ *     description: "acc-test-desc",
+ *     eipBandwidth: 200,
+ *     eipBillingType: "PostPaidByBandwidth",
+ *     eipIsp: "BGP",
+ *     hostName: "acc-hostname",
+ *     imageId: fooImages.then(fooImages => fooImages.images?.[0]?.imageId),
+ *     instanceChargeType: "PostPaid",
+ *     instanceName: "acc-instance-name",
+ *     instanceTypeId: "ecs.g1.large",
+ *     keyPairName: fooKeyPair.keyPairName,
+ *     launchTemplateName: "acc-test-template",
+ *     networkInterfaces: [{
+ *         subnetId: fooSubnet.id,
+ *         securityGroupIds: [fooSecurityGroup.id],
+ *     }],
+ *     volumes: [{
+ *         volumeType: "ESSD_PL0",
+ *         size: 50,
+ *         deleteWithInstance: true,
+ *     }],
+ * });
+ * const fooScalingGroup = new volcengine.autoscaling.ScalingGroup("fooScalingGroup", {
+ *     scalingGroupName: "acc-test-scaling-group",
+ *     subnetIds: [fooSubnet.id],
+ *     multiAzPolicy: "BALANCE",
+ *     desireInstanceNumber: -1,
+ *     minInstanceNumber: 0,
+ *     maxInstanceNumber: 1,
+ *     instanceTerminatePolicy: "OldestInstance",
+ *     defaultCooldown: 10,
+ *     launchTemplateId: fooLaunchTemplate.id,
+ *     launchTemplateVersion: "Default",
+ * });
+ * const fooScalingGroupEnabler = new volcengine.autoscaling.ScalingGroupEnabler("fooScalingGroupEnabler", {scalingGroupId: fooScalingGroup.id});
+ * const fooInstance = new volcengine.ecs.Instance("fooInstance", {
+ *     instanceName: "acc-test-ecs",
+ *     description: "acc-test",
+ *     hostName: "tf-acc-test",
+ *     imageId: fooImages.then(fooImages => fooImages.images?.[0]?.imageId),
+ *     instanceType: "ecs.g1.large",
+ *     password: "93f0cb0614Aab12",
+ *     instanceChargeType: "PostPaid",
+ *     systemVolumeType: "ESSD_PL0",
+ *     systemVolumeSize: 40,
+ *     subnetId: fooSubnet.id,
+ *     securityGroupIds: [fooSecurityGroup.id],
+ * });
+ * const fooScalingInstanceAttachment = new volcengine.autoscaling.ScalingInstanceAttachment("fooScalingInstanceAttachment", {
+ *     instanceId: fooInstance.id,
+ *     scalingGroupId: fooScalingGroup.id,
  *     entrusted: true,
- *     instanceId: "i-yc23soxj50gsnz7rxnjp",
- *     scalingGroupId: "scg-yc23rtcea88hcchybf8g",
+ * }, {
+ *     dependsOn: [fooScalingGroupEnabler],
  * });
  * ```
  *

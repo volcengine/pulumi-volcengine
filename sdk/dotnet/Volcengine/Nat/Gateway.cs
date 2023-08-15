@@ -17,19 +17,44 @@ namespace Volcengine.Pulumi.Volcengine.Nat
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
+    /// using Volcengine = Pulumi.Volcengine;
     /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var foo = new Volcengine.Nat.Gateway("foo", new()
+    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+    /// 
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
+    ///         VpcName = "acc-test-vpc",
+    ///         CidrBlock = "172.16.0.0/16",
+    ///     });
+    /// 
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooGateway = new Volcengine.Nat.Gateway("fooGateway", new()
+    ///     {
+    ///         VpcId = fooVpc.Id,
+    ///         SubnetId = fooSubnet.Id,
+    ///         Spec = "Small",
+    ///         NatGatewayName = "acc-test-ng",
+    ///         Description = "acc-test",
     ///         BillingType = "PostPaid",
-    ///         Description = "This nat gateway auto-created by terraform. ",
-    ///         NatGatewayName = "tf-auto-demo-1",
     ///         ProjectName = "default",
-    ///         Spec = "Medium",
-    ///         SubnetId = "subnet-im67x70vxla88gbssz1hy1z2",
-    ///         VpcId = "vpc-im67wjcikxkw8gbssx8ufpj8",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Nat.Inputs.GatewayTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
     ///     });
     /// 
     /// });

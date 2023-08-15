@@ -10,14 +10,36 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.autoscaling.ScalingLifecycleHook("foo", {
- *     lifecycleHookName: "tf-test",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooScalingGroup = new volcengine.autoscaling.ScalingGroup("fooScalingGroup", {
+ *     scalingGroupName: "acc-test-scaling-group-lifecycle",
+ *     subnetIds: [fooSubnet.id],
+ *     multiAzPolicy: "BALANCE",
+ *     desireInstanceNumber: 0,
+ *     minInstanceNumber: 0,
+ *     maxInstanceNumber: 1,
+ *     instanceTerminatePolicy: "OldestInstance",
+ *     defaultCooldown: 10,
+ * });
+ * const fooScalingLifecycleHook = new volcengine.autoscaling.ScalingLifecycleHook("fooScalingLifecycleHook", {
+ *     lifecycleHookName: "acc-test-lifecycle",
  *     lifecycleHookPolicy: "CONTINUE",
  *     lifecycleHookTimeout: 30,
  *     lifecycleHookType: "SCALE_IN",
- *     scalingGroupId: "scg-ybru8pazhgl8j1di4tyd",
+ *     scalingGroupId: fooScalingGroup.id,
  * });
  * ```
  *

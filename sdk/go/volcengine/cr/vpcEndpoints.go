@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of cr vpc endpoints
@@ -43,7 +44,7 @@ import (
 //
 // ```
 func VpcEndpoints(ctx *pulumi.Context, args *VpcEndpointsArgs, opts ...pulumi.InvokeOption) (*VpcEndpointsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv VpcEndpointsResult
 	err := ctx.Invoke("volcengine:cr/vpcEndpoints:VpcEndpoints", args, &rv, opts...)
 	if err != nil {

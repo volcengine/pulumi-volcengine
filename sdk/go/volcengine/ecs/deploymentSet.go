@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage ecs deployment set
@@ -75,7 +76,7 @@ func NewDeploymentSet(ctx *pulumi.Context,
 	if args.DeploymentSetName == nil {
 		return nil, errors.New("invalid value for required argument 'DeploymentSetName'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DeploymentSet
 	err := ctx.RegisterResource("volcengine:ecs/deploymentSet:DeploymentSet", name, args, &resource, opts...)
 	if err != nil {

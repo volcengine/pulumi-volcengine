@@ -168,7 +168,19 @@ def volumes(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.ebs.volumes(ids=["vol-3tzg6y5imn3b9fchkedb"])
+    foo_zones = volcengine.ecs.zones()
+    foo_volume = []
+    for range in [{"value": i} for i in range(0, 3)]:
+        foo_volume.append(volcengine.ebs.Volume(f"fooVolume-{range['value']}",
+            volume_name=f"acc-test-volume-{range['value']}",
+            volume_type="ESSD_PL0",
+            description="acc-test",
+            kind="data",
+            size=60,
+            zone_id=foo_zones.zones[0].id,
+            volume_charge_type="PostPaid",
+            project_name="default"))
+    foo_volumes = volcengine.ebs.volumes_output(ids=[__item.id for __item in foo_volume])
     ```
 
 
@@ -229,7 +241,19 @@ def volumes_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.ebs.volumes(ids=["vol-3tzg6y5imn3b9fchkedb"])
+    foo_zones = volcengine.ecs.zones()
+    foo_volume = []
+    for range in [{"value": i} for i in range(0, 3)]:
+        foo_volume.append(volcengine.ebs.Volume(f"fooVolume-{range['value']}",
+            volume_name=f"acc-test-volume-{range['value']}",
+            volume_type="ESSD_PL0",
+            description="acc-test",
+            kind="data",
+            size=60,
+            zone_id=foo_zones.zones[0].id,
+            volume_charge_type="PostPaid",
+            project_name="default"))
+    foo_volumes = volcengine.ebs.volumes_output(ids=[__item.id for __item in foo_volume])
     ```
 
 

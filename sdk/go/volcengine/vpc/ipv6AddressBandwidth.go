@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // ## Example Usage
@@ -111,7 +112,7 @@ func NewIpv6AddressBandwidth(ctx *pulumi.Context,
 	if args.Ipv6Address == nil {
 		return nil, errors.New("invalid value for required argument 'Ipv6Address'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Ipv6AddressBandwidth
 	err := ctx.RegisterResource("volcengine:vpc/ipv6AddressBandwidth:Ipv6AddressBandwidth", name, args, &resource, opts...)
 	if err != nil {

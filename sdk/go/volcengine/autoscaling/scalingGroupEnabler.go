@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage scaling group enabler
@@ -124,7 +125,7 @@ func NewScalingGroupEnabler(ctx *pulumi.Context,
 	if args.ScalingGroupId == nil {
 		return nil, errors.New("invalid value for required argument 'ScalingGroupId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ScalingGroupEnabler
 	err := ctx.RegisterResource("volcengine:autoscaling/scalingGroupEnabler:ScalingGroupEnabler", name, args, &resource, opts...)
 	if err != nil {

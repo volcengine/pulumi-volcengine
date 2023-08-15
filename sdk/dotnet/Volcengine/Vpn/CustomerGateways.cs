@@ -23,14 +23,23 @@ namespace Volcengine.Pulumi.Volcengine.Vpn
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Vpn.CustomerGateways.Invoke(new()
+        ///     var fooCustomerGateway = new Volcengine.Vpn.CustomerGateway("fooCustomerGateway", new()
+        ///     {
+        ///         IpAddress = "192.0.1.3",
+        ///         CustomerGatewayName = "acc-test",
+        ///         Description = "acc-test",
+        ///         ProjectName = "default",
+        ///     });
+        /// 
+        ///     var fooCustomerGateways = Volcengine.Vpn.CustomerGateways.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
-        ///             "cgw-2d68c4zglycjk58ozfe96norh",
+        ///             fooCustomerGateway.Id,
         ///         },
         ///     });
         /// 
@@ -53,14 +62,23 @@ namespace Volcengine.Pulumi.Volcengine.Vpn
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Vpn.CustomerGateways.Invoke(new()
+        ///     var fooCustomerGateway = new Volcengine.Vpn.CustomerGateway("fooCustomerGateway", new()
+        ///     {
+        ///         IpAddress = "192.0.1.3",
+        ///         CustomerGatewayName = "acc-test",
+        ///         Description = "acc-test",
+        ///         ProjectName = "default",
+        ///     });
+        /// 
+        ///     var fooCustomerGateways = Volcengine.Vpn.CustomerGateways.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
-        ///             "cgw-2d68c4zglycjk58ozfe96norh",
+        ///             fooCustomerGateway.Id,
         ///         },
         ///     });
         /// 

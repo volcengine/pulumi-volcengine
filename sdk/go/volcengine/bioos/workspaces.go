@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of bioos workspaces
@@ -35,7 +36,7 @@ import (
 //
 // ```
 func Workspaces(ctx *pulumi.Context, args *WorkspacesArgs, opts ...pulumi.InvokeOption) (*WorkspacesResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv WorkspacesResult
 	err := ctx.Invoke("volcengine:bioos/workspaces:Workspaces", args, &rv, opts...)
 	if err != nil {

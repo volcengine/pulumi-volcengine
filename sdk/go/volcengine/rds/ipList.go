@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // (Deprecated! Recommend use volcengine_rds_mysql_*** replace) Provides a resource to manage rds ip list
@@ -79,7 +80,7 @@ func NewIpList(ctx *pulumi.Context,
 	if args.IpLists == nil {
 		return nil, errors.New("invalid value for required argument 'IpLists'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource IpList
 	err := ctx.RegisterResource("volcengine:rds/ipList:IpList", name, args, &resource, opts...)
 	if err != nil {

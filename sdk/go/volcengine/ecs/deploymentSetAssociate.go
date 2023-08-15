@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage ecs deployment set associate
@@ -141,7 +142,7 @@ func NewDeploymentSetAssociate(ctx *pulumi.Context,
 	if args.InstanceId == nil {
 		return nil, errors.New("invalid value for required argument 'InstanceId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DeploymentSetAssociate
 	err := ctx.RegisterResource("volcengine:ecs/deploymentSetAssociate:DeploymentSetAssociate", name, args, &resource, opts...)
 	if err != nil {

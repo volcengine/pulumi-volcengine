@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of scaling activities
@@ -18,26 +19,163 @@ import (
 //
 // import (
 //
+//	"fmt"
+//
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/autoscaling"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := autoscaling.ScalingActivities(ctx, &autoscaling.ScalingActivitiesArgs{
-//				ScalingGroupId: "scg-ybqm0b6kcigh9zu9ce6t",
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSecurityGroup, err := vpc.NewSecurityGroup(ctx, "fooSecurityGroup", &vpc.SecurityGroupArgs{
+//				SecurityGroupName: pulumi.String("acc-test-security-group"),
+//				VpcId:             fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooImages, err := ecs.Images(ctx, &ecs.ImagesArgs{
+//				OsType:         pulumi.StringRef("Linux"),
+//				Visibility:     pulumi.StringRef("public"),
+//				InstanceTypeId: pulumi.StringRef("ecs.g1.large"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
+//			fooKeyPair, err := ecs.NewKeyPair(ctx, "fooKeyPair", &ecs.KeyPairArgs{
+//				Description: pulumi.String("acc-test-2"),
+//				KeyPairName: pulumi.String("acc-test-key-pair-name"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooLaunchTemplate, err := ecs.NewLaunchTemplate(ctx, "fooLaunchTemplate", &ecs.LaunchTemplateArgs{
+//				Description:        pulumi.String("acc-test-desc"),
+//				EipBandwidth:       pulumi.Int(200),
+//				EipBillingType:     pulumi.String("PostPaidByBandwidth"),
+//				EipIsp:             pulumi.String("BGP"),
+//				HostName:           pulumi.String("acc-hostname"),
+//				ImageId:            *pulumi.String(fooImages.Images[0].ImageId),
+//				InstanceChargeType: pulumi.String("PostPaid"),
+//				InstanceName:       pulumi.String("acc-instance-name"),
+//				InstanceTypeId:     pulumi.String("ecs.g1.large"),
+//				KeyPairName:        fooKeyPair.KeyPairName,
+//				LaunchTemplateName: pulumi.String("acc-test-template"),
+//				NetworkInterfaces: ecs.LaunchTemplateNetworkInterfaceArray{
+//					&ecs.LaunchTemplateNetworkInterfaceArgs{
+//						SubnetId: fooSubnet.ID(),
+//						SecurityGroupIds: pulumi.StringArray{
+//							fooSecurityGroup.ID(),
+//						},
+//					},
+//				},
+//				Volumes: ecs.LaunchTemplateVolumeArray{
+//					&ecs.LaunchTemplateVolumeArgs{
+//						VolumeType:         pulumi.String("ESSD_PL0"),
+//						Size:               pulumi.Int(50),
+//						DeleteWithInstance: pulumi.Bool(true),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooScalingGroup, err := autoscaling.NewScalingGroup(ctx, "fooScalingGroup", &autoscaling.ScalingGroupArgs{
+//				ScalingGroupName: pulumi.String("acc-test-scaling-group"),
+//				SubnetIds: pulumi.StringArray{
+//					fooSubnet.ID(),
+//				},
+//				MultiAzPolicy:           pulumi.String("BALANCE"),
+//				DesireInstanceNumber:    -1,
+//				MinInstanceNumber:       pulumi.Int(0),
+//				MaxInstanceNumber:       pulumi.Int(10),
+//				InstanceTerminatePolicy: pulumi.String("OldestInstance"),
+//				DefaultCooldown:         pulumi.Int(10),
+//				LaunchTemplateId:        fooLaunchTemplate.ID(),
+//				LaunchTemplateVersion:   pulumi.String("Default"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooScalingGroupEnabler, err := autoscaling.NewScalingGroupEnabler(ctx, "fooScalingGroupEnabler", &autoscaling.ScalingGroupEnablerArgs{
+//				ScalingGroupId: fooScalingGroup.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			var fooInstance []*ecs.Instance
+//			for index := 0; index < 3; index++ {
+//				key0 := index
+//				val0 := index
+//				__res, err := ecs.NewInstance(ctx, fmt.Sprintf("fooInstance-%v", key0), &ecs.InstanceArgs{
+//					InstanceName:       pulumi.String(fmt.Sprintf("acc-test-ecs-%v", val0)),
+//					Description:        pulumi.String("acc-test"),
+//					HostName:           pulumi.String("tf-acc-test"),
+//					ImageId:            *pulumi.String(fooImages.Images[0].ImageId),
+//					InstanceType:       pulumi.String("ecs.g1.large"),
+//					Password:           pulumi.String("93f0cb0614Aab12"),
+//					InstanceChargeType: pulumi.String("PostPaid"),
+//					SystemVolumeType:   pulumi.String("ESSD_PL0"),
+//					SystemVolumeSize:   pulumi.Int(40),
+//					SubnetId:           fooSubnet.ID(),
+//					SecurityGroupIds: pulumi.StringArray{
+//						fooSecurityGroup.ID(),
+//					},
+//				})
+//				if err != nil {
+//					return err
+//				}
+//				fooInstance = append(fooInstance, __res)
+//			}
+//			var fooScalingInstanceAttachment []*autoscaling.ScalingInstanceAttachment
+//			for index := 0; index < len(fooInstance); index++ {
+//				key0 := index
+//				val0 := index
+//				__res, err := autoscaling.NewScalingInstanceAttachment(ctx, fmt.Sprintf("fooScalingInstanceAttachment-%v", key0), &autoscaling.ScalingInstanceAttachmentArgs{
+//					InstanceId:     fooInstance[val0].ID(),
+//					ScalingGroupId: fooScalingGroup.ID(),
+//					Entrusted:      pulumi.Bool(true),
+//				}, pulumi.DependsOn([]pulumi.Resource{
+//					fooScalingGroupEnabler,
+//				}))
+//				if err != nil {
+//					return err
+//				}
+//				fooScalingInstanceAttachment = append(fooScalingInstanceAttachment, __res)
+//			}
+//			_ = autoscaling.ScalingActivitiesOutput(ctx, autoscaling.ScalingActivitiesOutputArgs{
+//				ScalingGroupId: fooScalingGroup.ID(),
+//			}, nil)
 //			return nil
 //		})
 //	}
 //
 // ```
 func ScalingActivities(ctx *pulumi.Context, args *ScalingActivitiesArgs, opts ...pulumi.InvokeOption) (*ScalingActivitiesResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ScalingActivitiesResult
 	err := ctx.Invoke("volcengine:autoscaling/scalingActivities:ScalingActivities", args, &rv, opts...)
 	if err != nil {

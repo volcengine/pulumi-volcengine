@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of vpc ipv6 gateways
@@ -39,7 +40,7 @@ import (
 //
 // ```
 func Ipv6Gateways(ctx *pulumi.Context, args *Ipv6GatewaysArgs, opts ...pulumi.InvokeOption) (*Ipv6GatewaysResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv Ipv6GatewaysResult
 	err := ctx.Invoke("volcengine:vpc/ipv6Gateways:Ipv6Gateways", args, &rv, opts...)
 	if err != nil {

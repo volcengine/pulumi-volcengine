@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage vke default node pool batch attach
@@ -233,7 +234,7 @@ func NewDefaultNodePoolBatchAttach(ctx *pulumi.Context,
 	if args.DefaultNodePoolId == nil {
 		return nil, errors.New("invalid value for required argument 'DefaultNodePoolId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DefaultNodePoolBatchAttach
 	err := ctx.RegisterResource("volcengine:vke/defaultNodePoolBatchAttach:DefaultNodePoolBatchAttach", name, args, &resource, opts...)
 	if err != nil {

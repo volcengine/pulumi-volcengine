@@ -18,14 +18,83 @@ namespace Volcengine.Pulumi.Volcengine.Ebs
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
+    /// using Volcengine = Pulumi.Volcengine;
     /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var foo = new Volcengine.Ebs.VolumeAttach("foo", new()
+    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+    /// 
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
-    ///         InstanceId = "i-4ay59ww7dq8dt9c29hd4",
-    ///         VolumeId = "vol-3tzl52wubz3b9fciw7ev",
+    ///         VpcName = "acc-test-vpc",
+    ///         CidrBlock = "172.16.0.0/16",
+    ///     });
+    /// 
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooSecurityGroup = new Volcengine.Vpc.SecurityGroup("fooSecurityGroup", new()
+    ///     {
+    ///         SecurityGroupName = "acc-test-security-group",
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooImages = Volcengine.Ecs.Images.Invoke(new()
+    ///     {
+    ///         OsType = "Linux",
+    ///         Visibility = "public",
+    ///         InstanceTypeId = "ecs.g1.large",
+    ///     });
+    /// 
+    ///     var fooInstance = new Volcengine.Ecs.Instance("fooInstance", new()
+    ///     {
+    ///         InstanceName = "acc-test-ecs",
+    ///         Description = "acc-test",
+    ///         HostName = "tf-acc-test",
+    ///         ImageId = fooImages.Apply(imagesResult =&gt; imagesResult.Images[0]?.ImageId),
+    ///         InstanceType = "ecs.g1.large",
+    ///         Password = "93f0cb0614Aab12",
+    ///         InstanceChargeType = "PostPaid",
+    ///         SystemVolumeType = "ESSD_PL0",
+    ///         SystemVolumeSize = 40,
+    ///         SubnetId = fooSubnet.Id,
+    ///         SecurityGroupIds = new[]
+    ///         {
+    ///             fooSecurityGroup.Id,
+    ///         },
+    ///         ProjectName = "default",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Ecs.Inputs.InstanceTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var fooVolume = new Volcengine.Ebs.Volume("fooVolume", new()
+    ///     {
+    ///         VolumeName = "acc-test-volume",
+    ///         VolumeType = "ESSD_PL0",
+    ///         Description = "acc-test",
+    ///         Kind = "data",
+    ///         Size = 40,
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         VolumeChargeType = "PostPaid",
+    ///         ProjectName = "default",
+    ///     });
+    /// 
+    ///     var fooVolumeAttach = new Volcengine.Ebs.VolumeAttach("fooVolumeAttach", new()
+    ///     {
+    ///         InstanceId = fooInstance.Id,
+    ///         VolumeId = fooVolume.Id,
     ///     });
     /// 
     /// });
@@ -49,7 +118,7 @@ namespace Volcengine.Pulumi.Volcengine.Ebs
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// Delete Volume with Attached Instance.
+        /// Delete Volume with Attached Instance.It is not recommended to use this field. If used, please ensure that the value of this field is consistent with the value of `delete_with_instance` in volcengine_volume.
         /// </summary>
         [Output("deleteWithInstance")]
         public Output<bool> DeleteWithInstance { get; private set; } = null!;
@@ -126,7 +195,7 @@ namespace Volcengine.Pulumi.Volcengine.Ebs
     public sealed class VolumeAttachArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Delete Volume with Attached Instance.
+        /// Delete Volume with Attached Instance.It is not recommended to use this field. If used, please ensure that the value of this field is consistent with the value of `delete_with_instance` in volcengine_volume.
         /// </summary>
         [Input("deleteWithInstance")]
         public Input<bool>? DeleteWithInstance { get; set; }
@@ -158,7 +227,7 @@ namespace Volcengine.Pulumi.Volcengine.Ebs
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// Delete Volume with Attached Instance.
+        /// Delete Volume with Attached Instance.It is not recommended to use this field. If used, please ensure that the value of this field is consistent with the value of `delete_with_instance` in volcengine_volume.
         /// </summary>
         [Input("deleteWithInstance")]
         public Input<bool>? DeleteWithInstance { get; set; }

@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of volumes
@@ -18,28 +19,49 @@ import (
 //
 // import (
 //
+//	"fmt"
+//
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ebs"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //
 // )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// fooZones, err := ecs.Zones(ctx, nil, nil);
+// if err != nil {
+// return err
+// }
+// var fooVolume []*ebs.Volume
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := ebs.Volumes(ctx, &ebs.VolumesArgs{
-//				Ids: []string{
-//					"vol-3tzg6y5imn3b9fchkedb",
-//				},
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
+//	for index := 0; index < 3; index++ {
+//	    key0 := index
+//	    val0 := index
 //
+// __res, err := ebs.NewVolume(ctx, fmt.Sprintf("fooVolume-%v", key0), &ebs.VolumeArgs{
+// VolumeName: pulumi.String(fmt.Sprintf("acc-test-volume-%v", val0)),
+// VolumeType: pulumi.String("ESSD_PL0"),
+// Description: pulumi.String("acc-test"),
+// Kind: pulumi.String("data"),
+// Size: pulumi.Int(60),
+// ZoneId: *pulumi.String(fooZones.Zones[0].Id),
+// VolumeChargeType: pulumi.String("PostPaid"),
+// ProjectName: pulumi.String("default"),
+// })
+// if err != nil {
+// return err
+// }
+// fooVolume = append(fooVolume, __res)
+// }
+// _ = ebs.VolumesOutput(ctx, ebs.VolumesOutputArgs{
+// Ids: %!v(PANIC=Format method: fatal: A failure has occurred: unlowered splat expression @ #-functions-volcengine:ebs-volumes:Volumes.pp:17,9-24),
+// }, nil);
+// return nil
+// })
+// }
 // ```
 func Volumes(ctx *pulumi.Context, args *VolumesArgs, opts ...pulumi.InvokeOption) (*VolumesResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv VolumesResult
 	err := ctx.Invoke("volcengine:ebs/volumes:Volumes", args, &rv, opts...)
 	if err != nil {

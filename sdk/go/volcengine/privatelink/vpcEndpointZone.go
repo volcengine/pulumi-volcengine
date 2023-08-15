@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage privatelink vpc endpoint zone
@@ -81,7 +82,7 @@ func NewVpcEndpointZone(ctx *pulumi.Context,
 	if args.SubnetId == nil {
 		return nil, errors.New("invalid value for required argument 'SubnetId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource VpcEndpointZone
 	err := ctx.RegisterResource("volcengine:privatelink/vpcEndpointZone:VpcEndpointZone", name, args, &resource, opts...)
 	if err != nil {
