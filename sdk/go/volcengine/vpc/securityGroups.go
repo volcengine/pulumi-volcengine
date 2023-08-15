@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of security groups
@@ -39,7 +40,7 @@ import (
 //
 // ```
 func SecurityGroups(ctx *pulumi.Context, args *SecurityGroupsArgs, opts ...pulumi.InvokeOption) (*SecurityGroupsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv SecurityGroupsResult
 	err := ctx.Invoke("volcengine:vpc/securityGroups:SecurityGroups", args, &rv, opts...)
 	if err != nil {

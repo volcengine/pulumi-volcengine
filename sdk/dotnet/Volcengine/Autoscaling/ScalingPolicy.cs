@@ -18,29 +18,57 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
+    /// using Volcengine = Pulumi.Volcengine;
     /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var foo = new Volcengine.Autoscaling.ScalingPolicy("foo", new()
+    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+    /// 
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
+    ///     {
+    ///         VpcName = "acc-test-vpc",
+    ///         CidrBlock = "172.16.0.0/16",
+    ///     });
+    /// 
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooScalingGroup = new Volcengine.Autoscaling.ScalingGroup("fooScalingGroup", new()
+    ///     {
+    ///         ScalingGroupName = "acc-test-scaling-group",
+    ///         SubnetIds = new[]
+    ///         {
+    ///             fooSubnet.Id,
+    ///         },
+    ///         MultiAzPolicy = "BALANCE",
+    ///         DesireInstanceNumber = 0,
+    ///         MinInstanceNumber = 0,
+    ///         MaxInstanceNumber = 1,
+    ///         InstanceTerminatePolicy = "OldestInstance",
+    ///         DefaultCooldown = 10,
+    ///     });
+    /// 
+    ///     var fooScalingPolicy = new Volcengine.Autoscaling.ScalingPolicy("fooScalingPolicy", new()
     ///     {
     ///         Active = false,
+    ///         ScalingGroupId = fooScalingGroup.Id,
+    ///         ScalingPolicyName = "acc-tf-sg-policy-test",
+    ///         ScalingPolicyType = "Alarm",
     ///         AdjustmentType = "QuantityChangeInCapacity",
     ///         AdjustmentValue = 100,
-    ///         AlarmPolicyConditionComparisonOperator = "=",
+    ///         Cooldown = 10,
+    ///         AlarmPolicyRuleType = "Static",
+    ///         AlarmPolicyEvaluationCount = 1,
     ///         AlarmPolicyConditionMetricName = "Instance_CpuBusy_Avg",
     ///         AlarmPolicyConditionMetricUnit = "Percent",
+    ///         AlarmPolicyConditionComparisonOperator = "=",
     ///         AlarmPolicyConditionThreshold = "100",
-    ///         AlarmPolicyEvaluationCount = 1,
-    ///         AlarmPolicyRuleType = "Static",
-    ///         Cooldown = 10,
-    ///         ScalingGroupId = "scg-ybqm0b6kcigh9zu9ce6t",
-    ///         ScalingPolicyName = "tf-test",
-    ///         ScalingPolicyType = "Alarm",
-    ///         ScheduledPolicyLaunchTime = "2022-07-09T09:59Z",
-    ///         ScheduledPolicyRecurrenceEndTime = "2022-07-24T09:25Z",
-    ///         ScheduledPolicyRecurrenceType = "Daily",
-    ///         ScheduledPolicyRecurrenceValue = "10",
     ///     });
     /// 
     /// });
@@ -122,6 +150,12 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
         /// </summary>
         [Output("scalingGroupId")]
         public Output<string> ScalingGroupId { get; private set; } = null!;
+
+        /// <summary>
+        /// The id of the scaling policy.
+        /// </summary>
+        [Output("scalingPolicyId")]
+        public Output<string> ScalingPolicyId { get; private set; } = null!;
 
         /// <summary>
         /// The name of the scaling policy.
@@ -401,6 +435,12 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
         /// </summary>
         [Input("scalingGroupId")]
         public Input<string>? ScalingGroupId { get; set; }
+
+        /// <summary>
+        /// The id of the scaling policy.
+        /// </summary>
+        [Input("scalingPolicyId")]
+        public Input<string>? ScalingPolicyId { get; set; }
 
         /// <summary>
         /// The name of the scaling policy.

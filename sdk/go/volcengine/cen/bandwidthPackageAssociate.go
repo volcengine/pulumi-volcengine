@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage cen bandwidth package associate
@@ -70,7 +71,7 @@ func NewBandwidthPackageAssociate(ctx *pulumi.Context,
 	if args.CenId == nil {
 		return nil, errors.New("invalid value for required argument 'CenId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource BandwidthPackageAssociate
 	err := ctx.RegisterResource("volcengine:cen/bandwidthPackageAssociate:BandwidthPackageAssociate", name, args, &resource, opts...)
 	if err != nil {

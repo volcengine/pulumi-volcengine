@@ -21,7 +21,7 @@ class VolumeAttachArgs:
         The set of arguments for constructing a VolumeAttach resource.
         :param pulumi.Input[str] instance_id: The Id of Instance.
         :param pulumi.Input[str] volume_id: The Id of Volume.
-        :param pulumi.Input[bool] delete_with_instance: Delete Volume with Attached Instance.
+        :param pulumi.Input[bool] delete_with_instance: Delete Volume with Attached Instance.It is not recommended to use this field. If used, please ensure that the value of this field is consistent with the value of `delete_with_instance` in volcengine_volume.
         """
         pulumi.set(__self__, "instance_id", instance_id)
         pulumi.set(__self__, "volume_id", volume_id)
@@ -56,7 +56,7 @@ class VolumeAttachArgs:
     @pulumi.getter(name="deleteWithInstance")
     def delete_with_instance(self) -> Optional[pulumi.Input[bool]]:
         """
-        Delete Volume with Attached Instance.
+        Delete Volume with Attached Instance.It is not recommended to use this field. If used, please ensure that the value of this field is consistent with the value of `delete_with_instance` in volcengine_volume.
         """
         return pulumi.get(self, "delete_with_instance")
 
@@ -77,7 +77,7 @@ class _VolumeAttachState:
         """
         Input properties used for looking up and filtering VolumeAttach resources.
         :param pulumi.Input[str] created_at: Creation time of Volume.
-        :param pulumi.Input[bool] delete_with_instance: Delete Volume with Attached Instance.
+        :param pulumi.Input[bool] delete_with_instance: Delete Volume with Attached Instance.It is not recommended to use this field. If used, please ensure that the value of this field is consistent with the value of `delete_with_instance` in volcengine_volume.
         :param pulumi.Input[str] instance_id: The Id of Instance.
         :param pulumi.Input[str] status: Status of Volume.
         :param pulumi.Input[str] updated_at: Update time of Volume.
@@ -112,7 +112,7 @@ class _VolumeAttachState:
     @pulumi.getter(name="deleteWithInstance")
     def delete_with_instance(self) -> Optional[pulumi.Input[bool]]:
         """
-        Delete Volume with Attached Instance.
+        Delete Volume with Attached Instance.It is not recommended to use this field. If used, please ensure that the value of this field is consistent with the value of `delete_with_instance` in volcengine_volume.
         """
         return pulumi.get(self, "delete_with_instance")
 
@@ -186,9 +186,50 @@ class VolumeAttach(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.ebs.VolumeAttach("foo",
-            instance_id="i-4ay59ww7dq8dt9c29hd4",
-            volume_id="vol-3tzl52wubz3b9fciw7ev")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+            security_group_name="acc-test-security-group",
+            vpc_id=foo_vpc.id)
+        foo_images = volcengine.ecs.images(os_type="Linux",
+            visibility="public",
+            instance_type_id="ecs.g1.large")
+        foo_instance = volcengine.ecs.Instance("fooInstance",
+            instance_name="acc-test-ecs",
+            description="acc-test",
+            host_name="tf-acc-test",
+            image_id=foo_images.images[0].image_id,
+            instance_type="ecs.g1.large",
+            password="93f0cb0614Aab12",
+            instance_charge_type="PostPaid",
+            system_volume_type="ESSD_PL0",
+            system_volume_size=40,
+            subnet_id=foo_subnet.id,
+            security_group_ids=[foo_security_group.id],
+            project_name="default",
+            tags=[volcengine.ecs.InstanceTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_volume = volcengine.ebs.Volume("fooVolume",
+            volume_name="acc-test-volume",
+            volume_type="ESSD_PL0",
+            description="acc-test",
+            kind="data",
+            size=40,
+            zone_id=foo_zones.zones[0].id,
+            volume_charge_type="PostPaid",
+            project_name="default")
+        foo_volume_attach = volcengine.ebs.VolumeAttach("fooVolumeAttach",
+            instance_id=foo_instance.id,
+            volume_id=foo_volume.id)
         ```
 
         ## Import
@@ -201,7 +242,7 @@ class VolumeAttach(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] delete_with_instance: Delete Volume with Attached Instance.
+        :param pulumi.Input[bool] delete_with_instance: Delete Volume with Attached Instance.It is not recommended to use this field. If used, please ensure that the value of this field is consistent with the value of `delete_with_instance` in volcengine_volume.
         :param pulumi.Input[str] instance_id: The Id of Instance.
         :param pulumi.Input[str] volume_id: The Id of Volume.
         """
@@ -219,9 +260,50 @@ class VolumeAttach(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.ebs.VolumeAttach("foo",
-            instance_id="i-4ay59ww7dq8dt9c29hd4",
-            volume_id="vol-3tzl52wubz3b9fciw7ev")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+            security_group_name="acc-test-security-group",
+            vpc_id=foo_vpc.id)
+        foo_images = volcengine.ecs.images(os_type="Linux",
+            visibility="public",
+            instance_type_id="ecs.g1.large")
+        foo_instance = volcengine.ecs.Instance("fooInstance",
+            instance_name="acc-test-ecs",
+            description="acc-test",
+            host_name="tf-acc-test",
+            image_id=foo_images.images[0].image_id,
+            instance_type="ecs.g1.large",
+            password="93f0cb0614Aab12",
+            instance_charge_type="PostPaid",
+            system_volume_type="ESSD_PL0",
+            system_volume_size=40,
+            subnet_id=foo_subnet.id,
+            security_group_ids=[foo_security_group.id],
+            project_name="default",
+            tags=[volcengine.ecs.InstanceTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_volume = volcengine.ebs.Volume("fooVolume",
+            volume_name="acc-test-volume",
+            volume_type="ESSD_PL0",
+            description="acc-test",
+            kind="data",
+            size=40,
+            zone_id=foo_zones.zones[0].id,
+            volume_charge_type="PostPaid",
+            project_name="default")
+        foo_volume_attach = volcengine.ebs.VolumeAttach("fooVolumeAttach",
+            instance_id=foo_instance.id,
+            volume_id=foo_volume.id)
         ```
 
         ## Import
@@ -293,7 +375,7 @@ class VolumeAttach(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] created_at: Creation time of Volume.
-        :param pulumi.Input[bool] delete_with_instance: Delete Volume with Attached Instance.
+        :param pulumi.Input[bool] delete_with_instance: Delete Volume with Attached Instance.It is not recommended to use this field. If used, please ensure that the value of this field is consistent with the value of `delete_with_instance` in volcengine_volume.
         :param pulumi.Input[str] instance_id: The Id of Instance.
         :param pulumi.Input[str] status: Status of Volume.
         :param pulumi.Input[str] updated_at: Update time of Volume.
@@ -323,7 +405,7 @@ class VolumeAttach(pulumi.CustomResource):
     @pulumi.getter(name="deleteWithInstance")
     def delete_with_instance(self) -> pulumi.Output[bool]:
         """
-        Delete Volume with Attached Instance.
+        Delete Volume with Attached Instance.It is not recommended to use this field. If used, please ensure that the value of this field is consistent with the value of `delete_with_instance` in volcengine_volume.
         """
         return pulumi.get(self, "delete_with_instance")
 

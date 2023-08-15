@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of vpc ipv6 address bandwidths
@@ -39,7 +40,7 @@ import (
 //
 // ```
 func Ipv6AddressBandwidths(ctx *pulumi.Context, args *Ipv6AddressBandwidthsArgs, opts ...pulumi.InvokeOption) (*Ipv6AddressBandwidthsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv Ipv6AddressBandwidthsResult
 	err := ctx.Invoke("volcengine:vpc/ipv6AddressBandwidths:Ipv6AddressBandwidths", args, &rv, opts...)
 	if err != nil {

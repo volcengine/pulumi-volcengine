@@ -8,16 +8,6 @@ import * as utilities from "../utilities";
 
 /**
  * Use this data source to query detailed information of scaling lifecycle hooks
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
- *
- * const default = volcengine.autoscaling.ScalingLifecycleHooks({
- *     scalingGroupId: "scg-ybru8pazhgl8j1di4tyd",
- * });
- * ```
  */
 export function scalingLifecycleHooks(args: ScalingLifecycleHooksArgs, opts?: pulumi.InvokeOptions): Promise<ScalingLifecycleHooksResult> {
 
@@ -84,16 +74,6 @@ export interface ScalingLifecycleHooksResult {
 }
 /**
  * Use this data source to query detailed information of scaling lifecycle hooks
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
- *
- * const default = volcengine.autoscaling.ScalingLifecycleHooks({
- *     scalingGroupId: "scg-ybru8pazhgl8j1di4tyd",
- * });
- * ```
  */
 export function scalingLifecycleHooksOutput(args: ScalingLifecycleHooksOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ScalingLifecycleHooksResult> {
     return pulumi.output(args).apply((a: any) => scalingLifecycleHooks(a, opts))

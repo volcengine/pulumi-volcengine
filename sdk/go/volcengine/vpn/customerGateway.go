@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage customer gateway
@@ -27,8 +28,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := vpn.NewCustomerGateway(ctx, "foo", &vpn.CustomerGatewayArgs{
-//				CustomerGatewayName: pulumi.String("tf-test"),
-//				Description:         pulumi.String("tf-test"),
+//				CustomerGatewayName: pulumi.String("acc-test"),
+//				Description:         pulumi.String("acc-test"),
 //				IpAddress:           pulumi.String("192.0.1.3"),
 //				ProjectName:         pulumi.String("default"),
 //			})
@@ -85,7 +86,7 @@ func NewCustomerGateway(ctx *pulumi.Context,
 	if args.IpAddress == nil {
 		return nil, errors.New("invalid value for required argument 'IpAddress'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource CustomerGateway
 	err := ctx.RegisterResource("volcengine:vpn/customerGateway:CustomerGateway", name, args, &resource, opts...)
 	if err != nil {

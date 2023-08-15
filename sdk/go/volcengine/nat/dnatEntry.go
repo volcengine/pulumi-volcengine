@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage dnat entry
@@ -20,21 +21,81 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/eip"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/nat"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := nat.NewDnatEntry(ctx, "foo", &nat.DnatEntryArgs{
-//				DnatEntryName: pulumi.String("terraform-test2"),
-//				ExternalIp:    pulumi.String("10.249.186.68"),
-//				ExternalPort:  pulumi.String("23"),
-//				InternalIp:    pulumi.String("193.168.1.1"),
-//				InternalPort:  pulumi.String("24"),
-//				NatGatewayId:  pulumi.String("ngw-imw3aej7e96o8gbssxkfbybv"),
-//				Protocol:      pulumi.String("tcp"),
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
 //			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooGateway, err := nat.NewGateway(ctx, "fooGateway", &nat.GatewayArgs{
+//				VpcId:          fooVpc.ID(),
+//				SubnetId:       fooSubnet.ID(),
+//				Spec:           pulumi.String("Small"),
+//				NatGatewayName: pulumi.String("acc-test-ng"),
+//				Description:    pulumi.String("acc-test"),
+//				BillingType:    pulumi.String("PostPaid"),
+//				ProjectName:    pulumi.String("default"),
+//				Tags: nat.GatewayTagArray{
+//					&nat.GatewayTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooAddress, err := eip.NewAddress(ctx, "fooAddress", &eip.AddressArgs{
+//				Description: pulumi.String("acc-test"),
+//				Bandwidth:   pulumi.Int(1),
+//				BillingType: pulumi.String("PostPaidByBandwidth"),
+//				Isp:         pulumi.String("BGP"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooAssociate, err := eip.NewAssociate(ctx, "fooAssociate", &eip.AssociateArgs{
+//				AllocationId: fooAddress.ID(),
+//				InstanceId:   fooGateway.ID(),
+//				InstanceType: pulumi.String("Nat"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = nat.NewDnatEntry(ctx, "fooDnatEntry", &nat.DnatEntryArgs{
+//				DnatEntryName: pulumi.String("acc-test-dnat-entry"),
+//				ExternalIp:    fooAddress.EipAddress,
+//				ExternalPort:  pulumi.String("80"),
+//				InternalIp:    pulumi.String("172.16.0.10"),
+//				InternalPort:  pulumi.String("80"),
+//				NatGatewayId:  fooGateway.ID(),
+//				Protocol:      pulumi.String("tcp"),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				fooAssociate,
+//			}))
 //			if err != nil {
 //				return err
 //			}
@@ -99,7 +160,7 @@ func NewDnatEntry(ctx *pulumi.Context,
 	if args.Protocol == nil {
 		return nil, errors.New("invalid value for required argument 'Protocol'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DnatEntry
 	err := ctx.RegisterResource("volcengine:nat/dnatEntry:DnatEntry", name, args, &resource, opts...)
 	if err != nil {

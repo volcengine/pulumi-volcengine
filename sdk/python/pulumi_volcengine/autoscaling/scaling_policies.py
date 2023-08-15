@@ -138,15 +138,6 @@ def scaling_policies(ids: Optional[Sequence[str]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableScalingPoliciesResult:
     """
     Use this data source to query detailed information of scaling policies
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_volcengine as volcengine
-
-    default = volcengine.autoscaling.scaling_policies(ids=["sp-ybruzckr8bgh9zrxw29v"],
-        scaling_group_id="scg-ybqm0b6kcigh9zu9ce6t")
-    ```
 
 
     :param Sequence[str] ids: A list of scaling policy ids.
@@ -188,15 +179,6 @@ def scaling_policies_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]]
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ScalingPoliciesResult]:
     """
     Use this data source to query detailed information of scaling policies
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_volcengine as volcengine
-
-    default = volcengine.autoscaling.scaling_policies(ids=["sp-ybruzckr8bgh9zrxw29v"],
-        scaling_group_id="scg-ybqm0b6kcigh9zu9ce6t")
-    ```
 
 
     :param Sequence[str] ids: A list of scaling policy ids.

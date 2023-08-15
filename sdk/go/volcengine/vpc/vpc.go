@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage vpc
@@ -106,7 +107,7 @@ func NewVpc(ctx *pulumi.Context,
 	if args.CidrBlock == nil {
 		return nil, errors.New("invalid value for required argument 'CidrBlock'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Vpc
 	err := ctx.RegisterResource("volcengine:vpc/vpc:Vpc", name, args, &resource, opts...)
 	if err != nil {

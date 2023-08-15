@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage iam role
@@ -84,7 +85,7 @@ func NewRole(ctx *pulumi.Context,
 	if args.TrustPolicyDocument == nil {
 		return nil, errors.New("invalid value for required argument 'TrustPolicyDocument'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Role
 	err := ctx.RegisterResource("volcengine:iam/role:Role", name, args, &resource, opts...)
 	if err != nil {

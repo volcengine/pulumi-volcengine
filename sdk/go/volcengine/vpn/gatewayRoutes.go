@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of vpn gateway routes
@@ -19,27 +20,102 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpn"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vpn.GatewayRoutes(ctx, &vpn.GatewayRoutesArgs{
-//				Ids: []string{
-//					"vgr-2byssu52dktts2dx0ee90r5hp]",
-//				},
-//			}, nil)
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
 //			if err != nil {
 //				return err
 //			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     pulumi.String("cn-beijig-a"),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooGateway, err := vpn.NewGateway(ctx, "fooGateway", &vpn.GatewayArgs{
+//				VpcId:          fooVpc.ID(),
+//				SubnetId:       fooSubnet.ID(),
+//				Bandwidth:      pulumi.Int(20),
+//				VpnGatewayName: pulumi.String("acc-test"),
+//				Description:    pulumi.String("acc-test"),
+//				Period:         pulumi.Int(2),
+//				ProjectName:    pulumi.String("default"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooCustomerGateway, err := vpn.NewCustomerGateway(ctx, "fooCustomerGateway", &vpn.CustomerGatewayArgs{
+//				IpAddress:           pulumi.String("192.0.1.3"),
+//				CustomerGatewayName: pulumi.String("acc-test"),
+//				Description:         pulumi.String("acc-test"),
+//				ProjectName:         pulumi.String("default"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooConnection, err := vpn.NewConnection(ctx, "fooConnection", &vpn.ConnectionArgs{
+//				VpnConnectionName: pulumi.String("acc-tf-test"),
+//				Description:       pulumi.String("acc-tf-test"),
+//				VpnGatewayId:      fooGateway.ID(),
+//				CustomerGatewayId: fooCustomerGateway.ID(),
+//				LocalSubnets: pulumi.StringArray{
+//					pulumi.String("192.168.0.0/22"),
+//				},
+//				RemoteSubnets: pulumi.StringArray{
+//					pulumi.String("192.161.0.0/20"),
+//				},
+//				DpdAction:           pulumi.String("none"),
+//				NatTraversal:        pulumi.Bool(true),
+//				IkeConfigPsk:        pulumi.String("acctest@!3"),
+//				IkeConfigVersion:    pulumi.String("ikev1"),
+//				IkeConfigMode:       pulumi.String("main"),
+//				IkeConfigEncAlg:     pulumi.String("aes"),
+//				IkeConfigAuthAlg:    pulumi.String("md5"),
+//				IkeConfigDhGroup:    pulumi.String("group2"),
+//				IkeConfigLifetime:   pulumi.Int(9000),
+//				IkeConfigLocalId:    pulumi.String("acc_test"),
+//				IkeConfigRemoteId:   pulumi.String("acc_test"),
+//				IpsecConfigEncAlg:   pulumi.String("aes"),
+//				IpsecConfigAuthAlg:  pulumi.String("sha256"),
+//				IpsecConfigDhGroup:  pulumi.String("group2"),
+//				IpsecConfigLifetime: pulumi.Int(9000),
+//				ProjectName:         pulumi.String("default"),
+//				LogEnabled:          pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooGatewayRoute, err := vpn.NewGatewayRoute(ctx, "fooGatewayRoute", &vpn.GatewayRouteArgs{
+//				VpnGatewayId:         fooGateway.ID(),
+//				DestinationCidrBlock: pulumi.String("192.168.0.0/20"),
+//				NextHopId:            fooConnection.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = vpn.GatewayRoutesOutput(ctx, vpn.GatewayRoutesOutputArgs{
+//				Ids: pulumi.StringArray{
+//					fooGatewayRoute.ID(),
+//				},
+//			}, nil)
 //			return nil
 //		})
 //	}
 //
 // ```
 func GatewayRoutes(ctx *pulumi.Context, args *GatewayRoutesArgs, opts ...pulumi.InvokeOption) (*GatewayRoutesResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GatewayRoutesResult
 	err := ctx.Invoke("volcengine:vpn/gatewayRoutes:GatewayRoutes", args, &rv, opts...)
 	if err != nil {

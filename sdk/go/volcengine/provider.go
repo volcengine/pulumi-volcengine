@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // The provider type for the volcengine package. By default, resources use package-wide configuration
@@ -43,26 +44,26 @@ func NewProvider(ctx *pulumi.Context,
 	}
 
 	if args.AccessKey == nil {
-		if d := getEnvOrDefault(nil, nil, "VOLCENGINE_ACCESS_KEY"); d != nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "VOLCENGINE_ACCESS_KEY"); d != nil {
 			args.AccessKey = pulumi.StringPtr(d.(string))
 		}
 	}
 	if args.Endpoint == nil {
-		if d := getEnvOrDefault(nil, nil, "VOLCENGINE_ENDPOINT"); d != nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "VOLCENGINE_ENDPOINT"); d != nil {
 			args.Endpoint = pulumi.StringPtr(d.(string))
 		}
 	}
 	if args.Region == nil {
-		if d := getEnvOrDefault(nil, nil, "VOLCENGINE_REGION"); d != nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "VOLCENGINE_REGION"); d != nil {
 			args.Region = pulumi.StringPtr(d.(string))
 		}
 	}
 	if args.SecretKey == nil {
-		if d := getEnvOrDefault(nil, nil, "VOLCENGINE_SECRET_KEY"); d != nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "VOLCENGINE_SECRET_KEY"); d != nil {
 			args.SecretKey = pulumi.StringPtr(d.(string))
 		}
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:volcengine", name, args, &resource, opts...)
 	if err != nil {

@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage privatelink vpc endpoint service resource
@@ -84,7 +85,7 @@ func NewVpcEndpointServiceResource(ctx *pulumi.Context,
 	if args.ServiceId == nil {
 		return nil, errors.New("invalid value for required argument 'ServiceId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource VpcEndpointServiceResource
 	err := ctx.RegisterResource("volcengine:privatelink/vpcEndpointServiceResource:VpcEndpointServiceResource", name, args, &resource, opts...)
 	if err != nil {

@@ -13,9 +13,24 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.ebs.Volumes({
- *     ids: ["vol-3tzg6y5imn3b9fchkedb"],
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVolume: volcengine.ebs.Volume[] = [];
+ * for (const range = {value: 0}; range.value < 3; range.value++) {
+ *     fooVolume.push(new volcengine.ebs.Volume(`fooVolume-${range.value}`, {
+ *         volumeName: `acc-test-volume-${range.value}`,
+ *         volumeType: "ESSD_PL0",
+ *         description: "acc-test",
+ *         kind: "data",
+ *         size: 60,
+ *         zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *         volumeChargeType: "PostPaid",
+ *         projectName: "default",
+ *     }));
+ * }
+ * const fooVolumes = volcengine.ebs.VolumesOutput({
+ *     ids: fooVolume.map(__item => __item.id),
  * });
  * ```
  */
@@ -111,9 +126,24 @@ export interface VolumesResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.ebs.Volumes({
- *     ids: ["vol-3tzg6y5imn3b9fchkedb"],
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVolume: volcengine.ebs.Volume[] = [];
+ * for (const range = {value: 0}; range.value < 3; range.value++) {
+ *     fooVolume.push(new volcengine.ebs.Volume(`fooVolume-${range.value}`, {
+ *         volumeName: `acc-test-volume-${range.value}`,
+ *         volumeType: "ESSD_PL0",
+ *         description: "acc-test",
+ *         kind: "data",
+ *         size: 60,
+ *         zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *         volumeChargeType: "PostPaid",
+ *         projectName: "default",
+ *     }));
+ * }
+ * const fooVolumes = volcengine.ebs.VolumesOutput({
+ *     ids: fooVolume.map(__item => __item.id),
  * });
  * ```
  */

@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of redis allow lists
@@ -37,7 +38,7 @@ import (
 //
 // ```
 func AllowLists(ctx *pulumi.Context, args *AllowListsArgs, opts ...pulumi.InvokeOption) (*AllowListsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv AllowListsResult
 	err := ctx.Invoke("volcengine:redis/allowLists:AllowLists", args, &rv, opts...)
 	if err != nil {

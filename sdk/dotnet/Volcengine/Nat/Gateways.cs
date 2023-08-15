@@ -23,16 +23,52 @@ namespace Volcengine.Pulumi.Volcengine.Nat
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Nat.Gateways.Invoke(new()
+        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        /// 
+        ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
-        ///         Ids = new[]
+        ///         VpcName = "acc-test-vpc",
+        ///         CidrBlock = "172.16.0.0/16",
+        ///     });
+        /// 
+        ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+        ///     {
+        ///         SubnetName = "acc-test-subnet",
+        ///         CidrBlock = "172.16.0.0/24",
+        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooGateway = new List&lt;Volcengine.Nat.Gateway&gt;();
+        ///     for (var rangeIndex = 0; rangeIndex &lt; 3; rangeIndex++)
+        ///     {
+        ///         var range = new { Value = rangeIndex };
+        ///         fooGateway.Add(new Volcengine.Nat.Gateway($"fooGateway-{range.Value}", new()
         ///         {
-        ///             "ngw-2743w1f6iqby87fap8tvm9kop",
-        ///             "ngw-274gwbqe340zk7fap8spkzo7x",
-        ///         },
+        ///             VpcId = fooVpc.Id,
+        ///             SubnetId = fooSubnet.Id,
+        ///             Spec = "Small",
+        ///             NatGatewayName = $"acc-test-ng-{range.Value}",
+        ///             Description = "acc-test",
+        ///             BillingType = "PostPaid",
+        ///             ProjectName = "default",
+        ///             Tags = new[]
+        ///             {
+        ///                 new Volcengine.Nat.Inputs.GatewayTagArgs
+        ///                 {
+        ///                     Key = "k1",
+        ///                     Value = "v1",
+        ///                 },
+        ///             },
+        ///         }));
+        ///     }
+        ///     var fooGateways = Volcengine.Nat.Gateways.Invoke(new()
+        ///     {
+        ///         Ids = fooGateway.Select(__item =&gt; __item.Id).ToList(),
         ///     });
         /// 
         /// });
@@ -54,16 +90,52 @@ namespace Volcengine.Pulumi.Volcengine.Nat
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Nat.Gateways.Invoke(new()
+        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        /// 
+        ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
-        ///         Ids = new[]
+        ///         VpcName = "acc-test-vpc",
+        ///         CidrBlock = "172.16.0.0/16",
+        ///     });
+        /// 
+        ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+        ///     {
+        ///         SubnetName = "acc-test-subnet",
+        ///         CidrBlock = "172.16.0.0/24",
+        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooGateway = new List&lt;Volcengine.Nat.Gateway&gt;();
+        ///     for (var rangeIndex = 0; rangeIndex &lt; 3; rangeIndex++)
+        ///     {
+        ///         var range = new { Value = rangeIndex };
+        ///         fooGateway.Add(new Volcengine.Nat.Gateway($"fooGateway-{range.Value}", new()
         ///         {
-        ///             "ngw-2743w1f6iqby87fap8tvm9kop",
-        ///             "ngw-274gwbqe340zk7fap8spkzo7x",
-        ///         },
+        ///             VpcId = fooVpc.Id,
+        ///             SubnetId = fooSubnet.Id,
+        ///             Spec = "Small",
+        ///             NatGatewayName = $"acc-test-ng-{range.Value}",
+        ///             Description = "acc-test",
+        ///             BillingType = "PostPaid",
+        ///             ProjectName = "default",
+        ///             Tags = new[]
+        ///             {
+        ///                 new Volcengine.Nat.Inputs.GatewayTagArgs
+        ///                 {
+        ///                     Key = "k1",
+        ///                     Value = "v1",
+        ///                 },
+        ///             },
+        ///         }));
+        ///     }
+        ///     var fooGateways = Volcengine.Nat.Gateways.Invoke(new()
+        ///     {
+        ///         Ids = fooGateway.Select(__item =&gt; __item.Id).ToList(),
         ///     });
         /// 
         /// });

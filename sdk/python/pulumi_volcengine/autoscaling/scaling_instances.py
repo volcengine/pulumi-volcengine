@@ -150,14 +150,83 @@ def scaling_instances(creation_type: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.autoscaling.scaling_instances(ids=[
-            "i-ybzl4u5uogl8j07hgcbg",
-            "i-ybyncrcpzpgh9zmlct0w",
-            "i-ybyncrcpzogh9z4ax9tv",
-        ],
-        scaling_configuration_id="scc-ybtawzucw95pkgon0wst",
-        scaling_group_id="scg-ybtawtznszgh9yv8agcp",
-        status="InService")
+    foo_zones = volcengine.ecs.zones()
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-vpc",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-test-subnet",
+        cidr_block="172.16.0.0/24",
+        zone_id=foo_zones.zones[0].id,
+        vpc_id=foo_vpc.id)
+    foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+        security_group_name="acc-test-security-group",
+        vpc_id=foo_vpc.id)
+    foo_images = volcengine.ecs.images(os_type="Linux",
+        visibility="public",
+        instance_type_id="ecs.g1.large")
+    foo_key_pair = volcengine.ecs.KeyPair("fooKeyPair",
+        description="acc-test-2",
+        key_pair_name="acc-test-key-pair-name")
+    foo_launch_template = volcengine.ecs.LaunchTemplate("fooLaunchTemplate",
+        description="acc-test-desc",
+        eip_bandwidth=200,
+        eip_billing_type="PostPaidByBandwidth",
+        eip_isp="BGP",
+        host_name="acc-hostname",
+        image_id=foo_images.images[0].image_id,
+        instance_charge_type="PostPaid",
+        instance_name="acc-instance-name",
+        instance_type_id="ecs.g1.large",
+        key_pair_name=foo_key_pair.key_pair_name,
+        launch_template_name="acc-test-template",
+        network_interfaces=[volcengine.ecs.LaunchTemplateNetworkInterfaceArgs(
+            subnet_id=foo_subnet.id,
+            security_group_ids=[foo_security_group.id],
+        )],
+        volumes=[volcengine.ecs.LaunchTemplateVolumeArgs(
+            volume_type="ESSD_PL0",
+            size=50,
+            delete_with_instance=True,
+        )])
+    foo_scaling_group = volcengine.autoscaling.ScalingGroup("fooScalingGroup",
+        scaling_group_name="acc-test-scaling-group",
+        subnet_ids=[foo_subnet.id],
+        multi_az_policy="BALANCE",
+        desire_instance_number=-1,
+        min_instance_number=0,
+        max_instance_number=10,
+        instance_terminate_policy="OldestInstance",
+        default_cooldown=10,
+        launch_template_id=foo_launch_template.id,
+        launch_template_version="Default")
+    foo_scaling_group_enabler = volcengine.autoscaling.ScalingGroupEnabler("fooScalingGroupEnabler", scaling_group_id=foo_scaling_group.id)
+    foo_instance = []
+    for range in [{"value": i} for i in range(0, 3)]:
+        foo_instance.append(volcengine.ecs.Instance(f"fooInstance-{range['value']}",
+            instance_name=f"acc-test-ecs-{range['value']}",
+            description="acc-test",
+            host_name="tf-acc-test",
+            image_id=foo_images.images[0].image_id,
+            instance_type="ecs.g1.large",
+            password="93f0cb0614Aab12",
+            instance_charge_type="PostPaid",
+            system_volume_type="ESSD_PL0",
+            system_volume_size=40,
+            subnet_id=foo_subnet.id,
+            security_group_ids=[foo_security_group.id]))
+    foo_scaling_instance_attachment = []
+    def create_foo_scaling_instance_attachment(range_body):
+        for range in [{"value": i} for i in range(0, range_body)]:
+            foo_scaling_instance_attachment.append(volcengine.autoscaling.ScalingInstanceAttachment(f"fooScalingInstanceAttachment-{range['value']}",
+                instance_id=foo_instance[range["value"]].id,
+                scaling_group_id=foo_scaling_group.id,
+                entrusted=True,
+                opts=pulumi.ResourceOptions(depends_on=[foo_scaling_group_enabler])))
+
+    (len(foo_instance)).apply(create_foo_scaling_instance_attachment)
+    foo_scaling_instances = volcengine.autoscaling.scaling_instances_output(scaling_group_id=foo_scaling_group.id,
+        ids=[__item.instance_id for __item in foo_scaling_instance_attachment])
     ```
 
 
@@ -206,14 +275,83 @@ def scaling_instances_output(creation_type: Optional[pulumi.Input[Optional[str]]
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.autoscaling.scaling_instances(ids=[
-            "i-ybzl4u5uogl8j07hgcbg",
-            "i-ybyncrcpzpgh9zmlct0w",
-            "i-ybyncrcpzogh9z4ax9tv",
-        ],
-        scaling_configuration_id="scc-ybtawzucw95pkgon0wst",
-        scaling_group_id="scg-ybtawtznszgh9yv8agcp",
-        status="InService")
+    foo_zones = volcengine.ecs.zones()
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-vpc",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-test-subnet",
+        cidr_block="172.16.0.0/24",
+        zone_id=foo_zones.zones[0].id,
+        vpc_id=foo_vpc.id)
+    foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+        security_group_name="acc-test-security-group",
+        vpc_id=foo_vpc.id)
+    foo_images = volcengine.ecs.images(os_type="Linux",
+        visibility="public",
+        instance_type_id="ecs.g1.large")
+    foo_key_pair = volcengine.ecs.KeyPair("fooKeyPair",
+        description="acc-test-2",
+        key_pair_name="acc-test-key-pair-name")
+    foo_launch_template = volcengine.ecs.LaunchTemplate("fooLaunchTemplate",
+        description="acc-test-desc",
+        eip_bandwidth=200,
+        eip_billing_type="PostPaidByBandwidth",
+        eip_isp="BGP",
+        host_name="acc-hostname",
+        image_id=foo_images.images[0].image_id,
+        instance_charge_type="PostPaid",
+        instance_name="acc-instance-name",
+        instance_type_id="ecs.g1.large",
+        key_pair_name=foo_key_pair.key_pair_name,
+        launch_template_name="acc-test-template",
+        network_interfaces=[volcengine.ecs.LaunchTemplateNetworkInterfaceArgs(
+            subnet_id=foo_subnet.id,
+            security_group_ids=[foo_security_group.id],
+        )],
+        volumes=[volcengine.ecs.LaunchTemplateVolumeArgs(
+            volume_type="ESSD_PL0",
+            size=50,
+            delete_with_instance=True,
+        )])
+    foo_scaling_group = volcengine.autoscaling.ScalingGroup("fooScalingGroup",
+        scaling_group_name="acc-test-scaling-group",
+        subnet_ids=[foo_subnet.id],
+        multi_az_policy="BALANCE",
+        desire_instance_number=-1,
+        min_instance_number=0,
+        max_instance_number=10,
+        instance_terminate_policy="OldestInstance",
+        default_cooldown=10,
+        launch_template_id=foo_launch_template.id,
+        launch_template_version="Default")
+    foo_scaling_group_enabler = volcengine.autoscaling.ScalingGroupEnabler("fooScalingGroupEnabler", scaling_group_id=foo_scaling_group.id)
+    foo_instance = []
+    for range in [{"value": i} for i in range(0, 3)]:
+        foo_instance.append(volcengine.ecs.Instance(f"fooInstance-{range['value']}",
+            instance_name=f"acc-test-ecs-{range['value']}",
+            description="acc-test",
+            host_name="tf-acc-test",
+            image_id=foo_images.images[0].image_id,
+            instance_type="ecs.g1.large",
+            password="93f0cb0614Aab12",
+            instance_charge_type="PostPaid",
+            system_volume_type="ESSD_PL0",
+            system_volume_size=40,
+            subnet_id=foo_subnet.id,
+            security_group_ids=[foo_security_group.id]))
+    foo_scaling_instance_attachment = []
+    def create_foo_scaling_instance_attachment(range_body):
+        for range in [{"value": i} for i in range(0, range_body)]:
+            foo_scaling_instance_attachment.append(volcengine.autoscaling.ScalingInstanceAttachment(f"fooScalingInstanceAttachment-{range['value']}",
+                instance_id=foo_instance[range["value"]].id,
+                scaling_group_id=foo_scaling_group.id,
+                entrusted=True,
+                opts=pulumi.ResourceOptions(depends_on=[foo_scaling_group_enabler])))
+
+    (len(foo_instance)).apply(create_foo_scaling_instance_attachment)
+    foo_scaling_instances = volcengine.autoscaling.scaling_instances_output(scaling_group_id=foo_scaling_group.id,
+        ids=[__item.instance_id for __item in foo_scaling_instance_attachment])
     ```
 
 

@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of privatelink vpc endpoint connections
@@ -38,7 +39,7 @@ import (
 //
 // ```
 func VpcEndpointConnections(ctx *pulumi.Context, args *VpcEndpointConnectionsArgs, opts ...pulumi.InvokeOption) (*VpcEndpointConnectionsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv VpcEndpointConnectionsResult
 	err := ctx.Invoke("volcengine:privatelink/vpcEndpointConnections:VpcEndpointConnections", args, &rv, opts...)
 	if err != nil {

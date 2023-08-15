@@ -11,26 +11,67 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.autoscaling.ScalingConfiguration("foo", {
- *     eipBandwidth: 10,
- *     eipBillingType: "PostPaidByBandwidth",
- *     eipIsp: "ChinaMobile",
- *     hostName: "",
- *     hpcClusterId: "",
- *     imageId: "image-ycgud4t4hxgso0e27bdl",
- *     instanceDescription: "",
- *     instanceName: "tf-test",
- *     instanceTypes: ["ecs.g2i.large"],
- *     keyPairName: "tf-keypair",
- *     password: "",
- *     projectName: "default",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
+ *     securityGroupName: "acc-test-security-group",
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooImages = volcengine.ecs.Images({
+ *     osType: "Linux",
+ *     visibility: "public",
+ *     instanceTypeId: "ecs.g1.large",
+ * });
+ * const fooScalingGroup = new volcengine.autoscaling.ScalingGroup("fooScalingGroup", {
+ *     scalingGroupName: "acc-test-scaling-group",
+ *     subnetIds: [fooSubnet.id],
+ *     multiAzPolicy: "BALANCE",
+ *     desireInstanceNumber: 0,
+ *     minInstanceNumber: 0,
+ *     maxInstanceNumber: 1,
+ *     instanceTerminatePolicy: "OldestInstance",
+ *     defaultCooldown: 10,
+ * });
+ * const fooScalingConfiguration = new volcengine.autoscaling.ScalingConfiguration("fooScalingConfiguration", {
  *     scalingConfigurationName: "tf-test",
- *     scalingGroupId: "scg-ycinx27x25gh9y31p0fy",
+ *     scalingGroupId: fooScalingGroup.id,
+ *     imageId: fooImages.then(fooImages => fooImages.images?.[0]?.imageId),
+ *     instanceTypes: ["ecs.g2i.large"],
+ *     instanceName: "tf-test",
+ *     instanceDescription: "",
+ *     hostName: "",
+ *     password: "",
+ *     keyPairName: "tf-keypair",
  *     securityEnhancementStrategy: "InActive",
- *     securityGroupIds: ["sg-2fepz3c793g1s59gp67y21r34"],
- *     spotStrategy: "NoSpot",
+ *     volumes: [
+ *         {
+ *             volumeType: "ESSD_PL0",
+ *             size: 20,
+ *             deleteWithInstance: false,
+ *         },
+ *         {
+ *             volumeType: "ESSD_PL0",
+ *             size: 50,
+ *             deleteWithInstance: true,
+ *         },
+ *     ],
+ *     securityGroupIds: [fooSecurityGroup.id],
+ *     eipBandwidth: 10,
+ *     eipIsp: "ChinaMobile",
+ *     eipBillingType: "PostPaidByBandwidth",
+ *     userData: "IyEvYmluL2Jhc2gKZWNobyAidGVzdCI=",
  *     tags: [
  *         {
  *             key: "tf-key1",
@@ -41,19 +82,9 @@ import * as utilities from "../utilities";
  *             value: "tf-value2",
  *         },
  *     ],
- *     userData: "IyEvYmluL2Jhc2gKZWNobyAidGVzdCI=",
- *     volumes: [
- *         {
- *             deleteWithInstance: false,
- *             size: 20,
- *             volumeType: "ESSD_PL0",
- *         },
- *         {
- *             deleteWithInstance: true,
- *             size: 20,
- *             volumeType: "ESSD_PL0",
- *         },
- *     ],
+ *     projectName: "default",
+ *     hpcClusterId: "",
+ *     spotStrategy: "NoSpot",
  * });
  * ```
  *

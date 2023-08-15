@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage vpc ipv6 gateway
@@ -77,7 +78,7 @@ func NewIpv6Gateway(ctx *pulumi.Context,
 	if args.VpcId == nil {
 		return nil, errors.New("invalid value for required argument 'VpcId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Ipv6Gateway
 	err := ctx.RegisterResource("volcengine:vpc/ipv6Gateway:Ipv6Gateway", name, args, &resource, opts...)
 	if err != nil {

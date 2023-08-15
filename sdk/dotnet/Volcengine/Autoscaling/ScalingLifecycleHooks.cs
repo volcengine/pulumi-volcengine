@@ -14,54 +14,12 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
     {
         /// <summary>
         /// Use this data source to query detailed information of scaling lifecycle hooks
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Volcengine = Pulumi.Volcengine;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var @default = Volcengine.Autoscaling.ScalingLifecycleHooks.Invoke(new()
-        ///     {
-        ///         ScalingGroupId = "scg-ybru8pazhgl8j1di4tyd",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<ScalingLifecycleHooksResult> InvokeAsync(ScalingLifecycleHooksArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ScalingLifecycleHooksResult>("volcengine:autoscaling/scalingLifecycleHooks:ScalingLifecycleHooks", args ?? new ScalingLifecycleHooksArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of scaling lifecycle hooks
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Volcengine = Pulumi.Volcengine;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var @default = Volcengine.Autoscaling.ScalingLifecycleHooks.Invoke(new()
-        ///     {
-        ///         ScalingGroupId = "scg-ybru8pazhgl8j1di4tyd",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<ScalingLifecycleHooksResult> Invoke(ScalingLifecycleHooksInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ScalingLifecycleHooksResult>("volcengine:autoscaling/scalingLifecycleHooks:ScalingLifecycleHooks", args ?? new ScalingLifecycleHooksInvokeArgs(), options.WithDefaults());

@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of cr authorization tokens
@@ -37,7 +38,7 @@ import (
 //
 // ```
 func AuthorizationTokens(ctx *pulumi.Context, args *AuthorizationTokensArgs, opts ...pulumi.InvokeOption) (*AuthorizationTokensResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv AuthorizationTokensResult
 	err := ctx.Invoke("volcengine:cr/authorizationTokens:AuthorizationTokens", args, &rv, opts...)
 	if err != nil {

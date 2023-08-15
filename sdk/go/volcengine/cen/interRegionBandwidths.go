@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of cen inter region bandwidths
@@ -39,7 +40,7 @@ import (
 //
 // ```
 func InterRegionBandwidths(ctx *pulumi.Context, args *InterRegionBandwidthsArgs, opts ...pulumi.InvokeOption) (*InterRegionBandwidthsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv InterRegionBandwidthsResult
 	err := ctx.Invoke("volcengine:cen/interRegionBandwidths:InterRegionBandwidths", args, &rv, opts...)
 	if err != nil {

@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage scaling lifecycle hook
@@ -21,17 +22,54 @@ import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/autoscaling"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := autoscaling.NewScalingLifecycleHook(ctx, "foo", &autoscaling.ScalingLifecycleHookArgs{
-//				LifecycleHookName:    pulumi.String("tf-test"),
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooScalingGroup, err := autoscaling.NewScalingGroup(ctx, "fooScalingGroup", &autoscaling.ScalingGroupArgs{
+//				ScalingGroupName: pulumi.String("acc-test-scaling-group-lifecycle"),
+//				SubnetIds: pulumi.StringArray{
+//					fooSubnet.ID(),
+//				},
+//				MultiAzPolicy:           pulumi.String("BALANCE"),
+//				DesireInstanceNumber:    pulumi.Int(0),
+//				MinInstanceNumber:       pulumi.Int(0),
+//				MaxInstanceNumber:       pulumi.Int(1),
+//				InstanceTerminatePolicy: pulumi.String("OldestInstance"),
+//				DefaultCooldown:         pulumi.Int(10),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = autoscaling.NewScalingLifecycleHook(ctx, "fooScalingLifecycleHook", &autoscaling.ScalingLifecycleHookArgs{
+//				LifecycleHookName:    pulumi.String("acc-test-lifecycle"),
 //				LifecycleHookPolicy:  pulumi.String("CONTINUE"),
 //				LifecycleHookTimeout: pulumi.Int(30),
 //				LifecycleHookType:    pulumi.String("SCALE_IN"),
-//				ScalingGroupId:       pulumi.String("scg-ybru8pazhgl8j1di4tyd"),
+//				ScalingGroupId:       fooScalingGroup.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -90,7 +128,7 @@ func NewScalingLifecycleHook(ctx *pulumi.Context,
 	if args.ScalingGroupId == nil {
 		return nil, errors.New("invalid value for required argument 'ScalingGroupId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ScalingLifecycleHook
 	err := ctx.RegisterResource("volcengine:autoscaling/scalingLifecycleHook:ScalingLifecycleHook", name, args, &resource, opts...)
 	if err != nil {

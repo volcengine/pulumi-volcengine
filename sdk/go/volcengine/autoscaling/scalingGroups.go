@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of scaling groups
@@ -18,28 +19,78 @@ import (
 //
 // import (
 //
+//	"fmt"
+//
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/autoscaling"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// fooZones, err := ecs.Zones(ctx, nil, nil);
+// if err != nil {
+// return err
+// }
+// fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+// VpcName: pulumi.String("acc-test-vpc"),
+// CidrBlock: pulumi.String("172.16.0.0/16"),
+// })
+// if err != nil {
+// return err
+// }
+// fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+// SubnetName: pulumi.String("acc-test-subnet"),
+// CidrBlock: pulumi.String("172.16.0.0/24"),
+// ZoneId: *pulumi.String(fooZones.Zones[0].Id),
+// VpcId: fooVpc.ID(),
+// })
+// if err != nil {
+// return err
+// }
+// var fooScalingGroup []*autoscaling.ScalingGroup
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := autoscaling.ScalingGroups(ctx, &autoscaling.ScalingGroupsArgs{
-//				Ids: []string{
-//					"scg-ybru8pazhgl8j1di4tyd",
-//				},
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
+//	for index := 0; index < 3; index++ {
+//	    key0 := index
+//	    val0 := index
 //
+// __res, err := autoscaling.NewScalingGroup(ctx, fmt.Sprintf("fooScalingGroup-%v", key0), &autoscaling.ScalingGroupArgs{
+// ScalingGroupName: pulumi.String(fmt.Sprintf("acc-test-scaling-group-%v", val0)),
+// SubnetIds: pulumi.StringArray{
+// fooSubnet.ID(),
+// },
+// MultiAzPolicy: pulumi.String("BALANCE"),
+// DesireInstanceNumber: pulumi.Int(0),
+// MinInstanceNumber: pulumi.Int(0),
+// MaxInstanceNumber: pulumi.Int(10),
+// InstanceTerminatePolicy: pulumi.String("OldestInstance"),
+// DefaultCooldown: pulumi.Int(30),
+// Tags: autoscaling.ScalingGroupTagArray{
+// &autoscaling.ScalingGroupTagArgs{
+// Key: pulumi.String("k2"),
+// Value: pulumi.String("v2"),
+// },
+// &autoscaling.ScalingGroupTagArgs{
+// Key: pulumi.String("k1"),
+// Value: pulumi.String("v1"),
+// },
+// },
+// })
+// if err != nil {
+// return err
+// }
+// fooScalingGroup = append(fooScalingGroup, __res)
+// }
+// _ = autoscaling.ScalingGroupsOutput(ctx, autoscaling.ScalingGroupsOutputArgs{
+// Ids: %!v(PANIC=Format method: fatal: A failure has occurred: unlowered splat expression @ #-functions-volcengine:autoscaling-scalingGroups:ScalingGroups.pp:35,9-30),
+// }, nil);
+// return nil
+// })
+// }
 // ```
 func ScalingGroups(ctx *pulumi.Context, args *ScalingGroupsArgs, opts ...pulumi.InvokeOption) (*ScalingGroupsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ScalingGroupsResult
 	err := ctx.Invoke("volcengine:autoscaling/scalingGroups:ScalingGroups", args, &rv, opts...)
 	if err != nil {

@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of cen attach instances
@@ -37,7 +38,7 @@ import (
 //
 // ```
 func AttachInstances(ctx *pulumi.Context, args *AttachInstancesArgs, opts ...pulumi.InvokeOption) (*AttachInstancesResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv AttachInstancesResult
 	err := ctx.Invoke("volcengine:cen/attachInstances:AttachInstances", args, &rv, opts...)
 	if err != nil {

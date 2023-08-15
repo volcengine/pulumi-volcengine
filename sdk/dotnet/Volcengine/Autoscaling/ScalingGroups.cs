@@ -23,15 +23,61 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        /// 
+        ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
+        ///     {
+        ///         VpcName = "acc-test-vpc",
+        ///         CidrBlock = "172.16.0.0/16",
+        ///     });
+        /// 
+        ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+        ///     {
+        ///         SubnetName = "acc-test-subnet",
+        ///         CidrBlock = "172.16.0.0/24",
+        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooScalingGroup = new List&lt;Volcengine.Autoscaling.ScalingGroup&gt;();
+        ///     for (var rangeIndex = 0; rangeIndex &lt; 3; rangeIndex++)
+        ///     {
+        ///         var range = new { Value = rangeIndex };
+        ///         fooScalingGroup.Add(new Volcengine.Autoscaling.ScalingGroup($"fooScalingGroup-{range.Value}", new()
+        ///         {
+        ///             ScalingGroupName = $"acc-test-scaling-group-{range.Value}",
+        ///             SubnetIds = new[]
+        ///             {
+        ///                 fooSubnet.Id,
+        ///             },
+        ///             MultiAzPolicy = "BALANCE",
+        ///             DesireInstanceNumber = 0,
+        ///             MinInstanceNumber = 0,
+        ///             MaxInstanceNumber = 10,
+        ///             InstanceTerminatePolicy = "OldestInstance",
+        ///             DefaultCooldown = 30,
+        ///             Tags = new[]
+        ///             {
+        ///                 new Volcengine.Autoscaling.Inputs.ScalingGroupTagArgs
+        ///                 {
+        ///                     Key = "k2",
+        ///                     Value = "v2",
+        ///                 },
+        ///                 new Volcengine.Autoscaling.Inputs.ScalingGroupTagArgs
+        ///                 {
+        ///                     Key = "k1",
+        ///                     Value = "v1",
+        ///                 },
+        ///             },
+        ///         }));
+        ///     }
         ///     var @default = Volcengine.Autoscaling.ScalingGroups.Invoke(new()
         ///     {
-        ///         Ids = new[]
-        ///         {
-        ///             "scg-ybru8pazhgl8j1di4tyd",
-        ///         },
+        ///         Ids = fooScalingGroup.Select(__item =&gt; __item.Id).ToList(),
         ///     });
         /// 
         /// });
@@ -53,15 +99,61 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        /// 
+        ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
+        ///     {
+        ///         VpcName = "acc-test-vpc",
+        ///         CidrBlock = "172.16.0.0/16",
+        ///     });
+        /// 
+        ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+        ///     {
+        ///         SubnetName = "acc-test-subnet",
+        ///         CidrBlock = "172.16.0.0/24",
+        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooScalingGroup = new List&lt;Volcengine.Autoscaling.ScalingGroup&gt;();
+        ///     for (var rangeIndex = 0; rangeIndex &lt; 3; rangeIndex++)
+        ///     {
+        ///         var range = new { Value = rangeIndex };
+        ///         fooScalingGroup.Add(new Volcengine.Autoscaling.ScalingGroup($"fooScalingGroup-{range.Value}", new()
+        ///         {
+        ///             ScalingGroupName = $"acc-test-scaling-group-{range.Value}",
+        ///             SubnetIds = new[]
+        ///             {
+        ///                 fooSubnet.Id,
+        ///             },
+        ///             MultiAzPolicy = "BALANCE",
+        ///             DesireInstanceNumber = 0,
+        ///             MinInstanceNumber = 0,
+        ///             MaxInstanceNumber = 10,
+        ///             InstanceTerminatePolicy = "OldestInstance",
+        ///             DefaultCooldown = 30,
+        ///             Tags = new[]
+        ///             {
+        ///                 new Volcengine.Autoscaling.Inputs.ScalingGroupTagArgs
+        ///                 {
+        ///                     Key = "k2",
+        ///                     Value = "v2",
+        ///                 },
+        ///                 new Volcengine.Autoscaling.Inputs.ScalingGroupTagArgs
+        ///                 {
+        ///                     Key = "k1",
+        ///                     Value = "v1",
+        ///                 },
+        ///             },
+        ///         }));
+        ///     }
         ///     var @default = Volcengine.Autoscaling.ScalingGroups.Invoke(new()
         ///     {
-        ///         Ids = new[]
-        ///         {
-        ///             "scg-ybru8pazhgl8j1di4tyd",
-        ///         },
+        ///         Ids = fooScalingGroup.Select(__item =&gt; __item.Id).ToList(),
         ///     });
         /// 
         /// });

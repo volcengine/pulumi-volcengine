@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of mongodb instance parameters
@@ -39,7 +40,7 @@ import (
 //
 // ```
 func InstanceParameters(ctx *pulumi.Context, args *InstanceParametersArgs, opts ...pulumi.InvokeOption) (*InstanceParametersResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv InstanceParametersResult
 	err := ctx.Invoke("volcengine:mongodb/instanceParameters:InstanceParameters", args, &rv, opts...)
 	if err != nil {

@@ -17,35 +17,93 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
+    /// using Volcengine = Pulumi.Volcengine;
     /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var foo = new Volcengine.Autoscaling.ScalingConfiguration("foo", new()
+    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+    /// 
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
-    ///         EipBandwidth = 10,
-    ///         EipBillingType = "PostPaidByBandwidth",
-    ///         EipIsp = "ChinaMobile",
-    ///         HostName = "",
-    ///         HpcClusterId = "",
-    ///         ImageId = "image-ycgud4t4hxgso0e27bdl",
-    ///         InstanceDescription = "",
-    ///         InstanceName = "tf-test",
+    ///         VpcName = "acc-test-vpc",
+    ///         CidrBlock = "172.16.0.0/16",
+    ///     });
+    /// 
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooSecurityGroup = new Volcengine.Vpc.SecurityGroup("fooSecurityGroup", new()
+    ///     {
+    ///         SecurityGroupName = "acc-test-security-group",
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooImages = Volcengine.Ecs.Images.Invoke(new()
+    ///     {
+    ///         OsType = "Linux",
+    ///         Visibility = "public",
+    ///         InstanceTypeId = "ecs.g1.large",
+    ///     });
+    /// 
+    ///     var fooScalingGroup = new Volcengine.Autoscaling.ScalingGroup("fooScalingGroup", new()
+    ///     {
+    ///         ScalingGroupName = "acc-test-scaling-group",
+    ///         SubnetIds = new[]
+    ///         {
+    ///             fooSubnet.Id,
+    ///         },
+    ///         MultiAzPolicy = "BALANCE",
+    ///         DesireInstanceNumber = 0,
+    ///         MinInstanceNumber = 0,
+    ///         MaxInstanceNumber = 1,
+    ///         InstanceTerminatePolicy = "OldestInstance",
+    ///         DefaultCooldown = 10,
+    ///     });
+    /// 
+    ///     var fooScalingConfiguration = new Volcengine.Autoscaling.ScalingConfiguration("fooScalingConfiguration", new()
+    ///     {
+    ///         ScalingConfigurationName = "tf-test",
+    ///         ScalingGroupId = fooScalingGroup.Id,
+    ///         ImageId = fooImages.Apply(imagesResult =&gt; imagesResult.Images[0]?.ImageId),
     ///         InstanceTypes = new[]
     ///         {
     ///             "ecs.g2i.large",
     ///         },
-    ///         KeyPairName = "tf-keypair",
+    ///         InstanceName = "tf-test",
+    ///         InstanceDescription = "",
+    ///         HostName = "",
     ///         Password = "",
-    ///         ProjectName = "default",
-    ///         ScalingConfigurationName = "tf-test",
-    ///         ScalingGroupId = "scg-ycinx27x25gh9y31p0fy",
+    ///         KeyPairName = "tf-keypair",
     ///         SecurityEnhancementStrategy = "InActive",
+    ///         Volumes = new[]
+    ///         {
+    ///             new Volcengine.Autoscaling.Inputs.ScalingConfigurationVolumeArgs
+    ///             {
+    ///                 VolumeType = "ESSD_PL0",
+    ///                 Size = 20,
+    ///                 DeleteWithInstance = false,
+    ///             },
+    ///             new Volcengine.Autoscaling.Inputs.ScalingConfigurationVolumeArgs
+    ///             {
+    ///                 VolumeType = "ESSD_PL0",
+    ///                 Size = 50,
+    ///                 DeleteWithInstance = true,
+    ///             },
+    ///         },
     ///         SecurityGroupIds = new[]
     ///         {
-    ///             "sg-2fepz3c793g1s59gp67y21r34",
+    ///             fooSecurityGroup.Id,
     ///         },
-    ///         SpotStrategy = "NoSpot",
+    ///         EipBandwidth = 10,
+    ///         EipIsp = "ChinaMobile",
+    ///         EipBillingType = "PostPaidByBandwidth",
+    ///         UserData = "IyEvYmluL2Jhc2gKZWNobyAidGVzdCI=",
     ///         Tags = new[]
     ///         {
     ///             new Volcengine.Autoscaling.Inputs.ScalingConfigurationTagArgs
@@ -59,22 +117,9 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
     ///                 Value = "tf-value2",
     ///             },
     ///         },
-    ///         UserData = "IyEvYmluL2Jhc2gKZWNobyAidGVzdCI=",
-    ///         Volumes = new[]
-    ///         {
-    ///             new Volcengine.Autoscaling.Inputs.ScalingConfigurationVolumeArgs
-    ///             {
-    ///                 DeleteWithInstance = false,
-    ///                 Size = 20,
-    ///                 VolumeType = "ESSD_PL0",
-    ///             },
-    ///             new Volcengine.Autoscaling.Inputs.ScalingConfigurationVolumeArgs
-    ///             {
-    ///                 DeleteWithInstance = true,
-    ///                 Size = 20,
-    ///                 VolumeType = "ESSD_PL0",
-    ///             },
-    ///         },
+    ///         ProjectName = "default",
+    ///         HpcClusterId = "",
+    ///         SpotStrategy = "NoSpot",
     ///     });
     /// 
     /// });

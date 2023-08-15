@@ -18,17 +18,49 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
+    /// using Volcengine = Pulumi.Volcengine;
     /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var foo = new Volcengine.Autoscaling.ScalingLifecycleHook("foo", new()
+    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+    /// 
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
-    ///         LifecycleHookName = "tf-test",
+    ///         VpcName = "acc-test-vpc",
+    ///         CidrBlock = "172.16.0.0/16",
+    ///     });
+    /// 
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooScalingGroup = new Volcengine.Autoscaling.ScalingGroup("fooScalingGroup", new()
+    ///     {
+    ///         ScalingGroupName = "acc-test-scaling-group-lifecycle",
+    ///         SubnetIds = new[]
+    ///         {
+    ///             fooSubnet.Id,
+    ///         },
+    ///         MultiAzPolicy = "BALANCE",
+    ///         DesireInstanceNumber = 0,
+    ///         MinInstanceNumber = 0,
+    ///         MaxInstanceNumber = 1,
+    ///         InstanceTerminatePolicy = "OldestInstance",
+    ///         DefaultCooldown = 10,
+    ///     });
+    /// 
+    ///     var fooScalingLifecycleHook = new Volcengine.Autoscaling.ScalingLifecycleHook("fooScalingLifecycleHook", new()
+    ///     {
+    ///         LifecycleHookName = "acc-test-lifecycle",
     ///         LifecycleHookPolicy = "CONTINUE",
     ///         LifecycleHookTimeout = 30,
     ///         LifecycleHookType = "SCALE_IN",
-    ///         ScalingGroupId = "scg-ybru8pazhgl8j1di4tyd",
+    ///         ScalingGroupId = fooScalingGroup.Id,
     ///     });
     /// 
     /// });

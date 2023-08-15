@@ -23,15 +23,31 @@ namespace Volcengine.Pulumi.Volcengine.Ebs
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Ebs.Volumes.Invoke(new()
+        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        /// 
+        ///     var fooVolume = new List&lt;Volcengine.Ebs.Volume&gt;();
+        ///     for (var rangeIndex = 0; rangeIndex &lt; 3; rangeIndex++)
         ///     {
-        ///         Ids = new[]
+        ///         var range = new { Value = rangeIndex };
+        ///         fooVolume.Add(new Volcengine.Ebs.Volume($"fooVolume-{range.Value}", new()
         ///         {
-        ///             "vol-3tzg6y5imn3b9fchkedb",
-        ///         },
+        ///             VolumeName = $"acc-test-volume-{range.Value}",
+        ///             VolumeType = "ESSD_PL0",
+        ///             Description = "acc-test",
+        ///             Kind = "data",
+        ///             Size = 60,
+        ///             ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///             VolumeChargeType = "PostPaid",
+        ///             ProjectName = "default",
+        ///         }));
+        ///     }
+        ///     var fooVolumes = Volcengine.Ebs.Volumes.Invoke(new()
+        ///     {
+        ///         Ids = fooVolume.Select(__item =&gt; __item.Id).ToList(),
         ///     });
         /// 
         /// });
@@ -53,15 +69,31 @@ namespace Volcengine.Pulumi.Volcengine.Ebs
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Ebs.Volumes.Invoke(new()
+        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        /// 
+        ///     var fooVolume = new List&lt;Volcengine.Ebs.Volume&gt;();
+        ///     for (var rangeIndex = 0; rangeIndex &lt; 3; rangeIndex++)
         ///     {
-        ///         Ids = new[]
+        ///         var range = new { Value = rangeIndex };
+        ///         fooVolume.Add(new Volcengine.Ebs.Volume($"fooVolume-{range.Value}", new()
         ///         {
-        ///             "vol-3tzg6y5imn3b9fchkedb",
-        ///         },
+        ///             VolumeName = $"acc-test-volume-{range.Value}",
+        ///             VolumeType = "ESSD_PL0",
+        ///             Description = "acc-test",
+        ///             Kind = "data",
+        ///             Size = 60,
+        ///             ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///             VolumeChargeType = "PostPaid",
+        ///             ProjectName = "default",
+        ///         }));
+        ///     }
+        ///     var fooVolumes = Volcengine.Ebs.Volumes.Invoke(new()
+        ///     {
+        ///         Ids = fooVolume.Select(__item =&gt; __item.Id).ToList(),
         ///     });
         /// 
         /// });

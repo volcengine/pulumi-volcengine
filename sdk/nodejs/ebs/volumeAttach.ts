@@ -10,11 +10,60 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.ebs.VolumeAttach("foo", {
- *     instanceId: "i-4ay59ww7dq8dt9c29hd4",
- *     volumeId: "vol-3tzl52wubz3b9fciw7ev",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
+ *     securityGroupName: "acc-test-security-group",
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooImages = volcengine.ecs.Images({
+ *     osType: "Linux",
+ *     visibility: "public",
+ *     instanceTypeId: "ecs.g1.large",
+ * });
+ * const fooInstance = new volcengine.ecs.Instance("fooInstance", {
+ *     instanceName: "acc-test-ecs",
+ *     description: "acc-test",
+ *     hostName: "tf-acc-test",
+ *     imageId: fooImages.then(fooImages => fooImages.images?.[0]?.imageId),
+ *     instanceType: "ecs.g1.large",
+ *     password: "93f0cb0614Aab12",
+ *     instanceChargeType: "PostPaid",
+ *     systemVolumeType: "ESSD_PL0",
+ *     systemVolumeSize: 40,
+ *     subnetId: fooSubnet.id,
+ *     securityGroupIds: [fooSecurityGroup.id],
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooVolume = new volcengine.ebs.Volume("fooVolume", {
+ *     volumeName: "acc-test-volume",
+ *     volumeType: "ESSD_PL0",
+ *     description: "acc-test",
+ *     kind: "data",
+ *     size: 40,
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     volumeChargeType: "PostPaid",
+ *     projectName: "default",
+ * });
+ * const fooVolumeAttach = new volcengine.ebs.VolumeAttach("fooVolumeAttach", {
+ *     instanceId: fooInstance.id,
+ *     volumeId: fooVolume.id,
  * });
  * ```
  *
@@ -59,7 +108,7 @@ export class VolumeAttach extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * Delete Volume with Attached Instance.
+     * Delete Volume with Attached Instance.It is not recommended to use this field. If used, please ensure that the value of this field is consistent with the value of `deleteWithInstance` in volcengine_volume.
      */
     public readonly deleteWithInstance!: pulumi.Output<boolean>;
     /**
@@ -127,7 +176,7 @@ export interface VolumeAttachState {
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * Delete Volume with Attached Instance.
+     * Delete Volume with Attached Instance.It is not recommended to use this field. If used, please ensure that the value of this field is consistent with the value of `deleteWithInstance` in volcengine_volume.
      */
     deleteWithInstance?: pulumi.Input<boolean>;
     /**
@@ -153,7 +202,7 @@ export interface VolumeAttachState {
  */
 export interface VolumeAttachArgs {
     /**
-     * Delete Volume with Attached Instance.
+     * Delete Volume with Attached Instance.It is not recommended to use this field. If used, please ensure that the value of this field is consistent with the value of `deleteWithInstance` in volcengine_volume.
      */
     deleteWithInstance?: pulumi.Input<boolean>;
     /**

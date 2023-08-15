@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage mongodb instance parameter
@@ -84,7 +85,7 @@ func NewInstanceParameter(ctx *pulumi.Context,
 	if args.ParameterValue == nil {
 		return nil, errors.New("invalid value for required argument 'ParameterValue'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource InstanceParameter
 	err := ctx.RegisterResource("volcengine:mongodb/instanceParameter:InstanceParameter", name, args, &resource, opts...)
 	if err != nil {

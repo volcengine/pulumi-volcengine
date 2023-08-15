@@ -18,19 +18,76 @@ namespace Volcengine.Pulumi.Volcengine.Nat
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
+    /// using Volcengine = Pulumi.Volcengine;
     /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var foo = new Volcengine.Nat.DnatEntry("foo", new()
+    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+    /// 
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
-    ///         DnatEntryName = "terraform-test2",
-    ///         ExternalIp = "10.249.186.68",
-    ///         ExternalPort = "23",
-    ///         InternalIp = "193.168.1.1",
-    ///         InternalPort = "24",
-    ///         NatGatewayId = "ngw-imw3aej7e96o8gbssxkfbybv",
+    ///         VpcName = "acc-test-vpc",
+    ///         CidrBlock = "172.16.0.0/16",
+    ///     });
+    /// 
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooGateway = new Volcengine.Nat.Gateway("fooGateway", new()
+    ///     {
+    ///         VpcId = fooVpc.Id,
+    ///         SubnetId = fooSubnet.Id,
+    ///         Spec = "Small",
+    ///         NatGatewayName = "acc-test-ng",
+    ///         Description = "acc-test",
+    ///         BillingType = "PostPaid",
+    ///         ProjectName = "default",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Nat.Inputs.GatewayTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var fooAddress = new Volcengine.Eip.Address("fooAddress", new()
+    ///     {
+    ///         Description = "acc-test",
+    ///         Bandwidth = 1,
+    ///         BillingType = "PostPaidByBandwidth",
+    ///         Isp = "BGP",
+    ///     });
+    /// 
+    ///     var fooAssociate = new Volcengine.Eip.Associate("fooAssociate", new()
+    ///     {
+    ///         AllocationId = fooAddress.Id,
+    ///         InstanceId = fooGateway.Id,
+    ///         InstanceType = "Nat",
+    ///     });
+    /// 
+    ///     var fooDnatEntry = new Volcengine.Nat.DnatEntry("fooDnatEntry", new()
+    ///     {
+    ///         DnatEntryName = "acc-test-dnat-entry",
+    ///         ExternalIp = fooAddress.EipAddress,
+    ///         ExternalPort = "80",
+    ///         InternalIp = "172.16.0.10",
+    ///         InternalPort = "80",
+    ///         NatGatewayId = fooGateway.Id,
     ///         Protocol = "tcp",
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             fooAssociate,
+    ///         },
     ///     });
     /// 
     /// });

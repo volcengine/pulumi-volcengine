@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of customer gateways
@@ -25,21 +26,27 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vpn.CustomerGateways(ctx, &vpn.CustomerGatewaysArgs{
-//				Ids: []string{
-//					"cgw-2d68c4zglycjk58ozfe96norh",
-//				},
-//			}, nil)
+//			fooCustomerGateway, err := vpn.NewCustomerGateway(ctx, "fooCustomerGateway", &vpn.CustomerGatewayArgs{
+//				IpAddress:           pulumi.String("192.0.1.3"),
+//				CustomerGatewayName: pulumi.String("acc-test"),
+//				Description:         pulumi.String("acc-test"),
+//				ProjectName:         pulumi.String("default"),
+//			})
 //			if err != nil {
 //				return err
 //			}
+//			_ = vpn.CustomerGatewaysOutput(ctx, vpn.CustomerGatewaysOutputArgs{
+//				Ids: pulumi.StringArray{
+//					fooCustomerGateway.ID(),
+//				},
+//			}, nil)
 //			return nil
 //		})
 //	}
 //
 // ```
 func CustomerGateways(ctx *pulumi.Context, args *CustomerGatewaysArgs, opts ...pulumi.InvokeOption) (*CustomerGatewaysResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv CustomerGatewaysResult
 	err := ctx.Invoke("volcengine:vpn/customerGateways:CustomerGateways", args, &rv, opts...)
 	if err != nil {

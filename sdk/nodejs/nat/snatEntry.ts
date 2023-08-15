@@ -10,13 +10,51 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.nat.SnatEntry("foo", {
- *     eipId: "eip-274zlae117nr47fap8tzl24v4",
- *     natGatewayId: "ngw-2743w1f6iqby87fap8tvm9kop",
- *     snatEntryName: "tf-test-up",
- *     subnetId: "subnet-2744i7u9alnnk7fap8tkq8aft",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooGateway = new volcengine.nat.Gateway("fooGateway", {
+ *     vpcId: fooVpc.id,
+ *     subnetId: fooSubnet.id,
+ *     spec: "Small",
+ *     natGatewayName: "acc-test-ng",
+ *     description: "acc-test",
+ *     billingType: "PostPaid",
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooAddress = new volcengine.eip.Address("fooAddress", {
+ *     description: "acc-test",
+ *     bandwidth: 1,
+ *     billingType: "PostPaidByBandwidth",
+ *     isp: "BGP",
+ * });
+ * const fooAssociate = new volcengine.eip.Associate("fooAssociate", {
+ *     allocationId: fooAddress.id,
+ *     instanceId: fooGateway.id,
+ *     instanceType: "Nat",
+ * });
+ * const fooSnatEntry = new volcengine.nat.SnatEntry("fooSnatEntry", {
+ *     snatEntryName: "acc-test-snat-entry",
+ *     natGatewayId: fooGateway.id,
+ *     eipId: fooAddress.id,
+ *     sourceCidr: "172.16.0.0/24",
+ * }, {
+ *     dependsOn: ["volcengine_eip_associate.foo"],
  * });
  * ```
  *
@@ -71,7 +109,7 @@ export class SnatEntry extends pulumi.CustomResource {
     /**
      * The SourceCidr of the SNAT entry. Only one of `subnet_id,source_cidr` can be specified.
      */
-    public readonly sourceCidr!: pulumi.Output<string | undefined>;
+    public readonly sourceCidr!: pulumi.Output<string>;
     /**
      * The status of the SNAT entry.
      */
@@ -79,7 +117,7 @@ export class SnatEntry extends pulumi.CustomResource {
     /**
      * The id of the subnet that is required to access the internet. Only one of `subnet_id,source_cidr` can be specified.
      */
-    public readonly subnetId!: pulumi.Output<string | undefined>;
+    public readonly subnetId!: pulumi.Output<string>;
 
     /**
      * Create a SnatEntry resource with the given unique name, arguments, and options.

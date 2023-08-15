@@ -10,26 +10,44 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.autoscaling.ScalingPolicy("foo", {
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooScalingGroup = new volcengine.autoscaling.ScalingGroup("fooScalingGroup", {
+ *     scalingGroupName: "acc-test-scaling-group",
+ *     subnetIds: [fooSubnet.id],
+ *     multiAzPolicy: "BALANCE",
+ *     desireInstanceNumber: 0,
+ *     minInstanceNumber: 0,
+ *     maxInstanceNumber: 1,
+ *     instanceTerminatePolicy: "OldestInstance",
+ *     defaultCooldown: 10,
+ * });
+ * const fooScalingPolicy = new volcengine.autoscaling.ScalingPolicy("fooScalingPolicy", {
  *     active: false,
+ *     scalingGroupId: fooScalingGroup.id,
+ *     scalingPolicyName: "acc-tf-sg-policy-test",
+ *     scalingPolicyType: "Alarm",
  *     adjustmentType: "QuantityChangeInCapacity",
  *     adjustmentValue: 100,
- *     alarmPolicyConditionComparisonOperator: "=",
+ *     cooldown: 10,
+ *     alarmPolicyRuleType: "Static",
+ *     alarmPolicyEvaluationCount: 1,
  *     alarmPolicyConditionMetricName: "Instance_CpuBusy_Avg",
  *     alarmPolicyConditionMetricUnit: "Percent",
+ *     alarmPolicyConditionComparisonOperator: "=",
  *     alarmPolicyConditionThreshold: "100",
- *     alarmPolicyEvaluationCount: 1,
- *     alarmPolicyRuleType: "Static",
- *     cooldown: 10,
- *     scalingGroupId: "scg-ybqm0b6kcigh9zu9ce6t",
- *     scalingPolicyName: "tf-test",
- *     scalingPolicyType: "Alarm",
- *     scheduledPolicyLaunchTime: "2022-07-09T09:59Z",
- *     scheduledPolicyRecurrenceEndTime: "2022-07-24T09:25Z",
- *     scheduledPolicyRecurrenceType: "Daily",
- *     scheduledPolicyRecurrenceValue: "10",
  * });
  * ```
  *
@@ -114,6 +132,10 @@ export class ScalingPolicy extends pulumi.CustomResource {
      */
     public readonly scalingGroupId!: pulumi.Output<string>;
     /**
+     * The id of the scaling policy.
+     */
+    public /*out*/ readonly scalingPolicyId!: pulumi.Output<string>;
+    /**
      * The name of the scaling policy.
      */
     public readonly scalingPolicyName!: pulumi.Output<string>;
@@ -173,6 +195,7 @@ export class ScalingPolicy extends pulumi.CustomResource {
             resourceInputs["alarmPolicyRuleType"] = state ? state.alarmPolicyRuleType : undefined;
             resourceInputs["cooldown"] = state ? state.cooldown : undefined;
             resourceInputs["scalingGroupId"] = state ? state.scalingGroupId : undefined;
+            resourceInputs["scalingPolicyId"] = state ? state.scalingPolicyId : undefined;
             resourceInputs["scalingPolicyName"] = state ? state.scalingPolicyName : undefined;
             resourceInputs["scalingPolicyType"] = state ? state.scalingPolicyType : undefined;
             resourceInputs["scheduledPolicyLaunchTime"] = state ? state.scheduledPolicyLaunchTime : undefined;
@@ -214,6 +237,7 @@ export class ScalingPolicy extends pulumi.CustomResource {
             resourceInputs["scheduledPolicyRecurrenceEndTime"] = args ? args.scheduledPolicyRecurrenceEndTime : undefined;
             resourceInputs["scheduledPolicyRecurrenceType"] = args ? args.scheduledPolicyRecurrenceType : undefined;
             resourceInputs["scheduledPolicyRecurrenceValue"] = args ? args.scheduledPolicyRecurrenceValue : undefined;
+            resourceInputs["scalingPolicyId"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -269,6 +293,10 @@ export interface ScalingPolicyState {
      * The id of the scaling group to which the scaling policy belongs.
      */
     scalingGroupId?: pulumi.Input<string>;
+    /**
+     * The id of the scaling policy.
+     */
+    scalingPolicyId?: pulumi.Input<string>;
     /**
      * The name of the scaling policy.
      */

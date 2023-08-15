@@ -8,17 +8,6 @@ import * as utilities from "../utilities";
 
 /**
  * Use this data source to query detailed information of scaling policies
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
- *
- * const default = volcengine.autoscaling.ScalingPolicies({
- *     ids: ["sp-ybruzckr8bgh9zrxw29v"],
- *     scalingGroupId: "scg-ybqm0b6kcigh9zu9ce6t",
- * });
- * ```
  */
 export function scalingPolicies(args: ScalingPoliciesArgs, opts?: pulumi.InvokeOptions): Promise<ScalingPoliciesResult> {
 
@@ -94,17 +83,6 @@ export interface ScalingPoliciesResult {
 }
 /**
  * Use this data source to query detailed information of scaling policies
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
- *
- * const default = volcengine.autoscaling.ScalingPolicies({
- *     ids: ["sp-ybruzckr8bgh9zrxw29v"],
- *     scalingGroupId: "scg-ybqm0b6kcigh9zu9ce6t",
- * });
- * ```
  */
 export function scalingPoliciesOutput(args: ScalingPoliciesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ScalingPoliciesResult> {
     return pulumi.output(args).apply((a: any) => scalingPolicies(a, opts))

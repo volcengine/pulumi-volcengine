@@ -33,7 +33,10 @@ class VolumeArgs:
         :param pulumi.Input[str] zone_id: The id of the Zone.
         :param pulumi.Input[bool] delete_with_instance: Delete Volume with Attached Instance.
         :param pulumi.Input[str] description: The description of the Volume.
-        :param pulumi.Input[str] instance_id: The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+        :param pulumi.Input[str] instance_id: The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
+               system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
+               deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
+               terraform state file and management.
         :param pulumi.Input[str] project_name: The ProjectName of the Volume.
         :param pulumi.Input[str] volume_charge_type: The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
         """
@@ -141,7 +144,10 @@ class VolumeArgs:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+        The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
+        system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
+        deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
+        terraform state file and management.
         """
         return pulumi.get(self, "instance_id")
 
@@ -195,7 +201,10 @@ class _VolumeState:
         :param pulumi.Input[str] created_at: Creation time of Volume.
         :param pulumi.Input[bool] delete_with_instance: Delete Volume with Attached Instance.
         :param pulumi.Input[str] description: The description of the Volume.
-        :param pulumi.Input[str] instance_id: The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+        :param pulumi.Input[str] instance_id: The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
+               system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
+               deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
+               terraform state file and management.
         :param pulumi.Input[str] kind: The kind of Volume, the value is `data`.
         :param pulumi.Input[str] project_name: The ProjectName of the Volume.
         :param pulumi.Input[int] size: The size of Volume.
@@ -273,7 +282,10 @@ class _VolumeState:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+        The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
+        system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
+        deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
+        terraform state file and management.
         """
         return pulumi.get(self, "instance_id")
 
@@ -413,25 +425,59 @@ class Volume(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo_volume = volcengine.ebs.Volume("fooVolume",
-            volume_name="terraform-test",
-            zone_id="cn-xx-a",
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+            security_group_name="acc-test-security-group",
+            vpc_id=foo_vpc.id)
+        foo_images = volcengine.ecs.images(os_type="Linux",
+            visibility="public",
+            instance_type_id="ecs.g1.large")
+        foo_instance = volcengine.ecs.Instance("fooInstance",
+            instance_name="acc-test-ecs",
+            description="acc-test",
+            host_name="tf-acc-test",
+            image_id=foo_images.images[0].image_id,
+            instance_type="ecs.g1.large",
+            password="93f0cb0614Aab12",
+            instance_charge_type="PrePaid",
+            period=1,
+            system_volume_type="ESSD_PL0",
+            system_volume_size=40,
+            subnet_id=foo_subnet.id,
+            security_group_ids=[foo_security_group.id],
+            project_name="default",
+            tags=[volcengine.ecs.InstanceTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        pre_volume = volcengine.ebs.Volume("preVolume",
+            volume_name="acc-test-volume",
             volume_type="ESSD_PL0",
+            description="acc-test",
             kind="data",
             size=40,
+            zone_id=foo_zones.zones[0].id,
+            volume_charge_type="PrePaid",
+            instance_id=foo_instance.id,
+            project_name="default",
+            delete_with_instance=True)
+        post_volume = volcengine.ebs.Volume("postVolume",
+            volume_name="acc-test-volume",
+            volume_type="ESSD_PL0",
+            description="acc-test",
+            kind="data",
+            size=40,
+            zone_id=foo_zones.zones[0].id,
             volume_charge_type="PostPaid",
             project_name="default")
-        foo_volume_attach = volcengine.ebs.VolumeAttach("fooVolumeAttach",
-            volume_id=foo_volume.id,
-            instance_id="i-yc8pfhbafwijutv6s1fv")
-        foo2 = volcengine.ebs.Volume("foo2",
-            volume_name="terraform-test3",
-            zone_id="cn-beijing-b",
-            volume_type="ESSD_PL0",
-            kind="data",
-            size=40,
-            volume_charge_type="PrePaid",
-            instance_id="i-yc8pfhbafwijutv6s1fv")
         ```
 
         ## Import
@@ -446,7 +492,10 @@ class Volume(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] delete_with_instance: Delete Volume with Attached Instance.
         :param pulumi.Input[str] description: The description of the Volume.
-        :param pulumi.Input[str] instance_id: The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+        :param pulumi.Input[str] instance_id: The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
+               system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
+               deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
+               terraform state file and management.
         :param pulumi.Input[str] kind: The kind of Volume, the value is `data`.
         :param pulumi.Input[str] project_name: The ProjectName of the Volume.
         :param pulumi.Input[int] size: The size of Volume.
@@ -468,25 +517,59 @@ class Volume(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo_volume = volcengine.ebs.Volume("fooVolume",
-            volume_name="terraform-test",
-            zone_id="cn-xx-a",
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+            security_group_name="acc-test-security-group",
+            vpc_id=foo_vpc.id)
+        foo_images = volcengine.ecs.images(os_type="Linux",
+            visibility="public",
+            instance_type_id="ecs.g1.large")
+        foo_instance = volcengine.ecs.Instance("fooInstance",
+            instance_name="acc-test-ecs",
+            description="acc-test",
+            host_name="tf-acc-test",
+            image_id=foo_images.images[0].image_id,
+            instance_type="ecs.g1.large",
+            password="93f0cb0614Aab12",
+            instance_charge_type="PrePaid",
+            period=1,
+            system_volume_type="ESSD_PL0",
+            system_volume_size=40,
+            subnet_id=foo_subnet.id,
+            security_group_ids=[foo_security_group.id],
+            project_name="default",
+            tags=[volcengine.ecs.InstanceTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        pre_volume = volcengine.ebs.Volume("preVolume",
+            volume_name="acc-test-volume",
             volume_type="ESSD_PL0",
+            description="acc-test",
             kind="data",
             size=40,
+            zone_id=foo_zones.zones[0].id,
+            volume_charge_type="PrePaid",
+            instance_id=foo_instance.id,
+            project_name="default",
+            delete_with_instance=True)
+        post_volume = volcengine.ebs.Volume("postVolume",
+            volume_name="acc-test-volume",
+            volume_type="ESSD_PL0",
+            description="acc-test",
+            kind="data",
+            size=40,
+            zone_id=foo_zones.zones[0].id,
             volume_charge_type="PostPaid",
             project_name="default")
-        foo_volume_attach = volcengine.ebs.VolumeAttach("fooVolumeAttach",
-            volume_id=foo_volume.id,
-            instance_id="i-yc8pfhbafwijutv6s1fv")
-        foo2 = volcengine.ebs.Volume("foo2",
-            volume_name="terraform-test3",
-            zone_id="cn-beijing-b",
-            volume_type="ESSD_PL0",
-            kind="data",
-            size=40,
-            volume_charge_type="PrePaid",
-            instance_id="i-yc8pfhbafwijutv6s1fv")
         ```
 
         ## Import
@@ -587,7 +670,10 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[str] created_at: Creation time of Volume.
         :param pulumi.Input[bool] delete_with_instance: Delete Volume with Attached Instance.
         :param pulumi.Input[str] description: The description of the Volume.
-        :param pulumi.Input[str] instance_id: The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+        :param pulumi.Input[str] instance_id: The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
+               system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
+               deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
+               terraform state file and management.
         :param pulumi.Input[str] kind: The kind of Volume, the value is `data`.
         :param pulumi.Input[str] project_name: The ProjectName of the Volume.
         :param pulumi.Input[int] size: The size of Volume.
@@ -645,7 +731,10 @@ class Volume(pulumi.CustomResource):
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Output[str]:
         """
-        The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+        The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
+        system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
+        deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
+        terraform state file and management.
         """
         return pulumi.get(self, "instance_id")
 

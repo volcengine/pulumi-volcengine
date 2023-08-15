@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of subnets
@@ -39,7 +40,7 @@ import (
 //
 // ```
 func Subnets(ctx *pulumi.Context, args *SubnetsArgs, opts ...pulumi.InvokeOption) (*SubnetsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv SubnetsResult
 	err := ctx.Invoke("volcengine:vpc/subnets:Subnets", args, &rv, opts...)
 	if err != nil {

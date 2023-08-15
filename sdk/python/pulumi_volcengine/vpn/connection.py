@@ -1070,29 +1070,50 @@ class Connection(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.vpn.Connection("foo",
-            customer_gateway_id="cgw-12ayj1s157gn417q7y29bixqy",
-            description="tf-test",
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id="cn-beijing-a",
+            vpc_id=foo_vpc.id)
+        foo_gateway = volcengine.vpn.Gateway("fooGateway",
+            vpc_id=foo_vpc.id,
+            subnet_id=foo_subnet.id,
+            bandwidth=20,
+            vpn_gateway_name="acc-test",
+            description="acc-test",
+            period=2,
+            project_name="default")
+        foo_customer_gateway = volcengine.vpn.CustomerGateway("fooCustomerGateway",
+            ip_address="192.0.1.3",
+            customer_gateway_name="acc-test",
+            description="acc-test",
+            project_name="default")
+        foo_connection = volcengine.vpn.Connection("fooConnection",
+            vpn_connection_name="acc-tf-test",
+            description="acc-tf-test",
+            vpn_gateway_id=foo_gateway.id,
+            customer_gateway_id=foo_customer_gateway.id,
+            local_subnets=["192.168.0.0/22"],
+            remote_subnets=["192.161.0.0/20"],
             dpd_action="none",
+            nat_traversal=True,
+            ike_config_psk="acctest@!3",
+            ike_config_version="ikev1",
+            ike_config_mode="main",
+            ike_config_enc_alg="aes",
             ike_config_auth_alg="md5",
             ike_config_dh_group="group2",
-            ike_config_enc_alg="aes",
             ike_config_lifetime=9000,
-            ike_config_local_id="tf_test",
-            ike_config_mode="main",
-            ike_config_psk="tftest@!3",
-            ike_config_remote_id="tf_test",
-            ike_config_version="ikev1",
+            ike_config_local_id="acc_test",
+            ike_config_remote_id="acc_test",
+            ipsec_config_enc_alg="aes",
             ipsec_config_auth_alg="sha256",
             ipsec_config_dh_group="group2",
-            ipsec_config_enc_alg="aes",
             ipsec_config_lifetime=9000,
-            local_subnets=["192.168.0.0/22"],
-            nat_traversal=True,
-            project_name="default",
-            remote_subnets=["192.161.0.0/20"],
-            vpn_connection_name="tf-test",
-            vpn_gateway_id="vgw-2feq19gnyc9hc59gp68914u6o")
+            project_name="default")
         ```
 
         ## Import
@@ -1145,29 +1166,50 @@ class Connection(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.vpn.Connection("foo",
-            customer_gateway_id="cgw-12ayj1s157gn417q7y29bixqy",
-            description="tf-test",
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id="cn-beijing-a",
+            vpc_id=foo_vpc.id)
+        foo_gateway = volcengine.vpn.Gateway("fooGateway",
+            vpc_id=foo_vpc.id,
+            subnet_id=foo_subnet.id,
+            bandwidth=20,
+            vpn_gateway_name="acc-test",
+            description="acc-test",
+            period=2,
+            project_name="default")
+        foo_customer_gateway = volcengine.vpn.CustomerGateway("fooCustomerGateway",
+            ip_address="192.0.1.3",
+            customer_gateway_name="acc-test",
+            description="acc-test",
+            project_name="default")
+        foo_connection = volcengine.vpn.Connection("fooConnection",
+            vpn_connection_name="acc-tf-test",
+            description="acc-tf-test",
+            vpn_gateway_id=foo_gateway.id,
+            customer_gateway_id=foo_customer_gateway.id,
+            local_subnets=["192.168.0.0/22"],
+            remote_subnets=["192.161.0.0/20"],
             dpd_action="none",
+            nat_traversal=True,
+            ike_config_psk="acctest@!3",
+            ike_config_version="ikev1",
+            ike_config_mode="main",
+            ike_config_enc_alg="aes",
             ike_config_auth_alg="md5",
             ike_config_dh_group="group2",
-            ike_config_enc_alg="aes",
             ike_config_lifetime=9000,
-            ike_config_local_id="tf_test",
-            ike_config_mode="main",
-            ike_config_psk="tftest@!3",
-            ike_config_remote_id="tf_test",
-            ike_config_version="ikev1",
+            ike_config_local_id="acc_test",
+            ike_config_remote_id="acc_test",
+            ipsec_config_enc_alg="aes",
             ipsec_config_auth_alg="sha256",
             ipsec_config_dh_group="group2",
-            ipsec_config_enc_alg="aes",
             ipsec_config_lifetime=9000,
-            local_subnets=["192.168.0.0/22"],
-            nat_traversal=True,
-            project_name="default",
-            remote_subnets=["192.161.0.0/20"],
-            vpn_connection_name="tf-test",
-            vpn_gateway_id="vgw-2feq19gnyc9hc59gp68914u6o")
+            project_name="default")
         ```
 
         ## Import

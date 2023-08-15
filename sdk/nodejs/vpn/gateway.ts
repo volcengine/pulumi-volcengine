@@ -13,14 +13,24 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.vpn.Gateway("foo", {
- *     bandwidth: 20,
- *     description: "tf-test",
- *     period: 2,
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: "cn-beijing-a",
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooGateway = new volcengine.vpn.Gateway("fooGateway", {
+ *     vpcId: fooVpc.id,
+ *     subnetId: fooSubnet.id,
+ *     bandwidth: 50,
+ *     vpnGatewayName: "acc-test1",
+ *     description: "acc-test1",
+ *     period: 7,
  *     projectName: "default",
- *     subnetId: "subnet-12bh8g2d7fshs17q7y2nx82uk",
- *     vpcId: "vpc-12b31m7z2kc8w17q7y2fih9ts",
- *     vpnGatewayName: "tf-test",
  * });
  * ```
  *

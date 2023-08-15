@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of privatelink vpc endpoint zones
@@ -37,7 +38,7 @@ import (
 //
 // ```
 func VpcEndpointZones(ctx *pulumi.Context, args *VpcEndpointZonesArgs, opts ...pulumi.InvokeOption) (*VpcEndpointZonesResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv VpcEndpointZonesResult
 	err := ctx.Invoke("volcengine:privatelink/vpcEndpointZones:VpcEndpointZones", args, &rv, opts...)
 	if err != nil {

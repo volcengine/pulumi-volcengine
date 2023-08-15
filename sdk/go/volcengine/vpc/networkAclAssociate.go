@@ -9,6 +9,7 @@ import (
 
 	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Provides a resource to manage network acl associate
@@ -77,7 +78,7 @@ func NewNetworkAclAssociate(ctx *pulumi.Context,
 	if args.ResourceId == nil {
 		return nil, errors.New("invalid value for required argument 'ResourceId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource NetworkAclAssociate
 	err := ctx.RegisterResource("volcengine:vpc/networkAclAssociate:NetworkAclAssociate", name, args, &resource, opts...)
 	if err != nil {

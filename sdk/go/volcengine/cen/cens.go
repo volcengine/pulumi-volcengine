@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of cens
@@ -39,7 +40,7 @@ import (
 //
 // ```
 func Cens(ctx *pulumi.Context, args *CensArgs, opts ...pulumi.InvokeOption) (*CensResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv CensResult
 	err := ctx.Invoke("volcengine:cen/cens:Cens", args, &rv, opts...)
 	if err != nil {

@@ -759,24 +759,58 @@ class ScalingConfiguration(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.autoscaling.ScalingConfiguration("foo",
-            eip_bandwidth=10,
-            eip_billing_type="PostPaidByBandwidth",
-            eip_isp="ChinaMobile",
-            host_name="",
-            hpc_cluster_id="",
-            image_id="image-ycgud4t4hxgso0e27bdl",
-            instance_description="",
-            instance_name="tf-test",
-            instance_types=["ecs.g2i.large"],
-            key_pair_name="tf-keypair",
-            password="",
-            project_name="default",
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+            security_group_name="acc-test-security-group",
+            vpc_id=foo_vpc.id)
+        foo_images = volcengine.ecs.images(os_type="Linux",
+            visibility="public",
+            instance_type_id="ecs.g1.large")
+        foo_scaling_group = volcengine.autoscaling.ScalingGroup("fooScalingGroup",
+            scaling_group_name="acc-test-scaling-group",
+            subnet_ids=[foo_subnet.id],
+            multi_az_policy="BALANCE",
+            desire_instance_number=0,
+            min_instance_number=0,
+            max_instance_number=1,
+            instance_terminate_policy="OldestInstance",
+            default_cooldown=10)
+        foo_scaling_configuration = volcengine.autoscaling.ScalingConfiguration("fooScalingConfiguration",
             scaling_configuration_name="tf-test",
-            scaling_group_id="scg-ycinx27x25gh9y31p0fy",
+            scaling_group_id=foo_scaling_group.id,
+            image_id=foo_images.images[0].image_id,
+            instance_types=["ecs.g2i.large"],
+            instance_name="tf-test",
+            instance_description="",
+            host_name="",
+            password="",
+            key_pair_name="tf-keypair",
             security_enhancement_strategy="InActive",
-            security_group_ids=["sg-2fepz3c793g1s59gp67y21r34"],
-            spot_strategy="NoSpot",
+            volumes=[
+                volcengine.autoscaling.ScalingConfigurationVolumeArgs(
+                    volume_type="ESSD_PL0",
+                    size=20,
+                    delete_with_instance=False,
+                ),
+                volcengine.autoscaling.ScalingConfigurationVolumeArgs(
+                    volume_type="ESSD_PL0",
+                    size=50,
+                    delete_with_instance=True,
+                ),
+            ],
+            security_group_ids=[foo_security_group.id],
+            eip_bandwidth=10,
+            eip_isp="ChinaMobile",
+            eip_billing_type="PostPaidByBandwidth",
+            user_data="IyEvYmluL2Jhc2gKZWNobyAidGVzdCI=",
             tags=[
                 volcengine.autoscaling.ScalingConfigurationTagArgs(
                     key="tf-key1",
@@ -787,19 +821,9 @@ class ScalingConfiguration(pulumi.CustomResource):
                     value="tf-value2",
                 ),
             ],
-            user_data="IyEvYmluL2Jhc2gKZWNobyAidGVzdCI=",
-            volumes=[
-                volcengine.autoscaling.ScalingConfigurationVolumeArgs(
-                    delete_with_instance=False,
-                    size=20,
-                    volume_type="ESSD_PL0",
-                ),
-                volcengine.autoscaling.ScalingConfigurationVolumeArgs(
-                    delete_with_instance=True,
-                    size=20,
-                    volume_type="ESSD_PL0",
-                ),
-            ])
+            project_name="default",
+            hpc_cluster_id="",
+            spot_strategy="NoSpot")
         ```
 
         ## Import
@@ -846,24 +870,58 @@ class ScalingConfiguration(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.autoscaling.ScalingConfiguration("foo",
-            eip_bandwidth=10,
-            eip_billing_type="PostPaidByBandwidth",
-            eip_isp="ChinaMobile",
-            host_name="",
-            hpc_cluster_id="",
-            image_id="image-ycgud4t4hxgso0e27bdl",
-            instance_description="",
-            instance_name="tf-test",
-            instance_types=["ecs.g2i.large"],
-            key_pair_name="tf-keypair",
-            password="",
-            project_name="default",
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+            security_group_name="acc-test-security-group",
+            vpc_id=foo_vpc.id)
+        foo_images = volcengine.ecs.images(os_type="Linux",
+            visibility="public",
+            instance_type_id="ecs.g1.large")
+        foo_scaling_group = volcengine.autoscaling.ScalingGroup("fooScalingGroup",
+            scaling_group_name="acc-test-scaling-group",
+            subnet_ids=[foo_subnet.id],
+            multi_az_policy="BALANCE",
+            desire_instance_number=0,
+            min_instance_number=0,
+            max_instance_number=1,
+            instance_terminate_policy="OldestInstance",
+            default_cooldown=10)
+        foo_scaling_configuration = volcengine.autoscaling.ScalingConfiguration("fooScalingConfiguration",
             scaling_configuration_name="tf-test",
-            scaling_group_id="scg-ycinx27x25gh9y31p0fy",
+            scaling_group_id=foo_scaling_group.id,
+            image_id=foo_images.images[0].image_id,
+            instance_types=["ecs.g2i.large"],
+            instance_name="tf-test",
+            instance_description="",
+            host_name="",
+            password="",
+            key_pair_name="tf-keypair",
             security_enhancement_strategy="InActive",
-            security_group_ids=["sg-2fepz3c793g1s59gp67y21r34"],
-            spot_strategy="NoSpot",
+            volumes=[
+                volcengine.autoscaling.ScalingConfigurationVolumeArgs(
+                    volume_type="ESSD_PL0",
+                    size=20,
+                    delete_with_instance=False,
+                ),
+                volcengine.autoscaling.ScalingConfigurationVolumeArgs(
+                    volume_type="ESSD_PL0",
+                    size=50,
+                    delete_with_instance=True,
+                ),
+            ],
+            security_group_ids=[foo_security_group.id],
+            eip_bandwidth=10,
+            eip_isp="ChinaMobile",
+            eip_billing_type="PostPaidByBandwidth",
+            user_data="IyEvYmluL2Jhc2gKZWNobyAidGVzdCI=",
             tags=[
                 volcengine.autoscaling.ScalingConfigurationTagArgs(
                     key="tf-key1",
@@ -874,19 +932,9 @@ class ScalingConfiguration(pulumi.CustomResource):
                     value="tf-value2",
                 ),
             ],
-            user_data="IyEvYmluL2Jhc2gKZWNobyAidGVzdCI=",
-            volumes=[
-                volcengine.autoscaling.ScalingConfigurationVolumeArgs(
-                    delete_with_instance=False,
-                    size=20,
-                    volume_type="ESSD_PL0",
-                ),
-                volcengine.autoscaling.ScalingConfigurationVolumeArgs(
-                    delete_with_instance=True,
-                    size=20,
-                    volume_type="ESSD_PL0",
-                ),
-            ])
+            project_name="default",
+            hpc_cluster_id="",
+            spot_strategy="NoSpot")
         ```
 
         ## Import

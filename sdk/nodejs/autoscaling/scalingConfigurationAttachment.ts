@@ -10,9 +10,54 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo1 = new volcengine.autoscaling.ScalingConfigurationAttachment("foo1", {scalingConfigurationId: "scc-ybrurj4uw6gh9zecj327"});
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
+ *     securityGroupName: "acc-test-security-group",
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooImages = volcengine.ecs.Images({
+ *     osType: "Linux",
+ *     visibility: "public",
+ *     instanceTypeId: "ecs.g1.large",
+ * });
+ * const fooScalingGroup = new volcengine.autoscaling.ScalingGroup("fooScalingGroup", {
+ *     scalingGroupName: "acc-test-scaling-group",
+ *     subnetIds: [fooSubnet.id],
+ *     multiAzPolicy: "BALANCE",
+ *     desireInstanceNumber: 0,
+ *     minInstanceNumber: 0,
+ *     maxInstanceNumber: 1,
+ *     instanceTerminatePolicy: "OldestInstance",
+ *     defaultCooldown: 10,
+ * });
+ * const fooScalingConfiguration = new volcengine.autoscaling.ScalingConfiguration("fooScalingConfiguration", {
+ *     imageId: fooImages.then(fooImages => fooImages.images?.[0]?.imageId),
+ *     instanceName: "acc-test-instance",
+ *     instanceTypes: ["ecs.g1.large"],
+ *     password: "93f0cb0614Aab12",
+ *     scalingConfigurationName: "acc-test-scaling-config",
+ *     scalingGroupId: fooScalingGroup.id,
+ *     securityGroupIds: [fooSecurityGroup.id],
+ *     volumes: [{
+ *         volumeType: "ESSD_PL0",
+ *         size: 50,
+ *         deleteWithInstance: true,
+ *     }],
+ * });
+ * const fooScalingConfigurationAttachment = new volcengine.autoscaling.ScalingConfigurationAttachment("fooScalingConfigurationAttachment", {scalingConfigurationId: fooScalingConfiguration.id});
  * ```
  *
  * ## Import

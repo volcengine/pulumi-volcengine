@@ -13,9 +13,16 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = volcengine.vpn.CustomerGateways({
- *     ids: ["cgw-2d68c4zglycjk58ozfe96norh"],
+ * const fooCustomerGateway = new volcengine.vpn.CustomerGateway("fooCustomerGateway", {
+ *     ipAddress: "192.0.1.3",
+ *     customerGatewayName: "acc-test",
+ *     description: "acc-test",
+ *     projectName: "default",
+ * });
+ * const fooCustomerGateways = volcengine.vpn.CustomerGatewaysOutput({
+ *     ids: [fooCustomerGateway.id],
  * });
  * ```
  */
@@ -90,9 +97,16 @@ export interface CustomerGatewaysResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = volcengine.vpn.CustomerGateways({
- *     ids: ["cgw-2d68c4zglycjk58ozfe96norh"],
+ * const fooCustomerGateway = new volcengine.vpn.CustomerGateway("fooCustomerGateway", {
+ *     ipAddress: "192.0.1.3",
+ *     customerGatewayName: "acc-test",
+ *     description: "acc-test",
+ *     projectName: "default",
+ * });
+ * const fooCustomerGateways = volcengine.vpn.CustomerGatewaysOutput({
+ *     ids: [fooCustomerGateway.id],
  * });
  * ```
  */

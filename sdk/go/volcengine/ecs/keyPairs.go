@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of ecs key pairs
@@ -41,7 +42,7 @@ import (
 //
 // ```
 func KeyPairs(ctx *pulumi.Context, args *KeyPairsArgs, opts ...pulumi.InvokeOption) (*KeyPairsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv KeyPairsResult
 	err := ctx.Invoke("volcengine:ecs/keyPairs:KeyPairs", args, &rv, opts...)
 	if err != nil {

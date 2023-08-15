@@ -168,7 +168,23 @@ def gateways(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.vpn.gateways(ids=["vgw-2c012ea9fm5mo2dx0efxg46qi"])
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-vpc",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-test-subnet",
+        cidr_block="172.16.0.0/24",
+        zone_id="cn-beijing-a",
+        vpc_id=foo_vpc.id)
+    foo_gateway = volcengine.vpn.Gateway("fooGateway",
+        vpc_id=foo_vpc.id,
+        subnet_id=foo_subnet.id,
+        bandwidth=20,
+        vpn_gateway_name="acc-test",
+        description="acc-test",
+        period=2,
+        project_name="default")
+    foo_gateways = volcengine.vpn.gateways_output(ids=[foo_gateway.id])
     ```
 
 
@@ -225,7 +241,23 @@ def gateways_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.vpn.gateways(ids=["vgw-2c012ea9fm5mo2dx0efxg46qi"])
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-vpc",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-test-subnet",
+        cidr_block="172.16.0.0/24",
+        zone_id="cn-beijing-a",
+        vpc_id=foo_vpc.id)
+    foo_gateway = volcengine.vpn.Gateway("fooGateway",
+        vpc_id=foo_vpc.id,
+        subnet_id=foo_subnet.id,
+        bandwidth=20,
+        vpn_gateway_name="acc-test",
+        description="acc-test",
+        period=2,
+        project_name="default")
+    foo_gateways = volcengine.vpn.gateways_output(ids=[foo_gateway.id])
     ```
 
 

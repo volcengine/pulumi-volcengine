@@ -8,7 +8,10 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
+
+var _ = internal.GetEnvOrDefault
 
 type ClusterSharedConfig struct {
 	// Whether to enable a shared cluster.

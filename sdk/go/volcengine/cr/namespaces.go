@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // Use this data source to query detailed information of cr namespaces
@@ -40,7 +41,7 @@ import (
 //
 // ```
 func Namespaces(ctx *pulumi.Context, args *NamespacesArgs, opts ...pulumi.InvokeOption) (*NamespacesResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv NamespacesResult
 	err := ctx.Invoke("volcengine:cr/namespaces:Namespaces", args, &rv, opts...)
 	if err != nil {

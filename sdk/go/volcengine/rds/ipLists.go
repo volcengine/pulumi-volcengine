@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/internal"
 )
 
 // (Deprecated! Recommend use volcengine_rds_mysql_*** replace) Use this data source to query detailed information of rds ip lists
@@ -37,7 +38,7 @@ import (
 //
 // ```
 func IpLists(ctx *pulumi.Context, args *IpListsArgs, opts ...pulumi.InvokeOption) (*IpListsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv IpListsResult
 	err := ctx.Invoke("volcengine:rds/ipLists:IpLists", args, &rv, opts...)
 	if err != nil {

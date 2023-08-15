@@ -9,29 +9,69 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const fooVolume = new volcengine.ebs.Volume("fooVolume", {
- *     volumeName: "terraform-test",
- *     zoneId: "cn-xx-a",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
+ *     securityGroupName: "acc-test-security-group",
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooImages = volcengine.ecs.Images({
+ *     osType: "Linux",
+ *     visibility: "public",
+ *     instanceTypeId: "ecs.g1.large",
+ * });
+ * const fooInstance = new volcengine.ecs.Instance("fooInstance", {
+ *     instanceName: "acc-test-ecs",
+ *     description: "acc-test",
+ *     hostName: "tf-acc-test",
+ *     imageId: fooImages.then(fooImages => fooImages.images?.[0]?.imageId),
+ *     instanceType: "ecs.g1.large",
+ *     password: "93f0cb0614Aab12",
+ *     instanceChargeType: "PrePaid",
+ *     period: 1,
+ *     systemVolumeType: "ESSD_PL0",
+ *     systemVolumeSize: 40,
+ *     subnetId: fooSubnet.id,
+ *     securityGroupIds: [fooSecurityGroup.id],
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const preVolume = new volcengine.ebs.Volume("preVolume", {
+ *     volumeName: "acc-test-volume",
  *     volumeType: "ESSD_PL0",
+ *     description: "acc-test",
  *     kind: "data",
  *     size: 40,
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     volumeChargeType: "PrePaid",
+ *     instanceId: fooInstance.id,
+ *     projectName: "default",
+ *     deleteWithInstance: true,
+ * });
+ * const postVolume = new volcengine.ebs.Volume("postVolume", {
+ *     volumeName: "acc-test-volume",
+ *     volumeType: "ESSD_PL0",
+ *     description: "acc-test",
+ *     kind: "data",
+ *     size: 40,
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
  *     volumeChargeType: "PostPaid",
  *     projectName: "default",
- * });
- * const fooVolumeAttach = new volcengine.ebs.VolumeAttach("fooVolumeAttach", {
- *     volumeId: fooVolume.id,
- *     instanceId: "i-yc8pfhbafwijutv6s1fv",
- * });
- * const foo2 = new volcengine.ebs.Volume("foo2", {
- *     volumeName: "terraform-test3",
- *     zoneId: "cn-beijing-b",
- *     volumeType: "ESSD_PL0",
- *     kind: "data",
- *     size: 40,
- *     volumeChargeType: "PrePaid",
- *     instanceId: "i-yc8pfhbafwijutv6s1fv",
  * });
  * ```
  *
@@ -84,7 +124,10 @@ export class Volume extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+     * The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
+     * system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
+     * deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
+     * terraform state file and management.
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
@@ -203,7 +246,10 @@ export interface VolumeState {
      */
     description?: pulumi.Input<string>;
     /**
-     * The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+     * The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
+     * system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
+     * deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
+     * terraform state file and management.
      */
     instanceId?: pulumi.Input<string>;
     /**
@@ -257,7 +303,10 @@ export interface VolumeArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the system administrator to apply for a whitelist.
+     * The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
+     * system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
+     * deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
+     * terraform state file and management.
      */
     instanceId?: pulumi.Input<string>;
     /**

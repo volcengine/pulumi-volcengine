@@ -23,14 +23,80 @@ namespace Volcengine.Pulumi.Volcengine.Vpn
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Vpn.Connections.Invoke(new()
+        ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
+        ///     {
+        ///         VpcName = "acc-test-vpc",
+        ///         CidrBlock = "172.16.0.0/16",
+        ///     });
+        /// 
+        ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+        ///     {
+        ///         SubnetName = "acc-test-subnet",
+        ///         CidrBlock = "172.16.0.0/24",
+        ///         ZoneId = "cn-beijing-a",
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooGateway = new Volcengine.Vpn.Gateway("fooGateway", new()
+        ///     {
+        ///         VpcId = fooVpc.Id,
+        ///         SubnetId = fooSubnet.Id,
+        ///         Bandwidth = 20,
+        ///         VpnGatewayName = "acc-test",
+        ///         Description = "acc-test",
+        ///         Period = 2,
+        ///         ProjectName = "default",
+        ///     });
+        /// 
+        ///     var fooCustomerGateway = new Volcengine.Vpn.CustomerGateway("fooCustomerGateway", new()
+        ///     {
+        ///         IpAddress = "192.0.1.3",
+        ///         CustomerGatewayName = "acc-test",
+        ///         Description = "acc-test",
+        ///         ProjectName = "default",
+        ///     });
+        /// 
+        ///     var fooConnection = new Volcengine.Vpn.Connection("fooConnection", new()
+        ///     {
+        ///         VpnConnectionName = "acc-tf-test",
+        ///         Description = "acc-tf-test",
+        ///         VpnGatewayId = fooGateway.Id,
+        ///         CustomerGatewayId = fooCustomerGateway.Id,
+        ///         LocalSubnets = new[]
+        ///         {
+        ///             "192.168.0.0/22",
+        ///         },
+        ///         RemoteSubnets = new[]
+        ///         {
+        ///             "192.161.0.0/20",
+        ///         },
+        ///         DpdAction = "none",
+        ///         NatTraversal = true,
+        ///         IkeConfigPsk = "acctest@!3",
+        ///         IkeConfigVersion = "ikev1",
+        ///         IkeConfigMode = "main",
+        ///         IkeConfigEncAlg = "aes",
+        ///         IkeConfigAuthAlg = "md5",
+        ///         IkeConfigDhGroup = "group2",
+        ///         IkeConfigLifetime = 9000,
+        ///         IkeConfigLocalId = "acc_test",
+        ///         IkeConfigRemoteId = "acc_test",
+        ///         IpsecConfigEncAlg = "aes",
+        ///         IpsecConfigAuthAlg = "sha256",
+        ///         IpsecConfigDhGroup = "group2",
+        ///         IpsecConfigLifetime = 9000,
+        ///         ProjectName = "default",
+        ///     });
+        /// 
+        ///     var fooConnections = Volcengine.Vpn.Connections.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
-        ///             "vgc-2d5wwids8cdts58ozfe63k2uq",
+        ///             fooConnection.Id,
         ///         },
         ///     });
         /// 
@@ -53,14 +119,80 @@ namespace Volcengine.Pulumi.Volcengine.Vpn
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Vpn.Connections.Invoke(new()
+        ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
+        ///     {
+        ///         VpcName = "acc-test-vpc",
+        ///         CidrBlock = "172.16.0.0/16",
+        ///     });
+        /// 
+        ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+        ///     {
+        ///         SubnetName = "acc-test-subnet",
+        ///         CidrBlock = "172.16.0.0/24",
+        ///         ZoneId = "cn-beijing-a",
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooGateway = new Volcengine.Vpn.Gateway("fooGateway", new()
+        ///     {
+        ///         VpcId = fooVpc.Id,
+        ///         SubnetId = fooSubnet.Id,
+        ///         Bandwidth = 20,
+        ///         VpnGatewayName = "acc-test",
+        ///         Description = "acc-test",
+        ///         Period = 2,
+        ///         ProjectName = "default",
+        ///     });
+        /// 
+        ///     var fooCustomerGateway = new Volcengine.Vpn.CustomerGateway("fooCustomerGateway", new()
+        ///     {
+        ///         IpAddress = "192.0.1.3",
+        ///         CustomerGatewayName = "acc-test",
+        ///         Description = "acc-test",
+        ///         ProjectName = "default",
+        ///     });
+        /// 
+        ///     var fooConnection = new Volcengine.Vpn.Connection("fooConnection", new()
+        ///     {
+        ///         VpnConnectionName = "acc-tf-test",
+        ///         Description = "acc-tf-test",
+        ///         VpnGatewayId = fooGateway.Id,
+        ///         CustomerGatewayId = fooCustomerGateway.Id,
+        ///         LocalSubnets = new[]
+        ///         {
+        ///             "192.168.0.0/22",
+        ///         },
+        ///         RemoteSubnets = new[]
+        ///         {
+        ///             "192.161.0.0/20",
+        ///         },
+        ///         DpdAction = "none",
+        ///         NatTraversal = true,
+        ///         IkeConfigPsk = "acctest@!3",
+        ///         IkeConfigVersion = "ikev1",
+        ///         IkeConfigMode = "main",
+        ///         IkeConfigEncAlg = "aes",
+        ///         IkeConfigAuthAlg = "md5",
+        ///         IkeConfigDhGroup = "group2",
+        ///         IkeConfigLifetime = 9000,
+        ///         IkeConfigLocalId = "acc_test",
+        ///         IkeConfigRemoteId = "acc_test",
+        ///         IpsecConfigEncAlg = "aes",
+        ///         IpsecConfigAuthAlg = "sha256",
+        ///         IpsecConfigDhGroup = "group2",
+        ///         IpsecConfigLifetime = 9000,
+        ///         ProjectName = "default",
+        ///     });
+        /// 
+        ///     var fooConnections = Volcengine.Vpn.Connections.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
-        ///             "vgc-2d5wwids8cdts58ozfe63k2uq",
+        ///             fooConnection.Id,
         ///         },
         ///     });
         /// 
