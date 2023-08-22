@@ -121,7 +121,19 @@ def roles(name_regex: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.iam.roles()
+    foo1 = volcengine.iam.Role("foo1",
+        description="acc-test1",
+        display_name="acc-test1",
+        max_session_duration=3600,
+        role_name="acc-test-role1",
+        trust_policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"sts:AssumeRole\\"],\\"Principal\\":{\\"Service\\":[\\"auto_scaling\\"]}}]}")
+    foo2 = volcengine.iam.Role("foo2",
+        description="acc-test2",
+        display_name="acc-test2",
+        max_session_duration=3600,
+        role_name="acc-test-role2",
+        trust_policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"sts:AssumeRole\\"],\\"Principal\\":{\\"Service\\":[\\"ecs\\"]}}]}")
+    foo = volcengine.iam.roles_output(role_name=pulumi.Output.all(foo1.role_name, foo2.role_name).apply(lambda foo1Role_name, foo2Role_name: f"{foo1_role_name},{foo2_role_name}"))
     ```
 
 
@@ -162,7 +174,19 @@ def roles_output(name_regex: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.iam.roles()
+    foo1 = volcengine.iam.Role("foo1",
+        description="acc-test1",
+        display_name="acc-test1",
+        max_session_duration=3600,
+        role_name="acc-test-role1",
+        trust_policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"sts:AssumeRole\\"],\\"Principal\\":{\\"Service\\":[\\"auto_scaling\\"]}}]}")
+    foo2 = volcengine.iam.Role("foo2",
+        description="acc-test2",
+        display_name="acc-test2",
+        max_session_duration=3600,
+        role_name="acc-test-role2",
+        trust_policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"sts:AssumeRole\\"],\\"Principal\\":{\\"Service\\":[\\"ecs\\"]}}]}")
+    foo = volcengine.iam.roles_output(role_name=pulumi.Output.all(foo1.role_name, foo2.role_name).apply(lambda foo1Role_name, foo2Role_name: f"{foo1_role_name},{foo2_role_name}"))
     ```
 
 

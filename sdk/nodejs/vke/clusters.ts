@@ -13,13 +13,63 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.vke.Clusters({
- *     podsConfigPodNetworkMode: "VpcCniShared",
- *     statuses: [{
- *         conditionsType: "Progressing",
- *         phase: "Creating",
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-project1",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-subnet-test-2",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: "cn-beijing-a",
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
+ *     vpcId: fooVpc.id,
+ *     securityGroupName: "acc-test-security-group2",
+ * });
+ * const fooInstance = new volcengine.ecs.Instance("fooInstance", {
+ *     imageId: "image-ybqi99s7yq8rx7mnk44b",
+ *     instanceType: "ecs.g1ie.large",
+ *     instanceName: "acc-test-ecs-name2",
+ *     password: "93f0cb0614Aab12",
+ *     instanceChargeType: "PostPaid",
+ *     systemVolumeType: "ESSD_PL0",
+ *     systemVolumeSize: 40,
+ *     subnetId: fooSubnet.id,
+ *     securityGroupIds: [fooSecurityGroup.id],
+ * });
+ * const fooCluster = new volcengine.vke.Cluster("fooCluster", {
+ *     description: "created by terraform",
+ *     deleteProtectionEnabled: false,
+ *     clusterConfig: {
+ *         subnetIds: [fooSubnet.id],
+ *         apiServerPublicAccessEnabled: true,
+ *         apiServerPublicAccessConfig: {
+ *             publicAccessNetworkConfig: {
+ *                 billingType: "PostPaidByBandwidth",
+ *                 bandwidth: 1,
+ *             },
+ *         },
+ *         resourcePublicAccessDefaultEnabled: true,
+ *     },
+ *     podsConfig: {
+ *         podNetworkMode: "VpcCniShared",
+ *         vpcCniConfig: {
+ *             subnetIds: [fooSubnet.id],
+ *         },
+ *     },
+ *     servicesConfig: {
+ *         serviceCidrsv4s: ["172.30.0.0/18"],
+ *     },
+ *     tags: [{
+ *         key: "tf-k1",
+ *         value: "tf-v1",
  *     }],
+ * });
+ * const fooClusters = volcengine.vke.ClustersOutput({
+ *     ids: [fooCluster.id],
  * });
  * ```
  */
@@ -142,13 +192,63 @@ export interface ClustersResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.vke.Clusters({
- *     podsConfigPodNetworkMode: "VpcCniShared",
- *     statuses: [{
- *         conditionsType: "Progressing",
- *         phase: "Creating",
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-project1",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-subnet-test-2",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: "cn-beijing-a",
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
+ *     vpcId: fooVpc.id,
+ *     securityGroupName: "acc-test-security-group2",
+ * });
+ * const fooInstance = new volcengine.ecs.Instance("fooInstance", {
+ *     imageId: "image-ybqi99s7yq8rx7mnk44b",
+ *     instanceType: "ecs.g1ie.large",
+ *     instanceName: "acc-test-ecs-name2",
+ *     password: "93f0cb0614Aab12",
+ *     instanceChargeType: "PostPaid",
+ *     systemVolumeType: "ESSD_PL0",
+ *     systemVolumeSize: 40,
+ *     subnetId: fooSubnet.id,
+ *     securityGroupIds: [fooSecurityGroup.id],
+ * });
+ * const fooCluster = new volcengine.vke.Cluster("fooCluster", {
+ *     description: "created by terraform",
+ *     deleteProtectionEnabled: false,
+ *     clusterConfig: {
+ *         subnetIds: [fooSubnet.id],
+ *         apiServerPublicAccessEnabled: true,
+ *         apiServerPublicAccessConfig: {
+ *             publicAccessNetworkConfig: {
+ *                 billingType: "PostPaidByBandwidth",
+ *                 bandwidth: 1,
+ *             },
+ *         },
+ *         resourcePublicAccessDefaultEnabled: true,
+ *     },
+ *     podsConfig: {
+ *         podNetworkMode: "VpcCniShared",
+ *         vpcCniConfig: {
+ *             subnetIds: [fooSubnet.id],
+ *         },
+ *     },
+ *     servicesConfig: {
+ *         serviceCidrsv4s: ["172.30.0.0/18"],
+ *     },
+ *     tags: [{
+ *         key: "tf-k1",
+ *         value: "tf-v1",
  *     }],
+ * });
+ * const fooClusters = volcengine.vke.ClustersOutput({
+ *     ids: [fooCluster.id],
  * });
  * ```
  */

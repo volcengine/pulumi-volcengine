@@ -12,53 +12,116 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const vkeTest = new volcengine.vke.NodePool("vkeTest", {
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
+ *     securityGroupName: "acc-test-security-group",
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooImages = volcengine.ecs.Images({
+ *     nameRegex: "veLinux 1.0 CentOS兼容版 64位",
+ * });
+ * const fooCluster = new volcengine.vke.Cluster("fooCluster", {
+ *     description: "created by terraform",
+ *     deleteProtectionEnabled: false,
+ *     clusterConfig: {
+ *         subnetIds: [fooSubnet.id],
+ *         apiServerPublicAccessEnabled: true,
+ *         apiServerPublicAccessConfig: {
+ *             publicAccessNetworkConfig: {
+ *                 billingType: "PostPaidByBandwidth",
+ *                 bandwidth: 1,
+ *             },
+ *         },
+ *         resourcePublicAccessDefaultEnabled: true,
+ *     },
+ *     podsConfig: {
+ *         podNetworkMode: "VpcCniShared",
+ *         vpcCniConfig: {
+ *             subnetIds: [fooSubnet.id],
+ *         },
+ *     },
+ *     servicesConfig: {
+ *         serviceCidrsv4s: ["172.30.0.0/18"],
+ *     },
+ *     tags: [{
+ *         key: "tf-k1",
+ *         value: "tf-v1",
+ *     }],
+ * });
+ * const fooNodePool = new volcengine.vke.NodePool("fooNodePool", {
+ *     clusterId: fooCluster.id,
  *     autoScaling: {
  *         enabled: true,
+ *         minReplicas: 0,
+ *         maxReplicas: 5,
+ *         desiredReplicas: 0,
+ *         priority: 5,
  *         subnetPolicy: "ZoneBalance",
  *     },
- *     clusterId: "ccgd6066rsfegs2dkhlog",
- *     kubernetesConfig: {
- *         cordon: false,
- *         labels: [
+ *     nodeConfig: {
+ *         instanceTypeIds: ["ecs.g1ie.xlarge"],
+ *         subnetIds: [fooSubnet.id],
+ *         imageId: fooImages.then(fooImages => .filter(image => image.imageName == "veLinux 1.0 CentOS兼容版 64位").map(image => (image.imageId))[0]),
+ *         systemVolume: {
+ *             type: "ESSD_PL0",
+ *             size: 60,
+ *         },
+ *         dataVolumes: [
  *             {
- *                 key: "aa",
- *                 value: "bb",
+ *                 type: "ESSD_PL0",
+ *                 size: 60,
+ *                 mountPoint: "/tf1",
  *             },
  *             {
- *                 key: "cccc",
- *                 value: "dddd",
+ *                 type: "ESSD_PL0",
+ *                 size: 60,
+ *                 mountPoint: "/tf2",
  *             },
  *         ],
- *     },
- *     nodeConfig: {
- *         dataVolumes: [{
- *             size: 60,
- *             type: "ESSD_PL0",
- *         }],
- *         ecsTags: [{
- *             key: "ecs_k1",
- *             value: "ecs_v1",
- *         }],
- *         instanceChargeType: "PostPaid",
- *         instanceTypeIds: ["ecs.g1ie.xlarge"],
- *         period: 1,
+ *         initializeScript: "ZWNobyBoZWxsbyB0ZXJyYWZvcm0h",
  *         security: {
  *             login: {
  *                 password: "UHdkMTIzNDU2",
  *             },
- *             securityGroupIds: [
- *                 "sg-13fbyz0sok3y83n6nu4hv1q10",
- *                 "sg-mj1e9tbztgqo5smt1ah8l4bh",
- *             ],
+ *             securityStrategies: ["Hids"],
+ *             securityGroupIds: [fooSecurityGroup.id],
  *         },
- *         subnetIds: ["subnet-mj1e9jgu96v45smt1a674x3h"],
+ *         additionalContainerStorageEnabled: true,
+ *         instanceChargeType: "PostPaid",
+ *         namePrefix: "acc-test",
+ *         ecsTags: [{
+ *             key: "ecs_k1",
+ *             value: "ecs_v1",
+ *         }],
+ *     },
+ *     kubernetesConfig: {
+ *         labels: [{
+ *             key: "label1",
+ *             value: "value1",
+ *         }],
+ *         taints: [{
+ *             key: "taint-key/node-type",
+ *             value: "taint-value",
+ *             effect: "NoSchedule",
+ *         }],
+ *         cordon: true,
  *     },
  *     tags: [{
- *         key: "k1",
- *         value: "v1",
+ *         key: "node-pool-k1",
+ *         value: "node-pool-v1",
  *     }],
  * });
  * ```

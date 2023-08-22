@@ -21,15 +21,84 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vke"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vke.NewKubeconfig(ctx, "foo", &vke.KubeconfigArgs{
-//				ClusterId: pulumi.String("cce7hb97qtofmj1oi4udg"),
-//				Type:      pulumi.String("Private"),
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = vpc.NewSecurityGroup(ctx, "fooSecurityGroup", &vpc.SecurityGroupArgs{
+//				SecurityGroupName: pulumi.String("acc-test-security-group"),
+//				VpcId:             fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooCluster, err := vke.NewCluster(ctx, "fooCluster", &vke.ClusterArgs{
+//				Description:             pulumi.String("created by terraform"),
+//				DeleteProtectionEnabled: pulumi.Bool(false),
+//				ClusterConfig: &vke.ClusterClusterConfigArgs{
+//					SubnetIds: pulumi.StringArray{
+//						fooSubnet.ID(),
+//					},
+//					ApiServerPublicAccessEnabled: pulumi.Bool(true),
+//					ApiServerPublicAccessConfig: &vke.ClusterClusterConfigApiServerPublicAccessConfigArgs{
+//						PublicAccessNetworkConfig: &vke.ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs{
+//							BillingType: pulumi.String("PostPaidByBandwidth"),
+//							Bandwidth:   pulumi.Int(1),
+//						},
+//					},
+//					ResourcePublicAccessDefaultEnabled: pulumi.Bool(true),
+//				},
+//				PodsConfig: &vke.ClusterPodsConfigArgs{
+//					PodNetworkMode: pulumi.String("VpcCniShared"),
+//					VpcCniConfig: &vke.ClusterPodsConfigVpcCniConfigArgs{
+//						SubnetIds: pulumi.StringArray{
+//							fooSubnet.ID(),
+//						},
+//					},
+//				},
+//				ServicesConfig: &vke.ClusterServicesConfigArgs{
+//					ServiceCidrsv4s: pulumi.StringArray{
+//						pulumi.String("172.30.0.0/18"),
+//					},
+//				},
+//				Tags: vke.ClusterTagArray{
+//					&vke.ClusterTagArgs{
+//						Key:   pulumi.String("tf-k1"),
+//						Value: pulumi.String("tf-v1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = vke.NewKubeconfig(ctx, "fooKubeconfig", &vke.KubeconfigArgs{
+//				ClusterId:     fooCluster.ID(),
+//				Type:          pulumi.String("Private"),
+//				ValidDuration: pulumi.Int(2),
 //			})
 //			if err != nil {
 //				return err

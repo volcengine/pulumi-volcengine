@@ -24,9 +24,9 @@ namespace Volcengine.Pulumi.Volcengine.Iam
     /// {
     ///     var foo = new Volcengine.Iam.Policy("foo", new()
     ///     {
-    ///         Description = "created by terraform 1",
+    ///         Description = "acc-test",
     ///         PolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}",
-    ///         PolicyName = "TerraformResourceTest1",
+    ///         PolicyName = "acc-test-policy",
     ///     });
     /// 
     /// });

@@ -23,10 +23,24 @@ namespace Volcengine.Pulumi.Volcengine.Iam
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Iam.Users.Invoke();
+        ///     var fooUser = new Volcengine.Iam.User("fooUser", new()
+        ///     {
+        ///         UserName = "acc-test-user",
+        ///         Description = "acc test",
+        ///         DisplayName = "name",
+        ///     });
+        /// 
+        ///     var fooUsers = Volcengine.Iam.Users.Invoke(new()
+        ///     {
+        ///         UserNames = new[]
+        ///         {
+        ///             fooUser.UserName,
+        ///         },
+        ///     });
         /// 
         /// });
         /// ```
@@ -47,10 +61,24 @@ namespace Volcengine.Pulumi.Volcengine.Iam
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Iam.Users.Invoke();
+        ///     var fooUser = new Volcengine.Iam.User("fooUser", new()
+        ///     {
+        ///         UserName = "acc-test-user",
+        ///         Description = "acc test",
+        ///         DisplayName = "name",
+        ///     });
+        /// 
+        ///     var fooUsers = Volcengine.Iam.Users.Invoke(new()
+        ///     {
+        ///         UserNames = new[]
+        ///         {
+        ///             fooUser.UserName,
+        ///         },
+        ///     });
         /// 
         /// });
         /// ```

@@ -12,11 +12,17 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.iam.AccessKey("foo", {
+ * const fooUser = new volcengine.iam.User("fooUser", {
+ *     userName: "acc-test-user",
+ *     description: "acc-test",
+ *     displayName: "name",
+ * });
+ * const fooAccessKey = new volcengine.iam.AccessKey("fooAccessKey", {
+ *     userName: fooUser.userName,
  *     secretFile: "./sk",
  *     status: "active",
- *     userName: "",
  * });
+ * //  pgp_key = "keybase:some_person_that_exists"
  * ```
  *
  * ## Import

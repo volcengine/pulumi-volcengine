@@ -23,10 +23,32 @@ namespace Volcengine.Pulumi.Volcengine.Iam
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Iam.Roles.Invoke();
+        ///     var foo1 = new Volcengine.Iam.Role("foo1", new()
+        ///     {
+        ///         Description = "acc-test1",
+        ///         DisplayName = "acc-test1",
+        ///         MaxSessionDuration = 3600,
+        ///         RoleName = "acc-test-role1",
+        ///         TrustPolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"auto_scaling\"]}}]}",
+        ///     });
+        /// 
+        ///     var foo2 = new Volcengine.Iam.Role("foo2", new()
+        ///     {
+        ///         Description = "acc-test2",
+        ///         DisplayName = "acc-test2",
+        ///         MaxSessionDuration = 3600,
+        ///         RoleName = "acc-test-role2",
+        ///         TrustPolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"ecs\"]}}]}",
+        ///     });
+        /// 
+        ///     var foo = Volcengine.Iam.Roles.Invoke(new()
+        ///     {
+        ///         RoleName = $"{foo1.RoleName},{foo2.RoleName}",
+        ///     });
         /// 
         /// });
         /// ```
@@ -47,10 +69,32 @@ namespace Volcengine.Pulumi.Volcengine.Iam
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Iam.Roles.Invoke();
+        ///     var foo1 = new Volcengine.Iam.Role("foo1", new()
+        ///     {
+        ///         Description = "acc-test1",
+        ///         DisplayName = "acc-test1",
+        ///         MaxSessionDuration = 3600,
+        ///         RoleName = "acc-test-role1",
+        ///         TrustPolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"auto_scaling\"]}}]}",
+        ///     });
+        /// 
+        ///     var foo2 = new Volcengine.Iam.Role("foo2", new()
+        ///     {
+        ///         Description = "acc-test2",
+        ///         DisplayName = "acc-test2",
+        ///         MaxSessionDuration = 3600,
+        ///         RoleName = "acc-test-role2",
+        ///         TrustPolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"ecs\"]}}]}",
+        ///     });
+        /// 
+        ///     var foo = Volcengine.Iam.Roles.Invoke(new()
+        ///     {
+        ///         RoleName = $"{foo1.RoleName},{foo2.RoleName}",
+        ///     });
         /// 
         /// });
         /// ```

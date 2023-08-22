@@ -7,7 +7,7 @@
         "volcengine",
         "category/cloud"
     ],
-    "homepage": "https://www.pulumi.com",
+    "homepage": "https://volcengine.com",
     "repository": "https://github.com/volcengine/pulumi-volcengine",
     "license": "Apache-2.0",
     "scripts": {

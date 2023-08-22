@@ -47,7 +47,7 @@ setup(name='pulumi_volcengine',
           'install': InstallPluginCommand,
       },
       keywords='pulumi volcengine category/cloud',
-      url='https://www.pulumi.com',
+      url='https://volcengine.com',
       project_urls={
           'Repository': 'https://github.com/volcengine/pulumi-volcengine'
       },

@@ -39,6 +39,17 @@ import * as utilities from "../utilities";
  *     subnetId: fooSubnet.id,
  *     securityGroupIds: [fooSecurityGroup.id],
  * });
+ * const foo2 = new volcengine.ecs.Instance("foo2", {
+ *     imageId: "image-ybqi99s7yq8rx7mnk44b",
+ *     instanceType: "ecs.g1ie.large",
+ *     instanceName: "acc-test-ecs-name2",
+ *     password: "93f0cb0614Aab12",
+ *     instanceChargeType: "PostPaid",
+ *     systemVolumeType: "ESSD_PL0",
+ *     systemVolumeSize: 40,
+ *     subnetId: fooSubnet.id,
+ *     securityGroupIds: [fooSecurityGroup.id],
+ * });
  * const fooCluster = new volcengine.vke.Cluster("fooCluster", {
  *     description: "created by terraform",
  *     deleteProtectionEnabled: false,
@@ -67,7 +78,7 @@ import * as utilities from "../utilities";
  *         value: "tf-v1",
  *     }],
  * });
- * const defaultDefaultNodePool = new volcengine.vke.DefaultNodePool("defaultDefaultNodePool", {
+ * const fooDefaultNodePool = new volcengine.vke.DefaultNodePool("fooDefaultNodePool", {
  *     clusterId: fooCluster.id,
  *     nodeConfig: {
  *         security: {
@@ -105,18 +116,25 @@ import * as utilities from "../utilities";
  *         cordon: true,
  *     },
  *     tags: [{
- *         key: "k1",
- *         value: "v1",
+ *         key: "tf-k1",
+ *         value: "tf-v1",
  *     }],
  * });
- * const defaultDefaultNodePoolBatchAttach = new volcengine.vke.DefaultNodePoolBatchAttach("defaultDefaultNodePoolBatchAttach", {
+ * const fooDefaultNodePoolBatchAttach = new volcengine.vke.DefaultNodePoolBatchAttach("fooDefaultNodePoolBatchAttach", {
  *     clusterId: fooCluster.id,
- *     defaultNodePoolId: defaultDefaultNodePool.id,
- *     instances: [{
- *         instanceId: fooInstance.id,
- *         keepInstanceName: true,
- *         additionalContainerStorageEnabled: false,
- *     }],
+ *     defaultNodePoolId: fooDefaultNodePool.id,
+ *     instances: [
+ *         {
+ *             instanceId: fooInstance.id,
+ *             keepInstanceName: true,
+ *             additionalContainerStorageEnabled: false,
+ *         },
+ *         {
+ *             instanceId: foo2.id,
+ *             keepInstanceName: true,
+ *             additionalContainerStorageEnabled: false,
+ *         },
+ *     ],
  *     kubernetesConfig: {
  *         labels: [
  *             {
