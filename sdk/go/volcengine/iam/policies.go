@@ -26,12 +26,19 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := iam.Policies(ctx, &iam.PoliciesArgs{
-//				Query: pulumi.StringRef("AdministratorAccess"),
-//			}, nil)
+//			fooPolicy, err := iam.NewPolicy(ctx, "fooPolicy", &iam.PolicyArgs{
+//				PolicyName:     pulumi.String("acc-test-policy"),
+//				Description:    pulumi.String("acc-test"),
+//				PolicyDocument: pulumi.String("{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}"),
+//			})
 //			if err != nil {
 //				return err
 //			}
+//			_ = fooPolicy.Description.ApplyT(func(description *string) (iam.PoliciesResult, error) {
+//				return iam.PoliciesOutput(ctx, iam.PoliciesOutputArgs{
+//					Query: description,
+//				}, nil), nil
+//			}).(iam.PoliciesResultOutput)
 //			return nil
 //		})
 //	}

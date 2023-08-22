@@ -14,66 +14,99 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const _default = new volcengine.vke.DefaultNodePool("default", {
- *     clusterId: "ccc2umdnqtoflv91lqtq0",
- *     instances: [
- *         {
- *             additionalContainerStorageEnabled: false,
- *             instanceId: "i-ybvza90ohwexzk8emaa3",
- *             keepInstanceName: false,
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-project1",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-subnet-test-2",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: "cn-beijing-a",
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
+ *     vpcId: fooVpc.id,
+ *     securityGroupName: "acc-test-security-group2",
+ * });
+ * const fooInstance = new volcengine.ecs.Instance("fooInstance", {
+ *     imageId: "image-ybqi99s7yq8rx7mnk44b",
+ *     instanceType: "ecs.g1ie.large",
+ *     instanceName: "acc-test-ecs-name2",
+ *     password: "93f0cb0614Aab12",
+ *     instanceChargeType: "PostPaid",
+ *     systemVolumeType: "ESSD_PL0",
+ *     systemVolumeSize: 40,
+ *     subnetId: fooSubnet.id,
+ *     securityGroupIds: [fooSecurityGroup.id],
+ * });
+ * const fooCluster = new volcengine.vke.Cluster("fooCluster", {
+ *     description: "created by terraform",
+ *     deleteProtectionEnabled: false,
+ *     clusterConfig: {
+ *         subnetIds: [fooSubnet.id],
+ *         apiServerPublicAccessEnabled: true,
+ *         apiServerPublicAccessConfig: {
+ *             publicAccessNetworkConfig: {
+ *                 billingType: "PostPaidByBandwidth",
+ *                 bandwidth: 1,
+ *             },
  *         },
- *         {
- *             additionalContainerStorageEnabled: true,
- *             containerStoragePath: "/",
- *             instanceId: "i-ybvza90ohxexzkm4zihf",
- *             keepInstanceName: false,
- *         },
- *     ],
- *     kubernetesConfig: {
- *         cordon: true,
- *         labels: [
- *             {
- *                 key: "aa",
- *                 value: "bb",
- *             },
- *             {
- *                 key: "cccc",
- *                 value: "dddd",
- *             },
- *         ],
- *         taints: [
- *             {
- *                 effect: "NoSchedule",
- *                 key: "cccc",
- *                 value: "dddd",
- *             },
- *             {
- *                 effect: "NoSchedule",
- *                 key: "aa11",
- *                 value: "111",
- *             },
- *         ],
+ *         resourcePublicAccessDefaultEnabled: true,
  *     },
+ *     podsConfig: {
+ *         podNetworkMode: "VpcCniShared",
+ *         vpcCniConfig: {
+ *             subnetIds: [fooSubnet.id],
+ *         },
+ *     },
+ *     servicesConfig: {
+ *         serviceCidrsv4s: ["172.30.0.0/18"],
+ *     },
+ *     tags: [{
+ *         key: "tf-k1",
+ *         value: "tf-v1",
+ *     }],
+ * });
+ * const fooDefaultNodePool = new volcengine.vke.DefaultNodePool("fooDefaultNodePool", {
+ *     clusterId: fooCluster.id,
  *     nodeConfig: {
- *         ecsTags: [{
- *             key: "ecs_k1",
- *             value: "ecs_v1",
- *         }],
- *         initializeScript: "ISMvYmluL2Jhc2gKZWNobyAx",
  *         security: {
  *             login: {
  *                 password: "amw4WTdVcTRJVVFsUXpVTw==",
  *             },
- *             securityGroupIds: [
- *                 "sg-2d6t6djr2wge858ozfczv41xq",
- *                 "sg-3re6v4lz76yv45zsk2hjvvwcj",
- *             ],
+ *             securityGroupIds: [fooSecurityGroup.id],
  *             securityStrategies: ["Hids"],
  *         },
+ *         initializeScript: "ISMvYmluL2Jhc2gKZWNobyAx",
+ *     },
+ *     kubernetesConfig: {
+ *         labels: [
+ *             {
+ *                 key: "tf-key1",
+ *                 value: "tf-value1",
+ *             },
+ *             {
+ *                 key: "tf-key2",
+ *                 value: "tf-value2",
+ *             },
+ *         ],
+ *         taints: [
+ *             {
+ *                 key: "tf-key3",
+ *                 value: "tf-value3",
+ *                 effect: "NoSchedule",
+ *             },
+ *             {
+ *                 key: "tf-key4",
+ *                 value: "tf-value4",
+ *                 effect: "NoSchedule",
+ *             },
+ *         ],
+ *         cordon: true,
  *     },
  *     tags: [{
- *         key: "k1",
- *         value: "v1",
+ *         key: "tf-k1",
+ *         value: "tf-v1",
  *     }],
  * });
  * ```

@@ -148,11 +148,57 @@ def kubeconfigs(cluster_ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.vke.kubeconfigs(cluster_ids=["cce7hb97qtofmj1oi4udg"],
-        types=[
-            "Private",
-            "Public",
-        ])
+    foo_zones = volcengine.ecs.zones()
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-vpc",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-test-subnet",
+        cidr_block="172.16.0.0/24",
+        zone_id=foo_zones.zones[0].id,
+        vpc_id=foo_vpc.id)
+    foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+        security_group_name="acc-test-security-group",
+        vpc_id=foo_vpc.id)
+    foo_cluster = volcengine.vke.Cluster("fooCluster",
+        description="created by terraform",
+        delete_protection_enabled=False,
+        cluster_config=volcengine.vke.ClusterClusterConfigArgs(
+            subnet_ids=[foo_subnet.id],
+            api_server_public_access_enabled=True,
+            api_server_public_access_config=volcengine.vke.ClusterClusterConfigApiServerPublicAccessConfigArgs(
+                public_access_network_config=volcengine.vke.ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs(
+                    billing_type="PostPaidByBandwidth",
+                    bandwidth=1,
+                ),
+            ),
+            resource_public_access_default_enabled=True,
+        ),
+        pods_config=volcengine.vke.ClusterPodsConfigArgs(
+            pod_network_mode="VpcCniShared",
+            vpc_cni_config=volcengine.vke.ClusterPodsConfigVpcCniConfigArgs(
+                subnet_ids=[foo_subnet.id],
+            ),
+        ),
+        services_config=volcengine.vke.ClusterServicesConfigArgs(
+            service_cidrsv4s=["172.30.0.0/18"],
+        ),
+        tags=[volcengine.vke.ClusterTagArgs(
+            key="tf-k1",
+            value="tf-v1",
+        )])
+    foo1 = volcengine.vke.Kubeconfig("foo1",
+        cluster_id=foo_cluster.id,
+        type="Private",
+        valid_duration=2)
+    foo2 = volcengine.vke.Kubeconfig("foo2",
+        cluster_id=foo_cluster.id,
+        type="Public",
+        valid_duration=2)
+    foo_kubeconfigs = volcengine.vke.kubeconfigs_output(ids=[
+        foo1.id,
+        foo2.id,
+    ])
     ```
 
 
@@ -205,11 +251,57 @@ def kubeconfigs_output(cluster_ids: Optional[pulumi.Input[Optional[Sequence[str]
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.vke.kubeconfigs(cluster_ids=["cce7hb97qtofmj1oi4udg"],
-        types=[
-            "Private",
-            "Public",
-        ])
+    foo_zones = volcengine.ecs.zones()
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-vpc",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-test-subnet",
+        cidr_block="172.16.0.0/24",
+        zone_id=foo_zones.zones[0].id,
+        vpc_id=foo_vpc.id)
+    foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+        security_group_name="acc-test-security-group",
+        vpc_id=foo_vpc.id)
+    foo_cluster = volcengine.vke.Cluster("fooCluster",
+        description="created by terraform",
+        delete_protection_enabled=False,
+        cluster_config=volcengine.vke.ClusterClusterConfigArgs(
+            subnet_ids=[foo_subnet.id],
+            api_server_public_access_enabled=True,
+            api_server_public_access_config=volcengine.vke.ClusterClusterConfigApiServerPublicAccessConfigArgs(
+                public_access_network_config=volcengine.vke.ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs(
+                    billing_type="PostPaidByBandwidth",
+                    bandwidth=1,
+                ),
+            ),
+            resource_public_access_default_enabled=True,
+        ),
+        pods_config=volcengine.vke.ClusterPodsConfigArgs(
+            pod_network_mode="VpcCniShared",
+            vpc_cni_config=volcengine.vke.ClusterPodsConfigVpcCniConfigArgs(
+                subnet_ids=[foo_subnet.id],
+            ),
+        ),
+        services_config=volcengine.vke.ClusterServicesConfigArgs(
+            service_cidrsv4s=["172.30.0.0/18"],
+        ),
+        tags=[volcengine.vke.ClusterTagArgs(
+            key="tf-k1",
+            value="tf-v1",
+        )])
+    foo1 = volcengine.vke.Kubeconfig("foo1",
+        cluster_id=foo_cluster.id,
+        type="Private",
+        valid_duration=2)
+    foo2 = volcengine.vke.Kubeconfig("foo2",
+        cluster_id=foo_cluster.id,
+        type="Public",
+        valid_duration=2)
+    foo_kubeconfigs = volcengine.vke.kubeconfigs_output(ids=[
+        foo1.id,
+        foo2.id,
+    ])
     ```
 
 

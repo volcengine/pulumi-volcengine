@@ -242,6 +242,16 @@ class DefaultNodePoolBatchAttach(pulumi.CustomResource):
             system_volume_size=40,
             subnet_id=foo_subnet.id,
             security_group_ids=[foo_security_group.id])
+        foo2 = volcengine.ecs.Instance("foo2",
+            image_id="image-ybqi99s7yq8rx7mnk44b",
+            instance_type="ecs.g1ie.large",
+            instance_name="acc-test-ecs-name2",
+            password="93f0cb0614Aab12",
+            instance_charge_type="PostPaid",
+            system_volume_type="ESSD_PL0",
+            system_volume_size=40,
+            subnet_id=foo_subnet.id,
+            security_group_ids=[foo_security_group.id])
         foo_cluster = volcengine.vke.Cluster("fooCluster",
             description="created by terraform",
             delete_protection_enabled=False,
@@ -269,7 +279,7 @@ class DefaultNodePoolBatchAttach(pulumi.CustomResource):
                 key="tf-k1",
                 value="tf-v1",
             )])
-        default_default_node_pool = volcengine.vke.DefaultNodePool("defaultDefaultNodePool",
+        foo_default_node_pool = volcengine.vke.DefaultNodePool("fooDefaultNodePool",
             cluster_id=foo_cluster.id,
             node_config=volcengine.vke.DefaultNodePoolNodeConfigArgs(
                 security=volcengine.vke.DefaultNodePoolNodeConfigSecurityArgs(
@@ -307,17 +317,24 @@ class DefaultNodePoolBatchAttach(pulumi.CustomResource):
                 cordon=True,
             ),
             tags=[volcengine.vke.DefaultNodePoolTagArgs(
-                key="k1",
-                value="v1",
+                key="tf-k1",
+                value="tf-v1",
             )])
-        default_default_node_pool_batch_attach = volcengine.vke.DefaultNodePoolBatchAttach("defaultDefaultNodePoolBatchAttach",
+        foo_default_node_pool_batch_attach = volcengine.vke.DefaultNodePoolBatchAttach("fooDefaultNodePoolBatchAttach",
             cluster_id=foo_cluster.id,
-            default_node_pool_id=default_default_node_pool.id,
-            instances=[volcengine.vke.DefaultNodePoolBatchAttachInstanceArgs(
-                instance_id=foo_instance.id,
-                keep_instance_name=True,
-                additional_container_storage_enabled=False,
-            )],
+            default_node_pool_id=foo_default_node_pool.id,
+            instances=[
+                volcengine.vke.DefaultNodePoolBatchAttachInstanceArgs(
+                    instance_id=foo_instance.id,
+                    keep_instance_name=True,
+                    additional_container_storage_enabled=False,
+                ),
+                volcengine.vke.DefaultNodePoolBatchAttachInstanceArgs(
+                    instance_id=foo2.id,
+                    keep_instance_name=True,
+                    additional_container_storage_enabled=False,
+                ),
+            ],
             kubernetes_config=volcengine.vke.DefaultNodePoolBatchAttachKubernetesConfigArgs(
                 labels=[
                     volcengine.vke.DefaultNodePoolBatchAttachKubernetesConfigLabelArgs(
@@ -387,6 +404,16 @@ class DefaultNodePoolBatchAttach(pulumi.CustomResource):
             system_volume_size=40,
             subnet_id=foo_subnet.id,
             security_group_ids=[foo_security_group.id])
+        foo2 = volcengine.ecs.Instance("foo2",
+            image_id="image-ybqi99s7yq8rx7mnk44b",
+            instance_type="ecs.g1ie.large",
+            instance_name="acc-test-ecs-name2",
+            password="93f0cb0614Aab12",
+            instance_charge_type="PostPaid",
+            system_volume_type="ESSD_PL0",
+            system_volume_size=40,
+            subnet_id=foo_subnet.id,
+            security_group_ids=[foo_security_group.id])
         foo_cluster = volcengine.vke.Cluster("fooCluster",
             description="created by terraform",
             delete_protection_enabled=False,
@@ -414,7 +441,7 @@ class DefaultNodePoolBatchAttach(pulumi.CustomResource):
                 key="tf-k1",
                 value="tf-v1",
             )])
-        default_default_node_pool = volcengine.vke.DefaultNodePool("defaultDefaultNodePool",
+        foo_default_node_pool = volcengine.vke.DefaultNodePool("fooDefaultNodePool",
             cluster_id=foo_cluster.id,
             node_config=volcengine.vke.DefaultNodePoolNodeConfigArgs(
                 security=volcengine.vke.DefaultNodePoolNodeConfigSecurityArgs(
@@ -452,17 +479,24 @@ class DefaultNodePoolBatchAttach(pulumi.CustomResource):
                 cordon=True,
             ),
             tags=[volcengine.vke.DefaultNodePoolTagArgs(
-                key="k1",
-                value="v1",
+                key="tf-k1",
+                value="tf-v1",
             )])
-        default_default_node_pool_batch_attach = volcengine.vke.DefaultNodePoolBatchAttach("defaultDefaultNodePoolBatchAttach",
+        foo_default_node_pool_batch_attach = volcengine.vke.DefaultNodePoolBatchAttach("fooDefaultNodePoolBatchAttach",
             cluster_id=foo_cluster.id,
-            default_node_pool_id=default_default_node_pool.id,
-            instances=[volcengine.vke.DefaultNodePoolBatchAttachInstanceArgs(
-                instance_id=foo_instance.id,
-                keep_instance_name=True,
-                additional_container_storage_enabled=False,
-            )],
+            default_node_pool_id=foo_default_node_pool.id,
+            instances=[
+                volcengine.vke.DefaultNodePoolBatchAttachInstanceArgs(
+                    instance_id=foo_instance.id,
+                    keep_instance_name=True,
+                    additional_container_storage_enabled=False,
+                ),
+                volcengine.vke.DefaultNodePoolBatchAttachInstanceArgs(
+                    instance_id=foo2.id,
+                    keep_instance_name=True,
+                    additional_container_storage_enabled=False,
+                ),
+            ],
             kubernetes_config=volcengine.vke.DefaultNodePoolBatchAttachKubernetesConfigArgs(
                 labels=[
                     volcengine.vke.DefaultNodePoolBatchAttachKubernetesConfigLabelArgs(

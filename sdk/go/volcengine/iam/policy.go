@@ -28,9 +28,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := iam.NewPolicy(ctx, "foo", &iam.PolicyArgs{
-//				Description:    pulumi.String("created by terraform 1"),
+//				Description:    pulumi.String("acc-test"),
 //				PolicyDocument: pulumi.String("{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}"),
-//				PolicyName:     pulumi.String("TerraformResourceTest1"),
+//				PolicyName:     pulumi.String("acc-test-policy"),
 //			})
 //			if err != nil {
 //				return err

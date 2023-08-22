@@ -23,16 +23,198 @@ namespace Volcengine.Pulumi.Volcengine.Vke
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var vkeTest = Volcengine.Vke.NodePools.Invoke(new()
+        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        /// 
+        ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
-        ///         ClusterIds = new[]
+        ///         VpcName = "acc-test-vpc",
+        ///         CidrBlock = "172.16.0.0/16",
+        ///     });
+        /// 
+        ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+        ///     {
+        ///         SubnetName = "acc-test-subnet",
+        ///         CidrBlock = "172.16.0.0/24",
+        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooSecurityGroup = new Volcengine.Vpc.SecurityGroup("fooSecurityGroup", new()
+        ///     {
+        ///         SecurityGroupName = "acc-test-security-group",
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooImages = Volcengine.Ecs.Images.Invoke(new()
+        ///     {
+        ///         NameRegex = "veLinux 1.0 CentOS兼容版 64位",
+        ///     });
+        /// 
+        ///     var fooCluster = new Volcengine.Vke.Cluster("fooCluster", new()
+        ///     {
+        ///         Description = "created by terraform",
+        ///         DeleteProtectionEnabled = false,
+        ///         ClusterConfig = new Volcengine.Vke.Inputs.ClusterClusterConfigArgs
         ///         {
-        ///             "ccabe57fqtofgrbln3dog",
+        ///             SubnetIds = new[]
+        ///             {
+        ///                 fooSubnet.Id,
+        ///             },
+        ///             ApiServerPublicAccessEnabled = true,
+        ///             ApiServerPublicAccessConfig = new Volcengine.Vke.Inputs.ClusterClusterConfigApiServerPublicAccessConfigArgs
+        ///             {
+        ///                 PublicAccessNetworkConfig = new Volcengine.Vke.Inputs.ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs
+        ///                 {
+        ///                     BillingType = "PostPaidByBandwidth",
+        ///                     Bandwidth = 1,
+        ///                 },
+        ///             },
+        ///             ResourcePublicAccessDefaultEnabled = true,
         ///         },
-        ///         Name = "demo",
+        ///         PodsConfig = new Volcengine.Vke.Inputs.ClusterPodsConfigArgs
+        ///         {
+        ///             PodNetworkMode = "VpcCniShared",
+        ///             VpcCniConfig = new Volcengine.Vke.Inputs.ClusterPodsConfigVpcCniConfigArgs
+        ///             {
+        ///                 SubnetIds = new[]
+        ///                 {
+        ///                     fooSubnet.Id,
+        ///                 },
+        ///             },
+        ///         },
+        ///         ServicesConfig = new Volcengine.Vke.Inputs.ClusterServicesConfigArgs
+        ///         {
+        ///             ServiceCidrsv4s = new[]
+        ///             {
+        ///                 "172.30.0.0/18",
+        ///             },
+        ///         },
+        ///         Tags = new[]
+        ///         {
+        ///             new Volcengine.Vke.Inputs.ClusterTagArgs
+        ///             {
+        ///                 Key = "tf-k1",
+        ///                 Value = "tf-v1",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var fooNodePool = new List&lt;Volcengine.Vke.NodePool&gt;();
+        ///     for (var rangeIndex = 0; rangeIndex &lt; 3; rangeIndex++)
+        ///     {
+        ///         var range = new { Value = rangeIndex };
+        ///         fooNodePool.Add(new Volcengine.Vke.NodePool($"fooNodePool-{range.Value}", new()
+        ///         {
+        ///             ClusterId = fooCluster.Id,
+        ///             AutoScaling = new Volcengine.Vke.Inputs.NodePoolAutoScalingArgs
+        ///             {
+        ///                 Enabled = true,
+        ///                 MinReplicas = 0,
+        ///                 MaxReplicas = 5,
+        ///                 DesiredReplicas = 0,
+        ///                 Priority = 5,
+        ///                 SubnetPolicy = "ZoneBalance",
+        ///             },
+        ///             NodeConfig = new Volcengine.Vke.Inputs.NodePoolNodeConfigArgs
+        ///             {
+        ///                 InstanceTypeIds = new[]
+        ///                 {
+        ///                     "ecs.g1ie.xlarge",
+        ///                 },
+        ///                 SubnetIds = new[]
+        ///                 {
+        ///                     fooSubnet.Id,
+        ///                 },
+        ///                 ImageId = .Where(image =&gt; image.ImageName == "veLinux 1.0 CentOS兼容版 64位").Select(image =&gt; 
+        ///                 {
+        ///                     return  image.ImageId;
+        ///                 })[0],
+        ///                 SystemVolume = new Volcengine.Vke.Inputs.NodePoolNodeConfigSystemVolumeArgs
+        ///                 {
+        ///                     Type = "ESSD_PL0",
+        ///                     Size = 60,
+        ///                 },
+        ///                 DataVolumes = new[]
+        ///                 {
+        ///                     new Volcengine.Vke.Inputs.NodePoolNodeConfigDataVolumeArgs
+        ///                     {
+        ///                         Type = "ESSD_PL0",
+        ///                         Size = 60,
+        ///                         MountPoint = "/tf1",
+        ///                     },
+        ///                     new Volcengine.Vke.Inputs.NodePoolNodeConfigDataVolumeArgs
+        ///                     {
+        ///                         Type = "ESSD_PL0",
+        ///                         Size = 60,
+        ///                         MountPoint = "/tf2",
+        ///                     },
+        ///                 },
+        ///                 InitializeScript = "ZWNobyBoZWxsbyB0ZXJyYWZvcm0h",
+        ///                 Security = new Volcengine.Vke.Inputs.NodePoolNodeConfigSecurityArgs
+        ///                 {
+        ///                     Login = new Volcengine.Vke.Inputs.NodePoolNodeConfigSecurityLoginArgs
+        ///                     {
+        ///                         Password = "UHdkMTIzNDU2",
+        ///                     },
+        ///                     SecurityStrategies = new[]
+        ///                     {
+        ///                         "Hids",
+        ///                     },
+        ///                     SecurityGroupIds = new[]
+        ///                     {
+        ///                         fooSecurityGroup.Id,
+        ///                     },
+        ///                 },
+        ///                 AdditionalContainerStorageEnabled = true,
+        ///                 InstanceChargeType = "PostPaid",
+        ///                 NamePrefix = "acc-test",
+        ///                 EcsTags = new[]
+        ///                 {
+        ///                     new Volcengine.Vke.Inputs.NodePoolNodeConfigEcsTagArgs
+        ///                     {
+        ///                         Key = "ecs_k1",
+        ///                         Value = "ecs_v1",
+        ///                     },
+        ///                 },
+        ///             },
+        ///             KubernetesConfig = new Volcengine.Vke.Inputs.NodePoolKubernetesConfigArgs
+        ///             {
+        ///                 Labels = new[]
+        ///                 {
+        ///                     new Volcengine.Vke.Inputs.NodePoolKubernetesConfigLabelArgs
+        ///                     {
+        ///                         Key = "label1",
+        ///                         Value = "value1",
+        ///                     },
+        ///                 },
+        ///                 Taints = new[]
+        ///                 {
+        ///                     new Volcengine.Vke.Inputs.NodePoolKubernetesConfigTaintArgs
+        ///                     {
+        ///                         Key = "taint-key/node-type",
+        ///                         Value = "taint-value",
+        ///                         Effect = "NoSchedule",
+        ///                     },
+        ///                 },
+        ///                 Cordon = true,
+        ///             },
+        ///             Tags = new[]
+        ///             {
+        ///                 new Volcengine.Vke.Inputs.NodePoolTagArgs
+        ///                 {
+        ///                     Key = "node-pool-k1",
+        ///                     Value = "node-pool-v1",
+        ///                 },
+        ///             },
+        ///         }));
+        ///     }
+        ///     var fooNodePools = Volcengine.Vke.NodePools.Invoke(new()
+        ///     {
+        ///         Ids = fooNodePool.Select(__item =&gt; __item.Id).ToList(),
         ///     });
         /// 
         /// });
@@ -54,16 +236,198 @@ namespace Volcengine.Pulumi.Volcengine.Vke
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var vkeTest = Volcengine.Vke.NodePools.Invoke(new()
+        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        /// 
+        ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
-        ///         ClusterIds = new[]
+        ///         VpcName = "acc-test-vpc",
+        ///         CidrBlock = "172.16.0.0/16",
+        ///     });
+        /// 
+        ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+        ///     {
+        ///         SubnetName = "acc-test-subnet",
+        ///         CidrBlock = "172.16.0.0/24",
+        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooSecurityGroup = new Volcengine.Vpc.SecurityGroup("fooSecurityGroup", new()
+        ///     {
+        ///         SecurityGroupName = "acc-test-security-group",
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooImages = Volcengine.Ecs.Images.Invoke(new()
+        ///     {
+        ///         NameRegex = "veLinux 1.0 CentOS兼容版 64位",
+        ///     });
+        /// 
+        ///     var fooCluster = new Volcengine.Vke.Cluster("fooCluster", new()
+        ///     {
+        ///         Description = "created by terraform",
+        ///         DeleteProtectionEnabled = false,
+        ///         ClusterConfig = new Volcengine.Vke.Inputs.ClusterClusterConfigArgs
         ///         {
-        ///             "ccabe57fqtofgrbln3dog",
+        ///             SubnetIds = new[]
+        ///             {
+        ///                 fooSubnet.Id,
+        ///             },
+        ///             ApiServerPublicAccessEnabled = true,
+        ///             ApiServerPublicAccessConfig = new Volcengine.Vke.Inputs.ClusterClusterConfigApiServerPublicAccessConfigArgs
+        ///             {
+        ///                 PublicAccessNetworkConfig = new Volcengine.Vke.Inputs.ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs
+        ///                 {
+        ///                     BillingType = "PostPaidByBandwidth",
+        ///                     Bandwidth = 1,
+        ///                 },
+        ///             },
+        ///             ResourcePublicAccessDefaultEnabled = true,
         ///         },
-        ///         Name = "demo",
+        ///         PodsConfig = new Volcengine.Vke.Inputs.ClusterPodsConfigArgs
+        ///         {
+        ///             PodNetworkMode = "VpcCniShared",
+        ///             VpcCniConfig = new Volcengine.Vke.Inputs.ClusterPodsConfigVpcCniConfigArgs
+        ///             {
+        ///                 SubnetIds = new[]
+        ///                 {
+        ///                     fooSubnet.Id,
+        ///                 },
+        ///             },
+        ///         },
+        ///         ServicesConfig = new Volcengine.Vke.Inputs.ClusterServicesConfigArgs
+        ///         {
+        ///             ServiceCidrsv4s = new[]
+        ///             {
+        ///                 "172.30.0.0/18",
+        ///             },
+        ///         },
+        ///         Tags = new[]
+        ///         {
+        ///             new Volcengine.Vke.Inputs.ClusterTagArgs
+        ///             {
+        ///                 Key = "tf-k1",
+        ///                 Value = "tf-v1",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var fooNodePool = new List&lt;Volcengine.Vke.NodePool&gt;();
+        ///     for (var rangeIndex = 0; rangeIndex &lt; 3; rangeIndex++)
+        ///     {
+        ///         var range = new { Value = rangeIndex };
+        ///         fooNodePool.Add(new Volcengine.Vke.NodePool($"fooNodePool-{range.Value}", new()
+        ///         {
+        ///             ClusterId = fooCluster.Id,
+        ///             AutoScaling = new Volcengine.Vke.Inputs.NodePoolAutoScalingArgs
+        ///             {
+        ///                 Enabled = true,
+        ///                 MinReplicas = 0,
+        ///                 MaxReplicas = 5,
+        ///                 DesiredReplicas = 0,
+        ///                 Priority = 5,
+        ///                 SubnetPolicy = "ZoneBalance",
+        ///             },
+        ///             NodeConfig = new Volcengine.Vke.Inputs.NodePoolNodeConfigArgs
+        ///             {
+        ///                 InstanceTypeIds = new[]
+        ///                 {
+        ///                     "ecs.g1ie.xlarge",
+        ///                 },
+        ///                 SubnetIds = new[]
+        ///                 {
+        ///                     fooSubnet.Id,
+        ///                 },
+        ///                 ImageId = .Where(image =&gt; image.ImageName == "veLinux 1.0 CentOS兼容版 64位").Select(image =&gt; 
+        ///                 {
+        ///                     return  image.ImageId;
+        ///                 })[0],
+        ///                 SystemVolume = new Volcengine.Vke.Inputs.NodePoolNodeConfigSystemVolumeArgs
+        ///                 {
+        ///                     Type = "ESSD_PL0",
+        ///                     Size = 60,
+        ///                 },
+        ///                 DataVolumes = new[]
+        ///                 {
+        ///                     new Volcengine.Vke.Inputs.NodePoolNodeConfigDataVolumeArgs
+        ///                     {
+        ///                         Type = "ESSD_PL0",
+        ///                         Size = 60,
+        ///                         MountPoint = "/tf1",
+        ///                     },
+        ///                     new Volcengine.Vke.Inputs.NodePoolNodeConfigDataVolumeArgs
+        ///                     {
+        ///                         Type = "ESSD_PL0",
+        ///                         Size = 60,
+        ///                         MountPoint = "/tf2",
+        ///                     },
+        ///                 },
+        ///                 InitializeScript = "ZWNobyBoZWxsbyB0ZXJyYWZvcm0h",
+        ///                 Security = new Volcengine.Vke.Inputs.NodePoolNodeConfigSecurityArgs
+        ///                 {
+        ///                     Login = new Volcengine.Vke.Inputs.NodePoolNodeConfigSecurityLoginArgs
+        ///                     {
+        ///                         Password = "UHdkMTIzNDU2",
+        ///                     },
+        ///                     SecurityStrategies = new[]
+        ///                     {
+        ///                         "Hids",
+        ///                     },
+        ///                     SecurityGroupIds = new[]
+        ///                     {
+        ///                         fooSecurityGroup.Id,
+        ///                     },
+        ///                 },
+        ///                 AdditionalContainerStorageEnabled = true,
+        ///                 InstanceChargeType = "PostPaid",
+        ///                 NamePrefix = "acc-test",
+        ///                 EcsTags = new[]
+        ///                 {
+        ///                     new Volcengine.Vke.Inputs.NodePoolNodeConfigEcsTagArgs
+        ///                     {
+        ///                         Key = "ecs_k1",
+        ///                         Value = "ecs_v1",
+        ///                     },
+        ///                 },
+        ///             },
+        ///             KubernetesConfig = new Volcengine.Vke.Inputs.NodePoolKubernetesConfigArgs
+        ///             {
+        ///                 Labels = new[]
+        ///                 {
+        ///                     new Volcengine.Vke.Inputs.NodePoolKubernetesConfigLabelArgs
+        ///                     {
+        ///                         Key = "label1",
+        ///                         Value = "value1",
+        ///                     },
+        ///                 },
+        ///                 Taints = new[]
+        ///                 {
+        ///                     new Volcengine.Vke.Inputs.NodePoolKubernetesConfigTaintArgs
+        ///                     {
+        ///                         Key = "taint-key/node-type",
+        ///                         Value = "taint-value",
+        ///                         Effect = "NoSchedule",
+        ///                     },
+        ///                 },
+        ///                 Cordon = true,
+        ///             },
+        ///             Tags = new[]
+        ///             {
+        ///                 new Volcengine.Vke.Inputs.NodePoolTagArgs
+        ///                 {
+        ///                     Key = "node-pool-k1",
+        ///                     Value = "node-pool-v1",
+        ///                 },
+        ///             },
+        ///         }));
+        ///     }
+        ///     var fooNodePools = Volcengine.Vke.NodePools.Invoke(new()
+        ///     {
+        ///         Ids = fooNodePool.Select(__item =&gt; __item.Id).ToList(),
         ///     });
         /// 
         /// });

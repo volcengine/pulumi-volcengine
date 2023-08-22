@@ -24,10 +24,10 @@ namespace Volcengine.Pulumi.Volcengine.Iam
     /// {
     ///     var foo = new Volcengine.Iam.Role("foo", new()
     ///     {
-    ///         Description = "created by terraform",
-    ///         DisplayName = "terraform role",
-    ///         MaxSessionDuration = 43200,
-    ///         RoleName = "TerraformTestRole",
+    ///         Description = "acc-test",
+    ///         DisplayName = "acc-test",
+    ///         MaxSessionDuration = 3600,
+    ///         RoleName = "acc-test-role",
     ///         TrustPolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"auto_scaling\"]}}]}",
     ///     });
     /// 

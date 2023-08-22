@@ -23,19 +23,100 @@ namespace Volcengine.Pulumi.Volcengine.Vke
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Vke.Clusters.Invoke(new()
+        ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
-        ///         PodsConfigPodNetworkMode = "VpcCniShared",
-        ///         Statuses = new[]
+        ///         VpcName = "acc-test-project1",
+        ///         CidrBlock = "172.16.0.0/16",
+        ///     });
+        /// 
+        ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+        ///     {
+        ///         SubnetName = "acc-subnet-test-2",
+        ///         CidrBlock = "172.16.0.0/24",
+        ///         ZoneId = "cn-beijing-a",
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooSecurityGroup = new Volcengine.Vpc.SecurityGroup("fooSecurityGroup", new()
+        ///     {
+        ///         VpcId = fooVpc.Id,
+        ///         SecurityGroupName = "acc-test-security-group2",
+        ///     });
+        /// 
+        ///     var fooInstance = new Volcengine.Ecs.Instance("fooInstance", new()
+        ///     {
+        ///         ImageId = "image-ybqi99s7yq8rx7mnk44b",
+        ///         InstanceType = "ecs.g1ie.large",
+        ///         InstanceName = "acc-test-ecs-name2",
+        ///         Password = "93f0cb0614Aab12",
+        ///         InstanceChargeType = "PostPaid",
+        ///         SystemVolumeType = "ESSD_PL0",
+        ///         SystemVolumeSize = 40,
+        ///         SubnetId = fooSubnet.Id,
+        ///         SecurityGroupIds = new[]
         ///         {
-        ///             new Volcengine.Vke.Inputs.ClustersStatusInputArgs
+        ///             fooSecurityGroup.Id,
+        ///         },
+        ///     });
+        /// 
+        ///     var fooCluster = new Volcengine.Vke.Cluster("fooCluster", new()
+        ///     {
+        ///         Description = "created by terraform",
+        ///         DeleteProtectionEnabled = false,
+        ///         ClusterConfig = new Volcengine.Vke.Inputs.ClusterClusterConfigArgs
+        ///         {
+        ///             SubnetIds = new[]
         ///             {
-        ///                 ConditionsType = "Progressing",
-        ///                 Phase = "Creating",
+        ///                 fooSubnet.Id,
         ///             },
+        ///             ApiServerPublicAccessEnabled = true,
+        ///             ApiServerPublicAccessConfig = new Volcengine.Vke.Inputs.ClusterClusterConfigApiServerPublicAccessConfigArgs
+        ///             {
+        ///                 PublicAccessNetworkConfig = new Volcengine.Vke.Inputs.ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs
+        ///                 {
+        ///                     BillingType = "PostPaidByBandwidth",
+        ///                     Bandwidth = 1,
+        ///                 },
+        ///             },
+        ///             ResourcePublicAccessDefaultEnabled = true,
+        ///         },
+        ///         PodsConfig = new Volcengine.Vke.Inputs.ClusterPodsConfigArgs
+        ///         {
+        ///             PodNetworkMode = "VpcCniShared",
+        ///             VpcCniConfig = new Volcengine.Vke.Inputs.ClusterPodsConfigVpcCniConfigArgs
+        ///             {
+        ///                 SubnetIds = new[]
+        ///                 {
+        ///                     fooSubnet.Id,
+        ///                 },
+        ///             },
+        ///         },
+        ///         ServicesConfig = new Volcengine.Vke.Inputs.ClusterServicesConfigArgs
+        ///         {
+        ///             ServiceCidrsv4s = new[]
+        ///             {
+        ///                 "172.30.0.0/18",
+        ///             },
+        ///         },
+        ///         Tags = new[]
+        ///         {
+        ///             new Volcengine.Vke.Inputs.ClusterTagArgs
+        ///             {
+        ///                 Key = "tf-k1",
+        ///                 Value = "tf-v1",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var fooClusters = Volcengine.Vke.Clusters.Invoke(new()
+        ///     {
+        ///         Ids = new[]
+        ///         {
+        ///             fooCluster.Id,
         ///         },
         ///     });
         /// 
@@ -58,19 +139,100 @@ namespace Volcengine.Pulumi.Volcengine.Vke
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Vke.Clusters.Invoke(new()
+        ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
-        ///         PodsConfigPodNetworkMode = "VpcCniShared",
-        ///         Statuses = new[]
+        ///         VpcName = "acc-test-project1",
+        ///         CidrBlock = "172.16.0.0/16",
+        ///     });
+        /// 
+        ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+        ///     {
+        ///         SubnetName = "acc-subnet-test-2",
+        ///         CidrBlock = "172.16.0.0/24",
+        ///         ZoneId = "cn-beijing-a",
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooSecurityGroup = new Volcengine.Vpc.SecurityGroup("fooSecurityGroup", new()
+        ///     {
+        ///         VpcId = fooVpc.Id,
+        ///         SecurityGroupName = "acc-test-security-group2",
+        ///     });
+        /// 
+        ///     var fooInstance = new Volcengine.Ecs.Instance("fooInstance", new()
+        ///     {
+        ///         ImageId = "image-ybqi99s7yq8rx7mnk44b",
+        ///         InstanceType = "ecs.g1ie.large",
+        ///         InstanceName = "acc-test-ecs-name2",
+        ///         Password = "93f0cb0614Aab12",
+        ///         InstanceChargeType = "PostPaid",
+        ///         SystemVolumeType = "ESSD_PL0",
+        ///         SystemVolumeSize = 40,
+        ///         SubnetId = fooSubnet.Id,
+        ///         SecurityGroupIds = new[]
         ///         {
-        ///             new Volcengine.Vke.Inputs.ClustersStatusInputArgs
+        ///             fooSecurityGroup.Id,
+        ///         },
+        ///     });
+        /// 
+        ///     var fooCluster = new Volcengine.Vke.Cluster("fooCluster", new()
+        ///     {
+        ///         Description = "created by terraform",
+        ///         DeleteProtectionEnabled = false,
+        ///         ClusterConfig = new Volcengine.Vke.Inputs.ClusterClusterConfigArgs
+        ///         {
+        ///             SubnetIds = new[]
         ///             {
-        ///                 ConditionsType = "Progressing",
-        ///                 Phase = "Creating",
+        ///                 fooSubnet.Id,
         ///             },
+        ///             ApiServerPublicAccessEnabled = true,
+        ///             ApiServerPublicAccessConfig = new Volcengine.Vke.Inputs.ClusterClusterConfigApiServerPublicAccessConfigArgs
+        ///             {
+        ///                 PublicAccessNetworkConfig = new Volcengine.Vke.Inputs.ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs
+        ///                 {
+        ///                     BillingType = "PostPaidByBandwidth",
+        ///                     Bandwidth = 1,
+        ///                 },
+        ///             },
+        ///             ResourcePublicAccessDefaultEnabled = true,
+        ///         },
+        ///         PodsConfig = new Volcengine.Vke.Inputs.ClusterPodsConfigArgs
+        ///         {
+        ///             PodNetworkMode = "VpcCniShared",
+        ///             VpcCniConfig = new Volcengine.Vke.Inputs.ClusterPodsConfigVpcCniConfigArgs
+        ///             {
+        ///                 SubnetIds = new[]
+        ///                 {
+        ///                     fooSubnet.Id,
+        ///                 },
+        ///             },
+        ///         },
+        ///         ServicesConfig = new Volcengine.Vke.Inputs.ClusterServicesConfigArgs
+        ///         {
+        ///             ServiceCidrsv4s = new[]
+        ///             {
+        ///                 "172.30.0.0/18",
+        ///             },
+        ///         },
+        ///         Tags = new[]
+        ///         {
+        ///             new Volcengine.Vke.Inputs.ClusterTagArgs
+        ///             {
+        ///                 Key = "tf-k1",
+        ///                 Value = "tf-v1",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var fooClusters = Volcengine.Vke.Clusters.Invoke(new()
+        ///     {
+        ///         Ids = new[]
+        ///         {
+        ///             fooCluster.Id,
         ///         },
         ///     });
         /// 

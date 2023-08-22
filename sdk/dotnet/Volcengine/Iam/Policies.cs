@@ -23,12 +23,20 @@ namespace Volcengine.Pulumi.Volcengine.Iam
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Iam.Policies.Invoke(new()
+        ///     var fooPolicy = new Volcengine.Iam.Policy("fooPolicy", new()
         ///     {
-        ///         Query = "AdministratorAccess",
+        ///         PolicyName = "acc-test-policy",
+        ///         Description = "acc-test",
+        ///         PolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}",
+        ///     });
+        /// 
+        ///     var fooPolicies = Volcengine.Iam.Policies.Invoke(new()
+        ///     {
+        ///         Query = fooPolicy.Description,
         ///     });
         /// 
         /// });
@@ -50,12 +58,20 @@ namespace Volcengine.Pulumi.Volcengine.Iam
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Iam.Policies.Invoke(new()
+        ///     var fooPolicy = new Volcengine.Iam.Policy("fooPolicy", new()
         ///     {
-        ///         Query = "AdministratorAccess",
+        ///         PolicyName = "acc-test-policy",
+        ///         Description = "acc-test",
+        ///         PolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}",
+        ///     });
+        /// 
+        ///     var fooPolicies = Volcengine.Iam.Policies.Invoke(new()
+        ///     {
+        ///         Query = fooPolicy.Description,
         ///     });
         /// 
         /// });

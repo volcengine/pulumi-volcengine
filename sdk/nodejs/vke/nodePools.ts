@@ -13,10 +13,122 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const vkeTest = volcengine.vke.NodePools({
- *     clusterIds: ["ccabe57fqtofgrbln3dog"],
- *     name: "demo",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
+ *     securityGroupName: "acc-test-security-group",
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooImages = volcengine.ecs.Images({
+ *     nameRegex: "veLinux 1.0 CentOS兼容版 64位",
+ * });
+ * const fooCluster = new volcengine.vke.Cluster("fooCluster", {
+ *     description: "created by terraform",
+ *     deleteProtectionEnabled: false,
+ *     clusterConfig: {
+ *         subnetIds: [fooSubnet.id],
+ *         apiServerPublicAccessEnabled: true,
+ *         apiServerPublicAccessConfig: {
+ *             publicAccessNetworkConfig: {
+ *                 billingType: "PostPaidByBandwidth",
+ *                 bandwidth: 1,
+ *             },
+ *         },
+ *         resourcePublicAccessDefaultEnabled: true,
+ *     },
+ *     podsConfig: {
+ *         podNetworkMode: "VpcCniShared",
+ *         vpcCniConfig: {
+ *             subnetIds: [fooSubnet.id],
+ *         },
+ *     },
+ *     servicesConfig: {
+ *         serviceCidrsv4s: ["172.30.0.0/18"],
+ *     },
+ *     tags: [{
+ *         key: "tf-k1",
+ *         value: "tf-v1",
+ *     }],
+ * });
+ * const fooNodePool: volcengine.vke.NodePool[] = [];
+ * for (const range = {value: 0}; range.value < 3; range.value++) {
+ *     fooNodePool.push(new volcengine.vke.NodePool(`fooNodePool-${range.value}`, {
+ *         clusterId: fooCluster.id,
+ *         autoScaling: {
+ *             enabled: true,
+ *             minReplicas: 0,
+ *             maxReplicas: 5,
+ *             desiredReplicas: 0,
+ *             priority: 5,
+ *             subnetPolicy: "ZoneBalance",
+ *         },
+ *         nodeConfig: {
+ *             instanceTypeIds: ["ecs.g1ie.xlarge"],
+ *             subnetIds: [fooSubnet.id],
+ *             imageId: fooImages.then(fooImages => .filter(image => image.imageName == "veLinux 1.0 CentOS兼容版 64位").map(image => (image.imageId))[0]),
+ *             systemVolume: {
+ *                 type: "ESSD_PL0",
+ *                 size: 60,
+ *             },
+ *             dataVolumes: [
+ *                 {
+ *                     type: "ESSD_PL0",
+ *                     size: 60,
+ *                     mountPoint: "/tf1",
+ *                 },
+ *                 {
+ *                     type: "ESSD_PL0",
+ *                     size: 60,
+ *                     mountPoint: "/tf2",
+ *                 },
+ *             ],
+ *             initializeScript: "ZWNobyBoZWxsbyB0ZXJyYWZvcm0h",
+ *             security: {
+ *                 login: {
+ *                     password: "UHdkMTIzNDU2",
+ *                 },
+ *                 securityStrategies: ["Hids"],
+ *                 securityGroupIds: [fooSecurityGroup.id],
+ *             },
+ *             additionalContainerStorageEnabled: true,
+ *             instanceChargeType: "PostPaid",
+ *             namePrefix: "acc-test",
+ *             ecsTags: [{
+ *                 key: "ecs_k1",
+ *                 value: "ecs_v1",
+ *             }],
+ *         },
+ *         kubernetesConfig: {
+ *             labels: [{
+ *                 key: "label1",
+ *                 value: "value1",
+ *             }],
+ *             taints: [{
+ *                 key: "taint-key/node-type",
+ *                 value: "taint-value",
+ *                 effect: "NoSchedule",
+ *             }],
+ *             cordon: true,
+ *         },
+ *         tags: [{
+ *             key: "node-pool-k1",
+ *             value: "node-pool-v1",
+ *         }],
+ *     }));
+ * }
+ * const fooNodePools = volcengine.vke.NodePoolsOutput({
+ *     ids: fooNodePool.map(__item => __item.id),
  * });
  * ```
  */
@@ -139,10 +251,122 @@ export interface NodePoolsResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const vkeTest = volcengine.vke.NodePools({
- *     clusterIds: ["ccabe57fqtofgrbln3dog"],
- *     name: "demo",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
+ *     securityGroupName: "acc-test-security-group",
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooImages = volcengine.ecs.Images({
+ *     nameRegex: "veLinux 1.0 CentOS兼容版 64位",
+ * });
+ * const fooCluster = new volcengine.vke.Cluster("fooCluster", {
+ *     description: "created by terraform",
+ *     deleteProtectionEnabled: false,
+ *     clusterConfig: {
+ *         subnetIds: [fooSubnet.id],
+ *         apiServerPublicAccessEnabled: true,
+ *         apiServerPublicAccessConfig: {
+ *             publicAccessNetworkConfig: {
+ *                 billingType: "PostPaidByBandwidth",
+ *                 bandwidth: 1,
+ *             },
+ *         },
+ *         resourcePublicAccessDefaultEnabled: true,
+ *     },
+ *     podsConfig: {
+ *         podNetworkMode: "VpcCniShared",
+ *         vpcCniConfig: {
+ *             subnetIds: [fooSubnet.id],
+ *         },
+ *     },
+ *     servicesConfig: {
+ *         serviceCidrsv4s: ["172.30.0.0/18"],
+ *     },
+ *     tags: [{
+ *         key: "tf-k1",
+ *         value: "tf-v1",
+ *     }],
+ * });
+ * const fooNodePool: volcengine.vke.NodePool[] = [];
+ * for (const range = {value: 0}; range.value < 3; range.value++) {
+ *     fooNodePool.push(new volcengine.vke.NodePool(`fooNodePool-${range.value}`, {
+ *         clusterId: fooCluster.id,
+ *         autoScaling: {
+ *             enabled: true,
+ *             minReplicas: 0,
+ *             maxReplicas: 5,
+ *             desiredReplicas: 0,
+ *             priority: 5,
+ *             subnetPolicy: "ZoneBalance",
+ *         },
+ *         nodeConfig: {
+ *             instanceTypeIds: ["ecs.g1ie.xlarge"],
+ *             subnetIds: [fooSubnet.id],
+ *             imageId: fooImages.then(fooImages => .filter(image => image.imageName == "veLinux 1.0 CentOS兼容版 64位").map(image => (image.imageId))[0]),
+ *             systemVolume: {
+ *                 type: "ESSD_PL0",
+ *                 size: 60,
+ *             },
+ *             dataVolumes: [
+ *                 {
+ *                     type: "ESSD_PL0",
+ *                     size: 60,
+ *                     mountPoint: "/tf1",
+ *                 },
+ *                 {
+ *                     type: "ESSD_PL0",
+ *                     size: 60,
+ *                     mountPoint: "/tf2",
+ *                 },
+ *             ],
+ *             initializeScript: "ZWNobyBoZWxsbyB0ZXJyYWZvcm0h",
+ *             security: {
+ *                 login: {
+ *                     password: "UHdkMTIzNDU2",
+ *                 },
+ *                 securityStrategies: ["Hids"],
+ *                 securityGroupIds: [fooSecurityGroup.id],
+ *             },
+ *             additionalContainerStorageEnabled: true,
+ *             instanceChargeType: "PostPaid",
+ *             namePrefix: "acc-test",
+ *             ecsTags: [{
+ *                 key: "ecs_k1",
+ *                 value: "ecs_v1",
+ *             }],
+ *         },
+ *         kubernetesConfig: {
+ *             labels: [{
+ *                 key: "label1",
+ *                 value: "value1",
+ *             }],
+ *             taints: [{
+ *                 key: "taint-key/node-type",
+ *                 value: "taint-value",
+ *                 effect: "NoSchedule",
+ *             }],
+ *             cordon: true,
+ *         },
+ *         tags: [{
+ *             key: "node-pool-k1",
+ *             value: "node-pool-v1",
+ *         }],
+ *     }));
+ * }
+ * const fooNodePools = volcengine.vke.NodePoolsOutput({
+ *     ids: fooNodePool.map(__item => __item.id),
  * });
  * ```
  */

@@ -171,11 +171,15 @@ class LoginProfile(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.iam.LoginProfile("foo",
+        foo_user = volcengine.iam.User("fooUser",
+            user_name="acc-test-user",
+            description="acc-test",
+            display_name="name")
+        foo_login_profile = volcengine.iam.LoginProfile("fooLoginProfile",
+            user_name=foo_user.user_name,
+            password="93f0cb0614Aab12",
             login_allowed=True,
-            password="******",
-            password_reset_required=False,
-            user_name="tf-test")
+            password_reset_required=False)
         ```
 
         ## Import
@@ -207,11 +211,15 @@ class LoginProfile(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.iam.LoginProfile("foo",
+        foo_user = volcengine.iam.User("fooUser",
+            user_name="acc-test-user",
+            description="acc-test",
+            display_name="name")
+        foo_login_profile = volcengine.iam.LoginProfile("fooLoginProfile",
+            user_name=foo_user.user_name,
+            password="93f0cb0614Aab12",
             login_allowed=True,
-            password="******",
-            password_reset_required=False,
-            user_name="tf-test")
+            password_reset_required=False)
         ```
 
         ## Import

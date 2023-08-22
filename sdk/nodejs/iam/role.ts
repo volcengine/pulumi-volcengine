@@ -13,10 +13,10 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.iam.Role("foo", {
- *     description: "created by terraform",
- *     displayName: "terraform role",
- *     maxSessionDuration: 43200,
- *     roleName: "TerraformTestRole",
+ *     description: "acc-test",
+ *     displayName: "acc-test",
+ *     maxSessionDuration: 3600,
+ *     roleName: "acc-test-role",
  *     trustPolicyDocument: "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"auto_scaling\"]}}]}",
  * });
  * ```

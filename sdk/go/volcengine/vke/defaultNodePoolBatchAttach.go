@@ -68,6 +68,22 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			foo2, err := ecs.NewInstance(ctx, "foo2", &ecs.InstanceArgs{
+//				ImageId:            pulumi.String("image-ybqi99s7yq8rx7mnk44b"),
+//				InstanceType:       pulumi.String("ecs.g1ie.large"),
+//				InstanceName:       pulumi.String("acc-test-ecs-name2"),
+//				Password:           pulumi.String("93f0cb0614Aab12"),
+//				InstanceChargeType: pulumi.String("PostPaid"),
+//				SystemVolumeType:   pulumi.String("ESSD_PL0"),
+//				SystemVolumeSize:   pulumi.Int(40),
+//				SubnetId:           fooSubnet.ID(),
+//				SecurityGroupIds: pulumi.StringArray{
+//					fooSecurityGroup.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			fooCluster, err := vke.NewCluster(ctx, "fooCluster", &vke.ClusterArgs{
 //				Description:             pulumi.String("created by terraform"),
 //				DeleteProtectionEnabled: pulumi.Bool(false),
@@ -107,7 +123,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			defaultDefaultNodePool, err := vke.NewDefaultNodePool(ctx, "defaultDefaultNodePool", &vke.DefaultNodePoolArgs{
+//			fooDefaultNodePool, err := vke.NewDefaultNodePool(ctx, "fooDefaultNodePool", &vke.DefaultNodePoolArgs{
 //				ClusterId: fooCluster.ID(),
 //				NodeConfig: &vke.DefaultNodePoolNodeConfigArgs{
 //					Security: &vke.DefaultNodePoolNodeConfigSecurityArgs{
@@ -150,20 +166,25 @@ import (
 //				},
 //				Tags: vke.DefaultNodePoolTagArray{
 //					&vke.DefaultNodePoolTagArgs{
-//						Key:   pulumi.String("k1"),
-//						Value: pulumi.String("v1"),
+//						Key:   pulumi.String("tf-k1"),
+//						Value: pulumi.String("tf-v1"),
 //					},
 //				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = vke.NewDefaultNodePoolBatchAttach(ctx, "defaultDefaultNodePoolBatchAttach", &vke.DefaultNodePoolBatchAttachArgs{
+//			_, err = vke.NewDefaultNodePoolBatchAttach(ctx, "fooDefaultNodePoolBatchAttach", &vke.DefaultNodePoolBatchAttachArgs{
 //				ClusterId:         fooCluster.ID(),
-//				DefaultNodePoolId: defaultDefaultNodePool.ID(),
+//				DefaultNodePoolId: fooDefaultNodePool.ID(),
 //				Instances: vke.DefaultNodePoolBatchAttachInstanceArray{
 //					&vke.DefaultNodePoolBatchAttachInstanceArgs{
 //						InstanceId:                        fooInstance.ID(),
+//						KeepInstanceName:                  pulumi.Bool(true),
+//						AdditionalContainerStorageEnabled: pulumi.Bool(false),
+//					},
+//					&vke.DefaultNodePoolBatchAttachInstanceArgs{
+//						InstanceId:                        foo2.ID(),
 //						KeepInstanceName:                  pulumi.Bool(true),
 //						AdditionalContainerStorageEnabled: pulumi.Bool(false),
 //					},

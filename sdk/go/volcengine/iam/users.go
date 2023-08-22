@@ -26,10 +26,19 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := iam.Users(ctx, nil, nil)
+//			fooUser, err := iam.NewUser(ctx, "fooUser", &iam.UserArgs{
+//				UserName:    pulumi.String("acc-test-user"),
+//				Description: pulumi.String("acc test"),
+//				DisplayName: pulumi.String("name"),
+//			})
 //			if err != nil {
 //				return err
 //			}
+//			_ = iam.UsersOutput(ctx, iam.UsersOutputArgs{
+//				UserNames: pulumi.StringArray{
+//					fooUser.UserName,
+//				},
+//			}, nil)
 //			return nil
 //		})
 //	}

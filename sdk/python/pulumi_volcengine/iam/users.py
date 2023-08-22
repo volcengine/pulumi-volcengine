@@ -108,7 +108,11 @@ def users(name_regex: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.iam.users()
+    foo_user = volcengine.iam.User("fooUser",
+        user_name="acc-test-user",
+        description="acc test",
+        display_name="name")
+    foo_users = volcengine.iam.users_output(user_names=[foo_user.user_name])
     ```
 
 
@@ -145,7 +149,11 @@ def users_output(name_regex: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.iam.users()
+    foo_user = volcengine.iam.User("fooUser",
+        user_name="acc-test-user",
+        description="acc test",
+        display_name="name")
+    foo_users = volcengine.iam.users_output(user_names=[foo_user.user_name])
     ```
 
 

@@ -22,12 +22,19 @@ namespace Volcengine.Pulumi.Volcengine.Iam
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var foo = new Volcengine.Iam.LoginProfile("foo", new()
+    ///     var fooUser = new Volcengine.Iam.User("fooUser", new()
     ///     {
+    ///         UserName = "acc-test-user",
+    ///         Description = "acc-test",
+    ///         DisplayName = "name",
+    ///     });
+    /// 
+    ///     var fooLoginProfile = new Volcengine.Iam.LoginProfile("fooLoginProfile", new()
+    ///     {
+    ///         UserName = fooUser.UserName,
+    ///         Password = "93f0cb0614Aab12",
     ///         LoginAllowed = true,
-    ///         Password = "******",
     ///         PasswordResetRequired = false,
-    ///         UserName = "tf-test",
     ///     });
     /// 
     /// });

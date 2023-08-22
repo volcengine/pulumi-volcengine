@@ -22,13 +22,21 @@ namespace Volcengine.Pulumi.Volcengine.Iam
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var foo = new Volcengine.Iam.AccessKey("foo", new()
+    ///     var fooUser = new Volcengine.Iam.User("fooUser", new()
     ///     {
-    ///         SecretFile = "./sk",
-    ///         Status = "active",
-    ///         UserName = "",
+    ///         UserName = "acc-test-user",
+    ///         Description = "acc-test",
+    ///         DisplayName = "name",
     ///     });
     /// 
+    ///     var fooAccessKey = new Volcengine.Iam.AccessKey("fooAccessKey", new()
+    ///     {
+    ///         UserName = fooUser.UserName,
+    ///         SecretFile = "./sk",
+    ///         Status = "active",
+    ///     });
+    /// 
+    ///     //  pgp_key = "keybase:some_person_that_exists"
     /// });
     /// ```
     /// 

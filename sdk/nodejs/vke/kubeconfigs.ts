@@ -13,12 +13,65 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.vke.Kubeconfigs({
- *     clusterIds: ["cce7hb97qtofmj1oi4udg"],
- *     types: [
- *         "Private",
- *         "Public",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
+ *     securityGroupName: "acc-test-security-group",
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooCluster = new volcengine.vke.Cluster("fooCluster", {
+ *     description: "created by terraform",
+ *     deleteProtectionEnabled: false,
+ *     clusterConfig: {
+ *         subnetIds: [fooSubnet.id],
+ *         apiServerPublicAccessEnabled: true,
+ *         apiServerPublicAccessConfig: {
+ *             publicAccessNetworkConfig: {
+ *                 billingType: "PostPaidByBandwidth",
+ *                 bandwidth: 1,
+ *             },
+ *         },
+ *         resourcePublicAccessDefaultEnabled: true,
+ *     },
+ *     podsConfig: {
+ *         podNetworkMode: "VpcCniShared",
+ *         vpcCniConfig: {
+ *             subnetIds: [fooSubnet.id],
+ *         },
+ *     },
+ *     servicesConfig: {
+ *         serviceCidrsv4s: ["172.30.0.0/18"],
+ *     },
+ *     tags: [{
+ *         key: "tf-k1",
+ *         value: "tf-v1",
+ *     }],
+ * });
+ * const foo1 = new volcengine.vke.Kubeconfig("foo1", {
+ *     clusterId: fooCluster.id,
+ *     type: "Private",
+ *     validDuration: 2,
+ * });
+ * const foo2 = new volcengine.vke.Kubeconfig("foo2", {
+ *     clusterId: fooCluster.id,
+ *     type: "Public",
+ *     validDuration: 2,
+ * });
+ * const fooKubeconfigs = volcengine.vke.KubeconfigsOutput({
+ *     ids: [
+ *         foo1.id,
+ *         foo2.id,
  *     ],
  * });
  * ```
@@ -103,12 +156,65 @@ export interface KubeconfigsResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.vke.Kubeconfigs({
- *     clusterIds: ["cce7hb97qtofmj1oi4udg"],
- *     types: [
- *         "Private",
- *         "Public",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
+ *     securityGroupName: "acc-test-security-group",
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooCluster = new volcengine.vke.Cluster("fooCluster", {
+ *     description: "created by terraform",
+ *     deleteProtectionEnabled: false,
+ *     clusterConfig: {
+ *         subnetIds: [fooSubnet.id],
+ *         apiServerPublicAccessEnabled: true,
+ *         apiServerPublicAccessConfig: {
+ *             publicAccessNetworkConfig: {
+ *                 billingType: "PostPaidByBandwidth",
+ *                 bandwidth: 1,
+ *             },
+ *         },
+ *         resourcePublicAccessDefaultEnabled: true,
+ *     },
+ *     podsConfig: {
+ *         podNetworkMode: "VpcCniShared",
+ *         vpcCniConfig: {
+ *             subnetIds: [fooSubnet.id],
+ *         },
+ *     },
+ *     servicesConfig: {
+ *         serviceCidrsv4s: ["172.30.0.0/18"],
+ *     },
+ *     tags: [{
+ *         key: "tf-k1",
+ *         value: "tf-v1",
+ *     }],
+ * });
+ * const foo1 = new volcengine.vke.Kubeconfig("foo1", {
+ *     clusterId: fooCluster.id,
+ *     type: "Private",
+ *     validDuration: 2,
+ * });
+ * const foo2 = new volcengine.vke.Kubeconfig("foo2", {
+ *     clusterId: fooCluster.id,
+ *     type: "Public",
+ *     validDuration: 2,
+ * });
+ * const fooKubeconfigs = volcengine.vke.KubeconfigsOutput({
+ *     ids: [
+ *         foo1.id,
+ *         foo2.id,
  *     ],
  * });
  * ```
