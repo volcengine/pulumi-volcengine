@@ -58,6 +58,22 @@ namespace Volcengine.Pulumi.Volcengine.Vke
     ///         },
     ///     });
     /// 
+    ///     var foo2 = new Volcengine.Ecs.Instance("foo2", new()
+    ///     {
+    ///         ImageId = "image-ybqi99s7yq8rx7mnk44b",
+    ///         InstanceType = "ecs.g1ie.large",
+    ///         InstanceName = "acc-test-ecs-name2",
+    ///         Password = "93f0cb0614Aab12",
+    ///         InstanceChargeType = "PostPaid",
+    ///         SystemVolumeType = "ESSD_PL0",
+    ///         SystemVolumeSize = 40,
+    ///         SubnetId = fooSubnet.Id,
+    ///         SecurityGroupIds = new[]
+    ///         {
+    ///             fooSecurityGroup.Id,
+    ///         },
+    ///     });
+    /// 
     ///     var fooCluster = new Volcengine.Vke.Cluster("fooCluster", new()
     ///     {
     ///         Description = "created by terraform",
@@ -107,7 +123,7 @@ namespace Volcengine.Pulumi.Volcengine.Vke
     ///         },
     ///     });
     /// 
-    ///     var defaultDefaultNodePool = new Volcengine.Vke.DefaultNodePool("defaultDefaultNodePool", new()
+    ///     var fooDefaultNodePool = new Volcengine.Vke.DefaultNodePool("fooDefaultNodePool", new()
     ///     {
     ///         ClusterId = fooCluster.Id,
     ///         NodeConfig = new Volcengine.Vke.Inputs.DefaultNodePoolNodeConfigArgs
@@ -165,21 +181,27 @@ namespace Volcengine.Pulumi.Volcengine.Vke
     ///         {
     ///             new Volcengine.Vke.Inputs.DefaultNodePoolTagArgs
     ///             {
-    ///                 Key = "k1",
-    ///                 Value = "v1",
+    ///                 Key = "tf-k1",
+    ///                 Value = "tf-v1",
     ///             },
     ///         },
     ///     });
     /// 
-    ///     var defaultDefaultNodePoolBatchAttach = new Volcengine.Vke.DefaultNodePoolBatchAttach("defaultDefaultNodePoolBatchAttach", new()
+    ///     var fooDefaultNodePoolBatchAttach = new Volcengine.Vke.DefaultNodePoolBatchAttach("fooDefaultNodePoolBatchAttach", new()
     ///     {
     ///         ClusterId = fooCluster.Id,
-    ///         DefaultNodePoolId = defaultDefaultNodePool.Id,
+    ///         DefaultNodePoolId = fooDefaultNodePool.Id,
     ///         Instances = new[]
     ///         {
     ///             new Volcengine.Vke.Inputs.DefaultNodePoolBatchAttachInstanceArgs
     ///             {
     ///                 InstanceId = fooInstance.Id,
+    ///                 KeepInstanceName = true,
+    ///                 AdditionalContainerStorageEnabled = false,
+    ///             },
+    ///             new Volcengine.Vke.Inputs.DefaultNodePoolBatchAttachInstanceArgs
+    ///             {
+    ///                 InstanceId = foo2.Id,
     ///                 KeepInstanceName = true,
     ///                 AdditionalContainerStorageEnabled = false,
     ///             },

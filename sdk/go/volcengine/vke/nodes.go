@@ -19,39 +19,221 @@ import (
 //
 // import (
 //
+//	"fmt"
+//
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vke"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// fooZones, err := ecs.Zones(ctx, nil, nil);
+// if err != nil {
+// return err
+// }
+// fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+// VpcName: pulumi.String("acc-test-vpc"),
+// CidrBlock: pulumi.String("172.16.0.0/16"),
+// })
+// if err != nil {
+// return err
+// }
+// fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+// SubnetName: pulumi.String("acc-test-subnet"),
+// CidrBlock: pulumi.String("172.16.0.0/24"),
+// ZoneId: *pulumi.String(fooZones.Zones[0].Id),
+// VpcId: fooVpc.ID(),
+// })
+// if err != nil {
+// return err
+// }
+// fooSecurityGroup, err := vpc.NewSecurityGroup(ctx, "fooSecurityGroup", &vpc.SecurityGroupArgs{
+// SecurityGroupName: pulumi.String("acc-test-security-group"),
+// VpcId: fooVpc.ID(),
+// })
+// if err != nil {
+// return err
+// }
+// fooImages, err := ecs.Images(ctx, &ecs.ImagesArgs{
+// NameRegex: pulumi.StringRef("veLinux 1.0 CentOS兼容版 64位"),
+// }, nil);
+// if err != nil {
+// return err
+// }
+// fooCluster, err := vke.NewCluster(ctx, "fooCluster", &vke.ClusterArgs{
+// Description: pulumi.String("created by terraform"),
+// DeleteProtectionEnabled: pulumi.Bool(false),
+// ClusterConfig: &vke.ClusterClusterConfigArgs{
+// SubnetIds: pulumi.StringArray{
+// fooSubnet.ID(),
+// },
+// ApiServerPublicAccessEnabled: pulumi.Bool(true),
+// ApiServerPublicAccessConfig: &vke.ClusterClusterConfigApiServerPublicAccessConfigArgs{
+// PublicAccessNetworkConfig: &vke.ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs{
+// BillingType: pulumi.String("PostPaidByBandwidth"),
+// Bandwidth: pulumi.Int(1),
+// },
+// },
+// ResourcePublicAccessDefaultEnabled: pulumi.Bool(true),
+// },
+// PodsConfig: &vke.ClusterPodsConfigArgs{
+// PodNetworkMode: pulumi.String("VpcCniShared"),
+// VpcCniConfig: &vke.ClusterPodsConfigVpcCniConfigArgs{
+// SubnetIds: pulumi.StringArray{
+// fooSubnet.ID(),
+// },
+// },
+// },
+// ServicesConfig: &vke.ClusterServicesConfigArgs{
+// ServiceCidrsv4s: pulumi.StringArray{
+// pulumi.String("172.30.0.0/18"),
+// },
+// },
+// Tags: vke.ClusterTagArray{
+// &vke.ClusterTagArgs{
+// Key: pulumi.String("tf-k1"),
+// Value: pulumi.String("tf-v1"),
+// },
+// },
+// })
+// if err != nil {
+// return err
+// }
+// fooNodePool, err := vke.NewNodePool(ctx, "fooNodePool", &vke.NodePoolArgs{
+// ClusterId: fooCluster.ID(),
+// AutoScaling: &vke.NodePoolAutoScalingArgs{
+// Enabled: pulumi.Bool(false),
+// },
+// NodeConfig: &vke.NodePoolNodeConfigArgs{
+// InstanceTypeIds: pulumi.StringArray{
+// pulumi.String("ecs.g1ie.xlarge"),
+// },
+// SubnetIds: pulumi.StringArray{
+// fooSubnet.ID(),
+// },
+// ImageId: "TODO: For expression"[0],
+// SystemVolume: &vke.NodePoolNodeConfigSystemVolumeArgs{
+// Type: pulumi.String("ESSD_PL0"),
+// Size: pulumi.Int(50),
+// },
+// DataVolumes: vke.NodePoolNodeConfigDataVolumeArray{
+// &vke.NodePoolNodeConfigDataVolumeArgs{
+// Type: pulumi.String("ESSD_PL0"),
+// Size: pulumi.Int(50),
+// MountPoint: pulumi.String("/tf"),
+// },
+// },
+// InitializeScript: pulumi.String("ZWNobyBoZWxsbyB0ZXJyYWZvcm0h"),
+// Security: &vke.NodePoolNodeConfigSecurityArgs{
+// Login: &vke.NodePoolNodeConfigSecurityLoginArgs{
+// Password: pulumi.String("UHdkMTIzNDU2"),
+// },
+// SecurityStrategies: pulumi.StringArray{
+// pulumi.String("Hids"),
+// },
+// SecurityGroupIds: pulumi.StringArray{
+// fooSecurityGroup.ID(),
+// },
+// },
+// AdditionalContainerStorageEnabled: pulumi.Bool(true),
+// InstanceChargeType: pulumi.String("PostPaid"),
+// NamePrefix: pulumi.String("acc-test"),
+// EcsTags: vke.NodePoolNodeConfigEcsTagArray{
+// &vke.NodePoolNodeConfigEcsTagArgs{
+// Key: pulumi.String("ecs_k1"),
+// Value: pulumi.String("ecs_v1"),
+// },
+// },
+// },
+// KubernetesConfig: &vke.NodePoolKubernetesConfigArgs{
+// Labels: vke.NodePoolKubernetesConfigLabelArray{
+// &vke.NodePoolKubernetesConfigLabelArgs{
+// Key: pulumi.String("label1"),
+// Value: pulumi.String("value1"),
+// },
+// },
+// Taints: vke.NodePoolKubernetesConfigTaintArray{
+// &vke.NodePoolKubernetesConfigTaintArgs{
+// Key: pulumi.String("taint-key/node-type"),
+// Value: pulumi.String("taint-value"),
+// Effect: pulumi.String("NoSchedule"),
+// },
+// },
+// Cordon: pulumi.Bool(true),
+// },
+// Tags: vke.NodePoolTagArray{
+// &vke.NodePoolTagArgs{
+// Key: pulumi.String("node-pool-k1"),
+// Value: pulumi.String("node-pool-v1"),
+// },
+// },
+// })
+// if err != nil {
+// return err
+// }
+// var fooInstance []*ecs.Instance
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vke.Nodes(ctx, &vke.NodesArgs{
-//				ClusterIds: []string{
-//					"c123",
-//					"c456",
-//				},
-//				Ids: []string{
-//					"ncaa3e5mrsferqkomi190",
-//				},
-//				Statuses: []vke.NodesStatus{
-//					{
-//						ConditionsType: pulumi.StringRef("Progressing"),
-//						Phase:          pulumi.StringRef("Creating"),
-//					},
-//					{
-//						ConditionsType: pulumi.StringRef("Progressing123"),
-//						Phase:          pulumi.StringRef("Creating123"),
-//					},
-//				},
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
+//	for index := 0; index < 2; index++ {
+//	    key0 := index
+//	    val0 := index
 //
+// __res, err := ecs.NewInstance(ctx, fmt.Sprintf("fooInstance-%v", key0), &ecs.InstanceArgs{
+// InstanceName: pulumi.String(fmt.Sprintf("acc-test-ecs-%v", val0)),
+// HostName: pulumi.String("tf-acc-test"),
+// ImageId: "TODO: For expression"[0],
+// InstanceType: pulumi.String("ecs.g1ie.xlarge"),
+// Password: pulumi.String("93f0cb0614Aab12"),
+// InstanceChargeType: pulumi.String("PostPaid"),
+// SystemVolumeType: pulumi.String("ESSD_PL0"),
+// SystemVolumeSize: pulumi.Int(50),
+// DataVolumes: ecs.InstanceDataVolumeArray{
+// &ecs.InstanceDataVolumeArgs{
+// VolumeType: pulumi.String("ESSD_PL0"),
+// Size: pulumi.Int(50),
+// DeleteWithInstance: pulumi.Bool(true),
+// },
+// },
+// SubnetId: fooSubnet.ID(),
+// SecurityGroupIds: pulumi.StringArray{
+// fooSecurityGroup.ID(),
+// },
+// ProjectName: pulumi.String("default"),
+// Tags: ecs.InstanceTagArray{
+// &ecs.InstanceTagArgs{
+// Key: pulumi.String("k1"),
+// Value: pulumi.String("v1"),
+// },
+// },
+// })
+// if err != nil {
+// return err
+// }
+// fooInstance = append(fooInstance, __res)
+// }
+// var fooNode []*vke.Node
+//
+//	for index := 0; index < 2; index++ {
+//	    key0 := index
+//	    val0 := index
+//
+// __res, err := vke.NewNode(ctx, fmt.Sprintf("fooNode-%v", key0), &vke.NodeArgs{
+// ClusterId: fooCluster.ID(),
+// InstanceId: fooInstance[val0].ID(),
+// NodePoolId: fooNodePool.ID(),
+// })
+// if err != nil {
+// return err
+// }
+// fooNode = append(fooNode, __res)
+// }
+// _ = vke.NodesOutput(ctx, vke.NodesOutputArgs{
+// Ids: %!v(PANIC=Format method: fatal: A failure has occurred: unlowered splat expression @ #-functions-volcengine:vke-nodes:Nodes.pp:134,9-22),
+// }, nil);
+// return nil
+// })
+// }
 // ```
 func Nodes(ctx *pulumi.Context, args *NodesArgs, opts ...pulumi.InvokeOption) (*NodesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)

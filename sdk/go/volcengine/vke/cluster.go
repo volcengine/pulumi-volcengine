@@ -21,44 +21,74 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vke"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vke.NewCluster(ctx, "foo", &vke.ClusterArgs{
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-project1"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-subnet-test-2"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     pulumi.String("cn-beijing-a"),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSecurityGroup, err := vpc.NewSecurityGroup(ctx, "fooSecurityGroup", &vpc.SecurityGroupArgs{
+//				VpcId:             fooVpc.ID(),
+//				SecurityGroupName: pulumi.String("acc-test-security-group2"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ecs.NewInstance(ctx, "fooInstance", &ecs.InstanceArgs{
+//				ImageId:            pulumi.String("image-ybqi99s7yq8rx7mnk44b"),
+//				InstanceType:       pulumi.String("ecs.g1ie.large"),
+//				InstanceName:       pulumi.String("acc-test-ecs-name2"),
+//				Password:           pulumi.String("93f0cb0614Aab12"),
+//				InstanceChargeType: pulumi.String("PostPaid"),
+//				SystemVolumeType:   pulumi.String("ESSD_PL0"),
+//				SystemVolumeSize:   pulumi.Int(40),
+//				SubnetId:           fooSubnet.ID(),
+//				SecurityGroupIds: pulumi.StringArray{
+//					fooSecurityGroup.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = vke.NewCluster(ctx, "fooCluster", &vke.ClusterArgs{
+//				Description:             pulumi.String("created by terraform"),
+//				DeleteProtectionEnabled: pulumi.Bool(false),
 //				ClusterConfig: &vke.ClusterClusterConfigArgs{
+//					SubnetIds: pulumi.StringArray{
+//						fooSubnet.ID(),
+//					},
+//					ApiServerPublicAccessEnabled: pulumi.Bool(true),
 //					ApiServerPublicAccessConfig: &vke.ClusterClusterConfigApiServerPublicAccessConfigArgs{
 //						PublicAccessNetworkConfig: &vke.ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs{
-//							Bandwidth:   pulumi.Int(1),
 //							BillingType: pulumi.String("PostPaidByBandwidth"),
+//							Bandwidth:   pulumi.Int(1),
 //						},
 //					},
-//					ApiServerPublicAccessEnabled:       pulumi.Bool(true),
 //					ResourcePublicAccessDefaultEnabled: pulumi.Bool(true),
-//					SubnetIds: pulumi.StringArray{
-//						pulumi.String("subnet-rrqvkt2nq1hcv0x57ccqf3x"),
-//					},
-//				},
-//				DeleteProtectionEnabled: pulumi.Bool(false),
-//				Description:             pulumi.String("created by terraform"),
-//				LoggingConfig: &vke.ClusterLoggingConfigArgs{
-//					LogSetups: vke.ClusterLoggingConfigLogSetupArray{
-//						&vke.ClusterLoggingConfigLogSetupArgs{
-//							Enabled: pulumi.Bool(false),
-//							LogTtl:  pulumi.Int(30),
-//							LogType: pulumi.String("Audit"),
-//						},
-//					},
 //				},
 //				PodsConfig: &vke.ClusterPodsConfigArgs{
 //					PodNetworkMode: pulumi.String("VpcCniShared"),
 //					VpcCniConfig: &vke.ClusterPodsConfigVpcCniConfigArgs{
 //						SubnetIds: pulumi.StringArray{
-//							pulumi.String("subnet-rrqvkt2nq1hcv0x57ccqf3x"),
-//							pulumi.String("subnet-miklcqh75vcw5smt1amo4ik5"),
-//							pulumi.String("subnet-13g0x0ytpm0hs3n6nu5j591lv"),
+//							fooSubnet.ID(),
 //						},
 //					},
 //				},
@@ -69,8 +99,8 @@ import (
 //				},
 //				Tags: vke.ClusterTagArray{
 //					&vke.ClusterTagArgs{
-//						Key:   pulumi.String("k1"),
-//						Value: pulumi.String("v1"),
+//						Key:   pulumi.String("tf-k1"),
+//						Value: pulumi.String("tf-v1"),
 //					},
 //				},
 //			})

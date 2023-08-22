@@ -26,10 +26,18 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := iam.NewAccessKey(ctx, "foo", &iam.AccessKeyArgs{
+//			fooUser, err := iam.NewUser(ctx, "fooUser", &iam.UserArgs{
+//				UserName:    pulumi.String("acc-test-user"),
+//				Description: pulumi.String("acc-test"),
+//				DisplayName: pulumi.String("name"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = iam.NewAccessKey(ctx, "fooAccessKey", &iam.AccessKeyArgs{
+//				UserName:   fooUser.UserName,
 //				SecretFile: pulumi.String("./sk"),
 //				Status:     pulumi.String("active"),
-//				UserName:   pulumi.String(""),
 //			})
 //			if err != nil {
 //				return err

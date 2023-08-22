@@ -154,7 +154,11 @@ def policies(name_regex: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.iam.policies(query="AdministratorAccess")
+    foo_policy = volcengine.iam.Policy("fooPolicy",
+        policy_name="acc-test-policy",
+        description="acc-test",
+        policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"auto_scaling:DescribeScalingGroups\\"],\\"Resource\\":[\\"*\\"]}]}")
+    foo_policies = foo_policy.description.apply(lambda description: volcengine.iam.policies_output(query=description))
     ```
 
 
@@ -207,7 +211,11 @@ def policies_output(name_regex: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.iam.policies(query="AdministratorAccess")
+    foo_policy = volcengine.iam.Policy("fooPolicy",
+        policy_name="acc-test-policy",
+        description="acc-test",
+        policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"auto_scaling:DescribeScalingGroups\\"],\\"Resource\\":[\\"*\\"]}]}")
+    foo_policies = foo_policy.description.apply(lambda description: volcengine.iam.policies_output(query=description))
     ```
 
 

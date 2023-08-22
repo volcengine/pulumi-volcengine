@@ -203,9 +203,9 @@ class Policy(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.iam.Policy("foo",
-            description="created by terraform 1",
+            description="acc-test",
             policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"auto_scaling:DescribeScalingGroups\\"],\\"Resource\\":[\\"*\\"]}]}",
-            policy_name="TerraformResourceTest1")
+            policy_name="acc-test-policy")
         ```
 
         ## Import
@@ -237,9 +237,9 @@ class Policy(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.iam.Policy("foo",
-            description="created by terraform 1",
+            description="acc-test",
             policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"auto_scaling:DescribeScalingGroups\\"],\\"Resource\\":[\\"*\\"]}]}",
-            policy_name="TerraformResourceTest1")
+            policy_name="acc-test-policy")
         ```
 
         ## Import

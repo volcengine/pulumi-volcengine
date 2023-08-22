@@ -12,33 +12,26 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
+ * const fooZones = volcengine.ecs.Zones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
- *     vpcName: "acc-test-project1",
+ *     vpcName: "acc-test-vpc",
  *     cidrBlock: "172.16.0.0/16",
  * });
  * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
- *     subnetName: "acc-subnet-test-2",
+ *     subnetName: "acc-test-subnet",
  *     cidrBlock: "172.16.0.0/24",
- *     zoneId: "cn-beijing-a",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
  *     vpcId: fooVpc.id,
  * });
  * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
+ *     securityGroupName: "acc-test-security-group",
  *     vpcId: fooVpc.id,
- *     securityGroupName: "acc-test-security-group2",
  * });
- * const fooInstance = new volcengine.ecs.Instance("fooInstance", {
- *     imageId: "image-ybqi99s7yq8rx7mnk44b",
- *     instanceType: "ecs.g1ie.large",
- *     instanceName: "acc-test-ecs-name2",
- *     password: "93f0cb0614Aab12",
- *     instanceChargeType: "PostPaid",
- *     systemVolumeType: "ESSD_PL0",
- *     systemVolumeSize: 40,
- *     subnetId: fooSubnet.id,
- *     securityGroupIds: [fooSecurityGroup.id],
- *     projectName: "default",
+ * const fooImages = volcengine.ecs.Images({
+ *     nameRegex: "veLinux 1.0 CentOS兼容版 64位",
  * });
  * const fooCluster = new volcengine.vke.Cluster("fooCluster", {
  *     description: "created by terraform",
@@ -70,31 +63,72 @@ import * as utilities from "../utilities";
  * });
  * const fooNodePool = new volcengine.vke.NodePool("fooNodePool", {
  *     clusterId: fooCluster.id,
+ *     autoScaling: {
+ *         enabled: false,
+ *     },
  *     nodeConfig: {
- *         instanceTypeIds: ["ecs.g1ie.large"],
+ *         instanceTypeIds: ["ecs.g1ie.xlarge"],
  *         subnetIds: [fooSubnet.id],
+ *         imageId: fooImages.then(fooImages => .filter(image => image.imageName == "veLinux 1.0 CentOS兼容版 64位").map(image => (image.imageId))[0]),
+ *         systemVolume: {
+ *             type: "ESSD_PL0",
+ *             size: 50,
+ *         },
+ *         dataVolumes: [{
+ *             type: "ESSD_PL0",
+ *             size: 50,
+ *             mountPoint: "/tf",
+ *         }],
+ *         initializeScript: "ZWNobyBoZWxsbyB0ZXJyYWZvcm0h",
  *         security: {
  *             login: {
  *                 password: "UHdkMTIzNDU2",
  *             },
+ *             securityStrategies: ["Hids"],
  *             securityGroupIds: [fooSecurityGroup.id],
  *         },
+ *         additionalContainerStorageEnabled: true,
  *         instanceChargeType: "PostPaid",
- *         period: 1,
+ *         namePrefix: "acc-test",
+ *         ecsTags: [{
+ *             key: "ecs_k1",
+ *             value: "ecs_v1",
+ *         }],
  *     },
  *     kubernetesConfig: {
- *         labels: [
- *             {
- *                 key: "aa",
- *                 value: "bb",
- *             },
- *             {
- *                 key: "cccc",
- *                 value: "dddd",
- *             },
- *         ],
- *         cordon: false,
+ *         labels: [{
+ *             key: "label1",
+ *             value: "value1",
+ *         }],
+ *         taints: [{
+ *             key: "taint-key/node-type",
+ *             value: "taint-value",
+ *             effect: "NoSchedule",
+ *         }],
+ *         cordon: true,
  *     },
+ *     tags: [{
+ *         key: "node-pool-k1",
+ *         value: "node-pool-v1",
+ *     }],
+ * });
+ * const fooInstance = new volcengine.ecs.Instance("fooInstance", {
+ *     instanceName: "acc-test-ecs",
+ *     hostName: "tf-acc-test",
+ *     imageId: fooImages.then(fooImages => .filter(image => image.imageName == "veLinux 1.0 CentOS兼容版 64位").map(image => (image.imageId))[0]),
+ *     instanceType: "ecs.g1ie.xlarge",
+ *     password: "93f0cb0614Aab12",
+ *     instanceChargeType: "PostPaid",
+ *     systemVolumeType: "ESSD_PL0",
+ *     systemVolumeSize: 50,
+ *     dataVolumes: [{
+ *         volumeType: "ESSD_PL0",
+ *         size: 50,
+ *         deleteWithInstance: true,
+ *     }],
+ *     subnetId: fooSubnet.id,
+ *     securityGroupIds: [fooSecurityGroup.id],
+ *     projectName: "default",
  *     tags: [{
  *         key: "k1",
  *         value: "v1",
@@ -103,35 +137,7 @@ import * as utilities from "../utilities";
  * const fooNode = new volcengine.vke.Node("fooNode", {
  *     clusterId: fooCluster.id,
  *     instanceId: fooInstance.id,
- *     keepInstanceName: true,
- *     additionalContainerStorageEnabled: false,
- *     containerStoragePath: "",
  *     nodePoolId: fooNodePool.id,
- *     kubernetesConfig: {
- *         labels: [
- *             {
- *                 key: "tf-key1",
- *                 value: "tf-value1",
- *             },
- *             {
- *                 key: "tf-key2",
- *                 value: "tf-value2",
- *             },
- *         ],
- *         taints: [
- *             {
- *                 key: "tf-key3",
- *                 value: "tf-value3",
- *                 effect: "NoSchedule",
- *             },
- *             {
- *                 key: "tf-key4",
- *                 value: "tf-value4",
- *                 effect: "NoSchedule",
- *             },
- *         ],
- *         cordon: true,
- *     },
  * });
  * ```
  *

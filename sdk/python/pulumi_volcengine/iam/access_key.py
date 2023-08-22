@@ -237,10 +237,15 @@ class AccessKey(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.iam.AccessKey("foo",
+        foo_user = volcengine.iam.User("fooUser",
+            user_name="acc-test-user",
+            description="acc-test",
+            display_name="name")
+        foo_access_key = volcengine.iam.AccessKey("fooAccessKey",
+            user_name=foo_user.user_name,
             secret_file="./sk",
-            status="active",
-            user_name="")
+            status="active")
+        #  pgp_key = "keybase:some_person_that_exists"
         ```
 
         ## Import
@@ -268,10 +273,15 @@ class AccessKey(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.iam.AccessKey("foo",
+        foo_user = volcengine.iam.User("fooUser",
+            user_name="acc-test-user",
+            description="acc-test",
+            display_name="name")
+        foo_access_key = volcengine.iam.AccessKey("fooAccessKey",
+            user_name=foo_user.user_name,
             secret_file="./sk",
-            status="active",
-            user_name="")
+            status="active")
+        #  pgp_key = "keybase:some_person_that_exists"
         ```
 
         ## Import

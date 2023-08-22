@@ -220,10 +220,10 @@ class Role(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.iam.Role("foo",
-            description="created by terraform",
-            display_name="terraform role",
-            max_session_duration=43200,
-            role_name="TerraformTestRole",
+            description="acc-test",
+            display_name="acc-test",
+            max_session_duration=3600,
+            role_name="acc-test-role",
             trust_policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"sts:AssumeRole\\"],\\"Principal\\":{\\"Service\\":[\\"auto_scaling\\"]}}]}")
         ```
 
@@ -258,10 +258,10 @@ class Role(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.iam.Role("foo",
-            description="created by terraform",
-            display_name="terraform role",
-            max_session_duration=43200,
-            role_name="TerraformTestRole",
+            description="acc-test",
+            display_name="acc-test",
+            max_session_duration=3600,
+            role_name="acc-test-role",
             trust_policy_document="{\\"Statement\\":[{\\"Effect\\":\\"Allow\\",\\"Action\\":[\\"sts:AssumeRole\\"],\\"Principal\\":{\\"Service\\":[\\"auto_scaling\\"]}}]}")
         ```
 

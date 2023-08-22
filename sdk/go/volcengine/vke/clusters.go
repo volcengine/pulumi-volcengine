@@ -20,24 +20,97 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vke"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vke.Clusters(ctx, &vke.ClustersArgs{
-//				PodsConfigPodNetworkMode: pulumi.StringRef("VpcCniShared"),
-//				Statuses: []vke.ClustersStatus{
-//					{
-//						ConditionsType: pulumi.StringRef("Progressing"),
-//						Phase:          pulumi.StringRef("Creating"),
-//					},
-//				},
-//			}, nil)
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-project1"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
 //			if err != nil {
 //				return err
 //			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-subnet-test-2"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     pulumi.String("cn-beijing-a"),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSecurityGroup, err := vpc.NewSecurityGroup(ctx, "fooSecurityGroup", &vpc.SecurityGroupArgs{
+//				VpcId:             fooVpc.ID(),
+//				SecurityGroupName: pulumi.String("acc-test-security-group2"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ecs.NewInstance(ctx, "fooInstance", &ecs.InstanceArgs{
+//				ImageId:            pulumi.String("image-ybqi99s7yq8rx7mnk44b"),
+//				InstanceType:       pulumi.String("ecs.g1ie.large"),
+//				InstanceName:       pulumi.String("acc-test-ecs-name2"),
+//				Password:           pulumi.String("93f0cb0614Aab12"),
+//				InstanceChargeType: pulumi.String("PostPaid"),
+//				SystemVolumeType:   pulumi.String("ESSD_PL0"),
+//				SystemVolumeSize:   pulumi.Int(40),
+//				SubnetId:           fooSubnet.ID(),
+//				SecurityGroupIds: pulumi.StringArray{
+//					fooSecurityGroup.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooCluster, err := vke.NewCluster(ctx, "fooCluster", &vke.ClusterArgs{
+//				Description:             pulumi.String("created by terraform"),
+//				DeleteProtectionEnabled: pulumi.Bool(false),
+//				ClusterConfig: &vke.ClusterClusterConfigArgs{
+//					SubnetIds: pulumi.StringArray{
+//						fooSubnet.ID(),
+//					},
+//					ApiServerPublicAccessEnabled: pulumi.Bool(true),
+//					ApiServerPublicAccessConfig: &vke.ClusterClusterConfigApiServerPublicAccessConfigArgs{
+//						PublicAccessNetworkConfig: &vke.ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs{
+//							BillingType: pulumi.String("PostPaidByBandwidth"),
+//							Bandwidth:   pulumi.Int(1),
+//						},
+//					},
+//					ResourcePublicAccessDefaultEnabled: pulumi.Bool(true),
+//				},
+//				PodsConfig: &vke.ClusterPodsConfigArgs{
+//					PodNetworkMode: pulumi.String("VpcCniShared"),
+//					VpcCniConfig: &vke.ClusterPodsConfigVpcCniConfigArgs{
+//						SubnetIds: pulumi.StringArray{
+//							fooSubnet.ID(),
+//						},
+//					},
+//				},
+//				ServicesConfig: &vke.ClusterServicesConfigArgs{
+//					ServiceCidrsv4s: pulumi.StringArray{
+//						pulumi.String("172.30.0.0/18"),
+//					},
+//				},
+//				Tags: vke.ClusterTagArray{
+//					&vke.ClusterTagArgs{
+//						Key:   pulumi.String("tf-k1"),
+//						Value: pulumi.String("tf-v1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = vke.ClustersOutput(ctx, vke.ClustersOutputArgs{
+//				Ids: pulumi.StringArray{
+//					fooCluster.ID(),
+//				},
+//			}, nil)
 //			return nil
 //		})
 //	}

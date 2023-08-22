@@ -204,8 +204,111 @@ def node_pools(auto_scaling_enabled: Optional[bool] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    vke_test = volcengine.vke.node_pools(cluster_ids=["ccabe57fqtofgrbln3dog"],
-        name="demo")
+    foo_zones = volcengine.ecs.zones()
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-vpc",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-test-subnet",
+        cidr_block="172.16.0.0/24",
+        zone_id=foo_zones.zones[0].id,
+        vpc_id=foo_vpc.id)
+    foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+        security_group_name="acc-test-security-group",
+        vpc_id=foo_vpc.id)
+    foo_images = volcengine.ecs.images(name_regex="veLinux 1.0 CentOS兼容版 64位")
+    foo_cluster = volcengine.vke.Cluster("fooCluster",
+        description="created by terraform",
+        delete_protection_enabled=False,
+        cluster_config=volcengine.vke.ClusterClusterConfigArgs(
+            subnet_ids=[foo_subnet.id],
+            api_server_public_access_enabled=True,
+            api_server_public_access_config=volcengine.vke.ClusterClusterConfigApiServerPublicAccessConfigArgs(
+                public_access_network_config=volcengine.vke.ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs(
+                    billing_type="PostPaidByBandwidth",
+                    bandwidth=1,
+                ),
+            ),
+            resource_public_access_default_enabled=True,
+        ),
+        pods_config=volcengine.vke.ClusterPodsConfigArgs(
+            pod_network_mode="VpcCniShared",
+            vpc_cni_config=volcengine.vke.ClusterPodsConfigVpcCniConfigArgs(
+                subnet_ids=[foo_subnet.id],
+            ),
+        ),
+        services_config=volcengine.vke.ClusterServicesConfigArgs(
+            service_cidrsv4s=["172.30.0.0/18"],
+        ),
+        tags=[volcengine.vke.ClusterTagArgs(
+            key="tf-k1",
+            value="tf-v1",
+        )])
+    foo_node_pool = []
+    for range in [{"value": i} for i in range(0, 3)]:
+        foo_node_pool.append(volcengine.vke.NodePool(f"fooNodePool-{range['value']}",
+            cluster_id=foo_cluster.id,
+            auto_scaling=volcengine.vke.NodePoolAutoScalingArgs(
+                enabled=True,
+                min_replicas=0,
+                max_replicas=5,
+                desired_replicas=0,
+                priority=5,
+                subnet_policy="ZoneBalance",
+            ),
+            node_config=volcengine.vke.NodePoolNodeConfigArgs(
+                instance_type_ids=["ecs.g1ie.xlarge"],
+                subnet_ids=[foo_subnet.id],
+                image_id=[image.image_id for image in foo_images.images if image.image_name == "veLinux 1.0 CentOS兼容版 64位"][0],
+                system_volume=volcengine.vke.NodePoolNodeConfigSystemVolumeArgs(
+                    type="ESSD_PL0",
+                    size=60,
+                ),
+                data_volumes=[
+                    volcengine.vke.NodePoolNodeConfigDataVolumeArgs(
+                        type="ESSD_PL0",
+                        size=60,
+                        mount_point="/tf1",
+                    ),
+                    volcengine.vke.NodePoolNodeConfigDataVolumeArgs(
+                        type="ESSD_PL0",
+                        size=60,
+                        mount_point="/tf2",
+                    ),
+                ],
+                initialize_script="ZWNobyBoZWxsbyB0ZXJyYWZvcm0h",
+                security=volcengine.vke.NodePoolNodeConfigSecurityArgs(
+                    login=volcengine.vke.NodePoolNodeConfigSecurityLoginArgs(
+                        password="UHdkMTIzNDU2",
+                    ),
+                    security_strategies=["Hids"],
+                    security_group_ids=[foo_security_group.id],
+                ),
+                additional_container_storage_enabled=True,
+                instance_charge_type="PostPaid",
+                name_prefix="acc-test",
+                ecs_tags=[volcengine.vke.NodePoolNodeConfigEcsTagArgs(
+                    key="ecs_k1",
+                    value="ecs_v1",
+                )],
+            ),
+            kubernetes_config=volcengine.vke.NodePoolKubernetesConfigArgs(
+                labels=[volcengine.vke.NodePoolKubernetesConfigLabelArgs(
+                    key="label1",
+                    value="value1",
+                )],
+                taints=[volcengine.vke.NodePoolKubernetesConfigTaintArgs(
+                    key="taint-key/node-type",
+                    value="taint-value",
+                    effect="NoSchedule",
+                )],
+                cordon=True,
+            ),
+            tags=[volcengine.vke.NodePoolTagArgs(
+                key="node-pool-k1",
+                value="node-pool-v1",
+            )]))
+    foo_node_pools = volcengine.vke.node_pools_output(ids=[__item.id for __item in foo_node_pool])
     ```
 
 
@@ -274,8 +377,111 @@ def node_pools_output(auto_scaling_enabled: Optional[pulumi.Input[Optional[bool]
     import pulumi
     import pulumi_volcengine as volcengine
 
-    vke_test = volcengine.vke.node_pools(cluster_ids=["ccabe57fqtofgrbln3dog"],
-        name="demo")
+    foo_zones = volcengine.ecs.zones()
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-vpc",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-test-subnet",
+        cidr_block="172.16.0.0/24",
+        zone_id=foo_zones.zones[0].id,
+        vpc_id=foo_vpc.id)
+    foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+        security_group_name="acc-test-security-group",
+        vpc_id=foo_vpc.id)
+    foo_images = volcengine.ecs.images(name_regex="veLinux 1.0 CentOS兼容版 64位")
+    foo_cluster = volcengine.vke.Cluster("fooCluster",
+        description="created by terraform",
+        delete_protection_enabled=False,
+        cluster_config=volcengine.vke.ClusterClusterConfigArgs(
+            subnet_ids=[foo_subnet.id],
+            api_server_public_access_enabled=True,
+            api_server_public_access_config=volcengine.vke.ClusterClusterConfigApiServerPublicAccessConfigArgs(
+                public_access_network_config=volcengine.vke.ClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs(
+                    billing_type="PostPaidByBandwidth",
+                    bandwidth=1,
+                ),
+            ),
+            resource_public_access_default_enabled=True,
+        ),
+        pods_config=volcengine.vke.ClusterPodsConfigArgs(
+            pod_network_mode="VpcCniShared",
+            vpc_cni_config=volcengine.vke.ClusterPodsConfigVpcCniConfigArgs(
+                subnet_ids=[foo_subnet.id],
+            ),
+        ),
+        services_config=volcengine.vke.ClusterServicesConfigArgs(
+            service_cidrsv4s=["172.30.0.0/18"],
+        ),
+        tags=[volcengine.vke.ClusterTagArgs(
+            key="tf-k1",
+            value="tf-v1",
+        )])
+    foo_node_pool = []
+    for range in [{"value": i} for i in range(0, 3)]:
+        foo_node_pool.append(volcengine.vke.NodePool(f"fooNodePool-{range['value']}",
+            cluster_id=foo_cluster.id,
+            auto_scaling=volcengine.vke.NodePoolAutoScalingArgs(
+                enabled=True,
+                min_replicas=0,
+                max_replicas=5,
+                desired_replicas=0,
+                priority=5,
+                subnet_policy="ZoneBalance",
+            ),
+            node_config=volcengine.vke.NodePoolNodeConfigArgs(
+                instance_type_ids=["ecs.g1ie.xlarge"],
+                subnet_ids=[foo_subnet.id],
+                image_id=[image.image_id for image in foo_images.images if image.image_name == "veLinux 1.0 CentOS兼容版 64位"][0],
+                system_volume=volcengine.vke.NodePoolNodeConfigSystemVolumeArgs(
+                    type="ESSD_PL0",
+                    size=60,
+                ),
+                data_volumes=[
+                    volcengine.vke.NodePoolNodeConfigDataVolumeArgs(
+                        type="ESSD_PL0",
+                        size=60,
+                        mount_point="/tf1",
+                    ),
+                    volcengine.vke.NodePoolNodeConfigDataVolumeArgs(
+                        type="ESSD_PL0",
+                        size=60,
+                        mount_point="/tf2",
+                    ),
+                ],
+                initialize_script="ZWNobyBoZWxsbyB0ZXJyYWZvcm0h",
+                security=volcengine.vke.NodePoolNodeConfigSecurityArgs(
+                    login=volcengine.vke.NodePoolNodeConfigSecurityLoginArgs(
+                        password="UHdkMTIzNDU2",
+                    ),
+                    security_strategies=["Hids"],
+                    security_group_ids=[foo_security_group.id],
+                ),
+                additional_container_storage_enabled=True,
+                instance_charge_type="PostPaid",
+                name_prefix="acc-test",
+                ecs_tags=[volcengine.vke.NodePoolNodeConfigEcsTagArgs(
+                    key="ecs_k1",
+                    value="ecs_v1",
+                )],
+            ),
+            kubernetes_config=volcengine.vke.NodePoolKubernetesConfigArgs(
+                labels=[volcengine.vke.NodePoolKubernetesConfigLabelArgs(
+                    key="label1",
+                    value="value1",
+                )],
+                taints=[volcengine.vke.NodePoolKubernetesConfigTaintArgs(
+                    key="taint-key/node-type",
+                    value="taint-value",
+                    effect="NoSchedule",
+                )],
+                cordon=True,
+            ),
+            tags=[volcengine.vke.NodePoolTagArgs(
+                key="node-pool-k1",
+                value="node-pool-v1",
+            )]))
+    foo_node_pools = volcengine.vke.node_pools_output(ids=[__item.id for __item in foo_node_pool])
     ```
 
 

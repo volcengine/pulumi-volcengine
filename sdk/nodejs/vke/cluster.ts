@@ -14,43 +14,57 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.vke.Cluster("foo", {
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-project1",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-subnet-test-2",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: "cn-beijing-a",
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
+ *     vpcId: fooVpc.id,
+ *     securityGroupName: "acc-test-security-group2",
+ * });
+ * const fooInstance = new volcengine.ecs.Instance("fooInstance", {
+ *     imageId: "image-ybqi99s7yq8rx7mnk44b",
+ *     instanceType: "ecs.g1ie.large",
+ *     instanceName: "acc-test-ecs-name2",
+ *     password: "93f0cb0614Aab12",
+ *     instanceChargeType: "PostPaid",
+ *     systemVolumeType: "ESSD_PL0",
+ *     systemVolumeSize: 40,
+ *     subnetId: fooSubnet.id,
+ *     securityGroupIds: [fooSecurityGroup.id],
+ * });
+ * const fooCluster = new volcengine.vke.Cluster("fooCluster", {
+ *     description: "created by terraform",
+ *     deleteProtectionEnabled: false,
  *     clusterConfig: {
+ *         subnetIds: [fooSubnet.id],
+ *         apiServerPublicAccessEnabled: true,
  *         apiServerPublicAccessConfig: {
  *             publicAccessNetworkConfig: {
- *                 bandwidth: 1,
  *                 billingType: "PostPaidByBandwidth",
+ *                 bandwidth: 1,
  *             },
  *         },
- *         apiServerPublicAccessEnabled: true,
  *         resourcePublicAccessDefaultEnabled: true,
- *         subnetIds: ["subnet-rrqvkt2nq1hcv0x57ccqf3x"],
- *     },
- *     deleteProtectionEnabled: false,
- *     description: "created by terraform",
- *     loggingConfig: {
- *         logSetups: [{
- *             enabled: false,
- *             logTtl: 30,
- *             logType: "Audit",
- *         }],
  *     },
  *     podsConfig: {
  *         podNetworkMode: "VpcCniShared",
  *         vpcCniConfig: {
- *             subnetIds: [
- *                 "subnet-rrqvkt2nq1hcv0x57ccqf3x",
- *                 "subnet-miklcqh75vcw5smt1amo4ik5",
- *                 "subnet-13g0x0ytpm0hs3n6nu5j591lv",
- *             ],
+ *             subnetIds: [fooSubnet.id],
  *         },
  *     },
  *     servicesConfig: {
  *         serviceCidrsv4s: ["172.30.0.0/18"],
  *     },
  *     tags: [{
- *         key: "k1",
- *         value: "v1",
+ *         key: "tf-k1",
+ *         value: "tf-v1",
  *     }],
  * });
  * ```

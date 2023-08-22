@@ -12,11 +12,16 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.iam.LoginProfile("foo", {
+ * const fooUser = new volcengine.iam.User("fooUser", {
+ *     userName: "acc-test-user",
+ *     description: "acc-test",
+ *     displayName: "name",
+ * });
+ * const fooLoginProfile = new volcengine.iam.LoginProfile("fooLoginProfile", {
+ *     userName: fooUser.userName,
+ *     password: "93f0cb0614Aab12",
  *     loginAllowed: true,
- *     password: "******",
  *     passwordResetRequired: false,
- *     userName: "tf-test",
  * });
  * ```
  *

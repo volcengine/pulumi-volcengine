@@ -13,10 +13,16 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.iam.Policies({
- *     query: "AdministratorAccess",
+ * const fooPolicy = new volcengine.iam.Policy("fooPolicy", {
+ *     policyName: "acc-test-policy",
+ *     description: "acc-test",
+ *     policyDocument: "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}",
  * });
+ * const fooPolicies = fooPolicy.description.apply(description => volcengine.iam.PoliciesOutput({
+ *     query: description,
+ * }));
  * ```
  */
 export function policies(args?: PoliciesArgs, opts?: pulumi.InvokeOptions): Promise<PoliciesResult> {
@@ -105,10 +111,16 @@ export interface PoliciesResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.iam.Policies({
- *     query: "AdministratorAccess",
+ * const fooPolicy = new volcengine.iam.Policy("fooPolicy", {
+ *     policyName: "acc-test-policy",
+ *     description: "acc-test",
+ *     policyDocument: "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}",
  * });
+ * const fooPolicies = fooPolicy.description.apply(description => volcengine.iam.PoliciesOutput({
+ *     query: description,
+ * }));
  * ```
  */
 export function policiesOutput(args?: PoliciesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<PoliciesResult> {

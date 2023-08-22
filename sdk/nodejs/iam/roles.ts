@@ -13,8 +13,25 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.iam.Roles({});
+ * const foo1 = new volcengine.iam.Role("foo1", {
+ *     description: "acc-test1",
+ *     displayName: "acc-test1",
+ *     maxSessionDuration: 3600,
+ *     roleName: "acc-test-role1",
+ *     trustPolicyDocument: "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"auto_scaling\"]}}]}",
+ * });
+ * const foo2 = new volcengine.iam.Role("foo2", {
+ *     description: "acc-test2",
+ *     displayName: "acc-test2",
+ *     maxSessionDuration: 3600,
+ *     roleName: "acc-test-role2",
+ *     trustPolicyDocument: "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"ecs\"]}}]}",
+ * });
+ * const foo = volcengine.iam.RolesOutput({
+ *     roleName: pulumi.interpolate`${foo1.roleName},${foo2.roleName}`,
+ * });
  * ```
  */
 export function roles(args?: RolesArgs, opts?: pulumi.InvokeOptions): Promise<RolesResult> {
@@ -82,8 +99,25 @@ export interface RolesResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.iam.Roles({});
+ * const foo1 = new volcengine.iam.Role("foo1", {
+ *     description: "acc-test1",
+ *     displayName: "acc-test1",
+ *     maxSessionDuration: 3600,
+ *     roleName: "acc-test-role1",
+ *     trustPolicyDocument: "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"auto_scaling\"]}}]}",
+ * });
+ * const foo2 = new volcengine.iam.Role("foo2", {
+ *     description: "acc-test2",
+ *     displayName: "acc-test2",
+ *     maxSessionDuration: 3600,
+ *     roleName: "acc-test-role2",
+ *     trustPolicyDocument: "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"ecs\"]}}]}",
+ * });
+ * const foo = volcengine.iam.RolesOutput({
+ *     roleName: pulumi.interpolate`${foo1.roleName},${foo2.roleName}`,
+ * });
  * ```
  */
 export function rolesOutput(args?: RolesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<RolesResult> {

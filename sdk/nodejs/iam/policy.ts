@@ -13,9 +13,9 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.iam.Policy("foo", {
- *     description: "created by terraform 1",
+ *     description: "acc-test",
  *     policyDocument: "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"auto_scaling:DescribeScalingGroups\"],\"Resource\":[\"*\"]}]}",
- *     policyName: "TerraformResourceTest1",
+ *     policyName: "acc-test-policy",
  * });
  * ```
  *

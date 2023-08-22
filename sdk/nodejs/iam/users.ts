@@ -13,8 +13,16 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.iam.Users({});
+ * const fooUser = new volcengine.iam.User("fooUser", {
+ *     userName: "acc-test-user",
+ *     description: "acc test",
+ *     displayName: "name",
+ * });
+ * const fooUsers = volcengine.iam.UsersOutput({
+ *     userNames: [fooUser.userName],
+ * });
  * ```
  */
 export function users(args?: UsersArgs, opts?: pulumi.InvokeOptions): Promise<UsersResult> {
@@ -73,8 +81,16 @@ export interface UsersResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.iam.Users({});
+ * const fooUser = new volcengine.iam.User("fooUser", {
+ *     userName: "acc-test-user",
+ *     description: "acc test",
+ *     displayName: "name",
+ * });
+ * const fooUsers = volcengine.iam.UsersOutput({
+ *     userNames: [fooUser.userName],
+ * });
  * ```
  */
 export function usersOutput(args?: UsersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<UsersResult> {

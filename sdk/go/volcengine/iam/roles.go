@@ -19,6 +19,8 @@ import (
 //
 // import (
 //
+//	"fmt"
+//
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/iam"
 //
@@ -26,10 +28,33 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := iam.Roles(ctx, nil, nil)
+//			foo1, err := iam.NewRole(ctx, "foo1", &iam.RoleArgs{
+//				Description:         pulumi.String("acc-test1"),
+//				DisplayName:         pulumi.String("acc-test1"),
+//				MaxSessionDuration:  pulumi.Int(3600),
+//				RoleName:            pulumi.String("acc-test-role1"),
+//				TrustPolicyDocument: pulumi.String("{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"auto_scaling\"]}}]}"),
+//			})
 //			if err != nil {
 //				return err
 //			}
+//			foo2, err := iam.NewRole(ctx, "foo2", &iam.RoleArgs{
+//				Description:         pulumi.String("acc-test2"),
+//				DisplayName:         pulumi.String("acc-test2"),
+//				MaxSessionDuration:  pulumi.Int(3600),
+//				RoleName:            pulumi.String("acc-test-role2"),
+//				TrustPolicyDocument: pulumi.String("{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"ecs\"]}}]}"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = iam.RolesOutput(ctx, iam.RolesOutputArgs{
+//				RoleName: pulumi.All(foo1.RoleName, foo2.RoleName).ApplyT(func(_args []interface{}) (string, error) {
+//					foo1RoleName := _args[0].(string)
+//					foo2RoleName := _args[1].(string)
+//					return fmt.Sprintf("%v,%v", foo1RoleName, foo2RoleName), nil
+//				}).(pulumi.StringOutput),
+//			}, nil)
 //			return nil
 //		})
 //	}

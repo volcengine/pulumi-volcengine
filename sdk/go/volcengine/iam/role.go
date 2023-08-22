@@ -28,10 +28,10 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := iam.NewRole(ctx, "foo", &iam.RoleArgs{
-//				Description:         pulumi.String("created by terraform"),
-//				DisplayName:         pulumi.String("terraform role"),
-//				MaxSessionDuration:  pulumi.Int(43200),
-//				RoleName:            pulumi.String("TerraformTestRole"),
+//				Description:         pulumi.String("acc-test"),
+//				DisplayName:         pulumi.String("acc-test"),
+//				MaxSessionDuration:  pulumi.Int(3600),
+//				RoleName:            pulumi.String("acc-test-role"),
 //				TrustPolicyDocument: pulumi.String("{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"auto_scaling\"]}}]}"),
 //			})
 //			if err != nil {

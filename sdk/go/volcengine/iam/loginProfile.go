@@ -27,11 +27,19 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := iam.NewLoginProfile(ctx, "foo", &iam.LoginProfileArgs{
+//			fooUser, err := iam.NewUser(ctx, "fooUser", &iam.UserArgs{
+//				UserName:    pulumi.String("acc-test-user"),
+//				Description: pulumi.String("acc-test"),
+//				DisplayName: pulumi.String("name"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = iam.NewLoginProfile(ctx, "fooLoginProfile", &iam.LoginProfileArgs{
+//				UserName:              fooUser.UserName,
+//				Password:              pulumi.String("93f0cb0614Aab12"),
 //				LoginAllowed:          pulumi.Bool(true),
-//				Password:              pulumi.String("******"),
 //				PasswordResetRequired: pulumi.Bool(false),
-//				UserName:              pulumi.String("tf-test"),
 //			})
 //			if err != nil {
 //				return err
