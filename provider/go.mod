@@ -12,7 +12,7 @@ require (
 	github.com/hashicorp/terraform-plugin-sdk v1.9.1
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.57.0
 	github.com/pulumi/pulumi/sdk/v3 v3.76.1
-	github.com/volcengine/terraform-provider-volcengine v0.0.100
+	github.com/volcengine/terraform-provider-volcengine v0.0.104
 )
 
 require (

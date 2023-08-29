@@ -14,7 +14,7 @@ namespace Volcengine.Pulumi.Volcengine.Ecs.Inputs
     public sealed class InstanceCpuOptionsGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The per core of threads.
+        /// The per core of threads,only support for ebm.
         /// </summary>
         [Input("threadsPerCore", required: true)]
         public Input<int> ThreadsPerCore { get; set; } = null!;

@@ -69,6 +69,8 @@ type BucketObject struct {
 	AccountAcls BucketObjectAccountAclArrayOutput `pulumi:"accountAcls"`
 	// The name of the bucket.
 	BucketName pulumi.StringOutput `pulumi:"bucketName"`
+	// The content the TOS Object when content type is json or text and xml.
+	Content pulumi.StringOutput `pulumi:"content"`
 	// The file md5 sum (32-bit hexadecimal string) for upload.
 	ContentMd5 pulumi.StringPtrOutput `pulumi:"contentMd5"`
 	// The content type of the object.
@@ -132,6 +134,8 @@ type bucketObjectState struct {
 	AccountAcls []BucketObjectAccountAcl `pulumi:"accountAcls"`
 	// The name of the bucket.
 	BucketName *string `pulumi:"bucketName"`
+	// The content the TOS Object when content type is json or text and xml.
+	Content *string `pulumi:"content"`
 	// The file md5 sum (32-bit hexadecimal string) for upload.
 	ContentMd5 *string `pulumi:"contentMd5"`
 	// The content type of the object.
@@ -157,6 +161,8 @@ type BucketObjectState struct {
 	AccountAcls BucketObjectAccountAclArrayInput
 	// The name of the bucket.
 	BucketName pulumi.StringPtrInput
+	// The content the TOS Object when content type is json or text and xml.
+	Content pulumi.StringPtrInput
 	// The file md5 sum (32-bit hexadecimal string) for upload.
 	ContentMd5 pulumi.StringPtrInput
 	// The content type of the object.
@@ -319,6 +325,11 @@ func (o BucketObjectOutput) AccountAcls() BucketObjectAccountAclArrayOutput {
 // The name of the bucket.
 func (o BucketObjectOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v *BucketObject) pulumi.StringOutput { return v.BucketName }).(pulumi.StringOutput)
+}
+
+// The content the TOS Object when content type is json or text and xml.
+func (o BucketObjectOutput) Content() pulumi.StringOutput {
+	return o.ApplyT(func(v *BucketObject) pulumi.StringOutput { return v.Content }).(pulumi.StringOutput)
 }
 
 // The file md5 sum (32-bit hexadecimal string) for upload.

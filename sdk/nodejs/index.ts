@@ -16,6 +16,7 @@ import * as autoscaling from "./autoscaling";
 import * as bioos from "./bioos";
 import * as cen from "./cen";
 import * as clb from "./clb";
+import * as cloudfs from "./cloudfs";
 import * as config from "./config";
 import * as cr from "./cr";
 import * as ebs from "./ebs";
@@ -43,6 +44,7 @@ export {
     bioos,
     cen,
     clb,
+    cloudfs,
     config,
     cr,
     ebs,

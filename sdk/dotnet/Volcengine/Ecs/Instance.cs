@@ -114,7 +114,7 @@ namespace Volcengine.Pulumi.Volcengine.Ecs
         public Output<int?> AutoRenewPeriod { get; private set; } = null!;
 
         /// <summary>
-        /// The option of cpu.
+        /// The option of cpu,only support for ebm.
         /// </summary>
         [Output("cpuOptions")]
         public Output<Outputs.InstanceCpuOptions> CpuOptions { get; private set; } = null!;
@@ -444,7 +444,7 @@ namespace Volcengine.Pulumi.Volcengine.Ecs
         public Input<int>? AutoRenewPeriod { get; set; }
 
         /// <summary>
-        /// The option of cpu.
+        /// The option of cpu,only support for ebm.
         /// </summary>
         [Input("cpuOptions")]
         public Input<Inputs.InstanceCpuOptionsArgs>? CpuOptions { get; set; }
@@ -675,7 +675,7 @@ namespace Volcengine.Pulumi.Volcengine.Ecs
         public Input<int>? AutoRenewPeriod { get; set; }
 
         /// <summary>
-        /// The option of cpu.
+        /// The option of cpu,only support for ebm.
         /// </summary>
         [Input("cpuOptions")]
         public Input<Inputs.InstanceCpuOptionsGetArgs>? CpuOptions { get; set; }

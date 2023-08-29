@@ -15,7 +15,7 @@ namespace Volcengine.Pulumi.Volcengine.Ecs.Outputs
     public sealed class InstanceCpuOptions
     {
         /// <summary>
-        /// The per core of threads.
+        /// The per core of threads,only support for ebm.
         /// </summary>
         public readonly int ThreadsPerCore;
 

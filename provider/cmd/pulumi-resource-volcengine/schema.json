@@ -2507,6 +2507,291 @@
                 }
             }
         },
+        "volcengine:cloudfs/AccessesAccess:AccessesAccess": {
+            "properties": {
+                "accessAccountId": {
+                    "type": "integer",
+                    "description": "The account id of access.\n"
+                },
+                "accessId": {
+                    "type": "string",
+                    "description": "The id of access.\n"
+                },
+                "accessServiceName": {
+                    "type": "string",
+                    "description": "The service name of access.\n"
+                },
+                "createdTime": {
+                    "type": "string",
+                    "description": "The creation time.\n"
+                },
+                "fsName": {
+                    "type": "string",
+                    "description": "The name of file system.\n"
+                },
+                "isDefault": {
+                    "type": "boolean",
+                    "description": "Whether is default access.\n"
+                },
+                "securityGroupId": {
+                    "type": "string",
+                    "description": "The id of security group.\n"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "The status of access.\n"
+                },
+                "subnetId": {
+                    "type": "string",
+                    "description": "The id of subnet.\n"
+                },
+                "vpcId": {
+                    "type": "string",
+                    "description": "The id of vpc.\n"
+                },
+                "vpcRouteEnabled": {
+                    "type": "boolean",
+                    "description": "Whether to enable all vpc route.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "accessAccountId",
+                "accessId",
+                "accessServiceName",
+                "createdTime",
+                "fsName",
+                "isDefault",
+                "securityGroupId",
+                "status",
+                "subnetId",
+                "vpcId",
+                "vpcRouteEnabled"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "volcengine:cloudfs/FileSystemsFileSystem:FileSystemsFileSystem": {
+            "properties": {
+                "cacheCapacityTib": {
+                    "type": "integer",
+                    "description": "The capacity of cache.\n"
+                },
+                "cachePlan": {
+                    "type": "string",
+                    "description": "The plan of cache.\n"
+                },
+                "createdTime": {
+                    "type": "string",
+                    "description": "The creation time.\n"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The ID of file system.\n"
+                },
+                "mode": {
+                    "type": "string",
+                    "description": "The mode of file system.\n"
+                },
+                "mountPoint": {
+                    "type": "string",
+                    "description": "The point mount.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of file system.\n"
+                },
+                "regionId": {
+                    "type": "string",
+                    "description": "The id of region.\n"
+                },
+                "securityGroupId": {
+                    "type": "string",
+                    "description": "The id of security group.\n"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "The status of file system.\n"
+                },
+                "subnetId": {
+                    "type": "string",
+                    "description": "The id of subnet.\n"
+                },
+                "tosBucket": {
+                    "type": "string",
+                    "description": "The tos bucket.\n"
+                },
+                "tosPrefix": {
+                    "type": "string",
+                    "description": "The tos prefix.\n"
+                },
+                "vpcId": {
+                    "type": "string",
+                    "description": "The id of vpc.\n"
+                },
+                "zoneId": {
+                    "type": "string",
+                    "description": "The id of zone.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "cacheCapacityTib",
+                "cachePlan",
+                "createdTime",
+                "id",
+                "mode",
+                "mountPoint",
+                "name",
+                "regionId",
+                "securityGroupId",
+                "status",
+                "subnetId",
+                "tosBucket",
+                "tosPrefix",
+                "vpcId",
+                "zoneId"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "volcengine:cloudfs/NamespacesNamespace:NamespacesNamespace": {
+            "properties": {
+                "createdTime": {
+                    "type": "string",
+                    "description": "The creation time of the namespace.\n"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The ID of the namespace.\n"
+                },
+                "isMyBucket": {
+                    "type": "boolean",
+                    "description": "Whether the tos bucket is your own bucket.\n"
+                },
+                "readOnly": {
+                    "type": "boolean",
+                    "description": "Whether the namespace is read-only.\n"
+                },
+                "serviceManaged": {
+                    "type": "boolean",
+                    "description": "Whether the namespace is the official service for volcengine.\n"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "The status of the namespace.\n"
+                },
+                "tosBucket": {
+                    "type": "string",
+                    "description": "The name of tos bucket.\n"
+                },
+                "tosPrefix": {
+                    "type": "string",
+                    "description": "The tos prefix.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "createdTime",
+                "id",
+                "isMyBucket",
+                "readOnly",
+                "serviceManaged",
+                "status",
+                "tosBucket",
+                "tosPrefix"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "volcengine:cloudfs/NsQuotasQuota:NsQuotasQuota": {
+            "properties": {
+                "accountId": {
+                    "type": "integer",
+                    "description": "The ID of account.\n"
+                },
+                "fsName": {
+                    "type": "string",
+                    "description": "The name of fs.\n"
+                },
+                "nsCount": {
+                    "type": "integer",
+                    "description": "The count of cloud fs namespace.\n"
+                },
+                "nsCountPerFs": {
+                    "type": "integer",
+                    "description": "This file stores the number of namespaces under the instance.\n"
+                },
+                "nsQuota": {
+                    "type": "integer",
+                    "description": "The quota of cloud fs namespace.\n"
+                },
+                "nsQuotaPerFs": {
+                    "type": "integer",
+                    "description": "This file stores the total namespace quota under the instance.\n"
+                },
+                "quotaEnough": {
+                    "type": "boolean",
+                    "description": "Whether is enough of cloud fs namespace.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "accountId",
+                "fsName",
+                "nsCount",
+                "nsCountPerFs",
+                "nsQuota",
+                "nsQuotaPerFs",
+                "quotaEnough"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "volcengine:cloudfs/QuotasQuota:QuotasQuota": {
+            "properties": {
+                "accountId": {
+                    "type": "integer",
+                    "description": "The ID of account.\n"
+                },
+                "fsCount": {
+                    "type": "integer",
+                    "description": "The count of cloud fs.\n"
+                },
+                "fsQuota": {
+                    "type": "integer",
+                    "description": "The quota of cloud fs.\n"
+                },
+                "quotaEnough": {
+                    "type": "boolean",
+                    "description": "Whether is enough of cloud fs.\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "accountId",
+                "fsCount",
+                "fsQuota",
+                "quotaEnough"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "volcengine:cr/AuthorizationTokensToken:AuthorizationTokensToken": {
             "properties": {
                 "expireTime": {
@@ -3297,7 +3582,7 @@
             "properties": {
                 "threadsPerCore": {
                     "type": "integer",
-                    "description": "The per core of threads.\n",
+                    "description": "The per core of threads,only support for ebm.\n",
                     "willReplaceOnChanges": true
                 }
             },
@@ -12880,6 +13165,10 @@
         },
         "volcengine:tos/BucketObjectsObject:BucketObjectsObject": {
             "properties": {
+                "content": {
+                    "type": "string",
+                    "description": "The content the TOS Object when content type is json or text and xml.\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "The name the TOS Object.\n"
@@ -12895,6 +13184,7 @@
             },
             "type": "object",
             "required": [
+                "content",
                 "name",
                 "size",
                 "storageClass"
@@ -22677,6 +22967,586 @@
                 "type": "object"
             }
         },
+        "volcengine:cloudfs/access:Access": {
+            "description": "Provides a resource to manage cloudfs access\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as volcengine from \"@volcengine/pulumi\";\n\nconst foo1 = new volcengine.cloudfs.Access(\"foo1\", {\n    fsName: \"tftest2\",\n    securityGroupId: \"sg-rrv1klfg5s00v0x578mx14m\",\n    subnetId: \"subnet-13fca1crr5d6o3n6nu46cyb5m\",\n    vpcRouteEnabled: false,\n});\n```\n```python\nimport pulumi\nimport pulumi_volcengine as volcengine\n\nfoo1 = volcengine.cloudfs.Access(\"foo1\",\n    fs_name=\"tftest2\",\n    security_group_id=\"sg-rrv1klfg5s00v0x578mx14m\",\n    subnet_id=\"subnet-13fca1crr5d6o3n6nu46cyb5m\",\n    vpc_route_enabled=False)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Volcengine = Volcengine.Pulumi.Volcengine;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var foo1 = new Volcengine.Cloudfs.Access(\"foo1\", new()\n    {\n        FsName = \"tftest2\",\n        SecurityGroupId = \"sg-rrv1klfg5s00v0x578mx14m\",\n        SubnetId = \"subnet-13fca1crr5d6o3n6nu46cyb5m\",\n        VpcRouteEnabled = false,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/cloudfs\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudfs.NewAccess(ctx, \"foo1\", \u0026cloudfs.AccessArgs{\n\t\t\tFsName:          pulumi.String(\"tftest2\"),\n\t\t\tSecurityGroupId: pulumi.String(\"sg-rrv1klfg5s00v0x578mx14m\"),\n\t\t\tSubnetId:        pulumi.String(\"subnet-13fca1crr5d6o3n6nu46cyb5m\"),\n\t\t\tVpcRouteEnabled: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.volcengine.cloudfs.Access;\nimport com.pulumi.volcengine.cloudfs.AccessArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var foo1 = new Access(\"foo1\", AccessArgs.builder()        \n            .fsName(\"tftest2\")\n            .securityGroupId(\"sg-rrv1klfg5s00v0x578mx14m\")\n            .subnetId(\"subnet-13fca1crr5d6o3n6nu46cyb5m\")\n            .vpcRouteEnabled(false)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  foo1:\n    type: volcengine:cloudfs:Access\n    properties:\n      fsName: tftest2\n      securityGroupId: sg-rrv1klfg5s00v0x578mx14m\n      subnetId: subnet-13fca1crr5d6o3n6nu46cyb5m\n      vpcRouteEnabled: false\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nCloudFs Access can be imported using the FsName:AccessId, e.g.\n\n```sh\n $ pulumi import volcengine:cloudfs/access:Access default tfname:access-**rdgmedx3fow\n```\n\n ",
+            "properties": {
+                "accessAccountId": {
+                    "type": "integer",
+                    "description": "The account id of access.\n"
+                },
+                "accessIamRole": {
+                    "type": "string",
+                    "description": "The iam role of access. If the VPC of another account is attached, the other account needs to create a role with CFSCacheAccess permission, and enter the role name as a parameter.\n"
+                },
+                "accessId": {
+                    "type": "string",
+                    "description": "The id of access.\n"
+                },
+                "accessServiceName": {
+                    "type": "string",
+                    "description": "The service name of access.\n"
+                },
+                "createdTime": {
+                    "type": "string",
+                    "description": "The creation time.\n"
+                },
+                "fsName": {
+                    "type": "string",
+                    "description": "The name of file system.\n"
+                },
+                "isDefault": {
+                    "type": "boolean",
+                    "description": "Whether is default access.\n"
+                },
+                "securityGroupId": {
+                    "type": "string",
+                    "description": "The id of security group.\n"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "Status of access.\n"
+                },
+                "subnetId": {
+                    "type": "string",
+                    "description": "The id of subnet.\n"
+                },
+                "vpcId": {
+                    "type": "string",
+                    "description": "The id of vpc.\n"
+                },
+                "vpcRouteEnabled": {
+                    "type": "boolean",
+                    "description": "Whether enable all vpc route.\n"
+                }
+            },
+            "required": [
+                "accessAccountId",
+                "accessId",
+                "accessServiceName",
+                "createdTime",
+                "fsName",
+                "isDefault",
+                "securityGroupId",
+                "status",
+                "subnetId",
+                "vpcId"
+            ],
+            "inputProperties": {
+                "accessAccountId": {
+                    "type": "integer",
+                    "description": "The account id of access.\n",
+                    "willReplaceOnChanges": true
+                },
+                "accessIamRole": {
+                    "type": "string",
+                    "description": "The iam role of access. If the VPC of another account is attached, the other account needs to create a role with CFSCacheAccess permission, and enter the role name as a parameter.\n",
+                    "willReplaceOnChanges": true
+                },
+                "fsName": {
+                    "type": "string",
+                    "description": "The name of file system.\n",
+                    "willReplaceOnChanges": true
+                },
+                "securityGroupId": {
+                    "type": "string",
+                    "description": "The id of security group.\n",
+                    "willReplaceOnChanges": true
+                },
+                "subnetId": {
+                    "type": "string",
+                    "description": "The id of subnet.\n",
+                    "willReplaceOnChanges": true
+                },
+                "vpcRouteEnabled": {
+                    "type": "boolean",
+                    "description": "Whether enable all vpc route.\n"
+                }
+            },
+            "requiredInputs": [
+                "fsName",
+                "securityGroupId",
+                "subnetId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Access resources.\n",
+                "properties": {
+                    "accessAccountId": {
+                        "type": "integer",
+                        "description": "The account id of access.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "accessIamRole": {
+                        "type": "string",
+                        "description": "The iam role of access. If the VPC of another account is attached, the other account needs to create a role with CFSCacheAccess permission, and enter the role name as a parameter.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "accessId": {
+                        "type": "string",
+                        "description": "The id of access.\n"
+                    },
+                    "accessServiceName": {
+                        "type": "string",
+                        "description": "The service name of access.\n"
+                    },
+                    "createdTime": {
+                        "type": "string",
+                        "description": "The creation time.\n"
+                    },
+                    "fsName": {
+                        "type": "string",
+                        "description": "The name of file system.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "isDefault": {
+                        "type": "boolean",
+                        "description": "Whether is default access.\n"
+                    },
+                    "securityGroupId": {
+                        "type": "string",
+                        "description": "The id of security group.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "Status of access.\n"
+                    },
+                    "subnetId": {
+                        "type": "string",
+                        "description": "The id of subnet.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "vpcId": {
+                        "type": "string",
+                        "description": "The id of vpc.\n"
+                    },
+                    "vpcRouteEnabled": {
+                        "type": "boolean",
+                        "description": "Whether enable all vpc route.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "volcengine:cloudfs/fileSystem:FileSystem": {
+            "description": "Provides a resource to manage cloudfs file system\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as volcengine from \"@volcengine/pulumi\";\n\nconst foo = new volcengine.cloudfs.FileSystem(\"foo\", {\n    cacheCapacityTib: 10,\n    cachePlan: \"T2\",\n    fsName: \"tffile\",\n    mode: \"HDFS_MODE\",\n    readOnly: true,\n    securityGroupId: \"sg-rrv1klfg5s00v0x578mx14m\",\n    subnetId: \"subnet-13fca1crr5d6o3n6nu46cyb5m\",\n    tosBucket: \"tfacc\",\n    tosPrefix: \"pre/\",\n    vpcRouteEnabled: true,\n    zoneId: \"cn-beijing-b\",\n});\nconst foo1 = new volcengine.cloudfs.FileSystem(\"foo1\", {\n    cacheCapacityTib: 15,\n    cachePlan: \"T2\",\n    fsName: \"tffileu\",\n    mode: \"ACC_MODE\",\n    readOnly: true,\n    securityGroupId: \"sg-rrv1klfg5s00v0x578mx14m\",\n    subnetId: \"subnet-13fca1crr5d6o3n6nu46cyb5m\",\n    tosBucket: \"tfacc\",\n    vpcRouteEnabled: false,\n    zoneId: \"cn-beijing-b\",\n});\n```\n```python\nimport pulumi\nimport pulumi_volcengine as volcengine\n\nfoo = volcengine.cloudfs.FileSystem(\"foo\",\n    cache_capacity_tib=10,\n    cache_plan=\"T2\",\n    fs_name=\"tffile\",\n    mode=\"HDFS_MODE\",\n    read_only=True,\n    security_group_id=\"sg-rrv1klfg5s00v0x578mx14m\",\n    subnet_id=\"subnet-13fca1crr5d6o3n6nu46cyb5m\",\n    tos_bucket=\"tfacc\",\n    tos_prefix=\"pre/\",\n    vpc_route_enabled=True,\n    zone_id=\"cn-beijing-b\")\nfoo1 = volcengine.cloudfs.FileSystem(\"foo1\",\n    cache_capacity_tib=15,\n    cache_plan=\"T2\",\n    fs_name=\"tffileu\",\n    mode=\"ACC_MODE\",\n    read_only=True,\n    security_group_id=\"sg-rrv1klfg5s00v0x578mx14m\",\n    subnet_id=\"subnet-13fca1crr5d6o3n6nu46cyb5m\",\n    tos_bucket=\"tfacc\",\n    vpc_route_enabled=False,\n    zone_id=\"cn-beijing-b\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Volcengine = Volcengine.Pulumi.Volcengine;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var foo = new Volcengine.Cloudfs.FileSystem(\"foo\", new()\n    {\n        CacheCapacityTib = 10,\n        CachePlan = \"T2\",\n        FsName = \"tffile\",\n        Mode = \"HDFS_MODE\",\n        ReadOnly = true,\n        SecurityGroupId = \"sg-rrv1klfg5s00v0x578mx14m\",\n        SubnetId = \"subnet-13fca1crr5d6o3n6nu46cyb5m\",\n        TosBucket = \"tfacc\",\n        TosPrefix = \"pre/\",\n        VpcRouteEnabled = true,\n        ZoneId = \"cn-beijing-b\",\n    });\n\n    var foo1 = new Volcengine.Cloudfs.FileSystem(\"foo1\", new()\n    {\n        CacheCapacityTib = 15,\n        CachePlan = \"T2\",\n        FsName = \"tffileu\",\n        Mode = \"ACC_MODE\",\n        ReadOnly = true,\n        SecurityGroupId = \"sg-rrv1klfg5s00v0x578mx14m\",\n        SubnetId = \"subnet-13fca1crr5d6o3n6nu46cyb5m\",\n        TosBucket = \"tfacc\",\n        VpcRouteEnabled = false,\n        ZoneId = \"cn-beijing-b\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/cloudfs\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudfs.NewFileSystem(ctx, \"foo\", \u0026cloudfs.FileSystemArgs{\n\t\t\tCacheCapacityTib: pulumi.Int(10),\n\t\t\tCachePlan:        pulumi.String(\"T2\"),\n\t\t\tFsName:           pulumi.String(\"tffile\"),\n\t\t\tMode:             pulumi.String(\"HDFS_MODE\"),\n\t\t\tReadOnly:         pulumi.Bool(true),\n\t\t\tSecurityGroupId:  pulumi.String(\"sg-rrv1klfg5s00v0x578mx14m\"),\n\t\t\tSubnetId:         pulumi.String(\"subnet-13fca1crr5d6o3n6nu46cyb5m\"),\n\t\t\tTosBucket:        pulumi.String(\"tfacc\"),\n\t\t\tTosPrefix:        pulumi.String(\"pre/\"),\n\t\t\tVpcRouteEnabled:  pulumi.Bool(true),\n\t\t\tZoneId:           pulumi.String(\"cn-beijing-b\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = cloudfs.NewFileSystem(ctx, \"foo1\", \u0026cloudfs.FileSystemArgs{\n\t\t\tCacheCapacityTib: pulumi.Int(15),\n\t\t\tCachePlan:        pulumi.String(\"T2\"),\n\t\t\tFsName:           pulumi.String(\"tffileu\"),\n\t\t\tMode:             pulumi.String(\"ACC_MODE\"),\n\t\t\tReadOnly:         pulumi.Bool(true),\n\t\t\tSecurityGroupId:  pulumi.String(\"sg-rrv1klfg5s00v0x578mx14m\"),\n\t\t\tSubnetId:         pulumi.String(\"subnet-13fca1crr5d6o3n6nu46cyb5m\"),\n\t\t\tTosBucket:        pulumi.String(\"tfacc\"),\n\t\t\tVpcRouteEnabled:  pulumi.Bool(false),\n\t\t\tZoneId:           pulumi.String(\"cn-beijing-b\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.volcengine.cloudfs.FileSystem;\nimport com.pulumi.volcengine.cloudfs.FileSystemArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var foo = new FileSystem(\"foo\", FileSystemArgs.builder()        \n            .cacheCapacityTib(10)\n            .cachePlan(\"T2\")\n            .fsName(\"tffile\")\n            .mode(\"HDFS_MODE\")\n            .readOnly(true)\n            .securityGroupId(\"sg-rrv1klfg5s00v0x578mx14m\")\n            .subnetId(\"subnet-13fca1crr5d6o3n6nu46cyb5m\")\n            .tosBucket(\"tfacc\")\n            .tosPrefix(\"pre/\")\n            .vpcRouteEnabled(true)\n            .zoneId(\"cn-beijing-b\")\n            .build());\n\n        var foo1 = new FileSystem(\"foo1\", FileSystemArgs.builder()        \n            .cacheCapacityTib(15)\n            .cachePlan(\"T2\")\n            .fsName(\"tffileu\")\n            .mode(\"ACC_MODE\")\n            .readOnly(true)\n            .securityGroupId(\"sg-rrv1klfg5s00v0x578mx14m\")\n            .subnetId(\"subnet-13fca1crr5d6o3n6nu46cyb5m\")\n            .tosBucket(\"tfacc\")\n            .vpcRouteEnabled(false)\n            .zoneId(\"cn-beijing-b\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  foo:\n    type: volcengine:cloudfs:FileSystem\n    properties:\n      cacheCapacityTib: 10\n      cachePlan: T2\n      fsName: tffile\n      mode: HDFS_MODE\n      readOnly: true\n      securityGroupId: sg-rrv1klfg5s00v0x578mx14m\n      subnetId: subnet-13fca1crr5d6o3n6nu46cyb5m\n      tosBucket: tfacc\n      tosPrefix: pre/\n      vpcRouteEnabled: true\n      zoneId: cn-beijing-b\n  foo1:\n    type: volcengine:cloudfs:FileSystem\n    properties:\n      cacheCapacityTib: 15\n      cachePlan: T2\n      fsName: tffileu\n      mode: ACC_MODE\n      readOnly: true\n      securityGroupId: sg-rrv1klfg5s00v0x578mx14m\n      subnetId: subnet-13fca1crr5d6o3n6nu46cyb5m\n      tosBucket: tfacc\n      vpcRouteEnabled: false\n      zoneId: cn-beijing-b\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nCloudFileSystem can be imported using the FsName, e.g.\n\n```sh\n $ pulumi import volcengine:cloudfs/fileSystem:FileSystem default tfname\n```\n\n ",
+            "properties": {
+                "accessId": {
+                    "type": "string",
+                    "description": "The default vpc access id.\n"
+                },
+                "cacheCapacityTib": {
+                    "type": "integer",
+                    "description": "The capacity of cache. This parameter is required when cache acceleration is enabled.\n"
+                },
+                "cachePlan": {
+                    "type": "string",
+                    "description": "The cache plan. The value can be `DISABLED` or `T2` or `T4`. When expanding the cache size, the cache plan should remain the same. For data lakes, cache must be enabled.\n"
+                },
+                "createdTime": {
+                    "type": "string",
+                    "description": "The creation time.\n"
+                },
+                "fsName": {
+                    "type": "string",
+                    "description": "The name of file system.\n"
+                },
+                "mode": {
+                    "type": "string",
+                    "description": "The mode of file system. The value can be `HDFS_MODE` or `ACC_MODE`.\n"
+                },
+                "mountPoint": {
+                    "type": "string",
+                    "description": "The point mount.\n"
+                },
+                "readOnly": {
+                    "type": "boolean",
+                    "description": "Whether the Namespace created automatically when mounting the TOS Bucket is read-only. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.\n"
+                },
+                "securityGroupId": {
+                    "type": "string",
+                    "description": "The id of security group. This parameter is required when cache acceleration is enabled.\n"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "Status of file system.\n"
+                },
+                "subnetId": {
+                    "type": "string",
+                    "description": "The id of subnet. This parameter is required when cache acceleration is enabled.\n"
+                },
+                "tosAccountId": {
+                    "type": "integer",
+                    "description": "When a data lake scenario instance chooses to associate a bucket under another account, you need to set the ID of the account. When importing resources, this attribute will not be imported.\n"
+                },
+                "tosAk": {
+                    "type": "string",
+                    "description": "The tos ak. When the data lake scenario chooses to associate buckets under other accounts, need to set the Access Key ID of the account. When importing resources, this attribute will not be imported.\n"
+                },
+                "tosBucket": {
+                    "type": "string",
+                    "description": "The tos bucket. When importing ACC_MODE resources, this attribute will not be imported.\n"
+                },
+                "tosPrefix": {
+                    "type": "string",
+                    "description": "The tos prefix. Must not start with /, but must end with /, such as prefix/. When it is empty, it means the root path. When importing ACC_MODE resources, this attribute will not be imported.\n"
+                },
+                "tosSk": {
+                    "type": "string",
+                    "description": "The tos sk. When the data lake scenario chooses to associate buckets under other accounts, need to set the Secret Access Key of the account. When importing resources, this attribute will not be imported.\n"
+                },
+                "vpcId": {
+                    "type": "string",
+                    "description": "The id of vpc.\n"
+                },
+                "vpcRouteEnabled": {
+                    "type": "boolean",
+                    "description": "Whether enable all vpc route.\n"
+                },
+                "zoneId": {
+                    "type": "string",
+                    "description": "The id of zone.\n"
+                }
+            },
+            "required": [
+                "accessId",
+                "cachePlan",
+                "createdTime",
+                "fsName",
+                "mode",
+                "mountPoint",
+                "status",
+                "vpcId",
+                "zoneId"
+            ],
+            "inputProperties": {
+                "cacheCapacityTib": {
+                    "type": "integer",
+                    "description": "The capacity of cache. This parameter is required when cache acceleration is enabled.\n"
+                },
+                "cachePlan": {
+                    "type": "string",
+                    "description": "The cache plan. The value can be `DISABLED` or `T2` or `T4`. When expanding the cache size, the cache plan should remain the same. For data lakes, cache must be enabled.\n"
+                },
+                "fsName": {
+                    "type": "string",
+                    "description": "The name of file system.\n",
+                    "willReplaceOnChanges": true
+                },
+                "mode": {
+                    "type": "string",
+                    "description": "The mode of file system. The value can be `HDFS_MODE` or `ACC_MODE`.\n",
+                    "willReplaceOnChanges": true
+                },
+                "readOnly": {
+                    "type": "boolean",
+                    "description": "Whether the Namespace created automatically when mounting the TOS Bucket is read-only. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.\n",
+                    "willReplaceOnChanges": true
+                },
+                "securityGroupId": {
+                    "type": "string",
+                    "description": "The id of security group. This parameter is required when cache acceleration is enabled.\n"
+                },
+                "subnetId": {
+                    "type": "string",
+                    "description": "The id of subnet. This parameter is required when cache acceleration is enabled.\n"
+                },
+                "tosAccountId": {
+                    "type": "integer",
+                    "description": "When a data lake scenario instance chooses to associate a bucket under another account, you need to set the ID of the account. When importing resources, this attribute will not be imported.\n",
+                    "willReplaceOnChanges": true
+                },
+                "tosAk": {
+                    "type": "string",
+                    "description": "The tos ak. When the data lake scenario chooses to associate buckets under other accounts, need to set the Access Key ID of the account. When importing resources, this attribute will not be imported.\n",
+                    "willReplaceOnChanges": true
+                },
+                "tosBucket": {
+                    "type": "string",
+                    "description": "The tos bucket. When importing ACC_MODE resources, this attribute will not be imported.\n",
+                    "willReplaceOnChanges": true
+                },
+                "tosPrefix": {
+                    "type": "string",
+                    "description": "The tos prefix. Must not start with /, but must end with /, such as prefix/. When it is empty, it means the root path. When importing ACC_MODE resources, this attribute will not be imported.\n",
+                    "willReplaceOnChanges": true
+                },
+                "tosSk": {
+                    "type": "string",
+                    "description": "The tos sk. When the data lake scenario chooses to associate buckets under other accounts, need to set the Secret Access Key of the account. When importing resources, this attribute will not be imported.\n",
+                    "willReplaceOnChanges": true
+                },
+                "vpcRouteEnabled": {
+                    "type": "boolean",
+                    "description": "Whether enable all vpc route.\n"
+                },
+                "zoneId": {
+                    "type": "string",
+                    "description": "The id of zone.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "cachePlan",
+                "fsName",
+                "mode",
+                "zoneId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering FileSystem resources.\n",
+                "properties": {
+                    "accessId": {
+                        "type": "string",
+                        "description": "The default vpc access id.\n"
+                    },
+                    "cacheCapacityTib": {
+                        "type": "integer",
+                        "description": "The capacity of cache. This parameter is required when cache acceleration is enabled.\n"
+                    },
+                    "cachePlan": {
+                        "type": "string",
+                        "description": "The cache plan. The value can be `DISABLED` or `T2` or `T4`. When expanding the cache size, the cache plan should remain the same. For data lakes, cache must be enabled.\n"
+                    },
+                    "createdTime": {
+                        "type": "string",
+                        "description": "The creation time.\n"
+                    },
+                    "fsName": {
+                        "type": "string",
+                        "description": "The name of file system.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "mode": {
+                        "type": "string",
+                        "description": "The mode of file system. The value can be `HDFS_MODE` or `ACC_MODE`.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "mountPoint": {
+                        "type": "string",
+                        "description": "The point mount.\n"
+                    },
+                    "readOnly": {
+                        "type": "boolean",
+                        "description": "Whether the Namespace created automatically when mounting the TOS Bucket is read-only. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "securityGroupId": {
+                        "type": "string",
+                        "description": "The id of security group. This parameter is required when cache acceleration is enabled.\n"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "Status of file system.\n"
+                    },
+                    "subnetId": {
+                        "type": "string",
+                        "description": "The id of subnet. This parameter is required when cache acceleration is enabled.\n"
+                    },
+                    "tosAccountId": {
+                        "type": "integer",
+                        "description": "When a data lake scenario instance chooses to associate a bucket under another account, you need to set the ID of the account. When importing resources, this attribute will not be imported.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "tosAk": {
+                        "type": "string",
+                        "description": "The tos ak. When the data lake scenario chooses to associate buckets under other accounts, need to set the Access Key ID of the account. When importing resources, this attribute will not be imported.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "tosBucket": {
+                        "type": "string",
+                        "description": "The tos bucket. When importing ACC_MODE resources, this attribute will not be imported.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "tosPrefix": {
+                        "type": "string",
+                        "description": "The tos prefix. Must not start with /, but must end with /, such as prefix/. When it is empty, it means the root path. When importing ACC_MODE resources, this attribute will not be imported.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "tosSk": {
+                        "type": "string",
+                        "description": "The tos sk. When the data lake scenario chooses to associate buckets under other accounts, need to set the Secret Access Key of the account. When importing resources, this attribute will not be imported.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "vpcId": {
+                        "type": "string",
+                        "description": "The id of vpc.\n"
+                    },
+                    "vpcRouteEnabled": {
+                        "type": "boolean",
+                        "description": "Whether enable all vpc route.\n"
+                    },
+                    "zoneId": {
+                        "type": "string",
+                        "description": "The id of zone.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "volcengine:cloudfs/namespace:Namespace": {
+            "description": "Provides a resource to manage cloudfs namespace\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as volcengine from \"@volcengine/pulumi\";\n\nconst foo = new volcengine.cloudfs.Namespace(\"foo\", {\n    fsName: \"tf-test-fs\",\n    readOnly: true,\n    tosBucket: \"tf-test\",\n});\n```\n```python\nimport pulumi\nimport pulumi_volcengine as volcengine\n\nfoo = volcengine.cloudfs.Namespace(\"foo\",\n    fs_name=\"tf-test-fs\",\n    read_only=True,\n    tos_bucket=\"tf-test\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Volcengine = Volcengine.Pulumi.Volcengine;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var foo = new Volcengine.Cloudfs.Namespace(\"foo\", new()\n    {\n        FsName = \"tf-test-fs\",\n        ReadOnly = true,\n        TosBucket = \"tf-test\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/cloudfs\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudfs.NewNamespace(ctx, \"foo\", \u0026cloudfs.NamespaceArgs{\n\t\t\tFsName:    pulumi.String(\"tf-test-fs\"),\n\t\t\tReadOnly:  pulumi.Bool(true),\n\t\t\tTosBucket: pulumi.String(\"tf-test\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.volcengine.cloudfs.Namespace;\nimport com.pulumi.volcengine.cloudfs.NamespaceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var foo = new Namespace(\"foo\", NamespaceArgs.builder()        \n            .fsName(\"tf-test-fs\")\n            .readOnly(true)\n            .tosBucket(\"tf-test\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  foo:\n    type: volcengine:cloudfs:Namespace\n    properties:\n      fsName: tf-test-fs\n      readOnly: true\n      tosBucket: tf-test\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nCloudfsNamespace can be imported using the FsName:NsId, e.g.\n\n```sh\n $ pulumi import volcengine:cloudfs/namespace:Namespace default tfname:1801439850948****\n```\n\n ",
+            "properties": {
+                "createdTime": {
+                    "type": "string",
+                    "description": "The creation time of the namespace.\n"
+                },
+                "fsName": {
+                    "type": "string",
+                    "description": "The name of file system.\n"
+                },
+                "isMyBucket": {
+                    "type": "boolean",
+                    "description": "Whether the tos bucket is your own bucket.\n"
+                },
+                "nsId": {
+                    "type": "string",
+                    "description": "The id of namespace.\n"
+                },
+                "readOnly": {
+                    "type": "boolean",
+                    "description": "Whether the namespace is read-only.\n"
+                },
+                "serviceManaged": {
+                    "type": "boolean",
+                    "description": "Whether the namespace is the official service for volcengine.\n"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "The status of the namespace.\n"
+                },
+                "tosAccountId": {
+                    "type": "integer",
+                    "description": "When a data lake scenario instance chooses to associate a bucket under another account, you need to set the ID of the account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.\n"
+                },
+                "tosAk": {
+                    "type": "string",
+                    "description": "The tos ak. When the data lake scenario chooses to associate buckets under other accounts, need to set the Access Key ID of the account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.\n"
+                },
+                "tosBucket": {
+                    "type": "string",
+                    "description": "The name of tos bucket.\n"
+                },
+                "tosPrefix": {
+                    "type": "string",
+                    "description": "The tos prefix. Must not start with /, but must end with /, such as prefix/. When it is empty, it means the root path.\n"
+                },
+                "tosSk": {
+                    "type": "string",
+                    "description": "The tos sk. When the data lake scenario chooses to associate buckets under other accounts, need to set the Secret Access Key of the account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.\n"
+                }
+            },
+            "required": [
+                "createdTime",
+                "fsName",
+                "isMyBucket",
+                "nsId",
+                "serviceManaged",
+                "status",
+                "tosBucket"
+            ],
+            "inputProperties": {
+                "fsName": {
+                    "type": "string",
+                    "description": "The name of file system.\n",
+                    "willReplaceOnChanges": true
+                },
+                "readOnly": {
+                    "type": "boolean",
+                    "description": "Whether the namespace is read-only.\n",
+                    "willReplaceOnChanges": true
+                },
+                "tosAccountId": {
+                    "type": "integer",
+                    "description": "When a data lake scenario instance chooses to associate a bucket under another account, you need to set the ID of the account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.\n",
+                    "willReplaceOnChanges": true
+                },
+                "tosAk": {
+                    "type": "string",
+                    "description": "The tos ak. When the data lake scenario chooses to associate buckets under other accounts, need to set the Access Key ID of the account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.\n",
+                    "willReplaceOnChanges": true
+                },
+                "tosBucket": {
+                    "type": "string",
+                    "description": "The name of tos bucket.\n",
+                    "willReplaceOnChanges": true
+                },
+                "tosPrefix": {
+                    "type": "string",
+                    "description": "The tos prefix. Must not start with /, but must end with /, such as prefix/. When it is empty, it means the root path.\n",
+                    "willReplaceOnChanges": true
+                },
+                "tosSk": {
+                    "type": "string",
+                    "description": "The tos sk. When the data lake scenario chooses to associate buckets under other accounts, need to set the Secret Access Key of the account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.\n",
+                    "willReplaceOnChanges": true
+                }
+            },
+            "requiredInputs": [
+                "fsName",
+                "tosBucket"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Namespace resources.\n",
+                "properties": {
+                    "createdTime": {
+                        "type": "string",
+                        "description": "The creation time of the namespace.\n"
+                    },
+                    "fsName": {
+                        "type": "string",
+                        "description": "The name of file system.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "isMyBucket": {
+                        "type": "boolean",
+                        "description": "Whether the tos bucket is your own bucket.\n"
+                    },
+                    "nsId": {
+                        "type": "string",
+                        "description": "The id of namespace.\n"
+                    },
+                    "readOnly": {
+                        "type": "boolean",
+                        "description": "Whether the namespace is read-only.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "serviceManaged": {
+                        "type": "boolean",
+                        "description": "Whether the namespace is the official service for volcengine.\n"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the namespace.\n"
+                    },
+                    "tosAccountId": {
+                        "type": "integer",
+                        "description": "When a data lake scenario instance chooses to associate a bucket under another account, you need to set the ID of the account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "tosAk": {
+                        "type": "string",
+                        "description": "The tos ak. When the data lake scenario chooses to associate buckets under other accounts, need to set the Access Key ID of the account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "tosBucket": {
+                        "type": "string",
+                        "description": "The name of tos bucket.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "tosPrefix": {
+                        "type": "string",
+                        "description": "The tos prefix. Must not start with /, but must end with /, such as prefix/. When it is empty, it means the root path.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "tosSk": {
+                        "type": "string",
+                        "description": "The tos sk. When the data lake scenario chooses to associate buckets under other accounts, need to set the Secret Access Key of the account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.\n",
+                        "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
         "volcengine:cr/endpoint:Endpoint": {
             "description": "Provides a resource to manage cr endpoint\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as volcengine from \"@volcengine/pulumi\";\n\nconst _default = new volcengine.cr.Endpoint(\"default\", {\n    enabled: true,\n    registry: \"tf-1\",\n});\n```\n```python\nimport pulumi\nimport pulumi_volcengine as volcengine\n\ndefault = volcengine.cr.Endpoint(\"default\",\n    enabled=True,\n    registry=\"tf-1\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Volcengine = Volcengine.Pulumi.Volcengine;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var @default = new Volcengine.Cr.Endpoint(\"default\", new()\n    {\n        Enabled = true,\n        Registry = \"tf-1\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/cr\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cr.NewEndpoint(ctx, \"default\", \u0026cr.EndpointArgs{\n\t\t\tEnabled:  pulumi.Bool(true),\n\t\t\tRegistry: pulumi.String(\"tf-1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.volcengine.cr.Endpoint;\nimport com.pulumi.volcengine.cr.EndpointArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var default_ = new Endpoint(\"default\", EndpointArgs.builder()        \n            .enabled(true)\n            .registry(\"tf-1\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  default:\n    type: volcengine:cr:Endpoint\n    properties:\n      enabled: true\n      registry: tf-1\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nCR endpoints can be imported using the endpoint:registryName, e.g.\n\n```sh\n $ pulumi import volcengine:cr/endpoint:Endpoint default endpoint:cr-basic\n```\n\n ",
             "properties": {
@@ -23698,7 +24568,7 @@
                 },
                 "cpuOptions": {
                     "$ref": "#/types/volcengine:ecs/InstanceCpuOptions:InstanceCpuOptions",
-                    "description": "The option of cpu.\n"
+                    "description": "The option of cpu,only support for ebm.\n"
                 },
                 "cpus": {
                     "type": "integer",
@@ -23941,7 +24811,7 @@
                 },
                 "cpuOptions": {
                     "$ref": "#/types/volcengine:ecs/InstanceCpuOptions:InstanceCpuOptions",
-                    "description": "The option of cpu.\n"
+                    "description": "The option of cpu,only support for ebm.\n"
                 },
                 "dataVolumes": {
                     "type": "array",
@@ -24100,7 +24970,7 @@
                     },
                     "cpuOptions": {
                         "$ref": "#/types/volcengine:ecs/InstanceCpuOptions:InstanceCpuOptions",
-                        "description": "The option of cpu.\n"
+                        "description": "The option of cpu,only support for ebm.\n"
                     },
                     "cpus": {
                         "type": "integer",
@@ -31414,6 +32284,10 @@
                     "type": "string",
                     "description": "The name of the bucket.\n"
                 },
+                "content": {
+                    "type": "string",
+                    "description": "The content the TOS Object when content type is json or text and xml.\n"
+                },
                 "contentMd5": {
                     "type": "string",
                     "description": "The file md5 sum (32-bit hexadecimal string) for upload.\n"
@@ -31456,6 +32330,7 @@
             },
             "required": [
                 "bucketName",
+                "content",
                 "contentType",
                 "enableVersion",
                 "filePath",
@@ -31527,6 +32402,10 @@
                         "type": "string",
                         "description": "The name of the bucket.\n",
                         "willReplaceOnChanges": true
+                    },
+                    "content": {
+                        "type": "string",
+                        "description": "The content the TOS Object when content type is json or text and xml.\n"
                     },
                     "contentMd5": {
                         "type": "string",
@@ -37285,6 +38164,292 @@
                 "type": "object",
                 "required": [
                     "masterZones",
+                    "totalCount",
+                    "id"
+                ]
+            }
+        },
+        "volcengine:cloudfs/accesses:Accesses": {
+            "description": "Use this data source to query detailed information of cloudfs accesses\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as volcengine from \"@pulumi/volcengine\";\n\nconst default = volcengine.cloudfs.Accesses({\n    fsName: \"tftest2\",\n});\n```\n```python\nimport pulumi\nimport pulumi_volcengine as volcengine\n\ndefault = volcengine.cloudfs.accesses(fs_name=\"tftest2\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Volcengine = Pulumi.Volcengine;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var @default = Volcengine.Cloudfs.Accesses.Invoke(new()\n    {\n        FsName = \"tftest2\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/cloudfs\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudfs.Accesses(ctx, \u0026cloudfs.AccessesArgs{\n\t\t\tFsName: \"tftest2\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.volcengine.cloudfs.CloudfsFunctions;\nimport com.pulumi.volcengine.cloudfs.inputs.AccessesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var default = CloudfsFunctions.Accesses(AccessesArgs.builder()\n            .fsName(\"tftest2\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  default:\n    fn::invoke:\n      Function: volcengine:cloudfs:Accesses\n      Arguments:\n        fsName: tftest2\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking Accesses.\n",
+                "properties": {
+                    "fsName": {
+                        "type": "string",
+                        "description": "The name of file system.\n"
+                    },
+                    "outputFile": {
+                        "type": "string",
+                        "description": "File name where to save data source results.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "fsName"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by Accesses.\n",
+                "properties": {
+                    "accesses": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/volcengine:cloudfs/AccessesAccess:AccessesAccess"
+                        },
+                        "description": "The collection of query.\n"
+                    },
+                    "fsName": {
+                        "type": "string",
+                        "description": "The name of cloud fs.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "outputFile": {
+                        "type": "string"
+                    },
+                    "totalCount": {
+                        "type": "integer",
+                        "description": "The total count of query.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "accesses",
+                    "fsName",
+                    "totalCount",
+                    "id"
+                ]
+            }
+        },
+        "volcengine:cloudfs/fileSystems:FileSystems": {
+            "description": "Use this data source to query detailed information of cloudfs file systems\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as volcengine from \"@pulumi/volcengine\";\n\nconst default = volcengine.cloudfs.FileSystems({\n    fsName: \"tftest2\",\n});\n```\n```python\nimport pulumi\nimport pulumi_volcengine as volcengine\n\ndefault = volcengine.cloudfs.file_systems(fs_name=\"tftest2\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Volcengine = Pulumi.Volcengine;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var @default = Volcengine.Cloudfs.FileSystems.Invoke(new()\n    {\n        FsName = \"tftest2\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/cloudfs\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudfs.FileSystems(ctx, \u0026cloudfs.FileSystemsArgs{\n\t\t\tFsName: pulumi.StringRef(\"tftest2\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.volcengine.cloudfs.CloudfsFunctions;\nimport com.pulumi.volcengine.cloudfs.inputs.FileSystemsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var default = CloudfsFunctions.FileSystems(FileSystemsArgs.builder()\n            .fsName(\"tftest2\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  default:\n    fn::invoke:\n      Function: volcengine:cloudfs:FileSystems\n      Arguments:\n        fsName: tftest2\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking FileSystems.\n",
+                "properties": {
+                    "fsName": {
+                        "type": "string",
+                        "description": "The name of file system.\n"
+                    },
+                    "metaStatus": {
+                        "type": "string",
+                        "description": "The status of file system.\n"
+                    },
+                    "nameRegex": {
+                        "type": "string",
+                        "description": "A Name Regex of cloudfs.\n"
+                    },
+                    "outputFile": {
+                        "type": "string",
+                        "description": "File name where to save data source results.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by FileSystems.\n",
+                "properties": {
+                    "fileSystems": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/volcengine:cloudfs/FileSystemsFileSystem:FileSystemsFileSystem"
+                        },
+                        "description": "The collection of query.\n"
+                    },
+                    "fsName": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "metaStatus": {
+                        "type": "string"
+                    },
+                    "nameRegex": {
+                        "type": "string"
+                    },
+                    "outputFile": {
+                        "type": "string"
+                    },
+                    "totalCount": {
+                        "type": "integer",
+                        "description": "The total count of query.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "fileSystems",
+                    "totalCount",
+                    "id"
+                ]
+            }
+        },
+        "volcengine:cloudfs/namespaces:Namespaces": {
+            "description": "Use this data source to query detailed information of cloudfs namespaces\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as volcengine from \"@pulumi/volcengine\";\n\nconst default = volcengine.cloudfs.Namespaces({\n    fsName: \"tf-test-fs\",\n    nsId: \"1801439850948****\",\n});\n```\n```python\nimport pulumi\nimport pulumi_volcengine as volcengine\n\ndefault = volcengine.cloudfs.namespaces(fs_name=\"tf-test-fs\",\n    ns_id=\"1801439850948****\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Volcengine = Pulumi.Volcengine;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var @default = Volcengine.Cloudfs.Namespaces.Invoke(new()\n    {\n        FsName = \"tf-test-fs\",\n        NsId = \"1801439850948****\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/cloudfs\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudfs.Namespaces(ctx, \u0026cloudfs.NamespacesArgs{\n\t\t\tFsName: \"tf-test-fs\",\n\t\t\tNsId:   pulumi.StringRef(\"1801439850948****\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.volcengine.cloudfs.CloudfsFunctions;\nimport com.pulumi.volcengine.cloudfs.inputs.NamespacesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var default = CloudfsFunctions.Namespaces(NamespacesArgs.builder()\n            .fsName(\"tf-test-fs\")\n            .nsId(\"1801439850948****\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  default:\n    fn::invoke:\n      Function: volcengine:cloudfs:Namespaces\n      Arguments:\n        fsName: tf-test-fs\n        nsId: 1801439850948****\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking Namespaces.\n",
+                "properties": {
+                    "fsName": {
+                        "type": "string",
+                        "description": "The name of file system.\n"
+                    },
+                    "nsId": {
+                        "type": "string",
+                        "description": "The id of namespace.\n"
+                    },
+                    "outputFile": {
+                        "type": "string",
+                        "description": "File name where to save data source results.\n"
+                    },
+                    "tosBucket": {
+                        "type": "string",
+                        "description": "The name of tos bucket.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "fsName"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by Namespaces.\n",
+                "properties": {
+                    "fsName": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "namespaces": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/volcengine:cloudfs/NamespacesNamespace:NamespacesNamespace"
+                        },
+                        "description": "The collection of query.\n"
+                    },
+                    "nsId": {
+                        "type": "string"
+                    },
+                    "outputFile": {
+                        "type": "string"
+                    },
+                    "tosBucket": {
+                        "type": "string",
+                        "description": "The name of the tos bucket.\n"
+                    },
+                    "totalCount": {
+                        "type": "integer",
+                        "description": "The total count of query.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "fsName",
+                    "namespaces",
+                    "totalCount",
+                    "id"
+                ]
+            }
+        },
+        "volcengine:cloudfs/nsQuotas:NsQuotas": {
+            "description": "Use this data source to query detailed information of cloudfs ns quotas\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as volcengine from \"@pulumi/volcengine\";\n\nconst default = volcengine.cloudfs.NsQuotas({\n    fsNames: [\n        \"tffile\",\n        \"tftest2\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_volcengine as volcengine\n\ndefault = volcengine.cloudfs.ns_quotas(fs_names=[\n    \"tffile\",\n    \"tftest2\",\n])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Volcengine = Pulumi.Volcengine;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var @default = Volcengine.Cloudfs.NsQuotas.Invoke(new()\n    {\n        FsNames = new[]\n        {\n            \"tffile\",\n            \"tftest2\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/cloudfs\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudfs.NsQuotas(ctx, \u0026cloudfs.NsQuotasArgs{\n\t\t\tFsNames: []string{\n\t\t\t\t\"tffile\",\n\t\t\t\t\"tftest2\",\n\t\t\t},\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.volcengine.cloudfs.CloudfsFunctions;\nimport com.pulumi.volcengine.cloudfs.inputs.NsQuotasArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var default = CloudfsFunctions.NsQuotas(NsQuotasArgs.builder()\n            .fsNames(            \n                \"tffile\",\n                \"tftest2\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  default:\n    fn::invoke:\n      Function: volcengine:cloudfs:NsQuotas\n      Arguments:\n        fsNames:\n          - tffile\n          - tftest2\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking NsQuotas.\n",
+                "properties": {
+                    "fsNames": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "A list of fs name.\n"
+                    },
+                    "outputFile": {
+                        "type": "string",
+                        "description": "File name where to save data source results.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "fsNames"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by NsQuotas.\n",
+                "properties": {
+                    "fsNames": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "outputFile": {
+                        "type": "string"
+                    },
+                    "quotas": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/volcengine:cloudfs/NsQuotasQuota:NsQuotasQuota"
+                        },
+                        "description": "The collection of query.\n"
+                    },
+                    "totalCount": {
+                        "type": "integer",
+                        "description": "The total count of cloud fs quota query.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "fsNames",
+                    "quotas",
+                    "totalCount",
+                    "id"
+                ]
+            }
+        },
+        "volcengine:cloudfs/quotas:Quotas": {
+            "description": "Use this data source to query detailed information of cloudfs quotas\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as volcengine from \"@pulumi/volcengine\";\n\nconst default = volcengine.cloudfs.Quotas({});\n```\n```python\nimport pulumi\nimport pulumi_volcengine as volcengine\n\ndefault = volcengine.cloudfs.quotas()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Volcengine = Pulumi.Volcengine;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var @default = Volcengine.Cloudfs.Quotas.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/cloudfs\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := cloudfs.Quotas(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.volcengine.cloudfs.CloudfsFunctions;\nimport com.pulumi.volcengine.cloudfs.inputs.QuotasArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var default = CloudfsFunctions.Quotas();\n\n    }\n}\n```\n```yaml\nvariables:\n  default:\n    fn::invoke:\n      Function: volcengine:cloudfs:Quotas\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking Quotas.\n",
+                "properties": {
+                    "outputFile": {
+                        "type": "string",
+                        "description": "File name where to save data source results.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by Quotas.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "outputFile": {
+                        "type": "string"
+                    },
+                    "quotas": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/volcengine:cloudfs/QuotasQuota:QuotasQuota"
+                        },
+                        "description": "The collection of query.\n"
+                    },
+                    "totalCount": {
+                        "type": "integer",
+                        "description": "The total count of cloud fs quota query.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "quotas",
                     "totalCount",
                     "id"
                 ]

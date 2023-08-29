@@ -289,7 +289,7 @@ class InstanceCpuOptions(dict):
     def __init__(__self__, *,
                  threads_per_core: int):
         """
-        :param int threads_per_core: The per core of threads.
+        :param int threads_per_core: The per core of threads,only support for ebm.
         """
         pulumi.set(__self__, "threads_per_core", threads_per_core)
 
@@ -297,7 +297,7 @@ class InstanceCpuOptions(dict):
     @pulumi.getter(name="threadsPerCore")
     def threads_per_core(self) -> int:
         """
-        The per core of threads.
+        The per core of threads,only support for ebm.
         """
         return pulumi.get(self, "threads_per_core")
 

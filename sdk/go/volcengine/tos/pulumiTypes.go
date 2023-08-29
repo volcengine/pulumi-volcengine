@@ -244,6 +244,8 @@ func (o BucketObjectAccountAclArrayOutput) Index(i pulumi.IntInput) BucketObject
 }
 
 type BucketObjectsObject struct {
+	// The content the TOS Object when content type is json or text and xml.
+	Content string `pulumi:"content"`
 	// The name the TOS Object.
 	Name string `pulumi:"name"`
 	// The name the TOS Object size.
@@ -264,6 +266,8 @@ type BucketObjectsObjectInput interface {
 }
 
 type BucketObjectsObjectArgs struct {
+	// The content the TOS Object when content type is json or text and xml.
+	Content pulumi.StringInput `pulumi:"content"`
 	// The name the TOS Object.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The name the TOS Object size.
@@ -321,6 +325,11 @@ func (o BucketObjectsObjectOutput) ToBucketObjectsObjectOutput() BucketObjectsOb
 
 func (o BucketObjectsObjectOutput) ToBucketObjectsObjectOutputWithContext(ctx context.Context) BucketObjectsObjectOutput {
 	return o
+}
+
+// The content the TOS Object when content type is json or text and xml.
+func (o BucketObjectsObjectOutput) Content() pulumi.StringOutput {
+	return o.ApplyT(func(v BucketObjectsObject) string { return v.Content }).(pulumi.StringOutput)
 }
 
 // The name the TOS Object.

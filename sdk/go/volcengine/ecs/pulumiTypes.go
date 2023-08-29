@@ -370,7 +370,7 @@ func (o ImagesImageArrayOutput) Index(i pulumi.IntInput) ImagesImageOutput {
 }
 
 type InstanceCpuOptions struct {
-	// The per core of threads.
+	// The per core of threads,only support for ebm.
 	ThreadsPerCore int `pulumi:"threadsPerCore"`
 }
 
@@ -386,7 +386,7 @@ type InstanceCpuOptionsInput interface {
 }
 
 type InstanceCpuOptionsArgs struct {
-	// The per core of threads.
+	// The per core of threads,only support for ebm.
 	ThreadsPerCore pulumi.IntInput `pulumi:"threadsPerCore"`
 }
 
@@ -467,7 +467,7 @@ func (o InstanceCpuOptionsOutput) ToInstanceCpuOptionsPtrOutputWithContext(ctx c
 	}).(InstanceCpuOptionsPtrOutput)
 }
 
-// The per core of threads.
+// The per core of threads,only support for ebm.
 func (o InstanceCpuOptionsOutput) ThreadsPerCore() pulumi.IntOutput {
 	return o.ApplyT(func(v InstanceCpuOptions) int { return v.ThreadsPerCore }).(pulumi.IntOutput)
 }
@@ -496,7 +496,7 @@ func (o InstanceCpuOptionsPtrOutput) Elem() InstanceCpuOptionsOutput {
 	}).(InstanceCpuOptionsOutput)
 }
 
-// The per core of threads.
+// The per core of threads,only support for ebm.
 func (o InstanceCpuOptionsPtrOutput) ThreadsPerCore() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *InstanceCpuOptions) *int {
 		if v == nil {

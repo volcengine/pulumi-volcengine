@@ -56,7 +56,7 @@ class InstanceArgs:
         :param pulumi.Input[str] system_volume_type: The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         :param pulumi.Input[bool] auto_renew: The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[int] auto_renew_period: The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
-        :param pulumi.Input['InstanceCpuOptionsArgs'] cpu_options: The option of cpu.
+        :param pulumi.Input['InstanceCpuOptionsArgs'] cpu_options: The option of cpu,only support for ebm.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceDataVolumeArgs']]] data_volumes: The data volumes collection of  ECS instance.
         :param pulumi.Input[str] deployment_set_id: The ID of Ecs Deployment Set.
         :param pulumi.Input[str] description: The description of ECS instance.
@@ -237,7 +237,7 @@ class InstanceArgs:
     @pulumi.getter(name="cpuOptions")
     def cpu_options(self) -> Optional[pulumi.Input['InstanceCpuOptionsArgs']]:
         """
-        The option of cpu.
+        The option of cpu,only support for ebm.
         """
         return pulumi.get(self, "cpu_options")
 
@@ -554,7 +554,7 @@ class _InstanceState:
         Input properties used for looking up and filtering Instance resources.
         :param pulumi.Input[bool] auto_renew: The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[int] auto_renew_period: The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
-        :param pulumi.Input['InstanceCpuOptionsArgs'] cpu_options: The option of cpu.
+        :param pulumi.Input['InstanceCpuOptionsArgs'] cpu_options: The option of cpu,only support for ebm.
         :param pulumi.Input[int] cpus: The number of ECS instance CPU cores.
         :param pulumi.Input[str] created_at: The create time of ECS instance.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceDataVolumeArgs']]] data_volumes: The data volumes collection of  ECS instance.
@@ -723,7 +723,7 @@ class _InstanceState:
     @pulumi.getter(name="cpuOptions")
     def cpu_options(self) -> Optional[pulumi.Input['InstanceCpuOptionsArgs']]:
         """
-        The option of cpu.
+        The option of cpu,only support for ebm.
         """
         return pulumi.get(self, "cpu_options")
 
@@ -1345,7 +1345,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] auto_renew: The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[int] auto_renew_period: The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
-        :param pulumi.Input[pulumi.InputType['InstanceCpuOptionsArgs']] cpu_options: The option of cpu.
+        :param pulumi.Input[pulumi.InputType['InstanceCpuOptionsArgs']] cpu_options: The option of cpu,only support for ebm.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceDataVolumeArgs']]]] data_volumes: The data volumes collection of  ECS instance.
         :param pulumi.Input[str] deployment_set_id: The ID of Ecs Deployment Set.
         :param pulumi.Input[str] description: The description of ECS instance.
@@ -1616,7 +1616,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] auto_renew: The auto renew flag of ECS instance.Only effective when instance_charge_type is PrePaid. Default is true.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[int] auto_renew_period: The auto renew period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
-        :param pulumi.Input[pulumi.InputType['InstanceCpuOptionsArgs']] cpu_options: The option of cpu.
+        :param pulumi.Input[pulumi.InputType['InstanceCpuOptionsArgs']] cpu_options: The option of cpu,only support for ebm.
         :param pulumi.Input[int] cpus: The number of ECS instance CPU cores.
         :param pulumi.Input[str] created_at: The create time of ECS instance.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceDataVolumeArgs']]]] data_volumes: The data volumes collection of  ECS instance.
@@ -1736,7 +1736,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="cpuOptions")
     def cpu_options(self) -> pulumi.Output['outputs.InstanceCpuOptions']:
         """
-        The option of cpu.
+        The option of cpu,only support for ebm.
         """
         return pulumi.get(self, "cpu_options")
 

@@ -71,6 +71,12 @@ namespace Volcengine.Pulumi.Volcengine.Tos
         public Output<string> BucketName { get; private set; } = null!;
 
         /// <summary>
+        /// The content the TOS Object when content type is json or text and xml.
+        /// </summary>
+        [Output("content")]
+        public Output<string> Content { get; private set; } = null!;
+
+        /// <summary>
         /// The file md5 sum (32-bit hexadecimal string) for upload.
         /// </summary>
         [Output("contentMd5")]
@@ -256,6 +262,12 @@ namespace Volcengine.Pulumi.Volcengine.Tos
         /// </summary>
         [Input("bucketName")]
         public Input<string>? BucketName { get; set; }
+
+        /// <summary>
+        /// The content the TOS Object when content type is json or text and xml.
+        /// </summary>
+        [Input("content")]
+        public Input<string>? Content { get; set; }
 
         /// <summary>
         /// The file md5 sum (32-bit hexadecimal string) for upload.

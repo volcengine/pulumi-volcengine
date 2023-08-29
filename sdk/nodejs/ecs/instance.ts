@@ -104,7 +104,7 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly autoRenewPeriod!: pulumi.Output<number | undefined>;
     /**
-     * The option of cpu.
+     * The option of cpu,only support for ebm.
      */
     public readonly cpuOptions!: pulumi.Output<outputs.ecs.InstanceCpuOptions>;
     /**
@@ -429,7 +429,7 @@ export interface InstanceState {
      */
     autoRenewPeriod?: pulumi.Input<number>;
     /**
-     * The option of cpu.
+     * The option of cpu,only support for ebm.
      */
     cpuOptions?: pulumi.Input<inputs.ecs.InstanceCpuOptions>;
     /**
@@ -622,7 +622,7 @@ export interface InstanceArgs {
      */
     autoRenewPeriod?: pulumi.Input<number>;
     /**
-     * The option of cpu.
+     * The option of cpu,only support for ebm.
      */
     cpuOptions?: pulumi.Input<inputs.ecs.InstanceCpuOptions>;
     /**

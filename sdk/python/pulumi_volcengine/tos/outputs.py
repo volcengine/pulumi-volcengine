@@ -139,17 +139,28 @@ class BucketObjectAccountAcl(dict):
 @pulumi.output_type
 class BucketObjectsObjectResult(dict):
     def __init__(__self__, *,
+                 content: str,
                  name: str,
                  size: int,
                  storage_class: str):
         """
+        :param str content: The content the TOS Object when content type is json or text and xml.
         :param str name: The name the TOS Object.
         :param int size: The name the TOS Object size.
         :param str storage_class: The name the TOS Object storage class.
         """
+        pulumi.set(__self__, "content", content)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "size", size)
         pulumi.set(__self__, "storage_class", storage_class)
+
+    @property
+    @pulumi.getter
+    def content(self) -> str:
+        """
+        The content the TOS Object when content type is json or text and xml.
+        """
+        return pulumi.get(self, "content")
 
     @property
     @pulumi.getter

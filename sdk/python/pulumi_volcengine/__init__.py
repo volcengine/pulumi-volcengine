@@ -17,6 +17,8 @@ if typing.TYPE_CHECKING:
     cen = __cen
     import pulumi_volcengine.clb as __clb
     clb = __clb
+    import pulumi_volcengine.cloudfs as __cloudfs
+    cloudfs = __cloudfs
     import pulumi_volcengine.config as __config
     config = __config
     import pulumi_volcengine.cr as __cr
@@ -62,6 +64,7 @@ else:
     bioos = _utilities.lazy_import('pulumi_volcengine.bioos')
     cen = _utilities.lazy_import('pulumi_volcengine.cen')
     clb = _utilities.lazy_import('pulumi_volcengine.clb')
+    cloudfs = _utilities.lazy_import('pulumi_volcengine.cloudfs')
     config = _utilities.lazy_import('pulumi_volcengine.config')
     cr = _utilities.lazy_import('pulumi_volcengine.cr')
     ebs = _utilities.lazy_import('pulumi_volcengine.ebs')
@@ -292,6 +295,30 @@ _utilities.register(
   "fqn": "pulumi_volcengine.clb",
   "classes": {
    "volcengine:clb/serverGroupServer:ServerGroupServer": "ServerGroupServer"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cloudfs/access",
+  "fqn": "pulumi_volcengine.cloudfs",
+  "classes": {
+   "volcengine:cloudfs/access:Access": "Access"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cloudfs/fileSystem",
+  "fqn": "pulumi_volcengine.cloudfs",
+  "classes": {
+   "volcengine:cloudfs/fileSystem:FileSystem": "FileSystem"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cloudfs/namespace",
+  "fqn": "pulumi_volcengine.cloudfs",
+  "classes": {
+   "volcengine:cloudfs/namespace:Namespace": "Namespace"
   }
  },
  {

@@ -307,6 +307,9 @@ export namespace clb {
 
 }
 
+export namespace cloudfs {
+}
+
 export namespace cr {
     export interface RegistriesStatus {
         /**
@@ -420,7 +423,7 @@ export namespace ebs {
 export namespace ecs {
     export interface InstanceCpuOptions {
         /**
-         * The per core of threads.
+         * The per core of threads,only support for ebm.
          */
         threadsPerCore: pulumi.Input<number>;
     }

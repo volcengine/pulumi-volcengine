@@ -116,7 +116,7 @@ type Instance struct {
 	AutoRenew pulumi.BoolPtrOutput `pulumi:"autoRenew"`
 	// The auto renew period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	AutoRenewPeriod pulumi.IntPtrOutput `pulumi:"autoRenewPeriod"`
-	// The option of cpu.
+	// The option of cpu,only support for ebm.
 	CpuOptions InstanceCpuOptionsOutput `pulumi:"cpuOptions"`
 	// The number of ECS instance CPU cores.
 	Cpus pulumi.IntOutput `pulumi:"cpus"`
@@ -268,7 +268,7 @@ type instanceState struct {
 	AutoRenew *bool `pulumi:"autoRenew"`
 	// The auto renew period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	AutoRenewPeriod *int `pulumi:"autoRenewPeriod"`
-	// The option of cpu.
+	// The option of cpu,only support for ebm.
 	CpuOptions *InstanceCpuOptions `pulumi:"cpuOptions"`
 	// The number of ECS instance CPU cores.
 	Cpus *int `pulumi:"cpus"`
@@ -366,7 +366,7 @@ type InstanceState struct {
 	AutoRenew pulumi.BoolPtrInput
 	// The auto renew period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	AutoRenewPeriod pulumi.IntPtrInput
-	// The option of cpu.
+	// The option of cpu,only support for ebm.
 	CpuOptions InstanceCpuOptionsPtrInput
 	// The number of ECS instance CPU cores.
 	Cpus pulumi.IntPtrInput
@@ -468,7 +468,7 @@ type instanceArgs struct {
 	AutoRenew *bool `pulumi:"autoRenew"`
 	// The auto renew period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	AutoRenewPeriod *int `pulumi:"autoRenewPeriod"`
-	// The option of cpu.
+	// The option of cpu,only support for ebm.
 	CpuOptions *InstanceCpuOptions `pulumi:"cpuOptions"`
 	// The data volumes collection of  ECS instance.
 	DataVolumes []InstanceDataVolume `pulumi:"dataVolumes"`
@@ -535,7 +535,7 @@ type InstanceArgs struct {
 	AutoRenew pulumi.BoolPtrInput
 	// The auto renew period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 1.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	AutoRenewPeriod pulumi.IntPtrInput
-	// The option of cpu.
+	// The option of cpu,only support for ebm.
 	CpuOptions InstanceCpuOptionsPtrInput
 	// The data volumes collection of  ECS instance.
 	DataVolumes InstanceDataVolumeArrayInput
@@ -693,7 +693,7 @@ func (o InstanceOutput) AutoRenewPeriod() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Instance) pulumi.IntPtrOutput { return v.AutoRenewPeriod }).(pulumi.IntPtrOutput)
 }
 
-// The option of cpu.
+// The option of cpu,only support for ebm.
 func (o InstanceOutput) CpuOptions() InstanceCpuOptionsOutput {
 	return o.ApplyT(func(v *Instance) InstanceCpuOptionsOutput { return v.CpuOptions }).(InstanceCpuOptionsOutput)
 }

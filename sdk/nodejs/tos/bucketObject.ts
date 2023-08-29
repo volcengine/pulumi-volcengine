@@ -78,6 +78,10 @@ export class BucketObject extends pulumi.CustomResource {
      */
     public readonly bucketName!: pulumi.Output<string>;
     /**
+     * The content the TOS Object when content type is json or text and xml.
+     */
+    public /*out*/ readonly content!: pulumi.Output<string>;
+    /**
      * The file md5 sum (32-bit hexadecimal string) for upload.
      */
     public readonly contentMd5!: pulumi.Output<string | undefined>;
@@ -129,6 +133,7 @@ export class BucketObject extends pulumi.CustomResource {
             const state = argsOrState as BucketObjectState | undefined;
             resourceInputs["accountAcls"] = state ? state.accountAcls : undefined;
             resourceInputs["bucketName"] = state ? state.bucketName : undefined;
+            resourceInputs["content"] = state ? state.content : undefined;
             resourceInputs["contentMd5"] = state ? state.contentMd5 : undefined;
             resourceInputs["contentType"] = state ? state.contentType : undefined;
             resourceInputs["enableVersion"] = state ? state.enableVersion : undefined;
@@ -158,6 +163,7 @@ export class BucketObject extends pulumi.CustomResource {
             resourceInputs["objectName"] = args ? args.objectName : undefined;
             resourceInputs["publicAcl"] = args ? args.publicAcl : undefined;
             resourceInputs["storageClass"] = args ? args.storageClass : undefined;
+            resourceInputs["content"] = undefined /*out*/;
             resourceInputs["enableVersion"] = undefined /*out*/;
             resourceInputs["versionIds"] = undefined /*out*/;
         }
@@ -178,6 +184,10 @@ export interface BucketObjectState {
      * The name of the bucket.
      */
     bucketName?: pulumi.Input<string>;
+    /**
+     * The content the TOS Object when content type is json or text and xml.
+     */
+    content?: pulumi.Input<string>;
     /**
      * The file md5 sum (32-bit hexadecimal string) for upload.
      */

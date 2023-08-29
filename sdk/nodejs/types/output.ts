@@ -1590,6 +1590,204 @@ export namespace clb {
 
 }
 
+export namespace cloudfs {
+    export interface AccessesAccess {
+        /**
+         * The account id of access.
+         */
+        accessAccountId: number;
+        /**
+         * The id of access.
+         */
+        accessId: string;
+        /**
+         * The service name of access.
+         */
+        accessServiceName: string;
+        /**
+         * The creation time.
+         */
+        createdTime: string;
+        /**
+         * The name of file system.
+         */
+        fsName: string;
+        /**
+         * Whether is default access.
+         */
+        isDefault: boolean;
+        /**
+         * The id of security group.
+         */
+        securityGroupId: string;
+        /**
+         * The status of access.
+         */
+        status: string;
+        /**
+         * The id of subnet.
+         */
+        subnetId: string;
+        /**
+         * The id of vpc.
+         */
+        vpcId: string;
+        /**
+         * Whether to enable all vpc route.
+         */
+        vpcRouteEnabled: boolean;
+    }
+
+    export interface FileSystemsFileSystem {
+        /**
+         * The capacity of cache.
+         */
+        cacheCapacityTib: number;
+        /**
+         * The plan of cache.
+         */
+        cachePlan: string;
+        /**
+         * The creation time.
+         */
+        createdTime: string;
+        /**
+         * The ID of file system.
+         */
+        id: string;
+        /**
+         * The mode of file system.
+         */
+        mode: string;
+        /**
+         * The point mount.
+         */
+        mountPoint: string;
+        /**
+         * The name of file system.
+         */
+        name: string;
+        /**
+         * The id of region.
+         */
+        regionId: string;
+        /**
+         * The id of security group.
+         */
+        securityGroupId: string;
+        /**
+         * The status of file system.
+         */
+        status: string;
+        /**
+         * The id of subnet.
+         */
+        subnetId: string;
+        /**
+         * The tos bucket.
+         */
+        tosBucket: string;
+        /**
+         * The tos prefix.
+         */
+        tosPrefix: string;
+        /**
+         * The id of vpc.
+         */
+        vpcId: string;
+        /**
+         * The id of zone.
+         */
+        zoneId: string;
+    }
+
+    export interface NamespacesNamespace {
+        /**
+         * The creation time of the namespace.
+         */
+        createdTime: string;
+        /**
+         * The ID of the namespace.
+         */
+        id: string;
+        /**
+         * Whether the tos bucket is your own bucket.
+         */
+        isMyBucket: boolean;
+        /**
+         * Whether the namespace is read-only.
+         */
+        readOnly: boolean;
+        /**
+         * Whether the namespace is the official service for volcengine.
+         */
+        serviceManaged: boolean;
+        /**
+         * The status of the namespace.
+         */
+        status: string;
+        /**
+         * The name of tos bucket.
+         */
+        tosBucket: string;
+        /**
+         * The tos prefix.
+         */
+        tosPrefix: string;
+    }
+
+    export interface NsQuotasQuota {
+        /**
+         * The ID of account.
+         */
+        accountId: number;
+        /**
+         * The name of fs.
+         */
+        fsName: string;
+        /**
+         * The count of cloud fs namespace.
+         */
+        nsCount: number;
+        /**
+         * This file stores the number of namespaces under the instance.
+         */
+        nsCountPerFs: number;
+        /**
+         * The quota of cloud fs namespace.
+         */
+        nsQuota: number;
+        /**
+         * This file stores the total namespace quota under the instance.
+         */
+        nsQuotaPerFs: number;
+        /**
+         * Whether is enough of cloud fs namespace.
+         */
+        quotaEnough: boolean;
+    }
+
+    export interface QuotasQuota {
+        /**
+         * The ID of account.
+         */
+        accountId: number;
+        /**
+         * The count of cloud fs.
+         */
+        fsCount: number;
+        /**
+         * The quota of cloud fs.
+         */
+        fsQuota: number;
+        /**
+         * Whether is enough of cloud fs.
+         */
+        quotaEnough: boolean;
+    }
+
+}
+
 export namespace cr {
     export interface AuthorizationTokensToken {
         /**
@@ -2048,7 +2246,7 @@ export namespace ecs {
 
     export interface InstanceCpuOptions {
         /**
-         * The per core of threads.
+         * The per core of threads,only support for ebm.
          */
         threadsPerCore: number;
     }
@@ -8246,6 +8444,10 @@ export namespace tos {
     }
 
     export interface BucketObjectsObject {
+        /**
+         * The content the TOS Object when content type is json or text and xml.
+         */
+        content: string;
         /**
          * The name the TOS Object.
          */

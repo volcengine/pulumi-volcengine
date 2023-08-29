@@ -167,6 +167,7 @@ class _BucketObjectState:
     def __init__(__self__, *,
                  account_acls: Optional[pulumi.Input[Sequence[pulumi.Input['BucketObjectAccountAclArgs']]]] = None,
                  bucket_name: Optional[pulumi.Input[str]] = None,
+                 content: Optional[pulumi.Input[str]] = None,
                  content_md5: Optional[pulumi.Input[str]] = None,
                  content_type: Optional[pulumi.Input[str]] = None,
                  enable_version: Optional[pulumi.Input[bool]] = None,
@@ -180,6 +181,7 @@ class _BucketObjectState:
         Input properties used for looking up and filtering BucketObject resources.
         :param pulumi.Input[Sequence[pulumi.Input['BucketObjectAccountAclArgs']]] account_acls: The user set of grant full control.
         :param pulumi.Input[str] bucket_name: The name of the bucket.
+        :param pulumi.Input[str] content: The content the TOS Object when content type is json or text and xml.
         :param pulumi.Input[str] content_md5: The file md5 sum (32-bit hexadecimal string) for upload.
         :param pulumi.Input[str] content_type: The content type of the object.
         :param pulumi.Input[bool] enable_version: The flag of enable tos version.
@@ -194,6 +196,8 @@ class _BucketObjectState:
             pulumi.set(__self__, "account_acls", account_acls)
         if bucket_name is not None:
             pulumi.set(__self__, "bucket_name", bucket_name)
+        if content is not None:
+            pulumi.set(__self__, "content", content)
         if content_md5 is not None:
             pulumi.set(__self__, "content_md5", content_md5)
         if content_type is not None:
@@ -236,6 +240,18 @@ class _BucketObjectState:
     @bucket_name.setter
     def bucket_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "bucket_name", value)
+
+    @property
+    @pulumi.getter
+    def content(self) -> Optional[pulumi.Input[str]]:
+        """
+        The content the TOS Object when content type is json or text and xml.
+        """
+        return pulumi.get(self, "content")
+
+    @content.setter
+    def content(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "content", value)
 
     @property
     @pulumi.getter(name="contentMd5")
@@ -495,6 +511,7 @@ class BucketObject(pulumi.CustomResource):
             __props__.__dict__["object_name"] = object_name
             __props__.__dict__["public_acl"] = public_acl
             __props__.__dict__["storage_class"] = storage_class
+            __props__.__dict__["content"] = None
             __props__.__dict__["enable_version"] = None
             __props__.__dict__["version_ids"] = None
         super(BucketObject, __self__).__init__(
@@ -509,6 +526,7 @@ class BucketObject(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             account_acls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BucketObjectAccountAclArgs']]]]] = None,
             bucket_name: Optional[pulumi.Input[str]] = None,
+            content: Optional[pulumi.Input[str]] = None,
             content_md5: Optional[pulumi.Input[str]] = None,
             content_type: Optional[pulumi.Input[str]] = None,
             enable_version: Optional[pulumi.Input[bool]] = None,
@@ -527,6 +545,7 @@ class BucketObject(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BucketObjectAccountAclArgs']]]] account_acls: The user set of grant full control.
         :param pulumi.Input[str] bucket_name: The name of the bucket.
+        :param pulumi.Input[str] content: The content the TOS Object when content type is json or text and xml.
         :param pulumi.Input[str] content_md5: The file md5 sum (32-bit hexadecimal string) for upload.
         :param pulumi.Input[str] content_type: The content type of the object.
         :param pulumi.Input[bool] enable_version: The flag of enable tos version.
@@ -543,6 +562,7 @@ class BucketObject(pulumi.CustomResource):
 
         __props__.__dict__["account_acls"] = account_acls
         __props__.__dict__["bucket_name"] = bucket_name
+        __props__.__dict__["content"] = content
         __props__.__dict__["content_md5"] = content_md5
         __props__.__dict__["content_type"] = content_type
         __props__.__dict__["enable_version"] = enable_version
@@ -569,6 +589,14 @@ class BucketObject(pulumi.CustomResource):
         The name of the bucket.
         """
         return pulumi.get(self, "bucket_name")
+
+    @property
+    @pulumi.getter
+    def content(self) -> pulumi.Output[str]:
+        """
+        The content the TOS Object when content type is json or text and xml.
+        """
+        return pulumi.get(self, "content")
 
     @property
     @pulumi.getter(name="contentMd5")

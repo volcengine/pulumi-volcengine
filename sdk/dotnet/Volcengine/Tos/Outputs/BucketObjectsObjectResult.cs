@@ -15,6 +15,10 @@ namespace Volcengine.Pulumi.Volcengine.Tos.Outputs
     public sealed class BucketObjectsObjectResult
     {
         /// <summary>
+        /// The content the TOS Object when content type is json or text and xml.
+        /// </summary>
+        public readonly string Content;
+        /// <summary>
         /// The name the TOS Object.
         /// </summary>
         public readonly string Name;
@@ -29,12 +33,15 @@ namespace Volcengine.Pulumi.Volcengine.Tos.Outputs
 
         [OutputConstructor]
         private BucketObjectsObjectResult(
+            string content,
+
             string name,
 
             int size,
 
             string storageClass)
         {
+            Content = content;
             Name = name;
             Size = size;
             StorageClass = storageClass;
