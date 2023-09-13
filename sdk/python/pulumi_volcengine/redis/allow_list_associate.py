@@ -105,12 +105,36 @@ class AllowListAssociate(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        default = volcengine.redis.AllowListAssociate("default",
-            allow_list_id="acl-cnlfc5zsxscu1gg2ajh",
-            instance_id="redis-cnlfbzifs7bpvundz")
-        default1 = volcengine.redis.AllowListAssociate("default1",
-            allow_list_id="acl-cnlff2mb31zo85p5am7",
-            instance_id="redis-cnlfbzifs7bpvundz")
+        foo_allow_list = volcengine.redis.AllowList("fooAllowList",
+            allow_lists=["192.168.0.0/24"],
+            allow_list_name="acc-test-allowlist")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_instance = volcengine.redis.Instance("fooInstance",
+            zone_ids=[foo_zones.zones[0].id],
+            instance_name="acc-test-tf-redis",
+            sharded_cluster=1,
+            password="1qaz!QAZ12",
+            node_number=2,
+            shard_capacity=1024,
+            shard_number=2,
+            engine_version="5.0",
+            subnet_id=foo_subnet.id,
+            deletion_protection="disabled",
+            vpc_auth_mode="close",
+            charge_type="PostPaid",
+            port=6381,
+            project_name="default")
+        foo_allow_list_associate = volcengine.redis.AllowListAssociate("fooAllowListAssociate",
+            allow_list_id=foo_allow_list.id,
+            instance_id=foo_instance.id)
         ```
 
         ## Import
@@ -140,12 +164,36 @@ class AllowListAssociate(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        default = volcengine.redis.AllowListAssociate("default",
-            allow_list_id="acl-cnlfc5zsxscu1gg2ajh",
-            instance_id="redis-cnlfbzifs7bpvundz")
-        default1 = volcengine.redis.AllowListAssociate("default1",
-            allow_list_id="acl-cnlff2mb31zo85p5am7",
-            instance_id="redis-cnlfbzifs7bpvundz")
+        foo_allow_list = volcengine.redis.AllowList("fooAllowList",
+            allow_lists=["192.168.0.0/24"],
+            allow_list_name="acc-test-allowlist")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_instance = volcengine.redis.Instance("fooInstance",
+            zone_ids=[foo_zones.zones[0].id],
+            instance_name="acc-test-tf-redis",
+            sharded_cluster=1,
+            password="1qaz!QAZ12",
+            node_number=2,
+            shard_capacity=1024,
+            shard_number=2,
+            engine_version="5.0",
+            subnet_id=foo_subnet.id,
+            deletion_protection="disabled",
+            vpc_auth_mode="close",
+            charge_type="PostPaid",
+            port=6381,
+            project_name="default")
+        foo_allow_list_associate = volcengine.redis.AllowListAssociate("fooAllowListAssociate",
+            allow_list_id=foo_allow_list.id,
+            instance_id=foo_instance.id)
         ```
 
         ## Import

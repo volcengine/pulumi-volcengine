@@ -13,9 +13,13 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.rds_mysql.Allowlist("foo", {
- *     allowLists: ["127.0.0.1"],
- *     allowListDesc: "terraform test zzm",
- *     allowListName: "tf-test-opt",
+ *     allowLists: [
+ *         "192.168.0.0/24",
+ *         "192.168.1.0/24",
+ *     ],
+ *     allowListDesc: "acc-test",
+ *     allowListName: "acc-test-allowlist",
+ *     allowListType: "IPv4",
  * });
  * ```
  *

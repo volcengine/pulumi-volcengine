@@ -11,40 +11,35 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.redis.Instance("foo", {
- *     applyImmediately: true,
- *     backupActive: true,
- *     backupHour: 4,
- *     backupPeriods: [
- *         1,
- *         2,
- *         3,
- *     ],
- *     chargeType: "PostPaid",
- *     createBackup: false,
- *     deletionProtection: "disabled",
- *     engineVersion: "5.0",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooInstance = new volcengine.redis.Instance("fooInstance", {
+ *     zoneIds: [fooZones.then(fooZones => fooZones.zones?.[0]?.id)],
  *     instanceName: "tf-test",
- *     nodeNumber: 2,
- *     paramValues: [
- *         {
- *             name: "active-defrag-cycle-min",
- *             value: "5",
- *         },
- *         {
- *             name: "active-defrag-cycle-max",
- *             value: "28",
- *         },
- *     ],
+ *     shardedCluster: 1,
  *     password: "1qaz!QAZ12",
- *     port: 6381,
- *     projectName: "default",
+ *     nodeNumber: 2,
  *     shardCapacity: 1024,
  *     shardNumber: 2,
- *     shardedCluster: 1,
- *     subnetId: "subnet-13g7c3lot0lc03n6nu4wj****",
+ *     engineVersion: "5.0",
+ *     subnetId: fooSubnet.id,
+ *     deletionProtection: "disabled",
+ *     vpcAuthMode: "close",
+ *     chargeType: "PostPaid",
+ *     port: 6381,
+ *     projectName: "default",
  *     tags: [
  *         {
  *             key: "k1",
@@ -55,11 +50,25 @@ import * as utilities from "../utilities";
  *             value: "v3",
  *         },
  *     ],
- *     vpcAuthMode: "close",
- *     zoneIds: [
- *         "cn-beijing-a",
- *         "cn-beijing-b",
+ *     paramValues: [
+ *         {
+ *             name: "active-defrag-cycle-min",
+ *             value: "5",
+ *         },
+ *         {
+ *             name: "active-defrag-cycle-max",
+ *             value: "28",
+ *         },
  *     ],
+ *     backupPeriods: [
+ *         1,
+ *         2,
+ *         3,
+ *     ],
+ *     backupHour: 4,
+ *     backupActive: true,
+ *     createBackup: false,
+ *     applyImmediately: true,
  * });
  * ```
  *

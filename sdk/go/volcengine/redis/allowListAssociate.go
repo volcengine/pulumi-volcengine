@@ -21,22 +21,67 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/redis"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := redis.NewAllowListAssociate(ctx, "default", &redis.AllowListAssociateArgs{
-//				AllowListId: pulumi.String("acl-cnlfc5zsxscu1gg2ajh"),
-//				InstanceId:  pulumi.String("redis-cnlfbzifs7bpvundz"),
+//			fooAllowList, err := redis.NewAllowList(ctx, "fooAllowList", &redis.AllowListArgs{
+//				AllowLists: pulumi.StringArray{
+//					pulumi.String("192.168.0.0/24"),
+//				},
+//				AllowListName: pulumi.String("acc-test-allowlist"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = redis.NewAllowListAssociate(ctx, "default1", &redis.AllowListAssociateArgs{
-//				AllowListId: pulumi.String("acl-cnlff2mb31zo85p5am7"),
-//				InstanceId:  pulumi.String("redis-cnlfbzifs7bpvundz"),
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooInstance, err := redis.NewInstance(ctx, "fooInstance", &redis.InstanceArgs{
+//				ZoneIds: pulumi.StringArray{
+//					*pulumi.String(fooZones.Zones[0].Id),
+//				},
+//				InstanceName:       pulumi.String("acc-test-tf-redis"),
+//				ShardedCluster:     pulumi.Int(1),
+//				Password:           pulumi.String("1qaz!QAZ12"),
+//				NodeNumber:         pulumi.Int(2),
+//				ShardCapacity:      pulumi.Int(1024),
+//				ShardNumber:        pulumi.Int(2),
+//				EngineVersion:      pulumi.String("5.0"),
+//				SubnetId:           fooSubnet.ID(),
+//				DeletionProtection: pulumi.String("disabled"),
+//				VpcAuthMode:        pulumi.String("close"),
+//				ChargeType:         pulumi.String("PostPaid"),
+//				Port:               pulumi.Int(6381),
+//				ProjectName:        pulumi.String("default"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = redis.NewAllowListAssociate(ctx, "fooAllowListAssociate", &redis.AllowListAssociateArgs{
+//				AllowListId: fooAllowList.ID(),
+//				InstanceId:  fooInstance.ID(),
 //			})
 //			if err != nil {
 //				return err

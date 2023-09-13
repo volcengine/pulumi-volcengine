@@ -1534,6 +1534,48 @@ export namespace tls {
         valueType: pulumi.Input<string>;
     }
 
+    export interface IndexUserInnerKeyValue {
+        /**
+         * Whether the value is case sensitive.
+         */
+        caseSensitive?: pulumi.Input<boolean>;
+        /**
+         * The delimiter of the value.
+         */
+        delimiter?: pulumi.Input<string>;
+        /**
+         * Whether the value include chinese.
+         */
+        includeChinese?: pulumi.Input<boolean>;
+        /**
+         * The JSON subfield key value index.
+         */
+        jsonKeys?: pulumi.Input<pulumi.Input<inputs.tls.IndexUserInnerKeyValueJsonKey>[]>;
+        /**
+         * The key of the KeyValueInfo.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * Whether the filed is enabled for analysis.
+         */
+        sqlFlag?: pulumi.Input<boolean>;
+        /**
+         * The type of value. Valid values: `long`, `double`, `text`, `json`.
+         */
+        valueType: pulumi.Input<string>;
+    }
+
+    export interface IndexUserInnerKeyValueJsonKey {
+        /**
+         * The key of the subfield key value index.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The type of value. Valid values: `long`, `double`, `text`.
+         */
+        valueType: pulumi.Input<string>;
+    }
+
     export interface ProjectTag {
         /**
          * The Key of Tags.

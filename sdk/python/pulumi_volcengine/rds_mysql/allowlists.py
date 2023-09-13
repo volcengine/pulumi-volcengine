@@ -111,7 +111,50 @@ def allowlists(instance_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.rds_mysql.allowlists(region_id="cn-guilin-boe")
+    foo_zones = volcengine.ecs.zones()
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-vpc",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-test-subnet",
+        cidr_block="172.16.0.0/24",
+        zone_id=foo_zones.zones[0].id,
+        vpc_id=foo_vpc.id)
+    foo_allowlist = []
+    for range in [{"value": i} for i in range(0, 3)]:
+        foo_allowlist.append(volcengine.rds_mysql.Allowlist(f"fooAllowlist-{range['value']}",
+            allow_list_name=f"acc-test-allowlist-{range['value']}",
+            allow_list_desc="acc-test",
+            allow_list_type="IPv4",
+            allow_lists=[
+                "192.168.0.0/24",
+                "192.168.1.0/24",
+            ]))
+    foo_instance = volcengine.rds_mysql.Instance("fooInstance",
+        instance_name="acc-test-rds-mysql",
+        db_engine_version="MySQL_5_7",
+        node_spec="rds.mysql.1c2g",
+        primary_zone_id=foo_zones.zones[0].id,
+        secondary_zone_id=foo_zones.zones[0].id,
+        storage_space=80,
+        subnet_id=foo_subnet.id,
+        lower_case_table_names="1",
+        charge_info=volcengine.rds_mysql.InstanceChargeInfoArgs(
+            charge_type="PostPaid",
+        ),
+        parameters=[
+            volcengine.rds_mysql.InstanceParameterArgs(
+                parameter_name="auto_increment_increment",
+                parameter_value="2",
+            ),
+            volcengine.rds_mysql.InstanceParameterArgs(
+                parameter_name="auto_increment_offset",
+                parameter_value="4",
+            ),
+        ],
+        allow_list_ids=[__item.id for __item in foo_allowlist])
+    foo_allowlists = volcengine.rds_mysql.allowlists_output(instance_id=foo_instance.id,
+        region_id="cn-beijing")
     ```
 
 
@@ -148,7 +191,50 @@ def allowlists_output(instance_id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.rds_mysql.allowlists(region_id="cn-guilin-boe")
+    foo_zones = volcengine.ecs.zones()
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-vpc",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-test-subnet",
+        cidr_block="172.16.0.0/24",
+        zone_id=foo_zones.zones[0].id,
+        vpc_id=foo_vpc.id)
+    foo_allowlist = []
+    for range in [{"value": i} for i in range(0, 3)]:
+        foo_allowlist.append(volcengine.rds_mysql.Allowlist(f"fooAllowlist-{range['value']}",
+            allow_list_name=f"acc-test-allowlist-{range['value']}",
+            allow_list_desc="acc-test",
+            allow_list_type="IPv4",
+            allow_lists=[
+                "192.168.0.0/24",
+                "192.168.1.0/24",
+            ]))
+    foo_instance = volcengine.rds_mysql.Instance("fooInstance",
+        instance_name="acc-test-rds-mysql",
+        db_engine_version="MySQL_5_7",
+        node_spec="rds.mysql.1c2g",
+        primary_zone_id=foo_zones.zones[0].id,
+        secondary_zone_id=foo_zones.zones[0].id,
+        storage_space=80,
+        subnet_id=foo_subnet.id,
+        lower_case_table_names="1",
+        charge_info=volcengine.rds_mysql.InstanceChargeInfoArgs(
+            charge_type="PostPaid",
+        ),
+        parameters=[
+            volcengine.rds_mysql.InstanceParameterArgs(
+                parameter_name="auto_increment_increment",
+                parameter_value="2",
+            ),
+            volcengine.rds_mysql.InstanceParameterArgs(
+                parameter_name="auto_increment_offset",
+                parameter_value="4",
+            ),
+        ],
+        allow_list_ids=[__item.id for __item in foo_allowlist])
+    foo_allowlists = volcengine.rds_mysql.allowlists_output(instance_id=foo_instance.id,
+        region_id="cn-beijing")
     ```
 
 

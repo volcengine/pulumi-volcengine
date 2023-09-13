@@ -13,9 +13,58 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.rds_mysql.Allowlists({
- *     regionId: "cn-guilin-boe",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooAllowlist: volcengine.rds_mysql.Allowlist[] = [];
+ * for (const range = {value: 0}; range.value < 3; range.value++) {
+ *     fooAllowlist.push(new volcengine.rds_mysql.Allowlist(`fooAllowlist-${range.value}`, {
+ *         allowListName: `acc-test-allowlist-${range.value}`,
+ *         allowListDesc: "acc-test",
+ *         allowListType: "IPv4",
+ *         allowLists: [
+ *             "192.168.0.0/24",
+ *             "192.168.1.0/24",
+ *         ],
+ *     }));
+ * }
+ * const fooInstance = new volcengine.rds_mysql.Instance("fooInstance", {
+ *     instanceName: "acc-test-rds-mysql",
+ *     dbEngineVersion: "MySQL_5_7",
+ *     nodeSpec: "rds.mysql.1c2g",
+ *     primaryZoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     secondaryZoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     storageSpace: 80,
+ *     subnetId: fooSubnet.id,
+ *     lowerCaseTableNames: "1",
+ *     chargeInfo: {
+ *         chargeType: "PostPaid",
+ *     },
+ *     parameters: [
+ *         {
+ *             parameterName: "auto_increment_increment",
+ *             parameterValue: "2",
+ *         },
+ *         {
+ *             parameterName: "auto_increment_offset",
+ *             parameterValue: "4",
+ *         },
+ *     ],
+ *     allowListIds: fooAllowlist.map(__item => __item.id),
+ * });
+ * const fooAllowlists = volcengine.rds_mysql.AllowlistsOutput({
+ *     instanceId: fooInstance.id,
+ *     regionId: "cn-beijing",
  * });
  * ```
  */
@@ -77,9 +126,58 @@ export interface AllowlistsResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.rds_mysql.Allowlists({
- *     regionId: "cn-guilin-boe",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooAllowlist: volcengine.rds_mysql.Allowlist[] = [];
+ * for (const range = {value: 0}; range.value < 3; range.value++) {
+ *     fooAllowlist.push(new volcengine.rds_mysql.Allowlist(`fooAllowlist-${range.value}`, {
+ *         allowListName: `acc-test-allowlist-${range.value}`,
+ *         allowListDesc: "acc-test",
+ *         allowListType: "IPv4",
+ *         allowLists: [
+ *             "192.168.0.0/24",
+ *             "192.168.1.0/24",
+ *         ],
+ *     }));
+ * }
+ * const fooInstance = new volcengine.rds_mysql.Instance("fooInstance", {
+ *     instanceName: "acc-test-rds-mysql",
+ *     dbEngineVersion: "MySQL_5_7",
+ *     nodeSpec: "rds.mysql.1c2g",
+ *     primaryZoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     secondaryZoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     storageSpace: 80,
+ *     subnetId: fooSubnet.id,
+ *     lowerCaseTableNames: "1",
+ *     chargeInfo: {
+ *         chargeType: "PostPaid",
+ *     },
+ *     parameters: [
+ *         {
+ *             parameterName: "auto_increment_increment",
+ *             parameterValue: "2",
+ *         },
+ *         {
+ *             parameterName: "auto_increment_offset",
+ *             parameterValue: "4",
+ *         },
+ *     ],
+ *     allowListIds: fooAllowlist.map(__item => __item.id),
+ * });
+ * const fooAllowlists = volcengine.rds_mysql.AllowlistsOutput({
+ *     instanceId: fooInstance.id,
+ *     regionId: "cn-beijing",
  * });
  * ```
  */

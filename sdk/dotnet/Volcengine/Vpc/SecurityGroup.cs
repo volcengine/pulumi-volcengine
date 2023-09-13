@@ -24,7 +24,7 @@ namespace Volcengine.Pulumi.Volcengine.Vpc
     /// {
     ///     var g1test1 = new Volcengine.Vpc.SecurityGroup("g1test1", new()
     ///     {
-    ///         ProjectName = "yuwenhao",
+    ///         ProjectName = "default",
     ///         VpcId = "vpc-2feppmy1ugt1c59gp688n1fld",
     ///     });
     /// 
@@ -58,7 +58,7 @@ namespace Volcengine.Pulumi.Volcengine.Vpc
         /// The ProjectName of SecurityGroup.
         /// </summary>
         [Output("projectName")]
-        public Output<string?> ProjectName { get; private set; } = null!;
+        public Output<string> ProjectName { get; private set; } = null!;
 
         /// <summary>
         /// Name of SecurityGroup.

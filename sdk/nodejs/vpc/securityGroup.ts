@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const g1test1 = new volcengine.vpc.SecurityGroup("g1test1", {
- *     projectName: "yuwenhao",
+ *     projectName: "default",
  *     vpcId: "vpc-2feppmy1ugt1c59gp688n1fld",
  * });
  * ```
@@ -67,7 +67,7 @@ export class SecurityGroup extends pulumi.CustomResource {
     /**
      * The ProjectName of SecurityGroup.
      */
-    public readonly projectName!: pulumi.Output<string | undefined>;
+    public readonly projectName!: pulumi.Output<string>;
     /**
      * Name of SecurityGroup.
      */

@@ -23,12 +23,67 @@ namespace Volcengine.Pulumi.Volcengine.Redis
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Redis.AllowLists.Invoke(new()
+        ///     var fooAllowList = new Volcengine.Redis.AllowList("fooAllowList", new()
         ///     {
+        ///         AllowLists = new[]
+        ///         {
+        ///             "192.168.0.0/24",
+        ///         },
+        ///         AllowListName = "acc-test-allowlist",
+        ///     });
+        /// 
+        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        /// 
+        ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
+        ///     {
+        ///         VpcName = "acc-test-vpc",
+        ///         CidrBlock = "172.16.0.0/16",
+        ///     });
+        /// 
+        ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+        ///     {
+        ///         SubnetName = "acc-test-subnet",
+        ///         CidrBlock = "172.16.0.0/24",
+        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooInstance = new Volcengine.Redis.Instance("fooInstance", new()
+        ///     {
+        ///         ZoneIds = new[]
+        ///         {
+        ///             fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         },
+        ///         InstanceName = "acc-test-tf-redis",
+        ///         ShardedCluster = 1,
+        ///         Password = "1qaz!QAZ12",
+        ///         NodeNumber = 2,
+        ///         ShardCapacity = 1024,
+        ///         ShardNumber = 2,
+        ///         EngineVersion = "5.0",
+        ///         SubnetId = fooSubnet.Id,
+        ///         DeletionProtection = "disabled",
+        ///         VpcAuthMode = "close",
+        ///         ChargeType = "PostPaid",
+        ///         Port = 6381,
+        ///         ProjectName = "default",
+        ///     });
+        /// 
+        ///     var fooAllowListAssociate = new Volcengine.Redis.AllowListAssociate("fooAllowListAssociate", new()
+        ///     {
+        ///         AllowListId = fooAllowList.Id,
+        ///         InstanceId = fooInstance.Id,
+        ///     });
+        /// 
+        ///     var fooAllowLists = Volcengine.Redis.AllowLists.Invoke(new()
+        ///     {
+        ///         InstanceId = fooAllowListAssociate.InstanceId,
         ///         RegionId = "cn-beijing",
+        ///         NameRegex = fooAllowList.AllowListName,
         ///     });
         /// 
         /// });
@@ -50,12 +105,67 @@ namespace Volcengine.Pulumi.Volcengine.Redis
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Redis.AllowLists.Invoke(new()
+        ///     var fooAllowList = new Volcengine.Redis.AllowList("fooAllowList", new()
         ///     {
+        ///         AllowLists = new[]
+        ///         {
+        ///             "192.168.0.0/24",
+        ///         },
+        ///         AllowListName = "acc-test-allowlist",
+        ///     });
+        /// 
+        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        /// 
+        ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
+        ///     {
+        ///         VpcName = "acc-test-vpc",
+        ///         CidrBlock = "172.16.0.0/16",
+        ///     });
+        /// 
+        ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+        ///     {
+        ///         SubnetName = "acc-test-subnet",
+        ///         CidrBlock = "172.16.0.0/24",
+        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooInstance = new Volcengine.Redis.Instance("fooInstance", new()
+        ///     {
+        ///         ZoneIds = new[]
+        ///         {
+        ///             fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         },
+        ///         InstanceName = "acc-test-tf-redis",
+        ///         ShardedCluster = 1,
+        ///         Password = "1qaz!QAZ12",
+        ///         NodeNumber = 2,
+        ///         ShardCapacity = 1024,
+        ///         ShardNumber = 2,
+        ///         EngineVersion = "5.0",
+        ///         SubnetId = fooSubnet.Id,
+        ///         DeletionProtection = "disabled",
+        ///         VpcAuthMode = "close",
+        ///         ChargeType = "PostPaid",
+        ///         Port = 6381,
+        ///         ProjectName = "default",
+        ///     });
+        /// 
+        ///     var fooAllowListAssociate = new Volcengine.Redis.AllowListAssociate("fooAllowListAssociate", new()
+        ///     {
+        ///         AllowListId = fooAllowList.Id,
+        ///         InstanceId = fooInstance.Id,
+        ///     });
+        /// 
+        ///     var fooAllowLists = Volcengine.Redis.AllowLists.Invoke(new()
+        ///     {
+        ///         InstanceId = fooAllowListAssociate.InstanceId,
         ///         RegionId = "cn-beijing",
+        ///         NameRegex = fooAllowList.AllowListName,
         ///     });
         /// 
         /// });

@@ -23,16 +23,59 @@ namespace Volcengine.Pulumi.Volcengine.Redis
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Redis.Backups.Invoke(new()
+        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        /// 
+        ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
-        ///         BackupStrategyLists = new[]
+        ///         VpcName = "acc-test-vpc",
+        ///         CidrBlock = "172.16.0.0/16",
+        ///     });
+        /// 
+        ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+        ///     {
+        ///         SubnetName = "acc-test-subnet",
+        ///         CidrBlock = "172.16.0.0/24",
+        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooInstance = new Volcengine.Redis.Instance("fooInstance", new()
+        ///     {
+        ///         ZoneIds = new[]
         ///         {
-        ///             "ManualBackup",
+        ///             fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
         ///         },
-        ///         InstanceId = "redis-cnlfvrv4qye6u4lpa",
+        ///         InstanceName = "acc-test-tf-redis",
+        ///         ShardedCluster = 1,
+        ///         Password = "1qaz!QAZ12",
+        ///         NodeNumber = 2,
+        ///         ShardCapacity = 1024,
+        ///         ShardNumber = 2,
+        ///         EngineVersion = "5.0",
+        ///         SubnetId = fooSubnet.Id,
+        ///         DeletionProtection = "disabled",
+        ///         VpcAuthMode = "close",
+        ///         ChargeType = "PostPaid",
+        ///         Port = 6381,
+        ///         ProjectName = "default",
+        ///     });
+        /// 
+        ///     var fooBackup = new List&lt;Volcengine.Redis.Backup&gt;();
+        ///     for (var rangeIndex = 0; rangeIndex &lt; 3; rangeIndex++)
+        ///     {
+        ///         var range = new { Value = rangeIndex };
+        ///         fooBackup.Add(new Volcengine.Redis.Backup($"fooBackup-{range.Value}", new()
+        ///         {
+        ///             InstanceId = fooInstance.Id,
+        ///         }));
+        ///     }
+        ///     var fooBackups = Volcengine.Redis.Backups.Invoke(new()
+        ///     {
+        ///         InstanceId = fooInstance.Id,
         ///     });
         /// 
         /// });
@@ -54,16 +97,59 @@ namespace Volcengine.Pulumi.Volcengine.Redis
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Redis.Backups.Invoke(new()
+        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        /// 
+        ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
-        ///         BackupStrategyLists = new[]
+        ///         VpcName = "acc-test-vpc",
+        ///         CidrBlock = "172.16.0.0/16",
+        ///     });
+        /// 
+        ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+        ///     {
+        ///         SubnetName = "acc-test-subnet",
+        ///         CidrBlock = "172.16.0.0/24",
+        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooInstance = new Volcengine.Redis.Instance("fooInstance", new()
+        ///     {
+        ///         ZoneIds = new[]
         ///         {
-        ///             "ManualBackup",
+        ///             fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
         ///         },
-        ///         InstanceId = "redis-cnlfvrv4qye6u4lpa",
+        ///         InstanceName = "acc-test-tf-redis",
+        ///         ShardedCluster = 1,
+        ///         Password = "1qaz!QAZ12",
+        ///         NodeNumber = 2,
+        ///         ShardCapacity = 1024,
+        ///         ShardNumber = 2,
+        ///         EngineVersion = "5.0",
+        ///         SubnetId = fooSubnet.Id,
+        ///         DeletionProtection = "disabled",
+        ///         VpcAuthMode = "close",
+        ///         ChargeType = "PostPaid",
+        ///         Port = 6381,
+        ///         ProjectName = "default",
+        ///     });
+        /// 
+        ///     var fooBackup = new List&lt;Volcengine.Redis.Backup&gt;();
+        ///     for (var rangeIndex = 0; rangeIndex &lt; 3; rangeIndex++)
+        ///     {
+        ///         var range = new { Value = rangeIndex };
+        ///         fooBackup.Add(new Volcengine.Redis.Backup($"fooBackup-{range.Value}", new()
+        ///         {
+        ///             InstanceId = fooInstance.Id,
+        ///         }));
+        ///     }
+        ///     var fooBackups = Volcengine.Redis.Backups.Invoke(new()
+        ///     {
+        ///         InstanceId = fooInstance.Id,
         ///     });
         /// 
         /// });

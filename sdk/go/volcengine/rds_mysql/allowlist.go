@@ -29,10 +29,12 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := rds_mysql.NewAllowlist(ctx, "foo", &rds_mysql.AllowlistArgs{
 //				AllowLists: pulumi.StringArray{
-//					pulumi.String("127.0.0.1"),
+//					pulumi.String("192.168.0.0/24"),
+//					pulumi.String("192.168.1.0/24"),
 //				},
-//				AllowListDesc: pulumi.String("terraform test zzm"),
-//				AllowListName: pulumi.String("tf-test-opt"),
+//				AllowListDesc: pulumi.String("acc-test"),
+//				AllowListName: pulumi.String("acc-test-allowlist"),
+//				AllowListType: pulumi.String("IPv4"),
 //			})
 //			if err != nil {
 //				return err

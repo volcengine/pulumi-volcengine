@@ -18,14 +18,60 @@ namespace Volcengine.Pulumi.Volcengine.Redis
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
+    /// using Volcengine = Pulumi.Volcengine;
     /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var foo = new Volcengine.Redis.Endpoint("foo", new()
+    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+    /// 
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
-    ///         EipId = "eip-274ho3mtx543k7fap8tyi****",
-    ///         InstanceId = "redis-cn03bb67g3tr2****",
+    ///         VpcName = "acc-test-vpc",
+    ///         CidrBlock = "172.16.0.0/16",
+    ///     });
+    /// 
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooInstance = new Volcengine.Redis.Instance("fooInstance", new()
+    ///     {
+    ///         ZoneIds = new[]
+    ///         {
+    ///             fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         },
+    ///         InstanceName = "acc-test-tf-redis",
+    ///         ShardedCluster = 1,
+    ///         Password = "1qaz!QAZ12",
+    ///         NodeNumber = 2,
+    ///         ShardCapacity = 1024,
+    ///         ShardNumber = 2,
+    ///         EngineVersion = "5.0",
+    ///         SubnetId = fooSubnet.Id,
+    ///         DeletionProtection = "disabled",
+    ///         VpcAuthMode = "close",
+    ///         ChargeType = "PostPaid",
+    ///         Port = 6381,
+    ///         ProjectName = "default",
+    ///     });
+    /// 
+    ///     var fooAddress = new Volcengine.Eip.Address("fooAddress", new()
+    ///     {
+    ///         Bandwidth = 1,
+    ///         BillingType = "PostPaidByBandwidth",
+    ///         Description = "acc-test",
+    ///         Isp = "BGP",
+    ///     });
+    /// 
+    ///     var fooEndpoint = new Volcengine.Redis.Endpoint("fooEndpoint", new()
+    ///     {
+    ///         EipId = fooAddress.Id,
+    ///         InstanceId = fooInstance.Id,
     ///     });
     /// 
     /// });

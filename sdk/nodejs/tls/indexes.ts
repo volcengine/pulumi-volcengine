@@ -15,7 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@pulumi/volcengine";
  *
  * const default = volcengine.tls.Indexes({
- *     ids: ["65d67d34-c5b4-4ec8-b3a9-175d3366****"],
+ *     ids: ["7ce12237-6670-44a7-9d79-2e36961586e6"],
  * });
  * ```
  */
@@ -70,7 +70,7 @@ export interface IndexesResult {
  * import * as volcengine from "@pulumi/volcengine";
  *
  * const default = volcengine.tls.Indexes({
- *     ids: ["65d67d34-c5b4-4ec8-b3a9-175d3366****"],
+ *     ids: ["7ce12237-6670-44a7-9d79-2e36961586e6"],
  * });
  * ```
  */

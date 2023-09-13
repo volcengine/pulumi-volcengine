@@ -188,9 +188,13 @@ class Allowlist(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.rds_mysql.Allowlist("foo",
-            allow_lists=["127.0.0.1"],
-            allow_list_desc="terraform test zzm",
-            allow_list_name="tf-test-opt")
+            allow_lists=[
+                "192.168.0.0/24",
+                "192.168.1.0/24",
+            ],
+            allow_list_desc="acc-test",
+            allow_list_name="acc-test-allowlist",
+            allow_list_type="IPv4")
         ```
 
         ## Import
@@ -223,9 +227,13 @@ class Allowlist(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.rds_mysql.Allowlist("foo",
-            allow_lists=["127.0.0.1"],
-            allow_list_desc="terraform test zzm",
-            allow_list_name="tf-test-opt")
+            allow_lists=[
+                "192.168.0.0/24",
+                "192.168.1.0/24",
+            ],
+            allow_list_desc="acc-test",
+            allow_list_name="acc-test-allowlist",
+            allow_list_type="IPv4")
         ```
 
         ## Import

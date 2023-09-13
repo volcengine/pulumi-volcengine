@@ -18,16 +18,77 @@ namespace Volcengine.Pulumi.Volcengine.Rds_mysql
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
+    /// using Volcengine = Pulumi.Volcengine;
     /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @default = new Volcengine.Rds_mysql.Account("default", new()
+    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+    /// 
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
-    ///         AccountName = "test",
-    ///         AccountPassword = "xdjsuiahHUH@",
+    ///         VpcName = "acc-test-vpc",
+    ///         CidrBlock = "172.16.0.0/16",
+    ///     });
+    /// 
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooInstance = new Volcengine.Rds_mysql.Instance("fooInstance", new()
+    ///     {
+    ///         InstanceName = "acc-test-rds-mysql",
+    ///         DbEngineVersion = "MySQL_5_7",
+    ///         NodeSpec = "rds.mysql.1c2g",
+    ///         PrimaryZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         SecondaryZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         StorageSpace = 80,
+    ///         SubnetId = fooSubnet.Id,
+    ///         LowerCaseTableNames = "1",
+    ///         ChargeInfo = new Volcengine.Rds_mysql.Inputs.InstanceChargeInfoArgs
+    ///         {
+    ///             ChargeType = "PostPaid",
+    ///         },
+    ///         Parameters = new[]
+    ///         {
+    ///             new Volcengine.Rds_mysql.Inputs.InstanceParameterArgs
+    ///             {
+    ///                 ParameterName = "auto_increment_increment",
+    ///                 ParameterValue = "2",
+    ///             },
+    ///             new Volcengine.Rds_mysql.Inputs.InstanceParameterArgs
+    ///             {
+    ///                 ParameterName = "auto_increment_offset",
+    ///                 ParameterValue = "4",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var fooDatabase = new Volcengine.Rds_mysql.Database("fooDatabase", new()
+    ///     {
+    ///         DbName = "acc-test-db",
+    ///         InstanceId = fooInstance.Id,
+    ///     });
+    /// 
+    ///     var fooAccount = new Volcengine.Rds_mysql.Account("fooAccount", new()
+    ///     {
+    ///         AccountName = "acc-test-account",
+    ///         AccountPassword = "93f0cb0614Aab12",
     ///         AccountType = "Normal",
-    ///         InstanceId = "mysql-e9293705eed6",
+    ///         InstanceId = fooInstance.Id,
+    ///         AccountPrivileges = new[]
+    ///         {
+    ///             new Volcengine.Rds_mysql.Inputs.AccountAccountPrivilegeArgs
+    ///             {
+    ///                 DbName = fooDatabase.DbName,
+    ///                 AccountPrivilege = "Custom",
+    ///                 AccountPrivilegeDetail = "SELECT,INSERT",
+    ///             },
+    ///         },
     ///     });
     /// 
     /// });

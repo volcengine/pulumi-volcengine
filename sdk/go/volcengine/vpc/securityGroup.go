@@ -28,7 +28,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := vpc.NewSecurityGroup(ctx, "g1test1", &vpc.SecurityGroupArgs{
-//				ProjectName: pulumi.String("yuwenhao"),
+//				ProjectName: pulumi.String("default"),
 //				VpcId:       pulumi.String("vpc-2feppmy1ugt1c59gp688n1fld"),
 //			})
 //			if err != nil {
@@ -57,7 +57,7 @@ type SecurityGroup struct {
 	// Description of SecurityGroup.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The ProjectName of SecurityGroup.
-	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// Name of SecurityGroup.
 	SecurityGroupName pulumi.StringOutput `pulumi:"securityGroupName"`
 	// Status of SecurityGroup.
@@ -263,8 +263,8 @@ func (o SecurityGroupOutput) Description() pulumi.StringPtrOutput {
 }
 
 // The ProjectName of SecurityGroup.
-func (o SecurityGroupOutput) ProjectName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *SecurityGroup) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
+func (o SecurityGroupOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecurityGroup) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 // Name of SecurityGroup.

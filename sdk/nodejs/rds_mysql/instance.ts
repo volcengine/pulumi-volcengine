@@ -12,24 +12,32 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.rds_mysql.Instance("foo", {
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-project1",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-subnet-test-2",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooInstance = new volcengine.rds_mysql.Instance("fooInstance", {
  *     dbEngineVersion: "MySQL_5_7",
  *     nodeSpec: "rds.mysql.1c2g",
- *     primaryZoneId: "cn-guilin-a",
- *     secondaryZoneId: "cn-guilin-b",
+ *     primaryZoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     secondaryZoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
  *     storageSpace: 80,
- *     subnetId: "subnet-2d72yi377stts58ozfdrlk9f6",
- *     instanceName: "tf-test",
+ *     subnetId: fooSubnet.id,
+ *     instanceName: "acc-test",
  *     lowerCaseTableNames: "1",
  *     chargeInfo: {
  *         chargeType: "PostPaid",
  *     },
- *     allowListIds: [
- *         "acl-2dd8f8317e4d4159b21630d13ae2e6ec",
- *         "acl-2eaa2a053b2a4a58b988e38ae975e81c",
- *     ],
  *     parameters: [
  *         {
  *             parameterName: "auto_increment_increment",
@@ -40,11 +48,6 @@ import * as utilities from "../utilities";
  *             parameterValue: "4",
  *         },
  *     ],
- * });
- * const readonly = new volcengine.rds_mysql.InstanceReadonlyNode("readonly", {
- *     instanceId: foo.id,
- *     nodeSpec: "rds.mysql.2c4g",
- *     zoneId: "cn-guilin-a",
  * });
  * ```
  *
@@ -87,7 +90,7 @@ export class Instance extends pulumi.CustomResource {
     /**
      * Allow list Ids of the RDS instance.
      */
-    public readonly allowListIds!: pulumi.Output<string[] | undefined>;
+    public readonly allowListIds!: pulumi.Output<string[]>;
     /**
      * The version of allow list.
      */

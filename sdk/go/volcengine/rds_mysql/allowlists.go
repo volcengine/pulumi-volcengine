@@ -19,19 +19,90 @@ import (
 //
 // import (
 //
+//	"fmt"
+//
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/rds_mysql"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := rds_mysql.Allowlists(ctx, &rds_mysql.AllowlistsArgs{
-//				RegionId: "cn-guilin-boe",
-//			}, nil)
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			var fooAllowlist []*rds_mysql.Allowlist
+//			for index := 0; index < 3; index++ {
+//				key0 := index
+//				val0 := index
+//				__res, err := rds_mysql.NewAllowlist(ctx, fmt.Sprintf("fooAllowlist-%v", key0), &rds_mysql.AllowlistArgs{
+//					AllowListName: pulumi.String(fmt.Sprintf("acc-test-allowlist-%v", val0)),
+//					AllowListDesc: pulumi.String("acc-test"),
+//					AllowListType: pulumi.String("IPv4"),
+//					AllowLists: pulumi.StringArray{
+//						pulumi.String("192.168.0.0/24"),
+//						pulumi.String("192.168.1.0/24"),
+//					},
+//				})
+//				if err != nil {
+//					return err
+//				}
+//				fooAllowlist = append(fooAllowlist, __res)
+//			}
+//			var splat0 pulumi.StringArray
+//			for _, val0 := range fooAllowlist {
+//				splat0 = append(splat0, val0.ID())
+//			}
+//			fooInstance, err := rds_mysql.NewInstance(ctx, "fooInstance", &rds_mysql.InstanceArgs{
+//				InstanceName:        pulumi.String("acc-test-rds-mysql"),
+//				DbEngineVersion:     pulumi.String("MySQL_5_7"),
+//				NodeSpec:            pulumi.String("rds.mysql.1c2g"),
+//				PrimaryZoneId:       *pulumi.String(fooZones.Zones[0].Id),
+//				SecondaryZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				StorageSpace:        pulumi.Int(80),
+//				SubnetId:            fooSubnet.ID(),
+//				LowerCaseTableNames: pulumi.String("1"),
+//				ChargeInfo: &rds_mysql.InstanceChargeInfoArgs{
+//					ChargeType: pulumi.String("PostPaid"),
+//				},
+//				Parameters: rds_mysql.InstanceParameterArray{
+//					&rds_mysql.InstanceParameterArgs{
+//						ParameterName:  pulumi.String("auto_increment_increment"),
+//						ParameterValue: pulumi.String("2"),
+//					},
+//					&rds_mysql.InstanceParameterArgs{
+//						ParameterName:  pulumi.String("auto_increment_offset"),
+//						ParameterValue: pulumi.String("4"),
+//					},
+//				},
+//				AllowListIds: splat0,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = rds_mysql.AllowlistsOutput(ctx, rds_mysql.AllowlistsOutputArgs{
+//				InstanceId: fooInstance.ID(),
+//				RegionId:   pulumi.String("cn-beijing"),
+//			}, nil)
 //			return nil
 //		})
 //	}

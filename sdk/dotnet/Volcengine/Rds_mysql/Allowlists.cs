@@ -23,12 +23,76 @@ namespace Volcengine.Pulumi.Volcengine.Rds_mysql
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Rds_mysql.Allowlists.Invoke(new()
+        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        /// 
+        ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
-        ///         RegionId = "cn-guilin-boe",
+        ///         VpcName = "acc-test-vpc",
+        ///         CidrBlock = "172.16.0.0/16",
+        ///     });
+        /// 
+        ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+        ///     {
+        ///         SubnetName = "acc-test-subnet",
+        ///         CidrBlock = "172.16.0.0/24",
+        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooAllowlist = new List&lt;Volcengine.Rds_mysql.Allowlist&gt;();
+        ///     for (var rangeIndex = 0; rangeIndex &lt; 3; rangeIndex++)
+        ///     {
+        ///         var range = new { Value = rangeIndex };
+        ///         fooAllowlist.Add(new Volcengine.Rds_mysql.Allowlist($"fooAllowlist-{range.Value}", new()
+        ///         {
+        ///             AllowListName = $"acc-test-allowlist-{range.Value}",
+        ///             AllowListDesc = "acc-test",
+        ///             AllowListType = "IPv4",
+        ///             AllowLists = new[]
+        ///             {
+        ///                 "192.168.0.0/24",
+        ///                 "192.168.1.0/24",
+        ///             },
+        ///         }));
+        ///     }
+        ///     var fooInstance = new Volcengine.Rds_mysql.Instance("fooInstance", new()
+        ///     {
+        ///         InstanceName = "acc-test-rds-mysql",
+        ///         DbEngineVersion = "MySQL_5_7",
+        ///         NodeSpec = "rds.mysql.1c2g",
+        ///         PrimaryZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         SecondaryZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         StorageSpace = 80,
+        ///         SubnetId = fooSubnet.Id,
+        ///         LowerCaseTableNames = "1",
+        ///         ChargeInfo = new Volcengine.Rds_mysql.Inputs.InstanceChargeInfoArgs
+        ///         {
+        ///             ChargeType = "PostPaid",
+        ///         },
+        ///         Parameters = new[]
+        ///         {
+        ///             new Volcengine.Rds_mysql.Inputs.InstanceParameterArgs
+        ///             {
+        ///                 ParameterName = "auto_increment_increment",
+        ///                 ParameterValue = "2",
+        ///             },
+        ///             new Volcengine.Rds_mysql.Inputs.InstanceParameterArgs
+        ///             {
+        ///                 ParameterName = "auto_increment_offset",
+        ///                 ParameterValue = "4",
+        ///             },
+        ///         },
+        ///         AllowListIds = fooAllowlist.Select(__item =&gt; __item.Id).ToList(),
+        ///     });
+        /// 
+        ///     var fooAllowlists = Volcengine.Rds_mysql.Allowlists.Invoke(new()
+        ///     {
+        ///         InstanceId = fooInstance.Id,
+        ///         RegionId = "cn-beijing",
         ///     });
         /// 
         /// });
@@ -50,12 +114,76 @@ namespace Volcengine.Pulumi.Volcengine.Rds_mysql
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Rds_mysql.Allowlists.Invoke(new()
+        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        /// 
+        ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
-        ///         RegionId = "cn-guilin-boe",
+        ///         VpcName = "acc-test-vpc",
+        ///         CidrBlock = "172.16.0.0/16",
+        ///     });
+        /// 
+        ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+        ///     {
+        ///         SubnetName = "acc-test-subnet",
+        ///         CidrBlock = "172.16.0.0/24",
+        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooAllowlist = new List&lt;Volcengine.Rds_mysql.Allowlist&gt;();
+        ///     for (var rangeIndex = 0; rangeIndex &lt; 3; rangeIndex++)
+        ///     {
+        ///         var range = new { Value = rangeIndex };
+        ///         fooAllowlist.Add(new Volcengine.Rds_mysql.Allowlist($"fooAllowlist-{range.Value}", new()
+        ///         {
+        ///             AllowListName = $"acc-test-allowlist-{range.Value}",
+        ///             AllowListDesc = "acc-test",
+        ///             AllowListType = "IPv4",
+        ///             AllowLists = new[]
+        ///             {
+        ///                 "192.168.0.0/24",
+        ///                 "192.168.1.0/24",
+        ///             },
+        ///         }));
+        ///     }
+        ///     var fooInstance = new Volcengine.Rds_mysql.Instance("fooInstance", new()
+        ///     {
+        ///         InstanceName = "acc-test-rds-mysql",
+        ///         DbEngineVersion = "MySQL_5_7",
+        ///         NodeSpec = "rds.mysql.1c2g",
+        ///         PrimaryZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         SecondaryZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         StorageSpace = 80,
+        ///         SubnetId = fooSubnet.Id,
+        ///         LowerCaseTableNames = "1",
+        ///         ChargeInfo = new Volcengine.Rds_mysql.Inputs.InstanceChargeInfoArgs
+        ///         {
+        ///             ChargeType = "PostPaid",
+        ///         },
+        ///         Parameters = new[]
+        ///         {
+        ///             new Volcengine.Rds_mysql.Inputs.InstanceParameterArgs
+        ///             {
+        ///                 ParameterName = "auto_increment_increment",
+        ///                 ParameterValue = "2",
+        ///             },
+        ///             new Volcengine.Rds_mysql.Inputs.InstanceParameterArgs
+        ///             {
+        ///                 ParameterName = "auto_increment_offset",
+        ///                 ParameterValue = "4",
+        ///             },
+        ///         },
+        ///         AllowListIds = fooAllowlist.Select(__item =&gt; __item.Id).ToList(),
+        ///     });
+        /// 
+        ///     var fooAllowlists = Volcengine.Rds_mysql.Allowlists.Invoke(new()
+        ///     {
+        ///         InstanceId = fooInstance.Id,
+        ///         RegionId = "cn-beijing",
         ///     });
         /// 
         /// });

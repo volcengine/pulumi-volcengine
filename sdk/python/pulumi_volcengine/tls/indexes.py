@@ -98,7 +98,7 @@ def indexes(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.indexes(ids=["65d67d34-c5b4-4ec8-b3a9-175d3366****"])
+    default = volcengine.tls.indexes(ids=["7ce12237-6670-44a7-9d79-2e36961586e6"])
     ```
 
 
@@ -131,7 +131,7 @@ def indexes_output(ids: Optional[pulumi.Input[Sequence[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.indexes(ids=["65d67d34-c5b4-4ec8-b3a9-175d3366****"])
+    default = volcengine.tls.indexes(ids=["7ce12237-6670-44a7-9d79-2e36961586e6"])
     ```
 
 

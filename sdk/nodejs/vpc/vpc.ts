@@ -104,7 +104,7 @@ export class Vpc extends pulumi.CustomResource {
     /**
      * The ProjectName of the VPC.
      */
-    public readonly projectName!: pulumi.Output<string | undefined>;
+    public readonly projectName!: pulumi.Output<string>;
     /**
      * The route table ID list of VPC.
      */

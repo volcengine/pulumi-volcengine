@@ -176,7 +176,7 @@ type Instance struct {
 	// The private ip address of primary networkInterface.
 	PrimaryIpAddress pulumi.StringOutput `pulumi:"primaryIpAddress"`
 	// The ProjectName of the ecs instance.
-	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The secondary networkInterface detail collection of ECS instance.
 	SecondaryNetworkInterfaces InstanceSecondaryNetworkInterfaceArrayOutput `pulumi:"secondaryNetworkInterfaces"`
 	// The security enhancement strategy of ECS instance. The value can be Active or InActive. Default is Active.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
@@ -837,8 +837,8 @@ func (o InstanceOutput) PrimaryIpAddress() pulumi.StringOutput {
 }
 
 // The ProjectName of the ecs instance.
-func (o InstanceOutput) ProjectName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
+func (o InstanceOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 // The secondary networkInterface detail collection of ECS instance.

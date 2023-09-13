@@ -13,9 +13,44 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.rds_mysql.Instances({
- *     instanceId: "mysql-72da4258c2c7",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-project1",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-subnet-test-2",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooInstance = new volcengine.rds_mysql.Instance("fooInstance", {
+ *     dbEngineVersion: "MySQL_5_7",
+ *     nodeSpec: "rds.mysql.1c2g",
+ *     primaryZoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     secondaryZoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     storageSpace: 80,
+ *     subnetId: fooSubnet.id,
+ *     instanceName: "acc-test",
+ *     lowerCaseTableNames: "1",
+ *     chargeInfo: {
+ *         chargeType: "PostPaid",
+ *     },
+ *     parameters: [
+ *         {
+ *             parameterName: "auto_increment_increment",
+ *             parameterValue: "2",
+ *         },
+ *         {
+ *             parameterName: "auto_increment_offset",
+ *             parameterValue: "4",
+ *         },
+ *     ],
+ * });
+ * const fooInstances = volcengine.rds_mysql.InstancesOutput({
+ *     instanceId: fooInstance.id,
  * });
  * ```
  */
@@ -137,9 +172,44 @@ export interface InstancesResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.rds_mysql.Instances({
- *     instanceId: "mysql-72da4258c2c7",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-project1",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-subnet-test-2",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooInstance = new volcengine.rds_mysql.Instance("fooInstance", {
+ *     dbEngineVersion: "MySQL_5_7",
+ *     nodeSpec: "rds.mysql.1c2g",
+ *     primaryZoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     secondaryZoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     storageSpace: 80,
+ *     subnetId: fooSubnet.id,
+ *     instanceName: "acc-test",
+ *     lowerCaseTableNames: "1",
+ *     chargeInfo: {
+ *         chargeType: "PostPaid",
+ *     },
+ *     parameters: [
+ *         {
+ *             parameterName: "auto_increment_increment",
+ *             parameterValue: "2",
+ *         },
+ *         {
+ *             parameterName: "auto_increment_offset",
+ *             parameterValue: "4",
+ *         },
+ *     ],
+ * });
+ * const fooInstances = volcengine.rds_mysql.InstancesOutput({
+ *     instanceId: fooInstance.id,
  * });
  * ```
  */

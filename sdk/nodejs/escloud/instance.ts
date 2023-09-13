@@ -12,42 +12,55 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.escloud.Instance("foo", {instanceConfiguration: {
- *     adminPassword: "xxxx",
- *     adminUserName: "admin",
- *     chargeType: "PostPaid",
- *     configurationCode: "es.standard",
- *     enableHttps: true,
- *     enablePureMaster: true,
- *     forceRestartAfterScale: false,
- *     instanceName: "from-tf4",
- *     nodeSpecsAssigns: [
- *         {
- *             number: 3,
- *             resourceSpecName: "es.x4.medium",
- *             storageSize: 100,
- *             storageSpecName: "es.volume.essd.pl0",
- *             type: "Master",
- *         },
- *         {
- *             number: 2,
- *             resourceSpecName: "es.x4.large",
- *             storageSize: 100,
- *             storageSpecName: "es.volume.essd.pl0",
- *             type: "Hot",
- *         },
- *         {
- *             number: 1,
- *             resourceSpecName: "kibana.x2.small",
- *             type: "Kibana",
- *         },
- *     ],
- *     projectName: "default",
- *     subnetId: "subnet-2bz9vxrixqigw2dx0eextz50p",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet_new",
+ *     description: "tfdesc",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooInstance = new volcengine.escloud.Instance("fooInstance", {instanceConfiguration: {
  *     version: "V6_7",
  *     zoneNumber: 1,
+ *     enableHttps: true,
+ *     adminUserName: "admin",
+ *     adminPassword: "Password@@",
+ *     chargeType: "PostPaid",
+ *     configurationCode: "es.standard",
+ *     enablePureMaster: true,
+ *     instanceName: "acc-test-0",
+ *     nodeSpecsAssigns: [
+ *         {
+ *             type: "Master",
+ *             number: 3,
+ *             resourceSpecName: "es.x4.medium",
+ *             storageSpecName: "es.volume.essd.pl0",
+ *             storageSize: 100,
+ *         },
+ *         {
+ *             type: "Hot",
+ *             number: 2,
+ *             resourceSpecName: "es.x4.large",
+ *             storageSpecName: "es.volume.essd.pl0",
+ *             storageSize: 100,
+ *         },
+ *         {
+ *             type: "Kibana",
+ *             number: 1,
+ *             resourceSpecName: "kibana.x2.small",
+ *         },
+ *     ],
+ *     subnetId: fooSubnet.id,
+ *     projectName: "default",
+ *     forceRestartAfterScale: false,
  * }});
  * ```
  *

@@ -105,9 +105,48 @@ class AllowlistAssociate(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.rds_mysql.AllowlistAssociate("foo",
-            allow_list_id="acl-15451212dcfa473baeda24be4baa02fe",
-            instance_id="mysql-1b2c7b2d7583")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_instance = volcengine.rds_mysql.Instance("fooInstance",
+            instance_name="acc-test-rds-mysql",
+            db_engine_version="MySQL_5_7",
+            node_spec="rds.mysql.1c2g",
+            primary_zone_id=foo_zones.zones[0].id,
+            secondary_zone_id=foo_zones.zones[0].id,
+            storage_space=80,
+            subnet_id=foo_subnet.id,
+            lower_case_table_names="1",
+            charge_info=volcengine.rds_mysql.InstanceChargeInfoArgs(
+                charge_type="PostPaid",
+            ),
+            parameters=[
+                volcengine.rds_mysql.InstanceParameterArgs(
+                    parameter_name="auto_increment_increment",
+                    parameter_value="2",
+                ),
+                volcengine.rds_mysql.InstanceParameterArgs(
+                    parameter_name="auto_increment_offset",
+                    parameter_value="4",
+                ),
+            ])
+        foo_allowlist = volcengine.rds_mysql.Allowlist("fooAllowlist",
+            allow_list_name="acc-test-allowlist",
+            allow_list_desc="acc-test",
+            allow_list_type="IPv4",
+            allow_lists=[
+                "192.168.0.0/24",
+                "192.168.1.0/24",
+            ])
+        foo_allowlist_associate = volcengine.rds_mysql.AllowlistAssociate("fooAllowlistAssociate",
+            allow_list_id=foo_allowlist.id,
+            instance_id=foo_instance.id)
         ```
 
         ## Import
@@ -137,9 +176,48 @@ class AllowlistAssociate(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.rds_mysql.AllowlistAssociate("foo",
-            allow_list_id="acl-15451212dcfa473baeda24be4baa02fe",
-            instance_id="mysql-1b2c7b2d7583")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_instance = volcengine.rds_mysql.Instance("fooInstance",
+            instance_name="acc-test-rds-mysql",
+            db_engine_version="MySQL_5_7",
+            node_spec="rds.mysql.1c2g",
+            primary_zone_id=foo_zones.zones[0].id,
+            secondary_zone_id=foo_zones.zones[0].id,
+            storage_space=80,
+            subnet_id=foo_subnet.id,
+            lower_case_table_names="1",
+            charge_info=volcengine.rds_mysql.InstanceChargeInfoArgs(
+                charge_type="PostPaid",
+            ),
+            parameters=[
+                volcengine.rds_mysql.InstanceParameterArgs(
+                    parameter_name="auto_increment_increment",
+                    parameter_value="2",
+                ),
+                volcengine.rds_mysql.InstanceParameterArgs(
+                    parameter_name="auto_increment_offset",
+                    parameter_value="4",
+                ),
+            ])
+        foo_allowlist = volcengine.rds_mysql.Allowlist("fooAllowlist",
+            allow_list_name="acc-test-allowlist",
+            allow_list_desc="acc-test",
+            allow_list_type="IPv4",
+            allow_lists=[
+                "192.168.0.0/24",
+                "192.168.1.0/24",
+            ])
+        foo_allowlist_associate = volcengine.rds_mysql.AllowlistAssociate("fooAllowlistAssociate",
+            allow_list_id=foo_allowlist.id,
+            instance_id=foo_instance.id)
         ```
 
         ## Import
