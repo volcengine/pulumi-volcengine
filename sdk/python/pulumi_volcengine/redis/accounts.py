@@ -114,7 +114,37 @@ def accounts(account_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.redis.accounts(instance_id="redis-cn0398aizj8cwmopx")
+    foo_zones = volcengine.ecs.zones()
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-vpc",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-test-subnet",
+        cidr_block="172.16.0.0/24",
+        zone_id=foo_zones.zones[0].id,
+        vpc_id=foo_vpc.id)
+    foo_instance = volcengine.redis.Instance("fooInstance",
+        zone_ids=[foo_zones.zones[0].id],
+        instance_name="acc-test-tf-redis",
+        sharded_cluster=1,
+        password="1qaz!QAZ12",
+        node_number=2,
+        shard_capacity=1024,
+        shard_number=2,
+        engine_version="5.0",
+        subnet_id=foo_subnet.id,
+        deletion_protection="disabled",
+        vpc_auth_mode="close",
+        charge_type="PostPaid",
+        port=6381,
+        project_name="default")
+    foo_account = volcengine.redis.Account("fooAccount",
+        account_name="acc_test_account",
+        instance_id=foo_instance.id,
+        password="Password@@",
+        role_name="ReadOnly")
+    foo_accounts = volcengine.redis.accounts_output(account_name=foo_account.account_name,
+        instance_id=foo_instance.id)
     ```
 
 
@@ -151,7 +181,37 @@ def accounts_output(account_name: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.redis.accounts(instance_id="redis-cn0398aizj8cwmopx")
+    foo_zones = volcengine.ecs.zones()
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-vpc",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-test-subnet",
+        cidr_block="172.16.0.0/24",
+        zone_id=foo_zones.zones[0].id,
+        vpc_id=foo_vpc.id)
+    foo_instance = volcengine.redis.Instance("fooInstance",
+        zone_ids=[foo_zones.zones[0].id],
+        instance_name="acc-test-tf-redis",
+        sharded_cluster=1,
+        password="1qaz!QAZ12",
+        node_number=2,
+        shard_capacity=1024,
+        shard_number=2,
+        engine_version="5.0",
+        subnet_id=foo_subnet.id,
+        deletion_protection="disabled",
+        vpc_auth_mode="close",
+        charge_type="PostPaid",
+        port=6381,
+        project_name="default")
+    foo_account = volcengine.redis.Account("fooAccount",
+        account_name="acc_test_account",
+        instance_id=foo_instance.id,
+        password="Password@@",
+        role_name="ReadOnly")
+    foo_accounts = volcengine.redis.accounts_output(account_name=foo_account.account_name,
+        instance_id=foo_instance.id)
     ```
 
 

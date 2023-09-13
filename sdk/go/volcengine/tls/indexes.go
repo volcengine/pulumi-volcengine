@@ -28,7 +28,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := tls.Indexes(ctx, &tls.IndexesArgs{
 //				Ids: []string{
-//					"65d67d34-c5b4-4ec8-b3a9-175d3366****",
+//					"7ce12237-6670-44a7-9d79-2e36961586e6",
 //				},
 //			}, nil)
 //			if err != nil {

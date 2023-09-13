@@ -38,6 +38,10 @@ namespace Volcengine.Pulumi.Volcengine.Tls.Outputs
         /// The topic id of the tls index.
         /// </summary>
         public readonly string TopicId;
+        /// <summary>
+        /// The reserved field index configuration of the tls topic.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.IndexesTlsIndexUserInnerKeyValueResult> UserInnerKeyValues;
 
         [OutputConstructor]
         private IndexesTlsIndexResult(
@@ -51,7 +55,9 @@ namespace Volcengine.Pulumi.Volcengine.Tls.Outputs
 
             string modifyTime,
 
-            string topicId)
+            string topicId,
+
+            ImmutableArray<Outputs.IndexesTlsIndexUserInnerKeyValueResult> userInnerKeyValues)
         {
             CreateTime = createTime;
             FullText = fullText;
@@ -59,6 +65,7 @@ namespace Volcengine.Pulumi.Volcengine.Tls.Outputs
             KeyValues = keyValues;
             ModifyTime = modifyTime;
             TopicId = topicId;
+            UserInnerKeyValues = userInnerKeyValues;
         }
     }
 }

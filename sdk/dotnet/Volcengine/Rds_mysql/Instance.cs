@@ -18,28 +18,40 @@ namespace Volcengine.Pulumi.Volcengine.Rds_mysql
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
+    /// using Volcengine = Pulumi.Volcengine;
     /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var foo = new Volcengine.Rds_mysql.Instance("foo", new()
+    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+    /// 
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
+    ///     {
+    ///         VpcName = "acc-test-project1",
+    ///         CidrBlock = "172.16.0.0/16",
+    ///     });
+    /// 
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-subnet-test-2",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooInstance = new Volcengine.Rds_mysql.Instance("fooInstance", new()
     ///     {
     ///         DbEngineVersion = "MySQL_5_7",
     ///         NodeSpec = "rds.mysql.1c2g",
-    ///         PrimaryZoneId = "cn-guilin-a",
-    ///         SecondaryZoneId = "cn-guilin-b",
+    ///         PrimaryZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         SecondaryZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
     ///         StorageSpace = 80,
-    ///         SubnetId = "subnet-2d72yi377stts58ozfdrlk9f6",
-    ///         InstanceName = "tf-test",
+    ///         SubnetId = fooSubnet.Id,
+    ///         InstanceName = "acc-test",
     ///         LowerCaseTableNames = "1",
     ///         ChargeInfo = new Volcengine.Rds_mysql.Inputs.InstanceChargeInfoArgs
     ///         {
     ///             ChargeType = "PostPaid",
-    ///         },
-    ///         AllowListIds = new[]
-    ///         {
-    ///             "acl-2dd8f8317e4d4159b21630d13ae2e6ec",
-    ///             "acl-2eaa2a053b2a4a58b988e38ae975e81c",
     ///         },
     ///         Parameters = new[]
     ///         {
@@ -54,13 +66,6 @@ namespace Volcengine.Pulumi.Volcengine.Rds_mysql
     ///                 ParameterValue = "4",
     ///             },
     ///         },
-    ///     });
-    /// 
-    ///     var @readonly = new Volcengine.Rds_mysql.InstanceReadonlyNode("readonly", new()
-    ///     {
-    ///         InstanceId = foo.Id,
-    ///         NodeSpec = "rds.mysql.2c4g",
-    ///         ZoneId = "cn-guilin-a",
     ///     });
     /// 
     /// });

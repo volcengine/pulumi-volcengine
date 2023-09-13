@@ -13,10 +13,57 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.escloud.Instances({
- *     ids: ["d3gftqjvnah74eie"],
- *     statuses: ["Running"],
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet_new",
+ *     description: "tfdesc",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooInstance = new volcengine.escloud.Instance("fooInstance", {instanceConfiguration: {
+ *     version: "V6_7",
+ *     zoneNumber: 1,
+ *     enableHttps: true,
+ *     adminUserName: "admin",
+ *     adminPassword: "Password@@",
+ *     chargeType: "PostPaid",
+ *     configurationCode: "es.standard",
+ *     enablePureMaster: true,
+ *     instanceName: "acc-test-0",
+ *     nodeSpecsAssigns: [
+ *         {
+ *             type: "Master",
+ *             number: 3,
+ *             resourceSpecName: "es.x4.medium",
+ *             storageSpecName: "es.volume.essd.pl0",
+ *             storageSize: 100,
+ *         },
+ *         {
+ *             type: "Hot",
+ *             number: 2,
+ *             resourceSpecName: "es.x4.large",
+ *             storageSpecName: "es.volume.essd.pl0",
+ *             storageSize: 100,
+ *         },
+ *         {
+ *             type: "Kibana",
+ *             number: 1,
+ *             resourceSpecName: "kibana.x2.small",
+ *         },
+ *     ],
+ *     subnetId: fooSubnet.id,
+ *     projectName: "default",
+ *     forceRestartAfterScale: false,
+ * }});
+ * const fooInstances = volcengine.escloud.InstancesOutput({
+ *     ids: [fooInstance.id],
  * });
  * ```
  */
@@ -100,10 +147,57 @@ export interface InstancesResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.escloud.Instances({
- *     ids: ["d3gftqjvnah74eie"],
- *     statuses: ["Running"],
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet_new",
+ *     description: "tfdesc",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooInstance = new volcengine.escloud.Instance("fooInstance", {instanceConfiguration: {
+ *     version: "V6_7",
+ *     zoneNumber: 1,
+ *     enableHttps: true,
+ *     adminUserName: "admin",
+ *     adminPassword: "Password@@",
+ *     chargeType: "PostPaid",
+ *     configurationCode: "es.standard",
+ *     enablePureMaster: true,
+ *     instanceName: "acc-test-0",
+ *     nodeSpecsAssigns: [
+ *         {
+ *             type: "Master",
+ *             number: 3,
+ *             resourceSpecName: "es.x4.medium",
+ *             storageSpecName: "es.volume.essd.pl0",
+ *             storageSize: 100,
+ *         },
+ *         {
+ *             type: "Hot",
+ *             number: 2,
+ *             resourceSpecName: "es.x4.large",
+ *             storageSpecName: "es.volume.essd.pl0",
+ *             storageSize: 100,
+ *         },
+ *         {
+ *             type: "Kibana",
+ *             number: 1,
+ *             resourceSpecName: "kibana.x2.small",
+ *         },
+ *     ],
+ *     subnetId: fooSubnet.id,
+ *     projectName: "default",
+ *     forceRestartAfterScale: false,
+ * }});
+ * const fooInstances = volcengine.escloud.InstancesOutput({
+ *     ids: [fooInstance.id],
  * });
  * ```
  */

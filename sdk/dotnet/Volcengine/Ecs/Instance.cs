@@ -288,7 +288,7 @@ namespace Volcengine.Pulumi.Volcengine.Ecs
         /// The ProjectName of the ecs instance.
         /// </summary>
         [Output("projectName")]
-        public Output<string?> ProjectName { get; private set; } = null!;
+        public Output<string> ProjectName { get; private set; } = null!;
 
         /// <summary>
         /// The secondary networkInterface detail collection of ECS instance.

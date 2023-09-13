@@ -31,8 +31,8 @@ namespace Volcengine.Pulumi.Volcengine.Redis
     ///             "192.168.1.1",
     ///             "192.168.2.22",
     ///         },
-    ///         AllowListDesc = "renxin terraform测试白xxxxxxx",
-    ///         AllowListName = "rx_test_tf_allowlist_create",
+    ///         AllowListDesc = "acctftestallowlist",
+    ///         AllowListName = "acc_test_tf_allowlist_create",
     ///     });
     /// 
     /// });

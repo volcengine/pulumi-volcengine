@@ -20,23 +20,80 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/escloud"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := escloud.Instances(ctx, &escloud.InstancesArgs{
-//				Ids: []string{
-//					"d3gftqjvnah74eie",
-//				},
-//				Statuses: []string{
-//					"Running",
-//				},
-//			}, nil)
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName:  pulumi.String("acc-test-subnet_new"),
+//				Description: pulumi.String("tfdesc"),
+//				CidrBlock:   pulumi.String("172.16.0.0/24"),
+//				ZoneId:      *pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:       fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooInstance, err := escloud.NewInstance(ctx, "fooInstance", &escloud.InstanceArgs{
+//				InstanceConfiguration: &escloud.InstanceInstanceConfigurationArgs{
+//					Version:           pulumi.String("V6_7"),
+//					ZoneNumber:        pulumi.Int(1),
+//					EnableHttps:       pulumi.Bool(true),
+//					AdminUserName:     pulumi.String("admin"),
+//					AdminPassword:     pulumi.String("Password@@"),
+//					ChargeType:        pulumi.String("PostPaid"),
+//					ConfigurationCode: pulumi.String("es.standard"),
+//					EnablePureMaster:  pulumi.Bool(true),
+//					InstanceName:      pulumi.String("acc-test-0"),
+//					NodeSpecsAssigns: escloud.InstanceInstanceConfigurationNodeSpecsAssignArray{
+//						&escloud.InstanceInstanceConfigurationNodeSpecsAssignArgs{
+//							Type:             pulumi.String("Master"),
+//							Number:           pulumi.Int(3),
+//							ResourceSpecName: pulumi.String("es.x4.medium"),
+//							StorageSpecName:  pulumi.String("es.volume.essd.pl0"),
+//							StorageSize:      pulumi.Int(100),
+//						},
+//						&escloud.InstanceInstanceConfigurationNodeSpecsAssignArgs{
+//							Type:             pulumi.String("Hot"),
+//							Number:           pulumi.Int(2),
+//							ResourceSpecName: pulumi.String("es.x4.large"),
+//							StorageSpecName:  pulumi.String("es.volume.essd.pl0"),
+//							StorageSize:      pulumi.Int(100),
+//						},
+//						&escloud.InstanceInstanceConfigurationNodeSpecsAssignArgs{
+//							Type:             pulumi.String("Kibana"),
+//							Number:           pulumi.Int(1),
+//							ResourceSpecName: pulumi.String("kibana.x2.small"),
+//						},
+//					},
+//					SubnetId:               fooSubnet.ID(),
+//					ProjectName:            pulumi.String("default"),
+//					ForceRestartAfterScale: pulumi.Bool(false),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = escloud.InstancesOutput(ctx, escloud.InstancesOutputArgs{
+//				Ids: pulumi.StringArray{
+//					fooInstance.ID(),
+//				},
+//			}, nil)
 //			return nil
 //		})
 //	}

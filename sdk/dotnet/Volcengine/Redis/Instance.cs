@@ -17,47 +17,46 @@ namespace Volcengine.Pulumi.Volcengine.Redis
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
+    /// using Volcengine = Pulumi.Volcengine;
     /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var foo = new Volcengine.Redis.Instance("foo", new()
+    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+    /// 
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
-    ///         ApplyImmediately = true,
-    ///         BackupActive = true,
-    ///         BackupHour = 4,
-    ///         BackupPeriods = new[]
+    ///         VpcName = "acc-test-vpc",
+    ///         CidrBlock = "172.16.0.0/16",
+    ///     });
+    /// 
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooInstance = new Volcengine.Redis.Instance("fooInstance", new()
+    ///     {
+    ///         ZoneIds = new[]
     ///         {
-    ///             1,
-    ///             2,
-    ///             3,
+    ///             fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
     ///         },
-    ///         ChargeType = "PostPaid",
-    ///         CreateBackup = false,
-    ///         DeletionProtection = "disabled",
-    ///         EngineVersion = "5.0",
     ///         InstanceName = "tf-test",
-    ///         NodeNumber = 2,
-    ///         ParamValues = new[]
-    ///         {
-    ///             new Volcengine.Redis.Inputs.InstanceParamValueArgs
-    ///             {
-    ///                 Name = "active-defrag-cycle-min",
-    ///                 Value = "5",
-    ///             },
-    ///             new Volcengine.Redis.Inputs.InstanceParamValueArgs
-    ///             {
-    ///                 Name = "active-defrag-cycle-max",
-    ///                 Value = "28",
-    ///             },
-    ///         },
+    ///         ShardedCluster = 1,
     ///         Password = "1qaz!QAZ12",
-    ///         Port = 6381,
-    ///         ProjectName = "default",
+    ///         NodeNumber = 2,
     ///         ShardCapacity = 1024,
     ///         ShardNumber = 2,
-    ///         ShardedCluster = 1,
-    ///         SubnetId = "subnet-13g7c3lot0lc03n6nu4wj****",
+    ///         EngineVersion = "5.0",
+    ///         SubnetId = fooSubnet.Id,
+    ///         DeletionProtection = "disabled",
+    ///         VpcAuthMode = "close",
+    ///         ChargeType = "PostPaid",
+    ///         Port = 6381,
+    ///         ProjectName = "default",
     ///         Tags = new[]
     ///         {
     ///             new Volcengine.Redis.Inputs.InstanceTagArgs
@@ -71,12 +70,29 @@ namespace Volcengine.Pulumi.Volcengine.Redis
     ///                 Value = "v3",
     ///             },
     ///         },
-    ///         VpcAuthMode = "close",
-    ///         ZoneIds = new[]
+    ///         ParamValues = new[]
     ///         {
-    ///             "cn-beijing-a",
-    ///             "cn-beijing-b",
+    ///             new Volcengine.Redis.Inputs.InstanceParamValueArgs
+    ///             {
+    ///                 Name = "active-defrag-cycle-min",
+    ///                 Value = "5",
+    ///             },
+    ///             new Volcengine.Redis.Inputs.InstanceParamValueArgs
+    ///             {
+    ///                 Name = "active-defrag-cycle-max",
+    ///                 Value = "28",
+    ///             },
     ///         },
+    ///         BackupPeriods = new[]
+    ///         {
+    ///             1,
+    ///             2,
+    ///             3,
+    ///         },
+    ///         BackupHour = 4,
+    ///         BackupActive = true,
+    ///         CreateBackup = false,
+    ///         ApplyImmediately = true,
     ///     });
     /// 
     /// });

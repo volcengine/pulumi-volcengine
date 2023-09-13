@@ -240,7 +240,7 @@ class SecurityGroup(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         g1test1 = volcengine.vpc.SecurityGroup("g1test1",
-            project_name="yuwenhao",
+            project_name="default",
             vpc_id="vpc-2feppmy1ugt1c59gp688n1fld")
         ```
 
@@ -275,7 +275,7 @@ class SecurityGroup(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         g1test1 = volcengine.vpc.SecurityGroup("g1test1",
-            project_name="yuwenhao",
+            project_name="default",
             vpc_id="vpc-2feppmy1ugt1c59gp688n1fld")
         ```
 
@@ -388,7 +388,7 @@ class SecurityGroup(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="projectName")
-    def project_name(self) -> pulumi.Output[Optional[str]]:
+    def project_name(self) -> pulumi.Output[str]:
         """
         The ProjectName of SecurityGroup.
         """

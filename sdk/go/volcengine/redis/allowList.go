@@ -34,8 +34,8 @@ import (
 //					pulumi.String("192.168.1.1"),
 //					pulumi.String("192.168.2.22"),
 //				},
-//				AllowListDesc: pulumi.String("renxin terraform测试白xxxxxxx"),
-//				AllowListName: pulumi.String("rx_test_tf_allowlist_create"),
+//				AllowListDesc: pulumi.String("acctftestallowlist"),
+//				AllowListName: pulumi.String("acc_test_tf_allowlist_create"),
 //			})
 //			if err != nil {
 //				return err

@@ -395,6 +395,14 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "ecs/command",
+  "fqn": "pulumi_volcengine.ecs",
+  "classes": {
+   "volcengine:ecs/command:Command": "Command"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "ecs/deploymentSet",
   "fqn": "pulumi_volcengine.ecs",
   "classes": {
@@ -415,6 +423,14 @@ _utilities.register(
   "fqn": "pulumi_volcengine.ecs",
   "classes": {
    "volcengine:ecs/instance:Instance": "Instance"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "ecs/invocation",
+  "fqn": "pulumi_volcengine.ecs",
+  "classes": {
+   "volcengine:ecs/invocation:Invocation": "Invocation"
   }
  },
  {

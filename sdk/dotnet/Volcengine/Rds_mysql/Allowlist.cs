@@ -26,10 +26,12 @@ namespace Volcengine.Pulumi.Volcengine.Rds_mysql
     ///     {
     ///         AllowLists = new[]
     ///         {
-    ///             "127.0.0.1",
+    ///             "192.168.0.0/24",
+    ///             "192.168.1.0/24",
     ///         },
-    ///         AllowListDesc = "terraform test zzm",
-    ///         AllowListName = "tf-test-opt",
+    ///         AllowListDesc = "acc-test",
+    ///         AllowListName = "acc-test-allowlist",
+    ///         AllowListType = "IPv4",
     ///     });
     /// 
     /// });

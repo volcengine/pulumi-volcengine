@@ -18,14 +18,58 @@ namespace Volcengine.Pulumi.Volcengine.Redis
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
+    /// using Volcengine = Pulumi.Volcengine;
     /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @default = new Volcengine.Redis.BackupRestore("default", new()
+    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+    /// 
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
-    ///         InstanceId = "redis-cnlfvrv4qye6u4lpa",
-    ///         TimePoint = "2023-04-14T02:51:51Z",
+    ///         VpcName = "acc-test-vpc",
+    ///         CidrBlock = "172.16.0.0/16",
+    ///     });
+    /// 
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooInstance = new Volcengine.Redis.Instance("fooInstance", new()
+    ///     {
+    ///         ZoneIds = new[]
+    ///         {
+    ///             fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         },
+    ///         InstanceName = "acc-test-tf-redis",
+    ///         ShardedCluster = 1,
+    ///         Password = "1qaz!QAZ12",
+    ///         NodeNumber = 2,
+    ///         ShardCapacity = 1024,
+    ///         ShardNumber = 2,
+    ///         EngineVersion = "5.0",
+    ///         SubnetId = fooSubnet.Id,
+    ///         DeletionProtection = "disabled",
+    ///         VpcAuthMode = "close",
+    ///         ChargeType = "PostPaid",
+    ///         Port = 6381,
+    ///         ProjectName = "default",
+    ///     });
+    /// 
+    ///     var fooBackup = new Volcengine.Redis.Backup("fooBackup", new()
+    ///     {
+    ///         InstanceId = fooInstance.Id,
+    ///     });
+    /// 
+    ///     var fooBackupRestore = new Volcengine.Redis.BackupRestore("fooBackupRestore", new()
+    ///     {
+    ///         InstanceId = fooInstance.Id,
+    ///         TimePoint = fooBackup.EndTime,
+    ///         BackupType = "Full",
     ///     });
     /// 
     /// });

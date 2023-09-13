@@ -21,16 +21,64 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/rds_mysql"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := rds_mysql.NewInstanceReadonlyNode(ctx, "foo", &rds_mysql.InstanceReadonlyNodeArgs{
-//				InstanceId: pulumi.String("mysql-b3fca7f571d6"),
-//				NodeSpec:   pulumi.String("rds.mysql.1c2g"),
-//				ZoneId:     pulumi.String("cn-guilin-b"),
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-project1"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-subnet-test-2"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooInstance, err := rds_mysql.NewInstance(ctx, "fooInstance", &rds_mysql.InstanceArgs{
+//				DbEngineVersion:     pulumi.String("MySQL_5_7"),
+//				NodeSpec:            pulumi.String("rds.mysql.1c2g"),
+//				PrimaryZoneId:       *pulumi.String(fooZones.Zones[0].Id),
+//				SecondaryZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				StorageSpace:        pulumi.Int(80),
+//				SubnetId:            fooSubnet.ID(),
+//				InstanceName:        pulumi.String("acc-test"),
+//				LowerCaseTableNames: pulumi.String("1"),
+//				ChargeInfo: &rds_mysql.InstanceChargeInfoArgs{
+//					ChargeType: pulumi.String("PostPaid"),
+//				},
+//				Parameters: rds_mysql.InstanceParameterArray{
+//					&rds_mysql.InstanceParameterArgs{
+//						ParameterName:  pulumi.String("auto_increment_increment"),
+//						ParameterValue: pulumi.String("2"),
+//					},
+//					&rds_mysql.InstanceParameterArgs{
+//						ParameterName:  pulumi.String("auto_increment_offset"),
+//						ParameterValue: pulumi.String("4"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = rds_mysql.NewInstanceReadonlyNode(ctx, "fooInstanceReadonlyNode", &rds_mysql.InstanceReadonlyNodeArgs{
+//				InstanceId: fooInstance.ID(),
+//				NodeSpec:   pulumi.String("rds.mysql.2c4g"),
+//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
 //			})
 //			if err != nil {
 //				return err

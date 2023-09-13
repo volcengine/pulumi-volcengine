@@ -2158,6 +2158,61 @@ export namespace ebs {
 }
 
 export namespace ecs {
+    export interface CommandsCommand {
+        /**
+         * The base64 encoded content of the ecs command.
+         */
+        commandContent: string;
+        /**
+         * The id of ecs command.
+         */
+        commandId: string;
+        /**
+         * The provider of public command. When this field is not specified, query for custom commands.
+         */
+        commandProvider: string;
+        /**
+         * The create time of the ecs command.
+         */
+        createdAt: string;
+        /**
+         * The description of the ecs command.
+         */
+        description: string;
+        /**
+         * The id of the ecs command.
+         */
+        id: string;
+        /**
+         * The invocation times of the ecs command. Public commands do not display the invocation times.
+         */
+        invocationTimes: number;
+        /**
+         * The name of ecs command. This field support fuzzy query.
+         */
+        name: string;
+        /**
+         * The timeout of the ecs command.
+         */
+        timeout: number;
+        /**
+         * The type of ecs command. Valid values: `Shell`.
+         */
+        type: string;
+        /**
+         * The update time of the ecs command.
+         */
+        updatedAt: string;
+        /**
+         * The username of the ecs command.
+         */
+        username: string;
+        /**
+         * The working directory of the ecs command.
+         */
+        workingDir: string;
+    }
+
     export interface DeploymentSetsDeploymentSet {
         /**
          * The ID of ECS DeploymentSet.
@@ -2521,6 +2576,152 @@ export namespace ecs {
         value: string;
     }
 
+    export interface InvocationResultsInvocationResult {
+        /**
+         * The id of ecs command.
+         */
+        commandId: string;
+        /**
+         * The end time of the ecs invocation in the instance.
+         */
+        endTime: string;
+        /**
+         * The error code of the ecs invocation.
+         */
+        errorCode: string;
+        /**
+         * The error message of the ecs invocation.
+         */
+        errorMessage: string;
+        /**
+         * The exit code of the ecs command.
+         */
+        exitCode: number;
+        /**
+         * The id of the ecs invocation result.
+         */
+        id: string;
+        /**
+         * The id of ecs instance.
+         */
+        instanceId: string;
+        /**
+         * The id of ecs invocation.
+         */
+        invocationId: string;
+        /**
+         * The id of the ecs invocation result.
+         */
+        invocationResultId: string;
+        /**
+         * The list of status of ecs invocation in a single instance. Valid values: `Pending`, `Running`, `Success`, `Failed`, `Timeout`.
+         */
+        invocationResultStatus: string;
+        /**
+         * The base64 encoded output message of the ecs invocation.
+         */
+        output: string;
+        /**
+         * The start time of the ecs invocation in the instance.
+         */
+        startTime: string;
+        /**
+         * The username of the ecs command.
+         */
+        username: string;
+    }
+
+    export interface InvocationsInvocation {
+        /**
+         * The base64 encoded content of the ecs command.
+         */
+        commandContent: string;
+        /**
+         * The description of the ecs command.
+         */
+        commandDescription: string;
+        /**
+         * The id of ecs command.
+         */
+        commandId: string;
+        /**
+         * The name of ecs command. This field support fuzzy query.
+         */
+        commandName: string;
+        /**
+         * The provider of the ecs command.
+         */
+        commandProvider: string;
+        /**
+         * The type of ecs command. Valid values: `Shell`.
+         */
+        commandType: string;
+        /**
+         * The end time of the ecs invocation.
+         */
+        endTime: string;
+        /**
+         * The frequency of the ecs invocation.
+         */
+        frequency: string;
+        /**
+         * The id of the ecs invocation.
+         */
+        id: string;
+        /**
+         * The list of ECS instance IDs.
+         */
+        instanceIds: string[];
+        /**
+         * The instance number of the ecs invocation.
+         */
+        instanceNumber: number;
+        /**
+         * The description of the ecs invocation.
+         */
+        invocationDescription: string;
+        /**
+         * The id of ecs invocation.
+         */
+        invocationId: string;
+        /**
+         * The name of ecs invocation. This field support fuzzy query.
+         */
+        invocationName: string;
+        /**
+         * The list of status of ecs invocation. Valid values: `Pending`, `Scheduled`, `Running`, `Success`, `Failed`, `Stopped`, `PartialFailed`, `Finished`.
+         */
+        invocationStatus: string;
+        /**
+         * The launch time of the ecs invocation.
+         */
+        launchTime: string;
+        /**
+         * The recurrence end time of the ecs invocation.
+         */
+        recurrenceEndTime: string;
+        /**
+         * The repeat mode of ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
+         */
+        repeatMode: string;
+        /**
+         * The start time of the ecs invocation.
+         */
+        startTime: string;
+        /**
+         * The timeout of the ecs command.
+         */
+        timeout: number;
+        /**
+         * The username of the ecs command.
+         */
+        username: string;
+        /**
+         * The working directory of the ecs command.
+         */
+        workingDir: string;
+    }
+
     export interface KeyPairsKeyPair {
         /**
          * The creation time of key pair.
@@ -2705,6 +2906,17 @@ export namespace ecs {
          * The type of volume.
          */
         volumeType: string;
+    }
+
+    export interface RegionsRegion {
+        /**
+         * The id of the region.
+         */
+        id: string;
+        /**
+         * The id of the region.
+         */
+        regionId: string;
     }
 
     export interface ZonesZone {
@@ -7291,6 +7503,48 @@ export namespace tls {
         valueType: string;
     }
 
+    export interface IndexUserInnerKeyValue {
+        /**
+         * Whether the value is case sensitive.
+         */
+        caseSensitive?: boolean;
+        /**
+         * The delimiter of the value.
+         */
+        delimiter?: string;
+        /**
+         * Whether the value include chinese.
+         */
+        includeChinese?: boolean;
+        /**
+         * The JSON subfield key value index.
+         */
+        jsonKeys?: outputs.tls.IndexUserInnerKeyValueJsonKey[];
+        /**
+         * The key of the KeyValueInfo.
+         */
+        key: string;
+        /**
+         * Whether the filed is enabled for analysis.
+         */
+        sqlFlag?: boolean;
+        /**
+         * The type of value. Valid values: `long`, `double`, `text`, `json`.
+         */
+        valueType: string;
+    }
+
+    export interface IndexUserInnerKeyValueJsonKey {
+        /**
+         * The key of the subfield key value index.
+         */
+        key: string;
+        /**
+         * The type of value. Valid values: `long`, `double`, `text`.
+         */
+        valueType: string;
+    }
+
     export interface IndexesTlsIndex {
         /**
          * The create time of the tls index.
@@ -7316,6 +7570,10 @@ export namespace tls {
          * The topic id of the tls index.
          */
         topicId: string;
+        /**
+         * The reserved field index configuration of the tls topic.
+         */
+        userInnerKeyValues: outputs.tls.IndexesTlsIndexUserInnerKeyValue[];
     }
 
     export interface IndexesTlsIndexFullText {
@@ -7365,6 +7623,64 @@ export namespace tls {
     }
 
     export interface IndexesTlsIndexKeyValueJsonKey {
+        /**
+         * Whether the value is case sensitive.
+         */
+        caseSensitive: boolean;
+        /**
+         * The delimiter of the value.
+         */
+        delimiter: string;
+        /**
+         * Whether the value include chinese.
+         */
+        includeChinese: boolean;
+        /**
+         * The key of the KeyValue index.
+         */
+        key: string;
+        /**
+         * Whether the filed is enabled for analysis.
+         */
+        sqlFlag: boolean;
+        /**
+         * The type of value.
+         */
+        valueType: string;
+    }
+
+    export interface IndexesTlsIndexUserInnerKeyValue {
+        /**
+         * Whether the value is case sensitive.
+         */
+        caseSensitive: boolean;
+        /**
+         * The delimiter of the value.
+         */
+        delimiter: string;
+        /**
+         * Whether the value include chinese.
+         */
+        includeChinese: boolean;
+        /**
+         * The JSON subfield key value index.
+         */
+        jsonKeys: outputs.tls.IndexesTlsIndexUserInnerKeyValueJsonKey[];
+        /**
+         * The key of the KeyValue index.
+         */
+        key: string;
+        /**
+         * Whether the filed is enabled for analysis.
+         */
+        sqlFlag: boolean;
+        /**
+         * The type of value.
+         */
+        valueType: string;
+    }
+
+    export interface IndexesTlsIndexUserInnerKeyValueJsonKey {
         /**
          * Whether the value is case sensitive.
          */

@@ -21,27 +21,45 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/rds_mysql"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			foo, err := rds_mysql.NewInstance(ctx, "foo", &rds_mysql.InstanceArgs{
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-project1"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-subnet-test-2"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = rds_mysql.NewInstance(ctx, "fooInstance", &rds_mysql.InstanceArgs{
 //				DbEngineVersion:     pulumi.String("MySQL_5_7"),
 //				NodeSpec:            pulumi.String("rds.mysql.1c2g"),
-//				PrimaryZoneId:       pulumi.String("cn-guilin-a"),
-//				SecondaryZoneId:     pulumi.String("cn-guilin-b"),
+//				PrimaryZoneId:       *pulumi.String(fooZones.Zones[0].Id),
+//				SecondaryZoneId:     *pulumi.String(fooZones.Zones[0].Id),
 //				StorageSpace:        pulumi.Int(80),
-//				SubnetId:            pulumi.String("subnet-2d72yi377stts58ozfdrlk9f6"),
-//				InstanceName:        pulumi.String("tf-test"),
+//				SubnetId:            fooSubnet.ID(),
+//				InstanceName:        pulumi.String("acc-test"),
 //				LowerCaseTableNames: pulumi.String("1"),
 //				ChargeInfo: &rds_mysql.InstanceChargeInfoArgs{
 //					ChargeType: pulumi.String("PostPaid"),
-//				},
-//				AllowListIds: pulumi.StringArray{
-//					pulumi.String("acl-2dd8f8317e4d4159b21630d13ae2e6ec"),
-//					pulumi.String("acl-2eaa2a053b2a4a58b988e38ae975e81c"),
 //				},
 //				Parameters: rds_mysql.InstanceParameterArray{
 //					&rds_mysql.InstanceParameterArgs{
@@ -53,14 +71,6 @@ import (
 //						ParameterValue: pulumi.String("4"),
 //					},
 //				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = rds_mysql.NewInstanceReadonlyNode(ctx, "readonly", &rds_mysql.InstanceReadonlyNodeArgs{
-//				InstanceId: foo.ID(),
-//				NodeSpec:   pulumi.String("rds.mysql.2c4g"),
-//				ZoneId:     pulumi.String("cn-guilin-a"),
 //			})
 //			if err != nil {
 //				return err

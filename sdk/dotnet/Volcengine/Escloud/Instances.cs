@@ -23,18 +23,76 @@ namespace Volcengine.Pulumi.Volcengine.Escloud
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Escloud.Instances.Invoke(new()
+        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        /// 
+        ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
+        ///     {
+        ///         VpcName = "acc-test-vpc",
+        ///         CidrBlock = "172.16.0.0/16",
+        ///     });
+        /// 
+        ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+        ///     {
+        ///         SubnetName = "acc-test-subnet_new",
+        ///         Description = "tfdesc",
+        ///         CidrBlock = "172.16.0.0/24",
+        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooInstance = new Volcengine.Escloud.Instance("fooInstance", new()
+        ///     {
+        ///         InstanceConfiguration = new Volcengine.Escloud.Inputs.InstanceInstanceConfigurationArgs
+        ///         {
+        ///             Version = "V6_7",
+        ///             ZoneNumber = 1,
+        ///             EnableHttps = true,
+        ///             AdminUserName = "admin",
+        ///             AdminPassword = "Password@@",
+        ///             ChargeType = "PostPaid",
+        ///             ConfigurationCode = "es.standard",
+        ///             EnablePureMaster = true,
+        ///             InstanceName = "acc-test-0",
+        ///             NodeSpecsAssigns = new[]
+        ///             {
+        ///                 new Volcengine.Escloud.Inputs.InstanceInstanceConfigurationNodeSpecsAssignArgs
+        ///                 {
+        ///                     Type = "Master",
+        ///                     Number = 3,
+        ///                     ResourceSpecName = "es.x4.medium",
+        ///                     StorageSpecName = "es.volume.essd.pl0",
+        ///                     StorageSize = 100,
+        ///                 },
+        ///                 new Volcengine.Escloud.Inputs.InstanceInstanceConfigurationNodeSpecsAssignArgs
+        ///                 {
+        ///                     Type = "Hot",
+        ///                     Number = 2,
+        ///                     ResourceSpecName = "es.x4.large",
+        ///                     StorageSpecName = "es.volume.essd.pl0",
+        ///                     StorageSize = 100,
+        ///                 },
+        ///                 new Volcengine.Escloud.Inputs.InstanceInstanceConfigurationNodeSpecsAssignArgs
+        ///                 {
+        ///                     Type = "Kibana",
+        ///                     Number = 1,
+        ///                     ResourceSpecName = "kibana.x2.small",
+        ///                 },
+        ///             },
+        ///             SubnetId = fooSubnet.Id,
+        ///             ProjectName = "default",
+        ///             ForceRestartAfterScale = false,
+        ///         },
+        ///     });
+        /// 
+        ///     var fooInstances = Volcengine.Escloud.Instances.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
-        ///             "d3gftqjvnah74eie",
-        ///         },
-        ///         Statuses = new[]
-        ///         {
-        ///             "Running",
+        ///             fooInstance.Id,
         ///         },
         ///     });
         /// 
@@ -57,18 +115,76 @@ namespace Volcengine.Pulumi.Volcengine.Escloud
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Escloud.Instances.Invoke(new()
+        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        /// 
+        ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
+        ///     {
+        ///         VpcName = "acc-test-vpc",
+        ///         CidrBlock = "172.16.0.0/16",
+        ///     });
+        /// 
+        ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+        ///     {
+        ///         SubnetName = "acc-test-subnet_new",
+        ///         Description = "tfdesc",
+        ///         CidrBlock = "172.16.0.0/24",
+        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooInstance = new Volcengine.Escloud.Instance("fooInstance", new()
+        ///     {
+        ///         InstanceConfiguration = new Volcengine.Escloud.Inputs.InstanceInstanceConfigurationArgs
+        ///         {
+        ///             Version = "V6_7",
+        ///             ZoneNumber = 1,
+        ///             EnableHttps = true,
+        ///             AdminUserName = "admin",
+        ///             AdminPassword = "Password@@",
+        ///             ChargeType = "PostPaid",
+        ///             ConfigurationCode = "es.standard",
+        ///             EnablePureMaster = true,
+        ///             InstanceName = "acc-test-0",
+        ///             NodeSpecsAssigns = new[]
+        ///             {
+        ///                 new Volcengine.Escloud.Inputs.InstanceInstanceConfigurationNodeSpecsAssignArgs
+        ///                 {
+        ///                     Type = "Master",
+        ///                     Number = 3,
+        ///                     ResourceSpecName = "es.x4.medium",
+        ///                     StorageSpecName = "es.volume.essd.pl0",
+        ///                     StorageSize = 100,
+        ///                 },
+        ///                 new Volcengine.Escloud.Inputs.InstanceInstanceConfigurationNodeSpecsAssignArgs
+        ///                 {
+        ///                     Type = "Hot",
+        ///                     Number = 2,
+        ///                     ResourceSpecName = "es.x4.large",
+        ///                     StorageSpecName = "es.volume.essd.pl0",
+        ///                     StorageSize = 100,
+        ///                 },
+        ///                 new Volcengine.Escloud.Inputs.InstanceInstanceConfigurationNodeSpecsAssignArgs
+        ///                 {
+        ///                     Type = "Kibana",
+        ///                     Number = 1,
+        ///                     ResourceSpecName = "kibana.x2.small",
+        ///                 },
+        ///             },
+        ///             SubnetId = fooSubnet.Id,
+        ///             ProjectName = "default",
+        ///             ForceRestartAfterScale = false,
+        ///         },
+        ///     });
+        /// 
+        ///     var fooInstances = Volcengine.Escloud.Instances.Invoke(new()
         ///     {
         ///         Ids = new[]
         ///         {
-        ///             "d3gftqjvnah74eie",
-        ///         },
-        ///         Statuses = new[]
-        ///         {
-        ///             "Running",
+        ///             fooInstance.Id,
         ///         },
         ///     });
         /// 

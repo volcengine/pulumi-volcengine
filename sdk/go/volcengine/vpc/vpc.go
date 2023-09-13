@@ -78,7 +78,7 @@ type Vpc struct {
 	// The nat gateway ID list of VPC.
 	NatGatewayIds pulumi.StringArrayOutput `pulumi:"natGatewayIds"`
 	// The ProjectName of the VPC.
-	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The route table ID list of VPC.
 	RouteTableIds pulumi.StringArrayOutput `pulumi:"routeTableIds"`
 	// The security group ID list of VPC.
@@ -392,8 +392,8 @@ func (o VpcOutput) NatGatewayIds() pulumi.StringArrayOutput {
 }
 
 // The ProjectName of the VPC.
-func (o VpcOutput) ProjectName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Vpc) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
+func (o VpcOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vpc) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 // The route table ID list of VPC.

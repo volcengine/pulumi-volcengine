@@ -781,22 +781,27 @@ class Instance(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.rds_mysql.Instance("foo",
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-project1",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-subnet-test-2",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_instance = volcengine.rds_mysql.Instance("fooInstance",
             db_engine_version="MySQL_5_7",
             node_spec="rds.mysql.1c2g",
-            primary_zone_id="cn-guilin-a",
-            secondary_zone_id="cn-guilin-b",
+            primary_zone_id=foo_zones.zones[0].id,
+            secondary_zone_id=foo_zones.zones[0].id,
             storage_space=80,
-            subnet_id="subnet-2d72yi377stts58ozfdrlk9f6",
-            instance_name="tf-test",
+            subnet_id=foo_subnet.id,
+            instance_name="acc-test",
             lower_case_table_names="1",
             charge_info=volcengine.rds_mysql.InstanceChargeInfoArgs(
                 charge_type="PostPaid",
             ),
-            allow_list_ids=[
-                "acl-2dd8f8317e4d4159b21630d13ae2e6ec",
-                "acl-2eaa2a053b2a4a58b988e38ae975e81c",
-            ],
             parameters=[
                 volcengine.rds_mysql.InstanceParameterArgs(
                     parameter_name="auto_increment_increment",
@@ -807,10 +812,6 @@ class Instance(pulumi.CustomResource):
                     parameter_value="4",
                 ),
             ])
-        readonly = volcengine.rds_mysql.InstanceReadonlyNode("readonly",
-            instance_id=foo.id,
-            node_spec="rds.mysql.2c4g",
-            zone_id="cn-guilin-a")
         ```
 
         ## Import
@@ -857,22 +858,27 @@ class Instance(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.rds_mysql.Instance("foo",
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-project1",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-subnet-test-2",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_instance = volcengine.rds_mysql.Instance("fooInstance",
             db_engine_version="MySQL_5_7",
             node_spec="rds.mysql.1c2g",
-            primary_zone_id="cn-guilin-a",
-            secondary_zone_id="cn-guilin-b",
+            primary_zone_id=foo_zones.zones[0].id,
+            secondary_zone_id=foo_zones.zones[0].id,
             storage_space=80,
-            subnet_id="subnet-2d72yi377stts58ozfdrlk9f6",
-            instance_name="tf-test",
+            subnet_id=foo_subnet.id,
+            instance_name="acc-test",
             lower_case_table_names="1",
             charge_info=volcengine.rds_mysql.InstanceChargeInfoArgs(
                 charge_type="PostPaid",
             ),
-            allow_list_ids=[
-                "acl-2dd8f8317e4d4159b21630d13ae2e6ec",
-                "acl-2eaa2a053b2a4a58b988e38ae975e81c",
-            ],
             parameters=[
                 volcengine.rds_mysql.InstanceParameterArgs(
                     parameter_name="auto_increment_increment",
@@ -883,10 +889,6 @@ class Instance(pulumi.CustomResource):
                     parameter_value="4",
                 ),
             ])
-        readonly = volcengine.rds_mysql.InstanceReadonlyNode("readonly",
-            instance_id=foo.id,
-            node_spec="rds.mysql.2c4g",
-            zone_id="cn-guilin-a")
         ```
 
         ## Import
@@ -1106,7 +1108,7 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="allowListIds")
-    def allow_list_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
+    def allow_list_ids(self) -> pulumi.Output[Sequence[str]]:
         """
         Allow list Ids of the RDS instance.
         """

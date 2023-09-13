@@ -20,44 +20,51 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/redis"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := redis.NewInstance(ctx, "foo", &redis.InstanceArgs{
-//				ApplyImmediately: pulumi.Bool(true),
-//				BackupActive:     pulumi.Bool(true),
-//				BackupHour:       pulumi.Int(4),
-//				BackupPeriods: pulumi.IntArray{
-//					pulumi.Int(1),
-//					pulumi.Int(2),
-//					pulumi.Int(3),
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = redis.NewInstance(ctx, "fooInstance", &redis.InstanceArgs{
+//				ZoneIds: pulumi.StringArray{
+//					*pulumi.String(fooZones.Zones[0].Id),
 //				},
-//				ChargeType:         pulumi.String("PostPaid"),
-//				CreateBackup:       pulumi.Bool(false),
-//				DeletionProtection: pulumi.String("disabled"),
-//				EngineVersion:      pulumi.String("5.0"),
 //				InstanceName:       pulumi.String("tf-test"),
+//				ShardedCluster:     pulumi.Int(1),
+//				Password:           pulumi.String("1qaz!QAZ12"),
 //				NodeNumber:         pulumi.Int(2),
-//				ParamValues: redis.InstanceParamValueArray{
-//					&redis.InstanceParamValueArgs{
-//						Name:  pulumi.String("active-defrag-cycle-min"),
-//						Value: pulumi.String("5"),
-//					},
-//					&redis.InstanceParamValueArgs{
-//						Name:  pulumi.String("active-defrag-cycle-max"),
-//						Value: pulumi.String("28"),
-//					},
-//				},
-//				Password:       pulumi.String("1qaz!QAZ12"),
-//				Port:           pulumi.Int(6381),
-//				ProjectName:    pulumi.String("default"),
-//				ShardCapacity:  pulumi.Int(1024),
-//				ShardNumber:    pulumi.Int(2),
-//				ShardedCluster: pulumi.Int(1),
-//				SubnetId:       pulumi.String("subnet-13g7c3lot0lc03n6nu4wj****"),
+//				ShardCapacity:      pulumi.Int(1024),
+//				ShardNumber:        pulumi.Int(2),
+//				EngineVersion:      pulumi.String("5.0"),
+//				SubnetId:           fooSubnet.ID(),
+//				DeletionProtection: pulumi.String("disabled"),
+//				VpcAuthMode:        pulumi.String("close"),
+//				ChargeType:         pulumi.String("PostPaid"),
+//				Port:               pulumi.Int(6381),
+//				ProjectName:        pulumi.String("default"),
 //				Tags: redis.InstanceTagArray{
 //					&redis.InstanceTagArgs{
 //						Key:   pulumi.String("k1"),
@@ -68,11 +75,25 @@ import (
 //						Value: pulumi.String("v3"),
 //					},
 //				},
-//				VpcAuthMode: pulumi.String("close"),
-//				ZoneIds: pulumi.StringArray{
-//					pulumi.String("cn-beijing-a"),
-//					pulumi.String("cn-beijing-b"),
+//				ParamValues: redis.InstanceParamValueArray{
+//					&redis.InstanceParamValueArgs{
+//						Name:  pulumi.String("active-defrag-cycle-min"),
+//						Value: pulumi.String("5"),
+//					},
+//					&redis.InstanceParamValueArgs{
+//						Name:  pulumi.String("active-defrag-cycle-max"),
+//						Value: pulumi.String("28"),
+//					},
 //				},
+//				BackupPeriods: pulumi.IntArray{
+//					pulumi.Int(1),
+//					pulumi.Int(2),
+//					pulumi.Int(3),
+//				},
+//				BackupHour:       pulumi.Int(4),
+//				BackupActive:     pulumi.Bool(true),
+//				CreateBackup:     pulumi.Bool(false),
+//				ApplyImmediately: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err

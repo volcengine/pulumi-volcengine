@@ -24,12 +24,6 @@ namespace Volcengine.Pulumi.Volcengine.Tls
     /// {
     ///     var foo = new Volcengine.Tls.Index("foo", new()
     ///     {
-    ///         FullText = new Volcengine.Tls.Inputs.IndexFullTextArgs
-    ///         {
-    ///             CaseSensitive = true,
-    ///             Delimiter = "!",
-    ///             IncludeChinese = false,
-    ///         },
     ///         KeyValues = new[]
     ///         {
     ///             new Volcengine.Tls.Inputs.IndexKeyValueArgs
@@ -41,12 +35,12 @@ namespace Volcengine.Pulumi.Volcengine.Tls
     ///                 {
     ///                     new Volcengine.Tls.Inputs.IndexKeyValueJsonKeyArgs
     ///                     {
-    ///                         Key = "k2.k4",
+    ///                         Key = "class",
     ///                         ValueType = "text",
     ///                     },
     ///                     new Volcengine.Tls.Inputs.IndexKeyValueJsonKeyArgs
     ///                     {
-    ///                         Key = "k3.k4",
+    ///                         Key = "age",
     ///                         ValueType = "long",
     ///                     },
     ///                 },
@@ -64,7 +58,32 @@ namespace Volcengine.Pulumi.Volcengine.Tls
     ///                 ValueType = "text",
     ///             },
     ///         },
-    ///         TopicId = "65d67d34-c5b4-4ec8-b3a9-175d3366****",
+    ///         TopicId = "7ce12237-6670-44a7-9d79-2e36961586e6",
+    ///         UserInnerKeyValues = new[]
+    ///         {
+    ///             new Volcengine.Tls.Inputs.IndexUserInnerKeyValueArgs
+    ///             {
+    ///                 CaseSensitive = false,
+    ///                 Delimiter = ",:-/ ",
+    ///                 IncludeChinese = false,
+    ///                 JsonKeys = new[]
+    ///                 {
+    ///                     new Volcengine.Tls.Inputs.IndexUserInnerKeyValueJsonKeyArgs
+    ///                     {
+    ///                         Key = "age",
+    ///                         ValueType = "long",
+    ///                     },
+    ///                     new Volcengine.Tls.Inputs.IndexUserInnerKeyValueJsonKeyArgs
+    ///                     {
+    ///                         Key = "name",
+    ///                         ValueType = "long",
+    ///                     },
+    ///                 },
+    ///                 Key = "__content__",
+    ///                 SqlFlag = false,
+    ///                 ValueType = "json",
+    ///             },
+    ///         },
     ///     });
     /// 
     /// });
@@ -110,6 +129,12 @@ namespace Volcengine.Pulumi.Volcengine.Tls
         /// </summary>
         [Output("topicId")]
         public Output<string> TopicId { get; private set; } = null!;
+
+        /// <summary>
+        /// The reserved field index configuration of the tls index.
+        /// </summary>
+        [Output("userInnerKeyValues")]
+        public Output<ImmutableArray<Outputs.IndexUserInnerKeyValue>> UserInnerKeyValues { get; private set; } = null!;
 
 
         /// <summary>
@@ -182,6 +207,18 @@ namespace Volcengine.Pulumi.Volcengine.Tls
         [Input("topicId", required: true)]
         public Input<string> TopicId { get; set; } = null!;
 
+        [Input("userInnerKeyValues")]
+        private InputList<Inputs.IndexUserInnerKeyValueArgs>? _userInnerKeyValues;
+
+        /// <summary>
+        /// The reserved field index configuration of the tls index.
+        /// </summary>
+        public InputList<Inputs.IndexUserInnerKeyValueArgs> UserInnerKeyValues
+        {
+            get => _userInnerKeyValues ?? (_userInnerKeyValues = new InputList<Inputs.IndexUserInnerKeyValueArgs>());
+            set => _userInnerKeyValues = value;
+        }
+
         public IndexArgs()
         {
         }
@@ -225,6 +262,18 @@ namespace Volcengine.Pulumi.Volcengine.Tls
         /// </summary>
         [Input("topicId")]
         public Input<string>? TopicId { get; set; }
+
+        [Input("userInnerKeyValues")]
+        private InputList<Inputs.IndexUserInnerKeyValueGetArgs>? _userInnerKeyValues;
+
+        /// <summary>
+        /// The reserved field index configuration of the tls index.
+        /// </summary>
+        public InputList<Inputs.IndexUserInnerKeyValueGetArgs> UserInnerKeyValues
+        {
+            get => _userInnerKeyValues ?? (_userInnerKeyValues = new InputList<Inputs.IndexUserInnerKeyValueGetArgs>());
+            set => _userInnerKeyValues = value;
+        }
 
         public IndexState()
         {

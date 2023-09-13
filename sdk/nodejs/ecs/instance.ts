@@ -221,7 +221,7 @@ export class Instance extends pulumi.CustomResource {
     /**
      * The ProjectName of the ecs instance.
      */
-    public readonly projectName!: pulumi.Output<string | undefined>;
+    public readonly projectName!: pulumi.Output<string>;
     /**
      * The secondary networkInterface detail collection of ECS instance.
      */

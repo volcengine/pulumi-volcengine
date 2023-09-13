@@ -21,8 +21,8 @@ import * as utilities from "../utilities";
  *         "192.168.1.1",
  *         "192.168.2.22",
  *     ],
- *     allowListDesc: "renxin terraform测试白xxxxxxx",
- *     allowListName: "rx_test_tf_allowlist_create",
+ *     allowListDesc: "acctftestallowlist",
+ *     allowListName: "acc_test_tf_allowlist_create",
  * });
  * ```
  *

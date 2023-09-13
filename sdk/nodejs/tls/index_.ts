@@ -15,11 +15,6 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.tls.Index("foo", {
- *     fullText: {
- *         caseSensitive: true,
- *         delimiter: "!",
- *         includeChinese: false,
- *     },
  *     keyValues: [
  *         {
  *             caseSensitive: true,
@@ -27,11 +22,11 @@ import * as utilities from "../utilities";
  *             includeChinese: false,
  *             jsonKeys: [
  *                 {
- *                     key: "k2.k4",
+ *                     key: "class",
  *                     valueType: "text",
  *                 },
  *                 {
- *                     key: "k3.k4",
+ *                     key: "age",
  *                     valueType: "long",
  *                 },
  *             ],
@@ -48,7 +43,25 @@ import * as utilities from "../utilities";
  *             valueType: "text",
  *         },
  *     ],
- *     topicId: "65d67d34-c5b4-4ec8-b3a9-175d3366****",
+ *     topicId: "7ce12237-6670-44a7-9d79-2e36961586e6",
+ *     userInnerKeyValues: [{
+ *         caseSensitive: false,
+ *         delimiter: ",:-/ ",
+ *         includeChinese: false,
+ *         jsonKeys: [
+ *             {
+ *                 key: "age",
+ *                 valueType: "long",
+ *             },
+ *             {
+ *                 key: "name",
+ *                 valueType: "long",
+ *             },
+ *         ],
+ *         key: "__content__",
+ *         sqlFlag: false,
+ *         valueType: "json",
+ *     }],
  * });
  * ```
  *
@@ -108,6 +121,10 @@ export class Index extends pulumi.CustomResource {
      * The topic id of the tls index.
      */
     public readonly topicId!: pulumi.Output<string>;
+    /**
+     * The reserved field index configuration of the tls index.
+     */
+    public readonly userInnerKeyValues!: pulumi.Output<outputs.tls.IndexUserInnerKeyValue[] | undefined>;
 
     /**
      * Create a Index resource with the given unique name, arguments, and options.
@@ -127,6 +144,7 @@ export class Index extends pulumi.CustomResource {
             resourceInputs["keyValues"] = state ? state.keyValues : undefined;
             resourceInputs["modifyTime"] = state ? state.modifyTime : undefined;
             resourceInputs["topicId"] = state ? state.topicId : undefined;
+            resourceInputs["userInnerKeyValues"] = state ? state.userInnerKeyValues : undefined;
         } else {
             const args = argsOrState as IndexArgs | undefined;
             if ((!args || args.topicId === undefined) && !opts.urn) {
@@ -135,6 +153,7 @@ export class Index extends pulumi.CustomResource {
             resourceInputs["fullText"] = args ? args.fullText : undefined;
             resourceInputs["keyValues"] = args ? args.keyValues : undefined;
             resourceInputs["topicId"] = args ? args.topicId : undefined;
+            resourceInputs["userInnerKeyValues"] = args ? args.userInnerKeyValues : undefined;
             resourceInputs["createTime"] = undefined /*out*/;
             resourceInputs["modifyTime"] = undefined /*out*/;
         }
@@ -167,6 +186,10 @@ export interface IndexState {
      * The topic id of the tls index.
      */
     topicId?: pulumi.Input<string>;
+    /**
+     * The reserved field index configuration of the tls index.
+     */
+    userInnerKeyValues?: pulumi.Input<pulumi.Input<inputs.tls.IndexUserInnerKeyValue>[]>;
 }
 
 /**
@@ -185,4 +208,8 @@ export interface IndexArgs {
      * The topic id of the tls index.
      */
     topicId: pulumi.Input<string>;
+    /**
+     * The reserved field index configuration of the tls index.
+     */
+    userInnerKeyValues?: pulumi.Input<pulumi.Input<inputs.tls.IndexUserInnerKeyValue>[]>;
 }

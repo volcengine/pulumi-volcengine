@@ -227,8 +227,8 @@ class AllowList(pulumi.CustomResource):
                 "192.168.1.1",
                 "192.168.2.22",
             ],
-            allow_list_desc="renxin terraform测试白xxxxxxx",
-            allow_list_name="rx_test_tf_allowlist_create")
+            allow_list_desc="acctftestallowlist",
+            allow_list_name="acc_test_tf_allowlist_create")
         ```
 
         ## Import
@@ -266,8 +266,8 @@ class AllowList(pulumi.CustomResource):
                 "192.168.1.1",
                 "192.168.2.22",
             ],
-            allow_list_desc="renxin terraform测试白xxxxxxx",
-            allow_list_name="rx_test_tf_allowlist_create")
+            allow_list_desc="acctftestallowlist",
+            allow_list_name="acc_test_tf_allowlist_create")
         ```
 
         ## Import

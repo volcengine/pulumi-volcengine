@@ -2580,6 +2580,263 @@ func (o IndexKeyValueJsonKeyArrayOutput) Index(i pulumi.IntInput) IndexKeyValueJ
 	}).(IndexKeyValueJsonKeyOutput)
 }
 
+type IndexUserInnerKeyValue struct {
+	// Whether the value is case sensitive.
+	CaseSensitive *bool `pulumi:"caseSensitive"`
+	// The delimiter of the value.
+	Delimiter *string `pulumi:"delimiter"`
+	// Whether the value include chinese.
+	IncludeChinese *bool `pulumi:"includeChinese"`
+	// The JSON subfield key value index.
+	JsonKeys []IndexUserInnerKeyValueJsonKey `pulumi:"jsonKeys"`
+	// The key of the KeyValueInfo.
+	Key string `pulumi:"key"`
+	// Whether the filed is enabled for analysis.
+	SqlFlag *bool `pulumi:"sqlFlag"`
+	// The type of value. Valid values: `long`, `double`, `text`, `json`.
+	ValueType string `pulumi:"valueType"`
+}
+
+// IndexUserInnerKeyValueInput is an input type that accepts IndexUserInnerKeyValueArgs and IndexUserInnerKeyValueOutput values.
+// You can construct a concrete instance of `IndexUserInnerKeyValueInput` via:
+//
+//	IndexUserInnerKeyValueArgs{...}
+type IndexUserInnerKeyValueInput interface {
+	pulumi.Input
+
+	ToIndexUserInnerKeyValueOutput() IndexUserInnerKeyValueOutput
+	ToIndexUserInnerKeyValueOutputWithContext(context.Context) IndexUserInnerKeyValueOutput
+}
+
+type IndexUserInnerKeyValueArgs struct {
+	// Whether the value is case sensitive.
+	CaseSensitive pulumi.BoolPtrInput `pulumi:"caseSensitive"`
+	// The delimiter of the value.
+	Delimiter pulumi.StringPtrInput `pulumi:"delimiter"`
+	// Whether the value include chinese.
+	IncludeChinese pulumi.BoolPtrInput `pulumi:"includeChinese"`
+	// The JSON subfield key value index.
+	JsonKeys IndexUserInnerKeyValueJsonKeyArrayInput `pulumi:"jsonKeys"`
+	// The key of the KeyValueInfo.
+	Key pulumi.StringInput `pulumi:"key"`
+	// Whether the filed is enabled for analysis.
+	SqlFlag pulumi.BoolPtrInput `pulumi:"sqlFlag"`
+	// The type of value. Valid values: `long`, `double`, `text`, `json`.
+	ValueType pulumi.StringInput `pulumi:"valueType"`
+}
+
+func (IndexUserInnerKeyValueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IndexUserInnerKeyValue)(nil)).Elem()
+}
+
+func (i IndexUserInnerKeyValueArgs) ToIndexUserInnerKeyValueOutput() IndexUserInnerKeyValueOutput {
+	return i.ToIndexUserInnerKeyValueOutputWithContext(context.Background())
+}
+
+func (i IndexUserInnerKeyValueArgs) ToIndexUserInnerKeyValueOutputWithContext(ctx context.Context) IndexUserInnerKeyValueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IndexUserInnerKeyValueOutput)
+}
+
+// IndexUserInnerKeyValueArrayInput is an input type that accepts IndexUserInnerKeyValueArray and IndexUserInnerKeyValueArrayOutput values.
+// You can construct a concrete instance of `IndexUserInnerKeyValueArrayInput` via:
+//
+//	IndexUserInnerKeyValueArray{ IndexUserInnerKeyValueArgs{...} }
+type IndexUserInnerKeyValueArrayInput interface {
+	pulumi.Input
+
+	ToIndexUserInnerKeyValueArrayOutput() IndexUserInnerKeyValueArrayOutput
+	ToIndexUserInnerKeyValueArrayOutputWithContext(context.Context) IndexUserInnerKeyValueArrayOutput
+}
+
+type IndexUserInnerKeyValueArray []IndexUserInnerKeyValueInput
+
+func (IndexUserInnerKeyValueArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IndexUserInnerKeyValue)(nil)).Elem()
+}
+
+func (i IndexUserInnerKeyValueArray) ToIndexUserInnerKeyValueArrayOutput() IndexUserInnerKeyValueArrayOutput {
+	return i.ToIndexUserInnerKeyValueArrayOutputWithContext(context.Background())
+}
+
+func (i IndexUserInnerKeyValueArray) ToIndexUserInnerKeyValueArrayOutputWithContext(ctx context.Context) IndexUserInnerKeyValueArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IndexUserInnerKeyValueArrayOutput)
+}
+
+type IndexUserInnerKeyValueOutput struct{ *pulumi.OutputState }
+
+func (IndexUserInnerKeyValueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IndexUserInnerKeyValue)(nil)).Elem()
+}
+
+func (o IndexUserInnerKeyValueOutput) ToIndexUserInnerKeyValueOutput() IndexUserInnerKeyValueOutput {
+	return o
+}
+
+func (o IndexUserInnerKeyValueOutput) ToIndexUserInnerKeyValueOutputWithContext(ctx context.Context) IndexUserInnerKeyValueOutput {
+	return o
+}
+
+// Whether the value is case sensitive.
+func (o IndexUserInnerKeyValueOutput) CaseSensitive() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v IndexUserInnerKeyValue) *bool { return v.CaseSensitive }).(pulumi.BoolPtrOutput)
+}
+
+// The delimiter of the value.
+func (o IndexUserInnerKeyValueOutput) Delimiter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v IndexUserInnerKeyValue) *string { return v.Delimiter }).(pulumi.StringPtrOutput)
+}
+
+// Whether the value include chinese.
+func (o IndexUserInnerKeyValueOutput) IncludeChinese() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v IndexUserInnerKeyValue) *bool { return v.IncludeChinese }).(pulumi.BoolPtrOutput)
+}
+
+// The JSON subfield key value index.
+func (o IndexUserInnerKeyValueOutput) JsonKeys() IndexUserInnerKeyValueJsonKeyArrayOutput {
+	return o.ApplyT(func(v IndexUserInnerKeyValue) []IndexUserInnerKeyValueJsonKey { return v.JsonKeys }).(IndexUserInnerKeyValueJsonKeyArrayOutput)
+}
+
+// The key of the KeyValueInfo.
+func (o IndexUserInnerKeyValueOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v IndexUserInnerKeyValue) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// Whether the filed is enabled for analysis.
+func (o IndexUserInnerKeyValueOutput) SqlFlag() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v IndexUserInnerKeyValue) *bool { return v.SqlFlag }).(pulumi.BoolPtrOutput)
+}
+
+// The type of value. Valid values: `long`, `double`, `text`, `json`.
+func (o IndexUserInnerKeyValueOutput) ValueType() pulumi.StringOutput {
+	return o.ApplyT(func(v IndexUserInnerKeyValue) string { return v.ValueType }).(pulumi.StringOutput)
+}
+
+type IndexUserInnerKeyValueArrayOutput struct{ *pulumi.OutputState }
+
+func (IndexUserInnerKeyValueArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IndexUserInnerKeyValue)(nil)).Elem()
+}
+
+func (o IndexUserInnerKeyValueArrayOutput) ToIndexUserInnerKeyValueArrayOutput() IndexUserInnerKeyValueArrayOutput {
+	return o
+}
+
+func (o IndexUserInnerKeyValueArrayOutput) ToIndexUserInnerKeyValueArrayOutputWithContext(ctx context.Context) IndexUserInnerKeyValueArrayOutput {
+	return o
+}
+
+func (o IndexUserInnerKeyValueArrayOutput) Index(i pulumi.IntInput) IndexUserInnerKeyValueOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IndexUserInnerKeyValue {
+		return vs[0].([]IndexUserInnerKeyValue)[vs[1].(int)]
+	}).(IndexUserInnerKeyValueOutput)
+}
+
+type IndexUserInnerKeyValueJsonKey struct {
+	// The key of the subfield key value index.
+	Key string `pulumi:"key"`
+	// The type of value. Valid values: `long`, `double`, `text`.
+	ValueType string `pulumi:"valueType"`
+}
+
+// IndexUserInnerKeyValueJsonKeyInput is an input type that accepts IndexUserInnerKeyValueJsonKeyArgs and IndexUserInnerKeyValueJsonKeyOutput values.
+// You can construct a concrete instance of `IndexUserInnerKeyValueJsonKeyInput` via:
+//
+//	IndexUserInnerKeyValueJsonKeyArgs{...}
+type IndexUserInnerKeyValueJsonKeyInput interface {
+	pulumi.Input
+
+	ToIndexUserInnerKeyValueJsonKeyOutput() IndexUserInnerKeyValueJsonKeyOutput
+	ToIndexUserInnerKeyValueJsonKeyOutputWithContext(context.Context) IndexUserInnerKeyValueJsonKeyOutput
+}
+
+type IndexUserInnerKeyValueJsonKeyArgs struct {
+	// The key of the subfield key value index.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The type of value. Valid values: `long`, `double`, `text`.
+	ValueType pulumi.StringInput `pulumi:"valueType"`
+}
+
+func (IndexUserInnerKeyValueJsonKeyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IndexUserInnerKeyValueJsonKey)(nil)).Elem()
+}
+
+func (i IndexUserInnerKeyValueJsonKeyArgs) ToIndexUserInnerKeyValueJsonKeyOutput() IndexUserInnerKeyValueJsonKeyOutput {
+	return i.ToIndexUserInnerKeyValueJsonKeyOutputWithContext(context.Background())
+}
+
+func (i IndexUserInnerKeyValueJsonKeyArgs) ToIndexUserInnerKeyValueJsonKeyOutputWithContext(ctx context.Context) IndexUserInnerKeyValueJsonKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IndexUserInnerKeyValueJsonKeyOutput)
+}
+
+// IndexUserInnerKeyValueJsonKeyArrayInput is an input type that accepts IndexUserInnerKeyValueJsonKeyArray and IndexUserInnerKeyValueJsonKeyArrayOutput values.
+// You can construct a concrete instance of `IndexUserInnerKeyValueJsonKeyArrayInput` via:
+//
+//	IndexUserInnerKeyValueJsonKeyArray{ IndexUserInnerKeyValueJsonKeyArgs{...} }
+type IndexUserInnerKeyValueJsonKeyArrayInput interface {
+	pulumi.Input
+
+	ToIndexUserInnerKeyValueJsonKeyArrayOutput() IndexUserInnerKeyValueJsonKeyArrayOutput
+	ToIndexUserInnerKeyValueJsonKeyArrayOutputWithContext(context.Context) IndexUserInnerKeyValueJsonKeyArrayOutput
+}
+
+type IndexUserInnerKeyValueJsonKeyArray []IndexUserInnerKeyValueJsonKeyInput
+
+func (IndexUserInnerKeyValueJsonKeyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IndexUserInnerKeyValueJsonKey)(nil)).Elem()
+}
+
+func (i IndexUserInnerKeyValueJsonKeyArray) ToIndexUserInnerKeyValueJsonKeyArrayOutput() IndexUserInnerKeyValueJsonKeyArrayOutput {
+	return i.ToIndexUserInnerKeyValueJsonKeyArrayOutputWithContext(context.Background())
+}
+
+func (i IndexUserInnerKeyValueJsonKeyArray) ToIndexUserInnerKeyValueJsonKeyArrayOutputWithContext(ctx context.Context) IndexUserInnerKeyValueJsonKeyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IndexUserInnerKeyValueJsonKeyArrayOutput)
+}
+
+type IndexUserInnerKeyValueJsonKeyOutput struct{ *pulumi.OutputState }
+
+func (IndexUserInnerKeyValueJsonKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IndexUserInnerKeyValueJsonKey)(nil)).Elem()
+}
+
+func (o IndexUserInnerKeyValueJsonKeyOutput) ToIndexUserInnerKeyValueJsonKeyOutput() IndexUserInnerKeyValueJsonKeyOutput {
+	return o
+}
+
+func (o IndexUserInnerKeyValueJsonKeyOutput) ToIndexUserInnerKeyValueJsonKeyOutputWithContext(ctx context.Context) IndexUserInnerKeyValueJsonKeyOutput {
+	return o
+}
+
+// The key of the subfield key value index.
+func (o IndexUserInnerKeyValueJsonKeyOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v IndexUserInnerKeyValueJsonKey) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The type of value. Valid values: `long`, `double`, `text`.
+func (o IndexUserInnerKeyValueJsonKeyOutput) ValueType() pulumi.StringOutput {
+	return o.ApplyT(func(v IndexUserInnerKeyValueJsonKey) string { return v.ValueType }).(pulumi.StringOutput)
+}
+
+type IndexUserInnerKeyValueJsonKeyArrayOutput struct{ *pulumi.OutputState }
+
+func (IndexUserInnerKeyValueJsonKeyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IndexUserInnerKeyValueJsonKey)(nil)).Elem()
+}
+
+func (o IndexUserInnerKeyValueJsonKeyArrayOutput) ToIndexUserInnerKeyValueJsonKeyArrayOutput() IndexUserInnerKeyValueJsonKeyArrayOutput {
+	return o
+}
+
+func (o IndexUserInnerKeyValueJsonKeyArrayOutput) ToIndexUserInnerKeyValueJsonKeyArrayOutputWithContext(ctx context.Context) IndexUserInnerKeyValueJsonKeyArrayOutput {
+	return o
+}
+
+func (o IndexUserInnerKeyValueJsonKeyArrayOutput) Index(i pulumi.IntInput) IndexUserInnerKeyValueJsonKeyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IndexUserInnerKeyValueJsonKey {
+		return vs[0].([]IndexUserInnerKeyValueJsonKey)[vs[1].(int)]
+	}).(IndexUserInnerKeyValueJsonKeyOutput)
+}
+
 type IndexesTlsIndex struct {
 	// The create time of the tls index.
 	CreateTime string `pulumi:"createTime"`
@@ -2593,6 +2850,8 @@ type IndexesTlsIndex struct {
 	ModifyTime string `pulumi:"modifyTime"`
 	// The topic id of the tls index.
 	TopicId string `pulumi:"topicId"`
+	// The reserved field index configuration of the tls topic.
+	UserInnerKeyValues []IndexesTlsIndexUserInnerKeyValue `pulumi:"userInnerKeyValues"`
 }
 
 // IndexesTlsIndexInput is an input type that accepts IndexesTlsIndexArgs and IndexesTlsIndexOutput values.
@@ -2619,6 +2878,8 @@ type IndexesTlsIndexArgs struct {
 	ModifyTime pulumi.StringInput `pulumi:"modifyTime"`
 	// The topic id of the tls index.
 	TopicId pulumi.StringInput `pulumi:"topicId"`
+	// The reserved field index configuration of the tls topic.
+	UserInnerKeyValues IndexesTlsIndexUserInnerKeyValueArrayInput `pulumi:"userInnerKeyValues"`
 }
 
 func (IndexesTlsIndexArgs) ElementType() reflect.Type {
@@ -2700,6 +2961,11 @@ func (o IndexesTlsIndexOutput) ModifyTime() pulumi.StringOutput {
 // The topic id of the tls index.
 func (o IndexesTlsIndexOutput) TopicId() pulumi.StringOutput {
 	return o.ApplyT(func(v IndexesTlsIndex) string { return v.TopicId }).(pulumi.StringOutput)
+}
+
+// The reserved field index configuration of the tls topic.
+func (o IndexesTlsIndexOutput) UserInnerKeyValues() IndexesTlsIndexUserInnerKeyValueArrayOutput {
+	return o.ApplyT(func(v IndexesTlsIndex) []IndexesTlsIndexUserInnerKeyValue { return v.UserInnerKeyValues }).(IndexesTlsIndexUserInnerKeyValueArrayOutput)
 }
 
 type IndexesTlsIndexArrayOutput struct{ *pulumi.OutputState }
@@ -3083,6 +3349,299 @@ func (o IndexesTlsIndexKeyValueJsonKeyArrayOutput) Index(i pulumi.IntInput) Inde
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IndexesTlsIndexKeyValueJsonKey {
 		return vs[0].([]IndexesTlsIndexKeyValueJsonKey)[vs[1].(int)]
 	}).(IndexesTlsIndexKeyValueJsonKeyOutput)
+}
+
+type IndexesTlsIndexUserInnerKeyValue struct {
+	// Whether the value is case sensitive.
+	CaseSensitive bool `pulumi:"caseSensitive"`
+	// The delimiter of the value.
+	Delimiter string `pulumi:"delimiter"`
+	// Whether the value include chinese.
+	IncludeChinese bool `pulumi:"includeChinese"`
+	// The JSON subfield key value index.
+	JsonKeys []IndexesTlsIndexUserInnerKeyValueJsonKey `pulumi:"jsonKeys"`
+	// The key of the KeyValue index.
+	Key string `pulumi:"key"`
+	// Whether the filed is enabled for analysis.
+	SqlFlag bool `pulumi:"sqlFlag"`
+	// The type of value.
+	ValueType string `pulumi:"valueType"`
+}
+
+// IndexesTlsIndexUserInnerKeyValueInput is an input type that accepts IndexesTlsIndexUserInnerKeyValueArgs and IndexesTlsIndexUserInnerKeyValueOutput values.
+// You can construct a concrete instance of `IndexesTlsIndexUserInnerKeyValueInput` via:
+//
+//	IndexesTlsIndexUserInnerKeyValueArgs{...}
+type IndexesTlsIndexUserInnerKeyValueInput interface {
+	pulumi.Input
+
+	ToIndexesTlsIndexUserInnerKeyValueOutput() IndexesTlsIndexUserInnerKeyValueOutput
+	ToIndexesTlsIndexUserInnerKeyValueOutputWithContext(context.Context) IndexesTlsIndexUserInnerKeyValueOutput
+}
+
+type IndexesTlsIndexUserInnerKeyValueArgs struct {
+	// Whether the value is case sensitive.
+	CaseSensitive pulumi.BoolInput `pulumi:"caseSensitive"`
+	// The delimiter of the value.
+	Delimiter pulumi.StringInput `pulumi:"delimiter"`
+	// Whether the value include chinese.
+	IncludeChinese pulumi.BoolInput `pulumi:"includeChinese"`
+	// The JSON subfield key value index.
+	JsonKeys IndexesTlsIndexUserInnerKeyValueJsonKeyArrayInput `pulumi:"jsonKeys"`
+	// The key of the KeyValue index.
+	Key pulumi.StringInput `pulumi:"key"`
+	// Whether the filed is enabled for analysis.
+	SqlFlag pulumi.BoolInput `pulumi:"sqlFlag"`
+	// The type of value.
+	ValueType pulumi.StringInput `pulumi:"valueType"`
+}
+
+func (IndexesTlsIndexUserInnerKeyValueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IndexesTlsIndexUserInnerKeyValue)(nil)).Elem()
+}
+
+func (i IndexesTlsIndexUserInnerKeyValueArgs) ToIndexesTlsIndexUserInnerKeyValueOutput() IndexesTlsIndexUserInnerKeyValueOutput {
+	return i.ToIndexesTlsIndexUserInnerKeyValueOutputWithContext(context.Background())
+}
+
+func (i IndexesTlsIndexUserInnerKeyValueArgs) ToIndexesTlsIndexUserInnerKeyValueOutputWithContext(ctx context.Context) IndexesTlsIndexUserInnerKeyValueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IndexesTlsIndexUserInnerKeyValueOutput)
+}
+
+// IndexesTlsIndexUserInnerKeyValueArrayInput is an input type that accepts IndexesTlsIndexUserInnerKeyValueArray and IndexesTlsIndexUserInnerKeyValueArrayOutput values.
+// You can construct a concrete instance of `IndexesTlsIndexUserInnerKeyValueArrayInput` via:
+//
+//	IndexesTlsIndexUserInnerKeyValueArray{ IndexesTlsIndexUserInnerKeyValueArgs{...} }
+type IndexesTlsIndexUserInnerKeyValueArrayInput interface {
+	pulumi.Input
+
+	ToIndexesTlsIndexUserInnerKeyValueArrayOutput() IndexesTlsIndexUserInnerKeyValueArrayOutput
+	ToIndexesTlsIndexUserInnerKeyValueArrayOutputWithContext(context.Context) IndexesTlsIndexUserInnerKeyValueArrayOutput
+}
+
+type IndexesTlsIndexUserInnerKeyValueArray []IndexesTlsIndexUserInnerKeyValueInput
+
+func (IndexesTlsIndexUserInnerKeyValueArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IndexesTlsIndexUserInnerKeyValue)(nil)).Elem()
+}
+
+func (i IndexesTlsIndexUserInnerKeyValueArray) ToIndexesTlsIndexUserInnerKeyValueArrayOutput() IndexesTlsIndexUserInnerKeyValueArrayOutput {
+	return i.ToIndexesTlsIndexUserInnerKeyValueArrayOutputWithContext(context.Background())
+}
+
+func (i IndexesTlsIndexUserInnerKeyValueArray) ToIndexesTlsIndexUserInnerKeyValueArrayOutputWithContext(ctx context.Context) IndexesTlsIndexUserInnerKeyValueArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IndexesTlsIndexUserInnerKeyValueArrayOutput)
+}
+
+type IndexesTlsIndexUserInnerKeyValueOutput struct{ *pulumi.OutputState }
+
+func (IndexesTlsIndexUserInnerKeyValueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IndexesTlsIndexUserInnerKeyValue)(nil)).Elem()
+}
+
+func (o IndexesTlsIndexUserInnerKeyValueOutput) ToIndexesTlsIndexUserInnerKeyValueOutput() IndexesTlsIndexUserInnerKeyValueOutput {
+	return o
+}
+
+func (o IndexesTlsIndexUserInnerKeyValueOutput) ToIndexesTlsIndexUserInnerKeyValueOutputWithContext(ctx context.Context) IndexesTlsIndexUserInnerKeyValueOutput {
+	return o
+}
+
+// Whether the value is case sensitive.
+func (o IndexesTlsIndexUserInnerKeyValueOutput) CaseSensitive() pulumi.BoolOutput {
+	return o.ApplyT(func(v IndexesTlsIndexUserInnerKeyValue) bool { return v.CaseSensitive }).(pulumi.BoolOutput)
+}
+
+// The delimiter of the value.
+func (o IndexesTlsIndexUserInnerKeyValueOutput) Delimiter() pulumi.StringOutput {
+	return o.ApplyT(func(v IndexesTlsIndexUserInnerKeyValue) string { return v.Delimiter }).(pulumi.StringOutput)
+}
+
+// Whether the value include chinese.
+func (o IndexesTlsIndexUserInnerKeyValueOutput) IncludeChinese() pulumi.BoolOutput {
+	return o.ApplyT(func(v IndexesTlsIndexUserInnerKeyValue) bool { return v.IncludeChinese }).(pulumi.BoolOutput)
+}
+
+// The JSON subfield key value index.
+func (o IndexesTlsIndexUserInnerKeyValueOutput) JsonKeys() IndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput {
+	return o.ApplyT(func(v IndexesTlsIndexUserInnerKeyValue) []IndexesTlsIndexUserInnerKeyValueJsonKey { return v.JsonKeys }).(IndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput)
+}
+
+// The key of the KeyValue index.
+func (o IndexesTlsIndexUserInnerKeyValueOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v IndexesTlsIndexUserInnerKeyValue) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// Whether the filed is enabled for analysis.
+func (o IndexesTlsIndexUserInnerKeyValueOutput) SqlFlag() pulumi.BoolOutput {
+	return o.ApplyT(func(v IndexesTlsIndexUserInnerKeyValue) bool { return v.SqlFlag }).(pulumi.BoolOutput)
+}
+
+// The type of value.
+func (o IndexesTlsIndexUserInnerKeyValueOutput) ValueType() pulumi.StringOutput {
+	return o.ApplyT(func(v IndexesTlsIndexUserInnerKeyValue) string { return v.ValueType }).(pulumi.StringOutput)
+}
+
+type IndexesTlsIndexUserInnerKeyValueArrayOutput struct{ *pulumi.OutputState }
+
+func (IndexesTlsIndexUserInnerKeyValueArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IndexesTlsIndexUserInnerKeyValue)(nil)).Elem()
+}
+
+func (o IndexesTlsIndexUserInnerKeyValueArrayOutput) ToIndexesTlsIndexUserInnerKeyValueArrayOutput() IndexesTlsIndexUserInnerKeyValueArrayOutput {
+	return o
+}
+
+func (o IndexesTlsIndexUserInnerKeyValueArrayOutput) ToIndexesTlsIndexUserInnerKeyValueArrayOutputWithContext(ctx context.Context) IndexesTlsIndexUserInnerKeyValueArrayOutput {
+	return o
+}
+
+func (o IndexesTlsIndexUserInnerKeyValueArrayOutput) Index(i pulumi.IntInput) IndexesTlsIndexUserInnerKeyValueOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IndexesTlsIndexUserInnerKeyValue {
+		return vs[0].([]IndexesTlsIndexUserInnerKeyValue)[vs[1].(int)]
+	}).(IndexesTlsIndexUserInnerKeyValueOutput)
+}
+
+type IndexesTlsIndexUserInnerKeyValueJsonKey struct {
+	// Whether the value is case sensitive.
+	CaseSensitive bool `pulumi:"caseSensitive"`
+	// The delimiter of the value.
+	Delimiter string `pulumi:"delimiter"`
+	// Whether the value include chinese.
+	IncludeChinese bool `pulumi:"includeChinese"`
+	// The key of the KeyValue index.
+	Key string `pulumi:"key"`
+	// Whether the filed is enabled for analysis.
+	SqlFlag bool `pulumi:"sqlFlag"`
+	// The type of value.
+	ValueType string `pulumi:"valueType"`
+}
+
+// IndexesTlsIndexUserInnerKeyValueJsonKeyInput is an input type that accepts IndexesTlsIndexUserInnerKeyValueJsonKeyArgs and IndexesTlsIndexUserInnerKeyValueJsonKeyOutput values.
+// You can construct a concrete instance of `IndexesTlsIndexUserInnerKeyValueJsonKeyInput` via:
+//
+//	IndexesTlsIndexUserInnerKeyValueJsonKeyArgs{...}
+type IndexesTlsIndexUserInnerKeyValueJsonKeyInput interface {
+	pulumi.Input
+
+	ToIndexesTlsIndexUserInnerKeyValueJsonKeyOutput() IndexesTlsIndexUserInnerKeyValueJsonKeyOutput
+	ToIndexesTlsIndexUserInnerKeyValueJsonKeyOutputWithContext(context.Context) IndexesTlsIndexUserInnerKeyValueJsonKeyOutput
+}
+
+type IndexesTlsIndexUserInnerKeyValueJsonKeyArgs struct {
+	// Whether the value is case sensitive.
+	CaseSensitive pulumi.BoolInput `pulumi:"caseSensitive"`
+	// The delimiter of the value.
+	Delimiter pulumi.StringInput `pulumi:"delimiter"`
+	// Whether the value include chinese.
+	IncludeChinese pulumi.BoolInput `pulumi:"includeChinese"`
+	// The key of the KeyValue index.
+	Key pulumi.StringInput `pulumi:"key"`
+	// Whether the filed is enabled for analysis.
+	SqlFlag pulumi.BoolInput `pulumi:"sqlFlag"`
+	// The type of value.
+	ValueType pulumi.StringInput `pulumi:"valueType"`
+}
+
+func (IndexesTlsIndexUserInnerKeyValueJsonKeyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*IndexesTlsIndexUserInnerKeyValueJsonKey)(nil)).Elem()
+}
+
+func (i IndexesTlsIndexUserInnerKeyValueJsonKeyArgs) ToIndexesTlsIndexUserInnerKeyValueJsonKeyOutput() IndexesTlsIndexUserInnerKeyValueJsonKeyOutput {
+	return i.ToIndexesTlsIndexUserInnerKeyValueJsonKeyOutputWithContext(context.Background())
+}
+
+func (i IndexesTlsIndexUserInnerKeyValueJsonKeyArgs) ToIndexesTlsIndexUserInnerKeyValueJsonKeyOutputWithContext(ctx context.Context) IndexesTlsIndexUserInnerKeyValueJsonKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IndexesTlsIndexUserInnerKeyValueJsonKeyOutput)
+}
+
+// IndexesTlsIndexUserInnerKeyValueJsonKeyArrayInput is an input type that accepts IndexesTlsIndexUserInnerKeyValueJsonKeyArray and IndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput values.
+// You can construct a concrete instance of `IndexesTlsIndexUserInnerKeyValueJsonKeyArrayInput` via:
+//
+//	IndexesTlsIndexUserInnerKeyValueJsonKeyArray{ IndexesTlsIndexUserInnerKeyValueJsonKeyArgs{...} }
+type IndexesTlsIndexUserInnerKeyValueJsonKeyArrayInput interface {
+	pulumi.Input
+
+	ToIndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput() IndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput
+	ToIndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutputWithContext(context.Context) IndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput
+}
+
+type IndexesTlsIndexUserInnerKeyValueJsonKeyArray []IndexesTlsIndexUserInnerKeyValueJsonKeyInput
+
+func (IndexesTlsIndexUserInnerKeyValueJsonKeyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IndexesTlsIndexUserInnerKeyValueJsonKey)(nil)).Elem()
+}
+
+func (i IndexesTlsIndexUserInnerKeyValueJsonKeyArray) ToIndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput() IndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput {
+	return i.ToIndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutputWithContext(context.Background())
+}
+
+func (i IndexesTlsIndexUserInnerKeyValueJsonKeyArray) ToIndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutputWithContext(ctx context.Context) IndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(IndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput)
+}
+
+type IndexesTlsIndexUserInnerKeyValueJsonKeyOutput struct{ *pulumi.OutputState }
+
+func (IndexesTlsIndexUserInnerKeyValueJsonKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*IndexesTlsIndexUserInnerKeyValueJsonKey)(nil)).Elem()
+}
+
+func (o IndexesTlsIndexUserInnerKeyValueJsonKeyOutput) ToIndexesTlsIndexUserInnerKeyValueJsonKeyOutput() IndexesTlsIndexUserInnerKeyValueJsonKeyOutput {
+	return o
+}
+
+func (o IndexesTlsIndexUserInnerKeyValueJsonKeyOutput) ToIndexesTlsIndexUserInnerKeyValueJsonKeyOutputWithContext(ctx context.Context) IndexesTlsIndexUserInnerKeyValueJsonKeyOutput {
+	return o
+}
+
+// Whether the value is case sensitive.
+func (o IndexesTlsIndexUserInnerKeyValueJsonKeyOutput) CaseSensitive() pulumi.BoolOutput {
+	return o.ApplyT(func(v IndexesTlsIndexUserInnerKeyValueJsonKey) bool { return v.CaseSensitive }).(pulumi.BoolOutput)
+}
+
+// The delimiter of the value.
+func (o IndexesTlsIndexUserInnerKeyValueJsonKeyOutput) Delimiter() pulumi.StringOutput {
+	return o.ApplyT(func(v IndexesTlsIndexUserInnerKeyValueJsonKey) string { return v.Delimiter }).(pulumi.StringOutput)
+}
+
+// Whether the value include chinese.
+func (o IndexesTlsIndexUserInnerKeyValueJsonKeyOutput) IncludeChinese() pulumi.BoolOutput {
+	return o.ApplyT(func(v IndexesTlsIndexUserInnerKeyValueJsonKey) bool { return v.IncludeChinese }).(pulumi.BoolOutput)
+}
+
+// The key of the KeyValue index.
+func (o IndexesTlsIndexUserInnerKeyValueJsonKeyOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v IndexesTlsIndexUserInnerKeyValueJsonKey) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// Whether the filed is enabled for analysis.
+func (o IndexesTlsIndexUserInnerKeyValueJsonKeyOutput) SqlFlag() pulumi.BoolOutput {
+	return o.ApplyT(func(v IndexesTlsIndexUserInnerKeyValueJsonKey) bool { return v.SqlFlag }).(pulumi.BoolOutput)
+}
+
+// The type of value.
+func (o IndexesTlsIndexUserInnerKeyValueJsonKeyOutput) ValueType() pulumi.StringOutput {
+	return o.ApplyT(func(v IndexesTlsIndexUserInnerKeyValueJsonKey) string { return v.ValueType }).(pulumi.StringOutput)
+}
+
+type IndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput struct{ *pulumi.OutputState }
+
+func (IndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]IndexesTlsIndexUserInnerKeyValueJsonKey)(nil)).Elem()
+}
+
+func (o IndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput) ToIndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput() IndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput {
+	return o
+}
+
+func (o IndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput) ToIndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutputWithContext(ctx context.Context) IndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput {
+	return o
+}
+
+func (o IndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput) Index(i pulumi.IntInput) IndexesTlsIndexUserInnerKeyValueJsonKeyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IndexesTlsIndexUserInnerKeyValueJsonKey {
+		return vs[0].([]IndexesTlsIndexUserInnerKeyValueJsonKey)[vs[1].(int)]
+	}).(IndexesTlsIndexUserInnerKeyValueJsonKeyOutput)
 }
 
 type KafkaConsumersData struct {
@@ -9801,6 +10360,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*IndexKeyValueArrayInput)(nil)).Elem(), IndexKeyValueArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IndexKeyValueJsonKeyInput)(nil)).Elem(), IndexKeyValueJsonKeyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IndexKeyValueJsonKeyArrayInput)(nil)).Elem(), IndexKeyValueJsonKeyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IndexUserInnerKeyValueInput)(nil)).Elem(), IndexUserInnerKeyValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IndexUserInnerKeyValueArrayInput)(nil)).Elem(), IndexUserInnerKeyValueArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IndexUserInnerKeyValueJsonKeyInput)(nil)).Elem(), IndexUserInnerKeyValueJsonKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IndexUserInnerKeyValueJsonKeyArrayInput)(nil)).Elem(), IndexUserInnerKeyValueJsonKeyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IndexesTlsIndexInput)(nil)).Elem(), IndexesTlsIndexArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IndexesTlsIndexArrayInput)(nil)).Elem(), IndexesTlsIndexArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IndexesTlsIndexFullTextInput)(nil)).Elem(), IndexesTlsIndexFullTextArgs{})
@@ -9808,6 +10371,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*IndexesTlsIndexKeyValueArrayInput)(nil)).Elem(), IndexesTlsIndexKeyValueArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IndexesTlsIndexKeyValueJsonKeyInput)(nil)).Elem(), IndexesTlsIndexKeyValueJsonKeyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*IndexesTlsIndexKeyValueJsonKeyArrayInput)(nil)).Elem(), IndexesTlsIndexKeyValueJsonKeyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IndexesTlsIndexUserInnerKeyValueInput)(nil)).Elem(), IndexesTlsIndexUserInnerKeyValueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IndexesTlsIndexUserInnerKeyValueArrayInput)(nil)).Elem(), IndexesTlsIndexUserInnerKeyValueArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IndexesTlsIndexUserInnerKeyValueJsonKeyInput)(nil)).Elem(), IndexesTlsIndexUserInnerKeyValueJsonKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IndexesTlsIndexUserInnerKeyValueJsonKeyArrayInput)(nil)).Elem(), IndexesTlsIndexUserInnerKeyValueJsonKeyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KafkaConsumersDataInput)(nil)).Elem(), KafkaConsumersDataArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KafkaConsumersDataArrayInput)(nil)).Elem(), KafkaConsumersDataArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectTagInput)(nil)).Elem(), ProjectTagArgs{})
@@ -9932,6 +10499,10 @@ func init() {
 	pulumi.RegisterOutputType(IndexKeyValueArrayOutput{})
 	pulumi.RegisterOutputType(IndexKeyValueJsonKeyOutput{})
 	pulumi.RegisterOutputType(IndexKeyValueJsonKeyArrayOutput{})
+	pulumi.RegisterOutputType(IndexUserInnerKeyValueOutput{})
+	pulumi.RegisterOutputType(IndexUserInnerKeyValueArrayOutput{})
+	pulumi.RegisterOutputType(IndexUserInnerKeyValueJsonKeyOutput{})
+	pulumi.RegisterOutputType(IndexUserInnerKeyValueJsonKeyArrayOutput{})
 	pulumi.RegisterOutputType(IndexesTlsIndexOutput{})
 	pulumi.RegisterOutputType(IndexesTlsIndexArrayOutput{})
 	pulumi.RegisterOutputType(IndexesTlsIndexFullTextOutput{})
@@ -9939,6 +10510,10 @@ func init() {
 	pulumi.RegisterOutputType(IndexesTlsIndexKeyValueArrayOutput{})
 	pulumi.RegisterOutputType(IndexesTlsIndexKeyValueJsonKeyOutput{})
 	pulumi.RegisterOutputType(IndexesTlsIndexKeyValueJsonKeyArrayOutput{})
+	pulumi.RegisterOutputType(IndexesTlsIndexUserInnerKeyValueOutput{})
+	pulumi.RegisterOutputType(IndexesTlsIndexUserInnerKeyValueArrayOutput{})
+	pulumi.RegisterOutputType(IndexesTlsIndexUserInnerKeyValueJsonKeyOutput{})
+	pulumi.RegisterOutputType(IndexesTlsIndexUserInnerKeyValueJsonKeyArrayOutput{})
 	pulumi.RegisterOutputType(KafkaConsumersDataOutput{})
 	pulumi.RegisterOutputType(KafkaConsumersDataArrayOutput{})
 	pulumi.RegisterOutputType(ProjectTagOutput{})

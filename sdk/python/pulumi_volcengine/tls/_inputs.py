@@ -17,6 +17,8 @@ __all__ = [
     'IndexFullTextArgs',
     'IndexKeyValueArgs',
     'IndexKeyValueJsonKeyArgs',
+    'IndexUserInnerKeyValueArgs',
+    'IndexUserInnerKeyValueJsonKeyArgs',
     'ProjectTagArgs',
     'ProjectsTagArgs',
     'RuleContainerRuleArgs',
@@ -475,6 +477,160 @@ class IndexKeyValueArgs:
 
 @pulumi.input_type
 class IndexKeyValueJsonKeyArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The key of the subfield key value index.
+        :param pulumi.Input[str] value_type: The type of value. Valid values: `long`, `double`, `text`.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value_type", value_type)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The key of the subfield key value index.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter(name="valueType")
+    def value_type(self) -> pulumi.Input[str]:
+        """
+        The type of value. Valid values: `long`, `double`, `text`.
+        """
+        return pulumi.get(self, "value_type")
+
+    @value_type.setter
+    def value_type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value_type", value)
+
+
+@pulumi.input_type
+class IndexUserInnerKeyValueArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value_type: pulumi.Input[str],
+                 case_sensitive: Optional[pulumi.Input[bool]] = None,
+                 delimiter: Optional[pulumi.Input[str]] = None,
+                 include_chinese: Optional[pulumi.Input[bool]] = None,
+                 json_keys: Optional[pulumi.Input[Sequence[pulumi.Input['IndexUserInnerKeyValueJsonKeyArgs']]]] = None,
+                 sql_flag: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] key: The key of the KeyValueInfo.
+        :param pulumi.Input[str] value_type: The type of value. Valid values: `long`, `double`, `text`, `json`.
+        :param pulumi.Input[bool] case_sensitive: Whether the value is case sensitive.
+        :param pulumi.Input[str] delimiter: The delimiter of the value.
+        :param pulumi.Input[bool] include_chinese: Whether the value include chinese.
+        :param pulumi.Input[Sequence[pulumi.Input['IndexUserInnerKeyValueJsonKeyArgs']]] json_keys: The JSON subfield key value index.
+        :param pulumi.Input[bool] sql_flag: Whether the filed is enabled for analysis.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value_type", value_type)
+        if case_sensitive is not None:
+            pulumi.set(__self__, "case_sensitive", case_sensitive)
+        if delimiter is not None:
+            pulumi.set(__self__, "delimiter", delimiter)
+        if include_chinese is not None:
+            pulumi.set(__self__, "include_chinese", include_chinese)
+        if json_keys is not None:
+            pulumi.set(__self__, "json_keys", json_keys)
+        if sql_flag is not None:
+            pulumi.set(__self__, "sql_flag", sql_flag)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The key of the KeyValueInfo.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter(name="valueType")
+    def value_type(self) -> pulumi.Input[str]:
+        """
+        The type of value. Valid values: `long`, `double`, `text`, `json`.
+        """
+        return pulumi.get(self, "value_type")
+
+    @value_type.setter
+    def value_type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value_type", value)
+
+    @property
+    @pulumi.getter(name="caseSensitive")
+    def case_sensitive(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the value is case sensitive.
+        """
+        return pulumi.get(self, "case_sensitive")
+
+    @case_sensitive.setter
+    def case_sensitive(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "case_sensitive", value)
+
+    @property
+    @pulumi.getter
+    def delimiter(self) -> Optional[pulumi.Input[str]]:
+        """
+        The delimiter of the value.
+        """
+        return pulumi.get(self, "delimiter")
+
+    @delimiter.setter
+    def delimiter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "delimiter", value)
+
+    @property
+    @pulumi.getter(name="includeChinese")
+    def include_chinese(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the value include chinese.
+        """
+        return pulumi.get(self, "include_chinese")
+
+    @include_chinese.setter
+    def include_chinese(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "include_chinese", value)
+
+    @property
+    @pulumi.getter(name="jsonKeys")
+    def json_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['IndexUserInnerKeyValueJsonKeyArgs']]]]:
+        """
+        The JSON subfield key value index.
+        """
+        return pulumi.get(self, "json_keys")
+
+    @json_keys.setter
+    def json_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['IndexUserInnerKeyValueJsonKeyArgs']]]]):
+        pulumi.set(self, "json_keys", value)
+
+    @property
+    @pulumi.getter(name="sqlFlag")
+    def sql_flag(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the filed is enabled for analysis.
+        """
+        return pulumi.get(self, "sql_flag")
+
+    @sql_flag.setter
+    def sql_flag(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "sql_flag", value)
+
+
+@pulumi.input_type
+class IndexUserInnerKeyValueJsonKeyArgs:
     def __init__(__self__, *,
                  key: pulumi.Input[str],
                  value_type: pulumi.Input[str]):

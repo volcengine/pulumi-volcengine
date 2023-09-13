@@ -121,8 +121,52 @@ def accounts(account_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.rds_mysql.accounts(account_name="",
-        instance_id="mysql-47d6bc58762b")
+    foo_zones = volcengine.ecs.zones()
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-vpc",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-test-subnet",
+        cidr_block="172.16.0.0/24",
+        zone_id=foo_zones.zones[0].id,
+        vpc_id=foo_vpc.id)
+    foo_instance = volcengine.rds_mysql.Instance("fooInstance",
+        instance_name="acc-test-rds-mysql",
+        db_engine_version="MySQL_5_7",
+        node_spec="rds.mysql.1c2g",
+        primary_zone_id=foo_zones.zones[0].id,
+        secondary_zone_id=foo_zones.zones[0].id,
+        storage_space=80,
+        subnet_id=foo_subnet.id,
+        lower_case_table_names="1",
+        charge_info=volcengine.rds_mysql.InstanceChargeInfoArgs(
+            charge_type="PostPaid",
+        ),
+        parameters=[
+            volcengine.rds_mysql.InstanceParameterArgs(
+                parameter_name="auto_increment_increment",
+                parameter_value="2",
+            ),
+            volcengine.rds_mysql.InstanceParameterArgs(
+                parameter_name="auto_increment_offset",
+                parameter_value="4",
+            ),
+        ])
+    foo_database = volcengine.rds_mysql.Database("fooDatabase",
+        db_name="acc-test-db",
+        instance_id=foo_instance.id)
+    foo_account = volcengine.rds_mysql.Account("fooAccount",
+        account_name="acc-test-account",
+        account_password="93f0cb0614Aab12",
+        account_type="Normal",
+        instance_id=foo_instance.id,
+        account_privileges=[volcengine.rds_mysql.AccountAccountPrivilegeArgs(
+            db_name=foo_database.db_name,
+            account_privilege="Custom",
+            account_privilege_detail="SELECT,INSERT",
+        )])
+    foo_accounts = volcengine.rds_mysql.accounts_output(instance_id=foo_instance.id,
+        account_name=foo_account.account_name)
     ```
 
 
@@ -163,8 +207,52 @@ def accounts_output(account_name: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.rds_mysql.accounts(account_name="",
-        instance_id="mysql-47d6bc58762b")
+    foo_zones = volcengine.ecs.zones()
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-vpc",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-test-subnet",
+        cidr_block="172.16.0.0/24",
+        zone_id=foo_zones.zones[0].id,
+        vpc_id=foo_vpc.id)
+    foo_instance = volcengine.rds_mysql.Instance("fooInstance",
+        instance_name="acc-test-rds-mysql",
+        db_engine_version="MySQL_5_7",
+        node_spec="rds.mysql.1c2g",
+        primary_zone_id=foo_zones.zones[0].id,
+        secondary_zone_id=foo_zones.zones[0].id,
+        storage_space=80,
+        subnet_id=foo_subnet.id,
+        lower_case_table_names="1",
+        charge_info=volcengine.rds_mysql.InstanceChargeInfoArgs(
+            charge_type="PostPaid",
+        ),
+        parameters=[
+            volcengine.rds_mysql.InstanceParameterArgs(
+                parameter_name="auto_increment_increment",
+                parameter_value="2",
+            ),
+            volcengine.rds_mysql.InstanceParameterArgs(
+                parameter_name="auto_increment_offset",
+                parameter_value="4",
+            ),
+        ])
+    foo_database = volcengine.rds_mysql.Database("fooDatabase",
+        db_name="acc-test-db",
+        instance_id=foo_instance.id)
+    foo_account = volcengine.rds_mysql.Account("fooAccount",
+        account_name="acc-test-account",
+        account_password="93f0cb0614Aab12",
+        account_type="Normal",
+        instance_id=foo_instance.id,
+        account_privileges=[volcengine.rds_mysql.AccountAccountPrivilegeArgs(
+            db_name=foo_database.db_name,
+            account_privilege="Custom",
+            account_privilege_detail="SELECT,INSERT",
+        )])
+    foo_accounts = volcengine.rds_mysql.accounts_output(instance_id=foo_instance.id,
+        account_name=foo_account.account_name)
     ```
 
 

@@ -75,40 +75,50 @@ class Instance(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.escloud.Instance("foo", instance_configuration=volcengine.escloud.InstanceInstanceConfigurationArgs(
-            admin_password="xxxx",
-            admin_user_name="admin",
-            charge_type="PostPaid",
-            configuration_code="es.standard",
-            enable_https=True,
-            enable_pure_master=True,
-            force_restart_after_scale=False,
-            instance_name="from-tf4",
-            node_specs_assigns=[
-                volcengine.escloud.InstanceInstanceConfigurationNodeSpecsAssignArgs(
-                    number=3,
-                    resource_spec_name="es.x4.medium",
-                    storage_size=100,
-                    storage_spec_name="es.volume.essd.pl0",
-                    type="Master",
-                ),
-                volcengine.escloud.InstanceInstanceConfigurationNodeSpecsAssignArgs(
-                    number=2,
-                    resource_spec_name="es.x4.large",
-                    storage_size=100,
-                    storage_spec_name="es.volume.essd.pl0",
-                    type="Hot",
-                ),
-                volcengine.escloud.InstanceInstanceConfigurationNodeSpecsAssignArgs(
-                    number=1,
-                    resource_spec_name="kibana.x2.small",
-                    type="Kibana",
-                ),
-            ],
-            project_name="default",
-            subnet_id="subnet-2bz9vxrixqigw2dx0eextz50p",
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet_new",
+            description="tfdesc",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_instance = volcengine.escloud.Instance("fooInstance", instance_configuration=volcengine.escloud.InstanceInstanceConfigurationArgs(
             version="V6_7",
             zone_number=1,
+            enable_https=True,
+            admin_user_name="admin",
+            admin_password="Password@@",
+            charge_type="PostPaid",
+            configuration_code="es.standard",
+            enable_pure_master=True,
+            instance_name="acc-test-0",
+            node_specs_assigns=[
+                volcengine.escloud.InstanceInstanceConfigurationNodeSpecsAssignArgs(
+                    type="Master",
+                    number=3,
+                    resource_spec_name="es.x4.medium",
+                    storage_spec_name="es.volume.essd.pl0",
+                    storage_size=100,
+                ),
+                volcengine.escloud.InstanceInstanceConfigurationNodeSpecsAssignArgs(
+                    type="Hot",
+                    number=2,
+                    resource_spec_name="es.x4.large",
+                    storage_spec_name="es.volume.essd.pl0",
+                    storage_size=100,
+                ),
+                volcengine.escloud.InstanceInstanceConfigurationNodeSpecsAssignArgs(
+                    type="Kibana",
+                    number=1,
+                    resource_spec_name="kibana.x2.small",
+                ),
+            ],
+            subnet_id=foo_subnet.id,
+            project_name="default",
+            force_restart_after_scale=False,
         ))
         ```
 
@@ -138,40 +148,50 @@ class Instance(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.escloud.Instance("foo", instance_configuration=volcengine.escloud.InstanceInstanceConfigurationArgs(
-            admin_password="xxxx",
-            admin_user_name="admin",
-            charge_type="PostPaid",
-            configuration_code="es.standard",
-            enable_https=True,
-            enable_pure_master=True,
-            force_restart_after_scale=False,
-            instance_name="from-tf4",
-            node_specs_assigns=[
-                volcengine.escloud.InstanceInstanceConfigurationNodeSpecsAssignArgs(
-                    number=3,
-                    resource_spec_name="es.x4.medium",
-                    storage_size=100,
-                    storage_spec_name="es.volume.essd.pl0",
-                    type="Master",
-                ),
-                volcengine.escloud.InstanceInstanceConfigurationNodeSpecsAssignArgs(
-                    number=2,
-                    resource_spec_name="es.x4.large",
-                    storage_size=100,
-                    storage_spec_name="es.volume.essd.pl0",
-                    type="Hot",
-                ),
-                volcengine.escloud.InstanceInstanceConfigurationNodeSpecsAssignArgs(
-                    number=1,
-                    resource_spec_name="kibana.x2.small",
-                    type="Kibana",
-                ),
-            ],
-            project_name="default",
-            subnet_id="subnet-2bz9vxrixqigw2dx0eextz50p",
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet_new",
+            description="tfdesc",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_instance = volcengine.escloud.Instance("fooInstance", instance_configuration=volcengine.escloud.InstanceInstanceConfigurationArgs(
             version="V6_7",
             zone_number=1,
+            enable_https=True,
+            admin_user_name="admin",
+            admin_password="Password@@",
+            charge_type="PostPaid",
+            configuration_code="es.standard",
+            enable_pure_master=True,
+            instance_name="acc-test-0",
+            node_specs_assigns=[
+                volcengine.escloud.InstanceInstanceConfigurationNodeSpecsAssignArgs(
+                    type="Master",
+                    number=3,
+                    resource_spec_name="es.x4.medium",
+                    storage_spec_name="es.volume.essd.pl0",
+                    storage_size=100,
+                ),
+                volcengine.escloud.InstanceInstanceConfigurationNodeSpecsAssignArgs(
+                    type="Hot",
+                    number=2,
+                    resource_spec_name="es.x4.large",
+                    storage_spec_name="es.volume.essd.pl0",
+                    storage_size=100,
+                ),
+                volcengine.escloud.InstanceInstanceConfigurationNodeSpecsAssignArgs(
+                    type="Kibana",
+                    number=1,
+                    resource_spec_name="kibana.x2.small",
+                ),
+            ],
+            subnet_id=foo_subnet.id,
+            project_name="default",
+            force_restart_after_scale=False,
         ))
         ```
 

@@ -13,9 +13,37 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.redis.Instances({
- *     instanceId: "redis-cnlf2lh1kksvv****",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooInstance = new volcengine.redis.Instance("fooInstance", {
+ *     zoneIds: [fooZones.then(fooZones => fooZones.zones?.[0]?.id)],
+ *     instanceName: "acc-test-tf-redis",
+ *     shardedCluster: 1,
+ *     password: "1qaz!QAZ12",
+ *     nodeNumber: 2,
+ *     shardCapacity: 1024,
+ *     shardNumber: 2,
+ *     engineVersion: "5.0",
+ *     subnetId: fooSubnet.id,
+ *     deletionProtection: "disabled",
+ *     vpcAuthMode: "close",
+ *     chargeType: "PostPaid",
+ *     port: 6381,
+ *     projectName: "default",
+ * });
+ * const fooInstances = volcengine.redis.InstancesOutput({
+ *     instanceId: fooInstance.id,
  * });
  * ```
  */
@@ -156,9 +184,37 @@ export interface InstancesResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.redis.Instances({
- *     instanceId: "redis-cnlf2lh1kksvv****",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooInstance = new volcengine.redis.Instance("fooInstance", {
+ *     zoneIds: [fooZones.then(fooZones => fooZones.zones?.[0]?.id)],
+ *     instanceName: "acc-test-tf-redis",
+ *     shardedCluster: 1,
+ *     password: "1qaz!QAZ12",
+ *     nodeNumber: 2,
+ *     shardCapacity: 1024,
+ *     shardNumber: 2,
+ *     engineVersion: "5.0",
+ *     subnetId: fooSubnet.id,
+ *     deletionProtection: "disabled",
+ *     vpcAuthMode: "close",
+ *     chargeType: "PostPaid",
+ *     port: 6381,
+ *     projectName: "default",
+ * });
+ * const fooInstances = volcengine.redis.InstancesOutput({
+ *     instanceId: fooInstance.id,
  * });
  * ```
  */

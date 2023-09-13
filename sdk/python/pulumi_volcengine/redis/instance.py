@@ -810,38 +810,30 @@ class Instance(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.redis.Instance("foo",
-            apply_immediately=True,
-            backup_active=True,
-            backup_hour=4,
-            backup_periods=[
-                1,
-                2,
-                3,
-            ],
-            charge_type="PostPaid",
-            create_backup=False,
-            deletion_protection="disabled",
-            engine_version="5.0",
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_instance = volcengine.redis.Instance("fooInstance",
+            zone_ids=[foo_zones.zones[0].id],
             instance_name="tf-test",
-            node_number=2,
-            param_values=[
-                volcengine.redis.InstanceParamValueArgs(
-                    name="active-defrag-cycle-min",
-                    value="5",
-                ),
-                volcengine.redis.InstanceParamValueArgs(
-                    name="active-defrag-cycle-max",
-                    value="28",
-                ),
-            ],
+            sharded_cluster=1,
             password="1qaz!QAZ12",
-            port=6381,
-            project_name="default",
+            node_number=2,
             shard_capacity=1024,
             shard_number=2,
-            sharded_cluster=1,
-            subnet_id="subnet-13g7c3lot0lc03n6nu4wj****",
+            engine_version="5.0",
+            subnet_id=foo_subnet.id,
+            deletion_protection="disabled",
+            vpc_auth_mode="close",
+            charge_type="PostPaid",
+            port=6381,
+            project_name="default",
             tags=[
                 volcengine.redis.InstanceTagArgs(
                     key="k1",
@@ -852,11 +844,25 @@ class Instance(pulumi.CustomResource):
                     value="v3",
                 ),
             ],
-            vpc_auth_mode="close",
-            zone_ids=[
-                "cn-beijing-a",
-                "cn-beijing-b",
-            ])
+            param_values=[
+                volcengine.redis.InstanceParamValueArgs(
+                    name="active-defrag-cycle-min",
+                    value="5",
+                ),
+                volcengine.redis.InstanceParamValueArgs(
+                    name="active-defrag-cycle-max",
+                    value="28",
+                ),
+            ],
+            backup_periods=[
+                1,
+                2,
+                3,
+            ],
+            backup_hour=4,
+            backup_active=True,
+            create_backup=False,
+            apply_immediately=True)
         ```
 
         ## Import
@@ -910,38 +916,30 @@ class Instance(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.redis.Instance("foo",
-            apply_immediately=True,
-            backup_active=True,
-            backup_hour=4,
-            backup_periods=[
-                1,
-                2,
-                3,
-            ],
-            charge_type="PostPaid",
-            create_backup=False,
-            deletion_protection="disabled",
-            engine_version="5.0",
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_instance = volcengine.redis.Instance("fooInstance",
+            zone_ids=[foo_zones.zones[0].id],
             instance_name="tf-test",
-            node_number=2,
-            param_values=[
-                volcengine.redis.InstanceParamValueArgs(
-                    name="active-defrag-cycle-min",
-                    value="5",
-                ),
-                volcengine.redis.InstanceParamValueArgs(
-                    name="active-defrag-cycle-max",
-                    value="28",
-                ),
-            ],
+            sharded_cluster=1,
             password="1qaz!QAZ12",
-            port=6381,
-            project_name="default",
+            node_number=2,
             shard_capacity=1024,
             shard_number=2,
-            sharded_cluster=1,
-            subnet_id="subnet-13g7c3lot0lc03n6nu4wj****",
+            engine_version="5.0",
+            subnet_id=foo_subnet.id,
+            deletion_protection="disabled",
+            vpc_auth_mode="close",
+            charge_type="PostPaid",
+            port=6381,
+            project_name="default",
             tags=[
                 volcengine.redis.InstanceTagArgs(
                     key="k1",
@@ -952,11 +950,25 @@ class Instance(pulumi.CustomResource):
                     value="v3",
                 ),
             ],
-            vpc_auth_mode="close",
-            zone_ids=[
-                "cn-beijing-a",
-                "cn-beijing-b",
-            ])
+            param_values=[
+                volcengine.redis.InstanceParamValueArgs(
+                    name="active-defrag-cycle-min",
+                    value="5",
+                ),
+                volcengine.redis.InstanceParamValueArgs(
+                    name="active-defrag-cycle-max",
+                    value="28",
+                ),
+            ],
+            backup_periods=[
+                1,
+                2,
+                3,
+            ],
+            backup_hour=4,
+            backup_active=True,
+            create_backup=False,
+            apply_immediately=True)
         ```
 
         ## Import

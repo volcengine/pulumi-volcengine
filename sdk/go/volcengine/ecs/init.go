@@ -21,12 +21,16 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "volcengine:ecs/command:Command":
+		r = &Command{}
 	case "volcengine:ecs/deploymentSet:DeploymentSet":
 		r = &DeploymentSet{}
 	case "volcengine:ecs/deploymentSetAssociate:DeploymentSetAssociate":
 		r = &DeploymentSetAssociate{}
 	case "volcengine:ecs/instance:Instance":
 		r = &Instance{}
+	case "volcengine:ecs/invocation:Invocation":
+		r = &Invocation{}
 	case "volcengine:ecs/keyPair:KeyPair":
 		r = &KeyPair{}
 	case "volcengine:ecs/keyPairAssociate:KeyPairAssociate":
@@ -50,6 +54,11 @@ func init() {
 	}
 	pulumi.RegisterResourceModule(
 		"volcengine",
+		"ecs/command",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
 		"ecs/deploymentSet",
 		&module{version},
 	)
@@ -61,6 +70,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"volcengine",
 		"ecs/instance",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"ecs/invocation",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

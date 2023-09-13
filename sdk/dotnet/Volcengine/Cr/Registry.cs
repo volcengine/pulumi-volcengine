@@ -33,7 +33,7 @@ namespace Volcengine.Pulumi.Volcengine.Cr
     /// 
     /// ## Import
     /// 
-    /// CR Instance can be imported using the name, e.g.
+    /// CR Registry can be imported using the name, e.g.
     /// 
     /// ```sh
     ///  $ pulumi import volcengine:cr/registry:Registry default enterprise-x

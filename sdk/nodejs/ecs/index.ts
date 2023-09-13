@@ -5,6 +5,16 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { CommandArgs, CommandState } from "./command";
+export type Command = import("./command").Command;
+export const Command: typeof import("./command").Command = null as any;
+utilities.lazyLoad(exports, ["Command"], () => require("./command"));
+
+export { CommandsArgs, CommandsResult, CommandsOutputArgs } from "./commands";
+export const commands: typeof import("./commands").commands = null as any;
+export const commandsOutput: typeof import("./commands").commandsOutput = null as any;
+utilities.lazyLoad(exports, ["commands","commandsOutput"], () => require("./commands"));
+
 export { DeploymentSetArgs, DeploymentSetState } from "./deploymentSet";
 export type DeploymentSet = import("./deploymentSet").DeploymentSet;
 export const DeploymentSet: typeof import("./deploymentSet").DeploymentSet = null as any;
@@ -35,6 +45,21 @@ export const instances: typeof import("./instances").instances = null as any;
 export const instancesOutput: typeof import("./instances").instancesOutput = null as any;
 utilities.lazyLoad(exports, ["instances","instancesOutput"], () => require("./instances"));
 
+export { InvocationArgs, InvocationState } from "./invocation";
+export type Invocation = import("./invocation").Invocation;
+export const Invocation: typeof import("./invocation").Invocation = null as any;
+utilities.lazyLoad(exports, ["Invocation"], () => require("./invocation"));
+
+export { InvocationResultsArgs, InvocationResultsResult, InvocationResultsOutputArgs } from "./invocationResults";
+export const invocationResults: typeof import("./invocationResults").invocationResults = null as any;
+export const invocationResultsOutput: typeof import("./invocationResults").invocationResultsOutput = null as any;
+utilities.lazyLoad(exports, ["invocationResults","invocationResultsOutput"], () => require("./invocationResults"));
+
+export { InvocationsArgs, InvocationsResult, InvocationsOutputArgs } from "./invocations";
+export const invocations: typeof import("./invocations").invocations = null as any;
+export const invocationsOutput: typeof import("./invocations").invocationsOutput = null as any;
+utilities.lazyLoad(exports, ["invocations","invocationsOutput"], () => require("./invocations"));
+
 export { KeyPairArgs, KeyPairState } from "./keyPair";
 export type KeyPair = import("./keyPair").KeyPair;
 export const KeyPair: typeof import("./keyPair").KeyPair = null as any;
@@ -60,6 +85,11 @@ export const launchTemplates: typeof import("./launchTemplates").launchTemplates
 export const launchTemplatesOutput: typeof import("./launchTemplates").launchTemplatesOutput = null as any;
 utilities.lazyLoad(exports, ["launchTemplates","launchTemplatesOutput"], () => require("./launchTemplates"));
 
+export { RegionsArgs, RegionsResult, RegionsOutputArgs } from "./regions";
+export const regions: typeof import("./regions").regions = null as any;
+export const regionsOutput: typeof import("./regions").regionsOutput = null as any;
+utilities.lazyLoad(exports, ["regions","regionsOutput"], () => require("./regions"));
+
 export { StateArgs, StateState } from "./state";
 export type State = import("./state").State;
 export const State: typeof import("./state").State = null as any;
@@ -75,12 +105,16 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "volcengine:ecs/command:Command":
+                return new Command(name, <any>undefined, { urn })
             case "volcengine:ecs/deploymentSet:DeploymentSet":
                 return new DeploymentSet(name, <any>undefined, { urn })
             case "volcengine:ecs/deploymentSetAssociate:DeploymentSetAssociate":
                 return new DeploymentSetAssociate(name, <any>undefined, { urn })
             case "volcengine:ecs/instance:Instance":
                 return new Instance(name, <any>undefined, { urn })
+            case "volcengine:ecs/invocation:Invocation":
+                return new Invocation(name, <any>undefined, { urn })
             case "volcengine:ecs/keyPair:KeyPair":
                 return new KeyPair(name, <any>undefined, { urn })
             case "volcengine:ecs/keyPairAssociate:KeyPairAssociate":
@@ -94,9 +128,11 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("volcengine", "ecs/command", _module)
 pulumi.runtime.registerResourceModule("volcengine", "ecs/deploymentSet", _module)
 pulumi.runtime.registerResourceModule("volcengine", "ecs/deploymentSetAssociate", _module)
 pulumi.runtime.registerResourceModule("volcengine", "ecs/instance", _module)
+pulumi.runtime.registerResourceModule("volcengine", "ecs/invocation", _module)
 pulumi.runtime.registerResourceModule("volcengine", "ecs/keyPair", _module)
 pulumi.runtime.registerResourceModule("volcengine", "ecs/keyPairAssociate", _module)
 pulumi.runtime.registerResourceModule("volcengine", "ecs/launchTemplate", _module)

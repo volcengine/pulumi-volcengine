@@ -112,7 +112,7 @@ namespace Volcengine.Pulumi.Volcengine.Vpc
         /// The ProjectName of the VPC.
         /// </summary>
         [Output("projectName")]
-        public Output<string?> ProjectName { get; private set; } = null!;
+        public Output<string> ProjectName { get; private set; } = null!;
 
         /// <summary>
         /// The route table ID list of VPC.

@@ -41,7 +41,7 @@ import (
 //
 // ## Import
 //
-// CR Instance can be imported using the name, e.g.
+// CR Registry can be imported using the name, e.g.
 //
 // ```sh
 //

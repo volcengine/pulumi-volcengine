@@ -11,6 +11,7 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'CommandsCommandResult',
     'DeploymentSetsDeploymentSetResult',
     'ImagesImageResult',
     'InstanceCpuOptions',
@@ -24,14 +25,167 @@ __all__ = [
     'InstancesInstanceTagResult',
     'InstancesInstanceVolumeResult',
     'InstancesTagResult',
+    'InvocationResultsInvocationResultResult',
+    'InvocationsInvocationResult',
     'KeyPairsKeyPairResult',
     'LaunchTemplateNetworkInterface',
     'LaunchTemplateVolume',
     'LaunchTemplatesLaunchTemplateResult',
     'LaunchTemplatesLaunchTemplateNetworkInterfaceResult',
     'LaunchTemplatesLaunchTemplateVolumeResult',
+    'RegionsRegionResult',
     'ZonesZoneResult',
 ]
+
+@pulumi.output_type
+class CommandsCommandResult(dict):
+    def __init__(__self__, *,
+                 command_content: str,
+                 command_id: str,
+                 command_provider: str,
+                 created_at: str,
+                 description: str,
+                 id: str,
+                 invocation_times: int,
+                 name: str,
+                 timeout: int,
+                 type: str,
+                 updated_at: str,
+                 username: str,
+                 working_dir: str):
+        """
+        :param str command_content: The base64 encoded content of the ecs command.
+        :param str command_id: The id of ecs command.
+        :param str command_provider: The provider of public command. When this field is not specified, query for custom commands.
+        :param str created_at: The create time of the ecs command.
+        :param str description: The description of the ecs command.
+        :param str id: The id of the ecs command.
+        :param int invocation_times: The invocation times of the ecs command. Public commands do not display the invocation times.
+        :param str name: The name of ecs command. This field support fuzzy query.
+        :param int timeout: The timeout of the ecs command.
+        :param str type: The type of ecs command. Valid values: `Shell`.
+        :param str updated_at: The update time of the ecs command.
+        :param str username: The username of the ecs command.
+        :param str working_dir: The working directory of the ecs command.
+        """
+        pulumi.set(__self__, "command_content", command_content)
+        pulumi.set(__self__, "command_id", command_id)
+        pulumi.set(__self__, "command_provider", command_provider)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "invocation_times", invocation_times)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "timeout", timeout)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "username", username)
+        pulumi.set(__self__, "working_dir", working_dir)
+
+    @property
+    @pulumi.getter(name="commandContent")
+    def command_content(self) -> str:
+        """
+        The base64 encoded content of the ecs command.
+        """
+        return pulumi.get(self, "command_content")
+
+    @property
+    @pulumi.getter(name="commandId")
+    def command_id(self) -> str:
+        """
+        The id of ecs command.
+        """
+        return pulumi.get(self, "command_id")
+
+    @property
+    @pulumi.getter(name="commandProvider")
+    def command_provider(self) -> str:
+        """
+        The provider of public command. When this field is not specified, query for custom commands.
+        """
+        return pulumi.get(self, "command_provider")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The create time of the ecs command.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the ecs command.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the ecs command.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="invocationTimes")
+    def invocation_times(self) -> int:
+        """
+        The invocation times of the ecs command. Public commands do not display the invocation times.
+        """
+        return pulumi.get(self, "invocation_times")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of ecs command. This field support fuzzy query.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def timeout(self) -> int:
+        """
+        The timeout of the ecs command.
+        """
+        return pulumi.get(self, "timeout")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of ecs command. Valid values: `Shell`.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        The update time of the ecs command.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        """
+        The username of the ecs command.
+        """
+        return pulumi.get(self, "username")
+
+    @property
+    @pulumi.getter(name="workingDir")
+    def working_dir(self) -> str:
+        """
+        The working directory of the ecs command.
+        """
+        return pulumi.get(self, "working_dir")
+
 
 @pulumi.output_type
 class DeploymentSetsDeploymentSetResult(dict):
@@ -1100,6 +1254,405 @@ class InstancesTagResult(dict):
 
 
 @pulumi.output_type
+class InvocationResultsInvocationResultResult(dict):
+    def __init__(__self__, *,
+                 command_id: str,
+                 end_time: str,
+                 error_code: str,
+                 error_message: str,
+                 exit_code: int,
+                 id: str,
+                 instance_id: str,
+                 invocation_id: str,
+                 invocation_result_id: str,
+                 invocation_result_status: str,
+                 output: str,
+                 start_time: str,
+                 username: str):
+        """
+        :param str command_id: The id of ecs command.
+        :param str end_time: The end time of the ecs invocation in the instance.
+        :param str error_code: The error code of the ecs invocation.
+        :param str error_message: The error message of the ecs invocation.
+        :param int exit_code: The exit code of the ecs command.
+        :param str id: The id of the ecs invocation result.
+        :param str instance_id: The id of ecs instance.
+        :param str invocation_id: The id of ecs invocation.
+        :param str invocation_result_id: The id of the ecs invocation result.
+        :param str invocation_result_status: The list of status of ecs invocation in a single instance. Valid values: `Pending`, `Running`, `Success`, `Failed`, `Timeout`.
+        :param str output: The base64 encoded output message of the ecs invocation.
+        :param str start_time: The start time of the ecs invocation in the instance.
+        :param str username: The username of the ecs command.
+        """
+        pulumi.set(__self__, "command_id", command_id)
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "error_code", error_code)
+        pulumi.set(__self__, "error_message", error_message)
+        pulumi.set(__self__, "exit_code", exit_code)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "invocation_id", invocation_id)
+        pulumi.set(__self__, "invocation_result_id", invocation_result_id)
+        pulumi.set(__self__, "invocation_result_status", invocation_result_status)
+        pulumi.set(__self__, "output", output)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter(name="commandId")
+    def command_id(self) -> str:
+        """
+        The id of ecs command.
+        """
+        return pulumi.get(self, "command_id")
+
+    @property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> str:
+        """
+        The end time of the ecs invocation in the instance.
+        """
+        return pulumi.get(self, "end_time")
+
+    @property
+    @pulumi.getter(name="errorCode")
+    def error_code(self) -> str:
+        """
+        The error code of the ecs invocation.
+        """
+        return pulumi.get(self, "error_code")
+
+    @property
+    @pulumi.getter(name="errorMessage")
+    def error_message(self) -> str:
+        """
+        The error message of the ecs invocation.
+        """
+        return pulumi.get(self, "error_message")
+
+    @property
+    @pulumi.getter(name="exitCode")
+    def exit_code(self) -> int:
+        """
+        The exit code of the ecs command.
+        """
+        return pulumi.get(self, "exit_code")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the ecs invocation result.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The id of ecs instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="invocationId")
+    def invocation_id(self) -> str:
+        """
+        The id of ecs invocation.
+        """
+        return pulumi.get(self, "invocation_id")
+
+    @property
+    @pulumi.getter(name="invocationResultId")
+    def invocation_result_id(self) -> str:
+        """
+        The id of the ecs invocation result.
+        """
+        return pulumi.get(self, "invocation_result_id")
+
+    @property
+    @pulumi.getter(name="invocationResultStatus")
+    def invocation_result_status(self) -> str:
+        """
+        The list of status of ecs invocation in a single instance. Valid values: `Pending`, `Running`, `Success`, `Failed`, `Timeout`.
+        """
+        return pulumi.get(self, "invocation_result_status")
+
+    @property
+    @pulumi.getter
+    def output(self) -> str:
+        """
+        The base64 encoded output message of the ecs invocation.
+        """
+        return pulumi.get(self, "output")
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> str:
+        """
+        The start time of the ecs invocation in the instance.
+        """
+        return pulumi.get(self, "start_time")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        """
+        The username of the ecs command.
+        """
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class InvocationsInvocationResult(dict):
+    def __init__(__self__, *,
+                 command_content: str,
+                 command_description: str,
+                 command_id: str,
+                 command_name: str,
+                 command_provider: str,
+                 command_type: str,
+                 end_time: str,
+                 frequency: str,
+                 id: str,
+                 instance_ids: Sequence[str],
+                 instance_number: int,
+                 invocation_description: str,
+                 invocation_id: str,
+                 invocation_name: str,
+                 invocation_status: str,
+                 launch_time: str,
+                 recurrence_end_time: str,
+                 repeat_mode: str,
+                 start_time: str,
+                 timeout: int,
+                 username: str,
+                 working_dir: str):
+        """
+        :param str command_content: The base64 encoded content of the ecs command.
+        :param str command_description: The description of the ecs command.
+        :param str command_id: The id of ecs command.
+        :param str command_name: The name of ecs command. This field support fuzzy query.
+        :param str command_provider: The provider of the ecs command.
+        :param str command_type: The type of ecs command. Valid values: `Shell`.
+        :param str end_time: The end time of the ecs invocation.
+        :param str frequency: The frequency of the ecs invocation.
+        :param str id: The id of the ecs invocation.
+        :param Sequence[str] instance_ids: The list of ECS instance IDs.
+        :param int instance_number: The instance number of the ecs invocation.
+        :param str invocation_description: The description of the ecs invocation.
+        :param str invocation_id: The id of ecs invocation.
+        :param str invocation_name: The name of ecs invocation. This field support fuzzy query.
+        :param str invocation_status: The list of status of ecs invocation. Valid values: `Pending`, `Scheduled`, `Running`, `Success`, `Failed`, `Stopped`, `PartialFailed`, `Finished`.
+        :param str launch_time: The launch time of the ecs invocation.
+        :param str recurrence_end_time: The recurrence end time of the ecs invocation.
+        :param str repeat_mode: The repeat mode of ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
+        :param str start_time: The start time of the ecs invocation.
+        :param int timeout: The timeout of the ecs command.
+        :param str username: The username of the ecs command.
+        :param str working_dir: The working directory of the ecs command.
+        """
+        pulumi.set(__self__, "command_content", command_content)
+        pulumi.set(__self__, "command_description", command_description)
+        pulumi.set(__self__, "command_id", command_id)
+        pulumi.set(__self__, "command_name", command_name)
+        pulumi.set(__self__, "command_provider", command_provider)
+        pulumi.set(__self__, "command_type", command_type)
+        pulumi.set(__self__, "end_time", end_time)
+        pulumi.set(__self__, "frequency", frequency)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "instance_ids", instance_ids)
+        pulumi.set(__self__, "instance_number", instance_number)
+        pulumi.set(__self__, "invocation_description", invocation_description)
+        pulumi.set(__self__, "invocation_id", invocation_id)
+        pulumi.set(__self__, "invocation_name", invocation_name)
+        pulumi.set(__self__, "invocation_status", invocation_status)
+        pulumi.set(__self__, "launch_time", launch_time)
+        pulumi.set(__self__, "recurrence_end_time", recurrence_end_time)
+        pulumi.set(__self__, "repeat_mode", repeat_mode)
+        pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "timeout", timeout)
+        pulumi.set(__self__, "username", username)
+        pulumi.set(__self__, "working_dir", working_dir)
+
+    @property
+    @pulumi.getter(name="commandContent")
+    def command_content(self) -> str:
+        """
+        The base64 encoded content of the ecs command.
+        """
+        return pulumi.get(self, "command_content")
+
+    @property
+    @pulumi.getter(name="commandDescription")
+    def command_description(self) -> str:
+        """
+        The description of the ecs command.
+        """
+        return pulumi.get(self, "command_description")
+
+    @property
+    @pulumi.getter(name="commandId")
+    def command_id(self) -> str:
+        """
+        The id of ecs command.
+        """
+        return pulumi.get(self, "command_id")
+
+    @property
+    @pulumi.getter(name="commandName")
+    def command_name(self) -> str:
+        """
+        The name of ecs command. This field support fuzzy query.
+        """
+        return pulumi.get(self, "command_name")
+
+    @property
+    @pulumi.getter(name="commandProvider")
+    def command_provider(self) -> str:
+        """
+        The provider of the ecs command.
+        """
+        return pulumi.get(self, "command_provider")
+
+    @property
+    @pulumi.getter(name="commandType")
+    def command_type(self) -> str:
+        """
+        The type of ecs command. Valid values: `Shell`.
+        """
+        return pulumi.get(self, "command_type")
+
+    @property
+    @pulumi.getter(name="endTime")
+    def end_time(self) -> str:
+        """
+        The end time of the ecs invocation.
+        """
+        return pulumi.get(self, "end_time")
+
+    @property
+    @pulumi.getter
+    def frequency(self) -> str:
+        """
+        The frequency of the ecs invocation.
+        """
+        return pulumi.get(self, "frequency")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the ecs invocation.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="instanceIds")
+    def instance_ids(self) -> Sequence[str]:
+        """
+        The list of ECS instance IDs.
+        """
+        return pulumi.get(self, "instance_ids")
+
+    @property
+    @pulumi.getter(name="instanceNumber")
+    def instance_number(self) -> int:
+        """
+        The instance number of the ecs invocation.
+        """
+        return pulumi.get(self, "instance_number")
+
+    @property
+    @pulumi.getter(name="invocationDescription")
+    def invocation_description(self) -> str:
+        """
+        The description of the ecs invocation.
+        """
+        return pulumi.get(self, "invocation_description")
+
+    @property
+    @pulumi.getter(name="invocationId")
+    def invocation_id(self) -> str:
+        """
+        The id of ecs invocation.
+        """
+        return pulumi.get(self, "invocation_id")
+
+    @property
+    @pulumi.getter(name="invocationName")
+    def invocation_name(self) -> str:
+        """
+        The name of ecs invocation. This field support fuzzy query.
+        """
+        return pulumi.get(self, "invocation_name")
+
+    @property
+    @pulumi.getter(name="invocationStatus")
+    def invocation_status(self) -> str:
+        """
+        The list of status of ecs invocation. Valid values: `Pending`, `Scheduled`, `Running`, `Success`, `Failed`, `Stopped`, `PartialFailed`, `Finished`.
+        """
+        return pulumi.get(self, "invocation_status")
+
+    @property
+    @pulumi.getter(name="launchTime")
+    def launch_time(self) -> str:
+        """
+        The launch time of the ecs invocation.
+        """
+        return pulumi.get(self, "launch_time")
+
+    @property
+    @pulumi.getter(name="recurrenceEndTime")
+    def recurrence_end_time(self) -> str:
+        """
+        The recurrence end time of the ecs invocation.
+        """
+        return pulumi.get(self, "recurrence_end_time")
+
+    @property
+    @pulumi.getter(name="repeatMode")
+    def repeat_mode(self) -> str:
+        """
+        The repeat mode of ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
+        """
+        return pulumi.get(self, "repeat_mode")
+
+    @property
+    @pulumi.getter(name="startTime")
+    def start_time(self) -> str:
+        """
+        The start time of the ecs invocation.
+        """
+        return pulumi.get(self, "start_time")
+
+    @property
+    @pulumi.getter
+    def timeout(self) -> int:
+        """
+        The timeout of the ecs command.
+        """
+        return pulumi.get(self, "timeout")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        """
+        The username of the ecs command.
+        """
+        return pulumi.get(self, "username")
+
+    @property
+    @pulumi.getter(name="workingDir")
+    def working_dir(self) -> str:
+        """
+        The working directory of the ecs command.
+        """
+        return pulumi.get(self, "working_dir")
+
+
+@pulumi.output_type
 class KeyPairsKeyPairResult(dict):
     def __init__(__self__, *,
                  created_at: str,
@@ -1644,6 +2197,35 @@ class LaunchTemplatesLaunchTemplateVolumeResult(dict):
         The type of volume.
         """
         return pulumi.get(self, "volume_type")
+
+
+@pulumi.output_type
+class RegionsRegionResult(dict):
+    def __init__(__self__, *,
+                 id: str,
+                 region_id: str):
+        """
+        :param str id: The id of the region.
+        :param str region_id: The id of the region.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "region_id", region_id)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the region.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> str:
+        """
+        The id of the region.
+        """
+        return pulumi.get(self, "region_id")
 
 
 @pulumi.output_type

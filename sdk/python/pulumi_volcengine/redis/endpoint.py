@@ -105,9 +105,38 @@ class Endpoint(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.redis.Endpoint("foo",
-            eip_id="eip-274ho3mtx543k7fap8tyi****",
-            instance_id="redis-cn03bb67g3tr2****")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_instance = volcengine.redis.Instance("fooInstance",
+            zone_ids=[foo_zones.zones[0].id],
+            instance_name="acc-test-tf-redis",
+            sharded_cluster=1,
+            password="1qaz!QAZ12",
+            node_number=2,
+            shard_capacity=1024,
+            shard_number=2,
+            engine_version="5.0",
+            subnet_id=foo_subnet.id,
+            deletion_protection="disabled",
+            vpc_auth_mode="close",
+            charge_type="PostPaid",
+            port=6381,
+            project_name="default")
+        foo_address = volcengine.eip.Address("fooAddress",
+            bandwidth=1,
+            billing_type="PostPaidByBandwidth",
+            description="acc-test",
+            isp="BGP")
+        foo_endpoint = volcengine.redis.Endpoint("fooEndpoint",
+            eip_id=foo_address.id,
+            instance_id=foo_instance.id)
         ```
 
         ## Import
@@ -137,9 +166,38 @@ class Endpoint(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.redis.Endpoint("foo",
-            eip_id="eip-274ho3mtx543k7fap8tyi****",
-            instance_id="redis-cn03bb67g3tr2****")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_instance = volcengine.redis.Instance("fooInstance",
+            zone_ids=[foo_zones.zones[0].id],
+            instance_name="acc-test-tf-redis",
+            sharded_cluster=1,
+            password="1qaz!QAZ12",
+            node_number=2,
+            shard_capacity=1024,
+            shard_number=2,
+            engine_version="5.0",
+            subnet_id=foo_subnet.id,
+            deletion_protection="disabled",
+            vpc_auth_mode="close",
+            charge_type="PostPaid",
+            port=6381,
+            project_name="default")
+        foo_address = volcengine.eip.Address("fooAddress",
+            bandwidth=1,
+            billing_type="PostPaidByBandwidth",
+            description="acc-test",
+            isp="BGP")
+        foo_endpoint = volcengine.redis.Endpoint("fooEndpoint",
+            eip_id=foo_address.id,
+            instance_id=foo_instance.id)
         ```
 
         ## Import

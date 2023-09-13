@@ -13,6 +13,211 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type CommandsCommand struct {
+	// The base64 encoded content of the ecs command.
+	CommandContent string `pulumi:"commandContent"`
+	// The id of ecs command.
+	CommandId string `pulumi:"commandId"`
+	// The provider of public command. When this field is not specified, query for custom commands.
+	CommandProvider string `pulumi:"commandProvider"`
+	// The create time of the ecs command.
+	CreatedAt string `pulumi:"createdAt"`
+	// The description of the ecs command.
+	Description string `pulumi:"description"`
+	// The id of the ecs command.
+	Id string `pulumi:"id"`
+	// The invocation times of the ecs command. Public commands do not display the invocation times.
+	InvocationTimes int `pulumi:"invocationTimes"`
+	// The name of ecs command. This field support fuzzy query.
+	Name string `pulumi:"name"`
+	// The timeout of the ecs command.
+	Timeout int `pulumi:"timeout"`
+	// The type of ecs command. Valid values: `Shell`.
+	Type string `pulumi:"type"`
+	// The update time of the ecs command.
+	UpdatedAt string `pulumi:"updatedAt"`
+	// The username of the ecs command.
+	Username string `pulumi:"username"`
+	// The working directory of the ecs command.
+	WorkingDir string `pulumi:"workingDir"`
+}
+
+// CommandsCommandInput is an input type that accepts CommandsCommandArgs and CommandsCommandOutput values.
+// You can construct a concrete instance of `CommandsCommandInput` via:
+//
+//	CommandsCommandArgs{...}
+type CommandsCommandInput interface {
+	pulumi.Input
+
+	ToCommandsCommandOutput() CommandsCommandOutput
+	ToCommandsCommandOutputWithContext(context.Context) CommandsCommandOutput
+}
+
+type CommandsCommandArgs struct {
+	// The base64 encoded content of the ecs command.
+	CommandContent pulumi.StringInput `pulumi:"commandContent"`
+	// The id of ecs command.
+	CommandId pulumi.StringInput `pulumi:"commandId"`
+	// The provider of public command. When this field is not specified, query for custom commands.
+	CommandProvider pulumi.StringInput `pulumi:"commandProvider"`
+	// The create time of the ecs command.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The description of the ecs command.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The id of the ecs command.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The invocation times of the ecs command. Public commands do not display the invocation times.
+	InvocationTimes pulumi.IntInput `pulumi:"invocationTimes"`
+	// The name of ecs command. This field support fuzzy query.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The timeout of the ecs command.
+	Timeout pulumi.IntInput `pulumi:"timeout"`
+	// The type of ecs command. Valid values: `Shell`.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The update time of the ecs command.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// The username of the ecs command.
+	Username pulumi.StringInput `pulumi:"username"`
+	// The working directory of the ecs command.
+	WorkingDir pulumi.StringInput `pulumi:"workingDir"`
+}
+
+func (CommandsCommandArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CommandsCommand)(nil)).Elem()
+}
+
+func (i CommandsCommandArgs) ToCommandsCommandOutput() CommandsCommandOutput {
+	return i.ToCommandsCommandOutputWithContext(context.Background())
+}
+
+func (i CommandsCommandArgs) ToCommandsCommandOutputWithContext(ctx context.Context) CommandsCommandOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CommandsCommandOutput)
+}
+
+// CommandsCommandArrayInput is an input type that accepts CommandsCommandArray and CommandsCommandArrayOutput values.
+// You can construct a concrete instance of `CommandsCommandArrayInput` via:
+//
+//	CommandsCommandArray{ CommandsCommandArgs{...} }
+type CommandsCommandArrayInput interface {
+	pulumi.Input
+
+	ToCommandsCommandArrayOutput() CommandsCommandArrayOutput
+	ToCommandsCommandArrayOutputWithContext(context.Context) CommandsCommandArrayOutput
+}
+
+type CommandsCommandArray []CommandsCommandInput
+
+func (CommandsCommandArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CommandsCommand)(nil)).Elem()
+}
+
+func (i CommandsCommandArray) ToCommandsCommandArrayOutput() CommandsCommandArrayOutput {
+	return i.ToCommandsCommandArrayOutputWithContext(context.Background())
+}
+
+func (i CommandsCommandArray) ToCommandsCommandArrayOutputWithContext(ctx context.Context) CommandsCommandArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CommandsCommandArrayOutput)
+}
+
+type CommandsCommandOutput struct{ *pulumi.OutputState }
+
+func (CommandsCommandOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CommandsCommand)(nil)).Elem()
+}
+
+func (o CommandsCommandOutput) ToCommandsCommandOutput() CommandsCommandOutput {
+	return o
+}
+
+func (o CommandsCommandOutput) ToCommandsCommandOutputWithContext(ctx context.Context) CommandsCommandOutput {
+	return o
+}
+
+// The base64 encoded content of the ecs command.
+func (o CommandsCommandOutput) CommandContent() pulumi.StringOutput {
+	return o.ApplyT(func(v CommandsCommand) string { return v.CommandContent }).(pulumi.StringOutput)
+}
+
+// The id of ecs command.
+func (o CommandsCommandOutput) CommandId() pulumi.StringOutput {
+	return o.ApplyT(func(v CommandsCommand) string { return v.CommandId }).(pulumi.StringOutput)
+}
+
+// The provider of public command. When this field is not specified, query for custom commands.
+func (o CommandsCommandOutput) CommandProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v CommandsCommand) string { return v.CommandProvider }).(pulumi.StringOutput)
+}
+
+// The create time of the ecs command.
+func (o CommandsCommandOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v CommandsCommand) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The description of the ecs command.
+func (o CommandsCommandOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v CommandsCommand) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The id of the ecs command.
+func (o CommandsCommandOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v CommandsCommand) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The invocation times of the ecs command. Public commands do not display the invocation times.
+func (o CommandsCommandOutput) InvocationTimes() pulumi.IntOutput {
+	return o.ApplyT(func(v CommandsCommand) int { return v.InvocationTimes }).(pulumi.IntOutput)
+}
+
+// The name of ecs command. This field support fuzzy query.
+func (o CommandsCommandOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v CommandsCommand) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The timeout of the ecs command.
+func (o CommandsCommandOutput) Timeout() pulumi.IntOutput {
+	return o.ApplyT(func(v CommandsCommand) int { return v.Timeout }).(pulumi.IntOutput)
+}
+
+// The type of ecs command. Valid values: `Shell`.
+func (o CommandsCommandOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v CommandsCommand) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The update time of the ecs command.
+func (o CommandsCommandOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v CommandsCommand) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// The username of the ecs command.
+func (o CommandsCommandOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v CommandsCommand) string { return v.Username }).(pulumi.StringOutput)
+}
+
+// The working directory of the ecs command.
+func (o CommandsCommandOutput) WorkingDir() pulumi.StringOutput {
+	return o.ApplyT(func(v CommandsCommand) string { return v.WorkingDir }).(pulumi.StringOutput)
+}
+
+type CommandsCommandArrayOutput struct{ *pulumi.OutputState }
+
+func (CommandsCommandArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CommandsCommand)(nil)).Elem()
+}
+
+func (o CommandsCommandArrayOutput) ToCommandsCommandArrayOutput() CommandsCommandArrayOutput {
+	return o
+}
+
+func (o CommandsCommandArrayOutput) ToCommandsCommandArrayOutputWithContext(ctx context.Context) CommandsCommandArrayOutput {
+	return o
+}
+
+func (o CommandsCommandArrayOutput) Index(i pulumi.IntInput) CommandsCommandOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CommandsCommand {
+		return vs[0].([]CommandsCommand)[vs[1].(int)]
+	}).(CommandsCommandOutput)
+}
+
 type DeploymentSetsDeploymentSet struct {
 	// The ID of ECS DeploymentSet.
 	DeploymentSetId string `pulumi:"deploymentSetId"`
@@ -1926,6 +2131,497 @@ func (o InstancesTagArrayOutput) Index(i pulumi.IntInput) InstancesTagOutput {
 	}).(InstancesTagOutput)
 }
 
+type InvocationResultsInvocationResult struct {
+	// The id of ecs command.
+	CommandId string `pulumi:"commandId"`
+	// The end time of the ecs invocation in the instance.
+	EndTime string `pulumi:"endTime"`
+	// The error code of the ecs invocation.
+	ErrorCode string `pulumi:"errorCode"`
+	// The error message of the ecs invocation.
+	ErrorMessage string `pulumi:"errorMessage"`
+	// The exit code of the ecs command.
+	ExitCode int `pulumi:"exitCode"`
+	// The id of the ecs invocation result.
+	Id string `pulumi:"id"`
+	// The id of ecs instance.
+	InstanceId string `pulumi:"instanceId"`
+	// The id of ecs invocation.
+	InvocationId string `pulumi:"invocationId"`
+	// The id of the ecs invocation result.
+	InvocationResultId string `pulumi:"invocationResultId"`
+	// The list of status of ecs invocation in a single instance. Valid values: `Pending`, `Running`, `Success`, `Failed`, `Timeout`.
+	InvocationResultStatus string `pulumi:"invocationResultStatus"`
+	// The base64 encoded output message of the ecs invocation.
+	Output string `pulumi:"output"`
+	// The start time of the ecs invocation in the instance.
+	StartTime string `pulumi:"startTime"`
+	// The username of the ecs command.
+	Username string `pulumi:"username"`
+}
+
+// InvocationResultsInvocationResultInput is an input type that accepts InvocationResultsInvocationResultArgs and InvocationResultsInvocationResultOutput values.
+// You can construct a concrete instance of `InvocationResultsInvocationResultInput` via:
+//
+//	InvocationResultsInvocationResultArgs{...}
+type InvocationResultsInvocationResultInput interface {
+	pulumi.Input
+
+	ToInvocationResultsInvocationResultOutput() InvocationResultsInvocationResultOutput
+	ToInvocationResultsInvocationResultOutputWithContext(context.Context) InvocationResultsInvocationResultOutput
+}
+
+type InvocationResultsInvocationResultArgs struct {
+	// The id of ecs command.
+	CommandId pulumi.StringInput `pulumi:"commandId"`
+	// The end time of the ecs invocation in the instance.
+	EndTime pulumi.StringInput `pulumi:"endTime"`
+	// The error code of the ecs invocation.
+	ErrorCode pulumi.StringInput `pulumi:"errorCode"`
+	// The error message of the ecs invocation.
+	ErrorMessage pulumi.StringInput `pulumi:"errorMessage"`
+	// The exit code of the ecs command.
+	ExitCode pulumi.IntInput `pulumi:"exitCode"`
+	// The id of the ecs invocation result.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The id of ecs instance.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The id of ecs invocation.
+	InvocationId pulumi.StringInput `pulumi:"invocationId"`
+	// The id of the ecs invocation result.
+	InvocationResultId pulumi.StringInput `pulumi:"invocationResultId"`
+	// The list of status of ecs invocation in a single instance. Valid values: `Pending`, `Running`, `Success`, `Failed`, `Timeout`.
+	InvocationResultStatus pulumi.StringInput `pulumi:"invocationResultStatus"`
+	// The base64 encoded output message of the ecs invocation.
+	Output pulumi.StringInput `pulumi:"output"`
+	// The start time of the ecs invocation in the instance.
+	StartTime pulumi.StringInput `pulumi:"startTime"`
+	// The username of the ecs command.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (InvocationResultsInvocationResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InvocationResultsInvocationResult)(nil)).Elem()
+}
+
+func (i InvocationResultsInvocationResultArgs) ToInvocationResultsInvocationResultOutput() InvocationResultsInvocationResultOutput {
+	return i.ToInvocationResultsInvocationResultOutputWithContext(context.Background())
+}
+
+func (i InvocationResultsInvocationResultArgs) ToInvocationResultsInvocationResultOutputWithContext(ctx context.Context) InvocationResultsInvocationResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InvocationResultsInvocationResultOutput)
+}
+
+// InvocationResultsInvocationResultArrayInput is an input type that accepts InvocationResultsInvocationResultArray and InvocationResultsInvocationResultArrayOutput values.
+// You can construct a concrete instance of `InvocationResultsInvocationResultArrayInput` via:
+//
+//	InvocationResultsInvocationResultArray{ InvocationResultsInvocationResultArgs{...} }
+type InvocationResultsInvocationResultArrayInput interface {
+	pulumi.Input
+
+	ToInvocationResultsInvocationResultArrayOutput() InvocationResultsInvocationResultArrayOutput
+	ToInvocationResultsInvocationResultArrayOutputWithContext(context.Context) InvocationResultsInvocationResultArrayOutput
+}
+
+type InvocationResultsInvocationResultArray []InvocationResultsInvocationResultInput
+
+func (InvocationResultsInvocationResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InvocationResultsInvocationResult)(nil)).Elem()
+}
+
+func (i InvocationResultsInvocationResultArray) ToInvocationResultsInvocationResultArrayOutput() InvocationResultsInvocationResultArrayOutput {
+	return i.ToInvocationResultsInvocationResultArrayOutputWithContext(context.Background())
+}
+
+func (i InvocationResultsInvocationResultArray) ToInvocationResultsInvocationResultArrayOutputWithContext(ctx context.Context) InvocationResultsInvocationResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InvocationResultsInvocationResultArrayOutput)
+}
+
+type InvocationResultsInvocationResultOutput struct{ *pulumi.OutputState }
+
+func (InvocationResultsInvocationResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InvocationResultsInvocationResult)(nil)).Elem()
+}
+
+func (o InvocationResultsInvocationResultOutput) ToInvocationResultsInvocationResultOutput() InvocationResultsInvocationResultOutput {
+	return o
+}
+
+func (o InvocationResultsInvocationResultOutput) ToInvocationResultsInvocationResultOutputWithContext(ctx context.Context) InvocationResultsInvocationResultOutput {
+	return o
+}
+
+// The id of ecs command.
+func (o InvocationResultsInvocationResultOutput) CommandId() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationResultsInvocationResult) string { return v.CommandId }).(pulumi.StringOutput)
+}
+
+// The end time of the ecs invocation in the instance.
+func (o InvocationResultsInvocationResultOutput) EndTime() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationResultsInvocationResult) string { return v.EndTime }).(pulumi.StringOutput)
+}
+
+// The error code of the ecs invocation.
+func (o InvocationResultsInvocationResultOutput) ErrorCode() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationResultsInvocationResult) string { return v.ErrorCode }).(pulumi.StringOutput)
+}
+
+// The error message of the ecs invocation.
+func (o InvocationResultsInvocationResultOutput) ErrorMessage() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationResultsInvocationResult) string { return v.ErrorMessage }).(pulumi.StringOutput)
+}
+
+// The exit code of the ecs command.
+func (o InvocationResultsInvocationResultOutput) ExitCode() pulumi.IntOutput {
+	return o.ApplyT(func(v InvocationResultsInvocationResult) int { return v.ExitCode }).(pulumi.IntOutput)
+}
+
+// The id of the ecs invocation result.
+func (o InvocationResultsInvocationResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationResultsInvocationResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The id of ecs instance.
+func (o InvocationResultsInvocationResultOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationResultsInvocationResult) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The id of ecs invocation.
+func (o InvocationResultsInvocationResultOutput) InvocationId() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationResultsInvocationResult) string { return v.InvocationId }).(pulumi.StringOutput)
+}
+
+// The id of the ecs invocation result.
+func (o InvocationResultsInvocationResultOutput) InvocationResultId() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationResultsInvocationResult) string { return v.InvocationResultId }).(pulumi.StringOutput)
+}
+
+// The list of status of ecs invocation in a single instance. Valid values: `Pending`, `Running`, `Success`, `Failed`, `Timeout`.
+func (o InvocationResultsInvocationResultOutput) InvocationResultStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationResultsInvocationResult) string { return v.InvocationResultStatus }).(pulumi.StringOutput)
+}
+
+// The base64 encoded output message of the ecs invocation.
+func (o InvocationResultsInvocationResultOutput) Output() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationResultsInvocationResult) string { return v.Output }).(pulumi.StringOutput)
+}
+
+// The start time of the ecs invocation in the instance.
+func (o InvocationResultsInvocationResultOutput) StartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationResultsInvocationResult) string { return v.StartTime }).(pulumi.StringOutput)
+}
+
+// The username of the ecs command.
+func (o InvocationResultsInvocationResultOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationResultsInvocationResult) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type InvocationResultsInvocationResultArrayOutput struct{ *pulumi.OutputState }
+
+func (InvocationResultsInvocationResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InvocationResultsInvocationResult)(nil)).Elem()
+}
+
+func (o InvocationResultsInvocationResultArrayOutput) ToInvocationResultsInvocationResultArrayOutput() InvocationResultsInvocationResultArrayOutput {
+	return o
+}
+
+func (o InvocationResultsInvocationResultArrayOutput) ToInvocationResultsInvocationResultArrayOutputWithContext(ctx context.Context) InvocationResultsInvocationResultArrayOutput {
+	return o
+}
+
+func (o InvocationResultsInvocationResultArrayOutput) Index(i pulumi.IntInput) InvocationResultsInvocationResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InvocationResultsInvocationResult {
+		return vs[0].([]InvocationResultsInvocationResult)[vs[1].(int)]
+	}).(InvocationResultsInvocationResultOutput)
+}
+
+type InvocationsInvocation struct {
+	// The base64 encoded content of the ecs command.
+	CommandContent string `pulumi:"commandContent"`
+	// The description of the ecs command.
+	CommandDescription string `pulumi:"commandDescription"`
+	// The id of ecs command.
+	CommandId string `pulumi:"commandId"`
+	// The name of ecs command. This field support fuzzy query.
+	CommandName string `pulumi:"commandName"`
+	// The provider of the ecs command.
+	CommandProvider string `pulumi:"commandProvider"`
+	// The type of ecs command. Valid values: `Shell`.
+	CommandType string `pulumi:"commandType"`
+	// The end time of the ecs invocation.
+	EndTime string `pulumi:"endTime"`
+	// The frequency of the ecs invocation.
+	Frequency string `pulumi:"frequency"`
+	// The id of the ecs invocation.
+	Id string `pulumi:"id"`
+	// The list of ECS instance IDs.
+	InstanceIds []string `pulumi:"instanceIds"`
+	// The instance number of the ecs invocation.
+	InstanceNumber int `pulumi:"instanceNumber"`
+	// The description of the ecs invocation.
+	InvocationDescription string `pulumi:"invocationDescription"`
+	// The id of ecs invocation.
+	InvocationId string `pulumi:"invocationId"`
+	// The name of ecs invocation. This field support fuzzy query.
+	InvocationName string `pulumi:"invocationName"`
+	// The list of status of ecs invocation. Valid values: `Pending`, `Scheduled`, `Running`, `Success`, `Failed`, `Stopped`, `PartialFailed`, `Finished`.
+	InvocationStatus string `pulumi:"invocationStatus"`
+	// The launch time of the ecs invocation.
+	LaunchTime string `pulumi:"launchTime"`
+	// The recurrence end time of the ecs invocation.
+	RecurrenceEndTime string `pulumi:"recurrenceEndTime"`
+	// The repeat mode of ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
+	RepeatMode string `pulumi:"repeatMode"`
+	// The start time of the ecs invocation.
+	StartTime string `pulumi:"startTime"`
+	// The timeout of the ecs command.
+	Timeout int `pulumi:"timeout"`
+	// The username of the ecs command.
+	Username string `pulumi:"username"`
+	// The working directory of the ecs command.
+	WorkingDir string `pulumi:"workingDir"`
+}
+
+// InvocationsInvocationInput is an input type that accepts InvocationsInvocationArgs and InvocationsInvocationOutput values.
+// You can construct a concrete instance of `InvocationsInvocationInput` via:
+//
+//	InvocationsInvocationArgs{...}
+type InvocationsInvocationInput interface {
+	pulumi.Input
+
+	ToInvocationsInvocationOutput() InvocationsInvocationOutput
+	ToInvocationsInvocationOutputWithContext(context.Context) InvocationsInvocationOutput
+}
+
+type InvocationsInvocationArgs struct {
+	// The base64 encoded content of the ecs command.
+	CommandContent pulumi.StringInput `pulumi:"commandContent"`
+	// The description of the ecs command.
+	CommandDescription pulumi.StringInput `pulumi:"commandDescription"`
+	// The id of ecs command.
+	CommandId pulumi.StringInput `pulumi:"commandId"`
+	// The name of ecs command. This field support fuzzy query.
+	CommandName pulumi.StringInput `pulumi:"commandName"`
+	// The provider of the ecs command.
+	CommandProvider pulumi.StringInput `pulumi:"commandProvider"`
+	// The type of ecs command. Valid values: `Shell`.
+	CommandType pulumi.StringInput `pulumi:"commandType"`
+	// The end time of the ecs invocation.
+	EndTime pulumi.StringInput `pulumi:"endTime"`
+	// The frequency of the ecs invocation.
+	Frequency pulumi.StringInput `pulumi:"frequency"`
+	// The id of the ecs invocation.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The list of ECS instance IDs.
+	InstanceIds pulumi.StringArrayInput `pulumi:"instanceIds"`
+	// The instance number of the ecs invocation.
+	InstanceNumber pulumi.IntInput `pulumi:"instanceNumber"`
+	// The description of the ecs invocation.
+	InvocationDescription pulumi.StringInput `pulumi:"invocationDescription"`
+	// The id of ecs invocation.
+	InvocationId pulumi.StringInput `pulumi:"invocationId"`
+	// The name of ecs invocation. This field support fuzzy query.
+	InvocationName pulumi.StringInput `pulumi:"invocationName"`
+	// The list of status of ecs invocation. Valid values: `Pending`, `Scheduled`, `Running`, `Success`, `Failed`, `Stopped`, `PartialFailed`, `Finished`.
+	InvocationStatus pulumi.StringInput `pulumi:"invocationStatus"`
+	// The launch time of the ecs invocation.
+	LaunchTime pulumi.StringInput `pulumi:"launchTime"`
+	// The recurrence end time of the ecs invocation.
+	RecurrenceEndTime pulumi.StringInput `pulumi:"recurrenceEndTime"`
+	// The repeat mode of ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
+	RepeatMode pulumi.StringInput `pulumi:"repeatMode"`
+	// The start time of the ecs invocation.
+	StartTime pulumi.StringInput `pulumi:"startTime"`
+	// The timeout of the ecs command.
+	Timeout pulumi.IntInput `pulumi:"timeout"`
+	// The username of the ecs command.
+	Username pulumi.StringInput `pulumi:"username"`
+	// The working directory of the ecs command.
+	WorkingDir pulumi.StringInput `pulumi:"workingDir"`
+}
+
+func (InvocationsInvocationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InvocationsInvocation)(nil)).Elem()
+}
+
+func (i InvocationsInvocationArgs) ToInvocationsInvocationOutput() InvocationsInvocationOutput {
+	return i.ToInvocationsInvocationOutputWithContext(context.Background())
+}
+
+func (i InvocationsInvocationArgs) ToInvocationsInvocationOutputWithContext(ctx context.Context) InvocationsInvocationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InvocationsInvocationOutput)
+}
+
+// InvocationsInvocationArrayInput is an input type that accepts InvocationsInvocationArray and InvocationsInvocationArrayOutput values.
+// You can construct a concrete instance of `InvocationsInvocationArrayInput` via:
+//
+//	InvocationsInvocationArray{ InvocationsInvocationArgs{...} }
+type InvocationsInvocationArrayInput interface {
+	pulumi.Input
+
+	ToInvocationsInvocationArrayOutput() InvocationsInvocationArrayOutput
+	ToInvocationsInvocationArrayOutputWithContext(context.Context) InvocationsInvocationArrayOutput
+}
+
+type InvocationsInvocationArray []InvocationsInvocationInput
+
+func (InvocationsInvocationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InvocationsInvocation)(nil)).Elem()
+}
+
+func (i InvocationsInvocationArray) ToInvocationsInvocationArrayOutput() InvocationsInvocationArrayOutput {
+	return i.ToInvocationsInvocationArrayOutputWithContext(context.Background())
+}
+
+func (i InvocationsInvocationArray) ToInvocationsInvocationArrayOutputWithContext(ctx context.Context) InvocationsInvocationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InvocationsInvocationArrayOutput)
+}
+
+type InvocationsInvocationOutput struct{ *pulumi.OutputState }
+
+func (InvocationsInvocationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InvocationsInvocation)(nil)).Elem()
+}
+
+func (o InvocationsInvocationOutput) ToInvocationsInvocationOutput() InvocationsInvocationOutput {
+	return o
+}
+
+func (o InvocationsInvocationOutput) ToInvocationsInvocationOutputWithContext(ctx context.Context) InvocationsInvocationOutput {
+	return o
+}
+
+// The base64 encoded content of the ecs command.
+func (o InvocationsInvocationOutput) CommandContent() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationsInvocation) string { return v.CommandContent }).(pulumi.StringOutput)
+}
+
+// The description of the ecs command.
+func (o InvocationsInvocationOutput) CommandDescription() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationsInvocation) string { return v.CommandDescription }).(pulumi.StringOutput)
+}
+
+// The id of ecs command.
+func (o InvocationsInvocationOutput) CommandId() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationsInvocation) string { return v.CommandId }).(pulumi.StringOutput)
+}
+
+// The name of ecs command. This field support fuzzy query.
+func (o InvocationsInvocationOutput) CommandName() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationsInvocation) string { return v.CommandName }).(pulumi.StringOutput)
+}
+
+// The provider of the ecs command.
+func (o InvocationsInvocationOutput) CommandProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationsInvocation) string { return v.CommandProvider }).(pulumi.StringOutput)
+}
+
+// The type of ecs command. Valid values: `Shell`.
+func (o InvocationsInvocationOutput) CommandType() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationsInvocation) string { return v.CommandType }).(pulumi.StringOutput)
+}
+
+// The end time of the ecs invocation.
+func (o InvocationsInvocationOutput) EndTime() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationsInvocation) string { return v.EndTime }).(pulumi.StringOutput)
+}
+
+// The frequency of the ecs invocation.
+func (o InvocationsInvocationOutput) Frequency() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationsInvocation) string { return v.Frequency }).(pulumi.StringOutput)
+}
+
+// The id of the ecs invocation.
+func (o InvocationsInvocationOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationsInvocation) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The list of ECS instance IDs.
+func (o InvocationsInvocationOutput) InstanceIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v InvocationsInvocation) []string { return v.InstanceIds }).(pulumi.StringArrayOutput)
+}
+
+// The instance number of the ecs invocation.
+func (o InvocationsInvocationOutput) InstanceNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v InvocationsInvocation) int { return v.InstanceNumber }).(pulumi.IntOutput)
+}
+
+// The description of the ecs invocation.
+func (o InvocationsInvocationOutput) InvocationDescription() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationsInvocation) string { return v.InvocationDescription }).(pulumi.StringOutput)
+}
+
+// The id of ecs invocation.
+func (o InvocationsInvocationOutput) InvocationId() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationsInvocation) string { return v.InvocationId }).(pulumi.StringOutput)
+}
+
+// The name of ecs invocation. This field support fuzzy query.
+func (o InvocationsInvocationOutput) InvocationName() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationsInvocation) string { return v.InvocationName }).(pulumi.StringOutput)
+}
+
+// The list of status of ecs invocation. Valid values: `Pending`, `Scheduled`, `Running`, `Success`, `Failed`, `Stopped`, `PartialFailed`, `Finished`.
+func (o InvocationsInvocationOutput) InvocationStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationsInvocation) string { return v.InvocationStatus }).(pulumi.StringOutput)
+}
+
+// The launch time of the ecs invocation.
+func (o InvocationsInvocationOutput) LaunchTime() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationsInvocation) string { return v.LaunchTime }).(pulumi.StringOutput)
+}
+
+// The recurrence end time of the ecs invocation.
+func (o InvocationsInvocationOutput) RecurrenceEndTime() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationsInvocation) string { return v.RecurrenceEndTime }).(pulumi.StringOutput)
+}
+
+// The repeat mode of ecs invocation. Valid values: `Once`, `Rate`, `Fixed`.
+func (o InvocationsInvocationOutput) RepeatMode() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationsInvocation) string { return v.RepeatMode }).(pulumi.StringOutput)
+}
+
+// The start time of the ecs invocation.
+func (o InvocationsInvocationOutput) StartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationsInvocation) string { return v.StartTime }).(pulumi.StringOutput)
+}
+
+// The timeout of the ecs command.
+func (o InvocationsInvocationOutput) Timeout() pulumi.IntOutput {
+	return o.ApplyT(func(v InvocationsInvocation) int { return v.Timeout }).(pulumi.IntOutput)
+}
+
+// The username of the ecs command.
+func (o InvocationsInvocationOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationsInvocation) string { return v.Username }).(pulumi.StringOutput)
+}
+
+// The working directory of the ecs command.
+func (o InvocationsInvocationOutput) WorkingDir() pulumi.StringOutput {
+	return o.ApplyT(func(v InvocationsInvocation) string { return v.WorkingDir }).(pulumi.StringOutput)
+}
+
+type InvocationsInvocationArrayOutput struct{ *pulumi.OutputState }
+
+func (InvocationsInvocationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InvocationsInvocation)(nil)).Elem()
+}
+
+func (o InvocationsInvocationArrayOutput) ToInvocationsInvocationArrayOutput() InvocationsInvocationArrayOutput {
+	return o
+}
+
+func (o InvocationsInvocationArrayOutput) ToInvocationsInvocationArrayOutputWithContext(ctx context.Context) InvocationsInvocationArrayOutput {
+	return o
+}
+
+func (o InvocationsInvocationArrayOutput) Index(i pulumi.IntInput) InvocationsInvocationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InvocationsInvocation {
+		return vs[0].([]InvocationsInvocation)[vs[1].(int)]
+	}).(InvocationsInvocationOutput)
+}
+
 type KeyPairsKeyPair struct {
 	// The creation time of key pair.
 	CreatedAt string `pulumi:"createdAt"`
@@ -2834,6 +3530,112 @@ func (o LaunchTemplatesLaunchTemplateVolumeArrayOutput) Index(i pulumi.IntInput)
 	}).(LaunchTemplatesLaunchTemplateVolumeOutput)
 }
 
+type RegionsRegion struct {
+	// The id of the region.
+	Id string `pulumi:"id"`
+	// The id of the region.
+	RegionId string `pulumi:"regionId"`
+}
+
+// RegionsRegionInput is an input type that accepts RegionsRegionArgs and RegionsRegionOutput values.
+// You can construct a concrete instance of `RegionsRegionInput` via:
+//
+//	RegionsRegionArgs{...}
+type RegionsRegionInput interface {
+	pulumi.Input
+
+	ToRegionsRegionOutput() RegionsRegionOutput
+	ToRegionsRegionOutputWithContext(context.Context) RegionsRegionOutput
+}
+
+type RegionsRegionArgs struct {
+	// The id of the region.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The id of the region.
+	RegionId pulumi.StringInput `pulumi:"regionId"`
+}
+
+func (RegionsRegionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionsRegion)(nil)).Elem()
+}
+
+func (i RegionsRegionArgs) ToRegionsRegionOutput() RegionsRegionOutput {
+	return i.ToRegionsRegionOutputWithContext(context.Background())
+}
+
+func (i RegionsRegionArgs) ToRegionsRegionOutputWithContext(ctx context.Context) RegionsRegionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionsRegionOutput)
+}
+
+// RegionsRegionArrayInput is an input type that accepts RegionsRegionArray and RegionsRegionArrayOutput values.
+// You can construct a concrete instance of `RegionsRegionArrayInput` via:
+//
+//	RegionsRegionArray{ RegionsRegionArgs{...} }
+type RegionsRegionArrayInput interface {
+	pulumi.Input
+
+	ToRegionsRegionArrayOutput() RegionsRegionArrayOutput
+	ToRegionsRegionArrayOutputWithContext(context.Context) RegionsRegionArrayOutput
+}
+
+type RegionsRegionArray []RegionsRegionInput
+
+func (RegionsRegionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RegionsRegion)(nil)).Elem()
+}
+
+func (i RegionsRegionArray) ToRegionsRegionArrayOutput() RegionsRegionArrayOutput {
+	return i.ToRegionsRegionArrayOutputWithContext(context.Background())
+}
+
+func (i RegionsRegionArray) ToRegionsRegionArrayOutputWithContext(ctx context.Context) RegionsRegionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RegionsRegionArrayOutput)
+}
+
+type RegionsRegionOutput struct{ *pulumi.OutputState }
+
+func (RegionsRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RegionsRegion)(nil)).Elem()
+}
+
+func (o RegionsRegionOutput) ToRegionsRegionOutput() RegionsRegionOutput {
+	return o
+}
+
+func (o RegionsRegionOutput) ToRegionsRegionOutputWithContext(ctx context.Context) RegionsRegionOutput {
+	return o
+}
+
+// The id of the region.
+func (o RegionsRegionOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v RegionsRegion) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The id of the region.
+func (o RegionsRegionOutput) RegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v RegionsRegion) string { return v.RegionId }).(pulumi.StringOutput)
+}
+
+type RegionsRegionArrayOutput struct{ *pulumi.OutputState }
+
+func (RegionsRegionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RegionsRegion)(nil)).Elem()
+}
+
+func (o RegionsRegionArrayOutput) ToRegionsRegionArrayOutput() RegionsRegionArrayOutput {
+	return o
+}
+
+func (o RegionsRegionArrayOutput) ToRegionsRegionArrayOutputWithContext(ctx context.Context) RegionsRegionArrayOutput {
+	return o
+}
+
+func (o RegionsRegionArrayOutput) Index(i pulumi.IntInput) RegionsRegionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RegionsRegion {
+		return vs[0].([]RegionsRegion)[vs[1].(int)]
+	}).(RegionsRegionOutput)
+}
+
 type ZonesZone struct {
 	// The id of the zone.
 	Id string `pulumi:"id"`
@@ -2941,6 +3743,8 @@ func (o ZonesZoneArrayOutput) Index(i pulumi.IntInput) ZonesZoneOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*CommandsCommandInput)(nil)).Elem(), CommandsCommandArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CommandsCommandArrayInput)(nil)).Elem(), CommandsCommandArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentSetsDeploymentSetInput)(nil)).Elem(), DeploymentSetsDeploymentSetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentSetsDeploymentSetArrayInput)(nil)).Elem(), DeploymentSetsDeploymentSetArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ImagesImageInput)(nil)).Elem(), ImagesImageArgs{})
@@ -2967,6 +3771,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesInstanceVolumeArrayInput)(nil)).Elem(), InstancesInstanceVolumeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesTagInput)(nil)).Elem(), InstancesTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesTagArrayInput)(nil)).Elem(), InstancesTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InvocationResultsInvocationResultInput)(nil)).Elem(), InvocationResultsInvocationResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InvocationResultsInvocationResultArrayInput)(nil)).Elem(), InvocationResultsInvocationResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InvocationsInvocationInput)(nil)).Elem(), InvocationsInvocationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InvocationsInvocationArrayInput)(nil)).Elem(), InvocationsInvocationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KeyPairsKeyPairInput)(nil)).Elem(), KeyPairsKeyPairArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KeyPairsKeyPairArrayInput)(nil)).Elem(), KeyPairsKeyPairArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LaunchTemplateNetworkInterfaceInput)(nil)).Elem(), LaunchTemplateNetworkInterfaceArgs{})
@@ -2979,8 +3787,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*LaunchTemplatesLaunchTemplateNetworkInterfaceArrayInput)(nil)).Elem(), LaunchTemplatesLaunchTemplateNetworkInterfaceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LaunchTemplatesLaunchTemplateVolumeInput)(nil)).Elem(), LaunchTemplatesLaunchTemplateVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LaunchTemplatesLaunchTemplateVolumeArrayInput)(nil)).Elem(), LaunchTemplatesLaunchTemplateVolumeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegionsRegionInput)(nil)).Elem(), RegionsRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RegionsRegionArrayInput)(nil)).Elem(), RegionsRegionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ZonesZoneInput)(nil)).Elem(), ZonesZoneArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ZonesZoneArrayInput)(nil)).Elem(), ZonesZoneArray{})
+	pulumi.RegisterOutputType(CommandsCommandOutput{})
+	pulumi.RegisterOutputType(CommandsCommandArrayOutput{})
 	pulumi.RegisterOutputType(DeploymentSetsDeploymentSetOutput{})
 	pulumi.RegisterOutputType(DeploymentSetsDeploymentSetArrayOutput{})
 	pulumi.RegisterOutputType(ImagesImageOutput{})
@@ -3007,6 +3819,10 @@ func init() {
 	pulumi.RegisterOutputType(InstancesInstanceVolumeArrayOutput{})
 	pulumi.RegisterOutputType(InstancesTagOutput{})
 	pulumi.RegisterOutputType(InstancesTagArrayOutput{})
+	pulumi.RegisterOutputType(InvocationResultsInvocationResultOutput{})
+	pulumi.RegisterOutputType(InvocationResultsInvocationResultArrayOutput{})
+	pulumi.RegisterOutputType(InvocationsInvocationOutput{})
+	pulumi.RegisterOutputType(InvocationsInvocationArrayOutput{})
 	pulumi.RegisterOutputType(KeyPairsKeyPairOutput{})
 	pulumi.RegisterOutputType(KeyPairsKeyPairArrayOutput{})
 	pulumi.RegisterOutputType(LaunchTemplateNetworkInterfaceOutput{})
@@ -3019,6 +3835,8 @@ func init() {
 	pulumi.RegisterOutputType(LaunchTemplatesLaunchTemplateNetworkInterfaceArrayOutput{})
 	pulumi.RegisterOutputType(LaunchTemplatesLaunchTemplateVolumeOutput{})
 	pulumi.RegisterOutputType(LaunchTemplatesLaunchTemplateVolumeArrayOutput{})
+	pulumi.RegisterOutputType(RegionsRegionOutput{})
+	pulumi.RegisterOutputType(RegionsRegionArrayOutput{})
 	pulumi.RegisterOutputType(ZonesZoneOutput{})
 	pulumi.RegisterOutputType(ZonesZoneArrayOutput{})
 }

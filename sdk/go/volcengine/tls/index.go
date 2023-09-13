@@ -28,11 +28,6 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := tls.NewIndex(ctx, "foo", &tls.IndexArgs{
-//				FullText: &tls.IndexFullTextArgs{
-//					CaseSensitive:  pulumi.Bool(true),
-//					Delimiter:      pulumi.String("!"),
-//					IncludeChinese: pulumi.Bool(false),
-//				},
 //				KeyValues: tls.IndexKeyValueArray{
 //					&tls.IndexKeyValueArgs{
 //						CaseSensitive:  pulumi.Bool(true),
@@ -40,11 +35,11 @@ import (
 //						IncludeChinese: pulumi.Bool(false),
 //						JsonKeys: tls.IndexKeyValueJsonKeyArray{
 //							&tls.IndexKeyValueJsonKeyArgs{
-//								Key:       pulumi.String("k2.k4"),
+//								Key:       pulumi.String("class"),
 //								ValueType: pulumi.String("text"),
 //							},
 //							&tls.IndexKeyValueJsonKeyArgs{
-//								Key:       pulumi.String("k3.k4"),
+//								Key:       pulumi.String("age"),
 //								ValueType: pulumi.String("long"),
 //							},
 //						},
@@ -61,7 +56,27 @@ import (
 //						ValueType:      pulumi.String("text"),
 //					},
 //				},
-//				TopicId: pulumi.String("65d67d34-c5b4-4ec8-b3a9-175d3366****"),
+//				TopicId: pulumi.String("7ce12237-6670-44a7-9d79-2e36961586e6"),
+//				UserInnerKeyValues: tls.IndexUserInnerKeyValueArray{
+//					&tls.IndexUserInnerKeyValueArgs{
+//						CaseSensitive:  pulumi.Bool(false),
+//						Delimiter:      pulumi.String(",:-/ "),
+//						IncludeChinese: pulumi.Bool(false),
+//						JsonKeys: tls.IndexUserInnerKeyValueJsonKeyArray{
+//							&tls.IndexUserInnerKeyValueJsonKeyArgs{
+//								Key:       pulumi.String("age"),
+//								ValueType: pulumi.String("long"),
+//							},
+//							&tls.IndexUserInnerKeyValueJsonKeyArgs{
+//								Key:       pulumi.String("name"),
+//								ValueType: pulumi.String("long"),
+//							},
+//						},
+//						Key:       pulumi.String("__content__"),
+//						SqlFlag:   pulumi.Bool(false),
+//						ValueType: pulumi.String("json"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -94,6 +109,8 @@ type Index struct {
 	ModifyTime pulumi.StringOutput `pulumi:"modifyTime"`
 	// The topic id of the tls index.
 	TopicId pulumi.StringOutput `pulumi:"topicId"`
+	// The reserved field index configuration of the tls index.
+	UserInnerKeyValues IndexUserInnerKeyValueArrayOutput `pulumi:"userInnerKeyValues"`
 }
 
 // NewIndex registers a new resource with the given unique name, arguments, and options.
@@ -139,6 +156,8 @@ type indexState struct {
 	ModifyTime *string `pulumi:"modifyTime"`
 	// The topic id of the tls index.
 	TopicId *string `pulumi:"topicId"`
+	// The reserved field index configuration of the tls index.
+	UserInnerKeyValues []IndexUserInnerKeyValue `pulumi:"userInnerKeyValues"`
 }
 
 type IndexState struct {
@@ -152,6 +171,8 @@ type IndexState struct {
 	ModifyTime pulumi.StringPtrInput
 	// The topic id of the tls index.
 	TopicId pulumi.StringPtrInput
+	// The reserved field index configuration of the tls index.
+	UserInnerKeyValues IndexUserInnerKeyValueArrayInput
 }
 
 func (IndexState) ElementType() reflect.Type {
@@ -165,6 +186,8 @@ type indexArgs struct {
 	KeyValues []IndexKeyValue `pulumi:"keyValues"`
 	// The topic id of the tls index.
 	TopicId string `pulumi:"topicId"`
+	// The reserved field index configuration of the tls index.
+	UserInnerKeyValues []IndexUserInnerKeyValue `pulumi:"userInnerKeyValues"`
 }
 
 // The set of arguments for constructing a Index resource.
@@ -175,6 +198,8 @@ type IndexArgs struct {
 	KeyValues IndexKeyValueArrayInput
 	// The topic id of the tls index.
 	TopicId pulumi.StringInput
+	// The reserved field index configuration of the tls index.
+	UserInnerKeyValues IndexUserInnerKeyValueArrayInput
 }
 
 func (IndexArgs) ElementType() reflect.Type {
@@ -287,6 +312,11 @@ func (o IndexOutput) ModifyTime() pulumi.StringOutput {
 // The topic id of the tls index.
 func (o IndexOutput) TopicId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Index) pulumi.StringOutput { return v.TopicId }).(pulumi.StringOutput)
+}
+
+// The reserved field index configuration of the tls index.
+func (o IndexOutput) UserInnerKeyValues() IndexUserInnerKeyValueArrayOutput {
+	return o.ApplyT(func(v *Index) IndexUserInnerKeyValueArrayOutput { return v.UserInnerKeyValues }).(IndexUserInnerKeyValueArrayOutput)
 }
 
 type IndexArrayOutput struct{ *pulumi.OutputState }
