@@ -85,7 +85,7 @@ type NetworkAcl struct {
 	// The name of Network Acl.
 	NetworkAclName pulumi.StringOutput `pulumi:"networkAclName"`
 	// The project name of the network acl.
-	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The vpc id of Network Acl.
 	VpcId pulumi.StringOutput `pulumi:"vpcId"`
 }
@@ -295,8 +295,8 @@ func (o NetworkAclOutput) NetworkAclName() pulumi.StringOutput {
 }
 
 // The project name of the network acl.
-func (o NetworkAclOutput) ProjectName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *NetworkAcl) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
+func (o NetworkAclOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkAcl) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 // The vpc id of Network Acl.

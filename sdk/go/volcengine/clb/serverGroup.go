@@ -90,6 +90,8 @@ import (
 type ServerGroup struct {
 	pulumi.CustomResourceState
 
+	// The address ip version of the ServerGroup. Valid values: `ipv4`, `ipv6`. Default is `ipv4`.
+	AddressIpVersion pulumi.StringPtrOutput `pulumi:"addressIpVersion"`
 	// The description of ServerGroup.
 	Description pulumi.StringOutput `pulumi:"description"`
 	// The ID of the Clb.
@@ -133,6 +135,8 @@ func GetServerGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ServerGroup resources.
 type serverGroupState struct {
+	// The address ip version of the ServerGroup. Valid values: `ipv4`, `ipv6`. Default is `ipv4`.
+	AddressIpVersion *string `pulumi:"addressIpVersion"`
 	// The description of ServerGroup.
 	Description *string `pulumi:"description"`
 	// The ID of the Clb.
@@ -144,6 +148,8 @@ type serverGroupState struct {
 }
 
 type ServerGroupState struct {
+	// The address ip version of the ServerGroup. Valid values: `ipv4`, `ipv6`. Default is `ipv4`.
+	AddressIpVersion pulumi.StringPtrInput
 	// The description of ServerGroup.
 	Description pulumi.StringPtrInput
 	// The ID of the Clb.
@@ -159,6 +165,8 @@ func (ServerGroupState) ElementType() reflect.Type {
 }
 
 type serverGroupArgs struct {
+	// The address ip version of the ServerGroup. Valid values: `ipv4`, `ipv6`. Default is `ipv4`.
+	AddressIpVersion *string `pulumi:"addressIpVersion"`
 	// The description of ServerGroup.
 	Description *string `pulumi:"description"`
 	// The ID of the Clb.
@@ -171,6 +179,8 @@ type serverGroupArgs struct {
 
 // The set of arguments for constructing a ServerGroup resource.
 type ServerGroupArgs struct {
+	// The address ip version of the ServerGroup. Valid values: `ipv4`, `ipv6`. Default is `ipv4`.
+	AddressIpVersion pulumi.StringPtrInput
 	// The description of ServerGroup.
 	Description pulumi.StringPtrInput
 	// The ID of the Clb.
@@ -266,6 +276,11 @@ func (o ServerGroupOutput) ToServerGroupOutput() ServerGroupOutput {
 
 func (o ServerGroupOutput) ToServerGroupOutputWithContext(ctx context.Context) ServerGroupOutput {
 	return o
+}
+
+// The address ip version of the ServerGroup. Valid values: `ipv4`, `ipv6`. Default is `ipv4`.
+func (o ServerGroupOutput) AddressIpVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServerGroup) pulumi.StringPtrOutput { return v.AddressIpVersion }).(pulumi.StringPtrOutput)
 }
 
 // The description of ServerGroup.

@@ -122,6 +122,12 @@ namespace Volcengine.Pulumi.Volcengine.Vpn
         public Output<string> IpAddress { get; private set; } = null!;
 
         /// <summary>
+        /// Whether ipsec is enabled.
+        /// </summary>
+        [Output("ipsecEnabled")]
+        public Output<bool?> IpsecEnabled { get; private set; } = null!;
+
+        /// <summary>
         /// The lock reason of the VPN gateway.
         /// </summary>
         [Output("lockReason")]
@@ -138,7 +144,7 @@ namespace Volcengine.Pulumi.Volcengine.Vpn
         /// The project name of the VPN gateway.
         /// </summary>
         [Output("projectName")]
-        public Output<string?> ProjectName { get; private set; } = null!;
+        public Output<string> ProjectName { get; private set; } = null!;
 
         /// <summary>
         /// The renew type of the VPN gateway.
@@ -151,6 +157,18 @@ namespace Volcengine.Pulumi.Volcengine.Vpn
         /// </summary>
         [Output("routeCount")]
         public Output<int> RouteCount { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether ssl is enabled.
+        /// </summary>
+        [Output("sslEnabled")]
+        public Output<bool?> SslEnabled { get; private set; } = null!;
+
+        /// <summary>
+        /// The max connections of ssl. This parameter can only be passed in when ssl_enabled is true. Default is 5.
+        /// </summary>
+        [Output("sslMaxConnections")]
+        public Output<int> SslMaxConnections { get; private set; } = null!;
 
         /// <summary>
         /// The status of the VPN gateway.
@@ -261,6 +279,12 @@ namespace Volcengine.Pulumi.Volcengine.Vpn
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// Whether ipsec is enabled.
+        /// </summary>
+        [Input("ipsecEnabled")]
+        public Input<bool>? IpsecEnabled { get; set; }
+
+        /// <summary>
         /// The Period of the VPN gateway. Default value is 12. This parameter is only useful when creating vpn gateway. Default period unit is Month.
         /// Value range: 1~9, 12, 24, 36. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
@@ -272,6 +296,18 @@ namespace Volcengine.Pulumi.Volcengine.Vpn
         /// </summary>
         [Input("projectName")]
         public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
+        /// Whether ssl is enabled.
+        /// </summary>
+        [Input("sslEnabled")]
+        public Input<bool>? SslEnabled { get; set; }
+
+        /// <summary>
+        /// The max connections of ssl. This parameter can only be passed in when ssl_enabled is true. Default is 5.
+        /// </summary>
+        [Input("sslMaxConnections")]
+        public Input<int>? SslMaxConnections { get; set; }
 
         /// <summary>
         /// The ID of the subnet where you want to create the VPN gateway.
@@ -373,6 +409,12 @@ namespace Volcengine.Pulumi.Volcengine.Vpn
         public Input<string>? IpAddress { get; set; }
 
         /// <summary>
+        /// Whether ipsec is enabled.
+        /// </summary>
+        [Input("ipsecEnabled")]
+        public Input<bool>? IpsecEnabled { get; set; }
+
+        /// <summary>
         /// The lock reason of the VPN gateway.
         /// </summary>
         [Input("lockReason")]
@@ -402,6 +444,18 @@ namespace Volcengine.Pulumi.Volcengine.Vpn
         /// </summary>
         [Input("routeCount")]
         public Input<int>? RouteCount { get; set; }
+
+        /// <summary>
+        /// Whether ssl is enabled.
+        /// </summary>
+        [Input("sslEnabled")]
+        public Input<bool>? SslEnabled { get; set; }
+
+        /// <summary>
+        /// The max connections of ssl. This parameter can only be passed in when ssl_enabled is true. Default is 5.
+        /// </summary>
+        [Input("sslMaxConnections")]
+        public Input<int>? SslMaxConnections { get; set; }
 
         /// <summary>
         /// The status of the VPN gateway.

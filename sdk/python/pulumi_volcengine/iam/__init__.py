@@ -13,6 +13,11 @@ from .role import *
 from .role_policy_attachment import *
 from .roles import *
 from .user import *
+from .user_group import *
+from .user_group_attachment import *
+from .user_group_policy_attachment import *
+from .user_group_policy_attachments import *
+from .user_groups import *
 from .user_policy_attachment import *
 from .users import *
 from . import outputs

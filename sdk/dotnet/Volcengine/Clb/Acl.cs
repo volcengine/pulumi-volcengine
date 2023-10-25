@@ -83,7 +83,7 @@ namespace Volcengine.Pulumi.Volcengine.Clb
         /// The ProjectName of the Acl.
         /// </summary>
         [Output("projectName")]
-        public Output<string?> ProjectName { get; private set; } = null!;
+        public Output<string> ProjectName { get; private set; } = null!;
 
 
         /// <summary>

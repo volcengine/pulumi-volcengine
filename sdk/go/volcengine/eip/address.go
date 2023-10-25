@@ -75,7 +75,7 @@ type Address struct {
 	// The period of the EIP Address, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid Eip or changing the billingType from PostPaid to PrePaid.
 	Period pulumi.IntPtrOutput `pulumi:"period"`
 	// The ProjectName of the EIP.
-	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The status of the EIP.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Tags.
@@ -353,8 +353,8 @@ func (o AddressOutput) Period() pulumi.IntPtrOutput {
 }
 
 // The ProjectName of the EIP.
-func (o AddressOutput) ProjectName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Address) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
+func (o AddressOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *Address) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 // The status of the EIP.

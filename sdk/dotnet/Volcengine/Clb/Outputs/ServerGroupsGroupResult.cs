@@ -15,6 +15,10 @@ namespace Volcengine.Pulumi.Volcengine.Clb.Outputs
     public sealed class ServerGroupsGroupResult
     {
         /// <summary>
+        /// The address ip version of the ServerGroup.
+        /// </summary>
+        public readonly string AddressIpVersion;
+        /// <summary>
         /// The create time of the ServerGroup.
         /// </summary>
         public readonly string CreateTime;
@@ -41,6 +45,8 @@ namespace Volcengine.Pulumi.Volcengine.Clb.Outputs
 
         [OutputConstructor]
         private ServerGroupsGroupResult(
+            string addressIpVersion,
+
             string createTime,
 
             string description,
@@ -53,6 +59,7 @@ namespace Volcengine.Pulumi.Volcengine.Clb.Outputs
 
             string updateTime)
         {
+            AddressIpVersion = addressIpVersion;
             CreateTime = createTime;
             Description = description;
             Id = id;

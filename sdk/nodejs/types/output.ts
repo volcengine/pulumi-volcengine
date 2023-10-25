@@ -1169,6 +1169,10 @@ export namespace clb {
 
     export interface ClbsClb {
         /**
+         * The address ip version of the Clb.
+         */
+        addressIpVersion: string;
+        /**
          * The business status of the Clb.
          */
         businessStatus: string;
@@ -1188,6 +1192,9 @@ export namespace clb {
          * The Eip address of the Clb.
          */
         eipAddress: string;
+        /**
+         * The eip billing config of the Clb.
+         */
         eipBillingConfigs: outputs.clb.ClbsClbEipBillingConfig[];
         /**
          * The Eip ID of the Clb.
@@ -1202,6 +1209,10 @@ export namespace clb {
          */
         eniId: string;
         /**
+         * The eni ipv6 address of the Clb.
+         */
+        eniIpv6Address: string;
+        /**
          * The expired time of the CLB.
          */
         expiredTime: string;
@@ -1213,6 +1224,14 @@ export namespace clb {
          * The billing status of the CLB.
          */
         instanceStatus: number;
+        /**
+         * The ipv6 address bandwidth information of the Clb.
+         */
+        ipv6AddressBandwidths: outputs.clb.ClbsClbIpv6AddressBandwidth[];
+        /**
+         * The Ipv6 Eip ID of the Clb.
+         */
+        ipv6EipId: string;
         /**
          * The billing type of the Clb.
          */
@@ -1304,9 +1323,41 @@ export namespace clb {
     }
 
     export interface ClbsClbEipBillingConfig {
+        /**
+         * The peek bandwidth of the Ipv6 EIP assigned to CLB. Units: Mbps.
+         */
         bandwidth: number;
+        /**
+         * The billing type of the EIP assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
+         */
         eipBillingType: string;
+        /**
+         * The ISP of the Ipv6 EIP assigned to CLB, the value can be `BGP`.
+         */
         isp: string;
+    }
+
+    export interface ClbsClbIpv6AddressBandwidth {
+        /**
+         * The peek bandwidth of the Ipv6 EIP assigned to CLB. Units: Mbps.
+         */
+        bandwidth: number;
+        /**
+         * The bandwidth package id of the Ipv6 EIP assigned to CLB.
+         */
+        bandwidthPackageId: string;
+        /**
+         * The billing type of the Ipv6 EIP assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+         */
+        billingType: string;
+        /**
+         * The ISP of the Ipv6 EIP assigned to CLB, the value can be `BGP`.
+         */
+        isp: string;
+        /**
+         * The network type of the CLB Ipv6 address.
+         */
+        networkType: string;
     }
 
     export interface ClbsClbTag {
@@ -1544,6 +1595,10 @@ export namespace clb {
     }
 
     export interface ServerGroupsGroup {
+        /**
+         * The address ip version of the ServerGroup.
+         */
+        addressIpVersion: string;
         /**
          * The create time of the ServerGroup.
          */
@@ -2452,6 +2507,10 @@ export namespace ecs {
          */
         projectName: string;
         /**
+         * The spot price limit of ECS instance.
+         */
+        spotPriceLimit: number;
+        /**
          * The spot strategy of ECS instance.
          */
         spotStrategy: string;
@@ -3100,7 +3159,7 @@ export namespace escloud {
         /**
          * The project name  to which the ESCloud instance belongs.
          */
-        projectName?: string;
+        projectName: string;
         /**
          * The region ID of ESCloud instance.
          */
@@ -3749,6 +3808,56 @@ export namespace iam {
          * The trust policy document of the Role.
          */
         trustPolicyDocument: string;
+    }
+
+    export interface UserGroupPolicyAttachmentsPolicy {
+        /**
+         * Attached time.
+         */
+        attachDate: string;
+        /**
+         * The description.
+         */
+        description: string;
+        /**
+         * Name of the policy.
+         */
+        policyName: string;
+        /**
+         * Resource name of the strategy.
+         */
+        policyTrn: string;
+        /**
+         * The type of the policy.
+         */
+        policyType: string;
+    }
+
+    export interface UserGroupsUserGroup {
+        /**
+         * The id of the account.
+         */
+        accountId: number;
+        /**
+         * The creation date of the user group.
+         */
+        createDate: string;
+        /**
+         * The description of the user group.
+         */
+        description: string;
+        /**
+         * The display name of the user group.
+         */
+        displayName: string;
+        /**
+         * The update date of the user group.
+         */
+        updateDate: string;
+        /**
+         * The name of the user group.
+         */
+        userGroupName: string;
     }
 
     export interface UsersUser {
@@ -4466,6 +4575,462 @@ export namespace mongodb {
          * The name of the zone.
          */
         zoneName: string;
+    }
+
+}
+
+export namespace nas {
+    export interface FileSystemTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface FileSystemsFileSystem {
+        /**
+         * The capacity of the nas file system.
+         */
+        capacities: outputs.nas.FileSystemsFileSystemCapacity[];
+        /**
+         * The charge type of nas file system.
+         */
+        chargeType: string;
+        /**
+         * The create time of the nas file system.
+         */
+        createTime: string;
+        /**
+         * The description of the nas file system.
+         */
+        description: string;
+        /**
+         * The id of the nas file system.
+         */
+        fileSystemId: string;
+        /**
+         * The name of nas file system. This field supports fuzzy queries.
+         */
+        fileSystemName: string;
+        /**
+         * The type of the nas file system.
+         */
+        fileSystemType: string;
+        /**
+         * The id of the nas file system.
+         */
+        id: string;
+        /**
+         * The project name of nas file system.
+         */
+        projectName: string;
+        /**
+         * The protocol type of nas file system.
+         */
+        protocolType: string;
+        /**
+         * The region id of the nas file system.
+         */
+        regionId: string;
+        /**
+         * The snapshot count of the nas file system.
+         */
+        snapshotCount: number;
+        /**
+         * The status of nas file system.
+         */
+        status: string;
+        /**
+         * The storage type of nas file system.
+         */
+        storageType: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.nas.FileSystemsFileSystemTag[];
+        /**
+         * The update time of the nas file system.
+         */
+        updateTime: string;
+        /**
+         * The version of the nas file system.
+         */
+        version: string;
+        /**
+         * The zone id of nas file system.
+         */
+        zoneId: string;
+        /**
+         * The zone name of the nas file system.
+         */
+        zoneName: string;
+    }
+
+    export interface FileSystemsFileSystemCapacity {
+        /**
+         * The total capacity of the nas file system. Unit: GiB.
+         */
+        total: number;
+        /**
+         * The used capacity of the nas file system. Unit: MiB.
+         */
+        used: number;
+    }
+
+    export interface FileSystemsFileSystemTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Type of Tags.
+         */
+        type: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface FileSystemsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface MountPointsMountPoint {
+        /**
+         * The creation time of the permission group.
+         */
+        createTime: string;
+        /**
+         * The dns address.
+         */
+        domain: string;
+        /**
+         * The address of the mount point.
+         */
+        ip: string;
+        /**
+         * The id of the mount point.
+         */
+        mountPointId: string;
+        /**
+         * The name of the mount point.
+         */
+        mountPointName: string;
+        /**
+         * The struct of the permission group.
+         */
+        permissionGroups: outputs.nas.MountPointsMountPointPermissionGroup[];
+        /**
+         * The status of the mount point.
+         */
+        status: string;
+        /**
+         * The id of the subnet.
+         */
+        subnetId: string;
+        /**
+         * The name of the subnet.
+         */
+        subnetName: string;
+        /**
+         * The update time of the mount point.
+         */
+        updateTime: string;
+        /**
+         * The id of the vpc.
+         */
+        vpcId: string;
+        /**
+         * The name of the vpc.
+         */
+        vpcName: string;
+    }
+
+    export interface MountPointsMountPointPermissionGroup {
+        /**
+         * The creation time of the permission group.
+         */
+        createTime: string;
+        /**
+         * The description of the permission group.
+         */
+        description: string;
+        /**
+         * The number of the file system.
+         */
+        fileSystemCount: number;
+        /**
+         * The file system type of the permission group.
+         */
+        fileSystemType: string;
+        /**
+         * The list of the mount point.
+         */
+        mountPoints: outputs.nas.MountPointsMountPointPermissionGroupMountPoint[];
+        /**
+         * The id of the permission group.
+         */
+        permissionGroupId: string;
+        /**
+         * The name of the permission group.
+         */
+        permissionGroupName: string;
+        /**
+         * The number of the permission rule.
+         */
+        permissionRuleCount: number;
+    }
+
+    export interface MountPointsMountPointPermissionGroupMountPoint {
+        /**
+         * The id of the file system.
+         */
+        fileSystemId: string;
+        /**
+         * The id of the mount point.
+         */
+        mountPointId: string;
+        /**
+         * The name of the mount point.
+         */
+        mountPointName: string;
+    }
+
+    export interface PermissionGroupPermissionRule {
+        /**
+         * Client IP addresses that are allowed access.
+         */
+        cidrIp: string;
+        /**
+         * Permission group read and write rules. The value description is as follows:
+         * `RW`: Allows reading and writing.
+         * `RO`: read-only mode.
+         */
+        rwMode: string;
+        /**
+         * Permission group user permissions. The value description is as follows:
+         * `All_squash`: All access users are mapped to anonymous users or user groups.
+         * `No_all_squash`: The access user is first matched with the local user, and then mapped to an anonymous user or user group after the match fails.
+         * `Root_squash`: Map the Root user as an anonymous user or user group.
+         * `No_root_squash`: The Root user maintains the Root account authority.
+         */
+        useMode: string;
+    }
+
+    export interface PermissionGroupsFilter {
+        /**
+         * Filters permission groups for specified characteristics based on attributes. The parameters that support filtering are as follows: `PermissionGroupName`, `PermissionGroupId`.
+         */
+        key: string;
+        /**
+         * The value of the filter item.
+         */
+        value: string;
+    }
+
+    export interface PermissionGroupsPermissionGroup {
+        /**
+         * The creation time of the permission group.
+         */
+        createTime: string;
+        /**
+         * The description of the permission group.
+         */
+        description: string;
+        /**
+         * The number of the file system.
+         */
+        fileSystemCount: number;
+        /**
+         * The file system type of the permission group.
+         */
+        fileSystemType: string;
+        /**
+         * The list of the mount point.
+         */
+        mountPoints: outputs.nas.PermissionGroupsPermissionGroupMountPoint[];
+        /**
+         * The id of the permission group.
+         */
+        permissionGroupId: string;
+        /**
+         * The name of the permission group.
+         */
+        permissionGroupName: string;
+        /**
+         * The number of the permission rule.
+         */
+        permissionRuleCount: number;
+        /**
+         * The list of permissions rules.
+         */
+        permissionRules: outputs.nas.PermissionGroupsPermissionGroupPermissionRule[];
+    }
+
+    export interface PermissionGroupsPermissionGroupMountPoint {
+        /**
+         * The id of the file system.
+         */
+        fileSystemId: string;
+        /**
+         * The id of the mount point.
+         */
+        mountPointId: string;
+        /**
+         * The name of the mount point.
+         */
+        mountPointName: string;
+    }
+
+    export interface PermissionGroupsPermissionGroupPermissionRule {
+        /**
+         * Client IP addresses that are allowed access.
+         */
+        cidrIp: string;
+        /**
+         * The id of the permission rule.
+         */
+        permissionRuleId: string;
+        /**
+         * Permission group read and write rules.
+         */
+        rwMode: string;
+        /**
+         * Permission group user permissions.
+         */
+        userMode: string;
+    }
+
+    export interface RegionsRegion {
+        /**
+         * The id of the region.
+         */
+        regionId: string;
+        /**
+         * The name of region.
+         */
+        regionName: string;
+        /**
+         * The status info of region.
+         */
+        status: string;
+    }
+
+    export interface SnapshotsSnapshot {
+        /**
+         * The create time of snapshot.
+         */
+        createTime: string;
+        /**
+         * The description of snapshot.
+         */
+        description: string;
+        /**
+         * The ID of file system.
+         */
+        fileSystemId: string;
+        /**
+         * The name of file system.
+         */
+        fileSystemName: string;
+        /**
+         * The ID of snapshot.
+         */
+        id: string;
+        /**
+         * Whether is encrypt.
+         */
+        isEncrypt: boolean;
+        /**
+         * The progress of snapshot.
+         */
+        progress: string;
+        /**
+         * The retention days of snapshot.
+         */
+        retentionDays: number;
+        /**
+         * The ID of snapshot.
+         */
+        snapshotId: string;
+        /**
+         * The name of snapshot.
+         */
+        snapshotName: string;
+        /**
+         * The type of snapshot.
+         */
+        snapshotType: string;
+        /**
+         * The size of source.
+         */
+        sourceSize: number;
+        /**
+         * The source version info.
+         */
+        sourceVersion: string;
+        /**
+         * The status of snapshot.
+         */
+        status: string;
+        /**
+         * The ID of zone.
+         */
+        zoneId: string;
+    }
+
+    export interface ZonesZone {
+        /**
+         * The id of the zone.
+         */
+        id: string;
+        /**
+         * The collection of sales info.
+         */
+        sales: outputs.nas.ZonesZoneSale[];
+        /**
+         * The status info.
+         */
+        status: string;
+        /**
+         * The id of the zone.
+         */
+        zoneId: string;
+        /**
+         * The name of the zone.
+         */
+        zoneName: string;
+    }
+
+    export interface ZonesZoneSale {
+        /**
+         * The type of file system.
+         */
+        fileSystemType: string;
+        /**
+         * The type of protocol.
+         */
+        protocolType: string;
+        /**
+         * The status info.
+         */
+        status: string;
+        /**
+         * The type of storage.
+         */
+        storageType: string;
     }
 
 }
@@ -8827,6 +9392,447 @@ export namespace tos {
 
 }
 
+export namespace transit_router {
+    export interface BandwidthPackageAllocation {
+        /**
+         * The delete time of the transit router bandwidth package.
+         */
+        allocateTime: string;
+        /**
+         * The delete time of the transit router bandwidth package.
+         */
+        deleteTime: string;
+        /**
+         * The local region id of the transit router.
+         */
+        localRegionId: string;
+        /**
+         * The ID of the peer attachment.
+         */
+        transitRouterPeerAttachmentId: string;
+    }
+
+    export interface BandwidthPackagesBandwidthPackage {
+        /**
+         * The account id.
+         */
+        accountId: string;
+        /**
+         * The detailed information on cross regional connections associated with bandwidth packets.
+         */
+        allocations: outputs.transit_router.BandwidthPackagesBandwidthPackageAllocation[];
+        /**
+         * The bandwidth peak of the transit router bandwidth package. Unit: Mbps.
+         */
+        bandwidth: number;
+        /**
+         * The billing type of the transit router bandwidth package.
+         */
+        billingType: string;
+        /**
+         * The business status of the transit router bandwidth package.
+         */
+        businessStatus: string;
+        /**
+         * The create time of the transit router bandwidth package.
+         */
+        creationTime: string;
+        /**
+         * The delete time of the transit router bandwidth package.
+         */
+        deleteTime: string;
+        /**
+         * The description of the transit router bandwidth package.
+         */
+        description: string;
+        /**
+         * The expired time of the transit router bandwidth package.
+         */
+        expiredTime: string;
+        /**
+         * The id of the transit router bandwidth package.
+         */
+        id: string;
+        /**
+         * The local geographic region set ID.
+         */
+        localGeographicRegionSetId: string;
+        /**
+         * The peer geographic region set ID.
+         */
+        peerGeographicRegionSetId: string;
+        /**
+         * The remaining bandwidth of the transit router bandwidth package. Unit: Mbps.
+         */
+        remainingBandwidth: number;
+        /**
+         * The status of the transit router bandwidth package.
+         */
+        status: string;
+        /**
+         * The id of the transit router attachment.
+         */
+        transitRouterBandwidthPackageId: string;
+        /**
+         * The name of the TransitRouter bandwidth package.
+         */
+        transitRouterBandwidthPackageName: string;
+        /**
+         * The update time of the transit router bandwidth package.
+         */
+        updateTime: string;
+    }
+
+    export interface BandwidthPackagesBandwidthPackageAllocation {
+        /**
+         * The delete time of the transit router bandwidth package.
+         */
+        allocateTime: string;
+        /**
+         * The delete time of the transit router bandwidth package.
+         */
+        deleteTime: string;
+        /**
+         * The local region id of the transit router.
+         */
+        localRegionId: string;
+        /**
+         * The ID of the peer attachment.
+         */
+        transitRouterPeerAttachmentId: string;
+    }
+
+    export interface RouteEntriesEntry {
+        /**
+         * The creation time of the route entry.
+         */
+        creationTime: string;
+        /**
+         * Description of the transit router route entry.
+         */
+        description: string;
+        /**
+         * The target network segment of the route entry.
+         */
+        destinationCidrBlock: string;
+        /**
+         * The status of the route entry.
+         */
+        status: string;
+        /**
+         * The id of the route entry.
+         */
+        transitRouterRouteEntryId: string;
+        /**
+         * The name of the route entry.
+         */
+        transitRouterRouteEntryName: string;
+        /**
+         * The next hot id of the routing entry.
+         */
+        transitRouterRouteEntryNextHopId: string;
+        /**
+         * The next hop type of the routing entry. The value can be Attachment or BlackHole.
+         */
+        transitRouterRouteEntryNextHopType: string;
+        /**
+         * The type of the route entry.
+         */
+        transitRouterRouteEntryType: string;
+        /**
+         * The update time of the route entry.
+         */
+        updateTime: string;
+    }
+
+    export interface RouteTableAssociationsAssociation {
+        /**
+         * The status of the route table.
+         */
+        status: string;
+        /**
+         * The ID of the network instance connection.
+         */
+        transitRouterAttachmentId: string;
+        /**
+         * The ID of the routing table associated with the transit router instance.
+         */
+        transitRouterRouteTableId: string;
+    }
+
+    export interface RouteTablePropagationsPropagation {
+        /**
+         * The creation time of the route table propagation.
+         */
+        creationTime: string;
+        /**
+         * The status of the route table.
+         */
+        status: string;
+        /**
+         * The ID of the network instance connection.
+         */
+        transitRouterAttachmentId: string;
+        /**
+         * The ID of the routing table associated with the transit router instance.
+         */
+        transitRouterRouteTableId: string;
+    }
+
+    export interface RouteTablesRouteTable {
+        /**
+         * The creation time of the route table.
+         */
+        creationTime: string;
+        /**
+         * The description.
+         */
+        description: string;
+        /**
+         * The status of the route table.
+         */
+        status: string;
+        /**
+         * The id of the route table.
+         */
+        transitRouterRouteTableId: string;
+        /**
+         * The name of the route table.
+         */
+        transitRouterRouteTableName: string;
+        /**
+         * The type of the route table. The value can be System or Custom.
+         */
+        transitRouterRouteTableType: string;
+        /**
+         * The update time of the route table.
+         */
+        updateTime: string;
+    }
+
+    export interface TransitRouterTransitRouterAttachment {
+        /**
+         * The create time.
+         */
+        creationTime: string;
+        /**
+         * The id of resource.
+         */
+        resourceId: string;
+        /**
+         * The type of resource.
+         */
+        resourceType: string;
+        /**
+         * The status of the transit router.
+         */
+        status: string;
+        /**
+         * The id of transit router attachment.
+         */
+        transitRouterAttachmentId: string;
+        /**
+         * The name of transit router attachment.
+         */
+        transitRouterAttachmentName: string;
+        /**
+         * The id of transit router route table.
+         */
+        transitRouterRouteTableId: string;
+        /**
+         * The update time.
+         */
+        updateTime: string;
+    }
+
+    export interface TransitRoutersTransitRouter {
+        /**
+         * The ID of account.
+         */
+        accountId: string;
+        /**
+         * The business status of the transit router.
+         */
+        businessStatus: string;
+        /**
+         * The create time.
+         */
+        creationTime: string;
+        /**
+         * The description info.
+         */
+        description: string;
+        /**
+         * The ID of the transit router.
+         */
+        id: string;
+        /**
+         * The overdue time.
+         */
+        overdueTime: string;
+        /**
+         * The status of the transit router.
+         */
+        status: string;
+        /**
+         * The attachments of transit router.
+         */
+        transitRouterAttachments: outputs.transit_router.TransitRoutersTransitRouterTransitRouterAttachment[];
+        /**
+         * The ID of the transit router.
+         */
+        transitRouterId: string;
+        /**
+         * The name info.
+         */
+        transitRouterName: string;
+        /**
+         * The update time.
+         */
+        updateTime: string;
+    }
+
+    export interface TransitRoutersTransitRouterTransitRouterAttachment {
+        /**
+         * The create time.
+         */
+        creationTime: string;
+        /**
+         * The id of resource.
+         */
+        resourceId: string;
+        /**
+         * The type of resource.
+         */
+        resourceType: string;
+        /**
+         * The status of the transit router.
+         */
+        status: string;
+        /**
+         * The id of transit router attachment.
+         */
+        transitRouterAttachmentId: string;
+        /**
+         * The name of transit router attachment.
+         */
+        transitRouterAttachmentName: string;
+        /**
+         * The id of transit router route table.
+         */
+        transitRouterRouteTableId: string;
+        /**
+         * The update time.
+         */
+        updateTime: string;
+    }
+
+    export interface VpcAttachmentAttachPoint {
+        /**
+         * The id of subnet.
+         */
+        subnetId: string;
+        /**
+         * The id of zone.
+         */
+        zoneId: string;
+    }
+
+    export interface VpcAttachmentsAttachment {
+        /**
+         * The collection of attach points.
+         */
+        attachPoints: outputs.transit_router.VpcAttachmentsAttachmentAttachPoint[];
+        /**
+         * The create time.
+         */
+        creationTime: string;
+        /**
+         * The description info.
+         */
+        description: string;
+        /**
+         * The status of the transit router.
+         */
+        status: string;
+        /**
+         * The id of the transit router attachment.
+         */
+        transitRouterAttachmentId: string;
+        /**
+         * The name of the transit router attachment.
+         */
+        transitRouterAttachmentName: string;
+        /**
+         * The id of transit router.
+         */
+        transitRouterId: string;
+        /**
+         * The update time.
+         */
+        updateTime: string;
+        /**
+         * The id of vpc.
+         */
+        vpcId: string;
+    }
+
+    export interface VpcAttachmentsAttachmentAttachPoint {
+        /**
+         * The ID of network interface.
+         */
+        networkInterfaceId: string;
+        /**
+         * The ID of subnet.
+         */
+        subnetId: string;
+        /**
+         * The ID of zone.
+         */
+        zoneId: string;
+    }
+
+    export interface VpnAttachmentsAttachment {
+        /**
+         * The create time.
+         */
+        creationTime: string;
+        /**
+         * The description info.
+         */
+        description: string;
+        /**
+         * The status of the transit router.
+         */
+        status: string;
+        /**
+         * The id of the transit router attachment.
+         */
+        transitRouterAttachmentId: string;
+        /**
+         * The name of the transit router attachment.
+         */
+        transitRouterAttachmentName: string;
+        /**
+         * The id of the transit router.
+         */
+        transitRouterId: string;
+        /**
+         * The update time.
+         */
+        updateTime: string;
+        /**
+         * The ID of the IPSec connection.
+         */
+        vpnConnectionId: string;
+        /**
+         * The ID of the availability zone.
+         */
+        zoneId: string;
+    }
+
+}
+
 export namespace veenedge {
     export interface AvailableResourcesRegion {
         /**
@@ -10816,7 +11822,7 @@ export namespace vke {
          */
         instanceChargeType?: string;
         /**
-         * The InstanceTypeIds of NodeConfig.
+         * The InstanceTypeIds of NodeConfig. The value can get from volcengine.vke.SupportResourceTypes datasource.
          */
         instanceTypeIds: string[];
         /**
@@ -11383,9 +12389,99 @@ export namespace vke {
         kubernetesVersion: string;
     }
 
+    export interface SupportResourceTypesResource {
+        /**
+         * The scope of resource.
+         */
+        resourceScope: string;
+        /**
+         * The resource specifications info.
+         */
+        resourceSpecifications: string[];
+        /**
+         * The type of resource.
+         */
+        resourceType: string;
+        /**
+         * The id of zone.
+         */
+        zoneId: string;
+    }
+
 }
 
 export namespace vpc {
+    export interface HaVipsHaVip {
+        /**
+         * The account id of the Ha Vip.
+         */
+        accountId: string;
+        /**
+         * The associated eip address of the Ha Vip.
+         */
+        associatedEipAddress: string;
+        /**
+         * The associated eip id of the Ha Vip.
+         */
+        associatedEipId: string;
+        /**
+         * The associated instance ids of the Ha Vip.
+         */
+        associatedInstanceIds: string[];
+        /**
+         * The associated instance type of the Ha Vip.
+         */
+        associatedInstanceType: string;
+        /**
+         * The create time of the Ha Vip.
+         */
+        createdAt: string;
+        /**
+         * The description of the Ha Vip.
+         */
+        description: string;
+        /**
+         * The id of the Ha Vip.
+         */
+        haVipId: string;
+        /**
+         * The name of Ha Vip.
+         */
+        haVipName: string;
+        /**
+         * The id of the Ha Vip.
+         */
+        id: string;
+        /**
+         * The ip address of Ha Vip.
+         */
+        ipAddress: string;
+        /**
+         * The master instance id of the Ha Vip.
+         */
+        masterInstanceId: string;
+        /**
+         * The project name of Ha Vip.
+         */
+        projectName: string;
+        /**
+         * The status of Ha Vip.
+         */
+        status: string;
+        /**
+         * The id of subnet.
+         */
+        subnetId: string;
+        /**
+         * The update time of the Ha Vip.
+         */
+        updatedAt: string;
+        /**
+         * The id of vpc.
+         */
+        vpcId: string;
+    }
+
     export interface Ipv6AddressBandwidthsIpv6AddressBandwidth {
         /**
          * The ID of the Ipv6AddressBandwidth.
@@ -11726,6 +12822,10 @@ export namespace vpc {
          */
         id: string;
         /**
+         * The IPv6 address list of the ENI.
+         */
+        ipv6Sets: string[];
+        /**
          * The mac address of the ENI.
          */
         macAddress: string;
@@ -11841,6 +12941,131 @@ export namespace vpc {
          * The Value of Tags.
          */
         value: string;
+    }
+
+    export interface PrefixListPrefixListAssociation {
+        /**
+         * Associated resource ID.
+         */
+        resourceId: string;
+        /**
+         * Related resource types.
+         */
+        resourceType: string;
+    }
+
+    export interface PrefixListPrefixListEntry {
+        /**
+         * CIDR of prefix list entries.
+         */
+        cidr?: string;
+        /**
+         * Description of prefix list entries.
+         */
+        description?: string;
+    }
+
+    export interface PrefixListTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface PrefixListsPrefixList {
+        /**
+         * Number of associated resources for prefix list.
+         */
+        associationCount: number;
+        /**
+         * CIDR address block information for prefix list.
+         */
+        cidrs: string[];
+        /**
+         * The creation time of the prefix list.
+         */
+        creationTime: string;
+        /**
+         * Description.
+         */
+        description: string;
+        /**
+         * The id of the prefix list.
+         */
+        id: string;
+        /**
+         * IP version of prefix list.
+         */
+        ipVersion: string;
+        /**
+         * Maximum number of entries, which is the maximum number of items that can be added to the prefix list.
+         */
+        maxEntries: number;
+        /**
+         * Collection of resources associated with VPC prefix list.
+         */
+        prefixListAssociations: outputs.vpc.PrefixListsPrefixListPrefixListAssociation[];
+        /**
+         * The prefix list entries.
+         */
+        prefixListEntries: outputs.vpc.PrefixListsPrefixListPrefixListEntry[];
+        /**
+         * The prefix list id.
+         */
+        prefixListId: string;
+        /**
+         * A Name of prefix list.
+         */
+        prefixListName: string;
+        /**
+         * The status of the prefix list.
+         */
+        status: string;
+        /**
+         * The update time of the prefix list.
+         */
+        updateTime: string;
+    }
+
+    export interface PrefixListsPrefixListPrefixListAssociation {
+        /**
+         * Associated resource ID.
+         */
+        resourceId: string;
+        /**
+         * Related resource types.
+         */
+        resourceType: string;
+    }
+
+    export interface PrefixListsPrefixListPrefixListEntry {
+        /**
+         * CIDR address blocks for prefix list entries.
+         */
+        cidr: string;
+        /**
+         * Description.
+         */
+        description: string;
+        /**
+         * The prefix list id.
+         */
+        prefixListId: string;
+    }
+
+    export interface PrefixListsTagFilter {
+        /**
+         * The key of the tag.
+         */
+        key?: string;
+        /**
+         * The values of the tag.
+         */
+        values?: string[];
     }
 
     export interface RouteEntriesRouteEntry {
@@ -12596,13 +13821,29 @@ export namespace vpn {
          */
         ipAddress: string;
         /**
+         * Whether ipsec is enabled.
+         */
+        ipsecEnabled: boolean;
+        /**
          * The lock reason of the VPN gateway.
          */
         lockReason: string;
         /**
+         * The name of project.
+         */
+        projectName: string;
+        /**
          * The route count of the VPN gateway.
          */
         routeCount: number;
+        /**
+         * Whether ssl is enabled.
+         */
+        sslEnabled: boolean;
+        /**
+         * The max connections of ssl.
+         */
+        sslMaxConnections: number;
         /**
          * The status of the VPN gateway.
          */
@@ -12642,6 +13883,133 @@ export namespace vpn {
          * The Value of Tags.
          */
         value: string;
+    }
+
+    export interface SslVpnClientCertsSslVpnClientCert {
+        /**
+         * The CA certificate.
+         */
+        caCertificate: string;
+        /**
+         * The status of the ssl vpn client cert.
+         */
+        certificateStatus: string;
+        /**
+         * The client certificate.
+         */
+        clientCertificate: string;
+        /**
+         * The key of the ssl vpn client.
+         */
+        clientKey: string;
+        /**
+         * The creation time of the ssl vpn client cert.
+         */
+        creationTime: string;
+        /**
+         * The description of the ssl vpn client cert.
+         */
+        description: string;
+        /**
+         * The expired time of the ssl vpn client cert.
+         */
+        expiredTime: string;
+        /**
+         * The id of the ssl vpn client cert.
+         */
+        id: string;
+        /**
+         * The config of the open vpn client.
+         */
+        openVpnClientConfig: string;
+        /**
+         * The id of the ssl vpn client cert.
+         */
+        sslVpnClientCertId: string;
+        /**
+         * The name of the ssl vpn client cert.
+         */
+        sslVpnClientCertName: string;
+        /**
+         * The id of the ssl vpn server.
+         */
+        sslVpnServerId: string;
+        /**
+         * The status of the ssl vpn client.
+         */
+        status: string;
+        /**
+         * The update time of the ssl vpn client cert.
+         */
+        updateTime: string;
+    }
+
+    export interface SslVpnServersSslVpnServer {
+        /**
+         * The authentication algorithm of the SSL server.
+         * Values:
+         * `SHA1` (default)
+         * `MD5`
+         * `None` (do not use encryption).
+         */
+        auth: string;
+        /**
+         * The encryption algorithm of the SSL server.
+         * Values:
+         * `AES-128-CBC` (default)
+         * `AES-192-CBC`
+         * `AES-256-CBC`
+         * `None` (do not use encryption).
+         */
+        cipher: string;
+        /**
+         * SSL client network segment.
+         */
+        clientIpPool: string;
+        /**
+         * Whether to compress the transmitted data. The default value is false.
+         */
+        compress: boolean;
+        /**
+         * The creation time.
+         */
+        creationTime: string;
+        /**
+         * The description of the ssl server.
+         */
+        description: string;
+        /**
+         * The SSL VPN server id.
+         */
+        id: string;
+        /**
+         * The local network segment of the SSL server. The local network segment is the address segment that the client accesses through the SSL VPN connection.
+         */
+        localSubnets: string[];
+        /**
+         * The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.
+         */
+        protocol: string;
+        /**
+         * The id of the ssl vpn server.
+         */
+        sslVpnServerId: string;
+        /**
+         * The name of the ssl vpn server.
+         */
+        sslVpnServerName: string;
+        /**
+         * The status of the ssl vpn server.
+         */
+        status: string;
+        /**
+         * The update time.
+         */
+        updateTime: string;
+        /**
+         * The id of the vpn gateway.
+         */
+        vpnGatewayId: string;
     }
 
 }

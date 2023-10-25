@@ -7309,7 +7309,7 @@ type NodePoolNodeConfig struct {
 	InitializeScript *string `pulumi:"initializeScript"`
 	// The InstanceChargeType of PrePaid instance of NodeConfig. Valid values: PostPaid, PrePaid. Default value: PostPaid.
 	InstanceChargeType *string `pulumi:"instanceChargeType"`
-	// The InstanceTypeIds of NodeConfig.
+	// The InstanceTypeIds of NodeConfig. The value can get from vke.SupportResourceTypes datasource.
 	InstanceTypeIds []string `pulumi:"instanceTypeIds"`
 	// The NamePrefix of NodeConfig.
 	NamePrefix *string `pulumi:"namePrefix"`
@@ -7353,7 +7353,7 @@ type NodePoolNodeConfigArgs struct {
 	InitializeScript pulumi.StringPtrInput `pulumi:"initializeScript"`
 	// The InstanceChargeType of PrePaid instance of NodeConfig. Valid values: PostPaid, PrePaid. Default value: PostPaid.
 	InstanceChargeType pulumi.StringPtrInput `pulumi:"instanceChargeType"`
-	// The InstanceTypeIds of NodeConfig.
+	// The InstanceTypeIds of NodeConfig. The value can get from vke.SupportResourceTypes datasource.
 	InstanceTypeIds pulumi.StringArrayInput `pulumi:"instanceTypeIds"`
 	// The NamePrefix of NodeConfig.
 	NamePrefix pulumi.StringPtrInput `pulumi:"namePrefix"`
@@ -7489,7 +7489,7 @@ func (o NodePoolNodeConfigOutput) InstanceChargeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NodePoolNodeConfig) *string { return v.InstanceChargeType }).(pulumi.StringPtrOutput)
 }
 
-// The InstanceTypeIds of NodeConfig.
+// The InstanceTypeIds of NodeConfig. The value can get from vke.SupportResourceTypes datasource.
 func (o NodePoolNodeConfigOutput) InstanceTypeIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v NodePoolNodeConfig) []string { return v.InstanceTypeIds }).(pulumi.StringArrayOutput)
 }
@@ -7633,7 +7633,7 @@ func (o NodePoolNodeConfigPtrOutput) InstanceChargeType() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
-// The InstanceTypeIds of NodeConfig.
+// The InstanceTypeIds of NodeConfig. The value can get from vke.SupportResourceTypes datasource.
 func (o NodePoolNodeConfigPtrOutput) InstanceTypeIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *NodePoolNodeConfig) []string {
 		if v == nil {
@@ -10855,6 +10855,130 @@ func (o SupportAddonsAddonVersionCompatibilityArrayOutput) Index(i pulumi.IntInp
 	}).(SupportAddonsAddonVersionCompatibilityOutput)
 }
 
+type SupportResourceTypesResource struct {
+	// The scope of resource.
+	ResourceScope string `pulumi:"resourceScope"`
+	// The resource specifications info.
+	ResourceSpecifications []string `pulumi:"resourceSpecifications"`
+	// The type of resource.
+	ResourceType string `pulumi:"resourceType"`
+	// The id of zone.
+	ZoneId string `pulumi:"zoneId"`
+}
+
+// SupportResourceTypesResourceInput is an input type that accepts SupportResourceTypesResourceArgs and SupportResourceTypesResourceOutput values.
+// You can construct a concrete instance of `SupportResourceTypesResourceInput` via:
+//
+//	SupportResourceTypesResourceArgs{...}
+type SupportResourceTypesResourceInput interface {
+	pulumi.Input
+
+	ToSupportResourceTypesResourceOutput() SupportResourceTypesResourceOutput
+	ToSupportResourceTypesResourceOutputWithContext(context.Context) SupportResourceTypesResourceOutput
+}
+
+type SupportResourceTypesResourceArgs struct {
+	// The scope of resource.
+	ResourceScope pulumi.StringInput `pulumi:"resourceScope"`
+	// The resource specifications info.
+	ResourceSpecifications pulumi.StringArrayInput `pulumi:"resourceSpecifications"`
+	// The type of resource.
+	ResourceType pulumi.StringInput `pulumi:"resourceType"`
+	// The id of zone.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+}
+
+func (SupportResourceTypesResourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SupportResourceTypesResource)(nil)).Elem()
+}
+
+func (i SupportResourceTypesResourceArgs) ToSupportResourceTypesResourceOutput() SupportResourceTypesResourceOutput {
+	return i.ToSupportResourceTypesResourceOutputWithContext(context.Background())
+}
+
+func (i SupportResourceTypesResourceArgs) ToSupportResourceTypesResourceOutputWithContext(ctx context.Context) SupportResourceTypesResourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SupportResourceTypesResourceOutput)
+}
+
+// SupportResourceTypesResourceArrayInput is an input type that accepts SupportResourceTypesResourceArray and SupportResourceTypesResourceArrayOutput values.
+// You can construct a concrete instance of `SupportResourceTypesResourceArrayInput` via:
+//
+//	SupportResourceTypesResourceArray{ SupportResourceTypesResourceArgs{...} }
+type SupportResourceTypesResourceArrayInput interface {
+	pulumi.Input
+
+	ToSupportResourceTypesResourceArrayOutput() SupportResourceTypesResourceArrayOutput
+	ToSupportResourceTypesResourceArrayOutputWithContext(context.Context) SupportResourceTypesResourceArrayOutput
+}
+
+type SupportResourceTypesResourceArray []SupportResourceTypesResourceInput
+
+func (SupportResourceTypesResourceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SupportResourceTypesResource)(nil)).Elem()
+}
+
+func (i SupportResourceTypesResourceArray) ToSupportResourceTypesResourceArrayOutput() SupportResourceTypesResourceArrayOutput {
+	return i.ToSupportResourceTypesResourceArrayOutputWithContext(context.Background())
+}
+
+func (i SupportResourceTypesResourceArray) ToSupportResourceTypesResourceArrayOutputWithContext(ctx context.Context) SupportResourceTypesResourceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SupportResourceTypesResourceArrayOutput)
+}
+
+type SupportResourceTypesResourceOutput struct{ *pulumi.OutputState }
+
+func (SupportResourceTypesResourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SupportResourceTypesResource)(nil)).Elem()
+}
+
+func (o SupportResourceTypesResourceOutput) ToSupportResourceTypesResourceOutput() SupportResourceTypesResourceOutput {
+	return o
+}
+
+func (o SupportResourceTypesResourceOutput) ToSupportResourceTypesResourceOutputWithContext(ctx context.Context) SupportResourceTypesResourceOutput {
+	return o
+}
+
+// The scope of resource.
+func (o SupportResourceTypesResourceOutput) ResourceScope() pulumi.StringOutput {
+	return o.ApplyT(func(v SupportResourceTypesResource) string { return v.ResourceScope }).(pulumi.StringOutput)
+}
+
+// The resource specifications info.
+func (o SupportResourceTypesResourceOutput) ResourceSpecifications() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SupportResourceTypesResource) []string { return v.ResourceSpecifications }).(pulumi.StringArrayOutput)
+}
+
+// The type of resource.
+func (o SupportResourceTypesResourceOutput) ResourceType() pulumi.StringOutput {
+	return o.ApplyT(func(v SupportResourceTypesResource) string { return v.ResourceType }).(pulumi.StringOutput)
+}
+
+// The id of zone.
+func (o SupportResourceTypesResourceOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v SupportResourceTypesResource) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+type SupportResourceTypesResourceArrayOutput struct{ *pulumi.OutputState }
+
+func (SupportResourceTypesResourceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SupportResourceTypesResource)(nil)).Elem()
+}
+
+func (o SupportResourceTypesResourceArrayOutput) ToSupportResourceTypesResourceArrayOutput() SupportResourceTypesResourceArrayOutput {
+	return o
+}
+
+func (o SupportResourceTypesResourceArrayOutput) ToSupportResourceTypesResourceArrayOutputWithContext(ctx context.Context) SupportResourceTypesResourceArrayOutput {
+	return o
+}
+
+func (o SupportResourceTypesResourceArrayOutput) Index(i pulumi.IntInput) SupportResourceTypesResourceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SupportResourceTypesResource {
+		return vs[0].([]SupportResourceTypesResource)[vs[1].(int)]
+	}).(SupportResourceTypesResourceOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AddonsAddonInput)(nil)).Elem(), AddonsAddonArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AddonsAddonArrayInput)(nil)).Elem(), AddonsAddonArray{})
@@ -11007,6 +11131,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SupportAddonsAddonVersionArrayInput)(nil)).Elem(), SupportAddonsAddonVersionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SupportAddonsAddonVersionCompatibilityInput)(nil)).Elem(), SupportAddonsAddonVersionCompatibilityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SupportAddonsAddonVersionCompatibilityArrayInput)(nil)).Elem(), SupportAddonsAddonVersionCompatibilityArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SupportResourceTypesResourceInput)(nil)).Elem(), SupportResourceTypesResourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SupportResourceTypesResourceArrayInput)(nil)).Elem(), SupportResourceTypesResourceArray{})
 	pulumi.RegisterOutputType(AddonsAddonOutput{})
 	pulumi.RegisterOutputType(AddonsAddonArrayOutput{})
 	pulumi.RegisterOutputType(AddonsAddonStatusOutput{})
@@ -11158,4 +11284,6 @@ func init() {
 	pulumi.RegisterOutputType(SupportAddonsAddonVersionArrayOutput{})
 	pulumi.RegisterOutputType(SupportAddonsAddonVersionCompatibilityOutput{})
 	pulumi.RegisterOutputType(SupportAddonsAddonVersionCompatibilityArrayOutput{})
+	pulumi.RegisterOutputType(SupportResourceTypesResourceOutput{})
+	pulumi.RegisterOutputType(SupportResourceTypesResourceArrayOutput{})
 }

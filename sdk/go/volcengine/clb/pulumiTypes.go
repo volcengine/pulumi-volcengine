@@ -1066,6 +1066,8 @@ func (o ClbTagArrayOutput) Index(i pulumi.IntInput) ClbTagOutput {
 }
 
 type ClbsClb struct {
+	// The address ip version of the Clb.
+	AddressIpVersion string `pulumi:"addressIpVersion"`
 	// The business status of the Clb.
 	BusinessStatus string `pulumi:"businessStatus"`
 	// The create time of the Clb.
@@ -1075,7 +1077,8 @@ type ClbsClb struct {
 	// The description of the Clb.
 	Description string `pulumi:"description"`
 	// The Eip address of the Clb.
-	EipAddress        string                    `pulumi:"eipAddress"`
+	EipAddress string `pulumi:"eipAddress"`
+	// The eip billing config of the Clb.
 	EipBillingConfigs []ClbsClbEipBillingConfig `pulumi:"eipBillingConfigs"`
 	// The Eip ID of the Clb.
 	EipId string `pulumi:"eipId"`
@@ -1083,12 +1086,18 @@ type ClbsClb struct {
 	EniAddress string `pulumi:"eniAddress"`
 	// The Eni ID of the Clb.
 	EniId string `pulumi:"eniId"`
+	// The eni ipv6 address of the Clb.
+	EniIpv6Address string `pulumi:"eniIpv6Address"`
 	// The expired time of the CLB.
 	ExpiredTime string `pulumi:"expiredTime"`
 	// The ID of the Clb.
 	Id string `pulumi:"id"`
 	// The billing status of the CLB.
 	InstanceStatus int `pulumi:"instanceStatus"`
+	// The ipv6 address bandwidth information of the Clb.
+	Ipv6AddressBandwidths []ClbsClbIpv6AddressBandwidth `pulumi:"ipv6AddressBandwidths"`
+	// The Ipv6 Eip ID of the Clb.
+	Ipv6EipId string `pulumi:"ipv6EipId"`
 	// The billing type of the Clb.
 	LoadBalancerBillingType string `pulumi:"loadBalancerBillingType"`
 	// The ID of the Clb.
@@ -1147,6 +1156,8 @@ type ClbsClbInput interface {
 }
 
 type ClbsClbArgs struct {
+	// The address ip version of the Clb.
+	AddressIpVersion pulumi.StringInput `pulumi:"addressIpVersion"`
 	// The business status of the Clb.
 	BusinessStatus pulumi.StringInput `pulumi:"businessStatus"`
 	// The create time of the Clb.
@@ -1156,7 +1167,8 @@ type ClbsClbArgs struct {
 	// The description of the Clb.
 	Description pulumi.StringInput `pulumi:"description"`
 	// The Eip address of the Clb.
-	EipAddress        pulumi.StringInput                `pulumi:"eipAddress"`
+	EipAddress pulumi.StringInput `pulumi:"eipAddress"`
+	// The eip billing config of the Clb.
 	EipBillingConfigs ClbsClbEipBillingConfigArrayInput `pulumi:"eipBillingConfigs"`
 	// The Eip ID of the Clb.
 	EipId pulumi.StringInput `pulumi:"eipId"`
@@ -1164,12 +1176,18 @@ type ClbsClbArgs struct {
 	EniAddress pulumi.StringInput `pulumi:"eniAddress"`
 	// The Eni ID of the Clb.
 	EniId pulumi.StringInput `pulumi:"eniId"`
+	// The eni ipv6 address of the Clb.
+	EniIpv6Address pulumi.StringInput `pulumi:"eniIpv6Address"`
 	// The expired time of the CLB.
 	ExpiredTime pulumi.StringInput `pulumi:"expiredTime"`
 	// The ID of the Clb.
 	Id pulumi.StringInput `pulumi:"id"`
 	// The billing status of the CLB.
 	InstanceStatus pulumi.IntInput `pulumi:"instanceStatus"`
+	// The ipv6 address bandwidth information of the Clb.
+	Ipv6AddressBandwidths ClbsClbIpv6AddressBandwidthArrayInput `pulumi:"ipv6AddressBandwidths"`
+	// The Ipv6 Eip ID of the Clb.
+	Ipv6EipId pulumi.StringInput `pulumi:"ipv6EipId"`
 	// The billing type of the Clb.
 	LoadBalancerBillingType pulumi.StringInput `pulumi:"loadBalancerBillingType"`
 	// The ID of the Clb.
@@ -1267,6 +1285,11 @@ func (o ClbsClbOutput) ToClbsClbOutputWithContext(ctx context.Context) ClbsClbOu
 	return o
 }
 
+// The address ip version of the Clb.
+func (o ClbsClbOutput) AddressIpVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v ClbsClb) string { return v.AddressIpVersion }).(pulumi.StringOutput)
+}
+
 // The business status of the Clb.
 func (o ClbsClbOutput) BusinessStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v ClbsClb) string { return v.BusinessStatus }).(pulumi.StringOutput)
@@ -1292,6 +1315,7 @@ func (o ClbsClbOutput) EipAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v ClbsClb) string { return v.EipAddress }).(pulumi.StringOutput)
 }
 
+// The eip billing config of the Clb.
 func (o ClbsClbOutput) EipBillingConfigs() ClbsClbEipBillingConfigArrayOutput {
 	return o.ApplyT(func(v ClbsClb) []ClbsClbEipBillingConfig { return v.EipBillingConfigs }).(ClbsClbEipBillingConfigArrayOutput)
 }
@@ -1311,6 +1335,11 @@ func (o ClbsClbOutput) EniId() pulumi.StringOutput {
 	return o.ApplyT(func(v ClbsClb) string { return v.EniId }).(pulumi.StringOutput)
 }
 
+// The eni ipv6 address of the Clb.
+func (o ClbsClbOutput) EniIpv6Address() pulumi.StringOutput {
+	return o.ApplyT(func(v ClbsClb) string { return v.EniIpv6Address }).(pulumi.StringOutput)
+}
+
 // The expired time of the CLB.
 func (o ClbsClbOutput) ExpiredTime() pulumi.StringOutput {
 	return o.ApplyT(func(v ClbsClb) string { return v.ExpiredTime }).(pulumi.StringOutput)
@@ -1324,6 +1353,16 @@ func (o ClbsClbOutput) Id() pulumi.StringOutput {
 // The billing status of the CLB.
 func (o ClbsClbOutput) InstanceStatus() pulumi.IntOutput {
 	return o.ApplyT(func(v ClbsClb) int { return v.InstanceStatus }).(pulumi.IntOutput)
+}
+
+// The ipv6 address bandwidth information of the Clb.
+func (o ClbsClbOutput) Ipv6AddressBandwidths() ClbsClbIpv6AddressBandwidthArrayOutput {
+	return o.ApplyT(func(v ClbsClb) []ClbsClbIpv6AddressBandwidth { return v.Ipv6AddressBandwidths }).(ClbsClbIpv6AddressBandwidthArrayOutput)
+}
+
+// The Ipv6 Eip ID of the Clb.
+func (o ClbsClbOutput) Ipv6EipId() pulumi.StringOutput {
+	return o.ApplyT(func(v ClbsClb) string { return v.Ipv6EipId }).(pulumi.StringOutput)
 }
 
 // The billing type of the Clb.
@@ -1457,9 +1496,12 @@ func (o ClbsClbArrayOutput) Index(i pulumi.IntInput) ClbsClbOutput {
 }
 
 type ClbsClbEipBillingConfig struct {
-	Bandwidth      int    `pulumi:"bandwidth"`
+	// The peek bandwidth of the Ipv6 EIP assigned to CLB. Units: Mbps.
+	Bandwidth int `pulumi:"bandwidth"`
+	// The billing type of the EIP assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
 	EipBillingType string `pulumi:"eipBillingType"`
-	Isp            string `pulumi:"isp"`
+	// The ISP of the Ipv6 EIP assigned to CLB, the value can be `BGP`.
+	Isp string `pulumi:"isp"`
 }
 
 // ClbsClbEipBillingConfigInput is an input type that accepts ClbsClbEipBillingConfigArgs and ClbsClbEipBillingConfigOutput values.
@@ -1474,9 +1516,12 @@ type ClbsClbEipBillingConfigInput interface {
 }
 
 type ClbsClbEipBillingConfigArgs struct {
-	Bandwidth      pulumi.IntInput    `pulumi:"bandwidth"`
+	// The peek bandwidth of the Ipv6 EIP assigned to CLB. Units: Mbps.
+	Bandwidth pulumi.IntInput `pulumi:"bandwidth"`
+	// The billing type of the EIP assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
 	EipBillingType pulumi.StringInput `pulumi:"eipBillingType"`
-	Isp            pulumi.StringInput `pulumi:"isp"`
+	// The ISP of the Ipv6 EIP assigned to CLB, the value can be `BGP`.
+	Isp pulumi.StringInput `pulumi:"isp"`
 }
 
 func (ClbsClbEipBillingConfigArgs) ElementType() reflect.Type {
@@ -1530,14 +1575,17 @@ func (o ClbsClbEipBillingConfigOutput) ToClbsClbEipBillingConfigOutputWithContex
 	return o
 }
 
+// The peek bandwidth of the Ipv6 EIP assigned to CLB. Units: Mbps.
 func (o ClbsClbEipBillingConfigOutput) Bandwidth() pulumi.IntOutput {
 	return o.ApplyT(func(v ClbsClbEipBillingConfig) int { return v.Bandwidth }).(pulumi.IntOutput)
 }
 
+// The billing type of the EIP assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
 func (o ClbsClbEipBillingConfigOutput) EipBillingType() pulumi.StringOutput {
 	return o.ApplyT(func(v ClbsClbEipBillingConfig) string { return v.EipBillingType }).(pulumi.StringOutput)
 }
 
+// The ISP of the Ipv6 EIP assigned to CLB, the value can be `BGP`.
 func (o ClbsClbEipBillingConfigOutput) Isp() pulumi.StringOutput {
 	return o.ApplyT(func(v ClbsClbEipBillingConfig) string { return v.Isp }).(pulumi.StringOutput)
 }
@@ -1560,6 +1608,139 @@ func (o ClbsClbEipBillingConfigArrayOutput) Index(i pulumi.IntInput) ClbsClbEipB
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClbsClbEipBillingConfig {
 		return vs[0].([]ClbsClbEipBillingConfig)[vs[1].(int)]
 	}).(ClbsClbEipBillingConfigOutput)
+}
+
+type ClbsClbIpv6AddressBandwidth struct {
+	// The peek bandwidth of the Ipv6 EIP assigned to CLB. Units: Mbps.
+	Bandwidth int `pulumi:"bandwidth"`
+	// The bandwidth package id of the Ipv6 EIP assigned to CLB.
+	BandwidthPackageId string `pulumi:"bandwidthPackageId"`
+	// The billing type of the Ipv6 EIP assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+	BillingType string `pulumi:"billingType"`
+	// The ISP of the Ipv6 EIP assigned to CLB, the value can be `BGP`.
+	Isp string `pulumi:"isp"`
+	// The network type of the CLB Ipv6 address.
+	NetworkType string `pulumi:"networkType"`
+}
+
+// ClbsClbIpv6AddressBandwidthInput is an input type that accepts ClbsClbIpv6AddressBandwidthArgs and ClbsClbIpv6AddressBandwidthOutput values.
+// You can construct a concrete instance of `ClbsClbIpv6AddressBandwidthInput` via:
+//
+//	ClbsClbIpv6AddressBandwidthArgs{...}
+type ClbsClbIpv6AddressBandwidthInput interface {
+	pulumi.Input
+
+	ToClbsClbIpv6AddressBandwidthOutput() ClbsClbIpv6AddressBandwidthOutput
+	ToClbsClbIpv6AddressBandwidthOutputWithContext(context.Context) ClbsClbIpv6AddressBandwidthOutput
+}
+
+type ClbsClbIpv6AddressBandwidthArgs struct {
+	// The peek bandwidth of the Ipv6 EIP assigned to CLB. Units: Mbps.
+	Bandwidth pulumi.IntInput `pulumi:"bandwidth"`
+	// The bandwidth package id of the Ipv6 EIP assigned to CLB.
+	BandwidthPackageId pulumi.StringInput `pulumi:"bandwidthPackageId"`
+	// The billing type of the Ipv6 EIP assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+	BillingType pulumi.StringInput `pulumi:"billingType"`
+	// The ISP of the Ipv6 EIP assigned to CLB, the value can be `BGP`.
+	Isp pulumi.StringInput `pulumi:"isp"`
+	// The network type of the CLB Ipv6 address.
+	NetworkType pulumi.StringInput `pulumi:"networkType"`
+}
+
+func (ClbsClbIpv6AddressBandwidthArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClbsClbIpv6AddressBandwidth)(nil)).Elem()
+}
+
+func (i ClbsClbIpv6AddressBandwidthArgs) ToClbsClbIpv6AddressBandwidthOutput() ClbsClbIpv6AddressBandwidthOutput {
+	return i.ToClbsClbIpv6AddressBandwidthOutputWithContext(context.Background())
+}
+
+func (i ClbsClbIpv6AddressBandwidthArgs) ToClbsClbIpv6AddressBandwidthOutputWithContext(ctx context.Context) ClbsClbIpv6AddressBandwidthOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClbsClbIpv6AddressBandwidthOutput)
+}
+
+// ClbsClbIpv6AddressBandwidthArrayInput is an input type that accepts ClbsClbIpv6AddressBandwidthArray and ClbsClbIpv6AddressBandwidthArrayOutput values.
+// You can construct a concrete instance of `ClbsClbIpv6AddressBandwidthArrayInput` via:
+//
+//	ClbsClbIpv6AddressBandwidthArray{ ClbsClbIpv6AddressBandwidthArgs{...} }
+type ClbsClbIpv6AddressBandwidthArrayInput interface {
+	pulumi.Input
+
+	ToClbsClbIpv6AddressBandwidthArrayOutput() ClbsClbIpv6AddressBandwidthArrayOutput
+	ToClbsClbIpv6AddressBandwidthArrayOutputWithContext(context.Context) ClbsClbIpv6AddressBandwidthArrayOutput
+}
+
+type ClbsClbIpv6AddressBandwidthArray []ClbsClbIpv6AddressBandwidthInput
+
+func (ClbsClbIpv6AddressBandwidthArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClbsClbIpv6AddressBandwidth)(nil)).Elem()
+}
+
+func (i ClbsClbIpv6AddressBandwidthArray) ToClbsClbIpv6AddressBandwidthArrayOutput() ClbsClbIpv6AddressBandwidthArrayOutput {
+	return i.ToClbsClbIpv6AddressBandwidthArrayOutputWithContext(context.Background())
+}
+
+func (i ClbsClbIpv6AddressBandwidthArray) ToClbsClbIpv6AddressBandwidthArrayOutputWithContext(ctx context.Context) ClbsClbIpv6AddressBandwidthArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClbsClbIpv6AddressBandwidthArrayOutput)
+}
+
+type ClbsClbIpv6AddressBandwidthOutput struct{ *pulumi.OutputState }
+
+func (ClbsClbIpv6AddressBandwidthOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClbsClbIpv6AddressBandwidth)(nil)).Elem()
+}
+
+func (o ClbsClbIpv6AddressBandwidthOutput) ToClbsClbIpv6AddressBandwidthOutput() ClbsClbIpv6AddressBandwidthOutput {
+	return o
+}
+
+func (o ClbsClbIpv6AddressBandwidthOutput) ToClbsClbIpv6AddressBandwidthOutputWithContext(ctx context.Context) ClbsClbIpv6AddressBandwidthOutput {
+	return o
+}
+
+// The peek bandwidth of the Ipv6 EIP assigned to CLB. Units: Mbps.
+func (o ClbsClbIpv6AddressBandwidthOutput) Bandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v ClbsClbIpv6AddressBandwidth) int { return v.Bandwidth }).(pulumi.IntOutput)
+}
+
+// The bandwidth package id of the Ipv6 EIP assigned to CLB.
+func (o ClbsClbIpv6AddressBandwidthOutput) BandwidthPackageId() pulumi.StringOutput {
+	return o.ApplyT(func(v ClbsClbIpv6AddressBandwidth) string { return v.BandwidthPackageId }).(pulumi.StringOutput)
+}
+
+// The billing type of the Ipv6 EIP assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+func (o ClbsClbIpv6AddressBandwidthOutput) BillingType() pulumi.StringOutput {
+	return o.ApplyT(func(v ClbsClbIpv6AddressBandwidth) string { return v.BillingType }).(pulumi.StringOutput)
+}
+
+// The ISP of the Ipv6 EIP assigned to CLB, the value can be `BGP`.
+func (o ClbsClbIpv6AddressBandwidthOutput) Isp() pulumi.StringOutput {
+	return o.ApplyT(func(v ClbsClbIpv6AddressBandwidth) string { return v.Isp }).(pulumi.StringOutput)
+}
+
+// The network type of the CLB Ipv6 address.
+func (o ClbsClbIpv6AddressBandwidthOutput) NetworkType() pulumi.StringOutput {
+	return o.ApplyT(func(v ClbsClbIpv6AddressBandwidth) string { return v.NetworkType }).(pulumi.StringOutput)
+}
+
+type ClbsClbIpv6AddressBandwidthArrayOutput struct{ *pulumi.OutputState }
+
+func (ClbsClbIpv6AddressBandwidthArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClbsClbIpv6AddressBandwidth)(nil)).Elem()
+}
+
+func (o ClbsClbIpv6AddressBandwidthArrayOutput) ToClbsClbIpv6AddressBandwidthArrayOutput() ClbsClbIpv6AddressBandwidthArrayOutput {
+	return o
+}
+
+func (o ClbsClbIpv6AddressBandwidthArrayOutput) ToClbsClbIpv6AddressBandwidthArrayOutputWithContext(ctx context.Context) ClbsClbIpv6AddressBandwidthArrayOutput {
+	return o
+}
+
+func (o ClbsClbIpv6AddressBandwidthArrayOutput) Index(i pulumi.IntInput) ClbsClbIpv6AddressBandwidthOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClbsClbIpv6AddressBandwidth {
+		return vs[0].([]ClbsClbIpv6AddressBandwidth)[vs[1].(int)]
+	}).(ClbsClbIpv6AddressBandwidthOutput)
 }
 
 type ClbsClbTag struct {
@@ -2717,6 +2898,8 @@ func (o ServerGroupServersServerArrayOutput) Index(i pulumi.IntInput) ServerGrou
 }
 
 type ServerGroupsGroup struct {
+	// The address ip version of the ServerGroup.
+	AddressIpVersion string `pulumi:"addressIpVersion"`
 	// The create time of the ServerGroup.
 	CreateTime string `pulumi:"createTime"`
 	// The description of the ServerGroup.
@@ -2743,6 +2926,8 @@ type ServerGroupsGroupInput interface {
 }
 
 type ServerGroupsGroupArgs struct {
+	// The address ip version of the ServerGroup.
+	AddressIpVersion pulumi.StringInput `pulumi:"addressIpVersion"`
 	// The create time of the ServerGroup.
 	CreateTime pulumi.StringInput `pulumi:"createTime"`
 	// The description of the ServerGroup.
@@ -2806,6 +2991,11 @@ func (o ServerGroupsGroupOutput) ToServerGroupsGroupOutput() ServerGroupsGroupOu
 
 func (o ServerGroupsGroupOutput) ToServerGroupsGroupOutputWithContext(ctx context.Context) ServerGroupsGroupOutput {
 	return o
+}
+
+// The address ip version of the ServerGroup.
+func (o ServerGroupsGroupOutput) AddressIpVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v ServerGroupsGroup) string { return v.AddressIpVersion }).(pulumi.StringOutput)
 }
 
 // The create time of the ServerGroup.
@@ -3082,6 +3272,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ClbsClbArrayInput)(nil)).Elem(), ClbsClbArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClbsClbEipBillingConfigInput)(nil)).Elem(), ClbsClbEipBillingConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClbsClbEipBillingConfigArrayInput)(nil)).Elem(), ClbsClbEipBillingConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClbsClbIpv6AddressBandwidthInput)(nil)).Elem(), ClbsClbIpv6AddressBandwidthArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClbsClbIpv6AddressBandwidthArrayInput)(nil)).Elem(), ClbsClbIpv6AddressBandwidthArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClbsClbTagInput)(nil)).Elem(), ClbsClbTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClbsClbTagArrayInput)(nil)).Elem(), ClbsClbTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClbsTagInput)(nil)).Elem(), ClbsTagArgs{})
@@ -3120,6 +3312,8 @@ func init() {
 	pulumi.RegisterOutputType(ClbsClbArrayOutput{})
 	pulumi.RegisterOutputType(ClbsClbEipBillingConfigOutput{})
 	pulumi.RegisterOutputType(ClbsClbEipBillingConfigArrayOutput{})
+	pulumi.RegisterOutputType(ClbsClbIpv6AddressBandwidthOutput{})
+	pulumi.RegisterOutputType(ClbsClbIpv6AddressBandwidthArrayOutput{})
 	pulumi.RegisterOutputType(ClbsClbTagOutput{})
 	pulumi.RegisterOutputType(ClbsClbTagArrayOutput{})
 	pulumi.RegisterOutputType(ClbsTagOutput{})

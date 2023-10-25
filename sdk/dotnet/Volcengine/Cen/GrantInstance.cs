@@ -27,7 +27,7 @@ namespace Volcengine.Pulumi.Volcengine.Cen
     ///         CenId = "cen-2d6zdn0c1z5s058ozfcyf4lee",
     ///         CenOwnerId = "210000****",
     ///         InstanceId = "vpc-2bysvq1xx543k2dx0eeulpeiv",
-    ///         InstanceRegionId = "cn-guilin-boe",
+    ///         InstanceRegionId = "cn-beijing",
     ///         InstanceType = "VPC",
     ///     });
     /// 

@@ -13,5 +13,9 @@ from .gateway import *
 from .gateway_route import *
 from .gateway_routes import *
 from .gateways import *
+from .ssl_vpn_client_cert import *
+from .ssl_vpn_client_certs import *
+from .ssl_vpn_server import *
+from .ssl_vpn_servers import *
 from ._inputs import *
 from . import outputs

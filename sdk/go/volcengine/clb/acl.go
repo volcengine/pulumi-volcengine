@@ -70,7 +70,7 @@ type Acl struct {
 	// The description of the Acl.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The ProjectName of the Acl.
-	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 }
 
 // NewAcl registers a new resource with the given unique name, arguments, and options.
@@ -263,8 +263,8 @@ func (o AclOutput) Description() pulumi.StringPtrOutput {
 }
 
 // The ProjectName of the Acl.
-func (o AclOutput) ProjectName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Acl) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
+func (o AclOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *Acl) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 type AclArrayOutput struct{ *pulumi.OutputState }

@@ -156,7 +156,7 @@ namespace Volcengine.Pulumi.Volcengine.Ebs
         /// The ProjectName of the Volume.
         /// </summary>
         [Output("projectName")]
-        public Output<string?> ProjectName { get; private set; } = null!;
+        public Output<string> ProjectName { get; private set; } = null!;
 
         /// <summary>
         /// The size of Volume.

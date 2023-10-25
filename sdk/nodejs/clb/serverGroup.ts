@@ -80,6 +80,10 @@ export class ServerGroup extends pulumi.CustomResource {
     }
 
     /**
+     * The address ip version of the ServerGroup. Valid values: `ipv4`, `ipv6`. Default is `ipv4`.
+     */
+    public readonly addressIpVersion!: pulumi.Output<string | undefined>;
+    /**
      * The description of ServerGroup.
      */
     public readonly description!: pulumi.Output<string>;
@@ -109,6 +113,7 @@ export class ServerGroup extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ServerGroupState | undefined;
+            resourceInputs["addressIpVersion"] = state ? state.addressIpVersion : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["loadBalancerId"] = state ? state.loadBalancerId : undefined;
             resourceInputs["serverGroupId"] = state ? state.serverGroupId : undefined;
@@ -118,6 +123,7 @@ export class ServerGroup extends pulumi.CustomResource {
             if ((!args || args.loadBalancerId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'loadBalancerId'");
             }
+            resourceInputs["addressIpVersion"] = args ? args.addressIpVersion : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["loadBalancerId"] = args ? args.loadBalancerId : undefined;
             resourceInputs["serverGroupId"] = args ? args.serverGroupId : undefined;
@@ -132,6 +138,10 @@ export class ServerGroup extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ServerGroup resources.
  */
 export interface ServerGroupState {
+    /**
+     * The address ip version of the ServerGroup. Valid values: `ipv4`, `ipv6`. Default is `ipv4`.
+     */
+    addressIpVersion?: pulumi.Input<string>;
     /**
      * The description of ServerGroup.
      */
@@ -154,6 +164,10 @@ export interface ServerGroupState {
  * The set of arguments for constructing a ServerGroup resource.
  */
 export interface ServerGroupArgs {
+    /**
+     * The address ip version of the ServerGroup. Valid values: `ipv4`, `ipv6`. Default is `ipv4`.
+     */
+    addressIpVersion?: pulumi.Input<string>;
     /**
      * The description of ServerGroup.
      */

@@ -279,7 +279,7 @@ namespace Volcengine.Pulumi.Volcengine.Vpn
         /// The project name of the VPN connection.
         /// </summary>
         [Output("projectName")]
-        public Output<string?> ProjectName { get; private set; } = null!;
+        public Output<string> ProjectName { get; private set; } = null!;
 
         /// <summary>
         /// The remote subnet of the VPN connection. Up to 5 network segments are supported.

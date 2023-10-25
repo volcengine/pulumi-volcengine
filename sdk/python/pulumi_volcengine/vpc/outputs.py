@@ -11,6 +11,7 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'HaVipsHaVipResult',
     'Ipv6AddressBandwidthsIpv6AddressBandwidthResult',
     'Ipv6AddressesIpv6AddressResult',
     'Ipv6GatewaysIpv6GatewayResult',
@@ -26,6 +27,13 @@ __all__ = [
     'NetworkInterfacesNetworkInterfacePrivateIpSetAssociatedElasticIpResult',
     'NetworkInterfacesNetworkInterfaceTagResult',
     'NetworkInterfacesTagResult',
+    'PrefixListPrefixListAssociation',
+    'PrefixListPrefixListEntry',
+    'PrefixListTag',
+    'PrefixListsPrefixListResult',
+    'PrefixListsPrefixListPrefixListAssociationResult',
+    'PrefixListsPrefixListPrefixListEntryResult',
+    'PrefixListsTagFilterResult',
     'RouteEntriesRouteEntryResult',
     'RouteTablesRouteTableResult',
     'SecurityGroupRulesSecurityGroupRuleResult',
@@ -42,6 +50,200 @@ __all__ = [
     'VpcsVpcAssociateCenResult',
     'VpcsVpcTagResult',
 ]
+
+@pulumi.output_type
+class HaVipsHaVipResult(dict):
+    def __init__(__self__, *,
+                 account_id: str,
+                 associated_eip_address: str,
+                 associated_eip_id: str,
+                 associated_instance_ids: Sequence[str],
+                 associated_instance_type: str,
+                 created_at: str,
+                 description: str,
+                 ha_vip_id: str,
+                 ha_vip_name: str,
+                 id: str,
+                 ip_address: str,
+                 master_instance_id: str,
+                 project_name: str,
+                 status: str,
+                 subnet_id: str,
+                 updated_at: str,
+                 vpc_id: str):
+        """
+        :param str account_id: The account id of the Ha Vip.
+        :param str associated_eip_address: The associated eip address of the Ha Vip.
+        :param str associated_eip_id: The associated eip id of the Ha Vip.
+        :param Sequence[str] associated_instance_ids: The associated instance ids of the Ha Vip.
+        :param str associated_instance_type: The associated instance type of the Ha Vip.
+        :param str created_at: The create time of the Ha Vip.
+        :param str description: The description of the Ha Vip.
+        :param str ha_vip_id: The id of the Ha Vip.
+        :param str ha_vip_name: The name of Ha Vip.
+        :param str id: The id of the Ha Vip.
+        :param str ip_address: The ip address of Ha Vip.
+        :param str master_instance_id: The master instance id of the Ha Vip.
+        :param str project_name: The project name of Ha Vip.
+        :param str status: The status of Ha Vip.
+        :param str subnet_id: The id of subnet.
+        :param str updated_at: The update time of the Ha Vip.
+        :param str vpc_id: The id of vpc.
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "associated_eip_address", associated_eip_address)
+        pulumi.set(__self__, "associated_eip_id", associated_eip_id)
+        pulumi.set(__self__, "associated_instance_ids", associated_instance_ids)
+        pulumi.set(__self__, "associated_instance_type", associated_instance_type)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "ha_vip_id", ha_vip_id)
+        pulumi.set(__self__, "ha_vip_name", ha_vip_name)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "ip_address", ip_address)
+        pulumi.set(__self__, "master_instance_id", master_instance_id)
+        pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "subnet_id", subnet_id)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> str:
+        """
+        The account id of the Ha Vip.
+        """
+        return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter(name="associatedEipAddress")
+    def associated_eip_address(self) -> str:
+        """
+        The associated eip address of the Ha Vip.
+        """
+        return pulumi.get(self, "associated_eip_address")
+
+    @property
+    @pulumi.getter(name="associatedEipId")
+    def associated_eip_id(self) -> str:
+        """
+        The associated eip id of the Ha Vip.
+        """
+        return pulumi.get(self, "associated_eip_id")
+
+    @property
+    @pulumi.getter(name="associatedInstanceIds")
+    def associated_instance_ids(self) -> Sequence[str]:
+        """
+        The associated instance ids of the Ha Vip.
+        """
+        return pulumi.get(self, "associated_instance_ids")
+
+    @property
+    @pulumi.getter(name="associatedInstanceType")
+    def associated_instance_type(self) -> str:
+        """
+        The associated instance type of the Ha Vip.
+        """
+        return pulumi.get(self, "associated_instance_type")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The create time of the Ha Vip.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the Ha Vip.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="haVipId")
+    def ha_vip_id(self) -> str:
+        """
+        The id of the Ha Vip.
+        """
+        return pulumi.get(self, "ha_vip_id")
+
+    @property
+    @pulumi.getter(name="haVipName")
+    def ha_vip_name(self) -> str:
+        """
+        The name of Ha Vip.
+        """
+        return pulumi.get(self, "ha_vip_name")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the Ha Vip.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> str:
+        """
+        The ip address of Ha Vip.
+        """
+        return pulumi.get(self, "ip_address")
+
+    @property
+    @pulumi.getter(name="masterInstanceId")
+    def master_instance_id(self) -> str:
+        """
+        The master instance id of the Ha Vip.
+        """
+        return pulumi.get(self, "master_instance_id")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of Ha Vip.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of Ha Vip.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> str:
+        """
+        The id of subnet.
+        """
+        return pulumi.get(self, "subnet_id")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        The update time of the Ha Vip.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @property
+    @pulumi.getter(name="vpcId")
+    def vpc_id(self) -> str:
+        """
+        The id of vpc.
+        """
+        return pulumi.get(self, "vpc_id")
+
 
 @pulumi.output_type
 class Ipv6AddressBandwidthsIpv6AddressBandwidthResult(dict):
@@ -968,6 +1170,7 @@ class NetworkInterfacesNetworkInterfaceResult(dict):
                  description: str,
                  device_id: str,
                  id: str,
+                 ipv6_sets: Sequence[str],
                  mac_address: str,
                  network_interface_id: str,
                  network_interface_name: str,
@@ -993,6 +1196,7 @@ class NetworkInterfacesNetworkInterfaceResult(dict):
         :param str description: The description of the ENI.
         :param str device_id: The id of the device to which the ENI is bound.
         :param str id: The id of the ENI.
+        :param Sequence[str] ipv6_sets: The IPv6 address list of the ENI.
         :param str mac_address: The mac address of the ENI.
         :param str network_interface_id: The id of the ENI.
         :param str network_interface_name: A name of ENI.
@@ -1018,6 +1222,7 @@ class NetworkInterfacesNetworkInterfaceResult(dict):
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "device_id", device_id)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "ipv6_sets", ipv6_sets)
         pulumi.set(__self__, "mac_address", mac_address)
         pulumi.set(__self__, "network_interface_id", network_interface_id)
         pulumi.set(__self__, "network_interface_name", network_interface_name)
@@ -1091,6 +1296,14 @@ class NetworkInterfacesNetworkInterfaceResult(dict):
         The id of the ENI.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ipv6Sets")
+    def ipv6_sets(self) -> Sequence[str]:
+        """
+        The IPv6 address list of the ENI.
+        """
+        return pulumi.get(self, "ipv6_sets")
 
     @property
     @pulumi.getter(name="macAddress")
@@ -1354,6 +1567,366 @@ class NetworkInterfacesTagResult(dict):
         The Value of Tags.
         """
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class PrefixListPrefixListAssociation(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "resourceId":
+            suggest = "resource_id"
+        elif key == "resourceType":
+            suggest = "resource_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in PrefixListPrefixListAssociation. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        PrefixListPrefixListAssociation.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        PrefixListPrefixListAssociation.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 resource_id: Optional[str] = None,
+                 resource_type: Optional[str] = None):
+        """
+        :param str resource_id: Associated resource ID.
+        :param str resource_type: Related resource types.
+        """
+        if resource_id is not None:
+            pulumi.set(__self__, "resource_id", resource_id)
+        if resource_type is not None:
+            pulumi.set(__self__, "resource_type", resource_type)
+
+    @property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> Optional[str]:
+        """
+        Associated resource ID.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> Optional[str]:
+        """
+        Related resource types.
+        """
+        return pulumi.get(self, "resource_type")
+
+
+@pulumi.output_type
+class PrefixListPrefixListEntry(dict):
+    def __init__(__self__, *,
+                 cidr: Optional[str] = None,
+                 description: Optional[str] = None):
+        """
+        :param str cidr: CIDR of prefix list entries.
+        :param str description: Description of prefix list entries.
+        """
+        if cidr is not None:
+            pulumi.set(__self__, "cidr", cidr)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+
+    @property
+    @pulumi.getter
+    def cidr(self) -> Optional[str]:
+        """
+        CIDR of prefix list entries.
+        """
+        return pulumi.get(self, "cidr")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Description of prefix list entries.
+        """
+        return pulumi.get(self, "description")
+
+
+@pulumi.output_type
+class PrefixListTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class PrefixListsPrefixListResult(dict):
+    def __init__(__self__, *,
+                 association_count: int,
+                 cidrs: Sequence[str],
+                 creation_time: str,
+                 description: str,
+                 id: str,
+                 ip_version: str,
+                 max_entries: int,
+                 prefix_list_associations: Sequence['outputs.PrefixListsPrefixListPrefixListAssociationResult'],
+                 prefix_list_entries: Sequence['outputs.PrefixListsPrefixListPrefixListEntryResult'],
+                 prefix_list_id: str,
+                 prefix_list_name: str,
+                 status: str,
+                 update_time: str):
+        """
+        :param int association_count: Number of associated resources for prefix list.
+        :param Sequence[str] cidrs: CIDR address block information for prefix list.
+        :param str creation_time: The creation time of the prefix list.
+        :param str description: Description.
+        :param str id: The id of the prefix list.
+        :param str ip_version: IP version of prefix list.
+        :param int max_entries: Maximum number of entries, which is the maximum number of items that can be added to the prefix list.
+        :param Sequence['PrefixListsPrefixListPrefixListAssociationArgs'] prefix_list_associations: Collection of resources associated with VPC prefix list.
+        :param Sequence['PrefixListsPrefixListPrefixListEntryArgs'] prefix_list_entries: The prefix list entries.
+        :param str prefix_list_id: The prefix list id.
+        :param str prefix_list_name: A Name of prefix list.
+        :param str status: The status of the prefix list.
+        :param str update_time: The update time of the prefix list.
+        """
+        pulumi.set(__self__, "association_count", association_count)
+        pulumi.set(__self__, "cidrs", cidrs)
+        pulumi.set(__self__, "creation_time", creation_time)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "ip_version", ip_version)
+        pulumi.set(__self__, "max_entries", max_entries)
+        pulumi.set(__self__, "prefix_list_associations", prefix_list_associations)
+        pulumi.set(__self__, "prefix_list_entries", prefix_list_entries)
+        pulumi.set(__self__, "prefix_list_id", prefix_list_id)
+        pulumi.set(__self__, "prefix_list_name", prefix_list_name)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "update_time", update_time)
+
+    @property
+    @pulumi.getter(name="associationCount")
+    def association_count(self) -> int:
+        """
+        Number of associated resources for prefix list.
+        """
+        return pulumi.get(self, "association_count")
+
+    @property
+    @pulumi.getter
+    def cidrs(self) -> Sequence[str]:
+        """
+        CIDR address block information for prefix list.
+        """
+        return pulumi.get(self, "cidrs")
+
+    @property
+    @pulumi.getter(name="creationTime")
+    def creation_time(self) -> str:
+        """
+        The creation time of the prefix list.
+        """
+        return pulumi.get(self, "creation_time")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        Description.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the prefix list.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ipVersion")
+    def ip_version(self) -> str:
+        """
+        IP version of prefix list.
+        """
+        return pulumi.get(self, "ip_version")
+
+    @property
+    @pulumi.getter(name="maxEntries")
+    def max_entries(self) -> int:
+        """
+        Maximum number of entries, which is the maximum number of items that can be added to the prefix list.
+        """
+        return pulumi.get(self, "max_entries")
+
+    @property
+    @pulumi.getter(name="prefixListAssociations")
+    def prefix_list_associations(self) -> Sequence['outputs.PrefixListsPrefixListPrefixListAssociationResult']:
+        """
+        Collection of resources associated with VPC prefix list.
+        """
+        return pulumi.get(self, "prefix_list_associations")
+
+    @property
+    @pulumi.getter(name="prefixListEntries")
+    def prefix_list_entries(self) -> Sequence['outputs.PrefixListsPrefixListPrefixListEntryResult']:
+        """
+        The prefix list entries.
+        """
+        return pulumi.get(self, "prefix_list_entries")
+
+    @property
+    @pulumi.getter(name="prefixListId")
+    def prefix_list_id(self) -> str:
+        """
+        The prefix list id.
+        """
+        return pulumi.get(self, "prefix_list_id")
+
+    @property
+    @pulumi.getter(name="prefixListName")
+    def prefix_list_name(self) -> str:
+        """
+        A Name of prefix list.
+        """
+        return pulumi.get(self, "prefix_list_name")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the prefix list.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="updateTime")
+    def update_time(self) -> str:
+        """
+        The update time of the prefix list.
+        """
+        return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class PrefixListsPrefixListPrefixListAssociationResult(dict):
+    def __init__(__self__, *,
+                 resource_id: str,
+                 resource_type: str):
+        """
+        :param str resource_id: Associated resource ID.
+        :param str resource_type: Related resource types.
+        """
+        pulumi.set(__self__, "resource_id", resource_id)
+        pulumi.set(__self__, "resource_type", resource_type)
+
+    @property
+    @pulumi.getter(name="resourceId")
+    def resource_id(self) -> str:
+        """
+        Associated resource ID.
+        """
+        return pulumi.get(self, "resource_id")
+
+    @property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> str:
+        """
+        Related resource types.
+        """
+        return pulumi.get(self, "resource_type")
+
+
+@pulumi.output_type
+class PrefixListsPrefixListPrefixListEntryResult(dict):
+    def __init__(__self__, *,
+                 cidr: str,
+                 description: str,
+                 prefix_list_id: str):
+        """
+        :param str cidr: CIDR address blocks for prefix list entries.
+        :param str description: Description.
+        :param str prefix_list_id: The prefix list id.
+        """
+        pulumi.set(__self__, "cidr", cidr)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "prefix_list_id", prefix_list_id)
+
+    @property
+    @pulumi.getter
+    def cidr(self) -> str:
+        """
+        CIDR address blocks for prefix list entries.
+        """
+        return pulumi.get(self, "cidr")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        Description.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="prefixListId")
+    def prefix_list_id(self) -> str:
+        """
+        The prefix list id.
+        """
+        return pulumi.get(self, "prefix_list_id")
+
+
+@pulumi.output_type
+class PrefixListsTagFilterResult(dict):
+    def __init__(__self__, *,
+                 key: Optional[str] = None,
+                 values: Optional[Sequence[str]] = None):
+        """
+        :param str key: The key of the tag.
+        :param Sequence[str] values: The values of the tag.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[str]:
+        """
+        The key of the tag.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[str]]:
+        """
+        The values of the tag.
+        """
+        return pulumi.get(self, "values")
 
 
 @pulumi.output_type

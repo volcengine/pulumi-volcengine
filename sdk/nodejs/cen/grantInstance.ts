@@ -16,7 +16,7 @@ import * as utilities from "../utilities";
  *     cenId: "cen-2d6zdn0c1z5s058ozfcyf4lee",
  *     cenOwnerId: "210000****",
  *     instanceId: "vpc-2bysvq1xx543k2dx0eeulpeiv",
- *     instanceRegionId: "cn-guilin-boe",
+ *     instanceRegionId: "cn-beijing",
  *     instanceType: "VPC",
  * });
  * ```

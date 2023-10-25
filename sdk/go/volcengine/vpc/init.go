@@ -21,6 +21,10 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "volcengine:vpc/haVip:HaVip":
+		r = &HaVip{}
+	case "volcengine:vpc/haVipAssociate:HaVipAssociate":
+		r = &HaVipAssociate{}
 	case "volcengine:vpc/ipv6AddressBandwidth:Ipv6AddressBandwidth":
 		r = &Ipv6AddressBandwidth{}
 	case "volcengine:vpc/ipv6Gateway:Ipv6Gateway":
@@ -33,6 +37,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &NetworkInterface{}
 	case "volcengine:vpc/networkInterfaceAttach:NetworkInterfaceAttach":
 		r = &NetworkInterfaceAttach{}
+	case "volcengine:vpc/prefixList:PrefixList":
+		r = &PrefixList{}
 	case "volcengine:vpc/routeEntry:RouteEntry":
 		r = &RouteEntry{}
 	case "volcengine:vpc/routeTable:RouteTable":
@@ -62,6 +68,16 @@ func init() {
 	}
 	pulumi.RegisterResourceModule(
 		"volcengine",
+		"vpc/haVip",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"vpc/haVipAssociate",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
 		"vpc/ipv6AddressBandwidth",
 		&module{version},
 	)
@@ -88,6 +104,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"volcengine",
 		"vpc/networkInterfaceAttach",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"vpc/prefixList",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

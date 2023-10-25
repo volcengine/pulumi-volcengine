@@ -15,6 +15,10 @@ namespace Volcengine.Pulumi.Volcengine.Clb.Outputs
     public sealed class ClbsClbResult
     {
         /// <summary>
+        /// The address ip version of the Clb.
+        /// </summary>
+        public readonly string AddressIpVersion;
+        /// <summary>
         /// The business status of the Clb.
         /// </summary>
         public readonly string BusinessStatus;
@@ -34,6 +38,9 @@ namespace Volcengine.Pulumi.Volcengine.Clb.Outputs
         /// The Eip address of the Clb.
         /// </summary>
         public readonly string EipAddress;
+        /// <summary>
+        /// The eip billing config of the Clb.
+        /// </summary>
         public readonly ImmutableArray<Outputs.ClbsClbEipBillingConfigResult> EipBillingConfigs;
         /// <summary>
         /// The Eip ID of the Clb.
@@ -48,6 +55,10 @@ namespace Volcengine.Pulumi.Volcengine.Clb.Outputs
         /// </summary>
         public readonly string EniId;
         /// <summary>
+        /// The eni ipv6 address of the Clb.
+        /// </summary>
+        public readonly string EniIpv6Address;
+        /// <summary>
         /// The expired time of the CLB.
         /// </summary>
         public readonly string ExpiredTime;
@@ -59,6 +70,14 @@ namespace Volcengine.Pulumi.Volcengine.Clb.Outputs
         /// The billing status of the CLB.
         /// </summary>
         public readonly int InstanceStatus;
+        /// <summary>
+        /// The ipv6 address bandwidth information of the Clb.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.ClbsClbIpv6AddressBandwidthResult> Ipv6AddressBandwidths;
+        /// <summary>
+        /// The Ipv6 Eip ID of the Clb.
+        /// </summary>
+        public readonly string Ipv6EipId;
         /// <summary>
         /// The billing type of the Clb.
         /// </summary>
@@ -150,6 +169,8 @@ namespace Volcengine.Pulumi.Volcengine.Clb.Outputs
 
         [OutputConstructor]
         private ClbsClbResult(
+            string addressIpVersion,
+
             string businessStatus,
 
             string createTime,
@@ -168,11 +189,17 @@ namespace Volcengine.Pulumi.Volcengine.Clb.Outputs
 
             string eniId,
 
+            string eniIpv6Address,
+
             string expiredTime,
 
             string id,
 
             int instanceStatus,
+
+            ImmutableArray<Outputs.ClbsClbIpv6AddressBandwidthResult> ipv6AddressBandwidths,
+
+            string ipv6EipId,
 
             string loadBalancerBillingType,
 
@@ -218,6 +245,7 @@ namespace Volcengine.Pulumi.Volcengine.Clb.Outputs
 
             string vpcId)
         {
+            AddressIpVersion = addressIpVersion;
             BusinessStatus = businessStatus;
             CreateTime = createTime;
             DeletedTime = deletedTime;
@@ -227,9 +255,12 @@ namespace Volcengine.Pulumi.Volcengine.Clb.Outputs
             EipId = eipId;
             EniAddress = eniAddress;
             EniId = eniId;
+            EniIpv6Address = eniIpv6Address;
             ExpiredTime = expiredTime;
             Id = id;
             InstanceStatus = instanceStatus;
+            Ipv6AddressBandwidths = ipv6AddressBandwidths;
+            Ipv6EipId = ipv6EipId;
             LoadBalancerBillingType = loadBalancerBillingType;
             LoadBalancerId = loadBalancerId;
             LoadBalancerName = loadBalancerName;

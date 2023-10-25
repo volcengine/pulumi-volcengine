@@ -95,7 +95,7 @@ export class Gateway extends pulumi.CustomResource {
     /**
      * The ProjectName of the NatGateway.
      */
-    public readonly projectName!: pulumi.Output<string | undefined>;
+    public readonly projectName!: pulumi.Output<string>;
     /**
      * The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
      */

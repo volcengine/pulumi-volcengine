@@ -85,7 +85,7 @@ export class Acl extends pulumi.CustomResource {
     /**
      * The ProjectName of the Acl.
      */
-    public readonly projectName!: pulumi.Output<string | undefined>;
+    public readonly projectName!: pulumi.Output<string>;
 
     /**
      * Create a Acl resource with the given unique name, arguments, and options.

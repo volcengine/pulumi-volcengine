@@ -2025,7 +2025,7 @@ class NodePoolNodeConfigArgs:
                  period: Optional[pulumi.Input[int]] = None,
                  system_volume: Optional[pulumi.Input['NodePoolNodeConfigSystemVolumeArgs']] = None):
         """
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_type_ids: The InstanceTypeIds of NodeConfig.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_type_ids: The InstanceTypeIds of NodeConfig. The value can get from vke__support_resource_types datasource.
         :param pulumi.Input['NodePoolNodeConfigSecurityArgs'] security: The Security of NodeConfig.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] subnet_ids: The SubnetIds of NodeConfig.
         :param pulumi.Input[bool] additional_container_storage_enabled: The AdditionalContainerStorageEnabled of NodeConfig.
@@ -2073,7 +2073,7 @@ class NodePoolNodeConfigArgs:
     @pulumi.getter(name="instanceTypeIds")
     def instance_type_ids(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        The InstanceTypeIds of NodeConfig.
+        The InstanceTypeIds of NodeConfig. The value can get from vke__support_resource_types datasource.
         """
         return pulumi.get(self, "instance_type_ids")
 

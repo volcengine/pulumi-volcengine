@@ -63,7 +63,7 @@ export class RouteTable extends pulumi.CustomResource {
     /**
      * The ProjectName of the route table.
      */
-    public readonly projectName!: pulumi.Output<string | undefined>;
+    public readonly projectName!: pulumi.Output<string>;
     /**
      * The name of the route table.
      */

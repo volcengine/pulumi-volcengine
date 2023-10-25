@@ -1016,10 +1016,18 @@ type GatewaysVpnGateway struct {
 	Id string `pulumi:"id"`
 	// A IP address of the VPN gateway.
 	IpAddress string `pulumi:"ipAddress"`
+	// Whether ipsec is enabled.
+	IpsecEnabled bool `pulumi:"ipsecEnabled"`
 	// The lock reason of the VPN gateway.
 	LockReason string `pulumi:"lockReason"`
+	// The name of project.
+	ProjectName string `pulumi:"projectName"`
 	// The route count of the VPN gateway.
 	RouteCount int `pulumi:"routeCount"`
+	// Whether ssl is enabled.
+	SslEnabled bool `pulumi:"sslEnabled"`
+	// The max connections of ssl.
+	SslMaxConnections int `pulumi:"sslMaxConnections"`
 	// The status of the VPN gateway.
 	Status string `pulumi:"status"`
 	// A subnet ID of the VPN gateway.
@@ -1070,10 +1078,18 @@ type GatewaysVpnGatewayArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// A IP address of the VPN gateway.
 	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
+	// Whether ipsec is enabled.
+	IpsecEnabled pulumi.BoolInput `pulumi:"ipsecEnabled"`
 	// The lock reason of the VPN gateway.
 	LockReason pulumi.StringInput `pulumi:"lockReason"`
+	// The name of project.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The route count of the VPN gateway.
 	RouteCount pulumi.IntInput `pulumi:"routeCount"`
+	// Whether ssl is enabled.
+	SslEnabled pulumi.BoolInput `pulumi:"sslEnabled"`
+	// The max connections of ssl.
+	SslMaxConnections pulumi.IntInput `pulumi:"sslMaxConnections"`
 	// The status of the VPN gateway.
 	Status pulumi.StringInput `pulumi:"status"`
 	// A subnet ID of the VPN gateway.
@@ -1196,14 +1212,34 @@ func (o GatewaysVpnGatewayOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v GatewaysVpnGateway) string { return v.IpAddress }).(pulumi.StringOutput)
 }
 
+// Whether ipsec is enabled.
+func (o GatewaysVpnGatewayOutput) IpsecEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GatewaysVpnGateway) bool { return v.IpsecEnabled }).(pulumi.BoolOutput)
+}
+
 // The lock reason of the VPN gateway.
 func (o GatewaysVpnGatewayOutput) LockReason() pulumi.StringOutput {
 	return o.ApplyT(func(v GatewaysVpnGateway) string { return v.LockReason }).(pulumi.StringOutput)
 }
 
+// The name of project.
+func (o GatewaysVpnGatewayOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v GatewaysVpnGateway) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
 // The route count of the VPN gateway.
 func (o GatewaysVpnGatewayOutput) RouteCount() pulumi.IntOutput {
 	return o.ApplyT(func(v GatewaysVpnGateway) int { return v.RouteCount }).(pulumi.IntOutput)
+}
+
+// Whether ssl is enabled.
+func (o GatewaysVpnGatewayOutput) SslEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GatewaysVpnGateway) bool { return v.SslEnabled }).(pulumi.BoolOutput)
+}
+
+// The max connections of ssl.
+func (o GatewaysVpnGatewayOutput) SslMaxConnections() pulumi.IntOutput {
+	return o.ApplyT(func(v GatewaysVpnGateway) int { return v.SslMaxConnections }).(pulumi.IntOutput)
 }
 
 // The status of the VPN gateway.
@@ -1367,6 +1403,461 @@ func (o GatewaysVpnGatewayTagArrayOutput) Index(i pulumi.IntInput) GatewaysVpnGa
 	}).(GatewaysVpnGatewayTagOutput)
 }
 
+type SslVpnClientCertsSslVpnClientCert struct {
+	// The CA certificate.
+	CaCertificate string `pulumi:"caCertificate"`
+	// The status of the ssl vpn client cert.
+	CertificateStatus string `pulumi:"certificateStatus"`
+	// The client certificate.
+	ClientCertificate string `pulumi:"clientCertificate"`
+	// The key of the ssl vpn client.
+	ClientKey string `pulumi:"clientKey"`
+	// The creation time of the ssl vpn client cert.
+	CreationTime string `pulumi:"creationTime"`
+	// The description of the ssl vpn client cert.
+	Description string `pulumi:"description"`
+	// The expired time of the ssl vpn client cert.
+	ExpiredTime string `pulumi:"expiredTime"`
+	// The id of the ssl vpn client cert.
+	Id string `pulumi:"id"`
+	// The config of the open vpn client.
+	OpenVpnClientConfig string `pulumi:"openVpnClientConfig"`
+	// The id of the ssl vpn client cert.
+	SslVpnClientCertId string `pulumi:"sslVpnClientCertId"`
+	// The name of the ssl vpn client cert.
+	SslVpnClientCertName string `pulumi:"sslVpnClientCertName"`
+	// The id of the ssl vpn server.
+	SslVpnServerId string `pulumi:"sslVpnServerId"`
+	// The status of the ssl vpn client.
+	Status string `pulumi:"status"`
+	// The update time of the ssl vpn client cert.
+	UpdateTime string `pulumi:"updateTime"`
+}
+
+// SslVpnClientCertsSslVpnClientCertInput is an input type that accepts SslVpnClientCertsSslVpnClientCertArgs and SslVpnClientCertsSslVpnClientCertOutput values.
+// You can construct a concrete instance of `SslVpnClientCertsSslVpnClientCertInput` via:
+//
+//	SslVpnClientCertsSslVpnClientCertArgs{...}
+type SslVpnClientCertsSslVpnClientCertInput interface {
+	pulumi.Input
+
+	ToSslVpnClientCertsSslVpnClientCertOutput() SslVpnClientCertsSslVpnClientCertOutput
+	ToSslVpnClientCertsSslVpnClientCertOutputWithContext(context.Context) SslVpnClientCertsSslVpnClientCertOutput
+}
+
+type SslVpnClientCertsSslVpnClientCertArgs struct {
+	// The CA certificate.
+	CaCertificate pulumi.StringInput `pulumi:"caCertificate"`
+	// The status of the ssl vpn client cert.
+	CertificateStatus pulumi.StringInput `pulumi:"certificateStatus"`
+	// The client certificate.
+	ClientCertificate pulumi.StringInput `pulumi:"clientCertificate"`
+	// The key of the ssl vpn client.
+	ClientKey pulumi.StringInput `pulumi:"clientKey"`
+	// The creation time of the ssl vpn client cert.
+	CreationTime pulumi.StringInput `pulumi:"creationTime"`
+	// The description of the ssl vpn client cert.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The expired time of the ssl vpn client cert.
+	ExpiredTime pulumi.StringInput `pulumi:"expiredTime"`
+	// The id of the ssl vpn client cert.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The config of the open vpn client.
+	OpenVpnClientConfig pulumi.StringInput `pulumi:"openVpnClientConfig"`
+	// The id of the ssl vpn client cert.
+	SslVpnClientCertId pulumi.StringInput `pulumi:"sslVpnClientCertId"`
+	// The name of the ssl vpn client cert.
+	SslVpnClientCertName pulumi.StringInput `pulumi:"sslVpnClientCertName"`
+	// The id of the ssl vpn server.
+	SslVpnServerId pulumi.StringInput `pulumi:"sslVpnServerId"`
+	// The status of the ssl vpn client.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The update time of the ssl vpn client cert.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+}
+
+func (SslVpnClientCertsSslVpnClientCertArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SslVpnClientCertsSslVpnClientCert)(nil)).Elem()
+}
+
+func (i SslVpnClientCertsSslVpnClientCertArgs) ToSslVpnClientCertsSslVpnClientCertOutput() SslVpnClientCertsSslVpnClientCertOutput {
+	return i.ToSslVpnClientCertsSslVpnClientCertOutputWithContext(context.Background())
+}
+
+func (i SslVpnClientCertsSslVpnClientCertArgs) ToSslVpnClientCertsSslVpnClientCertOutputWithContext(ctx context.Context) SslVpnClientCertsSslVpnClientCertOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SslVpnClientCertsSslVpnClientCertOutput)
+}
+
+// SslVpnClientCertsSslVpnClientCertArrayInput is an input type that accepts SslVpnClientCertsSslVpnClientCertArray and SslVpnClientCertsSslVpnClientCertArrayOutput values.
+// You can construct a concrete instance of `SslVpnClientCertsSslVpnClientCertArrayInput` via:
+//
+//	SslVpnClientCertsSslVpnClientCertArray{ SslVpnClientCertsSslVpnClientCertArgs{...} }
+type SslVpnClientCertsSslVpnClientCertArrayInput interface {
+	pulumi.Input
+
+	ToSslVpnClientCertsSslVpnClientCertArrayOutput() SslVpnClientCertsSslVpnClientCertArrayOutput
+	ToSslVpnClientCertsSslVpnClientCertArrayOutputWithContext(context.Context) SslVpnClientCertsSslVpnClientCertArrayOutput
+}
+
+type SslVpnClientCertsSslVpnClientCertArray []SslVpnClientCertsSslVpnClientCertInput
+
+func (SslVpnClientCertsSslVpnClientCertArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SslVpnClientCertsSslVpnClientCert)(nil)).Elem()
+}
+
+func (i SslVpnClientCertsSslVpnClientCertArray) ToSslVpnClientCertsSslVpnClientCertArrayOutput() SslVpnClientCertsSslVpnClientCertArrayOutput {
+	return i.ToSslVpnClientCertsSslVpnClientCertArrayOutputWithContext(context.Background())
+}
+
+func (i SslVpnClientCertsSslVpnClientCertArray) ToSslVpnClientCertsSslVpnClientCertArrayOutputWithContext(ctx context.Context) SslVpnClientCertsSslVpnClientCertArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SslVpnClientCertsSslVpnClientCertArrayOutput)
+}
+
+type SslVpnClientCertsSslVpnClientCertOutput struct{ *pulumi.OutputState }
+
+func (SslVpnClientCertsSslVpnClientCertOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SslVpnClientCertsSslVpnClientCert)(nil)).Elem()
+}
+
+func (o SslVpnClientCertsSslVpnClientCertOutput) ToSslVpnClientCertsSslVpnClientCertOutput() SslVpnClientCertsSslVpnClientCertOutput {
+	return o
+}
+
+func (o SslVpnClientCertsSslVpnClientCertOutput) ToSslVpnClientCertsSslVpnClientCertOutputWithContext(ctx context.Context) SslVpnClientCertsSslVpnClientCertOutput {
+	return o
+}
+
+// The CA certificate.
+func (o SslVpnClientCertsSslVpnClientCertOutput) CaCertificate() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnClientCertsSslVpnClientCert) string { return v.CaCertificate }).(pulumi.StringOutput)
+}
+
+// The status of the ssl vpn client cert.
+func (o SslVpnClientCertsSslVpnClientCertOutput) CertificateStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnClientCertsSslVpnClientCert) string { return v.CertificateStatus }).(pulumi.StringOutput)
+}
+
+// The client certificate.
+func (o SslVpnClientCertsSslVpnClientCertOutput) ClientCertificate() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnClientCertsSslVpnClientCert) string { return v.ClientCertificate }).(pulumi.StringOutput)
+}
+
+// The key of the ssl vpn client.
+func (o SslVpnClientCertsSslVpnClientCertOutput) ClientKey() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnClientCertsSslVpnClientCert) string { return v.ClientKey }).(pulumi.StringOutput)
+}
+
+// The creation time of the ssl vpn client cert.
+func (o SslVpnClientCertsSslVpnClientCertOutput) CreationTime() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnClientCertsSslVpnClientCert) string { return v.CreationTime }).(pulumi.StringOutput)
+}
+
+// The description of the ssl vpn client cert.
+func (o SslVpnClientCertsSslVpnClientCertOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnClientCertsSslVpnClientCert) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The expired time of the ssl vpn client cert.
+func (o SslVpnClientCertsSslVpnClientCertOutput) ExpiredTime() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnClientCertsSslVpnClientCert) string { return v.ExpiredTime }).(pulumi.StringOutput)
+}
+
+// The id of the ssl vpn client cert.
+func (o SslVpnClientCertsSslVpnClientCertOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnClientCertsSslVpnClientCert) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The config of the open vpn client.
+func (o SslVpnClientCertsSslVpnClientCertOutput) OpenVpnClientConfig() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnClientCertsSslVpnClientCert) string { return v.OpenVpnClientConfig }).(pulumi.StringOutput)
+}
+
+// The id of the ssl vpn client cert.
+func (o SslVpnClientCertsSslVpnClientCertOutput) SslVpnClientCertId() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnClientCertsSslVpnClientCert) string { return v.SslVpnClientCertId }).(pulumi.StringOutput)
+}
+
+// The name of the ssl vpn client cert.
+func (o SslVpnClientCertsSslVpnClientCertOutput) SslVpnClientCertName() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnClientCertsSslVpnClientCert) string { return v.SslVpnClientCertName }).(pulumi.StringOutput)
+}
+
+// The id of the ssl vpn server.
+func (o SslVpnClientCertsSslVpnClientCertOutput) SslVpnServerId() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnClientCertsSslVpnClientCert) string { return v.SslVpnServerId }).(pulumi.StringOutput)
+}
+
+// The status of the ssl vpn client.
+func (o SslVpnClientCertsSslVpnClientCertOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnClientCertsSslVpnClientCert) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The update time of the ssl vpn client cert.
+func (o SslVpnClientCertsSslVpnClientCertOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnClientCertsSslVpnClientCert) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+type SslVpnClientCertsSslVpnClientCertArrayOutput struct{ *pulumi.OutputState }
+
+func (SslVpnClientCertsSslVpnClientCertArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SslVpnClientCertsSslVpnClientCert)(nil)).Elem()
+}
+
+func (o SslVpnClientCertsSslVpnClientCertArrayOutput) ToSslVpnClientCertsSslVpnClientCertArrayOutput() SslVpnClientCertsSslVpnClientCertArrayOutput {
+	return o
+}
+
+func (o SslVpnClientCertsSslVpnClientCertArrayOutput) ToSslVpnClientCertsSslVpnClientCertArrayOutputWithContext(ctx context.Context) SslVpnClientCertsSslVpnClientCertArrayOutput {
+	return o
+}
+
+func (o SslVpnClientCertsSslVpnClientCertArrayOutput) Index(i pulumi.IntInput) SslVpnClientCertsSslVpnClientCertOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SslVpnClientCertsSslVpnClientCert {
+		return vs[0].([]SslVpnClientCertsSslVpnClientCert)[vs[1].(int)]
+	}).(SslVpnClientCertsSslVpnClientCertOutput)
+}
+
+type SslVpnServersSslVpnServer struct {
+	// The authentication algorithm of the SSL server.
+	// Values:
+	// `SHA1` (default)
+	// `MD5`
+	// `None` (do not use encryption).
+	Auth string `pulumi:"auth"`
+	// The encryption algorithm of the SSL server.
+	// Values:
+	// `AES-128-CBC` (default)
+	// `AES-192-CBC`
+	// `AES-256-CBC`
+	// `None` (do not use encryption).
+	Cipher string `pulumi:"cipher"`
+	// SSL client network segment.
+	ClientIpPool string `pulumi:"clientIpPool"`
+	// Whether to compress the transmitted data. The default value is false.
+	Compress bool `pulumi:"compress"`
+	// The creation time.
+	CreationTime string `pulumi:"creationTime"`
+	// The description of the ssl server.
+	Description string `pulumi:"description"`
+	// The SSL VPN server id.
+	Id string `pulumi:"id"`
+	// The local network segment of the SSL server. The local network segment is the address segment that the client accesses through the SSL VPN connection.
+	LocalSubnets []string `pulumi:"localSubnets"`
+	// The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.
+	Protocol string `pulumi:"protocol"`
+	// The id of the ssl vpn server.
+	SslVpnServerId string `pulumi:"sslVpnServerId"`
+	// The name of the ssl vpn server.
+	SslVpnServerName string `pulumi:"sslVpnServerName"`
+	// The status of the ssl vpn server.
+	Status string `pulumi:"status"`
+	// The update time.
+	UpdateTime string `pulumi:"updateTime"`
+	// The id of the vpn gateway.
+	VpnGatewayId string `pulumi:"vpnGatewayId"`
+}
+
+// SslVpnServersSslVpnServerInput is an input type that accepts SslVpnServersSslVpnServerArgs and SslVpnServersSslVpnServerOutput values.
+// You can construct a concrete instance of `SslVpnServersSslVpnServerInput` via:
+//
+//	SslVpnServersSslVpnServerArgs{...}
+type SslVpnServersSslVpnServerInput interface {
+	pulumi.Input
+
+	ToSslVpnServersSslVpnServerOutput() SslVpnServersSslVpnServerOutput
+	ToSslVpnServersSslVpnServerOutputWithContext(context.Context) SslVpnServersSslVpnServerOutput
+}
+
+type SslVpnServersSslVpnServerArgs struct {
+	// The authentication algorithm of the SSL server.
+	// Values:
+	// `SHA1` (default)
+	// `MD5`
+	// `None` (do not use encryption).
+	Auth pulumi.StringInput `pulumi:"auth"`
+	// The encryption algorithm of the SSL server.
+	// Values:
+	// `AES-128-CBC` (default)
+	// `AES-192-CBC`
+	// `AES-256-CBC`
+	// `None` (do not use encryption).
+	Cipher pulumi.StringInput `pulumi:"cipher"`
+	// SSL client network segment.
+	ClientIpPool pulumi.StringInput `pulumi:"clientIpPool"`
+	// Whether to compress the transmitted data. The default value is false.
+	Compress pulumi.BoolInput `pulumi:"compress"`
+	// The creation time.
+	CreationTime pulumi.StringInput `pulumi:"creationTime"`
+	// The description of the ssl server.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The SSL VPN server id.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The local network segment of the SSL server. The local network segment is the address segment that the client accesses through the SSL VPN connection.
+	LocalSubnets pulumi.StringArrayInput `pulumi:"localSubnets"`
+	// The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.
+	Protocol pulumi.StringInput `pulumi:"protocol"`
+	// The id of the ssl vpn server.
+	SslVpnServerId pulumi.StringInput `pulumi:"sslVpnServerId"`
+	// The name of the ssl vpn server.
+	SslVpnServerName pulumi.StringInput `pulumi:"sslVpnServerName"`
+	// The status of the ssl vpn server.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The update time.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+	// The id of the vpn gateway.
+	VpnGatewayId pulumi.StringInput `pulumi:"vpnGatewayId"`
+}
+
+func (SslVpnServersSslVpnServerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SslVpnServersSslVpnServer)(nil)).Elem()
+}
+
+func (i SslVpnServersSslVpnServerArgs) ToSslVpnServersSslVpnServerOutput() SslVpnServersSslVpnServerOutput {
+	return i.ToSslVpnServersSslVpnServerOutputWithContext(context.Background())
+}
+
+func (i SslVpnServersSslVpnServerArgs) ToSslVpnServersSslVpnServerOutputWithContext(ctx context.Context) SslVpnServersSslVpnServerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SslVpnServersSslVpnServerOutput)
+}
+
+// SslVpnServersSslVpnServerArrayInput is an input type that accepts SslVpnServersSslVpnServerArray and SslVpnServersSslVpnServerArrayOutput values.
+// You can construct a concrete instance of `SslVpnServersSslVpnServerArrayInput` via:
+//
+//	SslVpnServersSslVpnServerArray{ SslVpnServersSslVpnServerArgs{...} }
+type SslVpnServersSslVpnServerArrayInput interface {
+	pulumi.Input
+
+	ToSslVpnServersSslVpnServerArrayOutput() SslVpnServersSslVpnServerArrayOutput
+	ToSslVpnServersSslVpnServerArrayOutputWithContext(context.Context) SslVpnServersSslVpnServerArrayOutput
+}
+
+type SslVpnServersSslVpnServerArray []SslVpnServersSslVpnServerInput
+
+func (SslVpnServersSslVpnServerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SslVpnServersSslVpnServer)(nil)).Elem()
+}
+
+func (i SslVpnServersSslVpnServerArray) ToSslVpnServersSslVpnServerArrayOutput() SslVpnServersSslVpnServerArrayOutput {
+	return i.ToSslVpnServersSslVpnServerArrayOutputWithContext(context.Background())
+}
+
+func (i SslVpnServersSslVpnServerArray) ToSslVpnServersSslVpnServerArrayOutputWithContext(ctx context.Context) SslVpnServersSslVpnServerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SslVpnServersSslVpnServerArrayOutput)
+}
+
+type SslVpnServersSslVpnServerOutput struct{ *pulumi.OutputState }
+
+func (SslVpnServersSslVpnServerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SslVpnServersSslVpnServer)(nil)).Elem()
+}
+
+func (o SslVpnServersSslVpnServerOutput) ToSslVpnServersSslVpnServerOutput() SslVpnServersSslVpnServerOutput {
+	return o
+}
+
+func (o SslVpnServersSslVpnServerOutput) ToSslVpnServersSslVpnServerOutputWithContext(ctx context.Context) SslVpnServersSslVpnServerOutput {
+	return o
+}
+
+// The authentication algorithm of the SSL server.
+// Values:
+// `SHA1` (default)
+// `MD5`
+// `None` (do not use encryption).
+func (o SslVpnServersSslVpnServerOutput) Auth() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnServersSslVpnServer) string { return v.Auth }).(pulumi.StringOutput)
+}
+
+// The encryption algorithm of the SSL server.
+// Values:
+// `AES-128-CBC` (default)
+// `AES-192-CBC`
+// `AES-256-CBC`
+// `None` (do not use encryption).
+func (o SslVpnServersSslVpnServerOutput) Cipher() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnServersSslVpnServer) string { return v.Cipher }).(pulumi.StringOutput)
+}
+
+// SSL client network segment.
+func (o SslVpnServersSslVpnServerOutput) ClientIpPool() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnServersSslVpnServer) string { return v.ClientIpPool }).(pulumi.StringOutput)
+}
+
+// Whether to compress the transmitted data. The default value is false.
+func (o SslVpnServersSslVpnServerOutput) Compress() pulumi.BoolOutput {
+	return o.ApplyT(func(v SslVpnServersSslVpnServer) bool { return v.Compress }).(pulumi.BoolOutput)
+}
+
+// The creation time.
+func (o SslVpnServersSslVpnServerOutput) CreationTime() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnServersSslVpnServer) string { return v.CreationTime }).(pulumi.StringOutput)
+}
+
+// The description of the ssl server.
+func (o SslVpnServersSslVpnServerOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnServersSslVpnServer) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The SSL VPN server id.
+func (o SslVpnServersSslVpnServerOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnServersSslVpnServer) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The local network segment of the SSL server. The local network segment is the address segment that the client accesses through the SSL VPN connection.
+func (o SslVpnServersSslVpnServerOutput) LocalSubnets() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v SslVpnServersSslVpnServer) []string { return v.LocalSubnets }).(pulumi.StringArrayOutput)
+}
+
+// The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.
+func (o SslVpnServersSslVpnServerOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnServersSslVpnServer) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
+// The id of the ssl vpn server.
+func (o SslVpnServersSslVpnServerOutput) SslVpnServerId() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnServersSslVpnServer) string { return v.SslVpnServerId }).(pulumi.StringOutput)
+}
+
+// The name of the ssl vpn server.
+func (o SslVpnServersSslVpnServerOutput) SslVpnServerName() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnServersSslVpnServer) string { return v.SslVpnServerName }).(pulumi.StringOutput)
+}
+
+// The status of the ssl vpn server.
+func (o SslVpnServersSslVpnServerOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnServersSslVpnServer) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The update time.
+func (o SslVpnServersSslVpnServerOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnServersSslVpnServer) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+// The id of the vpn gateway.
+func (o SslVpnServersSslVpnServerOutput) VpnGatewayId() pulumi.StringOutput {
+	return o.ApplyT(func(v SslVpnServersSslVpnServer) string { return v.VpnGatewayId }).(pulumi.StringOutput)
+}
+
+type SslVpnServersSslVpnServerArrayOutput struct{ *pulumi.OutputState }
+
+func (SslVpnServersSslVpnServerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SslVpnServersSslVpnServer)(nil)).Elem()
+}
+
+func (o SslVpnServersSslVpnServerArrayOutput) ToSslVpnServersSslVpnServerArrayOutput() SslVpnServersSslVpnServerArrayOutput {
+	return o
+}
+
+func (o SslVpnServersSslVpnServerArrayOutput) ToSslVpnServersSslVpnServerArrayOutputWithContext(ctx context.Context) SslVpnServersSslVpnServerArrayOutput {
+	return o
+}
+
+func (o SslVpnServersSslVpnServerArrayOutput) Index(i pulumi.IntInput) SslVpnServersSslVpnServerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SslVpnServersSslVpnServer {
+		return vs[0].([]SslVpnServersSslVpnServer)[vs[1].(int)]
+	}).(SslVpnServersSslVpnServerOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ConnectionsVpnConnectionInput)(nil)).Elem(), ConnectionsVpnConnectionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ConnectionsVpnConnectionArrayInput)(nil)).Elem(), ConnectionsVpnConnectionArray{})
@@ -1382,6 +1873,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewaysVpnGatewayArrayInput)(nil)).Elem(), GatewaysVpnGatewayArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewaysVpnGatewayTagInput)(nil)).Elem(), GatewaysVpnGatewayTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewaysVpnGatewayTagArrayInput)(nil)).Elem(), GatewaysVpnGatewayTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SslVpnClientCertsSslVpnClientCertInput)(nil)).Elem(), SslVpnClientCertsSslVpnClientCertArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SslVpnClientCertsSslVpnClientCertArrayInput)(nil)).Elem(), SslVpnClientCertsSslVpnClientCertArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SslVpnServersSslVpnServerInput)(nil)).Elem(), SslVpnServersSslVpnServerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SslVpnServersSslVpnServerArrayInput)(nil)).Elem(), SslVpnServersSslVpnServerArray{})
 	pulumi.RegisterOutputType(ConnectionsVpnConnectionOutput{})
 	pulumi.RegisterOutputType(ConnectionsVpnConnectionArrayOutput{})
 	pulumi.RegisterOutputType(CustomerGatewaysCustomerGatewayOutput{})
@@ -1396,4 +1891,8 @@ func init() {
 	pulumi.RegisterOutputType(GatewaysVpnGatewayArrayOutput{})
 	pulumi.RegisterOutputType(GatewaysVpnGatewayTagOutput{})
 	pulumi.RegisterOutputType(GatewaysVpnGatewayTagArrayOutput{})
+	pulumi.RegisterOutputType(SslVpnClientCertsSslVpnClientCertOutput{})
+	pulumi.RegisterOutputType(SslVpnClientCertsSslVpnClientCertArrayOutput{})
+	pulumi.RegisterOutputType(SslVpnServersSslVpnServerOutput{})
+	pulumi.RegisterOutputType(SslVpnServersSslVpnServerArrayOutput{})
 }

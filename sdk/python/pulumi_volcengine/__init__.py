@@ -35,6 +35,8 @@ if typing.TYPE_CHECKING:
     iam = __iam
     import pulumi_volcengine.mongodb as __mongodb
     mongodb = __mongodb
+    import pulumi_volcengine.nas as __nas
+    nas = __nas
     import pulumi_volcengine.nat as __nat
     nat = __nat
     import pulumi_volcengine.privatelink as __privatelink
@@ -51,6 +53,8 @@ if typing.TYPE_CHECKING:
     tls = __tls
     import pulumi_volcengine.tos as __tos
     tos = __tos
+    import pulumi_volcengine.transit_router as __transit_router
+    transit_router = __transit_router
     import pulumi_volcengine.veenedge as __veenedge
     veenedge = __veenedge
     import pulumi_volcengine.vke as __vke
@@ -73,6 +77,7 @@ else:
     escloud = _utilities.lazy_import('pulumi_volcengine.escloud')
     iam = _utilities.lazy_import('pulumi_volcengine.iam')
     mongodb = _utilities.lazy_import('pulumi_volcengine.mongodb')
+    nas = _utilities.lazy_import('pulumi_volcengine.nas')
     nat = _utilities.lazy_import('pulumi_volcengine.nat')
     privatelink = _utilities.lazy_import('pulumi_volcengine.privatelink')
     rds = _utilities.lazy_import('pulumi_volcengine.rds')
@@ -81,6 +86,7 @@ else:
     redis = _utilities.lazy_import('pulumi_volcengine.redis')
     tls = _utilities.lazy_import('pulumi_volcengine.tls')
     tos = _utilities.lazy_import('pulumi_volcengine.tos')
+    transit_router = _utilities.lazy_import('pulumi_volcengine.transit_router')
     veenedge = _utilities.lazy_import('pulumi_volcengine.veenedge')
     vke = _utilities.lazy_import('pulumi_volcengine.vke')
     vpc = _utilities.lazy_import('pulumi_volcengine.vpc')
@@ -539,6 +545,30 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "iam/userGroup",
+  "fqn": "pulumi_volcengine.iam",
+  "classes": {
+   "volcengine:iam/userGroup:UserGroup": "UserGroup"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "iam/userGroupAttachment",
+  "fqn": "pulumi_volcengine.iam",
+  "classes": {
+   "volcengine:iam/userGroupAttachment:UserGroupAttachment": "UserGroupAttachment"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "iam/userGroupPolicyAttachment",
+  "fqn": "pulumi_volcengine.iam",
+  "classes": {
+   "volcengine:iam/userGroupPolicyAttachment:UserGroupPolicyAttachment": "UserGroupPolicyAttachment"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "iam/userPolicyAttachment",
   "fqn": "pulumi_volcengine.iam",
   "classes": {
@@ -591,6 +621,38 @@ _utilities.register(
   "fqn": "pulumi_volcengine.mongodb",
   "classes": {
    "volcengine:mongodb/sslState:SslState": "SslState"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "nas/fileSystem",
+  "fqn": "pulumi_volcengine.nas",
+  "classes": {
+   "volcengine:nas/fileSystem:FileSystem": "FileSystem"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "nas/mountPoint",
+  "fqn": "pulumi_volcengine.nas",
+  "classes": {
+   "volcengine:nas/mountPoint:MountPoint": "MountPoint"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "nas/permissionGroup",
+  "fqn": "pulumi_volcengine.nas",
+  "classes": {
+   "volcengine:nas/permissionGroup:PermissionGroup": "PermissionGroup"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "nas/snapshot",
+  "fqn": "pulumi_volcengine.nas",
+  "classes": {
+   "volcengine:nas/snapshot:Snapshot": "Snapshot"
   }
  },
  {
@@ -955,6 +1017,70 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "transit_router/bandwidthPackage",
+  "fqn": "pulumi_volcengine.transit_router",
+  "classes": {
+   "volcengine:transit_router/bandwidthPackage:BandwidthPackage": "BandwidthPackage"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "transit_router/routeEntry",
+  "fqn": "pulumi_volcengine.transit_router",
+  "classes": {
+   "volcengine:transit_router/routeEntry:RouteEntry": "RouteEntry"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "transit_router/routeTable",
+  "fqn": "pulumi_volcengine.transit_router",
+  "classes": {
+   "volcengine:transit_router/routeTable:RouteTable": "RouteTable"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "transit_router/routeTableAssociation",
+  "fqn": "pulumi_volcengine.transit_router",
+  "classes": {
+   "volcengine:transit_router/routeTableAssociation:RouteTableAssociation": "RouteTableAssociation"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "transit_router/routeTablePropagation",
+  "fqn": "pulumi_volcengine.transit_router",
+  "classes": {
+   "volcengine:transit_router/routeTablePropagation:RouteTablePropagation": "RouteTablePropagation"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "transit_router/transitRouter",
+  "fqn": "pulumi_volcengine.transit_router",
+  "classes": {
+   "volcengine:transit_router/transitRouter:TransitRouter": "TransitRouter"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "transit_router/vpcAttachment",
+  "fqn": "pulumi_volcengine.transit_router",
+  "classes": {
+   "volcengine:transit_router/vpcAttachment:VpcAttachment": "VpcAttachment"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "transit_router/vpnAttachment",
+  "fqn": "pulumi_volcengine.transit_router",
+  "classes": {
+   "volcengine:transit_router/vpnAttachment:VpnAttachment": "VpnAttachment"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "veenedge/cloudServer",
   "fqn": "pulumi_volcengine.veenedge",
   "classes": {
@@ -1035,6 +1161,22 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "vpc/haVip",
+  "fqn": "pulumi_volcengine.vpc",
+  "classes": {
+   "volcengine:vpc/haVip:HaVip": "HaVip"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vpc/haVipAssociate",
+  "fqn": "pulumi_volcengine.vpc",
+  "classes": {
+   "volcengine:vpc/haVipAssociate:HaVipAssociate": "HaVipAssociate"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "vpc/ipv6AddressBandwidth",
   "fqn": "pulumi_volcengine.vpc",
   "classes": {
@@ -1079,6 +1221,14 @@ _utilities.register(
   "fqn": "pulumi_volcengine.vpc",
   "classes": {
    "volcengine:vpc/networkInterfaceAttach:NetworkInterfaceAttach": "NetworkInterfaceAttach"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vpc/prefixList",
+  "fqn": "pulumi_volcengine.vpc",
+  "classes": {
+   "volcengine:vpc/prefixList:PrefixList": "PrefixList"
   }
  },
  {
@@ -1167,6 +1317,22 @@ _utilities.register(
   "fqn": "pulumi_volcengine.vpn",
   "classes": {
    "volcengine:vpn/gatewayRoute:GatewayRoute": "GatewayRoute"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vpn/sslVpnClientCert",
+  "fqn": "pulumi_volcengine.vpn",
+  "classes": {
+   "volcengine:vpn/sslVpnClientCert:SslVpnClientCert": "SslVpnClientCert"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vpn/sslVpnServer",
+  "fqn": "pulumi_volcengine.vpn",
+  "classes": {
+   "volcengine:vpn/sslVpnServer:SslVpnServer": "SslVpnServer"
   }
  }
 ]

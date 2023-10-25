@@ -149,7 +149,7 @@ type Volume struct {
 	// The kind of Volume, the value is `data`.
 	Kind pulumi.StringOutput `pulumi:"kind"`
 	// The ProjectName of the Volume.
-	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The size of Volume.
 	Size pulumi.IntOutput `pulumi:"size"`
 	// Status of Volume.
@@ -447,8 +447,8 @@ func (o VolumeOutput) Kind() pulumi.StringOutput {
 }
 
 // The ProjectName of the Volume.
-func (o VolumeOutput) ProjectName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
+func (o VolumeOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 // The size of Volume.

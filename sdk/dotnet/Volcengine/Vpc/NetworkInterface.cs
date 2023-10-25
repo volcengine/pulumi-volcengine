@@ -61,6 +61,20 @@ namespace Volcengine.Pulumi.Volcengine.Vpc
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 0 to 10.
+        /// You cannot specify both the ipv6_addresses and ipv6_address_count parameters.
+        /// </summary>
+        [Output("ipv6AddressCount")]
+        public Output<int> Ipv6AddressCount { get; private set; } = null!;
+
+        /// <summary>
+        /// One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+        /// You cannot specify both the ipv6_addresses and ipv6_address_count parameters.
+        /// </summary>
+        [Output("ipv6Addresses")]
+        public Output<ImmutableArray<string>> Ipv6Addresses { get; private set; } = null!;
+
+        /// <summary>
         /// The name of the ENI.
         /// </summary>
         [Output("networkInterfaceName")]
@@ -88,7 +102,7 @@ namespace Volcengine.Pulumi.Volcengine.Vpc
         /// The ProjectName of the ENI.
         /// </summary>
         [Output("projectName")]
-        public Output<string?> ProjectName { get; private set; } = null!;
+        public Output<string> ProjectName { get; private set; } = null!;
 
         /// <summary>
         /// The count of secondary private ip address. This field conflicts with `private_ip_address`.
@@ -172,6 +186,26 @@ namespace Volcengine.Pulumi.Volcengine.Vpc
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 0 to 10.
+        /// You cannot specify both the ipv6_addresses and ipv6_address_count parameters.
+        /// </summary>
+        [Input("ipv6AddressCount")]
+        public Input<int>? Ipv6AddressCount { get; set; }
+
+        [Input("ipv6Addresses")]
+        private InputList<string>? _ipv6Addresses;
+
+        /// <summary>
+        /// One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+        /// You cannot specify both the ipv6_addresses and ipv6_address_count parameters.
+        /// </summary>
+        public InputList<string> Ipv6Addresses
+        {
+            get => _ipv6Addresses ?? (_ipv6Addresses = new InputList<string>());
+            set => _ipv6Addresses = value;
+        }
 
         /// <summary>
         /// The name of the ENI.
@@ -258,6 +292,26 @@ namespace Volcengine.Pulumi.Volcengine.Vpc
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 0 to 10.
+        /// You cannot specify both the ipv6_addresses and ipv6_address_count parameters.
+        /// </summary>
+        [Input("ipv6AddressCount")]
+        public Input<int>? Ipv6AddressCount { get; set; }
+
+        [Input("ipv6Addresses")]
+        private InputList<string>? _ipv6Addresses;
+
+        /// <summary>
+        /// One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+        /// You cannot specify both the ipv6_addresses and ipv6_address_count parameters.
+        /// </summary>
+        public InputList<string> Ipv6Addresses
+        {
+            get => _ipv6Addresses ?? (_ipv6Addresses = new InputList<string>());
+            set => _ipv6Addresses = value;
+        }
 
         /// <summary>
         /// The name of the ENI.

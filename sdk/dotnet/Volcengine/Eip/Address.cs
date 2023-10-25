@@ -108,7 +108,7 @@ namespace Volcengine.Pulumi.Volcengine.Eip
         /// The ProjectName of the EIP.
         /// </summary>
         [Output("projectName")]
-        public Output<string?> ProjectName { get; private set; } = null!;
+        public Output<string> ProjectName { get; private set; } = null!;
 
         /// <summary>
         /// The status of the EIP.

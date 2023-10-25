@@ -13,6 +13,247 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type HaVipsHaVip struct {
+	// The account id of the Ha Vip.
+	AccountId string `pulumi:"accountId"`
+	// The associated eip address of the Ha Vip.
+	AssociatedEipAddress string `pulumi:"associatedEipAddress"`
+	// The associated eip id of the Ha Vip.
+	AssociatedEipId string `pulumi:"associatedEipId"`
+	// The associated instance ids of the Ha Vip.
+	AssociatedInstanceIds []string `pulumi:"associatedInstanceIds"`
+	// The associated instance type of the Ha Vip.
+	AssociatedInstanceType string `pulumi:"associatedInstanceType"`
+	// The create time of the Ha Vip.
+	CreatedAt string `pulumi:"createdAt"`
+	// The description of the Ha Vip.
+	Description string `pulumi:"description"`
+	// The id of the Ha Vip.
+	HaVipId string `pulumi:"haVipId"`
+	// The name of Ha Vip.
+	HaVipName string `pulumi:"haVipName"`
+	// The id of the Ha Vip.
+	Id string `pulumi:"id"`
+	// The ip address of Ha Vip.
+	IpAddress string `pulumi:"ipAddress"`
+	// The master instance id of the Ha Vip.
+	MasterInstanceId string `pulumi:"masterInstanceId"`
+	// The project name of Ha Vip.
+	ProjectName string `pulumi:"projectName"`
+	// The status of Ha Vip.
+	Status string `pulumi:"status"`
+	// The id of subnet.
+	SubnetId string `pulumi:"subnetId"`
+	// The update time of the Ha Vip.
+	UpdatedAt string `pulumi:"updatedAt"`
+	// The id of vpc.
+	VpcId string `pulumi:"vpcId"`
+}
+
+// HaVipsHaVipInput is an input type that accepts HaVipsHaVipArgs and HaVipsHaVipOutput values.
+// You can construct a concrete instance of `HaVipsHaVipInput` via:
+//
+//	HaVipsHaVipArgs{...}
+type HaVipsHaVipInput interface {
+	pulumi.Input
+
+	ToHaVipsHaVipOutput() HaVipsHaVipOutput
+	ToHaVipsHaVipOutputWithContext(context.Context) HaVipsHaVipOutput
+}
+
+type HaVipsHaVipArgs struct {
+	// The account id of the Ha Vip.
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// The associated eip address of the Ha Vip.
+	AssociatedEipAddress pulumi.StringInput `pulumi:"associatedEipAddress"`
+	// The associated eip id of the Ha Vip.
+	AssociatedEipId pulumi.StringInput `pulumi:"associatedEipId"`
+	// The associated instance ids of the Ha Vip.
+	AssociatedInstanceIds pulumi.StringArrayInput `pulumi:"associatedInstanceIds"`
+	// The associated instance type of the Ha Vip.
+	AssociatedInstanceType pulumi.StringInput `pulumi:"associatedInstanceType"`
+	// The create time of the Ha Vip.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The description of the Ha Vip.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The id of the Ha Vip.
+	HaVipId pulumi.StringInput `pulumi:"haVipId"`
+	// The name of Ha Vip.
+	HaVipName pulumi.StringInput `pulumi:"haVipName"`
+	// The id of the Ha Vip.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The ip address of Ha Vip.
+	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
+	// The master instance id of the Ha Vip.
+	MasterInstanceId pulumi.StringInput `pulumi:"masterInstanceId"`
+	// The project name of Ha Vip.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The status of Ha Vip.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The id of subnet.
+	SubnetId pulumi.StringInput `pulumi:"subnetId"`
+	// The update time of the Ha Vip.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// The id of vpc.
+	VpcId pulumi.StringInput `pulumi:"vpcId"`
+}
+
+func (HaVipsHaVipArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*HaVipsHaVip)(nil)).Elem()
+}
+
+func (i HaVipsHaVipArgs) ToHaVipsHaVipOutput() HaVipsHaVipOutput {
+	return i.ToHaVipsHaVipOutputWithContext(context.Background())
+}
+
+func (i HaVipsHaVipArgs) ToHaVipsHaVipOutputWithContext(ctx context.Context) HaVipsHaVipOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HaVipsHaVipOutput)
+}
+
+// HaVipsHaVipArrayInput is an input type that accepts HaVipsHaVipArray and HaVipsHaVipArrayOutput values.
+// You can construct a concrete instance of `HaVipsHaVipArrayInput` via:
+//
+//	HaVipsHaVipArray{ HaVipsHaVipArgs{...} }
+type HaVipsHaVipArrayInput interface {
+	pulumi.Input
+
+	ToHaVipsHaVipArrayOutput() HaVipsHaVipArrayOutput
+	ToHaVipsHaVipArrayOutputWithContext(context.Context) HaVipsHaVipArrayOutput
+}
+
+type HaVipsHaVipArray []HaVipsHaVipInput
+
+func (HaVipsHaVipArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]HaVipsHaVip)(nil)).Elem()
+}
+
+func (i HaVipsHaVipArray) ToHaVipsHaVipArrayOutput() HaVipsHaVipArrayOutput {
+	return i.ToHaVipsHaVipArrayOutputWithContext(context.Background())
+}
+
+func (i HaVipsHaVipArray) ToHaVipsHaVipArrayOutputWithContext(ctx context.Context) HaVipsHaVipArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HaVipsHaVipArrayOutput)
+}
+
+type HaVipsHaVipOutput struct{ *pulumi.OutputState }
+
+func (HaVipsHaVipOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*HaVipsHaVip)(nil)).Elem()
+}
+
+func (o HaVipsHaVipOutput) ToHaVipsHaVipOutput() HaVipsHaVipOutput {
+	return o
+}
+
+func (o HaVipsHaVipOutput) ToHaVipsHaVipOutputWithContext(ctx context.Context) HaVipsHaVipOutput {
+	return o
+}
+
+// The account id of the Ha Vip.
+func (o HaVipsHaVipOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v HaVipsHaVip) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// The associated eip address of the Ha Vip.
+func (o HaVipsHaVipOutput) AssociatedEipAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v HaVipsHaVip) string { return v.AssociatedEipAddress }).(pulumi.StringOutput)
+}
+
+// The associated eip id of the Ha Vip.
+func (o HaVipsHaVipOutput) AssociatedEipId() pulumi.StringOutput {
+	return o.ApplyT(func(v HaVipsHaVip) string { return v.AssociatedEipId }).(pulumi.StringOutput)
+}
+
+// The associated instance ids of the Ha Vip.
+func (o HaVipsHaVipOutput) AssociatedInstanceIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v HaVipsHaVip) []string { return v.AssociatedInstanceIds }).(pulumi.StringArrayOutput)
+}
+
+// The associated instance type of the Ha Vip.
+func (o HaVipsHaVipOutput) AssociatedInstanceType() pulumi.StringOutput {
+	return o.ApplyT(func(v HaVipsHaVip) string { return v.AssociatedInstanceType }).(pulumi.StringOutput)
+}
+
+// The create time of the Ha Vip.
+func (o HaVipsHaVipOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v HaVipsHaVip) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The description of the Ha Vip.
+func (o HaVipsHaVipOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v HaVipsHaVip) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The id of the Ha Vip.
+func (o HaVipsHaVipOutput) HaVipId() pulumi.StringOutput {
+	return o.ApplyT(func(v HaVipsHaVip) string { return v.HaVipId }).(pulumi.StringOutput)
+}
+
+// The name of Ha Vip.
+func (o HaVipsHaVipOutput) HaVipName() pulumi.StringOutput {
+	return o.ApplyT(func(v HaVipsHaVip) string { return v.HaVipName }).(pulumi.StringOutput)
+}
+
+// The id of the Ha Vip.
+func (o HaVipsHaVipOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v HaVipsHaVip) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The ip address of Ha Vip.
+func (o HaVipsHaVipOutput) IpAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v HaVipsHaVip) string { return v.IpAddress }).(pulumi.StringOutput)
+}
+
+// The master instance id of the Ha Vip.
+func (o HaVipsHaVipOutput) MasterInstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v HaVipsHaVip) string { return v.MasterInstanceId }).(pulumi.StringOutput)
+}
+
+// The project name of Ha Vip.
+func (o HaVipsHaVipOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v HaVipsHaVip) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The status of Ha Vip.
+func (o HaVipsHaVipOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v HaVipsHaVip) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The id of subnet.
+func (o HaVipsHaVipOutput) SubnetId() pulumi.StringOutput {
+	return o.ApplyT(func(v HaVipsHaVip) string { return v.SubnetId }).(pulumi.StringOutput)
+}
+
+// The update time of the Ha Vip.
+func (o HaVipsHaVipOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v HaVipsHaVip) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// The id of vpc.
+func (o HaVipsHaVipOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v HaVipsHaVip) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+type HaVipsHaVipArrayOutput struct{ *pulumi.OutputState }
+
+func (HaVipsHaVipArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]HaVipsHaVip)(nil)).Elem()
+}
+
+func (o HaVipsHaVipArrayOutput) ToHaVipsHaVipArrayOutput() HaVipsHaVipArrayOutput {
+	return o
+}
+
+func (o HaVipsHaVipArrayOutput) ToHaVipsHaVipArrayOutputWithContext(ctx context.Context) HaVipsHaVipArrayOutput {
+	return o
+}
+
+func (o HaVipsHaVipArrayOutput) Index(i pulumi.IntInput) HaVipsHaVipOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) HaVipsHaVip {
+		return vs[0].([]HaVipsHaVip)[vs[1].(int)]
+	}).(HaVipsHaVipOutput)
+}
+
 type Ipv6AddressBandwidthsIpv6AddressBandwidth struct {
 	// The ID of the Ipv6AddressBandwidth.
 	AllocationId string `pulumi:"allocationId"`
@@ -1553,6 +1794,8 @@ type NetworkInterfacesNetworkInterface struct {
 	DeviceId string `pulumi:"deviceId"`
 	// The id of the ENI.
 	Id string `pulumi:"id"`
+	// The IPv6 address list of the ENI.
+	Ipv6Sets []string `pulumi:"ipv6Sets"`
 	// The mac address of the ENI.
 	MacAddress string `pulumi:"macAddress"`
 	// The id of the ENI.
@@ -1615,6 +1858,8 @@ type NetworkInterfacesNetworkInterfaceArgs struct {
 	DeviceId pulumi.StringInput `pulumi:"deviceId"`
 	// The id of the ENI.
 	Id pulumi.StringInput `pulumi:"id"`
+	// The IPv6 address list of the ENI.
+	Ipv6Sets pulumi.StringArrayInput `pulumi:"ipv6Sets"`
 	// The mac address of the ENI.
 	MacAddress pulumi.StringInput `pulumi:"macAddress"`
 	// The id of the ENI.
@@ -1735,6 +1980,11 @@ func (o NetworkInterfacesNetworkInterfaceOutput) DeviceId() pulumi.StringOutput 
 // The id of the ENI.
 func (o NetworkInterfacesNetworkInterfaceOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v NetworkInterfacesNetworkInterface) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The IPv6 address list of the ENI.
+func (o NetworkInterfacesNetworkInterfaceOutput) Ipv6Sets() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v NetworkInterfacesNetworkInterface) []string { return v.Ipv6Sets }).(pulumi.StringArrayOutput)
 }
 
 // The mac address of the ENI.
@@ -2277,6 +2527,858 @@ func (o NetworkInterfacesTagArrayOutput) Index(i pulumi.IntInput) NetworkInterfa
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NetworkInterfacesTag {
 		return vs[0].([]NetworkInterfacesTag)[vs[1].(int)]
 	}).(NetworkInterfacesTagOutput)
+}
+
+type PrefixListPrefixListAssociation struct {
+	// Associated resource ID.
+	ResourceId *string `pulumi:"resourceId"`
+	// Related resource types.
+	ResourceType *string `pulumi:"resourceType"`
+}
+
+// PrefixListPrefixListAssociationInput is an input type that accepts PrefixListPrefixListAssociationArgs and PrefixListPrefixListAssociationOutput values.
+// You can construct a concrete instance of `PrefixListPrefixListAssociationInput` via:
+//
+//	PrefixListPrefixListAssociationArgs{...}
+type PrefixListPrefixListAssociationInput interface {
+	pulumi.Input
+
+	ToPrefixListPrefixListAssociationOutput() PrefixListPrefixListAssociationOutput
+	ToPrefixListPrefixListAssociationOutputWithContext(context.Context) PrefixListPrefixListAssociationOutput
+}
+
+type PrefixListPrefixListAssociationArgs struct {
+	// Associated resource ID.
+	ResourceId pulumi.StringPtrInput `pulumi:"resourceId"`
+	// Related resource types.
+	ResourceType pulumi.StringPtrInput `pulumi:"resourceType"`
+}
+
+func (PrefixListPrefixListAssociationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrefixListPrefixListAssociation)(nil)).Elem()
+}
+
+func (i PrefixListPrefixListAssociationArgs) ToPrefixListPrefixListAssociationOutput() PrefixListPrefixListAssociationOutput {
+	return i.ToPrefixListPrefixListAssociationOutputWithContext(context.Background())
+}
+
+func (i PrefixListPrefixListAssociationArgs) ToPrefixListPrefixListAssociationOutputWithContext(ctx context.Context) PrefixListPrefixListAssociationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrefixListPrefixListAssociationOutput)
+}
+
+// PrefixListPrefixListAssociationArrayInput is an input type that accepts PrefixListPrefixListAssociationArray and PrefixListPrefixListAssociationArrayOutput values.
+// You can construct a concrete instance of `PrefixListPrefixListAssociationArrayInput` via:
+//
+//	PrefixListPrefixListAssociationArray{ PrefixListPrefixListAssociationArgs{...} }
+type PrefixListPrefixListAssociationArrayInput interface {
+	pulumi.Input
+
+	ToPrefixListPrefixListAssociationArrayOutput() PrefixListPrefixListAssociationArrayOutput
+	ToPrefixListPrefixListAssociationArrayOutputWithContext(context.Context) PrefixListPrefixListAssociationArrayOutput
+}
+
+type PrefixListPrefixListAssociationArray []PrefixListPrefixListAssociationInput
+
+func (PrefixListPrefixListAssociationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PrefixListPrefixListAssociation)(nil)).Elem()
+}
+
+func (i PrefixListPrefixListAssociationArray) ToPrefixListPrefixListAssociationArrayOutput() PrefixListPrefixListAssociationArrayOutput {
+	return i.ToPrefixListPrefixListAssociationArrayOutputWithContext(context.Background())
+}
+
+func (i PrefixListPrefixListAssociationArray) ToPrefixListPrefixListAssociationArrayOutputWithContext(ctx context.Context) PrefixListPrefixListAssociationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrefixListPrefixListAssociationArrayOutput)
+}
+
+type PrefixListPrefixListAssociationOutput struct{ *pulumi.OutputState }
+
+func (PrefixListPrefixListAssociationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrefixListPrefixListAssociation)(nil)).Elem()
+}
+
+func (o PrefixListPrefixListAssociationOutput) ToPrefixListPrefixListAssociationOutput() PrefixListPrefixListAssociationOutput {
+	return o
+}
+
+func (o PrefixListPrefixListAssociationOutput) ToPrefixListPrefixListAssociationOutputWithContext(ctx context.Context) PrefixListPrefixListAssociationOutput {
+	return o
+}
+
+// Associated resource ID.
+func (o PrefixListPrefixListAssociationOutput) ResourceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PrefixListPrefixListAssociation) *string { return v.ResourceId }).(pulumi.StringPtrOutput)
+}
+
+// Related resource types.
+func (o PrefixListPrefixListAssociationOutput) ResourceType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PrefixListPrefixListAssociation) *string { return v.ResourceType }).(pulumi.StringPtrOutput)
+}
+
+type PrefixListPrefixListAssociationArrayOutput struct{ *pulumi.OutputState }
+
+func (PrefixListPrefixListAssociationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PrefixListPrefixListAssociation)(nil)).Elem()
+}
+
+func (o PrefixListPrefixListAssociationArrayOutput) ToPrefixListPrefixListAssociationArrayOutput() PrefixListPrefixListAssociationArrayOutput {
+	return o
+}
+
+func (o PrefixListPrefixListAssociationArrayOutput) ToPrefixListPrefixListAssociationArrayOutputWithContext(ctx context.Context) PrefixListPrefixListAssociationArrayOutput {
+	return o
+}
+
+func (o PrefixListPrefixListAssociationArrayOutput) Index(i pulumi.IntInput) PrefixListPrefixListAssociationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PrefixListPrefixListAssociation {
+		return vs[0].([]PrefixListPrefixListAssociation)[vs[1].(int)]
+	}).(PrefixListPrefixListAssociationOutput)
+}
+
+type PrefixListPrefixListEntry struct {
+	// CIDR of prefix list entries.
+	Cidr *string `pulumi:"cidr"`
+	// Description of prefix list entries.
+	Description *string `pulumi:"description"`
+}
+
+// PrefixListPrefixListEntryInput is an input type that accepts PrefixListPrefixListEntryArgs and PrefixListPrefixListEntryOutput values.
+// You can construct a concrete instance of `PrefixListPrefixListEntryInput` via:
+//
+//	PrefixListPrefixListEntryArgs{...}
+type PrefixListPrefixListEntryInput interface {
+	pulumi.Input
+
+	ToPrefixListPrefixListEntryOutput() PrefixListPrefixListEntryOutput
+	ToPrefixListPrefixListEntryOutputWithContext(context.Context) PrefixListPrefixListEntryOutput
+}
+
+type PrefixListPrefixListEntryArgs struct {
+	// CIDR of prefix list entries.
+	Cidr pulumi.StringPtrInput `pulumi:"cidr"`
+	// Description of prefix list entries.
+	Description pulumi.StringPtrInput `pulumi:"description"`
+}
+
+func (PrefixListPrefixListEntryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrefixListPrefixListEntry)(nil)).Elem()
+}
+
+func (i PrefixListPrefixListEntryArgs) ToPrefixListPrefixListEntryOutput() PrefixListPrefixListEntryOutput {
+	return i.ToPrefixListPrefixListEntryOutputWithContext(context.Background())
+}
+
+func (i PrefixListPrefixListEntryArgs) ToPrefixListPrefixListEntryOutputWithContext(ctx context.Context) PrefixListPrefixListEntryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrefixListPrefixListEntryOutput)
+}
+
+// PrefixListPrefixListEntryArrayInput is an input type that accepts PrefixListPrefixListEntryArray and PrefixListPrefixListEntryArrayOutput values.
+// You can construct a concrete instance of `PrefixListPrefixListEntryArrayInput` via:
+//
+//	PrefixListPrefixListEntryArray{ PrefixListPrefixListEntryArgs{...} }
+type PrefixListPrefixListEntryArrayInput interface {
+	pulumi.Input
+
+	ToPrefixListPrefixListEntryArrayOutput() PrefixListPrefixListEntryArrayOutput
+	ToPrefixListPrefixListEntryArrayOutputWithContext(context.Context) PrefixListPrefixListEntryArrayOutput
+}
+
+type PrefixListPrefixListEntryArray []PrefixListPrefixListEntryInput
+
+func (PrefixListPrefixListEntryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PrefixListPrefixListEntry)(nil)).Elem()
+}
+
+func (i PrefixListPrefixListEntryArray) ToPrefixListPrefixListEntryArrayOutput() PrefixListPrefixListEntryArrayOutput {
+	return i.ToPrefixListPrefixListEntryArrayOutputWithContext(context.Background())
+}
+
+func (i PrefixListPrefixListEntryArray) ToPrefixListPrefixListEntryArrayOutputWithContext(ctx context.Context) PrefixListPrefixListEntryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrefixListPrefixListEntryArrayOutput)
+}
+
+type PrefixListPrefixListEntryOutput struct{ *pulumi.OutputState }
+
+func (PrefixListPrefixListEntryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrefixListPrefixListEntry)(nil)).Elem()
+}
+
+func (o PrefixListPrefixListEntryOutput) ToPrefixListPrefixListEntryOutput() PrefixListPrefixListEntryOutput {
+	return o
+}
+
+func (o PrefixListPrefixListEntryOutput) ToPrefixListPrefixListEntryOutputWithContext(ctx context.Context) PrefixListPrefixListEntryOutput {
+	return o
+}
+
+// CIDR of prefix list entries.
+func (o PrefixListPrefixListEntryOutput) Cidr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PrefixListPrefixListEntry) *string { return v.Cidr }).(pulumi.StringPtrOutput)
+}
+
+// Description of prefix list entries.
+func (o PrefixListPrefixListEntryOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PrefixListPrefixListEntry) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+type PrefixListPrefixListEntryArrayOutput struct{ *pulumi.OutputState }
+
+func (PrefixListPrefixListEntryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PrefixListPrefixListEntry)(nil)).Elem()
+}
+
+func (o PrefixListPrefixListEntryArrayOutput) ToPrefixListPrefixListEntryArrayOutput() PrefixListPrefixListEntryArrayOutput {
+	return o
+}
+
+func (o PrefixListPrefixListEntryArrayOutput) ToPrefixListPrefixListEntryArrayOutputWithContext(ctx context.Context) PrefixListPrefixListEntryArrayOutput {
+	return o
+}
+
+func (o PrefixListPrefixListEntryArrayOutput) Index(i pulumi.IntInput) PrefixListPrefixListEntryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PrefixListPrefixListEntry {
+		return vs[0].([]PrefixListPrefixListEntry)[vs[1].(int)]
+	}).(PrefixListPrefixListEntryOutput)
+}
+
+type PrefixListTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// PrefixListTagInput is an input type that accepts PrefixListTagArgs and PrefixListTagOutput values.
+// You can construct a concrete instance of `PrefixListTagInput` via:
+//
+//	PrefixListTagArgs{...}
+type PrefixListTagInput interface {
+	pulumi.Input
+
+	ToPrefixListTagOutput() PrefixListTagOutput
+	ToPrefixListTagOutputWithContext(context.Context) PrefixListTagOutput
+}
+
+type PrefixListTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (PrefixListTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrefixListTag)(nil)).Elem()
+}
+
+func (i PrefixListTagArgs) ToPrefixListTagOutput() PrefixListTagOutput {
+	return i.ToPrefixListTagOutputWithContext(context.Background())
+}
+
+func (i PrefixListTagArgs) ToPrefixListTagOutputWithContext(ctx context.Context) PrefixListTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrefixListTagOutput)
+}
+
+// PrefixListTagArrayInput is an input type that accepts PrefixListTagArray and PrefixListTagArrayOutput values.
+// You can construct a concrete instance of `PrefixListTagArrayInput` via:
+//
+//	PrefixListTagArray{ PrefixListTagArgs{...} }
+type PrefixListTagArrayInput interface {
+	pulumi.Input
+
+	ToPrefixListTagArrayOutput() PrefixListTagArrayOutput
+	ToPrefixListTagArrayOutputWithContext(context.Context) PrefixListTagArrayOutput
+}
+
+type PrefixListTagArray []PrefixListTagInput
+
+func (PrefixListTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PrefixListTag)(nil)).Elem()
+}
+
+func (i PrefixListTagArray) ToPrefixListTagArrayOutput() PrefixListTagArrayOutput {
+	return i.ToPrefixListTagArrayOutputWithContext(context.Background())
+}
+
+func (i PrefixListTagArray) ToPrefixListTagArrayOutputWithContext(ctx context.Context) PrefixListTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrefixListTagArrayOutput)
+}
+
+type PrefixListTagOutput struct{ *pulumi.OutputState }
+
+func (PrefixListTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrefixListTag)(nil)).Elem()
+}
+
+func (o PrefixListTagOutput) ToPrefixListTagOutput() PrefixListTagOutput {
+	return o
+}
+
+func (o PrefixListTagOutput) ToPrefixListTagOutputWithContext(ctx context.Context) PrefixListTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o PrefixListTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v PrefixListTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o PrefixListTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v PrefixListTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type PrefixListTagArrayOutput struct{ *pulumi.OutputState }
+
+func (PrefixListTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PrefixListTag)(nil)).Elem()
+}
+
+func (o PrefixListTagArrayOutput) ToPrefixListTagArrayOutput() PrefixListTagArrayOutput {
+	return o
+}
+
+func (o PrefixListTagArrayOutput) ToPrefixListTagArrayOutputWithContext(ctx context.Context) PrefixListTagArrayOutput {
+	return o
+}
+
+func (o PrefixListTagArrayOutput) Index(i pulumi.IntInput) PrefixListTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PrefixListTag {
+		return vs[0].([]PrefixListTag)[vs[1].(int)]
+	}).(PrefixListTagOutput)
+}
+
+type PrefixListsPrefixList struct {
+	// Number of associated resources for prefix list.
+	AssociationCount int `pulumi:"associationCount"`
+	// CIDR address block information for prefix list.
+	Cidrs []string `pulumi:"cidrs"`
+	// The creation time of the prefix list.
+	CreationTime string `pulumi:"creationTime"`
+	// Description.
+	Description string `pulumi:"description"`
+	// The id of the prefix list.
+	Id string `pulumi:"id"`
+	// IP version of prefix list.
+	IpVersion string `pulumi:"ipVersion"`
+	// Maximum number of entries, which is the maximum number of items that can be added to the prefix list.
+	MaxEntries int `pulumi:"maxEntries"`
+	// Collection of resources associated with VPC prefix list.
+	PrefixListAssociations []PrefixListsPrefixListPrefixListAssociation `pulumi:"prefixListAssociations"`
+	// The prefix list entries.
+	PrefixListEntries []PrefixListsPrefixListPrefixListEntry `pulumi:"prefixListEntries"`
+	// The prefix list id.
+	PrefixListId string `pulumi:"prefixListId"`
+	// A Name of prefix list.
+	PrefixListName string `pulumi:"prefixListName"`
+	// The status of the prefix list.
+	Status string `pulumi:"status"`
+	// The update time of the prefix list.
+	UpdateTime string `pulumi:"updateTime"`
+}
+
+// PrefixListsPrefixListInput is an input type that accepts PrefixListsPrefixListArgs and PrefixListsPrefixListOutput values.
+// You can construct a concrete instance of `PrefixListsPrefixListInput` via:
+//
+//	PrefixListsPrefixListArgs{...}
+type PrefixListsPrefixListInput interface {
+	pulumi.Input
+
+	ToPrefixListsPrefixListOutput() PrefixListsPrefixListOutput
+	ToPrefixListsPrefixListOutputWithContext(context.Context) PrefixListsPrefixListOutput
+}
+
+type PrefixListsPrefixListArgs struct {
+	// Number of associated resources for prefix list.
+	AssociationCount pulumi.IntInput `pulumi:"associationCount"`
+	// CIDR address block information for prefix list.
+	Cidrs pulumi.StringArrayInput `pulumi:"cidrs"`
+	// The creation time of the prefix list.
+	CreationTime pulumi.StringInput `pulumi:"creationTime"`
+	// Description.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The id of the prefix list.
+	Id pulumi.StringInput `pulumi:"id"`
+	// IP version of prefix list.
+	IpVersion pulumi.StringInput `pulumi:"ipVersion"`
+	// Maximum number of entries, which is the maximum number of items that can be added to the prefix list.
+	MaxEntries pulumi.IntInput `pulumi:"maxEntries"`
+	// Collection of resources associated with VPC prefix list.
+	PrefixListAssociations PrefixListsPrefixListPrefixListAssociationArrayInput `pulumi:"prefixListAssociations"`
+	// The prefix list entries.
+	PrefixListEntries PrefixListsPrefixListPrefixListEntryArrayInput `pulumi:"prefixListEntries"`
+	// The prefix list id.
+	PrefixListId pulumi.StringInput `pulumi:"prefixListId"`
+	// A Name of prefix list.
+	PrefixListName pulumi.StringInput `pulumi:"prefixListName"`
+	// The status of the prefix list.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The update time of the prefix list.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+}
+
+func (PrefixListsPrefixListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrefixListsPrefixList)(nil)).Elem()
+}
+
+func (i PrefixListsPrefixListArgs) ToPrefixListsPrefixListOutput() PrefixListsPrefixListOutput {
+	return i.ToPrefixListsPrefixListOutputWithContext(context.Background())
+}
+
+func (i PrefixListsPrefixListArgs) ToPrefixListsPrefixListOutputWithContext(ctx context.Context) PrefixListsPrefixListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrefixListsPrefixListOutput)
+}
+
+// PrefixListsPrefixListArrayInput is an input type that accepts PrefixListsPrefixListArray and PrefixListsPrefixListArrayOutput values.
+// You can construct a concrete instance of `PrefixListsPrefixListArrayInput` via:
+//
+//	PrefixListsPrefixListArray{ PrefixListsPrefixListArgs{...} }
+type PrefixListsPrefixListArrayInput interface {
+	pulumi.Input
+
+	ToPrefixListsPrefixListArrayOutput() PrefixListsPrefixListArrayOutput
+	ToPrefixListsPrefixListArrayOutputWithContext(context.Context) PrefixListsPrefixListArrayOutput
+}
+
+type PrefixListsPrefixListArray []PrefixListsPrefixListInput
+
+func (PrefixListsPrefixListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PrefixListsPrefixList)(nil)).Elem()
+}
+
+func (i PrefixListsPrefixListArray) ToPrefixListsPrefixListArrayOutput() PrefixListsPrefixListArrayOutput {
+	return i.ToPrefixListsPrefixListArrayOutputWithContext(context.Background())
+}
+
+func (i PrefixListsPrefixListArray) ToPrefixListsPrefixListArrayOutputWithContext(ctx context.Context) PrefixListsPrefixListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrefixListsPrefixListArrayOutput)
+}
+
+type PrefixListsPrefixListOutput struct{ *pulumi.OutputState }
+
+func (PrefixListsPrefixListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrefixListsPrefixList)(nil)).Elem()
+}
+
+func (o PrefixListsPrefixListOutput) ToPrefixListsPrefixListOutput() PrefixListsPrefixListOutput {
+	return o
+}
+
+func (o PrefixListsPrefixListOutput) ToPrefixListsPrefixListOutputWithContext(ctx context.Context) PrefixListsPrefixListOutput {
+	return o
+}
+
+// Number of associated resources for prefix list.
+func (o PrefixListsPrefixListOutput) AssociationCount() pulumi.IntOutput {
+	return o.ApplyT(func(v PrefixListsPrefixList) int { return v.AssociationCount }).(pulumi.IntOutput)
+}
+
+// CIDR address block information for prefix list.
+func (o PrefixListsPrefixListOutput) Cidrs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v PrefixListsPrefixList) []string { return v.Cidrs }).(pulumi.StringArrayOutput)
+}
+
+// The creation time of the prefix list.
+func (o PrefixListsPrefixListOutput) CreationTime() pulumi.StringOutput {
+	return o.ApplyT(func(v PrefixListsPrefixList) string { return v.CreationTime }).(pulumi.StringOutput)
+}
+
+// Description.
+func (o PrefixListsPrefixListOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v PrefixListsPrefixList) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The id of the prefix list.
+func (o PrefixListsPrefixListOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v PrefixListsPrefixList) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// IP version of prefix list.
+func (o PrefixListsPrefixListOutput) IpVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v PrefixListsPrefixList) string { return v.IpVersion }).(pulumi.StringOutput)
+}
+
+// Maximum number of entries, which is the maximum number of items that can be added to the prefix list.
+func (o PrefixListsPrefixListOutput) MaxEntries() pulumi.IntOutput {
+	return o.ApplyT(func(v PrefixListsPrefixList) int { return v.MaxEntries }).(pulumi.IntOutput)
+}
+
+// Collection of resources associated with VPC prefix list.
+func (o PrefixListsPrefixListOutput) PrefixListAssociations() PrefixListsPrefixListPrefixListAssociationArrayOutput {
+	return o.ApplyT(func(v PrefixListsPrefixList) []PrefixListsPrefixListPrefixListAssociation {
+		return v.PrefixListAssociations
+	}).(PrefixListsPrefixListPrefixListAssociationArrayOutput)
+}
+
+// The prefix list entries.
+func (o PrefixListsPrefixListOutput) PrefixListEntries() PrefixListsPrefixListPrefixListEntryArrayOutput {
+	return o.ApplyT(func(v PrefixListsPrefixList) []PrefixListsPrefixListPrefixListEntry { return v.PrefixListEntries }).(PrefixListsPrefixListPrefixListEntryArrayOutput)
+}
+
+// The prefix list id.
+func (o PrefixListsPrefixListOutput) PrefixListId() pulumi.StringOutput {
+	return o.ApplyT(func(v PrefixListsPrefixList) string { return v.PrefixListId }).(pulumi.StringOutput)
+}
+
+// A Name of prefix list.
+func (o PrefixListsPrefixListOutput) PrefixListName() pulumi.StringOutput {
+	return o.ApplyT(func(v PrefixListsPrefixList) string { return v.PrefixListName }).(pulumi.StringOutput)
+}
+
+// The status of the prefix list.
+func (o PrefixListsPrefixListOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v PrefixListsPrefixList) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The update time of the prefix list.
+func (o PrefixListsPrefixListOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v PrefixListsPrefixList) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+type PrefixListsPrefixListArrayOutput struct{ *pulumi.OutputState }
+
+func (PrefixListsPrefixListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PrefixListsPrefixList)(nil)).Elem()
+}
+
+func (o PrefixListsPrefixListArrayOutput) ToPrefixListsPrefixListArrayOutput() PrefixListsPrefixListArrayOutput {
+	return o
+}
+
+func (o PrefixListsPrefixListArrayOutput) ToPrefixListsPrefixListArrayOutputWithContext(ctx context.Context) PrefixListsPrefixListArrayOutput {
+	return o
+}
+
+func (o PrefixListsPrefixListArrayOutput) Index(i pulumi.IntInput) PrefixListsPrefixListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PrefixListsPrefixList {
+		return vs[0].([]PrefixListsPrefixList)[vs[1].(int)]
+	}).(PrefixListsPrefixListOutput)
+}
+
+type PrefixListsPrefixListPrefixListAssociation struct {
+	// Associated resource ID.
+	ResourceId string `pulumi:"resourceId"`
+	// Related resource types.
+	ResourceType string `pulumi:"resourceType"`
+}
+
+// PrefixListsPrefixListPrefixListAssociationInput is an input type that accepts PrefixListsPrefixListPrefixListAssociationArgs and PrefixListsPrefixListPrefixListAssociationOutput values.
+// You can construct a concrete instance of `PrefixListsPrefixListPrefixListAssociationInput` via:
+//
+//	PrefixListsPrefixListPrefixListAssociationArgs{...}
+type PrefixListsPrefixListPrefixListAssociationInput interface {
+	pulumi.Input
+
+	ToPrefixListsPrefixListPrefixListAssociationOutput() PrefixListsPrefixListPrefixListAssociationOutput
+	ToPrefixListsPrefixListPrefixListAssociationOutputWithContext(context.Context) PrefixListsPrefixListPrefixListAssociationOutput
+}
+
+type PrefixListsPrefixListPrefixListAssociationArgs struct {
+	// Associated resource ID.
+	ResourceId pulumi.StringInput `pulumi:"resourceId"`
+	// Related resource types.
+	ResourceType pulumi.StringInput `pulumi:"resourceType"`
+}
+
+func (PrefixListsPrefixListPrefixListAssociationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrefixListsPrefixListPrefixListAssociation)(nil)).Elem()
+}
+
+func (i PrefixListsPrefixListPrefixListAssociationArgs) ToPrefixListsPrefixListPrefixListAssociationOutput() PrefixListsPrefixListPrefixListAssociationOutput {
+	return i.ToPrefixListsPrefixListPrefixListAssociationOutputWithContext(context.Background())
+}
+
+func (i PrefixListsPrefixListPrefixListAssociationArgs) ToPrefixListsPrefixListPrefixListAssociationOutputWithContext(ctx context.Context) PrefixListsPrefixListPrefixListAssociationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrefixListsPrefixListPrefixListAssociationOutput)
+}
+
+// PrefixListsPrefixListPrefixListAssociationArrayInput is an input type that accepts PrefixListsPrefixListPrefixListAssociationArray and PrefixListsPrefixListPrefixListAssociationArrayOutput values.
+// You can construct a concrete instance of `PrefixListsPrefixListPrefixListAssociationArrayInput` via:
+//
+//	PrefixListsPrefixListPrefixListAssociationArray{ PrefixListsPrefixListPrefixListAssociationArgs{...} }
+type PrefixListsPrefixListPrefixListAssociationArrayInput interface {
+	pulumi.Input
+
+	ToPrefixListsPrefixListPrefixListAssociationArrayOutput() PrefixListsPrefixListPrefixListAssociationArrayOutput
+	ToPrefixListsPrefixListPrefixListAssociationArrayOutputWithContext(context.Context) PrefixListsPrefixListPrefixListAssociationArrayOutput
+}
+
+type PrefixListsPrefixListPrefixListAssociationArray []PrefixListsPrefixListPrefixListAssociationInput
+
+func (PrefixListsPrefixListPrefixListAssociationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PrefixListsPrefixListPrefixListAssociation)(nil)).Elem()
+}
+
+func (i PrefixListsPrefixListPrefixListAssociationArray) ToPrefixListsPrefixListPrefixListAssociationArrayOutput() PrefixListsPrefixListPrefixListAssociationArrayOutput {
+	return i.ToPrefixListsPrefixListPrefixListAssociationArrayOutputWithContext(context.Background())
+}
+
+func (i PrefixListsPrefixListPrefixListAssociationArray) ToPrefixListsPrefixListPrefixListAssociationArrayOutputWithContext(ctx context.Context) PrefixListsPrefixListPrefixListAssociationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrefixListsPrefixListPrefixListAssociationArrayOutput)
+}
+
+type PrefixListsPrefixListPrefixListAssociationOutput struct{ *pulumi.OutputState }
+
+func (PrefixListsPrefixListPrefixListAssociationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrefixListsPrefixListPrefixListAssociation)(nil)).Elem()
+}
+
+func (o PrefixListsPrefixListPrefixListAssociationOutput) ToPrefixListsPrefixListPrefixListAssociationOutput() PrefixListsPrefixListPrefixListAssociationOutput {
+	return o
+}
+
+func (o PrefixListsPrefixListPrefixListAssociationOutput) ToPrefixListsPrefixListPrefixListAssociationOutputWithContext(ctx context.Context) PrefixListsPrefixListPrefixListAssociationOutput {
+	return o
+}
+
+// Associated resource ID.
+func (o PrefixListsPrefixListPrefixListAssociationOutput) ResourceId() pulumi.StringOutput {
+	return o.ApplyT(func(v PrefixListsPrefixListPrefixListAssociation) string { return v.ResourceId }).(pulumi.StringOutput)
+}
+
+// Related resource types.
+func (o PrefixListsPrefixListPrefixListAssociationOutput) ResourceType() pulumi.StringOutput {
+	return o.ApplyT(func(v PrefixListsPrefixListPrefixListAssociation) string { return v.ResourceType }).(pulumi.StringOutput)
+}
+
+type PrefixListsPrefixListPrefixListAssociationArrayOutput struct{ *pulumi.OutputState }
+
+func (PrefixListsPrefixListPrefixListAssociationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PrefixListsPrefixListPrefixListAssociation)(nil)).Elem()
+}
+
+func (o PrefixListsPrefixListPrefixListAssociationArrayOutput) ToPrefixListsPrefixListPrefixListAssociationArrayOutput() PrefixListsPrefixListPrefixListAssociationArrayOutput {
+	return o
+}
+
+func (o PrefixListsPrefixListPrefixListAssociationArrayOutput) ToPrefixListsPrefixListPrefixListAssociationArrayOutputWithContext(ctx context.Context) PrefixListsPrefixListPrefixListAssociationArrayOutput {
+	return o
+}
+
+func (o PrefixListsPrefixListPrefixListAssociationArrayOutput) Index(i pulumi.IntInput) PrefixListsPrefixListPrefixListAssociationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PrefixListsPrefixListPrefixListAssociation {
+		return vs[0].([]PrefixListsPrefixListPrefixListAssociation)[vs[1].(int)]
+	}).(PrefixListsPrefixListPrefixListAssociationOutput)
+}
+
+type PrefixListsPrefixListPrefixListEntry struct {
+	// CIDR address blocks for prefix list entries.
+	Cidr string `pulumi:"cidr"`
+	// Description.
+	Description string `pulumi:"description"`
+	// The prefix list id.
+	PrefixListId string `pulumi:"prefixListId"`
+}
+
+// PrefixListsPrefixListPrefixListEntryInput is an input type that accepts PrefixListsPrefixListPrefixListEntryArgs and PrefixListsPrefixListPrefixListEntryOutput values.
+// You can construct a concrete instance of `PrefixListsPrefixListPrefixListEntryInput` via:
+//
+//	PrefixListsPrefixListPrefixListEntryArgs{...}
+type PrefixListsPrefixListPrefixListEntryInput interface {
+	pulumi.Input
+
+	ToPrefixListsPrefixListPrefixListEntryOutput() PrefixListsPrefixListPrefixListEntryOutput
+	ToPrefixListsPrefixListPrefixListEntryOutputWithContext(context.Context) PrefixListsPrefixListPrefixListEntryOutput
+}
+
+type PrefixListsPrefixListPrefixListEntryArgs struct {
+	// CIDR address blocks for prefix list entries.
+	Cidr pulumi.StringInput `pulumi:"cidr"`
+	// Description.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The prefix list id.
+	PrefixListId pulumi.StringInput `pulumi:"prefixListId"`
+}
+
+func (PrefixListsPrefixListPrefixListEntryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrefixListsPrefixListPrefixListEntry)(nil)).Elem()
+}
+
+func (i PrefixListsPrefixListPrefixListEntryArgs) ToPrefixListsPrefixListPrefixListEntryOutput() PrefixListsPrefixListPrefixListEntryOutput {
+	return i.ToPrefixListsPrefixListPrefixListEntryOutputWithContext(context.Background())
+}
+
+func (i PrefixListsPrefixListPrefixListEntryArgs) ToPrefixListsPrefixListPrefixListEntryOutputWithContext(ctx context.Context) PrefixListsPrefixListPrefixListEntryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrefixListsPrefixListPrefixListEntryOutput)
+}
+
+// PrefixListsPrefixListPrefixListEntryArrayInput is an input type that accepts PrefixListsPrefixListPrefixListEntryArray and PrefixListsPrefixListPrefixListEntryArrayOutput values.
+// You can construct a concrete instance of `PrefixListsPrefixListPrefixListEntryArrayInput` via:
+//
+//	PrefixListsPrefixListPrefixListEntryArray{ PrefixListsPrefixListPrefixListEntryArgs{...} }
+type PrefixListsPrefixListPrefixListEntryArrayInput interface {
+	pulumi.Input
+
+	ToPrefixListsPrefixListPrefixListEntryArrayOutput() PrefixListsPrefixListPrefixListEntryArrayOutput
+	ToPrefixListsPrefixListPrefixListEntryArrayOutputWithContext(context.Context) PrefixListsPrefixListPrefixListEntryArrayOutput
+}
+
+type PrefixListsPrefixListPrefixListEntryArray []PrefixListsPrefixListPrefixListEntryInput
+
+func (PrefixListsPrefixListPrefixListEntryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PrefixListsPrefixListPrefixListEntry)(nil)).Elem()
+}
+
+func (i PrefixListsPrefixListPrefixListEntryArray) ToPrefixListsPrefixListPrefixListEntryArrayOutput() PrefixListsPrefixListPrefixListEntryArrayOutput {
+	return i.ToPrefixListsPrefixListPrefixListEntryArrayOutputWithContext(context.Background())
+}
+
+func (i PrefixListsPrefixListPrefixListEntryArray) ToPrefixListsPrefixListPrefixListEntryArrayOutputWithContext(ctx context.Context) PrefixListsPrefixListPrefixListEntryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrefixListsPrefixListPrefixListEntryArrayOutput)
+}
+
+type PrefixListsPrefixListPrefixListEntryOutput struct{ *pulumi.OutputState }
+
+func (PrefixListsPrefixListPrefixListEntryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrefixListsPrefixListPrefixListEntry)(nil)).Elem()
+}
+
+func (o PrefixListsPrefixListPrefixListEntryOutput) ToPrefixListsPrefixListPrefixListEntryOutput() PrefixListsPrefixListPrefixListEntryOutput {
+	return o
+}
+
+func (o PrefixListsPrefixListPrefixListEntryOutput) ToPrefixListsPrefixListPrefixListEntryOutputWithContext(ctx context.Context) PrefixListsPrefixListPrefixListEntryOutput {
+	return o
+}
+
+// CIDR address blocks for prefix list entries.
+func (o PrefixListsPrefixListPrefixListEntryOutput) Cidr() pulumi.StringOutput {
+	return o.ApplyT(func(v PrefixListsPrefixListPrefixListEntry) string { return v.Cidr }).(pulumi.StringOutput)
+}
+
+// Description.
+func (o PrefixListsPrefixListPrefixListEntryOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v PrefixListsPrefixListPrefixListEntry) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The prefix list id.
+func (o PrefixListsPrefixListPrefixListEntryOutput) PrefixListId() pulumi.StringOutput {
+	return o.ApplyT(func(v PrefixListsPrefixListPrefixListEntry) string { return v.PrefixListId }).(pulumi.StringOutput)
+}
+
+type PrefixListsPrefixListPrefixListEntryArrayOutput struct{ *pulumi.OutputState }
+
+func (PrefixListsPrefixListPrefixListEntryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PrefixListsPrefixListPrefixListEntry)(nil)).Elem()
+}
+
+func (o PrefixListsPrefixListPrefixListEntryArrayOutput) ToPrefixListsPrefixListPrefixListEntryArrayOutput() PrefixListsPrefixListPrefixListEntryArrayOutput {
+	return o
+}
+
+func (o PrefixListsPrefixListPrefixListEntryArrayOutput) ToPrefixListsPrefixListPrefixListEntryArrayOutputWithContext(ctx context.Context) PrefixListsPrefixListPrefixListEntryArrayOutput {
+	return o
+}
+
+func (o PrefixListsPrefixListPrefixListEntryArrayOutput) Index(i pulumi.IntInput) PrefixListsPrefixListPrefixListEntryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PrefixListsPrefixListPrefixListEntry {
+		return vs[0].([]PrefixListsPrefixListPrefixListEntry)[vs[1].(int)]
+	}).(PrefixListsPrefixListPrefixListEntryOutput)
+}
+
+type PrefixListsTagFilter struct {
+	// The key of the tag.
+	Key *string `pulumi:"key"`
+	// The values of the tag.
+	Values []string `pulumi:"values"`
+}
+
+// PrefixListsTagFilterInput is an input type that accepts PrefixListsTagFilterArgs and PrefixListsTagFilterOutput values.
+// You can construct a concrete instance of `PrefixListsTagFilterInput` via:
+//
+//	PrefixListsTagFilterArgs{...}
+type PrefixListsTagFilterInput interface {
+	pulumi.Input
+
+	ToPrefixListsTagFilterOutput() PrefixListsTagFilterOutput
+	ToPrefixListsTagFilterOutputWithContext(context.Context) PrefixListsTagFilterOutput
+}
+
+type PrefixListsTagFilterArgs struct {
+	// The key of the tag.
+	Key pulumi.StringPtrInput `pulumi:"key"`
+	// The values of the tag.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (PrefixListsTagFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrefixListsTagFilter)(nil)).Elem()
+}
+
+func (i PrefixListsTagFilterArgs) ToPrefixListsTagFilterOutput() PrefixListsTagFilterOutput {
+	return i.ToPrefixListsTagFilterOutputWithContext(context.Background())
+}
+
+func (i PrefixListsTagFilterArgs) ToPrefixListsTagFilterOutputWithContext(ctx context.Context) PrefixListsTagFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrefixListsTagFilterOutput)
+}
+
+// PrefixListsTagFilterArrayInput is an input type that accepts PrefixListsTagFilterArray and PrefixListsTagFilterArrayOutput values.
+// You can construct a concrete instance of `PrefixListsTagFilterArrayInput` via:
+//
+//	PrefixListsTagFilterArray{ PrefixListsTagFilterArgs{...} }
+type PrefixListsTagFilterArrayInput interface {
+	pulumi.Input
+
+	ToPrefixListsTagFilterArrayOutput() PrefixListsTagFilterArrayOutput
+	ToPrefixListsTagFilterArrayOutputWithContext(context.Context) PrefixListsTagFilterArrayOutput
+}
+
+type PrefixListsTagFilterArray []PrefixListsTagFilterInput
+
+func (PrefixListsTagFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PrefixListsTagFilter)(nil)).Elem()
+}
+
+func (i PrefixListsTagFilterArray) ToPrefixListsTagFilterArrayOutput() PrefixListsTagFilterArrayOutput {
+	return i.ToPrefixListsTagFilterArrayOutputWithContext(context.Background())
+}
+
+func (i PrefixListsTagFilterArray) ToPrefixListsTagFilterArrayOutputWithContext(ctx context.Context) PrefixListsTagFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrefixListsTagFilterArrayOutput)
+}
+
+type PrefixListsTagFilterOutput struct{ *pulumi.OutputState }
+
+func (PrefixListsTagFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrefixListsTagFilter)(nil)).Elem()
+}
+
+func (o PrefixListsTagFilterOutput) ToPrefixListsTagFilterOutput() PrefixListsTagFilterOutput {
+	return o
+}
+
+func (o PrefixListsTagFilterOutput) ToPrefixListsTagFilterOutputWithContext(ctx context.Context) PrefixListsTagFilterOutput {
+	return o
+}
+
+// The key of the tag.
+func (o PrefixListsTagFilterOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PrefixListsTagFilter) *string { return v.Key }).(pulumi.StringPtrOutput)
+}
+
+// The values of the tag.
+func (o PrefixListsTagFilterOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v PrefixListsTagFilter) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type PrefixListsTagFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (PrefixListsTagFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PrefixListsTagFilter)(nil)).Elem()
+}
+
+func (o PrefixListsTagFilterArrayOutput) ToPrefixListsTagFilterArrayOutput() PrefixListsTagFilterArrayOutput {
+	return o
+}
+
+func (o PrefixListsTagFilterArrayOutput) ToPrefixListsTagFilterArrayOutputWithContext(ctx context.Context) PrefixListsTagFilterArrayOutput {
+	return o
+}
+
+func (o PrefixListsTagFilterArrayOutput) Index(i pulumi.IntInput) PrefixListsTagFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PrefixListsTagFilter {
+		return vs[0].([]PrefixListsTagFilter)[vs[1].(int)]
+	}).(PrefixListsTagFilterOutput)
 }
 
 type RouteEntriesRouteEntry struct {
@@ -4464,6 +5566,8 @@ func (o VpcsVpcTagArrayOutput) Index(i pulumi.IntInput) VpcsVpcTagOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*HaVipsHaVipInput)(nil)).Elem(), HaVipsHaVipArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HaVipsHaVipArrayInput)(nil)).Elem(), HaVipsHaVipArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Ipv6AddressBandwidthsIpv6AddressBandwidthInput)(nil)).Elem(), Ipv6AddressBandwidthsIpv6AddressBandwidthArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Ipv6AddressBandwidthsIpv6AddressBandwidthArrayInput)(nil)).Elem(), Ipv6AddressBandwidthsIpv6AddressBandwidthArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*Ipv6AddressesIpv6AddressInput)(nil)).Elem(), Ipv6AddressesIpv6AddressArgs{})
@@ -4494,6 +5598,20 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkInterfacesNetworkInterfaceTagArrayInput)(nil)).Elem(), NetworkInterfacesNetworkInterfaceTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkInterfacesTagInput)(nil)).Elem(), NetworkInterfacesTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkInterfacesTagArrayInput)(nil)).Elem(), NetworkInterfacesTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrefixListPrefixListAssociationInput)(nil)).Elem(), PrefixListPrefixListAssociationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrefixListPrefixListAssociationArrayInput)(nil)).Elem(), PrefixListPrefixListAssociationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrefixListPrefixListEntryInput)(nil)).Elem(), PrefixListPrefixListEntryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrefixListPrefixListEntryArrayInput)(nil)).Elem(), PrefixListPrefixListEntryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrefixListTagInput)(nil)).Elem(), PrefixListTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrefixListTagArrayInput)(nil)).Elem(), PrefixListTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrefixListsPrefixListInput)(nil)).Elem(), PrefixListsPrefixListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrefixListsPrefixListArrayInput)(nil)).Elem(), PrefixListsPrefixListArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrefixListsPrefixListPrefixListAssociationInput)(nil)).Elem(), PrefixListsPrefixListPrefixListAssociationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrefixListsPrefixListPrefixListAssociationArrayInput)(nil)).Elem(), PrefixListsPrefixListPrefixListAssociationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrefixListsPrefixListPrefixListEntryInput)(nil)).Elem(), PrefixListsPrefixListPrefixListEntryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrefixListsPrefixListPrefixListEntryArrayInput)(nil)).Elem(), PrefixListsPrefixListPrefixListEntryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrefixListsTagFilterInput)(nil)).Elem(), PrefixListsTagFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrefixListsTagFilterArrayInput)(nil)).Elem(), PrefixListsTagFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteEntriesRouteEntryInput)(nil)).Elem(), RouteEntriesRouteEntryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteEntriesRouteEntryArrayInput)(nil)).Elem(), RouteEntriesRouteEntryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteTablesRouteTableInput)(nil)).Elem(), RouteTablesRouteTableArgs{})
@@ -4523,6 +5641,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcsVpcAssociateCenArrayInput)(nil)).Elem(), VpcsVpcAssociateCenArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcsVpcTagInput)(nil)).Elem(), VpcsVpcTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcsVpcTagArrayInput)(nil)).Elem(), VpcsVpcTagArray{})
+	pulumi.RegisterOutputType(HaVipsHaVipOutput{})
+	pulumi.RegisterOutputType(HaVipsHaVipArrayOutput{})
 	pulumi.RegisterOutputType(Ipv6AddressBandwidthsIpv6AddressBandwidthOutput{})
 	pulumi.RegisterOutputType(Ipv6AddressBandwidthsIpv6AddressBandwidthArrayOutput{})
 	pulumi.RegisterOutputType(Ipv6AddressesIpv6AddressOutput{})
@@ -4553,6 +5673,20 @@ func init() {
 	pulumi.RegisterOutputType(NetworkInterfacesNetworkInterfaceTagArrayOutput{})
 	pulumi.RegisterOutputType(NetworkInterfacesTagOutput{})
 	pulumi.RegisterOutputType(NetworkInterfacesTagArrayOutput{})
+	pulumi.RegisterOutputType(PrefixListPrefixListAssociationOutput{})
+	pulumi.RegisterOutputType(PrefixListPrefixListAssociationArrayOutput{})
+	pulumi.RegisterOutputType(PrefixListPrefixListEntryOutput{})
+	pulumi.RegisterOutputType(PrefixListPrefixListEntryArrayOutput{})
+	pulumi.RegisterOutputType(PrefixListTagOutput{})
+	pulumi.RegisterOutputType(PrefixListTagArrayOutput{})
+	pulumi.RegisterOutputType(PrefixListsPrefixListOutput{})
+	pulumi.RegisterOutputType(PrefixListsPrefixListArrayOutput{})
+	pulumi.RegisterOutputType(PrefixListsPrefixListPrefixListAssociationOutput{})
+	pulumi.RegisterOutputType(PrefixListsPrefixListPrefixListAssociationArrayOutput{})
+	pulumi.RegisterOutputType(PrefixListsPrefixListPrefixListEntryOutput{})
+	pulumi.RegisterOutputType(PrefixListsPrefixListPrefixListEntryArrayOutput{})
+	pulumi.RegisterOutputType(PrefixListsTagFilterOutput{})
+	pulumi.RegisterOutputType(PrefixListsTagFilterArrayOutput{})
 	pulumi.RegisterOutputType(RouteEntriesRouteEntryOutput{})
 	pulumi.RegisterOutputType(RouteEntriesRouteEntryArrayOutput{})
 	pulumi.RegisterOutputType(RouteTablesRouteTableOutput{})

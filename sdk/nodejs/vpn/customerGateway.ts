@@ -87,7 +87,7 @@ export class CustomerGateway extends pulumi.CustomResource {
     /**
      * The project name of the VPN customer gateway.
      */
-    public readonly projectName!: pulumi.Output<string | undefined>;
+    public readonly projectName!: pulumi.Output<string>;
     /**
      * The status of the customer gateway.
      */

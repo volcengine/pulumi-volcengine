@@ -125,7 +125,7 @@ type ScalingGroup struct {
 	// The multi az policy of the scaling group. Valid values: PRIORITY, BALANCE. Default value: PRIORITY.
 	MultiAzPolicy pulumi.StringOutput `pulumi:"multiAzPolicy"`
 	// The ProjectName of the scaling group.
-	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The id of the scaling group.
 	ScalingGroupId pulumi.StringOutput `pulumi:"scalingGroupId"`
 	// The name of the scaling group.
@@ -486,8 +486,8 @@ func (o ScalingGroupOutput) MultiAzPolicy() pulumi.StringOutput {
 }
 
 // The ProjectName of the scaling group.
-func (o ScalingGroupOutput) ProjectName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ScalingGroup) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
+func (o ScalingGroupOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *ScalingGroup) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 // The id of the scaling group.

@@ -97,7 +97,7 @@ export class NetworkAcl extends pulumi.CustomResource {
     /**
      * The project name of the network acl.
      */
-    public readonly projectName!: pulumi.Output<string | undefined>;
+    public readonly projectName!: pulumi.Output<string>;
     /**
      * The vpc id of Network Acl.
      */

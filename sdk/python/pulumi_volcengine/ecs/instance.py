@@ -42,6 +42,7 @@ class InstanceArgs:
                  project_name: Optional[pulumi.Input[str]] = None,
                  secondary_network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceSecondaryNetworkInterfaceArgs']]]] = None,
                  security_enhancement_strategy: Optional[pulumi.Input[str]] = None,
+                 spot_price_limit: Optional[pulumi.Input[float]] = None,
                  spot_strategy: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]]] = None,
                  user_data: Optional[pulumi.Input[str]] = None,
@@ -77,7 +78,11 @@ class InstanceArgs:
         :param pulumi.Input[str] project_name: The ProjectName of the ecs instance.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceSecondaryNetworkInterfaceArgs']]] secondary_network_interfaces: The secondary networkInterface detail collection of ECS instance.
         :param pulumi.Input[str] security_enhancement_strategy: The security enhancement strategy of ECS instance. The value can be Active or InActive. Default is Active.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
-        :param pulumi.Input[str] spot_strategy: The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
+        :param pulumi.Input[float] spot_price_limit: The maximum hourly price for spot instances supports up to three decimal places. This parameter only takes effect when SpotStrategy=SpotWithPriceLimit.
+        :param pulumi.Input[str] spot_strategy: The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, values:
+               NoSpot (default): indicates creating a normal pay-as-you-go instance.
+               SpotAsPriceGo: spot instance with system automatically bidding and following the current market price.
+               SpotWithPriceLimit: spot instance with a set upper limit for bidding price.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]] tags: Tags.
         :param pulumi.Input[str] user_data: The user data of ECS instance, this field must be encrypted with base64.
         :param pulumi.Input[str] zone_id: The available zone ID of ECS instance.
@@ -128,6 +133,8 @@ class InstanceArgs:
             pulumi.set(__self__, "secondary_network_interfaces", secondary_network_interfaces)
         if security_enhancement_strategy is not None:
             pulumi.set(__self__, "security_enhancement_strategy", security_enhancement_strategy)
+        if spot_price_limit is not None:
+            pulumi.set(__self__, "spot_price_limit", spot_price_limit)
         if spot_strategy is not None:
             pulumi.set(__self__, "spot_strategy", spot_strategy)
         if tags is not None:
@@ -453,10 +460,25 @@ class InstanceArgs:
         pulumi.set(self, "security_enhancement_strategy", value)
 
     @property
+    @pulumi.getter(name="spotPriceLimit")
+    def spot_price_limit(self) -> Optional[pulumi.Input[float]]:
+        """
+        The maximum hourly price for spot instances supports up to three decimal places. This parameter only takes effect when SpotStrategy=SpotWithPriceLimit.
+        """
+        return pulumi.get(self, "spot_price_limit")
+
+    @spot_price_limit.setter
+    def spot_price_limit(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "spot_price_limit", value)
+
+    @property
     @pulumi.getter(name="spotStrategy")
     def spot_strategy(self) -> Optional[pulumi.Input[str]]:
         """
-        The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
+        The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, values:
+        NoSpot (default): indicates creating a normal pay-as-you-go instance.
+        SpotAsPriceGo: spot instance with system automatically bidding and following the current market price.
+        SpotWithPriceLimit: spot instance with a set upper limit for bidding price.
         """
         return pulumi.get(self, "spot_strategy")
 
@@ -538,6 +560,7 @@ class _InstanceState:
                  secondary_network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceSecondaryNetworkInterfaceArgs']]]] = None,
                  security_enhancement_strategy: Optional[pulumi.Input[str]] = None,
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 spot_price_limit: Optional[pulumi.Input[float]] = None,
                  spot_strategy: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  stopped_mode: Optional[pulumi.Input[str]] = None,
@@ -589,7 +612,11 @@ class _InstanceState:
         :param pulumi.Input[Sequence[pulumi.Input['InstanceSecondaryNetworkInterfaceArgs']]] secondary_network_interfaces: The secondary networkInterface detail collection of ECS instance.
         :param pulumi.Input[str] security_enhancement_strategy: The security enhancement strategy of ECS instance. The value can be Active or InActive. Default is Active.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The security group ID set of primary networkInterface.
-        :param pulumi.Input[str] spot_strategy: The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
+        :param pulumi.Input[float] spot_price_limit: The maximum hourly price for spot instances supports up to three decimal places. This parameter only takes effect when SpotStrategy=SpotWithPriceLimit.
+        :param pulumi.Input[str] spot_strategy: The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, values:
+               NoSpot (default): indicates creating a normal pay-as-you-go instance.
+               SpotAsPriceGo: spot instance with system automatically bidding and following the current market price.
+               SpotWithPriceLimit: spot instance with a set upper limit for bidding price.
         :param pulumi.Input[str] status: The status of ECS instance.
         :param pulumi.Input[str] stopped_mode: The stop mode of ECS instance.
         :param pulumi.Input[str] subnet_id: The subnet ID of primary networkInterface.
@@ -670,6 +697,8 @@ class _InstanceState:
             pulumi.set(__self__, "security_enhancement_strategy", security_enhancement_strategy)
         if security_group_ids is not None:
             pulumi.set(__self__, "security_group_ids", security_group_ids)
+        if spot_price_limit is not None:
+            pulumi.set(__self__, "spot_price_limit", spot_price_limit)
         if spot_strategy is not None:
             pulumi.set(__self__, "spot_strategy", spot_strategy)
         if status is not None:
@@ -1107,10 +1136,25 @@ class _InstanceState:
         pulumi.set(self, "security_group_ids", value)
 
     @property
+    @pulumi.getter(name="spotPriceLimit")
+    def spot_price_limit(self) -> Optional[pulumi.Input[float]]:
+        """
+        The maximum hourly price for spot instances supports up to three decimal places. This parameter only takes effect when SpotStrategy=SpotWithPriceLimit.
+        """
+        return pulumi.get(self, "spot_price_limit")
+
+    @spot_price_limit.setter
+    def spot_price_limit(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "spot_price_limit", value)
+
+    @property
     @pulumi.getter(name="spotStrategy")
     def spot_strategy(self) -> Optional[pulumi.Input[str]]:
         """
-        The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
+        The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, values:
+        NoSpot (default): indicates creating a normal pay-as-you-go instance.
+        SpotAsPriceGo: spot instance with system automatically bidding and following the current market price.
+        SpotWithPriceLimit: spot instance with a set upper limit for bidding price.
         """
         return pulumi.get(self, "spot_strategy")
 
@@ -1279,6 +1323,7 @@ class Instance(pulumi.CustomResource):
                  secondary_network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecondaryNetworkInterfaceArgs']]]]] = None,
                  security_enhancement_strategy: Optional[pulumi.Input[str]] = None,
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 spot_price_limit: Optional[pulumi.Input[float]] = None,
                  spot_strategy: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
                  system_volume_size: Optional[pulumi.Input[int]] = None,
@@ -1369,7 +1414,11 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecondaryNetworkInterfaceArgs']]]] secondary_network_interfaces: The secondary networkInterface detail collection of ECS instance.
         :param pulumi.Input[str] security_enhancement_strategy: The security enhancement strategy of ECS instance. The value can be Active or InActive. Default is Active.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The security group ID set of primary networkInterface.
-        :param pulumi.Input[str] spot_strategy: The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
+        :param pulumi.Input[float] spot_price_limit: The maximum hourly price for spot instances supports up to three decimal places. This parameter only takes effect when SpotStrategy=SpotWithPriceLimit.
+        :param pulumi.Input[str] spot_strategy: The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, values:
+               NoSpot (default): indicates creating a normal pay-as-you-go instance.
+               SpotAsPriceGo: spot instance with system automatically bidding and following the current market price.
+               SpotWithPriceLimit: spot instance with a set upper limit for bidding price.
         :param pulumi.Input[str] subnet_id: The subnet ID of primary networkInterface.
         :param pulumi.Input[int] system_volume_size: The size of system volume. The value range of the system volume size is ESSD_PL0: 20~2048, ESSD_FlexPL: 20~2048, PTSSD: 10~500.
         :param pulumi.Input[str] system_volume_type: The type of system volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
@@ -1475,6 +1524,7 @@ class Instance(pulumi.CustomResource):
                  secondary_network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecondaryNetworkInterfaceArgs']]]]] = None,
                  security_enhancement_strategy: Optional[pulumi.Input[str]] = None,
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 spot_price_limit: Optional[pulumi.Input[float]] = None,
                  spot_strategy: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
                  system_volume_size: Optional[pulumi.Input[int]] = None,
@@ -1520,6 +1570,7 @@ class Instance(pulumi.CustomResource):
             if security_group_ids is None and not opts.urn:
                 raise TypeError("Missing required property 'security_group_ids'")
             __props__.__dict__["security_group_ids"] = security_group_ids
+            __props__.__dict__["spot_price_limit"] = spot_price_limit
             __props__.__dict__["spot_strategy"] = spot_strategy
             if subnet_id is None and not opts.urn:
                 raise TypeError("Missing required property 'subnet_id'")
@@ -1595,6 +1646,7 @@ class Instance(pulumi.CustomResource):
             secondary_network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecondaryNetworkInterfaceArgs']]]]] = None,
             security_enhancement_strategy: Optional[pulumi.Input[str]] = None,
             security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            spot_price_limit: Optional[pulumi.Input[float]] = None,
             spot_strategy: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             stopped_mode: Optional[pulumi.Input[str]] = None,
@@ -1651,7 +1703,11 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecondaryNetworkInterfaceArgs']]]] secondary_network_interfaces: The secondary networkInterface detail collection of ECS instance.
         :param pulumi.Input[str] security_enhancement_strategy: The security enhancement strategy of ECS instance. The value can be Active or InActive. Default is Active.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The security group ID set of primary networkInterface.
-        :param pulumi.Input[str] spot_strategy: The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
+        :param pulumi.Input[float] spot_price_limit: The maximum hourly price for spot instances supports up to three decimal places. This parameter only takes effect when SpotStrategy=SpotWithPriceLimit.
+        :param pulumi.Input[str] spot_strategy: The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, values:
+               NoSpot (default): indicates creating a normal pay-as-you-go instance.
+               SpotAsPriceGo: spot instance with system automatically bidding and following the current market price.
+               SpotWithPriceLimit: spot instance with a set upper limit for bidding price.
         :param pulumi.Input[str] status: The status of ECS instance.
         :param pulumi.Input[str] stopped_mode: The stop mode of ECS instance.
         :param pulumi.Input[str] subnet_id: The subnet ID of primary networkInterface.
@@ -1702,6 +1758,7 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["secondary_network_interfaces"] = secondary_network_interfaces
         __props__.__dict__["security_enhancement_strategy"] = security_enhancement_strategy
         __props__.__dict__["security_group_ids"] = security_group_ids
+        __props__.__dict__["spot_price_limit"] = spot_price_limit
         __props__.__dict__["spot_strategy"] = spot_strategy
         __props__.__dict__["status"] = status
         __props__.__dict__["stopped_mode"] = stopped_mode
@@ -1992,10 +2049,21 @@ class Instance(pulumi.CustomResource):
         return pulumi.get(self, "security_group_ids")
 
     @property
+    @pulumi.getter(name="spotPriceLimit")
+    def spot_price_limit(self) -> pulumi.Output[Optional[float]]:
+        """
+        The maximum hourly price for spot instances supports up to three decimal places. This parameter only takes effect when SpotStrategy=SpotWithPriceLimit.
+        """
+        return pulumi.get(self, "spot_price_limit")
+
+    @property
     @pulumi.getter(name="spotStrategy")
     def spot_strategy(self) -> pulumi.Output[str]:
         """
-        The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
+        The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, values:
+        NoSpot (default): indicates creating a normal pay-as-you-go instance.
+        SpotAsPriceGo: spot instance with system automatically bidding and following the current market price.
+        SpotWithPriceLimit: spot instance with a set upper limit for bidding price.
         """
         return pulumi.get(self, "spot_strategy")
 

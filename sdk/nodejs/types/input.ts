@@ -709,6 +709,85 @@ export namespace mongodb {
 
 }
 
+export namespace nas {
+    export interface FileSystemTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface FileSystemsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface FileSystemsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface PermissionGroupPermissionRule {
+        /**
+         * Client IP addresses that are allowed access.
+         */
+        cidrIp: pulumi.Input<string>;
+        /**
+         * Permission group read and write rules. The value description is as follows:
+         * `RW`: Allows reading and writing.
+         * `RO`: read-only mode.
+         */
+        rwMode: pulumi.Input<string>;
+        /**
+         * Permission group user permissions. The value description is as follows:
+         * `All_squash`: All access users are mapped to anonymous users or user groups.
+         * `No_all_squash`: The access user is first matched with the local user, and then mapped to an anonymous user or user group after the match fails.
+         * `Root_squash`: Map the Root user as an anonymous user or user group.
+         * `No_root_squash`: The Root user maintains the Root account authority.
+         */
+        useMode: pulumi.Input<string>;
+    }
+
+    export interface PermissionGroupsFilter {
+        /**
+         * Filters permission groups for specified characteristics based on attributes. The parameters that support filtering are as follows: `PermissionGroupName`, `PermissionGroupId`.
+         */
+        key: string;
+        /**
+         * The value of the filter item.
+         */
+        value: string;
+    }
+
+    export interface PermissionGroupsFilterArgs {
+        /**
+         * Filters permission groups for specified characteristics based on attributes. The parameters that support filtering are as follows: `PermissionGroupName`, `PermissionGroupId`.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The value of the filter item.
+         */
+        value: pulumi.Input<string>;
+    }
+
+}
+
 export namespace nat {
     export interface GatewayTag {
         /**
@@ -1906,6 +1985,74 @@ export namespace tos {
 
 }
 
+export namespace transit_router {
+    export interface BandwidthPackageAllocation {
+        /**
+         * The delete time of the transit router bandwidth package.
+         */
+        allocateTime?: pulumi.Input<string>;
+        /**
+         * The delete time of the transit router bandwidth package.
+         */
+        deleteTime?: pulumi.Input<string>;
+        /**
+         * The local region id of the transit router.
+         */
+        localRegionId?: pulumi.Input<string>;
+        /**
+         * The ID of the peer attachment.
+         */
+        transitRouterPeerAttachmentId?: pulumi.Input<string>;
+    }
+
+    export interface TransitRouterTransitRouterAttachment {
+        /**
+         * The create time.
+         */
+        creationTime?: pulumi.Input<string>;
+        /**
+         * The id of resource.
+         */
+        resourceId?: pulumi.Input<string>;
+        /**
+         * The type of resource.
+         */
+        resourceType?: pulumi.Input<string>;
+        /**
+         * The status of the transit router.
+         */
+        status?: pulumi.Input<string>;
+        /**
+         * The id of transit router attachment.
+         */
+        transitRouterAttachmentId?: pulumi.Input<string>;
+        /**
+         * The name of transit router attachment.
+         */
+        transitRouterAttachmentName?: pulumi.Input<string>;
+        /**
+         * The id of transit router route table.
+         */
+        transitRouterRouteTableId?: pulumi.Input<string>;
+        /**
+         * The update time.
+         */
+        updateTime?: pulumi.Input<string>;
+    }
+
+    export interface VpcAttachmentAttachPoint {
+        /**
+         * The id of subnet.
+         */
+        subnetId: pulumi.Input<string>;
+        /**
+         * The id of zone.
+         */
+        zoneId: pulumi.Input<string>;
+    }
+
+}
+
 export namespace veenedge {
     export interface CloudServerBillingConfig {
         /**
@@ -2603,7 +2750,7 @@ export namespace vke {
          */
         instanceChargeType?: pulumi.Input<string>;
         /**
-         * The InstanceTypeIds of NodeConfig.
+         * The InstanceTypeIds of NodeConfig. The value can get from volcengine.vke.SupportResourceTypes datasource.
          */
         instanceTypeIds: pulumi.Input<pulumi.Input<string>[]>;
         /**
@@ -2860,6 +3007,61 @@ export namespace vpc {
          * The Value of Tags.
          */
         value: pulumi.Input<string>;
+    }
+
+    export interface PrefixListPrefixListAssociation {
+        /**
+         * Associated resource ID.
+         */
+        resourceId?: pulumi.Input<string>;
+        /**
+         * Related resource types.
+         */
+        resourceType?: pulumi.Input<string>;
+    }
+
+    export interface PrefixListPrefixListEntry {
+        /**
+         * CIDR of prefix list entries.
+         */
+        cidr?: pulumi.Input<string>;
+        /**
+         * Description of prefix list entries.
+         */
+        description?: pulumi.Input<string>;
+    }
+
+    export interface PrefixListTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface PrefixListsTagFilter {
+        /**
+         * The key of the tag.
+         */
+        key?: string;
+        /**
+         * The values of the tag.
+         */
+        values?: string[];
+    }
+
+    export interface PrefixListsTagFilterArgs {
+        /**
+         * The key of the tag.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * The values of the tag.
+         */
+        values?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
     export interface SecurityGroupTag {

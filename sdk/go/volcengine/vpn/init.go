@@ -29,6 +29,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Gateway{}
 	case "volcengine:vpn/gatewayRoute:GatewayRoute":
 		r = &GatewayRoute{}
+	case "volcengine:vpn/sslVpnClientCert:SslVpnClientCert":
+		r = &SslVpnClientCert{}
+	case "volcengine:vpn/sslVpnServer:SslVpnServer":
+		r = &SslVpnServer{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -60,6 +64,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"volcengine",
 		"vpn/gatewayRoute",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"vpn/sslVpnClientCert",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"vpn/sslVpnServer",
 		&module{version},
 	)
 }

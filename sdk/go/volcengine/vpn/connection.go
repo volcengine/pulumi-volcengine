@@ -173,7 +173,7 @@ type Connection struct {
 	// The overdue time of resource, valid when the attach type is 'TransitRouter'.
 	OverdueTime pulumi.StringOutput `pulumi:"overdueTime"`
 	// The project name of the VPN connection.
-	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The remote subnet of the VPN connection. Up to 5 network segments are supported.
 	RemoteSubnets pulumi.StringArrayOutput `pulumi:"remoteSubnets"`
 	// The status of the VPN connection.
@@ -735,8 +735,8 @@ func (o ConnectionOutput) OverdueTime() pulumi.StringOutput {
 }
 
 // The project name of the VPN connection.
-func (o ConnectionOutput) ProjectName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Connection) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
+func (o ConnectionOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *Connection) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 // The remote subnet of the VPN connection. Up to 5 network segments are supported.

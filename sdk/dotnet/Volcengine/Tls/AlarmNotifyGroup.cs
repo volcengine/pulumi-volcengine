@@ -80,7 +80,7 @@ namespace Volcengine.Pulumi.Volcengine.Tls
         /// The name of the iam project.
         /// </summary>
         [Output("iamProjectName")]
-        public Output<string?> IamProjectName { get; private set; } = null!;
+        public Output<string> IamProjectName { get; private set; } = null!;
 
         /// <summary>
         /// The notify type.

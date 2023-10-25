@@ -45,6 +45,26 @@ export const gateways: typeof import("./gateways").gateways = null as any;
 export const gatewaysOutput: typeof import("./gateways").gatewaysOutput = null as any;
 utilities.lazyLoad(exports, ["gateways","gatewaysOutput"], () => require("./gateways"));
 
+export { SslVpnClientCertArgs, SslVpnClientCertState } from "./sslVpnClientCert";
+export type SslVpnClientCert = import("./sslVpnClientCert").SslVpnClientCert;
+export const SslVpnClientCert: typeof import("./sslVpnClientCert").SslVpnClientCert = null as any;
+utilities.lazyLoad(exports, ["SslVpnClientCert"], () => require("./sslVpnClientCert"));
+
+export { SslVpnClientCertsArgs, SslVpnClientCertsResult, SslVpnClientCertsOutputArgs } from "./sslVpnClientCerts";
+export const sslVpnClientCerts: typeof import("./sslVpnClientCerts").sslVpnClientCerts = null as any;
+export const sslVpnClientCertsOutput: typeof import("./sslVpnClientCerts").sslVpnClientCertsOutput = null as any;
+utilities.lazyLoad(exports, ["sslVpnClientCerts","sslVpnClientCertsOutput"], () => require("./sslVpnClientCerts"));
+
+export { SslVpnServerArgs, SslVpnServerState } from "./sslVpnServer";
+export type SslVpnServer = import("./sslVpnServer").SslVpnServer;
+export const SslVpnServer: typeof import("./sslVpnServer").SslVpnServer = null as any;
+utilities.lazyLoad(exports, ["SslVpnServer"], () => require("./sslVpnServer"));
+
+export { SslVpnServersArgs, SslVpnServersResult, SslVpnServersOutputArgs } from "./sslVpnServers";
+export const sslVpnServers: typeof import("./sslVpnServers").sslVpnServers = null as any;
+export const sslVpnServersOutput: typeof import("./sslVpnServers").sslVpnServersOutput = null as any;
+utilities.lazyLoad(exports, ["sslVpnServers","sslVpnServersOutput"], () => require("./sslVpnServers"));
+
 
 const _module = {
     version: utilities.getVersion(),
@@ -58,6 +78,10 @@ const _module = {
                 return new Gateway(name, <any>undefined, { urn })
             case "volcengine:vpn/gatewayRoute:GatewayRoute":
                 return new GatewayRoute(name, <any>undefined, { urn })
+            case "volcengine:vpn/sslVpnClientCert:SslVpnClientCert":
+                return new SslVpnClientCert(name, <any>undefined, { urn })
+            case "volcengine:vpn/sslVpnServer:SslVpnServer":
+                return new SslVpnServer(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -67,3 +91,5 @@ pulumi.runtime.registerResourceModule("volcengine", "vpn/connection", _module)
 pulumi.runtime.registerResourceModule("volcengine", "vpn/customerGateway", _module)
 pulumi.runtime.registerResourceModule("volcengine", "vpn/gateway", _module)
 pulumi.runtime.registerResourceModule("volcengine", "vpn/gatewayRoute", _module)
+pulumi.runtime.registerResourceModule("volcengine", "vpn/sslVpnClientCert", _module)
+pulumi.runtime.registerResourceModule("volcengine", "vpn/sslVpnServer", _module)

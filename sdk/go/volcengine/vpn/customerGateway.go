@@ -69,7 +69,7 @@ type CustomerGateway struct {
 	// The IP address of the customer gateway.
 	IpAddress pulumi.StringOutput `pulumi:"ipAddress"`
 	// The project name of the VPN customer gateway.
-	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The status of the customer gateway.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The update time of customer gateway.
@@ -304,8 +304,8 @@ func (o CustomerGatewayOutput) IpAddress() pulumi.StringOutput {
 }
 
 // The project name of the VPN customer gateway.
-func (o CustomerGatewayOutput) ProjectName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *CustomerGateway) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
+func (o CustomerGatewayOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *CustomerGateway) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 // The status of the customer gateway.

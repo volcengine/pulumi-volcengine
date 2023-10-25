@@ -707,6 +707,7 @@ class InstancesInstanceResult(dict):
                  os_name: str,
                  os_type: str,
                  project_name: str,
+                 spot_price_limit: float,
                  spot_strategy: str,
                  status: str,
                  stopped_mode: str,
@@ -737,6 +738,7 @@ class InstancesInstanceResult(dict):
         :param str os_name: The os name of ECS instance.
         :param str os_type: The os type of ECS instance.
         :param str project_name: The ProjectName of ECS instance.
+        :param float spot_price_limit: The spot price limit of ECS instance.
         :param str spot_strategy: The spot strategy of ECS instance.
         :param str status: The status of ECS instance.
         :param str stopped_mode: The stop mode of ECS instance.
@@ -767,6 +769,7 @@ class InstancesInstanceResult(dict):
         pulumi.set(__self__, "os_name", os_name)
         pulumi.set(__self__, "os_type", os_type)
         pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "spot_price_limit", spot_price_limit)
         pulumi.set(__self__, "spot_strategy", spot_strategy)
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "stopped_mode", stopped_mode)
@@ -943,6 +946,14 @@ class InstancesInstanceResult(dict):
         The ProjectName of ECS instance.
         """
         return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="spotPriceLimit")
+    def spot_price_limit(self) -> float:
+        """
+        The spot price limit of ECS instance.
+        """
+        return pulumi.get(self, "spot_price_limit")
 
     @property
     @pulumi.getter(name="spotStrategy")

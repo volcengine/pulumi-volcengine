@@ -447,7 +447,7 @@ class NetworkAcl(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="projectName")
-    def project_name(self) -> pulumi.Output[Optional[str]]:
+    def project_name(self) -> pulumi.Output[str]:
         """
         The project name of the network acl.
         """
