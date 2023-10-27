@@ -161,7 +161,7 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
         /// The ProjectName of the scaling group.
         /// </summary>
         [Output("projectName")]
-        public Output<string?> ProjectName { get; private set; } = null!;
+        public Output<string> ProjectName { get; private set; } = null!;
 
         /// <summary>
         /// The id of the scaling group.

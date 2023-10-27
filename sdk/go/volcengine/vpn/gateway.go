@@ -94,17 +94,23 @@ type Gateway struct {
 	ExpiredTime pulumi.StringOutput `pulumi:"expiredTime"`
 	// The IP address of the VPN gateway.
 	IpAddress pulumi.StringOutput `pulumi:"ipAddress"`
+	// Whether ipsec is enabled.
+	IpsecEnabled pulumi.BoolPtrOutput `pulumi:"ipsecEnabled"`
 	// The lock reason of the VPN gateway.
 	LockReason pulumi.StringOutput `pulumi:"lockReason"`
 	// The Period of the VPN gateway. Default value is 12. This parameter is only useful when creating vpn gateway. Default period unit is Month.
 	// Value range: 1~9, 12, 24, 36. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	Period pulumi.IntPtrOutput `pulumi:"period"`
 	// The project name of the VPN gateway.
-	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The renew type of the VPN gateway.
 	RenewType pulumi.StringOutput `pulumi:"renewType"`
 	// The route count of the VPN gateway.
 	RouteCount pulumi.IntOutput `pulumi:"routeCount"`
+	// Whether ssl is enabled.
+	SslEnabled pulumi.BoolPtrOutput `pulumi:"sslEnabled"`
+	// The max connections of ssl. This parameter can only be passed in when sslEnabled is true. Default is 5.
+	SslMaxConnections pulumi.IntOutput `pulumi:"sslMaxConnections"`
 	// The status of the VPN gateway.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The ID of the subnet where you want to create the VPN gateway.
@@ -181,6 +187,8 @@ type gatewayState struct {
 	ExpiredTime *string `pulumi:"expiredTime"`
 	// The IP address of the VPN gateway.
 	IpAddress *string `pulumi:"ipAddress"`
+	// Whether ipsec is enabled.
+	IpsecEnabled *bool `pulumi:"ipsecEnabled"`
 	// The lock reason of the VPN gateway.
 	LockReason *string `pulumi:"lockReason"`
 	// The Period of the VPN gateway. Default value is 12. This parameter is only useful when creating vpn gateway. Default period unit is Month.
@@ -192,6 +200,10 @@ type gatewayState struct {
 	RenewType *string `pulumi:"renewType"`
 	// The route count of the VPN gateway.
 	RouteCount *int `pulumi:"routeCount"`
+	// Whether ssl is enabled.
+	SslEnabled *bool `pulumi:"sslEnabled"`
+	// The max connections of ssl. This parameter can only be passed in when sslEnabled is true. Default is 5.
+	SslMaxConnections *int `pulumi:"sslMaxConnections"`
 	// The status of the VPN gateway.
 	Status *string `pulumi:"status"`
 	// The ID of the subnet where you want to create the VPN gateway.
@@ -230,6 +242,8 @@ type GatewayState struct {
 	ExpiredTime pulumi.StringPtrInput
 	// The IP address of the VPN gateway.
 	IpAddress pulumi.StringPtrInput
+	// Whether ipsec is enabled.
+	IpsecEnabled pulumi.BoolPtrInput
 	// The lock reason of the VPN gateway.
 	LockReason pulumi.StringPtrInput
 	// The Period of the VPN gateway. Default value is 12. This parameter is only useful when creating vpn gateway. Default period unit is Month.
@@ -241,6 +255,10 @@ type GatewayState struct {
 	RenewType pulumi.StringPtrInput
 	// The route count of the VPN gateway.
 	RouteCount pulumi.IntPtrInput
+	// Whether ssl is enabled.
+	SslEnabled pulumi.BoolPtrInput
+	// The max connections of ssl. This parameter can only be passed in when sslEnabled is true. Default is 5.
+	SslMaxConnections pulumi.IntPtrInput
 	// The status of the VPN gateway.
 	Status pulumi.StringPtrInput
 	// The ID of the subnet where you want to create the VPN gateway.
@@ -269,11 +287,17 @@ type gatewayArgs struct {
 	BillingType *string `pulumi:"billingType"`
 	// The description of the VPN gateway.
 	Description *string `pulumi:"description"`
+	// Whether ipsec is enabled.
+	IpsecEnabled *bool `pulumi:"ipsecEnabled"`
 	// The Period of the VPN gateway. Default value is 12. This parameter is only useful when creating vpn gateway. Default period unit is Month.
 	// Value range: 1~9, 12, 24, 36. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	Period *int `pulumi:"period"`
 	// The project name of the VPN gateway.
 	ProjectName *string `pulumi:"projectName"`
+	// Whether ssl is enabled.
+	SslEnabled *bool `pulumi:"sslEnabled"`
+	// The max connections of ssl. This parameter can only be passed in when sslEnabled is true. Default is 5.
+	SslMaxConnections *int `pulumi:"sslMaxConnections"`
 	// The ID of the subnet where you want to create the VPN gateway.
 	SubnetId string `pulumi:"subnetId"`
 	// Tags.
@@ -293,11 +317,17 @@ type GatewayArgs struct {
 	BillingType pulumi.StringPtrInput
 	// The description of the VPN gateway.
 	Description pulumi.StringPtrInput
+	// Whether ipsec is enabled.
+	IpsecEnabled pulumi.BoolPtrInput
 	// The Period of the VPN gateway. Default value is 12. This parameter is only useful when creating vpn gateway. Default period unit is Month.
 	// Value range: 1~9, 12, 24, 36. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	Period pulumi.IntPtrInput
 	// The project name of the VPN gateway.
 	ProjectName pulumi.StringPtrInput
+	// Whether ssl is enabled.
+	SslEnabled pulumi.BoolPtrInput
+	// The max connections of ssl. This parameter can only be passed in when sslEnabled is true. Default is 5.
+	SslMaxConnections pulumi.IntPtrInput
 	// The ID of the subnet where you want to create the VPN gateway.
 	SubnetId pulumi.StringInput
 	// Tags.
@@ -446,6 +476,11 @@ func (o GatewayOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.StringOutput { return v.IpAddress }).(pulumi.StringOutput)
 }
 
+// Whether ipsec is enabled.
+func (o GatewayOutput) IpsecEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Gateway) pulumi.BoolPtrOutput { return v.IpsecEnabled }).(pulumi.BoolPtrOutput)
+}
+
 // The lock reason of the VPN gateway.
 func (o GatewayOutput) LockReason() pulumi.StringOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.StringOutput { return v.LockReason }).(pulumi.StringOutput)
@@ -458,8 +493,8 @@ func (o GatewayOutput) Period() pulumi.IntPtrOutput {
 }
 
 // The project name of the VPN gateway.
-func (o GatewayOutput) ProjectName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Gateway) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
+func (o GatewayOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *Gateway) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 // The renew type of the VPN gateway.
@@ -470,6 +505,16 @@ func (o GatewayOutput) RenewType() pulumi.StringOutput {
 // The route count of the VPN gateway.
 func (o GatewayOutput) RouteCount() pulumi.IntOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.IntOutput { return v.RouteCount }).(pulumi.IntOutput)
+}
+
+// Whether ssl is enabled.
+func (o GatewayOutput) SslEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Gateway) pulumi.BoolPtrOutput { return v.SslEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// The max connections of ssl. This parameter can only be passed in when sslEnabled is true. Default is 5.
+func (o GatewayOutput) SslMaxConnections() pulumi.IntOutput {
+	return o.ApplyT(func(v *Gateway) pulumi.IntOutput { return v.SslMaxConnections }).(pulumi.IntOutput)
 }
 
 // The status of the VPN gateway.

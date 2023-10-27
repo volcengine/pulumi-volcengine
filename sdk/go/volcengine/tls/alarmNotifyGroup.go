@@ -74,7 +74,7 @@ type AlarmNotifyGroup struct {
 	// The name of the notify group.
 	AlarmNotifyGroupName pulumi.StringOutput `pulumi:"alarmNotifyGroupName"`
 	// The name of the iam project.
-	IamProjectName pulumi.StringPtrOutput `pulumi:"iamProjectName"`
+	IamProjectName pulumi.StringOutput `pulumi:"iamProjectName"`
 	// The notify type.
 	NotifyTypes pulumi.StringArrayOutput `pulumi:"notifyTypes"`
 	// List of IAM users to receive alerts.
@@ -270,8 +270,8 @@ func (o AlarmNotifyGroupOutput) AlarmNotifyGroupName() pulumi.StringOutput {
 }
 
 // The name of the iam project.
-func (o AlarmNotifyGroupOutput) IamProjectName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *AlarmNotifyGroup) pulumi.StringPtrOutput { return v.IamProjectName }).(pulumi.StringPtrOutput)
+func (o AlarmNotifyGroupOutput) IamProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *AlarmNotifyGroup) pulumi.StringOutput { return v.IamProjectName }).(pulumi.StringOutput)
 }
 
 // The notify type.

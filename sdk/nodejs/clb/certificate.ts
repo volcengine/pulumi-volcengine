@@ -108,7 +108,7 @@ export class Certificate extends pulumi.CustomResource {
     /**
      * The ProjectName of the Certificate.
      */
-    public readonly projectName!: pulumi.Output<string | undefined>;
+    public readonly projectName!: pulumi.Output<string>;
     /**
      * The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */

@@ -309,7 +309,16 @@ namespace Volcengine.Pulumi.Volcengine.Ecs
         public Output<ImmutableArray<string>> SecurityGroupIds { get; private set; } = null!;
 
         /// <summary>
-        /// The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
+        /// The maximum hourly price for spot instances supports up to three decimal places. This parameter only takes effect when SpotStrategy=SpotWithPriceLimit.
+        /// </summary>
+        [Output("spotPriceLimit")]
+        public Output<double?> SpotPriceLimit { get; private set; } = null!;
+
+        /// <summary>
+        /// The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, values:
+        /// NoSpot (default): indicates creating a normal pay-as-you-go instance.
+        /// SpotAsPriceGo: spot instance with system automatically bidding and following the current market price.
+        /// SpotWithPriceLimit: spot instance with a set upper limit for bidding price.
         /// </summary>
         [Output("spotStrategy")]
         public Output<string> SpotStrategy { get; private set; } = null!;
@@ -607,7 +616,16 @@ namespace Volcengine.Pulumi.Volcengine.Ecs
         }
 
         /// <summary>
-        /// The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
+        /// The maximum hourly price for spot instances supports up to three decimal places. This parameter only takes effect when SpotStrategy=SpotWithPriceLimit.
+        /// </summary>
+        [Input("spotPriceLimit")]
+        public Input<double>? SpotPriceLimit { get; set; }
+
+        /// <summary>
+        /// The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, values:
+        /// NoSpot (default): indicates creating a normal pay-as-you-go instance.
+        /// SpotAsPriceGo: spot instance with system automatically bidding and following the current market price.
+        /// SpotWithPriceLimit: spot instance with a set upper limit for bidding price.
         /// </summary>
         [Input("spotStrategy")]
         public Input<string>? SpotStrategy { get; set; }
@@ -910,7 +928,16 @@ namespace Volcengine.Pulumi.Volcengine.Ecs
         }
 
         /// <summary>
-        /// The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
+        /// The maximum hourly price for spot instances supports up to three decimal places. This parameter only takes effect when SpotStrategy=SpotWithPriceLimit.
+        /// </summary>
+        [Input("spotPriceLimit")]
+        public Input<double>? SpotPriceLimit { get; set; }
+
+        /// <summary>
+        /// The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, values:
+        /// NoSpot (default): indicates creating a normal pay-as-you-go instance.
+        /// SpotAsPriceGo: spot instance with system automatically bidding and following the current market price.
+        /// SpotWithPriceLimit: spot instance with a set upper limit for bidding price.
         /// </summary>
         [Input("spotStrategy")]
         public Input<string>? SpotStrategy { get; set; }

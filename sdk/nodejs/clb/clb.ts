@@ -25,23 +25,7 @@ import * as utilities from "../utilities";
  *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
  *     vpcId: fooVpc.id,
  * });
- * const fooClb = new volcengine.clb.Clb("fooClb", {
- *     type: "public",
- *     subnetId: fooSubnet.id,
- *     loadBalancerSpec: "small_1",
- *     description: "acc-test-demo",
- *     loadBalancerName: "acc-test-clb",
- *     loadBalancerBillingType: "PostPaid",
- *     eipBillingConfig: {
- *         isp: "BGP",
- *         eipBillingType: "PostPaidByBandwidth",
- *         bandwidth: 1,
- *     },
- *     tags: [{
- *         key: "k1",
- *         value: "v1",
- *     }],
- * });
+ * // ipv4 public clb
  * const publicClb = new volcengine.clb.Clb("publicClb", {
  *     type: "public",
  *     subnetId: fooSubnet.id,
@@ -59,6 +43,7 @@ import * as utilities from "../utilities";
  *         value: "v1",
  *     }],
  * });
+ * // ipv4 private clb
  * const privateClb = new volcengine.clb.Clb("privateClb", {
  *     type: "private",
  *     subnetId: fooSubnet.id,
@@ -78,6 +63,36 @@ import * as utilities from "../utilities";
  *     allocationId: eip.id,
  *     instanceId: privateClb.id,
  *     instanceType: "ClbInstance",
+ * });
+ * // ipv6 private clb
+ * const vpcIpv6 = new volcengine.vpc.Vpc("vpcIpv6", {
+ *     vpcName: "acc-test-vpc-ipv6",
+ *     cidrBlock: "172.16.0.0/16",
+ *     enableIpv6: true,
+ * });
+ * const subnetIpv6 = new volcengine.vpc.Subnet("subnetIpv6", {
+ *     subnetName: "acc-test-subnet-ipv6",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[1]?.id),
+ *     vpcId: vpcIpv6.id,
+ *     ipv6CidrBlock: 1,
+ * });
+ * const privateClbIpv6 = new volcengine.clb.Clb("privateClbIpv6", {
+ *     type: "private",
+ *     subnetId: subnetIpv6.id,
+ *     loadBalancerName: "acc-test-clb-ipv6",
+ *     loadBalancerSpec: "small_1",
+ *     description: "acc-test-demo",
+ *     projectName: "default",
+ *     addressIpVersion: "DualStack",
+ * });
+ * const ipv6Gateway = new volcengine.vpc.Ipv6Gateway("ipv6Gateway", {vpcId: vpcIpv6.id});
+ * const fooIpv6AddressBandwidth = new volcengine.vpc.Ipv6AddressBandwidth("fooIpv6AddressBandwidth", {
+ *     ipv6Address: privateClbIpv6.eniIpv6Address,
+ *     billingType: "PostPaidByBandwidth",
+ *     bandwidth: 5,
+ * }, {
+ *     dependsOn: [ipv6Gateway],
  * });
  * ```
  *
@@ -118,6 +133,11 @@ export class Clb extends pulumi.CustomResource {
     }
 
     /**
+     * The address ip version of the Clb. Valid values: `ipv4`, `DualStack`. Default is `ipv4`.
+     * When the value of this field is `DualStack`, the type of the CLB must be `private`, and suggest using a combination of resource `volcengine.vpc.Ipv6Gateway` and `volcengine.vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
+     */
+    public readonly addressIpVersion!: pulumi.Output<string | undefined>;
+    /**
      * The description of the CLB.
      */
     public readonly description!: pulumi.Output<string | undefined>;
@@ -137,6 +157,14 @@ export class Clb extends pulumi.CustomResource {
      * The eni address of the CLB.
      */
     public readonly eniAddress!: pulumi.Output<string>;
+    /**
+     * The eni ipv6 address of the Clb.
+     */
+    public readonly eniIpv6Address!: pulumi.Output<string>;
+    /**
+     * The Ipv6 Eip ID of the Clb.
+     */
+    public /*out*/ readonly ipv6EipId!: pulumi.Output<string>;
     /**
      * The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
      */
@@ -168,7 +196,7 @@ export class Clb extends pulumi.CustomResource {
     /**
      * The ProjectName of the CLB.
      */
-    public readonly projectName!: pulumi.Output<string | undefined>;
+    public readonly projectName!: pulumi.Output<string>;
     /**
      * The region of the request.
      */
@@ -211,11 +239,14 @@ export class Clb extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ClbState | undefined;
+            resourceInputs["addressIpVersion"] = state ? state.addressIpVersion : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["eipAddress"] = state ? state.eipAddress : undefined;
             resourceInputs["eipBillingConfig"] = state ? state.eipBillingConfig : undefined;
             resourceInputs["eipId"] = state ? state.eipId : undefined;
             resourceInputs["eniAddress"] = state ? state.eniAddress : undefined;
+            resourceInputs["eniIpv6Address"] = state ? state.eniIpv6Address : undefined;
+            resourceInputs["ipv6EipId"] = state ? state.ipv6EipId : undefined;
             resourceInputs["loadBalancerBillingType"] = state ? state.loadBalancerBillingType : undefined;
             resourceInputs["loadBalancerName"] = state ? state.loadBalancerName : undefined;
             resourceInputs["loadBalancerSpec"] = state ? state.loadBalancerSpec : undefined;
@@ -242,9 +273,11 @@ export class Clb extends pulumi.CustomResource {
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
+            resourceInputs["addressIpVersion"] = args ? args.addressIpVersion : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["eipBillingConfig"] = args ? args.eipBillingConfig : undefined;
             resourceInputs["eniAddress"] = args ? args.eniAddress : undefined;
+            resourceInputs["eniIpv6Address"] = args ? args.eniIpv6Address : undefined;
             resourceInputs["loadBalancerBillingType"] = args ? args.loadBalancerBillingType : undefined;
             resourceInputs["loadBalancerName"] = args ? args.loadBalancerName : undefined;
             resourceInputs["loadBalancerSpec"] = args ? args.loadBalancerSpec : undefined;
@@ -261,6 +294,7 @@ export class Clb extends pulumi.CustomResource {
             resourceInputs["vpcId"] = args ? args.vpcId : undefined;
             resourceInputs["eipAddress"] = undefined /*out*/;
             resourceInputs["eipId"] = undefined /*out*/;
+            resourceInputs["ipv6EipId"] = undefined /*out*/;
             resourceInputs["renewType"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -272,6 +306,11 @@ export class Clb extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Clb resources.
  */
 export interface ClbState {
+    /**
+     * The address ip version of the Clb. Valid values: `ipv4`, `DualStack`. Default is `ipv4`.
+     * When the value of this field is `DualStack`, the type of the CLB must be `private`, and suggest using a combination of resource `volcengine.vpc.Ipv6Gateway` and `volcengine.vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
+     */
+    addressIpVersion?: pulumi.Input<string>;
     /**
      * The description of the CLB.
      */
@@ -292,6 +331,14 @@ export interface ClbState {
      * The eni address of the CLB.
      */
     eniAddress?: pulumi.Input<string>;
+    /**
+     * The eni ipv6 address of the Clb.
+     */
+    eniIpv6Address?: pulumi.Input<string>;
+    /**
+     * The Ipv6 Eip ID of the Clb.
+     */
+    ipv6EipId?: pulumi.Input<string>;
     /**
      * The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
      */
@@ -359,6 +406,11 @@ export interface ClbState {
  */
 export interface ClbArgs {
     /**
+     * The address ip version of the Clb. Valid values: `ipv4`, `DualStack`. Default is `ipv4`.
+     * When the value of this field is `DualStack`, the type of the CLB must be `private`, and suggest using a combination of resource `volcengine.vpc.Ipv6Gateway` and `volcengine.vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
+     */
+    addressIpVersion?: pulumi.Input<string>;
+    /**
      * The description of the CLB.
      */
     description?: pulumi.Input<string>;
@@ -370,6 +422,10 @@ export interface ClbArgs {
      * The eni address of the CLB.
      */
     eniAddress?: pulumi.Input<string>;
+    /**
+     * The eni ipv6 address of the Clb.
+     */
+    eniIpv6Address?: pulumi.Input<string>;
     /**
      * The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
      */

@@ -15,17 +15,21 @@ __all__ = ['ServerGroupArgs', 'ServerGroup']
 class ServerGroupArgs:
     def __init__(__self__, *,
                  load_balancer_id: pulumi.Input[str],
+                 address_ip_version: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  server_group_id: Optional[pulumi.Input[str]] = None,
                  server_group_name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ServerGroup resource.
         :param pulumi.Input[str] load_balancer_id: The ID of the Clb.
+        :param pulumi.Input[str] address_ip_version: The address ip version of the ServerGroup. Valid values: `ipv4`, `ipv6`. Default is `ipv4`.
         :param pulumi.Input[str] description: The description of ServerGroup.
         :param pulumi.Input[str] server_group_id: The ID of the ServerGroup.
         :param pulumi.Input[str] server_group_name: The name of the ServerGroup.
         """
         pulumi.set(__self__, "load_balancer_id", load_balancer_id)
+        if address_ip_version is not None:
+            pulumi.set(__self__, "address_ip_version", address_ip_version)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if server_group_id is not None:
@@ -44,6 +48,18 @@ class ServerGroupArgs:
     @load_balancer_id.setter
     def load_balancer_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "load_balancer_id", value)
+
+    @property
+    @pulumi.getter(name="addressIpVersion")
+    def address_ip_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        The address ip version of the ServerGroup. Valid values: `ipv4`, `ipv6`. Default is `ipv4`.
+        """
+        return pulumi.get(self, "address_ip_version")
+
+    @address_ip_version.setter
+    def address_ip_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "address_ip_version", value)
 
     @property
     @pulumi.getter
@@ -85,17 +101,21 @@ class ServerGroupArgs:
 @pulumi.input_type
 class _ServerGroupState:
     def __init__(__self__, *,
+                 address_ip_version: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  load_balancer_id: Optional[pulumi.Input[str]] = None,
                  server_group_id: Optional[pulumi.Input[str]] = None,
                  server_group_name: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ServerGroup resources.
+        :param pulumi.Input[str] address_ip_version: The address ip version of the ServerGroup. Valid values: `ipv4`, `ipv6`. Default is `ipv4`.
         :param pulumi.Input[str] description: The description of ServerGroup.
         :param pulumi.Input[str] load_balancer_id: The ID of the Clb.
         :param pulumi.Input[str] server_group_id: The ID of the ServerGroup.
         :param pulumi.Input[str] server_group_name: The name of the ServerGroup.
         """
+        if address_ip_version is not None:
+            pulumi.set(__self__, "address_ip_version", address_ip_version)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if load_balancer_id is not None:
@@ -104,6 +124,18 @@ class _ServerGroupState:
             pulumi.set(__self__, "server_group_id", server_group_id)
         if server_group_name is not None:
             pulumi.set(__self__, "server_group_name", server_group_name)
+
+    @property
+    @pulumi.getter(name="addressIpVersion")
+    def address_ip_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        The address ip version of the ServerGroup. Valid values: `ipv4`, `ipv6`. Default is `ipv4`.
+        """
+        return pulumi.get(self, "address_ip_version")
+
+    @address_ip_version.setter
+    def address_ip_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "address_ip_version", value)
 
     @property
     @pulumi.getter
@@ -159,6 +191,7 @@ class ServerGroup(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 address_ip_version: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  load_balancer_id: Optional[pulumi.Input[str]] = None,
                  server_group_id: Optional[pulumi.Input[str]] = None,
@@ -208,6 +241,7 @@ class ServerGroup(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] address_ip_version: The address ip version of the ServerGroup. Valid values: `ipv4`, `ipv6`. Default is `ipv4`.
         :param pulumi.Input[str] description: The description of ServerGroup.
         :param pulumi.Input[str] load_balancer_id: The ID of the Clb.
         :param pulumi.Input[str] server_group_id: The ID of the ServerGroup.
@@ -276,6 +310,7 @@ class ServerGroup(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 address_ip_version: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  load_balancer_id: Optional[pulumi.Input[str]] = None,
                  server_group_id: Optional[pulumi.Input[str]] = None,
@@ -289,6 +324,7 @@ class ServerGroup(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ServerGroupArgs.__new__(ServerGroupArgs)
 
+            __props__.__dict__["address_ip_version"] = address_ip_version
             __props__.__dict__["description"] = description
             if load_balancer_id is None and not opts.urn:
                 raise TypeError("Missing required property 'load_balancer_id'")
@@ -305,6 +341,7 @@ class ServerGroup(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            address_ip_version: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             load_balancer_id: Optional[pulumi.Input[str]] = None,
             server_group_id: Optional[pulumi.Input[str]] = None,
@@ -316,6 +353,7 @@ class ServerGroup(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] address_ip_version: The address ip version of the ServerGroup. Valid values: `ipv4`, `ipv6`. Default is `ipv4`.
         :param pulumi.Input[str] description: The description of ServerGroup.
         :param pulumi.Input[str] load_balancer_id: The ID of the Clb.
         :param pulumi.Input[str] server_group_id: The ID of the ServerGroup.
@@ -325,11 +363,20 @@ class ServerGroup(pulumi.CustomResource):
 
         __props__ = _ServerGroupState.__new__(_ServerGroupState)
 
+        __props__.__dict__["address_ip_version"] = address_ip_version
         __props__.__dict__["description"] = description
         __props__.__dict__["load_balancer_id"] = load_balancer_id
         __props__.__dict__["server_group_id"] = server_group_id
         __props__.__dict__["server_group_name"] = server_group_name
         return ServerGroup(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="addressIpVersion")
+    def address_ip_version(self) -> pulumi.Output[Optional[str]]:
+        """
+        The address ip version of the ServerGroup. Valid values: `ipv4`, `ipv6`. Default is `ipv4`.
+        """
+        return pulumi.get(self, "address_ip_version")
 
     @property
     @pulumi.getter

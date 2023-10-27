@@ -19,9 +19,11 @@ class ClbArgs:
                  load_balancer_spec: pulumi.Input[str],
                  subnet_id: pulumi.Input[str],
                  type: pulumi.Input[str],
+                 address_ip_version: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  eip_billing_config: Optional[pulumi.Input['ClbEipBillingConfigArgs']] = None,
                  eni_address: Optional[pulumi.Input[str]] = None,
+                 eni_ipv6_address: Optional[pulumi.Input[str]] = None,
                  load_balancer_billing_type: Optional[pulumi.Input[str]] = None,
                  load_balancer_name: Optional[pulumi.Input[str]] = None,
                  master_zone_id: Optional[pulumi.Input[str]] = None,
@@ -38,9 +40,12 @@ class ClbArgs:
         :param pulumi.Input[str] load_balancer_spec: The specification of the CLB, the value can be `small_1`, `small_2`, `medium_1`, `medium_2`, `large_1`, `large_2`.
         :param pulumi.Input[str] subnet_id: The id of the Subnet.
         :param pulumi.Input[str] type: The type of the CLB. And optional choice contains `public` or `private`.
+        :param pulumi.Input[str] address_ip_version: The address ip version of the Clb. Valid values: `ipv4`, `DualStack`. Default is `ipv4`.
+               When the value of this field is `DualStack`, the type of the CLB must be `private`, and suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
         :param pulumi.Input[str] description: The description of the CLB.
         :param pulumi.Input['ClbEipBillingConfigArgs'] eip_billing_config: The billing configuration of the EIP which automatically associated to CLB. This field is valid when the type of CLB is `public`.When the type of the CLB is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
         :param pulumi.Input[str] eni_address: The eni address of the CLB.
+        :param pulumi.Input[str] eni_ipv6_address: The eni ipv6 address of the Clb.
         :param pulumi.Input[str] load_balancer_billing_type: The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
         :param pulumi.Input[str] load_balancer_name: The name of the CLB.
         :param pulumi.Input[str] master_zone_id: The master zone ID of the CLB.
@@ -56,12 +61,16 @@ class ClbArgs:
         pulumi.set(__self__, "load_balancer_spec", load_balancer_spec)
         pulumi.set(__self__, "subnet_id", subnet_id)
         pulumi.set(__self__, "type", type)
+        if address_ip_version is not None:
+            pulumi.set(__self__, "address_ip_version", address_ip_version)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if eip_billing_config is not None:
             pulumi.set(__self__, "eip_billing_config", eip_billing_config)
         if eni_address is not None:
             pulumi.set(__self__, "eni_address", eni_address)
+        if eni_ipv6_address is not None:
+            pulumi.set(__self__, "eni_ipv6_address", eni_ipv6_address)
         if load_balancer_billing_type is not None:
             pulumi.set(__self__, "load_balancer_billing_type", load_balancer_billing_type)
         if load_balancer_name is not None:
@@ -122,6 +131,19 @@ class ClbArgs:
         pulumi.set(self, "type", value)
 
     @property
+    @pulumi.getter(name="addressIpVersion")
+    def address_ip_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        The address ip version of the Clb. Valid values: `ipv4`, `DualStack`. Default is `ipv4`.
+        When the value of this field is `DualStack`, the type of the CLB must be `private`, and suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
+        """
+        return pulumi.get(self, "address_ip_version")
+
+    @address_ip_version.setter
+    def address_ip_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "address_ip_version", value)
+
+    @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
@@ -156,6 +178,18 @@ class ClbArgs:
     @eni_address.setter
     def eni_address(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "eni_address", value)
+
+    @property
+    @pulumi.getter(name="eniIpv6Address")
+    def eni_ipv6_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        The eni ipv6 address of the Clb.
+        """
+        return pulumi.get(self, "eni_ipv6_address")
+
+    @eni_ipv6_address.setter
+    def eni_ipv6_address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "eni_ipv6_address", value)
 
     @property
     @pulumi.getter(name="loadBalancerBillingType")
@@ -293,11 +327,14 @@ class ClbArgs:
 @pulumi.input_type
 class _ClbState:
     def __init__(__self__, *,
+                 address_ip_version: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  eip_address: Optional[pulumi.Input[str]] = None,
                  eip_billing_config: Optional[pulumi.Input['ClbEipBillingConfigArgs']] = None,
                  eip_id: Optional[pulumi.Input[str]] = None,
                  eni_address: Optional[pulumi.Input[str]] = None,
+                 eni_ipv6_address: Optional[pulumi.Input[str]] = None,
+                 ipv6_eip_id: Optional[pulumi.Input[str]] = None,
                  load_balancer_billing_type: Optional[pulumi.Input[str]] = None,
                  load_balancer_name: Optional[pulumi.Input[str]] = None,
                  load_balancer_spec: Optional[pulumi.Input[str]] = None,
@@ -315,11 +352,15 @@ class _ClbState:
                  vpc_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Clb resources.
+        :param pulumi.Input[str] address_ip_version: The address ip version of the Clb. Valid values: `ipv4`, `DualStack`. Default is `ipv4`.
+               When the value of this field is `DualStack`, the type of the CLB must be `private`, and suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
         :param pulumi.Input[str] description: The description of the CLB.
         :param pulumi.Input[str] eip_address: The Eip address of the Clb.
         :param pulumi.Input['ClbEipBillingConfigArgs'] eip_billing_config: The billing configuration of the EIP which automatically associated to CLB. This field is valid when the type of CLB is `public`.When the type of the CLB is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
         :param pulumi.Input[str] eip_id: The Eip ID of the Clb.
         :param pulumi.Input[str] eni_address: The eni address of the CLB.
+        :param pulumi.Input[str] eni_ipv6_address: The eni ipv6 address of the Clb.
+        :param pulumi.Input[str] ipv6_eip_id: The Ipv6 Eip ID of the Clb.
         :param pulumi.Input[str] load_balancer_billing_type: The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
         :param pulumi.Input[str] load_balancer_name: The name of the CLB.
         :param pulumi.Input[str] load_balancer_spec: The specification of the CLB, the value can be `small_1`, `small_2`, `medium_1`, `medium_2`, `large_1`, `large_2`.
@@ -336,6 +377,8 @@ class _ClbState:
         :param pulumi.Input[str] type: The type of the CLB. And optional choice contains `public` or `private`.
         :param pulumi.Input[str] vpc_id: The id of the VPC.
         """
+        if address_ip_version is not None:
+            pulumi.set(__self__, "address_ip_version", address_ip_version)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if eip_address is not None:
@@ -346,6 +389,10 @@ class _ClbState:
             pulumi.set(__self__, "eip_id", eip_id)
         if eni_address is not None:
             pulumi.set(__self__, "eni_address", eni_address)
+        if eni_ipv6_address is not None:
+            pulumi.set(__self__, "eni_ipv6_address", eni_ipv6_address)
+        if ipv6_eip_id is not None:
+            pulumi.set(__self__, "ipv6_eip_id", ipv6_eip_id)
         if load_balancer_billing_type is not None:
             pulumi.set(__self__, "load_balancer_billing_type", load_balancer_billing_type)
         if load_balancer_name is not None:
@@ -376,6 +423,19 @@ class _ClbState:
             pulumi.set(__self__, "type", type)
         if vpc_id is not None:
             pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @property
+    @pulumi.getter(name="addressIpVersion")
+    def address_ip_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        The address ip version of the Clb. Valid values: `ipv4`, `DualStack`. Default is `ipv4`.
+        When the value of this field is `DualStack`, the type of the CLB must be `private`, and suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
+        """
+        return pulumi.get(self, "address_ip_version")
+
+    @address_ip_version.setter
+    def address_ip_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "address_ip_version", value)
 
     @property
     @pulumi.getter
@@ -436,6 +496,30 @@ class _ClbState:
     @eni_address.setter
     def eni_address(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "eni_address", value)
+
+    @property
+    @pulumi.getter(name="eniIpv6Address")
+    def eni_ipv6_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        The eni ipv6 address of the Clb.
+        """
+        return pulumi.get(self, "eni_ipv6_address")
+
+    @eni_ipv6_address.setter
+    def eni_ipv6_address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "eni_ipv6_address", value)
+
+    @property
+    @pulumi.getter(name="ipv6EipId")
+    def ipv6_eip_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Ipv6 Eip ID of the Clb.
+        """
+        return pulumi.get(self, "ipv6_eip_id")
+
+    @ipv6_eip_id.setter
+    def ipv6_eip_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipv6_eip_id", value)
 
     @property
     @pulumi.getter(name="loadBalancerBillingType")
@@ -623,9 +707,11 @@ class Clb(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 address_ip_version: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  eip_billing_config: Optional[pulumi.Input[pulumi.InputType['ClbEipBillingConfigArgs']]] = None,
                  eni_address: Optional[pulumi.Input[str]] = None,
+                 eni_ipv6_address: Optional[pulumi.Input[str]] = None,
                  load_balancer_billing_type: Optional[pulumi.Input[str]] = None,
                  load_balancer_name: Optional[pulumi.Input[str]] = None,
                  load_balancer_spec: Optional[pulumi.Input[str]] = None,
@@ -657,22 +743,7 @@ class Clb(pulumi.CustomResource):
             cidr_block="172.16.0.0/24",
             zone_id=foo_zones.zones[0].id,
             vpc_id=foo_vpc.id)
-        foo_clb = volcengine.clb.Clb("fooClb",
-            type="public",
-            subnet_id=foo_subnet.id,
-            load_balancer_spec="small_1",
-            description="acc-test-demo",
-            load_balancer_name="acc-test-clb",
-            load_balancer_billing_type="PostPaid",
-            eip_billing_config=volcengine.clb.ClbEipBillingConfigArgs(
-                isp="BGP",
-                eip_billing_type="PostPaidByBandwidth",
-                bandwidth=1,
-            ),
-            tags=[volcengine.clb.ClbTagArgs(
-                key="k1",
-                value="v1",
-            )])
+        # ipv4 public clb
         public_clb = volcengine.clb.Clb("publicClb",
             type="public",
             subnet_id=foo_subnet.id,
@@ -689,6 +760,7 @@ class Clb(pulumi.CustomResource):
                 key="k1",
                 value="v1",
             )])
+        # ipv4 private clb
         private_clb = volcengine.clb.Clb("privateClb",
             type="private",
             subnet_id=foo_subnet.id,
@@ -706,6 +778,31 @@ class Clb(pulumi.CustomResource):
             allocation_id=eip.id,
             instance_id=private_clb.id,
             instance_type="ClbInstance")
+        # ipv6 private clb
+        vpc_ipv6 = volcengine.vpc.Vpc("vpcIpv6",
+            vpc_name="acc-test-vpc-ipv6",
+            cidr_block="172.16.0.0/16",
+            enable_ipv6=True)
+        subnet_ipv6 = volcengine.vpc.Subnet("subnetIpv6",
+            subnet_name="acc-test-subnet-ipv6",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[1].id,
+            vpc_id=vpc_ipv6.id,
+            ipv6_cidr_block=1)
+        private_clb_ipv6 = volcengine.clb.Clb("privateClbIpv6",
+            type="private",
+            subnet_id=subnet_ipv6.id,
+            load_balancer_name="acc-test-clb-ipv6",
+            load_balancer_spec="small_1",
+            description="acc-test-demo",
+            project_name="default",
+            address_ip_version="DualStack")
+        ipv6_gateway = volcengine.vpc.Ipv6Gateway("ipv6Gateway", vpc_id=vpc_ipv6.id)
+        foo_ipv6_address_bandwidth = volcengine.vpc.Ipv6AddressBandwidth("fooIpv6AddressBandwidth",
+            ipv6_address=private_clb_ipv6.eni_ipv6_address,
+            billing_type="PostPaidByBandwidth",
+            bandwidth=5,
+            opts=pulumi.ResourceOptions(depends_on=[ipv6_gateway]))
         ```
 
         ## Import
@@ -718,9 +815,12 @@ class Clb(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] address_ip_version: The address ip version of the Clb. Valid values: `ipv4`, `DualStack`. Default is `ipv4`.
+               When the value of this field is `DualStack`, the type of the CLB must be `private`, and suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
         :param pulumi.Input[str] description: The description of the CLB.
         :param pulumi.Input[pulumi.InputType['ClbEipBillingConfigArgs']] eip_billing_config: The billing configuration of the EIP which automatically associated to CLB. This field is valid when the type of CLB is `public`.When the type of the CLB is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
         :param pulumi.Input[str] eni_address: The eni address of the CLB.
+        :param pulumi.Input[str] eni_ipv6_address: The eni ipv6 address of the Clb.
         :param pulumi.Input[str] load_balancer_billing_type: The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
         :param pulumi.Input[str] load_balancer_name: The name of the CLB.
         :param pulumi.Input[str] load_balancer_spec: The specification of the CLB, the value can be `small_1`, `small_2`, `medium_1`, `medium_2`, `large_1`, `large_2`.
@@ -758,22 +858,7 @@ class Clb(pulumi.CustomResource):
             cidr_block="172.16.0.0/24",
             zone_id=foo_zones.zones[0].id,
             vpc_id=foo_vpc.id)
-        foo_clb = volcengine.clb.Clb("fooClb",
-            type="public",
-            subnet_id=foo_subnet.id,
-            load_balancer_spec="small_1",
-            description="acc-test-demo",
-            load_balancer_name="acc-test-clb",
-            load_balancer_billing_type="PostPaid",
-            eip_billing_config=volcengine.clb.ClbEipBillingConfigArgs(
-                isp="BGP",
-                eip_billing_type="PostPaidByBandwidth",
-                bandwidth=1,
-            ),
-            tags=[volcengine.clb.ClbTagArgs(
-                key="k1",
-                value="v1",
-            )])
+        # ipv4 public clb
         public_clb = volcengine.clb.Clb("publicClb",
             type="public",
             subnet_id=foo_subnet.id,
@@ -790,6 +875,7 @@ class Clb(pulumi.CustomResource):
                 key="k1",
                 value="v1",
             )])
+        # ipv4 private clb
         private_clb = volcengine.clb.Clb("privateClb",
             type="private",
             subnet_id=foo_subnet.id,
@@ -807,6 +893,31 @@ class Clb(pulumi.CustomResource):
             allocation_id=eip.id,
             instance_id=private_clb.id,
             instance_type="ClbInstance")
+        # ipv6 private clb
+        vpc_ipv6 = volcengine.vpc.Vpc("vpcIpv6",
+            vpc_name="acc-test-vpc-ipv6",
+            cidr_block="172.16.0.0/16",
+            enable_ipv6=True)
+        subnet_ipv6 = volcengine.vpc.Subnet("subnetIpv6",
+            subnet_name="acc-test-subnet-ipv6",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[1].id,
+            vpc_id=vpc_ipv6.id,
+            ipv6_cidr_block=1)
+        private_clb_ipv6 = volcengine.clb.Clb("privateClbIpv6",
+            type="private",
+            subnet_id=subnet_ipv6.id,
+            load_balancer_name="acc-test-clb-ipv6",
+            load_balancer_spec="small_1",
+            description="acc-test-demo",
+            project_name="default",
+            address_ip_version="DualStack")
+        ipv6_gateway = volcengine.vpc.Ipv6Gateway("ipv6Gateway", vpc_id=vpc_ipv6.id)
+        foo_ipv6_address_bandwidth = volcengine.vpc.Ipv6AddressBandwidth("fooIpv6AddressBandwidth",
+            ipv6_address=private_clb_ipv6.eni_ipv6_address,
+            billing_type="PostPaidByBandwidth",
+            bandwidth=5,
+            opts=pulumi.ResourceOptions(depends_on=[ipv6_gateway]))
         ```
 
         ## Import
@@ -832,9 +943,11 @@ class Clb(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 address_ip_version: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  eip_billing_config: Optional[pulumi.Input[pulumi.InputType['ClbEipBillingConfigArgs']]] = None,
                  eni_address: Optional[pulumi.Input[str]] = None,
+                 eni_ipv6_address: Optional[pulumi.Input[str]] = None,
                  load_balancer_billing_type: Optional[pulumi.Input[str]] = None,
                  load_balancer_name: Optional[pulumi.Input[str]] = None,
                  load_balancer_spec: Optional[pulumi.Input[str]] = None,
@@ -858,9 +971,11 @@ class Clb(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ClbArgs.__new__(ClbArgs)
 
+            __props__.__dict__["address_ip_version"] = address_ip_version
             __props__.__dict__["description"] = description
             __props__.__dict__["eip_billing_config"] = eip_billing_config
             __props__.__dict__["eni_address"] = eni_address
+            __props__.__dict__["eni_ipv6_address"] = eni_ipv6_address
             __props__.__dict__["load_balancer_billing_type"] = load_balancer_billing_type
             __props__.__dict__["load_balancer_name"] = load_balancer_name
             if load_balancer_spec is None and not opts.urn:
@@ -883,6 +998,7 @@ class Clb(pulumi.CustomResource):
             __props__.__dict__["vpc_id"] = vpc_id
             __props__.__dict__["eip_address"] = None
             __props__.__dict__["eip_id"] = None
+            __props__.__dict__["ipv6_eip_id"] = None
             __props__.__dict__["renew_type"] = None
         super(Clb, __self__).__init__(
             'volcengine:clb/clb:Clb',
@@ -894,11 +1010,14 @@ class Clb(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            address_ip_version: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             eip_address: Optional[pulumi.Input[str]] = None,
             eip_billing_config: Optional[pulumi.Input[pulumi.InputType['ClbEipBillingConfigArgs']]] = None,
             eip_id: Optional[pulumi.Input[str]] = None,
             eni_address: Optional[pulumi.Input[str]] = None,
+            eni_ipv6_address: Optional[pulumi.Input[str]] = None,
+            ipv6_eip_id: Optional[pulumi.Input[str]] = None,
             load_balancer_billing_type: Optional[pulumi.Input[str]] = None,
             load_balancer_name: Optional[pulumi.Input[str]] = None,
             load_balancer_spec: Optional[pulumi.Input[str]] = None,
@@ -921,11 +1040,15 @@ class Clb(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] address_ip_version: The address ip version of the Clb. Valid values: `ipv4`, `DualStack`. Default is `ipv4`.
+               When the value of this field is `DualStack`, the type of the CLB must be `private`, and suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
         :param pulumi.Input[str] description: The description of the CLB.
         :param pulumi.Input[str] eip_address: The Eip address of the Clb.
         :param pulumi.Input[pulumi.InputType['ClbEipBillingConfigArgs']] eip_billing_config: The billing configuration of the EIP which automatically associated to CLB. This field is valid when the type of CLB is `public`.When the type of the CLB is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
         :param pulumi.Input[str] eip_id: The Eip ID of the Clb.
         :param pulumi.Input[str] eni_address: The eni address of the CLB.
+        :param pulumi.Input[str] eni_ipv6_address: The eni ipv6 address of the Clb.
+        :param pulumi.Input[str] ipv6_eip_id: The Ipv6 Eip ID of the Clb.
         :param pulumi.Input[str] load_balancer_billing_type: The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
         :param pulumi.Input[str] load_balancer_name: The name of the CLB.
         :param pulumi.Input[str] load_balancer_spec: The specification of the CLB, the value can be `small_1`, `small_2`, `medium_1`, `medium_2`, `large_1`, `large_2`.
@@ -946,11 +1069,14 @@ class Clb(pulumi.CustomResource):
 
         __props__ = _ClbState.__new__(_ClbState)
 
+        __props__.__dict__["address_ip_version"] = address_ip_version
         __props__.__dict__["description"] = description
         __props__.__dict__["eip_address"] = eip_address
         __props__.__dict__["eip_billing_config"] = eip_billing_config
         __props__.__dict__["eip_id"] = eip_id
         __props__.__dict__["eni_address"] = eni_address
+        __props__.__dict__["eni_ipv6_address"] = eni_ipv6_address
+        __props__.__dict__["ipv6_eip_id"] = ipv6_eip_id
         __props__.__dict__["load_balancer_billing_type"] = load_balancer_billing_type
         __props__.__dict__["load_balancer_name"] = load_balancer_name
         __props__.__dict__["load_balancer_spec"] = load_balancer_spec
@@ -967,6 +1093,15 @@ class Clb(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         __props__.__dict__["vpc_id"] = vpc_id
         return Clb(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="addressIpVersion")
+    def address_ip_version(self) -> pulumi.Output[Optional[str]]:
+        """
+        The address ip version of the Clb. Valid values: `ipv4`, `DualStack`. Default is `ipv4`.
+        When the value of this field is `DualStack`, the type of the CLB must be `private`, and suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
+        """
+        return pulumi.get(self, "address_ip_version")
 
     @property
     @pulumi.getter
@@ -1007,6 +1142,22 @@ class Clb(pulumi.CustomResource):
         The eni address of the CLB.
         """
         return pulumi.get(self, "eni_address")
+
+    @property
+    @pulumi.getter(name="eniIpv6Address")
+    def eni_ipv6_address(self) -> pulumi.Output[str]:
+        """
+        The eni ipv6 address of the Clb.
+        """
+        return pulumi.get(self, "eni_ipv6_address")
+
+    @property
+    @pulumi.getter(name="ipv6EipId")
+    def ipv6_eip_id(self) -> pulumi.Output[str]:
+        """
+        The Ipv6 Eip ID of the Clb.
+        """
+        return pulumi.get(self, "ipv6_eip_id")
 
     @property
     @pulumi.getter(name="loadBalancerBillingType")
@@ -1066,7 +1217,7 @@ class Clb(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="projectName")
-    def project_name(self) -> pulumi.Output[Optional[str]]:
+    def project_name(self) -> pulumi.Output[str]:
         """
         The ProjectName of the CLB.
         """

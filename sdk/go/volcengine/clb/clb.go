@@ -49,28 +49,6 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = clb.NewClb(ctx, "fooClb", &clb.ClbArgs{
-//				Type:                    pulumi.String("public"),
-//				SubnetId:                fooSubnet.ID(),
-//				LoadBalancerSpec:        pulumi.String("small_1"),
-//				Description:             pulumi.String("acc-test-demo"),
-//				LoadBalancerName:        pulumi.String("acc-test-clb"),
-//				LoadBalancerBillingType: pulumi.String("PostPaid"),
-//				EipBillingConfig: &clb.ClbEipBillingConfigArgs{
-//					Isp:            pulumi.String("BGP"),
-//					EipBillingType: pulumi.String("PostPaidByBandwidth"),
-//					Bandwidth:      pulumi.Int(1),
-//				},
-//				Tags: clb.ClbTagArray{
-//					&clb.ClbTagArgs{
-//						Key:   pulumi.String("k1"),
-//						Value: pulumi.String("v1"),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
 //			_, err = clb.NewClb(ctx, "publicClb", &clb.ClbArgs{
 //				Type:             pulumi.String("public"),
 //				SubnetId:         fooSubnet.ID(),
@@ -122,6 +100,52 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			vpcIpv6, err := vpc.NewVpc(ctx, "vpcIpv6", &vpc.VpcArgs{
+//				VpcName:    pulumi.String("acc-test-vpc-ipv6"),
+//				CidrBlock:  pulumi.String("172.16.0.0/16"),
+//				EnableIpv6: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			subnetIpv6, err := vpc.NewSubnet(ctx, "subnetIpv6", &vpc.SubnetArgs{
+//				SubnetName:    pulumi.String("acc-test-subnet-ipv6"),
+//				CidrBlock:     pulumi.String("172.16.0.0/24"),
+//				ZoneId:        *pulumi.String(fooZones.Zones[1].Id),
+//				VpcId:         vpcIpv6.ID(),
+//				Ipv6CidrBlock: pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			privateClbIpv6, err := clb.NewClb(ctx, "privateClbIpv6", &clb.ClbArgs{
+//				Type:             pulumi.String("private"),
+//				SubnetId:         subnetIpv6.ID(),
+//				LoadBalancerName: pulumi.String("acc-test-clb-ipv6"),
+//				LoadBalancerSpec: pulumi.String("small_1"),
+//				Description:      pulumi.String("acc-test-demo"),
+//				ProjectName:      pulumi.String("default"),
+//				AddressIpVersion: pulumi.String("DualStack"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			ipv6Gateway, err := vpc.NewIpv6Gateway(ctx, "ipv6Gateway", &vpc.Ipv6GatewayArgs{
+//				VpcId: vpcIpv6.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = vpc.NewIpv6AddressBandwidth(ctx, "fooIpv6AddressBandwidth", &vpc.Ipv6AddressBandwidthArgs{
+//				Ipv6Address: privateClbIpv6.EniIpv6Address,
+//				BillingType: pulumi.String("PostPaidByBandwidth"),
+//				Bandwidth:   pulumi.Int(5),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				ipv6Gateway,
+//			}))
+//			if err != nil {
+//				return err
+//			}
 //			return nil
 //		})
 //	}
@@ -140,6 +164,9 @@ import (
 type Clb struct {
 	pulumi.CustomResourceState
 
+	// The address ip version of the Clb. Valid values: `ipv4`, `DualStack`. Default is `ipv4`.
+	// When the value of this field is `DualStack`, the type of the CLB must be `private`, and suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
+	AddressIpVersion pulumi.StringPtrOutput `pulumi:"addressIpVersion"`
 	// The description of the CLB.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The Eip address of the Clb.
@@ -150,6 +177,10 @@ type Clb struct {
 	EipId pulumi.StringOutput `pulumi:"eipId"`
 	// The eni address of the CLB.
 	EniAddress pulumi.StringOutput `pulumi:"eniAddress"`
+	// The eni ipv6 address of the Clb.
+	EniIpv6Address pulumi.StringOutput `pulumi:"eniIpv6Address"`
+	// The Ipv6 Eip ID of the Clb.
+	Ipv6EipId pulumi.StringOutput `pulumi:"ipv6EipId"`
 	// The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
 	LoadBalancerBillingType pulumi.StringOutput `pulumi:"loadBalancerBillingType"`
 	// The name of the CLB.
@@ -165,7 +196,7 @@ type Clb struct {
 	// The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	Period pulumi.IntPtrOutput `pulumi:"period"`
 	// The ProjectName of the CLB.
-	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The region of the request.
 	RegionId pulumi.StringOutput `pulumi:"regionId"`
 	// The renew type of the CLB. When the value of the loadBalancerBillingType is `PrePaid`, the query returns this field.
@@ -221,6 +252,9 @@ func GetClb(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Clb resources.
 type clbState struct {
+	// The address ip version of the Clb. Valid values: `ipv4`, `DualStack`. Default is `ipv4`.
+	// When the value of this field is `DualStack`, the type of the CLB must be `private`, and suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
+	AddressIpVersion *string `pulumi:"addressIpVersion"`
 	// The description of the CLB.
 	Description *string `pulumi:"description"`
 	// The Eip address of the Clb.
@@ -231,6 +265,10 @@ type clbState struct {
 	EipId *string `pulumi:"eipId"`
 	// The eni address of the CLB.
 	EniAddress *string `pulumi:"eniAddress"`
+	// The eni ipv6 address of the Clb.
+	EniIpv6Address *string `pulumi:"eniIpv6Address"`
+	// The Ipv6 Eip ID of the Clb.
+	Ipv6EipId *string `pulumi:"ipv6EipId"`
 	// The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
 	LoadBalancerBillingType *string `pulumi:"loadBalancerBillingType"`
 	// The name of the CLB.
@@ -264,6 +302,9 @@ type clbState struct {
 }
 
 type ClbState struct {
+	// The address ip version of the Clb. Valid values: `ipv4`, `DualStack`. Default is `ipv4`.
+	// When the value of this field is `DualStack`, the type of the CLB must be `private`, and suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
+	AddressIpVersion pulumi.StringPtrInput
 	// The description of the CLB.
 	Description pulumi.StringPtrInput
 	// The Eip address of the Clb.
@@ -274,6 +315,10 @@ type ClbState struct {
 	EipId pulumi.StringPtrInput
 	// The eni address of the CLB.
 	EniAddress pulumi.StringPtrInput
+	// The eni ipv6 address of the Clb.
+	EniIpv6Address pulumi.StringPtrInput
+	// The Ipv6 Eip ID of the Clb.
+	Ipv6EipId pulumi.StringPtrInput
 	// The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
 	LoadBalancerBillingType pulumi.StringPtrInput
 	// The name of the CLB.
@@ -311,12 +356,17 @@ func (ClbState) ElementType() reflect.Type {
 }
 
 type clbArgs struct {
+	// The address ip version of the Clb. Valid values: `ipv4`, `DualStack`. Default is `ipv4`.
+	// When the value of this field is `DualStack`, the type of the CLB must be `private`, and suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
+	AddressIpVersion *string `pulumi:"addressIpVersion"`
 	// The description of the CLB.
 	Description *string `pulumi:"description"`
 	// The billing configuration of the EIP which automatically associated to CLB. This field is valid when the type of CLB is `public`.When the type of the CLB is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
 	EipBillingConfig *ClbEipBillingConfig `pulumi:"eipBillingConfig"`
 	// The eni address of the CLB.
 	EniAddress *string `pulumi:"eniAddress"`
+	// The eni ipv6 address of the Clb.
+	EniIpv6Address *string `pulumi:"eniIpv6Address"`
 	// The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
 	LoadBalancerBillingType *string `pulumi:"loadBalancerBillingType"`
 	// The name of the CLB.
@@ -349,12 +399,17 @@ type clbArgs struct {
 
 // The set of arguments for constructing a Clb resource.
 type ClbArgs struct {
+	// The address ip version of the Clb. Valid values: `ipv4`, `DualStack`. Default is `ipv4`.
+	// When the value of this field is `DualStack`, the type of the CLB must be `private`, and suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
+	AddressIpVersion pulumi.StringPtrInput
 	// The description of the CLB.
 	Description pulumi.StringPtrInput
 	// The billing configuration of the EIP which automatically associated to CLB. This field is valid when the type of CLB is `public`.When the type of the CLB is `private`, suggest using a combination of resource `eip.Address` and `eip.Associate` to achieve public network access function.
 	EipBillingConfig ClbEipBillingConfigPtrInput
 	// The eni address of the CLB.
 	EniAddress pulumi.StringPtrInput
+	// The eni ipv6 address of the Clb.
+	EniIpv6Address pulumi.StringPtrInput
 	// The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
 	LoadBalancerBillingType pulumi.StringPtrInput
 	// The name of the CLB.
@@ -472,6 +527,12 @@ func (o ClbOutput) ToClbOutputWithContext(ctx context.Context) ClbOutput {
 	return o
 }
 
+// The address ip version of the Clb. Valid values: `ipv4`, `DualStack`. Default is `ipv4`.
+// When the value of this field is `DualStack`, the type of the CLB must be `private`, and suggest using a combination of resource `vpc.Ipv6Gateway` and `vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
+func (o ClbOutput) AddressIpVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Clb) pulumi.StringPtrOutput { return v.AddressIpVersion }).(pulumi.StringPtrOutput)
+}
+
 // The description of the CLB.
 func (o ClbOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Clb) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
@@ -495,6 +556,16 @@ func (o ClbOutput) EipId() pulumi.StringOutput {
 // The eni address of the CLB.
 func (o ClbOutput) EniAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v *Clb) pulumi.StringOutput { return v.EniAddress }).(pulumi.StringOutput)
+}
+
+// The eni ipv6 address of the Clb.
+func (o ClbOutput) EniIpv6Address() pulumi.StringOutput {
+	return o.ApplyT(func(v *Clb) pulumi.StringOutput { return v.EniIpv6Address }).(pulumi.StringOutput)
+}
+
+// The Ipv6 Eip ID of the Clb.
+func (o ClbOutput) Ipv6EipId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Clb) pulumi.StringOutput { return v.Ipv6EipId }).(pulumi.StringOutput)
 }
 
 // The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
@@ -533,8 +604,8 @@ func (o ClbOutput) Period() pulumi.IntPtrOutput {
 }
 
 // The ProjectName of the CLB.
-func (o ClbOutput) ProjectName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Clb) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
+func (o ClbOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *Clb) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 // The region of the request.

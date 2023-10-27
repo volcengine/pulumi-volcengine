@@ -45,6 +45,31 @@ export type User = import("./user").User;
 export const User: typeof import("./user").User = null as any;
 utilities.lazyLoad(exports, ["User"], () => require("./user"));
 
+export { UserGroupArgs, UserGroupState } from "./userGroup";
+export type UserGroup = import("./userGroup").UserGroup;
+export const UserGroup: typeof import("./userGroup").UserGroup = null as any;
+utilities.lazyLoad(exports, ["UserGroup"], () => require("./userGroup"));
+
+export { UserGroupAttachmentArgs, UserGroupAttachmentState } from "./userGroupAttachment";
+export type UserGroupAttachment = import("./userGroupAttachment").UserGroupAttachment;
+export const UserGroupAttachment: typeof import("./userGroupAttachment").UserGroupAttachment = null as any;
+utilities.lazyLoad(exports, ["UserGroupAttachment"], () => require("./userGroupAttachment"));
+
+export { UserGroupPolicyAttachmentArgs, UserGroupPolicyAttachmentState } from "./userGroupPolicyAttachment";
+export type UserGroupPolicyAttachment = import("./userGroupPolicyAttachment").UserGroupPolicyAttachment;
+export const UserGroupPolicyAttachment: typeof import("./userGroupPolicyAttachment").UserGroupPolicyAttachment = null as any;
+utilities.lazyLoad(exports, ["UserGroupPolicyAttachment"], () => require("./userGroupPolicyAttachment"));
+
+export { UserGroupPolicyAttachmentsArgs, UserGroupPolicyAttachmentsResult, UserGroupPolicyAttachmentsOutputArgs } from "./userGroupPolicyAttachments";
+export const userGroupPolicyAttachments: typeof import("./userGroupPolicyAttachments").userGroupPolicyAttachments = null as any;
+export const userGroupPolicyAttachmentsOutput: typeof import("./userGroupPolicyAttachments").userGroupPolicyAttachmentsOutput = null as any;
+utilities.lazyLoad(exports, ["userGroupPolicyAttachments","userGroupPolicyAttachmentsOutput"], () => require("./userGroupPolicyAttachments"));
+
+export { UserGroupsArgs, UserGroupsResult, UserGroupsOutputArgs } from "./userGroups";
+export const userGroups: typeof import("./userGroups").userGroups = null as any;
+export const userGroupsOutput: typeof import("./userGroups").userGroupsOutput = null as any;
+utilities.lazyLoad(exports, ["userGroups","userGroupsOutput"], () => require("./userGroups"));
+
 export { UserPolicyAttachmentArgs, UserPolicyAttachmentState } from "./userPolicyAttachment";
 export type UserPolicyAttachment = import("./userPolicyAttachment").UserPolicyAttachment;
 export const UserPolicyAttachment: typeof import("./userPolicyAttachment").UserPolicyAttachment = null as any;
@@ -72,6 +97,12 @@ const _module = {
                 return new RolePolicyAttachment(name, <any>undefined, { urn })
             case "volcengine:iam/user:User":
                 return new User(name, <any>undefined, { urn })
+            case "volcengine:iam/userGroup:UserGroup":
+                return new UserGroup(name, <any>undefined, { urn })
+            case "volcengine:iam/userGroupAttachment:UserGroupAttachment":
+                return new UserGroupAttachment(name, <any>undefined, { urn })
+            case "volcengine:iam/userGroupPolicyAttachment:UserGroupPolicyAttachment":
+                return new UserGroupPolicyAttachment(name, <any>undefined, { urn })
             case "volcengine:iam/userPolicyAttachment:UserPolicyAttachment":
                 return new UserPolicyAttachment(name, <any>undefined, { urn })
             default:
@@ -85,4 +116,7 @@ pulumi.runtime.registerResourceModule("volcengine", "iam/policy", _module)
 pulumi.runtime.registerResourceModule("volcengine", "iam/role", _module)
 pulumi.runtime.registerResourceModule("volcengine", "iam/rolePolicyAttachment", _module)
 pulumi.runtime.registerResourceModule("volcengine", "iam/user", _module)
+pulumi.runtime.registerResourceModule("volcengine", "iam/userGroup", _module)
+pulumi.runtime.registerResourceModule("volcengine", "iam/userGroupAttachment", _module)
+pulumi.runtime.registerResourceModule("volcengine", "iam/userGroupPolicyAttachment", _module)
 pulumi.runtime.registerResourceModule("volcengine", "iam/userPolicyAttachment", _module)

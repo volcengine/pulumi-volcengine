@@ -76,6 +76,12 @@ namespace Volcengine.Pulumi.Volcengine.Clb
     public partial class ServerGroup : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The address ip version of the ServerGroup. Valid values: `ipv4`, `ipv6`. Default is `ipv4`.
+        /// </summary>
+        [Output("addressIpVersion")]
+        public Output<string?> AddressIpVersion { get; private set; } = null!;
+
+        /// <summary>
         /// The description of ServerGroup.
         /// </summary>
         [Output("description")]
@@ -147,6 +153,12 @@ namespace Volcengine.Pulumi.Volcengine.Clb
     public sealed class ServerGroupArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The address ip version of the ServerGroup. Valid values: `ipv4`, `ipv6`. Default is `ipv4`.
+        /// </summary>
+        [Input("addressIpVersion")]
+        public Input<string>? AddressIpVersion { get; set; }
+
+        /// <summary>
         /// The description of ServerGroup.
         /// </summary>
         [Input("description")]
@@ -178,6 +190,12 @@ namespace Volcengine.Pulumi.Volcengine.Clb
 
     public sealed class ServerGroupState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The address ip version of the ServerGroup. Valid values: `ipv4`, `ipv6`. Default is `ipv4`.
+        /// </summary>
+        [Input("addressIpVersion")]
+        public Input<string>? AddressIpVersion { get; set; }
+
         /// <summary>
         /// The description of ServerGroup.
         /// </summary>

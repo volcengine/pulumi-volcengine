@@ -112,6 +112,10 @@ export class Gateway extends pulumi.CustomResource {
      */
     public /*out*/ readonly ipAddress!: pulumi.Output<string>;
     /**
+     * Whether ipsec is enabled.
+     */
+    public readonly ipsecEnabled!: pulumi.Output<boolean | undefined>;
+    /**
      * The lock reason of the VPN gateway.
      */
     public /*out*/ readonly lockReason!: pulumi.Output<string>;
@@ -123,7 +127,7 @@ export class Gateway extends pulumi.CustomResource {
     /**
      * The project name of the VPN gateway.
      */
-    public readonly projectName!: pulumi.Output<string | undefined>;
+    public readonly projectName!: pulumi.Output<string>;
     /**
      * The renew type of the VPN gateway.
      */
@@ -132,6 +136,14 @@ export class Gateway extends pulumi.CustomResource {
      * The route count of the VPN gateway.
      */
     public /*out*/ readonly routeCount!: pulumi.Output<number>;
+    /**
+     * Whether ssl is enabled.
+     */
+    public readonly sslEnabled!: pulumi.Output<boolean | undefined>;
+    /**
+     * The max connections of ssl. This parameter can only be passed in when sslEnabled is true. Default is 5.
+     */
+    public readonly sslMaxConnections!: pulumi.Output<number>;
     /**
      * The status of the VPN gateway.
      */
@@ -184,11 +196,14 @@ export class Gateway extends pulumi.CustomResource {
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["expiredTime"] = state ? state.expiredTime : undefined;
             resourceInputs["ipAddress"] = state ? state.ipAddress : undefined;
+            resourceInputs["ipsecEnabled"] = state ? state.ipsecEnabled : undefined;
             resourceInputs["lockReason"] = state ? state.lockReason : undefined;
             resourceInputs["period"] = state ? state.period : undefined;
             resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["renewType"] = state ? state.renewType : undefined;
             resourceInputs["routeCount"] = state ? state.routeCount : undefined;
+            resourceInputs["sslEnabled"] = state ? state.sslEnabled : undefined;
+            resourceInputs["sslMaxConnections"] = state ? state.sslMaxConnections : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["subnetId"] = state ? state.subnetId : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
@@ -210,8 +225,11 @@ export class Gateway extends pulumi.CustomResource {
             resourceInputs["bandwidth"] = args ? args.bandwidth : undefined;
             resourceInputs["billingType"] = args ? args.billingType : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["ipsecEnabled"] = args ? args.ipsecEnabled : undefined;
             resourceInputs["period"] = args ? args.period : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
+            resourceInputs["sslEnabled"] = args ? args.sslEnabled : undefined;
+            resourceInputs["sslMaxConnections"] = args ? args.sslMaxConnections : undefined;
             resourceInputs["subnetId"] = args ? args.subnetId : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["vpcId"] = args ? args.vpcId : undefined;
@@ -281,6 +299,10 @@ export interface GatewayState {
      */
     ipAddress?: pulumi.Input<string>;
     /**
+     * Whether ipsec is enabled.
+     */
+    ipsecEnabled?: pulumi.Input<boolean>;
+    /**
      * The lock reason of the VPN gateway.
      */
     lockReason?: pulumi.Input<string>;
@@ -301,6 +323,14 @@ export interface GatewayState {
      * The route count of the VPN gateway.
      */
     routeCount?: pulumi.Input<number>;
+    /**
+     * Whether ssl is enabled.
+     */
+    sslEnabled?: pulumi.Input<boolean>;
+    /**
+     * The max connections of ssl. This parameter can only be passed in when sslEnabled is true. Default is 5.
+     */
+    sslMaxConnections?: pulumi.Input<number>;
     /**
      * The status of the VPN gateway.
      */
@@ -349,6 +379,10 @@ export interface GatewayArgs {
      */
     description?: pulumi.Input<string>;
     /**
+     * Whether ipsec is enabled.
+     */
+    ipsecEnabled?: pulumi.Input<boolean>;
+    /**
      * The Period of the VPN gateway. Default value is 12. This parameter is only useful when creating vpn gateway. Default period unit is Month.
      * Value range: 1~9, 12, 24, 36. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
      */
@@ -357,6 +391,14 @@ export interface GatewayArgs {
      * The project name of the VPN gateway.
      */
     projectName?: pulumi.Input<string>;
+    /**
+     * Whether ssl is enabled.
+     */
+    sslEnabled?: pulumi.Input<boolean>;
+    /**
+     * The max connections of ssl. This parameter can only be passed in when sslEnabled is true. Default is 5.
+     */
+    sslMaxConnections?: pulumi.Input<number>;
     /**
      * The ID of the subnet where you want to create the VPN gateway.
      */

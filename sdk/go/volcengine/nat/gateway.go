@@ -93,7 +93,7 @@ type Gateway struct {
 	// The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	Period pulumi.IntPtrOutput `pulumi:"period"`
 	// The ProjectName of the NatGateway.
-	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
 	Spec pulumi.StringPtrOutput `pulumi:"spec"`
 	// The ID of the Subnet.
@@ -336,8 +336,8 @@ func (o GatewayOutput) Period() pulumi.IntPtrOutput {
 }
 
 // The ProjectName of the NatGateway.
-func (o GatewayOutput) ProjectName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Gateway) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
+func (o GatewayOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *Gateway) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 // The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.

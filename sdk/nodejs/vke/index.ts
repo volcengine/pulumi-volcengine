@@ -70,6 +70,11 @@ export const supportAddons: typeof import("./supportAddons").supportAddons = nul
 export const supportAddonsOutput: typeof import("./supportAddons").supportAddonsOutput = null as any;
 utilities.lazyLoad(exports, ["supportAddons","supportAddonsOutput"], () => require("./supportAddons"));
 
+export { SupportResourceTypesArgs, SupportResourceTypesResult, SupportResourceTypesOutputArgs } from "./supportResourceTypes";
+export const supportResourceTypes: typeof import("./supportResourceTypes").supportResourceTypes = null as any;
+export const supportResourceTypesOutput: typeof import("./supportResourceTypes").supportResourceTypesOutput = null as any;
+utilities.lazyLoad(exports, ["supportResourceTypes","supportResourceTypesOutput"], () => require("./supportResourceTypes"));
+
 
 const _module = {
     version: utilities.getVersion(),

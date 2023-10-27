@@ -1214,6 +1214,8 @@ type InstancesInstance struct {
 	OsType string `pulumi:"osType"`
 	// The ProjectName of ECS instance.
 	ProjectName string `pulumi:"projectName"`
+	// The spot price limit of ECS instance.
+	SpotPriceLimit float64 `pulumi:"spotPriceLimit"`
 	// The spot strategy of ECS instance.
 	SpotStrategy string `pulumi:"spotStrategy"`
 	// The status of ECS instance.
@@ -1286,6 +1288,8 @@ type InstancesInstanceArgs struct {
 	OsType pulumi.StringInput `pulumi:"osType"`
 	// The ProjectName of ECS instance.
 	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// The spot price limit of ECS instance.
+	SpotPriceLimit pulumi.Float64Input `pulumi:"spotPriceLimit"`
 	// The spot strategy of ECS instance.
 	SpotStrategy pulumi.StringInput `pulumi:"spotStrategy"`
 	// The status of ECS instance.
@@ -1458,6 +1462,11 @@ func (o InstancesInstanceOutput) OsType() pulumi.StringOutput {
 // The ProjectName of ECS instance.
 func (o InstancesInstanceOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v InstancesInstance) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// The spot price limit of ECS instance.
+func (o InstancesInstanceOutput) SpotPriceLimit() pulumi.Float64Output {
+	return o.ApplyT(func(v InstancesInstance) float64 { return v.SpotPriceLimit }).(pulumi.Float64Output)
 }
 
 // The spot strategy of ECS instance.

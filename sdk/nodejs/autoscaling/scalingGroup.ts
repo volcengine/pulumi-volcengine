@@ -138,7 +138,7 @@ export class ScalingGroup extends pulumi.CustomResource {
     /**
      * The ProjectName of the scaling group.
      */
-    public readonly projectName!: pulumi.Output<string | undefined>;
+    public readonly projectName!: pulumi.Output<string>;
     /**
      * The id of the scaling group.
      */

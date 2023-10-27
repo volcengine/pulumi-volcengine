@@ -43,6 +43,10 @@ namespace Volcengine.Pulumi.Volcengine.Vpc.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// The IPv6 address list of the ENI.
+        /// </summary>
+        public readonly ImmutableArray<string> Ipv6Sets;
+        /// <summary>
         /// The mac address of the ENI.
         /// </summary>
         public readonly string MacAddress;
@@ -127,6 +131,8 @@ namespace Volcengine.Pulumi.Volcengine.Vpc.Outputs
 
             string id,
 
+            ImmutableArray<string> ipv6Sets,
+
             string macAddress,
 
             string networkInterfaceId,
@@ -168,6 +174,7 @@ namespace Volcengine.Pulumi.Volcengine.Vpc.Outputs
             Description = description;
             DeviceId = deviceId;
             Id = id;
+            Ipv6Sets = ipv6Sets;
             MacAddress = macAddress;
             NetworkInterfaceId = networkInterfaceId;
             NetworkInterfaceName = networkInterfaceName;

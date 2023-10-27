@@ -19,6 +19,8 @@ class NetworkInterfaceArgs:
                  security_group_ids: pulumi.Input[Sequence[pulumi.Input[str]]],
                  subnet_id: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
+                 ipv6_address_count: Optional[pulumi.Input[int]] = None,
+                 ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  network_interface_name: Optional[pulumi.Input[str]] = None,
                  port_security_enabled: Optional[pulumi.Input[bool]] = None,
                  primary_ip_address: Optional[pulumi.Input[str]] = None,
@@ -31,6 +33,10 @@ class NetworkInterfaceArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The list of the security group id to which the secondary ENI belongs.
         :param pulumi.Input[str] subnet_id: The id of the subnet to which the ENI is connected.
         :param pulumi.Input[str] description: The description of the ENI.
+        :param pulumi.Input[int] ipv6_address_count: The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 0 to 10.
+               You cannot specify both the ipv6_addresses and ipv6_address_count parameters.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ipv6_addresses: One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+               You cannot specify both the ipv6_addresses and ipv6_address_count parameters.
         :param pulumi.Input[str] network_interface_name: The name of the ENI.
         :param pulumi.Input[bool] port_security_enabled: Set port security enable or disable.
         :param pulumi.Input[str] primary_ip_address: The primary IP address of the ENI.
@@ -43,6 +49,10 @@ class NetworkInterfaceArgs:
         pulumi.set(__self__, "subnet_id", subnet_id)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if ipv6_address_count is not None:
+            pulumi.set(__self__, "ipv6_address_count", ipv6_address_count)
+        if ipv6_addresses is not None:
+            pulumi.set(__self__, "ipv6_addresses", ipv6_addresses)
         if network_interface_name is not None:
             pulumi.set(__self__, "network_interface_name", network_interface_name)
         if port_security_enabled is not None:
@@ -93,6 +103,32 @@ class NetworkInterfaceArgs:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="ipv6AddressCount")
+    def ipv6_address_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 0 to 10.
+        You cannot specify both the ipv6_addresses and ipv6_address_count parameters.
+        """
+        return pulumi.get(self, "ipv6_address_count")
+
+    @ipv6_address_count.setter
+    def ipv6_address_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ipv6_address_count", value)
+
+    @property
+    @pulumi.getter(name="ipv6Addresses")
+    def ipv6_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+        You cannot specify both the ipv6_addresses and ipv6_address_count parameters.
+        """
+        return pulumi.get(self, "ipv6_addresses")
+
+    @ipv6_addresses.setter
+    def ipv6_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "ipv6_addresses", value)
 
     @property
     @pulumi.getter(name="networkInterfaceName")
@@ -183,6 +219,8 @@ class NetworkInterfaceArgs:
 class _NetworkInterfaceState:
     def __init__(__self__, *,
                  description: Optional[pulumi.Input[str]] = None,
+                 ipv6_address_count: Optional[pulumi.Input[int]] = None,
+                 ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  network_interface_name: Optional[pulumi.Input[str]] = None,
                  port_security_enabled: Optional[pulumi.Input[bool]] = None,
                  primary_ip_address: Optional[pulumi.Input[str]] = None,
@@ -196,6 +234,10 @@ class _NetworkInterfaceState:
         """
         Input properties used for looking up and filtering NetworkInterface resources.
         :param pulumi.Input[str] description: The description of the ENI.
+        :param pulumi.Input[int] ipv6_address_count: The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 0 to 10.
+               You cannot specify both the ipv6_addresses and ipv6_address_count parameters.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ipv6_addresses: One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+               You cannot specify both the ipv6_addresses and ipv6_address_count parameters.
         :param pulumi.Input[str] network_interface_name: The name of the ENI.
         :param pulumi.Input[bool] port_security_enabled: Set port security enable or disable.
         :param pulumi.Input[str] primary_ip_address: The primary IP address of the ENI.
@@ -209,6 +251,10 @@ class _NetworkInterfaceState:
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if ipv6_address_count is not None:
+            pulumi.set(__self__, "ipv6_address_count", ipv6_address_count)
+        if ipv6_addresses is not None:
+            pulumi.set(__self__, "ipv6_addresses", ipv6_addresses)
         if network_interface_name is not None:
             pulumi.set(__self__, "network_interface_name", network_interface_name)
         if port_security_enabled is not None:
@@ -241,6 +287,32 @@ class _NetworkInterfaceState:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="ipv6AddressCount")
+    def ipv6_address_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 0 to 10.
+        You cannot specify both the ipv6_addresses and ipv6_address_count parameters.
+        """
+        return pulumi.get(self, "ipv6_address_count")
+
+    @ipv6_address_count.setter
+    def ipv6_address_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ipv6_address_count", value)
+
+    @property
+    @pulumi.getter(name="ipv6Addresses")
+    def ipv6_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+        You cannot specify both the ipv6_addresses and ipv6_address_count parameters.
+        """
+        return pulumi.get(self, "ipv6_addresses")
+
+    @ipv6_addresses.setter
+    def ipv6_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "ipv6_addresses", value)
 
     @property
     @pulumi.getter(name="networkInterfaceName")
@@ -369,6 +441,8 @@ class NetworkInterface(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 ipv6_address_count: Optional[pulumi.Input[int]] = None,
+                 ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  network_interface_name: Optional[pulumi.Input[str]] = None,
                  port_security_enabled: Optional[pulumi.Input[bool]] = None,
                  primary_ip_address: Optional[pulumi.Input[str]] = None,
@@ -409,6 +483,10 @@ class NetworkInterface(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the ENI.
+        :param pulumi.Input[int] ipv6_address_count: The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 0 to 10.
+               You cannot specify both the ipv6_addresses and ipv6_address_count parameters.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ipv6_addresses: One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+               You cannot specify both the ipv6_addresses and ipv6_address_count parameters.
         :param pulumi.Input[str] network_interface_name: The name of the ENI.
         :param pulumi.Input[bool] port_security_enabled: Set port security enable or disable.
         :param pulumi.Input[str] primary_ip_address: The primary IP address of the ENI.
@@ -468,6 +546,8 @@ class NetworkInterface(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 ipv6_address_count: Optional[pulumi.Input[int]] = None,
+                 ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  network_interface_name: Optional[pulumi.Input[str]] = None,
                  port_security_enabled: Optional[pulumi.Input[bool]] = None,
                  primary_ip_address: Optional[pulumi.Input[str]] = None,
@@ -487,6 +567,8 @@ class NetworkInterface(pulumi.CustomResource):
             __props__ = NetworkInterfaceArgs.__new__(NetworkInterfaceArgs)
 
             __props__.__dict__["description"] = description
+            __props__.__dict__["ipv6_address_count"] = ipv6_address_count
+            __props__.__dict__["ipv6_addresses"] = ipv6_addresses
             __props__.__dict__["network_interface_name"] = network_interface_name
             __props__.__dict__["port_security_enabled"] = port_security_enabled
             __props__.__dict__["primary_ip_address"] = primary_ip_address
@@ -512,6 +594,8 @@ class NetworkInterface(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             description: Optional[pulumi.Input[str]] = None,
+            ipv6_address_count: Optional[pulumi.Input[int]] = None,
+            ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             network_interface_name: Optional[pulumi.Input[str]] = None,
             port_security_enabled: Optional[pulumi.Input[bool]] = None,
             primary_ip_address: Optional[pulumi.Input[str]] = None,
@@ -530,6 +614,10 @@ class NetworkInterface(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the ENI.
+        :param pulumi.Input[int] ipv6_address_count: The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 0 to 10.
+               You cannot specify both the ipv6_addresses and ipv6_address_count parameters.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ipv6_addresses: One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+               You cannot specify both the ipv6_addresses and ipv6_address_count parameters.
         :param pulumi.Input[str] network_interface_name: The name of the ENI.
         :param pulumi.Input[bool] port_security_enabled: Set port security enable or disable.
         :param pulumi.Input[str] primary_ip_address: The primary IP address of the ENI.
@@ -546,6 +634,8 @@ class NetworkInterface(pulumi.CustomResource):
         __props__ = _NetworkInterfaceState.__new__(_NetworkInterfaceState)
 
         __props__.__dict__["description"] = description
+        __props__.__dict__["ipv6_address_count"] = ipv6_address_count
+        __props__.__dict__["ipv6_addresses"] = ipv6_addresses
         __props__.__dict__["network_interface_name"] = network_interface_name
         __props__.__dict__["port_security_enabled"] = port_security_enabled
         __props__.__dict__["primary_ip_address"] = primary_ip_address
@@ -565,6 +655,24 @@ class NetworkInterface(pulumi.CustomResource):
         The description of the ENI.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="ipv6AddressCount")
+    def ipv6_address_count(self) -> pulumi.Output[int]:
+        """
+        The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 0 to 10.
+        You cannot specify both the ipv6_addresses and ipv6_address_count parameters.
+        """
+        return pulumi.get(self, "ipv6_address_count")
+
+    @property
+    @pulumi.getter(name="ipv6Addresses")
+    def ipv6_addresses(self) -> pulumi.Output[Sequence[str]]:
+        """
+        One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+        You cannot specify both the ipv6_addresses and ipv6_address_count parameters.
+        """
+        return pulumi.get(self, "ipv6_addresses")
 
     @property
     @pulumi.getter(name="networkInterfaceName")
@@ -600,7 +708,7 @@ class NetworkInterface(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="projectName")
-    def project_name(self) -> pulumi.Output[Optional[str]]:
+    def project_name(self) -> pulumi.Output[str]:
         """
         The ProjectName of the ENI.
         """

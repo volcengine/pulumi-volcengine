@@ -102,7 +102,7 @@ type Certificate struct {
 	// The private key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
 	// The ProjectName of the Certificate.
-	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	PublicKey pulumi.StringOutput `pulumi:"publicKey"`
 	// Tags.
@@ -312,8 +312,8 @@ func (o CertificateOutput) PrivateKey() pulumi.StringOutput {
 }
 
 // The ProjectName of the Certificate.
-func (o CertificateOutput) ProjectName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Certificate) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
+func (o CertificateOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *Certificate) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 // The public key of the Certificate. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.

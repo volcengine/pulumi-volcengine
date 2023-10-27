@@ -183,7 +183,12 @@ type Instance struct {
 	SecurityEnhancementStrategy pulumi.StringPtrOutput `pulumi:"securityEnhancementStrategy"`
 	// The security group ID set of primary networkInterface.
 	SecurityGroupIds pulumi.StringArrayOutput `pulumi:"securityGroupIds"`
-	// The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
+	// The maximum hourly price for spot instances supports up to three decimal places. This parameter only takes effect when SpotStrategy=SpotWithPriceLimit.
+	SpotPriceLimit pulumi.Float64PtrOutput `pulumi:"spotPriceLimit"`
+	// The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, values:
+	// NoSpot (default): indicates creating a normal pay-as-you-go instance.
+	// SpotAsPriceGo: spot instance with system automatically bidding and following the current market price.
+	// SpotWithPriceLimit: spot instance with a set upper limit for bidding price.
 	SpotStrategy pulumi.StringOutput `pulumi:"spotStrategy"`
 	// The status of ECS instance.
 	Status pulumi.StringOutput `pulumi:"status"`
@@ -335,7 +340,12 @@ type instanceState struct {
 	SecurityEnhancementStrategy *string `pulumi:"securityEnhancementStrategy"`
 	// The security group ID set of primary networkInterface.
 	SecurityGroupIds []string `pulumi:"securityGroupIds"`
-	// The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
+	// The maximum hourly price for spot instances supports up to three decimal places. This parameter only takes effect when SpotStrategy=SpotWithPriceLimit.
+	SpotPriceLimit *float64 `pulumi:"spotPriceLimit"`
+	// The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, values:
+	// NoSpot (default): indicates creating a normal pay-as-you-go instance.
+	// SpotAsPriceGo: spot instance with system automatically bidding and following the current market price.
+	// SpotWithPriceLimit: spot instance with a set upper limit for bidding price.
 	SpotStrategy *string `pulumi:"spotStrategy"`
 	// The status of ECS instance.
 	Status *string `pulumi:"status"`
@@ -433,7 +443,12 @@ type InstanceState struct {
 	SecurityEnhancementStrategy pulumi.StringPtrInput
 	// The security group ID set of primary networkInterface.
 	SecurityGroupIds pulumi.StringArrayInput
-	// The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
+	// The maximum hourly price for spot instances supports up to three decimal places. This parameter only takes effect when SpotStrategy=SpotWithPriceLimit.
+	SpotPriceLimit pulumi.Float64PtrInput
+	// The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, values:
+	// NoSpot (default): indicates creating a normal pay-as-you-go instance.
+	// SpotAsPriceGo: spot instance with system automatically bidding and following the current market price.
+	// SpotWithPriceLimit: spot instance with a set upper limit for bidding price.
 	SpotStrategy pulumi.StringPtrInput
 	// The status of ECS instance.
 	Status pulumi.StringPtrInput
@@ -513,7 +528,12 @@ type instanceArgs struct {
 	SecurityEnhancementStrategy *string `pulumi:"securityEnhancementStrategy"`
 	// The security group ID set of primary networkInterface.
 	SecurityGroupIds []string `pulumi:"securityGroupIds"`
-	// The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
+	// The maximum hourly price for spot instances supports up to three decimal places. This parameter only takes effect when SpotStrategy=SpotWithPriceLimit.
+	SpotPriceLimit *float64 `pulumi:"spotPriceLimit"`
+	// The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, values:
+	// NoSpot (default): indicates creating a normal pay-as-you-go instance.
+	// SpotAsPriceGo: spot instance with system automatically bidding and following the current market price.
+	// SpotWithPriceLimit: spot instance with a set upper limit for bidding price.
 	SpotStrategy *string `pulumi:"spotStrategy"`
 	// The subnet ID of primary networkInterface.
 	SubnetId string `pulumi:"subnetId"`
@@ -580,7 +600,12 @@ type InstanceArgs struct {
 	SecurityEnhancementStrategy pulumi.StringPtrInput
 	// The security group ID set of primary networkInterface.
 	SecurityGroupIds pulumi.StringArrayInput
-	// The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
+	// The maximum hourly price for spot instances supports up to three decimal places. This parameter only takes effect when SpotStrategy=SpotWithPriceLimit.
+	SpotPriceLimit pulumi.Float64PtrInput
+	// The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, values:
+	// NoSpot (default): indicates creating a normal pay-as-you-go instance.
+	// SpotAsPriceGo: spot instance with system automatically bidding and following the current market price.
+	// SpotWithPriceLimit: spot instance with a set upper limit for bidding price.
 	SpotStrategy pulumi.StringPtrInput
 	// The subnet ID of primary networkInterface.
 	SubnetId pulumi.StringInput
@@ -856,7 +881,15 @@ func (o InstanceOutput) SecurityGroupIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringArrayOutput { return v.SecurityGroupIds }).(pulumi.StringArrayOutput)
 }
 
-// The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, the value can be `NoSpot` or `SpotAsPriceGo`.
+// The maximum hourly price for spot instances supports up to three decimal places. This parameter only takes effect when SpotStrategy=SpotWithPriceLimit.
+func (o InstanceOutput) SpotPriceLimit() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *Instance) pulumi.Float64PtrOutput { return v.SpotPriceLimit }).(pulumi.Float64PtrOutput)
+}
+
+// The spot strategy will autoremove instance in some conditions.Please make sure you can maintain instance lifecycle before auto remove.The spot strategy of ECS instance, values:
+// NoSpot (default): indicates creating a normal pay-as-you-go instance.
+// SpotAsPriceGo: spot instance with system automatically bidding and following the current market price.
+// SpotWithPriceLimit: spot instance with a set upper limit for bidding price.
 func (o InstanceOutput) SpotStrategy() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.SpotStrategy }).(pulumi.StringOutput)
 }

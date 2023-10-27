@@ -218,7 +218,7 @@ export class Connection extends pulumi.CustomResource {
     /**
      * The project name of the VPN connection.
      */
-    public readonly projectName!: pulumi.Output<string | undefined>;
+    public readonly projectName!: pulumi.Output<string>;
     /**
      * The remote subnet of the VPN connection. Up to 5 network segments are supported.
      */

@@ -67,6 +67,16 @@ export class NetworkInterface extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 0 to 10.
+     * You cannot specify both the ipv6Addresses and ipv6AddressCount parameters.
+     */
+    public readonly ipv6AddressCount!: pulumi.Output<number>;
+    /**
+     * One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+     * You cannot specify both the ipv6Addresses and ipv6AddressCount parameters.
+     */
+    public readonly ipv6Addresses!: pulumi.Output<string[]>;
+    /**
      * The name of the ENI.
      */
     public readonly networkInterfaceName!: pulumi.Output<string>;
@@ -85,7 +95,7 @@ export class NetworkInterface extends pulumi.CustomResource {
     /**
      * The ProjectName of the ENI.
      */
-    public readonly projectName!: pulumi.Output<string | undefined>;
+    public readonly projectName!: pulumi.Output<string>;
     /**
      * The count of secondary private ip address. This field conflicts with `privateIpAddress`.
      */
@@ -121,6 +131,8 @@ export class NetworkInterface extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as NetworkInterfaceState | undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["ipv6AddressCount"] = state ? state.ipv6AddressCount : undefined;
+            resourceInputs["ipv6Addresses"] = state ? state.ipv6Addresses : undefined;
             resourceInputs["networkInterfaceName"] = state ? state.networkInterfaceName : undefined;
             resourceInputs["portSecurityEnabled"] = state ? state.portSecurityEnabled : undefined;
             resourceInputs["primaryIpAddress"] = state ? state.primaryIpAddress : undefined;
@@ -140,6 +152,8 @@ export class NetworkInterface extends pulumi.CustomResource {
                 throw new Error("Missing required property 'subnetId'");
             }
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["ipv6AddressCount"] = args ? args.ipv6AddressCount : undefined;
+            resourceInputs["ipv6Addresses"] = args ? args.ipv6Addresses : undefined;
             resourceInputs["networkInterfaceName"] = args ? args.networkInterfaceName : undefined;
             resourceInputs["portSecurityEnabled"] = args ? args.portSecurityEnabled : undefined;
             resourceInputs["primaryIpAddress"] = args ? args.primaryIpAddress : undefined;
@@ -164,6 +178,16 @@ export interface NetworkInterfaceState {
      * The description of the ENI.
      */
     description?: pulumi.Input<string>;
+    /**
+     * The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 0 to 10.
+     * You cannot specify both the ipv6Addresses and ipv6AddressCount parameters.
+     */
+    ipv6AddressCount?: pulumi.Input<number>;
+    /**
+     * One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+     * You cannot specify both the ipv6Addresses and ipv6AddressCount parameters.
+     */
+    ipv6Addresses?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The name of the ENI.
      */
@@ -214,6 +238,16 @@ export interface NetworkInterfaceArgs {
      * The description of the ENI.
      */
     description?: pulumi.Input<string>;
+    /**
+     * The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 0 to 10.
+     * You cannot specify both the ipv6Addresses and ipv6AddressCount parameters.
+     */
+    ipv6AddressCount?: pulumi.Input<number>;
+    /**
+     * One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+     * You cannot specify both the ipv6Addresses and ipv6AddressCount parameters.
+     */
+    ipv6Addresses?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The name of the ENI.
      */

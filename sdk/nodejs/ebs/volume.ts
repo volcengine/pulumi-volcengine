@@ -137,7 +137,7 @@ export class Volume extends pulumi.CustomResource {
     /**
      * The ProjectName of the Volume.
      */
-    public readonly projectName!: pulumi.Output<string | undefined>;
+    public readonly projectName!: pulumi.Output<string>;
     /**
      * The size of Volume.
      */

@@ -31,7 +31,7 @@ import (
 //				CenId:            pulumi.String("cen-2d6zdn0c1z5s058ozfcyf4lee"),
 //				CenOwnerId:       pulumi.String("210000****"),
 //				InstanceId:       pulumi.String("vpc-2bysvq1xx543k2dx0eeulpeiv"),
-//				InstanceRegionId: pulumi.String("cn-guilin-boe"),
+//				InstanceRegionId: pulumi.String("cn-beijing"),
 //				InstanceType:     pulumi.String("VPC"),
 //			})
 //			if err != nil {

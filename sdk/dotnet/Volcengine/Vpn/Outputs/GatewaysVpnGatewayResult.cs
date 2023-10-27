@@ -59,13 +59,29 @@ namespace Volcengine.Pulumi.Volcengine.Vpn.Outputs
         /// </summary>
         public readonly string IpAddress;
         /// <summary>
+        /// Whether ipsec is enabled.
+        /// </summary>
+        public readonly bool IpsecEnabled;
+        /// <summary>
         /// The lock reason of the VPN gateway.
         /// </summary>
         public readonly string LockReason;
         /// <summary>
+        /// The name of project.
+        /// </summary>
+        public readonly string ProjectName;
+        /// <summary>
         /// The route count of the VPN gateway.
         /// </summary>
         public readonly int RouteCount;
+        /// <summary>
+        /// Whether ssl is enabled.
+        /// </summary>
+        public readonly bool SslEnabled;
+        /// <summary>
+        /// The max connections of ssl.
+        /// </summary>
+        public readonly int SslMaxConnections;
         /// <summary>
         /// The status of the VPN gateway.
         /// </summary>
@@ -119,9 +135,17 @@ namespace Volcengine.Pulumi.Volcengine.Vpn.Outputs
 
             string ipAddress,
 
+            bool ipsecEnabled,
+
             string lockReason,
 
+            string projectName,
+
             int routeCount,
+
+            bool sslEnabled,
+
+            int sslMaxConnections,
 
             string status,
 
@@ -148,8 +172,12 @@ namespace Volcengine.Pulumi.Volcengine.Vpn.Outputs
             ExpiredTime = expiredTime;
             Id = id;
             IpAddress = ipAddress;
+            IpsecEnabled = ipsecEnabled;
             LockReason = lockReason;
+            ProjectName = projectName;
             RouteCount = routeCount;
+            SslEnabled = sslEnabled;
+            SslMaxConnections = sslMaxConnections;
             Status = status;
             SubnetId = subnetId;
             Tags = tags;

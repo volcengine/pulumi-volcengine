@@ -21,8 +21,11 @@ class GatewayArgs:
                  vpc_id: pulumi.Input[str],
                  billing_type: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 ipsec_enabled: Optional[pulumi.Input[bool]] = None,
                  period: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 ssl_enabled: Optional[pulumi.Input[bool]] = None,
+                 ssl_max_connections: Optional[pulumi.Input[int]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['GatewayTagArgs']]]] = None,
                  vpn_gateway_name: Optional[pulumi.Input[str]] = None):
         """
@@ -33,9 +36,12 @@ class GatewayArgs:
         :param pulumi.Input[str] billing_type: The BillingType of the VPN gateway. Only support `PrePaid`. Terraform will only remove the PrePaid VPN gateway from the
                state file, not actually remove.
         :param pulumi.Input[str] description: The description of the VPN gateway.
+        :param pulumi.Input[bool] ipsec_enabled: Whether ipsec is enabled.
         :param pulumi.Input[int] period: The Period of the VPN gateway. Default value is 12. This parameter is only useful when creating vpn gateway. Default period unit is Month.
                Value range: 1~9, 12, 24, 36. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] project_name: The project name of the VPN gateway.
+        :param pulumi.Input[bool] ssl_enabled: Whether ssl is enabled.
+        :param pulumi.Input[int] ssl_max_connections: The max connections of ssl. This parameter can only be passed in when ssl_enabled is true. Default is 5.
         :param pulumi.Input[Sequence[pulumi.Input['GatewayTagArgs']]] tags: Tags.
         :param pulumi.Input[str] vpn_gateway_name: The name of the VPN gateway.
         """
@@ -46,10 +52,16 @@ class GatewayArgs:
             pulumi.set(__self__, "billing_type", billing_type)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if ipsec_enabled is not None:
+            pulumi.set(__self__, "ipsec_enabled", ipsec_enabled)
         if period is not None:
             pulumi.set(__self__, "period", period)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
+        if ssl_enabled is not None:
+            pulumi.set(__self__, "ssl_enabled", ssl_enabled)
+        if ssl_max_connections is not None:
+            pulumi.set(__self__, "ssl_max_connections", ssl_max_connections)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if vpn_gateway_name is not None:
@@ -117,6 +129,18 @@ class GatewayArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="ipsecEnabled")
+    def ipsec_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether ipsec is enabled.
+        """
+        return pulumi.get(self, "ipsec_enabled")
+
+    @ipsec_enabled.setter
+    def ipsec_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "ipsec_enabled", value)
+
+    @property
     @pulumi.getter
     def period(self) -> Optional[pulumi.Input[int]]:
         """
@@ -140,6 +164,30 @@ class GatewayArgs:
     @project_name.setter
     def project_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "project_name", value)
+
+    @property
+    @pulumi.getter(name="sslEnabled")
+    def ssl_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether ssl is enabled.
+        """
+        return pulumi.get(self, "ssl_enabled")
+
+    @ssl_enabled.setter
+    def ssl_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "ssl_enabled", value)
+
+    @property
+    @pulumi.getter(name="sslMaxConnections")
+    def ssl_max_connections(self) -> Optional[pulumi.Input[int]]:
+        """
+        The max connections of ssl. This parameter can only be passed in when ssl_enabled is true. Default is 5.
+        """
+        return pulumi.get(self, "ssl_max_connections")
+
+    @ssl_max_connections.setter
+    def ssl_max_connections(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ssl_max_connections", value)
 
     @property
     @pulumi.getter
@@ -179,11 +227,14 @@ class _GatewayState:
                  description: Optional[pulumi.Input[str]] = None,
                  expired_time: Optional[pulumi.Input[str]] = None,
                  ip_address: Optional[pulumi.Input[str]] = None,
+                 ipsec_enabled: Optional[pulumi.Input[bool]] = None,
                  lock_reason: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  renew_type: Optional[pulumi.Input[str]] = None,
                  route_count: Optional[pulumi.Input[int]] = None,
+                 ssl_enabled: Optional[pulumi.Input[bool]] = None,
+                 ssl_max_connections: Optional[pulumi.Input[int]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['GatewayTagArgs']]]] = None,
@@ -204,12 +255,15 @@ class _GatewayState:
         :param pulumi.Input[str] description: The description of the VPN gateway.
         :param pulumi.Input[str] expired_time: The expired time of the VPN gateway.
         :param pulumi.Input[str] ip_address: The IP address of the VPN gateway.
+        :param pulumi.Input[bool] ipsec_enabled: Whether ipsec is enabled.
         :param pulumi.Input[str] lock_reason: The lock reason of the VPN gateway.
         :param pulumi.Input[int] period: The Period of the VPN gateway. Default value is 12. This parameter is only useful when creating vpn gateway. Default period unit is Month.
                Value range: 1~9, 12, 24, 36. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] project_name: The project name of the VPN gateway.
         :param pulumi.Input[str] renew_type: The renew type of the VPN gateway.
         :param pulumi.Input[int] route_count: The route count of the VPN gateway.
+        :param pulumi.Input[bool] ssl_enabled: Whether ssl is enabled.
+        :param pulumi.Input[int] ssl_max_connections: The max connections of ssl. This parameter can only be passed in when ssl_enabled is true. Default is 5.
         :param pulumi.Input[str] status: The status of the VPN gateway.
         :param pulumi.Input[str] subnet_id: The ID of the subnet where you want to create the VPN gateway.
         :param pulumi.Input[Sequence[pulumi.Input['GatewayTagArgs']]] tags: Tags.
@@ -238,6 +292,8 @@ class _GatewayState:
             pulumi.set(__self__, "expired_time", expired_time)
         if ip_address is not None:
             pulumi.set(__self__, "ip_address", ip_address)
+        if ipsec_enabled is not None:
+            pulumi.set(__self__, "ipsec_enabled", ipsec_enabled)
         if lock_reason is not None:
             pulumi.set(__self__, "lock_reason", lock_reason)
         if period is not None:
@@ -248,6 +304,10 @@ class _GatewayState:
             pulumi.set(__self__, "renew_type", renew_type)
         if route_count is not None:
             pulumi.set(__self__, "route_count", route_count)
+        if ssl_enabled is not None:
+            pulumi.set(__self__, "ssl_enabled", ssl_enabled)
+        if ssl_max_connections is not None:
+            pulumi.set(__self__, "ssl_max_connections", ssl_max_connections)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if subnet_id is not None:
@@ -385,6 +445,18 @@ class _GatewayState:
         pulumi.set(self, "ip_address", value)
 
     @property
+    @pulumi.getter(name="ipsecEnabled")
+    def ipsec_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether ipsec is enabled.
+        """
+        return pulumi.get(self, "ipsec_enabled")
+
+    @ipsec_enabled.setter
+    def ipsec_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "ipsec_enabled", value)
+
+    @property
     @pulumi.getter(name="lockReason")
     def lock_reason(self) -> Optional[pulumi.Input[str]]:
         """
@@ -444,6 +516,30 @@ class _GatewayState:
     @route_count.setter
     def route_count(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "route_count", value)
+
+    @property
+    @pulumi.getter(name="sslEnabled")
+    def ssl_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether ssl is enabled.
+        """
+        return pulumi.get(self, "ssl_enabled")
+
+    @ssl_enabled.setter
+    def ssl_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "ssl_enabled", value)
+
+    @property
+    @pulumi.getter(name="sslMaxConnections")
+    def ssl_max_connections(self) -> Optional[pulumi.Input[int]]:
+        """
+        The max connections of ssl. This parameter can only be passed in when ssl_enabled is true. Default is 5.
+        """
+        return pulumi.get(self, "ssl_max_connections")
+
+    @ssl_max_connections.setter
+    def ssl_max_connections(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ssl_max_connections", value)
 
     @property
     @pulumi.getter
@@ -538,8 +634,11 @@ class Gateway(pulumi.CustomResource):
                  bandwidth: Optional[pulumi.Input[int]] = None,
                  billing_type: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 ipsec_enabled: Optional[pulumi.Input[bool]] = None,
                  period: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 ssl_enabled: Optional[pulumi.Input[bool]] = None,
+                 ssl_max_connections: Optional[pulumi.Input[int]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GatewayTagArgs']]]]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
@@ -584,9 +683,12 @@ class Gateway(pulumi.CustomResource):
         :param pulumi.Input[str] billing_type: The BillingType of the VPN gateway. Only support `PrePaid`. Terraform will only remove the PrePaid VPN gateway from the
                state file, not actually remove.
         :param pulumi.Input[str] description: The description of the VPN gateway.
+        :param pulumi.Input[bool] ipsec_enabled: Whether ipsec is enabled.
         :param pulumi.Input[int] period: The Period of the VPN gateway. Default value is 12. This parameter is only useful when creating vpn gateway. Default period unit is Month.
                Value range: 1~9, 12, 24, 36. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] project_name: The project name of the VPN gateway.
+        :param pulumi.Input[bool] ssl_enabled: Whether ssl is enabled.
+        :param pulumi.Input[int] ssl_max_connections: The max connections of ssl. This parameter can only be passed in when ssl_enabled is true. Default is 5.
         :param pulumi.Input[str] subnet_id: The ID of the subnet where you want to create the VPN gateway.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GatewayTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] vpc_id: The ID of the VPC where you want to create the VPN gateway.
@@ -649,8 +751,11 @@ class Gateway(pulumi.CustomResource):
                  bandwidth: Optional[pulumi.Input[int]] = None,
                  billing_type: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 ipsec_enabled: Optional[pulumi.Input[bool]] = None,
                  period: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 ssl_enabled: Optional[pulumi.Input[bool]] = None,
+                 ssl_max_connections: Optional[pulumi.Input[int]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GatewayTagArgs']]]]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
@@ -669,8 +774,11 @@ class Gateway(pulumi.CustomResource):
             __props__.__dict__["bandwidth"] = bandwidth
             __props__.__dict__["billing_type"] = billing_type
             __props__.__dict__["description"] = description
+            __props__.__dict__["ipsec_enabled"] = ipsec_enabled
             __props__.__dict__["period"] = period
             __props__.__dict__["project_name"] = project_name
+            __props__.__dict__["ssl_enabled"] = ssl_enabled
+            __props__.__dict__["ssl_max_connections"] = ssl_max_connections
             if subnet_id is None and not opts.urn:
                 raise TypeError("Missing required property 'subnet_id'")
             __props__.__dict__["subnet_id"] = subnet_id
@@ -712,11 +820,14 @@ class Gateway(pulumi.CustomResource):
             description: Optional[pulumi.Input[str]] = None,
             expired_time: Optional[pulumi.Input[str]] = None,
             ip_address: Optional[pulumi.Input[str]] = None,
+            ipsec_enabled: Optional[pulumi.Input[bool]] = None,
             lock_reason: Optional[pulumi.Input[str]] = None,
             period: Optional[pulumi.Input[int]] = None,
             project_name: Optional[pulumi.Input[str]] = None,
             renew_type: Optional[pulumi.Input[str]] = None,
             route_count: Optional[pulumi.Input[int]] = None,
+            ssl_enabled: Optional[pulumi.Input[bool]] = None,
+            ssl_max_connections: Optional[pulumi.Input[int]] = None,
             status: Optional[pulumi.Input[str]] = None,
             subnet_id: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GatewayTagArgs']]]]] = None,
@@ -742,12 +853,15 @@ class Gateway(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the VPN gateway.
         :param pulumi.Input[str] expired_time: The expired time of the VPN gateway.
         :param pulumi.Input[str] ip_address: The IP address of the VPN gateway.
+        :param pulumi.Input[bool] ipsec_enabled: Whether ipsec is enabled.
         :param pulumi.Input[str] lock_reason: The lock reason of the VPN gateway.
         :param pulumi.Input[int] period: The Period of the VPN gateway. Default value is 12. This parameter is only useful when creating vpn gateway. Default period unit is Month.
                Value range: 1~9, 12, 24, 36. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] project_name: The project name of the VPN gateway.
         :param pulumi.Input[str] renew_type: The renew type of the VPN gateway.
         :param pulumi.Input[int] route_count: The route count of the VPN gateway.
+        :param pulumi.Input[bool] ssl_enabled: Whether ssl is enabled.
+        :param pulumi.Input[int] ssl_max_connections: The max connections of ssl. This parameter can only be passed in when ssl_enabled is true. Default is 5.
         :param pulumi.Input[str] status: The status of the VPN gateway.
         :param pulumi.Input[str] subnet_id: The ID of the subnet where you want to create the VPN gateway.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GatewayTagArgs']]]] tags: Tags.
@@ -770,11 +884,14 @@ class Gateway(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["expired_time"] = expired_time
         __props__.__dict__["ip_address"] = ip_address
+        __props__.__dict__["ipsec_enabled"] = ipsec_enabled
         __props__.__dict__["lock_reason"] = lock_reason
         __props__.__dict__["period"] = period
         __props__.__dict__["project_name"] = project_name
         __props__.__dict__["renew_type"] = renew_type
         __props__.__dict__["route_count"] = route_count
+        __props__.__dict__["ssl_enabled"] = ssl_enabled
+        __props__.__dict__["ssl_max_connections"] = ssl_max_connections
         __props__.__dict__["status"] = status
         __props__.__dict__["subnet_id"] = subnet_id
         __props__.__dict__["tags"] = tags
@@ -866,6 +983,14 @@ class Gateway(pulumi.CustomResource):
         return pulumi.get(self, "ip_address")
 
     @property
+    @pulumi.getter(name="ipsecEnabled")
+    def ipsec_enabled(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether ipsec is enabled.
+        """
+        return pulumi.get(self, "ipsec_enabled")
+
+    @property
     @pulumi.getter(name="lockReason")
     def lock_reason(self) -> pulumi.Output[str]:
         """
@@ -884,7 +1009,7 @@ class Gateway(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="projectName")
-    def project_name(self) -> pulumi.Output[Optional[str]]:
+    def project_name(self) -> pulumi.Output[str]:
         """
         The project name of the VPN gateway.
         """
@@ -905,6 +1030,22 @@ class Gateway(pulumi.CustomResource):
         The route count of the VPN gateway.
         """
         return pulumi.get(self, "route_count")
+
+    @property
+    @pulumi.getter(name="sslEnabled")
+    def ssl_enabled(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether ssl is enabled.
+        """
+        return pulumi.get(self, "ssl_enabled")
+
+    @property
+    @pulumi.getter(name="sslMaxConnections")
+    def ssl_max_connections(self) -> pulumi.Output[int]:
+        """
+        The max connections of ssl. This parameter can only be passed in when ssl_enabled is true. Default is 5.
+        """
+        return pulumi.get(self, "ssl_max_connections")
 
     @property
     @pulumi.getter

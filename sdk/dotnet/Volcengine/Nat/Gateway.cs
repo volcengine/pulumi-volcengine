@@ -99,7 +99,7 @@ namespace Volcengine.Pulumi.Volcengine.Nat
         /// The ProjectName of the NatGateway.
         /// </summary>
         [Output("projectName")]
-        public Output<string?> ProjectName { get; private set; } = null!;
+        public Output<string> ProjectName { get; private set; } = null!;
 
         /// <summary>
         /// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.

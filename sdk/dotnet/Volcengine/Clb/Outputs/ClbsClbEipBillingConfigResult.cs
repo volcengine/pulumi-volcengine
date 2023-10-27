@@ -14,8 +14,17 @@ namespace Volcengine.Pulumi.Volcengine.Clb.Outputs
     [OutputType]
     public sealed class ClbsClbEipBillingConfigResult
     {
+        /// <summary>
+        /// The peek bandwidth of the Ipv6 EIP assigned to CLB. Units: Mbps.
+        /// </summary>
         public readonly int Bandwidth;
+        /// <summary>
+        /// The billing type of the EIP assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
+        /// </summary>
         public readonly string EipBillingType;
+        /// <summary>
+        /// The ISP of the Ipv6 EIP assigned to CLB, the value can be `BGP`.
+        /// </summary>
         public readonly string Isp;
 
         [OutputConstructor]

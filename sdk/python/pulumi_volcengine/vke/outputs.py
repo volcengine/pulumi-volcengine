@@ -94,6 +94,7 @@ __all__ = [
     'SupportAddonsAddonResult',
     'SupportAddonsAddonVersionResult',
     'SupportAddonsAddonVersionCompatibilityResult',
+    'SupportResourceTypesResourceResult',
 ]
 
 @pulumi.output_type
@@ -3105,7 +3106,7 @@ class NodePoolNodeConfig(dict):
                  period: Optional[int] = None,
                  system_volume: Optional['outputs.NodePoolNodeConfigSystemVolume'] = None):
         """
-        :param Sequence[str] instance_type_ids: The InstanceTypeIds of NodeConfig.
+        :param Sequence[str] instance_type_ids: The InstanceTypeIds of NodeConfig. The value can get from vke__support_resource_types datasource.
         :param 'NodePoolNodeConfigSecurityArgs' security: The Security of NodeConfig.
         :param Sequence[str] subnet_ids: The SubnetIds of NodeConfig.
         :param bool additional_container_storage_enabled: The AdditionalContainerStorageEnabled of NodeConfig.
@@ -3153,7 +3154,7 @@ class NodePoolNodeConfig(dict):
     @pulumi.getter(name="instanceTypeIds")
     def instance_type_ids(self) -> Sequence[str]:
         """
-        The InstanceTypeIds of NodeConfig.
+        The InstanceTypeIds of NodeConfig. The value can get from vke__support_resource_types datasource.
         """
         return pulumi.get(self, "instance_type_ids")
 
@@ -4803,5 +4804,56 @@ class SupportAddonsAddonVersionCompatibilityResult(dict):
         The Kubernetes Version of addon.
         """
         return pulumi.get(self, "kubernetes_version")
+
+
+@pulumi.output_type
+class SupportResourceTypesResourceResult(dict):
+    def __init__(__self__, *,
+                 resource_scope: str,
+                 resource_specifications: Sequence[str],
+                 resource_type: str,
+                 zone_id: str):
+        """
+        :param str resource_scope: The scope of resource.
+        :param Sequence[str] resource_specifications: The resource specifications info.
+        :param str resource_type: The type of resource.
+        :param str zone_id: The id of zone.
+        """
+        pulumi.set(__self__, "resource_scope", resource_scope)
+        pulumi.set(__self__, "resource_specifications", resource_specifications)
+        pulumi.set(__self__, "resource_type", resource_type)
+        pulumi.set(__self__, "zone_id", zone_id)
+
+    @property
+    @pulumi.getter(name="resourceScope")
+    def resource_scope(self) -> str:
+        """
+        The scope of resource.
+        """
+        return pulumi.get(self, "resource_scope")
+
+    @property
+    @pulumi.getter(name="resourceSpecifications")
+    def resource_specifications(self) -> Sequence[str]:
+        """
+        The resource specifications info.
+        """
+        return pulumi.get(self, "resource_specifications")
+
+    @property
+    @pulumi.getter(name="resourceType")
+    def resource_type(self) -> str:
+        """
+        The type of resource.
+        """
+        return pulumi.get(self, "resource_type")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The id of zone.
+        """
+        return pulumi.get(self, "zone_id")
 
 

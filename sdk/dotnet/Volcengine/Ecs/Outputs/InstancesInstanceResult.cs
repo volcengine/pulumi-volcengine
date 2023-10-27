@@ -99,6 +99,10 @@ namespace Volcengine.Pulumi.Volcengine.Ecs.Outputs
         /// </summary>
         public readonly string ProjectName;
         /// <summary>
+        /// The spot price limit of ECS instance.
+        /// </summary>
+        public readonly double SpotPriceLimit;
+        /// <summary>
         /// The spot strategy of ECS instance.
         /// </summary>
         public readonly string SpotStrategy;
@@ -175,6 +179,8 @@ namespace Volcengine.Pulumi.Volcengine.Ecs.Outputs
 
             string projectName,
 
+            double spotPriceLimit,
+
             string spotStrategy,
 
             string status,
@@ -212,6 +218,7 @@ namespace Volcengine.Pulumi.Volcengine.Ecs.Outputs
             OsName = osName;
             OsType = osType;
             ProjectName = projectName;
+            SpotPriceLimit = spotPriceLimit;
             SpotStrategy = spotStrategy;
             Status = status;
             StoppedMode = stoppedMode;

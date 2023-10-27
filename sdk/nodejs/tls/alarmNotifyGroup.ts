@@ -78,7 +78,7 @@ export class AlarmNotifyGroup extends pulumi.CustomResource {
     /**
      * The name of the iam project.
      */
-    public readonly iamProjectName!: pulumi.Output<string | undefined>;
+    public readonly iamProjectName!: pulumi.Output<string>;
     /**
      * The notify type.
      */

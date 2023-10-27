@@ -205,7 +205,7 @@ class GrantInstance(pulumi.CustomResource):
             cen_id="cen-2d6zdn0c1z5s058ozfcyf4lee",
             cen_owner_id="210000****",
             instance_id="vpc-2bysvq1xx543k2dx0eeulpeiv",
-            instance_region_id="cn-guilin-boe",
+            instance_region_id="cn-beijing",
             instance_type="VPC")
         ```
 
@@ -243,7 +243,7 @@ class GrantInstance(pulumi.CustomResource):
             cen_id="cen-2d6zdn0c1z5s058ozfcyf4lee",
             cen_owner_id="210000****",
             instance_id="vpc-2bysvq1xx543k2dx0eeulpeiv",
-            instance_region_id="cn-guilin-boe",
+            instance_region_id="cn-beijing",
             instance_type="VPC")
         ```
 

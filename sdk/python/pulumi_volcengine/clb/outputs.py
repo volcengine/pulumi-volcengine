@@ -21,6 +21,7 @@ __all__ = [
     'ClbTag',
     'ClbsClbResult',
     'ClbsClbEipBillingConfigResult',
+    'ClbsClbIpv6AddressBandwidthResult',
     'ClbsClbTagResult',
     'ClbsTagResult',
     'ListenerHealthCheck',
@@ -462,6 +463,7 @@ class ClbTag(dict):
 @pulumi.output_type
 class ClbsClbResult(dict):
     def __init__(__self__, *,
+                 address_ip_version: str,
                  business_status: str,
                  create_time: str,
                  deleted_time: str,
@@ -471,9 +473,12 @@ class ClbsClbResult(dict):
                  eip_id: str,
                  eni_address: str,
                  eni_id: str,
+                 eni_ipv6_address: str,
                  expired_time: str,
                  id: str,
                  instance_status: int,
+                 ipv6_address_bandwidths: Sequence['outputs.ClbsClbIpv6AddressBandwidthResult'],
+                 ipv6_eip_id: str,
                  load_balancer_billing_type: str,
                  load_balancer_id: str,
                  load_balancer_name: str,
@@ -497,17 +502,22 @@ class ClbsClbResult(dict):
                  update_time: str,
                  vpc_id: str):
         """
+        :param str address_ip_version: The address ip version of the Clb.
         :param str business_status: The business status of the Clb.
         :param str create_time: The create time of the Clb.
         :param str deleted_time: The expected recycle time of the Clb.
         :param str description: The description of the Clb.
         :param str eip_address: The Eip address of the Clb.
+        :param Sequence['ClbsClbEipBillingConfigArgs'] eip_billing_configs: The eip billing config of the Clb.
         :param str eip_id: The Eip ID of the Clb.
         :param str eni_address: The private ip address of the Clb.
         :param str eni_id: The Eni ID of the Clb.
+        :param str eni_ipv6_address: The eni ipv6 address of the Clb.
         :param str expired_time: The expired time of the CLB.
         :param str id: The ID of the Clb.
         :param int instance_status: The billing status of the CLB.
+        :param Sequence['ClbsClbIpv6AddressBandwidthArgs'] ipv6_address_bandwidths: The ipv6 address bandwidth information of the Clb.
+        :param str ipv6_eip_id: The Ipv6 Eip ID of the Clb.
         :param str load_balancer_billing_type: The billing type of the Clb.
         :param str load_balancer_id: The ID of the Clb.
         :param str load_balancer_name: The name of the Clb.
@@ -531,6 +541,7 @@ class ClbsClbResult(dict):
         :param str update_time: The update time of the Clb.
         :param str vpc_id: The id of the VPC.
         """
+        pulumi.set(__self__, "address_ip_version", address_ip_version)
         pulumi.set(__self__, "business_status", business_status)
         pulumi.set(__self__, "create_time", create_time)
         pulumi.set(__self__, "deleted_time", deleted_time)
@@ -540,9 +551,12 @@ class ClbsClbResult(dict):
         pulumi.set(__self__, "eip_id", eip_id)
         pulumi.set(__self__, "eni_address", eni_address)
         pulumi.set(__self__, "eni_id", eni_id)
+        pulumi.set(__self__, "eni_ipv6_address", eni_ipv6_address)
         pulumi.set(__self__, "expired_time", expired_time)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "instance_status", instance_status)
+        pulumi.set(__self__, "ipv6_address_bandwidths", ipv6_address_bandwidths)
+        pulumi.set(__self__, "ipv6_eip_id", ipv6_eip_id)
         pulumi.set(__self__, "load_balancer_billing_type", load_balancer_billing_type)
         pulumi.set(__self__, "load_balancer_id", load_balancer_id)
         pulumi.set(__self__, "load_balancer_name", load_balancer_name)
@@ -565,6 +579,14 @@ class ClbsClbResult(dict):
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "update_time", update_time)
         pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @property
+    @pulumi.getter(name="addressIpVersion")
+    def address_ip_version(self) -> str:
+        """
+        The address ip version of the Clb.
+        """
+        return pulumi.get(self, "address_ip_version")
 
     @property
     @pulumi.getter(name="businessStatus")
@@ -609,6 +631,9 @@ class ClbsClbResult(dict):
     @property
     @pulumi.getter(name="eipBillingConfigs")
     def eip_billing_configs(self) -> Sequence['outputs.ClbsClbEipBillingConfigResult']:
+        """
+        The eip billing config of the Clb.
+        """
         return pulumi.get(self, "eip_billing_configs")
 
     @property
@@ -636,6 +661,14 @@ class ClbsClbResult(dict):
         return pulumi.get(self, "eni_id")
 
     @property
+    @pulumi.getter(name="eniIpv6Address")
+    def eni_ipv6_address(self) -> str:
+        """
+        The eni ipv6 address of the Clb.
+        """
+        return pulumi.get(self, "eni_ipv6_address")
+
+    @property
     @pulumi.getter(name="expiredTime")
     def expired_time(self) -> str:
         """
@@ -658,6 +691,22 @@ class ClbsClbResult(dict):
         The billing status of the CLB.
         """
         return pulumi.get(self, "instance_status")
+
+    @property
+    @pulumi.getter(name="ipv6AddressBandwidths")
+    def ipv6_address_bandwidths(self) -> Sequence['outputs.ClbsClbIpv6AddressBandwidthResult']:
+        """
+        The ipv6 address bandwidth information of the Clb.
+        """
+        return pulumi.get(self, "ipv6_address_bandwidths")
+
+    @property
+    @pulumi.getter(name="ipv6EipId")
+    def ipv6_eip_id(self) -> str:
+        """
+        The Ipv6 Eip ID of the Clb.
+        """
+        return pulumi.get(self, "ipv6_eip_id")
 
     @property
     @pulumi.getter(name="loadBalancerBillingType")
@@ -842,6 +891,11 @@ class ClbsClbEipBillingConfigResult(dict):
                  bandwidth: int,
                  eip_billing_type: str,
                  isp: str):
+        """
+        :param int bandwidth: The peek bandwidth of the Ipv6 EIP assigned to CLB. Units: Mbps.
+        :param str eip_billing_type: The billing type of the EIP assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
+        :param str isp: The ISP of the Ipv6 EIP assigned to CLB, the value can be `BGP`.
+        """
         pulumi.set(__self__, "bandwidth", bandwidth)
         pulumi.set(__self__, "eip_billing_type", eip_billing_type)
         pulumi.set(__self__, "isp", isp)
@@ -849,17 +903,88 @@ class ClbsClbEipBillingConfigResult(dict):
     @property
     @pulumi.getter
     def bandwidth(self) -> int:
+        """
+        The peek bandwidth of the Ipv6 EIP assigned to CLB. Units: Mbps.
+        """
         return pulumi.get(self, "bandwidth")
 
     @property
     @pulumi.getter(name="eipBillingType")
     def eip_billing_type(self) -> str:
+        """
+        The billing type of the EIP assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
+        """
         return pulumi.get(self, "eip_billing_type")
 
     @property
     @pulumi.getter
     def isp(self) -> str:
+        """
+        The ISP of the Ipv6 EIP assigned to CLB, the value can be `BGP`.
+        """
         return pulumi.get(self, "isp")
+
+
+@pulumi.output_type
+class ClbsClbIpv6AddressBandwidthResult(dict):
+    def __init__(__self__, *,
+                 bandwidth: int,
+                 bandwidth_package_id: str,
+                 billing_type: str,
+                 isp: str,
+                 network_type: str):
+        """
+        :param int bandwidth: The peek bandwidth of the Ipv6 EIP assigned to CLB. Units: Mbps.
+        :param str bandwidth_package_id: The bandwidth package id of the Ipv6 EIP assigned to CLB.
+        :param str billing_type: The billing type of the Ipv6 EIP assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+        :param str isp: The ISP of the Ipv6 EIP assigned to CLB, the value can be `BGP`.
+        :param str network_type: The network type of the CLB Ipv6 address.
+        """
+        pulumi.set(__self__, "bandwidth", bandwidth)
+        pulumi.set(__self__, "bandwidth_package_id", bandwidth_package_id)
+        pulumi.set(__self__, "billing_type", billing_type)
+        pulumi.set(__self__, "isp", isp)
+        pulumi.set(__self__, "network_type", network_type)
+
+    @property
+    @pulumi.getter
+    def bandwidth(self) -> int:
+        """
+        The peek bandwidth of the Ipv6 EIP assigned to CLB. Units: Mbps.
+        """
+        return pulumi.get(self, "bandwidth")
+
+    @property
+    @pulumi.getter(name="bandwidthPackageId")
+    def bandwidth_package_id(self) -> str:
+        """
+        The bandwidth package id of the Ipv6 EIP assigned to CLB.
+        """
+        return pulumi.get(self, "bandwidth_package_id")
+
+    @property
+    @pulumi.getter(name="billingType")
+    def billing_type(self) -> str:
+        """
+        The billing type of the Ipv6 EIP assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+        """
+        return pulumi.get(self, "billing_type")
+
+    @property
+    @pulumi.getter
+    def isp(self) -> str:
+        """
+        The ISP of the Ipv6 EIP assigned to CLB, the value can be `BGP`.
+        """
+        return pulumi.get(self, "isp")
+
+    @property
+    @pulumi.getter(name="networkType")
+    def network_type(self) -> str:
+        """
+        The network type of the CLB Ipv6 address.
+        """
+        return pulumi.get(self, "network_type")
 
 
 @pulumi.output_type
@@ -1537,6 +1662,7 @@ class ServerGroupServersServerResult(dict):
 @pulumi.output_type
 class ServerGroupsGroupResult(dict):
     def __init__(__self__, *,
+                 address_ip_version: str,
                  create_time: str,
                  description: str,
                  id: str,
@@ -1544,6 +1670,7 @@ class ServerGroupsGroupResult(dict):
                  server_group_name: str,
                  update_time: str):
         """
+        :param str address_ip_version: The address ip version of the ServerGroup.
         :param str create_time: The create time of the ServerGroup.
         :param str description: The description of the ServerGroup.
         :param str id: The ID of the ServerGroup.
@@ -1551,12 +1678,21 @@ class ServerGroupsGroupResult(dict):
         :param str server_group_name: The name of the ServerGroup.
         :param str update_time: The update time of the ServerGroup.
         """
+        pulumi.set(__self__, "address_ip_version", address_ip_version)
         pulumi.set(__self__, "create_time", create_time)
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "server_group_id", server_group_id)
         pulumi.set(__self__, "server_group_name", server_group_name)
         pulumi.set(__self__, "update_time", update_time)
+
+    @property
+    @pulumi.getter(name="addressIpVersion")
+    def address_ip_version(self) -> str:
+        """
+        The address ip version of the ServerGroup.
+        """
+        return pulumi.get(self, "address_ip_version")
 
     @property
     @pulumi.getter(name="createTime")

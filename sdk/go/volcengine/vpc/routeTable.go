@@ -57,7 +57,7 @@ type RouteTable struct {
 	// The description of the route table.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The ProjectName of the route table.
-	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The name of the route table.
 	RouteTableName pulumi.StringOutput `pulumi:"routeTableName"`
 	// The id of the VPC.
@@ -238,8 +238,8 @@ func (o RouteTableOutput) Description() pulumi.StringPtrOutput {
 }
 
 // The ProjectName of the route table.
-func (o RouteTableOutput) ProjectName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *RouteTable) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
+func (o RouteTableOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouteTable) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 // The name of the route table.

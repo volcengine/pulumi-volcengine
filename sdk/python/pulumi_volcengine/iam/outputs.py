@@ -12,6 +12,8 @@ from .. import _utilities
 __all__ = [
     'PoliciesPolicyResult',
     'RolesRoleResult',
+    'UserGroupPolicyAttachmentsPolicyResult',
+    'UserGroupsUserGroupResult',
     'UsersUserResult',
 ]
 
@@ -225,6 +227,141 @@ class RolesRoleResult(dict):
         The trust policy document of the Role.
         """
         return pulumi.get(self, "trust_policy_document")
+
+
+@pulumi.output_type
+class UserGroupPolicyAttachmentsPolicyResult(dict):
+    def __init__(__self__, *,
+                 attach_date: str,
+                 description: str,
+                 policy_name: str,
+                 policy_trn: str,
+                 policy_type: str):
+        """
+        :param str attach_date: Attached time.
+        :param str description: The description.
+        :param str policy_name: Name of the policy.
+        :param str policy_trn: Resource name of the strategy.
+        :param str policy_type: The type of the policy.
+        """
+        pulumi.set(__self__, "attach_date", attach_date)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "policy_name", policy_name)
+        pulumi.set(__self__, "policy_trn", policy_trn)
+        pulumi.set(__self__, "policy_type", policy_type)
+
+    @property
+    @pulumi.getter(name="attachDate")
+    def attach_date(self) -> str:
+        """
+        Attached time.
+        """
+        return pulumi.get(self, "attach_date")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="policyName")
+    def policy_name(self) -> str:
+        """
+        Name of the policy.
+        """
+        return pulumi.get(self, "policy_name")
+
+    @property
+    @pulumi.getter(name="policyTrn")
+    def policy_trn(self) -> str:
+        """
+        Resource name of the strategy.
+        """
+        return pulumi.get(self, "policy_trn")
+
+    @property
+    @pulumi.getter(name="policyType")
+    def policy_type(self) -> str:
+        """
+        The type of the policy.
+        """
+        return pulumi.get(self, "policy_type")
+
+
+@pulumi.output_type
+class UserGroupsUserGroupResult(dict):
+    def __init__(__self__, *,
+                 account_id: int,
+                 create_date: str,
+                 description: str,
+                 display_name: str,
+                 update_date: str,
+                 user_group_name: str):
+        """
+        :param int account_id: The id of the account.
+        :param str create_date: The creation date of the user group.
+        :param str description: The description of the user group.
+        :param str display_name: The display name of the user group.
+        :param str update_date: The update date of the user group.
+        :param str user_group_name: The name of the user group.
+        """
+        pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "create_date", create_date)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "update_date", update_date)
+        pulumi.set(__self__, "user_group_name", user_group_name)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> int:
+        """
+        The id of the account.
+        """
+        return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter(name="createDate")
+    def create_date(self) -> str:
+        """
+        The creation date of the user group.
+        """
+        return pulumi.get(self, "create_date")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the user group.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
+        """
+        The display name of the user group.
+        """
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter(name="updateDate")
+    def update_date(self) -> str:
+        """
+        The update date of the user group.
+        """
+        return pulumi.get(self, "update_date")
+
+    @property
+    @pulumi.getter(name="userGroupName")
+    def user_group_name(self) -> str:
+        """
+        The name of the user group.
+        """
+        return pulumi.get(self, "user_group_name")
 
 
 @pulumi.output_type

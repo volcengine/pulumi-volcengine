@@ -5,6 +5,21 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { HaVipArgs, HaVipState } from "./haVip";
+export type HaVip = import("./haVip").HaVip;
+export const HaVip: typeof import("./haVip").HaVip = null as any;
+utilities.lazyLoad(exports, ["HaVip"], () => require("./haVip"));
+
+export { HaVipAssociateArgs, HaVipAssociateState } from "./haVipAssociate";
+export type HaVipAssociate = import("./haVipAssociate").HaVipAssociate;
+export const HaVipAssociate: typeof import("./haVipAssociate").HaVipAssociate = null as any;
+utilities.lazyLoad(exports, ["HaVipAssociate"], () => require("./haVipAssociate"));
+
+export { HaVipsArgs, HaVipsResult, HaVipsOutputArgs } from "./haVips";
+export const haVips: typeof import("./haVips").haVips = null as any;
+export const haVipsOutput: typeof import("./haVips").haVipsOutput = null as any;
+utilities.lazyLoad(exports, ["haVips","haVipsOutput"], () => require("./haVips"));
+
 export { Ipv6AddressBandwidthArgs, Ipv6AddressBandwidthState } from "./ipv6AddressBandwidth";
 export type Ipv6AddressBandwidth = import("./ipv6AddressBandwidth").Ipv6AddressBandwidth;
 export const Ipv6AddressBandwidth: typeof import("./ipv6AddressBandwidth").Ipv6AddressBandwidth = null as any;
@@ -59,6 +74,16 @@ export { NetworkInterfacesArgs, NetworkInterfacesResult, NetworkInterfacesOutput
 export const networkInterfaces: typeof import("./networkInterfaces").networkInterfaces = null as any;
 export const networkInterfacesOutput: typeof import("./networkInterfaces").networkInterfacesOutput = null as any;
 utilities.lazyLoad(exports, ["networkInterfaces","networkInterfacesOutput"], () => require("./networkInterfaces"));
+
+export { PrefixListArgs, PrefixListState } from "./prefixList";
+export type PrefixList = import("./prefixList").PrefixList;
+export const PrefixList: typeof import("./prefixList").PrefixList = null as any;
+utilities.lazyLoad(exports, ["PrefixList"], () => require("./prefixList"));
+
+export { PrefixListsArgs, PrefixListsResult, PrefixListsOutputArgs } from "./prefixLists";
+export const prefixLists: typeof import("./prefixLists").prefixLists = null as any;
+export const prefixListsOutput: typeof import("./prefixLists").prefixListsOutput = null as any;
+utilities.lazyLoad(exports, ["prefixLists","prefixListsOutput"], () => require("./prefixLists"));
 
 export { RouteEntriesArgs, RouteEntriesResult, RouteEntriesOutputArgs } from "./routeEntries";
 export const routeEntries: typeof import("./routeEntries").routeEntries = null as any;
@@ -130,6 +155,10 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "volcengine:vpc/haVip:HaVip":
+                return new HaVip(name, <any>undefined, { urn })
+            case "volcengine:vpc/haVipAssociate:HaVipAssociate":
+                return new HaVipAssociate(name, <any>undefined, { urn })
             case "volcengine:vpc/ipv6AddressBandwidth:Ipv6AddressBandwidth":
                 return new Ipv6AddressBandwidth(name, <any>undefined, { urn })
             case "volcengine:vpc/ipv6Gateway:Ipv6Gateway":
@@ -142,6 +171,8 @@ const _module = {
                 return new NetworkInterface(name, <any>undefined, { urn })
             case "volcengine:vpc/networkInterfaceAttach:NetworkInterfaceAttach":
                 return new NetworkInterfaceAttach(name, <any>undefined, { urn })
+            case "volcengine:vpc/prefixList:PrefixList":
+                return new PrefixList(name, <any>undefined, { urn })
             case "volcengine:vpc/routeEntry:RouteEntry":
                 return new RouteEntry(name, <any>undefined, { urn })
             case "volcengine:vpc/routeTable:RouteTable":
@@ -161,12 +192,15 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("volcengine", "vpc/haVip", _module)
+pulumi.runtime.registerResourceModule("volcengine", "vpc/haVipAssociate", _module)
 pulumi.runtime.registerResourceModule("volcengine", "vpc/ipv6AddressBandwidth", _module)
 pulumi.runtime.registerResourceModule("volcengine", "vpc/ipv6Gateway", _module)
 pulumi.runtime.registerResourceModule("volcengine", "vpc/networkAcl", _module)
 pulumi.runtime.registerResourceModule("volcengine", "vpc/networkAclAssociate", _module)
 pulumi.runtime.registerResourceModule("volcengine", "vpc/networkInterface", _module)
 pulumi.runtime.registerResourceModule("volcengine", "vpc/networkInterfaceAttach", _module)
+pulumi.runtime.registerResourceModule("volcengine", "vpc/prefixList", _module)
 pulumi.runtime.registerResourceModule("volcengine", "vpc/routeEntry", _module)
 pulumi.runtime.registerResourceModule("volcengine", "vpc/routeTable", _module)
 pulumi.runtime.registerResourceModule("volcengine", "vpc/routeTableAssociate", _module)

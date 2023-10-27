@@ -64,6 +64,12 @@ type NetworkInterface struct {
 
 	// The description of the ENI.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 0 to 10.
+	// You cannot specify both the ipv6Addresses and ipv6AddressCount parameters.
+	Ipv6AddressCount pulumi.IntOutput `pulumi:"ipv6AddressCount"`
+	// One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+	// You cannot specify both the ipv6Addresses and ipv6AddressCount parameters.
+	Ipv6Addresses pulumi.StringArrayOutput `pulumi:"ipv6Addresses"`
 	// The name of the ENI.
 	NetworkInterfaceName pulumi.StringOutput `pulumi:"networkInterfaceName"`
 	// Set port security enable or disable.
@@ -73,7 +79,7 @@ type NetworkInterface struct {
 	// The list of private ip address. This field conflicts with `secondaryPrivateIpAddressCount`.
 	PrivateIpAddresses pulumi.StringArrayOutput `pulumi:"privateIpAddresses"`
 	// The ProjectName of the ENI.
-	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The count of secondary private ip address. This field conflicts with `privateIpAddress`.
 	SecondaryPrivateIpAddressCount pulumi.IntOutput `pulumi:"secondaryPrivateIpAddressCount"`
 	// The list of the security group id to which the secondary ENI belongs.
@@ -124,6 +130,12 @@ func GetNetworkInterface(ctx *pulumi.Context,
 type networkInterfaceState struct {
 	// The description of the ENI.
 	Description *string `pulumi:"description"`
+	// The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 0 to 10.
+	// You cannot specify both the ipv6Addresses and ipv6AddressCount parameters.
+	Ipv6AddressCount *int `pulumi:"ipv6AddressCount"`
+	// One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+	// You cannot specify both the ipv6Addresses and ipv6AddressCount parameters.
+	Ipv6Addresses []string `pulumi:"ipv6Addresses"`
 	// The name of the ENI.
 	NetworkInterfaceName *string `pulumi:"networkInterfaceName"`
 	// Set port security enable or disable.
@@ -149,6 +161,12 @@ type networkInterfaceState struct {
 type NetworkInterfaceState struct {
 	// The description of the ENI.
 	Description pulumi.StringPtrInput
+	// The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 0 to 10.
+	// You cannot specify both the ipv6Addresses and ipv6AddressCount parameters.
+	Ipv6AddressCount pulumi.IntPtrInput
+	// One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+	// You cannot specify both the ipv6Addresses and ipv6AddressCount parameters.
+	Ipv6Addresses pulumi.StringArrayInput
 	// The name of the ENI.
 	NetworkInterfaceName pulumi.StringPtrInput
 	// Set port security enable or disable.
@@ -178,6 +196,12 @@ func (NetworkInterfaceState) ElementType() reflect.Type {
 type networkInterfaceArgs struct {
 	// The description of the ENI.
 	Description *string `pulumi:"description"`
+	// The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 0 to 10.
+	// You cannot specify both the ipv6Addresses and ipv6AddressCount parameters.
+	Ipv6AddressCount *int `pulumi:"ipv6AddressCount"`
+	// One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+	// You cannot specify both the ipv6Addresses and ipv6AddressCount parameters.
+	Ipv6Addresses []string `pulumi:"ipv6Addresses"`
 	// The name of the ENI.
 	NetworkInterfaceName *string `pulumi:"networkInterfaceName"`
 	// Set port security enable or disable.
@@ -202,6 +226,12 @@ type networkInterfaceArgs struct {
 type NetworkInterfaceArgs struct {
 	// The description of the ENI.
 	Description pulumi.StringPtrInput
+	// The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 0 to 10.
+	// You cannot specify both the ipv6Addresses and ipv6AddressCount parameters.
+	Ipv6AddressCount pulumi.IntPtrInput
+	// One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+	// You cannot specify both the ipv6Addresses and ipv6AddressCount parameters.
+	Ipv6Addresses pulumi.StringArrayInput
 	// The name of the ENI.
 	NetworkInterfaceName pulumi.StringPtrInput
 	// Set port security enable or disable.
@@ -314,6 +344,18 @@ func (o NetworkInterfaceOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *NetworkInterface) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// The number of IPv6 addresses to be automatically assigned from within the CIDR block of the subnet that hosts the ENI. Valid values: 0 to 10.
+// You cannot specify both the ipv6Addresses and ipv6AddressCount parameters.
+func (o NetworkInterfaceOutput) Ipv6AddressCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *NetworkInterface) pulumi.IntOutput { return v.Ipv6AddressCount }).(pulumi.IntOutput)
+}
+
+// One or more IPv6 addresses selected from within the CIDR block of the subnet that hosts the ENI. Support up to 10.
+// You cannot specify both the ipv6Addresses and ipv6AddressCount parameters.
+func (o NetworkInterfaceOutput) Ipv6Addresses() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *NetworkInterface) pulumi.StringArrayOutput { return v.Ipv6Addresses }).(pulumi.StringArrayOutput)
+}
+
 // The name of the ENI.
 func (o NetworkInterfaceOutput) NetworkInterfaceName() pulumi.StringOutput {
 	return o.ApplyT(func(v *NetworkInterface) pulumi.StringOutput { return v.NetworkInterfaceName }).(pulumi.StringOutput)
@@ -335,8 +377,8 @@ func (o NetworkInterfaceOutput) PrivateIpAddresses() pulumi.StringArrayOutput {
 }
 
 // The ProjectName of the ENI.
-func (o NetworkInterfaceOutput) ProjectName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *NetworkInterface) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
+func (o NetworkInterfaceOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *NetworkInterface) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 // The count of secondary private ip address. This field conflicts with `privateIpAddress`.

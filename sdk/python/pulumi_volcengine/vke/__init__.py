@@ -18,5 +18,6 @@ from .node_pool import *
 from .node_pools import *
 from .nodes import *
 from .support_addons import *
+from .support_resource_types import *
 from ._inputs import *
 from . import outputs

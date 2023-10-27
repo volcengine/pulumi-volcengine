@@ -351,6 +351,281 @@ func (o RolesRoleArrayOutput) Index(i pulumi.IntInput) RolesRoleOutput {
 	}).(RolesRoleOutput)
 }
 
+type UserGroupPolicyAttachmentsPolicy struct {
+	// Attached time.
+	AttachDate string `pulumi:"attachDate"`
+	// The description.
+	Description string `pulumi:"description"`
+	// Name of the policy.
+	PolicyName string `pulumi:"policyName"`
+	// Resource name of the strategy.
+	PolicyTrn string `pulumi:"policyTrn"`
+	// The type of the policy.
+	PolicyType string `pulumi:"policyType"`
+}
+
+// UserGroupPolicyAttachmentsPolicyInput is an input type that accepts UserGroupPolicyAttachmentsPolicyArgs and UserGroupPolicyAttachmentsPolicyOutput values.
+// You can construct a concrete instance of `UserGroupPolicyAttachmentsPolicyInput` via:
+//
+//	UserGroupPolicyAttachmentsPolicyArgs{...}
+type UserGroupPolicyAttachmentsPolicyInput interface {
+	pulumi.Input
+
+	ToUserGroupPolicyAttachmentsPolicyOutput() UserGroupPolicyAttachmentsPolicyOutput
+	ToUserGroupPolicyAttachmentsPolicyOutputWithContext(context.Context) UserGroupPolicyAttachmentsPolicyOutput
+}
+
+type UserGroupPolicyAttachmentsPolicyArgs struct {
+	// Attached time.
+	AttachDate pulumi.StringInput `pulumi:"attachDate"`
+	// The description.
+	Description pulumi.StringInput `pulumi:"description"`
+	// Name of the policy.
+	PolicyName pulumi.StringInput `pulumi:"policyName"`
+	// Resource name of the strategy.
+	PolicyTrn pulumi.StringInput `pulumi:"policyTrn"`
+	// The type of the policy.
+	PolicyType pulumi.StringInput `pulumi:"policyType"`
+}
+
+func (UserGroupPolicyAttachmentsPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserGroupPolicyAttachmentsPolicy)(nil)).Elem()
+}
+
+func (i UserGroupPolicyAttachmentsPolicyArgs) ToUserGroupPolicyAttachmentsPolicyOutput() UserGroupPolicyAttachmentsPolicyOutput {
+	return i.ToUserGroupPolicyAttachmentsPolicyOutputWithContext(context.Background())
+}
+
+func (i UserGroupPolicyAttachmentsPolicyArgs) ToUserGroupPolicyAttachmentsPolicyOutputWithContext(ctx context.Context) UserGroupPolicyAttachmentsPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserGroupPolicyAttachmentsPolicyOutput)
+}
+
+// UserGroupPolicyAttachmentsPolicyArrayInput is an input type that accepts UserGroupPolicyAttachmentsPolicyArray and UserGroupPolicyAttachmentsPolicyArrayOutput values.
+// You can construct a concrete instance of `UserGroupPolicyAttachmentsPolicyArrayInput` via:
+//
+//	UserGroupPolicyAttachmentsPolicyArray{ UserGroupPolicyAttachmentsPolicyArgs{...} }
+type UserGroupPolicyAttachmentsPolicyArrayInput interface {
+	pulumi.Input
+
+	ToUserGroupPolicyAttachmentsPolicyArrayOutput() UserGroupPolicyAttachmentsPolicyArrayOutput
+	ToUserGroupPolicyAttachmentsPolicyArrayOutputWithContext(context.Context) UserGroupPolicyAttachmentsPolicyArrayOutput
+}
+
+type UserGroupPolicyAttachmentsPolicyArray []UserGroupPolicyAttachmentsPolicyInput
+
+func (UserGroupPolicyAttachmentsPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserGroupPolicyAttachmentsPolicy)(nil)).Elem()
+}
+
+func (i UserGroupPolicyAttachmentsPolicyArray) ToUserGroupPolicyAttachmentsPolicyArrayOutput() UserGroupPolicyAttachmentsPolicyArrayOutput {
+	return i.ToUserGroupPolicyAttachmentsPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i UserGroupPolicyAttachmentsPolicyArray) ToUserGroupPolicyAttachmentsPolicyArrayOutputWithContext(ctx context.Context) UserGroupPolicyAttachmentsPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserGroupPolicyAttachmentsPolicyArrayOutput)
+}
+
+type UserGroupPolicyAttachmentsPolicyOutput struct{ *pulumi.OutputState }
+
+func (UserGroupPolicyAttachmentsPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserGroupPolicyAttachmentsPolicy)(nil)).Elem()
+}
+
+func (o UserGroupPolicyAttachmentsPolicyOutput) ToUserGroupPolicyAttachmentsPolicyOutput() UserGroupPolicyAttachmentsPolicyOutput {
+	return o
+}
+
+func (o UserGroupPolicyAttachmentsPolicyOutput) ToUserGroupPolicyAttachmentsPolicyOutputWithContext(ctx context.Context) UserGroupPolicyAttachmentsPolicyOutput {
+	return o
+}
+
+// Attached time.
+func (o UserGroupPolicyAttachmentsPolicyOutput) AttachDate() pulumi.StringOutput {
+	return o.ApplyT(func(v UserGroupPolicyAttachmentsPolicy) string { return v.AttachDate }).(pulumi.StringOutput)
+}
+
+// The description.
+func (o UserGroupPolicyAttachmentsPolicyOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v UserGroupPolicyAttachmentsPolicy) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Name of the policy.
+func (o UserGroupPolicyAttachmentsPolicyOutput) PolicyName() pulumi.StringOutput {
+	return o.ApplyT(func(v UserGroupPolicyAttachmentsPolicy) string { return v.PolicyName }).(pulumi.StringOutput)
+}
+
+// Resource name of the strategy.
+func (o UserGroupPolicyAttachmentsPolicyOutput) PolicyTrn() pulumi.StringOutput {
+	return o.ApplyT(func(v UserGroupPolicyAttachmentsPolicy) string { return v.PolicyTrn }).(pulumi.StringOutput)
+}
+
+// The type of the policy.
+func (o UserGroupPolicyAttachmentsPolicyOutput) PolicyType() pulumi.StringOutput {
+	return o.ApplyT(func(v UserGroupPolicyAttachmentsPolicy) string { return v.PolicyType }).(pulumi.StringOutput)
+}
+
+type UserGroupPolicyAttachmentsPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (UserGroupPolicyAttachmentsPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserGroupPolicyAttachmentsPolicy)(nil)).Elem()
+}
+
+func (o UserGroupPolicyAttachmentsPolicyArrayOutput) ToUserGroupPolicyAttachmentsPolicyArrayOutput() UserGroupPolicyAttachmentsPolicyArrayOutput {
+	return o
+}
+
+func (o UserGroupPolicyAttachmentsPolicyArrayOutput) ToUserGroupPolicyAttachmentsPolicyArrayOutputWithContext(ctx context.Context) UserGroupPolicyAttachmentsPolicyArrayOutput {
+	return o
+}
+
+func (o UserGroupPolicyAttachmentsPolicyArrayOutput) Index(i pulumi.IntInput) UserGroupPolicyAttachmentsPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserGroupPolicyAttachmentsPolicy {
+		return vs[0].([]UserGroupPolicyAttachmentsPolicy)[vs[1].(int)]
+	}).(UserGroupPolicyAttachmentsPolicyOutput)
+}
+
+type UserGroupsUserGroup struct {
+	// The id of the account.
+	AccountId int `pulumi:"accountId"`
+	// The creation date of the user group.
+	CreateDate string `pulumi:"createDate"`
+	// The description of the user group.
+	Description string `pulumi:"description"`
+	// The display name of the user group.
+	DisplayName string `pulumi:"displayName"`
+	// The update date of the user group.
+	UpdateDate string `pulumi:"updateDate"`
+	// The name of the user group.
+	UserGroupName string `pulumi:"userGroupName"`
+}
+
+// UserGroupsUserGroupInput is an input type that accepts UserGroupsUserGroupArgs and UserGroupsUserGroupOutput values.
+// You can construct a concrete instance of `UserGroupsUserGroupInput` via:
+//
+//	UserGroupsUserGroupArgs{...}
+type UserGroupsUserGroupInput interface {
+	pulumi.Input
+
+	ToUserGroupsUserGroupOutput() UserGroupsUserGroupOutput
+	ToUserGroupsUserGroupOutputWithContext(context.Context) UserGroupsUserGroupOutput
+}
+
+type UserGroupsUserGroupArgs struct {
+	// The id of the account.
+	AccountId pulumi.IntInput `pulumi:"accountId"`
+	// The creation date of the user group.
+	CreateDate pulumi.StringInput `pulumi:"createDate"`
+	// The description of the user group.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The display name of the user group.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The update date of the user group.
+	UpdateDate pulumi.StringInput `pulumi:"updateDate"`
+	// The name of the user group.
+	UserGroupName pulumi.StringInput `pulumi:"userGroupName"`
+}
+
+func (UserGroupsUserGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserGroupsUserGroup)(nil)).Elem()
+}
+
+func (i UserGroupsUserGroupArgs) ToUserGroupsUserGroupOutput() UserGroupsUserGroupOutput {
+	return i.ToUserGroupsUserGroupOutputWithContext(context.Background())
+}
+
+func (i UserGroupsUserGroupArgs) ToUserGroupsUserGroupOutputWithContext(ctx context.Context) UserGroupsUserGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserGroupsUserGroupOutput)
+}
+
+// UserGroupsUserGroupArrayInput is an input type that accepts UserGroupsUserGroupArray and UserGroupsUserGroupArrayOutput values.
+// You can construct a concrete instance of `UserGroupsUserGroupArrayInput` via:
+//
+//	UserGroupsUserGroupArray{ UserGroupsUserGroupArgs{...} }
+type UserGroupsUserGroupArrayInput interface {
+	pulumi.Input
+
+	ToUserGroupsUserGroupArrayOutput() UserGroupsUserGroupArrayOutput
+	ToUserGroupsUserGroupArrayOutputWithContext(context.Context) UserGroupsUserGroupArrayOutput
+}
+
+type UserGroupsUserGroupArray []UserGroupsUserGroupInput
+
+func (UserGroupsUserGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserGroupsUserGroup)(nil)).Elem()
+}
+
+func (i UserGroupsUserGroupArray) ToUserGroupsUserGroupArrayOutput() UserGroupsUserGroupArrayOutput {
+	return i.ToUserGroupsUserGroupArrayOutputWithContext(context.Background())
+}
+
+func (i UserGroupsUserGroupArray) ToUserGroupsUserGroupArrayOutputWithContext(ctx context.Context) UserGroupsUserGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserGroupsUserGroupArrayOutput)
+}
+
+type UserGroupsUserGroupOutput struct{ *pulumi.OutputState }
+
+func (UserGroupsUserGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserGroupsUserGroup)(nil)).Elem()
+}
+
+func (o UserGroupsUserGroupOutput) ToUserGroupsUserGroupOutput() UserGroupsUserGroupOutput {
+	return o
+}
+
+func (o UserGroupsUserGroupOutput) ToUserGroupsUserGroupOutputWithContext(ctx context.Context) UserGroupsUserGroupOutput {
+	return o
+}
+
+// The id of the account.
+func (o UserGroupsUserGroupOutput) AccountId() pulumi.IntOutput {
+	return o.ApplyT(func(v UserGroupsUserGroup) int { return v.AccountId }).(pulumi.IntOutput)
+}
+
+// The creation date of the user group.
+func (o UserGroupsUserGroupOutput) CreateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v UserGroupsUserGroup) string { return v.CreateDate }).(pulumi.StringOutput)
+}
+
+// The description of the user group.
+func (o UserGroupsUserGroupOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v UserGroupsUserGroup) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The display name of the user group.
+func (o UserGroupsUserGroupOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v UserGroupsUserGroup) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The update date of the user group.
+func (o UserGroupsUserGroupOutput) UpdateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v UserGroupsUserGroup) string { return v.UpdateDate }).(pulumi.StringOutput)
+}
+
+// The name of the user group.
+func (o UserGroupsUserGroupOutput) UserGroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v UserGroupsUserGroup) string { return v.UserGroupName }).(pulumi.StringOutput)
+}
+
+type UserGroupsUserGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (UserGroupsUserGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserGroupsUserGroup)(nil)).Elem()
+}
+
+func (o UserGroupsUserGroupArrayOutput) ToUserGroupsUserGroupArrayOutput() UserGroupsUserGroupArrayOutput {
+	return o
+}
+
+func (o UserGroupsUserGroupArrayOutput) ToUserGroupsUserGroupArrayOutputWithContext(ctx context.Context) UserGroupsUserGroupArrayOutput {
+	return o
+}
+
+func (o UserGroupsUserGroupArrayOutput) Index(i pulumi.IntInput) UserGroupsUserGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserGroupsUserGroup {
+		return vs[0].([]UserGroupsUserGroup)[vs[1].(int)]
+	}).(UserGroupsUserGroupOutput)
+}
+
 type UsersUser struct {
 	// The account id of the user.
 	AccountId string `pulumi:"accountId"`
@@ -489,12 +764,20 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*PoliciesPolicyArrayInput)(nil)).Elem(), PoliciesPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RolesRoleInput)(nil)).Elem(), RolesRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RolesRoleArrayInput)(nil)).Elem(), RolesRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserGroupPolicyAttachmentsPolicyInput)(nil)).Elem(), UserGroupPolicyAttachmentsPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserGroupPolicyAttachmentsPolicyArrayInput)(nil)).Elem(), UserGroupPolicyAttachmentsPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserGroupsUserGroupInput)(nil)).Elem(), UserGroupsUserGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserGroupsUserGroupArrayInput)(nil)).Elem(), UserGroupsUserGroupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UsersUserInput)(nil)).Elem(), UsersUserArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UsersUserArrayInput)(nil)).Elem(), UsersUserArray{})
 	pulumi.RegisterOutputType(PoliciesPolicyOutput{})
 	pulumi.RegisterOutputType(PoliciesPolicyArrayOutput{})
 	pulumi.RegisterOutputType(RolesRoleOutput{})
 	pulumi.RegisterOutputType(RolesRoleArrayOutput{})
+	pulumi.RegisterOutputType(UserGroupPolicyAttachmentsPolicyOutput{})
+	pulumi.RegisterOutputType(UserGroupPolicyAttachmentsPolicyArrayOutput{})
+	pulumi.RegisterOutputType(UserGroupsUserGroupOutput{})
+	pulumi.RegisterOutputType(UserGroupsUserGroupArrayOutput{})
 	pulumi.RegisterOutputType(UsersUserOutput{})
 	pulumi.RegisterOutputType(UsersUserArrayOutput{})
 }

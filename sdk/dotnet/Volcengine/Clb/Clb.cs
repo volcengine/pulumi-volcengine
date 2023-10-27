@@ -38,30 +38,7 @@ namespace Volcengine.Pulumi.Volcengine.Clb
     ///         VpcId = fooVpc.Id,
     ///     });
     /// 
-    ///     var fooClb = new Volcengine.Clb.Clb("fooClb", new()
-    ///     {
-    ///         Type = "public",
-    ///         SubnetId = fooSubnet.Id,
-    ///         LoadBalancerSpec = "small_1",
-    ///         Description = "acc-test-demo",
-    ///         LoadBalancerName = "acc-test-clb",
-    ///         LoadBalancerBillingType = "PostPaid",
-    ///         EipBillingConfig = new Volcengine.Clb.Inputs.ClbEipBillingConfigArgs
-    ///         {
-    ///             Isp = "BGP",
-    ///             EipBillingType = "PostPaidByBandwidth",
-    ///             Bandwidth = 1,
-    ///         },
-    ///         Tags = new[]
-    ///         {
-    ///             new Volcengine.Clb.Inputs.ClbTagArgs
-    ///             {
-    ///                 Key = "k1",
-    ///                 Value = "v1",
-    ///             },
-    ///         },
-    ///     });
-    /// 
+    ///     // ipv4 public clb
     ///     var publicClb = new Volcengine.Clb.Clb("publicClb", new()
     ///     {
     ///         Type = "public",
@@ -86,6 +63,7 @@ namespace Volcengine.Pulumi.Volcengine.Clb
     ///         },
     ///     });
     /// 
+    ///     // ipv4 private clb
     ///     var privateClb = new Volcengine.Clb.Clb("privateClb", new()
     ///     {
     ///         Type = "private",
@@ -112,6 +90,52 @@ namespace Volcengine.Pulumi.Volcengine.Clb
     ///         InstanceType = "ClbInstance",
     ///     });
     /// 
+    ///     // ipv6 private clb
+    ///     var vpcIpv6 = new Volcengine.Vpc.Vpc("vpcIpv6", new()
+    ///     {
+    ///         VpcName = "acc-test-vpc-ipv6",
+    ///         CidrBlock = "172.16.0.0/16",
+    ///         EnableIpv6 = true,
+    ///     });
+    /// 
+    ///     var subnetIpv6 = new Volcengine.Vpc.Subnet("subnetIpv6", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet-ipv6",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[1]?.Id),
+    ///         VpcId = vpcIpv6.Id,
+    ///         Ipv6CidrBlock = 1,
+    ///     });
+    /// 
+    ///     var privateClbIpv6 = new Volcengine.Clb.Clb("privateClbIpv6", new()
+    ///     {
+    ///         Type = "private",
+    ///         SubnetId = subnetIpv6.Id,
+    ///         LoadBalancerName = "acc-test-clb-ipv6",
+    ///         LoadBalancerSpec = "small_1",
+    ///         Description = "acc-test-demo",
+    ///         ProjectName = "default",
+    ///         AddressIpVersion = "DualStack",
+    ///     });
+    /// 
+    ///     var ipv6Gateway = new Volcengine.Vpc.Ipv6Gateway("ipv6Gateway", new()
+    ///     {
+    ///         VpcId = vpcIpv6.Id,
+    ///     });
+    /// 
+    ///     var fooIpv6AddressBandwidth = new Volcengine.Vpc.Ipv6AddressBandwidth("fooIpv6AddressBandwidth", new()
+    ///     {
+    ///         Ipv6Address = privateClbIpv6.EniIpv6Address,
+    ///         BillingType = "PostPaidByBandwidth",
+    ///         Bandwidth = 5,
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             ipv6Gateway,
+    ///         },
+    ///     });
+    /// 
     /// });
     /// ```
     /// 
@@ -126,6 +150,13 @@ namespace Volcengine.Pulumi.Volcengine.Clb
     [VolcengineResourceType("volcengine:clb/clb:Clb")]
     public partial class Clb : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// The address ip version of the Clb. Valid values: `ipv4`, `DualStack`. Default is `ipv4`.
+        /// When the value of this field is `DualStack`, the type of the CLB must be `private`, and suggest using a combination of resource `volcengine.vpc.Ipv6Gateway` and `volcengine.vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
+        /// </summary>
+        [Output("addressIpVersion")]
+        public Output<string?> AddressIpVersion { get; private set; } = null!;
+
         /// <summary>
         /// The description of the CLB.
         /// </summary>
@@ -155,6 +186,18 @@ namespace Volcengine.Pulumi.Volcengine.Clb
         /// </summary>
         [Output("eniAddress")]
         public Output<string> EniAddress { get; private set; } = null!;
+
+        /// <summary>
+        /// The eni ipv6 address of the Clb.
+        /// </summary>
+        [Output("eniIpv6Address")]
+        public Output<string> EniIpv6Address { get; private set; } = null!;
+
+        /// <summary>
+        /// The Ipv6 Eip ID of the Clb.
+        /// </summary>
+        [Output("ipv6EipId")]
+        public Output<string> Ipv6EipId { get; private set; } = null!;
 
         /// <summary>
         /// The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
@@ -202,7 +245,7 @@ namespace Volcengine.Pulumi.Volcengine.Clb
         /// The ProjectName of the CLB.
         /// </summary>
         [Output("projectName")]
-        public Output<string?> ProjectName { get; private set; } = null!;
+        public Output<string> ProjectName { get; private set; } = null!;
 
         /// <summary>
         /// The region of the request.
@@ -294,6 +337,13 @@ namespace Volcengine.Pulumi.Volcengine.Clb
     public sealed class ClbArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The address ip version of the Clb. Valid values: `ipv4`, `DualStack`. Default is `ipv4`.
+        /// When the value of this field is `DualStack`, the type of the CLB must be `private`, and suggest using a combination of resource `volcengine.vpc.Ipv6Gateway` and `volcengine.vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
+        /// </summary>
+        [Input("addressIpVersion")]
+        public Input<string>? AddressIpVersion { get; set; }
+
+        /// <summary>
         /// The description of the CLB.
         /// </summary>
         [Input("description")]
@@ -310,6 +360,12 @@ namespace Volcengine.Pulumi.Volcengine.Clb
         /// </summary>
         [Input("eniAddress")]
         public Input<string>? EniAddress { get; set; }
+
+        /// <summary>
+        /// The eni ipv6 address of the Clb.
+        /// </summary>
+        [Input("eniIpv6Address")]
+        public Input<string>? EniIpv6Address { get; set; }
 
         /// <summary>
         /// The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.
@@ -410,6 +466,13 @@ namespace Volcengine.Pulumi.Volcengine.Clb
     public sealed class ClbState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The address ip version of the Clb. Valid values: `ipv4`, `DualStack`. Default is `ipv4`.
+        /// When the value of this field is `DualStack`, the type of the CLB must be `private`, and suggest using a combination of resource `volcengine.vpc.Ipv6Gateway` and `volcengine.vpc.Ipv6AddressBandwidth` to achieve ipv6 public network access function.
+        /// </summary>
+        [Input("addressIpVersion")]
+        public Input<string>? AddressIpVersion { get; set; }
+
+        /// <summary>
         /// The description of the CLB.
         /// </summary>
         [Input("description")]
@@ -438,6 +501,18 @@ namespace Volcengine.Pulumi.Volcengine.Clb
         /// </summary>
         [Input("eniAddress")]
         public Input<string>? EniAddress { get; set; }
+
+        /// <summary>
+        /// The eni ipv6 address of the Clb.
+        /// </summary>
+        [Input("eniIpv6Address")]
+        public Input<string>? EniIpv6Address { get; set; }
+
+        /// <summary>
+        /// The Ipv6 Eip ID of the Clb.
+        /// </summary>
+        [Input("ipv6EipId")]
+        public Input<string>? Ipv6EipId { get; set; }
 
         /// <summary>
         /// The billing type of the CLB, the value can be `PostPaid` or `PrePaid`.

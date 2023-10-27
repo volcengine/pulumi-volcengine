@@ -90,7 +90,7 @@ namespace Volcengine.Pulumi.Volcengine.Vpn
         /// The project name of the VPN customer gateway.
         /// </summary>
         [Output("projectName")]
-        public Output<string?> ProjectName { get; private set; } = null!;
+        public Output<string> ProjectName { get; private set; } = null!;
 
         /// <summary>
         /// The status of the customer gateway.

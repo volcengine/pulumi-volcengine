@@ -99,7 +99,7 @@ namespace Volcengine.Pulumi.Volcengine.Vpc
         /// The project name of the network acl.
         /// </summary>
         [Output("projectName")]
-        public Output<string?> ProjectName { get; private set; } = null!;
+        public Output<string> ProjectName { get; private set; } = null!;
 
         /// <summary>
         /// The vpc id of Network Acl.

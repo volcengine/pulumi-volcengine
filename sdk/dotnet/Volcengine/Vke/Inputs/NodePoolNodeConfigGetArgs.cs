@@ -89,7 +89,7 @@ namespace Volcengine.Pulumi.Volcengine.Vke.Inputs
         private InputList<string>? _instanceTypeIds;
 
         /// <summary>
-        /// The InstanceTypeIds of NodeConfig.
+        /// The InstanceTypeIds of NodeConfig. The value can get from volcengine.vke.SupportResourceTypes datasource.
         /// </summary>
         public InputList<string> InstanceTypeIds
         {

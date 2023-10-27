@@ -101,7 +101,7 @@ export class Address extends pulumi.CustomResource {
     /**
      * The ProjectName of the EIP.
      */
-    public readonly projectName!: pulumi.Output<string | undefined>;
+    public readonly projectName!: pulumi.Output<string>;
     /**
      * The status of the EIP.
      */

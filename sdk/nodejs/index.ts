@@ -25,6 +25,7 @@ import * as eip from "./eip";
 import * as escloud from "./escloud";
 import * as iam from "./iam";
 import * as mongodb from "./mongodb";
+import * as nas from "./nas";
 import * as nat from "./nat";
 import * as privatelink from "./privatelink";
 import * as rds from "./rds";
@@ -33,6 +34,7 @@ import * as rds_v2 from "./rds_v2";
 import * as redis from "./redis";
 import * as tls from "./tls";
 import * as tos from "./tos";
+import * as transit_router from "./transit_router";
 import * as types from "./types";
 import * as veenedge from "./veenedge";
 import * as vke from "./vke";
@@ -53,6 +55,7 @@ export {
     escloud,
     iam,
     mongodb,
+    nas,
     nat,
     privatelink,
     rds,
@@ -61,6 +64,7 @@ export {
     redis,
     tls,
     tos,
+    transit_router,
     types,
     veenedge,
     vke,

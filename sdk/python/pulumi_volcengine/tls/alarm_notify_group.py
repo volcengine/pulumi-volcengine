@@ -353,7 +353,7 @@ class AlarmNotifyGroup(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="iamProjectName")
-    def iam_project_name(self) -> pulumi.Output[Optional[str]]:
+    def iam_project_name(self) -> pulumi.Output[str]:
         """
         The name of the iam project.
         """

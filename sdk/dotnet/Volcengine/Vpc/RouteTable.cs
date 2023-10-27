@@ -54,7 +54,7 @@ namespace Volcengine.Pulumi.Volcengine.Vpc
         /// The ProjectName of the route table.
         /// </summary>
         [Output("projectName")]
-        public Output<string?> ProjectName { get; private set; } = null!;
+        public Output<string> ProjectName { get; private set; } = null!;
 
         /// <summary>
         /// The name of the route table.
