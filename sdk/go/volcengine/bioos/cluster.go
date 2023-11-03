@@ -28,10 +28,8 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := bioos.NewCluster(ctx, "foo", &bioos.ClusterArgs{
 //				Description: pulumi.String("test-description"),
-//				SharedConfigs: bioos.ClusterSharedConfigArray{
-//					&bioos.ClusterSharedConfigArgs{
-//						Enable: pulumi.Bool(true),
-//					},
+//				SharedConfig: &bioos.ClusterSharedConfigArgs{
+//					Enable: pulumi.Bool(true),
 //				},
 //			})
 //			if err != nil {
@@ -62,9 +60,9 @@ type Cluster struct {
 	// The name of the cluster.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The configuration of the shared cluster.
-	SharedConfigs ClusterSharedConfigArrayOutput `pulumi:"sharedConfigs"`
-	// The configuration of the vke cluster.
-	VkeConfigs ClusterVkeConfigArrayOutput `pulumi:"vkeConfigs"`
+	SharedConfig ClusterSharedConfigOutput `pulumi:"sharedConfig"`
+	// The configuration of the vke cluster. This cluster type is not recommended. It is recommended to use a shared cluster.
+	VkeConfig ClusterVkeConfigOutput `pulumi:"vkeConfig"`
 }
 
 // NewCluster registers a new resource with the given unique name, arguments, and options.
@@ -104,9 +102,9 @@ type clusterState struct {
 	// The name of the cluster.
 	Name *string `pulumi:"name"`
 	// The configuration of the shared cluster.
-	SharedConfigs []ClusterSharedConfig `pulumi:"sharedConfigs"`
-	// The configuration of the vke cluster.
-	VkeConfigs []ClusterVkeConfig `pulumi:"vkeConfigs"`
+	SharedConfig *ClusterSharedConfig `pulumi:"sharedConfig"`
+	// The configuration of the vke cluster. This cluster type is not recommended. It is recommended to use a shared cluster.
+	VkeConfig *ClusterVkeConfig `pulumi:"vkeConfig"`
 }
 
 type ClusterState struct {
@@ -117,9 +115,9 @@ type ClusterState struct {
 	// The name of the cluster.
 	Name pulumi.StringPtrInput
 	// The configuration of the shared cluster.
-	SharedConfigs ClusterSharedConfigArrayInput
-	// The configuration of the vke cluster.
-	VkeConfigs ClusterVkeConfigArrayInput
+	SharedConfig ClusterSharedConfigPtrInput
+	// The configuration of the vke cluster. This cluster type is not recommended. It is recommended to use a shared cluster.
+	VkeConfig ClusterVkeConfigPtrInput
 }
 
 func (ClusterState) ElementType() reflect.Type {
@@ -132,9 +130,9 @@ type clusterArgs struct {
 	// The name of the cluster.
 	Name *string `pulumi:"name"`
 	// The configuration of the shared cluster.
-	SharedConfigs []ClusterSharedConfig `pulumi:"sharedConfigs"`
-	// The configuration of the vke cluster.
-	VkeConfigs []ClusterVkeConfig `pulumi:"vkeConfigs"`
+	SharedConfig *ClusterSharedConfig `pulumi:"sharedConfig"`
+	// The configuration of the vke cluster. This cluster type is not recommended. It is recommended to use a shared cluster.
+	VkeConfig *ClusterVkeConfig `pulumi:"vkeConfig"`
 }
 
 // The set of arguments for constructing a Cluster resource.
@@ -144,9 +142,9 @@ type ClusterArgs struct {
 	// The name of the cluster.
 	Name pulumi.StringPtrInput
 	// The configuration of the shared cluster.
-	SharedConfigs ClusterSharedConfigArrayInput
-	// The configuration of the vke cluster.
-	VkeConfigs ClusterVkeConfigArrayInput
+	SharedConfig ClusterSharedConfigPtrInput
+	// The configuration of the vke cluster. This cluster type is not recommended. It is recommended to use a shared cluster.
+	VkeConfig ClusterVkeConfigPtrInput
 }
 
 func (ClusterArgs) ElementType() reflect.Type {
@@ -252,13 +250,13 @@ func (o ClusterOutput) Name() pulumi.StringOutput {
 }
 
 // The configuration of the shared cluster.
-func (o ClusterOutput) SharedConfigs() ClusterSharedConfigArrayOutput {
-	return o.ApplyT(func(v *Cluster) ClusterSharedConfigArrayOutput { return v.SharedConfigs }).(ClusterSharedConfigArrayOutput)
+func (o ClusterOutput) SharedConfig() ClusterSharedConfigOutput {
+	return o.ApplyT(func(v *Cluster) ClusterSharedConfigOutput { return v.SharedConfig }).(ClusterSharedConfigOutput)
 }
 
-// The configuration of the vke cluster.
-func (o ClusterOutput) VkeConfigs() ClusterVkeConfigArrayOutput {
-	return o.ApplyT(func(v *Cluster) ClusterVkeConfigArrayOutput { return v.VkeConfigs }).(ClusterVkeConfigArrayOutput)
+// The configuration of the vke cluster. This cluster type is not recommended. It is recommended to use a shared cluster.
+func (o ClusterOutput) VkeConfig() ClusterVkeConfigOutput {
+	return o.ApplyT(func(v *Cluster) ClusterVkeConfigOutput { return v.VkeConfig }).(ClusterVkeConfigOutput)
 }
 
 type ClusterArrayOutput struct{ *pulumi.OutputState }

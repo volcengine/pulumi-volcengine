@@ -192,6 +192,9 @@ namespace Volcengine.Pulumi.Volcengine.Bioos
         /// whether it is a public cluster.
         /// </summary>
         public readonly bool? Public;
+        /// <summary>
+        /// The status of the cluster.
+        /// </summary>
         public readonly ImmutableArray<string> Statuses;
         /// <summary>
         /// The total count of Cluster query.

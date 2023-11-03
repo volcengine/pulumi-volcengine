@@ -65,7 +65,7 @@ import * as utilities from "../utilities";
  *         2,
  *         3,
  *     ],
- *     backupHour: 4,
+ *     backupHour: 6,
  *     backupActive: true,
  *     createBackup: false,
  *     applyImmediately: true,
@@ -157,6 +157,7 @@ export class Instance extends pulumi.CustomResource {
     public readonly nodeNumber!: pulumi.Output<number>;
     /**
      * The configuration item information to be modified. This field can only be added or modified. Deleting this field is invalid.
+     * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields, or use the command `pulumi up` to perform a modification operation.
      */
     public readonly paramValues!: pulumi.Output<outputs.redis.InstanceParamValue[] | undefined>;
     /**
@@ -197,7 +198,7 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly tags!: pulumi.Output<outputs.redis.InstanceTag[] | undefined>;
     /**
-     * Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`. Works only on modified scenes.
+     * Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`.
      */
     public readonly vpcAuthMode!: pulumi.Output<string>;
     /**
@@ -348,6 +349,7 @@ export interface InstanceState {
     nodeNumber?: pulumi.Input<number>;
     /**
      * The configuration item information to be modified. This field can only be added or modified. Deleting this field is invalid.
+     * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields, or use the command `pulumi up` to perform a modification operation.
      */
     paramValues?: pulumi.Input<pulumi.Input<inputs.redis.InstanceParamValue>[]>;
     /**
@@ -388,7 +390,7 @@ export interface InstanceState {
      */
     tags?: pulumi.Input<pulumi.Input<inputs.redis.InstanceTag>[]>;
     /**
-     * Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`. Works only on modified scenes.
+     * Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`.
      */
     vpcAuthMode?: pulumi.Input<string>;
     /**
@@ -450,6 +452,7 @@ export interface InstanceArgs {
     nodeNumber: pulumi.Input<number>;
     /**
      * The configuration item information to be modified. This field can only be added or modified. Deleting this field is invalid.
+     * When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields, or use the command `pulumi up` to perform a modification operation.
      */
     paramValues?: pulumi.Input<pulumi.Input<inputs.redis.InstanceParamValue>[]>;
     /**
@@ -490,7 +493,7 @@ export interface InstanceArgs {
      */
     tags?: pulumi.Input<pulumi.Input<inputs.redis.InstanceTag>[]>;
     /**
-     * Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`. Works only on modified scenes.
+     * Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`.
      */
     vpcAuthMode?: pulumi.Input<string>;
     /**

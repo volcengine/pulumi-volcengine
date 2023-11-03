@@ -2289,8 +2289,14 @@ type ListenersListener struct {
 	AclStatus string `pulumi:"aclStatus"`
 	// The acl type of the Listener.
 	AclType string `pulumi:"aclType"`
+	// The bandwidth of the Listener. Unit: Mbps.
+	Bandwidth int `pulumi:"bandwidth"`
 	// The ID of the certificate which is associated with the Listener.
 	CertificateId string `pulumi:"certificateId"`
+	// Whether to enable connection drain of the Listener.
+	ConnectionDrainEnabled string `pulumi:"connectionDrainEnabled"`
+	// The connection drain timeout of the Listener.
+	ConnectionDrainTimeout int `pulumi:"connectionDrainTimeout"`
 	// The create time of the Listener.
 	CreateTime string `pulumi:"createTime"`
 	// The enable status of the Listener.
@@ -2323,10 +2329,16 @@ type ListenersListener struct {
 	ListenerId string `pulumi:"listenerId"`
 	// The name of the Listener.
 	ListenerName string `pulumi:"listenerName"`
+	// The persistence timeout of the Listener.
+	PersistenceTimeout int `pulumi:"persistenceTimeout"`
+	// The persistence type of the Listener.
+	PersistenceType string `pulumi:"persistenceType"`
 	// The port receiving request of the Listener.
 	Port int `pulumi:"port"`
 	// The protocol of the Listener.
 	Protocol string `pulumi:"protocol"`
+	// Whether to enable proxy protocol.
+	ProxyProtocolType string `pulumi:"proxyProtocolType"`
 	// The ID of the backend server group which is associated with the Listener.
 	ServerGroupId string `pulumi:"serverGroupId"`
 	// The status of the Listener.
@@ -2353,8 +2365,14 @@ type ListenersListenerArgs struct {
 	AclStatus pulumi.StringInput `pulumi:"aclStatus"`
 	// The acl type of the Listener.
 	AclType pulumi.StringInput `pulumi:"aclType"`
+	// The bandwidth of the Listener. Unit: Mbps.
+	Bandwidth pulumi.IntInput `pulumi:"bandwidth"`
 	// The ID of the certificate which is associated with the Listener.
 	CertificateId pulumi.StringInput `pulumi:"certificateId"`
+	// Whether to enable connection drain of the Listener.
+	ConnectionDrainEnabled pulumi.StringInput `pulumi:"connectionDrainEnabled"`
+	// The connection drain timeout of the Listener.
+	ConnectionDrainTimeout pulumi.IntInput `pulumi:"connectionDrainTimeout"`
 	// The create time of the Listener.
 	CreateTime pulumi.StringInput `pulumi:"createTime"`
 	// The enable status of the Listener.
@@ -2387,10 +2405,16 @@ type ListenersListenerArgs struct {
 	ListenerId pulumi.StringInput `pulumi:"listenerId"`
 	// The name of the Listener.
 	ListenerName pulumi.StringInput `pulumi:"listenerName"`
+	// The persistence timeout of the Listener.
+	PersistenceTimeout pulumi.IntInput `pulumi:"persistenceTimeout"`
+	// The persistence type of the Listener.
+	PersistenceType pulumi.StringInput `pulumi:"persistenceType"`
 	// The port receiving request of the Listener.
 	Port pulumi.IntInput `pulumi:"port"`
 	// The protocol of the Listener.
 	Protocol pulumi.StringInput `pulumi:"protocol"`
+	// Whether to enable proxy protocol.
+	ProxyProtocolType pulumi.StringInput `pulumi:"proxyProtocolType"`
 	// The ID of the backend server group which is associated with the Listener.
 	ServerGroupId pulumi.StringInput `pulumi:"serverGroupId"`
 	// The status of the Listener.
@@ -2465,9 +2489,24 @@ func (o ListenersListenerOutput) AclType() pulumi.StringOutput {
 	return o.ApplyT(func(v ListenersListener) string { return v.AclType }).(pulumi.StringOutput)
 }
 
+// The bandwidth of the Listener. Unit: Mbps.
+func (o ListenersListenerOutput) Bandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v ListenersListener) int { return v.Bandwidth }).(pulumi.IntOutput)
+}
+
 // The ID of the certificate which is associated with the Listener.
 func (o ListenersListenerOutput) CertificateId() pulumi.StringOutput {
 	return o.ApplyT(func(v ListenersListener) string { return v.CertificateId }).(pulumi.StringOutput)
+}
+
+// Whether to enable connection drain of the Listener.
+func (o ListenersListenerOutput) ConnectionDrainEnabled() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenersListener) string { return v.ConnectionDrainEnabled }).(pulumi.StringOutput)
+}
+
+// The connection drain timeout of the Listener.
+func (o ListenersListenerOutput) ConnectionDrainTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v ListenersListener) int { return v.ConnectionDrainTimeout }).(pulumi.IntOutput)
 }
 
 // The create time of the Listener.
@@ -2550,6 +2589,16 @@ func (o ListenersListenerOutput) ListenerName() pulumi.StringOutput {
 	return o.ApplyT(func(v ListenersListener) string { return v.ListenerName }).(pulumi.StringOutput)
 }
 
+// The persistence timeout of the Listener.
+func (o ListenersListenerOutput) PersistenceTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v ListenersListener) int { return v.PersistenceTimeout }).(pulumi.IntOutput)
+}
+
+// The persistence type of the Listener.
+func (o ListenersListenerOutput) PersistenceType() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenersListener) string { return v.PersistenceType }).(pulumi.StringOutput)
+}
+
 // The port receiving request of the Listener.
 func (o ListenersListenerOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v ListenersListener) int { return v.Port }).(pulumi.IntOutput)
@@ -2558,6 +2607,11 @@ func (o ListenersListenerOutput) Port() pulumi.IntOutput {
 // The protocol of the Listener.
 func (o ListenersListenerOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v ListenersListener) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
+// Whether to enable proxy protocol.
+func (o ListenersListenerOutput) ProxyProtocolType() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenersListener) string { return v.ProxyProtocolType }).(pulumi.StringOutput)
 }
 
 // The ID of the backend server group which is associated with the Listener.

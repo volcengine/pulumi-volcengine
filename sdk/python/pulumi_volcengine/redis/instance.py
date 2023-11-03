@@ -61,13 +61,14 @@ class InstanceArgs:
         :param pulumi.Input[str] deletion_protection: Whether enable deletion protection for redis instance. Valid values: `enabled`, `disabled`(default).
         :param pulumi.Input[str] instance_name: The name of the redis instance.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceParamValueArgs']]] param_values: The configuration item information to be modified. This field can only be added or modified. Deleting this field is invalid.
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields, or use the command `pulumi up` to perform a modification operation.
         :param pulumi.Input[int] port: The port of custom define private network address. The valid value range is `1024-65535`. The default value is `6379`.
         :param pulumi.Input[str] project_name: The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will not be added to any project.
         :param pulumi.Input[int] purchase_months: The purchase months of redis instance, the unit is month. the valid value range is as fallows: `1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36`. This field is valid and required when `ChargeType` is `Prepaid`. 
                When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[int] shard_number: The number of shards in redis instance, the valid value range is `2-256`. This field is valid and required when the value of `ShardedCluster` is 1.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]] tags: Tags.
-        :param pulumi.Input[str] vpc_auth_mode: Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`. Works only on modified scenes.
+        :param pulumi.Input[str] vpc_auth_mode: Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`.
         """
         pulumi.set(__self__, "engine_version", engine_version)
         pulumi.set(__self__, "node_number", node_number)
@@ -309,6 +310,7 @@ class InstanceArgs:
     def param_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceParamValueArgs']]]]:
         """
         The configuration item information to be modified. This field can only be added or modified. Deleting this field is invalid.
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields, or use the command `pulumi up` to perform a modification operation.
         """
         return pulumi.get(self, "param_values")
 
@@ -381,7 +383,7 @@ class InstanceArgs:
     @pulumi.getter(name="vpcAuthMode")
     def vpc_auth_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`. Works only on modified scenes.
+        Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`.
         """
         return pulumi.get(self, "vpc_auth_mode")
 
@@ -433,6 +435,7 @@ class _InstanceState:
         :param pulumi.Input[str] instance_name: The name of the redis instance.
         :param pulumi.Input[int] node_number: The number of nodes in each shard, the valid value range is `1-6`. When the value is 1, it means creating a single node instance, and this field can not be modified. When the value is greater than 1, it means creating a primary and secondary instance, and this field can be modified.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceParamValueArgs']]] param_values: The configuration item information to be modified. This field can only be added or modified. Deleting this field is invalid.
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields, or use the command `pulumi up` to perform a modification operation.
         :param pulumi.Input[str] password: The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[int] port: The port of custom define private network address. The valid value range is `1024-65535`. The default value is `6379`.
         :param pulumi.Input[str] project_name: The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will not be added to any project.
@@ -443,7 +446,7 @@ class _InstanceState:
         :param pulumi.Input[int] sharded_cluster: Whether enable sharded cluster for the current redis instance. Valid values: 0, 1. 0 means disable, 1 means enable.
         :param pulumi.Input[str] subnet_id: The subnet id of the redis instance. The specified subnet id must belong to the zone ids.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]] tags: Tags.
-        :param pulumi.Input[str] vpc_auth_mode: Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`. Works only on modified scenes.
+        :param pulumi.Input[str] vpc_auth_mode: Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] zone_ids: The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
         """
         if apply_immediately is not None:
@@ -633,6 +636,7 @@ class _InstanceState:
     def param_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceParamValueArgs']]]]:
         """
         The configuration item information to be modified. This field can only be added or modified. Deleting this field is invalid.
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields, or use the command `pulumi up` to perform a modification operation.
         """
         return pulumi.get(self, "param_values")
 
@@ -753,7 +757,7 @@ class _InstanceState:
     @pulumi.getter(name="vpcAuthMode")
     def vpc_auth_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`. Works only on modified scenes.
+        Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`.
         """
         return pulumi.get(self, "vpc_auth_mode")
 
@@ -859,7 +863,7 @@ class Instance(pulumi.CustomResource):
                 2,
                 3,
             ],
-            backup_hour=4,
+            backup_hour=6,
             backup_active=True,
             create_backup=False,
             apply_immediately=True)
@@ -890,6 +894,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] instance_name: The name of the redis instance.
         :param pulumi.Input[int] node_number: The number of nodes in each shard, the valid value range is `1-6`. When the value is 1, it means creating a single node instance, and this field can not be modified. When the value is greater than 1, it means creating a primary and secondary instance, and this field can be modified.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceParamValueArgs']]]] param_values: The configuration item information to be modified. This field can only be added or modified. Deleting this field is invalid.
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields, or use the command `pulumi up` to perform a modification operation.
         :param pulumi.Input[str] password: The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[int] port: The port of custom define private network address. The valid value range is `1024-65535`. The default value is `6379`.
         :param pulumi.Input[str] project_name: The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will not be added to any project.
@@ -900,7 +905,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[int] sharded_cluster: Whether enable sharded cluster for the current redis instance. Valid values: 0, 1. 0 means disable, 1 means enable.
         :param pulumi.Input[str] subnet_id: The subnet id of the redis instance. The specified subnet id must belong to the zone ids.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceTagArgs']]]] tags: Tags.
-        :param pulumi.Input[str] vpc_auth_mode: Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`. Works only on modified scenes.
+        :param pulumi.Input[str] vpc_auth_mode: Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] zone_ids: The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
         """
         ...
@@ -965,7 +970,7 @@ class Instance(pulumi.CustomResource):
                 2,
                 3,
             ],
-            backup_hour=4,
+            backup_hour=6,
             backup_active=True,
             create_backup=False,
             apply_immediately=True)
@@ -1120,6 +1125,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] instance_name: The name of the redis instance.
         :param pulumi.Input[int] node_number: The number of nodes in each shard, the valid value range is `1-6`. When the value is 1, it means creating a single node instance, and this field can not be modified. When the value is greater than 1, it means creating a primary and secondary instance, and this field can be modified.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceParamValueArgs']]]] param_values: The configuration item information to be modified. This field can only be added or modified. Deleting this field is invalid.
+               When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields, or use the command `pulumi up` to perform a modification operation.
         :param pulumi.Input[str] password: The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[int] port: The port of custom define private network address. The valid value range is `1024-65535`. The default value is `6379`.
         :param pulumi.Input[str] project_name: The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will not be added to any project.
@@ -1130,7 +1136,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[int] sharded_cluster: Whether enable sharded cluster for the current redis instance. Valid values: 0, 1. 0 means disable, 1 means enable.
         :param pulumi.Input[str] subnet_id: The subnet id of the redis instance. The specified subnet id must belong to the zone ids.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceTagArgs']]]] tags: Tags.
-        :param pulumi.Input[str] vpc_auth_mode: Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`. Works only on modified scenes.
+        :param pulumi.Input[str] vpc_auth_mode: Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] zone_ids: The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1258,6 +1264,7 @@ class Instance(pulumi.CustomResource):
     def param_values(self) -> pulumi.Output[Optional[Sequence['outputs.InstanceParamValue']]]:
         """
         The configuration item information to be modified. This field can only be added or modified. Deleting this field is invalid.
+        When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields, or use the command `pulumi up` to perform a modification operation.
         """
         return pulumi.get(self, "param_values")
 
@@ -1338,7 +1345,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="vpcAuthMode")
     def vpc_auth_mode(self) -> pulumi.Output[str]:
         """
-        Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`. Works only on modified scenes.
+        Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`.
         """
         return pulumi.get(self, "vpc_auth_mode")
 

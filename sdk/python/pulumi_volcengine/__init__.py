@@ -23,6 +23,8 @@ if typing.TYPE_CHECKING:
     config = __config
     import pulumi_volcengine.cr as __cr
     cr = __cr
+    import pulumi_volcengine.direct_connect as __direct_connect
+    direct_connect = __direct_connect
     import pulumi_volcengine.ebs as __ebs
     ebs = __ebs
     import pulumi_volcengine.ecs as __ecs
@@ -71,6 +73,7 @@ else:
     cloudfs = _utilities.lazy_import('pulumi_volcengine.cloudfs')
     config = _utilities.lazy_import('pulumi_volcengine.config')
     cr = _utilities.lazy_import('pulumi_volcengine.cr')
+    direct_connect = _utilities.lazy_import('pulumi_volcengine.direct_connect')
     ebs = _utilities.lazy_import('pulumi_volcengine.ebs')
     ecs = _utilities.lazy_import('pulumi_volcengine.ecs')
     eip = _utilities.lazy_import('pulumi_volcengine.eip')
@@ -381,6 +384,46 @@ _utilities.register(
   "fqn": "pulumi_volcengine.cr",
   "classes": {
    "volcengine:cr/vpcEndpoint:VpcEndpoint": "VpcEndpoint"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "direct_connect/bgpPeer",
+  "fqn": "pulumi_volcengine.direct_connect",
+  "classes": {
+   "volcengine:direct_connect/bgpPeer:BgpPeer": "BgpPeer"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "direct_connect/connection",
+  "fqn": "pulumi_volcengine.direct_connect",
+  "classes": {
+   "volcengine:direct_connect/connection:Connection": "Connection"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "direct_connect/gateway",
+  "fqn": "pulumi_volcengine.direct_connect",
+  "classes": {
+   "volcengine:direct_connect/gateway:Gateway": "Gateway"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "direct_connect/gatewayRoute",
+  "fqn": "pulumi_volcengine.direct_connect",
+  "classes": {
+   "volcengine:direct_connect/gatewayRoute:GatewayRoute": "GatewayRoute"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "direct_connect/virtualInterface",
+  "fqn": "pulumi_volcengine.direct_connect",
+  "classes": {
+   "volcengine:direct_connect/virtualInterface:VirtualInterface": "VirtualInterface"
   }
  },
  {
@@ -1025,6 +1068,30 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "transit_router/directConnectGatewayAttachment",
+  "fqn": "pulumi_volcengine.transit_router",
+  "classes": {
+   "volcengine:transit_router/directConnectGatewayAttachment:DirectConnectGatewayAttachment": "DirectConnectGatewayAttachment"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "transit_router/grantRule",
+  "fqn": "pulumi_volcengine.transit_router",
+  "classes": {
+   "volcengine:transit_router/grantRule:GrantRule": "GrantRule"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "transit_router/peerAttachment",
+  "fqn": "pulumi_volcengine.transit_router",
+  "classes": {
+   "volcengine:transit_router/peerAttachment:PeerAttachment": "PeerAttachment"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "transit_router/routeEntry",
   "fqn": "pulumi_volcengine.transit_router",
   "classes": {
@@ -1053,6 +1120,14 @@ _utilities.register(
   "fqn": "pulumi_volcengine.transit_router",
   "classes": {
    "volcengine:transit_router/routeTablePropagation:RouteTablePropagation": "RouteTablePropagation"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "transit_router/sharedTransitRouterState",
+  "fqn": "pulumi_volcengine.transit_router",
+  "classes": {
+   "volcengine:transit_router/sharedTransitRouterState:SharedTransitRouterState": "SharedTransitRouterState"
   }
  },
  {

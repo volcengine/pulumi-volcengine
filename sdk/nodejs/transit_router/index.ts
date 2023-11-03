@@ -15,6 +15,36 @@ export const bandwidthPackages: typeof import("./bandwidthPackages").bandwidthPa
 export const bandwidthPackagesOutput: typeof import("./bandwidthPackages").bandwidthPackagesOutput = null as any;
 utilities.lazyLoad(exports, ["bandwidthPackages","bandwidthPackagesOutput"], () => require("./bandwidthPackages"));
 
+export { DirectConnectGatewayAttachmentArgs, DirectConnectGatewayAttachmentState } from "./directConnectGatewayAttachment";
+export type DirectConnectGatewayAttachment = import("./directConnectGatewayAttachment").DirectConnectGatewayAttachment;
+export const DirectConnectGatewayAttachment: typeof import("./directConnectGatewayAttachment").DirectConnectGatewayAttachment = null as any;
+utilities.lazyLoad(exports, ["DirectConnectGatewayAttachment"], () => require("./directConnectGatewayAttachment"));
+
+export { DirectConnectGatewayAttachmentsArgs, DirectConnectGatewayAttachmentsResult, DirectConnectGatewayAttachmentsOutputArgs } from "./directConnectGatewayAttachments";
+export const directConnectGatewayAttachments: typeof import("./directConnectGatewayAttachments").directConnectGatewayAttachments = null as any;
+export const directConnectGatewayAttachmentsOutput: typeof import("./directConnectGatewayAttachments").directConnectGatewayAttachmentsOutput = null as any;
+utilities.lazyLoad(exports, ["directConnectGatewayAttachments","directConnectGatewayAttachmentsOutput"], () => require("./directConnectGatewayAttachments"));
+
+export { GrantRuleArgs, GrantRuleState } from "./grantRule";
+export type GrantRule = import("./grantRule").GrantRule;
+export const GrantRule: typeof import("./grantRule").GrantRule = null as any;
+utilities.lazyLoad(exports, ["GrantRule"], () => require("./grantRule"));
+
+export { GrantRulesArgs, GrantRulesResult, GrantRulesOutputArgs } from "./grantRules";
+export const grantRules: typeof import("./grantRules").grantRules = null as any;
+export const grantRulesOutput: typeof import("./grantRules").grantRulesOutput = null as any;
+utilities.lazyLoad(exports, ["grantRules","grantRulesOutput"], () => require("./grantRules"));
+
+export { PeerAttachmentArgs, PeerAttachmentState } from "./peerAttachment";
+export type PeerAttachment = import("./peerAttachment").PeerAttachment;
+export const PeerAttachment: typeof import("./peerAttachment").PeerAttachment = null as any;
+utilities.lazyLoad(exports, ["PeerAttachment"], () => require("./peerAttachment"));
+
+export { PeerAttachmentsArgs, PeerAttachmentsResult, PeerAttachmentsOutputArgs } from "./peerAttachments";
+export const peerAttachments: typeof import("./peerAttachments").peerAttachments = null as any;
+export const peerAttachmentsOutput: typeof import("./peerAttachments").peerAttachmentsOutput = null as any;
+utilities.lazyLoad(exports, ["peerAttachments","peerAttachmentsOutput"], () => require("./peerAttachments"));
+
 export { RouteEntriesArgs, RouteEntriesResult, RouteEntriesOutputArgs } from "./routeEntries";
 export const routeEntries: typeof import("./routeEntries").routeEntries = null as any;
 export const routeEntriesOutput: typeof import("./routeEntries").routeEntriesOutput = null as any;
@@ -55,6 +85,11 @@ export const routeTables: typeof import("./routeTables").routeTables = null as a
 export const routeTablesOutput: typeof import("./routeTables").routeTablesOutput = null as any;
 utilities.lazyLoad(exports, ["routeTables","routeTablesOutput"], () => require("./routeTables"));
 
+export { SharedTransitRouterStateArgs, SharedTransitRouterStateState } from "./sharedTransitRouterState";
+export type SharedTransitRouterState = import("./sharedTransitRouterState").SharedTransitRouterState;
+export const SharedTransitRouterState: typeof import("./sharedTransitRouterState").SharedTransitRouterState = null as any;
+utilities.lazyLoad(exports, ["SharedTransitRouterState"], () => require("./sharedTransitRouterState"));
+
 export { TransitRouterArgs, TransitRouterState } from "./transitRouter";
 export type TransitRouter = import("./transitRouter").TransitRouter;
 export const TransitRouter: typeof import("./transitRouter").TransitRouter = null as any;
@@ -92,6 +127,12 @@ const _module = {
         switch (type) {
             case "volcengine:transit_router/bandwidthPackage:BandwidthPackage":
                 return new BandwidthPackage(name, <any>undefined, { urn })
+            case "volcengine:transit_router/directConnectGatewayAttachment:DirectConnectGatewayAttachment":
+                return new DirectConnectGatewayAttachment(name, <any>undefined, { urn })
+            case "volcengine:transit_router/grantRule:GrantRule":
+                return new GrantRule(name, <any>undefined, { urn })
+            case "volcengine:transit_router/peerAttachment:PeerAttachment":
+                return new PeerAttachment(name, <any>undefined, { urn })
             case "volcengine:transit_router/routeEntry:RouteEntry":
                 return new RouteEntry(name, <any>undefined, { urn })
             case "volcengine:transit_router/routeTable:RouteTable":
@@ -100,6 +141,8 @@ const _module = {
                 return new RouteTableAssociation(name, <any>undefined, { urn })
             case "volcengine:transit_router/routeTablePropagation:RouteTablePropagation":
                 return new RouteTablePropagation(name, <any>undefined, { urn })
+            case "volcengine:transit_router/sharedTransitRouterState:SharedTransitRouterState":
+                return new SharedTransitRouterState(name, <any>undefined, { urn })
             case "volcengine:transit_router/transitRouter:TransitRouter":
                 return new TransitRouter(name, <any>undefined, { urn })
             case "volcengine:transit_router/vpcAttachment:VpcAttachment":
@@ -112,10 +155,14 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("volcengine", "transit_router/bandwidthPackage", _module)
+pulumi.runtime.registerResourceModule("volcengine", "transit_router/directConnectGatewayAttachment", _module)
+pulumi.runtime.registerResourceModule("volcengine", "transit_router/grantRule", _module)
+pulumi.runtime.registerResourceModule("volcengine", "transit_router/peerAttachment", _module)
 pulumi.runtime.registerResourceModule("volcengine", "transit_router/routeEntry", _module)
 pulumi.runtime.registerResourceModule("volcengine", "transit_router/routeTable", _module)
 pulumi.runtime.registerResourceModule("volcengine", "transit_router/routeTableAssociation", _module)
 pulumi.runtime.registerResourceModule("volcengine", "transit_router/routeTablePropagation", _module)
+pulumi.runtime.registerResourceModule("volcengine", "transit_router/sharedTransitRouterState", _module)
 pulumi.runtime.registerResourceModule("volcengine", "transit_router/transitRouter", _module)
 pulumi.runtime.registerResourceModule("volcengine", "transit_router/vpcAttachment", _module)
 pulumi.runtime.registerResourceModule("volcengine", "transit_router/vpnAttachment", _module)

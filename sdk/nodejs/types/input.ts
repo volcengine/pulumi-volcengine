@@ -64,7 +64,7 @@ export namespace autoscaling {
 export namespace bioos {
     export interface ClusterSharedConfig {
         /**
-         * Whether to enable a shared cluster.
+         * Whether to enable a shared cluster. This value must be `true`.
          */
         enable: pulumi.Input<boolean>;
     }
@@ -413,6 +413,108 @@ export namespace cr {
          * The id of the vpc.
          */
         vpcId?: pulumi.Input<string>;
+    }
+
+}
+
+export namespace direct_connect {
+    export interface ConnectionTag {
+        /**
+         * The tag key.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * The tag value.
+         */
+        value?: pulumi.Input<string>;
+    }
+
+    export interface ConnectionsTagFilter {
+        /**
+         * The tag key of cloud resource instance.
+         */
+        key?: string;
+        /**
+         * The tag value of cloud resource instance.
+         */
+        value?: string;
+    }
+
+    export interface ConnectionsTagFilterArgs {
+        /**
+         * The tag key of cloud resource instance.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * The tag value of cloud resource instance.
+         */
+        value?: pulumi.Input<string>;
+    }
+
+    export interface GatewayTag {
+        /**
+         * The tag key.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * The tag value.
+         */
+        value?: pulumi.Input<string>;
+    }
+
+    export interface GatewaysTagFilter {
+        /**
+         * The tag key of cloud resource instance.
+         */
+        key?: string;
+        /**
+         * The tag value of cloud resource instance.
+         */
+        value?: string;
+    }
+
+    export interface GatewaysTagFilterArgs {
+        /**
+         * The tag key of cloud resource instance.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * The tag value of cloud resource instance.
+         */
+        value?: pulumi.Input<string>;
+    }
+
+    export interface VirtualInterfaceTag {
+        /**
+         * The tag key.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * The tag value.
+         */
+        value?: pulumi.Input<string>;
+    }
+
+    export interface VirtualInterfacesTagFilter {
+        /**
+         * The tag key of cloud resource instance.
+         */
+        key?: string;
+        /**
+         * The tag value of cloud resource instance.
+         */
+        value?: string;
+    }
+
+    export interface VirtualInterfacesTagFilterArgs {
+        /**
+         * The tag key of cloud resource instance.
+         */
+        key?: pulumi.Input<string>;
+        /**
+         * The tag value of cloud resource instance.
+         */
+        value?: pulumi.Input<string>;
     }
 
 }

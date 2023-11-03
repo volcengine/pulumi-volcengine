@@ -504,6 +504,522 @@ func (o BandwidthPackagesBandwidthPackageAllocationArrayOutput) Index(i pulumi.I
 	}).(BandwidthPackagesBandwidthPackageAllocationOutput)
 }
 
+type DirectConnectGatewayAttachmentsAttachment struct {
+	// The account id.
+	AccountId string `pulumi:"accountId"`
+	// The create time.
+	CreationTime string `pulumi:"creationTime"`
+	// The description info.
+	Description string `pulumi:"description"`
+	// ID of the direct connection gateway.
+	DirectConnectGatewayId string `pulumi:"directConnectGatewayId"`
+	// The status of the network instance connection.
+	Status string `pulumi:"status"`
+	// The id of the transit router attachment.
+	TransitRouterAttachmentId string `pulumi:"transitRouterAttachmentId"`
+	// The name of the transit router attachment.
+	TransitRouterAttachmentName string `pulumi:"transitRouterAttachmentName"`
+	// The id of the transit router.
+	TransitRouterId string `pulumi:"transitRouterId"`
+	// The update time.
+	UpdateTime string `pulumi:"updateTime"`
+}
+
+// DirectConnectGatewayAttachmentsAttachmentInput is an input type that accepts DirectConnectGatewayAttachmentsAttachmentArgs and DirectConnectGatewayAttachmentsAttachmentOutput values.
+// You can construct a concrete instance of `DirectConnectGatewayAttachmentsAttachmentInput` via:
+//
+//	DirectConnectGatewayAttachmentsAttachmentArgs{...}
+type DirectConnectGatewayAttachmentsAttachmentInput interface {
+	pulumi.Input
+
+	ToDirectConnectGatewayAttachmentsAttachmentOutput() DirectConnectGatewayAttachmentsAttachmentOutput
+	ToDirectConnectGatewayAttachmentsAttachmentOutputWithContext(context.Context) DirectConnectGatewayAttachmentsAttachmentOutput
+}
+
+type DirectConnectGatewayAttachmentsAttachmentArgs struct {
+	// The account id.
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// The create time.
+	CreationTime pulumi.StringInput `pulumi:"creationTime"`
+	// The description info.
+	Description pulumi.StringInput `pulumi:"description"`
+	// ID of the direct connection gateway.
+	DirectConnectGatewayId pulumi.StringInput `pulumi:"directConnectGatewayId"`
+	// The status of the network instance connection.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The id of the transit router attachment.
+	TransitRouterAttachmentId pulumi.StringInput `pulumi:"transitRouterAttachmentId"`
+	// The name of the transit router attachment.
+	TransitRouterAttachmentName pulumi.StringInput `pulumi:"transitRouterAttachmentName"`
+	// The id of the transit router.
+	TransitRouterId pulumi.StringInput `pulumi:"transitRouterId"`
+	// The update time.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+}
+
+func (DirectConnectGatewayAttachmentsAttachmentArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DirectConnectGatewayAttachmentsAttachment)(nil)).Elem()
+}
+
+func (i DirectConnectGatewayAttachmentsAttachmentArgs) ToDirectConnectGatewayAttachmentsAttachmentOutput() DirectConnectGatewayAttachmentsAttachmentOutput {
+	return i.ToDirectConnectGatewayAttachmentsAttachmentOutputWithContext(context.Background())
+}
+
+func (i DirectConnectGatewayAttachmentsAttachmentArgs) ToDirectConnectGatewayAttachmentsAttachmentOutputWithContext(ctx context.Context) DirectConnectGatewayAttachmentsAttachmentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DirectConnectGatewayAttachmentsAttachmentOutput)
+}
+
+// DirectConnectGatewayAttachmentsAttachmentArrayInput is an input type that accepts DirectConnectGatewayAttachmentsAttachmentArray and DirectConnectGatewayAttachmentsAttachmentArrayOutput values.
+// You can construct a concrete instance of `DirectConnectGatewayAttachmentsAttachmentArrayInput` via:
+//
+//	DirectConnectGatewayAttachmentsAttachmentArray{ DirectConnectGatewayAttachmentsAttachmentArgs{...} }
+type DirectConnectGatewayAttachmentsAttachmentArrayInput interface {
+	pulumi.Input
+
+	ToDirectConnectGatewayAttachmentsAttachmentArrayOutput() DirectConnectGatewayAttachmentsAttachmentArrayOutput
+	ToDirectConnectGatewayAttachmentsAttachmentArrayOutputWithContext(context.Context) DirectConnectGatewayAttachmentsAttachmentArrayOutput
+}
+
+type DirectConnectGatewayAttachmentsAttachmentArray []DirectConnectGatewayAttachmentsAttachmentInput
+
+func (DirectConnectGatewayAttachmentsAttachmentArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DirectConnectGatewayAttachmentsAttachment)(nil)).Elem()
+}
+
+func (i DirectConnectGatewayAttachmentsAttachmentArray) ToDirectConnectGatewayAttachmentsAttachmentArrayOutput() DirectConnectGatewayAttachmentsAttachmentArrayOutput {
+	return i.ToDirectConnectGatewayAttachmentsAttachmentArrayOutputWithContext(context.Background())
+}
+
+func (i DirectConnectGatewayAttachmentsAttachmentArray) ToDirectConnectGatewayAttachmentsAttachmentArrayOutputWithContext(ctx context.Context) DirectConnectGatewayAttachmentsAttachmentArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DirectConnectGatewayAttachmentsAttachmentArrayOutput)
+}
+
+type DirectConnectGatewayAttachmentsAttachmentOutput struct{ *pulumi.OutputState }
+
+func (DirectConnectGatewayAttachmentsAttachmentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DirectConnectGatewayAttachmentsAttachment)(nil)).Elem()
+}
+
+func (o DirectConnectGatewayAttachmentsAttachmentOutput) ToDirectConnectGatewayAttachmentsAttachmentOutput() DirectConnectGatewayAttachmentsAttachmentOutput {
+	return o
+}
+
+func (o DirectConnectGatewayAttachmentsAttachmentOutput) ToDirectConnectGatewayAttachmentsAttachmentOutputWithContext(ctx context.Context) DirectConnectGatewayAttachmentsAttachmentOutput {
+	return o
+}
+
+// The account id.
+func (o DirectConnectGatewayAttachmentsAttachmentOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v DirectConnectGatewayAttachmentsAttachment) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// The create time.
+func (o DirectConnectGatewayAttachmentsAttachmentOutput) CreationTime() pulumi.StringOutput {
+	return o.ApplyT(func(v DirectConnectGatewayAttachmentsAttachment) string { return v.CreationTime }).(pulumi.StringOutput)
+}
+
+// The description info.
+func (o DirectConnectGatewayAttachmentsAttachmentOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v DirectConnectGatewayAttachmentsAttachment) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// ID of the direct connection gateway.
+func (o DirectConnectGatewayAttachmentsAttachmentOutput) DirectConnectGatewayId() pulumi.StringOutput {
+	return o.ApplyT(func(v DirectConnectGatewayAttachmentsAttachment) string { return v.DirectConnectGatewayId }).(pulumi.StringOutput)
+}
+
+// The status of the network instance connection.
+func (o DirectConnectGatewayAttachmentsAttachmentOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v DirectConnectGatewayAttachmentsAttachment) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The id of the transit router attachment.
+func (o DirectConnectGatewayAttachmentsAttachmentOutput) TransitRouterAttachmentId() pulumi.StringOutput {
+	return o.ApplyT(func(v DirectConnectGatewayAttachmentsAttachment) string { return v.TransitRouterAttachmentId }).(pulumi.StringOutput)
+}
+
+// The name of the transit router attachment.
+func (o DirectConnectGatewayAttachmentsAttachmentOutput) TransitRouterAttachmentName() pulumi.StringOutput {
+	return o.ApplyT(func(v DirectConnectGatewayAttachmentsAttachment) string { return v.TransitRouterAttachmentName }).(pulumi.StringOutput)
+}
+
+// The id of the transit router.
+func (o DirectConnectGatewayAttachmentsAttachmentOutput) TransitRouterId() pulumi.StringOutput {
+	return o.ApplyT(func(v DirectConnectGatewayAttachmentsAttachment) string { return v.TransitRouterId }).(pulumi.StringOutput)
+}
+
+// The update time.
+func (o DirectConnectGatewayAttachmentsAttachmentOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v DirectConnectGatewayAttachmentsAttachment) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+type DirectConnectGatewayAttachmentsAttachmentArrayOutput struct{ *pulumi.OutputState }
+
+func (DirectConnectGatewayAttachmentsAttachmentArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DirectConnectGatewayAttachmentsAttachment)(nil)).Elem()
+}
+
+func (o DirectConnectGatewayAttachmentsAttachmentArrayOutput) ToDirectConnectGatewayAttachmentsAttachmentArrayOutput() DirectConnectGatewayAttachmentsAttachmentArrayOutput {
+	return o
+}
+
+func (o DirectConnectGatewayAttachmentsAttachmentArrayOutput) ToDirectConnectGatewayAttachmentsAttachmentArrayOutputWithContext(ctx context.Context) DirectConnectGatewayAttachmentsAttachmentArrayOutput {
+	return o
+}
+
+func (o DirectConnectGatewayAttachmentsAttachmentArrayOutput) Index(i pulumi.IntInput) DirectConnectGatewayAttachmentsAttachmentOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DirectConnectGatewayAttachmentsAttachment {
+		return vs[0].([]DirectConnectGatewayAttachmentsAttachment)[vs[1].(int)]
+	}).(DirectConnectGatewayAttachmentsAttachmentOutput)
+}
+
+type GrantRulesRule struct {
+	// The creation time of the rule.
+	CreationTime string `pulumi:"creationTime"`
+	// The description of the rule.
+	Description string `pulumi:"description"`
+	// The id of the grant account.
+	GrantAccountId string `pulumi:"grantAccountId"`
+	// The status of the rule.
+	Status string `pulumi:"status"`
+	// The id of the transit router.
+	TransitRouterId string `pulumi:"transitRouterId"`
+	// The update time of the rule.
+	UpdateTime string `pulumi:"updateTime"`
+}
+
+// GrantRulesRuleInput is an input type that accepts GrantRulesRuleArgs and GrantRulesRuleOutput values.
+// You can construct a concrete instance of `GrantRulesRuleInput` via:
+//
+//	GrantRulesRuleArgs{...}
+type GrantRulesRuleInput interface {
+	pulumi.Input
+
+	ToGrantRulesRuleOutput() GrantRulesRuleOutput
+	ToGrantRulesRuleOutputWithContext(context.Context) GrantRulesRuleOutput
+}
+
+type GrantRulesRuleArgs struct {
+	// The creation time of the rule.
+	CreationTime pulumi.StringInput `pulumi:"creationTime"`
+	// The description of the rule.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The id of the grant account.
+	GrantAccountId pulumi.StringInput `pulumi:"grantAccountId"`
+	// The status of the rule.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The id of the transit router.
+	TransitRouterId pulumi.StringInput `pulumi:"transitRouterId"`
+	// The update time of the rule.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+}
+
+func (GrantRulesRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GrantRulesRule)(nil)).Elem()
+}
+
+func (i GrantRulesRuleArgs) ToGrantRulesRuleOutput() GrantRulesRuleOutput {
+	return i.ToGrantRulesRuleOutputWithContext(context.Background())
+}
+
+func (i GrantRulesRuleArgs) ToGrantRulesRuleOutputWithContext(ctx context.Context) GrantRulesRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GrantRulesRuleOutput)
+}
+
+// GrantRulesRuleArrayInput is an input type that accepts GrantRulesRuleArray and GrantRulesRuleArrayOutput values.
+// You can construct a concrete instance of `GrantRulesRuleArrayInput` via:
+//
+//	GrantRulesRuleArray{ GrantRulesRuleArgs{...} }
+type GrantRulesRuleArrayInput interface {
+	pulumi.Input
+
+	ToGrantRulesRuleArrayOutput() GrantRulesRuleArrayOutput
+	ToGrantRulesRuleArrayOutputWithContext(context.Context) GrantRulesRuleArrayOutput
+}
+
+type GrantRulesRuleArray []GrantRulesRuleInput
+
+func (GrantRulesRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GrantRulesRule)(nil)).Elem()
+}
+
+func (i GrantRulesRuleArray) ToGrantRulesRuleArrayOutput() GrantRulesRuleArrayOutput {
+	return i.ToGrantRulesRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GrantRulesRuleArray) ToGrantRulesRuleArrayOutputWithContext(ctx context.Context) GrantRulesRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GrantRulesRuleArrayOutput)
+}
+
+type GrantRulesRuleOutput struct{ *pulumi.OutputState }
+
+func (GrantRulesRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GrantRulesRule)(nil)).Elem()
+}
+
+func (o GrantRulesRuleOutput) ToGrantRulesRuleOutput() GrantRulesRuleOutput {
+	return o
+}
+
+func (o GrantRulesRuleOutput) ToGrantRulesRuleOutputWithContext(ctx context.Context) GrantRulesRuleOutput {
+	return o
+}
+
+// The creation time of the rule.
+func (o GrantRulesRuleOutput) CreationTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GrantRulesRule) string { return v.CreationTime }).(pulumi.StringOutput)
+}
+
+// The description of the rule.
+func (o GrantRulesRuleOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GrantRulesRule) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The id of the grant account.
+func (o GrantRulesRuleOutput) GrantAccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GrantRulesRule) string { return v.GrantAccountId }).(pulumi.StringOutput)
+}
+
+// The status of the rule.
+func (o GrantRulesRuleOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GrantRulesRule) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The id of the transit router.
+func (o GrantRulesRuleOutput) TransitRouterId() pulumi.StringOutput {
+	return o.ApplyT(func(v GrantRulesRule) string { return v.TransitRouterId }).(pulumi.StringOutput)
+}
+
+// The update time of the rule.
+func (o GrantRulesRuleOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v GrantRulesRule) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+type GrantRulesRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GrantRulesRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GrantRulesRule)(nil)).Elem()
+}
+
+func (o GrantRulesRuleArrayOutput) ToGrantRulesRuleArrayOutput() GrantRulesRuleArrayOutput {
+	return o
+}
+
+func (o GrantRulesRuleArrayOutput) ToGrantRulesRuleArrayOutputWithContext(ctx context.Context) GrantRulesRuleArrayOutput {
+	return o
+}
+
+func (o GrantRulesRuleArrayOutput) Index(i pulumi.IntInput) GrantRulesRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GrantRulesRule {
+		return vs[0].([]GrantRulesRule)[vs[1].(int)]
+	}).(GrantRulesRuleOutput)
+}
+
+type PeerAttachmentsTransitRouterAttachment struct {
+	// The bandwidth of the transit router peer attachment.
+	Bandwidth int `pulumi:"bandwidth"`
+	// The creation time of the transit router peer attachment.
+	CreationTime string `pulumi:"creationTime"`
+	// The description of the transit router peer attachment.
+	Description string `pulumi:"description"`
+	// The id of the transit router peer attachment.
+	Id string `pulumi:"id"`
+	// The id of peer transit router.
+	PeerTransitRouterId string `pulumi:"peerTransitRouterId"`
+	// The region id of peer transit router.
+	PeerTransitRouterRegionId string `pulumi:"peerTransitRouterRegionId"`
+	// The status of the transit router peer attachment.
+	Status string `pulumi:"status"`
+	// The id of the transit router peer attachment.
+	TransitRouterAttachmentId string `pulumi:"transitRouterAttachmentId"`
+	// The name of transit router peer attachment.
+	TransitRouterAttachmentName string `pulumi:"transitRouterAttachmentName"`
+	// The bandwidth package id of the transit router peer attachment.
+	TransitRouterBandwidthPackageId string `pulumi:"transitRouterBandwidthPackageId"`
+	// The id of local transit router.
+	TransitRouterId string `pulumi:"transitRouterId"`
+	// The route table id of the transit router peer attachment.
+	TransitRouterRouteTableId string `pulumi:"transitRouterRouteTableId"`
+	// The update time of the transit router peer attachment.
+	UpdateTime string `pulumi:"updateTime"`
+}
+
+// PeerAttachmentsTransitRouterAttachmentInput is an input type that accepts PeerAttachmentsTransitRouterAttachmentArgs and PeerAttachmentsTransitRouterAttachmentOutput values.
+// You can construct a concrete instance of `PeerAttachmentsTransitRouterAttachmentInput` via:
+//
+//	PeerAttachmentsTransitRouterAttachmentArgs{...}
+type PeerAttachmentsTransitRouterAttachmentInput interface {
+	pulumi.Input
+
+	ToPeerAttachmentsTransitRouterAttachmentOutput() PeerAttachmentsTransitRouterAttachmentOutput
+	ToPeerAttachmentsTransitRouterAttachmentOutputWithContext(context.Context) PeerAttachmentsTransitRouterAttachmentOutput
+}
+
+type PeerAttachmentsTransitRouterAttachmentArgs struct {
+	// The bandwidth of the transit router peer attachment.
+	Bandwidth pulumi.IntInput `pulumi:"bandwidth"`
+	// The creation time of the transit router peer attachment.
+	CreationTime pulumi.StringInput `pulumi:"creationTime"`
+	// The description of the transit router peer attachment.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The id of the transit router peer attachment.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The id of peer transit router.
+	PeerTransitRouterId pulumi.StringInput `pulumi:"peerTransitRouterId"`
+	// The region id of peer transit router.
+	PeerTransitRouterRegionId pulumi.StringInput `pulumi:"peerTransitRouterRegionId"`
+	// The status of the transit router peer attachment.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The id of the transit router peer attachment.
+	TransitRouterAttachmentId pulumi.StringInput `pulumi:"transitRouterAttachmentId"`
+	// The name of transit router peer attachment.
+	TransitRouterAttachmentName pulumi.StringInput `pulumi:"transitRouterAttachmentName"`
+	// The bandwidth package id of the transit router peer attachment.
+	TransitRouterBandwidthPackageId pulumi.StringInput `pulumi:"transitRouterBandwidthPackageId"`
+	// The id of local transit router.
+	TransitRouterId pulumi.StringInput `pulumi:"transitRouterId"`
+	// The route table id of the transit router peer attachment.
+	TransitRouterRouteTableId pulumi.StringInput `pulumi:"transitRouterRouteTableId"`
+	// The update time of the transit router peer attachment.
+	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
+}
+
+func (PeerAttachmentsTransitRouterAttachmentArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PeerAttachmentsTransitRouterAttachment)(nil)).Elem()
+}
+
+func (i PeerAttachmentsTransitRouterAttachmentArgs) ToPeerAttachmentsTransitRouterAttachmentOutput() PeerAttachmentsTransitRouterAttachmentOutput {
+	return i.ToPeerAttachmentsTransitRouterAttachmentOutputWithContext(context.Background())
+}
+
+func (i PeerAttachmentsTransitRouterAttachmentArgs) ToPeerAttachmentsTransitRouterAttachmentOutputWithContext(ctx context.Context) PeerAttachmentsTransitRouterAttachmentOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PeerAttachmentsTransitRouterAttachmentOutput)
+}
+
+// PeerAttachmentsTransitRouterAttachmentArrayInput is an input type that accepts PeerAttachmentsTransitRouterAttachmentArray and PeerAttachmentsTransitRouterAttachmentArrayOutput values.
+// You can construct a concrete instance of `PeerAttachmentsTransitRouterAttachmentArrayInput` via:
+//
+//	PeerAttachmentsTransitRouterAttachmentArray{ PeerAttachmentsTransitRouterAttachmentArgs{...} }
+type PeerAttachmentsTransitRouterAttachmentArrayInput interface {
+	pulumi.Input
+
+	ToPeerAttachmentsTransitRouterAttachmentArrayOutput() PeerAttachmentsTransitRouterAttachmentArrayOutput
+	ToPeerAttachmentsTransitRouterAttachmentArrayOutputWithContext(context.Context) PeerAttachmentsTransitRouterAttachmentArrayOutput
+}
+
+type PeerAttachmentsTransitRouterAttachmentArray []PeerAttachmentsTransitRouterAttachmentInput
+
+func (PeerAttachmentsTransitRouterAttachmentArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PeerAttachmentsTransitRouterAttachment)(nil)).Elem()
+}
+
+func (i PeerAttachmentsTransitRouterAttachmentArray) ToPeerAttachmentsTransitRouterAttachmentArrayOutput() PeerAttachmentsTransitRouterAttachmentArrayOutput {
+	return i.ToPeerAttachmentsTransitRouterAttachmentArrayOutputWithContext(context.Background())
+}
+
+func (i PeerAttachmentsTransitRouterAttachmentArray) ToPeerAttachmentsTransitRouterAttachmentArrayOutputWithContext(ctx context.Context) PeerAttachmentsTransitRouterAttachmentArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PeerAttachmentsTransitRouterAttachmentArrayOutput)
+}
+
+type PeerAttachmentsTransitRouterAttachmentOutput struct{ *pulumi.OutputState }
+
+func (PeerAttachmentsTransitRouterAttachmentOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PeerAttachmentsTransitRouterAttachment)(nil)).Elem()
+}
+
+func (o PeerAttachmentsTransitRouterAttachmentOutput) ToPeerAttachmentsTransitRouterAttachmentOutput() PeerAttachmentsTransitRouterAttachmentOutput {
+	return o
+}
+
+func (o PeerAttachmentsTransitRouterAttachmentOutput) ToPeerAttachmentsTransitRouterAttachmentOutputWithContext(ctx context.Context) PeerAttachmentsTransitRouterAttachmentOutput {
+	return o
+}
+
+// The bandwidth of the transit router peer attachment.
+func (o PeerAttachmentsTransitRouterAttachmentOutput) Bandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v PeerAttachmentsTransitRouterAttachment) int { return v.Bandwidth }).(pulumi.IntOutput)
+}
+
+// The creation time of the transit router peer attachment.
+func (o PeerAttachmentsTransitRouterAttachmentOutput) CreationTime() pulumi.StringOutput {
+	return o.ApplyT(func(v PeerAttachmentsTransitRouterAttachment) string { return v.CreationTime }).(pulumi.StringOutput)
+}
+
+// The description of the transit router peer attachment.
+func (o PeerAttachmentsTransitRouterAttachmentOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v PeerAttachmentsTransitRouterAttachment) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The id of the transit router peer attachment.
+func (o PeerAttachmentsTransitRouterAttachmentOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v PeerAttachmentsTransitRouterAttachment) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The id of peer transit router.
+func (o PeerAttachmentsTransitRouterAttachmentOutput) PeerTransitRouterId() pulumi.StringOutput {
+	return o.ApplyT(func(v PeerAttachmentsTransitRouterAttachment) string { return v.PeerTransitRouterId }).(pulumi.StringOutput)
+}
+
+// The region id of peer transit router.
+func (o PeerAttachmentsTransitRouterAttachmentOutput) PeerTransitRouterRegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v PeerAttachmentsTransitRouterAttachment) string { return v.PeerTransitRouterRegionId }).(pulumi.StringOutput)
+}
+
+// The status of the transit router peer attachment.
+func (o PeerAttachmentsTransitRouterAttachmentOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v PeerAttachmentsTransitRouterAttachment) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The id of the transit router peer attachment.
+func (o PeerAttachmentsTransitRouterAttachmentOutput) TransitRouterAttachmentId() pulumi.StringOutput {
+	return o.ApplyT(func(v PeerAttachmentsTransitRouterAttachment) string { return v.TransitRouterAttachmentId }).(pulumi.StringOutput)
+}
+
+// The name of transit router peer attachment.
+func (o PeerAttachmentsTransitRouterAttachmentOutput) TransitRouterAttachmentName() pulumi.StringOutput {
+	return o.ApplyT(func(v PeerAttachmentsTransitRouterAttachment) string { return v.TransitRouterAttachmentName }).(pulumi.StringOutput)
+}
+
+// The bandwidth package id of the transit router peer attachment.
+func (o PeerAttachmentsTransitRouterAttachmentOutput) TransitRouterBandwidthPackageId() pulumi.StringOutput {
+	return o.ApplyT(func(v PeerAttachmentsTransitRouterAttachment) string { return v.TransitRouterBandwidthPackageId }).(pulumi.StringOutput)
+}
+
+// The id of local transit router.
+func (o PeerAttachmentsTransitRouterAttachmentOutput) TransitRouterId() pulumi.StringOutput {
+	return o.ApplyT(func(v PeerAttachmentsTransitRouterAttachment) string { return v.TransitRouterId }).(pulumi.StringOutput)
+}
+
+// The route table id of the transit router peer attachment.
+func (o PeerAttachmentsTransitRouterAttachmentOutput) TransitRouterRouteTableId() pulumi.StringOutput {
+	return o.ApplyT(func(v PeerAttachmentsTransitRouterAttachment) string { return v.TransitRouterRouteTableId }).(pulumi.StringOutput)
+}
+
+// The update time of the transit router peer attachment.
+func (o PeerAttachmentsTransitRouterAttachmentOutput) UpdateTime() pulumi.StringOutput {
+	return o.ApplyT(func(v PeerAttachmentsTransitRouterAttachment) string { return v.UpdateTime }).(pulumi.StringOutput)
+}
+
+type PeerAttachmentsTransitRouterAttachmentArrayOutput struct{ *pulumi.OutputState }
+
+func (PeerAttachmentsTransitRouterAttachmentArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PeerAttachmentsTransitRouterAttachment)(nil)).Elem()
+}
+
+func (o PeerAttachmentsTransitRouterAttachmentArrayOutput) ToPeerAttachmentsTransitRouterAttachmentArrayOutput() PeerAttachmentsTransitRouterAttachmentArrayOutput {
+	return o
+}
+
+func (o PeerAttachmentsTransitRouterAttachmentArrayOutput) ToPeerAttachmentsTransitRouterAttachmentArrayOutputWithContext(ctx context.Context) PeerAttachmentsTransitRouterAttachmentArrayOutput {
+	return o
+}
+
+func (o PeerAttachmentsTransitRouterAttachmentArrayOutput) Index(i pulumi.IntInput) PeerAttachmentsTransitRouterAttachmentOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PeerAttachmentsTransitRouterAttachment {
+		return vs[0].([]PeerAttachmentsTransitRouterAttachment)[vs[1].(int)]
+	}).(PeerAttachmentsTransitRouterAttachmentOutput)
+}
+
 type RouteEntriesEntry struct {
 	// The creation time of the route entry.
 	CreationTime string `pulumi:"creationTime"`
@@ -2149,6 +2665,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BandwidthPackagesBandwidthPackageArrayInput)(nil)).Elem(), BandwidthPackagesBandwidthPackageArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BandwidthPackagesBandwidthPackageAllocationInput)(nil)).Elem(), BandwidthPackagesBandwidthPackageAllocationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BandwidthPackagesBandwidthPackageAllocationArrayInput)(nil)).Elem(), BandwidthPackagesBandwidthPackageAllocationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DirectConnectGatewayAttachmentsAttachmentInput)(nil)).Elem(), DirectConnectGatewayAttachmentsAttachmentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DirectConnectGatewayAttachmentsAttachmentArrayInput)(nil)).Elem(), DirectConnectGatewayAttachmentsAttachmentArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GrantRulesRuleInput)(nil)).Elem(), GrantRulesRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GrantRulesRuleArrayInput)(nil)).Elem(), GrantRulesRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PeerAttachmentsTransitRouterAttachmentInput)(nil)).Elem(), PeerAttachmentsTransitRouterAttachmentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PeerAttachmentsTransitRouterAttachmentArrayInput)(nil)).Elem(), PeerAttachmentsTransitRouterAttachmentArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteEntriesEntryInput)(nil)).Elem(), RouteEntriesEntryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteEntriesEntryArrayInput)(nil)).Elem(), RouteEntriesEntryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteTableAssociationsAssociationInput)(nil)).Elem(), RouteTableAssociationsAssociationArgs{})
@@ -2177,6 +2699,12 @@ func init() {
 	pulumi.RegisterOutputType(BandwidthPackagesBandwidthPackageArrayOutput{})
 	pulumi.RegisterOutputType(BandwidthPackagesBandwidthPackageAllocationOutput{})
 	pulumi.RegisterOutputType(BandwidthPackagesBandwidthPackageAllocationArrayOutput{})
+	pulumi.RegisterOutputType(DirectConnectGatewayAttachmentsAttachmentOutput{})
+	pulumi.RegisterOutputType(DirectConnectGatewayAttachmentsAttachmentArrayOutput{})
+	pulumi.RegisterOutputType(GrantRulesRuleOutput{})
+	pulumi.RegisterOutputType(GrantRulesRuleArrayOutput{})
+	pulumi.RegisterOutputType(PeerAttachmentsTransitRouterAttachmentOutput{})
+	pulumi.RegisterOutputType(PeerAttachmentsTransitRouterAttachmentArrayOutput{})
 	pulumi.RegisterOutputType(RouteEntriesEntryOutput{})
 	pulumi.RegisterOutputType(RouteEntriesEntryArrayOutput{})
 	pulumi.RegisterOutputType(RouteTableAssociationsAssociationOutput{})

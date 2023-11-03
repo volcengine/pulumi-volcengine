@@ -62,6 +62,20 @@ import * as utilities from "../utilities";
  *     },
  *     enabled: "on",
  * });
+ * const fooTcp = new volcengine.clb.Listener("fooTcp", {
+ *     loadBalancerId: fooClb.id,
+ *     listenerName: "acc-test-listener",
+ *     protocol: "TCP",
+ *     port: 90,
+ *     serverGroupId: fooServerGroup.id,
+ *     enabled: "on",
+ *     bandwidth: 2,
+ *     proxyProtocolType: "standard",
+ *     persistenceType: "source_ip",
+ *     persistenceTimeout: 100,
+ *     connectionDrainEnabled: "on",
+ *     connectionDrainTimeout: 100,
+ * });
  * ```
  *
  * ## Import
@@ -113,9 +127,23 @@ export class Listener extends pulumi.CustomResource {
      */
     public readonly aclType!: pulumi.Output<string>;
     /**
+     * The bandwidth of the Listener. Unit: Mbps. Default is -1, indicating that the Listener does not specify a speed limit.
+     */
+    public readonly bandwidth!: pulumi.Output<number | undefined>;
+    /**
      * The certificate id associated with the listener.
      */
     public readonly certificateId!: pulumi.Output<string | undefined>;
+    /**
+     * Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
+     * This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+     */
+    public readonly connectionDrainEnabled!: pulumi.Output<string | undefined>;
+    /**
+     * The connection drain timeout of the Listener. Valid value range is `1-900`.
+     * This filed is required when the value of field `connectionDrainEnabled` is `on`.
+     */
+    public readonly connectionDrainTimeout!: pulumi.Output<number>;
     /**
      * The description of the Listener.
      */
@@ -145,6 +173,16 @@ export class Listener extends pulumi.CustomResource {
      */
     public readonly loadBalancerId!: pulumi.Output<string>;
     /**
+     * The persistence timeout of the Listener. Unit: second. Valid value range is `1-3600`. Default is `1000`.
+     * This filed is valid only when the value of field `persistenceType` is `sourceIp`.
+     */
+    public readonly persistenceTimeout!: pulumi.Output<number | undefined>;
+    /**
+     * The persistence type of the Listener. Valid values: `off`, `sourceIp`. Default is `off`.
+     * This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+     */
+    public readonly persistenceType!: pulumi.Output<string | undefined>;
+    /**
      * The port receiving request of the Listener, the value range in 1~65535.
      */
     public readonly port!: pulumi.Output<number>;
@@ -152,6 +190,11 @@ export class Listener extends pulumi.CustomResource {
      * The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
      */
     public readonly protocol!: pulumi.Output<string>;
+    /**
+     * Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
+     * This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+     */
+    public readonly proxyProtocolType!: pulumi.Output<string | undefined>;
     /**
      * The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
      */
@@ -177,7 +220,10 @@ export class Listener extends pulumi.CustomResource {
             resourceInputs["aclIds"] = state ? state.aclIds : undefined;
             resourceInputs["aclStatus"] = state ? state.aclStatus : undefined;
             resourceInputs["aclType"] = state ? state.aclType : undefined;
+            resourceInputs["bandwidth"] = state ? state.bandwidth : undefined;
             resourceInputs["certificateId"] = state ? state.certificateId : undefined;
+            resourceInputs["connectionDrainEnabled"] = state ? state.connectionDrainEnabled : undefined;
+            resourceInputs["connectionDrainTimeout"] = state ? state.connectionDrainTimeout : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["enabled"] = state ? state.enabled : undefined;
             resourceInputs["establishedTimeout"] = state ? state.establishedTimeout : undefined;
@@ -185,8 +231,11 @@ export class Listener extends pulumi.CustomResource {
             resourceInputs["listenerId"] = state ? state.listenerId : undefined;
             resourceInputs["listenerName"] = state ? state.listenerName : undefined;
             resourceInputs["loadBalancerId"] = state ? state.loadBalancerId : undefined;
+            resourceInputs["persistenceTimeout"] = state ? state.persistenceTimeout : undefined;
+            resourceInputs["persistenceType"] = state ? state.persistenceType : undefined;
             resourceInputs["port"] = state ? state.port : undefined;
             resourceInputs["protocol"] = state ? state.protocol : undefined;
+            resourceInputs["proxyProtocolType"] = state ? state.proxyProtocolType : undefined;
             resourceInputs["scheduler"] = state ? state.scheduler : undefined;
             resourceInputs["serverGroupId"] = state ? state.serverGroupId : undefined;
         } else {
@@ -206,15 +255,21 @@ export class Listener extends pulumi.CustomResource {
             resourceInputs["aclIds"] = args ? args.aclIds : undefined;
             resourceInputs["aclStatus"] = args ? args.aclStatus : undefined;
             resourceInputs["aclType"] = args ? args.aclType : undefined;
+            resourceInputs["bandwidth"] = args ? args.bandwidth : undefined;
             resourceInputs["certificateId"] = args ? args.certificateId : undefined;
+            resourceInputs["connectionDrainEnabled"] = args ? args.connectionDrainEnabled : undefined;
+            resourceInputs["connectionDrainTimeout"] = args ? args.connectionDrainTimeout : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["enabled"] = args ? args.enabled : undefined;
             resourceInputs["establishedTimeout"] = args ? args.establishedTimeout : undefined;
             resourceInputs["healthCheck"] = args ? args.healthCheck : undefined;
             resourceInputs["listenerName"] = args ? args.listenerName : undefined;
             resourceInputs["loadBalancerId"] = args ? args.loadBalancerId : undefined;
+            resourceInputs["persistenceTimeout"] = args ? args.persistenceTimeout : undefined;
+            resourceInputs["persistenceType"] = args ? args.persistenceType : undefined;
             resourceInputs["port"] = args ? args.port : undefined;
             resourceInputs["protocol"] = args ? args.protocol : undefined;
+            resourceInputs["proxyProtocolType"] = args ? args.proxyProtocolType : undefined;
             resourceInputs["scheduler"] = args ? args.scheduler : undefined;
             resourceInputs["serverGroupId"] = args ? args.serverGroupId : undefined;
             resourceInputs["listenerId"] = undefined /*out*/;
@@ -241,9 +296,23 @@ export interface ListenerState {
      */
     aclType?: pulumi.Input<string>;
     /**
+     * The bandwidth of the Listener. Unit: Mbps. Default is -1, indicating that the Listener does not specify a speed limit.
+     */
+    bandwidth?: pulumi.Input<number>;
+    /**
      * The certificate id associated with the listener.
      */
     certificateId?: pulumi.Input<string>;
+    /**
+     * Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
+     * This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+     */
+    connectionDrainEnabled?: pulumi.Input<string>;
+    /**
+     * The connection drain timeout of the Listener. Valid value range is `1-900`.
+     * This filed is required when the value of field `connectionDrainEnabled` is `on`.
+     */
+    connectionDrainTimeout?: pulumi.Input<number>;
     /**
      * The description of the Listener.
      */
@@ -273,6 +342,16 @@ export interface ListenerState {
      */
     loadBalancerId?: pulumi.Input<string>;
     /**
+     * The persistence timeout of the Listener. Unit: second. Valid value range is `1-3600`. Default is `1000`.
+     * This filed is valid only when the value of field `persistenceType` is `sourceIp`.
+     */
+    persistenceTimeout?: pulumi.Input<number>;
+    /**
+     * The persistence type of the Listener. Valid values: `off`, `sourceIp`. Default is `off`.
+     * This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+     */
+    persistenceType?: pulumi.Input<string>;
+    /**
      * The port receiving request of the Listener, the value range in 1~65535.
      */
     port?: pulumi.Input<number>;
@@ -280,6 +359,11 @@ export interface ListenerState {
      * The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
      */
     protocol?: pulumi.Input<string>;
+    /**
+     * Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
+     * This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+     */
+    proxyProtocolType?: pulumi.Input<string>;
     /**
      * The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
      */
@@ -307,9 +391,23 @@ export interface ListenerArgs {
      */
     aclType?: pulumi.Input<string>;
     /**
+     * The bandwidth of the Listener. Unit: Mbps. Default is -1, indicating that the Listener does not specify a speed limit.
+     */
+    bandwidth?: pulumi.Input<number>;
+    /**
      * The certificate id associated with the listener.
      */
     certificateId?: pulumi.Input<string>;
+    /**
+     * Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
+     * This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+     */
+    connectionDrainEnabled?: pulumi.Input<string>;
+    /**
+     * The connection drain timeout of the Listener. Valid value range is `1-900`.
+     * This filed is required when the value of field `connectionDrainEnabled` is `on`.
+     */
+    connectionDrainTimeout?: pulumi.Input<number>;
     /**
      * The description of the Listener.
      */
@@ -335,6 +433,16 @@ export interface ListenerArgs {
      */
     loadBalancerId: pulumi.Input<string>;
     /**
+     * The persistence timeout of the Listener. Unit: second. Valid value range is `1-3600`. Default is `1000`.
+     * This filed is valid only when the value of field `persistenceType` is `sourceIp`.
+     */
+    persistenceTimeout?: pulumi.Input<number>;
+    /**
+     * The persistence type of the Listener. Valid values: `off`, `sourceIp`. Default is `off`.
+     * This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+     */
+    persistenceType?: pulumi.Input<string>;
+    /**
      * The port receiving request of the Listener, the value range in 1~65535.
      */
     port: pulumi.Input<number>;
@@ -342,6 +450,11 @@ export interface ListenerArgs {
      * The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
      */
     protocol: pulumi.Input<string>;
+    /**
+     * Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
+     * This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+     */
+    proxyProtocolType?: pulumi.Input<string>;
     /**
      * The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
      */

@@ -58,7 +58,7 @@ export class Workspace extends pulumi.CustomResource {
     /**
      * Cover path (relative path in tos bucket).
      */
-    public readonly coverPath!: pulumi.Output<string | undefined>;
+    public readonly coverPath!: pulumi.Output<string>;
     /**
      * The description of the workspace.
      */

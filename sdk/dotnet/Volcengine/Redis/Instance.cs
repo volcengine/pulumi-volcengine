@@ -89,7 +89,7 @@ namespace Volcengine.Pulumi.Volcengine.Redis
     ///             2,
     ///             3,
     ///         },
-    ///         BackupHour = 4,
+    ///         BackupHour = 6,
     ///         BackupActive = true,
     ///         CreateBackup = false,
     ///         ApplyImmediately = true,
@@ -180,6 +180,7 @@ namespace Volcengine.Pulumi.Volcengine.Redis
 
         /// <summary>
         /// The configuration item information to be modified. This field can only be added or modified. Deleting this field is invalid.
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields, or use the command `pulumi up` to perform a modification operation.
         /// </summary>
         [Output("paramValues")]
         public Output<ImmutableArray<Outputs.InstanceParamValue>> ParamValues { get; private set; } = null!;
@@ -240,7 +241,7 @@ namespace Volcengine.Pulumi.Volcengine.Redis
         public Output<ImmutableArray<Outputs.InstanceTag>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`. Works only on modified scenes.
+        /// Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`.
         /// </summary>
         [Output("vpcAuthMode")]
         public Output<string> VpcAuthMode { get; private set; } = null!;
@@ -382,6 +383,7 @@ namespace Volcengine.Pulumi.Volcengine.Redis
 
         /// <summary>
         /// The configuration item information to be modified. This field can only be added or modified. Deleting this field is invalid.
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields, or use the command `pulumi up` to perform a modification operation.
         /// </summary>
         public InputList<Inputs.InstanceParamValueArgs> ParamValues
         {
@@ -461,7 +463,7 @@ namespace Volcengine.Pulumi.Volcengine.Redis
         }
 
         /// <summary>
-        /// Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`. Works only on modified scenes.
+        /// Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`.
         /// </summary>
         [Input("vpcAuthMode")]
         public Input<string>? VpcAuthMode { get; set; }
@@ -566,6 +568,7 @@ namespace Volcengine.Pulumi.Volcengine.Redis
 
         /// <summary>
         /// The configuration item information to be modified. This field can only be added or modified. Deleting this field is invalid.
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields, or use the command `pulumi up` to perform a modification operation.
         /// </summary>
         public InputList<Inputs.InstanceParamValueGetArgs> ParamValues
         {
@@ -645,7 +648,7 @@ namespace Volcengine.Pulumi.Volcengine.Redis
         }
 
         /// <summary>
-        /// Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`. Works only on modified scenes.
+        /// Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`.
         /// </summary>
         [Input("vpcAuthMode")]
         public Input<string>? VpcAuthMode { get; set; }

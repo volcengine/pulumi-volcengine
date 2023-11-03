@@ -14,7 +14,7 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type ClusterSharedConfig struct {
-	// Whether to enable a shared cluster.
+	// Whether to enable a shared cluster. This value must be `true`.
 	Enable bool `pulumi:"enable"`
 }
 
@@ -30,7 +30,7 @@ type ClusterSharedConfigInput interface {
 }
 
 type ClusterSharedConfigArgs struct {
-	// Whether to enable a shared cluster.
+	// Whether to enable a shared cluster. This value must be `true`.
 	Enable pulumi.BoolInput `pulumi:"enable"`
 }
 
@@ -46,29 +46,45 @@ func (i ClusterSharedConfigArgs) ToClusterSharedConfigOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(ClusterSharedConfigOutput)
 }
 
-// ClusterSharedConfigArrayInput is an input type that accepts ClusterSharedConfigArray and ClusterSharedConfigArrayOutput values.
-// You can construct a concrete instance of `ClusterSharedConfigArrayInput` via:
+func (i ClusterSharedConfigArgs) ToClusterSharedConfigPtrOutput() ClusterSharedConfigPtrOutput {
+	return i.ToClusterSharedConfigPtrOutputWithContext(context.Background())
+}
+
+func (i ClusterSharedConfigArgs) ToClusterSharedConfigPtrOutputWithContext(ctx context.Context) ClusterSharedConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterSharedConfigOutput).ToClusterSharedConfigPtrOutputWithContext(ctx)
+}
+
+// ClusterSharedConfigPtrInput is an input type that accepts ClusterSharedConfigArgs, ClusterSharedConfigPtr and ClusterSharedConfigPtrOutput values.
+// You can construct a concrete instance of `ClusterSharedConfigPtrInput` via:
 //
-//	ClusterSharedConfigArray{ ClusterSharedConfigArgs{...} }
-type ClusterSharedConfigArrayInput interface {
+//	        ClusterSharedConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type ClusterSharedConfigPtrInput interface {
 	pulumi.Input
 
-	ToClusterSharedConfigArrayOutput() ClusterSharedConfigArrayOutput
-	ToClusterSharedConfigArrayOutputWithContext(context.Context) ClusterSharedConfigArrayOutput
+	ToClusterSharedConfigPtrOutput() ClusterSharedConfigPtrOutput
+	ToClusterSharedConfigPtrOutputWithContext(context.Context) ClusterSharedConfigPtrOutput
 }
 
-type ClusterSharedConfigArray []ClusterSharedConfigInput
+type clusterSharedConfigPtrType ClusterSharedConfigArgs
 
-func (ClusterSharedConfigArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ClusterSharedConfig)(nil)).Elem()
+func ClusterSharedConfigPtr(v *ClusterSharedConfigArgs) ClusterSharedConfigPtrInput {
+	return (*clusterSharedConfigPtrType)(v)
 }
 
-func (i ClusterSharedConfigArray) ToClusterSharedConfigArrayOutput() ClusterSharedConfigArrayOutput {
-	return i.ToClusterSharedConfigArrayOutputWithContext(context.Background())
+func (*clusterSharedConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClusterSharedConfig)(nil)).Elem()
 }
 
-func (i ClusterSharedConfigArray) ToClusterSharedConfigArrayOutputWithContext(ctx context.Context) ClusterSharedConfigArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterSharedConfigArrayOutput)
+func (i *clusterSharedConfigPtrType) ToClusterSharedConfigPtrOutput() ClusterSharedConfigPtrOutput {
+	return i.ToClusterSharedConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *clusterSharedConfigPtrType) ToClusterSharedConfigPtrOutputWithContext(ctx context.Context) ClusterSharedConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterSharedConfigPtrOutput)
 }
 
 type ClusterSharedConfigOutput struct{ *pulumi.OutputState }
@@ -85,29 +101,53 @@ func (o ClusterSharedConfigOutput) ToClusterSharedConfigOutputWithContext(ctx co
 	return o
 }
 
-// Whether to enable a shared cluster.
+func (o ClusterSharedConfigOutput) ToClusterSharedConfigPtrOutput() ClusterSharedConfigPtrOutput {
+	return o.ToClusterSharedConfigPtrOutputWithContext(context.Background())
+}
+
+func (o ClusterSharedConfigOutput) ToClusterSharedConfigPtrOutputWithContext(ctx context.Context) ClusterSharedConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClusterSharedConfig) *ClusterSharedConfig {
+		return &v
+	}).(ClusterSharedConfigPtrOutput)
+}
+
+// Whether to enable a shared cluster. This value must be `true`.
 func (o ClusterSharedConfigOutput) Enable() pulumi.BoolOutput {
 	return o.ApplyT(func(v ClusterSharedConfig) bool { return v.Enable }).(pulumi.BoolOutput)
 }
 
-type ClusterSharedConfigArrayOutput struct{ *pulumi.OutputState }
+type ClusterSharedConfigPtrOutput struct{ *pulumi.OutputState }
 
-func (ClusterSharedConfigArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ClusterSharedConfig)(nil)).Elem()
+func (ClusterSharedConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClusterSharedConfig)(nil)).Elem()
 }
 
-func (o ClusterSharedConfigArrayOutput) ToClusterSharedConfigArrayOutput() ClusterSharedConfigArrayOutput {
+func (o ClusterSharedConfigPtrOutput) ToClusterSharedConfigPtrOutput() ClusterSharedConfigPtrOutput {
 	return o
 }
 
-func (o ClusterSharedConfigArrayOutput) ToClusterSharedConfigArrayOutputWithContext(ctx context.Context) ClusterSharedConfigArrayOutput {
+func (o ClusterSharedConfigPtrOutput) ToClusterSharedConfigPtrOutputWithContext(ctx context.Context) ClusterSharedConfigPtrOutput {
 	return o
 }
 
-func (o ClusterSharedConfigArrayOutput) Index(i pulumi.IntInput) ClusterSharedConfigOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClusterSharedConfig {
-		return vs[0].([]ClusterSharedConfig)[vs[1].(int)]
+func (o ClusterSharedConfigPtrOutput) Elem() ClusterSharedConfigOutput {
+	return o.ApplyT(func(v *ClusterSharedConfig) ClusterSharedConfig {
+		if v != nil {
+			return *v
+		}
+		var ret ClusterSharedConfig
+		return ret
 	}).(ClusterSharedConfigOutput)
+}
+
+// Whether to enable a shared cluster. This value must be `true`.
+func (o ClusterSharedConfigPtrOutput) Enable() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ClusterSharedConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Enable
+	}).(pulumi.BoolPtrOutput)
 }
 
 type ClusterVkeConfig struct {
@@ -147,29 +187,45 @@ func (i ClusterVkeConfigArgs) ToClusterVkeConfigOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(ClusterVkeConfigOutput)
 }
 
-// ClusterVkeConfigArrayInput is an input type that accepts ClusterVkeConfigArray and ClusterVkeConfigArrayOutput values.
-// You can construct a concrete instance of `ClusterVkeConfigArrayInput` via:
+func (i ClusterVkeConfigArgs) ToClusterVkeConfigPtrOutput() ClusterVkeConfigPtrOutput {
+	return i.ToClusterVkeConfigPtrOutputWithContext(context.Background())
+}
+
+func (i ClusterVkeConfigArgs) ToClusterVkeConfigPtrOutputWithContext(ctx context.Context) ClusterVkeConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterVkeConfigOutput).ToClusterVkeConfigPtrOutputWithContext(ctx)
+}
+
+// ClusterVkeConfigPtrInput is an input type that accepts ClusterVkeConfigArgs, ClusterVkeConfigPtr and ClusterVkeConfigPtrOutput values.
+// You can construct a concrete instance of `ClusterVkeConfigPtrInput` via:
 //
-//	ClusterVkeConfigArray{ ClusterVkeConfigArgs{...} }
-type ClusterVkeConfigArrayInput interface {
+//	        ClusterVkeConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type ClusterVkeConfigPtrInput interface {
 	pulumi.Input
 
-	ToClusterVkeConfigArrayOutput() ClusterVkeConfigArrayOutput
-	ToClusterVkeConfigArrayOutputWithContext(context.Context) ClusterVkeConfigArrayOutput
+	ToClusterVkeConfigPtrOutput() ClusterVkeConfigPtrOutput
+	ToClusterVkeConfigPtrOutputWithContext(context.Context) ClusterVkeConfigPtrOutput
 }
 
-type ClusterVkeConfigArray []ClusterVkeConfigInput
+type clusterVkeConfigPtrType ClusterVkeConfigArgs
 
-func (ClusterVkeConfigArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ClusterVkeConfig)(nil)).Elem()
+func ClusterVkeConfigPtr(v *ClusterVkeConfigArgs) ClusterVkeConfigPtrInput {
+	return (*clusterVkeConfigPtrType)(v)
 }
 
-func (i ClusterVkeConfigArray) ToClusterVkeConfigArrayOutput() ClusterVkeConfigArrayOutput {
-	return i.ToClusterVkeConfigArrayOutputWithContext(context.Background())
+func (*clusterVkeConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClusterVkeConfig)(nil)).Elem()
 }
 
-func (i ClusterVkeConfigArray) ToClusterVkeConfigArrayOutputWithContext(ctx context.Context) ClusterVkeConfigArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ClusterVkeConfigArrayOutput)
+func (i *clusterVkeConfigPtrType) ToClusterVkeConfigPtrOutput() ClusterVkeConfigPtrOutput {
+	return i.ToClusterVkeConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *clusterVkeConfigPtrType) ToClusterVkeConfigPtrOutputWithContext(ctx context.Context) ClusterVkeConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterVkeConfigPtrOutput)
 }
 
 type ClusterVkeConfigOutput struct{ *pulumi.OutputState }
@@ -186,6 +242,16 @@ func (o ClusterVkeConfigOutput) ToClusterVkeConfigOutputWithContext(ctx context.
 	return o
 }
 
+func (o ClusterVkeConfigOutput) ToClusterVkeConfigPtrOutput() ClusterVkeConfigPtrOutput {
+	return o.ToClusterVkeConfigPtrOutputWithContext(context.Background())
+}
+
+func (o ClusterVkeConfigOutput) ToClusterVkeConfigPtrOutputWithContext(ctx context.Context) ClusterVkeConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClusterVkeConfig) *ClusterVkeConfig {
+		return &v
+	}).(ClusterVkeConfigPtrOutput)
+}
+
 // The id of the vke cluster.
 func (o ClusterVkeConfigOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterVkeConfig) string { return v.ClusterId }).(pulumi.StringOutput)
@@ -196,24 +262,48 @@ func (o ClusterVkeConfigOutput) StorageClass() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterVkeConfig) string { return v.StorageClass }).(pulumi.StringOutput)
 }
 
-type ClusterVkeConfigArrayOutput struct{ *pulumi.OutputState }
+type ClusterVkeConfigPtrOutput struct{ *pulumi.OutputState }
 
-func (ClusterVkeConfigArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ClusterVkeConfig)(nil)).Elem()
+func (ClusterVkeConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClusterVkeConfig)(nil)).Elem()
 }
 
-func (o ClusterVkeConfigArrayOutput) ToClusterVkeConfigArrayOutput() ClusterVkeConfigArrayOutput {
+func (o ClusterVkeConfigPtrOutput) ToClusterVkeConfigPtrOutput() ClusterVkeConfigPtrOutput {
 	return o
 }
 
-func (o ClusterVkeConfigArrayOutput) ToClusterVkeConfigArrayOutputWithContext(ctx context.Context) ClusterVkeConfigArrayOutput {
+func (o ClusterVkeConfigPtrOutput) ToClusterVkeConfigPtrOutputWithContext(ctx context.Context) ClusterVkeConfigPtrOutput {
 	return o
 }
 
-func (o ClusterVkeConfigArrayOutput) Index(i pulumi.IntInput) ClusterVkeConfigOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClusterVkeConfig {
-		return vs[0].([]ClusterVkeConfig)[vs[1].(int)]
+func (o ClusterVkeConfigPtrOutput) Elem() ClusterVkeConfigOutput {
+	return o.ApplyT(func(v *ClusterVkeConfig) ClusterVkeConfig {
+		if v != nil {
+			return *v
+		}
+		var ret ClusterVkeConfig
+		return ret
 	}).(ClusterVkeConfigOutput)
+}
+
+// The id of the vke cluster.
+func (o ClusterVkeConfigPtrOutput) ClusterId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClusterVkeConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ClusterId
+	}).(pulumi.StringPtrOutput)
+}
+
+// The name of the StorageClass that the vke cluster has installed.
+func (o ClusterVkeConfigPtrOutput) StorageClass() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClusterVkeConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.StorageClass
+	}).(pulumi.StringPtrOutput)
 }
 
 type ClustersItem struct {
@@ -227,8 +317,12 @@ type ClustersItem struct {
 	Name string `pulumi:"name"`
 	// whether it is a public cluster.
 	Public bool `pulumi:"public"`
+	// The configuration of the shared cluster.
+	SharedConfigs []ClustersItemSharedConfig `pulumi:"sharedConfigs"`
 	// The start time of the cluster.
 	StartTime int `pulumi:"startTime"`
+	// The status of the clusters.
+	Status string `pulumi:"status"`
 	// The end time of the cluster.
 	StoppedTime int `pulumi:"stoppedTime"`
 	// The id of the vke cluster.
@@ -259,8 +353,12 @@ type ClustersItemArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// whether it is a public cluster.
 	Public pulumi.BoolInput `pulumi:"public"`
+	// The configuration of the shared cluster.
+	SharedConfigs ClustersItemSharedConfigArrayInput `pulumi:"sharedConfigs"`
 	// The start time of the cluster.
 	StartTime pulumi.IntInput `pulumi:"startTime"`
+	// The status of the clusters.
+	Status pulumi.StringInput `pulumi:"status"`
 	// The end time of the cluster.
 	StoppedTime pulumi.IntInput `pulumi:"stoppedTime"`
 	// The id of the vke cluster.
@@ -345,9 +443,19 @@ func (o ClustersItemOutput) Public() pulumi.BoolOutput {
 	return o.ApplyT(func(v ClustersItem) bool { return v.Public }).(pulumi.BoolOutput)
 }
 
+// The configuration of the shared cluster.
+func (o ClustersItemOutput) SharedConfigs() ClustersItemSharedConfigArrayOutput {
+	return o.ApplyT(func(v ClustersItem) []ClustersItemSharedConfig { return v.SharedConfigs }).(ClustersItemSharedConfigArrayOutput)
+}
+
 // The start time of the cluster.
 func (o ClustersItemOutput) StartTime() pulumi.IntOutput {
 	return o.ApplyT(func(v ClustersItem) int { return v.StartTime }).(pulumi.IntOutput)
+}
+
+// The status of the clusters.
+func (o ClustersItemOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v ClustersItem) string { return v.Status }).(pulumi.StringOutput)
 }
 
 // The end time of the cluster.
@@ -383,6 +491,103 @@ func (o ClustersItemArrayOutput) Index(i pulumi.IntInput) ClustersItemOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClustersItem {
 		return vs[0].([]ClustersItem)[vs[1].(int)]
 	}).(ClustersItemOutput)
+}
+
+type ClustersItemSharedConfig struct {
+	// Whether to enable a shared cluster. This value must be `true`.
+	Enable bool `pulumi:"enable"`
+}
+
+// ClustersItemSharedConfigInput is an input type that accepts ClustersItemSharedConfigArgs and ClustersItemSharedConfigOutput values.
+// You can construct a concrete instance of `ClustersItemSharedConfigInput` via:
+//
+//	ClustersItemSharedConfigArgs{...}
+type ClustersItemSharedConfigInput interface {
+	pulumi.Input
+
+	ToClustersItemSharedConfigOutput() ClustersItemSharedConfigOutput
+	ToClustersItemSharedConfigOutputWithContext(context.Context) ClustersItemSharedConfigOutput
+}
+
+type ClustersItemSharedConfigArgs struct {
+	// Whether to enable a shared cluster. This value must be `true`.
+	Enable pulumi.BoolInput `pulumi:"enable"`
+}
+
+func (ClustersItemSharedConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClustersItemSharedConfig)(nil)).Elem()
+}
+
+func (i ClustersItemSharedConfigArgs) ToClustersItemSharedConfigOutput() ClustersItemSharedConfigOutput {
+	return i.ToClustersItemSharedConfigOutputWithContext(context.Background())
+}
+
+func (i ClustersItemSharedConfigArgs) ToClustersItemSharedConfigOutputWithContext(ctx context.Context) ClustersItemSharedConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClustersItemSharedConfigOutput)
+}
+
+// ClustersItemSharedConfigArrayInput is an input type that accepts ClustersItemSharedConfigArray and ClustersItemSharedConfigArrayOutput values.
+// You can construct a concrete instance of `ClustersItemSharedConfigArrayInput` via:
+//
+//	ClustersItemSharedConfigArray{ ClustersItemSharedConfigArgs{...} }
+type ClustersItemSharedConfigArrayInput interface {
+	pulumi.Input
+
+	ToClustersItemSharedConfigArrayOutput() ClustersItemSharedConfigArrayOutput
+	ToClustersItemSharedConfigArrayOutputWithContext(context.Context) ClustersItemSharedConfigArrayOutput
+}
+
+type ClustersItemSharedConfigArray []ClustersItemSharedConfigInput
+
+func (ClustersItemSharedConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClustersItemSharedConfig)(nil)).Elem()
+}
+
+func (i ClustersItemSharedConfigArray) ToClustersItemSharedConfigArrayOutput() ClustersItemSharedConfigArrayOutput {
+	return i.ToClustersItemSharedConfigArrayOutputWithContext(context.Background())
+}
+
+func (i ClustersItemSharedConfigArray) ToClustersItemSharedConfigArrayOutputWithContext(ctx context.Context) ClustersItemSharedConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClustersItemSharedConfigArrayOutput)
+}
+
+type ClustersItemSharedConfigOutput struct{ *pulumi.OutputState }
+
+func (ClustersItemSharedConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClustersItemSharedConfig)(nil)).Elem()
+}
+
+func (o ClustersItemSharedConfigOutput) ToClustersItemSharedConfigOutput() ClustersItemSharedConfigOutput {
+	return o
+}
+
+func (o ClustersItemSharedConfigOutput) ToClustersItemSharedConfigOutputWithContext(ctx context.Context) ClustersItemSharedConfigOutput {
+	return o
+}
+
+// Whether to enable a shared cluster. This value must be `true`.
+func (o ClustersItemSharedConfigOutput) Enable() pulumi.BoolOutput {
+	return o.ApplyT(func(v ClustersItemSharedConfig) bool { return v.Enable }).(pulumi.BoolOutput)
+}
+
+type ClustersItemSharedConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (ClustersItemSharedConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClustersItemSharedConfig)(nil)).Elem()
+}
+
+func (o ClustersItemSharedConfigArrayOutput) ToClustersItemSharedConfigArrayOutput() ClustersItemSharedConfigArrayOutput {
+	return o
+}
+
+func (o ClustersItemSharedConfigArrayOutput) ToClustersItemSharedConfigArrayOutputWithContext(ctx context.Context) ClustersItemSharedConfigArrayOutput {
+	return o
+}
+
+func (o ClustersItemSharedConfigArrayOutput) Index(i pulumi.IntInput) ClustersItemSharedConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClustersItemSharedConfig {
+		return vs[0].([]ClustersItemSharedConfig)[vs[1].(int)]
+	}).(ClustersItemSharedConfigOutput)
 }
 
 type WorkspacesItem struct {
@@ -556,19 +761,23 @@ func (o WorkspacesItemArrayOutput) Index(i pulumi.IntInput) WorkspacesItemOutput
 
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterSharedConfigInput)(nil)).Elem(), ClusterSharedConfigArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ClusterSharedConfigArrayInput)(nil)).Elem(), ClusterSharedConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClusterSharedConfigPtrInput)(nil)).Elem(), ClusterSharedConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterVkeConfigInput)(nil)).Elem(), ClusterVkeConfigArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ClusterVkeConfigArrayInput)(nil)).Elem(), ClusterVkeConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClusterVkeConfigPtrInput)(nil)).Elem(), ClusterVkeConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClustersItemInput)(nil)).Elem(), ClustersItemArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClustersItemArrayInput)(nil)).Elem(), ClustersItemArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClustersItemSharedConfigInput)(nil)).Elem(), ClustersItemSharedConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClustersItemSharedConfigArrayInput)(nil)).Elem(), ClustersItemSharedConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WorkspacesItemInput)(nil)).Elem(), WorkspacesItemArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WorkspacesItemArrayInput)(nil)).Elem(), WorkspacesItemArray{})
 	pulumi.RegisterOutputType(ClusterSharedConfigOutput{})
-	pulumi.RegisterOutputType(ClusterSharedConfigArrayOutput{})
+	pulumi.RegisterOutputType(ClusterSharedConfigPtrOutput{})
 	pulumi.RegisterOutputType(ClusterVkeConfigOutput{})
-	pulumi.RegisterOutputType(ClusterVkeConfigArrayOutput{})
+	pulumi.RegisterOutputType(ClusterVkeConfigPtrOutput{})
 	pulumi.RegisterOutputType(ClustersItemOutput{})
 	pulumi.RegisterOutputType(ClustersItemArrayOutput{})
+	pulumi.RegisterOutputType(ClustersItemSharedConfigOutput{})
+	pulumi.RegisterOutputType(ClustersItemSharedConfigArrayOutput{})
 	pulumi.RegisterOutputType(WorkspacesItemOutput{})
 	pulumi.RegisterOutputType(WorkspacesItemArrayOutput{})
 }

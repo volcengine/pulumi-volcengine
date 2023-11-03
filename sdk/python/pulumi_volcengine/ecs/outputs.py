@@ -11,6 +11,9 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'AvailableResourcesAvailableZoneResult',
+    'AvailableResourcesAvailableZoneAvailableResourceResult',
+    'AvailableResourcesAvailableZoneAvailableResourceSupportedResourceResult',
     'CommandsCommandResult',
     'DeploymentSetsDeploymentSetResult',
     'ImagesImageResult',
@@ -36,6 +39,115 @@ __all__ = [
     'RegionsRegionResult',
     'ZonesZoneResult',
 ]
+
+@pulumi.output_type
+class AvailableResourcesAvailableZoneResult(dict):
+    def __init__(__self__, *,
+                 available_resources: Sequence['outputs.AvailableResourcesAvailableZoneAvailableResourceResult'],
+                 region_id: str,
+                 status: str,
+                 zone_id: str):
+        """
+        :param Sequence['AvailableResourcesAvailableZoneAvailableResourceArgs'] available_resources: The resource information of the available zone.
+        :param str region_id: The id of the region.
+        :param str status: The resource status of the available zone. Valid values: `Available`, `SoldOut`.
+        :param str zone_id: The id of available zone.
+        """
+        pulumi.set(__self__, "available_resources", available_resources)
+        pulumi.set(__self__, "region_id", region_id)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "zone_id", zone_id)
+
+    @property
+    @pulumi.getter(name="availableResources")
+    def available_resources(self) -> Sequence['outputs.AvailableResourcesAvailableZoneAvailableResourceResult']:
+        """
+        The resource information of the available zone.
+        """
+        return pulumi.get(self, "available_resources")
+
+    @property
+    @pulumi.getter(name="regionId")
+    def region_id(self) -> str:
+        """
+        The id of the region.
+        """
+        return pulumi.get(self, "region_id")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The resource status of the available zone. Valid values: `Available`, `SoldOut`.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="zoneId")
+    def zone_id(self) -> str:
+        """
+        The id of available zone.
+        """
+        return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class AvailableResourcesAvailableZoneAvailableResourceResult(dict):
+    def __init__(__self__, *,
+                 supported_resources: Sequence['outputs.AvailableResourcesAvailableZoneAvailableResourceSupportedResourceResult'],
+                 type: str):
+        """
+        :param Sequence['AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArgs'] supported_resources: The supported resource information.
+        :param str type: The type of resource. Valid values: `InstanceType`, `DedicatedHost`.
+        """
+        pulumi.set(__self__, "supported_resources", supported_resources)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="supportedResources")
+    def supported_resources(self) -> Sequence['outputs.AvailableResourcesAvailableZoneAvailableResourceSupportedResourceResult']:
+        """
+        The supported resource information.
+        """
+        return pulumi.get(self, "supported_resources")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of resource. Valid values: `InstanceType`, `DedicatedHost`.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class AvailableResourcesAvailableZoneAvailableResourceSupportedResourceResult(dict):
+    def __init__(__self__, *,
+                 status: str,
+                 value: str):
+        """
+        :param str status: The resource status of the available zone. Valid values: `Available`, `SoldOut`.
+        :param str value: The value of the resource.
+        """
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The resource status of the available zone. Valid values: `Available`, `SoldOut`.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The value of the resource.
+        """
+        return pulumi.get(self, "value")
+
 
 @pulumi.output_type
 class CommandsCommandResult(dict):

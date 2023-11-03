@@ -15,7 +15,7 @@ namespace Volcengine.Pulumi.Volcengine.Bioos.Outputs
     public sealed class ClusterSharedConfig
     {
         /// <summary>
-        /// Whether to enable a shared cluster.
+        /// Whether to enable a shared cluster. This value must be `true`.
         /// </summary>
         public readonly bool Enable;
 

@@ -8,11 +8,13 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
 
 __all__ = [
     'ClusterSharedConfig',
     'ClusterVkeConfig',
     'ClustersItemResult',
+    'ClustersItemSharedConfigResult',
     'WorkspacesItemResult',
 ]
 
@@ -21,7 +23,7 @@ class ClusterSharedConfig(dict):
     def __init__(__self__, *,
                  enable: bool):
         """
-        :param bool enable: Whether to enable a shared cluster.
+        :param bool enable: Whether to enable a shared cluster. This value must be `true`.
         """
         pulumi.set(__self__, "enable", enable)
 
@@ -29,7 +31,7 @@ class ClusterSharedConfig(dict):
     @pulumi.getter
     def enable(self) -> bool:
         """
-        Whether to enable a shared cluster.
+        Whether to enable a shared cluster. This value must be `true`.
         """
         return pulumi.get(self, "enable")
 
@@ -90,7 +92,9 @@ class ClustersItemResult(dict):
                  id: str,
                  name: str,
                  public: bool,
+                 shared_configs: Sequence['outputs.ClustersItemSharedConfigResult'],
                  start_time: int,
+                 status: str,
                  stopped_time: int,
                  vke_config_id: str,
                  vke_config_storage_class: str):
@@ -100,7 +104,9 @@ class ClustersItemResult(dict):
         :param str id: The id of the bioos cluster.
         :param str name: The name of the cluster.
         :param bool public: whether it is a public cluster.
+        :param Sequence['ClustersItemSharedConfigArgs'] shared_configs: The configuration of the shared cluster.
         :param int start_time: The start time of the cluster.
+        :param str status: The status of the clusters.
         :param int stopped_time: The end time of the cluster.
         :param str vke_config_id: The id of the vke cluster.
         :param str vke_config_storage_class: The name of the StorageClass that the vke cluster has installed.
@@ -110,7 +116,9 @@ class ClustersItemResult(dict):
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "public", public)
+        pulumi.set(__self__, "shared_configs", shared_configs)
         pulumi.set(__self__, "start_time", start_time)
+        pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "stopped_time", stopped_time)
         pulumi.set(__self__, "vke_config_id", vke_config_id)
         pulumi.set(__self__, "vke_config_storage_class", vke_config_storage_class)
@@ -156,12 +164,28 @@ class ClustersItemResult(dict):
         return pulumi.get(self, "public")
 
     @property
+    @pulumi.getter(name="sharedConfigs")
+    def shared_configs(self) -> Sequence['outputs.ClustersItemSharedConfigResult']:
+        """
+        The configuration of the shared cluster.
+        """
+        return pulumi.get(self, "shared_configs")
+
+    @property
     @pulumi.getter(name="startTime")
     def start_time(self) -> int:
         """
         The start time of the cluster.
         """
         return pulumi.get(self, "start_time")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The status of the clusters.
+        """
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter(name="stoppedTime")
@@ -186,6 +210,24 @@ class ClustersItemResult(dict):
         The name of the StorageClass that the vke cluster has installed.
         """
         return pulumi.get(self, "vke_config_storage_class")
+
+
+@pulumi.output_type
+class ClustersItemSharedConfigResult(dict):
+    def __init__(__self__, *,
+                 enable: bool):
+        """
+        :param bool enable: Whether to enable a shared cluster. This value must be `true`.
+        """
+        pulumi.set(__self__, "enable", enable)
+
+    @property
+    @pulumi.getter
+    def enable(self) -> bool:
+        """
+        Whether to enable a shared cluster. This value must be `true`.
+        """
+        return pulumi.get(self, "enable")
 
 
 @pulumi.output_type

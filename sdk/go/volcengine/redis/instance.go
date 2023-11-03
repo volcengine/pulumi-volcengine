@@ -90,7 +90,7 @@ import (
 //					pulumi.Int(2),
 //					pulumi.Int(3),
 //				},
-//				BackupHour:       pulumi.Int(4),
+//				BackupHour:       pulumi.Int(6),
 //				BackupActive:     pulumi.Bool(true),
 //				CreateBackup:     pulumi.Bool(false),
 //				ApplyImmediately: pulumi.Bool(true),
@@ -142,6 +142,7 @@ type Instance struct {
 	// The number of nodes in each shard, the valid value range is `1-6`. When the value is 1, it means creating a single node instance, and this field can not be modified. When the value is greater than 1, it means creating a primary and secondary instance, and this field can be modified.
 	NodeNumber pulumi.IntOutput `pulumi:"nodeNumber"`
 	// The configuration item information to be modified. This field can only be added or modified. Deleting this field is invalid.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields, or use the command `pulumi up` to perform a modification operation.
 	ParamValues InstanceParamValueArrayOutput `pulumi:"paramValues"`
 	// The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	Password pulumi.StringOutput `pulumi:"password"`
@@ -162,7 +163,7 @@ type Instance struct {
 	SubnetId pulumi.StringOutput `pulumi:"subnetId"`
 	// Tags.
 	Tags InstanceTagArrayOutput `pulumi:"tags"`
-	// Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`. Works only on modified scenes.
+	// Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`.
 	VpcAuthMode pulumi.StringOutput `pulumi:"vpcAuthMode"`
 	// The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
 	ZoneIds pulumi.StringArrayOutput `pulumi:"zoneIds"`
@@ -252,6 +253,7 @@ type instanceState struct {
 	// The number of nodes in each shard, the valid value range is `1-6`. When the value is 1, it means creating a single node instance, and this field can not be modified. When the value is greater than 1, it means creating a primary and secondary instance, and this field can be modified.
 	NodeNumber *int `pulumi:"nodeNumber"`
 	// The configuration item information to be modified. This field can only be added or modified. Deleting this field is invalid.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields, or use the command `pulumi up` to perform a modification operation.
 	ParamValues []InstanceParamValue `pulumi:"paramValues"`
 	// The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	Password *string `pulumi:"password"`
@@ -272,7 +274,7 @@ type instanceState struct {
 	SubnetId *string `pulumi:"subnetId"`
 	// Tags.
 	Tags []InstanceTag `pulumi:"tags"`
-	// Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`. Works only on modified scenes.
+	// Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`.
 	VpcAuthMode *string `pulumi:"vpcAuthMode"`
 	// The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
 	ZoneIds []string `pulumi:"zoneIds"`
@@ -305,6 +307,7 @@ type InstanceState struct {
 	// The number of nodes in each shard, the valid value range is `1-6`. When the value is 1, it means creating a single node instance, and this field can not be modified. When the value is greater than 1, it means creating a primary and secondary instance, and this field can be modified.
 	NodeNumber pulumi.IntPtrInput
 	// The configuration item information to be modified. This field can only be added or modified. Deleting this field is invalid.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields, or use the command `pulumi up` to perform a modification operation.
 	ParamValues InstanceParamValueArrayInput
 	// The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	Password pulumi.StringPtrInput
@@ -325,7 +328,7 @@ type InstanceState struct {
 	SubnetId pulumi.StringPtrInput
 	// Tags.
 	Tags InstanceTagArrayInput
-	// Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`. Works only on modified scenes.
+	// Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`.
 	VpcAuthMode pulumi.StringPtrInput
 	// The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
 	ZoneIds pulumi.StringArrayInput
@@ -362,6 +365,7 @@ type instanceArgs struct {
 	// The number of nodes in each shard, the valid value range is `1-6`. When the value is 1, it means creating a single node instance, and this field can not be modified. When the value is greater than 1, it means creating a primary and secondary instance, and this field can be modified.
 	NodeNumber int `pulumi:"nodeNumber"`
 	// The configuration item information to be modified. This field can only be added or modified. Deleting this field is invalid.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields, or use the command `pulumi up` to perform a modification operation.
 	ParamValues []InstanceParamValue `pulumi:"paramValues"`
 	// The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	Password string `pulumi:"password"`
@@ -382,7 +386,7 @@ type instanceArgs struct {
 	SubnetId string `pulumi:"subnetId"`
 	// Tags.
 	Tags []InstanceTag `pulumi:"tags"`
-	// Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`. Works only on modified scenes.
+	// Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`.
 	VpcAuthMode *string `pulumi:"vpcAuthMode"`
 	// The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
 	ZoneIds []string `pulumi:"zoneIds"`
@@ -416,6 +420,7 @@ type InstanceArgs struct {
 	// The number of nodes in each shard, the valid value range is `1-6`. When the value is 1, it means creating a single node instance, and this field can not be modified. When the value is greater than 1, it means creating a primary and secondary instance, and this field can be modified.
 	NodeNumber pulumi.IntInput
 	// The configuration item information to be modified. This field can only be added or modified. Deleting this field is invalid.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields, or use the command `pulumi up` to perform a modification operation.
 	ParamValues InstanceParamValueArrayInput
 	// The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	Password pulumi.StringInput
@@ -436,7 +441,7 @@ type InstanceArgs struct {
 	SubnetId pulumi.StringInput
 	// Tags.
 	Tags InstanceTagArrayInput
-	// Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`. Works only on modified scenes.
+	// Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`.
 	VpcAuthMode pulumi.StringPtrInput
 	// The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
 	ZoneIds pulumi.StringArrayInput
@@ -588,6 +593,7 @@ func (o InstanceOutput) NodeNumber() pulumi.IntOutput {
 }
 
 // The configuration item information to be modified. This field can only be added or modified. Deleting this field is invalid.
+// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields, or use the command `pulumi up` to perform a modification operation.
 func (o InstanceOutput) ParamValues() InstanceParamValueArrayOutput {
 	return o.ApplyT(func(v *Instance) InstanceParamValueArrayOutput { return v.ParamValues }).(InstanceParamValueArrayOutput)
 }
@@ -638,7 +644,7 @@ func (o InstanceOutput) Tags() InstanceTagArrayOutput {
 	return o.ApplyT(func(v *Instance) InstanceTagArrayOutput { return v.Tags }).(InstanceTagArrayOutput)
 }
 
-// Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`. Works only on modified scenes.
+// Whether to enable password-free access when connecting to an instance through a private network. Valid values: `open`, `close`.
 func (o InstanceOutput) VpcAuthMode() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.VpcAuthMode }).(pulumi.StringOutput)
 }

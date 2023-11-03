@@ -1215,7 +1215,10 @@ class ListenersListenerResult(dict):
                  acl_ids: Sequence[str],
                  acl_status: str,
                  acl_type: str,
+                 bandwidth: int,
                  certificate_id: str,
+                 connection_drain_enabled: str,
+                 connection_drain_timeout: int,
                  create_time: str,
                  enabled: str,
                  health_check_domain: str,
@@ -1232,8 +1235,11 @@ class ListenersListenerResult(dict):
                  id: str,
                  listener_id: str,
                  listener_name: str,
+                 persistence_timeout: int,
+                 persistence_type: str,
                  port: int,
                  protocol: str,
+                 proxy_protocol_type: str,
                  server_group_id: str,
                  status: str,
                  update_time: str):
@@ -1241,7 +1247,10 @@ class ListenersListenerResult(dict):
         :param Sequence[str] acl_ids: The acl ID list to which the Listener is bound.
         :param str acl_status: The acl status of the Listener.
         :param str acl_type: The acl type of the Listener.
+        :param int bandwidth: The bandwidth of the Listener. Unit: Mbps.
         :param str certificate_id: The ID of the certificate which is associated with the Listener.
+        :param str connection_drain_enabled: Whether to enable connection drain of the Listener.
+        :param int connection_drain_timeout: The connection drain timeout of the Listener.
         :param str create_time: The create time of the Listener.
         :param str enabled: The enable status of the Listener.
         :param str health_check_domain: The domain of health check.
@@ -1258,8 +1267,11 @@ class ListenersListenerResult(dict):
         :param str id: The ID of the Listener.
         :param str listener_id: The ID of the Listener.
         :param str listener_name: The name of the Listener.
+        :param int persistence_timeout: The persistence timeout of the Listener.
+        :param str persistence_type: The persistence type of the Listener.
         :param int port: The port receiving request of the Listener.
         :param str protocol: The protocol of the Listener.
+        :param str proxy_protocol_type: Whether to enable proxy protocol.
         :param str server_group_id: The ID of the backend server group which is associated with the Listener.
         :param str status: The status of the Listener.
         :param str update_time: The update time of the Listener.
@@ -1267,7 +1279,10 @@ class ListenersListenerResult(dict):
         pulumi.set(__self__, "acl_ids", acl_ids)
         pulumi.set(__self__, "acl_status", acl_status)
         pulumi.set(__self__, "acl_type", acl_type)
+        pulumi.set(__self__, "bandwidth", bandwidth)
         pulumi.set(__self__, "certificate_id", certificate_id)
+        pulumi.set(__self__, "connection_drain_enabled", connection_drain_enabled)
+        pulumi.set(__self__, "connection_drain_timeout", connection_drain_timeout)
         pulumi.set(__self__, "create_time", create_time)
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "health_check_domain", health_check_domain)
@@ -1284,8 +1299,11 @@ class ListenersListenerResult(dict):
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "listener_id", listener_id)
         pulumi.set(__self__, "listener_name", listener_name)
+        pulumi.set(__self__, "persistence_timeout", persistence_timeout)
+        pulumi.set(__self__, "persistence_type", persistence_type)
         pulumi.set(__self__, "port", port)
         pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "proxy_protocol_type", proxy_protocol_type)
         pulumi.set(__self__, "server_group_id", server_group_id)
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "update_time", update_time)
@@ -1315,12 +1333,36 @@ class ListenersListenerResult(dict):
         return pulumi.get(self, "acl_type")
 
     @property
+    @pulumi.getter
+    def bandwidth(self) -> int:
+        """
+        The bandwidth of the Listener. Unit: Mbps.
+        """
+        return pulumi.get(self, "bandwidth")
+
+    @property
     @pulumi.getter(name="certificateId")
     def certificate_id(self) -> str:
         """
         The ID of the certificate which is associated with the Listener.
         """
         return pulumi.get(self, "certificate_id")
+
+    @property
+    @pulumi.getter(name="connectionDrainEnabled")
+    def connection_drain_enabled(self) -> str:
+        """
+        Whether to enable connection drain of the Listener.
+        """
+        return pulumi.get(self, "connection_drain_enabled")
+
+    @property
+    @pulumi.getter(name="connectionDrainTimeout")
+    def connection_drain_timeout(self) -> int:
+        """
+        The connection drain timeout of the Listener.
+        """
+        return pulumi.get(self, "connection_drain_timeout")
 
     @property
     @pulumi.getter(name="createTime")
@@ -1451,6 +1493,22 @@ class ListenersListenerResult(dict):
         return pulumi.get(self, "listener_name")
 
     @property
+    @pulumi.getter(name="persistenceTimeout")
+    def persistence_timeout(self) -> int:
+        """
+        The persistence timeout of the Listener.
+        """
+        return pulumi.get(self, "persistence_timeout")
+
+    @property
+    @pulumi.getter(name="persistenceType")
+    def persistence_type(self) -> str:
+        """
+        The persistence type of the Listener.
+        """
+        return pulumi.get(self, "persistence_type")
+
+    @property
     @pulumi.getter
     def port(self) -> int:
         """
@@ -1465,6 +1523,14 @@ class ListenersListenerResult(dict):
         The protocol of the Listener.
         """
         return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter(name="proxyProtocolType")
+    def proxy_protocol_type(self) -> str:
+        """
+        Whether to enable proxy protocol.
+        """
+        return pulumi.get(self, "proxy_protocol_type")
 
     @property
     @pulumi.getter(name="serverGroupId")

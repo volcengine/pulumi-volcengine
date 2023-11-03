@@ -7,6 +7,12 @@ import typing
 # Export this package's modules as members:
 from .bandwidth_package import *
 from .bandwidth_packages import *
+from .direct_connect_gateway_attachment import *
+from .direct_connect_gateway_attachments import *
+from .grant_rule import *
+from .grant_rules import *
+from .peer_attachment import *
+from .peer_attachments import *
 from .route_entries import *
 from .route_entry import *
 from .route_table import *
@@ -15,6 +21,7 @@ from .route_table_associations import *
 from .route_table_propagation import *
 from .route_table_propagations import *
 from .route_tables import *
+from .shared_transit_router_state import *
 from .transit_router import *
 from .transit_routers import *
 from .vpc_attachment import *

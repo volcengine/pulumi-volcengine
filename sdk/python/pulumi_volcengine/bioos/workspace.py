@@ -294,7 +294,7 @@ class Workspace(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="coverPath")
-    def cover_path(self) -> pulumi.Output[Optional[str]]:
+    def cover_path(self) -> pulumi.Output[str]:
         """
         Cover path (relative path in tos bucket).
         """

@@ -83,6 +83,22 @@ namespace Volcengine.Pulumi.Volcengine.Clb
     ///         Enabled = "on",
     ///     });
     /// 
+    ///     var fooTcp = new Volcengine.Clb.Listener("fooTcp", new()
+    ///     {
+    ///         LoadBalancerId = fooClb.Id,
+    ///         ListenerName = "acc-test-listener",
+    ///         Protocol = "TCP",
+    ///         Port = 90,
+    ///         ServerGroupId = fooServerGroup.Id,
+    ///         Enabled = "on",
+    ///         Bandwidth = 2,
+    ///         ProxyProtocolType = "standard",
+    ///         PersistenceType = "source_ip",
+    ///         PersistenceTimeout = 100,
+    ///         ConnectionDrainEnabled = "on",
+    ///         ConnectionDrainTimeout = 100,
+    ///     });
+    /// 
     /// });
     /// ```
     /// 
@@ -116,10 +132,30 @@ namespace Volcengine.Pulumi.Volcengine.Clb
         public Output<string> AclType { get; private set; } = null!;
 
         /// <summary>
+        /// The bandwidth of the Listener. Unit: Mbps. Default is -1, indicating that the Listener does not specify a speed limit.
+        /// </summary>
+        [Output("bandwidth")]
+        public Output<int?> Bandwidth { get; private set; } = null!;
+
+        /// <summary>
         /// The certificate id associated with the listener.
         /// </summary>
         [Output("certificateId")]
         public Output<string?> CertificateId { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
+        /// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        /// </summary>
+        [Output("connectionDrainEnabled")]
+        public Output<string?> ConnectionDrainEnabled { get; private set; } = null!;
+
+        /// <summary>
+        /// The connection drain timeout of the Listener. Valid value range is `1-900`.
+        /// This filed is required when the value of field `connection_drain_enabled` is `on`.
+        /// </summary>
+        [Output("connectionDrainTimeout")]
+        public Output<int> ConnectionDrainTimeout { get; private set; } = null!;
 
         /// <summary>
         /// The description of the Listener.
@@ -164,6 +200,20 @@ namespace Volcengine.Pulumi.Volcengine.Clb
         public Output<string> LoadBalancerId { get; private set; } = null!;
 
         /// <summary>
+        /// The persistence timeout of the Listener. Unit: second. Valid value range is `1-3600`. Default is `1000`.
+        /// This filed is valid only when the value of field `persistence_type` is `source_ip`.
+        /// </summary>
+        [Output("persistenceTimeout")]
+        public Output<int?> PersistenceTimeout { get; private set; } = null!;
+
+        /// <summary>
+        /// The persistence type of the Listener. Valid values: `off`, `source_ip`. Default is `off`.
+        /// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        /// </summary>
+        [Output("persistenceType")]
+        public Output<string?> PersistenceType { get; private set; } = null!;
+
+        /// <summary>
         /// The port receiving request of the Listener, the value range in 1~65535.
         /// </summary>
         [Output("port")]
@@ -174,6 +224,13 @@ namespace Volcengine.Pulumi.Volcengine.Clb
         /// </summary>
         [Output("protocol")]
         public Output<string> Protocol { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
+        /// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        /// </summary>
+        [Output("proxyProtocolType")]
+        public Output<string?> ProxyProtocolType { get; private set; } = null!;
 
         /// <summary>
         /// The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
@@ -259,10 +316,30 @@ namespace Volcengine.Pulumi.Volcengine.Clb
         public Input<string>? AclType { get; set; }
 
         /// <summary>
+        /// The bandwidth of the Listener. Unit: Mbps. Default is -1, indicating that the Listener does not specify a speed limit.
+        /// </summary>
+        [Input("bandwidth")]
+        public Input<int>? Bandwidth { get; set; }
+
+        /// <summary>
         /// The certificate id associated with the listener.
         /// </summary>
         [Input("certificateId")]
         public Input<string>? CertificateId { get; set; }
+
+        /// <summary>
+        /// Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
+        /// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        /// </summary>
+        [Input("connectionDrainEnabled")]
+        public Input<string>? ConnectionDrainEnabled { get; set; }
+
+        /// <summary>
+        /// The connection drain timeout of the Listener. Valid value range is `1-900`.
+        /// This filed is required when the value of field `connection_drain_enabled` is `on`.
+        /// </summary>
+        [Input("connectionDrainTimeout")]
+        public Input<int>? ConnectionDrainTimeout { get; set; }
 
         /// <summary>
         /// The description of the Listener.
@@ -301,6 +378,20 @@ namespace Volcengine.Pulumi.Volcengine.Clb
         public Input<string> LoadBalancerId { get; set; } = null!;
 
         /// <summary>
+        /// The persistence timeout of the Listener. Unit: second. Valid value range is `1-3600`. Default is `1000`.
+        /// This filed is valid only when the value of field `persistence_type` is `source_ip`.
+        /// </summary>
+        [Input("persistenceTimeout")]
+        public Input<int>? PersistenceTimeout { get; set; }
+
+        /// <summary>
+        /// The persistence type of the Listener. Valid values: `off`, `source_ip`. Default is `off`.
+        /// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        /// </summary>
+        [Input("persistenceType")]
+        public Input<string>? PersistenceType { get; set; }
+
+        /// <summary>
         /// The port receiving request of the Listener, the value range in 1~65535.
         /// </summary>
         [Input("port", required: true)]
@@ -311,6 +402,13 @@ namespace Volcengine.Pulumi.Volcengine.Clb
         /// </summary>
         [Input("protocol", required: true)]
         public Input<string> Protocol { get; set; } = null!;
+
+        /// <summary>
+        /// Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
+        /// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        /// </summary>
+        [Input("proxyProtocolType")]
+        public Input<string>? ProxyProtocolType { get; set; }
 
         /// <summary>
         /// The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
@@ -357,10 +455,30 @@ namespace Volcengine.Pulumi.Volcengine.Clb
         public Input<string>? AclType { get; set; }
 
         /// <summary>
+        /// The bandwidth of the Listener. Unit: Mbps. Default is -1, indicating that the Listener does not specify a speed limit.
+        /// </summary>
+        [Input("bandwidth")]
+        public Input<int>? Bandwidth { get; set; }
+
+        /// <summary>
         /// The certificate id associated with the listener.
         /// </summary>
         [Input("certificateId")]
         public Input<string>? CertificateId { get; set; }
+
+        /// <summary>
+        /// Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
+        /// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        /// </summary>
+        [Input("connectionDrainEnabled")]
+        public Input<string>? ConnectionDrainEnabled { get; set; }
+
+        /// <summary>
+        /// The connection drain timeout of the Listener. Valid value range is `1-900`.
+        /// This filed is required when the value of field `connection_drain_enabled` is `on`.
+        /// </summary>
+        [Input("connectionDrainTimeout")]
+        public Input<int>? ConnectionDrainTimeout { get; set; }
 
         /// <summary>
         /// The description of the Listener.
@@ -405,6 +523,20 @@ namespace Volcengine.Pulumi.Volcengine.Clb
         public Input<string>? LoadBalancerId { get; set; }
 
         /// <summary>
+        /// The persistence timeout of the Listener. Unit: second. Valid value range is `1-3600`. Default is `1000`.
+        /// This filed is valid only when the value of field `persistence_type` is `source_ip`.
+        /// </summary>
+        [Input("persistenceTimeout")]
+        public Input<int>? PersistenceTimeout { get; set; }
+
+        /// <summary>
+        /// The persistence type of the Listener. Valid values: `off`, `source_ip`. Default is `off`.
+        /// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        /// </summary>
+        [Input("persistenceType")]
+        public Input<string>? PersistenceType { get; set; }
+
+        /// <summary>
         /// The port receiving request of the Listener, the value range in 1~65535.
         /// </summary>
         [Input("port")]
@@ -415,6 +547,13 @@ namespace Volcengine.Pulumi.Volcengine.Clb
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
+
+        /// <summary>
+        /// Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
+        /// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        /// </summary>
+        [Input("proxyProtocolType")]
+        public Input<string>? ProxyProtocolType { get; set; }
 
         /// <summary>
         /// The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.

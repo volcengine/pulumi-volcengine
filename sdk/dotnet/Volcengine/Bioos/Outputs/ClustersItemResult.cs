@@ -35,9 +35,17 @@ namespace Volcengine.Pulumi.Volcengine.Bioos.Outputs
         /// </summary>
         public readonly bool Public;
         /// <summary>
+        /// The configuration of the shared cluster.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.ClustersItemSharedConfigResult> SharedConfigs;
+        /// <summary>
         /// The start time of the cluster.
         /// </summary>
         public readonly int StartTime;
+        /// <summary>
+        /// The status of the clusters.
+        /// </summary>
+        public readonly string Status;
         /// <summary>
         /// The end time of the cluster.
         /// </summary>
@@ -63,7 +71,11 @@ namespace Volcengine.Pulumi.Volcengine.Bioos.Outputs
 
             bool @public,
 
+            ImmutableArray<Outputs.ClustersItemSharedConfigResult> sharedConfigs,
+
             int startTime,
+
+            string status,
 
             int stoppedTime,
 
@@ -76,7 +88,9 @@ namespace Volcengine.Pulumi.Volcengine.Bioos.Outputs
             Id = id;
             Name = name;
             Public = @public;
+            SharedConfigs = sharedConfigs;
             StartTime = startTime;
+            Status = status;
             StoppedTime = stoppedTime;
             VkeConfigId = vkeConfigId;
             VkeConfigStorageClass = vkeConfigStorageClass;

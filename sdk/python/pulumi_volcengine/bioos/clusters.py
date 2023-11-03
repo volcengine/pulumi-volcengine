@@ -85,6 +85,9 @@ class ClustersResult:
     @property
     @pulumi.getter
     def statuses(self) -> Optional[Sequence[str]]:
+        """
+        The status of the cluster.
+        """
         return pulumi.get(self, "statuses")
 
     @property
