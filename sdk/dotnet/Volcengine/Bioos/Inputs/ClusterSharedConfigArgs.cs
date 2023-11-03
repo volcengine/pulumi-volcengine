@@ -14,7 +14,7 @@ namespace Volcengine.Pulumi.Volcengine.Bioos.Inputs
     public sealed class ClusterSharedConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Whether to enable a shared cluster.
+        /// Whether to enable a shared cluster. This value must be `true`.
         /// </summary>
         [Input("enable", required: true)]
         public Input<bool> Enable { get; set; } = null!;

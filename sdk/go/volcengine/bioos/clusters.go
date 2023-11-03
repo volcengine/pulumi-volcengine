@@ -68,7 +68,8 @@ type ClustersResult struct {
 	Items      []ClustersItem `pulumi:"items"`
 	OutputFile *string        `pulumi:"outputFile"`
 	// whether it is a public cluster.
-	Public   *bool    `pulumi:"public"`
+	Public *bool `pulumi:"public"`
+	// The status of the cluster.
 	Statuses []string `pulumi:"statuses"`
 	// The total count of Cluster query.
 	TotalCount int      `pulumi:"totalCount"`
@@ -144,6 +145,7 @@ func (o ClustersResultOutput) Public() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ClustersResult) *bool { return v.Public }).(pulumi.BoolPtrOutput)
 }
 
+// The status of the cluster.
 func (o ClustersResultOutput) Statuses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ClustersResult) []string { return v.Statuses }).(pulumi.StringArrayOutput)
 }

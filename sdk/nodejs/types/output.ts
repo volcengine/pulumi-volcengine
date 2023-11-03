@@ -549,7 +549,7 @@ export namespace autoscaling {
 export namespace bioos {
     export interface ClusterSharedConfig {
         /**
-         * Whether to enable a shared cluster.
+         * Whether to enable a shared cluster. This value must be `true`.
          */
         enable: boolean;
     }
@@ -587,9 +587,17 @@ export namespace bioos {
          */
         public: boolean;
         /**
+         * The configuration of the shared cluster.
+         */
+        sharedConfigs: outputs.bioos.ClustersItemSharedConfig[];
+        /**
          * The start time of the cluster.
          */
         startTime: number;
+        /**
+         * The status of the clusters.
+         */
+        status: string;
         /**
          * The end time of the cluster.
          */
@@ -602,6 +610,13 @@ export namespace bioos {
          * The name of the StorageClass that the vke cluster has installed.
          */
         vkeConfigStorageClass: string;
+    }
+
+    export interface ClustersItemSharedConfig {
+        /**
+         * Whether to enable a shared cluster. This value must be `true`.
+         */
+        enable: boolean;
     }
 
     export interface WorkspacesItem {
@@ -1443,9 +1458,21 @@ export namespace clb {
          */
         aclType: string;
         /**
+         * The bandwidth of the Listener. Unit: Mbps.
+         */
+        bandwidth: number;
+        /**
          * The ID of the certificate which is associated with the Listener.
          */
         certificateId: string;
+        /**
+         * Whether to enable connection drain of the Listener.
+         */
+        connectionDrainEnabled: string;
+        /**
+         * The connection drain timeout of the Listener.
+         */
+        connectionDrainTimeout: number;
         /**
          * The create time of the Listener.
          */
@@ -1511,6 +1538,14 @@ export namespace clb {
          */
         listenerName: string;
         /**
+         * The persistence timeout of the Listener.
+         */
+        persistenceTimeout: number;
+        /**
+         * The persistence type of the Listener.
+         */
+        persistenceType: string;
+        /**
          * The port receiving request of the Listener.
          */
         port: number;
@@ -1518,6 +1553,10 @@ export namespace clb {
          * The protocol of the Listener.
          */
         protocol: string;
+        /**
+         * Whether to enable proxy protocol.
+         */
+        proxyProtocolType: string;
         /**
          * The ID of the backend server group which is associated with the Listener.
          */
@@ -2171,6 +2210,462 @@ export namespace cr {
 
 }
 
+export namespace direct_connect {
+    export interface BgpPeersBgpPeer {
+        /**
+         * The id of account.
+         */
+        accountId: string;
+        /**
+         * The key of auth.
+         */
+        authKey: string;
+        /**
+         * The id of bgp peer.
+         */
+        bgpPeerId: string;
+        /**
+         * The name of bgp peer.
+         */
+        bgpPeerName: string;
+        /**
+         * The create time of bgp peer.
+         */
+        creationTime: string;
+        /**
+         * The Description of bgp peer.
+         */
+        description: string;
+        /**
+         * The local asn of bgp peer.
+         */
+        localAsn: number;
+        /**
+         * The remote asn of bgp peer.
+         */
+        remoteAsn: number;
+        /**
+         * The session status of bgp peer.
+         */
+        sessionStatus: string;
+        /**
+         * The status of bgp peer.
+         */
+        status: string;
+        /**
+         * The update time of bgp peer.
+         */
+        updateTime: string;
+        /**
+         * The id of virtual interface.
+         */
+        virtualInterfaceId: string;
+    }
+
+    export interface ConnectionTag {
+        /**
+         * The tag key.
+         */
+        key?: string;
+        /**
+         * The tag value.
+         */
+        value?: string;
+    }
+
+    export interface ConnectionsDirectConnectConnection {
+        /**
+         * The account ID which the physical leased line belongs.
+         */
+        accountId: string;
+        /**
+         * The bandwidth of direct connect.
+         */
+        bandwidth: number;
+        /**
+         * The dedicated line billing type,only support `1` for yearly and monthly billing currently.
+         */
+        billingType: number;
+        /**
+         * The dedicated line billing status.
+         */
+        businessStatus: string;
+        /**
+         * The connection type of physical leased line,valid value contains `SharedConnection`,`DedicatedConnection`.
+         */
+        connectionType: string;
+        /**
+         * The creation time of direct connect.
+         */
+        creationTime: string;
+        /**
+         * The dedicated line contact email.
+         */
+        customerContactEmail: string;
+        /**
+         * The dedicated line contact phone.
+         */
+        customerContactPhone: string;
+        /**
+         * The dedicated line contact name.
+         */
+        customerName: string;
+        /**
+         * The expected resource force collection time.
+         */
+        deletedTime: string;
+        /**
+         * The description of direct connect connection.
+         */
+        description: string;
+        /**
+         * The ID of the physical leased line access point.
+         */
+        directConnectAccessPointId: string;
+        /**
+         * The ID of direct connect connection.
+         */
+        directConnectConnectionId: string;
+        /**
+         * The name of directi connect connection.
+         */
+        directConnectConnectionName: string;
+        /**
+         * The expect bandwidth of direct connect.
+         */
+        expectBandwidth: number;
+        /**
+         * The expired time.
+         */
+        expiredTime: string;
+        /**
+         * The operator of the physical leased line,valid value contains `ChinaTelecom`,`ChinaMobile`,`ChinaUnicom`,`ChinaOther`.
+         */
+        lineOperator: string;
+        /**
+         * The account ID of physical leased line to which the shared leased line belongs.If the physical leased line type is an exclusive leased line,this parameter returns empty.
+         */
+        parentConnectionAccountId: string;
+        /**
+         * The ID of the physical leased line to which the shared leased line belongs. If the physical leased line type is an exclusive leased line, this parameter returns empty.
+         */
+        parentConnectionId: string;
+        /**
+         * The peer access point of the physical leased line.
+         */
+        peerLocation: string;
+        /**
+         * The dedicated line port spec.
+         */
+        portSpec: string;
+        /**
+         * The port type of direct connect.
+         */
+        portType: string;
+        /**
+         * The status of physical leased line.
+         */
+        status: string;
+        /**
+         * All tags that physical leased line added.
+         */
+        tags: outputs.direct_connect.ConnectionsDirectConnectConnectionTag[];
+        /**
+         * The update time of direct connect.
+         */
+        updateTime: string;
+        /**
+         * The vlan ID of shared connection,if `connectionType` is `DedicatedConnection`,this parameter returns 0.
+         */
+        vlanId: number;
+    }
+
+    export interface ConnectionsDirectConnectConnectionTag {
+        /**
+         * The tag key of cloud resource instance.
+         */
+        key: string;
+        /**
+         * The tag value of cloud resource instance.
+         */
+        value: string;
+    }
+
+    export interface ConnectionsTagFilter {
+        /**
+         * The tag key of cloud resource instance.
+         */
+        key?: string;
+        /**
+         * The tag value of cloud resource instance.
+         */
+        value?: string;
+    }
+
+    export interface GatewayRoutesDirectConnectGatewayRoute {
+        /**
+         * The id of account.
+         */
+        accountId: string;
+        /**
+         * The create time.
+         */
+        creationTime: string;
+        /**
+         * The cidr block.
+         */
+        destinationCidrBlock: string;
+        /**
+         * The id of direct connect gateway.
+         */
+        directConnectGatewayId: string;
+        /**
+         * The id of direct connect gateway route.
+         */
+        directConnectGatewayRouteId: string;
+        /**
+         * The id of next hop.
+         */
+        nextHopId: string;
+        /**
+         * The type of next hop.
+         */
+        nextHopType: string;
+        /**
+         * The type of route. The value can be BGP or CEN or Static.
+         */
+        routeType: string;
+        /**
+         * The status info.
+         */
+        status: string;
+    }
+
+    export interface GatewayTag {
+        /**
+         * The tag key.
+         */
+        key?: string;
+        /**
+         * The tag value.
+         */
+        value?: string;
+    }
+
+    export interface GatewaysDirectConnectGateway {
+        /**
+         * The account ID that direct connect gateway belongs.
+         */
+        accountId: string;
+        /**
+         * The CEN information associated with the direct connect gateway.
+         */
+        associateCens: outputs.direct_connect.GatewaysDirectConnectGatewayAssociateCen[];
+        /**
+         * The business status of direct connect gateway.
+         */
+        businessStatus: string;
+        /**
+         * The creation time of direct connect gateway.
+         */
+        creationTime: string;
+        /**
+         * The expected resource force collection time. Only when the resource is frozen due to arrears, this parameter will have a return value, otherwise it will return a null value.
+         */
+        deletedTime: string;
+        /**
+         * The description of direct connect gateway.
+         */
+        description: string;
+        /**
+         * The direct connect gateway ID.
+         */
+        directConnectGatewayId: string;
+        /**
+         * The direst connect gateway name.
+         */
+        directConnectGatewayName: string;
+        /**
+         * The reason of the direct connect gateway locked.
+         */
+        lockReason: string;
+        /**
+         * The resource freeze time. Only when the resource is frozen due to arrears, this parameter will have a return value, otherwise it will return a null value.
+         */
+        overdueTime: string;
+        /**
+         * The status of direct connect gateway.
+         */
+        status: string;
+        /**
+         * The tags that direct connect gateway added.
+         */
+        tags: outputs.direct_connect.GatewaysDirectConnectGatewayTag[];
+        /**
+         * The update time of direct connect gateway.
+         */
+        updateTime: string;
+    }
+
+    export interface GatewaysDirectConnectGatewayAssociateCen {
+        /**
+         * The CEN ID which direct connect gateway belongs.
+         */
+        cenId: string;
+        /**
+         * The CEN owner's ID.
+         */
+        cenOwnerId: string;
+        /**
+         * The CEN status.
+         */
+        cenStatus: string;
+    }
+
+    export interface GatewaysDirectConnectGatewayTag {
+        /**
+         * The tag key of cloud resource instance.
+         */
+        key: string;
+        /**
+         * The tag value of cloud resource instance.
+         */
+        value: string;
+    }
+
+    export interface GatewaysTagFilter {
+        /**
+         * The tag key of cloud resource instance.
+         */
+        key?: string;
+        /**
+         * The tag value of cloud resource instance.
+         */
+        value?: string;
+    }
+
+    export interface VirtualInterfaceTag {
+        /**
+         * The tag key.
+         */
+        key?: string;
+        /**
+         * The tag value.
+         */
+        value?: string;
+    }
+
+    export interface VirtualInterfacesTagFilter {
+        /**
+         * The tag key of cloud resource instance.
+         */
+        key?: string;
+        /**
+         * The tag value of cloud resource instance.
+         */
+        value?: string;
+    }
+
+    export interface VirtualInterfacesVirtualInterface {
+        /**
+         * The account ID which this virtual interface belongs.
+         */
+        accountId: string;
+        /**
+         * The band width limit of virtual interface,in Mbps.
+         */
+        bandwidth: number;
+        /**
+         * The BFD detect interval.
+         */
+        bfdDetectInterval: number;
+        /**
+         * The BFD detect times.
+         */
+        bfdDetectMultiplier: number;
+        /**
+         * The creation time of virtual interface.
+         */
+        creationTime: string;
+        /**
+         * The description of the virtual interface.
+         */
+        description: string;
+        /**
+         * The direct connect connection ID that associated with this virtual interface.
+         */
+        directConnectConnectionId: string;
+        /**
+         * The direct connect gateway ID that associated with this virtual interface.
+         */
+        directConnectGatewayId: string;
+        /**
+         * Whether enable BFD detect.
+         */
+        enableBfd: boolean;
+        /**
+         * Whether enable NQA detect.
+         */
+        enableNqa: boolean;
+        /**
+         * The local IP that associated with this virtual interface.
+         */
+        localIp: string;
+        /**
+         * The NQA detect interval.
+         */
+        nqaDetectInterval: number;
+        /**
+         * The NAQ detect times.
+         */
+        nqaDetectMultiplier: number;
+        /**
+         * The peer IP that associated with this virtual interface.
+         */
+        peerIp: string;
+        /**
+         * The route type of virtual interface.
+         */
+        routeType: string;
+        /**
+         * The status of virtaul interface.
+         */
+        status: string;
+        /**
+         * The tags that direct connect gateway added.
+         */
+        tags: outputs.direct_connect.VirtualInterfacesVirtualInterfaceTag[];
+        /**
+         * The update time of virtual interface.
+         */
+        updateTime: string;
+        /**
+         * The virtual interface ID.
+         */
+        virtualInterfaceId: string;
+        /**
+         * The name of virtual interface.
+         */
+        virtualInterfaceName: string;
+        /**
+         * The VLAN ID of virtual interface.
+         */
+        vlanId: number;
+    }
+
+    export interface VirtualInterfacesVirtualInterfaceTag {
+        /**
+         * The tag key of cloud resource instance.
+         */
+        key: string;
+        /**
+         * The tag value of cloud resource instance.
+         */
+        value: string;
+    }
+
+}
+
 export namespace ebs {
     export interface VolumesVolume {
         billingType: number;
@@ -2213,6 +2708,47 @@ export namespace ebs {
 }
 
 export namespace ecs {
+    export interface AvailableResourcesAvailableZone {
+        /**
+         * The resource information of the available zone.
+         */
+        availableResources: outputs.ecs.AvailableResourcesAvailableZoneAvailableResource[];
+        /**
+         * The id of the region.
+         */
+        regionId: string;
+        /**
+         * The resource status of the available zone. Valid values: `Available`, `SoldOut`.
+         */
+        status: string;
+        /**
+         * The id of available zone.
+         */
+        zoneId: string;
+    }
+
+    export interface AvailableResourcesAvailableZoneAvailableResource {
+        /**
+         * The supported resource information.
+         */
+        supportedResources: outputs.ecs.AvailableResourcesAvailableZoneAvailableResourceSupportedResource[];
+        /**
+         * The type of resource. Valid values: `InstanceType`, `DedicatedHost`.
+         */
+        type: string;
+    }
+
+    export interface AvailableResourcesAvailableZoneAvailableResourceSupportedResource {
+        /**
+         * The resource status of the available zone. Valid values: `Available`, `SoldOut`.
+         */
+        status: string;
+        /**
+         * The value of the resource.
+         */
+        value: string;
+    }
+
     export interface CommandsCommand {
         /**
          * The base64 encoded content of the ecs command.
@@ -9500,6 +10036,127 @@ export namespace transit_router {
          * The ID of the peer attachment.
          */
         transitRouterPeerAttachmentId: string;
+    }
+
+    export interface DirectConnectGatewayAttachmentsAttachment {
+        /**
+         * The account id.
+         */
+        accountId: string;
+        /**
+         * The create time.
+         */
+        creationTime: string;
+        /**
+         * The description info.
+         */
+        description: string;
+        /**
+         * ID of the direct connection gateway.
+         */
+        directConnectGatewayId: string;
+        /**
+         * The status of the network instance connection.
+         */
+        status: string;
+        /**
+         * The id of the transit router attachment.
+         */
+        transitRouterAttachmentId: string;
+        /**
+         * The name of the transit router attachment.
+         */
+        transitRouterAttachmentName: string;
+        /**
+         * The id of the transit router.
+         */
+        transitRouterId: string;
+        /**
+         * The update time.
+         */
+        updateTime: string;
+    }
+
+    export interface GrantRulesRule {
+        /**
+         * The creation time of the rule.
+         */
+        creationTime: string;
+        /**
+         * The description of the rule.
+         */
+        description: string;
+        /**
+         * The id of the grant account.
+         */
+        grantAccountId: string;
+        /**
+         * The status of the rule.
+         */
+        status: string;
+        /**
+         * The id of the transit router.
+         */
+        transitRouterId: string;
+        /**
+         * The update time of the rule.
+         */
+        updateTime: string;
+    }
+
+    export interface PeerAttachmentsTransitRouterAttachment {
+        /**
+         * The bandwidth of the transit router peer attachment.
+         */
+        bandwidth: number;
+        /**
+         * The creation time of the transit router peer attachment.
+         */
+        creationTime: string;
+        /**
+         * The description of the transit router peer attachment.
+         */
+        description: string;
+        /**
+         * The id of the transit router peer attachment.
+         */
+        id: string;
+        /**
+         * The id of peer transit router.
+         */
+        peerTransitRouterId: string;
+        /**
+         * The region id of peer transit router.
+         */
+        peerTransitRouterRegionId: string;
+        /**
+         * The status of the transit router peer attachment.
+         */
+        status: string;
+        /**
+         * The id of the transit router peer attachment.
+         */
+        transitRouterAttachmentId: string;
+        /**
+         * The name of transit router peer attachment.
+         */
+        transitRouterAttachmentName: string;
+        /**
+         * The bandwidth package id of the transit router peer attachment.
+         */
+        transitRouterBandwidthPackageId: string;
+        /**
+         * The id of local transit router.
+         */
+        transitRouterId: string;
+        /**
+         * The route table id of the transit router peer attachment.
+         */
+        transitRouterRouteTableId: string;
+        /**
+         * The update time of the transit router peer attachment.
+         */
+        updateTime: string;
     }
 
     export interface RouteEntriesEntry {

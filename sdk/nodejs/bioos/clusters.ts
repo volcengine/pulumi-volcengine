@@ -74,6 +74,9 @@ export interface ClustersResult {
      * whether it is a public cluster.
      */
     readonly public?: boolean;
+    /**
+     * The status of the cluster.
+     */
     readonly statuses?: string[];
     /**
      * The total count of Cluster query.

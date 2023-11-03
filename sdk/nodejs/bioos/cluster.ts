@@ -16,9 +16,9 @@ import * as utilities from "../utilities";
  *
  * const foo = new volcengine.bioos.Cluster("foo", {
  *     description: "test-description",
- *     sharedConfigs: [{
+ *     sharedConfig: {
  *         enable: true,
- *     }],
+ *     },
  * });
  * ```
  *
@@ -73,11 +73,11 @@ export class Cluster extends pulumi.CustomResource {
     /**
      * The configuration of the shared cluster.
      */
-    public readonly sharedConfigs!: pulumi.Output<outputs.bioos.ClusterSharedConfig[] | undefined>;
+    public readonly sharedConfig!: pulumi.Output<outputs.bioos.ClusterSharedConfig>;
     /**
-     * The configuration of the vke cluster.
+     * The configuration of the vke cluster. This cluster type is not recommended. It is recommended to use a shared cluster.
      */
-    public readonly vkeConfigs!: pulumi.Output<outputs.bioos.ClusterVkeConfig[] | undefined>;
+    public readonly vkeConfig!: pulumi.Output<outputs.bioos.ClusterVkeConfig>;
 
     /**
      * Create a Cluster resource with the given unique name, arguments, and options.
@@ -95,14 +95,14 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["clusterId"] = state ? state.clusterId : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["sharedConfigs"] = state ? state.sharedConfigs : undefined;
-            resourceInputs["vkeConfigs"] = state ? state.vkeConfigs : undefined;
+            resourceInputs["sharedConfig"] = state ? state.sharedConfig : undefined;
+            resourceInputs["vkeConfig"] = state ? state.vkeConfig : undefined;
         } else {
             const args = argsOrState as ClusterArgs | undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["sharedConfigs"] = args ? args.sharedConfigs : undefined;
-            resourceInputs["vkeConfigs"] = args ? args.vkeConfigs : undefined;
+            resourceInputs["sharedConfig"] = args ? args.sharedConfig : undefined;
+            resourceInputs["vkeConfig"] = args ? args.vkeConfig : undefined;
             resourceInputs["clusterId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -129,11 +129,11 @@ export interface ClusterState {
     /**
      * The configuration of the shared cluster.
      */
-    sharedConfigs?: pulumi.Input<pulumi.Input<inputs.bioos.ClusterSharedConfig>[]>;
+    sharedConfig?: pulumi.Input<inputs.bioos.ClusterSharedConfig>;
     /**
-     * The configuration of the vke cluster.
+     * The configuration of the vke cluster. This cluster type is not recommended. It is recommended to use a shared cluster.
      */
-    vkeConfigs?: pulumi.Input<pulumi.Input<inputs.bioos.ClusterVkeConfig>[]>;
+    vkeConfig?: pulumi.Input<inputs.bioos.ClusterVkeConfig>;
 }
 
 /**
@@ -151,9 +151,9 @@ export interface ClusterArgs {
     /**
      * The configuration of the shared cluster.
      */
-    sharedConfigs?: pulumi.Input<pulumi.Input<inputs.bioos.ClusterSharedConfig>[]>;
+    sharedConfig?: pulumi.Input<inputs.bioos.ClusterSharedConfig>;
     /**
-     * The configuration of the vke cluster.
+     * The configuration of the vke cluster. This cluster type is not recommended. It is recommended to use a shared cluster.
      */
-    vkeConfigs?: pulumi.Input<pulumi.Input<inputs.bioos.ClusterVkeConfig>[]>;
+    vkeConfig?: pulumi.Input<inputs.bioos.ClusterVkeConfig>;
 }

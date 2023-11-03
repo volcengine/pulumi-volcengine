@@ -19,6 +19,7 @@ import * as clb from "./clb";
 import * as cloudfs from "./cloudfs";
 import * as config from "./config";
 import * as cr from "./cr";
+import * as direct_connect from "./direct_connect";
 import * as ebs from "./ebs";
 import * as ecs from "./ecs";
 import * as eip from "./eip";
@@ -49,6 +50,7 @@ export {
     cloudfs,
     config,
     cr,
+    direct_connect,
     ebs,
     ecs,
     eip,

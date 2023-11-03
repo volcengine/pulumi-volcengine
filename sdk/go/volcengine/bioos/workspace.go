@@ -53,7 +53,7 @@ type Workspace struct {
 	pulumi.CustomResourceState
 
 	// Cover path (relative path in tos bucket).
-	CoverPath pulumi.StringPtrOutput `pulumi:"coverPath"`
+	CoverPath pulumi.StringOutput `pulumi:"coverPath"`
 	// The description of the workspace.
 	Description pulumi.StringOutput `pulumi:"description"`
 	// The name of the workspace.
@@ -233,8 +233,8 @@ func (o WorkspaceOutput) ToWorkspaceOutputWithContext(ctx context.Context) Works
 }
 
 // Cover path (relative path in tos bucket).
-func (o WorkspaceOutput) CoverPath() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Workspace) pulumi.StringPtrOutput { return v.CoverPath }).(pulumi.StringPtrOutput)
+func (o WorkspaceOutput) CoverPath() pulumi.StringOutput {
+	return o.ApplyT(func(v *Workspace) pulumi.StringOutput { return v.CoverPath }).(pulumi.StringOutput)
 }
 
 // The description of the workspace.

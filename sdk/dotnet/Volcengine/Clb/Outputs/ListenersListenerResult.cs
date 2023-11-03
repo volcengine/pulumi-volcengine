@@ -27,9 +27,21 @@ namespace Volcengine.Pulumi.Volcengine.Clb.Outputs
         /// </summary>
         public readonly string AclType;
         /// <summary>
+        /// The bandwidth of the Listener. Unit: Mbps.
+        /// </summary>
+        public readonly int Bandwidth;
+        /// <summary>
         /// The ID of the certificate which is associated with the Listener.
         /// </summary>
         public readonly string CertificateId;
+        /// <summary>
+        /// Whether to enable connection drain of the Listener.
+        /// </summary>
+        public readonly string ConnectionDrainEnabled;
+        /// <summary>
+        /// The connection drain timeout of the Listener.
+        /// </summary>
+        public readonly int ConnectionDrainTimeout;
         /// <summary>
         /// The create time of the Listener.
         /// </summary>
@@ -95,6 +107,14 @@ namespace Volcengine.Pulumi.Volcengine.Clb.Outputs
         /// </summary>
         public readonly string ListenerName;
         /// <summary>
+        /// The persistence timeout of the Listener.
+        /// </summary>
+        public readonly int PersistenceTimeout;
+        /// <summary>
+        /// The persistence type of the Listener.
+        /// </summary>
+        public readonly string PersistenceType;
+        /// <summary>
         /// The port receiving request of the Listener.
         /// </summary>
         public readonly int Port;
@@ -102,6 +122,10 @@ namespace Volcengine.Pulumi.Volcengine.Clb.Outputs
         /// The protocol of the Listener.
         /// </summary>
         public readonly string Protocol;
+        /// <summary>
+        /// Whether to enable proxy protocol.
+        /// </summary>
+        public readonly string ProxyProtocolType;
         /// <summary>
         /// The ID of the backend server group which is associated with the Listener.
         /// </summary>
@@ -123,7 +147,13 @@ namespace Volcengine.Pulumi.Volcengine.Clb.Outputs
 
             string aclType,
 
+            int bandwidth,
+
             string certificateId,
+
+            string connectionDrainEnabled,
+
+            int connectionDrainTimeout,
 
             string createTime,
 
@@ -157,9 +187,15 @@ namespace Volcengine.Pulumi.Volcengine.Clb.Outputs
 
             string listenerName,
 
+            int persistenceTimeout,
+
+            string persistenceType,
+
             int port,
 
             string protocol,
+
+            string proxyProtocolType,
 
             string serverGroupId,
 
@@ -170,7 +206,10 @@ namespace Volcengine.Pulumi.Volcengine.Clb.Outputs
             AclIds = aclIds;
             AclStatus = aclStatus;
             AclType = aclType;
+            Bandwidth = bandwidth;
             CertificateId = certificateId;
+            ConnectionDrainEnabled = connectionDrainEnabled;
+            ConnectionDrainTimeout = connectionDrainTimeout;
             CreateTime = createTime;
             Enabled = enabled;
             HealthCheckDomain = healthCheckDomain;
@@ -187,8 +226,11 @@ namespace Volcengine.Pulumi.Volcengine.Clb.Outputs
             Id = id;
             ListenerId = listenerId;
             ListenerName = listenerName;
+            PersistenceTimeout = persistenceTimeout;
+            PersistenceType = persistenceType;
             Port = port;
             Protocol = protocol;
+            ProxyProtocolType = proxyProtocolType;
             ServerGroupId = serverGroupId;
             Status = status;
             UpdateTime = updateTime;

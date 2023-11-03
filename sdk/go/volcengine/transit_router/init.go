@@ -23,6 +23,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "volcengine:transit_router/bandwidthPackage:BandwidthPackage":
 		r = &BandwidthPackage{}
+	case "volcengine:transit_router/directConnectGatewayAttachment:DirectConnectGatewayAttachment":
+		r = &DirectConnectGatewayAttachment{}
+	case "volcengine:transit_router/grantRule:GrantRule":
+		r = &GrantRule{}
+	case "volcengine:transit_router/peerAttachment:PeerAttachment":
+		r = &PeerAttachment{}
 	case "volcengine:transit_router/routeEntry:RouteEntry":
 		r = &RouteEntry{}
 	case "volcengine:transit_router/routeTable:RouteTable":
@@ -31,6 +37,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &RouteTableAssociation{}
 	case "volcengine:transit_router/routeTablePropagation:RouteTablePropagation":
 		r = &RouteTablePropagation{}
+	case "volcengine:transit_router/sharedTransitRouterState:SharedTransitRouterState":
+		r = &SharedTransitRouterState{}
 	case "volcengine:transit_router/transitRouter:TransitRouter":
 		r = &TransitRouter{}
 	case "volcengine:transit_router/vpcAttachment:VpcAttachment":
@@ -57,6 +65,21 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
+		"transit_router/directConnectGatewayAttachment",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"transit_router/grantRule",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"transit_router/peerAttachment",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
 		"transit_router/routeEntry",
 		&module{version},
 	)
@@ -73,6 +96,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"volcengine",
 		"transit_router/routeTablePropagation",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"transit_router/sharedTransitRouterState",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

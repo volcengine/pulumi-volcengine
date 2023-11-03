@@ -25,12 +25,9 @@ namespace Volcengine.Pulumi.Volcengine.Bioos
     ///     var foo = new Volcengine.Bioos.Cluster("foo", new()
     ///     {
     ///         Description = "test-description",
-    ///         SharedConfigs = new[]
+    ///         SharedConfig = new Volcengine.Bioos.Inputs.ClusterSharedConfigArgs
     ///         {
-    ///             new Volcengine.Bioos.Inputs.ClusterSharedConfigArgs
-    ///             {
-    ///                 Enable = true,
-    ///             },
+    ///             Enable = true,
     ///         },
     ///     });
     /// 
@@ -69,14 +66,14 @@ namespace Volcengine.Pulumi.Volcengine.Bioos
         /// <summary>
         /// The configuration of the shared cluster.
         /// </summary>
-        [Output("sharedConfigs")]
-        public Output<ImmutableArray<Outputs.ClusterSharedConfig>> SharedConfigs { get; private set; } = null!;
+        [Output("sharedConfig")]
+        public Output<Outputs.ClusterSharedConfig> SharedConfig { get; private set; } = null!;
 
         /// <summary>
-        /// The configuration of the vke cluster.
+        /// The configuration of the vke cluster. This cluster type is not recommended. It is recommended to use a shared cluster.
         /// </summary>
-        [Output("vkeConfigs")]
-        public Output<ImmutableArray<Outputs.ClusterVkeConfig>> VkeConfigs { get; private set; } = null!;
+        [Output("vkeConfig")]
+        public Output<Outputs.ClusterVkeConfig> VkeConfig { get; private set; } = null!;
 
 
         /// <summary>
@@ -137,29 +134,17 @@ namespace Volcengine.Pulumi.Volcengine.Bioos
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        [Input("sharedConfigs")]
-        private InputList<Inputs.ClusterSharedConfigArgs>? _sharedConfigs;
-
         /// <summary>
         /// The configuration of the shared cluster.
         /// </summary>
-        public InputList<Inputs.ClusterSharedConfigArgs> SharedConfigs
-        {
-            get => _sharedConfigs ?? (_sharedConfigs = new InputList<Inputs.ClusterSharedConfigArgs>());
-            set => _sharedConfigs = value;
-        }
-
-        [Input("vkeConfigs")]
-        private InputList<Inputs.ClusterVkeConfigArgs>? _vkeConfigs;
+        [Input("sharedConfig")]
+        public Input<Inputs.ClusterSharedConfigArgs>? SharedConfig { get; set; }
 
         /// <summary>
-        /// The configuration of the vke cluster.
+        /// The configuration of the vke cluster. This cluster type is not recommended. It is recommended to use a shared cluster.
         /// </summary>
-        public InputList<Inputs.ClusterVkeConfigArgs> VkeConfigs
-        {
-            get => _vkeConfigs ?? (_vkeConfigs = new InputList<Inputs.ClusterVkeConfigArgs>());
-            set => _vkeConfigs = value;
-        }
+        [Input("vkeConfig")]
+        public Input<Inputs.ClusterVkeConfigArgs>? VkeConfig { get; set; }
 
         public ClusterArgs()
         {
@@ -187,29 +172,17 @@ namespace Volcengine.Pulumi.Volcengine.Bioos
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        [Input("sharedConfigs")]
-        private InputList<Inputs.ClusterSharedConfigGetArgs>? _sharedConfigs;
-
         /// <summary>
         /// The configuration of the shared cluster.
         /// </summary>
-        public InputList<Inputs.ClusterSharedConfigGetArgs> SharedConfigs
-        {
-            get => _sharedConfigs ?? (_sharedConfigs = new InputList<Inputs.ClusterSharedConfigGetArgs>());
-            set => _sharedConfigs = value;
-        }
-
-        [Input("vkeConfigs")]
-        private InputList<Inputs.ClusterVkeConfigGetArgs>? _vkeConfigs;
+        [Input("sharedConfig")]
+        public Input<Inputs.ClusterSharedConfigGetArgs>? SharedConfig { get; set; }
 
         /// <summary>
-        /// The configuration of the vke cluster.
+        /// The configuration of the vke cluster. This cluster type is not recommended. It is recommended to use a shared cluster.
         /// </summary>
-        public InputList<Inputs.ClusterVkeConfigGetArgs> VkeConfigs
-        {
-            get => _vkeConfigs ?? (_vkeConfigs = new InputList<Inputs.ClusterVkeConfigGetArgs>());
-            set => _vkeConfigs = value;
-        }
+        [Input("vkeConfig")]
+        public Input<Inputs.ClusterVkeConfigGetArgs>? VkeConfig { get; set; }
 
         public ClusterState()
         {

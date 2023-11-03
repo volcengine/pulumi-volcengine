@@ -18,23 +18,23 @@ class ClusterArgs:
     def __init__(__self__, *,
                  description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 shared_configs: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterSharedConfigArgs']]]] = None,
-                 vke_configs: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterVkeConfigArgs']]]] = None):
+                 shared_config: Optional[pulumi.Input['ClusterSharedConfigArgs']] = None,
+                 vke_config: Optional[pulumi.Input['ClusterVkeConfigArgs']] = None):
         """
         The set of arguments for constructing a Cluster resource.
         :param pulumi.Input[str] description: The description of the cluster.
         :param pulumi.Input[str] name: The name of the cluster.
-        :param pulumi.Input[Sequence[pulumi.Input['ClusterSharedConfigArgs']]] shared_configs: The configuration of the shared cluster.
-        :param pulumi.Input[Sequence[pulumi.Input['ClusterVkeConfigArgs']]] vke_configs: The configuration of the vke cluster.
+        :param pulumi.Input['ClusterSharedConfigArgs'] shared_config: The configuration of the shared cluster.
+        :param pulumi.Input['ClusterVkeConfigArgs'] vke_config: The configuration of the vke cluster. This cluster type is not recommended. It is recommended to use a shared cluster.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
         if name is not None:
             pulumi.set(__self__, "name", name)
-        if shared_configs is not None:
-            pulumi.set(__self__, "shared_configs", shared_configs)
-        if vke_configs is not None:
-            pulumi.set(__self__, "vke_configs", vke_configs)
+        if shared_config is not None:
+            pulumi.set(__self__, "shared_config", shared_config)
+        if vke_config is not None:
+            pulumi.set(__self__, "vke_config", vke_config)
 
     @property
     @pulumi.getter
@@ -61,28 +61,28 @@ class ClusterArgs:
         pulumi.set(self, "name", value)
 
     @property
-    @pulumi.getter(name="sharedConfigs")
-    def shared_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterSharedConfigArgs']]]]:
+    @pulumi.getter(name="sharedConfig")
+    def shared_config(self) -> Optional[pulumi.Input['ClusterSharedConfigArgs']]:
         """
         The configuration of the shared cluster.
         """
-        return pulumi.get(self, "shared_configs")
+        return pulumi.get(self, "shared_config")
 
-    @shared_configs.setter
-    def shared_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterSharedConfigArgs']]]]):
-        pulumi.set(self, "shared_configs", value)
+    @shared_config.setter
+    def shared_config(self, value: Optional[pulumi.Input['ClusterSharedConfigArgs']]):
+        pulumi.set(self, "shared_config", value)
 
     @property
-    @pulumi.getter(name="vkeConfigs")
-    def vke_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterVkeConfigArgs']]]]:
+    @pulumi.getter(name="vkeConfig")
+    def vke_config(self) -> Optional[pulumi.Input['ClusterVkeConfigArgs']]:
         """
-        The configuration of the vke cluster.
+        The configuration of the vke cluster. This cluster type is not recommended. It is recommended to use a shared cluster.
         """
-        return pulumi.get(self, "vke_configs")
+        return pulumi.get(self, "vke_config")
 
-    @vke_configs.setter
-    def vke_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterVkeConfigArgs']]]]):
-        pulumi.set(self, "vke_configs", value)
+    @vke_config.setter
+    def vke_config(self, value: Optional[pulumi.Input['ClusterVkeConfigArgs']]):
+        pulumi.set(self, "vke_config", value)
 
 
 @pulumi.input_type
@@ -91,15 +91,15 @@ class _ClusterState:
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 shared_configs: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterSharedConfigArgs']]]] = None,
-                 vke_configs: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterVkeConfigArgs']]]] = None):
+                 shared_config: Optional[pulumi.Input['ClusterSharedConfigArgs']] = None,
+                 vke_config: Optional[pulumi.Input['ClusterVkeConfigArgs']] = None):
         """
         Input properties used for looking up and filtering Cluster resources.
         :param pulumi.Input[str] cluster_id: The id of the vke cluster.
         :param pulumi.Input[str] description: The description of the cluster.
         :param pulumi.Input[str] name: The name of the cluster.
-        :param pulumi.Input[Sequence[pulumi.Input['ClusterSharedConfigArgs']]] shared_configs: The configuration of the shared cluster.
-        :param pulumi.Input[Sequence[pulumi.Input['ClusterVkeConfigArgs']]] vke_configs: The configuration of the vke cluster.
+        :param pulumi.Input['ClusterSharedConfigArgs'] shared_config: The configuration of the shared cluster.
+        :param pulumi.Input['ClusterVkeConfigArgs'] vke_config: The configuration of the vke cluster. This cluster type is not recommended. It is recommended to use a shared cluster.
         """
         if cluster_id is not None:
             pulumi.set(__self__, "cluster_id", cluster_id)
@@ -107,10 +107,10 @@ class _ClusterState:
             pulumi.set(__self__, "description", description)
         if name is not None:
             pulumi.set(__self__, "name", name)
-        if shared_configs is not None:
-            pulumi.set(__self__, "shared_configs", shared_configs)
-        if vke_configs is not None:
-            pulumi.set(__self__, "vke_configs", vke_configs)
+        if shared_config is not None:
+            pulumi.set(__self__, "shared_config", shared_config)
+        if vke_config is not None:
+            pulumi.set(__self__, "vke_config", vke_config)
 
     @property
     @pulumi.getter(name="clusterId")
@@ -149,28 +149,28 @@ class _ClusterState:
         pulumi.set(self, "name", value)
 
     @property
-    @pulumi.getter(name="sharedConfigs")
-    def shared_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterSharedConfigArgs']]]]:
+    @pulumi.getter(name="sharedConfig")
+    def shared_config(self) -> Optional[pulumi.Input['ClusterSharedConfigArgs']]:
         """
         The configuration of the shared cluster.
         """
-        return pulumi.get(self, "shared_configs")
+        return pulumi.get(self, "shared_config")
 
-    @shared_configs.setter
-    def shared_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterSharedConfigArgs']]]]):
-        pulumi.set(self, "shared_configs", value)
+    @shared_config.setter
+    def shared_config(self, value: Optional[pulumi.Input['ClusterSharedConfigArgs']]):
+        pulumi.set(self, "shared_config", value)
 
     @property
-    @pulumi.getter(name="vkeConfigs")
-    def vke_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterVkeConfigArgs']]]]:
+    @pulumi.getter(name="vkeConfig")
+    def vke_config(self) -> Optional[pulumi.Input['ClusterVkeConfigArgs']]:
         """
-        The configuration of the vke cluster.
+        The configuration of the vke cluster. This cluster type is not recommended. It is recommended to use a shared cluster.
         """
-        return pulumi.get(self, "vke_configs")
+        return pulumi.get(self, "vke_config")
 
-    @vke_configs.setter
-    def vke_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterVkeConfigArgs']]]]):
-        pulumi.set(self, "vke_configs", value)
+    @vke_config.setter
+    def vke_config(self, value: Optional[pulumi.Input['ClusterVkeConfigArgs']]):
+        pulumi.set(self, "vke_config", value)
 
 
 class Cluster(pulumi.CustomResource):
@@ -180,8 +180,8 @@ class Cluster(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 shared_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterSharedConfigArgs']]]]] = None,
-                 vke_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterVkeConfigArgs']]]]] = None,
+                 shared_config: Optional[pulumi.Input[pulumi.InputType['ClusterSharedConfigArgs']]] = None,
+                 vke_config: Optional[pulumi.Input[pulumi.InputType['ClusterVkeConfigArgs']]] = None,
                  __props__=None):
         """
         Provides a resource to manage bioos cluster
@@ -193,9 +193,9 @@ class Cluster(pulumi.CustomResource):
 
         foo = volcengine.bioos.Cluster("foo",
             description="test-description",
-            shared_configs=[volcengine.bioos.ClusterSharedConfigArgs(
+            shared_config=volcengine.bioos.ClusterSharedConfigArgs(
                 enable=True,
-            )])
+            ))
         ```
 
         ## Import
@@ -210,8 +210,8 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the cluster.
         :param pulumi.Input[str] name: The name of the cluster.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterSharedConfigArgs']]]] shared_configs: The configuration of the shared cluster.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterVkeConfigArgs']]]] vke_configs: The configuration of the vke cluster.
+        :param pulumi.Input[pulumi.InputType['ClusterSharedConfigArgs']] shared_config: The configuration of the shared cluster.
+        :param pulumi.Input[pulumi.InputType['ClusterVkeConfigArgs']] vke_config: The configuration of the vke cluster. This cluster type is not recommended. It is recommended to use a shared cluster.
         """
         ...
     @overload
@@ -229,9 +229,9 @@ class Cluster(pulumi.CustomResource):
 
         foo = volcengine.bioos.Cluster("foo",
             description="test-description",
-            shared_configs=[volcengine.bioos.ClusterSharedConfigArgs(
+            shared_config=volcengine.bioos.ClusterSharedConfigArgs(
                 enable=True,
-            )])
+            ))
         ```
 
         ## Import
@@ -259,8 +259,8 @@ class Cluster(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 shared_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterSharedConfigArgs']]]]] = None,
-                 vke_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterVkeConfigArgs']]]]] = None,
+                 shared_config: Optional[pulumi.Input[pulumi.InputType['ClusterSharedConfigArgs']]] = None,
+                 vke_config: Optional[pulumi.Input[pulumi.InputType['ClusterVkeConfigArgs']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -272,8 +272,8 @@ class Cluster(pulumi.CustomResource):
 
             __props__.__dict__["description"] = description
             __props__.__dict__["name"] = name
-            __props__.__dict__["shared_configs"] = shared_configs
-            __props__.__dict__["vke_configs"] = vke_configs
+            __props__.__dict__["shared_config"] = shared_config
+            __props__.__dict__["vke_config"] = vke_config
             __props__.__dict__["cluster_id"] = None
         super(Cluster, __self__).__init__(
             'volcengine:bioos/cluster:Cluster',
@@ -288,8 +288,8 @@ class Cluster(pulumi.CustomResource):
             cluster_id: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            shared_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterSharedConfigArgs']]]]] = None,
-            vke_configs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterVkeConfigArgs']]]]] = None) -> 'Cluster':
+            shared_config: Optional[pulumi.Input[pulumi.InputType['ClusterSharedConfigArgs']]] = None,
+            vke_config: Optional[pulumi.Input[pulumi.InputType['ClusterVkeConfigArgs']]] = None) -> 'Cluster':
         """
         Get an existing Cluster resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -300,8 +300,8 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] cluster_id: The id of the vke cluster.
         :param pulumi.Input[str] description: The description of the cluster.
         :param pulumi.Input[str] name: The name of the cluster.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterSharedConfigArgs']]]] shared_configs: The configuration of the shared cluster.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ClusterVkeConfigArgs']]]] vke_configs: The configuration of the vke cluster.
+        :param pulumi.Input[pulumi.InputType['ClusterSharedConfigArgs']] shared_config: The configuration of the shared cluster.
+        :param pulumi.Input[pulumi.InputType['ClusterVkeConfigArgs']] vke_config: The configuration of the vke cluster. This cluster type is not recommended. It is recommended to use a shared cluster.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -310,8 +310,8 @@ class Cluster(pulumi.CustomResource):
         __props__.__dict__["cluster_id"] = cluster_id
         __props__.__dict__["description"] = description
         __props__.__dict__["name"] = name
-        __props__.__dict__["shared_configs"] = shared_configs
-        __props__.__dict__["vke_configs"] = vke_configs
+        __props__.__dict__["shared_config"] = shared_config
+        __props__.__dict__["vke_config"] = vke_config
         return Cluster(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -339,18 +339,18 @@ class Cluster(pulumi.CustomResource):
         return pulumi.get(self, "name")
 
     @property
-    @pulumi.getter(name="sharedConfigs")
-    def shared_configs(self) -> pulumi.Output[Optional[Sequence['outputs.ClusterSharedConfig']]]:
+    @pulumi.getter(name="sharedConfig")
+    def shared_config(self) -> pulumi.Output['outputs.ClusterSharedConfig']:
         """
         The configuration of the shared cluster.
         """
-        return pulumi.get(self, "shared_configs")
+        return pulumi.get(self, "shared_config")
 
     @property
-    @pulumi.getter(name="vkeConfigs")
-    def vke_configs(self) -> pulumi.Output[Optional[Sequence['outputs.ClusterVkeConfig']]]:
+    @pulumi.getter(name="vkeConfig")
+    def vke_config(self) -> pulumi.Output['outputs.ClusterVkeConfig']:
         """
-        The configuration of the vke cluster.
+        The configuration of the vke cluster. This cluster type is not recommended. It is recommended to use a shared cluster.
         """
-        return pulumi.get(self, "vke_configs")
+        return pulumi.get(self, "vke_config")
 

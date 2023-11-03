@@ -13,6 +13,346 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type AvailableResourcesAvailableZone struct {
+	// The resource information of the available zone.
+	AvailableResources []AvailableResourcesAvailableZoneAvailableResource `pulumi:"availableResources"`
+	// The id of the region.
+	RegionId string `pulumi:"regionId"`
+	// The resource status of the available zone. Valid values: `Available`, `SoldOut`.
+	Status string `pulumi:"status"`
+	// The id of available zone.
+	ZoneId string `pulumi:"zoneId"`
+}
+
+// AvailableResourcesAvailableZoneInput is an input type that accepts AvailableResourcesAvailableZoneArgs and AvailableResourcesAvailableZoneOutput values.
+// You can construct a concrete instance of `AvailableResourcesAvailableZoneInput` via:
+//
+//	AvailableResourcesAvailableZoneArgs{...}
+type AvailableResourcesAvailableZoneInput interface {
+	pulumi.Input
+
+	ToAvailableResourcesAvailableZoneOutput() AvailableResourcesAvailableZoneOutput
+	ToAvailableResourcesAvailableZoneOutputWithContext(context.Context) AvailableResourcesAvailableZoneOutput
+}
+
+type AvailableResourcesAvailableZoneArgs struct {
+	// The resource information of the available zone.
+	AvailableResources AvailableResourcesAvailableZoneAvailableResourceArrayInput `pulumi:"availableResources"`
+	// The id of the region.
+	RegionId pulumi.StringInput `pulumi:"regionId"`
+	// The resource status of the available zone. Valid values: `Available`, `SoldOut`.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The id of available zone.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+}
+
+func (AvailableResourcesAvailableZoneArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AvailableResourcesAvailableZone)(nil)).Elem()
+}
+
+func (i AvailableResourcesAvailableZoneArgs) ToAvailableResourcesAvailableZoneOutput() AvailableResourcesAvailableZoneOutput {
+	return i.ToAvailableResourcesAvailableZoneOutputWithContext(context.Background())
+}
+
+func (i AvailableResourcesAvailableZoneArgs) ToAvailableResourcesAvailableZoneOutputWithContext(ctx context.Context) AvailableResourcesAvailableZoneOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AvailableResourcesAvailableZoneOutput)
+}
+
+// AvailableResourcesAvailableZoneArrayInput is an input type that accepts AvailableResourcesAvailableZoneArray and AvailableResourcesAvailableZoneArrayOutput values.
+// You can construct a concrete instance of `AvailableResourcesAvailableZoneArrayInput` via:
+//
+//	AvailableResourcesAvailableZoneArray{ AvailableResourcesAvailableZoneArgs{...} }
+type AvailableResourcesAvailableZoneArrayInput interface {
+	pulumi.Input
+
+	ToAvailableResourcesAvailableZoneArrayOutput() AvailableResourcesAvailableZoneArrayOutput
+	ToAvailableResourcesAvailableZoneArrayOutputWithContext(context.Context) AvailableResourcesAvailableZoneArrayOutput
+}
+
+type AvailableResourcesAvailableZoneArray []AvailableResourcesAvailableZoneInput
+
+func (AvailableResourcesAvailableZoneArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AvailableResourcesAvailableZone)(nil)).Elem()
+}
+
+func (i AvailableResourcesAvailableZoneArray) ToAvailableResourcesAvailableZoneArrayOutput() AvailableResourcesAvailableZoneArrayOutput {
+	return i.ToAvailableResourcesAvailableZoneArrayOutputWithContext(context.Background())
+}
+
+func (i AvailableResourcesAvailableZoneArray) ToAvailableResourcesAvailableZoneArrayOutputWithContext(ctx context.Context) AvailableResourcesAvailableZoneArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AvailableResourcesAvailableZoneArrayOutput)
+}
+
+type AvailableResourcesAvailableZoneOutput struct{ *pulumi.OutputState }
+
+func (AvailableResourcesAvailableZoneOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AvailableResourcesAvailableZone)(nil)).Elem()
+}
+
+func (o AvailableResourcesAvailableZoneOutput) ToAvailableResourcesAvailableZoneOutput() AvailableResourcesAvailableZoneOutput {
+	return o
+}
+
+func (o AvailableResourcesAvailableZoneOutput) ToAvailableResourcesAvailableZoneOutputWithContext(ctx context.Context) AvailableResourcesAvailableZoneOutput {
+	return o
+}
+
+// The resource information of the available zone.
+func (o AvailableResourcesAvailableZoneOutput) AvailableResources() AvailableResourcesAvailableZoneAvailableResourceArrayOutput {
+	return o.ApplyT(func(v AvailableResourcesAvailableZone) []AvailableResourcesAvailableZoneAvailableResource {
+		return v.AvailableResources
+	}).(AvailableResourcesAvailableZoneAvailableResourceArrayOutput)
+}
+
+// The id of the region.
+func (o AvailableResourcesAvailableZoneOutput) RegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v AvailableResourcesAvailableZone) string { return v.RegionId }).(pulumi.StringOutput)
+}
+
+// The resource status of the available zone. Valid values: `Available`, `SoldOut`.
+func (o AvailableResourcesAvailableZoneOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v AvailableResourcesAvailableZone) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The id of available zone.
+func (o AvailableResourcesAvailableZoneOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v AvailableResourcesAvailableZone) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+type AvailableResourcesAvailableZoneArrayOutput struct{ *pulumi.OutputState }
+
+func (AvailableResourcesAvailableZoneArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AvailableResourcesAvailableZone)(nil)).Elem()
+}
+
+func (o AvailableResourcesAvailableZoneArrayOutput) ToAvailableResourcesAvailableZoneArrayOutput() AvailableResourcesAvailableZoneArrayOutput {
+	return o
+}
+
+func (o AvailableResourcesAvailableZoneArrayOutput) ToAvailableResourcesAvailableZoneArrayOutputWithContext(ctx context.Context) AvailableResourcesAvailableZoneArrayOutput {
+	return o
+}
+
+func (o AvailableResourcesAvailableZoneArrayOutput) Index(i pulumi.IntInput) AvailableResourcesAvailableZoneOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AvailableResourcesAvailableZone {
+		return vs[0].([]AvailableResourcesAvailableZone)[vs[1].(int)]
+	}).(AvailableResourcesAvailableZoneOutput)
+}
+
+type AvailableResourcesAvailableZoneAvailableResource struct {
+	// The supported resource information.
+	SupportedResources []AvailableResourcesAvailableZoneAvailableResourceSupportedResource `pulumi:"supportedResources"`
+	// The type of resource. Valid values: `InstanceType`, `DedicatedHost`.
+	Type string `pulumi:"type"`
+}
+
+// AvailableResourcesAvailableZoneAvailableResourceInput is an input type that accepts AvailableResourcesAvailableZoneAvailableResourceArgs and AvailableResourcesAvailableZoneAvailableResourceOutput values.
+// You can construct a concrete instance of `AvailableResourcesAvailableZoneAvailableResourceInput` via:
+//
+//	AvailableResourcesAvailableZoneAvailableResourceArgs{...}
+type AvailableResourcesAvailableZoneAvailableResourceInput interface {
+	pulumi.Input
+
+	ToAvailableResourcesAvailableZoneAvailableResourceOutput() AvailableResourcesAvailableZoneAvailableResourceOutput
+	ToAvailableResourcesAvailableZoneAvailableResourceOutputWithContext(context.Context) AvailableResourcesAvailableZoneAvailableResourceOutput
+}
+
+type AvailableResourcesAvailableZoneAvailableResourceArgs struct {
+	// The supported resource information.
+	SupportedResources AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayInput `pulumi:"supportedResources"`
+	// The type of resource. Valid values: `InstanceType`, `DedicatedHost`.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (AvailableResourcesAvailableZoneAvailableResourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AvailableResourcesAvailableZoneAvailableResource)(nil)).Elem()
+}
+
+func (i AvailableResourcesAvailableZoneAvailableResourceArgs) ToAvailableResourcesAvailableZoneAvailableResourceOutput() AvailableResourcesAvailableZoneAvailableResourceOutput {
+	return i.ToAvailableResourcesAvailableZoneAvailableResourceOutputWithContext(context.Background())
+}
+
+func (i AvailableResourcesAvailableZoneAvailableResourceArgs) ToAvailableResourcesAvailableZoneAvailableResourceOutputWithContext(ctx context.Context) AvailableResourcesAvailableZoneAvailableResourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AvailableResourcesAvailableZoneAvailableResourceOutput)
+}
+
+// AvailableResourcesAvailableZoneAvailableResourceArrayInput is an input type that accepts AvailableResourcesAvailableZoneAvailableResourceArray and AvailableResourcesAvailableZoneAvailableResourceArrayOutput values.
+// You can construct a concrete instance of `AvailableResourcesAvailableZoneAvailableResourceArrayInput` via:
+//
+//	AvailableResourcesAvailableZoneAvailableResourceArray{ AvailableResourcesAvailableZoneAvailableResourceArgs{...} }
+type AvailableResourcesAvailableZoneAvailableResourceArrayInput interface {
+	pulumi.Input
+
+	ToAvailableResourcesAvailableZoneAvailableResourceArrayOutput() AvailableResourcesAvailableZoneAvailableResourceArrayOutput
+	ToAvailableResourcesAvailableZoneAvailableResourceArrayOutputWithContext(context.Context) AvailableResourcesAvailableZoneAvailableResourceArrayOutput
+}
+
+type AvailableResourcesAvailableZoneAvailableResourceArray []AvailableResourcesAvailableZoneAvailableResourceInput
+
+func (AvailableResourcesAvailableZoneAvailableResourceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AvailableResourcesAvailableZoneAvailableResource)(nil)).Elem()
+}
+
+func (i AvailableResourcesAvailableZoneAvailableResourceArray) ToAvailableResourcesAvailableZoneAvailableResourceArrayOutput() AvailableResourcesAvailableZoneAvailableResourceArrayOutput {
+	return i.ToAvailableResourcesAvailableZoneAvailableResourceArrayOutputWithContext(context.Background())
+}
+
+func (i AvailableResourcesAvailableZoneAvailableResourceArray) ToAvailableResourcesAvailableZoneAvailableResourceArrayOutputWithContext(ctx context.Context) AvailableResourcesAvailableZoneAvailableResourceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AvailableResourcesAvailableZoneAvailableResourceArrayOutput)
+}
+
+type AvailableResourcesAvailableZoneAvailableResourceOutput struct{ *pulumi.OutputState }
+
+func (AvailableResourcesAvailableZoneAvailableResourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AvailableResourcesAvailableZoneAvailableResource)(nil)).Elem()
+}
+
+func (o AvailableResourcesAvailableZoneAvailableResourceOutput) ToAvailableResourcesAvailableZoneAvailableResourceOutput() AvailableResourcesAvailableZoneAvailableResourceOutput {
+	return o
+}
+
+func (o AvailableResourcesAvailableZoneAvailableResourceOutput) ToAvailableResourcesAvailableZoneAvailableResourceOutputWithContext(ctx context.Context) AvailableResourcesAvailableZoneAvailableResourceOutput {
+	return o
+}
+
+// The supported resource information.
+func (o AvailableResourcesAvailableZoneAvailableResourceOutput) SupportedResources() AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayOutput {
+	return o.ApplyT(func(v AvailableResourcesAvailableZoneAvailableResource) []AvailableResourcesAvailableZoneAvailableResourceSupportedResource {
+		return v.SupportedResources
+	}).(AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayOutput)
+}
+
+// The type of resource. Valid values: `InstanceType`, `DedicatedHost`.
+func (o AvailableResourcesAvailableZoneAvailableResourceOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v AvailableResourcesAvailableZoneAvailableResource) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type AvailableResourcesAvailableZoneAvailableResourceArrayOutput struct{ *pulumi.OutputState }
+
+func (AvailableResourcesAvailableZoneAvailableResourceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AvailableResourcesAvailableZoneAvailableResource)(nil)).Elem()
+}
+
+func (o AvailableResourcesAvailableZoneAvailableResourceArrayOutput) ToAvailableResourcesAvailableZoneAvailableResourceArrayOutput() AvailableResourcesAvailableZoneAvailableResourceArrayOutput {
+	return o
+}
+
+func (o AvailableResourcesAvailableZoneAvailableResourceArrayOutput) ToAvailableResourcesAvailableZoneAvailableResourceArrayOutputWithContext(ctx context.Context) AvailableResourcesAvailableZoneAvailableResourceArrayOutput {
+	return o
+}
+
+func (o AvailableResourcesAvailableZoneAvailableResourceArrayOutput) Index(i pulumi.IntInput) AvailableResourcesAvailableZoneAvailableResourceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AvailableResourcesAvailableZoneAvailableResource {
+		return vs[0].([]AvailableResourcesAvailableZoneAvailableResource)[vs[1].(int)]
+	}).(AvailableResourcesAvailableZoneAvailableResourceOutput)
+}
+
+type AvailableResourcesAvailableZoneAvailableResourceSupportedResource struct {
+	// The resource status of the available zone. Valid values: `Available`, `SoldOut`.
+	Status string `pulumi:"status"`
+	// The value of the resource.
+	Value string `pulumi:"value"`
+}
+
+// AvailableResourcesAvailableZoneAvailableResourceSupportedResourceInput is an input type that accepts AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArgs and AvailableResourcesAvailableZoneAvailableResourceSupportedResourceOutput values.
+// You can construct a concrete instance of `AvailableResourcesAvailableZoneAvailableResourceSupportedResourceInput` via:
+//
+//	AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArgs{...}
+type AvailableResourcesAvailableZoneAvailableResourceSupportedResourceInput interface {
+	pulumi.Input
+
+	ToAvailableResourcesAvailableZoneAvailableResourceSupportedResourceOutput() AvailableResourcesAvailableZoneAvailableResourceSupportedResourceOutput
+	ToAvailableResourcesAvailableZoneAvailableResourceSupportedResourceOutputWithContext(context.Context) AvailableResourcesAvailableZoneAvailableResourceSupportedResourceOutput
+}
+
+type AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArgs struct {
+	// The resource status of the available zone. Valid values: `Available`, `SoldOut`.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The value of the resource.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AvailableResourcesAvailableZoneAvailableResourceSupportedResource)(nil)).Elem()
+}
+
+func (i AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArgs) ToAvailableResourcesAvailableZoneAvailableResourceSupportedResourceOutput() AvailableResourcesAvailableZoneAvailableResourceSupportedResourceOutput {
+	return i.ToAvailableResourcesAvailableZoneAvailableResourceSupportedResourceOutputWithContext(context.Background())
+}
+
+func (i AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArgs) ToAvailableResourcesAvailableZoneAvailableResourceSupportedResourceOutputWithContext(ctx context.Context) AvailableResourcesAvailableZoneAvailableResourceSupportedResourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AvailableResourcesAvailableZoneAvailableResourceSupportedResourceOutput)
+}
+
+// AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayInput is an input type that accepts AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArray and AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayOutput values.
+// You can construct a concrete instance of `AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayInput` via:
+//
+//	AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArray{ AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArgs{...} }
+type AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayInput interface {
+	pulumi.Input
+
+	ToAvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayOutput() AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayOutput
+	ToAvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayOutputWithContext(context.Context) AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayOutput
+}
+
+type AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArray []AvailableResourcesAvailableZoneAvailableResourceSupportedResourceInput
+
+func (AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AvailableResourcesAvailableZoneAvailableResourceSupportedResource)(nil)).Elem()
+}
+
+func (i AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArray) ToAvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayOutput() AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayOutput {
+	return i.ToAvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayOutputWithContext(context.Background())
+}
+
+func (i AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArray) ToAvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayOutputWithContext(ctx context.Context) AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayOutput)
+}
+
+type AvailableResourcesAvailableZoneAvailableResourceSupportedResourceOutput struct{ *pulumi.OutputState }
+
+func (AvailableResourcesAvailableZoneAvailableResourceSupportedResourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AvailableResourcesAvailableZoneAvailableResourceSupportedResource)(nil)).Elem()
+}
+
+func (o AvailableResourcesAvailableZoneAvailableResourceSupportedResourceOutput) ToAvailableResourcesAvailableZoneAvailableResourceSupportedResourceOutput() AvailableResourcesAvailableZoneAvailableResourceSupportedResourceOutput {
+	return o
+}
+
+func (o AvailableResourcesAvailableZoneAvailableResourceSupportedResourceOutput) ToAvailableResourcesAvailableZoneAvailableResourceSupportedResourceOutputWithContext(ctx context.Context) AvailableResourcesAvailableZoneAvailableResourceSupportedResourceOutput {
+	return o
+}
+
+// The resource status of the available zone. Valid values: `Available`, `SoldOut`.
+func (o AvailableResourcesAvailableZoneAvailableResourceSupportedResourceOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v AvailableResourcesAvailableZoneAvailableResourceSupportedResource) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The value of the resource.
+func (o AvailableResourcesAvailableZoneAvailableResourceSupportedResourceOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v AvailableResourcesAvailableZoneAvailableResourceSupportedResource) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayOutput struct{ *pulumi.OutputState }
+
+func (AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AvailableResourcesAvailableZoneAvailableResourceSupportedResource)(nil)).Elem()
+}
+
+func (o AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayOutput) ToAvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayOutput() AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayOutput {
+	return o
+}
+
+func (o AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayOutput) ToAvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayOutputWithContext(ctx context.Context) AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayOutput {
+	return o
+}
+
+func (o AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayOutput) Index(i pulumi.IntInput) AvailableResourcesAvailableZoneAvailableResourceSupportedResourceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AvailableResourcesAvailableZoneAvailableResourceSupportedResource {
+		return vs[0].([]AvailableResourcesAvailableZoneAvailableResourceSupportedResource)[vs[1].(int)]
+	}).(AvailableResourcesAvailableZoneAvailableResourceSupportedResourceOutput)
+}
+
 type CommandsCommand struct {
 	// The base64 encoded content of the ecs command.
 	CommandContent string `pulumi:"commandContent"`
@@ -3752,6 +4092,12 @@ func (o ZonesZoneArrayOutput) Index(i pulumi.IntInput) ZonesZoneOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AvailableResourcesAvailableZoneInput)(nil)).Elem(), AvailableResourcesAvailableZoneArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AvailableResourcesAvailableZoneArrayInput)(nil)).Elem(), AvailableResourcesAvailableZoneArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AvailableResourcesAvailableZoneAvailableResourceInput)(nil)).Elem(), AvailableResourcesAvailableZoneAvailableResourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AvailableResourcesAvailableZoneAvailableResourceArrayInput)(nil)).Elem(), AvailableResourcesAvailableZoneAvailableResourceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AvailableResourcesAvailableZoneAvailableResourceSupportedResourceInput)(nil)).Elem(), AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayInput)(nil)).Elem(), AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CommandsCommandInput)(nil)).Elem(), CommandsCommandArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CommandsCommandArrayInput)(nil)).Elem(), CommandsCommandArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentSetsDeploymentSetInput)(nil)).Elem(), DeploymentSetsDeploymentSetArgs{})
@@ -3800,6 +4146,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RegionsRegionArrayInput)(nil)).Elem(), RegionsRegionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ZonesZoneInput)(nil)).Elem(), ZonesZoneArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ZonesZoneArrayInput)(nil)).Elem(), ZonesZoneArray{})
+	pulumi.RegisterOutputType(AvailableResourcesAvailableZoneOutput{})
+	pulumi.RegisterOutputType(AvailableResourcesAvailableZoneArrayOutput{})
+	pulumi.RegisterOutputType(AvailableResourcesAvailableZoneAvailableResourceOutput{})
+	pulumi.RegisterOutputType(AvailableResourcesAvailableZoneAvailableResourceArrayOutput{})
+	pulumi.RegisterOutputType(AvailableResourcesAvailableZoneAvailableResourceSupportedResourceOutput{})
+	pulumi.RegisterOutputType(AvailableResourcesAvailableZoneAvailableResourceSupportedResourceArrayOutput{})
 	pulumi.RegisterOutputType(CommandsCommandOutput{})
 	pulumi.RegisterOutputType(CommandsCommandArrayOutput{})
 	pulumi.RegisterOutputType(DeploymentSetsDeploymentSetOutput{})

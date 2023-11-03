@@ -23,12 +23,18 @@ class ListenerArgs:
                  acl_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  acl_status: Optional[pulumi.Input[str]] = None,
                  acl_type: Optional[pulumi.Input[str]] = None,
+                 bandwidth: Optional[pulumi.Input[int]] = None,
                  certificate_id: Optional[pulumi.Input[str]] = None,
+                 connection_drain_enabled: Optional[pulumi.Input[str]] = None,
+                 connection_drain_timeout: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[str]] = None,
                  established_timeout: Optional[pulumi.Input[int]] = None,
                  health_check: Optional[pulumi.Input['ListenerHealthCheckArgs']] = None,
                  listener_name: Optional[pulumi.Input[str]] = None,
+                 persistence_timeout: Optional[pulumi.Input[int]] = None,
+                 persistence_type: Optional[pulumi.Input[str]] = None,
+                 proxy_protocol_type: Optional[pulumi.Input[str]] = None,
                  scheduler: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Listener resource.
@@ -39,12 +45,23 @@ class ListenerArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] acl_ids: The id list of the Acl.
         :param pulumi.Input[str] acl_status: The enable status of Acl. Optional choice contains `on`, `off`.
         :param pulumi.Input[str] acl_type: The type of the Acl. Optional choice contains `white`, `black`.
+        :param pulumi.Input[int] bandwidth: The bandwidth of the Listener. Unit: Mbps. Default is -1, indicating that the Listener does not specify a speed limit.
         :param pulumi.Input[str] certificate_id: The certificate id associated with the listener.
+        :param pulumi.Input[str] connection_drain_enabled: Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
+               This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        :param pulumi.Input[int] connection_drain_timeout: The connection drain timeout of the Listener. Valid value range is `1-900`.
+               This filed is required when the value of field `connection_drain_enabled` is `on`.
         :param pulumi.Input[str] description: The description of the Listener.
         :param pulumi.Input[str] enabled: The enable status of the Listener. Optional choice contains `on`, `off`.
         :param pulumi.Input[int] established_timeout: The connection timeout of the Listener.
         :param pulumi.Input['ListenerHealthCheckArgs'] health_check: The config of health check.
         :param pulumi.Input[str] listener_name: The name of the Listener.
+        :param pulumi.Input[int] persistence_timeout: The persistence timeout of the Listener. Unit: second. Valid value range is `1-3600`. Default is `1000`.
+               This filed is valid only when the value of field `persistence_type` is `source_ip`.
+        :param pulumi.Input[str] persistence_type: The persistence type of the Listener. Valid values: `off`, `source_ip`. Default is `off`.
+               This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        :param pulumi.Input[str] proxy_protocol_type: Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
+               This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
         :param pulumi.Input[str] scheduler: The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
         """
         pulumi.set(__self__, "load_balancer_id", load_balancer_id)
@@ -57,8 +74,14 @@ class ListenerArgs:
             pulumi.set(__self__, "acl_status", acl_status)
         if acl_type is not None:
             pulumi.set(__self__, "acl_type", acl_type)
+        if bandwidth is not None:
+            pulumi.set(__self__, "bandwidth", bandwidth)
         if certificate_id is not None:
             pulumi.set(__self__, "certificate_id", certificate_id)
+        if connection_drain_enabled is not None:
+            pulumi.set(__self__, "connection_drain_enabled", connection_drain_enabled)
+        if connection_drain_timeout is not None:
+            pulumi.set(__self__, "connection_drain_timeout", connection_drain_timeout)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if enabled is not None:
@@ -69,6 +92,12 @@ class ListenerArgs:
             pulumi.set(__self__, "health_check", health_check)
         if listener_name is not None:
             pulumi.set(__self__, "listener_name", listener_name)
+        if persistence_timeout is not None:
+            pulumi.set(__self__, "persistence_timeout", persistence_timeout)
+        if persistence_type is not None:
+            pulumi.set(__self__, "persistence_type", persistence_type)
+        if proxy_protocol_type is not None:
+            pulumi.set(__self__, "proxy_protocol_type", proxy_protocol_type)
         if scheduler is not None:
             pulumi.set(__self__, "scheduler", scheduler)
 
@@ -157,6 +186,18 @@ class ListenerArgs:
         pulumi.set(self, "acl_type", value)
 
     @property
+    @pulumi.getter
+    def bandwidth(self) -> Optional[pulumi.Input[int]]:
+        """
+        The bandwidth of the Listener. Unit: Mbps. Default is -1, indicating that the Listener does not specify a speed limit.
+        """
+        return pulumi.get(self, "bandwidth")
+
+    @bandwidth.setter
+    def bandwidth(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "bandwidth", value)
+
+    @property
     @pulumi.getter(name="certificateId")
     def certificate_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -167,6 +208,32 @@ class ListenerArgs:
     @certificate_id.setter
     def certificate_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "certificate_id", value)
+
+    @property
+    @pulumi.getter(name="connectionDrainEnabled")
+    def connection_drain_enabled(self) -> Optional[pulumi.Input[str]]:
+        """
+        Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
+        This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        """
+        return pulumi.get(self, "connection_drain_enabled")
+
+    @connection_drain_enabled.setter
+    def connection_drain_enabled(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "connection_drain_enabled", value)
+
+    @property
+    @pulumi.getter(name="connectionDrainTimeout")
+    def connection_drain_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        The connection drain timeout of the Listener. Valid value range is `1-900`.
+        This filed is required when the value of field `connection_drain_enabled` is `on`.
+        """
+        return pulumi.get(self, "connection_drain_timeout")
+
+    @connection_drain_timeout.setter
+    def connection_drain_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "connection_drain_timeout", value)
 
     @property
     @pulumi.getter
@@ -229,6 +296,45 @@ class ListenerArgs:
         pulumi.set(self, "listener_name", value)
 
     @property
+    @pulumi.getter(name="persistenceTimeout")
+    def persistence_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        The persistence timeout of the Listener. Unit: second. Valid value range is `1-3600`. Default is `1000`.
+        This filed is valid only when the value of field `persistence_type` is `source_ip`.
+        """
+        return pulumi.get(self, "persistence_timeout")
+
+    @persistence_timeout.setter
+    def persistence_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "persistence_timeout", value)
+
+    @property
+    @pulumi.getter(name="persistenceType")
+    def persistence_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The persistence type of the Listener. Valid values: `off`, `source_ip`. Default is `off`.
+        This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        """
+        return pulumi.get(self, "persistence_type")
+
+    @persistence_type.setter
+    def persistence_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "persistence_type", value)
+
+    @property
+    @pulumi.getter(name="proxyProtocolType")
+    def proxy_protocol_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
+        This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        """
+        return pulumi.get(self, "proxy_protocol_type")
+
+    @proxy_protocol_type.setter
+    def proxy_protocol_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy_protocol_type", value)
+
+    @property
     @pulumi.getter
     def scheduler(self) -> Optional[pulumi.Input[str]]:
         """
@@ -247,7 +353,10 @@ class _ListenerState:
                  acl_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  acl_status: Optional[pulumi.Input[str]] = None,
                  acl_type: Optional[pulumi.Input[str]] = None,
+                 bandwidth: Optional[pulumi.Input[int]] = None,
                  certificate_id: Optional[pulumi.Input[str]] = None,
+                 connection_drain_enabled: Optional[pulumi.Input[str]] = None,
+                 connection_drain_timeout: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[str]] = None,
                  established_timeout: Optional[pulumi.Input[int]] = None,
@@ -255,8 +364,11 @@ class _ListenerState:
                  listener_id: Optional[pulumi.Input[str]] = None,
                  listener_name: Optional[pulumi.Input[str]] = None,
                  load_balancer_id: Optional[pulumi.Input[str]] = None,
+                 persistence_timeout: Optional[pulumi.Input[int]] = None,
+                 persistence_type: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
+                 proxy_protocol_type: Optional[pulumi.Input[str]] = None,
                  scheduler: Optional[pulumi.Input[str]] = None,
                  server_group_id: Optional[pulumi.Input[str]] = None):
         """
@@ -264,7 +376,12 @@ class _ListenerState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] acl_ids: The id list of the Acl.
         :param pulumi.Input[str] acl_status: The enable status of Acl. Optional choice contains `on`, `off`.
         :param pulumi.Input[str] acl_type: The type of the Acl. Optional choice contains `white`, `black`.
+        :param pulumi.Input[int] bandwidth: The bandwidth of the Listener. Unit: Mbps. Default is -1, indicating that the Listener does not specify a speed limit.
         :param pulumi.Input[str] certificate_id: The certificate id associated with the listener.
+        :param pulumi.Input[str] connection_drain_enabled: Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
+               This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        :param pulumi.Input[int] connection_drain_timeout: The connection drain timeout of the Listener. Valid value range is `1-900`.
+               This filed is required when the value of field `connection_drain_enabled` is `on`.
         :param pulumi.Input[str] description: The description of the Listener.
         :param pulumi.Input[str] enabled: The enable status of the Listener. Optional choice contains `on`, `off`.
         :param pulumi.Input[int] established_timeout: The connection timeout of the Listener.
@@ -272,8 +389,14 @@ class _ListenerState:
         :param pulumi.Input[str] listener_id: The ID of the Listener.
         :param pulumi.Input[str] listener_name: The name of the Listener.
         :param pulumi.Input[str] load_balancer_id: The region of the request.
+        :param pulumi.Input[int] persistence_timeout: The persistence timeout of the Listener. Unit: second. Valid value range is `1-3600`. Default is `1000`.
+               This filed is valid only when the value of field `persistence_type` is `source_ip`.
+        :param pulumi.Input[str] persistence_type: The persistence type of the Listener. Valid values: `off`, `source_ip`. Default is `off`.
+               This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
         :param pulumi.Input[int] port: The port receiving request of the Listener, the value range in 1~65535.
         :param pulumi.Input[str] protocol: The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
+        :param pulumi.Input[str] proxy_protocol_type: Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
+               This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
         :param pulumi.Input[str] scheduler: The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
         :param pulumi.Input[str] server_group_id: The server group id associated with the listener.
         """
@@ -283,8 +406,14 @@ class _ListenerState:
             pulumi.set(__self__, "acl_status", acl_status)
         if acl_type is not None:
             pulumi.set(__self__, "acl_type", acl_type)
+        if bandwidth is not None:
+            pulumi.set(__self__, "bandwidth", bandwidth)
         if certificate_id is not None:
             pulumi.set(__self__, "certificate_id", certificate_id)
+        if connection_drain_enabled is not None:
+            pulumi.set(__self__, "connection_drain_enabled", connection_drain_enabled)
+        if connection_drain_timeout is not None:
+            pulumi.set(__self__, "connection_drain_timeout", connection_drain_timeout)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if enabled is not None:
@@ -299,10 +428,16 @@ class _ListenerState:
             pulumi.set(__self__, "listener_name", listener_name)
         if load_balancer_id is not None:
             pulumi.set(__self__, "load_balancer_id", load_balancer_id)
+        if persistence_timeout is not None:
+            pulumi.set(__self__, "persistence_timeout", persistence_timeout)
+        if persistence_type is not None:
+            pulumi.set(__self__, "persistence_type", persistence_type)
         if port is not None:
             pulumi.set(__self__, "port", port)
         if protocol is not None:
             pulumi.set(__self__, "protocol", protocol)
+        if proxy_protocol_type is not None:
+            pulumi.set(__self__, "proxy_protocol_type", proxy_protocol_type)
         if scheduler is not None:
             pulumi.set(__self__, "scheduler", scheduler)
         if server_group_id is not None:
@@ -345,6 +480,18 @@ class _ListenerState:
         pulumi.set(self, "acl_type", value)
 
     @property
+    @pulumi.getter
+    def bandwidth(self) -> Optional[pulumi.Input[int]]:
+        """
+        The bandwidth of the Listener. Unit: Mbps. Default is -1, indicating that the Listener does not specify a speed limit.
+        """
+        return pulumi.get(self, "bandwidth")
+
+    @bandwidth.setter
+    def bandwidth(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "bandwidth", value)
+
+    @property
     @pulumi.getter(name="certificateId")
     def certificate_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -355,6 +502,32 @@ class _ListenerState:
     @certificate_id.setter
     def certificate_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "certificate_id", value)
+
+    @property
+    @pulumi.getter(name="connectionDrainEnabled")
+    def connection_drain_enabled(self) -> Optional[pulumi.Input[str]]:
+        """
+        Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
+        This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        """
+        return pulumi.get(self, "connection_drain_enabled")
+
+    @connection_drain_enabled.setter
+    def connection_drain_enabled(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "connection_drain_enabled", value)
+
+    @property
+    @pulumi.getter(name="connectionDrainTimeout")
+    def connection_drain_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        The connection drain timeout of the Listener. Valid value range is `1-900`.
+        This filed is required when the value of field `connection_drain_enabled` is `on`.
+        """
+        return pulumi.get(self, "connection_drain_timeout")
+
+    @connection_drain_timeout.setter
+    def connection_drain_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "connection_drain_timeout", value)
 
     @property
     @pulumi.getter
@@ -441,6 +614,32 @@ class _ListenerState:
         pulumi.set(self, "load_balancer_id", value)
 
     @property
+    @pulumi.getter(name="persistenceTimeout")
+    def persistence_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        The persistence timeout of the Listener. Unit: second. Valid value range is `1-3600`. Default is `1000`.
+        This filed is valid only when the value of field `persistence_type` is `source_ip`.
+        """
+        return pulumi.get(self, "persistence_timeout")
+
+    @persistence_timeout.setter
+    def persistence_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "persistence_timeout", value)
+
+    @property
+    @pulumi.getter(name="persistenceType")
+    def persistence_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The persistence type of the Listener. Valid values: `off`, `source_ip`. Default is `off`.
+        This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        """
+        return pulumi.get(self, "persistence_type")
+
+    @persistence_type.setter
+    def persistence_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "persistence_type", value)
+
+    @property
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
         """
@@ -463,6 +662,19 @@ class _ListenerState:
     @protocol.setter
     def protocol(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "protocol", value)
+
+    @property
+    @pulumi.getter(name="proxyProtocolType")
+    def proxy_protocol_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
+        This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        """
+        return pulumi.get(self, "proxy_protocol_type")
+
+    @proxy_protocol_type.setter
+    def proxy_protocol_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy_protocol_type", value)
 
     @property
     @pulumi.getter
@@ -497,15 +709,21 @@ class Listener(pulumi.CustomResource):
                  acl_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  acl_status: Optional[pulumi.Input[str]] = None,
                  acl_type: Optional[pulumi.Input[str]] = None,
+                 bandwidth: Optional[pulumi.Input[int]] = None,
                  certificate_id: Optional[pulumi.Input[str]] = None,
+                 connection_drain_enabled: Optional[pulumi.Input[str]] = None,
+                 connection_drain_timeout: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[str]] = None,
                  established_timeout: Optional[pulumi.Input[int]] = None,
                  health_check: Optional[pulumi.Input[pulumi.InputType['ListenerHealthCheckArgs']]] = None,
                  listener_name: Optional[pulumi.Input[str]] = None,
                  load_balancer_id: Optional[pulumi.Input[str]] = None,
+                 persistence_timeout: Optional[pulumi.Input[int]] = None,
+                 persistence_type: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
+                 proxy_protocol_type: Optional[pulumi.Input[str]] = None,
                  scheduler: Optional[pulumi.Input[str]] = None,
                  server_group_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -559,6 +777,19 @@ class Listener(pulumi.CustomResource):
                 uri="/",
             ),
             enabled="on")
+        foo_tcp = volcengine.clb.Listener("fooTcp",
+            load_balancer_id=foo_clb.id,
+            listener_name="acc-test-listener",
+            protocol="TCP",
+            port=90,
+            server_group_id=foo_server_group.id,
+            enabled="on",
+            bandwidth=2,
+            proxy_protocol_type="standard",
+            persistence_type="source_ip",
+            persistence_timeout=100,
+            connection_drain_enabled="on",
+            connection_drain_timeout=100)
         ```
 
         ## Import
@@ -574,15 +805,26 @@ class Listener(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] acl_ids: The id list of the Acl.
         :param pulumi.Input[str] acl_status: The enable status of Acl. Optional choice contains `on`, `off`.
         :param pulumi.Input[str] acl_type: The type of the Acl. Optional choice contains `white`, `black`.
+        :param pulumi.Input[int] bandwidth: The bandwidth of the Listener. Unit: Mbps. Default is -1, indicating that the Listener does not specify a speed limit.
         :param pulumi.Input[str] certificate_id: The certificate id associated with the listener.
+        :param pulumi.Input[str] connection_drain_enabled: Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
+               This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        :param pulumi.Input[int] connection_drain_timeout: The connection drain timeout of the Listener. Valid value range is `1-900`.
+               This filed is required when the value of field `connection_drain_enabled` is `on`.
         :param pulumi.Input[str] description: The description of the Listener.
         :param pulumi.Input[str] enabled: The enable status of the Listener. Optional choice contains `on`, `off`.
         :param pulumi.Input[int] established_timeout: The connection timeout of the Listener.
         :param pulumi.Input[pulumi.InputType['ListenerHealthCheckArgs']] health_check: The config of health check.
         :param pulumi.Input[str] listener_name: The name of the Listener.
         :param pulumi.Input[str] load_balancer_id: The region of the request.
+        :param pulumi.Input[int] persistence_timeout: The persistence timeout of the Listener. Unit: second. Valid value range is `1-3600`. Default is `1000`.
+               This filed is valid only when the value of field `persistence_type` is `source_ip`.
+        :param pulumi.Input[str] persistence_type: The persistence type of the Listener. Valid values: `off`, `source_ip`. Default is `off`.
+               This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
         :param pulumi.Input[int] port: The port receiving request of the Listener, the value range in 1~65535.
         :param pulumi.Input[str] protocol: The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
+        :param pulumi.Input[str] proxy_protocol_type: Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
+               This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
         :param pulumi.Input[str] scheduler: The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
         :param pulumi.Input[str] server_group_id: The server group id associated with the listener.
         """
@@ -642,6 +884,19 @@ class Listener(pulumi.CustomResource):
                 uri="/",
             ),
             enabled="on")
+        foo_tcp = volcengine.clb.Listener("fooTcp",
+            load_balancer_id=foo_clb.id,
+            listener_name="acc-test-listener",
+            protocol="TCP",
+            port=90,
+            server_group_id=foo_server_group.id,
+            enabled="on",
+            bandwidth=2,
+            proxy_protocol_type="standard",
+            persistence_type="source_ip",
+            persistence_timeout=100,
+            connection_drain_enabled="on",
+            connection_drain_timeout=100)
         ```
 
         ## Import
@@ -670,15 +925,21 @@ class Listener(pulumi.CustomResource):
                  acl_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  acl_status: Optional[pulumi.Input[str]] = None,
                  acl_type: Optional[pulumi.Input[str]] = None,
+                 bandwidth: Optional[pulumi.Input[int]] = None,
                  certificate_id: Optional[pulumi.Input[str]] = None,
+                 connection_drain_enabled: Optional[pulumi.Input[str]] = None,
+                 connection_drain_timeout: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[str]] = None,
                  established_timeout: Optional[pulumi.Input[int]] = None,
                  health_check: Optional[pulumi.Input[pulumi.InputType['ListenerHealthCheckArgs']]] = None,
                  listener_name: Optional[pulumi.Input[str]] = None,
                  load_balancer_id: Optional[pulumi.Input[str]] = None,
+                 persistence_timeout: Optional[pulumi.Input[int]] = None,
+                 persistence_type: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
+                 proxy_protocol_type: Optional[pulumi.Input[str]] = None,
                  scheduler: Optional[pulumi.Input[str]] = None,
                  server_group_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -693,7 +954,10 @@ class Listener(pulumi.CustomResource):
             __props__.__dict__["acl_ids"] = acl_ids
             __props__.__dict__["acl_status"] = acl_status
             __props__.__dict__["acl_type"] = acl_type
+            __props__.__dict__["bandwidth"] = bandwidth
             __props__.__dict__["certificate_id"] = certificate_id
+            __props__.__dict__["connection_drain_enabled"] = connection_drain_enabled
+            __props__.__dict__["connection_drain_timeout"] = connection_drain_timeout
             __props__.__dict__["description"] = description
             __props__.__dict__["enabled"] = enabled
             __props__.__dict__["established_timeout"] = established_timeout
@@ -702,12 +966,15 @@ class Listener(pulumi.CustomResource):
             if load_balancer_id is None and not opts.urn:
                 raise TypeError("Missing required property 'load_balancer_id'")
             __props__.__dict__["load_balancer_id"] = load_balancer_id
+            __props__.__dict__["persistence_timeout"] = persistence_timeout
+            __props__.__dict__["persistence_type"] = persistence_type
             if port is None and not opts.urn:
                 raise TypeError("Missing required property 'port'")
             __props__.__dict__["port"] = port
             if protocol is None and not opts.urn:
                 raise TypeError("Missing required property 'protocol'")
             __props__.__dict__["protocol"] = protocol
+            __props__.__dict__["proxy_protocol_type"] = proxy_protocol_type
             __props__.__dict__["scheduler"] = scheduler
             if server_group_id is None and not opts.urn:
                 raise TypeError("Missing required property 'server_group_id'")
@@ -726,7 +993,10 @@ class Listener(pulumi.CustomResource):
             acl_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             acl_status: Optional[pulumi.Input[str]] = None,
             acl_type: Optional[pulumi.Input[str]] = None,
+            bandwidth: Optional[pulumi.Input[int]] = None,
             certificate_id: Optional[pulumi.Input[str]] = None,
+            connection_drain_enabled: Optional[pulumi.Input[str]] = None,
+            connection_drain_timeout: Optional[pulumi.Input[int]] = None,
             description: Optional[pulumi.Input[str]] = None,
             enabled: Optional[pulumi.Input[str]] = None,
             established_timeout: Optional[pulumi.Input[int]] = None,
@@ -734,8 +1004,11 @@ class Listener(pulumi.CustomResource):
             listener_id: Optional[pulumi.Input[str]] = None,
             listener_name: Optional[pulumi.Input[str]] = None,
             load_balancer_id: Optional[pulumi.Input[str]] = None,
+            persistence_timeout: Optional[pulumi.Input[int]] = None,
+            persistence_type: Optional[pulumi.Input[str]] = None,
             port: Optional[pulumi.Input[int]] = None,
             protocol: Optional[pulumi.Input[str]] = None,
+            proxy_protocol_type: Optional[pulumi.Input[str]] = None,
             scheduler: Optional[pulumi.Input[str]] = None,
             server_group_id: Optional[pulumi.Input[str]] = None) -> 'Listener':
         """
@@ -748,7 +1021,12 @@ class Listener(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] acl_ids: The id list of the Acl.
         :param pulumi.Input[str] acl_status: The enable status of Acl. Optional choice contains `on`, `off`.
         :param pulumi.Input[str] acl_type: The type of the Acl. Optional choice contains `white`, `black`.
+        :param pulumi.Input[int] bandwidth: The bandwidth of the Listener. Unit: Mbps. Default is -1, indicating that the Listener does not specify a speed limit.
         :param pulumi.Input[str] certificate_id: The certificate id associated with the listener.
+        :param pulumi.Input[str] connection_drain_enabled: Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
+               This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        :param pulumi.Input[int] connection_drain_timeout: The connection drain timeout of the Listener. Valid value range is `1-900`.
+               This filed is required when the value of field `connection_drain_enabled` is `on`.
         :param pulumi.Input[str] description: The description of the Listener.
         :param pulumi.Input[str] enabled: The enable status of the Listener. Optional choice contains `on`, `off`.
         :param pulumi.Input[int] established_timeout: The connection timeout of the Listener.
@@ -756,8 +1034,14 @@ class Listener(pulumi.CustomResource):
         :param pulumi.Input[str] listener_id: The ID of the Listener.
         :param pulumi.Input[str] listener_name: The name of the Listener.
         :param pulumi.Input[str] load_balancer_id: The region of the request.
+        :param pulumi.Input[int] persistence_timeout: The persistence timeout of the Listener. Unit: second. Valid value range is `1-3600`. Default is `1000`.
+               This filed is valid only when the value of field `persistence_type` is `source_ip`.
+        :param pulumi.Input[str] persistence_type: The persistence type of the Listener. Valid values: `off`, `source_ip`. Default is `off`.
+               This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
         :param pulumi.Input[int] port: The port receiving request of the Listener, the value range in 1~65535.
         :param pulumi.Input[str] protocol: The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
+        :param pulumi.Input[str] proxy_protocol_type: Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
+               This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
         :param pulumi.Input[str] scheduler: The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
         :param pulumi.Input[str] server_group_id: The server group id associated with the listener.
         """
@@ -768,7 +1052,10 @@ class Listener(pulumi.CustomResource):
         __props__.__dict__["acl_ids"] = acl_ids
         __props__.__dict__["acl_status"] = acl_status
         __props__.__dict__["acl_type"] = acl_type
+        __props__.__dict__["bandwidth"] = bandwidth
         __props__.__dict__["certificate_id"] = certificate_id
+        __props__.__dict__["connection_drain_enabled"] = connection_drain_enabled
+        __props__.__dict__["connection_drain_timeout"] = connection_drain_timeout
         __props__.__dict__["description"] = description
         __props__.__dict__["enabled"] = enabled
         __props__.__dict__["established_timeout"] = established_timeout
@@ -776,8 +1063,11 @@ class Listener(pulumi.CustomResource):
         __props__.__dict__["listener_id"] = listener_id
         __props__.__dict__["listener_name"] = listener_name
         __props__.__dict__["load_balancer_id"] = load_balancer_id
+        __props__.__dict__["persistence_timeout"] = persistence_timeout
+        __props__.__dict__["persistence_type"] = persistence_type
         __props__.__dict__["port"] = port
         __props__.__dict__["protocol"] = protocol
+        __props__.__dict__["proxy_protocol_type"] = proxy_protocol_type
         __props__.__dict__["scheduler"] = scheduler
         __props__.__dict__["server_group_id"] = server_group_id
         return Listener(resource_name, opts=opts, __props__=__props__)
@@ -807,12 +1097,38 @@ class Listener(pulumi.CustomResource):
         return pulumi.get(self, "acl_type")
 
     @property
+    @pulumi.getter
+    def bandwidth(self) -> pulumi.Output[Optional[int]]:
+        """
+        The bandwidth of the Listener. Unit: Mbps. Default is -1, indicating that the Listener does not specify a speed limit.
+        """
+        return pulumi.get(self, "bandwidth")
+
+    @property
     @pulumi.getter(name="certificateId")
     def certificate_id(self) -> pulumi.Output[Optional[str]]:
         """
         The certificate id associated with the listener.
         """
         return pulumi.get(self, "certificate_id")
+
+    @property
+    @pulumi.getter(name="connectionDrainEnabled")
+    def connection_drain_enabled(self) -> pulumi.Output[Optional[str]]:
+        """
+        Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
+        This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        """
+        return pulumi.get(self, "connection_drain_enabled")
+
+    @property
+    @pulumi.getter(name="connectionDrainTimeout")
+    def connection_drain_timeout(self) -> pulumi.Output[int]:
+        """
+        The connection drain timeout of the Listener. Valid value range is `1-900`.
+        This filed is required when the value of field `connection_drain_enabled` is `on`.
+        """
+        return pulumi.get(self, "connection_drain_timeout")
 
     @property
     @pulumi.getter
@@ -871,6 +1187,24 @@ class Listener(pulumi.CustomResource):
         return pulumi.get(self, "load_balancer_id")
 
     @property
+    @pulumi.getter(name="persistenceTimeout")
+    def persistence_timeout(self) -> pulumi.Output[Optional[int]]:
+        """
+        The persistence timeout of the Listener. Unit: second. Valid value range is `1-3600`. Default is `1000`.
+        This filed is valid only when the value of field `persistence_type` is `source_ip`.
+        """
+        return pulumi.get(self, "persistence_timeout")
+
+    @property
+    @pulumi.getter(name="persistenceType")
+    def persistence_type(self) -> pulumi.Output[Optional[str]]:
+        """
+        The persistence type of the Listener. Valid values: `off`, `source_ip`. Default is `off`.
+        This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        """
+        return pulumi.get(self, "persistence_type")
+
+    @property
     @pulumi.getter
     def port(self) -> pulumi.Output[int]:
         """
@@ -885,6 +1219,15 @@ class Listener(pulumi.CustomResource):
         The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
         """
         return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter(name="proxyProtocolType")
+    def proxy_protocol_type(self) -> pulumi.Output[Optional[str]]:
+        """
+        Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
+        This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        """
+        return pulumi.get(self, "proxy_protocol_type")
 
     @property
     @pulumi.getter

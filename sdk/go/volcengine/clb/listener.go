@@ -94,6 +94,23 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			_, err = clb.NewListener(ctx, "fooTcp", &clb.ListenerArgs{
+//				LoadBalancerId:         fooClb.ID(),
+//				ListenerName:           pulumi.String("acc-test-listener"),
+//				Protocol:               pulumi.String("TCP"),
+//				Port:                   pulumi.Int(90),
+//				ServerGroupId:          fooServerGroup.ID(),
+//				Enabled:                pulumi.String("on"),
+//				Bandwidth:              pulumi.Int(2),
+//				ProxyProtocolType:      pulumi.String("standard"),
+//				PersistenceType:        pulumi.String("source_ip"),
+//				PersistenceTimeout:     pulumi.Int(100),
+//				ConnectionDrainEnabled: pulumi.String("on"),
+//				ConnectionDrainTimeout: pulumi.Int(100),
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			return nil
 //		})
 //	}
@@ -118,8 +135,16 @@ type Listener struct {
 	AclStatus pulumi.StringOutput `pulumi:"aclStatus"`
 	// The type of the Acl. Optional choice contains `white`, `black`.
 	AclType pulumi.StringOutput `pulumi:"aclType"`
+	// The bandwidth of the Listener. Unit: Mbps. Default is -1, indicating that the Listener does not specify a speed limit.
+	Bandwidth pulumi.IntPtrOutput `pulumi:"bandwidth"`
 	// The certificate id associated with the listener.
 	CertificateId pulumi.StringPtrOutput `pulumi:"certificateId"`
+	// Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
+	// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+	ConnectionDrainEnabled pulumi.StringPtrOutput `pulumi:"connectionDrainEnabled"`
+	// The connection drain timeout of the Listener. Valid value range is `1-900`.
+	// This filed is required when the value of field `connectionDrainEnabled` is `on`.
+	ConnectionDrainTimeout pulumi.IntOutput `pulumi:"connectionDrainTimeout"`
 	// The description of the Listener.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The enable status of the Listener. Optional choice contains `on`, `off`.
@@ -134,10 +159,19 @@ type Listener struct {
 	ListenerName pulumi.StringOutput `pulumi:"listenerName"`
 	// The region of the request.
 	LoadBalancerId pulumi.StringOutput `pulumi:"loadBalancerId"`
+	// The persistence timeout of the Listener. Unit: second. Valid value range is `1-3600`. Default is `1000`.
+	// This filed is valid only when the value of field `persistenceType` is `sourceIp`.
+	PersistenceTimeout pulumi.IntPtrOutput `pulumi:"persistenceTimeout"`
+	// The persistence type of the Listener. Valid values: `off`, `sourceIp`. Default is `off`.
+	// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+	PersistenceType pulumi.StringPtrOutput `pulumi:"persistenceType"`
 	// The port receiving request of the Listener, the value range in 1~65535.
 	Port pulumi.IntOutput `pulumi:"port"`
 	// The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
 	Protocol pulumi.StringOutput `pulumi:"protocol"`
+	// Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
+	// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+	ProxyProtocolType pulumi.StringPtrOutput `pulumi:"proxyProtocolType"`
 	// The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
 	Scheduler pulumi.StringOutput `pulumi:"scheduler"`
 	// The server group id associated with the listener.
@@ -192,8 +226,16 @@ type listenerState struct {
 	AclStatus *string `pulumi:"aclStatus"`
 	// The type of the Acl. Optional choice contains `white`, `black`.
 	AclType *string `pulumi:"aclType"`
+	// The bandwidth of the Listener. Unit: Mbps. Default is -1, indicating that the Listener does not specify a speed limit.
+	Bandwidth *int `pulumi:"bandwidth"`
 	// The certificate id associated with the listener.
 	CertificateId *string `pulumi:"certificateId"`
+	// Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
+	// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+	ConnectionDrainEnabled *string `pulumi:"connectionDrainEnabled"`
+	// The connection drain timeout of the Listener. Valid value range is `1-900`.
+	// This filed is required when the value of field `connectionDrainEnabled` is `on`.
+	ConnectionDrainTimeout *int `pulumi:"connectionDrainTimeout"`
 	// The description of the Listener.
 	Description *string `pulumi:"description"`
 	// The enable status of the Listener. Optional choice contains `on`, `off`.
@@ -208,10 +250,19 @@ type listenerState struct {
 	ListenerName *string `pulumi:"listenerName"`
 	// The region of the request.
 	LoadBalancerId *string `pulumi:"loadBalancerId"`
+	// The persistence timeout of the Listener. Unit: second. Valid value range is `1-3600`. Default is `1000`.
+	// This filed is valid only when the value of field `persistenceType` is `sourceIp`.
+	PersistenceTimeout *int `pulumi:"persistenceTimeout"`
+	// The persistence type of the Listener. Valid values: `off`, `sourceIp`. Default is `off`.
+	// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+	PersistenceType *string `pulumi:"persistenceType"`
 	// The port receiving request of the Listener, the value range in 1~65535.
 	Port *int `pulumi:"port"`
 	// The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
 	Protocol *string `pulumi:"protocol"`
+	// Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
+	// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+	ProxyProtocolType *string `pulumi:"proxyProtocolType"`
 	// The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
 	Scheduler *string `pulumi:"scheduler"`
 	// The server group id associated with the listener.
@@ -225,8 +276,16 @@ type ListenerState struct {
 	AclStatus pulumi.StringPtrInput
 	// The type of the Acl. Optional choice contains `white`, `black`.
 	AclType pulumi.StringPtrInput
+	// The bandwidth of the Listener. Unit: Mbps. Default is -1, indicating that the Listener does not specify a speed limit.
+	Bandwidth pulumi.IntPtrInput
 	// The certificate id associated with the listener.
 	CertificateId pulumi.StringPtrInput
+	// Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
+	// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+	ConnectionDrainEnabled pulumi.StringPtrInput
+	// The connection drain timeout of the Listener. Valid value range is `1-900`.
+	// This filed is required when the value of field `connectionDrainEnabled` is `on`.
+	ConnectionDrainTimeout pulumi.IntPtrInput
 	// The description of the Listener.
 	Description pulumi.StringPtrInput
 	// The enable status of the Listener. Optional choice contains `on`, `off`.
@@ -241,10 +300,19 @@ type ListenerState struct {
 	ListenerName pulumi.StringPtrInput
 	// The region of the request.
 	LoadBalancerId pulumi.StringPtrInput
+	// The persistence timeout of the Listener. Unit: second. Valid value range is `1-3600`. Default is `1000`.
+	// This filed is valid only when the value of field `persistenceType` is `sourceIp`.
+	PersistenceTimeout pulumi.IntPtrInput
+	// The persistence type of the Listener. Valid values: `off`, `sourceIp`. Default is `off`.
+	// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+	PersistenceType pulumi.StringPtrInput
 	// The port receiving request of the Listener, the value range in 1~65535.
 	Port pulumi.IntPtrInput
 	// The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
 	Protocol pulumi.StringPtrInput
+	// Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
+	// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+	ProxyProtocolType pulumi.StringPtrInput
 	// The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
 	Scheduler pulumi.StringPtrInput
 	// The server group id associated with the listener.
@@ -262,8 +330,16 @@ type listenerArgs struct {
 	AclStatus *string `pulumi:"aclStatus"`
 	// The type of the Acl. Optional choice contains `white`, `black`.
 	AclType *string `pulumi:"aclType"`
+	// The bandwidth of the Listener. Unit: Mbps. Default is -1, indicating that the Listener does not specify a speed limit.
+	Bandwidth *int `pulumi:"bandwidth"`
 	// The certificate id associated with the listener.
 	CertificateId *string `pulumi:"certificateId"`
+	// Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
+	// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+	ConnectionDrainEnabled *string `pulumi:"connectionDrainEnabled"`
+	// The connection drain timeout of the Listener. Valid value range is `1-900`.
+	// This filed is required when the value of field `connectionDrainEnabled` is `on`.
+	ConnectionDrainTimeout *int `pulumi:"connectionDrainTimeout"`
 	// The description of the Listener.
 	Description *string `pulumi:"description"`
 	// The enable status of the Listener. Optional choice contains `on`, `off`.
@@ -276,10 +352,19 @@ type listenerArgs struct {
 	ListenerName *string `pulumi:"listenerName"`
 	// The region of the request.
 	LoadBalancerId string `pulumi:"loadBalancerId"`
+	// The persistence timeout of the Listener. Unit: second. Valid value range is `1-3600`. Default is `1000`.
+	// This filed is valid only when the value of field `persistenceType` is `sourceIp`.
+	PersistenceTimeout *int `pulumi:"persistenceTimeout"`
+	// The persistence type of the Listener. Valid values: `off`, `sourceIp`. Default is `off`.
+	// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+	PersistenceType *string `pulumi:"persistenceType"`
 	// The port receiving request of the Listener, the value range in 1~65535.
 	Port int `pulumi:"port"`
 	// The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
 	Protocol string `pulumi:"protocol"`
+	// Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
+	// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+	ProxyProtocolType *string `pulumi:"proxyProtocolType"`
 	// The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
 	Scheduler *string `pulumi:"scheduler"`
 	// The server group id associated with the listener.
@@ -294,8 +379,16 @@ type ListenerArgs struct {
 	AclStatus pulumi.StringPtrInput
 	// The type of the Acl. Optional choice contains `white`, `black`.
 	AclType pulumi.StringPtrInput
+	// The bandwidth of the Listener. Unit: Mbps. Default is -1, indicating that the Listener does not specify a speed limit.
+	Bandwidth pulumi.IntPtrInput
 	// The certificate id associated with the listener.
 	CertificateId pulumi.StringPtrInput
+	// Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
+	// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+	ConnectionDrainEnabled pulumi.StringPtrInput
+	// The connection drain timeout of the Listener. Valid value range is `1-900`.
+	// This filed is required when the value of field `connectionDrainEnabled` is `on`.
+	ConnectionDrainTimeout pulumi.IntPtrInput
 	// The description of the Listener.
 	Description pulumi.StringPtrInput
 	// The enable status of the Listener. Optional choice contains `on`, `off`.
@@ -308,10 +401,19 @@ type ListenerArgs struct {
 	ListenerName pulumi.StringPtrInput
 	// The region of the request.
 	LoadBalancerId pulumi.StringInput
+	// The persistence timeout of the Listener. Unit: second. Valid value range is `1-3600`. Default is `1000`.
+	// This filed is valid only when the value of field `persistenceType` is `sourceIp`.
+	PersistenceTimeout pulumi.IntPtrInput
+	// The persistence type of the Listener. Valid values: `off`, `sourceIp`. Default is `off`.
+	// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+	PersistenceType pulumi.StringPtrInput
 	// The port receiving request of the Listener, the value range in 1~65535.
 	Port pulumi.IntInput
 	// The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
 	Protocol pulumi.StringInput
+	// Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
+	// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+	ProxyProtocolType pulumi.StringPtrInput
 	// The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
 	Scheduler pulumi.StringPtrInput
 	// The server group id associated with the listener.
@@ -420,9 +522,26 @@ func (o ListenerOutput) AclType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.AclType }).(pulumi.StringOutput)
 }
 
+// The bandwidth of the Listener. Unit: Mbps. Default is -1, indicating that the Listener does not specify a speed limit.
+func (o ListenerOutput) Bandwidth() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Listener) pulumi.IntPtrOutput { return v.Bandwidth }).(pulumi.IntPtrOutput)
+}
+
 // The certificate id associated with the listener.
 func (o ListenerOutput) CertificateId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringPtrOutput { return v.CertificateId }).(pulumi.StringPtrOutput)
+}
+
+// Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
+// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+func (o ListenerOutput) ConnectionDrainEnabled() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Listener) pulumi.StringPtrOutput { return v.ConnectionDrainEnabled }).(pulumi.StringPtrOutput)
+}
+
+// The connection drain timeout of the Listener. Valid value range is `1-900`.
+// This filed is required when the value of field `connectionDrainEnabled` is `on`.
+func (o ListenerOutput) ConnectionDrainTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *Listener) pulumi.IntOutput { return v.ConnectionDrainTimeout }).(pulumi.IntOutput)
 }
 
 // The description of the Listener.
@@ -460,6 +579,18 @@ func (o ListenerOutput) LoadBalancerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.LoadBalancerId }).(pulumi.StringOutput)
 }
 
+// The persistence timeout of the Listener. Unit: second. Valid value range is `1-3600`. Default is `1000`.
+// This filed is valid only when the value of field `persistenceType` is `sourceIp`.
+func (o ListenerOutput) PersistenceTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Listener) pulumi.IntPtrOutput { return v.PersistenceTimeout }).(pulumi.IntPtrOutput)
+}
+
+// The persistence type of the Listener. Valid values: `off`, `sourceIp`. Default is `off`.
+// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+func (o ListenerOutput) PersistenceType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Listener) pulumi.StringPtrOutput { return v.PersistenceType }).(pulumi.StringPtrOutput)
+}
+
 // The port receiving request of the Listener, the value range in 1~65535.
 func (o ListenerOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v *Listener) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
@@ -468,6 +599,12 @@ func (o ListenerOutput) Port() pulumi.IntOutput {
 // The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
 func (o ListenerOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v *Listener) pulumi.StringOutput { return v.Protocol }).(pulumi.StringOutput)
+}
+
+// Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
+// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+func (o ListenerOutput) ProxyProtocolType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Listener) pulumi.StringPtrOutput { return v.ProxyProtocolType }).(pulumi.StringPtrOutput)
 }
 
 // The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.

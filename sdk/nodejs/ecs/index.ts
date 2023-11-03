@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { AvailableResourcesArgs, AvailableResourcesResult, AvailableResourcesOutputArgs } from "./availableResources";
+export const availableResources: typeof import("./availableResources").availableResources = null as any;
+export const availableResourcesOutput: typeof import("./availableResources").availableResourcesOutput = null as any;
+utilities.lazyLoad(exports, ["availableResources","availableResourcesOutput"], () => require("./availableResources"));
+
 export { CommandArgs, CommandState } from "./command";
 export type Command = import("./command").Command;
 export const Command: typeof import("./command").Command = null as any;

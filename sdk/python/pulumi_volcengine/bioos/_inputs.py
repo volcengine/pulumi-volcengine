@@ -19,7 +19,7 @@ class ClusterSharedConfigArgs:
     def __init__(__self__, *,
                  enable: pulumi.Input[bool]):
         """
-        :param pulumi.Input[bool] enable: Whether to enable a shared cluster.
+        :param pulumi.Input[bool] enable: Whether to enable a shared cluster. This value must be `true`.
         """
         pulumi.set(__self__, "enable", enable)
 
@@ -27,7 +27,7 @@ class ClusterSharedConfigArgs:
     @pulumi.getter
     def enable(self) -> pulumi.Input[bool]:
         """
-        Whether to enable a shared cluster.
+        Whether to enable a shared cluster. This value must be `true`.
         """
         return pulumi.get(self, "enable")
 

@@ -5,6 +5,7 @@
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .available_resources import *
 from .command import *
 from .commands import *
 from .deployment_set import *

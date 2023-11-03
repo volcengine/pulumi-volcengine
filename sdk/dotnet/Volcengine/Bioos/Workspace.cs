@@ -47,7 +47,7 @@ namespace Volcengine.Pulumi.Volcengine.Bioos
         /// Cover path (relative path in tos bucket).
         /// </summary>
         [Output("coverPath")]
-        public Output<string?> CoverPath { get; private set; } = null!;
+        public Output<string> CoverPath { get; private set; } = null!;
 
         /// <summary>
         /// The description of the workspace.
