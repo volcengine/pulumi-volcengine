@@ -59,6 +59,12 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling.Outputs
         /// </summary>
         public readonly ImmutableArray<string> InstanceTypes;
         /// <summary>
+        /// Assign IPv6 address to instance network card. Possible values:
+        /// 0: Do not assign IPv6 address.
+        /// 1: Assign IPv6 address and the system will automatically assign an IPv6 subnet for you.
+        /// </summary>
+        public readonly int Ipv6AddressCount;
+        /// <summary>
         /// The ECS key pair name which the scaling configuration set.
         /// </summary>
         public readonly string KeyPairName;
@@ -135,6 +141,8 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling.Outputs
 
             ImmutableArray<string> instanceTypes,
 
+            int ipv6AddressCount,
+
             string keyPairName,
 
             string lifecycleState,
@@ -172,6 +180,7 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling.Outputs
             InstanceDescription = instanceDescription;
             InstanceName = instanceName;
             InstanceTypes = instanceTypes;
+            Ipv6AddressCount = ipv6AddressCount;
             KeyPairName = keyPairName;
             LifecycleState = lifecycleState;
             ProjectName = projectName;

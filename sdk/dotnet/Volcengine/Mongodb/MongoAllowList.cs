@@ -68,12 +68,6 @@ namespace Volcengine.Pulumi.Volcengine.Mongodb
         [Output("allowListType")]
         public Output<string?> AllowListType { get; private set; } = null!;
 
-        /// <summary>
-        /// The modify mode. Only support Cover mode.
-        /// </summary>
-        [Output("modifyMode")]
-        public Output<string?> ModifyMode { get; private set; } = null!;
-
 
         /// <summary>
         /// Create a MongoAllowList resource with the given unique name, arguments, and options.
@@ -145,12 +139,6 @@ namespace Volcengine.Pulumi.Volcengine.Mongodb
         [Input("allowListType")]
         public Input<string>? AllowListType { get; set; }
 
-        /// <summary>
-        /// The modify mode. Only support Cover mode.
-        /// </summary>
-        [Input("modifyMode")]
-        public Input<string>? ModifyMode { get; set; }
-
         public MongoAllowListArgs()
         {
         }
@@ -182,12 +170,6 @@ namespace Volcengine.Pulumi.Volcengine.Mongodb
         /// </summary>
         [Input("allowListType")]
         public Input<string>? AllowListType { get; set; }
-
-        /// <summary>
-        /// The modify mode. Only support Cover mode.
-        /// </summary>
-        [Input("modifyMode")]
-        public Input<string>? ModifyMode { get; set; }
 
         public MongoAllowListState()
         {

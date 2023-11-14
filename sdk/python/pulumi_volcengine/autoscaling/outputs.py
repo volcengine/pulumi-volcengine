@@ -18,13 +18,17 @@ __all__ = [
     'ScalingConfigurationsScalingConfigurationResult',
     'ScalingConfigurationsScalingConfigurationTagResult',
     'ScalingConfigurationsScalingConfigurationVolumeResult',
+    'ScalingGroupLaunchTemplateOverride',
     'ScalingGroupServerGroupAttribute',
     'ScalingGroupTag',
     'ScalingGroupsScalingGroupResult',
+    'ScalingGroupsScalingGroupLaunchTemplateOverrideResult',
     'ScalingGroupsScalingGroupServerGroupAttributeResult',
     'ScalingGroupsScalingGroupTagResult',
     'ScalingInstancesScalingInstanceResult',
+    'ScalingLifecycleHookLifecycleCommand',
     'ScalingLifecycleHooksLifecycleHookResult',
+    'ScalingLifecycleHooksLifecycleHookLifecycleCommandResult',
     'ScalingPoliciesScalingPolicyResult',
 ]
 
@@ -365,6 +369,7 @@ class ScalingConfigurationsScalingConfigurationResult(dict):
                  instance_description: str,
                  instance_name: str,
                  instance_types: Sequence[str],
+                 ipv6_address_count: int,
                  key_pair_name: str,
                  lifecycle_state: str,
                  project_name: str,
@@ -390,6 +395,9 @@ class ScalingConfigurationsScalingConfigurationResult(dict):
         :param str instance_description: The ECS instance description which the scaling configuration set.
         :param str instance_name: The ECS instance name which the scaling configuration set.
         :param Sequence[str] instance_types: The list of the ECS instance type which the scaling configuration set.
+        :param int ipv6_address_count: Assign IPv6 address to instance network card. Possible values:
+               0: Do not assign IPv6 address.
+               1: Assign IPv6 address and the system will automatically assign an IPv6 subnet for you.
         :param str key_pair_name: The ECS key pair name which the scaling configuration set.
         :param str lifecycle_state: The lifecycle state of the scaling configuration.
         :param str project_name: The project to which the instance created by the scaling configuration belongs.
@@ -415,6 +423,7 @@ class ScalingConfigurationsScalingConfigurationResult(dict):
         pulumi.set(__self__, "instance_description", instance_description)
         pulumi.set(__self__, "instance_name", instance_name)
         pulumi.set(__self__, "instance_types", instance_types)
+        pulumi.set(__self__, "ipv6_address_count", ipv6_address_count)
         pulumi.set(__self__, "key_pair_name", key_pair_name)
         pulumi.set(__self__, "lifecycle_state", lifecycle_state)
         pulumi.set(__self__, "project_name", project_name)
@@ -516,6 +525,16 @@ class ScalingConfigurationsScalingConfigurationResult(dict):
         The list of the ECS instance type which the scaling configuration set.
         """
         return pulumi.get(self, "instance_types")
+
+    @property
+    @pulumi.getter(name="ipv6AddressCount")
+    def ipv6_address_count(self) -> int:
+        """
+        Assign IPv6 address to instance network card. Possible values:
+        0: Do not assign IPv6 address.
+        1: Assign IPv6 address and the system will automatically assign an IPv6 subnet for you.
+        """
+        return pulumi.get(self, "ipv6_address_count")
 
     @property
     @pulumi.getter(name="keyPairName")
@@ -692,6 +711,41 @@ class ScalingConfigurationsScalingConfigurationVolumeResult(dict):
 
 
 @pulumi.output_type
+class ScalingGroupLaunchTemplateOverride(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "instanceType":
+            suggest = "instance_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ScalingGroupLaunchTemplateOverride. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ScalingGroupLaunchTemplateOverride.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ScalingGroupLaunchTemplateOverride.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 instance_type: str):
+        """
+        :param str instance_type: The instance type.
+        """
+        pulumi.set(__self__, "instance_type", instance_type)
+
+    @property
+    @pulumi.getter(name="instanceType")
+    def instance_type(self) -> str:
+        """
+        The instance type.
+        """
+        return pulumi.get(self, "instance_type")
+
+
+@pulumi.output_type
 class ScalingGroupServerGroupAttribute(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -795,18 +849,23 @@ class ScalingGroupsScalingGroupResult(dict):
                  db_instance_ids: Sequence[str],
                  default_cooldown: int,
                  desire_instance_number: int,
+                 health_check_type: str,
                  id: str,
                  instance_terminate_policy: str,
                  launch_template_id: str,
+                 launch_template_overrides: Sequence['outputs.ScalingGroupsScalingGroupLaunchTemplateOverrideResult'],
                  launch_template_version: str,
                  lifecycle_state: str,
+                 load_balancer_health_check_grace_period: int,
                  max_instance_number: int,
                  min_instance_number: int,
                  multi_az_policy: str,
                  project_name: str,
                  scaling_group_id: str,
                  scaling_group_name: str,
+                 scaling_mode: str,
                  server_group_attributes: Sequence['outputs.ScalingGroupsScalingGroupServerGroupAttributeResult'],
+                 stopped_instance_count: int,
                  subnet_ids: Sequence[str],
                  tags: Sequence['outputs.ScalingGroupsScalingGroupTagResult'],
                  total_instance_count: int,
@@ -818,18 +877,23 @@ class ScalingGroupsScalingGroupResult(dict):
         :param Sequence[str] db_instance_ids: The list of db instance ids.
         :param int default_cooldown: The default cooldown interval of the scaling group.
         :param int desire_instance_number: The desire instance number of the scaling group.
+        :param str health_check_type: The health check type of the scaling group.
         :param str id: The id of the scaling group.
         :param str instance_terminate_policy: The instance terminate policy of the scaling group.
         :param str launch_template_id: The ID of the launch template bound to the scaling group.
+        :param Sequence['ScalingGroupsScalingGroupLaunchTemplateOverrideArgs'] launch_template_overrides: Instance start template information.
         :param str launch_template_version: The version of the launch template bound to the scaling group.
         :param str lifecycle_state: The lifecycle state of the scaling group.
+        :param int load_balancer_health_check_grace_period: Grace period for health check of CLB instance in elastic group.
         :param int max_instance_number: The max instance number of the scaling group.
         :param int min_instance_number: The min instance number of the scaling group.
         :param str multi_az_policy: The multi az policy of the scaling group. Valid values: PRIORITY, BALANCE.
-        :param str project_name: The ProjectName of scaling group.
+        :param str project_name: The project name of the scaling group.
         :param str scaling_group_id: The id of the scaling group.
         :param str scaling_group_name: The name of the scaling group.
+        :param str scaling_mode: The scaling mode of the scaling group.
         :param Sequence['ScalingGroupsScalingGroupServerGroupAttributeArgs'] server_group_attributes: The list of server group attributes.
+        :param int stopped_instance_count: The number of stopped instances.
         :param Sequence[str] subnet_ids: The list of the subnet id to which the ENI is connected.
         :param Sequence['ScalingGroupsScalingGroupTagArgs'] tags: Tags.
         :param int total_instance_count: The total instance count of the scaling group.
@@ -841,18 +905,23 @@ class ScalingGroupsScalingGroupResult(dict):
         pulumi.set(__self__, "db_instance_ids", db_instance_ids)
         pulumi.set(__self__, "default_cooldown", default_cooldown)
         pulumi.set(__self__, "desire_instance_number", desire_instance_number)
+        pulumi.set(__self__, "health_check_type", health_check_type)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "instance_terminate_policy", instance_terminate_policy)
         pulumi.set(__self__, "launch_template_id", launch_template_id)
+        pulumi.set(__self__, "launch_template_overrides", launch_template_overrides)
         pulumi.set(__self__, "launch_template_version", launch_template_version)
         pulumi.set(__self__, "lifecycle_state", lifecycle_state)
+        pulumi.set(__self__, "load_balancer_health_check_grace_period", load_balancer_health_check_grace_period)
         pulumi.set(__self__, "max_instance_number", max_instance_number)
         pulumi.set(__self__, "min_instance_number", min_instance_number)
         pulumi.set(__self__, "multi_az_policy", multi_az_policy)
         pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "scaling_group_id", scaling_group_id)
         pulumi.set(__self__, "scaling_group_name", scaling_group_name)
+        pulumi.set(__self__, "scaling_mode", scaling_mode)
         pulumi.set(__self__, "server_group_attributes", server_group_attributes)
+        pulumi.set(__self__, "stopped_instance_count", stopped_instance_count)
         pulumi.set(__self__, "subnet_ids", subnet_ids)
         pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "total_instance_count", total_instance_count)
@@ -900,6 +969,14 @@ class ScalingGroupsScalingGroupResult(dict):
         return pulumi.get(self, "desire_instance_number")
 
     @property
+    @pulumi.getter(name="healthCheckType")
+    def health_check_type(self) -> str:
+        """
+        The health check type of the scaling group.
+        """
+        return pulumi.get(self, "health_check_type")
+
+    @property
     @pulumi.getter
     def id(self) -> str:
         """
@@ -924,6 +1001,14 @@ class ScalingGroupsScalingGroupResult(dict):
         return pulumi.get(self, "launch_template_id")
 
     @property
+    @pulumi.getter(name="launchTemplateOverrides")
+    def launch_template_overrides(self) -> Sequence['outputs.ScalingGroupsScalingGroupLaunchTemplateOverrideResult']:
+        """
+        Instance start template information.
+        """
+        return pulumi.get(self, "launch_template_overrides")
+
+    @property
     @pulumi.getter(name="launchTemplateVersion")
     def launch_template_version(self) -> str:
         """
@@ -938,6 +1023,14 @@ class ScalingGroupsScalingGroupResult(dict):
         The lifecycle state of the scaling group.
         """
         return pulumi.get(self, "lifecycle_state")
+
+    @property
+    @pulumi.getter(name="loadBalancerHealthCheckGracePeriod")
+    def load_balancer_health_check_grace_period(self) -> int:
+        """
+        Grace period for health check of CLB instance in elastic group.
+        """
+        return pulumi.get(self, "load_balancer_health_check_grace_period")
 
     @property
     @pulumi.getter(name="maxInstanceNumber")
@@ -967,7 +1060,7 @@ class ScalingGroupsScalingGroupResult(dict):
     @pulumi.getter(name="projectName")
     def project_name(self) -> str:
         """
-        The ProjectName of scaling group.
+        The project name of the scaling group.
         """
         return pulumi.get(self, "project_name")
 
@@ -988,12 +1081,28 @@ class ScalingGroupsScalingGroupResult(dict):
         return pulumi.get(self, "scaling_group_name")
 
     @property
+    @pulumi.getter(name="scalingMode")
+    def scaling_mode(self) -> str:
+        """
+        The scaling mode of the scaling group.
+        """
+        return pulumi.get(self, "scaling_mode")
+
+    @property
     @pulumi.getter(name="serverGroupAttributes")
     def server_group_attributes(self) -> Sequence['outputs.ScalingGroupsScalingGroupServerGroupAttributeResult']:
         """
         The list of server group attributes.
         """
         return pulumi.get(self, "server_group_attributes")
+
+    @property
+    @pulumi.getter(name="stoppedInstanceCount")
+    def stopped_instance_count(self) -> int:
+        """
+        The number of stopped instances.
+        """
+        return pulumi.get(self, "stopped_instance_count")
 
     @property
     @pulumi.getter(name="subnetIds")
@@ -1034,6 +1143,35 @@ class ScalingGroupsScalingGroupResult(dict):
         The VPC id of the scaling group.
         """
         return pulumi.get(self, "vpc_id")
+
+
+@pulumi.output_type
+class ScalingGroupsScalingGroupLaunchTemplateOverrideResult(dict):
+    def __init__(__self__, *,
+                 instance_type: str,
+                 weighted_capacity: int):
+        """
+        :param str instance_type: The instance type.
+        :param int weighted_capacity: Weight of instance specifications.
+        """
+        pulumi.set(__self__, "instance_type", instance_type)
+        pulumi.set(__self__, "weighted_capacity", weighted_capacity)
+
+    @property
+    @pulumi.getter(name="instanceType")
+    def instance_type(self) -> str:
+        """
+        The instance type.
+        """
+        return pulumi.get(self, "instance_type")
+
+    @property
+    @pulumi.getter(name="weightedCapacity")
+    def weighted_capacity(self) -> int:
+        """
+        Weight of instance specifications.
+        """
+        return pulumi.get(self, "weighted_capacity")
 
 
 @pulumi.output_type
@@ -1223,9 +1361,59 @@ class ScalingInstancesScalingInstanceResult(dict):
 
 
 @pulumi.output_type
+class ScalingLifecycleHookLifecycleCommand(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "commandId":
+            suggest = "command_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ScalingLifecycleHookLifecycleCommand. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ScalingLifecycleHookLifecycleCommand.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ScalingLifecycleHookLifecycleCommand.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 command_id: str,
+                 parameters: Optional[str] = None):
+        """
+        :param str command_id: Batch job command ID, which indicates the batch job command to be executed after triggering the lifecycle hook and installed in the instance.
+        :param str parameters: Parameters and parameter values in batch job commands.
+               The number of parameters ranges from 0 to 60.
+        """
+        pulumi.set(__self__, "command_id", command_id)
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+
+    @property
+    @pulumi.getter(name="commandId")
+    def command_id(self) -> str:
+        """
+        Batch job command ID, which indicates the batch job command to be executed after triggering the lifecycle hook and installed in the instance.
+        """
+        return pulumi.get(self, "command_id")
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[str]:
+        """
+        Parameters and parameter values in batch job commands.
+        The number of parameters ranges from 0 to 60.
+        """
+        return pulumi.get(self, "parameters")
+
+
+@pulumi.output_type
 class ScalingLifecycleHooksLifecycleHookResult(dict):
     def __init__(__self__, *,
                  id: str,
+                 lifecycle_commands: Sequence['outputs.ScalingLifecycleHooksLifecycleHookLifecycleCommandResult'],
                  lifecycle_hook_id: str,
                  lifecycle_hook_name: str,
                  lifecycle_hook_policy: str,
@@ -1234,6 +1422,7 @@ class ScalingLifecycleHooksLifecycleHookResult(dict):
                  scaling_group_id: str):
         """
         :param str id: The id of the lifecycle hook.
+        :param Sequence['ScalingLifecycleHooksLifecycleHookLifecycleCommandArgs'] lifecycle_commands: Batch job command.
         :param str lifecycle_hook_id: The id of the lifecycle hook.
         :param str lifecycle_hook_name: The name of the lifecycle hook.
         :param str lifecycle_hook_policy: The policy of the lifecycle hook.
@@ -1242,6 +1431,7 @@ class ScalingLifecycleHooksLifecycleHookResult(dict):
         :param str scaling_group_id: An id of scaling group id.
         """
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "lifecycle_commands", lifecycle_commands)
         pulumi.set(__self__, "lifecycle_hook_id", lifecycle_hook_id)
         pulumi.set(__self__, "lifecycle_hook_name", lifecycle_hook_name)
         pulumi.set(__self__, "lifecycle_hook_policy", lifecycle_hook_policy)
@@ -1256,6 +1446,14 @@ class ScalingLifecycleHooksLifecycleHookResult(dict):
         The id of the lifecycle hook.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="lifecycleCommands")
+    def lifecycle_commands(self) -> Sequence['outputs.ScalingLifecycleHooksLifecycleHookLifecycleCommandResult']:
+        """
+        Batch job command.
+        """
+        return pulumi.get(self, "lifecycle_commands")
 
     @property
     @pulumi.getter(name="lifecycleHookId")
@@ -1304,6 +1502,37 @@ class ScalingLifecycleHooksLifecycleHookResult(dict):
         An id of scaling group id.
         """
         return pulumi.get(self, "scaling_group_id")
+
+
+@pulumi.output_type
+class ScalingLifecycleHooksLifecycleHookLifecycleCommandResult(dict):
+    def __init__(__self__, *,
+                 command_id: str,
+                 parameters: str):
+        """
+        :param str command_id: Batch job command ID, which indicates the batch job command to be executed after triggering the lifecycle hook and installed in the instance.
+        :param str parameters: Parameters and parameter values in batch job commands.
+               The number of parameters ranges from 0 to 60.
+        """
+        pulumi.set(__self__, "command_id", command_id)
+        pulumi.set(__self__, "parameters", parameters)
+
+    @property
+    @pulumi.getter(name="commandId")
+    def command_id(self) -> str:
+        """
+        Batch job command ID, which indicates the batch job command to be executed after triggering the lifecycle hook and installed in the instance.
+        """
+        return pulumi.get(self, "command_id")
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> str:
+        """
+        Parameters and parameter values in batch job commands.
+        The number of parameters ranges from 0 to 60.
+        """
+        return pulumi.get(self, "parameters")
 
 
 @pulumi.output_type

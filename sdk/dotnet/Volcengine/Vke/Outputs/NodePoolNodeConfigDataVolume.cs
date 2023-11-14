@@ -19,11 +19,11 @@ namespace Volcengine.Pulumi.Volcengine.Vke.Outputs
         /// </summary>
         public readonly string? MountPoint;
         /// <summary>
-        /// The Size of DataVolumes, the value range in 20~32768.
+        /// The Size of DataVolumes, the value range in 20~32768. Default value is `20`.
         /// </summary>
         public readonly int? Size;
         /// <summary>
-        /// The Type of DataVolumes, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`.
+        /// The Type of DataVolumes, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`. Default value is `ESSD_PL0`.
         /// </summary>
         public readonly string? Type;
 

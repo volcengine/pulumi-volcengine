@@ -62,8 +62,6 @@ type MongoAllowList struct {
 	AllowListName pulumi.StringOutput `pulumi:"allowListName"`
 	// The IP address type of allow list, valid value contains `IPv4`.
 	AllowListType pulumi.StringPtrOutput `pulumi:"allowListType"`
-	// The modify mode. Only support Cover mode.
-	ModifyMode pulumi.StringPtrOutput `pulumi:"modifyMode"`
 }
 
 // NewMongoAllowList registers a new resource with the given unique name, arguments, and options.
@@ -110,8 +108,6 @@ type mongoAllowListState struct {
 	AllowListName *string `pulumi:"allowListName"`
 	// The IP address type of allow list, valid value contains `IPv4`.
 	AllowListType *string `pulumi:"allowListType"`
-	// The modify mode. Only support Cover mode.
-	ModifyMode *string `pulumi:"modifyMode"`
 }
 
 type MongoAllowListState struct {
@@ -123,8 +119,6 @@ type MongoAllowListState struct {
 	AllowListName pulumi.StringPtrInput
 	// The IP address type of allow list, valid value contains `IPv4`.
 	AllowListType pulumi.StringPtrInput
-	// The modify mode. Only support Cover mode.
-	ModifyMode pulumi.StringPtrInput
 }
 
 func (MongoAllowListState) ElementType() reflect.Type {
@@ -140,8 +134,6 @@ type mongoAllowListArgs struct {
 	AllowListName string `pulumi:"allowListName"`
 	// The IP address type of allow list, valid value contains `IPv4`.
 	AllowListType *string `pulumi:"allowListType"`
-	// The modify mode. Only support Cover mode.
-	ModifyMode *string `pulumi:"modifyMode"`
 }
 
 // The set of arguments for constructing a MongoAllowList resource.
@@ -154,8 +146,6 @@ type MongoAllowListArgs struct {
 	AllowListName pulumi.StringInput
 	// The IP address type of allow list, valid value contains `IPv4`.
 	AllowListType pulumi.StringPtrInput
-	// The modify mode. Only support Cover mode.
-	ModifyMode pulumi.StringPtrInput
 }
 
 func (MongoAllowListArgs) ElementType() reflect.Type {
@@ -263,11 +253,6 @@ func (o MongoAllowListOutput) AllowListName() pulumi.StringOutput {
 // The IP address type of allow list, valid value contains `IPv4`.
 func (o MongoAllowListOutput) AllowListType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MongoAllowList) pulumi.StringPtrOutput { return v.AllowListType }).(pulumi.StringPtrOutput)
-}
-
-// The modify mode. Only support Cover mode.
-func (o MongoAllowListOutput) ModifyMode() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *MongoAllowList) pulumi.StringPtrOutput { return v.ModifyMode }).(pulumi.StringPtrOutput)
 }
 
 type MongoAllowListArrayOutput struct{ *pulumi.OutputState }

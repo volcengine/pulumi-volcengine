@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -24,6 +26,13 @@ import * as utilities from "../utilities";
  *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
  *     vpcId: fooVpc.id,
  * });
+ * const fooCommand = new volcengine.ecs.Command("fooCommand", {
+ *     description: "tf",
+ *     workingDir: "/home",
+ *     username: "root",
+ *     timeout: 100,
+ *     commandContent: "IyEvYmluL2Jhc2gKCgplY2hvICJvcGVyYXRpb24gc3VjY2VzcyEi",
+ * });
  * const fooScalingGroup = new volcengine.autoscaling.ScalingGroup("fooScalingGroup", {
  *     scalingGroupName: "acc-test-scaling-group-lifecycle",
  *     subnetIds: [fooSubnet.id],
@@ -36,11 +45,15 @@ import * as utilities from "../utilities";
  * });
  * const fooScalingLifecycleHook = new volcengine.autoscaling.ScalingLifecycleHook("fooScalingLifecycleHook", {
  *     lifecycleHookName: "acc-test-lifecycle",
- *     lifecycleHookPolicy: "CONTINUE",
- *     lifecycleHookTimeout: 30,
- *     lifecycleHookType: "SCALE_IN",
+ *     lifecycleHookPolicy: "ROLLBACK",
+ *     lifecycleHookTimeout: 300,
+ *     lifecycleHookType: "SCALE_OUT",
  *     scalingGroupId: fooScalingGroup.id,
  * });
+ * //  lifecycle_command {
+ * //    command_id = volcengine_ecs_command.foo.id
+ * //    parameters = "{}"
+ * //  }
  * ```
  *
  * ## Import
@@ -80,6 +93,10 @@ export class ScalingLifecycleHook extends pulumi.CustomResource {
     }
 
     /**
+     * Batch job command.
+     */
+    public readonly lifecycleCommand!: pulumi.Output<outputs.autoscaling.ScalingLifecycleHookLifecycleCommand | undefined>;
+    /**
      * The id of the lifecycle hook.
      */
     public /*out*/ readonly lifecycleHookId!: pulumi.Output<string>;
@@ -88,7 +105,7 @@ export class ScalingLifecycleHook extends pulumi.CustomResource {
      */
     public readonly lifecycleHookName!: pulumi.Output<string>;
     /**
-     * The policy of the lifecycle hook. Valid values: CONTINUE, REJECT.
+     * The policy of the lifecycle hook. Valid values: CONTINUE, REJECT, ROLLBACK.
      */
     public readonly lifecycleHookPolicy!: pulumi.Output<string>;
     /**
@@ -117,6 +134,7 @@ export class ScalingLifecycleHook extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ScalingLifecycleHookState | undefined;
+            resourceInputs["lifecycleCommand"] = state ? state.lifecycleCommand : undefined;
             resourceInputs["lifecycleHookId"] = state ? state.lifecycleHookId : undefined;
             resourceInputs["lifecycleHookName"] = state ? state.lifecycleHookName : undefined;
             resourceInputs["lifecycleHookPolicy"] = state ? state.lifecycleHookPolicy : undefined;
@@ -140,6 +158,7 @@ export class ScalingLifecycleHook extends pulumi.CustomResource {
             if ((!args || args.scalingGroupId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'scalingGroupId'");
             }
+            resourceInputs["lifecycleCommand"] = args ? args.lifecycleCommand : undefined;
             resourceInputs["lifecycleHookName"] = args ? args.lifecycleHookName : undefined;
             resourceInputs["lifecycleHookPolicy"] = args ? args.lifecycleHookPolicy : undefined;
             resourceInputs["lifecycleHookTimeout"] = args ? args.lifecycleHookTimeout : undefined;
@@ -157,6 +176,10 @@ export class ScalingLifecycleHook extends pulumi.CustomResource {
  */
 export interface ScalingLifecycleHookState {
     /**
+     * Batch job command.
+     */
+    lifecycleCommand?: pulumi.Input<inputs.autoscaling.ScalingLifecycleHookLifecycleCommand>;
+    /**
      * The id of the lifecycle hook.
      */
     lifecycleHookId?: pulumi.Input<string>;
@@ -165,7 +188,7 @@ export interface ScalingLifecycleHookState {
      */
     lifecycleHookName?: pulumi.Input<string>;
     /**
-     * The policy of the lifecycle hook. Valid values: CONTINUE, REJECT.
+     * The policy of the lifecycle hook. Valid values: CONTINUE, REJECT, ROLLBACK.
      */
     lifecycleHookPolicy?: pulumi.Input<string>;
     /**
@@ -187,11 +210,15 @@ export interface ScalingLifecycleHookState {
  */
 export interface ScalingLifecycleHookArgs {
     /**
+     * Batch job command.
+     */
+    lifecycleCommand?: pulumi.Input<inputs.autoscaling.ScalingLifecycleHookLifecycleCommand>;
+    /**
      * The name of the lifecycle hook.
      */
     lifecycleHookName: pulumi.Input<string>;
     /**
-     * The policy of the lifecycle hook. Valid values: CONTINUE, REJECT.
+     * The policy of the lifecycle hook. Valid values: CONTINUE, REJECT, ROLLBACK.
      */
     lifecycleHookPolicy: pulumi.Input<string>;
     /**

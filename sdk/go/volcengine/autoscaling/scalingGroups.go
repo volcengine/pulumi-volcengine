@@ -107,6 +107,8 @@ type ScalingGroupsArgs struct {
 	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The project name of the scaling group.
+	ProjectName *string `pulumi:"projectName"`
 	// A list of scaling group names.
 	ScalingGroupNames []string `pulumi:"scalingGroupNames"`
 }
@@ -114,10 +116,12 @@ type ScalingGroupsArgs struct {
 // A collection of values returned by ScalingGroups.
 type ScalingGroupsResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id                string   `pulumi:"id"`
-	Ids               []string `pulumi:"ids"`
-	NameRegex         *string  `pulumi:"nameRegex"`
-	OutputFile        *string  `pulumi:"outputFile"`
+	Id         string   `pulumi:"id"`
+	Ids        []string `pulumi:"ids"`
+	NameRegex  *string  `pulumi:"nameRegex"`
+	OutputFile *string  `pulumi:"outputFile"`
+	// The ProjectName of scaling group.
+	ProjectName       *string  `pulumi:"projectName"`
 	ScalingGroupNames []string `pulumi:"scalingGroupNames"`
 	// The collection of scaling group query.
 	ScalingGroups []ScalingGroupsScalingGroup `pulumi:"scalingGroups"`
@@ -146,6 +150,8 @@ type ScalingGroupsOutputArgs struct {
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The project name of the scaling group.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
 	// A list of scaling group names.
 	ScalingGroupNames pulumi.StringArrayInput `pulumi:"scalingGroupNames"`
 }
@@ -184,6 +190,11 @@ func (o ScalingGroupsResultOutput) NameRegex() pulumi.StringPtrOutput {
 
 func (o ScalingGroupsResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ScalingGroupsResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
+}
+
+// The ProjectName of scaling group.
+func (o ScalingGroupsResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ScalingGroupsResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
 }
 
 func (o ScalingGroupsResultOutput) ScalingGroupNames() pulumi.StringArrayOutput {

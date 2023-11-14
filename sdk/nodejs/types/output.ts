@@ -164,6 +164,12 @@ export namespace autoscaling {
          */
         instanceTypes: string[];
         /**
+         * Assign IPv6 address to instance network card. Possible values:
+         * 0: Do not assign IPv6 address.
+         * 1: Assign IPv6 address and the system will automatically assign an IPv6 subnet for you.
+         */
+        ipv6AddressCount: number;
+        /**
          * The ECS key pair name which the scaling configuration set.
          */
         keyPairName: string;
@@ -243,6 +249,13 @@ export namespace autoscaling {
         volumeType: string;
     }
 
+    export interface ScalingGroupLaunchTemplateOverride {
+        /**
+         * The instance type.
+         */
+        instanceType: string;
+    }
+
     export interface ScalingGroupServerGroupAttribute {
         loadBalancerId: string;
         /**
@@ -292,6 +305,10 @@ export namespace autoscaling {
          */
         desireInstanceNumber: number;
         /**
+         * The health check type of the scaling group.
+         */
+        healthCheckType: string;
+        /**
          * The id of the scaling group.
          */
         id: string;
@@ -304,6 +321,10 @@ export namespace autoscaling {
          */
         launchTemplateId: string;
         /**
+         * Instance start template information.
+         */
+        launchTemplateOverrides: outputs.autoscaling.ScalingGroupsScalingGroupLaunchTemplateOverride[];
+        /**
          * The version of the launch template bound to the scaling group.
          */
         launchTemplateVersion: string;
@@ -311,6 +332,10 @@ export namespace autoscaling {
          * The lifecycle state of the scaling group.
          */
         lifecycleState: string;
+        /**
+         * Grace period for health check of CLB instance in elastic group.
+         */
+        loadBalancerHealthCheckGracePeriod: number;
         /**
          * The max instance number of the scaling group.
          */
@@ -324,7 +349,7 @@ export namespace autoscaling {
          */
         multiAzPolicy: string;
         /**
-         * The ProjectName of scaling group.
+         * The project name of the scaling group.
          */
         projectName: string;
         /**
@@ -336,9 +361,17 @@ export namespace autoscaling {
          */
         scalingGroupName: string;
         /**
+         * The scaling mode of the scaling group.
+         */
+        scalingMode: string;
+        /**
          * The list of server group attributes.
          */
         serverGroupAttributes: outputs.autoscaling.ScalingGroupsScalingGroupServerGroupAttribute[];
+        /**
+         * The number of stopped instances.
+         */
+        stoppedInstanceCount: number;
         /**
          * The list of the subnet id to which the ENI is connected.
          */
@@ -359,6 +392,17 @@ export namespace autoscaling {
          * The VPC id of the scaling group.
          */
         vpcId: string;
+    }
+
+    export interface ScalingGroupsScalingGroupLaunchTemplateOverride {
+        /**
+         * The instance type.
+         */
+        instanceType: string;
+        /**
+         * Weight of instance specifications.
+         */
+        weightedCapacity: number;
     }
 
     export interface ScalingGroupsScalingGroupServerGroupAttribute {
@@ -430,11 +474,27 @@ export namespace autoscaling {
         status: string;
     }
 
+    export interface ScalingLifecycleHookLifecycleCommand {
+        /**
+         * Batch job command ID, which indicates the batch job command to be executed after triggering the lifecycle hook and installed in the instance.
+         */
+        commandId: string;
+        /**
+         * Parameters and parameter values in batch job commands.
+         * The number of parameters ranges from 0 to 60.
+         */
+        parameters?: string;
+    }
+
     export interface ScalingLifecycleHooksLifecycleHook {
         /**
          * The id of the lifecycle hook.
          */
         id: string;
+        /**
+         * Batch job command.
+         */
+        lifecycleCommands: outputs.autoscaling.ScalingLifecycleHooksLifecycleHookLifecycleCommand[];
         /**
          * The id of the lifecycle hook.
          */
@@ -459,6 +519,18 @@ export namespace autoscaling {
          * An id of scaling group id.
          */
         scalingGroupId: string;
+    }
+
+    export interface ScalingLifecycleHooksLifecycleHookLifecycleCommand {
+        /**
+         * Batch job command ID, which indicates the batch job command to be executed after triggering the lifecycle hook and installed in the instance.
+         */
+        commandId: string;
+        /**
+         * Parameters and parameter values in batch job commands.
+         * The number of parameters ranges from 0 to 60.
+         */
+        parameters: string;
     }
 
     export interface ScalingPoliciesScalingPolicy {
@@ -12510,11 +12582,11 @@ export namespace vke {
          */
         mountPoint?: string;
         /**
-         * The Size of DataVolumes, the value range in 20~32768.
+         * The Size of DataVolumes, the value range in 20~32768. Default value is `20`.
          */
         size?: number;
         /**
-         * The Type of DataVolumes, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`.
+         * The Type of DataVolumes, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`. Default value is `ESSD_PL0`.
          */
         type?: string;
     }
@@ -12560,11 +12632,11 @@ export namespace vke {
         /**
          * The Size of SystemVolume, the value range in 20~2048.
          */
-        size?: number;
+        size: number;
         /**
          * The Type of SystemVolume, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`.
          */
-        type?: string;
+        type: string;
     }
 
     export interface NodePoolTag {

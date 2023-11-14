@@ -328,12 +328,12 @@ class NodePool(pulumi.CustomResource):
                 image_id=[image.image_id for image in foo_images.images if image.image_name == "veLinux 1.0 CentOS兼容版 64位"][0],
                 system_volume=volcengine.vke.NodePoolNodeConfigSystemVolumeArgs(
                     type="ESSD_PL0",
-                    size=60,
+                    size=80,
                 ),
                 data_volumes=[
                     volcengine.vke.NodePoolNodeConfigDataVolumeArgs(
                         type="ESSD_PL0",
-                        size=60,
+                        size=80,
                         mount_point="/tf1",
                     ),
                     volcengine.vke.NodePoolNodeConfigDataVolumeArgs(
@@ -350,7 +350,7 @@ class NodePool(pulumi.CustomResource):
                     security_strategies=["Hids"],
                     security_group_ids=[foo_security_group.id],
                 ),
-                additional_container_storage_enabled=True,
+                additional_container_storage_enabled=False,
                 instance_charge_type="PostPaid",
                 name_prefix="acc-test",
                 ecs_tags=[volcengine.vke.NodePoolNodeConfigEcsTagArgs(
@@ -464,12 +464,12 @@ class NodePool(pulumi.CustomResource):
                 image_id=[image.image_id for image in foo_images.images if image.image_name == "veLinux 1.0 CentOS兼容版 64位"][0],
                 system_volume=volcengine.vke.NodePoolNodeConfigSystemVolumeArgs(
                     type="ESSD_PL0",
-                    size=60,
+                    size=80,
                 ),
                 data_volumes=[
                     volcengine.vke.NodePoolNodeConfigDataVolumeArgs(
                         type="ESSD_PL0",
-                        size=60,
+                        size=80,
                         mount_point="/tf1",
                     ),
                     volcengine.vke.NodePoolNodeConfigDataVolumeArgs(
@@ -486,7 +486,7 @@ class NodePool(pulumi.CustomResource):
                     security_strategies=["Hids"],
                     security_group_ids=[foo_security_group.id],
                 ),
-                additional_container_storage_enabled=True,
+                additional_container_storage_enabled=False,
                 instance_charge_type="PostPaid",
                 name_prefix="acc-test",
                 ecs_tags=[volcengine.vke.NodePoolNodeConfigEcsTagArgs(

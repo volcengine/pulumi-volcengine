@@ -72,10 +72,6 @@ export class MongoAllowList extends pulumi.CustomResource {
      * The IP address type of allow list, valid value contains `IPv4`.
      */
     public readonly allowListType!: pulumi.Output<string | undefined>;
-    /**
-     * The modify mode. Only support Cover mode.
-     */
-    public readonly modifyMode!: pulumi.Output<string | undefined>;
 
     /**
      * Create a MongoAllowList resource with the given unique name, arguments, and options.
@@ -94,7 +90,6 @@ export class MongoAllowList extends pulumi.CustomResource {
             resourceInputs["allowListDesc"] = state ? state.allowListDesc : undefined;
             resourceInputs["allowListName"] = state ? state.allowListName : undefined;
             resourceInputs["allowListType"] = state ? state.allowListType : undefined;
-            resourceInputs["modifyMode"] = state ? state.modifyMode : undefined;
         } else {
             const args = argsOrState as MongoAllowListArgs | undefined;
             if ((!args || args.allowList === undefined) && !opts.urn) {
@@ -107,7 +102,6 @@ export class MongoAllowList extends pulumi.CustomResource {
             resourceInputs["allowListDesc"] = args ? args.allowListDesc : undefined;
             resourceInputs["allowListName"] = args ? args.allowListName : undefined;
             resourceInputs["allowListType"] = args ? args.allowListType : undefined;
-            resourceInputs["modifyMode"] = args ? args.modifyMode : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(MongoAllowList.__pulumiType, name, resourceInputs, opts);
@@ -134,10 +128,6 @@ export interface MongoAllowListState {
      * The IP address type of allow list, valid value contains `IPv4`.
      */
     allowListType?: pulumi.Input<string>;
-    /**
-     * The modify mode. Only support Cover mode.
-     */
-    modifyMode?: pulumi.Input<string>;
 }
 
 /**
@@ -160,8 +150,4 @@ export interface MongoAllowListArgs {
      * The IP address type of allow list, valid value contains `IPv4`.
      */
     allowListType?: pulumi.Input<string>;
-    /**
-     * The modify mode. Only support Cover mode.
-     */
-    modifyMode?: pulumi.Input<string>;
 }

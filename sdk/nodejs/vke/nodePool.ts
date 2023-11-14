@@ -77,12 +77,12 @@ import * as utilities from "../utilities";
  *         imageId: fooImages.then(fooImages => .filter(image => image.imageName == "veLinux 1.0 CentOS兼容版 64位").map(image => (image.imageId))[0]),
  *         systemVolume: {
  *             type: "ESSD_PL0",
- *             size: 60,
+ *             size: 80,
  *         },
  *         dataVolumes: [
  *             {
  *                 type: "ESSD_PL0",
- *                 size: 60,
+ *                 size: 80,
  *                 mountPoint: "/tf1",
  *             },
  *             {
@@ -99,7 +99,7 @@ import * as utilities from "../utilities";
  *             securityStrategies: ["Hids"],
  *             securityGroupIds: [fooSecurityGroup.id],
  *         },
- *         additionalContainerStorageEnabled: true,
+ *         additionalContainerStorageEnabled: false,
  *         instanceChargeType: "PostPaid",
  *         namePrefix: "acc-test",
  *         ecsTags: [{

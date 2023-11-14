@@ -98,7 +98,7 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The list of db instance ids.
+        /// ID of the RDS database instance.
         /// </summary>
         [Output("dbInstanceIds")]
         public Output<ImmutableArray<string>> DbInstanceIds { get; private set; } = null!;
@@ -116,6 +116,12 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
         public Output<int> DesireInstanceNumber { get; private set; } = null!;
 
         /// <summary>
+        /// The health check type of the scaling group.
+        /// </summary>
+        [Output("healthCheckType")]
+        public Output<string> HealthCheckType { get; private set; } = null!;
+
+        /// <summary>
         /// The instance terminate policy of the scaling group. Valid values: OldestInstance, NewestInstance, OldestScalingConfigurationWithOldestInstance, OldestScalingConfigurationWithNewestInstance. Default value: OldestScalingConfigurationWithOldestInstance.
         /// </summary>
         [Output("instanceTerminatePolicy")]
@@ -128,6 +134,12 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
         public Output<string?> LaunchTemplateId { get; private set; } = null!;
 
         /// <summary>
+        /// Specify instance specifications.
+        /// </summary>
+        [Output("launchTemplateOverrides")]
+        public Output<ImmutableArray<Outputs.ScalingGroupLaunchTemplateOverride>> LaunchTemplateOverrides { get; private set; } = null!;
+
+        /// <summary>
         /// The version of the launch template bound to the scaling group. Valid values are the version number, Latest, or Default.
         /// </summary>
         [Output("launchTemplateVersion")]
@@ -138,6 +150,12 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
         /// </summary>
         [Output("lifecycleState")]
         public Output<string> LifecycleState { get; private set; } = null!;
+
+        /// <summary>
+        /// Grace period for health check of CLB instance in elastic group.
+        /// </summary>
+        [Output("loadBalancerHealthCheckGracePeriod")]
+        public Output<int> LoadBalancerHealthCheckGracePeriod { get; private set; } = null!;
 
         /// <summary>
         /// The max instance number of the scaling group. Value range: 0 ~ 100.
@@ -176,10 +194,24 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
         public Output<string> ScalingGroupName { get; private set; } = null!;
 
         /// <summary>
+        /// Example recycling mode for the elastic group, with values:
+        /// release (default): Release mode.
+        /// recycle: Shutdown recycling mode.
+        /// </summary>
+        [Output("scalingMode")]
+        public Output<string> ScalingMode { get; private set; } = null!;
+
+        /// <summary>
         /// The load balancer server group attributes of the scaling group.
         /// </summary>
         [Output("serverGroupAttributes")]
         public Output<ImmutableArray<Outputs.ScalingGroupServerGroupAttribute>> ServerGroupAttributes { get; private set; } = null!;
+
+        /// <summary>
+        /// The number of stopped instances.
+        /// </summary>
+        [Output("stoppedInstanceCount")]
+        public Output<int> StoppedInstanceCount { get; private set; } = null!;
 
         /// <summary>
         /// The list of the subnet id to which the ENI is connected.
@@ -258,6 +290,18 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
 
     public sealed class ScalingGroupArgs : global::Pulumi.ResourceArgs
     {
+        [Input("dbInstanceIds")]
+        private InputList<string>? _dbInstanceIds;
+
+        /// <summary>
+        /// ID of the RDS database instance.
+        /// </summary>
+        public InputList<string> DbInstanceIds
+        {
+            get => _dbInstanceIds ?? (_dbInstanceIds = new InputList<string>());
+            set => _dbInstanceIds = value;
+        }
+
         /// <summary>
         /// The default cooldown interval of the scaling group. Value range: 5 ~ 86400, unit: second. Default value: 300.
         /// </summary>
@@ -281,6 +325,18 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
         /// </summary>
         [Input("launchTemplateId")]
         public Input<string>? LaunchTemplateId { get; set; }
+
+        [Input("launchTemplateOverrides")]
+        private InputList<Inputs.ScalingGroupLaunchTemplateOverrideArgs>? _launchTemplateOverrides;
+
+        /// <summary>
+        /// Specify instance specifications.
+        /// </summary>
+        public InputList<Inputs.ScalingGroupLaunchTemplateOverrideArgs> LaunchTemplateOverrides
+        {
+            get => _launchTemplateOverrides ?? (_launchTemplateOverrides = new InputList<Inputs.ScalingGroupLaunchTemplateOverrideArgs>());
+            set => _launchTemplateOverrides = value;
+        }
 
         /// <summary>
         /// The version of the launch template bound to the scaling group. Valid values are the version number, Latest, or Default.
@@ -317,6 +373,14 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
         /// </summary>
         [Input("scalingGroupName", required: true)]
         public Input<string> ScalingGroupName { get; set; } = null!;
+
+        /// <summary>
+        /// Example recycling mode for the elastic group, with values:
+        /// release (default): Release mode.
+        /// recycle: Shutdown recycling mode.
+        /// </summary>
+        [Input("scalingMode")]
+        public Input<string>? ScalingMode { get; set; }
 
         [Input("serverGroupAttributes")]
         private InputList<Inputs.ScalingGroupServerGroupAttributeArgs>? _serverGroupAttributes;
@@ -378,7 +442,7 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
         private InputList<string>? _dbInstanceIds;
 
         /// <summary>
-        /// The list of db instance ids.
+        /// ID of the RDS database instance.
         /// </summary>
         public InputList<string> DbInstanceIds
         {
@@ -399,6 +463,12 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
         public Input<int>? DesireInstanceNumber { get; set; }
 
         /// <summary>
+        /// The health check type of the scaling group.
+        /// </summary>
+        [Input("healthCheckType")]
+        public Input<string>? HealthCheckType { get; set; }
+
+        /// <summary>
         /// The instance terminate policy of the scaling group. Valid values: OldestInstance, NewestInstance, OldestScalingConfigurationWithOldestInstance, OldestScalingConfigurationWithNewestInstance. Default value: OldestScalingConfigurationWithOldestInstance.
         /// </summary>
         [Input("instanceTerminatePolicy")]
@@ -409,6 +479,18 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
         /// </summary>
         [Input("launchTemplateId")]
         public Input<string>? LaunchTemplateId { get; set; }
+
+        [Input("launchTemplateOverrides")]
+        private InputList<Inputs.ScalingGroupLaunchTemplateOverrideGetArgs>? _launchTemplateOverrides;
+
+        /// <summary>
+        /// Specify instance specifications.
+        /// </summary>
+        public InputList<Inputs.ScalingGroupLaunchTemplateOverrideGetArgs> LaunchTemplateOverrides
+        {
+            get => _launchTemplateOverrides ?? (_launchTemplateOverrides = new InputList<Inputs.ScalingGroupLaunchTemplateOverrideGetArgs>());
+            set => _launchTemplateOverrides = value;
+        }
 
         /// <summary>
         /// The version of the launch template bound to the scaling group. Valid values are the version number, Latest, or Default.
@@ -421,6 +503,12 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
         /// </summary>
         [Input("lifecycleState")]
         public Input<string>? LifecycleState { get; set; }
+
+        /// <summary>
+        /// Grace period for health check of CLB instance in elastic group.
+        /// </summary>
+        [Input("loadBalancerHealthCheckGracePeriod")]
+        public Input<int>? LoadBalancerHealthCheckGracePeriod { get; set; }
 
         /// <summary>
         /// The max instance number of the scaling group. Value range: 0 ~ 100.
@@ -458,6 +546,14 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
         [Input("scalingGroupName")]
         public Input<string>? ScalingGroupName { get; set; }
 
+        /// <summary>
+        /// Example recycling mode for the elastic group, with values:
+        /// release (default): Release mode.
+        /// recycle: Shutdown recycling mode.
+        /// </summary>
+        [Input("scalingMode")]
+        public Input<string>? ScalingMode { get; set; }
+
         [Input("serverGroupAttributes")]
         private InputList<Inputs.ScalingGroupServerGroupAttributeGetArgs>? _serverGroupAttributes;
 
@@ -469,6 +565,12 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
             get => _serverGroupAttributes ?? (_serverGroupAttributes = new InputList<Inputs.ScalingGroupServerGroupAttributeGetArgs>());
             set => _serverGroupAttributes = value;
         }
+
+        /// <summary>
+        /// The number of stopped instances.
+        /// </summary>
+        [Input("stoppedInstanceCount")]
+        public Input<int>? StoppedInstanceCount { get; set; }
 
         [Input("subnetIds")]
         private InputList<string>? _subnetIds;

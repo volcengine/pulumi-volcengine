@@ -17,15 +17,13 @@ class MongoAllowListArgs:
                  allow_list: pulumi.Input[str],
                  allow_list_name: pulumi.Input[str],
                  allow_list_desc: Optional[pulumi.Input[str]] = None,
-                 allow_list_type: Optional[pulumi.Input[str]] = None,
-                 modify_mode: Optional[pulumi.Input[str]] = None):
+                 allow_list_type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a MongoAllowList resource.
         :param pulumi.Input[str] allow_list: IP address or IP address segment in CIDR format.
         :param pulumi.Input[str] allow_list_name: The name of allow list.
         :param pulumi.Input[str] allow_list_desc: The description of allow list.
         :param pulumi.Input[str] allow_list_type: The IP address type of allow list, valid value contains `IPv4`.
-        :param pulumi.Input[str] modify_mode: The modify mode. Only support Cover mode.
         """
         pulumi.set(__self__, "allow_list", allow_list)
         pulumi.set(__self__, "allow_list_name", allow_list_name)
@@ -33,8 +31,6 @@ class MongoAllowListArgs:
             pulumi.set(__self__, "allow_list_desc", allow_list_desc)
         if allow_list_type is not None:
             pulumi.set(__self__, "allow_list_type", allow_list_type)
-        if modify_mode is not None:
-            pulumi.set(__self__, "modify_mode", modify_mode)
 
     @property
     @pulumi.getter(name="allowList")
@@ -84,18 +80,6 @@ class MongoAllowListArgs:
     def allow_list_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "allow_list_type", value)
 
-    @property
-    @pulumi.getter(name="modifyMode")
-    def modify_mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        The modify mode. Only support Cover mode.
-        """
-        return pulumi.get(self, "modify_mode")
-
-    @modify_mode.setter
-    def modify_mode(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "modify_mode", value)
-
 
 @pulumi.input_type
 class _MongoAllowListState:
@@ -103,15 +87,13 @@ class _MongoAllowListState:
                  allow_list: Optional[pulumi.Input[str]] = None,
                  allow_list_desc: Optional[pulumi.Input[str]] = None,
                  allow_list_name: Optional[pulumi.Input[str]] = None,
-                 allow_list_type: Optional[pulumi.Input[str]] = None,
-                 modify_mode: Optional[pulumi.Input[str]] = None):
+                 allow_list_type: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering MongoAllowList resources.
         :param pulumi.Input[str] allow_list: IP address or IP address segment in CIDR format.
         :param pulumi.Input[str] allow_list_desc: The description of allow list.
         :param pulumi.Input[str] allow_list_name: The name of allow list.
         :param pulumi.Input[str] allow_list_type: The IP address type of allow list, valid value contains `IPv4`.
-        :param pulumi.Input[str] modify_mode: The modify mode. Only support Cover mode.
         """
         if allow_list is not None:
             pulumi.set(__self__, "allow_list", allow_list)
@@ -121,8 +103,6 @@ class _MongoAllowListState:
             pulumi.set(__self__, "allow_list_name", allow_list_name)
         if allow_list_type is not None:
             pulumi.set(__self__, "allow_list_type", allow_list_type)
-        if modify_mode is not None:
-            pulumi.set(__self__, "modify_mode", modify_mode)
 
     @property
     @pulumi.getter(name="allowList")
@@ -172,18 +152,6 @@ class _MongoAllowListState:
     def allow_list_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "allow_list_type", value)
 
-    @property
-    @pulumi.getter(name="modifyMode")
-    def modify_mode(self) -> Optional[pulumi.Input[str]]:
-        """
-        The modify mode. Only support Cover mode.
-        """
-        return pulumi.get(self, "modify_mode")
-
-    @modify_mode.setter
-    def modify_mode(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "modify_mode", value)
-
 
 class MongoAllowList(pulumi.CustomResource):
     @overload
@@ -194,7 +162,6 @@ class MongoAllowList(pulumi.CustomResource):
                  allow_list_desc: Optional[pulumi.Input[str]] = None,
                  allow_list_name: Optional[pulumi.Input[str]] = None,
                  allow_list_type: Optional[pulumi.Input[str]] = None,
-                 modify_mode: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Provides a resource to manage mongodb allow list
@@ -225,7 +192,6 @@ class MongoAllowList(pulumi.CustomResource):
         :param pulumi.Input[str] allow_list_desc: The description of allow list.
         :param pulumi.Input[str] allow_list_name: The name of allow list.
         :param pulumi.Input[str] allow_list_type: The IP address type of allow list, valid value contains `IPv4`.
-        :param pulumi.Input[str] modify_mode: The modify mode. Only support Cover mode.
         """
         ...
     @overload
@@ -275,7 +241,6 @@ class MongoAllowList(pulumi.CustomResource):
                  allow_list_desc: Optional[pulumi.Input[str]] = None,
                  allow_list_name: Optional[pulumi.Input[str]] = None,
                  allow_list_type: Optional[pulumi.Input[str]] = None,
-                 modify_mode: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -293,7 +258,6 @@ class MongoAllowList(pulumi.CustomResource):
                 raise TypeError("Missing required property 'allow_list_name'")
             __props__.__dict__["allow_list_name"] = allow_list_name
             __props__.__dict__["allow_list_type"] = allow_list_type
-            __props__.__dict__["modify_mode"] = modify_mode
         super(MongoAllowList, __self__).__init__(
             'volcengine:mongodb/mongoAllowList:MongoAllowList',
             resource_name,
@@ -307,8 +271,7 @@ class MongoAllowList(pulumi.CustomResource):
             allow_list: Optional[pulumi.Input[str]] = None,
             allow_list_desc: Optional[pulumi.Input[str]] = None,
             allow_list_name: Optional[pulumi.Input[str]] = None,
-            allow_list_type: Optional[pulumi.Input[str]] = None,
-            modify_mode: Optional[pulumi.Input[str]] = None) -> 'MongoAllowList':
+            allow_list_type: Optional[pulumi.Input[str]] = None) -> 'MongoAllowList':
         """
         Get an existing MongoAllowList resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -320,7 +283,6 @@ class MongoAllowList(pulumi.CustomResource):
         :param pulumi.Input[str] allow_list_desc: The description of allow list.
         :param pulumi.Input[str] allow_list_name: The name of allow list.
         :param pulumi.Input[str] allow_list_type: The IP address type of allow list, valid value contains `IPv4`.
-        :param pulumi.Input[str] modify_mode: The modify mode. Only support Cover mode.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -330,7 +292,6 @@ class MongoAllowList(pulumi.CustomResource):
         __props__.__dict__["allow_list_desc"] = allow_list_desc
         __props__.__dict__["allow_list_name"] = allow_list_name
         __props__.__dict__["allow_list_type"] = allow_list_type
-        __props__.__dict__["modify_mode"] = modify_mode
         return MongoAllowList(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -364,12 +325,4 @@ class MongoAllowList(pulumi.CustomResource):
         The IP address type of allow list, valid value contains `IPv4`.
         """
         return pulumi.get(self, "allow_list_type")
-
-    @property
-    @pulumi.getter(name="modifyMode")
-    def modify_mode(self) -> pulumi.Output[Optional[str]]:
-        """
-        The modify mode. Only support Cover mode.
-        """
-        return pulumi.get(self, "modify_mode")
 

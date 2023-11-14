@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['ScalingLifecycleHookArgs', 'ScalingLifecycleHook']
 
@@ -18,20 +20,24 @@ class ScalingLifecycleHookArgs:
                  lifecycle_hook_policy: pulumi.Input[str],
                  lifecycle_hook_timeout: pulumi.Input[int],
                  lifecycle_hook_type: pulumi.Input[str],
-                 scaling_group_id: pulumi.Input[str]):
+                 scaling_group_id: pulumi.Input[str],
+                 lifecycle_command: Optional[pulumi.Input['ScalingLifecycleHookLifecycleCommandArgs']] = None):
         """
         The set of arguments for constructing a ScalingLifecycleHook resource.
         :param pulumi.Input[str] lifecycle_hook_name: The name of the lifecycle hook.
-        :param pulumi.Input[str] lifecycle_hook_policy: The policy of the lifecycle hook. Valid values: CONTINUE, REJECT.
+        :param pulumi.Input[str] lifecycle_hook_policy: The policy of the lifecycle hook. Valid values: CONTINUE, REJECT, ROLLBACK.
         :param pulumi.Input[int] lifecycle_hook_timeout: The timeout of the lifecycle hook.
         :param pulumi.Input[str] lifecycle_hook_type: The type of the lifecycle hook. Valid values: SCALE_IN, SCALE_OUT.
         :param pulumi.Input[str] scaling_group_id: The id of the scaling group.
+        :param pulumi.Input['ScalingLifecycleHookLifecycleCommandArgs'] lifecycle_command: Batch job command.
         """
         pulumi.set(__self__, "lifecycle_hook_name", lifecycle_hook_name)
         pulumi.set(__self__, "lifecycle_hook_policy", lifecycle_hook_policy)
         pulumi.set(__self__, "lifecycle_hook_timeout", lifecycle_hook_timeout)
         pulumi.set(__self__, "lifecycle_hook_type", lifecycle_hook_type)
         pulumi.set(__self__, "scaling_group_id", scaling_group_id)
+        if lifecycle_command is not None:
+            pulumi.set(__self__, "lifecycle_command", lifecycle_command)
 
     @property
     @pulumi.getter(name="lifecycleHookName")
@@ -49,7 +55,7 @@ class ScalingLifecycleHookArgs:
     @pulumi.getter(name="lifecycleHookPolicy")
     def lifecycle_hook_policy(self) -> pulumi.Input[str]:
         """
-        The policy of the lifecycle hook. Valid values: CONTINUE, REJECT.
+        The policy of the lifecycle hook. Valid values: CONTINUE, REJECT, ROLLBACK.
         """
         return pulumi.get(self, "lifecycle_hook_policy")
 
@@ -93,10 +99,23 @@ class ScalingLifecycleHookArgs:
     def scaling_group_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "scaling_group_id", value)
 
+    @property
+    @pulumi.getter(name="lifecycleCommand")
+    def lifecycle_command(self) -> Optional[pulumi.Input['ScalingLifecycleHookLifecycleCommandArgs']]:
+        """
+        Batch job command.
+        """
+        return pulumi.get(self, "lifecycle_command")
+
+    @lifecycle_command.setter
+    def lifecycle_command(self, value: Optional[pulumi.Input['ScalingLifecycleHookLifecycleCommandArgs']]):
+        pulumi.set(self, "lifecycle_command", value)
+
 
 @pulumi.input_type
 class _ScalingLifecycleHookState:
     def __init__(__self__, *,
+                 lifecycle_command: Optional[pulumi.Input['ScalingLifecycleHookLifecycleCommandArgs']] = None,
                  lifecycle_hook_id: Optional[pulumi.Input[str]] = None,
                  lifecycle_hook_name: Optional[pulumi.Input[str]] = None,
                  lifecycle_hook_policy: Optional[pulumi.Input[str]] = None,
@@ -105,13 +124,16 @@ class _ScalingLifecycleHookState:
                  scaling_group_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ScalingLifecycleHook resources.
+        :param pulumi.Input['ScalingLifecycleHookLifecycleCommandArgs'] lifecycle_command: Batch job command.
         :param pulumi.Input[str] lifecycle_hook_id: The id of the lifecycle hook.
         :param pulumi.Input[str] lifecycle_hook_name: The name of the lifecycle hook.
-        :param pulumi.Input[str] lifecycle_hook_policy: The policy of the lifecycle hook. Valid values: CONTINUE, REJECT.
+        :param pulumi.Input[str] lifecycle_hook_policy: The policy of the lifecycle hook. Valid values: CONTINUE, REJECT, ROLLBACK.
         :param pulumi.Input[int] lifecycle_hook_timeout: The timeout of the lifecycle hook.
         :param pulumi.Input[str] lifecycle_hook_type: The type of the lifecycle hook. Valid values: SCALE_IN, SCALE_OUT.
         :param pulumi.Input[str] scaling_group_id: The id of the scaling group.
         """
+        if lifecycle_command is not None:
+            pulumi.set(__self__, "lifecycle_command", lifecycle_command)
         if lifecycle_hook_id is not None:
             pulumi.set(__self__, "lifecycle_hook_id", lifecycle_hook_id)
         if lifecycle_hook_name is not None:
@@ -124,6 +146,18 @@ class _ScalingLifecycleHookState:
             pulumi.set(__self__, "lifecycle_hook_type", lifecycle_hook_type)
         if scaling_group_id is not None:
             pulumi.set(__self__, "scaling_group_id", scaling_group_id)
+
+    @property
+    @pulumi.getter(name="lifecycleCommand")
+    def lifecycle_command(self) -> Optional[pulumi.Input['ScalingLifecycleHookLifecycleCommandArgs']]:
+        """
+        Batch job command.
+        """
+        return pulumi.get(self, "lifecycle_command")
+
+    @lifecycle_command.setter
+    def lifecycle_command(self, value: Optional[pulumi.Input['ScalingLifecycleHookLifecycleCommandArgs']]):
+        pulumi.set(self, "lifecycle_command", value)
 
     @property
     @pulumi.getter(name="lifecycleHookId")
@@ -153,7 +187,7 @@ class _ScalingLifecycleHookState:
     @pulumi.getter(name="lifecycleHookPolicy")
     def lifecycle_hook_policy(self) -> Optional[pulumi.Input[str]]:
         """
-        The policy of the lifecycle hook. Valid values: CONTINUE, REJECT.
+        The policy of the lifecycle hook. Valid values: CONTINUE, REJECT, ROLLBACK.
         """
         return pulumi.get(self, "lifecycle_hook_policy")
 
@@ -203,6 +237,7 @@ class ScalingLifecycleHook(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 lifecycle_command: Optional[pulumi.Input[pulumi.InputType['ScalingLifecycleHookLifecycleCommandArgs']]] = None,
                  lifecycle_hook_name: Optional[pulumi.Input[str]] = None,
                  lifecycle_hook_policy: Optional[pulumi.Input[str]] = None,
                  lifecycle_hook_timeout: Optional[pulumi.Input[int]] = None,
@@ -226,6 +261,12 @@ class ScalingLifecycleHook(pulumi.CustomResource):
             cidr_block="172.16.0.0/24",
             zone_id=foo_zones.zones[0].id,
             vpc_id=foo_vpc.id)
+        foo_command = volcengine.ecs.Command("fooCommand",
+            description="tf",
+            working_dir="/home",
+            username="root",
+            timeout=100,
+            command_content="IyEvYmluL2Jhc2gKCgplY2hvICJvcGVyYXRpb24gc3VjY2VzcyEi")
         foo_scaling_group = volcengine.autoscaling.ScalingGroup("fooScalingGroup",
             scaling_group_name="acc-test-scaling-group-lifecycle",
             subnet_ids=[foo_subnet.id],
@@ -237,10 +278,14 @@ class ScalingLifecycleHook(pulumi.CustomResource):
             default_cooldown=10)
         foo_scaling_lifecycle_hook = volcengine.autoscaling.ScalingLifecycleHook("fooScalingLifecycleHook",
             lifecycle_hook_name="acc-test-lifecycle",
-            lifecycle_hook_policy="CONTINUE",
-            lifecycle_hook_timeout=30,
-            lifecycle_hook_type="SCALE_IN",
+            lifecycle_hook_policy="ROLLBACK",
+            lifecycle_hook_timeout=300,
+            lifecycle_hook_type="SCALE_OUT",
             scaling_group_id=foo_scaling_group.id)
+        #  lifecycle_command {
+        #    command_id = volcengine_ecs_command.foo.id
+        #    parameters = "{}"
+        #  }
         ```
 
         ## Import
@@ -253,8 +298,9 @@ class ScalingLifecycleHook(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['ScalingLifecycleHookLifecycleCommandArgs']] lifecycle_command: Batch job command.
         :param pulumi.Input[str] lifecycle_hook_name: The name of the lifecycle hook.
-        :param pulumi.Input[str] lifecycle_hook_policy: The policy of the lifecycle hook. Valid values: CONTINUE, REJECT.
+        :param pulumi.Input[str] lifecycle_hook_policy: The policy of the lifecycle hook. Valid values: CONTINUE, REJECT, ROLLBACK.
         :param pulumi.Input[int] lifecycle_hook_timeout: The timeout of the lifecycle hook.
         :param pulumi.Input[str] lifecycle_hook_type: The type of the lifecycle hook. Valid values: SCALE_IN, SCALE_OUT.
         :param pulumi.Input[str] scaling_group_id: The id of the scaling group.
@@ -282,6 +328,12 @@ class ScalingLifecycleHook(pulumi.CustomResource):
             cidr_block="172.16.0.0/24",
             zone_id=foo_zones.zones[0].id,
             vpc_id=foo_vpc.id)
+        foo_command = volcengine.ecs.Command("fooCommand",
+            description="tf",
+            working_dir="/home",
+            username="root",
+            timeout=100,
+            command_content="IyEvYmluL2Jhc2gKCgplY2hvICJvcGVyYXRpb24gc3VjY2VzcyEi")
         foo_scaling_group = volcengine.autoscaling.ScalingGroup("fooScalingGroup",
             scaling_group_name="acc-test-scaling-group-lifecycle",
             subnet_ids=[foo_subnet.id],
@@ -293,10 +345,14 @@ class ScalingLifecycleHook(pulumi.CustomResource):
             default_cooldown=10)
         foo_scaling_lifecycle_hook = volcengine.autoscaling.ScalingLifecycleHook("fooScalingLifecycleHook",
             lifecycle_hook_name="acc-test-lifecycle",
-            lifecycle_hook_policy="CONTINUE",
-            lifecycle_hook_timeout=30,
-            lifecycle_hook_type="SCALE_IN",
+            lifecycle_hook_policy="ROLLBACK",
+            lifecycle_hook_timeout=300,
+            lifecycle_hook_type="SCALE_OUT",
             scaling_group_id=foo_scaling_group.id)
+        #  lifecycle_command {
+        #    command_id = volcengine_ecs_command.foo.id
+        #    parameters = "{}"
+        #  }
         ```
 
         ## Import
@@ -322,6 +378,7 @@ class ScalingLifecycleHook(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 lifecycle_command: Optional[pulumi.Input[pulumi.InputType['ScalingLifecycleHookLifecycleCommandArgs']]] = None,
                  lifecycle_hook_name: Optional[pulumi.Input[str]] = None,
                  lifecycle_hook_policy: Optional[pulumi.Input[str]] = None,
                  lifecycle_hook_timeout: Optional[pulumi.Input[int]] = None,
@@ -336,6 +393,7 @@ class ScalingLifecycleHook(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ScalingLifecycleHookArgs.__new__(ScalingLifecycleHookArgs)
 
+            __props__.__dict__["lifecycle_command"] = lifecycle_command
             if lifecycle_hook_name is None and not opts.urn:
                 raise TypeError("Missing required property 'lifecycle_hook_name'")
             __props__.__dict__["lifecycle_hook_name"] = lifecycle_hook_name
@@ -362,6 +420,7 @@ class ScalingLifecycleHook(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            lifecycle_command: Optional[pulumi.Input[pulumi.InputType['ScalingLifecycleHookLifecycleCommandArgs']]] = None,
             lifecycle_hook_id: Optional[pulumi.Input[str]] = None,
             lifecycle_hook_name: Optional[pulumi.Input[str]] = None,
             lifecycle_hook_policy: Optional[pulumi.Input[str]] = None,
@@ -375,9 +434,10 @@ class ScalingLifecycleHook(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['ScalingLifecycleHookLifecycleCommandArgs']] lifecycle_command: Batch job command.
         :param pulumi.Input[str] lifecycle_hook_id: The id of the lifecycle hook.
         :param pulumi.Input[str] lifecycle_hook_name: The name of the lifecycle hook.
-        :param pulumi.Input[str] lifecycle_hook_policy: The policy of the lifecycle hook. Valid values: CONTINUE, REJECT.
+        :param pulumi.Input[str] lifecycle_hook_policy: The policy of the lifecycle hook. Valid values: CONTINUE, REJECT, ROLLBACK.
         :param pulumi.Input[int] lifecycle_hook_timeout: The timeout of the lifecycle hook.
         :param pulumi.Input[str] lifecycle_hook_type: The type of the lifecycle hook. Valid values: SCALE_IN, SCALE_OUT.
         :param pulumi.Input[str] scaling_group_id: The id of the scaling group.
@@ -386,6 +446,7 @@ class ScalingLifecycleHook(pulumi.CustomResource):
 
         __props__ = _ScalingLifecycleHookState.__new__(_ScalingLifecycleHookState)
 
+        __props__.__dict__["lifecycle_command"] = lifecycle_command
         __props__.__dict__["lifecycle_hook_id"] = lifecycle_hook_id
         __props__.__dict__["lifecycle_hook_name"] = lifecycle_hook_name
         __props__.__dict__["lifecycle_hook_policy"] = lifecycle_hook_policy
@@ -393,6 +454,14 @@ class ScalingLifecycleHook(pulumi.CustomResource):
         __props__.__dict__["lifecycle_hook_type"] = lifecycle_hook_type
         __props__.__dict__["scaling_group_id"] = scaling_group_id
         return ScalingLifecycleHook(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="lifecycleCommand")
+    def lifecycle_command(self) -> pulumi.Output[Optional['outputs.ScalingLifecycleHookLifecycleCommand']]:
+        """
+        Batch job command.
+        """
+        return pulumi.get(self, "lifecycle_command")
 
     @property
     @pulumi.getter(name="lifecycleHookId")
@@ -414,7 +483,7 @@ class ScalingLifecycleHook(pulumi.CustomResource):
     @pulumi.getter(name="lifecycleHookPolicy")
     def lifecycle_hook_policy(self) -> pulumi.Output[str]:
         """
-        The policy of the lifecycle hook. Valid values: CONTINUE, REJECT.
+        The policy of the lifecycle hook. Valid values: CONTINUE, REJECT, ROLLBACK.
         """
         return pulumi.get(self, "lifecycle_hook_policy")
 

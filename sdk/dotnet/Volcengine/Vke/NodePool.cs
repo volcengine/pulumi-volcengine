@@ -128,14 +128,14 @@ namespace Volcengine.Pulumi.Volcengine.Vke
     ///             SystemVolume = new Volcengine.Vke.Inputs.NodePoolNodeConfigSystemVolumeArgs
     ///             {
     ///                 Type = "ESSD_PL0",
-    ///                 Size = 60,
+    ///                 Size = 80,
     ///             },
     ///             DataVolumes = new[]
     ///             {
     ///                 new Volcengine.Vke.Inputs.NodePoolNodeConfigDataVolumeArgs
     ///                 {
     ///                     Type = "ESSD_PL0",
-    ///                     Size = 60,
+    ///                     Size = 80,
     ///                     MountPoint = "/tf1",
     ///                 },
     ///                 new Volcengine.Vke.Inputs.NodePoolNodeConfigDataVolumeArgs
@@ -161,7 +161,7 @@ namespace Volcengine.Pulumi.Volcengine.Vke
     ///                     fooSecurityGroup.Id,
     ///                 },
     ///             },
-    ///             AdditionalContainerStorageEnabled = true,
+    ///             AdditionalContainerStorageEnabled = false,
     ///             InstanceChargeType = "PostPaid",
     ///             NamePrefix = "acc-test",
     ///             EcsTags = new[]

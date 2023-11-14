@@ -165,6 +165,10 @@ type ScalingConfiguration struct {
 	InstanceName pulumi.StringOutput `pulumi:"instanceName"`
 	// The list of the ECS instance type which the scaling configuration set. The maximum number of instance types is 10.
 	InstanceTypes pulumi.StringArrayOutput `pulumi:"instanceTypes"`
+	// Assign IPv6 address to instance network card. Possible values:
+	// 0: Do not assign IPv6 address.
+	// 1: Assign IPv6 address and the system will automatically assign an IPv6 subnet for you.
+	Ipv6AddressCount pulumi.IntPtrOutput `pulumi:"ipv6AddressCount"`
 	// The ECS key pair name which the scaling configuration set.
 	KeyPairName pulumi.StringPtrOutput `pulumi:"keyPairName"`
 	// The lifecycle state of the scaling configuration.
@@ -273,6 +277,10 @@ type scalingConfigurationState struct {
 	InstanceName *string `pulumi:"instanceName"`
 	// The list of the ECS instance type which the scaling configuration set. The maximum number of instance types is 10.
 	InstanceTypes []string `pulumi:"instanceTypes"`
+	// Assign IPv6 address to instance network card. Possible values:
+	// 0: Do not assign IPv6 address.
+	// 1: Assign IPv6 address and the system will automatically assign an IPv6 subnet for you.
+	Ipv6AddressCount *int `pulumi:"ipv6AddressCount"`
 	// The ECS key pair name which the scaling configuration set.
 	KeyPairName *string `pulumi:"keyPairName"`
 	// The lifecycle state of the scaling configuration.
@@ -324,6 +332,10 @@ type ScalingConfigurationState struct {
 	InstanceName pulumi.StringPtrInput
 	// The list of the ECS instance type which the scaling configuration set. The maximum number of instance types is 10.
 	InstanceTypes pulumi.StringArrayInput
+	// Assign IPv6 address to instance network card. Possible values:
+	// 0: Do not assign IPv6 address.
+	// 1: Assign IPv6 address and the system will automatically assign an IPv6 subnet for you.
+	Ipv6AddressCount pulumi.IntPtrInput
 	// The ECS key pair name which the scaling configuration set.
 	KeyPairName pulumi.StringPtrInput
 	// The lifecycle state of the scaling configuration.
@@ -377,6 +389,10 @@ type scalingConfigurationArgs struct {
 	InstanceName string `pulumi:"instanceName"`
 	// The list of the ECS instance type which the scaling configuration set. The maximum number of instance types is 10.
 	InstanceTypes []string `pulumi:"instanceTypes"`
+	// Assign IPv6 address to instance network card. Possible values:
+	// 0: Do not assign IPv6 address.
+	// 1: Assign IPv6 address and the system will automatically assign an IPv6 subnet for you.
+	Ipv6AddressCount *int `pulumi:"ipv6AddressCount"`
 	// The ECS key pair name which the scaling configuration set.
 	KeyPairName *string `pulumi:"keyPairName"`
 	// The ECS password which the scaling configuration set.
@@ -421,6 +437,10 @@ type ScalingConfigurationArgs struct {
 	InstanceName pulumi.StringInput
 	// The list of the ECS instance type which the scaling configuration set. The maximum number of instance types is 10.
 	InstanceTypes pulumi.StringArrayInput
+	// Assign IPv6 address to instance network card. Possible values:
+	// 0: Do not assign IPv6 address.
+	// 1: Assign IPv6 address and the system will automatically assign an IPv6 subnet for you.
+	Ipv6AddressCount pulumi.IntPtrInput
 	// The ECS key pair name which the scaling configuration set.
 	KeyPairName pulumi.StringPtrInput
 	// The ECS password which the scaling configuration set.
@@ -580,6 +600,13 @@ func (o ScalingConfigurationOutput) InstanceName() pulumi.StringOutput {
 // The list of the ECS instance type which the scaling configuration set. The maximum number of instance types is 10.
 func (o ScalingConfigurationOutput) InstanceTypes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ScalingConfiguration) pulumi.StringArrayOutput { return v.InstanceTypes }).(pulumi.StringArrayOutput)
+}
+
+// Assign IPv6 address to instance network card. Possible values:
+// 0: Do not assign IPv6 address.
+// 1: Assign IPv6 address and the system will automatically assign an IPv6 subnet for you.
+func (o ScalingConfigurationOutput) Ipv6AddressCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ScalingConfiguration) pulumi.IntPtrOutput { return v.Ipv6AddressCount }).(pulumi.IntPtrOutput)
 }
 
 // The ECS key pair name which the scaling configuration set.

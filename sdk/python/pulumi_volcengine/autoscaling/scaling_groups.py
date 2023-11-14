@@ -22,7 +22,7 @@ class ScalingGroupsResult:
     """
     A collection of values returned by ScalingGroups.
     """
-    def __init__(__self__, id=None, ids=None, name_regex=None, output_file=None, scaling_group_names=None, scaling_groups=None, total_count=None):
+    def __init__(__self__, id=None, ids=None, name_regex=None, output_file=None, project_name=None, scaling_group_names=None, scaling_groups=None, total_count=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -35,6 +35,9 @@ class ScalingGroupsResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if project_name and not isinstance(project_name, str):
+            raise TypeError("Expected argument 'project_name' to be a str")
+        pulumi.set(__self__, "project_name", project_name)
         if scaling_group_names and not isinstance(scaling_group_names, list):
             raise TypeError("Expected argument 'scaling_group_names' to be a list")
         pulumi.set(__self__, "scaling_group_names", scaling_group_names)
@@ -69,6 +72,14 @@ class ScalingGroupsResult:
         return pulumi.get(self, "output_file")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[str]:
+        """
+        The ProjectName of scaling group.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="scalingGroupNames")
     def scaling_group_names(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "scaling_group_names")
@@ -100,6 +111,7 @@ class AwaitableScalingGroupsResult(ScalingGroupsResult):
             ids=self.ids,
             name_regex=self.name_regex,
             output_file=self.output_file,
+            project_name=self.project_name,
             scaling_group_names=self.scaling_group_names,
             scaling_groups=self.scaling_groups,
             total_count=self.total_count)
@@ -108,6 +120,7 @@ class AwaitableScalingGroupsResult(ScalingGroupsResult):
 def scaling_groups(ids: Optional[Sequence[str]] = None,
                    name_regex: Optional[str] = None,
                    output_file: Optional[str] = None,
+                   project_name: Optional[str] = None,
                    scaling_group_names: Optional[Sequence[str]] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableScalingGroupsResult:
     """
@@ -155,12 +168,14 @@ def scaling_groups(ids: Optional[Sequence[str]] = None,
     :param Sequence[str] ids: A list of scaling group ids.
     :param str name_regex: A Name Regex of scaling group.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of the scaling group.
     :param Sequence[str] scaling_group_names: A list of scaling group names.
     """
     __args__ = dict()
     __args__['ids'] = ids
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
+    __args__['projectName'] = project_name
     __args__['scalingGroupNames'] = scaling_group_names
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:autoscaling/scalingGroups:ScalingGroups', __args__, opts=opts, typ=ScalingGroupsResult).value
@@ -170,6 +185,7 @@ def scaling_groups(ids: Optional[Sequence[str]] = None,
         ids=pulumi.get(__ret__, 'ids'),
         name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        project_name=pulumi.get(__ret__, 'project_name'),
         scaling_group_names=pulumi.get(__ret__, 'scaling_group_names'),
         scaling_groups=pulumi.get(__ret__, 'scaling_groups'),
         total_count=pulumi.get(__ret__, 'total_count'))
@@ -179,6 +195,7 @@ def scaling_groups(ids: Optional[Sequence[str]] = None,
 def scaling_groups_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                           name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                           output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                          project_name: Optional[pulumi.Input[Optional[str]]] = None,
                           scaling_group_names: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ScalingGroupsResult]:
     """
@@ -226,6 +243,7 @@ def scaling_groups_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] =
     :param Sequence[str] ids: A list of scaling group ids.
     :param str name_regex: A Name Regex of scaling group.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of the scaling group.
     :param Sequence[str] scaling_group_names: A list of scaling group names.
     """
     ...
