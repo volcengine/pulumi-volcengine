@@ -29,6 +29,7 @@ class ScalingConfigurationArgs:
                  host_name: Optional[pulumi.Input[str]] = None,
                  hpc_cluster_id: Optional[pulumi.Input[str]] = None,
                  instance_description: Optional[pulumi.Input[str]] = None,
+                 ipv6_address_count: Optional[pulumi.Input[int]] = None,
                  key_pair_name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
@@ -51,6 +52,9 @@ class ScalingConfigurationArgs:
         :param pulumi.Input[str] host_name: The ECS hostname which the scaling configuration set.
         :param pulumi.Input[str] hpc_cluster_id: The ID of the HPC cluster to which the instance belongs. Valid only when InstanceTypes.N specifies High Performance Computing GPU Type.
         :param pulumi.Input[str] instance_description: The ECS instance description which the scaling configuration set.
+        :param pulumi.Input[int] ipv6_address_count: Assign IPv6 address to instance network card. Possible values:
+               0: Do not assign IPv6 address.
+               1: Assign IPv6 address and the system will automatically assign an IPv6 subnet for you.
         :param pulumi.Input[str] key_pair_name: The ECS key pair name which the scaling configuration set.
         :param pulumi.Input[str] password: The ECS password which the scaling configuration set.
         :param pulumi.Input[str] project_name: The project to which the instance created by the scaling configuration belongs.
@@ -78,6 +82,8 @@ class ScalingConfigurationArgs:
             pulumi.set(__self__, "hpc_cluster_id", hpc_cluster_id)
         if instance_description is not None:
             pulumi.set(__self__, "instance_description", instance_description)
+        if ipv6_address_count is not None:
+            pulumi.set(__self__, "ipv6_address_count", ipv6_address_count)
         if key_pair_name is not None:
             pulumi.set(__self__, "key_pair_name", key_pair_name)
         if password is not None:
@@ -250,6 +256,20 @@ class ScalingConfigurationArgs:
         pulumi.set(self, "instance_description", value)
 
     @property
+    @pulumi.getter(name="ipv6AddressCount")
+    def ipv6_address_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        Assign IPv6 address to instance network card. Possible values:
+        0: Do not assign IPv6 address.
+        1: Assign IPv6 address and the system will automatically assign an IPv6 subnet for you.
+        """
+        return pulumi.get(self, "ipv6_address_count")
+
+    @ipv6_address_count.setter
+    def ipv6_address_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ipv6_address_count", value)
+
+    @property
     @pulumi.getter(name="keyPairName")
     def key_pair_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -347,6 +367,7 @@ class _ScalingConfigurationState:
                  instance_description: Optional[pulumi.Input[str]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
                  instance_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 ipv6_address_count: Optional[pulumi.Input[int]] = None,
                  key_pair_name: Optional[pulumi.Input[str]] = None,
                  lifecycle_state: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
@@ -373,6 +394,9 @@ class _ScalingConfigurationState:
         :param pulumi.Input[str] instance_description: The ECS instance description which the scaling configuration set.
         :param pulumi.Input[str] instance_name: The ECS instance name which the scaling configuration set.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_types: The list of the ECS instance type which the scaling configuration set. The maximum number of instance types is 10.
+        :param pulumi.Input[int] ipv6_address_count: Assign IPv6 address to instance network card. Possible values:
+               0: Do not assign IPv6 address.
+               1: Assign IPv6 address and the system will automatically assign an IPv6 subnet for you.
         :param pulumi.Input[str] key_pair_name: The ECS key pair name which the scaling configuration set.
         :param pulumi.Input[str] lifecycle_state: The lifecycle state of the scaling configuration.
         :param pulumi.Input[str] password: The ECS password which the scaling configuration set.
@@ -408,6 +432,8 @@ class _ScalingConfigurationState:
             pulumi.set(__self__, "instance_name", instance_name)
         if instance_types is not None:
             pulumi.set(__self__, "instance_types", instance_types)
+        if ipv6_address_count is not None:
+            pulumi.set(__self__, "ipv6_address_count", ipv6_address_count)
         if key_pair_name is not None:
             pulumi.set(__self__, "key_pair_name", key_pair_name)
         if lifecycle_state is not None:
@@ -556,6 +582,20 @@ class _ScalingConfigurationState:
     @instance_types.setter
     def instance_types(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "instance_types", value)
+
+    @property
+    @pulumi.getter(name="ipv6AddressCount")
+    def ipv6_address_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        Assign IPv6 address to instance network card. Possible values:
+        0: Do not assign IPv6 address.
+        1: Assign IPv6 address and the system will automatically assign an IPv6 subnet for you.
+        """
+        return pulumi.get(self, "ipv6_address_count")
+
+    @ipv6_address_count.setter
+    def ipv6_address_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ipv6_address_count", value)
 
     @property
     @pulumi.getter(name="keyPairName")
@@ -740,6 +780,7 @@ class ScalingConfiguration(pulumi.CustomResource):
                  instance_description: Optional[pulumi.Input[str]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
                  instance_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 ipv6_address_count: Optional[pulumi.Input[int]] = None,
                  key_pair_name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
@@ -845,6 +886,9 @@ class ScalingConfiguration(pulumi.CustomResource):
         :param pulumi.Input[str] instance_description: The ECS instance description which the scaling configuration set.
         :param pulumi.Input[str] instance_name: The ECS instance name which the scaling configuration set.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_types: The list of the ECS instance type which the scaling configuration set. The maximum number of instance types is 10.
+        :param pulumi.Input[int] ipv6_address_count: Assign IPv6 address to instance network card. Possible values:
+               0: Do not assign IPv6 address.
+               1: Assign IPv6 address and the system will automatically assign an IPv6 subnet for you.
         :param pulumi.Input[str] key_pair_name: The ECS key pair name which the scaling configuration set.
         :param pulumi.Input[str] password: The ECS password which the scaling configuration set.
         :param pulumi.Input[str] project_name: The project to which the instance created by the scaling configuration belongs.
@@ -969,6 +1013,7 @@ class ScalingConfiguration(pulumi.CustomResource):
                  instance_description: Optional[pulumi.Input[str]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
                  instance_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 ipv6_address_count: Optional[pulumi.Input[int]] = None,
                  key_pair_name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
@@ -1004,6 +1049,7 @@ class ScalingConfiguration(pulumi.CustomResource):
             if instance_types is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_types'")
             __props__.__dict__["instance_types"] = instance_types
+            __props__.__dict__["ipv6_address_count"] = ipv6_address_count
             __props__.__dict__["key_pair_name"] = key_pair_name
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
             __props__.__dict__["project_name"] = project_name
@@ -1049,6 +1095,7 @@ class ScalingConfiguration(pulumi.CustomResource):
             instance_description: Optional[pulumi.Input[str]] = None,
             instance_name: Optional[pulumi.Input[str]] = None,
             instance_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            ipv6_address_count: Optional[pulumi.Input[int]] = None,
             key_pair_name: Optional[pulumi.Input[str]] = None,
             lifecycle_state: Optional[pulumi.Input[str]] = None,
             password: Optional[pulumi.Input[str]] = None,
@@ -1080,6 +1127,9 @@ class ScalingConfiguration(pulumi.CustomResource):
         :param pulumi.Input[str] instance_description: The ECS instance description which the scaling configuration set.
         :param pulumi.Input[str] instance_name: The ECS instance name which the scaling configuration set.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_types: The list of the ECS instance type which the scaling configuration set. The maximum number of instance types is 10.
+        :param pulumi.Input[int] ipv6_address_count: Assign IPv6 address to instance network card. Possible values:
+               0: Do not assign IPv6 address.
+               1: Assign IPv6 address and the system will automatically assign an IPv6 subnet for you.
         :param pulumi.Input[str] key_pair_name: The ECS key pair name which the scaling configuration set.
         :param pulumi.Input[str] lifecycle_state: The lifecycle state of the scaling configuration.
         :param pulumi.Input[str] password: The ECS password which the scaling configuration set.
@@ -1109,6 +1159,7 @@ class ScalingConfiguration(pulumi.CustomResource):
         __props__.__dict__["instance_description"] = instance_description
         __props__.__dict__["instance_name"] = instance_name
         __props__.__dict__["instance_types"] = instance_types
+        __props__.__dict__["ipv6_address_count"] = ipv6_address_count
         __props__.__dict__["key_pair_name"] = key_pair_name
         __props__.__dict__["lifecycle_state"] = lifecycle_state
         __props__.__dict__["password"] = password
@@ -1204,6 +1255,16 @@ class ScalingConfiguration(pulumi.CustomResource):
         The list of the ECS instance type which the scaling configuration set. The maximum number of instance types is 10.
         """
         return pulumi.get(self, "instance_types")
+
+    @property
+    @pulumi.getter(name="ipv6AddressCount")
+    def ipv6_address_count(self) -> pulumi.Output[Optional[int]]:
+        """
+        Assign IPv6 address to instance network card. Possible values:
+        0: Do not assign IPv6 address.
+        1: Assign IPv6 address and the system will automatically assign an IPv6 subnet for you.
+        """
+        return pulumi.get(self, "ipv6_address_count")
 
     @property
     @pulumi.getter(name="keyPairName")

@@ -35,6 +35,10 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling.Outputs
         /// </summary>
         public readonly int DesireInstanceNumber;
         /// <summary>
+        /// The health check type of the scaling group.
+        /// </summary>
+        public readonly string HealthCheckType;
+        /// <summary>
         /// The id of the scaling group.
         /// </summary>
         public readonly string Id;
@@ -47,6 +51,10 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling.Outputs
         /// </summary>
         public readonly string LaunchTemplateId;
         /// <summary>
+        /// Instance start template information.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.ScalingGroupsScalingGroupLaunchTemplateOverrideResult> LaunchTemplateOverrides;
+        /// <summary>
         /// The version of the launch template bound to the scaling group.
         /// </summary>
         public readonly string LaunchTemplateVersion;
@@ -54,6 +62,10 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling.Outputs
         /// The lifecycle state of the scaling group.
         /// </summary>
         public readonly string LifecycleState;
+        /// <summary>
+        /// Grace period for health check of CLB instance in elastic group.
+        /// </summary>
+        public readonly int LoadBalancerHealthCheckGracePeriod;
         /// <summary>
         /// The max instance number of the scaling group.
         /// </summary>
@@ -67,7 +79,7 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling.Outputs
         /// </summary>
         public readonly string MultiAzPolicy;
         /// <summary>
-        /// The ProjectName of scaling group.
+        /// The project name of the scaling group.
         /// </summary>
         public readonly string ProjectName;
         /// <summary>
@@ -79,9 +91,17 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling.Outputs
         /// </summary>
         public readonly string ScalingGroupName;
         /// <summary>
+        /// The scaling mode of the scaling group.
+        /// </summary>
+        public readonly string ScalingMode;
+        /// <summary>
         /// The list of server group attributes.
         /// </summary>
         public readonly ImmutableArray<Outputs.ScalingGroupsScalingGroupServerGroupAttributeResult> ServerGroupAttributes;
+        /// <summary>
+        /// The number of stopped instances.
+        /// </summary>
+        public readonly int StoppedInstanceCount;
         /// <summary>
         /// The list of the subnet id to which the ENI is connected.
         /// </summary>
@@ -115,15 +135,21 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling.Outputs
 
             int desireInstanceNumber,
 
+            string healthCheckType,
+
             string id,
 
             string instanceTerminatePolicy,
 
             string launchTemplateId,
 
+            ImmutableArray<Outputs.ScalingGroupsScalingGroupLaunchTemplateOverrideResult> launchTemplateOverrides,
+
             string launchTemplateVersion,
 
             string lifecycleState,
+
+            int loadBalancerHealthCheckGracePeriod,
 
             int maxInstanceNumber,
 
@@ -137,7 +163,11 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling.Outputs
 
             string scalingGroupName,
 
+            string scalingMode,
+
             ImmutableArray<Outputs.ScalingGroupsScalingGroupServerGroupAttributeResult> serverGroupAttributes,
+
+            int stoppedInstanceCount,
 
             ImmutableArray<string> subnetIds,
 
@@ -154,18 +184,23 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling.Outputs
             DbInstanceIds = dbInstanceIds;
             DefaultCooldown = defaultCooldown;
             DesireInstanceNumber = desireInstanceNumber;
+            HealthCheckType = healthCheckType;
             Id = id;
             InstanceTerminatePolicy = instanceTerminatePolicy;
             LaunchTemplateId = launchTemplateId;
+            LaunchTemplateOverrides = launchTemplateOverrides;
             LaunchTemplateVersion = launchTemplateVersion;
             LifecycleState = lifecycleState;
+            LoadBalancerHealthCheckGracePeriod = loadBalancerHealthCheckGracePeriod;
             MaxInstanceNumber = maxInstanceNumber;
             MinInstanceNumber = minInstanceNumber;
             MultiAzPolicy = multiAzPolicy;
             ProjectName = projectName;
             ScalingGroupId = scalingGroupId;
             ScalingGroupName = scalingGroupName;
+            ScalingMode = scalingMode;
             ServerGroupAttributes = serverGroupAttributes;
+            StoppedInstanceCount = stoppedInstanceCount;
             SubnetIds = subnetIds;
             Tags = tags;
             TotalInstanceCount = totalInstanceCount;

@@ -62,6 +62,7 @@ export function scalingGroups(args?: ScalingGroupsArgs, opts?: pulumi.InvokeOpti
         "ids": args.ids,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
+        "projectName": args.projectName,
         "scalingGroupNames": args.scalingGroupNames,
     }, opts);
 }
@@ -83,6 +84,10 @@ export interface ScalingGroupsArgs {
      */
     outputFile?: string;
     /**
+     * The project name of the scaling group.
+     */
+    projectName?: string;
+    /**
      * A list of scaling group names.
      */
     scalingGroupNames?: string[];
@@ -99,6 +104,10 @@ export interface ScalingGroupsResult {
     readonly ids?: string[];
     readonly nameRegex?: string;
     readonly outputFile?: string;
+    /**
+     * The ProjectName of scaling group.
+     */
+    readonly projectName?: string;
     readonly scalingGroupNames?: string[];
     /**
      * The collection of scaling group query.
@@ -177,6 +186,10 @@ export interface ScalingGroupsOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The project name of the scaling group.
+     */
+    projectName?: pulumi.Input<string>;
     /**
      * A list of scaling group names.
      */

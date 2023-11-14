@@ -7696,9 +7696,9 @@ func (o NodePoolNodeConfigPtrOutput) SystemVolume() NodePoolNodeConfigSystemVolu
 type NodePoolNodeConfigDataVolume struct {
 	// The target mount directory of the disk. Must start with `/`.
 	MountPoint *string `pulumi:"mountPoint"`
-	// The Size of DataVolumes, the value range in 20~32768.
+	// The Size of DataVolumes, the value range in 20~32768. Default value is `20`.
 	Size *int `pulumi:"size"`
-	// The Type of DataVolumes, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`.
+	// The Type of DataVolumes, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`. Default value is `ESSD_PL0`.
 	Type *string `pulumi:"type"`
 }
 
@@ -7716,9 +7716,9 @@ type NodePoolNodeConfigDataVolumeInput interface {
 type NodePoolNodeConfigDataVolumeArgs struct {
 	// The target mount directory of the disk. Must start with `/`.
 	MountPoint pulumi.StringPtrInput `pulumi:"mountPoint"`
-	// The Size of DataVolumes, the value range in 20~32768.
+	// The Size of DataVolumes, the value range in 20~32768. Default value is `20`.
 	Size pulumi.IntPtrInput `pulumi:"size"`
-	// The Type of DataVolumes, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`.
+	// The Type of DataVolumes, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`. Default value is `ESSD_PL0`.
 	Type pulumi.StringPtrInput `pulumi:"type"`
 }
 
@@ -7778,12 +7778,12 @@ func (o NodePoolNodeConfigDataVolumeOutput) MountPoint() pulumi.StringPtrOutput 
 	return o.ApplyT(func(v NodePoolNodeConfigDataVolume) *string { return v.MountPoint }).(pulumi.StringPtrOutput)
 }
 
-// The Size of DataVolumes, the value range in 20~32768.
+// The Size of DataVolumes, the value range in 20~32768. Default value is `20`.
 func (o NodePoolNodeConfigDataVolumeOutput) Size() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v NodePoolNodeConfigDataVolume) *int { return v.Size }).(pulumi.IntPtrOutput)
 }
 
-// The Type of DataVolumes, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`.
+// The Type of DataVolumes, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`. Default value is `ESSD_PL0`.
 func (o NodePoolNodeConfigDataVolumeOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NodePoolNodeConfigDataVolume) *string { return v.Type }).(pulumi.StringPtrOutput)
 }

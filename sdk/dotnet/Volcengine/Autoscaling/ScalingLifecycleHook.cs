@@ -39,6 +39,15 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
     ///         VpcId = fooVpc.Id,
     ///     });
     /// 
+    ///     var fooCommand = new Volcengine.Ecs.Command("fooCommand", new()
+    ///     {
+    ///         Description = "tf",
+    ///         WorkingDir = "/home",
+    ///         Username = "root",
+    ///         Timeout = 100,
+    ///         CommandContent = "IyEvYmluL2Jhc2gKCgplY2hvICJvcGVyYXRpb24gc3VjY2VzcyEi",
+    ///     });
+    /// 
     ///     var fooScalingGroup = new Volcengine.Autoscaling.ScalingGroup("fooScalingGroup", new()
     ///     {
     ///         ScalingGroupName = "acc-test-scaling-group-lifecycle",
@@ -57,12 +66,16 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
     ///     var fooScalingLifecycleHook = new Volcengine.Autoscaling.ScalingLifecycleHook("fooScalingLifecycleHook", new()
     ///     {
     ///         LifecycleHookName = "acc-test-lifecycle",
-    ///         LifecycleHookPolicy = "CONTINUE",
-    ///         LifecycleHookTimeout = 30,
-    ///         LifecycleHookType = "SCALE_IN",
+    ///         LifecycleHookPolicy = "ROLLBACK",
+    ///         LifecycleHookTimeout = 300,
+    ///         LifecycleHookType = "SCALE_OUT",
     ///         ScalingGroupId = fooScalingGroup.Id,
     ///     });
     /// 
+    ///     //  lifecycle_command {
+    ///     //    command_id = volcengine_ecs_command.foo.id
+    ///     //    parameters = "{}"
+    ///     //  }
     /// });
     /// ```
     /// 
@@ -78,6 +91,12 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
     public partial class ScalingLifecycleHook : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Batch job command.
+        /// </summary>
+        [Output("lifecycleCommand")]
+        public Output<Outputs.ScalingLifecycleHookLifecycleCommand?> LifecycleCommand { get; private set; } = null!;
+
+        /// <summary>
         /// The id of the lifecycle hook.
         /// </summary>
         [Output("lifecycleHookId")]
@@ -90,7 +109,7 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
         public Output<string> LifecycleHookName { get; private set; } = null!;
 
         /// <summary>
-        /// The policy of the lifecycle hook. Valid values: CONTINUE, REJECT.
+        /// The policy of the lifecycle hook. Valid values: CONTINUE, REJECT, ROLLBACK.
         /// </summary>
         [Output("lifecycleHookPolicy")]
         public Output<string> LifecycleHookPolicy { get; private set; } = null!;
@@ -161,13 +180,19 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
     public sealed class ScalingLifecycleHookArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Batch job command.
+        /// </summary>
+        [Input("lifecycleCommand")]
+        public Input<Inputs.ScalingLifecycleHookLifecycleCommandArgs>? LifecycleCommand { get; set; }
+
+        /// <summary>
         /// The name of the lifecycle hook.
         /// </summary>
         [Input("lifecycleHookName", required: true)]
         public Input<string> LifecycleHookName { get; set; } = null!;
 
         /// <summary>
-        /// The policy of the lifecycle hook. Valid values: CONTINUE, REJECT.
+        /// The policy of the lifecycle hook. Valid values: CONTINUE, REJECT, ROLLBACK.
         /// </summary>
         [Input("lifecycleHookPolicy", required: true)]
         public Input<string> LifecycleHookPolicy { get; set; } = null!;
@@ -199,6 +224,12 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
     public sealed class ScalingLifecycleHookState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Batch job command.
+        /// </summary>
+        [Input("lifecycleCommand")]
+        public Input<Inputs.ScalingLifecycleHookLifecycleCommandGetArgs>? LifecycleCommand { get; set; }
+
+        /// <summary>
         /// The id of the lifecycle hook.
         /// </summary>
         [Input("lifecycleHookId")]
@@ -211,7 +242,7 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
         public Input<string>? LifecycleHookName { get; set; }
 
         /// <summary>
-        /// The policy of the lifecycle hook. Valid values: CONTINUE, REJECT.
+        /// The policy of the lifecycle hook. Valid values: CONTINUE, REJECT, ROLLBACK.
         /// </summary>
         [Input("lifecycleHookPolicy")]
         public Input<string>? LifecycleHookPolicy { get; set; }

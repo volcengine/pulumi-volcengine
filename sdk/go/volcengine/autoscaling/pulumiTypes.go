@@ -615,6 +615,10 @@ type ScalingConfigurationsScalingConfiguration struct {
 	InstanceName string `pulumi:"instanceName"`
 	// The list of the ECS instance type which the scaling configuration set.
 	InstanceTypes []string `pulumi:"instanceTypes"`
+	// Assign IPv6 address to instance network card. Possible values:
+	// 0: Do not assign IPv6 address.
+	// 1: Assign IPv6 address and the system will automatically assign an IPv6 subnet for you.
+	Ipv6AddressCount int `pulumi:"ipv6AddressCount"`
 	// The ECS key pair name which the scaling configuration set.
 	KeyPairName string `pulumi:"keyPairName"`
 	// The lifecycle state of the scaling configuration.
@@ -677,6 +681,10 @@ type ScalingConfigurationsScalingConfigurationArgs struct {
 	InstanceName pulumi.StringInput `pulumi:"instanceName"`
 	// The list of the ECS instance type which the scaling configuration set.
 	InstanceTypes pulumi.StringArrayInput `pulumi:"instanceTypes"`
+	// Assign IPv6 address to instance network card. Possible values:
+	// 0: Do not assign IPv6 address.
+	// 1: Assign IPv6 address and the system will automatically assign an IPv6 subnet for you.
+	Ipv6AddressCount pulumi.IntInput `pulumi:"ipv6AddressCount"`
 	// The ECS key pair name which the scaling configuration set.
 	KeyPairName pulumi.StringInput `pulumi:"keyPairName"`
 	// The lifecycle state of the scaling configuration.
@@ -809,6 +817,13 @@ func (o ScalingConfigurationsScalingConfigurationOutput) InstanceName() pulumi.S
 // The list of the ECS instance type which the scaling configuration set.
 func (o ScalingConfigurationsScalingConfigurationOutput) InstanceTypes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ScalingConfigurationsScalingConfiguration) []string { return v.InstanceTypes }).(pulumi.StringArrayOutput)
+}
+
+// Assign IPv6 address to instance network card. Possible values:
+// 0: Do not assign IPv6 address.
+// 1: Assign IPv6 address and the system will automatically assign an IPv6 subnet for you.
+func (o ScalingConfigurationsScalingConfigurationOutput) Ipv6AddressCount() pulumi.IntOutput {
+	return o.ApplyT(func(v ScalingConfigurationsScalingConfiguration) int { return v.Ipv6AddressCount }).(pulumi.IntOutput)
 }
 
 // The ECS key pair name which the scaling configuration set.
@@ -1121,6 +1136,103 @@ func (o ScalingConfigurationsScalingConfigurationVolumeArrayOutput) Index(i pulu
 	}).(ScalingConfigurationsScalingConfigurationVolumeOutput)
 }
 
+type ScalingGroupLaunchTemplateOverride struct {
+	// The instance type.
+	InstanceType string `pulumi:"instanceType"`
+}
+
+// ScalingGroupLaunchTemplateOverrideInput is an input type that accepts ScalingGroupLaunchTemplateOverrideArgs and ScalingGroupLaunchTemplateOverrideOutput values.
+// You can construct a concrete instance of `ScalingGroupLaunchTemplateOverrideInput` via:
+//
+//	ScalingGroupLaunchTemplateOverrideArgs{...}
+type ScalingGroupLaunchTemplateOverrideInput interface {
+	pulumi.Input
+
+	ToScalingGroupLaunchTemplateOverrideOutput() ScalingGroupLaunchTemplateOverrideOutput
+	ToScalingGroupLaunchTemplateOverrideOutputWithContext(context.Context) ScalingGroupLaunchTemplateOverrideOutput
+}
+
+type ScalingGroupLaunchTemplateOverrideArgs struct {
+	// The instance type.
+	InstanceType pulumi.StringInput `pulumi:"instanceType"`
+}
+
+func (ScalingGroupLaunchTemplateOverrideArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ScalingGroupLaunchTemplateOverride)(nil)).Elem()
+}
+
+func (i ScalingGroupLaunchTemplateOverrideArgs) ToScalingGroupLaunchTemplateOverrideOutput() ScalingGroupLaunchTemplateOverrideOutput {
+	return i.ToScalingGroupLaunchTemplateOverrideOutputWithContext(context.Background())
+}
+
+func (i ScalingGroupLaunchTemplateOverrideArgs) ToScalingGroupLaunchTemplateOverrideOutputWithContext(ctx context.Context) ScalingGroupLaunchTemplateOverrideOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScalingGroupLaunchTemplateOverrideOutput)
+}
+
+// ScalingGroupLaunchTemplateOverrideArrayInput is an input type that accepts ScalingGroupLaunchTemplateOverrideArray and ScalingGroupLaunchTemplateOverrideArrayOutput values.
+// You can construct a concrete instance of `ScalingGroupLaunchTemplateOverrideArrayInput` via:
+//
+//	ScalingGroupLaunchTemplateOverrideArray{ ScalingGroupLaunchTemplateOverrideArgs{...} }
+type ScalingGroupLaunchTemplateOverrideArrayInput interface {
+	pulumi.Input
+
+	ToScalingGroupLaunchTemplateOverrideArrayOutput() ScalingGroupLaunchTemplateOverrideArrayOutput
+	ToScalingGroupLaunchTemplateOverrideArrayOutputWithContext(context.Context) ScalingGroupLaunchTemplateOverrideArrayOutput
+}
+
+type ScalingGroupLaunchTemplateOverrideArray []ScalingGroupLaunchTemplateOverrideInput
+
+func (ScalingGroupLaunchTemplateOverrideArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ScalingGroupLaunchTemplateOverride)(nil)).Elem()
+}
+
+func (i ScalingGroupLaunchTemplateOverrideArray) ToScalingGroupLaunchTemplateOverrideArrayOutput() ScalingGroupLaunchTemplateOverrideArrayOutput {
+	return i.ToScalingGroupLaunchTemplateOverrideArrayOutputWithContext(context.Background())
+}
+
+func (i ScalingGroupLaunchTemplateOverrideArray) ToScalingGroupLaunchTemplateOverrideArrayOutputWithContext(ctx context.Context) ScalingGroupLaunchTemplateOverrideArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScalingGroupLaunchTemplateOverrideArrayOutput)
+}
+
+type ScalingGroupLaunchTemplateOverrideOutput struct{ *pulumi.OutputState }
+
+func (ScalingGroupLaunchTemplateOverrideOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ScalingGroupLaunchTemplateOverride)(nil)).Elem()
+}
+
+func (o ScalingGroupLaunchTemplateOverrideOutput) ToScalingGroupLaunchTemplateOverrideOutput() ScalingGroupLaunchTemplateOverrideOutput {
+	return o
+}
+
+func (o ScalingGroupLaunchTemplateOverrideOutput) ToScalingGroupLaunchTemplateOverrideOutputWithContext(ctx context.Context) ScalingGroupLaunchTemplateOverrideOutput {
+	return o
+}
+
+// The instance type.
+func (o ScalingGroupLaunchTemplateOverrideOutput) InstanceType() pulumi.StringOutput {
+	return o.ApplyT(func(v ScalingGroupLaunchTemplateOverride) string { return v.InstanceType }).(pulumi.StringOutput)
+}
+
+type ScalingGroupLaunchTemplateOverrideArrayOutput struct{ *pulumi.OutputState }
+
+func (ScalingGroupLaunchTemplateOverrideArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ScalingGroupLaunchTemplateOverride)(nil)).Elem()
+}
+
+func (o ScalingGroupLaunchTemplateOverrideArrayOutput) ToScalingGroupLaunchTemplateOverrideArrayOutput() ScalingGroupLaunchTemplateOverrideArrayOutput {
+	return o
+}
+
+func (o ScalingGroupLaunchTemplateOverrideArrayOutput) ToScalingGroupLaunchTemplateOverrideArrayOutputWithContext(ctx context.Context) ScalingGroupLaunchTemplateOverrideArrayOutput {
+	return o
+}
+
+func (o ScalingGroupLaunchTemplateOverrideArrayOutput) Index(i pulumi.IntInput) ScalingGroupLaunchTemplateOverrideOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ScalingGroupLaunchTemplateOverride {
+		return vs[0].([]ScalingGroupLaunchTemplateOverride)[vs[1].(int)]
+	}).(ScalingGroupLaunchTemplateOverrideOutput)
+}
+
 type ScalingGroupServerGroupAttribute struct {
 	LoadBalancerId *string `pulumi:"loadBalancerId"`
 	// The port receiving request of the server group. Value range: 1 ~ 65535.
@@ -1359,30 +1471,40 @@ type ScalingGroupsScalingGroup struct {
 	DefaultCooldown int `pulumi:"defaultCooldown"`
 	// The desire instance number of the scaling group.
 	DesireInstanceNumber int `pulumi:"desireInstanceNumber"`
+	// The health check type of the scaling group.
+	HealthCheckType string `pulumi:"healthCheckType"`
 	// The id of the scaling group.
 	Id string `pulumi:"id"`
 	// The instance terminate policy of the scaling group.
 	InstanceTerminatePolicy string `pulumi:"instanceTerminatePolicy"`
 	// The ID of the launch template bound to the scaling group.
 	LaunchTemplateId string `pulumi:"launchTemplateId"`
+	// Instance start template information.
+	LaunchTemplateOverrides []ScalingGroupsScalingGroupLaunchTemplateOverride `pulumi:"launchTemplateOverrides"`
 	// The version of the launch template bound to the scaling group.
 	LaunchTemplateVersion string `pulumi:"launchTemplateVersion"`
 	// The lifecycle state of the scaling group.
 	LifecycleState string `pulumi:"lifecycleState"`
+	// Grace period for health check of CLB instance in elastic group.
+	LoadBalancerHealthCheckGracePeriod int `pulumi:"loadBalancerHealthCheckGracePeriod"`
 	// The max instance number of the scaling group.
 	MaxInstanceNumber int `pulumi:"maxInstanceNumber"`
 	// The min instance number of the scaling group.
 	MinInstanceNumber int `pulumi:"minInstanceNumber"`
 	// The multi az policy of the scaling group. Valid values: PRIORITY, BALANCE.
 	MultiAzPolicy string `pulumi:"multiAzPolicy"`
-	// The ProjectName of scaling group.
+	// The project name of the scaling group.
 	ProjectName string `pulumi:"projectName"`
 	// The id of the scaling group.
 	ScalingGroupId string `pulumi:"scalingGroupId"`
 	// The name of the scaling group.
 	ScalingGroupName string `pulumi:"scalingGroupName"`
+	// The scaling mode of the scaling group.
+	ScalingMode string `pulumi:"scalingMode"`
 	// The list of server group attributes.
 	ServerGroupAttributes []ScalingGroupsScalingGroupServerGroupAttribute `pulumi:"serverGroupAttributes"`
+	// The number of stopped instances.
+	StoppedInstanceCount int `pulumi:"stoppedInstanceCount"`
 	// The list of the subnet id to which the ENI is connected.
 	SubnetIds []string `pulumi:"subnetIds"`
 	// Tags.
@@ -1417,30 +1539,40 @@ type ScalingGroupsScalingGroupArgs struct {
 	DefaultCooldown pulumi.IntInput `pulumi:"defaultCooldown"`
 	// The desire instance number of the scaling group.
 	DesireInstanceNumber pulumi.IntInput `pulumi:"desireInstanceNumber"`
+	// The health check type of the scaling group.
+	HealthCheckType pulumi.StringInput `pulumi:"healthCheckType"`
 	// The id of the scaling group.
 	Id pulumi.StringInput `pulumi:"id"`
 	// The instance terminate policy of the scaling group.
 	InstanceTerminatePolicy pulumi.StringInput `pulumi:"instanceTerminatePolicy"`
 	// The ID of the launch template bound to the scaling group.
 	LaunchTemplateId pulumi.StringInput `pulumi:"launchTemplateId"`
+	// Instance start template information.
+	LaunchTemplateOverrides ScalingGroupsScalingGroupLaunchTemplateOverrideArrayInput `pulumi:"launchTemplateOverrides"`
 	// The version of the launch template bound to the scaling group.
 	LaunchTemplateVersion pulumi.StringInput `pulumi:"launchTemplateVersion"`
 	// The lifecycle state of the scaling group.
 	LifecycleState pulumi.StringInput `pulumi:"lifecycleState"`
+	// Grace period for health check of CLB instance in elastic group.
+	LoadBalancerHealthCheckGracePeriod pulumi.IntInput `pulumi:"loadBalancerHealthCheckGracePeriod"`
 	// The max instance number of the scaling group.
 	MaxInstanceNumber pulumi.IntInput `pulumi:"maxInstanceNumber"`
 	// The min instance number of the scaling group.
 	MinInstanceNumber pulumi.IntInput `pulumi:"minInstanceNumber"`
 	// The multi az policy of the scaling group. Valid values: PRIORITY, BALANCE.
 	MultiAzPolicy pulumi.StringInput `pulumi:"multiAzPolicy"`
-	// The ProjectName of scaling group.
+	// The project name of the scaling group.
 	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The id of the scaling group.
 	ScalingGroupId pulumi.StringInput `pulumi:"scalingGroupId"`
 	// The name of the scaling group.
 	ScalingGroupName pulumi.StringInput `pulumi:"scalingGroupName"`
+	// The scaling mode of the scaling group.
+	ScalingMode pulumi.StringInput `pulumi:"scalingMode"`
 	// The list of server group attributes.
 	ServerGroupAttributes ScalingGroupsScalingGroupServerGroupAttributeArrayInput `pulumi:"serverGroupAttributes"`
+	// The number of stopped instances.
+	StoppedInstanceCount pulumi.IntInput `pulumi:"stoppedInstanceCount"`
 	// The list of the subnet id to which the ENI is connected.
 	SubnetIds pulumi.StringArrayInput `pulumi:"subnetIds"`
 	// Tags.
@@ -1529,6 +1661,11 @@ func (o ScalingGroupsScalingGroupOutput) DesireInstanceNumber() pulumi.IntOutput
 	return o.ApplyT(func(v ScalingGroupsScalingGroup) int { return v.DesireInstanceNumber }).(pulumi.IntOutput)
 }
 
+// The health check type of the scaling group.
+func (o ScalingGroupsScalingGroupOutput) HealthCheckType() pulumi.StringOutput {
+	return o.ApplyT(func(v ScalingGroupsScalingGroup) string { return v.HealthCheckType }).(pulumi.StringOutput)
+}
+
 // The id of the scaling group.
 func (o ScalingGroupsScalingGroupOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v ScalingGroupsScalingGroup) string { return v.Id }).(pulumi.StringOutput)
@@ -1544,6 +1681,13 @@ func (o ScalingGroupsScalingGroupOutput) LaunchTemplateId() pulumi.StringOutput 
 	return o.ApplyT(func(v ScalingGroupsScalingGroup) string { return v.LaunchTemplateId }).(pulumi.StringOutput)
 }
 
+// Instance start template information.
+func (o ScalingGroupsScalingGroupOutput) LaunchTemplateOverrides() ScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput {
+	return o.ApplyT(func(v ScalingGroupsScalingGroup) []ScalingGroupsScalingGroupLaunchTemplateOverride {
+		return v.LaunchTemplateOverrides
+	}).(ScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput)
+}
+
 // The version of the launch template bound to the scaling group.
 func (o ScalingGroupsScalingGroupOutput) LaunchTemplateVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v ScalingGroupsScalingGroup) string { return v.LaunchTemplateVersion }).(pulumi.StringOutput)
@@ -1552,6 +1696,11 @@ func (o ScalingGroupsScalingGroupOutput) LaunchTemplateVersion() pulumi.StringOu
 // The lifecycle state of the scaling group.
 func (o ScalingGroupsScalingGroupOutput) LifecycleState() pulumi.StringOutput {
 	return o.ApplyT(func(v ScalingGroupsScalingGroup) string { return v.LifecycleState }).(pulumi.StringOutput)
+}
+
+// Grace period for health check of CLB instance in elastic group.
+func (o ScalingGroupsScalingGroupOutput) LoadBalancerHealthCheckGracePeriod() pulumi.IntOutput {
+	return o.ApplyT(func(v ScalingGroupsScalingGroup) int { return v.LoadBalancerHealthCheckGracePeriod }).(pulumi.IntOutput)
 }
 
 // The max instance number of the scaling group.
@@ -1569,7 +1718,7 @@ func (o ScalingGroupsScalingGroupOutput) MultiAzPolicy() pulumi.StringOutput {
 	return o.ApplyT(func(v ScalingGroupsScalingGroup) string { return v.MultiAzPolicy }).(pulumi.StringOutput)
 }
 
-// The ProjectName of scaling group.
+// The project name of the scaling group.
 func (o ScalingGroupsScalingGroupOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v ScalingGroupsScalingGroup) string { return v.ProjectName }).(pulumi.StringOutput)
 }
@@ -1584,11 +1733,21 @@ func (o ScalingGroupsScalingGroupOutput) ScalingGroupName() pulumi.StringOutput 
 	return o.ApplyT(func(v ScalingGroupsScalingGroup) string { return v.ScalingGroupName }).(pulumi.StringOutput)
 }
 
+// The scaling mode of the scaling group.
+func (o ScalingGroupsScalingGroupOutput) ScalingMode() pulumi.StringOutput {
+	return o.ApplyT(func(v ScalingGroupsScalingGroup) string { return v.ScalingMode }).(pulumi.StringOutput)
+}
+
 // The list of server group attributes.
 func (o ScalingGroupsScalingGroupOutput) ServerGroupAttributes() ScalingGroupsScalingGroupServerGroupAttributeArrayOutput {
 	return o.ApplyT(func(v ScalingGroupsScalingGroup) []ScalingGroupsScalingGroupServerGroupAttribute {
 		return v.ServerGroupAttributes
 	}).(ScalingGroupsScalingGroupServerGroupAttributeArrayOutput)
+}
+
+// The number of stopped instances.
+func (o ScalingGroupsScalingGroupOutput) StoppedInstanceCount() pulumi.IntOutput {
+	return o.ApplyT(func(v ScalingGroupsScalingGroup) int { return v.StoppedInstanceCount }).(pulumi.IntOutput)
 }
 
 // The list of the subnet id to which the ENI is connected.
@@ -1634,6 +1793,112 @@ func (o ScalingGroupsScalingGroupArrayOutput) Index(i pulumi.IntInput) ScalingGr
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ScalingGroupsScalingGroup {
 		return vs[0].([]ScalingGroupsScalingGroup)[vs[1].(int)]
 	}).(ScalingGroupsScalingGroupOutput)
+}
+
+type ScalingGroupsScalingGroupLaunchTemplateOverride struct {
+	// The instance type.
+	InstanceType string `pulumi:"instanceType"`
+	// Weight of instance specifications.
+	WeightedCapacity int `pulumi:"weightedCapacity"`
+}
+
+// ScalingGroupsScalingGroupLaunchTemplateOverrideInput is an input type that accepts ScalingGroupsScalingGroupLaunchTemplateOverrideArgs and ScalingGroupsScalingGroupLaunchTemplateOverrideOutput values.
+// You can construct a concrete instance of `ScalingGroupsScalingGroupLaunchTemplateOverrideInput` via:
+//
+//	ScalingGroupsScalingGroupLaunchTemplateOverrideArgs{...}
+type ScalingGroupsScalingGroupLaunchTemplateOverrideInput interface {
+	pulumi.Input
+
+	ToScalingGroupsScalingGroupLaunchTemplateOverrideOutput() ScalingGroupsScalingGroupLaunchTemplateOverrideOutput
+	ToScalingGroupsScalingGroupLaunchTemplateOverrideOutputWithContext(context.Context) ScalingGroupsScalingGroupLaunchTemplateOverrideOutput
+}
+
+type ScalingGroupsScalingGroupLaunchTemplateOverrideArgs struct {
+	// The instance type.
+	InstanceType pulumi.StringInput `pulumi:"instanceType"`
+	// Weight of instance specifications.
+	WeightedCapacity pulumi.IntInput `pulumi:"weightedCapacity"`
+}
+
+func (ScalingGroupsScalingGroupLaunchTemplateOverrideArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ScalingGroupsScalingGroupLaunchTemplateOverride)(nil)).Elem()
+}
+
+func (i ScalingGroupsScalingGroupLaunchTemplateOverrideArgs) ToScalingGroupsScalingGroupLaunchTemplateOverrideOutput() ScalingGroupsScalingGroupLaunchTemplateOverrideOutput {
+	return i.ToScalingGroupsScalingGroupLaunchTemplateOverrideOutputWithContext(context.Background())
+}
+
+func (i ScalingGroupsScalingGroupLaunchTemplateOverrideArgs) ToScalingGroupsScalingGroupLaunchTemplateOverrideOutputWithContext(ctx context.Context) ScalingGroupsScalingGroupLaunchTemplateOverrideOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScalingGroupsScalingGroupLaunchTemplateOverrideOutput)
+}
+
+// ScalingGroupsScalingGroupLaunchTemplateOverrideArrayInput is an input type that accepts ScalingGroupsScalingGroupLaunchTemplateOverrideArray and ScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput values.
+// You can construct a concrete instance of `ScalingGroupsScalingGroupLaunchTemplateOverrideArrayInput` via:
+//
+//	ScalingGroupsScalingGroupLaunchTemplateOverrideArray{ ScalingGroupsScalingGroupLaunchTemplateOverrideArgs{...} }
+type ScalingGroupsScalingGroupLaunchTemplateOverrideArrayInput interface {
+	pulumi.Input
+
+	ToScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput() ScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput
+	ToScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutputWithContext(context.Context) ScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput
+}
+
+type ScalingGroupsScalingGroupLaunchTemplateOverrideArray []ScalingGroupsScalingGroupLaunchTemplateOverrideInput
+
+func (ScalingGroupsScalingGroupLaunchTemplateOverrideArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ScalingGroupsScalingGroupLaunchTemplateOverride)(nil)).Elem()
+}
+
+func (i ScalingGroupsScalingGroupLaunchTemplateOverrideArray) ToScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput() ScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput {
+	return i.ToScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutputWithContext(context.Background())
+}
+
+func (i ScalingGroupsScalingGroupLaunchTemplateOverrideArray) ToScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutputWithContext(ctx context.Context) ScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput)
+}
+
+type ScalingGroupsScalingGroupLaunchTemplateOverrideOutput struct{ *pulumi.OutputState }
+
+func (ScalingGroupsScalingGroupLaunchTemplateOverrideOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ScalingGroupsScalingGroupLaunchTemplateOverride)(nil)).Elem()
+}
+
+func (o ScalingGroupsScalingGroupLaunchTemplateOverrideOutput) ToScalingGroupsScalingGroupLaunchTemplateOverrideOutput() ScalingGroupsScalingGroupLaunchTemplateOverrideOutput {
+	return o
+}
+
+func (o ScalingGroupsScalingGroupLaunchTemplateOverrideOutput) ToScalingGroupsScalingGroupLaunchTemplateOverrideOutputWithContext(ctx context.Context) ScalingGroupsScalingGroupLaunchTemplateOverrideOutput {
+	return o
+}
+
+// The instance type.
+func (o ScalingGroupsScalingGroupLaunchTemplateOverrideOutput) InstanceType() pulumi.StringOutput {
+	return o.ApplyT(func(v ScalingGroupsScalingGroupLaunchTemplateOverride) string { return v.InstanceType }).(pulumi.StringOutput)
+}
+
+// Weight of instance specifications.
+func (o ScalingGroupsScalingGroupLaunchTemplateOverrideOutput) WeightedCapacity() pulumi.IntOutput {
+	return o.ApplyT(func(v ScalingGroupsScalingGroupLaunchTemplateOverride) int { return v.WeightedCapacity }).(pulumi.IntOutput)
+}
+
+type ScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput struct{ *pulumi.OutputState }
+
+func (ScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ScalingGroupsScalingGroupLaunchTemplateOverride)(nil)).Elem()
+}
+
+func (o ScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput) ToScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput() ScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput {
+	return o
+}
+
+func (o ScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput) ToScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutputWithContext(ctx context.Context) ScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput {
+	return o
+}
+
+func (o ScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput) Index(i pulumi.IntInput) ScalingGroupsScalingGroupLaunchTemplateOverrideOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ScalingGroupsScalingGroupLaunchTemplateOverride {
+		return vs[0].([]ScalingGroupsScalingGroupLaunchTemplateOverride)[vs[1].(int)]
+	}).(ScalingGroupsScalingGroupLaunchTemplateOverrideOutput)
 }
 
 type ScalingGroupsScalingGroupServerGroupAttribute struct {
@@ -2035,9 +2300,171 @@ func (o ScalingInstancesScalingInstanceArrayOutput) Index(i pulumi.IntInput) Sca
 	}).(ScalingInstancesScalingInstanceOutput)
 }
 
+type ScalingLifecycleHookLifecycleCommand struct {
+	// Batch job command ID, which indicates the batch job command to be executed after triggering the lifecycle hook and installed in the instance.
+	CommandId string `pulumi:"commandId"`
+	// Parameters and parameter values in batch job commands.
+	// The number of parameters ranges from 0 to 60.
+	Parameters *string `pulumi:"parameters"`
+}
+
+// ScalingLifecycleHookLifecycleCommandInput is an input type that accepts ScalingLifecycleHookLifecycleCommandArgs and ScalingLifecycleHookLifecycleCommandOutput values.
+// You can construct a concrete instance of `ScalingLifecycleHookLifecycleCommandInput` via:
+//
+//	ScalingLifecycleHookLifecycleCommandArgs{...}
+type ScalingLifecycleHookLifecycleCommandInput interface {
+	pulumi.Input
+
+	ToScalingLifecycleHookLifecycleCommandOutput() ScalingLifecycleHookLifecycleCommandOutput
+	ToScalingLifecycleHookLifecycleCommandOutputWithContext(context.Context) ScalingLifecycleHookLifecycleCommandOutput
+}
+
+type ScalingLifecycleHookLifecycleCommandArgs struct {
+	// Batch job command ID, which indicates the batch job command to be executed after triggering the lifecycle hook and installed in the instance.
+	CommandId pulumi.StringInput `pulumi:"commandId"`
+	// Parameters and parameter values in batch job commands.
+	// The number of parameters ranges from 0 to 60.
+	Parameters pulumi.StringPtrInput `pulumi:"parameters"`
+}
+
+func (ScalingLifecycleHookLifecycleCommandArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ScalingLifecycleHookLifecycleCommand)(nil)).Elem()
+}
+
+func (i ScalingLifecycleHookLifecycleCommandArgs) ToScalingLifecycleHookLifecycleCommandOutput() ScalingLifecycleHookLifecycleCommandOutput {
+	return i.ToScalingLifecycleHookLifecycleCommandOutputWithContext(context.Background())
+}
+
+func (i ScalingLifecycleHookLifecycleCommandArgs) ToScalingLifecycleHookLifecycleCommandOutputWithContext(ctx context.Context) ScalingLifecycleHookLifecycleCommandOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScalingLifecycleHookLifecycleCommandOutput)
+}
+
+func (i ScalingLifecycleHookLifecycleCommandArgs) ToScalingLifecycleHookLifecycleCommandPtrOutput() ScalingLifecycleHookLifecycleCommandPtrOutput {
+	return i.ToScalingLifecycleHookLifecycleCommandPtrOutputWithContext(context.Background())
+}
+
+func (i ScalingLifecycleHookLifecycleCommandArgs) ToScalingLifecycleHookLifecycleCommandPtrOutputWithContext(ctx context.Context) ScalingLifecycleHookLifecycleCommandPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScalingLifecycleHookLifecycleCommandOutput).ToScalingLifecycleHookLifecycleCommandPtrOutputWithContext(ctx)
+}
+
+// ScalingLifecycleHookLifecycleCommandPtrInput is an input type that accepts ScalingLifecycleHookLifecycleCommandArgs, ScalingLifecycleHookLifecycleCommandPtr and ScalingLifecycleHookLifecycleCommandPtrOutput values.
+// You can construct a concrete instance of `ScalingLifecycleHookLifecycleCommandPtrInput` via:
+//
+//	        ScalingLifecycleHookLifecycleCommandArgs{...}
+//
+//	or:
+//
+//	        nil
+type ScalingLifecycleHookLifecycleCommandPtrInput interface {
+	pulumi.Input
+
+	ToScalingLifecycleHookLifecycleCommandPtrOutput() ScalingLifecycleHookLifecycleCommandPtrOutput
+	ToScalingLifecycleHookLifecycleCommandPtrOutputWithContext(context.Context) ScalingLifecycleHookLifecycleCommandPtrOutput
+}
+
+type scalingLifecycleHookLifecycleCommandPtrType ScalingLifecycleHookLifecycleCommandArgs
+
+func ScalingLifecycleHookLifecycleCommandPtr(v *ScalingLifecycleHookLifecycleCommandArgs) ScalingLifecycleHookLifecycleCommandPtrInput {
+	return (*scalingLifecycleHookLifecycleCommandPtrType)(v)
+}
+
+func (*scalingLifecycleHookLifecycleCommandPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ScalingLifecycleHookLifecycleCommand)(nil)).Elem()
+}
+
+func (i *scalingLifecycleHookLifecycleCommandPtrType) ToScalingLifecycleHookLifecycleCommandPtrOutput() ScalingLifecycleHookLifecycleCommandPtrOutput {
+	return i.ToScalingLifecycleHookLifecycleCommandPtrOutputWithContext(context.Background())
+}
+
+func (i *scalingLifecycleHookLifecycleCommandPtrType) ToScalingLifecycleHookLifecycleCommandPtrOutputWithContext(ctx context.Context) ScalingLifecycleHookLifecycleCommandPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScalingLifecycleHookLifecycleCommandPtrOutput)
+}
+
+type ScalingLifecycleHookLifecycleCommandOutput struct{ *pulumi.OutputState }
+
+func (ScalingLifecycleHookLifecycleCommandOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ScalingLifecycleHookLifecycleCommand)(nil)).Elem()
+}
+
+func (o ScalingLifecycleHookLifecycleCommandOutput) ToScalingLifecycleHookLifecycleCommandOutput() ScalingLifecycleHookLifecycleCommandOutput {
+	return o
+}
+
+func (o ScalingLifecycleHookLifecycleCommandOutput) ToScalingLifecycleHookLifecycleCommandOutputWithContext(ctx context.Context) ScalingLifecycleHookLifecycleCommandOutput {
+	return o
+}
+
+func (o ScalingLifecycleHookLifecycleCommandOutput) ToScalingLifecycleHookLifecycleCommandPtrOutput() ScalingLifecycleHookLifecycleCommandPtrOutput {
+	return o.ToScalingLifecycleHookLifecycleCommandPtrOutputWithContext(context.Background())
+}
+
+func (o ScalingLifecycleHookLifecycleCommandOutput) ToScalingLifecycleHookLifecycleCommandPtrOutputWithContext(ctx context.Context) ScalingLifecycleHookLifecycleCommandPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ScalingLifecycleHookLifecycleCommand) *ScalingLifecycleHookLifecycleCommand {
+		return &v
+	}).(ScalingLifecycleHookLifecycleCommandPtrOutput)
+}
+
+// Batch job command ID, which indicates the batch job command to be executed after triggering the lifecycle hook and installed in the instance.
+func (o ScalingLifecycleHookLifecycleCommandOutput) CommandId() pulumi.StringOutput {
+	return o.ApplyT(func(v ScalingLifecycleHookLifecycleCommand) string { return v.CommandId }).(pulumi.StringOutput)
+}
+
+// Parameters and parameter values in batch job commands.
+// The number of parameters ranges from 0 to 60.
+func (o ScalingLifecycleHookLifecycleCommandOutput) Parameters() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ScalingLifecycleHookLifecycleCommand) *string { return v.Parameters }).(pulumi.StringPtrOutput)
+}
+
+type ScalingLifecycleHookLifecycleCommandPtrOutput struct{ *pulumi.OutputState }
+
+func (ScalingLifecycleHookLifecycleCommandPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ScalingLifecycleHookLifecycleCommand)(nil)).Elem()
+}
+
+func (o ScalingLifecycleHookLifecycleCommandPtrOutput) ToScalingLifecycleHookLifecycleCommandPtrOutput() ScalingLifecycleHookLifecycleCommandPtrOutput {
+	return o
+}
+
+func (o ScalingLifecycleHookLifecycleCommandPtrOutput) ToScalingLifecycleHookLifecycleCommandPtrOutputWithContext(ctx context.Context) ScalingLifecycleHookLifecycleCommandPtrOutput {
+	return o
+}
+
+func (o ScalingLifecycleHookLifecycleCommandPtrOutput) Elem() ScalingLifecycleHookLifecycleCommandOutput {
+	return o.ApplyT(func(v *ScalingLifecycleHookLifecycleCommand) ScalingLifecycleHookLifecycleCommand {
+		if v != nil {
+			return *v
+		}
+		var ret ScalingLifecycleHookLifecycleCommand
+		return ret
+	}).(ScalingLifecycleHookLifecycleCommandOutput)
+}
+
+// Batch job command ID, which indicates the batch job command to be executed after triggering the lifecycle hook and installed in the instance.
+func (o ScalingLifecycleHookLifecycleCommandPtrOutput) CommandId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ScalingLifecycleHookLifecycleCommand) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.CommandId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Parameters and parameter values in batch job commands.
+// The number of parameters ranges from 0 to 60.
+func (o ScalingLifecycleHookLifecycleCommandPtrOutput) Parameters() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ScalingLifecycleHookLifecycleCommand) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Parameters
+	}).(pulumi.StringPtrOutput)
+}
+
 type ScalingLifecycleHooksLifecycleHook struct {
 	// The id of the lifecycle hook.
 	Id string `pulumi:"id"`
+	// Batch job command.
+	LifecycleCommands []ScalingLifecycleHooksLifecycleHookLifecycleCommand `pulumi:"lifecycleCommands"`
 	// The id of the lifecycle hook.
 	LifecycleHookId string `pulumi:"lifecycleHookId"`
 	// The name of the lifecycle hook.
@@ -2066,6 +2493,8 @@ type ScalingLifecycleHooksLifecycleHookInput interface {
 type ScalingLifecycleHooksLifecycleHookArgs struct {
 	// The id of the lifecycle hook.
 	Id pulumi.StringInput `pulumi:"id"`
+	// Batch job command.
+	LifecycleCommands ScalingLifecycleHooksLifecycleHookLifecycleCommandArrayInput `pulumi:"lifecycleCommands"`
 	// The id of the lifecycle hook.
 	LifecycleHookId pulumi.StringInput `pulumi:"lifecycleHookId"`
 	// The name of the lifecycle hook.
@@ -2136,6 +2565,13 @@ func (o ScalingLifecycleHooksLifecycleHookOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v ScalingLifecycleHooksLifecycleHook) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Batch job command.
+func (o ScalingLifecycleHooksLifecycleHookOutput) LifecycleCommands() ScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput {
+	return o.ApplyT(func(v ScalingLifecycleHooksLifecycleHook) []ScalingLifecycleHooksLifecycleHookLifecycleCommand {
+		return v.LifecycleCommands
+	}).(ScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput)
+}
+
 // The id of the lifecycle hook.
 func (o ScalingLifecycleHooksLifecycleHookOutput) LifecycleHookId() pulumi.StringOutput {
 	return o.ApplyT(func(v ScalingLifecycleHooksLifecycleHook) string { return v.LifecycleHookId }).(pulumi.StringOutput)
@@ -2184,6 +2620,115 @@ func (o ScalingLifecycleHooksLifecycleHookArrayOutput) Index(i pulumi.IntInput) 
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ScalingLifecycleHooksLifecycleHook {
 		return vs[0].([]ScalingLifecycleHooksLifecycleHook)[vs[1].(int)]
 	}).(ScalingLifecycleHooksLifecycleHookOutput)
+}
+
+type ScalingLifecycleHooksLifecycleHookLifecycleCommand struct {
+	// Batch job command ID, which indicates the batch job command to be executed after triggering the lifecycle hook and installed in the instance.
+	CommandId string `pulumi:"commandId"`
+	// Parameters and parameter values in batch job commands.
+	// The number of parameters ranges from 0 to 60.
+	Parameters string `pulumi:"parameters"`
+}
+
+// ScalingLifecycleHooksLifecycleHookLifecycleCommandInput is an input type that accepts ScalingLifecycleHooksLifecycleHookLifecycleCommandArgs and ScalingLifecycleHooksLifecycleHookLifecycleCommandOutput values.
+// You can construct a concrete instance of `ScalingLifecycleHooksLifecycleHookLifecycleCommandInput` via:
+//
+//	ScalingLifecycleHooksLifecycleHookLifecycleCommandArgs{...}
+type ScalingLifecycleHooksLifecycleHookLifecycleCommandInput interface {
+	pulumi.Input
+
+	ToScalingLifecycleHooksLifecycleHookLifecycleCommandOutput() ScalingLifecycleHooksLifecycleHookLifecycleCommandOutput
+	ToScalingLifecycleHooksLifecycleHookLifecycleCommandOutputWithContext(context.Context) ScalingLifecycleHooksLifecycleHookLifecycleCommandOutput
+}
+
+type ScalingLifecycleHooksLifecycleHookLifecycleCommandArgs struct {
+	// Batch job command ID, which indicates the batch job command to be executed after triggering the lifecycle hook and installed in the instance.
+	CommandId pulumi.StringInput `pulumi:"commandId"`
+	// Parameters and parameter values in batch job commands.
+	// The number of parameters ranges from 0 to 60.
+	Parameters pulumi.StringInput `pulumi:"parameters"`
+}
+
+func (ScalingLifecycleHooksLifecycleHookLifecycleCommandArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ScalingLifecycleHooksLifecycleHookLifecycleCommand)(nil)).Elem()
+}
+
+func (i ScalingLifecycleHooksLifecycleHookLifecycleCommandArgs) ToScalingLifecycleHooksLifecycleHookLifecycleCommandOutput() ScalingLifecycleHooksLifecycleHookLifecycleCommandOutput {
+	return i.ToScalingLifecycleHooksLifecycleHookLifecycleCommandOutputWithContext(context.Background())
+}
+
+func (i ScalingLifecycleHooksLifecycleHookLifecycleCommandArgs) ToScalingLifecycleHooksLifecycleHookLifecycleCommandOutputWithContext(ctx context.Context) ScalingLifecycleHooksLifecycleHookLifecycleCommandOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScalingLifecycleHooksLifecycleHookLifecycleCommandOutput)
+}
+
+// ScalingLifecycleHooksLifecycleHookLifecycleCommandArrayInput is an input type that accepts ScalingLifecycleHooksLifecycleHookLifecycleCommandArray and ScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput values.
+// You can construct a concrete instance of `ScalingLifecycleHooksLifecycleHookLifecycleCommandArrayInput` via:
+//
+//	ScalingLifecycleHooksLifecycleHookLifecycleCommandArray{ ScalingLifecycleHooksLifecycleHookLifecycleCommandArgs{...} }
+type ScalingLifecycleHooksLifecycleHookLifecycleCommandArrayInput interface {
+	pulumi.Input
+
+	ToScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput() ScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput
+	ToScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutputWithContext(context.Context) ScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput
+}
+
+type ScalingLifecycleHooksLifecycleHookLifecycleCommandArray []ScalingLifecycleHooksLifecycleHookLifecycleCommandInput
+
+func (ScalingLifecycleHooksLifecycleHookLifecycleCommandArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ScalingLifecycleHooksLifecycleHookLifecycleCommand)(nil)).Elem()
+}
+
+func (i ScalingLifecycleHooksLifecycleHookLifecycleCommandArray) ToScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput() ScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput {
+	return i.ToScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutputWithContext(context.Background())
+}
+
+func (i ScalingLifecycleHooksLifecycleHookLifecycleCommandArray) ToScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutputWithContext(ctx context.Context) ScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput)
+}
+
+type ScalingLifecycleHooksLifecycleHookLifecycleCommandOutput struct{ *pulumi.OutputState }
+
+func (ScalingLifecycleHooksLifecycleHookLifecycleCommandOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ScalingLifecycleHooksLifecycleHookLifecycleCommand)(nil)).Elem()
+}
+
+func (o ScalingLifecycleHooksLifecycleHookLifecycleCommandOutput) ToScalingLifecycleHooksLifecycleHookLifecycleCommandOutput() ScalingLifecycleHooksLifecycleHookLifecycleCommandOutput {
+	return o
+}
+
+func (o ScalingLifecycleHooksLifecycleHookLifecycleCommandOutput) ToScalingLifecycleHooksLifecycleHookLifecycleCommandOutputWithContext(ctx context.Context) ScalingLifecycleHooksLifecycleHookLifecycleCommandOutput {
+	return o
+}
+
+// Batch job command ID, which indicates the batch job command to be executed after triggering the lifecycle hook and installed in the instance.
+func (o ScalingLifecycleHooksLifecycleHookLifecycleCommandOutput) CommandId() pulumi.StringOutput {
+	return o.ApplyT(func(v ScalingLifecycleHooksLifecycleHookLifecycleCommand) string { return v.CommandId }).(pulumi.StringOutput)
+}
+
+// Parameters and parameter values in batch job commands.
+// The number of parameters ranges from 0 to 60.
+func (o ScalingLifecycleHooksLifecycleHookLifecycleCommandOutput) Parameters() pulumi.StringOutput {
+	return o.ApplyT(func(v ScalingLifecycleHooksLifecycleHookLifecycleCommand) string { return v.Parameters }).(pulumi.StringOutput)
+}
+
+type ScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput struct{ *pulumi.OutputState }
+
+func (ScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ScalingLifecycleHooksLifecycleHookLifecycleCommand)(nil)).Elem()
+}
+
+func (o ScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput) ToScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput() ScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput {
+	return o
+}
+
+func (o ScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput) ToScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutputWithContext(ctx context.Context) ScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput {
+	return o
+}
+
+func (o ScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput) Index(i pulumi.IntInput) ScalingLifecycleHooksLifecycleHookLifecycleCommandOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ScalingLifecycleHooksLifecycleHookLifecycleCommand {
+		return vs[0].([]ScalingLifecycleHooksLifecycleHookLifecycleCommand)[vs[1].(int)]
+	}).(ScalingLifecycleHooksLifecycleHookLifecycleCommandOutput)
 }
 
 type ScalingPoliciesScalingPolicy struct {
@@ -2469,20 +3014,28 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ScalingConfigurationsScalingConfigurationTagArrayInput)(nil)).Elem(), ScalingConfigurationsScalingConfigurationTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ScalingConfigurationsScalingConfigurationVolumeInput)(nil)).Elem(), ScalingConfigurationsScalingConfigurationVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ScalingConfigurationsScalingConfigurationVolumeArrayInput)(nil)).Elem(), ScalingConfigurationsScalingConfigurationVolumeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ScalingGroupLaunchTemplateOverrideInput)(nil)).Elem(), ScalingGroupLaunchTemplateOverrideArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ScalingGroupLaunchTemplateOverrideArrayInput)(nil)).Elem(), ScalingGroupLaunchTemplateOverrideArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ScalingGroupServerGroupAttributeInput)(nil)).Elem(), ScalingGroupServerGroupAttributeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ScalingGroupServerGroupAttributeArrayInput)(nil)).Elem(), ScalingGroupServerGroupAttributeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ScalingGroupTagInput)(nil)).Elem(), ScalingGroupTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ScalingGroupTagArrayInput)(nil)).Elem(), ScalingGroupTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ScalingGroupsScalingGroupInput)(nil)).Elem(), ScalingGroupsScalingGroupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ScalingGroupsScalingGroupArrayInput)(nil)).Elem(), ScalingGroupsScalingGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ScalingGroupsScalingGroupLaunchTemplateOverrideInput)(nil)).Elem(), ScalingGroupsScalingGroupLaunchTemplateOverrideArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ScalingGroupsScalingGroupLaunchTemplateOverrideArrayInput)(nil)).Elem(), ScalingGroupsScalingGroupLaunchTemplateOverrideArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ScalingGroupsScalingGroupServerGroupAttributeInput)(nil)).Elem(), ScalingGroupsScalingGroupServerGroupAttributeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ScalingGroupsScalingGroupServerGroupAttributeArrayInput)(nil)).Elem(), ScalingGroupsScalingGroupServerGroupAttributeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ScalingGroupsScalingGroupTagInput)(nil)).Elem(), ScalingGroupsScalingGroupTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ScalingGroupsScalingGroupTagArrayInput)(nil)).Elem(), ScalingGroupsScalingGroupTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ScalingInstancesScalingInstanceInput)(nil)).Elem(), ScalingInstancesScalingInstanceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ScalingInstancesScalingInstanceArrayInput)(nil)).Elem(), ScalingInstancesScalingInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ScalingLifecycleHookLifecycleCommandInput)(nil)).Elem(), ScalingLifecycleHookLifecycleCommandArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ScalingLifecycleHookLifecycleCommandPtrInput)(nil)).Elem(), ScalingLifecycleHookLifecycleCommandArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ScalingLifecycleHooksLifecycleHookInput)(nil)).Elem(), ScalingLifecycleHooksLifecycleHookArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ScalingLifecycleHooksLifecycleHookArrayInput)(nil)).Elem(), ScalingLifecycleHooksLifecycleHookArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ScalingLifecycleHooksLifecycleHookLifecycleCommandInput)(nil)).Elem(), ScalingLifecycleHooksLifecycleHookLifecycleCommandArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ScalingLifecycleHooksLifecycleHookLifecycleCommandArrayInput)(nil)).Elem(), ScalingLifecycleHooksLifecycleHookLifecycleCommandArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ScalingPoliciesScalingPolicyInput)(nil)).Elem(), ScalingPoliciesScalingPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ScalingPoliciesScalingPolicyArrayInput)(nil)).Elem(), ScalingPoliciesScalingPolicyArray{})
 	pulumi.RegisterOutputType(ScalingActivitiesActivityOutput{})
@@ -2499,20 +3052,28 @@ func init() {
 	pulumi.RegisterOutputType(ScalingConfigurationsScalingConfigurationTagArrayOutput{})
 	pulumi.RegisterOutputType(ScalingConfigurationsScalingConfigurationVolumeOutput{})
 	pulumi.RegisterOutputType(ScalingConfigurationsScalingConfigurationVolumeArrayOutput{})
+	pulumi.RegisterOutputType(ScalingGroupLaunchTemplateOverrideOutput{})
+	pulumi.RegisterOutputType(ScalingGroupLaunchTemplateOverrideArrayOutput{})
 	pulumi.RegisterOutputType(ScalingGroupServerGroupAttributeOutput{})
 	pulumi.RegisterOutputType(ScalingGroupServerGroupAttributeArrayOutput{})
 	pulumi.RegisterOutputType(ScalingGroupTagOutput{})
 	pulumi.RegisterOutputType(ScalingGroupTagArrayOutput{})
 	pulumi.RegisterOutputType(ScalingGroupsScalingGroupOutput{})
 	pulumi.RegisterOutputType(ScalingGroupsScalingGroupArrayOutput{})
+	pulumi.RegisterOutputType(ScalingGroupsScalingGroupLaunchTemplateOverrideOutput{})
+	pulumi.RegisterOutputType(ScalingGroupsScalingGroupLaunchTemplateOverrideArrayOutput{})
 	pulumi.RegisterOutputType(ScalingGroupsScalingGroupServerGroupAttributeOutput{})
 	pulumi.RegisterOutputType(ScalingGroupsScalingGroupServerGroupAttributeArrayOutput{})
 	pulumi.RegisterOutputType(ScalingGroupsScalingGroupTagOutput{})
 	pulumi.RegisterOutputType(ScalingGroupsScalingGroupTagArrayOutput{})
 	pulumi.RegisterOutputType(ScalingInstancesScalingInstanceOutput{})
 	pulumi.RegisterOutputType(ScalingInstancesScalingInstanceArrayOutput{})
+	pulumi.RegisterOutputType(ScalingLifecycleHookLifecycleCommandOutput{})
+	pulumi.RegisterOutputType(ScalingLifecycleHookLifecycleCommandPtrOutput{})
 	pulumi.RegisterOutputType(ScalingLifecycleHooksLifecycleHookOutput{})
 	pulumi.RegisterOutputType(ScalingLifecycleHooksLifecycleHookArrayOutput{})
+	pulumi.RegisterOutputType(ScalingLifecycleHooksLifecycleHookLifecycleCommandOutput{})
+	pulumi.RegisterOutputType(ScalingLifecycleHooksLifecycleHookLifecycleCommandArrayOutput{})
 	pulumi.RegisterOutputType(ScalingPoliciesScalingPolicyOutput{})
 	pulumi.RegisterOutputType(ScalingPoliciesScalingPolicyArrayOutput{})
 }

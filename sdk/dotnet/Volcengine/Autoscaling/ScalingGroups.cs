@@ -192,6 +192,12 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
         [Input("outputFile")]
         public string? OutputFile { get; set; }
 
+        /// <summary>
+        /// The project name of the scaling group.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
+
         [Input("scalingGroupNames")]
         private List<string>? _scalingGroupNames;
 
@@ -236,6 +242,12 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
 
+        /// <summary>
+        /// The project name of the scaling group.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
         [Input("scalingGroupNames")]
         private InputList<string>? _scalingGroupNames;
 
@@ -265,6 +277,10 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
         public readonly ImmutableArray<string> Ids;
         public readonly string? NameRegex;
         public readonly string? OutputFile;
+        /// <summary>
+        /// The ProjectName of scaling group.
+        /// </summary>
+        public readonly string? ProjectName;
         public readonly ImmutableArray<string> ScalingGroupNames;
         /// <summary>
         /// The collection of scaling group query.
@@ -285,6 +301,8 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
 
             string? outputFile,
 
+            string? projectName,
+
             ImmutableArray<string> scalingGroupNames,
 
             ImmutableArray<Outputs.ScalingGroupsScalingGroupResult> scalingGroups,
@@ -295,6 +313,7 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling
             Ids = ids;
             NameRegex = nameRegex;
             OutputFile = outputFile;
+            ProjectName = projectName;
             ScalingGroupNames = scalingGroupNames;
             ScalingGroups = scalingGroups;
             TotalCount = totalCount;

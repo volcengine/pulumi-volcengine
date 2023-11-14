@@ -32,6 +32,13 @@ export namespace autoscaling {
         volumeType: pulumi.Input<string>;
     }
 
+    export interface ScalingGroupLaunchTemplateOverride {
+        /**
+         * The instance type.
+         */
+        instanceType: pulumi.Input<string>;
+    }
+
     export interface ScalingGroupServerGroupAttribute {
         loadBalancerId?: pulumi.Input<string>;
         /**
@@ -57,6 +64,18 @@ export namespace autoscaling {
          * The Value of Tags.
          */
         value: pulumi.Input<string>;
+    }
+
+    export interface ScalingLifecycleHookLifecycleCommand {
+        /**
+         * Batch job command ID, which indicates the batch job command to be executed after triggering the lifecycle hook and installed in the instance.
+         */
+        commandId: pulumi.Input<string>;
+        /**
+         * Parameters and parameter values in batch job commands.
+         * The number of parameters ranges from 0 to 60.
+         */
+        parameters?: pulumi.Input<string>;
     }
 
 }
@@ -2883,11 +2902,11 @@ export namespace vke {
          */
         mountPoint?: pulumi.Input<string>;
         /**
-         * The Size of DataVolumes, the value range in 20~32768.
+         * The Size of DataVolumes, the value range in 20~32768. Default value is `20`.
          */
         size?: pulumi.Input<number>;
         /**
-         * The Type of DataVolumes, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`.
+         * The Type of DataVolumes, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`. Default value is `ESSD_PL0`.
          */
         type?: pulumi.Input<string>;
     }

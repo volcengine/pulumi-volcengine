@@ -49,6 +49,16 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			_, err = ecs.NewCommand(ctx, "fooCommand", &ecs.CommandArgs{
+//				Description:    pulumi.String("tf"),
+//				WorkingDir:     pulumi.String("/home"),
+//				Username:       pulumi.String("root"),
+//				Timeout:        pulumi.Int(100),
+//				CommandContent: pulumi.String("IyEvYmluL2Jhc2gKCgplY2hvICJvcGVyYXRpb24gc3VjY2VzcyEi"),
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			fooScalingGroup, err := autoscaling.NewScalingGroup(ctx, "fooScalingGroup", &autoscaling.ScalingGroupArgs{
 //				ScalingGroupName: pulumi.String("acc-test-scaling-group-lifecycle"),
 //				SubnetIds: pulumi.StringArray{
@@ -66,9 +76,9 @@ import (
 //			}
 //			_, err = autoscaling.NewScalingLifecycleHook(ctx, "fooScalingLifecycleHook", &autoscaling.ScalingLifecycleHookArgs{
 //				LifecycleHookName:    pulumi.String("acc-test-lifecycle"),
-//				LifecycleHookPolicy:  pulumi.String("CONTINUE"),
-//				LifecycleHookTimeout: pulumi.Int(30),
-//				LifecycleHookType:    pulumi.String("SCALE_IN"),
+//				LifecycleHookPolicy:  pulumi.String("ROLLBACK"),
+//				LifecycleHookTimeout: pulumi.Int(300),
+//				LifecycleHookType:    pulumi.String("SCALE_OUT"),
 //				ScalingGroupId:       fooScalingGroup.ID(),
 //			})
 //			if err != nil {
@@ -92,11 +102,13 @@ import (
 type ScalingLifecycleHook struct {
 	pulumi.CustomResourceState
 
+	// Batch job command.
+	LifecycleCommand ScalingLifecycleHookLifecycleCommandPtrOutput `pulumi:"lifecycleCommand"`
 	// The id of the lifecycle hook.
 	LifecycleHookId pulumi.StringOutput `pulumi:"lifecycleHookId"`
 	// The name of the lifecycle hook.
 	LifecycleHookName pulumi.StringOutput `pulumi:"lifecycleHookName"`
-	// The policy of the lifecycle hook. Valid values: CONTINUE, REJECT.
+	// The policy of the lifecycle hook. Valid values: CONTINUE, REJECT, ROLLBACK.
 	LifecycleHookPolicy pulumi.StringOutput `pulumi:"lifecycleHookPolicy"`
 	// The timeout of the lifecycle hook.
 	LifecycleHookTimeout pulumi.IntOutput `pulumi:"lifecycleHookTimeout"`
@@ -151,11 +163,13 @@ func GetScalingLifecycleHook(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ScalingLifecycleHook resources.
 type scalingLifecycleHookState struct {
+	// Batch job command.
+	LifecycleCommand *ScalingLifecycleHookLifecycleCommand `pulumi:"lifecycleCommand"`
 	// The id of the lifecycle hook.
 	LifecycleHookId *string `pulumi:"lifecycleHookId"`
 	// The name of the lifecycle hook.
 	LifecycleHookName *string `pulumi:"lifecycleHookName"`
-	// The policy of the lifecycle hook. Valid values: CONTINUE, REJECT.
+	// The policy of the lifecycle hook. Valid values: CONTINUE, REJECT, ROLLBACK.
 	LifecycleHookPolicy *string `pulumi:"lifecycleHookPolicy"`
 	// The timeout of the lifecycle hook.
 	LifecycleHookTimeout *int `pulumi:"lifecycleHookTimeout"`
@@ -166,11 +180,13 @@ type scalingLifecycleHookState struct {
 }
 
 type ScalingLifecycleHookState struct {
+	// Batch job command.
+	LifecycleCommand ScalingLifecycleHookLifecycleCommandPtrInput
 	// The id of the lifecycle hook.
 	LifecycleHookId pulumi.StringPtrInput
 	// The name of the lifecycle hook.
 	LifecycleHookName pulumi.StringPtrInput
-	// The policy of the lifecycle hook. Valid values: CONTINUE, REJECT.
+	// The policy of the lifecycle hook. Valid values: CONTINUE, REJECT, ROLLBACK.
 	LifecycleHookPolicy pulumi.StringPtrInput
 	// The timeout of the lifecycle hook.
 	LifecycleHookTimeout pulumi.IntPtrInput
@@ -185,9 +201,11 @@ func (ScalingLifecycleHookState) ElementType() reflect.Type {
 }
 
 type scalingLifecycleHookArgs struct {
+	// Batch job command.
+	LifecycleCommand *ScalingLifecycleHookLifecycleCommand `pulumi:"lifecycleCommand"`
 	// The name of the lifecycle hook.
 	LifecycleHookName string `pulumi:"lifecycleHookName"`
-	// The policy of the lifecycle hook. Valid values: CONTINUE, REJECT.
+	// The policy of the lifecycle hook. Valid values: CONTINUE, REJECT, ROLLBACK.
 	LifecycleHookPolicy string `pulumi:"lifecycleHookPolicy"`
 	// The timeout of the lifecycle hook.
 	LifecycleHookTimeout int `pulumi:"lifecycleHookTimeout"`
@@ -199,9 +217,11 @@ type scalingLifecycleHookArgs struct {
 
 // The set of arguments for constructing a ScalingLifecycleHook resource.
 type ScalingLifecycleHookArgs struct {
+	// Batch job command.
+	LifecycleCommand ScalingLifecycleHookLifecycleCommandPtrInput
 	// The name of the lifecycle hook.
 	LifecycleHookName pulumi.StringInput
-	// The policy of the lifecycle hook. Valid values: CONTINUE, REJECT.
+	// The policy of the lifecycle hook. Valid values: CONTINUE, REJECT, ROLLBACK.
 	LifecycleHookPolicy pulumi.StringInput
 	// The timeout of the lifecycle hook.
 	LifecycleHookTimeout pulumi.IntInput
@@ -298,6 +318,11 @@ func (o ScalingLifecycleHookOutput) ToScalingLifecycleHookOutputWithContext(ctx 
 	return o
 }
 
+// Batch job command.
+func (o ScalingLifecycleHookOutput) LifecycleCommand() ScalingLifecycleHookLifecycleCommandPtrOutput {
+	return o.ApplyT(func(v *ScalingLifecycleHook) ScalingLifecycleHookLifecycleCommandPtrOutput { return v.LifecycleCommand }).(ScalingLifecycleHookLifecycleCommandPtrOutput)
+}
+
 // The id of the lifecycle hook.
 func (o ScalingLifecycleHookOutput) LifecycleHookId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ScalingLifecycleHook) pulumi.StringOutput { return v.LifecycleHookId }).(pulumi.StringOutput)
@@ -308,7 +333,7 @@ func (o ScalingLifecycleHookOutput) LifecycleHookName() pulumi.StringOutput {
 	return o.ApplyT(func(v *ScalingLifecycleHook) pulumi.StringOutput { return v.LifecycleHookName }).(pulumi.StringOutput)
 }
 
-// The policy of the lifecycle hook. Valid values: CONTINUE, REJECT.
+// The policy of the lifecycle hook. Valid values: CONTINUE, REJECT, ROLLBACK.
 func (o ScalingLifecycleHookOutput) LifecycleHookPolicy() pulumi.StringOutput {
 	return o.ApplyT(func(v *ScalingLifecycleHook) pulumi.StringOutput { return v.LifecycleHookPolicy }).(pulumi.StringOutput)
 }

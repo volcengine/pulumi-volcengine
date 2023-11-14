@@ -3296,8 +3296,8 @@ class NodePoolNodeConfigDataVolume(dict):
                  type: Optional[str] = None):
         """
         :param str mount_point: The target mount directory of the disk. Must start with `/`.
-        :param int size: The Size of DataVolumes, the value range in 20~32768.
-        :param str type: The Type of DataVolumes, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`.
+        :param int size: The Size of DataVolumes, the value range in 20~32768. Default value is `20`.
+        :param str type: The Type of DataVolumes, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`. Default value is `ESSD_PL0`.
         """
         if mount_point is not None:
             pulumi.set(__self__, "mount_point", mount_point)
@@ -3318,7 +3318,7 @@ class NodePoolNodeConfigDataVolume(dict):
     @pulumi.getter
     def size(self) -> Optional[int]:
         """
-        The Size of DataVolumes, the value range in 20~32768.
+        The Size of DataVolumes, the value range in 20~32768. Default value is `20`.
         """
         return pulumi.get(self, "size")
 
@@ -3326,7 +3326,7 @@ class NodePoolNodeConfigDataVolume(dict):
     @pulumi.getter
     def type(self) -> Optional[str]:
         """
-        The Type of DataVolumes, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`.
+        The Type of DataVolumes, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`. Default value is `ESSD_PL0`.
         """
         return pulumi.get(self, "type")
 

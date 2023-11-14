@@ -104,20 +104,26 @@ type ScalingGroup struct {
 	ActiveScalingConfigurationId pulumi.StringOutput `pulumi:"activeScalingConfigurationId"`
 	// The create time of the scaling group.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// The list of db instance ids.
+	// ID of the RDS database instance.
 	DbInstanceIds pulumi.StringArrayOutput `pulumi:"dbInstanceIds"`
 	// The default cooldown interval of the scaling group. Value range: 5 ~ 86400, unit: second. Default value: 300.
 	DefaultCooldown pulumi.IntOutput `pulumi:"defaultCooldown"`
 	// The desire instance number of the scaling group.
 	DesireInstanceNumber pulumi.IntOutput `pulumi:"desireInstanceNumber"`
+	// The health check type of the scaling group.
+	HealthCheckType pulumi.StringOutput `pulumi:"healthCheckType"`
 	// The instance terminate policy of the scaling group. Valid values: OldestInstance, NewestInstance, OldestScalingConfigurationWithOldestInstance, OldestScalingConfigurationWithNewestInstance. Default value: OldestScalingConfigurationWithOldestInstance.
 	InstanceTerminatePolicy pulumi.StringOutput `pulumi:"instanceTerminatePolicy"`
 	// The ID of the launch template bound to the scaling group. The launch template and scaling configuration cannot take effect at the same time.
 	LaunchTemplateId pulumi.StringPtrOutput `pulumi:"launchTemplateId"`
+	// Specify instance specifications.
+	LaunchTemplateOverrides ScalingGroupLaunchTemplateOverrideArrayOutput `pulumi:"launchTemplateOverrides"`
 	// The version of the launch template bound to the scaling group. Valid values are the version number, Latest, or Default.
 	LaunchTemplateVersion pulumi.StringPtrOutput `pulumi:"launchTemplateVersion"`
 	// The lifecycle state of the scaling group.
 	LifecycleState pulumi.StringOutput `pulumi:"lifecycleState"`
+	// Grace period for health check of CLB instance in elastic group.
+	LoadBalancerHealthCheckGracePeriod pulumi.IntOutput `pulumi:"loadBalancerHealthCheckGracePeriod"`
 	// The max instance number of the scaling group. Value range: 0 ~ 100.
 	MaxInstanceNumber pulumi.IntOutput `pulumi:"maxInstanceNumber"`
 	// The min instance number of the scaling group. Value range: 0 ~ 100.
@@ -130,8 +136,14 @@ type ScalingGroup struct {
 	ScalingGroupId pulumi.StringOutput `pulumi:"scalingGroupId"`
 	// The name of the scaling group.
 	ScalingGroupName pulumi.StringOutput `pulumi:"scalingGroupName"`
+	// Example recycling mode for the elastic group, with values:
+	// release (default): Release mode.
+	// recycle: Shutdown recycling mode.
+	ScalingMode pulumi.StringOutput `pulumi:"scalingMode"`
 	// The load balancer server group attributes of the scaling group.
 	ServerGroupAttributes ScalingGroupServerGroupAttributeArrayOutput `pulumi:"serverGroupAttributes"`
+	// The number of stopped instances.
+	StoppedInstanceCount pulumi.IntOutput `pulumi:"stoppedInstanceCount"`
 	// The list of the subnet id to which the ENI is connected.
 	SubnetIds pulumi.StringArrayOutput `pulumi:"subnetIds"`
 	// Tags.
@@ -190,20 +202,26 @@ type scalingGroupState struct {
 	ActiveScalingConfigurationId *string `pulumi:"activeScalingConfigurationId"`
 	// The create time of the scaling group.
 	CreatedAt *string `pulumi:"createdAt"`
-	// The list of db instance ids.
+	// ID of the RDS database instance.
 	DbInstanceIds []string `pulumi:"dbInstanceIds"`
 	// The default cooldown interval of the scaling group. Value range: 5 ~ 86400, unit: second. Default value: 300.
 	DefaultCooldown *int `pulumi:"defaultCooldown"`
 	// The desire instance number of the scaling group.
 	DesireInstanceNumber *int `pulumi:"desireInstanceNumber"`
+	// The health check type of the scaling group.
+	HealthCheckType *string `pulumi:"healthCheckType"`
 	// The instance terminate policy of the scaling group. Valid values: OldestInstance, NewestInstance, OldestScalingConfigurationWithOldestInstance, OldestScalingConfigurationWithNewestInstance. Default value: OldestScalingConfigurationWithOldestInstance.
 	InstanceTerminatePolicy *string `pulumi:"instanceTerminatePolicy"`
 	// The ID of the launch template bound to the scaling group. The launch template and scaling configuration cannot take effect at the same time.
 	LaunchTemplateId *string `pulumi:"launchTemplateId"`
+	// Specify instance specifications.
+	LaunchTemplateOverrides []ScalingGroupLaunchTemplateOverride `pulumi:"launchTemplateOverrides"`
 	// The version of the launch template bound to the scaling group. Valid values are the version number, Latest, or Default.
 	LaunchTemplateVersion *string `pulumi:"launchTemplateVersion"`
 	// The lifecycle state of the scaling group.
 	LifecycleState *string `pulumi:"lifecycleState"`
+	// Grace period for health check of CLB instance in elastic group.
+	LoadBalancerHealthCheckGracePeriod *int `pulumi:"loadBalancerHealthCheckGracePeriod"`
 	// The max instance number of the scaling group. Value range: 0 ~ 100.
 	MaxInstanceNumber *int `pulumi:"maxInstanceNumber"`
 	// The min instance number of the scaling group. Value range: 0 ~ 100.
@@ -216,8 +234,14 @@ type scalingGroupState struct {
 	ScalingGroupId *string `pulumi:"scalingGroupId"`
 	// The name of the scaling group.
 	ScalingGroupName *string `pulumi:"scalingGroupName"`
+	// Example recycling mode for the elastic group, with values:
+	// release (default): Release mode.
+	// recycle: Shutdown recycling mode.
+	ScalingMode *string `pulumi:"scalingMode"`
 	// The load balancer server group attributes of the scaling group.
 	ServerGroupAttributes []ScalingGroupServerGroupAttribute `pulumi:"serverGroupAttributes"`
+	// The number of stopped instances.
+	StoppedInstanceCount *int `pulumi:"stoppedInstanceCount"`
 	// The list of the subnet id to which the ENI is connected.
 	SubnetIds []string `pulumi:"subnetIds"`
 	// Tags.
@@ -235,20 +259,26 @@ type ScalingGroupState struct {
 	ActiveScalingConfigurationId pulumi.StringPtrInput
 	// The create time of the scaling group.
 	CreatedAt pulumi.StringPtrInput
-	// The list of db instance ids.
+	// ID of the RDS database instance.
 	DbInstanceIds pulumi.StringArrayInput
 	// The default cooldown interval of the scaling group. Value range: 5 ~ 86400, unit: second. Default value: 300.
 	DefaultCooldown pulumi.IntPtrInput
 	// The desire instance number of the scaling group.
 	DesireInstanceNumber pulumi.IntPtrInput
+	// The health check type of the scaling group.
+	HealthCheckType pulumi.StringPtrInput
 	// The instance terminate policy of the scaling group. Valid values: OldestInstance, NewestInstance, OldestScalingConfigurationWithOldestInstance, OldestScalingConfigurationWithNewestInstance. Default value: OldestScalingConfigurationWithOldestInstance.
 	InstanceTerminatePolicy pulumi.StringPtrInput
 	// The ID of the launch template bound to the scaling group. The launch template and scaling configuration cannot take effect at the same time.
 	LaunchTemplateId pulumi.StringPtrInput
+	// Specify instance specifications.
+	LaunchTemplateOverrides ScalingGroupLaunchTemplateOverrideArrayInput
 	// The version of the launch template bound to the scaling group. Valid values are the version number, Latest, or Default.
 	LaunchTemplateVersion pulumi.StringPtrInput
 	// The lifecycle state of the scaling group.
 	LifecycleState pulumi.StringPtrInput
+	// Grace period for health check of CLB instance in elastic group.
+	LoadBalancerHealthCheckGracePeriod pulumi.IntPtrInput
 	// The max instance number of the scaling group. Value range: 0 ~ 100.
 	MaxInstanceNumber pulumi.IntPtrInput
 	// The min instance number of the scaling group. Value range: 0 ~ 100.
@@ -261,8 +291,14 @@ type ScalingGroupState struct {
 	ScalingGroupId pulumi.StringPtrInput
 	// The name of the scaling group.
 	ScalingGroupName pulumi.StringPtrInput
+	// Example recycling mode for the elastic group, with values:
+	// release (default): Release mode.
+	// recycle: Shutdown recycling mode.
+	ScalingMode pulumi.StringPtrInput
 	// The load balancer server group attributes of the scaling group.
 	ServerGroupAttributes ScalingGroupServerGroupAttributeArrayInput
+	// The number of stopped instances.
+	StoppedInstanceCount pulumi.IntPtrInput
 	// The list of the subnet id to which the ENI is connected.
 	SubnetIds pulumi.StringArrayInput
 	// Tags.
@@ -280,6 +316,8 @@ func (ScalingGroupState) ElementType() reflect.Type {
 }
 
 type scalingGroupArgs struct {
+	// ID of the RDS database instance.
+	DbInstanceIds []string `pulumi:"dbInstanceIds"`
 	// The default cooldown interval of the scaling group. Value range: 5 ~ 86400, unit: second. Default value: 300.
 	DefaultCooldown *int `pulumi:"defaultCooldown"`
 	// The desire instance number of the scaling group.
@@ -288,6 +326,8 @@ type scalingGroupArgs struct {
 	InstanceTerminatePolicy *string `pulumi:"instanceTerminatePolicy"`
 	// The ID of the launch template bound to the scaling group. The launch template and scaling configuration cannot take effect at the same time.
 	LaunchTemplateId *string `pulumi:"launchTemplateId"`
+	// Specify instance specifications.
+	LaunchTemplateOverrides []ScalingGroupLaunchTemplateOverride `pulumi:"launchTemplateOverrides"`
 	// The version of the launch template bound to the scaling group. Valid values are the version number, Latest, or Default.
 	LaunchTemplateVersion *string `pulumi:"launchTemplateVersion"`
 	// The max instance number of the scaling group. Value range: 0 ~ 100.
@@ -300,6 +340,10 @@ type scalingGroupArgs struct {
 	ProjectName *string `pulumi:"projectName"`
 	// The name of the scaling group.
 	ScalingGroupName string `pulumi:"scalingGroupName"`
+	// Example recycling mode for the elastic group, with values:
+	// release (default): Release mode.
+	// recycle: Shutdown recycling mode.
+	ScalingMode *string `pulumi:"scalingMode"`
 	// The load balancer server group attributes of the scaling group.
 	ServerGroupAttributes []ScalingGroupServerGroupAttribute `pulumi:"serverGroupAttributes"`
 	// The list of the subnet id to which the ENI is connected.
@@ -310,6 +354,8 @@ type scalingGroupArgs struct {
 
 // The set of arguments for constructing a ScalingGroup resource.
 type ScalingGroupArgs struct {
+	// ID of the RDS database instance.
+	DbInstanceIds pulumi.StringArrayInput
 	// The default cooldown interval of the scaling group. Value range: 5 ~ 86400, unit: second. Default value: 300.
 	DefaultCooldown pulumi.IntPtrInput
 	// The desire instance number of the scaling group.
@@ -318,6 +364,8 @@ type ScalingGroupArgs struct {
 	InstanceTerminatePolicy pulumi.StringPtrInput
 	// The ID of the launch template bound to the scaling group. The launch template and scaling configuration cannot take effect at the same time.
 	LaunchTemplateId pulumi.StringPtrInput
+	// Specify instance specifications.
+	LaunchTemplateOverrides ScalingGroupLaunchTemplateOverrideArrayInput
 	// The version of the launch template bound to the scaling group. Valid values are the version number, Latest, or Default.
 	LaunchTemplateVersion pulumi.StringPtrInput
 	// The max instance number of the scaling group. Value range: 0 ~ 100.
@@ -330,6 +378,10 @@ type ScalingGroupArgs struct {
 	ProjectName pulumi.StringPtrInput
 	// The name of the scaling group.
 	ScalingGroupName pulumi.StringInput
+	// Example recycling mode for the elastic group, with values:
+	// release (default): Release mode.
+	// recycle: Shutdown recycling mode.
+	ScalingMode pulumi.StringPtrInput
 	// The load balancer server group attributes of the scaling group.
 	ServerGroupAttributes ScalingGroupServerGroupAttributeArrayInput
 	// The list of the subnet id to which the ENI is connected.
@@ -435,7 +487,7 @@ func (o ScalingGroupOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *ScalingGroup) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The list of db instance ids.
+// ID of the RDS database instance.
 func (o ScalingGroupOutput) DbInstanceIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ScalingGroup) pulumi.StringArrayOutput { return v.DbInstanceIds }).(pulumi.StringArrayOutput)
 }
@@ -450,6 +502,11 @@ func (o ScalingGroupOutput) DesireInstanceNumber() pulumi.IntOutput {
 	return o.ApplyT(func(v *ScalingGroup) pulumi.IntOutput { return v.DesireInstanceNumber }).(pulumi.IntOutput)
 }
 
+// The health check type of the scaling group.
+func (o ScalingGroupOutput) HealthCheckType() pulumi.StringOutput {
+	return o.ApplyT(func(v *ScalingGroup) pulumi.StringOutput { return v.HealthCheckType }).(pulumi.StringOutput)
+}
+
 // The instance terminate policy of the scaling group. Valid values: OldestInstance, NewestInstance, OldestScalingConfigurationWithOldestInstance, OldestScalingConfigurationWithNewestInstance. Default value: OldestScalingConfigurationWithOldestInstance.
 func (o ScalingGroupOutput) InstanceTerminatePolicy() pulumi.StringOutput {
 	return o.ApplyT(func(v *ScalingGroup) pulumi.StringOutput { return v.InstanceTerminatePolicy }).(pulumi.StringOutput)
@@ -460,6 +517,11 @@ func (o ScalingGroupOutput) LaunchTemplateId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ScalingGroup) pulumi.StringPtrOutput { return v.LaunchTemplateId }).(pulumi.StringPtrOutput)
 }
 
+// Specify instance specifications.
+func (o ScalingGroupOutput) LaunchTemplateOverrides() ScalingGroupLaunchTemplateOverrideArrayOutput {
+	return o.ApplyT(func(v *ScalingGroup) ScalingGroupLaunchTemplateOverrideArrayOutput { return v.LaunchTemplateOverrides }).(ScalingGroupLaunchTemplateOverrideArrayOutput)
+}
+
 // The version of the launch template bound to the scaling group. Valid values are the version number, Latest, or Default.
 func (o ScalingGroupOutput) LaunchTemplateVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ScalingGroup) pulumi.StringPtrOutput { return v.LaunchTemplateVersion }).(pulumi.StringPtrOutput)
@@ -468,6 +530,11 @@ func (o ScalingGroupOutput) LaunchTemplateVersion() pulumi.StringPtrOutput {
 // The lifecycle state of the scaling group.
 func (o ScalingGroupOutput) LifecycleState() pulumi.StringOutput {
 	return o.ApplyT(func(v *ScalingGroup) pulumi.StringOutput { return v.LifecycleState }).(pulumi.StringOutput)
+}
+
+// Grace period for health check of CLB instance in elastic group.
+func (o ScalingGroupOutput) LoadBalancerHealthCheckGracePeriod() pulumi.IntOutput {
+	return o.ApplyT(func(v *ScalingGroup) pulumi.IntOutput { return v.LoadBalancerHealthCheckGracePeriod }).(pulumi.IntOutput)
 }
 
 // The max instance number of the scaling group. Value range: 0 ~ 100.
@@ -500,9 +567,21 @@ func (o ScalingGroupOutput) ScalingGroupName() pulumi.StringOutput {
 	return o.ApplyT(func(v *ScalingGroup) pulumi.StringOutput { return v.ScalingGroupName }).(pulumi.StringOutput)
 }
 
+// Example recycling mode for the elastic group, with values:
+// release (default): Release mode.
+// recycle: Shutdown recycling mode.
+func (o ScalingGroupOutput) ScalingMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *ScalingGroup) pulumi.StringOutput { return v.ScalingMode }).(pulumi.StringOutput)
+}
+
 // The load balancer server group attributes of the scaling group.
 func (o ScalingGroupOutput) ServerGroupAttributes() ScalingGroupServerGroupAttributeArrayOutput {
 	return o.ApplyT(func(v *ScalingGroup) ScalingGroupServerGroupAttributeArrayOutput { return v.ServerGroupAttributes }).(ScalingGroupServerGroupAttributeArrayOutput)
+}
+
+// The number of stopped instances.
+func (o ScalingGroupOutput) StoppedInstanceCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *ScalingGroup) pulumi.IntOutput { return v.StoppedInstanceCount }).(pulumi.IntOutput)
 }
 
 // The list of the subnet id to which the ENI is connected.

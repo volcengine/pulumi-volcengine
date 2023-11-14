@@ -19,6 +19,10 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// Batch job command.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.ScalingLifecycleHooksLifecycleHookLifecycleCommandResult> LifecycleCommands;
+        /// <summary>
         /// The id of the lifecycle hook.
         /// </summary>
         public readonly string LifecycleHookId;
@@ -47,6 +51,8 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling.Outputs
         private ScalingLifecycleHooksLifecycleHookResult(
             string id,
 
+            ImmutableArray<Outputs.ScalingLifecycleHooksLifecycleHookLifecycleCommandResult> lifecycleCommands,
+
             string lifecycleHookId,
 
             string lifecycleHookName,
@@ -60,6 +66,7 @@ namespace Volcengine.Pulumi.Volcengine.Autoscaling.Outputs
             string scalingGroupId)
         {
             Id = id;
+            LifecycleCommands = lifecycleCommands;
             LifecycleHookId = lifecycleHookId;
             LifecycleHookName = lifecycleHookName;
             LifecycleHookPolicy = lifecycleHookPolicy;

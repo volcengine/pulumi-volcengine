@@ -12,8 +12,10 @@ from .. import _utilities
 __all__ = [
     'ScalingConfigurationTagArgs',
     'ScalingConfigurationVolumeArgs',
+    'ScalingGroupLaunchTemplateOverrideArgs',
     'ScalingGroupServerGroupAttributeArgs',
     'ScalingGroupTagArgs',
+    'ScalingLifecycleHookLifecycleCommandArgs',
 ]
 
 @pulumi.input_type
@@ -104,6 +106,28 @@ class ScalingConfigurationVolumeArgs:
     @delete_with_instance.setter
     def delete_with_instance(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "delete_with_instance", value)
+
+
+@pulumi.input_type
+class ScalingGroupLaunchTemplateOverrideArgs:
+    def __init__(__self__, *,
+                 instance_type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] instance_type: The instance type.
+        """
+        pulumi.set(__self__, "instance_type", instance_type)
+
+    @property
+    @pulumi.getter(name="instanceType")
+    def instance_type(self) -> pulumi.Input[str]:
+        """
+        The instance type.
+        """
+        return pulumi.get(self, "instance_type")
+
+    @instance_type.setter
+    def instance_type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "instance_type", value)
 
 
 @pulumi.input_type
@@ -205,5 +229,45 @@ class ScalingGroupTagArgs:
     @value.setter
     def value(self, value: pulumi.Input[str]):
         pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ScalingLifecycleHookLifecycleCommandArgs:
+    def __init__(__self__, *,
+                 command_id: pulumi.Input[str],
+                 parameters: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] command_id: Batch job command ID, which indicates the batch job command to be executed after triggering the lifecycle hook and installed in the instance.
+        :param pulumi.Input[str] parameters: Parameters and parameter values in batch job commands.
+               The number of parameters ranges from 0 to 60.
+        """
+        pulumi.set(__self__, "command_id", command_id)
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+
+    @property
+    @pulumi.getter(name="commandId")
+    def command_id(self) -> pulumi.Input[str]:
+        """
+        Batch job command ID, which indicates the batch job command to be executed after triggering the lifecycle hook and installed in the instance.
+        """
+        return pulumi.get(self, "command_id")
+
+    @command_id.setter
+    def command_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "command_id", value)
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[pulumi.Input[str]]:
+        """
+        Parameters and parameter values in batch job commands.
+        The number of parameters ranges from 0 to 60.
+        """
+        return pulumi.get(self, "parameters")
+
+    @parameters.setter
+    def parameters(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "parameters", value)
 
 

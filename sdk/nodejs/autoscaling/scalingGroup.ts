@@ -96,9 +96,9 @@ export class ScalingGroup extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * The list of db instance ids.
+     * ID of the RDS database instance.
      */
-    public /*out*/ readonly dbInstanceIds!: pulumi.Output<string[]>;
+    public readonly dbInstanceIds!: pulumi.Output<string[] | undefined>;
     /**
      * The default cooldown interval of the scaling group. Value range: 5 ~ 86400, unit: second. Default value: 300.
      */
@@ -108,6 +108,10 @@ export class ScalingGroup extends pulumi.CustomResource {
      */
     public readonly desireInstanceNumber!: pulumi.Output<number>;
     /**
+     * The health check type of the scaling group.
+     */
+    public /*out*/ readonly healthCheckType!: pulumi.Output<string>;
+    /**
      * The instance terminate policy of the scaling group. Valid values: OldestInstance, NewestInstance, OldestScalingConfigurationWithOldestInstance, OldestScalingConfigurationWithNewestInstance. Default value: OldestScalingConfigurationWithOldestInstance.
      */
     public readonly instanceTerminatePolicy!: pulumi.Output<string>;
@@ -116,6 +120,10 @@ export class ScalingGroup extends pulumi.CustomResource {
      */
     public readonly launchTemplateId!: pulumi.Output<string | undefined>;
     /**
+     * Specify instance specifications.
+     */
+    public readonly launchTemplateOverrides!: pulumi.Output<outputs.autoscaling.ScalingGroupLaunchTemplateOverride[] | undefined>;
+    /**
      * The version of the launch template bound to the scaling group. Valid values are the version number, Latest, or Default.
      */
     public readonly launchTemplateVersion!: pulumi.Output<string | undefined>;
@@ -123,6 +131,10 @@ export class ScalingGroup extends pulumi.CustomResource {
      * The lifecycle state of the scaling group.
      */
     public /*out*/ readonly lifecycleState!: pulumi.Output<string>;
+    /**
+     * Grace period for health check of CLB instance in elastic group.
+     */
+    public /*out*/ readonly loadBalancerHealthCheckGracePeriod!: pulumi.Output<number>;
     /**
      * The max instance number of the scaling group. Value range: 0 ~ 100.
      */
@@ -148,9 +160,19 @@ export class ScalingGroup extends pulumi.CustomResource {
      */
     public readonly scalingGroupName!: pulumi.Output<string>;
     /**
+     * Example recycling mode for the elastic group, with values:
+     * release (default): Release mode.
+     * recycle: Shutdown recycling mode.
+     */
+    public readonly scalingMode!: pulumi.Output<string>;
+    /**
      * The load balancer server group attributes of the scaling group.
      */
     public readonly serverGroupAttributes!: pulumi.Output<outputs.autoscaling.ScalingGroupServerGroupAttribute[] | undefined>;
+    /**
+     * The number of stopped instances.
+     */
+    public /*out*/ readonly stoppedInstanceCount!: pulumi.Output<number>;
     /**
      * The list of the subnet id to which the ENI is connected.
      */
@@ -190,17 +212,22 @@ export class ScalingGroup extends pulumi.CustomResource {
             resourceInputs["dbInstanceIds"] = state ? state.dbInstanceIds : undefined;
             resourceInputs["defaultCooldown"] = state ? state.defaultCooldown : undefined;
             resourceInputs["desireInstanceNumber"] = state ? state.desireInstanceNumber : undefined;
+            resourceInputs["healthCheckType"] = state ? state.healthCheckType : undefined;
             resourceInputs["instanceTerminatePolicy"] = state ? state.instanceTerminatePolicy : undefined;
             resourceInputs["launchTemplateId"] = state ? state.launchTemplateId : undefined;
+            resourceInputs["launchTemplateOverrides"] = state ? state.launchTemplateOverrides : undefined;
             resourceInputs["launchTemplateVersion"] = state ? state.launchTemplateVersion : undefined;
             resourceInputs["lifecycleState"] = state ? state.lifecycleState : undefined;
+            resourceInputs["loadBalancerHealthCheckGracePeriod"] = state ? state.loadBalancerHealthCheckGracePeriod : undefined;
             resourceInputs["maxInstanceNumber"] = state ? state.maxInstanceNumber : undefined;
             resourceInputs["minInstanceNumber"] = state ? state.minInstanceNumber : undefined;
             resourceInputs["multiAzPolicy"] = state ? state.multiAzPolicy : undefined;
             resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["scalingGroupId"] = state ? state.scalingGroupId : undefined;
             resourceInputs["scalingGroupName"] = state ? state.scalingGroupName : undefined;
+            resourceInputs["scalingMode"] = state ? state.scalingMode : undefined;
             resourceInputs["serverGroupAttributes"] = state ? state.serverGroupAttributes : undefined;
+            resourceInputs["stoppedInstanceCount"] = state ? state.stoppedInstanceCount : undefined;
             resourceInputs["subnetIds"] = state ? state.subnetIds : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["totalInstanceCount"] = state ? state.totalInstanceCount : undefined;
@@ -220,24 +247,29 @@ export class ScalingGroup extends pulumi.CustomResource {
             if ((!args || args.subnetIds === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'subnetIds'");
             }
+            resourceInputs["dbInstanceIds"] = args ? args.dbInstanceIds : undefined;
             resourceInputs["defaultCooldown"] = args ? args.defaultCooldown : undefined;
             resourceInputs["desireInstanceNumber"] = args ? args.desireInstanceNumber : undefined;
             resourceInputs["instanceTerminatePolicy"] = args ? args.instanceTerminatePolicy : undefined;
             resourceInputs["launchTemplateId"] = args ? args.launchTemplateId : undefined;
+            resourceInputs["launchTemplateOverrides"] = args ? args.launchTemplateOverrides : undefined;
             resourceInputs["launchTemplateVersion"] = args ? args.launchTemplateVersion : undefined;
             resourceInputs["maxInstanceNumber"] = args ? args.maxInstanceNumber : undefined;
             resourceInputs["minInstanceNumber"] = args ? args.minInstanceNumber : undefined;
             resourceInputs["multiAzPolicy"] = args ? args.multiAzPolicy : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["scalingGroupName"] = args ? args.scalingGroupName : undefined;
+            resourceInputs["scalingMode"] = args ? args.scalingMode : undefined;
             resourceInputs["serverGroupAttributes"] = args ? args.serverGroupAttributes : undefined;
             resourceInputs["subnetIds"] = args ? args.subnetIds : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["activeScalingConfigurationId"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
-            resourceInputs["dbInstanceIds"] = undefined /*out*/;
+            resourceInputs["healthCheckType"] = undefined /*out*/;
             resourceInputs["lifecycleState"] = undefined /*out*/;
+            resourceInputs["loadBalancerHealthCheckGracePeriod"] = undefined /*out*/;
             resourceInputs["scalingGroupId"] = undefined /*out*/;
+            resourceInputs["stoppedInstanceCount"] = undefined /*out*/;
             resourceInputs["totalInstanceCount"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
             resourceInputs["vpcId"] = undefined /*out*/;
@@ -260,7 +292,7 @@ export interface ScalingGroupState {
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * The list of db instance ids.
+     * ID of the RDS database instance.
      */
     dbInstanceIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -272,6 +304,10 @@ export interface ScalingGroupState {
      */
     desireInstanceNumber?: pulumi.Input<number>;
     /**
+     * The health check type of the scaling group.
+     */
+    healthCheckType?: pulumi.Input<string>;
+    /**
      * The instance terminate policy of the scaling group. Valid values: OldestInstance, NewestInstance, OldestScalingConfigurationWithOldestInstance, OldestScalingConfigurationWithNewestInstance. Default value: OldestScalingConfigurationWithOldestInstance.
      */
     instanceTerminatePolicy?: pulumi.Input<string>;
@@ -280,6 +316,10 @@ export interface ScalingGroupState {
      */
     launchTemplateId?: pulumi.Input<string>;
     /**
+     * Specify instance specifications.
+     */
+    launchTemplateOverrides?: pulumi.Input<pulumi.Input<inputs.autoscaling.ScalingGroupLaunchTemplateOverride>[]>;
+    /**
      * The version of the launch template bound to the scaling group. Valid values are the version number, Latest, or Default.
      */
     launchTemplateVersion?: pulumi.Input<string>;
@@ -287,6 +327,10 @@ export interface ScalingGroupState {
      * The lifecycle state of the scaling group.
      */
     lifecycleState?: pulumi.Input<string>;
+    /**
+     * Grace period for health check of CLB instance in elastic group.
+     */
+    loadBalancerHealthCheckGracePeriod?: pulumi.Input<number>;
     /**
      * The max instance number of the scaling group. Value range: 0 ~ 100.
      */
@@ -312,9 +356,19 @@ export interface ScalingGroupState {
      */
     scalingGroupName?: pulumi.Input<string>;
     /**
+     * Example recycling mode for the elastic group, with values:
+     * release (default): Release mode.
+     * recycle: Shutdown recycling mode.
+     */
+    scalingMode?: pulumi.Input<string>;
+    /**
      * The load balancer server group attributes of the scaling group.
      */
     serverGroupAttributes?: pulumi.Input<pulumi.Input<inputs.autoscaling.ScalingGroupServerGroupAttribute>[]>;
+    /**
+     * The number of stopped instances.
+     */
+    stoppedInstanceCount?: pulumi.Input<number>;
     /**
      * The list of the subnet id to which the ENI is connected.
      */
@@ -342,6 +396,10 @@ export interface ScalingGroupState {
  */
 export interface ScalingGroupArgs {
     /**
+     * ID of the RDS database instance.
+     */
+    dbInstanceIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * The default cooldown interval of the scaling group. Value range: 5 ~ 86400, unit: second. Default value: 300.
      */
     defaultCooldown?: pulumi.Input<number>;
@@ -357,6 +415,10 @@ export interface ScalingGroupArgs {
      * The ID of the launch template bound to the scaling group. The launch template and scaling configuration cannot take effect at the same time.
      */
     launchTemplateId?: pulumi.Input<string>;
+    /**
+     * Specify instance specifications.
+     */
+    launchTemplateOverrides?: pulumi.Input<pulumi.Input<inputs.autoscaling.ScalingGroupLaunchTemplateOverride>[]>;
     /**
      * The version of the launch template bound to the scaling group. Valid values are the version number, Latest, or Default.
      */
@@ -381,6 +443,12 @@ export interface ScalingGroupArgs {
      * The name of the scaling group.
      */
     scalingGroupName: pulumi.Input<string>;
+    /**
+     * Example recycling mode for the elastic group, with values:
+     * release (default): Release mode.
+     * recycle: Shutdown recycling mode.
+     */
+    scalingMode?: pulumi.Input<string>;
     /**
      * The load balancer server group attributes of the scaling group.
      */

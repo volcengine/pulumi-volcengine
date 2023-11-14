@@ -121,12 +121,12 @@ import (
 //					ImageId: "TODO: For expression"[0],
 //					SystemVolume: &vke.NodePoolNodeConfigSystemVolumeArgs{
 //						Type: pulumi.String("ESSD_PL0"),
-//						Size: pulumi.Int(60),
+//						Size: pulumi.Int(80),
 //					},
 //					DataVolumes: vke.NodePoolNodeConfigDataVolumeArray{
 //						&vke.NodePoolNodeConfigDataVolumeArgs{
 //							Type:       pulumi.String("ESSD_PL0"),
-//							Size:       pulumi.Int(60),
+//							Size:       pulumi.Int(80),
 //							MountPoint: pulumi.String("/tf1"),
 //						},
 //						&vke.NodePoolNodeConfigDataVolumeArgs{
@@ -147,7 +147,7 @@ import (
 //							fooSecurityGroup.ID(),
 //						},
 //					},
-//					AdditionalContainerStorageEnabled: pulumi.Bool(true),
+//					AdditionalContainerStorageEnabled: pulumi.Bool(false),
 //					InstanceChargeType:                pulumi.String("PostPaid"),
 //					NamePrefix:                        pulumi.String("acc-test"),
 //					EcsTags: vke.NodePoolNodeConfigEcsTagArray{

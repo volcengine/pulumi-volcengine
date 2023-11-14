@@ -165,6 +165,12 @@ export class ScalingConfiguration extends pulumi.CustomResource {
      */
     public readonly instanceTypes!: pulumi.Output<string[]>;
     /**
+     * Assign IPv6 address to instance network card. Possible values:
+     * 0: Do not assign IPv6 address.
+     * 1: Assign IPv6 address and the system will automatically assign an IPv6 subnet for you.
+     */
+    public readonly ipv6AddressCount!: pulumi.Output<number | undefined>;
+    /**
      * The ECS key pair name which the scaling configuration set.
      */
     public readonly keyPairName!: pulumi.Output<string | undefined>;
@@ -244,6 +250,7 @@ export class ScalingConfiguration extends pulumi.CustomResource {
             resourceInputs["instanceDescription"] = state ? state.instanceDescription : undefined;
             resourceInputs["instanceName"] = state ? state.instanceName : undefined;
             resourceInputs["instanceTypes"] = state ? state.instanceTypes : undefined;
+            resourceInputs["ipv6AddressCount"] = state ? state.ipv6AddressCount : undefined;
             resourceInputs["keyPairName"] = state ? state.keyPairName : undefined;
             resourceInputs["lifecycleState"] = state ? state.lifecycleState : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
@@ -290,6 +297,7 @@ export class ScalingConfiguration extends pulumi.CustomResource {
             resourceInputs["instanceDescription"] = args ? args.instanceDescription : undefined;
             resourceInputs["instanceName"] = args ? args.instanceName : undefined;
             resourceInputs["instanceTypes"] = args ? args.instanceTypes : undefined;
+            resourceInputs["ipv6AddressCount"] = args ? args.ipv6AddressCount : undefined;
             resourceInputs["keyPairName"] = args ? args.keyPairName : undefined;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
@@ -357,6 +365,12 @@ export interface ScalingConfigurationState {
      * The list of the ECS instance type which the scaling configuration set. The maximum number of instance types is 10.
      */
     instanceTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Assign IPv6 address to instance network card. Possible values:
+     * 0: Do not assign IPv6 address.
+     * 1: Assign IPv6 address and the system will automatically assign an IPv6 subnet for you.
+     */
+    ipv6AddressCount?: pulumi.Input<number>;
     /**
      * The ECS key pair name which the scaling configuration set.
      */
@@ -455,6 +469,12 @@ export interface ScalingConfigurationArgs {
      * The list of the ECS instance type which the scaling configuration set. The maximum number of instance types is 10.
      */
     instanceTypes: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Assign IPv6 address to instance network card. Possible values:
+     * 0: Do not assign IPv6 address.
+     * 1: Assign IPv6 address and the system will automatically assign an IPv6 subnet for you.
+     */
+    ipv6AddressCount?: pulumi.Input<number>;
     /**
      * The ECS key pair name which the scaling configuration set.
      */
