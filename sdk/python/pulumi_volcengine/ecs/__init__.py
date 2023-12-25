@@ -11,8 +11,10 @@ from .commands import *
 from .deployment_set import *
 from .deployment_set_associate import *
 from .deployment_sets import *
+from .iam_role_attachment import *
 from .images import *
 from .instance import *
+from .instance_types import *
 from .instances import *
 from .invocation import *
 from .invocation_results import *

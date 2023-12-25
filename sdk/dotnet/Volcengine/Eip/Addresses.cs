@@ -95,7 +95,7 @@ namespace Volcengine.Pulumi.Volcengine.Eip
         public string? AssociatedInstanceId { get; set; }
 
         /// <summary>
-        /// A type of associated instance, the value can be `Nat`, `NetworkInterface`, `ClbInstance` or `EcsInstance`.
+        /// A type of associated instance, the value can be `Nat`, `NetworkInterface`, `ClbInstance`, `AlbInstance`, `HaVip` or `EcsInstance`.
         /// </summary>
         [Input("associatedInstanceType")]
         public string? AssociatedInstanceType { get; set; }
@@ -181,7 +181,7 @@ namespace Volcengine.Pulumi.Volcengine.Eip
         public Input<string>? AssociatedInstanceId { get; set; }
 
         /// <summary>
-        /// A type of associated instance, the value can be `Nat`, `NetworkInterface`, `ClbInstance` or `EcsInstance`.
+        /// A type of associated instance, the value can be `Nat`, `NetworkInterface`, `ClbInstance`, `AlbInstance`, `HaVip` or `EcsInstance`.
         /// </summary>
         [Input("associatedInstanceType")]
         public Input<string>? AssociatedInstanceType { get; set; }

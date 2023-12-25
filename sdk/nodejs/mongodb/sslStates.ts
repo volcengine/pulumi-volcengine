@@ -13,9 +13,41 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = volcengine.mongodb.SslStates({
- *     instanceId: "mongo-replica-f16e9298b121",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooInstance = new volcengine.mongodb.Instance("fooInstance", {
+ *     dbEngineVersion: "MongoDB_4_0",
+ *     instanceType: "ReplicaSet",
+ *     superAccountPassword: "@acc-test-123",
+ *     nodeSpec: "mongo.2c4g",
+ *     mongosNodeSpec: "mongo.mongos.2c4g",
+ *     instanceName: "acc-test-mongo-replica",
+ *     chargeType: "PostPaid",
+ *     projectName: "default",
+ *     mongosNodeNumber: 2,
+ *     shardNumber: 3,
+ *     storageSpaceGb: 20,
+ *     subnetId: fooSubnet.id,
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooSslState = new volcengine.mongodb.SslState("fooSslState", {instanceId: fooInstance.id});
+ * const fooSslStates = volcengine.mongodb.SslStatesOutput({
+ *     instanceId: fooInstance.id,
  * });
  * ```
  */
@@ -71,9 +103,41 @@ export interface SslStatesResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = volcengine.mongodb.SslStates({
- *     instanceId: "mongo-replica-f16e9298b121",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooInstance = new volcengine.mongodb.Instance("fooInstance", {
+ *     dbEngineVersion: "MongoDB_4_0",
+ *     instanceType: "ReplicaSet",
+ *     superAccountPassword: "@acc-test-123",
+ *     nodeSpec: "mongo.2c4g",
+ *     mongosNodeSpec: "mongo.mongos.2c4g",
+ *     instanceName: "acc-test-mongo-replica",
+ *     chargeType: "PostPaid",
+ *     projectName: "default",
+ *     mongosNodeNumber: 2,
+ *     shardNumber: 3,
+ *     storageSpaceGb: 20,
+ *     subnetId: fooSubnet.id,
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooSslState = new volcengine.mongodb.SslState("fooSslState", {instanceId: fooInstance.id});
+ * const fooSslStates = volcengine.mongodb.SslStatesOutput({
+ *     instanceId: fooInstance.id,
  * });
  * ```
  */

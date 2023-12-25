@@ -44,7 +44,7 @@ namespace Volcengine.Pulumi.Volcengine.Iam
     public partial class User : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The account id of the user.
+        /// Main account ID to which the sub-user belongs.
         /// </summary>
         [Output("accountId")]
         public Output<string> AccountId { get; private set; } = null!;
@@ -74,10 +74,22 @@ namespace Volcengine.Pulumi.Volcengine.Iam
         public Output<string?> Email { get; private set; } = null!;
 
         /// <summary>
+        /// Whether the email has been verified.
+        /// </summary>
+        [Output("emailIsVerify")]
+        public Output<bool> EmailIsVerify { get; private set; } = null!;
+
+        /// <summary>
         /// The mobile phone of the user.
         /// </summary>
         [Output("mobilePhone")]
         public Output<string?> MobilePhone { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether the phone number has been verified.
+        /// </summary>
+        [Output("mobilePhoneIsVerify")]
+        public Output<bool> MobilePhoneIsVerify { get; private set; } = null!;
 
         /// <summary>
         /// The trn of the user.
@@ -90,6 +102,12 @@ namespace Volcengine.Pulumi.Volcengine.Iam
         /// </summary>
         [Output("updateDate")]
         public Output<string> UpdateDate { get; private set; } = null!;
+
+        /// <summary>
+        /// The id of the user.
+        /// </summary>
+        [Output("userId")]
+        public Output<string> UserId { get; private set; } = null!;
 
         /// <summary>
         /// The name of the user.
@@ -183,7 +201,7 @@ namespace Volcengine.Pulumi.Volcengine.Iam
     public sealed class UserState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The account id of the user.
+        /// Main account ID to which the sub-user belongs.
         /// </summary>
         [Input("accountId")]
         public Input<string>? AccountId { get; set; }
@@ -213,10 +231,22 @@ namespace Volcengine.Pulumi.Volcengine.Iam
         public Input<string>? Email { get; set; }
 
         /// <summary>
+        /// Whether the email has been verified.
+        /// </summary>
+        [Input("emailIsVerify")]
+        public Input<bool>? EmailIsVerify { get; set; }
+
+        /// <summary>
         /// The mobile phone of the user.
         /// </summary>
         [Input("mobilePhone")]
         public Input<string>? MobilePhone { get; set; }
+
+        /// <summary>
+        /// Whether the phone number has been verified.
+        /// </summary>
+        [Input("mobilePhoneIsVerify")]
+        public Input<bool>? MobilePhoneIsVerify { get; set; }
 
         /// <summary>
         /// The trn of the user.
@@ -229,6 +259,12 @@ namespace Volcengine.Pulumi.Volcengine.Iam
         /// </summary>
         [Input("updateDate")]
         public Input<string>? UpdateDate { get; set; }
+
+        /// <summary>
+        /// The id of the user.
+        /// </summary>
+        [Input("userId")]
+        public Input<string>? UserId { get; set; }
 
         /// <summary>
         /// The name of the user.

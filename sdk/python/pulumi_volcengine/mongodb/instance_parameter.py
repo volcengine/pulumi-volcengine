@@ -20,8 +20,8 @@ class InstanceParameterArgs:
                  parameter_value: pulumi.Input[str]):
         """
         The set of arguments for constructing a InstanceParameter resource.
-        :param pulumi.Input[str] instance_id: The instance ID. This field cannot be modified after the resource is imported.
-        :param pulumi.Input[str] parameter_name: The name of parameter. This field cannot be modified after the resource is imported.
+        :param pulumi.Input[str] instance_id: The instance ID.
+        :param pulumi.Input[str] parameter_name: The name of parameter.
         :param pulumi.Input[str] parameter_role: The node type to which the parameter belongs. The value range is as follows: Node, Shard, ConfigServer, Mongos.
         :param pulumi.Input[str] parameter_value: The value of parameter.
         """
@@ -34,7 +34,7 @@ class InstanceParameterArgs:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Input[str]:
         """
-        The instance ID. This field cannot be modified after the resource is imported.
+        The instance ID.
         """
         return pulumi.get(self, "instance_id")
 
@@ -46,7 +46,7 @@ class InstanceParameterArgs:
     @pulumi.getter(name="parameterName")
     def parameter_name(self) -> pulumi.Input[str]:
         """
-        The name of parameter. This field cannot be modified after the resource is imported.
+        The name of parameter.
         """
         return pulumi.get(self, "parameter_name")
 
@@ -88,8 +88,8 @@ class _InstanceParameterState:
                  parameter_value: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering InstanceParameter resources.
-        :param pulumi.Input[str] instance_id: The instance ID. This field cannot be modified after the resource is imported.
-        :param pulumi.Input[str] parameter_name: The name of parameter. This field cannot be modified after the resource is imported.
+        :param pulumi.Input[str] instance_id: The instance ID.
+        :param pulumi.Input[str] parameter_name: The name of parameter.
         :param pulumi.Input[str] parameter_role: The node type to which the parameter belongs. The value range is as follows: Node, Shard, ConfigServer, Mongos.
         :param pulumi.Input[str] parameter_value: The value of parameter.
         """
@@ -106,7 +106,7 @@ class _InstanceParameterState:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The instance ID. This field cannot be modified after the resource is imported.
+        The instance ID.
         """
         return pulumi.get(self, "instance_id")
 
@@ -118,7 +118,7 @@ class _InstanceParameterState:
     @pulumi.getter(name="parameterName")
     def parameter_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of parameter. This field cannot be modified after the resource is imported.
+        The name of parameter.
         """
         return pulumi.get(self, "parameter_name")
 
@@ -169,15 +169,38 @@ class InstanceParameter(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        #    该资源无法创建，需先import资源
-        #    $ terraform import volcengine_mongodb_instance_parameter.default param:mongo-replica-f16e9298b121:connPoolMaxConnsPerHost
-        #    请注意instance_id和parameter_name需与上述import的ID对应
-        default = volcengine.mongodb.InstanceParameter("default",
-            instance_id="mongo-replica-f16e9298b121",
-            parameter_name="connPoolMaxConnsPerHost",
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_instance = volcengine.mongodb.Instance("fooInstance",
+            db_engine_version="MongoDB_4_0",
+            instance_type="ReplicaSet",
+            super_account_password="@acc-test-123",
+            node_spec="mongo.2c4g",
+            mongos_node_spec="mongo.mongos.2c4g",
+            instance_name="acc-test-mongo-replica",
+            charge_type="PostPaid",
+            project_name="default",
+            mongos_node_number=32,
+            shard_number=3,
+            storage_space_gb=20,
+            subnet_id=foo_subnet.id,
+            zone_id=foo_zones.zones[0].id,
+            tags=[volcengine.mongodb.InstanceTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_instance_parameter = volcengine.mongodb.InstanceParameter("fooInstanceParameter",
+            instance_id=foo_instance.id,
+            parameter_name="cursorTimeoutMillis",
             parameter_role="Node",
-            parameter_value="600")
-        # 必填
+            parameter_value="600111")
         ```
 
         ## Import
@@ -188,12 +211,10 @@ class InstanceParameter(pulumi.CustomResource):
          $ pulumi import volcengine:mongodb/instanceParameter:InstanceParameter default param:mongo-replica-e405f8e2****:connPoolMaxConnsPerHost
         ```
 
-         NoteThis resource must be imported before it can be used. Please note that instance_id and parameter_name must correspond to the ID of the above import.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] instance_id: The instance ID. This field cannot be modified after the resource is imported.
-        :param pulumi.Input[str] parameter_name: The name of parameter. This field cannot be modified after the resource is imported.
+        :param pulumi.Input[str] instance_id: The instance ID.
+        :param pulumi.Input[str] parameter_name: The name of parameter.
         :param pulumi.Input[str] parameter_role: The node type to which the parameter belongs. The value range is as follows: Node, Shard, ConfigServer, Mongos.
         :param pulumi.Input[str] parameter_value: The value of parameter.
         """
@@ -211,15 +232,38 @@ class InstanceParameter(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        #    该资源无法创建，需先import资源
-        #    $ terraform import volcengine_mongodb_instance_parameter.default param:mongo-replica-f16e9298b121:connPoolMaxConnsPerHost
-        #    请注意instance_id和parameter_name需与上述import的ID对应
-        default = volcengine.mongodb.InstanceParameter("default",
-            instance_id="mongo-replica-f16e9298b121",
-            parameter_name="connPoolMaxConnsPerHost",
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_instance = volcengine.mongodb.Instance("fooInstance",
+            db_engine_version="MongoDB_4_0",
+            instance_type="ReplicaSet",
+            super_account_password="@acc-test-123",
+            node_spec="mongo.2c4g",
+            mongos_node_spec="mongo.mongos.2c4g",
+            instance_name="acc-test-mongo-replica",
+            charge_type="PostPaid",
+            project_name="default",
+            mongos_node_number=32,
+            shard_number=3,
+            storage_space_gb=20,
+            subnet_id=foo_subnet.id,
+            zone_id=foo_zones.zones[0].id,
+            tags=[volcengine.mongodb.InstanceTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_instance_parameter = volcengine.mongodb.InstanceParameter("fooInstanceParameter",
+            instance_id=foo_instance.id,
+            parameter_name="cursorTimeoutMillis",
             parameter_role="Node",
-            parameter_value="600")
-        # 必填
+            parameter_value="600111")
         ```
 
         ## Import
@@ -229,8 +273,6 @@ class InstanceParameter(pulumi.CustomResource):
         ```sh
          $ pulumi import volcengine:mongodb/instanceParameter:InstanceParameter default param:mongo-replica-e405f8e2****:connPoolMaxConnsPerHost
         ```
-
-         NoteThis resource must be imported before it can be used. Please note that instance_id and parameter_name must correspond to the ID of the above import.
 
         :param str resource_name: The name of the resource.
         :param InstanceParameterArgs args: The arguments to use to populate this resource's properties.
@@ -293,8 +335,8 @@ class InstanceParameter(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] instance_id: The instance ID. This field cannot be modified after the resource is imported.
-        :param pulumi.Input[str] parameter_name: The name of parameter. This field cannot be modified after the resource is imported.
+        :param pulumi.Input[str] instance_id: The instance ID.
+        :param pulumi.Input[str] parameter_name: The name of parameter.
         :param pulumi.Input[str] parameter_role: The node type to which the parameter belongs. The value range is as follows: Node, Shard, ConfigServer, Mongos.
         :param pulumi.Input[str] parameter_value: The value of parameter.
         """
@@ -312,7 +354,7 @@ class InstanceParameter(pulumi.CustomResource):
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Output[str]:
         """
-        The instance ID. This field cannot be modified after the resource is imported.
+        The instance ID.
         """
         return pulumi.get(self, "instance_id")
 
@@ -320,7 +362,7 @@ class InstanceParameter(pulumi.CustomResource):
     @pulumi.getter(name="parameterName")
     def parameter_name(self) -> pulumi.Output[str]:
         """
-        The name of parameter. This field cannot be modified after the resource is imported.
+        The name of parameter.
         """
         return pulumi.get(self, "parameter_name")
 

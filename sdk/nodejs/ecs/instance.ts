@@ -217,7 +217,7 @@ export class Instance extends pulumi.CustomResource {
     /**
      * The private ip address of primary networkInterface.
      */
-    public /*out*/ readonly primaryIpAddress!: pulumi.Output<string>;
+    public readonly primaryIpAddress!: pulumi.Output<string>;
     /**
      * The ProjectName of the ecs instance.
      */
@@ -389,6 +389,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["keyPairName"] = args ? args.keyPairName : undefined;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["period"] = args ? args.period : undefined;
+            resourceInputs["primaryIpAddress"] = args ? args.primaryIpAddress : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["secondaryNetworkInterfaces"] = args ? args.secondaryNetworkInterfaces : undefined;
             resourceInputs["securityEnhancementStrategy"] = args ? args.securityEnhancementStrategy : undefined;
@@ -411,7 +412,6 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["networkInterfaceId"] = undefined /*out*/;
             resourceInputs["osName"] = undefined /*out*/;
             resourceInputs["osType"] = undefined /*out*/;
-            resourceInputs["primaryIpAddress"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["stoppedMode"] = undefined /*out*/;
             resourceInputs["systemVolumeId"] = undefined /*out*/;
@@ -708,6 +708,10 @@ export interface InstanceArgs {
      * The period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 12. Unit is Month.
      */
     period?: pulumi.Input<number>;
+    /**
+     * The private ip address of primary networkInterface.
+     */
+    primaryIpAddress?: pulumi.Input<string>;
     /**
      * The ProjectName of the ecs instance.
      */

@@ -76,6 +76,10 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly chargeType!: pulumi.Output<string>;
     /**
+     * The config servers id of the ShardedCluster instance.
+     */
+    public /*out*/ readonly configServersId!: pulumi.Output<string>;
+    /**
      * The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_5_0`.
      */
     public readonly dbEngineVersion!: pulumi.Output<string>;
@@ -87,6 +91,14 @@ export class Instance extends pulumi.CustomResource {
      * The type of instance,the valid value contains `ReplicaSet` or `ShardedCluster`.
      */
     public readonly instanceType!: pulumi.Output<string>;
+    /**
+     * The mongos information of the ShardedCluster instance.
+     */
+    public /*out*/ readonly mongos!: pulumi.Output<outputs.mongodb.InstanceMongo[]>;
+    /**
+     * The mongos id of the ShardedCluster instance.
+     */
+    public /*out*/ readonly mongosId!: pulumi.Output<string>;
     /**
      * The mongos node number of shard cluster,value range is `2~23`, this parameter is required when `InstanceType` is `ShardedCluster`.
      */
@@ -115,6 +127,10 @@ export class Instance extends pulumi.CustomResource {
      * The number of shards in shard cluster,value range is `2~32`, this parameter is required when `InstanceType` is `ShardedCluster`.
      */
     public readonly shardNumber!: pulumi.Output<number | undefined>;
+    /**
+     * The shards information of the ShardedCluster instance.
+     */
+    public /*out*/ readonly shards!: pulumi.Output<outputs.mongodb.InstanceShard[]>;
     /**
      * The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster, in GiB.
      */
@@ -155,9 +171,12 @@ export class Instance extends pulumi.CustomResource {
             const state = argsOrState as InstanceState | undefined;
             resourceInputs["autoRenew"] = state ? state.autoRenew : undefined;
             resourceInputs["chargeType"] = state ? state.chargeType : undefined;
+            resourceInputs["configServersId"] = state ? state.configServersId : undefined;
             resourceInputs["dbEngineVersion"] = state ? state.dbEngineVersion : undefined;
             resourceInputs["instanceName"] = state ? state.instanceName : undefined;
             resourceInputs["instanceType"] = state ? state.instanceType : undefined;
+            resourceInputs["mongos"] = state ? state.mongos : undefined;
+            resourceInputs["mongosId"] = state ? state.mongosId : undefined;
             resourceInputs["mongosNodeNumber"] = state ? state.mongosNodeNumber : undefined;
             resourceInputs["mongosNodeSpec"] = state ? state.mongosNodeSpec : undefined;
             resourceInputs["nodeSpec"] = state ? state.nodeSpec : undefined;
@@ -165,6 +184,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["periodUnit"] = state ? state.periodUnit : undefined;
             resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["shardNumber"] = state ? state.shardNumber : undefined;
+            resourceInputs["shards"] = state ? state.shards : undefined;
             resourceInputs["storageSpaceGb"] = state ? state.storageSpaceGb : undefined;
             resourceInputs["subnetId"] = state ? state.subnetId : undefined;
             resourceInputs["superAccountPassword"] = state ? state.superAccountPassword : undefined;
@@ -200,6 +220,10 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["vpcId"] = args ? args.vpcId : undefined;
             resourceInputs["zoneId"] = args ? args.zoneId : undefined;
+            resourceInputs["configServersId"] = undefined /*out*/;
+            resourceInputs["mongos"] = undefined /*out*/;
+            resourceInputs["mongosId"] = undefined /*out*/;
+            resourceInputs["shards"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["superAccountPassword"] };
@@ -221,6 +245,10 @@ export interface InstanceState {
      */
     chargeType?: pulumi.Input<string>;
     /**
+     * The config servers id of the ShardedCluster instance.
+     */
+    configServersId?: pulumi.Input<string>;
+    /**
      * The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_5_0`.
      */
     dbEngineVersion?: pulumi.Input<string>;
@@ -232,6 +260,14 @@ export interface InstanceState {
      * The type of instance,the valid value contains `ReplicaSet` or `ShardedCluster`.
      */
     instanceType?: pulumi.Input<string>;
+    /**
+     * The mongos information of the ShardedCluster instance.
+     */
+    mongos?: pulumi.Input<pulumi.Input<inputs.mongodb.InstanceMongo>[]>;
+    /**
+     * The mongos id of the ShardedCluster instance.
+     */
+    mongosId?: pulumi.Input<string>;
     /**
      * The mongos node number of shard cluster,value range is `2~23`, this parameter is required when `InstanceType` is `ShardedCluster`.
      */
@@ -260,6 +296,10 @@ export interface InstanceState {
      * The number of shards in shard cluster,value range is `2~32`, this parameter is required when `InstanceType` is `ShardedCluster`.
      */
     shardNumber?: pulumi.Input<number>;
+    /**
+     * The shards information of the ShardedCluster instance.
+     */
+    shards?: pulumi.Input<pulumi.Input<inputs.mongodb.InstanceShard>[]>;
     /**
      * The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster, in GiB.
      */

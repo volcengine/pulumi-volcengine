@@ -369,27 +369,48 @@ class UsersUserResult(dict):
     def __init__(__self__, *,
                  account_id: str,
                  create_date: str,
+                 description: str,
+                 display_name: str,
+                 email: str,
+                 email_is_verify: bool,
+                 mobile_phone: str,
+                 mobile_phone_is_verify: bool,
                  trn: str,
                  update_date: str,
+                 user_id: str,
                  user_name: str):
         """
-        :param str account_id: The account id of the user.
+        :param str account_id: Main account ID to which the sub-user belongs.
         :param str create_date: The create date of the user.
+        :param str description: The description of the user.
+        :param str display_name: The display name of the user.
+        :param str email: The email of the user.
+        :param bool email_is_verify: Whether the email has been verified.
+        :param str mobile_phone: The mobile phone of the user.
+        :param bool mobile_phone_is_verify: Whether the phone number has been verified.
         :param str trn: The trn of the user.
         :param str update_date: The update date of the user.
+        :param str user_id: The id of the user.
         :param str user_name: The name of the user.
         """
         pulumi.set(__self__, "account_id", account_id)
         pulumi.set(__self__, "create_date", create_date)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "email", email)
+        pulumi.set(__self__, "email_is_verify", email_is_verify)
+        pulumi.set(__self__, "mobile_phone", mobile_phone)
+        pulumi.set(__self__, "mobile_phone_is_verify", mobile_phone_is_verify)
         pulumi.set(__self__, "trn", trn)
         pulumi.set(__self__, "update_date", update_date)
+        pulumi.set(__self__, "user_id", user_id)
         pulumi.set(__self__, "user_name", user_name)
 
     @property
     @pulumi.getter(name="accountId")
     def account_id(self) -> str:
         """
-        The account id of the user.
+        Main account ID to which the sub-user belongs.
         """
         return pulumi.get(self, "account_id")
 
@@ -400,6 +421,54 @@ class UsersUserResult(dict):
         The create date of the user.
         """
         return pulumi.get(self, "create_date")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the user.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> str:
+        """
+        The display name of the user.
+        """
+        return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter
+    def email(self) -> str:
+        """
+        The email of the user.
+        """
+        return pulumi.get(self, "email")
+
+    @property
+    @pulumi.getter(name="emailIsVerify")
+    def email_is_verify(self) -> bool:
+        """
+        Whether the email has been verified.
+        """
+        return pulumi.get(self, "email_is_verify")
+
+    @property
+    @pulumi.getter(name="mobilePhone")
+    def mobile_phone(self) -> str:
+        """
+        The mobile phone of the user.
+        """
+        return pulumi.get(self, "mobile_phone")
+
+    @property
+    @pulumi.getter(name="mobilePhoneIsVerify")
+    def mobile_phone_is_verify(self) -> bool:
+        """
+        Whether the phone number has been verified.
+        """
+        return pulumi.get(self, "mobile_phone_is_verify")
 
     @property
     @pulumi.getter
@@ -416,6 +485,14 @@ class UsersUserResult(dict):
         The update date of the user.
         """
         return pulumi.get(self, "update_date")
+
+    @property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> str:
+        """
+        The id of the user.
+        """
+        return pulumi.get(self, "user_id")
 
     @property
     @pulumi.getter(name="userName")

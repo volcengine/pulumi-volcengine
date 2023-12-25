@@ -111,6 +111,12 @@ namespace Volcengine.Pulumi.Volcengine.Eip
         public Output<string> ProjectName { get; private set; } = null!;
 
         /// <summary>
+        /// Security protection types for public IP addresses. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced` or left blank.If the value is `AntiDDoS_Enhanced`, then will create an eip with enhanced protection,(can be added to DDoS native protection (enterprise version) instance). If left blank, it indicates an eip with basic protection.
+        /// </summary>
+        [Output("securityProtectionTypes")]
+        public Output<ImmutableArray<string>> SecurityProtectionTypes { get; private set; } = null!;
+
+        /// <summary>
         /// The status of the EIP.
         /// </summary>
         [Output("status")]
@@ -211,6 +217,18 @@ namespace Volcengine.Pulumi.Volcengine.Eip
         [Input("projectName")]
         public Input<string>? ProjectName { get; set; }
 
+        [Input("securityProtectionTypes")]
+        private InputList<string>? _securityProtectionTypes;
+
+        /// <summary>
+        /// Security protection types for public IP addresses. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced` or left blank.If the value is `AntiDDoS_Enhanced`, then will create an eip with enhanced protection,(can be added to DDoS native protection (enterprise version) instance). If left blank, it indicates an eip with basic protection.
+        /// </summary>
+        public InputList<string> SecurityProtectionTypes
+        {
+            get => _securityProtectionTypes ?? (_securityProtectionTypes = new InputList<string>());
+            set => _securityProtectionTypes = value;
+        }
+
         [Input("tags")]
         private InputList<Inputs.AddressTagArgs>? _tags;
 
@@ -296,6 +314,18 @@ namespace Volcengine.Pulumi.Volcengine.Eip
         /// </summary>
         [Input("projectName")]
         public Input<string>? ProjectName { get; set; }
+
+        [Input("securityProtectionTypes")]
+        private InputList<string>? _securityProtectionTypes;
+
+        /// <summary>
+        /// Security protection types for public IP addresses. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced` or left blank.If the value is `AntiDDoS_Enhanced`, then will create an eip with enhanced protection,(can be added to DDoS native protection (enterprise version) instance). If left blank, it indicates an eip with basic protection.
+        /// </summary>
+        public InputList<string> SecurityProtectionTypes
+        {
+            get => _securityProtectionTypes ?? (_securityProtectionTypes = new InputList<string>());
+            set => _securityProtectionTypes = value;
+        }
 
         /// <summary>
         /// The status of the EIP.

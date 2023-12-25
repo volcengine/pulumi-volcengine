@@ -627,14 +627,28 @@ func (o UserGroupsUserGroupArrayOutput) Index(i pulumi.IntInput) UserGroupsUserG
 }
 
 type UsersUser struct {
-	// The account id of the user.
+	// Main account ID to which the sub-user belongs.
 	AccountId string `pulumi:"accountId"`
 	// The create date of the user.
 	CreateDate string `pulumi:"createDate"`
+	// The description of the user.
+	Description string `pulumi:"description"`
+	// The display name of the user.
+	DisplayName string `pulumi:"displayName"`
+	// The email of the user.
+	Email string `pulumi:"email"`
+	// Whether the email has been verified.
+	EmailIsVerify bool `pulumi:"emailIsVerify"`
+	// The mobile phone of the user.
+	MobilePhone string `pulumi:"mobilePhone"`
+	// Whether the phone number has been verified.
+	MobilePhoneIsVerify bool `pulumi:"mobilePhoneIsVerify"`
 	// The trn of the user.
 	Trn string `pulumi:"trn"`
 	// The update date of the user.
 	UpdateDate string `pulumi:"updateDate"`
+	// The id of the user.
+	UserId string `pulumi:"userId"`
 	// The name of the user.
 	UserName string `pulumi:"userName"`
 }
@@ -651,14 +665,28 @@ type UsersUserInput interface {
 }
 
 type UsersUserArgs struct {
-	// The account id of the user.
+	// Main account ID to which the sub-user belongs.
 	AccountId pulumi.StringInput `pulumi:"accountId"`
 	// The create date of the user.
 	CreateDate pulumi.StringInput `pulumi:"createDate"`
+	// The description of the user.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The display name of the user.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// The email of the user.
+	Email pulumi.StringInput `pulumi:"email"`
+	// Whether the email has been verified.
+	EmailIsVerify pulumi.BoolInput `pulumi:"emailIsVerify"`
+	// The mobile phone of the user.
+	MobilePhone pulumi.StringInput `pulumi:"mobilePhone"`
+	// Whether the phone number has been verified.
+	MobilePhoneIsVerify pulumi.BoolInput `pulumi:"mobilePhoneIsVerify"`
 	// The trn of the user.
 	Trn pulumi.StringInput `pulumi:"trn"`
 	// The update date of the user.
 	UpdateDate pulumi.StringInput `pulumi:"updateDate"`
+	// The id of the user.
+	UserId pulumi.StringInput `pulumi:"userId"`
 	// The name of the user.
 	UserName pulumi.StringInput `pulumi:"userName"`
 }
@@ -714,7 +742,7 @@ func (o UsersUserOutput) ToUsersUserOutputWithContext(ctx context.Context) Users
 	return o
 }
 
-// The account id of the user.
+// Main account ID to which the sub-user belongs.
 func (o UsersUserOutput) AccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v UsersUser) string { return v.AccountId }).(pulumi.StringOutput)
 }
@@ -722,6 +750,36 @@ func (o UsersUserOutput) AccountId() pulumi.StringOutput {
 // The create date of the user.
 func (o UsersUserOutput) CreateDate() pulumi.StringOutput {
 	return o.ApplyT(func(v UsersUser) string { return v.CreateDate }).(pulumi.StringOutput)
+}
+
+// The description of the user.
+func (o UsersUserOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v UsersUser) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The display name of the user.
+func (o UsersUserOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v UsersUser) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// The email of the user.
+func (o UsersUserOutput) Email() pulumi.StringOutput {
+	return o.ApplyT(func(v UsersUser) string { return v.Email }).(pulumi.StringOutput)
+}
+
+// Whether the email has been verified.
+func (o UsersUserOutput) EmailIsVerify() pulumi.BoolOutput {
+	return o.ApplyT(func(v UsersUser) bool { return v.EmailIsVerify }).(pulumi.BoolOutput)
+}
+
+// The mobile phone of the user.
+func (o UsersUserOutput) MobilePhone() pulumi.StringOutput {
+	return o.ApplyT(func(v UsersUser) string { return v.MobilePhone }).(pulumi.StringOutput)
+}
+
+// Whether the phone number has been verified.
+func (o UsersUserOutput) MobilePhoneIsVerify() pulumi.BoolOutput {
+	return o.ApplyT(func(v UsersUser) bool { return v.MobilePhoneIsVerify }).(pulumi.BoolOutput)
 }
 
 // The trn of the user.
@@ -732,6 +790,11 @@ func (o UsersUserOutput) Trn() pulumi.StringOutput {
 // The update date of the user.
 func (o UsersUserOutput) UpdateDate() pulumi.StringOutput {
 	return o.ApplyT(func(v UsersUser) string { return v.UpdateDate }).(pulumi.StringOutput)
+}
+
+// The id of the user.
+func (o UsersUserOutput) UserId() pulumi.StringOutput {
+	return o.ApplyT(func(v UsersUser) string { return v.UserId }).(pulumi.StringOutput)
 }
 
 // The name of the user.

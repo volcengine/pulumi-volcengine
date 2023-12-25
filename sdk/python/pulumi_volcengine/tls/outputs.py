@@ -186,9 +186,9 @@ class AlarmNotifyGroupReceiver(dict):
                  start_time: str):
         """
         :param str end_time: The end time.
-        :param Sequence[str] receiver_channels: The list of the receiver channels.
+        :param Sequence[str] receiver_channels: The list of the receiver channels. Currently supported channels: Email, Sms, Phone.
         :param Sequence[str] receiver_names: List of the receiver names.
-        :param str receiver_type: The receiver type, value can be User.
+        :param str receiver_type: The receiver type, Can be set as: `User`(The id of user).
         :param str start_time: The start time.
         """
         pulumi.set(__self__, "end_time", end_time)
@@ -209,7 +209,7 @@ class AlarmNotifyGroupReceiver(dict):
     @pulumi.getter(name="receiverChannels")
     def receiver_channels(self) -> Sequence[str]:
         """
-        The list of the receiver channels.
+        The list of the receiver channels. Currently supported channels: Email, Sms, Phone.
         """
         return pulumi.get(self, "receiver_channels")
 
@@ -225,7 +225,7 @@ class AlarmNotifyGroupReceiver(dict):
     @pulumi.getter(name="receiverType")
     def receiver_type(self) -> str:
         """
-        The receiver type, value can be User.
+        The receiver type, Can be set as: `User`(The id of user).
         """
         return pulumi.get(self, "receiver_type")
 
@@ -475,6 +475,8 @@ class AlarmRequestCycle(dict):
         """
         :param int time: The cycle of alarm task execution, or the time point of periodic execution. The unit is minutes, and the value range is 1~1440.
         :param str type: Execution cycle type.
+               Period: Periodic execution, which means executing once every certain period of time.
+               Fixed: Regular execution, which means executing at a fixed time point every day.
         """
         pulumi.set(__self__, "time", time)
         pulumi.set(__self__, "type", type)
@@ -492,6 +494,8 @@ class AlarmRequestCycle(dict):
     def type(self) -> str:
         """
         Execution cycle type.
+        Period: Periodic execution, which means executing once every certain period of time.
+        Fixed: Regular execution, which means executing at a fixed time point every day.
         """
         return pulumi.get(self, "type")
 
@@ -3211,7 +3215,12 @@ class RuleContainerRuleKubernetesRule(dict):
         :param str namespace_name_regex: The name of the Kubernetes Namespace to be collected. If no Namespace name is specified, all containers will be collected. Namespace names support regular matching.
         :param str pod_name_regex: The Pod name is used to specify the container to be collected. When no Pod name is specified, it means to collect all containers.
         :param str workload_name_regex: Specify the container to be collected by the name of the workload. When no workload name is specified, all containers are collected. The workload name supports regular matching.
-        :param str workload_type: Specify the container to be collected by the type of workload. Only one type can be selected. When no type is specified, it means to collect all types of containers.
+        :param str workload_type: Specify the containers to be collected by the type of workload, only one type can be selected. When no type is specified, it means all types of containers are collected. The supported types of workloads are:
+               Deployment: stateless workload.
+               StatefulSet: stateful workload.
+               DaemonSet: daemon process.
+               Job: task.
+               CronJob: scheduled task.
         """
         if annotation_tag is not None:
             pulumi.set(__self__, "annotation_tag", annotation_tag)
@@ -3290,7 +3299,12 @@ class RuleContainerRuleKubernetesRule(dict):
     @pulumi.getter(name="workloadType")
     def workload_type(self) -> Optional[str]:
         """
-        Specify the container to be collected by the type of workload. Only one type can be selected. When no type is specified, it means to collect all types of containers.
+        Specify the containers to be collected by the type of workload, only one type can be selected. When no type is specified, it means all types of containers are collected. The supported types of workloads are:
+        Deployment: stateless workload.
+        StatefulSet: stateful workload.
+        DaemonSet: daemon process.
+        Job: task.
+        CronJob: scheduled task.
         """
         return pulumi.get(self, "workload_type")
 

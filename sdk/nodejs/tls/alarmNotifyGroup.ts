@@ -81,6 +81,8 @@ export class AlarmNotifyGroup extends pulumi.CustomResource {
     public readonly iamProjectName!: pulumi.Output<string>;
     /**
      * The notify type.
+     * Trigger: Alarm Trigger
+     * Recovery: Alarm Recovery.
      */
     public readonly notifyTypes!: pulumi.Output<string[]>;
     /**
@@ -146,6 +148,8 @@ export interface AlarmNotifyGroupState {
     iamProjectName?: pulumi.Input<string>;
     /**
      * The notify type.
+     * Trigger: Alarm Trigger
+     * Recovery: Alarm Recovery.
      */
     notifyTypes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -168,6 +172,8 @@ export interface AlarmNotifyGroupArgs {
     iamProjectName?: pulumi.Input<string>;
     /**
      * The notify type.
+     * Trigger: Alarm Trigger
+     * Recovery: Alarm Recovery.
      */
     notifyTypes: pulumi.Input<pulumi.Input<string>[]>;
     /**

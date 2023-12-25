@@ -25,8 +25,8 @@ namespace Volcengine.Pulumi.Volcengine.Mongodb
     ///     var foo = new Volcengine.Mongodb.MongoAllowList("foo", new()
     ///     {
     ///         AllowList = "10.1.1.3,10.2.3.0/24,10.1.1.1",
-    ///         AllowListDesc = "test1",
-    ///         AllowListName = "tf-test-hh",
+    ///         AllowListDesc = "acc-test",
+    ///         AllowListName = "acc-test",
     ///         AllowListType = "IPv4",
     ///     });
     /// 

@@ -24,6 +24,8 @@ class AlarmNotifyGroupArgs:
         The set of arguments for constructing a AlarmNotifyGroup resource.
         :param pulumi.Input[str] alarm_notify_group_name: The name of the notify group.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] notify_types: The notify type.
+               Trigger: Alarm Trigger
+               Recovery: Alarm Recovery.
         :param pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupReceiverArgs']]] receivers: List of IAM users to receive alerts.
         :param pulumi.Input[str] iam_project_name: The name of the iam project.
         """
@@ -50,6 +52,8 @@ class AlarmNotifyGroupArgs:
     def notify_types(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
         The notify type.
+        Trigger: Alarm Trigger
+        Recovery: Alarm Recovery.
         """
         return pulumi.get(self, "notify_types")
 
@@ -96,6 +100,8 @@ class _AlarmNotifyGroupState:
         :param pulumi.Input[str] alarm_notify_group_name: The name of the notify group.
         :param pulumi.Input[str] iam_project_name: The name of the iam project.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] notify_types: The notify type.
+               Trigger: Alarm Trigger
+               Recovery: Alarm Recovery.
         :param pulumi.Input[Sequence[pulumi.Input['AlarmNotifyGroupReceiverArgs']]] receivers: List of IAM users to receive alerts.
         """
         if alarm_notify_group_id is not None:
@@ -150,6 +156,8 @@ class _AlarmNotifyGroupState:
     def notify_types(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The notify type.
+        Trigger: Alarm Trigger
+        Recovery: Alarm Recovery.
         """
         return pulumi.get(self, "notify_types")
 
@@ -217,6 +225,8 @@ class AlarmNotifyGroup(pulumi.CustomResource):
         :param pulumi.Input[str] alarm_notify_group_name: The name of the notify group.
         :param pulumi.Input[str] iam_project_name: The name of the iam project.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] notify_types: The notify type.
+               Trigger: Alarm Trigger
+               Recovery: Alarm Recovery.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlarmNotifyGroupReceiverArgs']]]] receivers: List of IAM users to receive alerts.
         """
         ...
@@ -322,6 +332,8 @@ class AlarmNotifyGroup(pulumi.CustomResource):
         :param pulumi.Input[str] alarm_notify_group_name: The name of the notify group.
         :param pulumi.Input[str] iam_project_name: The name of the iam project.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] notify_types: The notify type.
+               Trigger: Alarm Trigger
+               Recovery: Alarm Recovery.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlarmNotifyGroupReceiverArgs']]]] receivers: List of IAM users to receive alerts.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -364,6 +376,8 @@ class AlarmNotifyGroup(pulumi.CustomResource):
     def notify_types(self) -> pulumi.Output[Sequence[str]]:
         """
         The notify type.
+        Trigger: Alarm Trigger
+        Recovery: Alarm Recovery.
         """
         return pulumi.get(self, "notify_types")
 

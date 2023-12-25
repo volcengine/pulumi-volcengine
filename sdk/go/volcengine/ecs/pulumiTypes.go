@@ -1511,6 +1511,1203 @@ func (o InstanceTagArrayOutput) Index(i pulumi.IntInput) InstanceTagOutput {
 	}).(InstanceTagOutput)
 }
 
+type InstanceTypesInstanceType struct {
+	// The CPU benchmark performance that can be provided steadily by on-demand instances is determined by the instance type.
+	BaselineCredit int `pulumi:"baselineCredit"`
+	// The GPU device info of Instance.
+	Gpus []InstanceTypesInstanceTypeGpus `pulumi:"gpus"`
+	// The CPU credits obtained at once when creating a on-demand performance instance are fixed at 30 credits per vCPU.
+	InitialCredit int `pulumi:"initialCredit"`
+	// The instance type family.
+	InstanceTypeFamily string `pulumi:"instanceTypeFamily"`
+	// The id of the instance type.
+	InstanceTypeId string `pulumi:"instanceTypeId"`
+	// Local disk configuration information corresponding to instance specifications.
+	LocalVolumes []InstanceTypesInstanceTypeLocalVolume `pulumi:"localVolumes"`
+	// Memory information of instance specifications.
+	Memories []InstanceTypesInstanceTypeMemory `pulumi:"memories"`
+	// Network information of instance specifications.
+	Networks []InstanceTypesInstanceTypeNetwork `pulumi:"networks"`
+	// CPU information of instance specifications.
+	Processors []InstanceTypesInstanceTypeProcessor `pulumi:"processors"`
+	// RDMA Specification Information.
+	Rdmas []InstanceTypesInstanceTypeRdma `pulumi:"rdmas"`
+	// Cloud disk information for instance specifications.
+	Volumes []InstanceTypesInstanceTypeVolume `pulumi:"volumes"`
+}
+
+// InstanceTypesInstanceTypeInput is an input type that accepts InstanceTypesInstanceTypeArgs and InstanceTypesInstanceTypeOutput values.
+// You can construct a concrete instance of `InstanceTypesInstanceTypeInput` via:
+//
+//	InstanceTypesInstanceTypeArgs{...}
+type InstanceTypesInstanceTypeInput interface {
+	pulumi.Input
+
+	ToInstanceTypesInstanceTypeOutput() InstanceTypesInstanceTypeOutput
+	ToInstanceTypesInstanceTypeOutputWithContext(context.Context) InstanceTypesInstanceTypeOutput
+}
+
+type InstanceTypesInstanceTypeArgs struct {
+	// The CPU benchmark performance that can be provided steadily by on-demand instances is determined by the instance type.
+	BaselineCredit pulumi.IntInput `pulumi:"baselineCredit"`
+	// The GPU device info of Instance.
+	Gpus InstanceTypesInstanceTypeGpusArrayInput `pulumi:"gpus"`
+	// The CPU credits obtained at once when creating a on-demand performance instance are fixed at 30 credits per vCPU.
+	InitialCredit pulumi.IntInput `pulumi:"initialCredit"`
+	// The instance type family.
+	InstanceTypeFamily pulumi.StringInput `pulumi:"instanceTypeFamily"`
+	// The id of the instance type.
+	InstanceTypeId pulumi.StringInput `pulumi:"instanceTypeId"`
+	// Local disk configuration information corresponding to instance specifications.
+	LocalVolumes InstanceTypesInstanceTypeLocalVolumeArrayInput `pulumi:"localVolumes"`
+	// Memory information of instance specifications.
+	Memories InstanceTypesInstanceTypeMemoryArrayInput `pulumi:"memories"`
+	// Network information of instance specifications.
+	Networks InstanceTypesInstanceTypeNetworkArrayInput `pulumi:"networks"`
+	// CPU information of instance specifications.
+	Processors InstanceTypesInstanceTypeProcessorArrayInput `pulumi:"processors"`
+	// RDMA Specification Information.
+	Rdmas InstanceTypesInstanceTypeRdmaArrayInput `pulumi:"rdmas"`
+	// Cloud disk information for instance specifications.
+	Volumes InstanceTypesInstanceTypeVolumeArrayInput `pulumi:"volumes"`
+}
+
+func (InstanceTypesInstanceTypeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceTypesInstanceType)(nil)).Elem()
+}
+
+func (i InstanceTypesInstanceTypeArgs) ToInstanceTypesInstanceTypeOutput() InstanceTypesInstanceTypeOutput {
+	return i.ToInstanceTypesInstanceTypeOutputWithContext(context.Background())
+}
+
+func (i InstanceTypesInstanceTypeArgs) ToInstanceTypesInstanceTypeOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTypesInstanceTypeOutput)
+}
+
+// InstanceTypesInstanceTypeArrayInput is an input type that accepts InstanceTypesInstanceTypeArray and InstanceTypesInstanceTypeArrayOutput values.
+// You can construct a concrete instance of `InstanceTypesInstanceTypeArrayInput` via:
+//
+//	InstanceTypesInstanceTypeArray{ InstanceTypesInstanceTypeArgs{...} }
+type InstanceTypesInstanceTypeArrayInput interface {
+	pulumi.Input
+
+	ToInstanceTypesInstanceTypeArrayOutput() InstanceTypesInstanceTypeArrayOutput
+	ToInstanceTypesInstanceTypeArrayOutputWithContext(context.Context) InstanceTypesInstanceTypeArrayOutput
+}
+
+type InstanceTypesInstanceTypeArray []InstanceTypesInstanceTypeInput
+
+func (InstanceTypesInstanceTypeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceTypesInstanceType)(nil)).Elem()
+}
+
+func (i InstanceTypesInstanceTypeArray) ToInstanceTypesInstanceTypeArrayOutput() InstanceTypesInstanceTypeArrayOutput {
+	return i.ToInstanceTypesInstanceTypeArrayOutputWithContext(context.Background())
+}
+
+func (i InstanceTypesInstanceTypeArray) ToInstanceTypesInstanceTypeArrayOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTypesInstanceTypeArrayOutput)
+}
+
+type InstanceTypesInstanceTypeOutput struct{ *pulumi.OutputState }
+
+func (InstanceTypesInstanceTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceTypesInstanceType)(nil)).Elem()
+}
+
+func (o InstanceTypesInstanceTypeOutput) ToInstanceTypesInstanceTypeOutput() InstanceTypesInstanceTypeOutput {
+	return o
+}
+
+func (o InstanceTypesInstanceTypeOutput) ToInstanceTypesInstanceTypeOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeOutput {
+	return o
+}
+
+// The CPU benchmark performance that can be provided steadily by on-demand instances is determined by the instance type.
+func (o InstanceTypesInstanceTypeOutput) BaselineCredit() pulumi.IntOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceType) int { return v.BaselineCredit }).(pulumi.IntOutput)
+}
+
+// The GPU device info of Instance.
+func (o InstanceTypesInstanceTypeOutput) Gpus() InstanceTypesInstanceTypeGpusArrayOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceType) []InstanceTypesInstanceTypeGpus { return v.Gpus }).(InstanceTypesInstanceTypeGpusArrayOutput)
+}
+
+// The CPU credits obtained at once when creating a on-demand performance instance are fixed at 30 credits per vCPU.
+func (o InstanceTypesInstanceTypeOutput) InitialCredit() pulumi.IntOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceType) int { return v.InitialCredit }).(pulumi.IntOutput)
+}
+
+// The instance type family.
+func (o InstanceTypesInstanceTypeOutput) InstanceTypeFamily() pulumi.StringOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceType) string { return v.InstanceTypeFamily }).(pulumi.StringOutput)
+}
+
+// The id of the instance type.
+func (o InstanceTypesInstanceTypeOutput) InstanceTypeId() pulumi.StringOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceType) string { return v.InstanceTypeId }).(pulumi.StringOutput)
+}
+
+// Local disk configuration information corresponding to instance specifications.
+func (o InstanceTypesInstanceTypeOutput) LocalVolumes() InstanceTypesInstanceTypeLocalVolumeArrayOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceType) []InstanceTypesInstanceTypeLocalVolume { return v.LocalVolumes }).(InstanceTypesInstanceTypeLocalVolumeArrayOutput)
+}
+
+// Memory information of instance specifications.
+func (o InstanceTypesInstanceTypeOutput) Memories() InstanceTypesInstanceTypeMemoryArrayOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceType) []InstanceTypesInstanceTypeMemory { return v.Memories }).(InstanceTypesInstanceTypeMemoryArrayOutput)
+}
+
+// Network information of instance specifications.
+func (o InstanceTypesInstanceTypeOutput) Networks() InstanceTypesInstanceTypeNetworkArrayOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceType) []InstanceTypesInstanceTypeNetwork { return v.Networks }).(InstanceTypesInstanceTypeNetworkArrayOutput)
+}
+
+// CPU information of instance specifications.
+func (o InstanceTypesInstanceTypeOutput) Processors() InstanceTypesInstanceTypeProcessorArrayOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceType) []InstanceTypesInstanceTypeProcessor { return v.Processors }).(InstanceTypesInstanceTypeProcessorArrayOutput)
+}
+
+// RDMA Specification Information.
+func (o InstanceTypesInstanceTypeOutput) Rdmas() InstanceTypesInstanceTypeRdmaArrayOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceType) []InstanceTypesInstanceTypeRdma { return v.Rdmas }).(InstanceTypesInstanceTypeRdmaArrayOutput)
+}
+
+// Cloud disk information for instance specifications.
+func (o InstanceTypesInstanceTypeOutput) Volumes() InstanceTypesInstanceTypeVolumeArrayOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceType) []InstanceTypesInstanceTypeVolume { return v.Volumes }).(InstanceTypesInstanceTypeVolumeArrayOutput)
+}
+
+type InstanceTypesInstanceTypeArrayOutput struct{ *pulumi.OutputState }
+
+func (InstanceTypesInstanceTypeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceTypesInstanceType)(nil)).Elem()
+}
+
+func (o InstanceTypesInstanceTypeArrayOutput) ToInstanceTypesInstanceTypeArrayOutput() InstanceTypesInstanceTypeArrayOutput {
+	return o
+}
+
+func (o InstanceTypesInstanceTypeArrayOutput) ToInstanceTypesInstanceTypeArrayOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeArrayOutput {
+	return o
+}
+
+func (o InstanceTypesInstanceTypeArrayOutput) Index(i pulumi.IntInput) InstanceTypesInstanceTypeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstanceTypesInstanceType {
+		return vs[0].([]InstanceTypesInstanceType)[vs[1].(int)]
+	}).(InstanceTypesInstanceTypeOutput)
+}
+
+type InstanceTypesInstanceTypeGpus struct {
+	// GPU device information list.
+	GpuDevices []InstanceTypesInstanceTypeGpusGpuDevice `pulumi:"gpuDevices"`
+}
+
+// InstanceTypesInstanceTypeGpusInput is an input type that accepts InstanceTypesInstanceTypeGpusArgs and InstanceTypesInstanceTypeGpusOutput values.
+// You can construct a concrete instance of `InstanceTypesInstanceTypeGpusInput` via:
+//
+//	InstanceTypesInstanceTypeGpusArgs{...}
+type InstanceTypesInstanceTypeGpusInput interface {
+	pulumi.Input
+
+	ToInstanceTypesInstanceTypeGpusOutput() InstanceTypesInstanceTypeGpusOutput
+	ToInstanceTypesInstanceTypeGpusOutputWithContext(context.Context) InstanceTypesInstanceTypeGpusOutput
+}
+
+type InstanceTypesInstanceTypeGpusArgs struct {
+	// GPU device information list.
+	GpuDevices InstanceTypesInstanceTypeGpusGpuDeviceArrayInput `pulumi:"gpuDevices"`
+}
+
+func (InstanceTypesInstanceTypeGpusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceTypesInstanceTypeGpus)(nil)).Elem()
+}
+
+func (i InstanceTypesInstanceTypeGpusArgs) ToInstanceTypesInstanceTypeGpusOutput() InstanceTypesInstanceTypeGpusOutput {
+	return i.ToInstanceTypesInstanceTypeGpusOutputWithContext(context.Background())
+}
+
+func (i InstanceTypesInstanceTypeGpusArgs) ToInstanceTypesInstanceTypeGpusOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeGpusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTypesInstanceTypeGpusOutput)
+}
+
+// InstanceTypesInstanceTypeGpusArrayInput is an input type that accepts InstanceTypesInstanceTypeGpusArray and InstanceTypesInstanceTypeGpusArrayOutput values.
+// You can construct a concrete instance of `InstanceTypesInstanceTypeGpusArrayInput` via:
+//
+//	InstanceTypesInstanceTypeGpusArray{ InstanceTypesInstanceTypeGpusArgs{...} }
+type InstanceTypesInstanceTypeGpusArrayInput interface {
+	pulumi.Input
+
+	ToInstanceTypesInstanceTypeGpusArrayOutput() InstanceTypesInstanceTypeGpusArrayOutput
+	ToInstanceTypesInstanceTypeGpusArrayOutputWithContext(context.Context) InstanceTypesInstanceTypeGpusArrayOutput
+}
+
+type InstanceTypesInstanceTypeGpusArray []InstanceTypesInstanceTypeGpusInput
+
+func (InstanceTypesInstanceTypeGpusArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceTypesInstanceTypeGpus)(nil)).Elem()
+}
+
+func (i InstanceTypesInstanceTypeGpusArray) ToInstanceTypesInstanceTypeGpusArrayOutput() InstanceTypesInstanceTypeGpusArrayOutput {
+	return i.ToInstanceTypesInstanceTypeGpusArrayOutputWithContext(context.Background())
+}
+
+func (i InstanceTypesInstanceTypeGpusArray) ToInstanceTypesInstanceTypeGpusArrayOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeGpusArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTypesInstanceTypeGpusArrayOutput)
+}
+
+type InstanceTypesInstanceTypeGpusOutput struct{ *pulumi.OutputState }
+
+func (InstanceTypesInstanceTypeGpusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceTypesInstanceTypeGpus)(nil)).Elem()
+}
+
+func (o InstanceTypesInstanceTypeGpusOutput) ToInstanceTypesInstanceTypeGpusOutput() InstanceTypesInstanceTypeGpusOutput {
+	return o
+}
+
+func (o InstanceTypesInstanceTypeGpusOutput) ToInstanceTypesInstanceTypeGpusOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeGpusOutput {
+	return o
+}
+
+// GPU device information list.
+func (o InstanceTypesInstanceTypeGpusOutput) GpuDevices() InstanceTypesInstanceTypeGpusGpuDeviceArrayOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceTypeGpus) []InstanceTypesInstanceTypeGpusGpuDevice { return v.GpuDevices }).(InstanceTypesInstanceTypeGpusGpuDeviceArrayOutput)
+}
+
+type InstanceTypesInstanceTypeGpusArrayOutput struct{ *pulumi.OutputState }
+
+func (InstanceTypesInstanceTypeGpusArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceTypesInstanceTypeGpus)(nil)).Elem()
+}
+
+func (o InstanceTypesInstanceTypeGpusArrayOutput) ToInstanceTypesInstanceTypeGpusArrayOutput() InstanceTypesInstanceTypeGpusArrayOutput {
+	return o
+}
+
+func (o InstanceTypesInstanceTypeGpusArrayOutput) ToInstanceTypesInstanceTypeGpusArrayOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeGpusArrayOutput {
+	return o
+}
+
+func (o InstanceTypesInstanceTypeGpusArrayOutput) Index(i pulumi.IntInput) InstanceTypesInstanceTypeGpusOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstanceTypesInstanceTypeGpus {
+		return vs[0].([]InstanceTypesInstanceTypeGpus)[vs[1].(int)]
+	}).(InstanceTypesInstanceTypeGpusOutput)
+}
+
+type InstanceTypesInstanceTypeGpusGpuDevice struct {
+	// The number of local disks mounted on the instance.
+	Count int `pulumi:"count"`
+	// Memory information of instance specifications.
+	Memories []InstanceTypesInstanceTypeGpusGpuDeviceMemory `pulumi:"memories"`
+	// The Product Name of GPU device.
+	ProductName string `pulumi:"productName"`
+}
+
+// InstanceTypesInstanceTypeGpusGpuDeviceInput is an input type that accepts InstanceTypesInstanceTypeGpusGpuDeviceArgs and InstanceTypesInstanceTypeGpusGpuDeviceOutput values.
+// You can construct a concrete instance of `InstanceTypesInstanceTypeGpusGpuDeviceInput` via:
+//
+//	InstanceTypesInstanceTypeGpusGpuDeviceArgs{...}
+type InstanceTypesInstanceTypeGpusGpuDeviceInput interface {
+	pulumi.Input
+
+	ToInstanceTypesInstanceTypeGpusGpuDeviceOutput() InstanceTypesInstanceTypeGpusGpuDeviceOutput
+	ToInstanceTypesInstanceTypeGpusGpuDeviceOutputWithContext(context.Context) InstanceTypesInstanceTypeGpusGpuDeviceOutput
+}
+
+type InstanceTypesInstanceTypeGpusGpuDeviceArgs struct {
+	// The number of local disks mounted on the instance.
+	Count pulumi.IntInput `pulumi:"count"`
+	// Memory information of instance specifications.
+	Memories InstanceTypesInstanceTypeGpusGpuDeviceMemoryArrayInput `pulumi:"memories"`
+	// The Product Name of GPU device.
+	ProductName pulumi.StringInput `pulumi:"productName"`
+}
+
+func (InstanceTypesInstanceTypeGpusGpuDeviceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceTypesInstanceTypeGpusGpuDevice)(nil)).Elem()
+}
+
+func (i InstanceTypesInstanceTypeGpusGpuDeviceArgs) ToInstanceTypesInstanceTypeGpusGpuDeviceOutput() InstanceTypesInstanceTypeGpusGpuDeviceOutput {
+	return i.ToInstanceTypesInstanceTypeGpusGpuDeviceOutputWithContext(context.Background())
+}
+
+func (i InstanceTypesInstanceTypeGpusGpuDeviceArgs) ToInstanceTypesInstanceTypeGpusGpuDeviceOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeGpusGpuDeviceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTypesInstanceTypeGpusGpuDeviceOutput)
+}
+
+// InstanceTypesInstanceTypeGpusGpuDeviceArrayInput is an input type that accepts InstanceTypesInstanceTypeGpusGpuDeviceArray and InstanceTypesInstanceTypeGpusGpuDeviceArrayOutput values.
+// You can construct a concrete instance of `InstanceTypesInstanceTypeGpusGpuDeviceArrayInput` via:
+//
+//	InstanceTypesInstanceTypeGpusGpuDeviceArray{ InstanceTypesInstanceTypeGpusGpuDeviceArgs{...} }
+type InstanceTypesInstanceTypeGpusGpuDeviceArrayInput interface {
+	pulumi.Input
+
+	ToInstanceTypesInstanceTypeGpusGpuDeviceArrayOutput() InstanceTypesInstanceTypeGpusGpuDeviceArrayOutput
+	ToInstanceTypesInstanceTypeGpusGpuDeviceArrayOutputWithContext(context.Context) InstanceTypesInstanceTypeGpusGpuDeviceArrayOutput
+}
+
+type InstanceTypesInstanceTypeGpusGpuDeviceArray []InstanceTypesInstanceTypeGpusGpuDeviceInput
+
+func (InstanceTypesInstanceTypeGpusGpuDeviceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceTypesInstanceTypeGpusGpuDevice)(nil)).Elem()
+}
+
+func (i InstanceTypesInstanceTypeGpusGpuDeviceArray) ToInstanceTypesInstanceTypeGpusGpuDeviceArrayOutput() InstanceTypesInstanceTypeGpusGpuDeviceArrayOutput {
+	return i.ToInstanceTypesInstanceTypeGpusGpuDeviceArrayOutputWithContext(context.Background())
+}
+
+func (i InstanceTypesInstanceTypeGpusGpuDeviceArray) ToInstanceTypesInstanceTypeGpusGpuDeviceArrayOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeGpusGpuDeviceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTypesInstanceTypeGpusGpuDeviceArrayOutput)
+}
+
+type InstanceTypesInstanceTypeGpusGpuDeviceOutput struct{ *pulumi.OutputState }
+
+func (InstanceTypesInstanceTypeGpusGpuDeviceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceTypesInstanceTypeGpusGpuDevice)(nil)).Elem()
+}
+
+func (o InstanceTypesInstanceTypeGpusGpuDeviceOutput) ToInstanceTypesInstanceTypeGpusGpuDeviceOutput() InstanceTypesInstanceTypeGpusGpuDeviceOutput {
+	return o
+}
+
+func (o InstanceTypesInstanceTypeGpusGpuDeviceOutput) ToInstanceTypesInstanceTypeGpusGpuDeviceOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeGpusGpuDeviceOutput {
+	return o
+}
+
+// The number of local disks mounted on the instance.
+func (o InstanceTypesInstanceTypeGpusGpuDeviceOutput) Count() pulumi.IntOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceTypeGpusGpuDevice) int { return v.Count }).(pulumi.IntOutput)
+}
+
+// Memory information of instance specifications.
+func (o InstanceTypesInstanceTypeGpusGpuDeviceOutput) Memories() InstanceTypesInstanceTypeGpusGpuDeviceMemoryArrayOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceTypeGpusGpuDevice) []InstanceTypesInstanceTypeGpusGpuDeviceMemory {
+		return v.Memories
+	}).(InstanceTypesInstanceTypeGpusGpuDeviceMemoryArrayOutput)
+}
+
+// The Product Name of GPU device.
+func (o InstanceTypesInstanceTypeGpusGpuDeviceOutput) ProductName() pulumi.StringOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceTypeGpusGpuDevice) string { return v.ProductName }).(pulumi.StringOutput)
+}
+
+type InstanceTypesInstanceTypeGpusGpuDeviceArrayOutput struct{ *pulumi.OutputState }
+
+func (InstanceTypesInstanceTypeGpusGpuDeviceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceTypesInstanceTypeGpusGpuDevice)(nil)).Elem()
+}
+
+func (o InstanceTypesInstanceTypeGpusGpuDeviceArrayOutput) ToInstanceTypesInstanceTypeGpusGpuDeviceArrayOutput() InstanceTypesInstanceTypeGpusGpuDeviceArrayOutput {
+	return o
+}
+
+func (o InstanceTypesInstanceTypeGpusGpuDeviceArrayOutput) ToInstanceTypesInstanceTypeGpusGpuDeviceArrayOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeGpusGpuDeviceArrayOutput {
+	return o
+}
+
+func (o InstanceTypesInstanceTypeGpusGpuDeviceArrayOutput) Index(i pulumi.IntInput) InstanceTypesInstanceTypeGpusGpuDeviceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstanceTypesInstanceTypeGpusGpuDevice {
+		return vs[0].([]InstanceTypesInstanceTypeGpusGpuDevice)[vs[1].(int)]
+	}).(InstanceTypesInstanceTypeGpusGpuDeviceOutput)
+}
+
+type InstanceTypesInstanceTypeGpusGpuDeviceMemory struct {
+	// The Encrypted Memory Size of GPU device.
+	EncryptedSize int `pulumi:"encryptedSize"`
+	// Memory size, unit: MiB.
+	Size int `pulumi:"size"`
+}
+
+// InstanceTypesInstanceTypeGpusGpuDeviceMemoryInput is an input type that accepts InstanceTypesInstanceTypeGpusGpuDeviceMemoryArgs and InstanceTypesInstanceTypeGpusGpuDeviceMemoryOutput values.
+// You can construct a concrete instance of `InstanceTypesInstanceTypeGpusGpuDeviceMemoryInput` via:
+//
+//	InstanceTypesInstanceTypeGpusGpuDeviceMemoryArgs{...}
+type InstanceTypesInstanceTypeGpusGpuDeviceMemoryInput interface {
+	pulumi.Input
+
+	ToInstanceTypesInstanceTypeGpusGpuDeviceMemoryOutput() InstanceTypesInstanceTypeGpusGpuDeviceMemoryOutput
+	ToInstanceTypesInstanceTypeGpusGpuDeviceMemoryOutputWithContext(context.Context) InstanceTypesInstanceTypeGpusGpuDeviceMemoryOutput
+}
+
+type InstanceTypesInstanceTypeGpusGpuDeviceMemoryArgs struct {
+	// The Encrypted Memory Size of GPU device.
+	EncryptedSize pulumi.IntInput `pulumi:"encryptedSize"`
+	// Memory size, unit: MiB.
+	Size pulumi.IntInput `pulumi:"size"`
+}
+
+func (InstanceTypesInstanceTypeGpusGpuDeviceMemoryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceTypesInstanceTypeGpusGpuDeviceMemory)(nil)).Elem()
+}
+
+func (i InstanceTypesInstanceTypeGpusGpuDeviceMemoryArgs) ToInstanceTypesInstanceTypeGpusGpuDeviceMemoryOutput() InstanceTypesInstanceTypeGpusGpuDeviceMemoryOutput {
+	return i.ToInstanceTypesInstanceTypeGpusGpuDeviceMemoryOutputWithContext(context.Background())
+}
+
+func (i InstanceTypesInstanceTypeGpusGpuDeviceMemoryArgs) ToInstanceTypesInstanceTypeGpusGpuDeviceMemoryOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeGpusGpuDeviceMemoryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTypesInstanceTypeGpusGpuDeviceMemoryOutput)
+}
+
+// InstanceTypesInstanceTypeGpusGpuDeviceMemoryArrayInput is an input type that accepts InstanceTypesInstanceTypeGpusGpuDeviceMemoryArray and InstanceTypesInstanceTypeGpusGpuDeviceMemoryArrayOutput values.
+// You can construct a concrete instance of `InstanceTypesInstanceTypeGpusGpuDeviceMemoryArrayInput` via:
+//
+//	InstanceTypesInstanceTypeGpusGpuDeviceMemoryArray{ InstanceTypesInstanceTypeGpusGpuDeviceMemoryArgs{...} }
+type InstanceTypesInstanceTypeGpusGpuDeviceMemoryArrayInput interface {
+	pulumi.Input
+
+	ToInstanceTypesInstanceTypeGpusGpuDeviceMemoryArrayOutput() InstanceTypesInstanceTypeGpusGpuDeviceMemoryArrayOutput
+	ToInstanceTypesInstanceTypeGpusGpuDeviceMemoryArrayOutputWithContext(context.Context) InstanceTypesInstanceTypeGpusGpuDeviceMemoryArrayOutput
+}
+
+type InstanceTypesInstanceTypeGpusGpuDeviceMemoryArray []InstanceTypesInstanceTypeGpusGpuDeviceMemoryInput
+
+func (InstanceTypesInstanceTypeGpusGpuDeviceMemoryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceTypesInstanceTypeGpusGpuDeviceMemory)(nil)).Elem()
+}
+
+func (i InstanceTypesInstanceTypeGpusGpuDeviceMemoryArray) ToInstanceTypesInstanceTypeGpusGpuDeviceMemoryArrayOutput() InstanceTypesInstanceTypeGpusGpuDeviceMemoryArrayOutput {
+	return i.ToInstanceTypesInstanceTypeGpusGpuDeviceMemoryArrayOutputWithContext(context.Background())
+}
+
+func (i InstanceTypesInstanceTypeGpusGpuDeviceMemoryArray) ToInstanceTypesInstanceTypeGpusGpuDeviceMemoryArrayOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeGpusGpuDeviceMemoryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTypesInstanceTypeGpusGpuDeviceMemoryArrayOutput)
+}
+
+type InstanceTypesInstanceTypeGpusGpuDeviceMemoryOutput struct{ *pulumi.OutputState }
+
+func (InstanceTypesInstanceTypeGpusGpuDeviceMemoryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceTypesInstanceTypeGpusGpuDeviceMemory)(nil)).Elem()
+}
+
+func (o InstanceTypesInstanceTypeGpusGpuDeviceMemoryOutput) ToInstanceTypesInstanceTypeGpusGpuDeviceMemoryOutput() InstanceTypesInstanceTypeGpusGpuDeviceMemoryOutput {
+	return o
+}
+
+func (o InstanceTypesInstanceTypeGpusGpuDeviceMemoryOutput) ToInstanceTypesInstanceTypeGpusGpuDeviceMemoryOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeGpusGpuDeviceMemoryOutput {
+	return o
+}
+
+// The Encrypted Memory Size of GPU device.
+func (o InstanceTypesInstanceTypeGpusGpuDeviceMemoryOutput) EncryptedSize() pulumi.IntOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceTypeGpusGpuDeviceMemory) int { return v.EncryptedSize }).(pulumi.IntOutput)
+}
+
+// Memory size, unit: MiB.
+func (o InstanceTypesInstanceTypeGpusGpuDeviceMemoryOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceTypeGpusGpuDeviceMemory) int { return v.Size }).(pulumi.IntOutput)
+}
+
+type InstanceTypesInstanceTypeGpusGpuDeviceMemoryArrayOutput struct{ *pulumi.OutputState }
+
+func (InstanceTypesInstanceTypeGpusGpuDeviceMemoryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceTypesInstanceTypeGpusGpuDeviceMemory)(nil)).Elem()
+}
+
+func (o InstanceTypesInstanceTypeGpusGpuDeviceMemoryArrayOutput) ToInstanceTypesInstanceTypeGpusGpuDeviceMemoryArrayOutput() InstanceTypesInstanceTypeGpusGpuDeviceMemoryArrayOutput {
+	return o
+}
+
+func (o InstanceTypesInstanceTypeGpusGpuDeviceMemoryArrayOutput) ToInstanceTypesInstanceTypeGpusGpuDeviceMemoryArrayOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeGpusGpuDeviceMemoryArrayOutput {
+	return o
+}
+
+func (o InstanceTypesInstanceTypeGpusGpuDeviceMemoryArrayOutput) Index(i pulumi.IntInput) InstanceTypesInstanceTypeGpusGpuDeviceMemoryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstanceTypesInstanceTypeGpusGpuDeviceMemory {
+		return vs[0].([]InstanceTypesInstanceTypeGpusGpuDeviceMemory)[vs[1].(int)]
+	}).(InstanceTypesInstanceTypeGpusGpuDeviceMemoryOutput)
+}
+
+type InstanceTypesInstanceTypeLocalVolume struct {
+	// The number of local disks mounted on the instance.
+	Count int `pulumi:"count"`
+	// Memory size, unit: MiB.
+	Size int `pulumi:"size"`
+	// The type of volume.
+	VolumeType string `pulumi:"volumeType"`
+}
+
+// InstanceTypesInstanceTypeLocalVolumeInput is an input type that accepts InstanceTypesInstanceTypeLocalVolumeArgs and InstanceTypesInstanceTypeLocalVolumeOutput values.
+// You can construct a concrete instance of `InstanceTypesInstanceTypeLocalVolumeInput` via:
+//
+//	InstanceTypesInstanceTypeLocalVolumeArgs{...}
+type InstanceTypesInstanceTypeLocalVolumeInput interface {
+	pulumi.Input
+
+	ToInstanceTypesInstanceTypeLocalVolumeOutput() InstanceTypesInstanceTypeLocalVolumeOutput
+	ToInstanceTypesInstanceTypeLocalVolumeOutputWithContext(context.Context) InstanceTypesInstanceTypeLocalVolumeOutput
+}
+
+type InstanceTypesInstanceTypeLocalVolumeArgs struct {
+	// The number of local disks mounted on the instance.
+	Count pulumi.IntInput `pulumi:"count"`
+	// Memory size, unit: MiB.
+	Size pulumi.IntInput `pulumi:"size"`
+	// The type of volume.
+	VolumeType pulumi.StringInput `pulumi:"volumeType"`
+}
+
+func (InstanceTypesInstanceTypeLocalVolumeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceTypesInstanceTypeLocalVolume)(nil)).Elem()
+}
+
+func (i InstanceTypesInstanceTypeLocalVolumeArgs) ToInstanceTypesInstanceTypeLocalVolumeOutput() InstanceTypesInstanceTypeLocalVolumeOutput {
+	return i.ToInstanceTypesInstanceTypeLocalVolumeOutputWithContext(context.Background())
+}
+
+func (i InstanceTypesInstanceTypeLocalVolumeArgs) ToInstanceTypesInstanceTypeLocalVolumeOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeLocalVolumeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTypesInstanceTypeLocalVolumeOutput)
+}
+
+// InstanceTypesInstanceTypeLocalVolumeArrayInput is an input type that accepts InstanceTypesInstanceTypeLocalVolumeArray and InstanceTypesInstanceTypeLocalVolumeArrayOutput values.
+// You can construct a concrete instance of `InstanceTypesInstanceTypeLocalVolumeArrayInput` via:
+//
+//	InstanceTypesInstanceTypeLocalVolumeArray{ InstanceTypesInstanceTypeLocalVolumeArgs{...} }
+type InstanceTypesInstanceTypeLocalVolumeArrayInput interface {
+	pulumi.Input
+
+	ToInstanceTypesInstanceTypeLocalVolumeArrayOutput() InstanceTypesInstanceTypeLocalVolumeArrayOutput
+	ToInstanceTypesInstanceTypeLocalVolumeArrayOutputWithContext(context.Context) InstanceTypesInstanceTypeLocalVolumeArrayOutput
+}
+
+type InstanceTypesInstanceTypeLocalVolumeArray []InstanceTypesInstanceTypeLocalVolumeInput
+
+func (InstanceTypesInstanceTypeLocalVolumeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceTypesInstanceTypeLocalVolume)(nil)).Elem()
+}
+
+func (i InstanceTypesInstanceTypeLocalVolumeArray) ToInstanceTypesInstanceTypeLocalVolumeArrayOutput() InstanceTypesInstanceTypeLocalVolumeArrayOutput {
+	return i.ToInstanceTypesInstanceTypeLocalVolumeArrayOutputWithContext(context.Background())
+}
+
+func (i InstanceTypesInstanceTypeLocalVolumeArray) ToInstanceTypesInstanceTypeLocalVolumeArrayOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeLocalVolumeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTypesInstanceTypeLocalVolumeArrayOutput)
+}
+
+type InstanceTypesInstanceTypeLocalVolumeOutput struct{ *pulumi.OutputState }
+
+func (InstanceTypesInstanceTypeLocalVolumeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceTypesInstanceTypeLocalVolume)(nil)).Elem()
+}
+
+func (o InstanceTypesInstanceTypeLocalVolumeOutput) ToInstanceTypesInstanceTypeLocalVolumeOutput() InstanceTypesInstanceTypeLocalVolumeOutput {
+	return o
+}
+
+func (o InstanceTypesInstanceTypeLocalVolumeOutput) ToInstanceTypesInstanceTypeLocalVolumeOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeLocalVolumeOutput {
+	return o
+}
+
+// The number of local disks mounted on the instance.
+func (o InstanceTypesInstanceTypeLocalVolumeOutput) Count() pulumi.IntOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceTypeLocalVolume) int { return v.Count }).(pulumi.IntOutput)
+}
+
+// Memory size, unit: MiB.
+func (o InstanceTypesInstanceTypeLocalVolumeOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceTypeLocalVolume) int { return v.Size }).(pulumi.IntOutput)
+}
+
+// The type of volume.
+func (o InstanceTypesInstanceTypeLocalVolumeOutput) VolumeType() pulumi.StringOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceTypeLocalVolume) string { return v.VolumeType }).(pulumi.StringOutput)
+}
+
+type InstanceTypesInstanceTypeLocalVolumeArrayOutput struct{ *pulumi.OutputState }
+
+func (InstanceTypesInstanceTypeLocalVolumeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceTypesInstanceTypeLocalVolume)(nil)).Elem()
+}
+
+func (o InstanceTypesInstanceTypeLocalVolumeArrayOutput) ToInstanceTypesInstanceTypeLocalVolumeArrayOutput() InstanceTypesInstanceTypeLocalVolumeArrayOutput {
+	return o
+}
+
+func (o InstanceTypesInstanceTypeLocalVolumeArrayOutput) ToInstanceTypesInstanceTypeLocalVolumeArrayOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeLocalVolumeArrayOutput {
+	return o
+}
+
+func (o InstanceTypesInstanceTypeLocalVolumeArrayOutput) Index(i pulumi.IntInput) InstanceTypesInstanceTypeLocalVolumeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstanceTypesInstanceTypeLocalVolume {
+		return vs[0].([]InstanceTypesInstanceTypeLocalVolume)[vs[1].(int)]
+	}).(InstanceTypesInstanceTypeLocalVolumeOutput)
+}
+
+type InstanceTypesInstanceTypeMemory struct {
+	// The Encrypted Memory Size of GPU device.
+	EncryptedSize int `pulumi:"encryptedSize"`
+	// Memory size, unit: MiB.
+	Size int `pulumi:"size"`
+}
+
+// InstanceTypesInstanceTypeMemoryInput is an input type that accepts InstanceTypesInstanceTypeMemoryArgs and InstanceTypesInstanceTypeMemoryOutput values.
+// You can construct a concrete instance of `InstanceTypesInstanceTypeMemoryInput` via:
+//
+//	InstanceTypesInstanceTypeMemoryArgs{...}
+type InstanceTypesInstanceTypeMemoryInput interface {
+	pulumi.Input
+
+	ToInstanceTypesInstanceTypeMemoryOutput() InstanceTypesInstanceTypeMemoryOutput
+	ToInstanceTypesInstanceTypeMemoryOutputWithContext(context.Context) InstanceTypesInstanceTypeMemoryOutput
+}
+
+type InstanceTypesInstanceTypeMemoryArgs struct {
+	// The Encrypted Memory Size of GPU device.
+	EncryptedSize pulumi.IntInput `pulumi:"encryptedSize"`
+	// Memory size, unit: MiB.
+	Size pulumi.IntInput `pulumi:"size"`
+}
+
+func (InstanceTypesInstanceTypeMemoryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceTypesInstanceTypeMemory)(nil)).Elem()
+}
+
+func (i InstanceTypesInstanceTypeMemoryArgs) ToInstanceTypesInstanceTypeMemoryOutput() InstanceTypesInstanceTypeMemoryOutput {
+	return i.ToInstanceTypesInstanceTypeMemoryOutputWithContext(context.Background())
+}
+
+func (i InstanceTypesInstanceTypeMemoryArgs) ToInstanceTypesInstanceTypeMemoryOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeMemoryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTypesInstanceTypeMemoryOutput)
+}
+
+// InstanceTypesInstanceTypeMemoryArrayInput is an input type that accepts InstanceTypesInstanceTypeMemoryArray and InstanceTypesInstanceTypeMemoryArrayOutput values.
+// You can construct a concrete instance of `InstanceTypesInstanceTypeMemoryArrayInput` via:
+//
+//	InstanceTypesInstanceTypeMemoryArray{ InstanceTypesInstanceTypeMemoryArgs{...} }
+type InstanceTypesInstanceTypeMemoryArrayInput interface {
+	pulumi.Input
+
+	ToInstanceTypesInstanceTypeMemoryArrayOutput() InstanceTypesInstanceTypeMemoryArrayOutput
+	ToInstanceTypesInstanceTypeMemoryArrayOutputWithContext(context.Context) InstanceTypesInstanceTypeMemoryArrayOutput
+}
+
+type InstanceTypesInstanceTypeMemoryArray []InstanceTypesInstanceTypeMemoryInput
+
+func (InstanceTypesInstanceTypeMemoryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceTypesInstanceTypeMemory)(nil)).Elem()
+}
+
+func (i InstanceTypesInstanceTypeMemoryArray) ToInstanceTypesInstanceTypeMemoryArrayOutput() InstanceTypesInstanceTypeMemoryArrayOutput {
+	return i.ToInstanceTypesInstanceTypeMemoryArrayOutputWithContext(context.Background())
+}
+
+func (i InstanceTypesInstanceTypeMemoryArray) ToInstanceTypesInstanceTypeMemoryArrayOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeMemoryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTypesInstanceTypeMemoryArrayOutput)
+}
+
+type InstanceTypesInstanceTypeMemoryOutput struct{ *pulumi.OutputState }
+
+func (InstanceTypesInstanceTypeMemoryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceTypesInstanceTypeMemory)(nil)).Elem()
+}
+
+func (o InstanceTypesInstanceTypeMemoryOutput) ToInstanceTypesInstanceTypeMemoryOutput() InstanceTypesInstanceTypeMemoryOutput {
+	return o
+}
+
+func (o InstanceTypesInstanceTypeMemoryOutput) ToInstanceTypesInstanceTypeMemoryOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeMemoryOutput {
+	return o
+}
+
+// The Encrypted Memory Size of GPU device.
+func (o InstanceTypesInstanceTypeMemoryOutput) EncryptedSize() pulumi.IntOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceTypeMemory) int { return v.EncryptedSize }).(pulumi.IntOutput)
+}
+
+// Memory size, unit: MiB.
+func (o InstanceTypesInstanceTypeMemoryOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceTypeMemory) int { return v.Size }).(pulumi.IntOutput)
+}
+
+type InstanceTypesInstanceTypeMemoryArrayOutput struct{ *pulumi.OutputState }
+
+func (InstanceTypesInstanceTypeMemoryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceTypesInstanceTypeMemory)(nil)).Elem()
+}
+
+func (o InstanceTypesInstanceTypeMemoryArrayOutput) ToInstanceTypesInstanceTypeMemoryArrayOutput() InstanceTypesInstanceTypeMemoryArrayOutput {
+	return o
+}
+
+func (o InstanceTypesInstanceTypeMemoryArrayOutput) ToInstanceTypesInstanceTypeMemoryArrayOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeMemoryArrayOutput {
+	return o
+}
+
+func (o InstanceTypesInstanceTypeMemoryArrayOutput) Index(i pulumi.IntInput) InstanceTypesInstanceTypeMemoryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstanceTypesInstanceTypeMemory {
+		return vs[0].([]InstanceTypesInstanceTypeMemory)[vs[1].(int)]
+	}).(InstanceTypesInstanceTypeMemoryOutput)
+}
+
+type InstanceTypesInstanceTypeNetwork struct {
+	// Network benchmark bandwidth capacity (out/in), unit: Mbps.
+	BaselineBandwidthMbps int `pulumi:"baselineBandwidthMbps"`
+	// Peak network bandwidth capacity (out/in), unit: Mbps.
+	MaximumBandwidthMbps int `pulumi:"maximumBandwidthMbps"`
+	// Maximum number of elastic network interfaces supported for attachment.
+	MaximumNetworkInterfaces int `pulumi:"maximumNetworkInterfaces"`
+	// Maximum number of IPv4 addresses for a single elastic network interface.
+	MaximumPrivateIpv4AddressesPerNetworkInterface int `pulumi:"maximumPrivateIpv4AddressesPerNetworkInterface"`
+	// Maximum queue number for a single elastic network interface, including the queue number supported by the primary network interface and the auxiliary network interface.
+	MaximumQueuesPerNetworkInterface int `pulumi:"maximumQueuesPerNetworkInterface"`
+	// Network packet sending and receiving capacity (in+out), unit: Kpps.
+	MaximumThroughputKpps int `pulumi:"maximumThroughputKpps"`
+}
+
+// InstanceTypesInstanceTypeNetworkInput is an input type that accepts InstanceTypesInstanceTypeNetworkArgs and InstanceTypesInstanceTypeNetworkOutput values.
+// You can construct a concrete instance of `InstanceTypesInstanceTypeNetworkInput` via:
+//
+//	InstanceTypesInstanceTypeNetworkArgs{...}
+type InstanceTypesInstanceTypeNetworkInput interface {
+	pulumi.Input
+
+	ToInstanceTypesInstanceTypeNetworkOutput() InstanceTypesInstanceTypeNetworkOutput
+	ToInstanceTypesInstanceTypeNetworkOutputWithContext(context.Context) InstanceTypesInstanceTypeNetworkOutput
+}
+
+type InstanceTypesInstanceTypeNetworkArgs struct {
+	// Network benchmark bandwidth capacity (out/in), unit: Mbps.
+	BaselineBandwidthMbps pulumi.IntInput `pulumi:"baselineBandwidthMbps"`
+	// Peak network bandwidth capacity (out/in), unit: Mbps.
+	MaximumBandwidthMbps pulumi.IntInput `pulumi:"maximumBandwidthMbps"`
+	// Maximum number of elastic network interfaces supported for attachment.
+	MaximumNetworkInterfaces pulumi.IntInput `pulumi:"maximumNetworkInterfaces"`
+	// Maximum number of IPv4 addresses for a single elastic network interface.
+	MaximumPrivateIpv4AddressesPerNetworkInterface pulumi.IntInput `pulumi:"maximumPrivateIpv4AddressesPerNetworkInterface"`
+	// Maximum queue number for a single elastic network interface, including the queue number supported by the primary network interface and the auxiliary network interface.
+	MaximumQueuesPerNetworkInterface pulumi.IntInput `pulumi:"maximumQueuesPerNetworkInterface"`
+	// Network packet sending and receiving capacity (in+out), unit: Kpps.
+	MaximumThroughputKpps pulumi.IntInput `pulumi:"maximumThroughputKpps"`
+}
+
+func (InstanceTypesInstanceTypeNetworkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceTypesInstanceTypeNetwork)(nil)).Elem()
+}
+
+func (i InstanceTypesInstanceTypeNetworkArgs) ToInstanceTypesInstanceTypeNetworkOutput() InstanceTypesInstanceTypeNetworkOutput {
+	return i.ToInstanceTypesInstanceTypeNetworkOutputWithContext(context.Background())
+}
+
+func (i InstanceTypesInstanceTypeNetworkArgs) ToInstanceTypesInstanceTypeNetworkOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeNetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTypesInstanceTypeNetworkOutput)
+}
+
+// InstanceTypesInstanceTypeNetworkArrayInput is an input type that accepts InstanceTypesInstanceTypeNetworkArray and InstanceTypesInstanceTypeNetworkArrayOutput values.
+// You can construct a concrete instance of `InstanceTypesInstanceTypeNetworkArrayInput` via:
+//
+//	InstanceTypesInstanceTypeNetworkArray{ InstanceTypesInstanceTypeNetworkArgs{...} }
+type InstanceTypesInstanceTypeNetworkArrayInput interface {
+	pulumi.Input
+
+	ToInstanceTypesInstanceTypeNetworkArrayOutput() InstanceTypesInstanceTypeNetworkArrayOutput
+	ToInstanceTypesInstanceTypeNetworkArrayOutputWithContext(context.Context) InstanceTypesInstanceTypeNetworkArrayOutput
+}
+
+type InstanceTypesInstanceTypeNetworkArray []InstanceTypesInstanceTypeNetworkInput
+
+func (InstanceTypesInstanceTypeNetworkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceTypesInstanceTypeNetwork)(nil)).Elem()
+}
+
+func (i InstanceTypesInstanceTypeNetworkArray) ToInstanceTypesInstanceTypeNetworkArrayOutput() InstanceTypesInstanceTypeNetworkArrayOutput {
+	return i.ToInstanceTypesInstanceTypeNetworkArrayOutputWithContext(context.Background())
+}
+
+func (i InstanceTypesInstanceTypeNetworkArray) ToInstanceTypesInstanceTypeNetworkArrayOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeNetworkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTypesInstanceTypeNetworkArrayOutput)
+}
+
+type InstanceTypesInstanceTypeNetworkOutput struct{ *pulumi.OutputState }
+
+func (InstanceTypesInstanceTypeNetworkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceTypesInstanceTypeNetwork)(nil)).Elem()
+}
+
+func (o InstanceTypesInstanceTypeNetworkOutput) ToInstanceTypesInstanceTypeNetworkOutput() InstanceTypesInstanceTypeNetworkOutput {
+	return o
+}
+
+func (o InstanceTypesInstanceTypeNetworkOutput) ToInstanceTypesInstanceTypeNetworkOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeNetworkOutput {
+	return o
+}
+
+// Network benchmark bandwidth capacity (out/in), unit: Mbps.
+func (o InstanceTypesInstanceTypeNetworkOutput) BaselineBandwidthMbps() pulumi.IntOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceTypeNetwork) int { return v.BaselineBandwidthMbps }).(pulumi.IntOutput)
+}
+
+// Peak network bandwidth capacity (out/in), unit: Mbps.
+func (o InstanceTypesInstanceTypeNetworkOutput) MaximumBandwidthMbps() pulumi.IntOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceTypeNetwork) int { return v.MaximumBandwidthMbps }).(pulumi.IntOutput)
+}
+
+// Maximum number of elastic network interfaces supported for attachment.
+func (o InstanceTypesInstanceTypeNetworkOutput) MaximumNetworkInterfaces() pulumi.IntOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceTypeNetwork) int { return v.MaximumNetworkInterfaces }).(pulumi.IntOutput)
+}
+
+// Maximum number of IPv4 addresses for a single elastic network interface.
+func (o InstanceTypesInstanceTypeNetworkOutput) MaximumPrivateIpv4AddressesPerNetworkInterface() pulumi.IntOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceTypeNetwork) int { return v.MaximumPrivateIpv4AddressesPerNetworkInterface }).(pulumi.IntOutput)
+}
+
+// Maximum queue number for a single elastic network interface, including the queue number supported by the primary network interface and the auxiliary network interface.
+func (o InstanceTypesInstanceTypeNetworkOutput) MaximumQueuesPerNetworkInterface() pulumi.IntOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceTypeNetwork) int { return v.MaximumQueuesPerNetworkInterface }).(pulumi.IntOutput)
+}
+
+// Network packet sending and receiving capacity (in+out), unit: Kpps.
+func (o InstanceTypesInstanceTypeNetworkOutput) MaximumThroughputKpps() pulumi.IntOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceTypeNetwork) int { return v.MaximumThroughputKpps }).(pulumi.IntOutput)
+}
+
+type InstanceTypesInstanceTypeNetworkArrayOutput struct{ *pulumi.OutputState }
+
+func (InstanceTypesInstanceTypeNetworkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceTypesInstanceTypeNetwork)(nil)).Elem()
+}
+
+func (o InstanceTypesInstanceTypeNetworkArrayOutput) ToInstanceTypesInstanceTypeNetworkArrayOutput() InstanceTypesInstanceTypeNetworkArrayOutput {
+	return o
+}
+
+func (o InstanceTypesInstanceTypeNetworkArrayOutput) ToInstanceTypesInstanceTypeNetworkArrayOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeNetworkArrayOutput {
+	return o
+}
+
+func (o InstanceTypesInstanceTypeNetworkArrayOutput) Index(i pulumi.IntInput) InstanceTypesInstanceTypeNetworkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstanceTypesInstanceTypeNetwork {
+		return vs[0].([]InstanceTypesInstanceTypeNetwork)[vs[1].(int)]
+	}).(InstanceTypesInstanceTypeNetworkOutput)
+}
+
+type InstanceTypesInstanceTypeProcessor struct {
+	// CPU clock speed, unit: GHz.
+	BaseFrequency float64 `pulumi:"baseFrequency"`
+	// The number of ECS instance CPU cores.
+	Cpus int `pulumi:"cpus"`
+	// CPU model.
+	Model string `pulumi:"model"`
+	// CPU Turbo Boost, unit: GHz.
+	TurboFrequency float64 `pulumi:"turboFrequency"`
+}
+
+// InstanceTypesInstanceTypeProcessorInput is an input type that accepts InstanceTypesInstanceTypeProcessorArgs and InstanceTypesInstanceTypeProcessorOutput values.
+// You can construct a concrete instance of `InstanceTypesInstanceTypeProcessorInput` via:
+//
+//	InstanceTypesInstanceTypeProcessorArgs{...}
+type InstanceTypesInstanceTypeProcessorInput interface {
+	pulumi.Input
+
+	ToInstanceTypesInstanceTypeProcessorOutput() InstanceTypesInstanceTypeProcessorOutput
+	ToInstanceTypesInstanceTypeProcessorOutputWithContext(context.Context) InstanceTypesInstanceTypeProcessorOutput
+}
+
+type InstanceTypesInstanceTypeProcessorArgs struct {
+	// CPU clock speed, unit: GHz.
+	BaseFrequency pulumi.Float64Input `pulumi:"baseFrequency"`
+	// The number of ECS instance CPU cores.
+	Cpus pulumi.IntInput `pulumi:"cpus"`
+	// CPU model.
+	Model pulumi.StringInput `pulumi:"model"`
+	// CPU Turbo Boost, unit: GHz.
+	TurboFrequency pulumi.Float64Input `pulumi:"turboFrequency"`
+}
+
+func (InstanceTypesInstanceTypeProcessorArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceTypesInstanceTypeProcessor)(nil)).Elem()
+}
+
+func (i InstanceTypesInstanceTypeProcessorArgs) ToInstanceTypesInstanceTypeProcessorOutput() InstanceTypesInstanceTypeProcessorOutput {
+	return i.ToInstanceTypesInstanceTypeProcessorOutputWithContext(context.Background())
+}
+
+func (i InstanceTypesInstanceTypeProcessorArgs) ToInstanceTypesInstanceTypeProcessorOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeProcessorOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTypesInstanceTypeProcessorOutput)
+}
+
+// InstanceTypesInstanceTypeProcessorArrayInput is an input type that accepts InstanceTypesInstanceTypeProcessorArray and InstanceTypesInstanceTypeProcessorArrayOutput values.
+// You can construct a concrete instance of `InstanceTypesInstanceTypeProcessorArrayInput` via:
+//
+//	InstanceTypesInstanceTypeProcessorArray{ InstanceTypesInstanceTypeProcessorArgs{...} }
+type InstanceTypesInstanceTypeProcessorArrayInput interface {
+	pulumi.Input
+
+	ToInstanceTypesInstanceTypeProcessorArrayOutput() InstanceTypesInstanceTypeProcessorArrayOutput
+	ToInstanceTypesInstanceTypeProcessorArrayOutputWithContext(context.Context) InstanceTypesInstanceTypeProcessorArrayOutput
+}
+
+type InstanceTypesInstanceTypeProcessorArray []InstanceTypesInstanceTypeProcessorInput
+
+func (InstanceTypesInstanceTypeProcessorArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceTypesInstanceTypeProcessor)(nil)).Elem()
+}
+
+func (i InstanceTypesInstanceTypeProcessorArray) ToInstanceTypesInstanceTypeProcessorArrayOutput() InstanceTypesInstanceTypeProcessorArrayOutput {
+	return i.ToInstanceTypesInstanceTypeProcessorArrayOutputWithContext(context.Background())
+}
+
+func (i InstanceTypesInstanceTypeProcessorArray) ToInstanceTypesInstanceTypeProcessorArrayOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeProcessorArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTypesInstanceTypeProcessorArrayOutput)
+}
+
+type InstanceTypesInstanceTypeProcessorOutput struct{ *pulumi.OutputState }
+
+func (InstanceTypesInstanceTypeProcessorOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceTypesInstanceTypeProcessor)(nil)).Elem()
+}
+
+func (o InstanceTypesInstanceTypeProcessorOutput) ToInstanceTypesInstanceTypeProcessorOutput() InstanceTypesInstanceTypeProcessorOutput {
+	return o
+}
+
+func (o InstanceTypesInstanceTypeProcessorOutput) ToInstanceTypesInstanceTypeProcessorOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeProcessorOutput {
+	return o
+}
+
+// CPU clock speed, unit: GHz.
+func (o InstanceTypesInstanceTypeProcessorOutput) BaseFrequency() pulumi.Float64Output {
+	return o.ApplyT(func(v InstanceTypesInstanceTypeProcessor) float64 { return v.BaseFrequency }).(pulumi.Float64Output)
+}
+
+// The number of ECS instance CPU cores.
+func (o InstanceTypesInstanceTypeProcessorOutput) Cpus() pulumi.IntOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceTypeProcessor) int { return v.Cpus }).(pulumi.IntOutput)
+}
+
+// CPU model.
+func (o InstanceTypesInstanceTypeProcessorOutput) Model() pulumi.StringOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceTypeProcessor) string { return v.Model }).(pulumi.StringOutput)
+}
+
+// CPU Turbo Boost, unit: GHz.
+func (o InstanceTypesInstanceTypeProcessorOutput) TurboFrequency() pulumi.Float64Output {
+	return o.ApplyT(func(v InstanceTypesInstanceTypeProcessor) float64 { return v.TurboFrequency }).(pulumi.Float64Output)
+}
+
+type InstanceTypesInstanceTypeProcessorArrayOutput struct{ *pulumi.OutputState }
+
+func (InstanceTypesInstanceTypeProcessorArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceTypesInstanceTypeProcessor)(nil)).Elem()
+}
+
+func (o InstanceTypesInstanceTypeProcessorArrayOutput) ToInstanceTypesInstanceTypeProcessorArrayOutput() InstanceTypesInstanceTypeProcessorArrayOutput {
+	return o
+}
+
+func (o InstanceTypesInstanceTypeProcessorArrayOutput) ToInstanceTypesInstanceTypeProcessorArrayOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeProcessorArrayOutput {
+	return o
+}
+
+func (o InstanceTypesInstanceTypeProcessorArrayOutput) Index(i pulumi.IntInput) InstanceTypesInstanceTypeProcessorOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstanceTypesInstanceTypeProcessor {
+		return vs[0].([]InstanceTypesInstanceTypeProcessor)[vs[1].(int)]
+	}).(InstanceTypesInstanceTypeProcessorOutput)
+}
+
+type InstanceTypesInstanceTypeRdma struct {
+	// Number of RDMA network cards.
+	RdmaNetworkInterfaces int `pulumi:"rdmaNetworkInterfaces"`
+}
+
+// InstanceTypesInstanceTypeRdmaInput is an input type that accepts InstanceTypesInstanceTypeRdmaArgs and InstanceTypesInstanceTypeRdmaOutput values.
+// You can construct a concrete instance of `InstanceTypesInstanceTypeRdmaInput` via:
+//
+//	InstanceTypesInstanceTypeRdmaArgs{...}
+type InstanceTypesInstanceTypeRdmaInput interface {
+	pulumi.Input
+
+	ToInstanceTypesInstanceTypeRdmaOutput() InstanceTypesInstanceTypeRdmaOutput
+	ToInstanceTypesInstanceTypeRdmaOutputWithContext(context.Context) InstanceTypesInstanceTypeRdmaOutput
+}
+
+type InstanceTypesInstanceTypeRdmaArgs struct {
+	// Number of RDMA network cards.
+	RdmaNetworkInterfaces pulumi.IntInput `pulumi:"rdmaNetworkInterfaces"`
+}
+
+func (InstanceTypesInstanceTypeRdmaArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceTypesInstanceTypeRdma)(nil)).Elem()
+}
+
+func (i InstanceTypesInstanceTypeRdmaArgs) ToInstanceTypesInstanceTypeRdmaOutput() InstanceTypesInstanceTypeRdmaOutput {
+	return i.ToInstanceTypesInstanceTypeRdmaOutputWithContext(context.Background())
+}
+
+func (i InstanceTypesInstanceTypeRdmaArgs) ToInstanceTypesInstanceTypeRdmaOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeRdmaOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTypesInstanceTypeRdmaOutput)
+}
+
+// InstanceTypesInstanceTypeRdmaArrayInput is an input type that accepts InstanceTypesInstanceTypeRdmaArray and InstanceTypesInstanceTypeRdmaArrayOutput values.
+// You can construct a concrete instance of `InstanceTypesInstanceTypeRdmaArrayInput` via:
+//
+//	InstanceTypesInstanceTypeRdmaArray{ InstanceTypesInstanceTypeRdmaArgs{...} }
+type InstanceTypesInstanceTypeRdmaArrayInput interface {
+	pulumi.Input
+
+	ToInstanceTypesInstanceTypeRdmaArrayOutput() InstanceTypesInstanceTypeRdmaArrayOutput
+	ToInstanceTypesInstanceTypeRdmaArrayOutputWithContext(context.Context) InstanceTypesInstanceTypeRdmaArrayOutput
+}
+
+type InstanceTypesInstanceTypeRdmaArray []InstanceTypesInstanceTypeRdmaInput
+
+func (InstanceTypesInstanceTypeRdmaArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceTypesInstanceTypeRdma)(nil)).Elem()
+}
+
+func (i InstanceTypesInstanceTypeRdmaArray) ToInstanceTypesInstanceTypeRdmaArrayOutput() InstanceTypesInstanceTypeRdmaArrayOutput {
+	return i.ToInstanceTypesInstanceTypeRdmaArrayOutputWithContext(context.Background())
+}
+
+func (i InstanceTypesInstanceTypeRdmaArray) ToInstanceTypesInstanceTypeRdmaArrayOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeRdmaArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTypesInstanceTypeRdmaArrayOutput)
+}
+
+type InstanceTypesInstanceTypeRdmaOutput struct{ *pulumi.OutputState }
+
+func (InstanceTypesInstanceTypeRdmaOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceTypesInstanceTypeRdma)(nil)).Elem()
+}
+
+func (o InstanceTypesInstanceTypeRdmaOutput) ToInstanceTypesInstanceTypeRdmaOutput() InstanceTypesInstanceTypeRdmaOutput {
+	return o
+}
+
+func (o InstanceTypesInstanceTypeRdmaOutput) ToInstanceTypesInstanceTypeRdmaOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeRdmaOutput {
+	return o
+}
+
+// Number of RDMA network cards.
+func (o InstanceTypesInstanceTypeRdmaOutput) RdmaNetworkInterfaces() pulumi.IntOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceTypeRdma) int { return v.RdmaNetworkInterfaces }).(pulumi.IntOutput)
+}
+
+type InstanceTypesInstanceTypeRdmaArrayOutput struct{ *pulumi.OutputState }
+
+func (InstanceTypesInstanceTypeRdmaArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceTypesInstanceTypeRdma)(nil)).Elem()
+}
+
+func (o InstanceTypesInstanceTypeRdmaArrayOutput) ToInstanceTypesInstanceTypeRdmaArrayOutput() InstanceTypesInstanceTypeRdmaArrayOutput {
+	return o
+}
+
+func (o InstanceTypesInstanceTypeRdmaArrayOutput) ToInstanceTypesInstanceTypeRdmaArrayOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeRdmaArrayOutput {
+	return o
+}
+
+func (o InstanceTypesInstanceTypeRdmaArrayOutput) Index(i pulumi.IntInput) InstanceTypesInstanceTypeRdmaOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstanceTypesInstanceTypeRdma {
+		return vs[0].([]InstanceTypesInstanceTypeRdma)[vs[1].(int)]
+	}).(InstanceTypesInstanceTypeRdmaOutput)
+}
+
+type InstanceTypesInstanceTypeVolume struct {
+	// The maximum number of volumes.
+	MaximumCount int `pulumi:"maximumCount"`
+	// List of supported volume types.
+	SupportedVolumeTypes []string `pulumi:"supportedVolumeTypes"`
+}
+
+// InstanceTypesInstanceTypeVolumeInput is an input type that accepts InstanceTypesInstanceTypeVolumeArgs and InstanceTypesInstanceTypeVolumeOutput values.
+// You can construct a concrete instance of `InstanceTypesInstanceTypeVolumeInput` via:
+//
+//	InstanceTypesInstanceTypeVolumeArgs{...}
+type InstanceTypesInstanceTypeVolumeInput interface {
+	pulumi.Input
+
+	ToInstanceTypesInstanceTypeVolumeOutput() InstanceTypesInstanceTypeVolumeOutput
+	ToInstanceTypesInstanceTypeVolumeOutputWithContext(context.Context) InstanceTypesInstanceTypeVolumeOutput
+}
+
+type InstanceTypesInstanceTypeVolumeArgs struct {
+	// The maximum number of volumes.
+	MaximumCount pulumi.IntInput `pulumi:"maximumCount"`
+	// List of supported volume types.
+	SupportedVolumeTypes pulumi.StringArrayInput `pulumi:"supportedVolumeTypes"`
+}
+
+func (InstanceTypesInstanceTypeVolumeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceTypesInstanceTypeVolume)(nil)).Elem()
+}
+
+func (i InstanceTypesInstanceTypeVolumeArgs) ToInstanceTypesInstanceTypeVolumeOutput() InstanceTypesInstanceTypeVolumeOutput {
+	return i.ToInstanceTypesInstanceTypeVolumeOutputWithContext(context.Background())
+}
+
+func (i InstanceTypesInstanceTypeVolumeArgs) ToInstanceTypesInstanceTypeVolumeOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeVolumeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTypesInstanceTypeVolumeOutput)
+}
+
+// InstanceTypesInstanceTypeVolumeArrayInput is an input type that accepts InstanceTypesInstanceTypeVolumeArray and InstanceTypesInstanceTypeVolumeArrayOutput values.
+// You can construct a concrete instance of `InstanceTypesInstanceTypeVolumeArrayInput` via:
+//
+//	InstanceTypesInstanceTypeVolumeArray{ InstanceTypesInstanceTypeVolumeArgs{...} }
+type InstanceTypesInstanceTypeVolumeArrayInput interface {
+	pulumi.Input
+
+	ToInstanceTypesInstanceTypeVolumeArrayOutput() InstanceTypesInstanceTypeVolumeArrayOutput
+	ToInstanceTypesInstanceTypeVolumeArrayOutputWithContext(context.Context) InstanceTypesInstanceTypeVolumeArrayOutput
+}
+
+type InstanceTypesInstanceTypeVolumeArray []InstanceTypesInstanceTypeVolumeInput
+
+func (InstanceTypesInstanceTypeVolumeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceTypesInstanceTypeVolume)(nil)).Elem()
+}
+
+func (i InstanceTypesInstanceTypeVolumeArray) ToInstanceTypesInstanceTypeVolumeArrayOutput() InstanceTypesInstanceTypeVolumeArrayOutput {
+	return i.ToInstanceTypesInstanceTypeVolumeArrayOutputWithContext(context.Background())
+}
+
+func (i InstanceTypesInstanceTypeVolumeArray) ToInstanceTypesInstanceTypeVolumeArrayOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeVolumeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTypesInstanceTypeVolumeArrayOutput)
+}
+
+type InstanceTypesInstanceTypeVolumeOutput struct{ *pulumi.OutputState }
+
+func (InstanceTypesInstanceTypeVolumeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceTypesInstanceTypeVolume)(nil)).Elem()
+}
+
+func (o InstanceTypesInstanceTypeVolumeOutput) ToInstanceTypesInstanceTypeVolumeOutput() InstanceTypesInstanceTypeVolumeOutput {
+	return o
+}
+
+func (o InstanceTypesInstanceTypeVolumeOutput) ToInstanceTypesInstanceTypeVolumeOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeVolumeOutput {
+	return o
+}
+
+// The maximum number of volumes.
+func (o InstanceTypesInstanceTypeVolumeOutput) MaximumCount() pulumi.IntOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceTypeVolume) int { return v.MaximumCount }).(pulumi.IntOutput)
+}
+
+// List of supported volume types.
+func (o InstanceTypesInstanceTypeVolumeOutput) SupportedVolumeTypes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v InstanceTypesInstanceTypeVolume) []string { return v.SupportedVolumeTypes }).(pulumi.StringArrayOutput)
+}
+
+type InstanceTypesInstanceTypeVolumeArrayOutput struct{ *pulumi.OutputState }
+
+func (InstanceTypesInstanceTypeVolumeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceTypesInstanceTypeVolume)(nil)).Elem()
+}
+
+func (o InstanceTypesInstanceTypeVolumeArrayOutput) ToInstanceTypesInstanceTypeVolumeArrayOutput() InstanceTypesInstanceTypeVolumeArrayOutput {
+	return o
+}
+
+func (o InstanceTypesInstanceTypeVolumeArrayOutput) ToInstanceTypesInstanceTypeVolumeArrayOutputWithContext(ctx context.Context) InstanceTypesInstanceTypeVolumeArrayOutput {
+	return o
+}
+
+func (o InstanceTypesInstanceTypeVolumeArrayOutput) Index(i pulumi.IntInput) InstanceTypesInstanceTypeVolumeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstanceTypesInstanceTypeVolume {
+		return vs[0].([]InstanceTypesInstanceTypeVolume)[vs[1].(int)]
+	}).(InstanceTypesInstanceTypeVolumeOutput)
+}
+
 type InstancesInstance struct {
 	// The number of ECS instance CPU cores.
 	Cpus int `pulumi:"cpus"`
@@ -4114,6 +5311,26 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceSecondaryNetworkInterfaceArrayInput)(nil)).Elem(), InstanceSecondaryNetworkInterfaceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTagInput)(nil)).Elem(), InstanceTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTagArrayInput)(nil)).Elem(), InstanceTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTypesInstanceTypeInput)(nil)).Elem(), InstanceTypesInstanceTypeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTypesInstanceTypeArrayInput)(nil)).Elem(), InstanceTypesInstanceTypeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTypesInstanceTypeGpusInput)(nil)).Elem(), InstanceTypesInstanceTypeGpusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTypesInstanceTypeGpusArrayInput)(nil)).Elem(), InstanceTypesInstanceTypeGpusArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTypesInstanceTypeGpusGpuDeviceInput)(nil)).Elem(), InstanceTypesInstanceTypeGpusGpuDeviceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTypesInstanceTypeGpusGpuDeviceArrayInput)(nil)).Elem(), InstanceTypesInstanceTypeGpusGpuDeviceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTypesInstanceTypeGpusGpuDeviceMemoryInput)(nil)).Elem(), InstanceTypesInstanceTypeGpusGpuDeviceMemoryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTypesInstanceTypeGpusGpuDeviceMemoryArrayInput)(nil)).Elem(), InstanceTypesInstanceTypeGpusGpuDeviceMemoryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTypesInstanceTypeLocalVolumeInput)(nil)).Elem(), InstanceTypesInstanceTypeLocalVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTypesInstanceTypeLocalVolumeArrayInput)(nil)).Elem(), InstanceTypesInstanceTypeLocalVolumeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTypesInstanceTypeMemoryInput)(nil)).Elem(), InstanceTypesInstanceTypeMemoryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTypesInstanceTypeMemoryArrayInput)(nil)).Elem(), InstanceTypesInstanceTypeMemoryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTypesInstanceTypeNetworkInput)(nil)).Elem(), InstanceTypesInstanceTypeNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTypesInstanceTypeNetworkArrayInput)(nil)).Elem(), InstanceTypesInstanceTypeNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTypesInstanceTypeProcessorInput)(nil)).Elem(), InstanceTypesInstanceTypeProcessorArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTypesInstanceTypeProcessorArrayInput)(nil)).Elem(), InstanceTypesInstanceTypeProcessorArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTypesInstanceTypeRdmaInput)(nil)).Elem(), InstanceTypesInstanceTypeRdmaArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTypesInstanceTypeRdmaArrayInput)(nil)).Elem(), InstanceTypesInstanceTypeRdmaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTypesInstanceTypeVolumeInput)(nil)).Elem(), InstanceTypesInstanceTypeVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTypesInstanceTypeVolumeArrayInput)(nil)).Elem(), InstanceTypesInstanceTypeVolumeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesInstanceInput)(nil)).Elem(), InstancesInstanceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesInstanceArrayInput)(nil)).Elem(), InstancesInstanceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesInstanceGpuDeviceInput)(nil)).Elem(), InstancesInstanceGpuDeviceArgs{})
@@ -4168,6 +5385,26 @@ func init() {
 	pulumi.RegisterOutputType(InstanceSecondaryNetworkInterfaceArrayOutput{})
 	pulumi.RegisterOutputType(InstanceTagOutput{})
 	pulumi.RegisterOutputType(InstanceTagArrayOutput{})
+	pulumi.RegisterOutputType(InstanceTypesInstanceTypeOutput{})
+	pulumi.RegisterOutputType(InstanceTypesInstanceTypeArrayOutput{})
+	pulumi.RegisterOutputType(InstanceTypesInstanceTypeGpusOutput{})
+	pulumi.RegisterOutputType(InstanceTypesInstanceTypeGpusArrayOutput{})
+	pulumi.RegisterOutputType(InstanceTypesInstanceTypeGpusGpuDeviceOutput{})
+	pulumi.RegisterOutputType(InstanceTypesInstanceTypeGpusGpuDeviceArrayOutput{})
+	pulumi.RegisterOutputType(InstanceTypesInstanceTypeGpusGpuDeviceMemoryOutput{})
+	pulumi.RegisterOutputType(InstanceTypesInstanceTypeGpusGpuDeviceMemoryArrayOutput{})
+	pulumi.RegisterOutputType(InstanceTypesInstanceTypeLocalVolumeOutput{})
+	pulumi.RegisterOutputType(InstanceTypesInstanceTypeLocalVolumeArrayOutput{})
+	pulumi.RegisterOutputType(InstanceTypesInstanceTypeMemoryOutput{})
+	pulumi.RegisterOutputType(InstanceTypesInstanceTypeMemoryArrayOutput{})
+	pulumi.RegisterOutputType(InstanceTypesInstanceTypeNetworkOutput{})
+	pulumi.RegisterOutputType(InstanceTypesInstanceTypeNetworkArrayOutput{})
+	pulumi.RegisterOutputType(InstanceTypesInstanceTypeProcessorOutput{})
+	pulumi.RegisterOutputType(InstanceTypesInstanceTypeProcessorArrayOutput{})
+	pulumi.RegisterOutputType(InstanceTypesInstanceTypeRdmaOutput{})
+	pulumi.RegisterOutputType(InstanceTypesInstanceTypeRdmaArrayOutput{})
+	pulumi.RegisterOutputType(InstanceTypesInstanceTypeVolumeOutput{})
+	pulumi.RegisterOutputType(InstanceTypesInstanceTypeVolumeArrayOutput{})
 	pulumi.RegisterOutputType(InstancesInstanceOutput{})
 	pulumi.RegisterOutputType(InstancesInstanceArrayOutput{})
 	pulumi.RegisterOutputType(InstancesInstanceGpuDeviceOutput{})

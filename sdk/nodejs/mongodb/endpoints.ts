@@ -13,9 +13,65 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = volcengine.mongodb.Endpoints({
- *     instanceId: "mongo-shard-xxx",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooInstance = new volcengine.mongodb.Instance("fooInstance", {
+ *     dbEngineVersion: "MongoDB_4_0",
+ *     instanceType: "ShardedCluster",
+ *     superAccountPassword: "@acc-test-123",
+ *     nodeSpec: "mongo.shard.1c2g",
+ *     mongosNodeSpec: "mongo.mongos.1c2g",
+ *     instanceName: "acc-test-mongo-shard",
+ *     chargeType: "PostPaid",
+ *     projectName: "default",
+ *     mongosNodeNumber: 2,
+ *     shardNumber: 2,
+ *     storageSpaceGb: 20,
+ *     subnetId: fooSubnet.id,
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooAddress: volcengine.eip.Address[] = [];
+ * for (const range = {value: 0}; range.value < 2; range.value++) {
+ *     fooAddress.push(new volcengine.eip.Address(`fooAddress-${range.value}`, {
+ *         billingType: "PostPaidByBandwidth",
+ *         bandwidth: 1,
+ *         isp: "ChinaUnicom",
+ *         description: "acc-test",
+ *         projectName: "default",
+ *     }));
+ * }
+ * const fooPublic = new volcengine.mongodb.Endpoint("fooPublic", {
+ *     instanceId: fooInstance.id,
+ *     networkType: "Public",
+ *     objectId: fooInstance.mongosId,
+ *     mongosNodeIds: [
+ *         fooInstance.mongos.apply(mongos => mongos[0].mongosNodeId),
+ *         fooInstance.mongos.apply(mongos => mongos[1].mongosNodeId),
+ *     ],
+ *     eipIds: fooAddress.map(__item => __item.id),
+ * });
+ * const fooPrivate = new volcengine.mongodb.Endpoint("fooPrivate", {
+ *     instanceId: fooInstance.id,
+ *     networkType: "Private",
+ *     objectId: fooInstance.configServersId,
+ * });
+ * const fooEndpoints = volcengine.mongodb.EndpointsOutput({
+ *     instanceId: fooInstance.id,
  * });
  * ```
  */
@@ -69,9 +125,65 @@ export interface EndpointsResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = volcengine.mongodb.Endpoints({
- *     instanceId: "mongo-shard-xxx",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooInstance = new volcengine.mongodb.Instance("fooInstance", {
+ *     dbEngineVersion: "MongoDB_4_0",
+ *     instanceType: "ShardedCluster",
+ *     superAccountPassword: "@acc-test-123",
+ *     nodeSpec: "mongo.shard.1c2g",
+ *     mongosNodeSpec: "mongo.mongos.1c2g",
+ *     instanceName: "acc-test-mongo-shard",
+ *     chargeType: "PostPaid",
+ *     projectName: "default",
+ *     mongosNodeNumber: 2,
+ *     shardNumber: 2,
+ *     storageSpaceGb: 20,
+ *     subnetId: fooSubnet.id,
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooAddress: volcengine.eip.Address[] = [];
+ * for (const range = {value: 0}; range.value < 2; range.value++) {
+ *     fooAddress.push(new volcengine.eip.Address(`fooAddress-${range.value}`, {
+ *         billingType: "PostPaidByBandwidth",
+ *         bandwidth: 1,
+ *         isp: "ChinaUnicom",
+ *         description: "acc-test",
+ *         projectName: "default",
+ *     }));
+ * }
+ * const fooPublic = new volcengine.mongodb.Endpoint("fooPublic", {
+ *     instanceId: fooInstance.id,
+ *     networkType: "Public",
+ *     objectId: fooInstance.mongosId,
+ *     mongosNodeIds: [
+ *         fooInstance.mongos.apply(mongos => mongos[0].mongosNodeId),
+ *         fooInstance.mongos.apply(mongos => mongos[1].mongosNodeId),
+ *     ],
+ *     eipIds: fooAddress.map(__item => __item.id),
+ * });
+ * const fooPrivate = new volcengine.mongodb.Endpoint("fooPrivate", {
+ *     instanceId: fooInstance.id,
+ *     networkType: "Private",
+ *     objectId: fooInstance.configServersId,
+ * });
+ * const fooEndpoints = volcengine.mongodb.EndpointsOutput({
+ *     instanceId: fooInstance.id,
  * });
  * ```
  */

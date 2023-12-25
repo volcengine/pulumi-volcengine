@@ -5,6 +5,1208 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export namespace alb {
+    export interface AclAclEntry {
+        /**
+         * The description of the AclEntry.
+         */
+        description?: string;
+        /**
+         * The content of the AclEntry.
+         */
+        entry: string;
+    }
+
+    export interface AclsAcl {
+        /**
+         * The entries info of acl.
+         */
+        aclEntries: outputs.alb.AclsAclAclEntry[];
+        /**
+         * The count of acl entry.
+         */
+        aclEntryCount: number;
+        /**
+         * The ID of Acl.
+         */
+        aclId: string;
+        /**
+         * The name of acl.
+         */
+        aclName: string;
+        /**
+         * Creation time of Acl.
+         */
+        createTime: string;
+        /**
+         * The description of Acl.
+         */
+        description: string;
+        /**
+         * The ID of Acl.
+         */
+        id: string;
+        /**
+         * The listeners of acl.
+         */
+        listeners: outputs.alb.AclsAclListener[];
+        /**
+         * The name of project.
+         */
+        projectName: string;
+        /**
+         * Update time of Acl.
+         */
+        updateTime: string;
+    }
+
+    export interface AclsAclAclEntry {
+        /**
+         * The description of Acl.
+         */
+        description: string;
+        /**
+         * The info of entry.
+         */
+        entry: string;
+    }
+
+    export interface AclsAclListener {
+        /**
+         * The type of acl.
+         */
+        aclType: string;
+        /**
+         * The ID of Listener.
+         */
+        listenerId: string;
+        /**
+         * The Name of Listener.
+         */
+        listenerName: string;
+        /**
+         * The port info of listener.
+         */
+        port: number;
+        /**
+         * The protocol info of listener.
+         */
+        protocol: string;
+    }
+
+    export interface AlbEipBillingConfig {
+        /**
+         * The peek bandwidth of the Ipv6 EIP which automatically assigned to the Alb. Unit: Mbps.
+         */
+        bandwidth: number;
+        /**
+         * The billing type of the EIP which automatically assigned to the Alb. Valid values: `PostPaidByBandwidth`, `PostPaidByTraffic`.
+         */
+        eipBillingType: string;
+        /**
+         * The ISP of the Ipv6 EIP which automatically associated to the Alb, the value can be `BGP`.
+         */
+        isp: string;
+    }
+
+    export interface AlbIpv6EipBillingConfig {
+        /**
+         * The peek bandwidth of the EIP which automatically assigned to the Alb. Unit: Mbps.
+         */
+        bandwidth: number;
+        /**
+         * The billing type of the Tpv6 EIP which automatically assigned to the Alb. Valid values: `PostPaidByBandwidth`, `PostPaidByTraffic`.
+         */
+        billingType: string;
+        /**
+         * The ISP of the EIP which automatically associated to the Alb, the value can be `BGP`.
+         *
+         * The `ipv6EipBillingConfig` object supports the following:
+         */
+        isp: string;
+    }
+
+    export interface AlbTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface AlbZoneMapping {
+        /**
+         * The IP address information of the Alb in this availability zone.
+         */
+        loadBalancerAddresses: outputs.alb.AlbZoneMappingLoadBalancerAddress[];
+        /**
+         * The subnet id of the Alb in this availability zone.
+         */
+        subnetId: string;
+        /**
+         * The availability zone id of the Alb.
+         */
+        zoneId: string;
+    }
+
+    export interface AlbZoneMappingLoadBalancerAddress {
+        /**
+         * The Eip address of the Alb in this availability zone.
+         */
+        eipAddress: string;
+        /**
+         * The Eip id of alb instance in this availability zone.
+         */
+        eipId: string;
+        /**
+         * The Eni address of the Alb in this availability zone.
+         */
+        eniAddress: string;
+        /**
+         * The Eni id of the Alb in this availability zone.
+         */
+        eniId: string;
+        /**
+         * The Eni Ipv6 address of the Alb in this availability zone.
+         */
+        eniIpv6Address: string;
+        /**
+         * The Ipv6 Eip id of alb instance in this availability zone.
+         */
+        ipv6EipId: string;
+    }
+
+    export interface AlbsAlb {
+        /**
+         * The access log information of the Alb.
+         */
+        accessLogs: outputs.alb.AlbsAlbAccessLog[];
+        /**
+         * The address ip version of the Alb, valid value: `IPv4`, `DualStack`.
+         */
+        addressIpVersion: string;
+        /**
+         * The business status of the Alb, valid value:`Normal`, `FinancialLocked`.
+         */
+        businessStatus: string;
+        /**
+         * The create time of the Alb.
+         */
+        createTime: string;
+        /**
+         * The deletion protection function of the Alb instance is turned on or off.
+         */
+        deleteProtection: string;
+        /**
+         * The expected deleted time of the Alb. This parameter has a query value only when the status of the Alb instance is `FinancialLocked`.
+         */
+        deletedTime: string;
+        /**
+         * The description of the Alb.
+         */
+        description: string;
+        /**
+         * The DNS name.
+         */
+        dnsName: string;
+        /**
+         * The health log information of the Alb.
+         */
+        healthLogs: outputs.alb.AlbsAlbHealthLog[];
+        /**
+         * The ID of the Alb.
+         */
+        id: string;
+        /**
+         * The listener information of the Alb.
+         */
+        listeners: outputs.alb.AlbsAlbListener[];
+        /**
+         * The billing type of the Alb.
+         */
+        loadBalancerBillingType: number;
+        /**
+         * The ID of the Alb.
+         */
+        loadBalancerId: string;
+        /**
+         * The name of the Alb.
+         */
+        loadBalancerName: string;
+        /**
+         * The local addresses of the Alb.
+         */
+        localAddresses: string[];
+        /**
+         * The reason why Alb is locked. This parameter has a query value only when the status of the Alb instance is `FinancialLocked`.
+         */
+        lockReason: string;
+        /**
+         * The overdue time of the Alb. This parameter has a query value only when the status of the Alb instance is `FinancialLocked`.
+         */
+        overdueTime: string;
+        /**
+         * The project name of the Alb.
+         */
+        projectName: string;
+        /**
+         * The status of the Alb.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.alb.AlbsAlbTag[];
+        /**
+         * The tls access log information of the Alb.
+         */
+        tlsAccessLogs: outputs.alb.AlbsAlbTlsAccessLog[];
+        /**
+         * The type of the Alb, valid value: `public`, `private`.
+         */
+        type: string;
+        /**
+         * The update time of the Alb.
+         */
+        updateTime: string;
+        /**
+         * The vpc id which Alb belongs to.
+         */
+        vpcId: string;
+        /**
+         * Configuration information of the Alb instance in different Availability Zones.
+         */
+        zoneMappings: outputs.alb.AlbsAlbZoneMapping[];
+    }
+
+    export interface AlbsAlbAccessLog {
+        /**
+         * The bucket name where the logs are stored.
+         */
+        bucketName: string;
+        /**
+         * Whether the tls access log function is enabled.
+         */
+        enabled: boolean;
+    }
+
+    export interface AlbsAlbHealthLog {
+        /**
+         * Whether the tls access log function is enabled.
+         */
+        enabled: boolean;
+        /**
+         * The TLS project id bound to the access log.
+         */
+        projectId: string;
+        /**
+         * The TLS topic id bound to the access log.
+         */
+        topicId: string;
+    }
+
+    export interface AlbsAlbListener {
+        /**
+         * The listener id of the Alb.
+         */
+        listenerId: string;
+        /**
+         * The listener name of the Alb.
+         */
+        listenerName: string;
+    }
+
+    export interface AlbsAlbTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface AlbsAlbTlsAccessLog {
+        /**
+         * Whether the tls access log function is enabled.
+         */
+        enabled: boolean;
+        /**
+         * The TLS project id bound to the access log.
+         */
+        projectId: string;
+        /**
+         * The TLS topic id bound to the access log.
+         */
+        topicId: string;
+    }
+
+    export interface AlbsAlbZoneMapping {
+        /**
+         * The IP address information of the Alb in this availability zone.
+         */
+        loadBalancerAddresses: outputs.alb.AlbsAlbZoneMappingLoadBalancerAddress[];
+        /**
+         * The subnet id of the Alb in this availability zone.
+         */
+        subnetId: string;
+        /**
+         * The availability zone id of the Alb.
+         */
+        zoneId: string;
+    }
+
+    export interface AlbsAlbZoneMappingLoadBalancerAddress {
+        /**
+         * The Eip address of the Alb.
+         */
+        eipAddress: string;
+        /**
+         * The Eip id of alb instance in this availability zone.
+         */
+        eipId: string;
+        /**
+         * The Eip information of the Alb in this availability zone.
+         */
+        eips: outputs.alb.AlbsAlbZoneMappingLoadBalancerAddressEip[];
+        /**
+         * The private ip address of the Alb.
+         */
+        eniAddress: string;
+        /**
+         * The Eni id of the Alb in this availability zone.
+         */
+        eniId: string;
+        /**
+         * The Eni Ipv6 address of the Alb in this availability zone.
+         */
+        eniIpv6Address: string;
+        /**
+         * The Ipv6 Eip id of alb instance in this availability zone.
+         */
+        ipv6EipId: string;
+        /**
+         * The Ipv6 Eip information of the Alb in this availability zone.
+         */
+        ipv6Eips: outputs.alb.AlbsAlbZoneMappingLoadBalancerAddressIpv6Eip[];
+    }
+
+    export interface AlbsAlbZoneMappingLoadBalancerAddressEip {
+        /**
+         * The association mode of the Alb. This parameter has a query value only when the type of the Eip is `anycast`.
+         */
+        associationMode: string;
+        /**
+         * The peek bandwidth of the Ipv6 Eip assigned to Alb. Units: Mbps.
+         */
+        bandwidth: number;
+        /**
+         * The Eip address of the Alb.
+         */
+        eipAddress: string;
+        /**
+         * The billing type of the Eip assigned to Alb. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+         */
+        eipBillingType: string;
+        /**
+         * The Eip type of the Alb.
+         */
+        eipType: string;
+        /**
+         * The ISP of the Ipv6 Eip assigned to Alb, the value can be `BGP`.
+         */
+        isp: string;
+        /**
+         * The pop locations of the Alb. This parameter has a query value only when the type of the Eip is `anycast`.
+         */
+        popLocations: outputs.alb.AlbsAlbZoneMappingLoadBalancerAddressEipPopLocation[];
+        /**
+         * The security protection types of the Alb.
+         */
+        securityProtectionTypes: string[];
+    }
+
+    export interface AlbsAlbZoneMappingLoadBalancerAddressEipPopLocation {
+        /**
+         * The pop id of the Anycast Eip.
+         */
+        popId: string;
+        /**
+         * The pop name of the Anycast Eip.
+         */
+        popName: string;
+    }
+
+    export interface AlbsAlbZoneMappingLoadBalancerAddressIpv6Eip {
+        /**
+         * The peek bandwidth of the Ipv6 Eip assigned to Alb. Units: Mbps.
+         */
+        bandwidth: number;
+        /**
+         * The billing type of the Ipv6 Eip assigned to Alb. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic`.
+         */
+        billingType: string;
+        /**
+         * The ISP of the Ipv6 Eip assigned to Alb, the value can be `BGP`.
+         */
+        isp: string;
+    }
+
+    export interface AlbsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface CaCertificatesCertificate {
+        /**
+         * The ID of the CA certificate.
+         */
+        caCertificateId: string;
+        /**
+         * The name of the CA certificate.
+         */
+        caCertificateName: string;
+        /**
+         * The type of the CA certificate.
+         */
+        certificateType: string;
+        /**
+         * The create time of the CA Certificate.
+         */
+        createTime: string;
+        /**
+         * The description of the CA certificate.
+         */
+        description: string;
+        /**
+         * The domain name of the CA Certificate.
+         */
+        domainName: string;
+        /**
+         * The expire time of the CA Certificate.
+         */
+        expiredAt: string;
+        /**
+         * The ID list of the CA Listener.
+         */
+        listeners: string[];
+        /**
+         * The project name of the CA certificate.
+         */
+        projectName: string;
+        /**
+         * The status of the CA Certificate.
+         */
+        status: string;
+    }
+
+    export interface CertificatesCertificate {
+        /**
+         * The ID of the Certificate.
+         */
+        certificateId: string;
+        /**
+         * The Name of Certificate.
+         */
+        certificateName: string;
+        /**
+         * The type of the Certificate.
+         */
+        certificateType: string;
+        /**
+         * The create time of the Certificate.
+         */
+        createTime: string;
+        /**
+         * The description of the Certificate.
+         */
+        description: string;
+        /**
+         * The domain name of the Certificate.
+         */
+        domainName: string;
+        /**
+         * The expire time of the Certificate.
+         */
+        expiredAt: string;
+        /**
+         * The ID of the Certificate.
+         */
+        id: string;
+        /**
+         * The ID list of the Listener.
+         */
+        listeners: string[];
+        /**
+         * The ProjectName of the Certificate.
+         */
+        projectName: string;
+        /**
+         * The status of the Certificate.
+         */
+        status: string;
+    }
+
+    export interface CustomizedCfgsCfg {
+        /**
+         * The create time of CustomizedCfg.
+         */
+        createTime: string;
+        /**
+         * The content of CustomizedCfg.
+         */
+        customizedCfgContent: string;
+        /**
+         * The ID of CustomizedCfg.
+         */
+        customizedCfgId: string;
+        /**
+         * The name of the CustomizedCfg.
+         */
+        customizedCfgName: string;
+        /**
+         * The description of CustomizedCfg.
+         */
+        description: string;
+        /**
+         * The ID of CustomizedCfg.
+         */
+        id: string;
+        /**
+         * The listeners of CustomizedCfg.
+         */
+        listeners: outputs.alb.CustomizedCfgsCfgListener[];
+        /**
+         * The project name of the CustomizedCfg.
+         */
+        projectName: string;
+        /**
+         * The status of CustomizedCfg.
+         */
+        status: string;
+        /**
+         * The update time of CustomizedCfg.
+         */
+        updateTime: string;
+    }
+
+    export interface CustomizedCfgsCfgListener {
+        /**
+         * The id of the listener.
+         */
+        listenerId: string;
+        /**
+         * The Name of Listener.
+         */
+        listenerName: string;
+        /**
+         * The port info of listener.
+         */
+        port: number;
+        /**
+         * The protocol info of listener.
+         */
+        protocol: string;
+    }
+
+    export interface HealthCheckTemplatesHealthCheckTemplate {
+        /**
+         * The description of health check template.
+         */
+        description: string;
+        /**
+         * The domain name to health check.
+         */
+        healthCheckDomain: string;
+        /**
+         * The normal HTTP status code for health check, the default is http_2xx, http_3xx, separated by commas.
+         */
+        healthCheckHttpCode: string;
+        /**
+         * The HTTP version of health check.
+         */
+        healthCheckHttpVersion: string;
+        /**
+         * The interval for performing health checks, the default value is 2, and the value is 1-300.
+         */
+        healthCheckInterval: number;
+        /**
+         * The health check method,default is `GET`,support `GET` and ``HEAD.
+         */
+        healthCheckMethod: string;
+        /**
+         * The protocol of health check,only support HTTP.
+         */
+        healthCheckProtocol: string;
+        /**
+         * The ID of health check template.
+         */
+        healthCheckTemplateId: string;
+        /**
+         * The name of health check template to query.
+         */
+        healthCheckTemplateName: string;
+        /**
+         * The timeout of health check response,the default value is 2, and the value is 1-60.
+         */
+        healthCheckTimeout: number;
+        /**
+         * The uri to health check,default is `/`.
+         */
+        healthCheckUri: string;
+        /**
+         * The healthy threshold of the health check, the default is 3, the value is 2-10.
+         */
+        healthyThreshold: number;
+        /**
+         * The id of the health check template.
+         */
+        id: string;
+        /**
+         * The unhealthy threshold of the health check, the default is 3, the value is 2-10.
+         */
+        unhealthyThreshold: number;
+    }
+
+    export interface ListenerDomainExtensionsDomainExtension {
+        /**
+         * The server certificate ID that domain used.
+         */
+        certificateId: string;
+        /**
+         * The domain.
+         */
+        domain: string;
+        /**
+         * The extension domain ID.
+         */
+        domainExtensionId: string;
+        /**
+         * The ID of the Listener.
+         */
+        id: string;
+        /**
+         * A Listener ID.
+         */
+        listenerId: string;
+    }
+
+    export interface ListenersListener {
+        /**
+         * The ID of the access control policy group bound to the listener, only returned when the AclStatus parameter is on.
+         */
+        aclIds: string[];
+        /**
+         * Whether to enable the access control function,valid value is on or off.
+         */
+        aclStatus: string;
+        /**
+         * The access control type.
+         */
+        aclType: string;
+        /**
+         * CA certificate ID associated with HTTPS listener.
+         */
+        caCertificateId: string;
+        /**
+         * The server certificate ID that domain used.
+         */
+        certificateId: string;
+        /**
+         * The create time of the Listener.
+         */
+        createTime: string;
+        /**
+         * The customized configuration ID, the value is empty string when not bound.
+         */
+        customizedCfgId: string;
+        /**
+         * The description of listener.
+         */
+        description: string;
+        /**
+         * The HTTPS listener association list of extension domains for.
+         */
+        domainExtensions: outputs.alb.ListenersListenerDomainExtension[];
+        /**
+         * The HTTP2 feature switch,valid value is on or off.
+         */
+        enableHttp2: string;
+        /**
+         * The QUIC feature switch,valid value is on or off.
+         */
+        enableQuic: string;
+        /**
+         * The enable status of the Listener.
+         */
+        enabled: string;
+        /**
+         * The ID of the Listener.
+         */
+        id: string;
+        /**
+         * The ID of the Listener.
+         */
+        listenerId: string;
+        /**
+         * The name of the Listener.
+         */
+        listenerName: string;
+        /**
+         * The id of the Alb.
+         */
+        loadBalancerId: string;
+        /**
+         * The port receiving request of the Listener.
+         */
+        port: number;
+        /**
+         * The project name of the listener.
+         */
+        projectName: string;
+        /**
+         * The protocol of the Listener.
+         */
+        protocol: string;
+        /**
+         * The ID of server group.
+         */
+        serverGroupId: string;
+        /**
+         * The list of server groups with associated listeners.
+         */
+        serverGroups: outputs.alb.ListenersListenerServerGroup[];
+        /**
+         * The status of the Listener.
+         */
+        status: string;
+        /**
+         * The update time of the Listener.
+         */
+        updateTime: string;
+    }
+
+    export interface ListenersListenerDomainExtension {
+        /**
+         * The server certificate ID that domain used.
+         */
+        certificateId: string;
+        /**
+         * The domain.
+         */
+        domain: string;
+        /**
+         * The extension domain ID.
+         */
+        domainExtensionId: string;
+        /**
+         * The ID of the Listener.
+         */
+        listenerId: string;
+    }
+
+    export interface ListenersListenerServerGroup {
+        /**
+         * The ID of server group.
+         */
+        serverGroupId: string;
+        /**
+         * The name of server group.
+         */
+        serverGroupName: string;
+    }
+
+    export interface RuleRedirectConfig {
+        /**
+         * The redirect domain, only support exact domain name.
+         */
+        redirectDomain: string;
+        /**
+         * The redirect http code, support 301(default), 302, 307, 308.
+         */
+        redirectHttpCode?: string;
+        /**
+         * The redirect port.
+         */
+        redirectPort: string;
+        /**
+         * The redirect protocol, support HTTP, HTTPS(default).
+         */
+        redirectProtocol?: string;
+        /**
+         * The redirect URI.
+         */
+        redirectUri: string;
+    }
+
+    export interface RuleRewriteConfig {
+        /**
+         * Rewrite path.
+         */
+        rewritePath: string;
+    }
+
+    export interface RulesRule {
+        /**
+         * The Description of Rule.
+         */
+        description: string;
+        /**
+         * The Domain of Rule.
+         */
+        domain: string;
+        /**
+         * The Id of Rule.
+         */
+        id: string;
+        /**
+         * Redirect related configuration.
+         */
+        redirectConfigs: outputs.alb.RulesRuleRedirectConfig[];
+        /**
+         * The list of rewrite configurations.
+         */
+        rewriteConfigs: outputs.alb.RulesRuleRewriteConfig[];
+        /**
+         * Rewrite configuration switch for forwarding rules, only allows configuration and takes effect when RuleAction is empty (i.e., forwarding to server group). Only available for whitelist users, please submit an application to experience. Supported values are as follows:
+         * on: enable.
+         * off: disable.
+         */
+        rewriteEnabled: string;
+        /**
+         * The forwarding rule action, if this parameter is empty, forward to server group, if value is `Redirect`, will redirect.
+         */
+        ruleAction: string;
+        /**
+         * The Id of Rule.
+         */
+        ruleId: string;
+        /**
+         * The Id of Server Group.
+         */
+        serverGroupId: string;
+        /**
+         * Forwarding rule QPS rate limiting switch:
+         * on: enable.
+         * off: disable (default).
+         */
+        trafficLimitEnabled: string;
+        /**
+         * When Rules.N.TrafficLimitEnabled is turned on, this field is required. Requests per second. Valid values are between 100 and 100000.
+         */
+        trafficLimitQps: number;
+        /**
+         * The Url of Rule.
+         */
+        url: string;
+    }
+
+    export interface RulesRuleRedirectConfig {
+        /**
+         * The redirect domain.
+         */
+        redirectDomain: string;
+        /**
+         * The redirect HTTP code,support 301(default), 302, 307, 308.
+         */
+        redirectHttpCode: string;
+        /**
+         * The redirect port.
+         */
+        redirectPort: string;
+        /**
+         * The redirect protocol,support HTTP,HTTPS(default).
+         */
+        redirectProtocol: string;
+        /**
+         * The redirect URI.
+         */
+        redirectUri: string;
+    }
+
+    export interface RulesRuleRewriteConfig {
+        /**
+         * Rewrite path.
+         */
+        rewritePath: string;
+    }
+
+    export interface ServerGroupHealthCheck {
+        /**
+         * The domain of health check.
+         */
+        domain: string;
+        /**
+         * The enable status of health check function. Valid values: `on`, `off`. Default is `on`.
+         */
+        enabled?: string;
+        /**
+         * The healthy threshold of health check. Valid value range in 2~10. Default is 3.
+         */
+        healthyThreshold?: number;
+        /**
+         * The normal http status code of health check, the value can be `http2xx` or `http3xx` or `http4xx` or `http5xx`.
+         */
+        httpCode: string;
+        /**
+         * The http version of health check. Valid values: `HTTP1.0`, `HTTP1.1`. Default is `HTTP1.0`.
+         */
+        httpVersion?: string;
+        /**
+         * The interval executing health check. Unit: second. Valid value range in 1~300. Default is 2.
+         */
+        interval?: number;
+        /**
+         * The method of health check. Valid values: `GET` or `HEAD`. Default is `HEAD`.
+         */
+        method?: string;
+        /**
+         * The response timeout of health check. Unit: second. Valid value range in 1~60. Default is 2.
+         */
+        timeout?: number;
+        /**
+         * The unhealthy threshold of health check. Valid value range in 2~10. Default is 3.
+         */
+        unhealthyThreshold?: number;
+        /**
+         * The uri of health check.
+         */
+        uri: string;
+    }
+
+    export interface ServerGroupServersServer {
+        /**
+         * The description of the instance.
+         */
+        description: string;
+        /**
+         * The server id of instance in ServerGroup.
+         */
+        id: string;
+        /**
+         * The ID of ecs instance or the network card bound to ecs instance.
+         */
+        instanceId: string;
+        /**
+         * The private ip of the instance.
+         */
+        ip: string;
+        /**
+         * The port receiving request.
+         */
+        port: number;
+        /**
+         * The server id of instance in ServerGroup.
+         */
+        serverId: string;
+        /**
+         * The type of instance. Optional choice contains `ecs`, `eni`.
+         */
+        type: string;
+        /**
+         * The weight of the instance.
+         */
+        weight: number;
+    }
+
+    export interface ServerGroupStickySessionConfig {
+        /**
+         * The cookie name of the sticky session. This field is required when the value of the `stickySessionType` is `server`.
+         */
+        cookie: string;
+        /**
+         * The cookie timeout of the sticky session. Unit: second. Valid value range in 1~86400. Default is 1000. This field is required when the value of the `stickySessionType` is `insert`.
+         */
+        cookieTimeout?: number;
+        /**
+         * The enable status of sticky session. Valid values: `on`, `off`. Default is `off`.
+         */
+        stickySessionEnabled?: string;
+        /**
+         * The cookie handle type of the sticky session. Valid values: `insert`, `server`. Default is `insert`. This field is required when the value of the `stickySessionEnabled` is `on`.
+         */
+        stickySessionType?: string;
+    }
+
+    export interface ServerGroupsServerGroup {
+        /**
+         * The create time of the Alb server group.
+         */
+        createTime: string;
+        /**
+         * The description of the server group server.
+         */
+        description: string;
+        /**
+         * The health check config of the Alb server group.
+         */
+        healthChecks: outputs.alb.ServerGroupsServerGroupHealthCheck[];
+        /**
+         * The ID of the Alb server group.
+         */
+        id: string;
+        /**
+         * The listener information of the Alb server group.
+         */
+        listeners: string[];
+        /**
+         * The project name of Alb server group.
+         */
+        projectName: string;
+        /**
+         * The scheduler algorithm of the Alb server group.
+         */
+        scheduler: string;
+        /**
+         * The server count of the Alb server group.
+         */
+        serverCount: number;
+        /**
+         * The ID of the Alb server group.
+         */
+        serverGroupId: string;
+        /**
+         * The name of the Alb server group.
+         */
+        serverGroupName: string;
+        /**
+         * The type of Alb server group. Valid values: `instance`, `ip`.
+         */
+        serverGroupType: string;
+        /**
+         * The server information of the Alb server group.
+         */
+        servers: outputs.alb.ServerGroupsServerGroupServer[];
+        /**
+         * The status of the Alb server group.
+         */
+        status: string;
+        /**
+         * The sticky session config of the Alb server group.
+         */
+        stickySessionConfigs: outputs.alb.ServerGroupsServerGroupStickySessionConfig[];
+        /**
+         * The update time of the Alb server group.
+         */
+        updateTime: string;
+        /**
+         * The vpc id of the Alb server group.
+         */
+        vpcId: string;
+    }
+
+    export interface ServerGroupsServerGroupHealthCheck {
+        /**
+         * The domain of health check.
+         */
+        domain: string;
+        /**
+         * The enable status of health check function.
+         */
+        enabled: string;
+        /**
+         * The healthy threshold of health check.
+         */
+        healthyThreshold: number;
+        httpCode?: string;
+        httpVersion?: string;
+        /**
+         * The interval executing health check.
+         */
+        interval: number;
+        /**
+         * The method of health check.
+         */
+        method: string;
+        protocol?: string;
+        timeout?: number;
+        /**
+         * The unhealthy threshold of health check.
+         */
+        unhealthyThreshold: number;
+        /**
+         * The uri of health check.
+         */
+        uri: string;
+    }
+
+    export interface ServerGroupsServerGroupServer {
+        /**
+         * The description of the server group server.
+         */
+        description: string;
+        /**
+         * The id of the ecs instance or the network interface.
+         */
+        instanceId: string;
+        /**
+         * The private ip of the server group server.
+         */
+        ip: string;
+        /**
+         * The port receiving request of the server group server.
+         */
+        port: number;
+        /**
+         * Whether to enable the remote IP function.
+         */
+        remoteEnabled: string;
+        /**
+         * The id of the server group server.
+         */
+        serverId: string;
+        /**
+         * The type of the server group server.
+         */
+        type: string;
+        /**
+         * The weight of the server group server.
+         */
+        weight: number;
+    }
+
+    export interface ServerGroupsServerGroupStickySessionConfig {
+        /**
+         * The cookie name of the sticky session.
+         */
+        cookie: string;
+        /**
+         * The cookie timeout of the sticky session.
+         */
+        cookieTimeout: number;
+        /**
+         * The enable status of sticky session.
+         */
+        stickySessionEnabled: string;
+        /**
+         * The cookie handle type of the sticky session.
+         */
+        stickySessionType: string;
+    }
+
+    export interface ZonesZone {
+        /**
+         * The id of the zone.
+         */
+        id: string;
+        /**
+         * The id of the zone.
+         */
+        zoneId: string;
+    }
+
+}
+
 export namespace autoscaling {
     export interface ScalingActivitiesActivity {
         /**
@@ -614,6 +1816,128 @@ export namespace autoscaling {
          * The status of the scaling policy.
          */
         status: string;
+    }
+
+}
+
+export namespace bandwidth_package {
+    export interface BandwidthPackageTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface BandwidthPackagesPackage {
+        /**
+         * The bandwidth of the bandwidth package.
+         */
+        bandwidth: number;
+        /**
+         * The id of the bandwidth package.
+         */
+        bandwidthPackageId: string;
+        /**
+         * Shared bandwidth package name to be queried.
+         */
+        bandwidthPackageName: string;
+        /**
+         * The billing type of the bandwidth package.
+         */
+        billingType: string;
+        /**
+         * The business status of the bandwidth package.
+         */
+        businessStatus: string;
+        /**
+         * The creation time of the bandwidth package.
+         */
+        creationTime: string;
+        /**
+         * The deleted time of the bandwidth package.
+         */
+        deletedTime: string;
+        /**
+         * List of public IP information included in the shared bandwidth package.
+         */
+        eipAddresses: outputs.bandwidth_package.BandwidthPackagesPackageEipAddress[];
+        /**
+         * The expiration time of the bandwidth package.
+         */
+        expiredTime: string;
+        /**
+         * The id of the bandwidth package.
+         */
+        id: string;
+        /**
+         * Line types for shared bandwidth packages.
+         */
+        isp: string;
+        /**
+         * The overdue time of the bandwidth package.
+         */
+        overdueTime: string;
+        /**
+         * The project name of the bandwidth package to be queried.
+         */
+        projectName: string;
+        /**
+         * The IP protocol values for shared bandwidth packages are as follows: `IPv4`: IPv4 protocol. `IPv6`: IPv6 protocol.
+         */
+        protocol: string;
+        /**
+         * Security protection types for shared bandwidth packages. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced`.
+         */
+        securityProtectionTypes: string[];
+        /**
+         * The status of the bandwidth package.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.bandwidth_package.BandwidthPackagesPackageTag[];
+        /**
+         * The update time of the bandwidth package.
+         */
+        updateTime: string;
+    }
+
+    export interface BandwidthPackagesPackageEipAddress {
+        /**
+         * The id of the eip.
+         */
+        allocationId: string;
+        /**
+         * The eip address.
+         */
+        eipAddress: string;
+    }
+
+    export interface BandwidthPackagesPackageTag {
+        /**
+         * The key of the tag.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface BandwidthPackagesTagFilter {
+        /**
+         * The key of the tag.
+         */
+        key: string;
+        /**
+         * The values of the tag.
+         */
+        values: string[];
     }
 
 }
@@ -1545,6 +2869,10 @@ export namespace clb {
          * The connection drain timeout of the Listener.
          */
         connectionDrainTimeout: number;
+        /**
+         * The name of the cookie for session persistence configured on the backend server.
+         */
+        cookie: string;
         /**
          * The create time of the Listener.
          */
@@ -3029,6 +4357,176 @@ export namespace ecs {
         value: string;
     }
 
+    export interface InstanceTypesInstanceType {
+        /**
+         * The CPU benchmark performance that can be provided steadily by on-demand instances is determined by the instance type.
+         */
+        baselineCredit: number;
+        /**
+         * The GPU device info of Instance.
+         */
+        gpus: outputs.ecs.InstanceTypesInstanceTypeGpus[];
+        /**
+         * The CPU credits obtained at once when creating a on-demand performance instance are fixed at 30 credits per vCPU.
+         */
+        initialCredit: number;
+        /**
+         * The instance type family.
+         */
+        instanceTypeFamily: string;
+        /**
+         * The id of the instance type.
+         */
+        instanceTypeId: string;
+        /**
+         * Local disk configuration information corresponding to instance specifications.
+         */
+        localVolumes: outputs.ecs.InstanceTypesInstanceTypeLocalVolume[];
+        /**
+         * Memory information of instance specifications.
+         */
+        memories: outputs.ecs.InstanceTypesInstanceTypeMemory[];
+        /**
+         * Network information of instance specifications.
+         */
+        networks: outputs.ecs.InstanceTypesInstanceTypeNetwork[];
+        /**
+         * CPU information of instance specifications.
+         */
+        processors: outputs.ecs.InstanceTypesInstanceTypeProcessor[];
+        /**
+         * RDMA Specification Information.
+         */
+        rdmas: outputs.ecs.InstanceTypesInstanceTypeRdma[];
+        /**
+         * Cloud disk information for instance specifications.
+         */
+        volumes: outputs.ecs.InstanceTypesInstanceTypeVolume[];
+    }
+
+    export interface InstanceTypesInstanceTypeGpus {
+        /**
+         * GPU device information list.
+         */
+        gpuDevices: outputs.ecs.InstanceTypesInstanceTypeGpusGpuDevice[];
+    }
+
+    export interface InstanceTypesInstanceTypeGpusGpuDevice {
+        /**
+         * The number of local disks mounted on the instance.
+         */
+        count: number;
+        /**
+         * Memory information of instance specifications.
+         */
+        memories: outputs.ecs.InstanceTypesInstanceTypeGpusGpuDeviceMemory[];
+        /**
+         * The Product Name of GPU device.
+         */
+        productName: string;
+    }
+
+    export interface InstanceTypesInstanceTypeGpusGpuDeviceMemory {
+        /**
+         * The Encrypted Memory Size of GPU device.
+         */
+        encryptedSize: number;
+        /**
+         * Memory size, unit: MiB.
+         */
+        size: number;
+    }
+
+    export interface InstanceTypesInstanceTypeLocalVolume {
+        /**
+         * The number of local disks mounted on the instance.
+         */
+        count: number;
+        /**
+         * Memory size, unit: MiB.
+         */
+        size: number;
+        /**
+         * The type of volume.
+         */
+        volumeType: string;
+    }
+
+    export interface InstanceTypesInstanceTypeMemory {
+        /**
+         * The Encrypted Memory Size of GPU device.
+         */
+        encryptedSize: number;
+        /**
+         * Memory size, unit: MiB.
+         */
+        size: number;
+    }
+
+    export interface InstanceTypesInstanceTypeNetwork {
+        /**
+         * Network benchmark bandwidth capacity (out/in), unit: Mbps.
+         */
+        baselineBandwidthMbps: number;
+        /**
+         * Peak network bandwidth capacity (out/in), unit: Mbps.
+         */
+        maximumBandwidthMbps: number;
+        /**
+         * Maximum number of elastic network interfaces supported for attachment.
+         */
+        maximumNetworkInterfaces: number;
+        /**
+         * Maximum number of IPv4 addresses for a single elastic network interface.
+         */
+        maximumPrivateIpv4AddressesPerNetworkInterface: number;
+        /**
+         * Maximum queue number for a single elastic network interface, including the queue number supported by the primary network interface and the auxiliary network interface.
+         */
+        maximumQueuesPerNetworkInterface: number;
+        /**
+         * Network packet sending and receiving capacity (in+out), unit: Kpps.
+         */
+        maximumThroughputKpps: number;
+    }
+
+    export interface InstanceTypesInstanceTypeProcessor {
+        /**
+         * CPU clock speed, unit: GHz.
+         */
+        baseFrequency: number;
+        /**
+         * The number of ECS instance CPU cores.
+         */
+        cpus: number;
+        /**
+         * CPU model.
+         */
+        model: string;
+        /**
+         * CPU Turbo Boost, unit: GHz.
+         */
+        turboFrequency: number;
+    }
+
+    export interface InstanceTypesInstanceTypeRdma {
+        /**
+         * Number of RDMA network cards.
+         */
+        rdmaNetworkInterfaces: number;
+    }
+
+    export interface InstanceTypesInstanceTypeVolume {
+        /**
+         * The maximum number of volumes.
+         */
+        maximumCount: number;
+        /**
+         * List of supported volume types.
+         */
+        supportedVolumeTypes: string[];
+    }
+
     export interface InstancesInstance {
         /**
          * The number of ECS instance CPU cores.
@@ -3625,6 +5123,10 @@ export namespace eip {
          */
         bandwidth: number;
         /**
+         * The id of the bandwidth package.
+         */
+        bandwidthPackageId: string;
+        /**
          * The billing type of the EIP.
          */
         billingType: string;
@@ -3680,6 +5182,10 @@ export namespace eip {
          * The ProjectName of EIP.
          */
         projectName: string;
+        /**
+         * Security protection types for shared bandwidth packages. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced`.
+         */
+        securityProtectionTypes: string[];
         /**
          * A status of EIP, the value can be `Attaching` or `Detaching` or `Attached` or `Available`.
          */
@@ -4470,13 +5976,37 @@ export namespace iam {
 
     export interface UsersUser {
         /**
-         * The account id of the user.
+         * Main account ID to which the sub-user belongs.
          */
         accountId: string;
         /**
          * The create date of the user.
          */
         createDate: string;
+        /**
+         * The description of the user.
+         */
+        description: string;
+        /**
+         * The display name of the user.
+         */
+        displayName: string;
+        /**
+         * The email of the user.
+         */
+        email: string;
+        /**
+         * Whether the email has been verified.
+         */
+        emailIsVerify: boolean;
+        /**
+         * The mobile phone of the user.
+         */
+        mobilePhone: string;
+        /**
+         * Whether the phone number has been verified.
+         */
+        mobilePhoneIsVerify: boolean;
         /**
          * The trn of the user.
          */
@@ -4485,6 +6015,10 @@ export namespace iam {
          * The update date of the user.
          */
         updateDate: string;
+        /**
+         * The id of the user.
+         */
+        userId: string;
         /**
          * The name of the user.
          */
@@ -4582,6 +6116,21 @@ export namespace mongodb {
         nodeId: string;
     }
 
+    export interface InstanceMongo {
+        /**
+         * The mongos node ID.
+         */
+        mongosNodeId: string;
+        /**
+         * The spec of node.
+         */
+        nodeSpec: string;
+        /**
+         * The node status.
+         */
+        nodeStatus: string;
+    }
+
     export interface InstanceParameterLogsParameterChangeLogs {
         /**
          * The modifying time of parameter.
@@ -4609,30 +6158,7 @@ export namespace mongodb {
         parameterStatus: string;
     }
 
-    export interface InstanceParametersParameters {
-        /**
-         * The database engine.
-         */
-        dbEngine: string;
-        /**
-         * The database engine version.
-         */
-        dbEngineVersion: string;
-        /**
-         * The instance ID to query.
-         */
-        instanceId: string;
-        /**
-         * The list of parameters.
-         */
-        instanceParameters: outputs.mongodb.InstanceParametersParametersInstanceParameter[];
-        /**
-         * The total parameters queried.
-         */
-        total: string;
-    }
-
-    export interface InstanceParametersParametersInstanceParameter {
+    export interface InstanceParametersInstanceParameter {
         /**
          * The checking code of parameter.
          */
@@ -4669,6 +6195,75 @@ export namespace mongodb {
          * The value of parameter.
          */
         parameterValue: string;
+    }
+
+    export interface InstanceParametersParameter {
+        /**
+         * The database engine.
+         */
+        dbEngine: string;
+        /**
+         * The database engine version.
+         */
+        dbEngineVersion: string;
+        /**
+         * The instance ID to query.
+         */
+        instanceId: string;
+        /**
+         * The list of parameters.
+         */
+        instanceParameters: outputs.mongodb.InstanceParametersParameterInstanceParameter[];
+        /**
+         * The total parameters queried.
+         */
+        total: string;
+    }
+
+    export interface InstanceParametersParameterInstanceParameter {
+        /**
+         * The checking code of parameter.
+         */
+        checkingCode: string;
+        /**
+         * Whether the parameter supports modifying.
+         */
+        forceModify: boolean;
+        /**
+         * Does the new parameter value need to restart the instance to take effect after modification.
+         */
+        forceRestart: boolean;
+        /**
+         * The default value of parameter.
+         */
+        parameterDefaultValue: string;
+        /**
+         * The description of parameter.
+         */
+        parameterDescription: string;
+        /**
+         * The name of parameter.
+         */
+        parameterName: string;
+        /**
+         * The node type of instance parameter, valid value contains `Node`, `Shard`, `ConfigServer`, `Mongos`.
+         */
+        parameterRole: string;
+        /**
+         * The type of parameter value.
+         */
+        parameterType: string;
+        /**
+         * The value of parameter.
+         */
+        parameterValue: string;
+    }
+
+    export interface InstanceShard {
+        /**
+         * The shard id.
+         */
+        shardId: string;
     }
 
     export interface InstanceTag {
@@ -8254,7 +9849,7 @@ export namespace tls {
          */
         endTime: string;
         /**
-         * The list of the receiver channels.
+         * The list of the receiver channels. Currently supported channels: Email, Sms, Phone.
          */
         receiverChannels: string[];
         /**
@@ -8262,7 +9857,7 @@ export namespace tls {
          */
         receiverNames: string[];
         /**
-         * The receiver type, value can be User.
+         * The receiver type, Can be set as: `User`(The id of user).
          */
         receiverType: string;
         /**
@@ -8355,6 +9950,8 @@ export namespace tls {
         time: number;
         /**
          * Execution cycle type.
+         * Period: Periodic execution, which means executing once every certain period of time.
+         * Fixed: Regular execution, which means executing at a fixed time point every day.
          */
         type: string;
     }
@@ -9320,7 +10917,12 @@ export namespace tls {
          */
         workloadNameRegex?: string;
         /**
-         * Specify the container to be collected by the type of workload. Only one type can be selected. When no type is specified, it means to collect all types of containers.
+         * Specify the containers to be collected by the type of workload, only one type can be selected. When no type is specified, it means all types of containers are collected. The supported types of workloads are:
+         * Deployment: stateless workload.
+         * StatefulSet: stateful workload.
+         * DaemonSet: daemon process.
+         * Job: task.
+         * CronJob: scheduled task.
          */
         workloadType?: string;
     }
@@ -11719,7 +13321,11 @@ export namespace vke {
          */
         logTtl?: number;
         /**
-         * The currently enabled log type.
+         * The current types of logs that can be enabled are:
+         * Audit: Cluster audit logs.
+         * KubeApiServer: kube-apiserver component logs.
+         * KubeScheduler: kube-scheduler component logs.
+         * KubeControllerManager: kube-controller-manager component logs.
          */
         logType: string;
     }
@@ -12451,19 +14057,19 @@ export namespace vke {
          */
         desiredReplicas: number;
         /**
-         * Is Enabled of AutoScaling.
+         * Whether to enable the auto scaling function of the node pool. When a node needs to be manually added to the node pool, the value of this field must be `false`.
          */
         enabled: boolean;
         /**
-         * The MaxReplicas of AutoScaling, default 10, range in 1~2000.
+         * The MaxReplicas of AutoScaling, default 10, range in 1~2000. This field is valid when the value of `enabled` is `true`.
          */
         maxReplicas?: number;
         /**
-         * The MinReplicas of AutoScaling, default 0.
+         * The MinReplicas of AutoScaling, default 0. This field is valid when the value of `enabled` is `true`.
          */
         minReplicas: number;
         /**
-         * The Priority of AutoScaling, default 10, rang in 0~100.
+         * The Priority of AutoScaling, default 10, rang in 0~100. This field is valid when the value of `enabled` is `true` and the value of `subnetPolicy` is `Priority`.
          */
         priority: number;
         /**
@@ -12639,6 +14245,45 @@ export namespace vke {
         type: string;
     }
 
+    export interface NodePoolNodeStatistic {
+        /**
+         * The CreatingCount of Node.
+         */
+        creatingCount: number;
+        /**
+         * The DeletingCount of Node.
+         */
+        deletingCount: number;
+        /**
+         * The FailedCount of Node.
+         */
+        failedCount: number;
+        /**
+         * The RunningCount of Node.
+         */
+        runningCount: number;
+        /**
+         * The StartingCount of Node.
+         */
+        startingCount: number;
+        /**
+         * The StoppedCount of Node.
+         */
+        stoppedCount: number;
+        /**
+         * The StoppingCount of Node.
+         */
+        stoppingCount: number;
+        /**
+         * The TotalCount of Node.
+         */
+        totalCount: number;
+        /**
+         * The UpdatingCount of Node.
+         */
+        updatingCount: number;
+    }
+
     export interface NodePoolTag {
         /**
          * The Key of Tags.
@@ -12754,7 +14399,7 @@ export namespace vke {
         /**
          * The NodeStatistics of NodeConfig.
          */
-        nodeStatistics: outputs.vke.NodePoolsNodePoolNodeStatistics;
+        nodeStatistics: outputs.vke.NodePoolsNodePoolNodeStatistic[];
         /**
          * The period of the PrePaid instance of NodeConfig.
          */
@@ -12790,7 +14435,7 @@ export namespace vke {
         /**
          * The SystemVolume of NodeConfig.
          */
-        systemVolume: outputs.vke.NodePoolsNodePoolSystemVolume;
+        systemVolumes: outputs.vke.NodePoolsNodePoolSystemVolume[];
         /**
          * Tags.
          */
@@ -12846,7 +14491,7 @@ export namespace vke {
         value: string;
     }
 
-    export interface NodePoolsNodePoolNodeStatistics {
+    export interface NodePoolsNodePoolNodeStatistic {
         /**
          * The CreatingCount of Node.
          */

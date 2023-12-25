@@ -70,6 +70,8 @@ export class Topic extends pulumi.CustomResource {
 
     /**
      * Whether to enable automatic partition splitting function of the tls topic.
+     * true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
+     * false: Disables automatic partition splitting.
      */
     public readonly autoSplit!: pulumi.Output<boolean>;
     /**
@@ -85,7 +87,7 @@ export class Topic extends pulumi.CustomResource {
      */
     public readonly enableTracking!: pulumi.Output<boolean>;
     /**
-     * The max count of shards in the tls topic.
+     * The maximum number of partitions, which is the maximum number of partitions after partition splitting. The value range is 1 to 10, with a default of 10.
      */
     public readonly maxSplitShard!: pulumi.Output<number>;
     /**
@@ -186,6 +188,8 @@ export class Topic extends pulumi.CustomResource {
 export interface TopicState {
     /**
      * Whether to enable automatic partition splitting function of the tls topic.
+     * true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
+     * false: Disables automatic partition splitting.
      */
     autoSplit?: pulumi.Input<boolean>;
     /**
@@ -201,7 +205,7 @@ export interface TopicState {
      */
     enableTracking?: pulumi.Input<boolean>;
     /**
-     * The max count of shards in the tls topic.
+     * The maximum number of partitions, which is the maximum number of partitions after partition splitting. The value range is 1 to 10, with a default of 10.
      */
     maxSplitShard?: pulumi.Input<number>;
     /**
@@ -244,6 +248,8 @@ export interface TopicState {
 export interface TopicArgs {
     /**
      * Whether to enable automatic partition splitting function of the tls topic.
+     * true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
+     * false: Disables automatic partition splitting.
      */
     autoSplit?: pulumi.Input<boolean>;
     /**
@@ -255,7 +261,7 @@ export interface TopicArgs {
      */
     enableTracking?: pulumi.Input<boolean>;
     /**
-     * The max count of shards in the tls topic.
+     * The maximum number of partitions, which is the maximum number of partitions after partition splitting. The value range is 1 to 10, with a default of 10.
      */
     maxSplitShard?: pulumi.Input<number>;
     /**

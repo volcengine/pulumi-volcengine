@@ -106,20 +106,26 @@ class _UserState:
                  description: Optional[pulumi.Input[str]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  email: Optional[pulumi.Input[str]] = None,
+                 email_is_verify: Optional[pulumi.Input[bool]] = None,
                  mobile_phone: Optional[pulumi.Input[str]] = None,
+                 mobile_phone_is_verify: Optional[pulumi.Input[bool]] = None,
                  trn: Optional[pulumi.Input[str]] = None,
                  update_date: Optional[pulumi.Input[str]] = None,
+                 user_id: Optional[pulumi.Input[str]] = None,
                  user_name: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering User resources.
-        :param pulumi.Input[str] account_id: The account id of the user.
+        :param pulumi.Input[str] account_id: Main account ID to which the sub-user belongs.
         :param pulumi.Input[str] create_date: The create date of the user.
         :param pulumi.Input[str] description: The description of the user.
         :param pulumi.Input[str] display_name: The display name of the user.
         :param pulumi.Input[str] email: The email of the user.
+        :param pulumi.Input[bool] email_is_verify: Whether the email has been verified.
         :param pulumi.Input[str] mobile_phone: The mobile phone of the user.
+        :param pulumi.Input[bool] mobile_phone_is_verify: Whether the phone number has been verified.
         :param pulumi.Input[str] trn: The trn of the user.
         :param pulumi.Input[str] update_date: The update date of the user.
+        :param pulumi.Input[str] user_id: The id of the user.
         :param pulumi.Input[str] user_name: The name of the user.
         """
         if account_id is not None:
@@ -132,12 +138,18 @@ class _UserState:
             pulumi.set(__self__, "display_name", display_name)
         if email is not None:
             pulumi.set(__self__, "email", email)
+        if email_is_verify is not None:
+            pulumi.set(__self__, "email_is_verify", email_is_verify)
         if mobile_phone is not None:
             pulumi.set(__self__, "mobile_phone", mobile_phone)
+        if mobile_phone_is_verify is not None:
+            pulumi.set(__self__, "mobile_phone_is_verify", mobile_phone_is_verify)
         if trn is not None:
             pulumi.set(__self__, "trn", trn)
         if update_date is not None:
             pulumi.set(__self__, "update_date", update_date)
+        if user_id is not None:
+            pulumi.set(__self__, "user_id", user_id)
         if user_name is not None:
             pulumi.set(__self__, "user_name", user_name)
 
@@ -145,7 +157,7 @@ class _UserState:
     @pulumi.getter(name="accountId")
     def account_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The account id of the user.
+        Main account ID to which the sub-user belongs.
         """
         return pulumi.get(self, "account_id")
 
@@ -202,6 +214,18 @@ class _UserState:
         pulumi.set(self, "email", value)
 
     @property
+    @pulumi.getter(name="emailIsVerify")
+    def email_is_verify(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the email has been verified.
+        """
+        return pulumi.get(self, "email_is_verify")
+
+    @email_is_verify.setter
+    def email_is_verify(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "email_is_verify", value)
+
+    @property
     @pulumi.getter(name="mobilePhone")
     def mobile_phone(self) -> Optional[pulumi.Input[str]]:
         """
@@ -212,6 +236,18 @@ class _UserState:
     @mobile_phone.setter
     def mobile_phone(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "mobile_phone", value)
+
+    @property
+    @pulumi.getter(name="mobilePhoneIsVerify")
+    def mobile_phone_is_verify(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the phone number has been verified.
+        """
+        return pulumi.get(self, "mobile_phone_is_verify")
+
+    @mobile_phone_is_verify.setter
+    def mobile_phone_is_verify(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "mobile_phone_is_verify", value)
 
     @property
     @pulumi.getter
@@ -236,6 +272,18 @@ class _UserState:
     @update_date.setter
     def update_date(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "update_date", value)
+
+    @property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The id of the user.
+        """
+        return pulumi.get(self, "user_id")
+
+    @user_id.setter
+    def user_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user_id", value)
 
     @property
     @pulumi.getter(name="userName")
@@ -357,8 +405,11 @@ class User(pulumi.CustomResource):
             __props__.__dict__["user_name"] = user_name
             __props__.__dict__["account_id"] = None
             __props__.__dict__["create_date"] = None
+            __props__.__dict__["email_is_verify"] = None
+            __props__.__dict__["mobile_phone_is_verify"] = None
             __props__.__dict__["trn"] = None
             __props__.__dict__["update_date"] = None
+            __props__.__dict__["user_id"] = None
         super(User, __self__).__init__(
             'volcengine:iam/user:User',
             resource_name,
@@ -374,9 +425,12 @@ class User(pulumi.CustomResource):
             description: Optional[pulumi.Input[str]] = None,
             display_name: Optional[pulumi.Input[str]] = None,
             email: Optional[pulumi.Input[str]] = None,
+            email_is_verify: Optional[pulumi.Input[bool]] = None,
             mobile_phone: Optional[pulumi.Input[str]] = None,
+            mobile_phone_is_verify: Optional[pulumi.Input[bool]] = None,
             trn: Optional[pulumi.Input[str]] = None,
             update_date: Optional[pulumi.Input[str]] = None,
+            user_id: Optional[pulumi.Input[str]] = None,
             user_name: Optional[pulumi.Input[str]] = None) -> 'User':
         """
         Get an existing User resource's state with the given name, id, and optional extra
@@ -385,14 +439,17 @@ class User(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] account_id: The account id of the user.
+        :param pulumi.Input[str] account_id: Main account ID to which the sub-user belongs.
         :param pulumi.Input[str] create_date: The create date of the user.
         :param pulumi.Input[str] description: The description of the user.
         :param pulumi.Input[str] display_name: The display name of the user.
         :param pulumi.Input[str] email: The email of the user.
+        :param pulumi.Input[bool] email_is_verify: Whether the email has been verified.
         :param pulumi.Input[str] mobile_phone: The mobile phone of the user.
+        :param pulumi.Input[bool] mobile_phone_is_verify: Whether the phone number has been verified.
         :param pulumi.Input[str] trn: The trn of the user.
         :param pulumi.Input[str] update_date: The update date of the user.
+        :param pulumi.Input[str] user_id: The id of the user.
         :param pulumi.Input[str] user_name: The name of the user.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -404,9 +461,12 @@ class User(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["display_name"] = display_name
         __props__.__dict__["email"] = email
+        __props__.__dict__["email_is_verify"] = email_is_verify
         __props__.__dict__["mobile_phone"] = mobile_phone
+        __props__.__dict__["mobile_phone_is_verify"] = mobile_phone_is_verify
         __props__.__dict__["trn"] = trn
         __props__.__dict__["update_date"] = update_date
+        __props__.__dict__["user_id"] = user_id
         __props__.__dict__["user_name"] = user_name
         return User(resource_name, opts=opts, __props__=__props__)
 
@@ -414,7 +474,7 @@ class User(pulumi.CustomResource):
     @pulumi.getter(name="accountId")
     def account_id(self) -> pulumi.Output[str]:
         """
-        The account id of the user.
+        Main account ID to which the sub-user belongs.
         """
         return pulumi.get(self, "account_id")
 
@@ -451,12 +511,28 @@ class User(pulumi.CustomResource):
         return pulumi.get(self, "email")
 
     @property
+    @pulumi.getter(name="emailIsVerify")
+    def email_is_verify(self) -> pulumi.Output[bool]:
+        """
+        Whether the email has been verified.
+        """
+        return pulumi.get(self, "email_is_verify")
+
+    @property
     @pulumi.getter(name="mobilePhone")
     def mobile_phone(self) -> pulumi.Output[Optional[str]]:
         """
         The mobile phone of the user.
         """
         return pulumi.get(self, "mobile_phone")
+
+    @property
+    @pulumi.getter(name="mobilePhoneIsVerify")
+    def mobile_phone_is_verify(self) -> pulumi.Output[bool]:
+        """
+        Whether the phone number has been verified.
+        """
+        return pulumi.get(self, "mobile_phone_is_verify")
 
     @property
     @pulumi.getter
@@ -473,6 +549,14 @@ class User(pulumi.CustomResource):
         The update date of the user.
         """
         return pulumi.get(self, "update_date")
+
+    @property
+    @pulumi.getter(name="userId")
+    def user_id(self) -> pulumi.Output[str]:
+        """
+        The id of the user.
+        """
+        return pulumi.get(self, "user_id")
 
     @property
     @pulumi.getter(name="userName")

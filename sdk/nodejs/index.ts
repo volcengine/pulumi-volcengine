@@ -12,7 +12,9 @@ utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
 
 
 // Export sub-modules:
+import * as alb from "./alb";
 import * as autoscaling from "./autoscaling";
+import * as bandwidth_package from "./bandwidth_package";
 import * as bioos from "./bioos";
 import * as cen from "./cen";
 import * as clb from "./clb";
@@ -43,7 +45,9 @@ import * as vpc from "./vpc";
 import * as vpn from "./vpn";
 
 export {
+    alb,
     autoscaling,
+    bandwidth_package,
     bioos,
     cen,
     clb,

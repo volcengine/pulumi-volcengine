@@ -101,7 +101,35 @@ def ssl_states(instance_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.mongodb.ssl_states(instance_id="mongo-replica-f16e9298b121")
+    foo_zones = volcengine.ecs.zones()
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-vpc",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-test-subnet",
+        cidr_block="172.16.0.0/24",
+        zone_id=foo_zones.zones[0].id,
+        vpc_id=foo_vpc.id)
+    foo_instance = volcengine.mongodb.Instance("fooInstance",
+        db_engine_version="MongoDB_4_0",
+        instance_type="ReplicaSet",
+        super_account_password="@acc-test-123",
+        node_spec="mongo.2c4g",
+        mongos_node_spec="mongo.mongos.2c4g",
+        instance_name="acc-test-mongo-replica",
+        charge_type="PostPaid",
+        project_name="default",
+        mongos_node_number=2,
+        shard_number=3,
+        storage_space_gb=20,
+        subnet_id=foo_subnet.id,
+        zone_id=foo_zones.zones[0].id,
+        tags=[volcengine.mongodb.InstanceTagArgs(
+            key="k1",
+            value="v1",
+        )])
+    foo_ssl_state = volcengine.mongodb.SslState("fooSslState", instance_id=foo_instance.id)
+    foo_ssl_states = volcengine.mongodb.ssl_states_output(instance_id=foo_instance.id)
     ```
 
 
@@ -134,7 +162,35 @@ def ssl_states_output(instance_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.mongodb.ssl_states(instance_id="mongo-replica-f16e9298b121")
+    foo_zones = volcengine.ecs.zones()
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-vpc",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-test-subnet",
+        cidr_block="172.16.0.0/24",
+        zone_id=foo_zones.zones[0].id,
+        vpc_id=foo_vpc.id)
+    foo_instance = volcengine.mongodb.Instance("fooInstance",
+        db_engine_version="MongoDB_4_0",
+        instance_type="ReplicaSet",
+        super_account_password="@acc-test-123",
+        node_spec="mongo.2c4g",
+        mongos_node_spec="mongo.mongos.2c4g",
+        instance_name="acc-test-mongo-replica",
+        charge_type="PostPaid",
+        project_name="default",
+        mongos_node_number=2,
+        shard_number=3,
+        storage_space_gb=20,
+        subnet_id=foo_subnet.id,
+        zone_id=foo_zones.zones[0].id,
+        tags=[volcengine.mongodb.InstanceTagArgs(
+            key="k1",
+            value="v1",
+        )])
+    foo_ssl_state = volcengine.mongodb.SslState("fooSslState", instance_id=foo_instance.id)
+    foo_ssl_states = volcengine.mongodb.ssl_states_output(instance_id=foo_instance.id)
     ```
 
 

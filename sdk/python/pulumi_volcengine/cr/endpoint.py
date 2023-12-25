@@ -124,7 +124,7 @@ class Endpoint(pulumi.CustomResource):
 
         default = volcengine.cr.Endpoint("default",
             enabled=True,
-            registry="tf-1")
+            registry="acc-test-cr")
         ```
 
         ## Import
@@ -156,7 +156,7 @@ class Endpoint(pulumi.CustomResource):
 
         default = volcengine.cr.Endpoint("default",
             enabled=True,
-            registry="tf-1")
+            registry="acc-test-cr")
         ```
 
         ## Import

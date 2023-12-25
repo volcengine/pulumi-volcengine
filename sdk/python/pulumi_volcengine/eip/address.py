@@ -23,6 +23,7 @@ class AddressArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 security_protection_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['AddressTagArgs']]]] = None):
         """
         The set of arguments for constructing a Address resource.
@@ -33,6 +34,7 @@ class AddressArgs:
         :param pulumi.Input[str] name: The name of the EIP Address.
         :param pulumi.Input[int] period: The period of the EIP Address, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid Eip or changing the billing_type from PostPaid to PrePaid.
         :param pulumi.Input[str] project_name: The ProjectName of the EIP.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_protection_types: Security protection types for public IP addresses. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced` or left blank.If the value is `AntiDDoS_Enhanced`, then will create an eip with enhanced protection,(can be added to DDoS native protection (enterprise version) instance). If left blank, it indicates an eip with basic protection.
         :param pulumi.Input[Sequence[pulumi.Input['AddressTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "billing_type", billing_type)
@@ -48,6 +50,8 @@ class AddressArgs:
             pulumi.set(__self__, "period", period)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
+        if security_protection_types is not None:
+            pulumi.set(__self__, "security_protection_types", security_protection_types)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
 
@@ -136,6 +140,18 @@ class AddressArgs:
         pulumi.set(self, "project_name", value)
 
     @property
+    @pulumi.getter(name="securityProtectionTypes")
+    def security_protection_types(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Security protection types for public IP addresses. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced` or left blank.If the value is `AntiDDoS_Enhanced`, then will create an eip with enhanced protection,(can be added to DDoS native protection (enterprise version) instance). If left blank, it indicates an eip with basic protection.
+        """
+        return pulumi.get(self, "security_protection_types")
+
+    @security_protection_types.setter
+    def security_protection_types(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "security_protection_types", value)
+
+    @property
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AddressTagArgs']]]]:
         """
@@ -162,6 +178,7 @@ class _AddressState:
                  overdue_time: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 security_protection_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['AddressTagArgs']]]] = None):
         """
@@ -177,6 +194,7 @@ class _AddressState:
         :param pulumi.Input[str] overdue_time: The overdue time of the EIP.
         :param pulumi.Input[int] period: The period of the EIP Address, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid Eip or changing the billing_type from PostPaid to PrePaid.
         :param pulumi.Input[str] project_name: The ProjectName of the EIP.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_protection_types: Security protection types for public IP addresses. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced` or left blank.If the value is `AntiDDoS_Enhanced`, then will create an eip with enhanced protection,(can be added to DDoS native protection (enterprise version) instance). If left blank, it indicates an eip with basic protection.
         :param pulumi.Input[str] status: The status of the EIP.
         :param pulumi.Input[Sequence[pulumi.Input['AddressTagArgs']]] tags: Tags.
         """
@@ -202,6 +220,8 @@ class _AddressState:
             pulumi.set(__self__, "period", period)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
+        if security_protection_types is not None:
+            pulumi.set(__self__, "security_protection_types", security_protection_types)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if tags is not None:
@@ -340,6 +360,18 @@ class _AddressState:
         pulumi.set(self, "project_name", value)
 
     @property
+    @pulumi.getter(name="securityProtectionTypes")
+    def security_protection_types(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Security protection types for public IP addresses. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced` or left blank.If the value is `AntiDDoS_Enhanced`, then will create an eip with enhanced protection,(can be added to DDoS native protection (enterprise version) instance). If left blank, it indicates an eip with basic protection.
+        """
+        return pulumi.get(self, "security_protection_types")
+
+    @security_protection_types.setter
+    def security_protection_types(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "security_protection_types", value)
+
+    @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
@@ -376,6 +408,7 @@ class Address(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 security_protection_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressTagArgs']]]]] = None,
                  __props__=None):
         """
@@ -410,6 +443,7 @@ class Address(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the EIP Address.
         :param pulumi.Input[int] period: The period of the EIP Address, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid Eip or changing the billing_type from PostPaid to PrePaid.
         :param pulumi.Input[str] project_name: The ProjectName of the EIP.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_protection_types: Security protection types for public IP addresses. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced` or left blank.If the value is `AntiDDoS_Enhanced`, then will create an eip with enhanced protection,(can be added to DDoS native protection (enterprise version) instance). If left blank, it indicates an eip with basic protection.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressTagArgs']]]] tags: Tags.
         """
         ...
@@ -463,6 +497,7 @@ class Address(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 security_protection_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressTagArgs']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -482,6 +517,7 @@ class Address(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["period"] = period
             __props__.__dict__["project_name"] = project_name
+            __props__.__dict__["security_protection_types"] = security_protection_types
             __props__.__dict__["tags"] = tags
             __props__.__dict__["deleted_time"] = None
             __props__.__dict__["eip_address"] = None
@@ -509,6 +545,7 @@ class Address(pulumi.CustomResource):
             overdue_time: Optional[pulumi.Input[str]] = None,
             period: Optional[pulumi.Input[int]] = None,
             project_name: Optional[pulumi.Input[str]] = None,
+            security_protection_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             status: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressTagArgs']]]]] = None) -> 'Address':
         """
@@ -529,6 +566,7 @@ class Address(pulumi.CustomResource):
         :param pulumi.Input[str] overdue_time: The overdue time of the EIP.
         :param pulumi.Input[int] period: The period of the EIP Address, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid Eip or changing the billing_type from PostPaid to PrePaid.
         :param pulumi.Input[str] project_name: The ProjectName of the EIP.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_protection_types: Security protection types for public IP addresses. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced` or left blank.If the value is `AntiDDoS_Enhanced`, then will create an eip with enhanced protection,(can be added to DDoS native protection (enterprise version) instance). If left blank, it indicates an eip with basic protection.
         :param pulumi.Input[str] status: The status of the EIP.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AddressTagArgs']]]] tags: Tags.
         """
@@ -547,6 +585,7 @@ class Address(pulumi.CustomResource):
         __props__.__dict__["overdue_time"] = overdue_time
         __props__.__dict__["period"] = period
         __props__.__dict__["project_name"] = project_name
+        __props__.__dict__["security_protection_types"] = security_protection_types
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
         return Address(resource_name, opts=opts, __props__=__props__)
@@ -638,6 +677,14 @@ class Address(pulumi.CustomResource):
         The ProjectName of the EIP.
         """
         return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="securityProtectionTypes")
+    def security_protection_types(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        Security protection types for public IP addresses. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced` or left blank.If the value is `AntiDDoS_Enhanced`, then will create an eip with enhanced protection,(can be added to DDoS native protection (enterprise version) instance). If left blank, it indicates an eip with basic protection.
+        """
+        return pulumi.get(self, "security_protection_types")
 
     @property
     @pulumi.getter

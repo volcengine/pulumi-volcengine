@@ -26,13 +26,21 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodb.MongoAllowLists(ctx, &mongodb.MongoAllowListsArgs{
-//				InstanceId: pulumi.StringRef("mongo-replica-xxx"),
-//				RegionId:   "cn-xxx",
-//			}, nil)
+//			fooMongoAllowList, err := mongodb.NewMongoAllowList(ctx, "fooMongoAllowList", &mongodb.MongoAllowListArgs{
+//				AllowListName: pulumi.String("acc-test"),
+//				AllowListDesc: pulumi.String("acc-test"),
+//				AllowListType: pulumi.String("IPv4"),
+//				AllowList:     pulumi.String("10.1.1.3,10.2.3.0/24,10.1.1.1"),
+//			})
 //			if err != nil {
 //				return err
 //			}
+//			_ = mongodb.MongoAllowListsOutput(ctx, mongodb.MongoAllowListsOutputArgs{
+//				AllowListIds: pulumi.StringArray{
+//					fooMongoAllowList.ID(),
+//				},
+//				RegionId: pulumi.String("cn-beijing"),
+//			}, nil)
 //			return nil
 //		})
 //	}

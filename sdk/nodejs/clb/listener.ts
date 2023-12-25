@@ -145,6 +145,10 @@ export class Listener extends pulumi.CustomResource {
      */
     public readonly connectionDrainTimeout!: pulumi.Output<number>;
     /**
+     * The name of the cookie for session persistence configured on the backend server. When PersistenceType is configured as `server`, this parameter is required. When PersistenceType is configured as any other value, this parameter is not effective.
+     */
+    public readonly cookie!: pulumi.Output<string | undefined>;
+    /**
      * The description of the Listener.
      */
     public readonly description!: pulumi.Output<string | undefined>;
@@ -173,13 +177,12 @@ export class Listener extends pulumi.CustomResource {
      */
     public readonly loadBalancerId!: pulumi.Output<string>;
     /**
-     * The persistence timeout of the Listener. Unit: second. Valid value range is `1-3600`. Default is `1000`.
-     * This filed is valid only when the value of field `persistenceType` is `sourceIp`.
+     * The persistence timeout of the Listener. Unit: second. Default is `1000`. When PersistenceType is configured as source_ip, the value range is 1-3600. When PersistenceType is configured as insert, the value range is 1-86400. This filed is valid only when the value of field `persistenceType` is `sourceIp` or `insert`.
      */
     public readonly persistenceTimeout!: pulumi.Output<number | undefined>;
     /**
-     * The persistence type of the Listener. Valid values: `off`, `sourceIp`. Default is `off`.
-     * This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+     * The persistence type of the Listener. Valid values: `off`, `sourceIp`, `insert`, `server`. Default is `off`.
+     * `sourceIp`: Represents the source IP address, only effective for TCP/UDP protocols. `insert`: means implanting a cookie, only effective for HTTP/HTTPS protocol and when the scheduler is `wrr`. `server`: Indicates rewriting cookies, only effective for HTTP/HTTPS protocols and when the scheduler is `wrr`.
      */
     public readonly persistenceType!: pulumi.Output<string | undefined>;
     /**
@@ -224,6 +227,7 @@ export class Listener extends pulumi.CustomResource {
             resourceInputs["certificateId"] = state ? state.certificateId : undefined;
             resourceInputs["connectionDrainEnabled"] = state ? state.connectionDrainEnabled : undefined;
             resourceInputs["connectionDrainTimeout"] = state ? state.connectionDrainTimeout : undefined;
+            resourceInputs["cookie"] = state ? state.cookie : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["enabled"] = state ? state.enabled : undefined;
             resourceInputs["establishedTimeout"] = state ? state.establishedTimeout : undefined;
@@ -259,6 +263,7 @@ export class Listener extends pulumi.CustomResource {
             resourceInputs["certificateId"] = args ? args.certificateId : undefined;
             resourceInputs["connectionDrainEnabled"] = args ? args.connectionDrainEnabled : undefined;
             resourceInputs["connectionDrainTimeout"] = args ? args.connectionDrainTimeout : undefined;
+            resourceInputs["cookie"] = args ? args.cookie : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["enabled"] = args ? args.enabled : undefined;
             resourceInputs["establishedTimeout"] = args ? args.establishedTimeout : undefined;
@@ -314,6 +319,10 @@ export interface ListenerState {
      */
     connectionDrainTimeout?: pulumi.Input<number>;
     /**
+     * The name of the cookie for session persistence configured on the backend server. When PersistenceType is configured as `server`, this parameter is required. When PersistenceType is configured as any other value, this parameter is not effective.
+     */
+    cookie?: pulumi.Input<string>;
+    /**
      * The description of the Listener.
      */
     description?: pulumi.Input<string>;
@@ -342,13 +351,12 @@ export interface ListenerState {
      */
     loadBalancerId?: pulumi.Input<string>;
     /**
-     * The persistence timeout of the Listener. Unit: second. Valid value range is `1-3600`. Default is `1000`.
-     * This filed is valid only when the value of field `persistenceType` is `sourceIp`.
+     * The persistence timeout of the Listener. Unit: second. Default is `1000`. When PersistenceType is configured as source_ip, the value range is 1-3600. When PersistenceType is configured as insert, the value range is 1-86400. This filed is valid only when the value of field `persistenceType` is `sourceIp` or `insert`.
      */
     persistenceTimeout?: pulumi.Input<number>;
     /**
-     * The persistence type of the Listener. Valid values: `off`, `sourceIp`. Default is `off`.
-     * This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+     * The persistence type of the Listener. Valid values: `off`, `sourceIp`, `insert`, `server`. Default is `off`.
+     * `sourceIp`: Represents the source IP address, only effective for TCP/UDP protocols. `insert`: means implanting a cookie, only effective for HTTP/HTTPS protocol and when the scheduler is `wrr`. `server`: Indicates rewriting cookies, only effective for HTTP/HTTPS protocols and when the scheduler is `wrr`.
      */
     persistenceType?: pulumi.Input<string>;
     /**
@@ -409,6 +417,10 @@ export interface ListenerArgs {
      */
     connectionDrainTimeout?: pulumi.Input<number>;
     /**
+     * The name of the cookie for session persistence configured on the backend server. When PersistenceType is configured as `server`, this parameter is required. When PersistenceType is configured as any other value, this parameter is not effective.
+     */
+    cookie?: pulumi.Input<string>;
+    /**
      * The description of the Listener.
      */
     description?: pulumi.Input<string>;
@@ -433,13 +445,12 @@ export interface ListenerArgs {
      */
     loadBalancerId: pulumi.Input<string>;
     /**
-     * The persistence timeout of the Listener. Unit: second. Valid value range is `1-3600`. Default is `1000`.
-     * This filed is valid only when the value of field `persistenceType` is `sourceIp`.
+     * The persistence timeout of the Listener. Unit: second. Default is `1000`. When PersistenceType is configured as source_ip, the value range is 1-3600. When PersistenceType is configured as insert, the value range is 1-86400. This filed is valid only when the value of field `persistenceType` is `sourceIp` or `insert`.
      */
     persistenceTimeout?: pulumi.Input<number>;
     /**
-     * The persistence type of the Listener. Valid values: `off`, `sourceIp`. Default is `off`.
-     * This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+     * The persistence type of the Listener. Valid values: `off`, `sourceIp`, `insert`, `server`. Default is `off`.
+     * `sourceIp`: Represents the source IP address, only effective for TCP/UDP protocols. `insert`: means implanting a cookie, only effective for HTTP/HTTPS protocol and when the scheduler is `wrr`. `server`: Indicates rewriting cookies, only effective for HTTP/HTTPS protocols and when the scheduler is `wrr`.
      */
     persistenceType?: pulumi.Input<string>;
     /**

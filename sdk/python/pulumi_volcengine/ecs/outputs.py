@@ -22,6 +22,16 @@ __all__ = [
     'InstanceGpuDevice',
     'InstanceSecondaryNetworkInterface',
     'InstanceTag',
+    'InstanceTypesInstanceTypeResult',
+    'InstanceTypesInstanceTypeGpusResult',
+    'InstanceTypesInstanceTypeGpusGpuDeviceResult',
+    'InstanceTypesInstanceTypeGpusGpuDeviceMemoryResult',
+    'InstanceTypesInstanceTypeLocalVolumeResult',
+    'InstanceTypesInstanceTypeMemoryResult',
+    'InstanceTypesInstanceTypeNetworkResult',
+    'InstanceTypesInstanceTypeProcessorResult',
+    'InstanceTypesInstanceTypeRdmaResult',
+    'InstanceTypesInstanceTypeVolumeResult',
     'InstancesInstanceResult',
     'InstancesInstanceGpuDeviceResult',
     'InstancesInstanceNetworkInterfaceResult',
@@ -793,6 +803,461 @@ class InstanceTag(dict):
         The Value of Tags.
         """
         return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class InstanceTypesInstanceTypeResult(dict):
+    def __init__(__self__, *,
+                 baseline_credit: int,
+                 gpus: Sequence['outputs.InstanceTypesInstanceTypeGpusResult'],
+                 initial_credit: int,
+                 instance_type_family: str,
+                 instance_type_id: str,
+                 local_volumes: Sequence['outputs.InstanceTypesInstanceTypeLocalVolumeResult'],
+                 memories: Sequence['outputs.InstanceTypesInstanceTypeMemoryResult'],
+                 networks: Sequence['outputs.InstanceTypesInstanceTypeNetworkResult'],
+                 processors: Sequence['outputs.InstanceTypesInstanceTypeProcessorResult'],
+                 rdmas: Sequence['outputs.InstanceTypesInstanceTypeRdmaResult'],
+                 volumes: Sequence['outputs.InstanceTypesInstanceTypeVolumeResult']):
+        """
+        :param int baseline_credit: The CPU benchmark performance that can be provided steadily by on-demand instances is determined by the instance type.
+        :param Sequence['InstanceTypesInstanceTypeGpusArgs'] gpus: The GPU device info of Instance.
+        :param int initial_credit: The CPU credits obtained at once when creating a on-demand performance instance are fixed at 30 credits per vCPU.
+        :param str instance_type_family: The instance type family.
+        :param str instance_type_id: The id of the instance type.
+        :param Sequence['InstanceTypesInstanceTypeLocalVolumeArgs'] local_volumes: Local disk configuration information corresponding to instance specifications.
+        :param Sequence['InstanceTypesInstanceTypeMemoryArgs'] memories: Memory information of instance specifications.
+        :param Sequence['InstanceTypesInstanceTypeNetworkArgs'] networks: Network information of instance specifications.
+        :param Sequence['InstanceTypesInstanceTypeProcessorArgs'] processors: CPU information of instance specifications.
+        :param Sequence['InstanceTypesInstanceTypeRdmaArgs'] rdmas: RDMA Specification Information.
+        :param Sequence['InstanceTypesInstanceTypeVolumeArgs'] volumes: Cloud disk information for instance specifications.
+        """
+        pulumi.set(__self__, "baseline_credit", baseline_credit)
+        pulumi.set(__self__, "gpus", gpus)
+        pulumi.set(__self__, "initial_credit", initial_credit)
+        pulumi.set(__self__, "instance_type_family", instance_type_family)
+        pulumi.set(__self__, "instance_type_id", instance_type_id)
+        pulumi.set(__self__, "local_volumes", local_volumes)
+        pulumi.set(__self__, "memories", memories)
+        pulumi.set(__self__, "networks", networks)
+        pulumi.set(__self__, "processors", processors)
+        pulumi.set(__self__, "rdmas", rdmas)
+        pulumi.set(__self__, "volumes", volumes)
+
+    @property
+    @pulumi.getter(name="baselineCredit")
+    def baseline_credit(self) -> int:
+        """
+        The CPU benchmark performance that can be provided steadily by on-demand instances is determined by the instance type.
+        """
+        return pulumi.get(self, "baseline_credit")
+
+    @property
+    @pulumi.getter
+    def gpus(self) -> Sequence['outputs.InstanceTypesInstanceTypeGpusResult']:
+        """
+        The GPU device info of Instance.
+        """
+        return pulumi.get(self, "gpus")
+
+    @property
+    @pulumi.getter(name="initialCredit")
+    def initial_credit(self) -> int:
+        """
+        The CPU credits obtained at once when creating a on-demand performance instance are fixed at 30 credits per vCPU.
+        """
+        return pulumi.get(self, "initial_credit")
+
+    @property
+    @pulumi.getter(name="instanceTypeFamily")
+    def instance_type_family(self) -> str:
+        """
+        The instance type family.
+        """
+        return pulumi.get(self, "instance_type_family")
+
+    @property
+    @pulumi.getter(name="instanceTypeId")
+    def instance_type_id(self) -> str:
+        """
+        The id of the instance type.
+        """
+        return pulumi.get(self, "instance_type_id")
+
+    @property
+    @pulumi.getter(name="localVolumes")
+    def local_volumes(self) -> Sequence['outputs.InstanceTypesInstanceTypeLocalVolumeResult']:
+        """
+        Local disk configuration information corresponding to instance specifications.
+        """
+        return pulumi.get(self, "local_volumes")
+
+    @property
+    @pulumi.getter
+    def memories(self) -> Sequence['outputs.InstanceTypesInstanceTypeMemoryResult']:
+        """
+        Memory information of instance specifications.
+        """
+        return pulumi.get(self, "memories")
+
+    @property
+    @pulumi.getter
+    def networks(self) -> Sequence['outputs.InstanceTypesInstanceTypeNetworkResult']:
+        """
+        Network information of instance specifications.
+        """
+        return pulumi.get(self, "networks")
+
+    @property
+    @pulumi.getter
+    def processors(self) -> Sequence['outputs.InstanceTypesInstanceTypeProcessorResult']:
+        """
+        CPU information of instance specifications.
+        """
+        return pulumi.get(self, "processors")
+
+    @property
+    @pulumi.getter
+    def rdmas(self) -> Sequence['outputs.InstanceTypesInstanceTypeRdmaResult']:
+        """
+        RDMA Specification Information.
+        """
+        return pulumi.get(self, "rdmas")
+
+    @property
+    @pulumi.getter
+    def volumes(self) -> Sequence['outputs.InstanceTypesInstanceTypeVolumeResult']:
+        """
+        Cloud disk information for instance specifications.
+        """
+        return pulumi.get(self, "volumes")
+
+
+@pulumi.output_type
+class InstanceTypesInstanceTypeGpusResult(dict):
+    def __init__(__self__, *,
+                 gpu_devices: Sequence['outputs.InstanceTypesInstanceTypeGpusGpuDeviceResult']):
+        """
+        :param Sequence['InstanceTypesInstanceTypeGpusGpuDeviceArgs'] gpu_devices: GPU device information list.
+        """
+        pulumi.set(__self__, "gpu_devices", gpu_devices)
+
+    @property
+    @pulumi.getter(name="gpuDevices")
+    def gpu_devices(self) -> Sequence['outputs.InstanceTypesInstanceTypeGpusGpuDeviceResult']:
+        """
+        GPU device information list.
+        """
+        return pulumi.get(self, "gpu_devices")
+
+
+@pulumi.output_type
+class InstanceTypesInstanceTypeGpusGpuDeviceResult(dict):
+    def __init__(__self__, *,
+                 count: int,
+                 memories: Sequence['outputs.InstanceTypesInstanceTypeGpusGpuDeviceMemoryResult'],
+                 product_name: str):
+        """
+        :param int count: The number of local disks mounted on the instance.
+        :param Sequence['InstanceTypesInstanceTypeGpusGpuDeviceMemoryArgs'] memories: Memory information of instance specifications.
+        :param str product_name: The Product Name of GPU device.
+        """
+        pulumi.set(__self__, "count", count)
+        pulumi.set(__self__, "memories", memories)
+        pulumi.set(__self__, "product_name", product_name)
+
+    @property
+    @pulumi.getter
+    def count(self) -> int:
+        """
+        The number of local disks mounted on the instance.
+        """
+        return pulumi.get(self, "count")
+
+    @property
+    @pulumi.getter
+    def memories(self) -> Sequence['outputs.InstanceTypesInstanceTypeGpusGpuDeviceMemoryResult']:
+        """
+        Memory information of instance specifications.
+        """
+        return pulumi.get(self, "memories")
+
+    @property
+    @pulumi.getter(name="productName")
+    def product_name(self) -> str:
+        """
+        The Product Name of GPU device.
+        """
+        return pulumi.get(self, "product_name")
+
+
+@pulumi.output_type
+class InstanceTypesInstanceTypeGpusGpuDeviceMemoryResult(dict):
+    def __init__(__self__, *,
+                 encrypted_size: int,
+                 size: int):
+        """
+        :param int encrypted_size: The Encrypted Memory Size of GPU device.
+        :param int size: Memory size, unit: MiB.
+        """
+        pulumi.set(__self__, "encrypted_size", encrypted_size)
+        pulumi.set(__self__, "size", size)
+
+    @property
+    @pulumi.getter(name="encryptedSize")
+    def encrypted_size(self) -> int:
+        """
+        The Encrypted Memory Size of GPU device.
+        """
+        return pulumi.get(self, "encrypted_size")
+
+    @property
+    @pulumi.getter
+    def size(self) -> int:
+        """
+        Memory size, unit: MiB.
+        """
+        return pulumi.get(self, "size")
+
+
+@pulumi.output_type
+class InstanceTypesInstanceTypeLocalVolumeResult(dict):
+    def __init__(__self__, *,
+                 count: int,
+                 size: int,
+                 volume_type: str):
+        """
+        :param int count: The number of local disks mounted on the instance.
+        :param int size: Memory size, unit: MiB.
+        :param str volume_type: The type of volume.
+        """
+        pulumi.set(__self__, "count", count)
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "volume_type", volume_type)
+
+    @property
+    @pulumi.getter
+    def count(self) -> int:
+        """
+        The number of local disks mounted on the instance.
+        """
+        return pulumi.get(self, "count")
+
+    @property
+    @pulumi.getter
+    def size(self) -> int:
+        """
+        Memory size, unit: MiB.
+        """
+        return pulumi.get(self, "size")
+
+    @property
+    @pulumi.getter(name="volumeType")
+    def volume_type(self) -> str:
+        """
+        The type of volume.
+        """
+        return pulumi.get(self, "volume_type")
+
+
+@pulumi.output_type
+class InstanceTypesInstanceTypeMemoryResult(dict):
+    def __init__(__self__, *,
+                 encrypted_size: int,
+                 size: int):
+        """
+        :param int encrypted_size: The Encrypted Memory Size of GPU device.
+        :param int size: Memory size, unit: MiB.
+        """
+        pulumi.set(__self__, "encrypted_size", encrypted_size)
+        pulumi.set(__self__, "size", size)
+
+    @property
+    @pulumi.getter(name="encryptedSize")
+    def encrypted_size(self) -> int:
+        """
+        The Encrypted Memory Size of GPU device.
+        """
+        return pulumi.get(self, "encrypted_size")
+
+    @property
+    @pulumi.getter
+    def size(self) -> int:
+        """
+        Memory size, unit: MiB.
+        """
+        return pulumi.get(self, "size")
+
+
+@pulumi.output_type
+class InstanceTypesInstanceTypeNetworkResult(dict):
+    def __init__(__self__, *,
+                 baseline_bandwidth_mbps: int,
+                 maximum_bandwidth_mbps: int,
+                 maximum_network_interfaces: int,
+                 maximum_private_ipv4_addresses_per_network_interface: int,
+                 maximum_queues_per_network_interface: int,
+                 maximum_throughput_kpps: int):
+        """
+        :param int baseline_bandwidth_mbps: Network benchmark bandwidth capacity (out/in), unit: Mbps.
+        :param int maximum_bandwidth_mbps: Peak network bandwidth capacity (out/in), unit: Mbps.
+        :param int maximum_network_interfaces: Maximum number of elastic network interfaces supported for attachment.
+        :param int maximum_private_ipv4_addresses_per_network_interface: Maximum number of IPv4 addresses for a single elastic network interface.
+        :param int maximum_queues_per_network_interface: Maximum queue number for a single elastic network interface, including the queue number supported by the primary network interface and the auxiliary network interface.
+        :param int maximum_throughput_kpps: Network packet sending and receiving capacity (in+out), unit: Kpps.
+        """
+        pulumi.set(__self__, "baseline_bandwidth_mbps", baseline_bandwidth_mbps)
+        pulumi.set(__self__, "maximum_bandwidth_mbps", maximum_bandwidth_mbps)
+        pulumi.set(__self__, "maximum_network_interfaces", maximum_network_interfaces)
+        pulumi.set(__self__, "maximum_private_ipv4_addresses_per_network_interface", maximum_private_ipv4_addresses_per_network_interface)
+        pulumi.set(__self__, "maximum_queues_per_network_interface", maximum_queues_per_network_interface)
+        pulumi.set(__self__, "maximum_throughput_kpps", maximum_throughput_kpps)
+
+    @property
+    @pulumi.getter(name="baselineBandwidthMbps")
+    def baseline_bandwidth_mbps(self) -> int:
+        """
+        Network benchmark bandwidth capacity (out/in), unit: Mbps.
+        """
+        return pulumi.get(self, "baseline_bandwidth_mbps")
+
+    @property
+    @pulumi.getter(name="maximumBandwidthMbps")
+    def maximum_bandwidth_mbps(self) -> int:
+        """
+        Peak network bandwidth capacity (out/in), unit: Mbps.
+        """
+        return pulumi.get(self, "maximum_bandwidth_mbps")
+
+    @property
+    @pulumi.getter(name="maximumNetworkInterfaces")
+    def maximum_network_interfaces(self) -> int:
+        """
+        Maximum number of elastic network interfaces supported for attachment.
+        """
+        return pulumi.get(self, "maximum_network_interfaces")
+
+    @property
+    @pulumi.getter(name="maximumPrivateIpv4AddressesPerNetworkInterface")
+    def maximum_private_ipv4_addresses_per_network_interface(self) -> int:
+        """
+        Maximum number of IPv4 addresses for a single elastic network interface.
+        """
+        return pulumi.get(self, "maximum_private_ipv4_addresses_per_network_interface")
+
+    @property
+    @pulumi.getter(name="maximumQueuesPerNetworkInterface")
+    def maximum_queues_per_network_interface(self) -> int:
+        """
+        Maximum queue number for a single elastic network interface, including the queue number supported by the primary network interface and the auxiliary network interface.
+        """
+        return pulumi.get(self, "maximum_queues_per_network_interface")
+
+    @property
+    @pulumi.getter(name="maximumThroughputKpps")
+    def maximum_throughput_kpps(self) -> int:
+        """
+        Network packet sending and receiving capacity (in+out), unit: Kpps.
+        """
+        return pulumi.get(self, "maximum_throughput_kpps")
+
+
+@pulumi.output_type
+class InstanceTypesInstanceTypeProcessorResult(dict):
+    def __init__(__self__, *,
+                 base_frequency: float,
+                 cpus: int,
+                 model: str,
+                 turbo_frequency: float):
+        """
+        :param float base_frequency: CPU clock speed, unit: GHz.
+        :param int cpus: The number of ECS instance CPU cores.
+        :param str model: CPU model.
+        :param float turbo_frequency: CPU Turbo Boost, unit: GHz.
+        """
+        pulumi.set(__self__, "base_frequency", base_frequency)
+        pulumi.set(__self__, "cpus", cpus)
+        pulumi.set(__self__, "model", model)
+        pulumi.set(__self__, "turbo_frequency", turbo_frequency)
+
+    @property
+    @pulumi.getter(name="baseFrequency")
+    def base_frequency(self) -> float:
+        """
+        CPU clock speed, unit: GHz.
+        """
+        return pulumi.get(self, "base_frequency")
+
+    @property
+    @pulumi.getter
+    def cpus(self) -> int:
+        """
+        The number of ECS instance CPU cores.
+        """
+        return pulumi.get(self, "cpus")
+
+    @property
+    @pulumi.getter
+    def model(self) -> str:
+        """
+        CPU model.
+        """
+        return pulumi.get(self, "model")
+
+    @property
+    @pulumi.getter(name="turboFrequency")
+    def turbo_frequency(self) -> float:
+        """
+        CPU Turbo Boost, unit: GHz.
+        """
+        return pulumi.get(self, "turbo_frequency")
+
+
+@pulumi.output_type
+class InstanceTypesInstanceTypeRdmaResult(dict):
+    def __init__(__self__, *,
+                 rdma_network_interfaces: int):
+        """
+        :param int rdma_network_interfaces: Number of RDMA network cards.
+        """
+        pulumi.set(__self__, "rdma_network_interfaces", rdma_network_interfaces)
+
+    @property
+    @pulumi.getter(name="rdmaNetworkInterfaces")
+    def rdma_network_interfaces(self) -> int:
+        """
+        Number of RDMA network cards.
+        """
+        return pulumi.get(self, "rdma_network_interfaces")
+
+
+@pulumi.output_type
+class InstanceTypesInstanceTypeVolumeResult(dict):
+    def __init__(__self__, *,
+                 maximum_count: int,
+                 supported_volume_types: Sequence[str]):
+        """
+        :param int maximum_count: The maximum number of volumes.
+        :param Sequence[str] supported_volume_types: List of supported volume types.
+        """
+        pulumi.set(__self__, "maximum_count", maximum_count)
+        pulumi.set(__self__, "supported_volume_types", supported_volume_types)
+
+    @property
+    @pulumi.getter(name="maximumCount")
+    def maximum_count(self) -> int:
+        """
+        The maximum number of volumes.
+        """
+        return pulumi.get(self, "maximum_count")
+
+    @property
+    @pulumi.getter(name="supportedVolumeTypes")
+    def supported_volume_types(self) -> Sequence[str]:
+        """
+        List of supported volume types.
+        """
+        return pulumi.get(self, "supported_volume_types")
 
 
 @pulumi.output_type

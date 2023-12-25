@@ -12,7 +12,7 @@ namespace Volcengine.Pulumi.Volcengine.Mongodb.Outputs
 {
 
     [OutputType]
-    public sealed class InstanceParametersParametersResult
+    public sealed class InstanceParametersParameterResult
     {
         /// <summary>
         /// The database engine.
@@ -29,21 +29,21 @@ namespace Volcengine.Pulumi.Volcengine.Mongodb.Outputs
         /// <summary>
         /// The list of parameters.
         /// </summary>
-        public readonly ImmutableArray<Outputs.InstanceParametersParametersInstanceParameterResult> InstanceParameters;
+        public readonly ImmutableArray<Outputs.InstanceParametersParameterInstanceParameterResult> InstanceParameters;
         /// <summary>
         /// The total parameters queried.
         /// </summary>
         public readonly string Total;
 
         [OutputConstructor]
-        private InstanceParametersParametersResult(
+        private InstanceParametersParameterResult(
             string dbEngine,
 
             string dbEngineVersion,
 
             string instanceId,
 
-            ImmutableArray<Outputs.InstanceParametersParametersInstanceParameterResult> instanceParameters,
+            ImmutableArray<Outputs.InstanceParametersParameterInstanceParameterResult> instanceParameters,
 
             string total)
         {

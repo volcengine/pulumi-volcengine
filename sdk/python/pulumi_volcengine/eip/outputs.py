@@ -52,6 +52,7 @@ class AddressesAddressResult(dict):
                  allocation_id: str,
                  allocation_time: str,
                  bandwidth: int,
+                 bandwidth_package_id: str,
                  billing_type: str,
                  business_status: str,
                  deleted_time: str,
@@ -66,6 +67,7 @@ class AddressesAddressResult(dict):
                  name: str,
                  overdue_time: str,
                  project_name: str,
+                 security_protection_types: Sequence[str],
                  status: str,
                  tags: Sequence['outputs.AddressesAddressTagResult'],
                  updated_at: str):
@@ -73,6 +75,7 @@ class AddressesAddressResult(dict):
         :param str allocation_id: The id of the EIP address.
         :param str allocation_time: The allocation time of the EIP.
         :param int bandwidth: The peek bandwidth of the EIP.
+        :param str bandwidth_package_id: The id of the bandwidth package.
         :param str billing_type: The billing type of the EIP.
         :param str business_status: The business status of the EIP.
         :param str deleted_time: The deleted time of the EIP.
@@ -87,6 +90,7 @@ class AddressesAddressResult(dict):
         :param str name: A name of EIP.
         :param str overdue_time: The overdue time of the EIP.
         :param str project_name: The ProjectName of EIP.
+        :param Sequence[str] security_protection_types: Security protection types for shared bandwidth packages. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced`.
         :param str status: A status of EIP, the value can be `Attaching` or `Detaching` or `Attached` or `Available`.
         :param Sequence['AddressesAddressTagArgs'] tags: Tags.
         :param str updated_at: The last update time of the EIP.
@@ -94,6 +98,7 @@ class AddressesAddressResult(dict):
         pulumi.set(__self__, "allocation_id", allocation_id)
         pulumi.set(__self__, "allocation_time", allocation_time)
         pulumi.set(__self__, "bandwidth", bandwidth)
+        pulumi.set(__self__, "bandwidth_package_id", bandwidth_package_id)
         pulumi.set(__self__, "billing_type", billing_type)
         pulumi.set(__self__, "business_status", business_status)
         pulumi.set(__self__, "deleted_time", deleted_time)
@@ -108,6 +113,7 @@ class AddressesAddressResult(dict):
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "overdue_time", overdue_time)
         pulumi.set(__self__, "project_name", project_name)
+        pulumi.set(__self__, "security_protection_types", security_protection_types)
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "updated_at", updated_at)
@@ -135,6 +141,14 @@ class AddressesAddressResult(dict):
         The peek bandwidth of the EIP.
         """
         return pulumi.get(self, "bandwidth")
+
+    @property
+    @pulumi.getter(name="bandwidthPackageId")
+    def bandwidth_package_id(self) -> str:
+        """
+        The id of the bandwidth package.
+        """
+        return pulumi.get(self, "bandwidth_package_id")
 
     @property
     @pulumi.getter(name="billingType")
@@ -247,6 +261,14 @@ class AddressesAddressResult(dict):
         The ProjectName of EIP.
         """
         return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="securityProtectionTypes")
+    def security_protection_types(self) -> Sequence[str]:
+        """
+        Security protection types for shared bandwidth packages. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced`.
+        """
+        return pulumi.get(self, "security_protection_types")
 
     @property
     @pulumi.getter

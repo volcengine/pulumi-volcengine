@@ -140,6 +140,7 @@ class _NodePoolState:
                  kubernetes_config: Optional[pulumi.Input['NodePoolKubernetesConfigArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_config: Optional[pulumi.Input['NodePoolNodeConfigArgs']] = None,
+                 node_statistics: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolNodeStatisticArgs']]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolTagArgs']]]] = None):
         """
         Input properties used for looking up and filtering NodePool resources.
@@ -149,6 +150,7 @@ class _NodePoolState:
         :param pulumi.Input['NodePoolKubernetesConfigArgs'] kubernetes_config: The KubernetesConfig of NodeConfig.
         :param pulumi.Input[str] name: The Name of NodePool.
         :param pulumi.Input['NodePoolNodeConfigArgs'] node_config: The Config of NodePool.
+        :param pulumi.Input[Sequence[pulumi.Input['NodePoolNodeStatisticArgs']]] node_statistics: The NodeStatistics of NodeConfig.
         :param pulumi.Input[Sequence[pulumi.Input['NodePoolTagArgs']]] tags: Tags.
         """
         if auto_scaling is not None:
@@ -163,6 +165,8 @@ class _NodePoolState:
             pulumi.set(__self__, "name", name)
         if node_config is not None:
             pulumi.set(__self__, "node_config", node_config)
+        if node_statistics is not None:
+            pulumi.set(__self__, "node_statistics", node_statistics)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
 
@@ -237,6 +241,18 @@ class _NodePoolState:
     @node_config.setter
     def node_config(self, value: Optional[pulumi.Input['NodePoolNodeConfigArgs']]):
         pulumi.set(self, "node_config", value)
+
+    @property
+    @pulumi.getter(name="nodeStatistics")
+    def node_statistics(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolNodeStatisticArgs']]]]:
+        """
+        The NodeStatistics of NodeConfig.
+        """
+        return pulumi.get(self, "node_statistics")
+
+    @node_statistics.setter
+    def node_statistics(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolNodeStatisticArgs']]]]):
+        pulumi.set(self, "node_statistics", value)
 
     @property
     @pulumi.getter
@@ -562,6 +578,7 @@ class NodePool(pulumi.CustomResource):
                 raise TypeError("Missing required property 'node_config'")
             __props__.__dict__["node_config"] = node_config
             __props__.__dict__["tags"] = tags
+            __props__.__dict__["node_statistics"] = None
         super(NodePool, __self__).__init__(
             'volcengine:vke/nodePool:NodePool',
             resource_name,
@@ -578,6 +595,7 @@ class NodePool(pulumi.CustomResource):
             kubernetes_config: Optional[pulumi.Input[pulumi.InputType['NodePoolKubernetesConfigArgs']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             node_config: Optional[pulumi.Input[pulumi.InputType['NodePoolNodeConfigArgs']]] = None,
+            node_statistics: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolNodeStatisticArgs']]]]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolTagArgs']]]]] = None) -> 'NodePool':
         """
         Get an existing NodePool resource's state with the given name, id, and optional extra
@@ -592,6 +610,7 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['NodePoolKubernetesConfigArgs']] kubernetes_config: The KubernetesConfig of NodeConfig.
         :param pulumi.Input[str] name: The Name of NodePool.
         :param pulumi.Input[pulumi.InputType['NodePoolNodeConfigArgs']] node_config: The Config of NodePool.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolNodeStatisticArgs']]]] node_statistics: The NodeStatistics of NodeConfig.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NodePoolTagArgs']]]] tags: Tags.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -604,6 +623,7 @@ class NodePool(pulumi.CustomResource):
         __props__.__dict__["kubernetes_config"] = kubernetes_config
         __props__.__dict__["name"] = name
         __props__.__dict__["node_config"] = node_config
+        __props__.__dict__["node_statistics"] = node_statistics
         __props__.__dict__["tags"] = tags
         return NodePool(resource_name, opts=opts, __props__=__props__)
 
@@ -654,6 +674,14 @@ class NodePool(pulumi.CustomResource):
         The Config of NodePool.
         """
         return pulumi.get(self, "node_config")
+
+    @property
+    @pulumi.getter(name="nodeStatistics")
+    def node_statistics(self) -> pulumi.Output[Sequence['outputs.NodePoolNodeStatistic']]:
+        """
+        The NodeStatistics of NodeConfig.
+        """
+        return pulumi.get(self, "node_statistics")
 
     @property
     @pulumi.getter

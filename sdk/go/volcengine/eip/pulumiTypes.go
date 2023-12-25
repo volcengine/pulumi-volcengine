@@ -126,6 +126,8 @@ type AddressesAddress struct {
 	AllocationTime string `pulumi:"allocationTime"`
 	// The peek bandwidth of the EIP.
 	Bandwidth int `pulumi:"bandwidth"`
+	// The id of the bandwidth package.
+	BandwidthPackageId string `pulumi:"bandwidthPackageId"`
 	// The billing type of the EIP.
 	BillingType string `pulumi:"billingType"`
 	// The business status of the EIP.
@@ -154,6 +156,8 @@ type AddressesAddress struct {
 	OverdueTime string `pulumi:"overdueTime"`
 	// The ProjectName of EIP.
 	ProjectName string `pulumi:"projectName"`
+	// Security protection types for shared bandwidth packages. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced`.
+	SecurityProtectionTypes []string `pulumi:"securityProtectionTypes"`
 	// A status of EIP, the value can be `Attaching` or `Detaching` or `Attached` or `Available`.
 	Status string `pulumi:"status"`
 	// Tags.
@@ -180,6 +184,8 @@ type AddressesAddressArgs struct {
 	AllocationTime pulumi.StringInput `pulumi:"allocationTime"`
 	// The peek bandwidth of the EIP.
 	Bandwidth pulumi.IntInput `pulumi:"bandwidth"`
+	// The id of the bandwidth package.
+	BandwidthPackageId pulumi.StringInput `pulumi:"bandwidthPackageId"`
 	// The billing type of the EIP.
 	BillingType pulumi.StringInput `pulumi:"billingType"`
 	// The business status of the EIP.
@@ -208,6 +214,8 @@ type AddressesAddressArgs struct {
 	OverdueTime pulumi.StringInput `pulumi:"overdueTime"`
 	// The ProjectName of EIP.
 	ProjectName pulumi.StringInput `pulumi:"projectName"`
+	// Security protection types for shared bandwidth packages. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced`.
+	SecurityProtectionTypes pulumi.StringArrayInput `pulumi:"securityProtectionTypes"`
 	// A status of EIP, the value can be `Attaching` or `Detaching` or `Attached` or `Available`.
 	Status pulumi.StringInput `pulumi:"status"`
 	// Tags.
@@ -282,6 +290,11 @@ func (o AddressesAddressOutput) Bandwidth() pulumi.IntOutput {
 	return o.ApplyT(func(v AddressesAddress) int { return v.Bandwidth }).(pulumi.IntOutput)
 }
 
+// The id of the bandwidth package.
+func (o AddressesAddressOutput) BandwidthPackageId() pulumi.StringOutput {
+	return o.ApplyT(func(v AddressesAddress) string { return v.BandwidthPackageId }).(pulumi.StringOutput)
+}
+
 // The billing type of the EIP.
 func (o AddressesAddressOutput) BillingType() pulumi.StringOutput {
 	return o.ApplyT(func(v AddressesAddress) string { return v.BillingType }).(pulumi.StringOutput)
@@ -350,6 +363,11 @@ func (o AddressesAddressOutput) OverdueTime() pulumi.StringOutput {
 // The ProjectName of EIP.
 func (o AddressesAddressOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v AddressesAddress) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// Security protection types for shared bandwidth packages. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced`.
+func (o AddressesAddressOutput) SecurityProtectionTypes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AddressesAddress) []string { return v.SecurityProtectionTypes }).(pulumi.StringArrayOutput)
 }
 
 // A status of EIP, the value can be `Attaching` or `Detaching` or `Attached` or `Available`.

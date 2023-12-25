@@ -15,13 +15,37 @@ namespace Volcengine.Pulumi.Volcengine.Iam.Outputs
     public sealed class UsersUserResult
     {
         /// <summary>
-        /// The account id of the user.
+        /// Main account ID to which the sub-user belongs.
         /// </summary>
         public readonly string AccountId;
         /// <summary>
         /// The create date of the user.
         /// </summary>
         public readonly string CreateDate;
+        /// <summary>
+        /// The description of the user.
+        /// </summary>
+        public readonly string Description;
+        /// <summary>
+        /// The display name of the user.
+        /// </summary>
+        public readonly string DisplayName;
+        /// <summary>
+        /// The email of the user.
+        /// </summary>
+        public readonly string Email;
+        /// <summary>
+        /// Whether the email has been verified.
+        /// </summary>
+        public readonly bool EmailIsVerify;
+        /// <summary>
+        /// The mobile phone of the user.
+        /// </summary>
+        public readonly string MobilePhone;
+        /// <summary>
+        /// Whether the phone number has been verified.
+        /// </summary>
+        public readonly bool MobilePhoneIsVerify;
         /// <summary>
         /// The trn of the user.
         /// </summary>
@@ -30,6 +54,10 @@ namespace Volcengine.Pulumi.Volcengine.Iam.Outputs
         /// The update date of the user.
         /// </summary>
         public readonly string UpdateDate;
+        /// <summary>
+        /// The id of the user.
+        /// </summary>
+        public readonly string UserId;
         /// <summary>
         /// The name of the user.
         /// </summary>
@@ -41,16 +69,37 @@ namespace Volcengine.Pulumi.Volcengine.Iam.Outputs
 
             string createDate,
 
+            string description,
+
+            string displayName,
+
+            string email,
+
+            bool emailIsVerify,
+
+            string mobilePhone,
+
+            bool mobilePhoneIsVerify,
+
             string trn,
 
             string updateDate,
+
+            string userId,
 
             string userName)
         {
             AccountId = accountId;
             CreateDate = createDate;
+            Description = description;
+            DisplayName = displayName;
+            Email = email;
+            EmailIsVerify = emailIsVerify;
+            MobilePhone = mobilePhone;
+            MobilePhoneIsVerify = mobilePhoneIsVerify;
             Trn = trn;
             UpdateDate = updateDate;
+            UserId = userId;
             UserName = userName;
         }
     }

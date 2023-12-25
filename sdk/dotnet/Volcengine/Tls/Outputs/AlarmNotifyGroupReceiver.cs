@@ -19,7 +19,7 @@ namespace Volcengine.Pulumi.Volcengine.Tls.Outputs
         /// </summary>
         public readonly string EndTime;
         /// <summary>
-        /// The list of the receiver channels.
+        /// The list of the receiver channels. Currently supported channels: Email, Sms, Phone.
         /// </summary>
         public readonly ImmutableArray<string> ReceiverChannels;
         /// <summary>
@@ -27,7 +27,7 @@ namespace Volcengine.Pulumi.Volcengine.Tls.Outputs
         /// </summary>
         public readonly ImmutableArray<string> ReceiverNames;
         /// <summary>
-        /// The receiver type, value can be User.
+        /// The receiver type, Can be set as: `User`(The id of user).
         /// </summary>
         public readonly string ReceiverType;
         /// <summary>

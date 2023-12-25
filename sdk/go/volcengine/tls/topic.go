@@ -67,6 +67,8 @@ type Topic struct {
 	pulumi.CustomResourceState
 
 	// Whether to enable automatic partition splitting function of the tls topic.
+	// true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
+	// false: Disables automatic partition splitting.
 	AutoSplit pulumi.BoolOutput `pulumi:"autoSplit"`
 	// The create time of the tls topic.
 	CreateTime pulumi.StringOutput `pulumi:"createTime"`
@@ -74,7 +76,7 @@ type Topic struct {
 	Description pulumi.StringOutput `pulumi:"description"`
 	// Whether to enable WebTracking function of the tls topic.
 	EnableTracking pulumi.BoolOutput `pulumi:"enableTracking"`
-	// The max count of shards in the tls topic.
+	// The maximum number of partitions, which is the maximum number of partitions after partition splitting. The value range is 1 to 10, with a default of 10.
 	MaxSplitShard pulumi.IntOutput `pulumi:"maxSplitShard"`
 	// The modify time of the tls topic.
 	ModifyTime pulumi.StringOutput `pulumi:"modifyTime"`
@@ -137,6 +139,8 @@ func GetTopic(ctx *pulumi.Context,
 // Input properties used for looking up and filtering Topic resources.
 type topicState struct {
 	// Whether to enable automatic partition splitting function of the tls topic.
+	// true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
+	// false: Disables automatic partition splitting.
 	AutoSplit *bool `pulumi:"autoSplit"`
 	// The create time of the tls topic.
 	CreateTime *string `pulumi:"createTime"`
@@ -144,7 +148,7 @@ type topicState struct {
 	Description *string `pulumi:"description"`
 	// Whether to enable WebTracking function of the tls topic.
 	EnableTracking *bool `pulumi:"enableTracking"`
-	// The max count of shards in the tls topic.
+	// The maximum number of partitions, which is the maximum number of partitions after partition splitting. The value range is 1 to 10, with a default of 10.
 	MaxSplitShard *int `pulumi:"maxSplitShard"`
 	// The modify time of the tls topic.
 	ModifyTime *string `pulumi:"modifyTime"`
@@ -166,6 +170,8 @@ type topicState struct {
 
 type TopicState struct {
 	// Whether to enable automatic partition splitting function of the tls topic.
+	// true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
+	// false: Disables automatic partition splitting.
 	AutoSplit pulumi.BoolPtrInput
 	// The create time of the tls topic.
 	CreateTime pulumi.StringPtrInput
@@ -173,7 +179,7 @@ type TopicState struct {
 	Description pulumi.StringPtrInput
 	// Whether to enable WebTracking function of the tls topic.
 	EnableTracking pulumi.BoolPtrInput
-	// The max count of shards in the tls topic.
+	// The maximum number of partitions, which is the maximum number of partitions after partition splitting. The value range is 1 to 10, with a default of 10.
 	MaxSplitShard pulumi.IntPtrInput
 	// The modify time of the tls topic.
 	ModifyTime pulumi.StringPtrInput
@@ -199,12 +205,14 @@ func (TopicState) ElementType() reflect.Type {
 
 type topicArgs struct {
 	// Whether to enable automatic partition splitting function of the tls topic.
+	// true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
+	// false: Disables automatic partition splitting.
 	AutoSplit *bool `pulumi:"autoSplit"`
 	// The description of the tls project.
 	Description *string `pulumi:"description"`
 	// Whether to enable WebTracking function of the tls topic.
 	EnableTracking *bool `pulumi:"enableTracking"`
-	// The max count of shards in the tls topic.
+	// The maximum number of partitions, which is the maximum number of partitions after partition splitting. The value range is 1 to 10, with a default of 10.
 	MaxSplitShard *int `pulumi:"maxSplitShard"`
 	// The project id of the tls topic.
 	ProjectId string `pulumi:"projectId"`
@@ -225,12 +233,14 @@ type topicArgs struct {
 // The set of arguments for constructing a Topic resource.
 type TopicArgs struct {
 	// Whether to enable automatic partition splitting function of the tls topic.
+	// true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
+	// false: Disables automatic partition splitting.
 	AutoSplit pulumi.BoolPtrInput
 	// The description of the tls project.
 	Description pulumi.StringPtrInput
 	// Whether to enable WebTracking function of the tls topic.
 	EnableTracking pulumi.BoolPtrInput
-	// The max count of shards in the tls topic.
+	// The maximum number of partitions, which is the maximum number of partitions after partition splitting. The value range is 1 to 10, with a default of 10.
 	MaxSplitShard pulumi.IntPtrInput
 	// The project id of the tls topic.
 	ProjectId pulumi.StringInput
@@ -336,6 +346,8 @@ func (o TopicOutput) ToTopicOutputWithContext(ctx context.Context) TopicOutput {
 }
 
 // Whether to enable automatic partition splitting function of the tls topic.
+// true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
+// false: Disables automatic partition splitting.
 func (o TopicOutput) AutoSplit() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Topic) pulumi.BoolOutput { return v.AutoSplit }).(pulumi.BoolOutput)
 }
@@ -355,7 +367,7 @@ func (o TopicOutput) EnableTracking() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Topic) pulumi.BoolOutput { return v.EnableTracking }).(pulumi.BoolOutput)
 }
 
-// The max count of shards in the tls topic.
+// The maximum number of partitions, which is the maximum number of partitions after partition splitting. The value range is 1 to 10, with a default of 10.
 func (o TopicOutput) MaxSplitShard() pulumi.IntOutput {
 	return o.ApplyT(func(v *Topic) pulumi.IntOutput { return v.MaxSplitShard }).(pulumi.IntOutput)
 }

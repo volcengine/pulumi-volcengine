@@ -26,7 +26,11 @@ namespace Volcengine.Pulumi.Volcengine.Vke.Inputs
         public Input<int>? LogTtl { get; set; }
 
         /// <summary>
-        /// The currently enabled log type.
+        /// The current types of logs that can be enabled are:
+        /// Audit: Cluster audit logs.
+        /// KubeApiServer: kube-apiserver component logs.
+        /// KubeScheduler: kube-scheduler component logs.
+        /// KubeControllerManager: kube-controller-manager component logs.
         /// </summary>
         [Input("logType", required: true)]
         public Input<string> LogType { get; set; } = null!;

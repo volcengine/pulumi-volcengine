@@ -70,6 +70,12 @@ namespace Volcengine.Pulumi.Volcengine.Mongodb
         public Output<string> ChargeType { get; private set; } = null!;
 
         /// <summary>
+        /// The config servers id of the ShardedCluster instance.
+        /// </summary>
+        [Output("configServersId")]
+        public Output<string> ConfigServersId { get; private set; } = null!;
+
+        /// <summary>
         /// The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_5_0`.
         /// </summary>
         [Output("dbEngineVersion")]
@@ -86,6 +92,18 @@ namespace Volcengine.Pulumi.Volcengine.Mongodb
         /// </summary>
         [Output("instanceType")]
         public Output<string> InstanceType { get; private set; } = null!;
+
+        /// <summary>
+        /// The mongos information of the ShardedCluster instance.
+        /// </summary>
+        [Output("mongos")]
+        public Output<ImmutableArray<Outputs.InstanceMongo>> Mongos { get; private set; } = null!;
+
+        /// <summary>
+        /// The mongos id of the ShardedCluster instance.
+        /// </summary>
+        [Output("mongosId")]
+        public Output<string> MongosId { get; private set; } = null!;
 
         /// <summary>
         /// The mongos node number of shard cluster,value range is `2~23`, this parameter is required when `InstanceType` is `ShardedCluster`.
@@ -128,6 +146,12 @@ namespace Volcengine.Pulumi.Volcengine.Mongodb
         /// </summary>
         [Output("shardNumber")]
         public Output<int?> ShardNumber { get; private set; } = null!;
+
+        /// <summary>
+        /// The shards information of the ShardedCluster instance.
+        /// </summary>
+        [Output("shards")]
+        public Output<ImmutableArray<Outputs.InstanceShard>> Shards { get; private set; } = null!;
 
         /// <summary>
         /// The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster, in GiB.
@@ -361,6 +385,12 @@ namespace Volcengine.Pulumi.Volcengine.Mongodb
         public Input<string>? ChargeType { get; set; }
 
         /// <summary>
+        /// The config servers id of the ShardedCluster instance.
+        /// </summary>
+        [Input("configServersId")]
+        public Input<string>? ConfigServersId { get; set; }
+
+        /// <summary>
         /// The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_5_0`.
         /// </summary>
         [Input("dbEngineVersion")]
@@ -377,6 +407,24 @@ namespace Volcengine.Pulumi.Volcengine.Mongodb
         /// </summary>
         [Input("instanceType")]
         public Input<string>? InstanceType { get; set; }
+
+        [Input("mongos")]
+        private InputList<Inputs.InstanceMongoGetArgs>? _mongos;
+
+        /// <summary>
+        /// The mongos information of the ShardedCluster instance.
+        /// </summary>
+        public InputList<Inputs.InstanceMongoGetArgs> Mongos
+        {
+            get => _mongos ?? (_mongos = new InputList<Inputs.InstanceMongoGetArgs>());
+            set => _mongos = value;
+        }
+
+        /// <summary>
+        /// The mongos id of the ShardedCluster instance.
+        /// </summary>
+        [Input("mongosId")]
+        public Input<string>? MongosId { get; set; }
 
         /// <summary>
         /// The mongos node number of shard cluster,value range is `2~23`, this parameter is required when `InstanceType` is `ShardedCluster`.
@@ -419,6 +467,18 @@ namespace Volcengine.Pulumi.Volcengine.Mongodb
         /// </summary>
         [Input("shardNumber")]
         public Input<int>? ShardNumber { get; set; }
+
+        [Input("shards")]
+        private InputList<Inputs.InstanceShardGetArgs>? _shards;
+
+        /// <summary>
+        /// The shards information of the ShardedCluster instance.
+        /// </summary>
+        public InputList<Inputs.InstanceShardGetArgs> Shards
+        {
+            get => _shards ?? (_shards = new InputList<Inputs.InstanceShardGetArgs>());
+            set => _shards = value;
+        }
 
         /// <summary>
         /// The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster, in GiB.

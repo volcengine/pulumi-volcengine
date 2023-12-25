@@ -18,14 +18,64 @@ namespace Volcengine.Pulumi.Volcengine.Mongodb
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
+    /// using Volcengine = Pulumi.Volcengine;
     /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var foo = new Volcengine.Mongodb.MongoAllowListAssociate("foo", new()
+    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+    /// 
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
-    ///         AllowListId = "acl-9e307ce4efe843fb9ffd8cb6a6cb225f",
-    ///         InstanceId = "mongo-replica-f16e9298b121",
+    ///         VpcName = "acc-test-vpc",
+    ///         CidrBlock = "172.16.0.0/16",
+    ///     });
+    /// 
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooInstance = new Volcengine.Mongodb.Instance("fooInstance", new()
+    ///     {
+    ///         DbEngineVersion = "MongoDB_4_0",
+    ///         InstanceType = "ReplicaSet",
+    ///         SuperAccountPassword = "@acc-test-123",
+    ///         NodeSpec = "mongo.2c4g",
+    ///         MongosNodeSpec = "mongo.mongos.2c4g",
+    ///         InstanceName = "acc-test-mongo-replica",
+    ///         ChargeType = "PostPaid",
+    ///         ProjectName = "default",
+    ///         MongosNodeNumber = 32,
+    ///         ShardNumber = 3,
+    ///         StorageSpaceGb = 20,
+    ///         SubnetId = fooSubnet.Id,
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Mongodb.Inputs.InstanceTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var fooMongoAllowList = new Volcengine.Mongodb.MongoAllowList("fooMongoAllowList", new()
+    ///     {
+    ///         AllowListName = "acc-test",
+    ///         AllowListDesc = "acc-test",
+    ///         AllowListType = "IPv4",
+    ///         AllowList = "10.1.1.3,10.2.3.0/24,10.1.1.1",
+    ///     });
+    /// 
+    ///     var fooMongoAllowListAssociate = new Volcengine.Mongodb.MongoAllowListAssociate("fooMongoAllowListAssociate", new()
+    ///     {
+    ///         AllowListId = fooMongoAllowList.Id,
+    ///         InstanceId = fooInstance.Id,
     ///     });
     /// 
     /// });

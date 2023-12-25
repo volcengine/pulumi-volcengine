@@ -21,18 +21,117 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/eip"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/mongodb"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodb.NewEndpoint(ctx, "foo", &mongodb.EndpointArgs{
-//				EipIds: pulumi.StringArray{
-//					pulumi.String("eip-3rfe12dvmz8qo5zsk2h91q05p"),
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			var fooAddress []*eip.Address
+//			for index := 0; index < 2; index++ {
+//				key0 := index
+//				_ := index
+//				__res, err := eip.NewAddress(ctx, fmt.Sprintf("fooAddress-%v", key0), &eip.AddressArgs{
+//					BillingType: pulumi.String("PostPaidByBandwidth"),
+//					Bandwidth:   pulumi.Int(1),
+//					Isp:         pulumi.String("ChinaUnicom"),
+//					Description: pulumi.String("acc-test"),
+//					ProjectName: pulumi.String("default"),
+//				})
+//				if err != nil {
+//					return err
+//				}
+//				fooAddress = append(fooAddress, __res)
+//			}
+//			_, err = mongodb.NewInstance(ctx, "replica-set", &mongodb.InstanceArgs{
+//				DbEngineVersion:      pulumi.String("MongoDB_4_0"),
+//				InstanceType:         pulumi.String("ReplicaSet"),
+//				SuperAccountPassword: pulumi.String("@acc-test-123"),
+//				NodeSpec:             pulumi.String("mongo.2c4g"),
+//				MongosNodeSpec:       pulumi.String("mongo.mongos.2c4g"),
+//				InstanceName:         pulumi.String("acc-test-mongo-replica"),
+//				ChargeType:           pulumi.String("PostPaid"),
+//				ProjectName:          pulumi.String("default"),
+//				MongosNodeNumber:     pulumi.Int(2),
+//				ShardNumber:          pulumi.Int(3),
+//				StorageSpaceGb:       pulumi.Int(20),
+//				SubnetId:             fooSubnet.ID(),
+//				ZoneId:               *pulumi.String(fooZones.Zones[0].Id),
+//				Tags: mongodb.InstanceTagArray{
+//					&mongodb.InstanceTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
 //				},
-//				InstanceId:  pulumi.String("mongo-replica-38cf5badeb9e"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			var splat0 pulumi.StringArray
+//			for _, val0 := range fooAddress {
+//				splat0 = append(splat0, val0.ID())
+//			}
+//			_, err = mongodb.NewEndpoint(ctx, "replica-set-public-endpoint", &mongodb.EndpointArgs{
+//				InstanceId:  replica_set.ID(),
 //				NetworkType: pulumi.String("Public"),
+//				EipIds:      splat0,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodb.NewInstance(ctx, "sharded-cluster", &mongodb.InstanceArgs{
+//				DbEngineVersion:      pulumi.String("MongoDB_4_0"),
+//				InstanceType:         pulumi.String("ShardedCluster"),
+//				SuperAccountPassword: pulumi.String("@acc-test-123"),
+//				NodeSpec:             pulumi.String("mongo.shard.1c2g"),
+//				MongosNodeSpec:       pulumi.String("mongo.mongos.1c2g"),
+//				InstanceName:         pulumi.String("acc-test-mongo-shard"),
+//				ChargeType:           pulumi.String("PostPaid"),
+//				ProjectName:          pulumi.String("default"),
+//				MongosNodeNumber:     pulumi.Int(2),
+//				ShardNumber:          pulumi.Int(2),
+//				StorageSpaceGb:       pulumi.Int(20),
+//				SubnetId:             fooSubnet.ID(),
+//				ZoneId:               *pulumi.String(fooZones.Zones[0].Id),
+//				Tags: mongodb.InstanceTagArray{
+//					&mongodb.InstanceTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodb.NewEndpoint(ctx, "sharded-cluster-private-endpoint", &mongodb.EndpointArgs{
+//				InstanceId:  sharded_cluster.ID(),
+//				NetworkType: pulumi.String("Private"),
+//				ObjectId: sharded_cluster.Shards.ApplyT(func(shards []mongodb.InstanceShard) (*string, error) {
+//					return &shards[0].ShardId, nil
+//				}).(pulumi.StringPtrOutput),
 //			})
 //			if err != nil {
 //				return err

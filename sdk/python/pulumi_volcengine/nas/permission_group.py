@@ -169,7 +169,7 @@ class PermissionGroup(pulumi.CustomResource):
                 volcengine.nas.PermissionGroupPermissionRuleArgs(
                     cidr_ip="192.168.0.0",
                     rw_mode="RO",
-                    use_mode="All_squash",
+                    use_mode="No_all_squash",
                 ),
             ])
         ```
@@ -214,7 +214,7 @@ class PermissionGroup(pulumi.CustomResource):
                 volcengine.nas.PermissionGroupPermissionRuleArgs(
                     cidr_ip="192.168.0.0",
                     rw_mode="RO",
-                    use_mode="All_squash",
+                    use_mode="No_all_squash",
                 ),
             ])
         ```

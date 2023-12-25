@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  *
  * const _default = new volcengine.cr.Endpoint("default", {
  *     enabled: true,
- *     registry: "tf-1",
+ *     registry: "acc-test-cr",
  * });
  * ```
  *

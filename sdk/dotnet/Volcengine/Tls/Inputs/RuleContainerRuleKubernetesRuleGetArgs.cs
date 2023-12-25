@@ -80,7 +80,12 @@ namespace Volcengine.Pulumi.Volcengine.Tls.Inputs
         public Input<string>? WorkloadNameRegex { get; set; }
 
         /// <summary>
-        /// Specify the container to be collected by the type of workload. Only one type can be selected. When no type is specified, it means to collect all types of containers.
+        /// Specify the containers to be collected by the type of workload, only one type can be selected. When no type is specified, it means all types of containers are collected. The supported types of workloads are:
+        /// Deployment: stateless workload.
+        /// StatefulSet: stateful workload.
+        /// DaemonSet: daemon process.
+        /// Job: task.
+        /// CronJob: scheduled task.
         /// </summary>
         [Input("workloadType")]
         public Input<string>? WorkloadType { get; set; }

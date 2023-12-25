@@ -56,7 +56,7 @@ export class User extends pulumi.CustomResource {
     }
 
     /**
-     * The account id of the user.
+     * Main account ID to which the sub-user belongs.
      */
     public /*out*/ readonly accountId!: pulumi.Output<string>;
     /**
@@ -76,9 +76,17 @@ export class User extends pulumi.CustomResource {
      */
     public readonly email!: pulumi.Output<string | undefined>;
     /**
+     * Whether the email has been verified.
+     */
+    public /*out*/ readonly emailIsVerify!: pulumi.Output<boolean>;
+    /**
      * The mobile phone of the user.
      */
     public readonly mobilePhone!: pulumi.Output<string | undefined>;
+    /**
+     * Whether the phone number has been verified.
+     */
+    public /*out*/ readonly mobilePhoneIsVerify!: pulumi.Output<boolean>;
     /**
      * The trn of the user.
      */
@@ -87,6 +95,10 @@ export class User extends pulumi.CustomResource {
      * The update date of the user.
      */
     public /*out*/ readonly updateDate!: pulumi.Output<string>;
+    /**
+     * The id of the user.
+     */
+    public /*out*/ readonly userId!: pulumi.Output<string>;
     /**
      * The name of the user.
      */
@@ -110,9 +122,12 @@ export class User extends pulumi.CustomResource {
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["displayName"] = state ? state.displayName : undefined;
             resourceInputs["email"] = state ? state.email : undefined;
+            resourceInputs["emailIsVerify"] = state ? state.emailIsVerify : undefined;
             resourceInputs["mobilePhone"] = state ? state.mobilePhone : undefined;
+            resourceInputs["mobilePhoneIsVerify"] = state ? state.mobilePhoneIsVerify : undefined;
             resourceInputs["trn"] = state ? state.trn : undefined;
             resourceInputs["updateDate"] = state ? state.updateDate : undefined;
+            resourceInputs["userId"] = state ? state.userId : undefined;
             resourceInputs["userName"] = state ? state.userName : undefined;
         } else {
             const args = argsOrState as UserArgs | undefined;
@@ -126,8 +141,11 @@ export class User extends pulumi.CustomResource {
             resourceInputs["userName"] = args ? args.userName : undefined;
             resourceInputs["accountId"] = undefined /*out*/;
             resourceInputs["createDate"] = undefined /*out*/;
+            resourceInputs["emailIsVerify"] = undefined /*out*/;
+            resourceInputs["mobilePhoneIsVerify"] = undefined /*out*/;
             resourceInputs["trn"] = undefined /*out*/;
             resourceInputs["updateDate"] = undefined /*out*/;
+            resourceInputs["userId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(User.__pulumiType, name, resourceInputs, opts);
@@ -139,7 +157,7 @@ export class User extends pulumi.CustomResource {
  */
 export interface UserState {
     /**
-     * The account id of the user.
+     * Main account ID to which the sub-user belongs.
      */
     accountId?: pulumi.Input<string>;
     /**
@@ -159,9 +177,17 @@ export interface UserState {
      */
     email?: pulumi.Input<string>;
     /**
+     * Whether the email has been verified.
+     */
+    emailIsVerify?: pulumi.Input<boolean>;
+    /**
      * The mobile phone of the user.
      */
     mobilePhone?: pulumi.Input<string>;
+    /**
+     * Whether the phone number has been verified.
+     */
+    mobilePhoneIsVerify?: pulumi.Input<boolean>;
     /**
      * The trn of the user.
      */
@@ -170,6 +196,10 @@ export interface UserState {
      * The update date of the user.
      */
     updateDate?: pulumi.Input<string>;
+    /**
+     * The id of the user.
+     */
+    userId?: pulumi.Input<string>;
     /**
      * The name of the user.
      */

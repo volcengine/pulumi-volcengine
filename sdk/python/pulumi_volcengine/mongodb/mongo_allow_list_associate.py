@@ -105,9 +105,41 @@ class MongoAllowListAssociate(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.mongodb.MongoAllowListAssociate("foo",
-            allow_list_id="acl-9e307ce4efe843fb9ffd8cb6a6cb225f",
-            instance_id="mongo-replica-f16e9298b121")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_instance = volcengine.mongodb.Instance("fooInstance",
+            db_engine_version="MongoDB_4_0",
+            instance_type="ReplicaSet",
+            super_account_password="@acc-test-123",
+            node_spec="mongo.2c4g",
+            mongos_node_spec="mongo.mongos.2c4g",
+            instance_name="acc-test-mongo-replica",
+            charge_type="PostPaid",
+            project_name="default",
+            mongos_node_number=32,
+            shard_number=3,
+            storage_space_gb=20,
+            subnet_id=foo_subnet.id,
+            zone_id=foo_zones.zones[0].id,
+            tags=[volcengine.mongodb.InstanceTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_mongo_allow_list = volcengine.mongodb.MongoAllowList("fooMongoAllowList",
+            allow_list_name="acc-test",
+            allow_list_desc="acc-test",
+            allow_list_type="IPv4",
+            allow_list="10.1.1.3,10.2.3.0/24,10.1.1.1")
+        foo_mongo_allow_list_associate = volcengine.mongodb.MongoAllowListAssociate("fooMongoAllowListAssociate",
+            allow_list_id=foo_mongo_allow_list.id,
+            instance_id=foo_instance.id)
         ```
 
         ## Import
@@ -137,9 +169,41 @@ class MongoAllowListAssociate(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.mongodb.MongoAllowListAssociate("foo",
-            allow_list_id="acl-9e307ce4efe843fb9ffd8cb6a6cb225f",
-            instance_id="mongo-replica-f16e9298b121")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_instance = volcengine.mongodb.Instance("fooInstance",
+            db_engine_version="MongoDB_4_0",
+            instance_type="ReplicaSet",
+            super_account_password="@acc-test-123",
+            node_spec="mongo.2c4g",
+            mongos_node_spec="mongo.mongos.2c4g",
+            instance_name="acc-test-mongo-replica",
+            charge_type="PostPaid",
+            project_name="default",
+            mongos_node_number=32,
+            shard_number=3,
+            storage_space_gb=20,
+            subnet_id=foo_subnet.id,
+            zone_id=foo_zones.zones[0].id,
+            tags=[volcengine.mongodb.InstanceTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_mongo_allow_list = volcengine.mongodb.MongoAllowList("fooMongoAllowList",
+            allow_list_name="acc-test",
+            allow_list_desc="acc-test",
+            allow_list_type="IPv4",
+            allow_list="10.1.1.3,10.2.3.0/24,10.1.1.1")
+        foo_mongo_allow_list_associate = volcengine.mongodb.MongoAllowListAssociate("fooMongoAllowListAssociate",
+            allow_list_id=foo_mongo_allow_list.id,
+            instance_id=foo_instance.id)
         ```
 
         ## Import

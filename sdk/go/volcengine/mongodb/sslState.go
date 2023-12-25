@@ -21,15 +21,60 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/mongodb"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodb.NewSslState(ctx, "foo", &mongodb.SslStateArgs{
-//				InstanceId: pulumi.String("mongo-replica-f16e9298b121"),
-//				SslAction:  pulumi.String("Update"),
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooInstance, err := mongodb.NewInstance(ctx, "fooInstance", &mongodb.InstanceArgs{
+//				DbEngineVersion:      pulumi.String("MongoDB_4_0"),
+//				InstanceType:         pulumi.String("ReplicaSet"),
+//				SuperAccountPassword: pulumi.String("@acc-test-123"),
+//				NodeSpec:             pulumi.String("mongo.2c4g"),
+//				MongosNodeSpec:       pulumi.String("mongo.mongos.2c4g"),
+//				InstanceName:         pulumi.String("acc-test-mongo-replica"),
+//				ChargeType:           pulumi.String("PostPaid"),
+//				ProjectName:          pulumi.String("default"),
+//				MongosNodeNumber:     pulumi.Int(2),
+//				ShardNumber:          pulumi.Int(3),
+//				StorageSpaceGb:       pulumi.Int(20),
+//				SubnetId:             fooSubnet.ID(),
+//				ZoneId:               *pulumi.String(fooZones.Zones[0].Id),
+//				Tags: mongodb.InstanceTagArray{
+//					&mongodb.InstanceTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodb.NewSslState(ctx, "fooSslState", &mongodb.SslStateArgs{
+//				InstanceId: fooInstance.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -49,8 +94,6 @@ import (
 //	$ pulumi import volcengine:mongodb/sslState:SslState default ssl:mongo-shard-d050db19xxx
 //
 // ```
-//
-//	Set `ssl_action` to `Update` will update ssl always when pulumi up.
 type SslState struct {
 	pulumi.CustomResourceState
 
@@ -58,7 +101,7 @@ type SslState struct {
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// Whetehr SSL is valid.
 	IsValid pulumi.BoolOutput `pulumi:"isValid"`
-	// The action of ssl, valid value contains `Update`. Set `sslAction` to `Update` will update ssl always when pulumi up.
+	// The action of ssl, valid value contains `Update`. Set `sslAction` to `Update` will will trigger an SSL update operation when executing `pulumi up`.When the current time is less than 30 days from the `sslExpiredTime`, executing `pulumi up` will automatically renew the SSL.
 	SslAction pulumi.StringPtrOutput `pulumi:"sslAction"`
 	// Whether SSL is enabled.
 	SslEnable pulumi.BoolOutput `pulumi:"sslEnable"`
@@ -103,7 +146,7 @@ type sslStateState struct {
 	InstanceId *string `pulumi:"instanceId"`
 	// Whetehr SSL is valid.
 	IsValid *bool `pulumi:"isValid"`
-	// The action of ssl, valid value contains `Update`. Set `sslAction` to `Update` will update ssl always when pulumi up.
+	// The action of ssl, valid value contains `Update`. Set `sslAction` to `Update` will will trigger an SSL update operation when executing `pulumi up`.When the current time is less than 30 days from the `sslExpiredTime`, executing `pulumi up` will automatically renew the SSL.
 	SslAction *string `pulumi:"sslAction"`
 	// Whether SSL is enabled.
 	SslEnable *bool `pulumi:"sslEnable"`
@@ -116,7 +159,7 @@ type SslStateState struct {
 	InstanceId pulumi.StringPtrInput
 	// Whetehr SSL is valid.
 	IsValid pulumi.BoolPtrInput
-	// The action of ssl, valid value contains `Update`. Set `sslAction` to `Update` will update ssl always when pulumi up.
+	// The action of ssl, valid value contains `Update`. Set `sslAction` to `Update` will will trigger an SSL update operation when executing `pulumi up`.When the current time is less than 30 days from the `sslExpiredTime`, executing `pulumi up` will automatically renew the SSL.
 	SslAction pulumi.StringPtrInput
 	// Whether SSL is enabled.
 	SslEnable pulumi.BoolPtrInput
@@ -131,7 +174,7 @@ func (SslStateState) ElementType() reflect.Type {
 type sslStateArgs struct {
 	// The ID of mongodb instance.
 	InstanceId string `pulumi:"instanceId"`
-	// The action of ssl, valid value contains `Update`. Set `sslAction` to `Update` will update ssl always when pulumi up.
+	// The action of ssl, valid value contains `Update`. Set `sslAction` to `Update` will will trigger an SSL update operation when executing `pulumi up`.When the current time is less than 30 days from the `sslExpiredTime`, executing `pulumi up` will automatically renew the SSL.
 	SslAction *string `pulumi:"sslAction"`
 }
 
@@ -139,7 +182,7 @@ type sslStateArgs struct {
 type SslStateArgs struct {
 	// The ID of mongodb instance.
 	InstanceId pulumi.StringInput
-	// The action of ssl, valid value contains `Update`. Set `sslAction` to `Update` will update ssl always when pulumi up.
+	// The action of ssl, valid value contains `Update`. Set `sslAction` to `Update` will will trigger an SSL update operation when executing `pulumi up`.When the current time is less than 30 days from the `sslExpiredTime`, executing `pulumi up` will automatically renew the SSL.
 	SslAction pulumi.StringPtrInput
 }
 
@@ -240,7 +283,7 @@ func (o SslStateOutput) IsValid() pulumi.BoolOutput {
 	return o.ApplyT(func(v *SslState) pulumi.BoolOutput { return v.IsValid }).(pulumi.BoolOutput)
 }
 
-// The action of ssl, valid value contains `Update`. Set `sslAction` to `Update` will update ssl always when pulumi up.
+// The action of ssl, valid value contains `Update`. Set `sslAction` to `Update` will will trigger an SSL update operation when executing `pulumi up`.When the current time is less than 30 days from the `sslExpiredTime`, executing `pulumi up` will automatically renew the SSL.
 func (o SslStateOutput) SslAction() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SslState) pulumi.StringPtrOutput { return v.SslAction }).(pulumi.StringPtrOutput)
 }

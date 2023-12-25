@@ -29,8 +29,8 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := mongodb.NewMongoAllowList(ctx, "foo", &mongodb.MongoAllowListArgs{
 //				AllowList:     pulumi.String("10.1.1.3,10.2.3.0/24,10.1.1.1"),
-//				AllowListDesc: pulumi.String("test1"),
-//				AllowListName: pulumi.String("tf-test-hh"),
+//				AllowListDesc: pulumi.String("acc-test"),
+//				AllowListName: pulumi.String("acc-test"),
 //				AllowListType: pulumi.String("IPv4"),
 //			})
 //			if err != nil {

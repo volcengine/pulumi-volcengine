@@ -121,8 +121,13 @@ def mongo_allow_lists(allow_list_ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.mongodb.mongo_allow_lists(instance_id="mongo-replica-xxx",
-        region_id="cn-xxx")
+    foo_mongo_allow_list = volcengine.mongodb.MongoAllowList("fooMongoAllowList",
+        allow_list_name="acc-test",
+        allow_list_desc="acc-test",
+        allow_list_type="IPv4",
+        allow_list="10.1.1.3,10.2.3.0/24,10.1.1.1")
+    foo_mongo_allow_lists = volcengine.mongodb.mongo_allow_lists_output(allow_list_ids=[foo_mongo_allow_list.id],
+        region_id="cn-beijing")
     ```
 
 
@@ -163,8 +168,13 @@ def mongo_allow_lists_output(allow_list_ids: Optional[pulumi.Input[Optional[Sequ
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.mongodb.mongo_allow_lists(instance_id="mongo-replica-xxx",
-        region_id="cn-xxx")
+    foo_mongo_allow_list = volcengine.mongodb.MongoAllowList("fooMongoAllowList",
+        allow_list_name="acc-test",
+        allow_list_desc="acc-test",
+        allow_list_type="IPv4",
+        allow_list="10.1.1.3,10.2.3.0/24,10.1.1.1")
+    foo_mongo_allow_lists = volcengine.mongodb.mongo_allow_lists_output(allow_list_ids=[foo_mongo_allow_list.id],
+        region_id="cn-beijing")
     ```
 
 

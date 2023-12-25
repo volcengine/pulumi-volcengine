@@ -13,10 +13,17 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.mongodb.MongoAllowLists({
- *     instanceId: "mongo-replica-xxx",
- *     regionId: "cn-xxx",
+ * const fooMongoAllowList = new volcengine.mongodb.MongoAllowList("fooMongoAllowList", {
+ *     allowListName: "acc-test",
+ *     allowListDesc: "acc-test",
+ *     allowListType: "IPv4",
+ *     allowList: "10.1.1.3,10.2.3.0/24,10.1.1.1",
+ * });
+ * const fooMongoAllowLists = volcengine.mongodb.MongoAllowListsOutput({
+ *     allowListIds: [fooMongoAllowList.id],
+ *     regionId: "cn-beijing",
  * });
  * ```
  */
@@ -84,10 +91,17 @@ export interface MongoAllowListsResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.mongodb.MongoAllowLists({
- *     instanceId: "mongo-replica-xxx",
- *     regionId: "cn-xxx",
+ * const fooMongoAllowList = new volcengine.mongodb.MongoAllowList("fooMongoAllowList", {
+ *     allowListName: "acc-test",
+ *     allowListDesc: "acc-test",
+ *     allowListType: "IPv4",
+ *     allowList: "10.1.1.3,10.2.3.0/24,10.1.1.1",
+ * });
+ * const fooMongoAllowLists = volcengine.mongodb.MongoAllowListsOutput({
+ *     allowListIds: [fooMongoAllowList.id],
+ *     regionId: "cn-beijing",
  * });
  * ```
  */

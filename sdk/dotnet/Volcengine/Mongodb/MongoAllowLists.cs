@@ -23,13 +23,25 @@ namespace Volcengine.Pulumi.Volcengine.Mongodb
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Mongodb.MongoAllowLists.Invoke(new()
+        ///     var fooMongoAllowList = new Volcengine.Mongodb.MongoAllowList("fooMongoAllowList", new()
         ///     {
-        ///         InstanceId = "mongo-replica-xxx",
-        ///         RegionId = "cn-xxx",
+        ///         AllowListName = "acc-test",
+        ///         AllowListDesc = "acc-test",
+        ///         AllowListType = "IPv4",
+        ///         AllowList = "10.1.1.3,10.2.3.0/24,10.1.1.1",
+        ///     });
+        /// 
+        ///     var fooMongoAllowLists = Volcengine.Mongodb.MongoAllowLists.Invoke(new()
+        ///     {
+        ///         AllowListIds = new[]
+        ///         {
+        ///             fooMongoAllowList.Id,
+        ///         },
+        ///         RegionId = "cn-beijing",
         ///     });
         /// 
         /// });
@@ -51,13 +63,25 @@ namespace Volcengine.Pulumi.Volcengine.Mongodb
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var @default = Volcengine.Mongodb.MongoAllowLists.Invoke(new()
+        ///     var fooMongoAllowList = new Volcengine.Mongodb.MongoAllowList("fooMongoAllowList", new()
         ///     {
-        ///         InstanceId = "mongo-replica-xxx",
-        ///         RegionId = "cn-xxx",
+        ///         AllowListName = "acc-test",
+        ///         AllowListDesc = "acc-test",
+        ///         AllowListType = "IPv4",
+        ///         AllowList = "10.1.1.3,10.2.3.0/24,10.1.1.1",
+        ///     });
+        /// 
+        ///     var fooMongoAllowLists = Volcengine.Mongodb.MongoAllowLists.Invoke(new()
+        ///     {
+        ///         AllowListIds = new[]
+        ///         {
+        ///             fooMongoAllowList.Id,
+        ///         },
+        ///         RegionId = "cn-beijing",
         ///     });
         /// 
         /// });

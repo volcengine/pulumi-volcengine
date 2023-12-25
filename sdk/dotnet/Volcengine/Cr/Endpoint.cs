@@ -25,7 +25,7 @@ namespace Volcengine.Pulumi.Volcengine.Cr
     ///     var @default = new Volcengine.Cr.Endpoint("default", new()
     ///     {
     ///         Enabled = true,
-    ///         Registry = "tf-1",
+    ///         Registry = "acc-test-cr",
     ///     });
     /// 
     /// });

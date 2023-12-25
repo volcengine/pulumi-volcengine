@@ -9,8 +9,12 @@ from .provider import *
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
+    import pulumi_volcengine.alb as __alb
+    alb = __alb
     import pulumi_volcengine.autoscaling as __autoscaling
     autoscaling = __autoscaling
+    import pulumi_volcengine.bandwidth_package as __bandwidth_package
+    bandwidth_package = __bandwidth_package
     import pulumi_volcengine.bioos as __bioos
     bioos = __bioos
     import pulumi_volcengine.cen as __cen
@@ -66,7 +70,9 @@ if typing.TYPE_CHECKING:
     import pulumi_volcengine.vpn as __vpn
     vpn = __vpn
 else:
+    alb = _utilities.lazy_import('pulumi_volcengine.alb')
     autoscaling = _utilities.lazy_import('pulumi_volcengine.autoscaling')
+    bandwidth_package = _utilities.lazy_import('pulumi_volcengine.bandwidth_package')
     bioos = _utilities.lazy_import('pulumi_volcengine.bioos')
     cen = _utilities.lazy_import('pulumi_volcengine.cen')
     clb = _utilities.lazy_import('pulumi_volcengine.clb')
@@ -98,6 +104,94 @@ else:
 _utilities.register(
     resource_modules="""
 [
+ {
+  "pkg": "volcengine",
+  "mod": "alb/acl",
+  "fqn": "pulumi_volcengine.alb",
+  "classes": {
+   "volcengine:alb/acl:Acl": "Acl"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "alb/alb",
+  "fqn": "pulumi_volcengine.alb",
+  "classes": {
+   "volcengine:alb/alb:Alb": "Alb"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "alb/cACertificate",
+  "fqn": "pulumi_volcengine.alb",
+  "classes": {
+   "volcengine:alb/cACertificate:CACertificate": "CACertificate"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "alb/certificate",
+  "fqn": "pulumi_volcengine.alb",
+  "classes": {
+   "volcengine:alb/certificate:Certificate": "Certificate"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "alb/customizedCfg",
+  "fqn": "pulumi_volcengine.alb",
+  "classes": {
+   "volcengine:alb/customizedCfg:CustomizedCfg": "CustomizedCfg"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "alb/healthCheckTemplate",
+  "fqn": "pulumi_volcengine.alb",
+  "classes": {
+   "volcengine:alb/healthCheckTemplate:HealthCheckTemplate": "HealthCheckTemplate"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "alb/listener",
+  "fqn": "pulumi_volcengine.alb",
+  "classes": {
+   "volcengine:alb/listener:Listener": "Listener"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "alb/listenerDomainExtension",
+  "fqn": "pulumi_volcengine.alb",
+  "classes": {
+   "volcengine:alb/listenerDomainExtension:ListenerDomainExtension": "ListenerDomainExtension"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "alb/rule",
+  "fqn": "pulumi_volcengine.alb",
+  "classes": {
+   "volcengine:alb/rule:Rule": "Rule"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "alb/serverGroup",
+  "fqn": "pulumi_volcengine.alb",
+  "classes": {
+   "volcengine:alb/serverGroup:ServerGroup": "ServerGroup"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "alb/serverGroupServer",
+  "fqn": "pulumi_volcengine.alb",
+  "classes": {
+   "volcengine:alb/serverGroupServer:ServerGroupServer": "ServerGroupServer"
+  }
+ },
  {
   "pkg": "volcengine",
   "mod": "autoscaling/scalingConfiguration",
@@ -152,6 +246,22 @@ _utilities.register(
   "fqn": "pulumi_volcengine.autoscaling",
   "classes": {
    "volcengine:autoscaling/scalingPolicy:ScalingPolicy": "ScalingPolicy"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "bandwidth_package/attachment",
+  "fqn": "pulumi_volcengine.bandwidth_package",
+  "classes": {
+   "volcengine:bandwidth_package/attachment:Attachment": "Attachment"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "bandwidth_package/bandwidthPackage",
+  "fqn": "pulumi_volcengine.bandwidth_package",
+  "classes": {
+   "volcengine:bandwidth_package/bandwidthPackage:BandwidthPackage": "BandwidthPackage"
   }
  },
  {
@@ -464,6 +574,14 @@ _utilities.register(
   "fqn": "pulumi_volcengine.ecs",
   "classes": {
    "volcengine:ecs/deploymentSetAssociate:DeploymentSetAssociate": "DeploymentSetAssociate"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "ecs/iamRoleAttachment",
+  "fqn": "pulumi_volcengine.ecs",
+  "classes": {
+   "volcengine:ecs/iamRoleAttachment:IamRoleAttachment": "IamRoleAttachment"
   }
  },
  {

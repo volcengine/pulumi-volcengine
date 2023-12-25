@@ -12,7 +12,7 @@ namespace Volcengine.Pulumi.Volcengine.Mongodb.Outputs
 {
 
     [OutputType]
-    public sealed class InstanceParametersParametersInstanceParameterResult
+    public sealed class InstanceParametersInstanceParameterResult
     {
         /// <summary>
         /// The checking code of parameter.
@@ -52,7 +52,7 @@ namespace Volcengine.Pulumi.Volcengine.Mongodb.Outputs
         public readonly string ParameterValue;
 
         [OutputConstructor]
-        private InstanceParametersParametersInstanceParameterResult(
+        private InstanceParametersInstanceParameterResult(
             string checkingCode,
 
             bool forceModify,

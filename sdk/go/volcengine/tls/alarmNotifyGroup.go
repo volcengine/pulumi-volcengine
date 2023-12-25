@@ -76,6 +76,8 @@ type AlarmNotifyGroup struct {
 	// The name of the iam project.
 	IamProjectName pulumi.StringOutput `pulumi:"iamProjectName"`
 	// The notify type.
+	// Trigger: Alarm Trigger
+	// Recovery: Alarm Recovery.
 	NotifyTypes pulumi.StringArrayOutput `pulumi:"notifyTypes"`
 	// List of IAM users to receive alerts.
 	Receivers AlarmNotifyGroupReceiverArrayOutput `pulumi:"receivers"`
@@ -127,6 +129,8 @@ type alarmNotifyGroupState struct {
 	// The name of the iam project.
 	IamProjectName *string `pulumi:"iamProjectName"`
 	// The notify type.
+	// Trigger: Alarm Trigger
+	// Recovery: Alarm Recovery.
 	NotifyTypes []string `pulumi:"notifyTypes"`
 	// List of IAM users to receive alerts.
 	Receivers []AlarmNotifyGroupReceiver `pulumi:"receivers"`
@@ -140,6 +144,8 @@ type AlarmNotifyGroupState struct {
 	// The name of the iam project.
 	IamProjectName pulumi.StringPtrInput
 	// The notify type.
+	// Trigger: Alarm Trigger
+	// Recovery: Alarm Recovery.
 	NotifyTypes pulumi.StringArrayInput
 	// List of IAM users to receive alerts.
 	Receivers AlarmNotifyGroupReceiverArrayInput
@@ -155,6 +161,8 @@ type alarmNotifyGroupArgs struct {
 	// The name of the iam project.
 	IamProjectName *string `pulumi:"iamProjectName"`
 	// The notify type.
+	// Trigger: Alarm Trigger
+	// Recovery: Alarm Recovery.
 	NotifyTypes []string `pulumi:"notifyTypes"`
 	// List of IAM users to receive alerts.
 	Receivers []AlarmNotifyGroupReceiver `pulumi:"receivers"`
@@ -167,6 +175,8 @@ type AlarmNotifyGroupArgs struct {
 	// The name of the iam project.
 	IamProjectName pulumi.StringPtrInput
 	// The notify type.
+	// Trigger: Alarm Trigger
+	// Recovery: Alarm Recovery.
 	NotifyTypes pulumi.StringArrayInput
 	// List of IAM users to receive alerts.
 	Receivers AlarmNotifyGroupReceiverArrayInput
@@ -275,6 +285,8 @@ func (o AlarmNotifyGroupOutput) IamProjectName() pulumi.StringOutput {
 }
 
 // The notify type.
+// Trigger: Alarm Trigger
+// Recovery: Alarm Recovery.
 func (o AlarmNotifyGroupOutput) NotifyTypes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *AlarmNotifyGroup) pulumi.StringArrayOutput { return v.NotifyTypes }).(pulumi.StringArrayOutput)
 }

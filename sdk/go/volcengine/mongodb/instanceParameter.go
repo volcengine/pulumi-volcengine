@@ -21,17 +21,63 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/mongodb"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodb.NewInstanceParameter(ctx, "default", &mongodb.InstanceParameterArgs{
-//				InstanceId:     pulumi.String("mongo-replica-f16e9298b121"),
-//				ParameterName:  pulumi.String("connPoolMaxConnsPerHost"),
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooInstance, err := mongodb.NewInstance(ctx, "fooInstance", &mongodb.InstanceArgs{
+//				DbEngineVersion:      pulumi.String("MongoDB_4_0"),
+//				InstanceType:         pulumi.String("ReplicaSet"),
+//				SuperAccountPassword: pulumi.String("@acc-test-123"),
+//				NodeSpec:             pulumi.String("mongo.2c4g"),
+//				MongosNodeSpec:       pulumi.String("mongo.mongos.2c4g"),
+//				InstanceName:         pulumi.String("acc-test-mongo-replica"),
+//				ChargeType:           pulumi.String("PostPaid"),
+//				ProjectName:          pulumi.String("default"),
+//				MongosNodeNumber:     pulumi.Int(32),
+//				ShardNumber:          pulumi.Int(3),
+//				StorageSpaceGb:       pulumi.Int(20),
+//				SubnetId:             fooSubnet.ID(),
+//				ZoneId:               *pulumi.String(fooZones.Zones[0].Id),
+//				Tags: mongodb.InstanceTagArray{
+//					&mongodb.InstanceTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodb.NewInstanceParameter(ctx, "fooInstanceParameter", &mongodb.InstanceParameterArgs{
+//				InstanceId:     fooInstance.ID(),
+//				ParameterName:  pulumi.String("cursorTimeoutMillis"),
 //				ParameterRole:  pulumi.String("Node"),
-//				ParameterValue: pulumi.String("600"),
+//				ParameterValue: pulumi.String("600111"),
 //			})
 //			if err != nil {
 //				return err
@@ -51,14 +97,12 @@ import (
 //	$ pulumi import volcengine:mongodb/instanceParameter:InstanceParameter default param:mongo-replica-e405f8e2****:connPoolMaxConnsPerHost
 //
 // ```
-//
-//	NoteThis resource must be imported before it can be used. Please note that instance_id and parameter_name must correspond to the ID of the above import.
 type InstanceParameter struct {
 	pulumi.CustomResourceState
 
-	// The instance ID. This field cannot be modified after the resource is imported.
+	// The instance ID.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
-	// The name of parameter. This field cannot be modified after the resource is imported.
+	// The name of parameter.
 	ParameterName pulumi.StringOutput `pulumi:"parameterName"`
 	// The node type to which the parameter belongs. The value range is as follows: Node, Shard, ConfigServer, Mongos.
 	ParameterRole pulumi.StringOutput `pulumi:"parameterRole"`
@@ -108,9 +152,9 @@ func GetInstanceParameter(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering InstanceParameter resources.
 type instanceParameterState struct {
-	// The instance ID. This field cannot be modified after the resource is imported.
+	// The instance ID.
 	InstanceId *string `pulumi:"instanceId"`
-	// The name of parameter. This field cannot be modified after the resource is imported.
+	// The name of parameter.
 	ParameterName *string `pulumi:"parameterName"`
 	// The node type to which the parameter belongs. The value range is as follows: Node, Shard, ConfigServer, Mongos.
 	ParameterRole *string `pulumi:"parameterRole"`
@@ -119,9 +163,9 @@ type instanceParameterState struct {
 }
 
 type InstanceParameterState struct {
-	// The instance ID. This field cannot be modified after the resource is imported.
+	// The instance ID.
 	InstanceId pulumi.StringPtrInput
-	// The name of parameter. This field cannot be modified after the resource is imported.
+	// The name of parameter.
 	ParameterName pulumi.StringPtrInput
 	// The node type to which the parameter belongs. The value range is as follows: Node, Shard, ConfigServer, Mongos.
 	ParameterRole pulumi.StringPtrInput
@@ -134,9 +178,9 @@ func (InstanceParameterState) ElementType() reflect.Type {
 }
 
 type instanceParameterArgs struct {
-	// The instance ID. This field cannot be modified after the resource is imported.
+	// The instance ID.
 	InstanceId string `pulumi:"instanceId"`
-	// The name of parameter. This field cannot be modified after the resource is imported.
+	// The name of parameter.
 	ParameterName string `pulumi:"parameterName"`
 	// The node type to which the parameter belongs. The value range is as follows: Node, Shard, ConfigServer, Mongos.
 	ParameterRole string `pulumi:"parameterRole"`
@@ -146,9 +190,9 @@ type instanceParameterArgs struct {
 
 // The set of arguments for constructing a InstanceParameter resource.
 type InstanceParameterArgs struct {
-	// The instance ID. This field cannot be modified after the resource is imported.
+	// The instance ID.
 	InstanceId pulumi.StringInput
-	// The name of parameter. This field cannot be modified after the resource is imported.
+	// The name of parameter.
 	ParameterName pulumi.StringInput
 	// The node type to which the parameter belongs. The value range is as follows: Node, Shard, ConfigServer, Mongos.
 	ParameterRole pulumi.StringInput
@@ -243,12 +287,12 @@ func (o InstanceParameterOutput) ToInstanceParameterOutputWithContext(ctx contex
 	return o
 }
 
-// The instance ID. This field cannot be modified after the resource is imported.
+// The instance ID.
 func (o InstanceParameterOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceParameter) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
 }
 
-// The name of parameter. This field cannot be modified after the resource is imported.
+// The name of parameter.
 func (o InstanceParameterOutput) ParameterName() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceParameter) pulumi.StringOutput { return v.ParameterName }).(pulumi.StringOutput)
 }

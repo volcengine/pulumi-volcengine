@@ -23,12 +23,87 @@ namespace Volcengine.Pulumi.Volcengine.Mongodb
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Mongodb.Endpoints.Invoke(new()
+        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        /// 
+        ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
-        ///         InstanceId = "mongo-shard-xxx",
+        ///         VpcName = "acc-test-vpc",
+        ///         CidrBlock = "172.16.0.0/16",
+        ///     });
+        /// 
+        ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+        ///     {
+        ///         SubnetName = "acc-test-subnet",
+        ///         CidrBlock = "172.16.0.0/24",
+        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooInstance = new Volcengine.Mongodb.Instance("fooInstance", new()
+        ///     {
+        ///         DbEngineVersion = "MongoDB_4_0",
+        ///         InstanceType = "ShardedCluster",
+        ///         SuperAccountPassword = "@acc-test-123",
+        ///         NodeSpec = "mongo.shard.1c2g",
+        ///         MongosNodeSpec = "mongo.mongos.1c2g",
+        ///         InstanceName = "acc-test-mongo-shard",
+        ///         ChargeType = "PostPaid",
+        ///         ProjectName = "default",
+        ///         MongosNodeNumber = 2,
+        ///         ShardNumber = 2,
+        ///         StorageSpaceGb = 20,
+        ///         SubnetId = fooSubnet.Id,
+        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         Tags = new[]
+        ///         {
+        ///             new Volcengine.Mongodb.Inputs.InstanceTagArgs
+        ///             {
+        ///                 Key = "k1",
+        ///                 Value = "v1",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var fooAddress = new List&lt;Volcengine.Eip.Address&gt;();
+        ///     for (var rangeIndex = 0; rangeIndex &lt; 2; rangeIndex++)
+        ///     {
+        ///         var range = new { Value = rangeIndex };
+        ///         fooAddress.Add(new Volcengine.Eip.Address($"fooAddress-{range.Value}", new()
+        ///         {
+        ///             BillingType = "PostPaidByBandwidth",
+        ///             Bandwidth = 1,
+        ///             Isp = "ChinaUnicom",
+        ///             Description = "acc-test",
+        ///             ProjectName = "default",
+        ///         }));
+        ///     }
+        ///     var fooPublic = new Volcengine.Mongodb.Endpoint("fooPublic", new()
+        ///     {
+        ///         InstanceId = fooInstance.Id,
+        ///         NetworkType = "Public",
+        ///         ObjectId = fooInstance.MongosId,
+        ///         MongosNodeIds = new[]
+        ///         {
+        ///             fooInstance.Mongos.Apply(mongos =&gt; mongos[0].MongosNodeId),
+        ///             fooInstance.Mongos.Apply(mongos =&gt; mongos[1].MongosNodeId),
+        ///         },
+        ///         EipIds = fooAddress.Select(__item =&gt; __item.Id).ToList(),
+        ///     });
+        /// 
+        ///     var fooPrivate = new Volcengine.Mongodb.Endpoint("fooPrivate", new()
+        ///     {
+        ///         InstanceId = fooInstance.Id,
+        ///         NetworkType = "Private",
+        ///         ObjectId = fooInstance.ConfigServersId,
+        ///     });
+        /// 
+        ///     var fooEndpoints = Volcengine.Mongodb.Endpoints.Invoke(new()
+        ///     {
+        ///         InstanceId = fooInstance.Id,
         ///     });
         /// 
         /// });
@@ -50,12 +125,87 @@ namespace Volcengine.Pulumi.Volcengine.Mongodb
         /// using System.Linq;
         /// using Pulumi;
         /// using Volcengine = Pulumi.Volcengine;
+        /// using Volcengine = Volcengine.Pulumi.Volcengine;
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var foo = Volcengine.Mongodb.Endpoints.Invoke(new()
+        ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+        /// 
+        ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
         ///     {
-        ///         InstanceId = "mongo-shard-xxx",
+        ///         VpcName = "acc-test-vpc",
+        ///         CidrBlock = "172.16.0.0/16",
+        ///     });
+        /// 
+        ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+        ///     {
+        ///         SubnetName = "acc-test-subnet",
+        ///         CidrBlock = "172.16.0.0/24",
+        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         VpcId = fooVpc.Id,
+        ///     });
+        /// 
+        ///     var fooInstance = new Volcengine.Mongodb.Instance("fooInstance", new()
+        ///     {
+        ///         DbEngineVersion = "MongoDB_4_0",
+        ///         InstanceType = "ShardedCluster",
+        ///         SuperAccountPassword = "@acc-test-123",
+        ///         NodeSpec = "mongo.shard.1c2g",
+        ///         MongosNodeSpec = "mongo.mongos.1c2g",
+        ///         InstanceName = "acc-test-mongo-shard",
+        ///         ChargeType = "PostPaid",
+        ///         ProjectName = "default",
+        ///         MongosNodeNumber = 2,
+        ///         ShardNumber = 2,
+        ///         StorageSpaceGb = 20,
+        ///         SubnetId = fooSubnet.Id,
+        ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+        ///         Tags = new[]
+        ///         {
+        ///             new Volcengine.Mongodb.Inputs.InstanceTagArgs
+        ///             {
+        ///                 Key = "k1",
+        ///                 Value = "v1",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var fooAddress = new List&lt;Volcengine.Eip.Address&gt;();
+        ///     for (var rangeIndex = 0; rangeIndex &lt; 2; rangeIndex++)
+        ///     {
+        ///         var range = new { Value = rangeIndex };
+        ///         fooAddress.Add(new Volcengine.Eip.Address($"fooAddress-{range.Value}", new()
+        ///         {
+        ///             BillingType = "PostPaidByBandwidth",
+        ///             Bandwidth = 1,
+        ///             Isp = "ChinaUnicom",
+        ///             Description = "acc-test",
+        ///             ProjectName = "default",
+        ///         }));
+        ///     }
+        ///     var fooPublic = new Volcengine.Mongodb.Endpoint("fooPublic", new()
+        ///     {
+        ///         InstanceId = fooInstance.Id,
+        ///         NetworkType = "Public",
+        ///         ObjectId = fooInstance.MongosId,
+        ///         MongosNodeIds = new[]
+        ///         {
+        ///             fooInstance.Mongos.Apply(mongos =&gt; mongos[0].MongosNodeId),
+        ///             fooInstance.Mongos.Apply(mongos =&gt; mongos[1].MongosNodeId),
+        ///         },
+        ///         EipIds = fooAddress.Select(__item =&gt; __item.Id).ToList(),
+        ///     });
+        /// 
+        ///     var fooPrivate = new Volcengine.Mongodb.Endpoint("fooPrivate", new()
+        ///     {
+        ///         InstanceId = fooInstance.Id,
+        ///         NetworkType = "Private",
+        ///         ObjectId = fooInstance.ConfigServersId,
+        ///     });
+        /// 
+        ///     var fooEndpoints = Volcengine.Mongodb.Endpoints.Invoke(new()
+        ///     {
+        ///         InstanceId = fooInstance.Id,
         ///     });
         /// 
         /// });

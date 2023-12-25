@@ -1219,6 +1219,7 @@ class ListenersListenerResult(dict):
                  certificate_id: str,
                  connection_drain_enabled: str,
                  connection_drain_timeout: int,
+                 cookie: str,
                  create_time: str,
                  enabled: str,
                  health_check_domain: str,
@@ -1251,6 +1252,7 @@ class ListenersListenerResult(dict):
         :param str certificate_id: The ID of the certificate which is associated with the Listener.
         :param str connection_drain_enabled: Whether to enable connection drain of the Listener.
         :param int connection_drain_timeout: The connection drain timeout of the Listener.
+        :param str cookie: The name of the cookie for session persistence configured on the backend server.
         :param str create_time: The create time of the Listener.
         :param str enabled: The enable status of the Listener.
         :param str health_check_domain: The domain of health check.
@@ -1283,6 +1285,7 @@ class ListenersListenerResult(dict):
         pulumi.set(__self__, "certificate_id", certificate_id)
         pulumi.set(__self__, "connection_drain_enabled", connection_drain_enabled)
         pulumi.set(__self__, "connection_drain_timeout", connection_drain_timeout)
+        pulumi.set(__self__, "cookie", cookie)
         pulumi.set(__self__, "create_time", create_time)
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "health_check_domain", health_check_domain)
@@ -1363,6 +1366,14 @@ class ListenersListenerResult(dict):
         The connection drain timeout of the Listener.
         """
         return pulumi.get(self, "connection_drain_timeout")
+
+    @property
+    @pulumi.getter
+    def cookie(self) -> str:
+        """
+        The name of the cookie for session persistence configured on the backend server.
+        """
+        return pulumi.get(self, "cookie")
 
     @property
     @pulumi.getter(name="createTime")

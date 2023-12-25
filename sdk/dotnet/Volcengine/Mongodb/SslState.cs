@@ -18,17 +18,57 @@ namespace Volcengine.Pulumi.Volcengine.Mongodb
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
+    /// using Volcengine = Pulumi.Volcengine;
     /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var foo = new Volcengine.Mongodb.SslState("foo", new()
+    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+    /// 
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
-    ///         InstanceId = "mongo-replica-f16e9298b121",
-    ///         SslAction = "Update",
+    ///         VpcName = "acc-test-vpc",
+    ///         CidrBlock = "172.16.0.0/16",
     ///     });
     /// 
-    ///     // 选填 仅支持Update 
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooInstance = new Volcengine.Mongodb.Instance("fooInstance", new()
+    ///     {
+    ///         DbEngineVersion = "MongoDB_4_0",
+    ///         InstanceType = "ReplicaSet",
+    ///         SuperAccountPassword = "@acc-test-123",
+    ///         NodeSpec = "mongo.2c4g",
+    ///         MongosNodeSpec = "mongo.mongos.2c4g",
+    ///         InstanceName = "acc-test-mongo-replica",
+    ///         ChargeType = "PostPaid",
+    ///         ProjectName = "default",
+    ///         MongosNodeNumber = 2,
+    ///         ShardNumber = 3,
+    ///         StorageSpaceGb = 20,
+    ///         SubnetId = fooSubnet.Id,
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Mongodb.Inputs.InstanceTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var fooSslState = new Volcengine.Mongodb.SslState("fooSslState", new()
+    ///     {
+    ///         InstanceId = fooInstance.Id,
+    ///     });
+    /// 
     /// });
     /// ```
     /// 
@@ -39,8 +79,6 @@ namespace Volcengine.Pulumi.Volcengine.Mongodb
     /// ```sh
     ///  $ pulumi import volcengine:mongodb/sslState:SslState default ssl:mongo-shard-d050db19xxx
     /// ```
-    /// 
-    ///  Set `ssl_action` to `Update` will update ssl always when pulumi up.
     /// </summary>
     [VolcengineResourceType("volcengine:mongodb/sslState:SslState")]
     public partial class SslState : global::Pulumi.CustomResource
@@ -58,7 +96,7 @@ namespace Volcengine.Pulumi.Volcengine.Mongodb
         public Output<bool> IsValid { get; private set; } = null!;
 
         /// <summary>
-        /// The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will update ssl always when pulumi up.
+        /// The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will will trigger an SSL update operation when executing `pulumi up`.When the current time is less than 30 days from the `ssl_expired_time`, executing `pulumi up` will automatically renew the SSL.
         /// </summary>
         [Output("sslAction")]
         public Output<string?> SslAction { get; private set; } = null!;
@@ -129,7 +167,7 @@ namespace Volcengine.Pulumi.Volcengine.Mongodb
         public Input<string> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will update ssl always when pulumi up.
+        /// The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will will trigger an SSL update operation when executing `pulumi up`.When the current time is less than 30 days from the `ssl_expired_time`, executing `pulumi up` will automatically renew the SSL.
         /// </summary>
         [Input("sslAction")]
         public Input<string>? SslAction { get; set; }
@@ -155,7 +193,7 @@ namespace Volcengine.Pulumi.Volcengine.Mongodb
         public Input<bool>? IsValid { get; set; }
 
         /// <summary>
-        /// The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will update ssl always when pulumi up.
+        /// The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will will trigger an SSL update operation when executing `pulumi up`.When the current time is less than 30 days from the `ssl_expired_time`, executing `pulumi up` will automatically renew the SSL.
         /// </summary>
         [Input("sslAction")]
         public Input<string>? SslAction { get; set; }
