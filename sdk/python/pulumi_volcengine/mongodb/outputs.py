@@ -15,9 +15,12 @@ __all__ = [
     'AccountsAccountAccountPrivilegeResult',
     'EndpointsEndpointResult',
     'EndpointsEndpointDbAddressResult',
+    'InstanceMongo',
     'InstanceParameterLogsParameterChangeLogsResult',
-    'InstanceParametersParametersResult',
-    'InstanceParametersParametersInstanceParameterResult',
+    'InstanceParametersInstanceParameterResult',
+    'InstanceParametersParameterResult',
+    'InstanceParametersParameterInstanceParameterResult',
+    'InstanceShard',
     'InstanceTag',
     'InstancesInstanceResult',
     'InstancesInstanceConfigServerResult',
@@ -276,6 +279,70 @@ class EndpointsEndpointDbAddressResult(dict):
 
 
 @pulumi.output_type
+class InstanceMongo(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "mongosNodeId":
+            suggest = "mongos_node_id"
+        elif key == "nodeSpec":
+            suggest = "node_spec"
+        elif key == "nodeStatus":
+            suggest = "node_status"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in InstanceMongo. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        InstanceMongo.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        InstanceMongo.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 mongos_node_id: Optional[str] = None,
+                 node_spec: Optional[str] = None,
+                 node_status: Optional[str] = None):
+        """
+        :param str mongos_node_id: The mongos node ID.
+        :param str node_spec: The spec of node.
+        :param str node_status: The node status.
+        """
+        if mongos_node_id is not None:
+            pulumi.set(__self__, "mongos_node_id", mongos_node_id)
+        if node_spec is not None:
+            pulumi.set(__self__, "node_spec", node_spec)
+        if node_status is not None:
+            pulumi.set(__self__, "node_status", node_status)
+
+    @property
+    @pulumi.getter(name="mongosNodeId")
+    def mongos_node_id(self) -> Optional[str]:
+        """
+        The mongos node ID.
+        """
+        return pulumi.get(self, "mongos_node_id")
+
+    @property
+    @pulumi.getter(name="nodeSpec")
+    def node_spec(self) -> Optional[str]:
+        """
+        The spec of node.
+        """
+        return pulumi.get(self, "node_spec")
+
+    @property
+    @pulumi.getter(name="nodeStatus")
+    def node_status(self) -> Optional[str]:
+        """
+        The node status.
+        """
+        return pulumi.get(self, "node_status")
+
+
+@pulumi.output_type
 class InstanceParameterLogsParameterChangeLogsResult(dict):
     def __init__(__self__, *,
                  modify_time: str,
@@ -349,69 +416,7 @@ class InstanceParameterLogsParameterChangeLogsResult(dict):
 
 
 @pulumi.output_type
-class InstanceParametersParametersResult(dict):
-    def __init__(__self__, *,
-                 db_engine: str,
-                 db_engine_version: str,
-                 instance_id: str,
-                 instance_parameters: Sequence['outputs.InstanceParametersParametersInstanceParameterResult'],
-                 total: str):
-        """
-        :param str db_engine: The database engine.
-        :param str db_engine_version: The database engine version.
-        :param str instance_id: The instance ID to query.
-        :param Sequence['InstanceParametersParametersInstanceParameterArgs'] instance_parameters: The list of parameters.
-        :param str total: The total parameters queried.
-        """
-        pulumi.set(__self__, "db_engine", db_engine)
-        pulumi.set(__self__, "db_engine_version", db_engine_version)
-        pulumi.set(__self__, "instance_id", instance_id)
-        pulumi.set(__self__, "instance_parameters", instance_parameters)
-        pulumi.set(__self__, "total", total)
-
-    @property
-    @pulumi.getter(name="dbEngine")
-    def db_engine(self) -> str:
-        """
-        The database engine.
-        """
-        return pulumi.get(self, "db_engine")
-
-    @property
-    @pulumi.getter(name="dbEngineVersion")
-    def db_engine_version(self) -> str:
-        """
-        The database engine version.
-        """
-        return pulumi.get(self, "db_engine_version")
-
-    @property
-    @pulumi.getter(name="instanceId")
-    def instance_id(self) -> str:
-        """
-        The instance ID to query.
-        """
-        return pulumi.get(self, "instance_id")
-
-    @property
-    @pulumi.getter(name="instanceParameters")
-    def instance_parameters(self) -> Sequence['outputs.InstanceParametersParametersInstanceParameterResult']:
-        """
-        The list of parameters.
-        """
-        return pulumi.get(self, "instance_parameters")
-
-    @property
-    @pulumi.getter
-    def total(self) -> str:
-        """
-        The total parameters queried.
-        """
-        return pulumi.get(self, "total")
-
-
-@pulumi.output_type
-class InstanceParametersParametersInstanceParameterResult(dict):
+class InstanceParametersInstanceParameterResult(dict):
     def __init__(__self__, *,
                  checking_code: str,
                  force_modify: bool,
@@ -514,6 +519,210 @@ class InstanceParametersParametersInstanceParameterResult(dict):
         The value of parameter.
         """
         return pulumi.get(self, "parameter_value")
+
+
+@pulumi.output_type
+class InstanceParametersParameterResult(dict):
+    def __init__(__self__, *,
+                 db_engine: str,
+                 db_engine_version: str,
+                 instance_id: str,
+                 instance_parameters: Sequence['outputs.InstanceParametersParameterInstanceParameterResult'],
+                 total: str):
+        """
+        :param str db_engine: The database engine.
+        :param str db_engine_version: The database engine version.
+        :param str instance_id: The instance ID to query.
+        :param Sequence['InstanceParametersParameterInstanceParameterArgs'] instance_parameters: The list of parameters.
+        :param str total: The total parameters queried.
+        """
+        pulumi.set(__self__, "db_engine", db_engine)
+        pulumi.set(__self__, "db_engine_version", db_engine_version)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_parameters", instance_parameters)
+        pulumi.set(__self__, "total", total)
+
+    @property
+    @pulumi.getter(name="dbEngine")
+    def db_engine(self) -> str:
+        """
+        The database engine.
+        """
+        return pulumi.get(self, "db_engine")
+
+    @property
+    @pulumi.getter(name="dbEngineVersion")
+    def db_engine_version(self) -> str:
+        """
+        The database engine version.
+        """
+        return pulumi.get(self, "db_engine_version")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The instance ID to query.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="instanceParameters")
+    def instance_parameters(self) -> Sequence['outputs.InstanceParametersParameterInstanceParameterResult']:
+        """
+        The list of parameters.
+        """
+        return pulumi.get(self, "instance_parameters")
+
+    @property
+    @pulumi.getter
+    def total(self) -> str:
+        """
+        The total parameters queried.
+        """
+        return pulumi.get(self, "total")
+
+
+@pulumi.output_type
+class InstanceParametersParameterInstanceParameterResult(dict):
+    def __init__(__self__, *,
+                 checking_code: str,
+                 force_modify: bool,
+                 force_restart: bool,
+                 parameter_default_value: str,
+                 parameter_description: str,
+                 parameter_name: str,
+                 parameter_role: str,
+                 parameter_type: str,
+                 parameter_value: str):
+        """
+        :param str checking_code: The checking code of parameter.
+        :param bool force_modify: Whether the parameter supports modifying.
+        :param bool force_restart: Does the new parameter value need to restart the instance to take effect after modification.
+        :param str parameter_default_value: The default value of parameter.
+        :param str parameter_description: The description of parameter.
+        :param str parameter_name: The name of parameter.
+        :param str parameter_role: The node type of instance parameter, valid value contains `Node`, `Shard`, `ConfigServer`, `Mongos`.
+        :param str parameter_type: The type of parameter value.
+        :param str parameter_value: The value of parameter.
+        """
+        pulumi.set(__self__, "checking_code", checking_code)
+        pulumi.set(__self__, "force_modify", force_modify)
+        pulumi.set(__self__, "force_restart", force_restart)
+        pulumi.set(__self__, "parameter_default_value", parameter_default_value)
+        pulumi.set(__self__, "parameter_description", parameter_description)
+        pulumi.set(__self__, "parameter_name", parameter_name)
+        pulumi.set(__self__, "parameter_role", parameter_role)
+        pulumi.set(__self__, "parameter_type", parameter_type)
+        pulumi.set(__self__, "parameter_value", parameter_value)
+
+    @property
+    @pulumi.getter(name="checkingCode")
+    def checking_code(self) -> str:
+        """
+        The checking code of parameter.
+        """
+        return pulumi.get(self, "checking_code")
+
+    @property
+    @pulumi.getter(name="forceModify")
+    def force_modify(self) -> bool:
+        """
+        Whether the parameter supports modifying.
+        """
+        return pulumi.get(self, "force_modify")
+
+    @property
+    @pulumi.getter(name="forceRestart")
+    def force_restart(self) -> bool:
+        """
+        Does the new parameter value need to restart the instance to take effect after modification.
+        """
+        return pulumi.get(self, "force_restart")
+
+    @property
+    @pulumi.getter(name="parameterDefaultValue")
+    def parameter_default_value(self) -> str:
+        """
+        The default value of parameter.
+        """
+        return pulumi.get(self, "parameter_default_value")
+
+    @property
+    @pulumi.getter(name="parameterDescription")
+    def parameter_description(self) -> str:
+        """
+        The description of parameter.
+        """
+        return pulumi.get(self, "parameter_description")
+
+    @property
+    @pulumi.getter(name="parameterName")
+    def parameter_name(self) -> str:
+        """
+        The name of parameter.
+        """
+        return pulumi.get(self, "parameter_name")
+
+    @property
+    @pulumi.getter(name="parameterRole")
+    def parameter_role(self) -> str:
+        """
+        The node type of instance parameter, valid value contains `Node`, `Shard`, `ConfigServer`, `Mongos`.
+        """
+        return pulumi.get(self, "parameter_role")
+
+    @property
+    @pulumi.getter(name="parameterType")
+    def parameter_type(self) -> str:
+        """
+        The type of parameter value.
+        """
+        return pulumi.get(self, "parameter_type")
+
+    @property
+    @pulumi.getter(name="parameterValue")
+    def parameter_value(self) -> str:
+        """
+        The value of parameter.
+        """
+        return pulumi.get(self, "parameter_value")
+
+
+@pulumi.output_type
+class InstanceShard(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "shardId":
+            suggest = "shard_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in InstanceShard. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        InstanceShard.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        InstanceShard.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 shard_id: Optional[str] = None):
+        """
+        :param str shard_id: The shard id.
+        """
+        if shard_id is not None:
+            pulumi.set(__self__, "shard_id", shard_id)
+
+    @property
+    @pulumi.getter(name="shardId")
+    def shard_id(self) -> Optional[str]:
+        """
+        The shard id.
+        """
+        return pulumi.get(self, "shard_id")
 
 
 @pulumi.output_type

@@ -23,7 +23,7 @@ namespace Volcengine.Pulumi.Volcengine.Tls.Inputs
         private InputList<string>? _receiverChannels;
 
         /// <summary>
-        /// The list of the receiver channels.
+        /// The list of the receiver channels. Currently supported channels: Email, Sms, Phone.
         /// </summary>
         public InputList<string> ReceiverChannels
         {
@@ -44,7 +44,7 @@ namespace Volcengine.Pulumi.Volcengine.Tls.Inputs
         }
 
         /// <summary>
-        /// The receiver type, value can be User.
+        /// The receiver type, Can be set as: `User`(The id of user).
         /// </summary>
         [Input("receiverType", required: true)]
         public Input<string> ReceiverType { get; set; } = null!;

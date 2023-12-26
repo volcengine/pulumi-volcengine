@@ -84,6 +84,8 @@ namespace Volcengine.Pulumi.Volcengine.Tls
 
         /// <summary>
         /// The notify type.
+        /// Trigger: Alarm Trigger
+        /// Recovery: Alarm Recovery.
         /// </summary>
         [Output("notifyTypes")]
         public Output<ImmutableArray<string>> NotifyTypes { get; private set; } = null!;
@@ -158,6 +160,8 @@ namespace Volcengine.Pulumi.Volcengine.Tls
 
         /// <summary>
         /// The notify type.
+        /// Trigger: Alarm Trigger
+        /// Recovery: Alarm Recovery.
         /// </summary>
         public InputList<string> NotifyTypes
         {
@@ -208,6 +212,8 @@ namespace Volcengine.Pulumi.Volcengine.Tls
 
         /// <summary>
         /// The notify type.
+        /// Trigger: Alarm Trigger
+        /// Recovery: Alarm Recovery.
         /// </summary>
         public InputList<string> NotifyTypes
         {

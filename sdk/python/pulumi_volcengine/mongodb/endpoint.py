@@ -221,10 +221,67 @@ class Endpoint(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.mongodb.Endpoint("foo",
-            eip_ids=["eip-3rfe12dvmz8qo5zsk2h91q05p"],
-            instance_id="mongo-replica-38cf5badeb9e",
-            network_type="Public")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_address = []
+        for range in [{"value": i} for i in range(0, 2)]:
+            foo_address.append(volcengine.eip.Address(f"fooAddress-{range['value']}",
+                billing_type="PostPaidByBandwidth",
+                bandwidth=1,
+                isp="ChinaUnicom",
+                description="acc-test",
+                project_name="default"))
+        replica_set = volcengine.mongodb.Instance("replica-set",
+            db_engine_version="MongoDB_4_0",
+            instance_type="ReplicaSet",
+            super_account_password="@acc-test-123",
+            node_spec="mongo.2c4g",
+            mongos_node_spec="mongo.mongos.2c4g",
+            instance_name="acc-test-mongo-replica",
+            charge_type="PostPaid",
+            project_name="default",
+            mongos_node_number=2,
+            shard_number=3,
+            storage_space_gb=20,
+            subnet_id=foo_subnet.id,
+            zone_id=foo_zones.zones[0].id,
+            tags=[volcengine.mongodb.InstanceTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        replica_set_public_endpoint = volcengine.mongodb.Endpoint("replica-set-public-endpoint",
+            instance_id=replica_set.id,
+            network_type="Public",
+            eip_ids=[__item.id for __item in foo_address])
+        sharded_cluster = volcengine.mongodb.Instance("sharded-cluster",
+            db_engine_version="MongoDB_4_0",
+            instance_type="ShardedCluster",
+            super_account_password="@acc-test-123",
+            node_spec="mongo.shard.1c2g",
+            mongos_node_spec="mongo.mongos.1c2g",
+            instance_name="acc-test-mongo-shard",
+            charge_type="PostPaid",
+            project_name="default",
+            mongos_node_number=2,
+            shard_number=2,
+            storage_space_gb=20,
+            subnet_id=foo_subnet.id,
+            zone_id=foo_zones.zones[0].id,
+            tags=[volcengine.mongodb.InstanceTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        sharded_cluster_private_endpoint = volcengine.mongodb.Endpoint("sharded-cluster-private-endpoint",
+            instance_id=sharded_cluster.id,
+            network_type="Private",
+            object_id=sharded_cluster.shards[0].shard_id)
         ```
 
         ## Import
@@ -257,10 +314,67 @@ class Endpoint(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.mongodb.Endpoint("foo",
-            eip_ids=["eip-3rfe12dvmz8qo5zsk2h91q05p"],
-            instance_id="mongo-replica-38cf5badeb9e",
-            network_type="Public")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_address = []
+        for range in [{"value": i} for i in range(0, 2)]:
+            foo_address.append(volcengine.eip.Address(f"fooAddress-{range['value']}",
+                billing_type="PostPaidByBandwidth",
+                bandwidth=1,
+                isp="ChinaUnicom",
+                description="acc-test",
+                project_name="default"))
+        replica_set = volcengine.mongodb.Instance("replica-set",
+            db_engine_version="MongoDB_4_0",
+            instance_type="ReplicaSet",
+            super_account_password="@acc-test-123",
+            node_spec="mongo.2c4g",
+            mongos_node_spec="mongo.mongos.2c4g",
+            instance_name="acc-test-mongo-replica",
+            charge_type="PostPaid",
+            project_name="default",
+            mongos_node_number=2,
+            shard_number=3,
+            storage_space_gb=20,
+            subnet_id=foo_subnet.id,
+            zone_id=foo_zones.zones[0].id,
+            tags=[volcengine.mongodb.InstanceTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        replica_set_public_endpoint = volcengine.mongodb.Endpoint("replica-set-public-endpoint",
+            instance_id=replica_set.id,
+            network_type="Public",
+            eip_ids=[__item.id for __item in foo_address])
+        sharded_cluster = volcengine.mongodb.Instance("sharded-cluster",
+            db_engine_version="MongoDB_4_0",
+            instance_type="ShardedCluster",
+            super_account_password="@acc-test-123",
+            node_spec="mongo.shard.1c2g",
+            mongos_node_spec="mongo.mongos.1c2g",
+            instance_name="acc-test-mongo-shard",
+            charge_type="PostPaid",
+            project_name="default",
+            mongos_node_number=2,
+            shard_number=2,
+            storage_space_gb=20,
+            subnet_id=foo_subnet.id,
+            zone_id=foo_zones.zones[0].id,
+            tags=[volcengine.mongodb.InstanceTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        sharded_cluster_private_endpoint = volcengine.mongodb.Endpoint("sharded-cluster-private-endpoint",
+            instance_id=sharded_cluster.id,
+            network_type="Private",
+            object_id=sharded_cluster.shards[0].shard_id)
         ```
 
         ## Import

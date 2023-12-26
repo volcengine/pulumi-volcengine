@@ -10,12 +10,77 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.mongodb.Endpoint("foo", {
- *     eipIds: ["eip-3rfe12dvmz8qo5zsk2h91q05p"],
- *     instanceId: "mongo-replica-38cf5badeb9e",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooAddress: volcengine.eip.Address[] = [];
+ * for (const range = {value: 0}; range.value < 2; range.value++) {
+ *     fooAddress.push(new volcengine.eip.Address(`fooAddress-${range.value}`, {
+ *         billingType: "PostPaidByBandwidth",
+ *         bandwidth: 1,
+ *         isp: "ChinaUnicom",
+ *         description: "acc-test",
+ *         projectName: "default",
+ *     }));
+ * }
+ * const replica_set = new volcengine.mongodb.Instance("replica-set", {
+ *     dbEngineVersion: "MongoDB_4_0",
+ *     instanceType: "ReplicaSet",
+ *     superAccountPassword: "@acc-test-123",
+ *     nodeSpec: "mongo.2c4g",
+ *     mongosNodeSpec: "mongo.mongos.2c4g",
+ *     instanceName: "acc-test-mongo-replica",
+ *     chargeType: "PostPaid",
+ *     projectName: "default",
+ *     mongosNodeNumber: 2,
+ *     shardNumber: 3,
+ *     storageSpaceGb: 20,
+ *     subnetId: fooSubnet.id,
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const replica_set_public_endpoint = new volcengine.mongodb.Endpoint("replica-set-public-endpoint", {
+ *     instanceId: replica_set.id,
  *     networkType: "Public",
+ *     eipIds: fooAddress.map(__item => __item.id),
+ * });
+ * const sharded_cluster = new volcengine.mongodb.Instance("sharded-cluster", {
+ *     dbEngineVersion: "MongoDB_4_0",
+ *     instanceType: "ShardedCluster",
+ *     superAccountPassword: "@acc-test-123",
+ *     nodeSpec: "mongo.shard.1c2g",
+ *     mongosNodeSpec: "mongo.mongos.1c2g",
+ *     instanceName: "acc-test-mongo-shard",
+ *     chargeType: "PostPaid",
+ *     projectName: "default",
+ *     mongosNodeNumber: 2,
+ *     shardNumber: 2,
+ *     storageSpaceGb: 20,
+ *     subnetId: fooSubnet.id,
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const sharded_cluster_private_endpoint = new volcengine.mongodb.Endpoint("sharded-cluster-private-endpoint", {
+ *     instanceId: sharded_cluster.id,
+ *     networkType: "Private",
+ *     objectId: sharded_cluster.shards.apply(shards => shards[0].shardId),
  * });
  * ```
  *

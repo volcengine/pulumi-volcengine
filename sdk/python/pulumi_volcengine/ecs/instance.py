@@ -39,6 +39,7 @@ class InstanceArgs:
                  key_pair_name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
+                 primary_ip_address: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  secondary_network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceSecondaryNetworkInterfaceArgs']]]] = None,
                  security_enhancement_strategy: Optional[pulumi.Input[str]] = None,
@@ -75,6 +76,7 @@ class InstanceArgs:
         :param pulumi.Input[str] key_pair_name: The ssh key name of ECS instance.
         :param pulumi.Input[str] password: The password of ECS instance.
         :param pulumi.Input[int] period: The period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 12. Unit is Month.
+        :param pulumi.Input[str] primary_ip_address: The private ip address of primary networkInterface.
         :param pulumi.Input[str] project_name: The ProjectName of the ecs instance.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceSecondaryNetworkInterfaceArgs']]] secondary_network_interfaces: The secondary networkInterface detail collection of ECS instance.
         :param pulumi.Input[str] security_enhancement_strategy: The security enhancement strategy of ECS instance. The value can be Active or InActive. Default is Active.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
@@ -127,6 +129,8 @@ class InstanceArgs:
             pulumi.set(__self__, "password", password)
         if period is not None:
             pulumi.set(__self__, "period", period)
+        if primary_ip_address is not None:
+            pulumi.set(__self__, "primary_ip_address", primary_ip_address)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
         if secondary_network_interfaces is not None:
@@ -422,6 +426,18 @@ class InstanceArgs:
     @period.setter
     def period(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "period", value)
+
+    @property
+    @pulumi.getter(name="primaryIpAddress")
+    def primary_ip_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        The private ip address of primary networkInterface.
+        """
+        return pulumi.get(self, "primary_ip_address")
+
+    @primary_ip_address.setter
+    def primary_ip_address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "primary_ip_address", value)
 
     @property
     @pulumi.getter(name="projectName")
@@ -1319,6 +1335,7 @@ class Instance(pulumi.CustomResource):
                  key_pair_name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
+                 primary_ip_address: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  secondary_network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecondaryNetworkInterfaceArgs']]]]] = None,
                  security_enhancement_strategy: Optional[pulumi.Input[str]] = None,
@@ -1410,6 +1427,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] key_pair_name: The ssh key name of ECS instance.
         :param pulumi.Input[str] password: The password of ECS instance.
         :param pulumi.Input[int] period: The period of ECS instance.Only effective when instance_charge_type is PrePaid. Default is 12. Unit is Month.
+        :param pulumi.Input[str] primary_ip_address: The private ip address of primary networkInterface.
         :param pulumi.Input[str] project_name: The ProjectName of the ecs instance.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecondaryNetworkInterfaceArgs']]]] secondary_network_interfaces: The secondary networkInterface detail collection of ECS instance.
         :param pulumi.Input[str] security_enhancement_strategy: The security enhancement strategy of ECS instance. The value can be Active or InActive. Default is Active.When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
@@ -1520,6 +1538,7 @@ class Instance(pulumi.CustomResource):
                  key_pair_name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
+                 primary_ip_address: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  secondary_network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceSecondaryNetworkInterfaceArgs']]]]] = None,
                  security_enhancement_strategy: Optional[pulumi.Input[str]] = None,
@@ -1564,6 +1583,7 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["key_pair_name"] = key_pair_name
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
             __props__.__dict__["period"] = period
+            __props__.__dict__["primary_ip_address"] = primary_ip_address
             __props__.__dict__["project_name"] = project_name
             __props__.__dict__["secondary_network_interfaces"] = secondary_network_interfaces
             __props__.__dict__["security_enhancement_strategy"] = security_enhancement_strategy
@@ -1594,7 +1614,6 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["network_interface_id"] = None
             __props__.__dict__["os_name"] = None
             __props__.__dict__["os_type"] = None
-            __props__.__dict__["primary_ip_address"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["stopped_mode"] = None
             __props__.__dict__["system_volume_id"] = None

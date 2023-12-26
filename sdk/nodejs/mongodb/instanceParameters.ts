@@ -13,10 +13,47 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = volcengine.mongodb.InstanceParameters({
- *     instanceId: "mongo-replica-f16e9298b121",
- *     parameterNames: "connPoolMaxConnsPerHost",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooInstance = new volcengine.mongodb.Instance("fooInstance", {
+ *     dbEngineVersion: "MongoDB_4_0",
+ *     instanceType: "ReplicaSet",
+ *     superAccountPassword: "@acc-test-123",
+ *     nodeSpec: "mongo.2c4g",
+ *     mongosNodeSpec: "mongo.mongos.2c4g",
+ *     instanceName: "acc-test-mongo-replica",
+ *     chargeType: "PostPaid",
+ *     projectName: "default",
+ *     mongosNodeNumber: 32,
+ *     shardNumber: 3,
+ *     storageSpaceGb: 20,
+ *     subnetId: fooSubnet.id,
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooInstanceParameter = new volcengine.mongodb.InstanceParameter("fooInstanceParameter", {
+ *     instanceId: fooInstance.id,
+ *     parameterName: "cursorTimeoutMillis",
+ *     parameterRole: "Node",
+ *     parameterValue: "600111",
+ * });
+ * const fooInstanceParameters = volcengine.mongodb.InstanceParametersOutput({
+ *     instanceId: fooInstance.id,
+ *     parameterNames: "cursorTimeoutMillis",
  *     parameterRole: "Node",
  * });
  * ```
@@ -66,6 +103,10 @@ export interface InstanceParametersResult {
      * The instance ID.
      */
     readonly instanceId: string;
+    /**
+     * The list of parameters.
+     */
+    readonly instanceParameters: outputs.mongodb.InstanceParametersInstanceParameter[];
     readonly outputFile?: string;
     readonly parameterNames?: string;
     /**
@@ -73,9 +114,11 @@ export interface InstanceParametersResult {
      */
     readonly parameterRole?: string;
     /**
-     * The collection of parameter query.
+     * (**Deprecated**) This field has been deprecated and it is recommended to use instance_parameters. The collection of parameter query.
+     *
+     * @deprecated This field has been deprecated and it is recommended to use instance_parameters.
      */
-    readonly parameters: outputs.mongodb.InstanceParametersParameters;
+    readonly parameters: outputs.mongodb.InstanceParametersParameter[];
     /**
      * The total count of mongodb instance parameter query.
      */
@@ -88,10 +131,47 @@ export interface InstanceParametersResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = volcengine.mongodb.InstanceParameters({
- *     instanceId: "mongo-replica-f16e9298b121",
- *     parameterNames: "connPoolMaxConnsPerHost",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooInstance = new volcengine.mongodb.Instance("fooInstance", {
+ *     dbEngineVersion: "MongoDB_4_0",
+ *     instanceType: "ReplicaSet",
+ *     superAccountPassword: "@acc-test-123",
+ *     nodeSpec: "mongo.2c4g",
+ *     mongosNodeSpec: "mongo.mongos.2c4g",
+ *     instanceName: "acc-test-mongo-replica",
+ *     chargeType: "PostPaid",
+ *     projectName: "default",
+ *     mongosNodeNumber: 32,
+ *     shardNumber: 3,
+ *     storageSpaceGb: 20,
+ *     subnetId: fooSubnet.id,
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooInstanceParameter = new volcengine.mongodb.InstanceParameter("fooInstanceParameter", {
+ *     instanceId: fooInstance.id,
+ *     parameterName: "cursorTimeoutMillis",
+ *     parameterRole: "Node",
+ *     parameterValue: "600111",
+ * });
+ * const fooInstanceParameters = volcengine.mongodb.InstanceParametersOutput({
+ *     instanceId: fooInstance.id,
+ *     parameterNames: "cursorTimeoutMillis",
  *     parameterRole: "Node",
  * });
  * ```

@@ -21,6 +21,8 @@ namespace Volcengine.Pulumi.Volcengine.Tls.Inputs
 
         /// <summary>
         /// Execution cycle type.
+        /// Period: Periodic execution, which means executing once every certain period of time.
+        /// Fixed: Regular execution, which means executing at a fixed time point every day.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;

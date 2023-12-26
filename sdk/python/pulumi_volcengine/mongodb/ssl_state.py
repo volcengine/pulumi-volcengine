@@ -19,7 +19,7 @@ class SslStateArgs:
         """
         The set of arguments for constructing a SslState resource.
         :param pulumi.Input[str] instance_id: The ID of mongodb instance.
-        :param pulumi.Input[str] ssl_action: The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will update ssl always when pulumi up.
+        :param pulumi.Input[str] ssl_action: The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will will trigger an SSL update operation when executing `pulumi up`.When the current time is less than 30 days from the `ssl_expired_time`, executing `pulumi up` will automatically renew the SSL.
         """
         pulumi.set(__self__, "instance_id", instance_id)
         if ssl_action is not None:
@@ -41,7 +41,7 @@ class SslStateArgs:
     @pulumi.getter(name="sslAction")
     def ssl_action(self) -> Optional[pulumi.Input[str]]:
         """
-        The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will update ssl always when pulumi up.
+        The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will will trigger an SSL update operation when executing `pulumi up`.When the current time is less than 30 days from the `ssl_expired_time`, executing `pulumi up` will automatically renew the SSL.
         """
         return pulumi.get(self, "ssl_action")
 
@@ -62,7 +62,7 @@ class _SslStateState:
         Input properties used for looking up and filtering SslState resources.
         :param pulumi.Input[str] instance_id: The ID of mongodb instance.
         :param pulumi.Input[bool] is_valid: Whetehr SSL is valid.
-        :param pulumi.Input[str] ssl_action: The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will update ssl always when pulumi up.
+        :param pulumi.Input[str] ssl_action: The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will will trigger an SSL update operation when executing `pulumi up`.When the current time is less than 30 days from the `ssl_expired_time`, executing `pulumi up` will automatically renew the SSL.
         :param pulumi.Input[bool] ssl_enable: Whether SSL is enabled.
         :param pulumi.Input[str] ssl_expired_time: The expire time of SSL.
         """
@@ -105,7 +105,7 @@ class _SslStateState:
     @pulumi.getter(name="sslAction")
     def ssl_action(self) -> Optional[pulumi.Input[str]]:
         """
-        The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will update ssl always when pulumi up.
+        The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will will trigger an SSL update operation when executing `pulumi up`.When the current time is less than 30 days from the `ssl_expired_time`, executing `pulumi up` will automatically renew the SSL.
         """
         return pulumi.get(self, "ssl_action")
 
@@ -154,10 +154,34 @@ class SslState(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.mongodb.SslState("foo",
-            instance_id="mongo-replica-f16e9298b121",
-            ssl_action="Update")
-        # 选填 仅支持Update
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_instance = volcengine.mongodb.Instance("fooInstance",
+            db_engine_version="MongoDB_4_0",
+            instance_type="ReplicaSet",
+            super_account_password="@acc-test-123",
+            node_spec="mongo.2c4g",
+            mongos_node_spec="mongo.mongos.2c4g",
+            instance_name="acc-test-mongo-replica",
+            charge_type="PostPaid",
+            project_name="default",
+            mongos_node_number=2,
+            shard_number=3,
+            storage_space_gb=20,
+            subnet_id=foo_subnet.id,
+            zone_id=foo_zones.zones[0].id,
+            tags=[volcengine.mongodb.InstanceTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_ssl_state = volcengine.mongodb.SslState("fooSslState", instance_id=foo_instance.id)
         ```
 
         ## Import
@@ -168,12 +192,10 @@ class SslState(pulumi.CustomResource):
          $ pulumi import volcengine:mongodb/sslState:SslState default ssl:mongo-shard-d050db19xxx
         ```
 
-         Set `ssl_action` to `Update` will update ssl always when pulumi up.
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] instance_id: The ID of mongodb instance.
-        :param pulumi.Input[str] ssl_action: The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will update ssl always when pulumi up.
+        :param pulumi.Input[str] ssl_action: The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will will trigger an SSL update operation when executing `pulumi up`.When the current time is less than 30 days from the `ssl_expired_time`, executing `pulumi up` will automatically renew the SSL.
         """
         ...
     @overload
@@ -189,10 +211,34 @@ class SslState(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.mongodb.SslState("foo",
-            instance_id="mongo-replica-f16e9298b121",
-            ssl_action="Update")
-        # 选填 仅支持Update
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_instance = volcengine.mongodb.Instance("fooInstance",
+            db_engine_version="MongoDB_4_0",
+            instance_type="ReplicaSet",
+            super_account_password="@acc-test-123",
+            node_spec="mongo.2c4g",
+            mongos_node_spec="mongo.mongos.2c4g",
+            instance_name="acc-test-mongo-replica",
+            charge_type="PostPaid",
+            project_name="default",
+            mongos_node_number=2,
+            shard_number=3,
+            storage_space_gb=20,
+            subnet_id=foo_subnet.id,
+            zone_id=foo_zones.zones[0].id,
+            tags=[volcengine.mongodb.InstanceTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_ssl_state = volcengine.mongodb.SslState("fooSslState", instance_id=foo_instance.id)
         ```
 
         ## Import
@@ -202,8 +248,6 @@ class SslState(pulumi.CustomResource):
         ```sh
          $ pulumi import volcengine:mongodb/sslState:SslState default ssl:mongo-shard-d050db19xxx
         ```
-
-         Set `ssl_action` to `Update` will update ssl always when pulumi up.
 
         :param str resource_name: The name of the resource.
         :param SslStateArgs args: The arguments to use to populate this resource's properties.
@@ -262,7 +306,7 @@ class SslState(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] instance_id: The ID of mongodb instance.
         :param pulumi.Input[bool] is_valid: Whetehr SSL is valid.
-        :param pulumi.Input[str] ssl_action: The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will update ssl always when pulumi up.
+        :param pulumi.Input[str] ssl_action: The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will will trigger an SSL update operation when executing `pulumi up`.When the current time is less than 30 days from the `ssl_expired_time`, executing `pulumi up` will automatically renew the SSL.
         :param pulumi.Input[bool] ssl_enable: Whether SSL is enabled.
         :param pulumi.Input[str] ssl_expired_time: The expire time of SSL.
         """
@@ -297,7 +341,7 @@ class SslState(pulumi.CustomResource):
     @pulumi.getter(name="sslAction")
     def ssl_action(self) -> pulumi.Output[Optional[str]]:
         """
-        The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will update ssl always when pulumi up.
+        The action of ssl, valid value contains `Update`. Set `ssl_action` to `Update` will will trigger an SSL update operation when executing `pulumi up`.When the current time is less than 30 days from the `ssl_expired_time`, executing `pulumi up` will automatically renew the SSL.
         """
         return pulumi.get(self, "ssl_action")
 

@@ -5,6 +5,219 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export namespace alb {
+    export interface AclAclEntry {
+        /**
+         * The description of the AclEntry.
+         */
+        description?: pulumi.Input<string>;
+        /**
+         * The content of the AclEntry.
+         */
+        entry: pulumi.Input<string>;
+    }
+
+    export interface AlbEipBillingConfig {
+        /**
+         * The peek bandwidth of the Ipv6 EIP which automatically assigned to the Alb. Unit: Mbps.
+         */
+        bandwidth: pulumi.Input<number>;
+        /**
+         * The billing type of the EIP which automatically assigned to the Alb. Valid values: `PostPaidByBandwidth`, `PostPaidByTraffic`.
+         */
+        eipBillingType: pulumi.Input<string>;
+        /**
+         * The ISP of the Ipv6 EIP which automatically associated to the Alb, the value can be `BGP`.
+         */
+        isp: pulumi.Input<string>;
+    }
+
+    export interface AlbIpv6EipBillingConfig {
+        /**
+         * The peek bandwidth of the EIP which automatically assigned to the Alb. Unit: Mbps.
+         */
+        bandwidth: pulumi.Input<number>;
+        /**
+         * The billing type of the Tpv6 EIP which automatically assigned to the Alb. Valid values: `PostPaidByBandwidth`, `PostPaidByTraffic`.
+         */
+        billingType: pulumi.Input<string>;
+        /**
+         * The ISP of the EIP which automatically associated to the Alb, the value can be `BGP`.
+         *
+         * The `ipv6EipBillingConfig` object supports the following:
+         */
+        isp: pulumi.Input<string>;
+    }
+
+    export interface AlbTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface AlbZoneMapping {
+        /**
+         * The IP address information of the Alb in this availability zone.
+         */
+        loadBalancerAddresses?: pulumi.Input<pulumi.Input<inputs.alb.AlbZoneMappingLoadBalancerAddress>[]>;
+        /**
+         * The subnet id of the Alb in this availability zone.
+         */
+        subnetId?: pulumi.Input<string>;
+        /**
+         * The availability zone id of the Alb.
+         */
+        zoneId?: pulumi.Input<string>;
+    }
+
+    export interface AlbZoneMappingLoadBalancerAddress {
+        /**
+         * The Eip address of the Alb in this availability zone.
+         */
+        eipAddress?: pulumi.Input<string>;
+        /**
+         * The Eip id of alb instance in this availability zone.
+         */
+        eipId?: pulumi.Input<string>;
+        /**
+         * The Eni address of the Alb in this availability zone.
+         */
+        eniAddress?: pulumi.Input<string>;
+        /**
+         * The Eni id of the Alb in this availability zone.
+         */
+        eniId?: pulumi.Input<string>;
+        /**
+         * The Eni Ipv6 address of the Alb in this availability zone.
+         */
+        eniIpv6Address?: pulumi.Input<string>;
+        /**
+         * The Ipv6 Eip id of alb instance in this availability zone.
+         */
+        ipv6EipId?: pulumi.Input<string>;
+    }
+
+    export interface AlbsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface AlbsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface RuleRedirectConfig {
+        /**
+         * The redirect domain, only support exact domain name.
+         */
+        redirectDomain?: pulumi.Input<string>;
+        /**
+         * The redirect http code, support 301(default), 302, 307, 308.
+         */
+        redirectHttpCode?: pulumi.Input<string>;
+        /**
+         * The redirect port.
+         */
+        redirectPort?: pulumi.Input<string>;
+        /**
+         * The redirect protocol, support HTTP, HTTPS(default).
+         */
+        redirectProtocol?: pulumi.Input<string>;
+        /**
+         * The redirect URI.
+         */
+        redirectUri?: pulumi.Input<string>;
+    }
+
+    export interface RuleRewriteConfig {
+        /**
+         * Rewrite path.
+         */
+        rewritePath: pulumi.Input<string>;
+    }
+
+    export interface ServerGroupHealthCheck {
+        /**
+         * The domain of health check.
+         */
+        domain?: pulumi.Input<string>;
+        /**
+         * The enable status of health check function. Valid values: `on`, `off`. Default is `on`.
+         */
+        enabled?: pulumi.Input<string>;
+        /**
+         * The healthy threshold of health check. Valid value range in 2~10. Default is 3.
+         */
+        healthyThreshold?: pulumi.Input<number>;
+        /**
+         * The normal http status code of health check, the value can be `http2xx` or `http3xx` or `http4xx` or `http5xx`.
+         */
+        httpCode?: pulumi.Input<string>;
+        /**
+         * The http version of health check. Valid values: `HTTP1.0`, `HTTP1.1`. Default is `HTTP1.0`.
+         */
+        httpVersion?: pulumi.Input<string>;
+        /**
+         * The interval executing health check. Unit: second. Valid value range in 1~300. Default is 2.
+         */
+        interval?: pulumi.Input<number>;
+        /**
+         * The method of health check. Valid values: `GET` or `HEAD`. Default is `HEAD`.
+         */
+        method?: pulumi.Input<string>;
+        /**
+         * The response timeout of health check. Unit: second. Valid value range in 1~60. Default is 2.
+         */
+        timeout?: pulumi.Input<number>;
+        /**
+         * The unhealthy threshold of health check. Valid value range in 2~10. Default is 3.
+         */
+        unhealthyThreshold?: pulumi.Input<number>;
+        /**
+         * The uri of health check.
+         */
+        uri?: pulumi.Input<string>;
+    }
+
+    export interface ServerGroupStickySessionConfig {
+        /**
+         * The cookie name of the sticky session. This field is required when the value of the `stickySessionType` is `server`.
+         */
+        cookie?: pulumi.Input<string>;
+        /**
+         * The cookie timeout of the sticky session. Unit: second. Valid value range in 1~86400. Default is 1000. This field is required when the value of the `stickySessionType` is `insert`.
+         */
+        cookieTimeout?: pulumi.Input<number>;
+        /**
+         * The enable status of sticky session. Valid values: `on`, `off`. Default is `off`.
+         */
+        stickySessionEnabled?: pulumi.Input<string>;
+        /**
+         * The cookie handle type of the sticky session. Valid values: `insert`, `server`. Default is `insert`. This field is required when the value of the `stickySessionEnabled` is `on`.
+         */
+        stickySessionType?: pulumi.Input<string>;
+    }
+
+}
+
 export namespace autoscaling {
     export interface ScalingConfigurationTag {
         /**
@@ -78,6 +291,41 @@ export namespace autoscaling {
         parameters?: pulumi.Input<string>;
     }
 
+}
+
+export namespace bandwidth_package {
+    export interface BandwidthPackageTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface BandwidthPackagesTagFilter {
+        /**
+         * The key of the tag.
+         */
+        key: string;
+        /**
+         * The values of the tag.
+         */
+        values: string[];
+    }
+
+    export interface BandwidthPackagesTagFilterArgs {
+        /**
+         * The key of the tag.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The values of the tag.
+         */
+        values: pulumi.Input<pulumi.Input<string>[]>;
+    }
 }
 
 export namespace bioos {
@@ -795,6 +1043,28 @@ export namespace iam {
 }
 
 export namespace mongodb {
+    export interface InstanceMongo {
+        /**
+         * The mongos node ID.
+         */
+        mongosNodeId?: pulumi.Input<string>;
+        /**
+         * The spec of node.
+         */
+        nodeSpec?: pulumi.Input<string>;
+        /**
+         * The node status.
+         */
+        nodeStatus?: pulumi.Input<string>;
+    }
+
+    export interface InstanceShard {
+        /**
+         * The shard id.
+         */
+        shardId?: pulumi.Input<string>;
+    }
+
     export interface InstanceTag {
         /**
          * The Key of Tags.
@@ -1626,7 +1896,7 @@ export namespace tls {
          */
         endTime: pulumi.Input<string>;
         /**
-         * The list of the receiver channels.
+         * The list of the receiver channels. Currently supported channels: Email, Sms, Phone.
          */
         receiverChannels: pulumi.Input<pulumi.Input<string>[]>;
         /**
@@ -1634,7 +1904,7 @@ export namespace tls {
          */
         receiverNames: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * The receiver type, value can be User.
+         * The receiver type, Can be set as: `User`(The id of user).
          */
         receiverType: pulumi.Input<string>;
         /**
@@ -1673,6 +1943,8 @@ export namespace tls {
         time: pulumi.Input<number>;
         /**
          * Execution cycle type.
+         * Period: Periodic execution, which means executing once every certain period of time.
+         * Fixed: Regular execution, which means executing at a fixed time point every day.
          */
         type: pulumi.Input<string>;
     }
@@ -1874,7 +2146,12 @@ export namespace tls {
          */
         workloadNameRegex?: pulumi.Input<string>;
         /**
-         * Specify the container to be collected by the type of workload. Only one type can be selected. When no type is specified, it means to collect all types of containers.
+         * Specify the containers to be collected by the type of workload, only one type can be selected. When no type is specified, it means all types of containers are collected. The supported types of workloads are:
+         * Deployment: stateless workload.
+         * StatefulSet: stateful workload.
+         * DaemonSet: daemon process.
+         * Job: task.
+         * CronJob: scheduled task.
          */
         workloadType?: pulumi.Input<string>;
     }
@@ -2348,7 +2625,11 @@ export namespace vke {
          */
         logTtl?: pulumi.Input<number>;
         /**
-         * The currently enabled log type.
+         * The current types of logs that can be enabled are:
+         * Audit: Cluster audit logs.
+         * KubeApiServer: kube-apiserver component logs.
+         * KubeScheduler: kube-scheduler component logs.
+         * KubeControllerManager: kube-controller-manager component logs.
          */
         logType: pulumi.Input<string>;
     }
@@ -2771,19 +3052,19 @@ export namespace vke {
          */
         desiredReplicas?: pulumi.Input<number>;
         /**
-         * Is Enabled of AutoScaling.
+         * Whether to enable the auto scaling function of the node pool. When a node needs to be manually added to the node pool, the value of this field must be `false`.
          */
         enabled?: pulumi.Input<boolean>;
         /**
-         * The MaxReplicas of AutoScaling, default 10, range in 1~2000.
+         * The MaxReplicas of AutoScaling, default 10, range in 1~2000. This field is valid when the value of `enabled` is `true`.
          */
         maxReplicas?: pulumi.Input<number>;
         /**
-         * The MinReplicas of AutoScaling, default 0.
+         * The MinReplicas of AutoScaling, default 0. This field is valid when the value of `enabled` is `true`.
          */
         minReplicas?: pulumi.Input<number>;
         /**
-         * The Priority of AutoScaling, default 10, rang in 0~100.
+         * The Priority of AutoScaling, default 10, rang in 0~100. This field is valid when the value of `enabled` is `true` and the value of `subnetPolicy` is `Priority`.
          */
         priority?: pulumi.Input<number>;
         /**
@@ -2957,6 +3238,45 @@ export namespace vke {
          * The Type of SystemVolume, the value can be `PTSSD` or `ESSD_PL0` or `ESSD_FlexPL`.
          */
         type?: pulumi.Input<string>;
+    }
+
+    export interface NodePoolNodeStatistic {
+        /**
+         * The CreatingCount of Node.
+         */
+        creatingCount?: pulumi.Input<number>;
+        /**
+         * The DeletingCount of Node.
+         */
+        deletingCount?: pulumi.Input<number>;
+        /**
+         * The FailedCount of Node.
+         */
+        failedCount?: pulumi.Input<number>;
+        /**
+         * The RunningCount of Node.
+         */
+        runningCount?: pulumi.Input<number>;
+        /**
+         * The StartingCount of Node.
+         */
+        startingCount?: pulumi.Input<number>;
+        /**
+         * The StoppedCount of Node.
+         */
+        stoppedCount?: pulumi.Input<number>;
+        /**
+         * The StoppingCount of Node.
+         */
+        stoppingCount?: pulumi.Input<number>;
+        /**
+         * The TotalCount of Node.
+         */
+        totalCount?: pulumi.Input<number>;
+        /**
+         * The UpdatingCount of Node.
+         */
+        updatingCount?: pulumi.Input<number>;
     }
 
     export interface NodePoolTag {

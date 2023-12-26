@@ -20,20 +20,72 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/mongodb"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodb.InstanceParameters(ctx, &mongodb.InstanceParametersArgs{
-//				InstanceId:     "mongo-replica-f16e9298b121",
-//				ParameterNames: pulumi.StringRef("connPoolMaxConnsPerHost"),
-//				ParameterRole:  pulumi.StringRef("Node"),
-//			}, nil)
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooInstance, err := mongodb.NewInstance(ctx, "fooInstance", &mongodb.InstanceArgs{
+//				DbEngineVersion:      pulumi.String("MongoDB_4_0"),
+//				InstanceType:         pulumi.String("ReplicaSet"),
+//				SuperAccountPassword: pulumi.String("@acc-test-123"),
+//				NodeSpec:             pulumi.String("mongo.2c4g"),
+//				MongosNodeSpec:       pulumi.String("mongo.mongos.2c4g"),
+//				InstanceName:         pulumi.String("acc-test-mongo-replica"),
+//				ChargeType:           pulumi.String("PostPaid"),
+//				ProjectName:          pulumi.String("default"),
+//				MongosNodeNumber:     pulumi.Int(32),
+//				ShardNumber:          pulumi.Int(3),
+//				StorageSpaceGb:       pulumi.Int(20),
+//				SubnetId:             fooSubnet.ID(),
+//				ZoneId:               *pulumi.String(fooZones.Zones[0].Id),
+//				Tags: mongodb.InstanceTagArray{
+//					&mongodb.InstanceTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodb.NewInstanceParameter(ctx, "fooInstanceParameter", &mongodb.InstanceParameterArgs{
+//				InstanceId:     fooInstance.ID(),
+//				ParameterName:  pulumi.String("cursorTimeoutMillis"),
+//				ParameterRole:  pulumi.String("Node"),
+//				ParameterValue: pulumi.String("600111"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodb.InstanceParametersOutput(ctx, mongodb.InstanceParametersOutputArgs{
+//				InstanceId:     fooInstance.ID(),
+//				ParameterNames: pulumi.String("cursorTimeoutMillis"),
+//				ParameterRole:  pulumi.String("Node"),
+//			}, nil)
 //			return nil
 //		})
 //	}
@@ -66,13 +118,17 @@ type InstanceParametersResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The instance ID.
-	InstanceId     string  `pulumi:"instanceId"`
-	OutputFile     *string `pulumi:"outputFile"`
-	ParameterNames *string `pulumi:"parameterNames"`
+	InstanceId string `pulumi:"instanceId"`
+	// The list of parameters.
+	InstanceParameters []InstanceParametersInstanceParameter `pulumi:"instanceParameters"`
+	OutputFile         *string                               `pulumi:"outputFile"`
+	ParameterNames     *string                               `pulumi:"parameterNames"`
 	// The node type to which the parameter belongs.
 	ParameterRole *string `pulumi:"parameterRole"`
-	// The collection of parameter query.
-	Parameters InstanceParametersParameters `pulumi:"parameters"`
+	// (**Deprecated**) This field has been deprecated and it is recommended to use instance_parameters. The collection of parameter query.
+	//
+	// Deprecated: This field has been deprecated and it is recommended to use instance_parameters.
+	Parameters []InstanceParametersParameter `pulumi:"parameters"`
 	// The total count of mongodb instance parameter query.
 	TotalCount int `pulumi:"totalCount"`
 }
@@ -131,6 +187,11 @@ func (o InstanceParametersResultOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v InstanceParametersResult) string { return v.InstanceId }).(pulumi.StringOutput)
 }
 
+// The list of parameters.
+func (o InstanceParametersResultOutput) InstanceParameters() InstanceParametersInstanceParameterArrayOutput {
+	return o.ApplyT(func(v InstanceParametersResult) []InstanceParametersInstanceParameter { return v.InstanceParameters }).(InstanceParametersInstanceParameterArrayOutput)
+}
+
 func (o InstanceParametersResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceParametersResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
 }
@@ -144,9 +205,11 @@ func (o InstanceParametersResultOutput) ParameterRole() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceParametersResult) *string { return v.ParameterRole }).(pulumi.StringPtrOutput)
 }
 
-// The collection of parameter query.
-func (o InstanceParametersResultOutput) Parameters() InstanceParametersParametersOutput {
-	return o.ApplyT(func(v InstanceParametersResult) InstanceParametersParameters { return v.Parameters }).(InstanceParametersParametersOutput)
+// (**Deprecated**) This field has been deprecated and it is recommended to use instance_parameters. The collection of parameter query.
+//
+// Deprecated: This field has been deprecated and it is recommended to use instance_parameters.
+func (o InstanceParametersResultOutput) Parameters() InstanceParametersParameterArrayOutput {
+	return o.ApplyT(func(v InstanceParametersResult) []InstanceParametersParameter { return v.Parameters }).(InstanceParametersParameterArrayOutput)
 }
 
 // The total count of mongodb instance parameter query.

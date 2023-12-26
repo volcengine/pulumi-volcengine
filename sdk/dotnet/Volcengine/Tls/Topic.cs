@@ -60,6 +60,8 @@ namespace Volcengine.Pulumi.Volcengine.Tls
     {
         /// <summary>
         /// Whether to enable automatic partition splitting function of the tls topic.
+        /// true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
+        /// false: Disables automatic partition splitting.
         /// </summary>
         [Output("autoSplit")]
         public Output<bool> AutoSplit { get; private set; } = null!;
@@ -83,7 +85,7 @@ namespace Volcengine.Pulumi.Volcengine.Tls
         public Output<bool> EnableTracking { get; private set; } = null!;
 
         /// <summary>
-        /// The max count of shards in the tls topic.
+        /// The maximum number of partitions, which is the maximum number of partitions after partition splitting. The value range is 1 to 10, with a default of 10.
         /// </summary>
         [Output("maxSplitShard")]
         public Output<int> MaxSplitShard { get; private set; } = null!;
@@ -185,6 +187,8 @@ namespace Volcengine.Pulumi.Volcengine.Tls
     {
         /// <summary>
         /// Whether to enable automatic partition splitting function of the tls topic.
+        /// true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
+        /// false: Disables automatic partition splitting.
         /// </summary>
         [Input("autoSplit")]
         public Input<bool>? AutoSplit { get; set; }
@@ -202,7 +206,7 @@ namespace Volcengine.Pulumi.Volcengine.Tls
         public Input<bool>? EnableTracking { get; set; }
 
         /// <summary>
-        /// The max count of shards in the tls topic.
+        /// The maximum number of partitions, which is the maximum number of partitions after partition splitting. The value range is 1 to 10, with a default of 10.
         /// </summary>
         [Input("maxSplitShard")]
         public Input<int>? MaxSplitShard { get; set; }
@@ -265,6 +269,8 @@ namespace Volcengine.Pulumi.Volcengine.Tls
     {
         /// <summary>
         /// Whether to enable automatic partition splitting function of the tls topic.
+        /// true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
+        /// false: Disables automatic partition splitting.
         /// </summary>
         [Input("autoSplit")]
         public Input<bool>? AutoSplit { get; set; }
@@ -288,7 +294,7 @@ namespace Volcengine.Pulumi.Volcengine.Tls
         public Input<bool>? EnableTracking { get; set; }
 
         /// <summary>
-        /// The max count of shards in the tls topic.
+        /// The maximum number of partitions, which is the maximum number of partitions after partition splitting. The value range is 1 to 10, with a default of 10.
         /// </summary>
         [Input("maxSplitShard")]
         public Input<int>? MaxSplitShard { get; set; }

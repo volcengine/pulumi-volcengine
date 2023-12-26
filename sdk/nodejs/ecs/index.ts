@@ -35,6 +35,11 @@ export const deploymentSets: typeof import("./deploymentSets").deploymentSets = 
 export const deploymentSetsOutput: typeof import("./deploymentSets").deploymentSetsOutput = null as any;
 utilities.lazyLoad(exports, ["deploymentSets","deploymentSetsOutput"], () => require("./deploymentSets"));
 
+export { IamRoleAttachmentArgs, IamRoleAttachmentState } from "./iamRoleAttachment";
+export type IamRoleAttachment = import("./iamRoleAttachment").IamRoleAttachment;
+export const IamRoleAttachment: typeof import("./iamRoleAttachment").IamRoleAttachment = null as any;
+utilities.lazyLoad(exports, ["IamRoleAttachment"], () => require("./iamRoleAttachment"));
+
 export { ImagesArgs, ImagesResult, ImagesOutputArgs } from "./images";
 export const images: typeof import("./images").images = null as any;
 export const imagesOutput: typeof import("./images").imagesOutput = null as any;
@@ -44,6 +49,11 @@ export { InstanceArgs, InstanceState } from "./instance";
 export type Instance = import("./instance").Instance;
 export const Instance: typeof import("./instance").Instance = null as any;
 utilities.lazyLoad(exports, ["Instance"], () => require("./instance"));
+
+export { InstanceTypesArgs, InstanceTypesResult, InstanceTypesOutputArgs } from "./instanceTypes";
+export const instanceTypes: typeof import("./instanceTypes").instanceTypes = null as any;
+export const instanceTypesOutput: typeof import("./instanceTypes").instanceTypesOutput = null as any;
+utilities.lazyLoad(exports, ["instanceTypes","instanceTypesOutput"], () => require("./instanceTypes"));
 
 export { InstancesArgs, InstancesResult, InstancesOutputArgs } from "./instances";
 export const instances: typeof import("./instances").instances = null as any;
@@ -116,6 +126,8 @@ const _module = {
                 return new DeploymentSet(name, <any>undefined, { urn })
             case "volcengine:ecs/deploymentSetAssociate:DeploymentSetAssociate":
                 return new DeploymentSetAssociate(name, <any>undefined, { urn })
+            case "volcengine:ecs/iamRoleAttachment:IamRoleAttachment":
+                return new IamRoleAttachment(name, <any>undefined, { urn })
             case "volcengine:ecs/instance:Instance":
                 return new Instance(name, <any>undefined, { urn })
             case "volcengine:ecs/invocation:Invocation":
@@ -136,6 +148,7 @@ const _module = {
 pulumi.runtime.registerResourceModule("volcengine", "ecs/command", _module)
 pulumi.runtime.registerResourceModule("volcengine", "ecs/deploymentSet", _module)
 pulumi.runtime.registerResourceModule("volcengine", "ecs/deploymentSetAssociate", _module)
+pulumi.runtime.registerResourceModule("volcengine", "ecs/iamRoleAttachment", _module)
 pulumi.runtime.registerResourceModule("volcengine", "ecs/instance", _module)
 pulumi.runtime.registerResourceModule("volcengine", "ecs/invocation", _module)
 pulumi.runtime.registerResourceModule("volcengine", "ecs/keyPair", _module)

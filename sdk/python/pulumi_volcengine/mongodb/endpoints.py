@@ -98,7 +98,55 @@ def endpoints(instance_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.mongodb.endpoints(instance_id="mongo-shard-xxx")
+    foo_zones = volcengine.ecs.zones()
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-vpc",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-test-subnet",
+        cidr_block="172.16.0.0/24",
+        zone_id=foo_zones.zones[0].id,
+        vpc_id=foo_vpc.id)
+    foo_instance = volcengine.mongodb.Instance("fooInstance",
+        db_engine_version="MongoDB_4_0",
+        instance_type="ShardedCluster",
+        super_account_password="@acc-test-123",
+        node_spec="mongo.shard.1c2g",
+        mongos_node_spec="mongo.mongos.1c2g",
+        instance_name="acc-test-mongo-shard",
+        charge_type="PostPaid",
+        project_name="default",
+        mongos_node_number=2,
+        shard_number=2,
+        storage_space_gb=20,
+        subnet_id=foo_subnet.id,
+        zone_id=foo_zones.zones[0].id,
+        tags=[volcengine.mongodb.InstanceTagArgs(
+            key="k1",
+            value="v1",
+        )])
+    foo_address = []
+    for range in [{"value": i} for i in range(0, 2)]:
+        foo_address.append(volcengine.eip.Address(f"fooAddress-{range['value']}",
+            billing_type="PostPaidByBandwidth",
+            bandwidth=1,
+            isp="ChinaUnicom",
+            description="acc-test",
+            project_name="default"))
+    foo_public = volcengine.mongodb.Endpoint("fooPublic",
+        instance_id=foo_instance.id,
+        network_type="Public",
+        object_id=foo_instance.mongos_id,
+        mongos_node_ids=[
+            foo_instance.mongos[0].mongos_node_id,
+            foo_instance.mongos[1].mongos_node_id,
+        ],
+        eip_ids=[__item.id for __item in foo_address])
+    foo_private = volcengine.mongodb.Endpoint("fooPrivate",
+        instance_id=foo_instance.id,
+        network_type="Private",
+        object_id=foo_instance.config_servers_id)
+    foo_endpoints = volcengine.mongodb.endpoints_output(instance_id=foo_instance.id)
     ```
 
 
@@ -131,7 +179,55 @@ def endpoints_output(instance_id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.mongodb.endpoints(instance_id="mongo-shard-xxx")
+    foo_zones = volcengine.ecs.zones()
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-vpc",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-test-subnet",
+        cidr_block="172.16.0.0/24",
+        zone_id=foo_zones.zones[0].id,
+        vpc_id=foo_vpc.id)
+    foo_instance = volcengine.mongodb.Instance("fooInstance",
+        db_engine_version="MongoDB_4_0",
+        instance_type="ShardedCluster",
+        super_account_password="@acc-test-123",
+        node_spec="mongo.shard.1c2g",
+        mongos_node_spec="mongo.mongos.1c2g",
+        instance_name="acc-test-mongo-shard",
+        charge_type="PostPaid",
+        project_name="default",
+        mongos_node_number=2,
+        shard_number=2,
+        storage_space_gb=20,
+        subnet_id=foo_subnet.id,
+        zone_id=foo_zones.zones[0].id,
+        tags=[volcengine.mongodb.InstanceTagArgs(
+            key="k1",
+            value="v1",
+        )])
+    foo_address = []
+    for range in [{"value": i} for i in range(0, 2)]:
+        foo_address.append(volcengine.eip.Address(f"fooAddress-{range['value']}",
+            billing_type="PostPaidByBandwidth",
+            bandwidth=1,
+            isp="ChinaUnicom",
+            description="acc-test",
+            project_name="default"))
+    foo_public = volcengine.mongodb.Endpoint("fooPublic",
+        instance_id=foo_instance.id,
+        network_type="Public",
+        object_id=foo_instance.mongos_id,
+        mongos_node_ids=[
+            foo_instance.mongos[0].mongos_node_id,
+            foo_instance.mongos[1].mongos_node_id,
+        ],
+        eip_ids=[__item.id for __item in foo_address])
+    foo_private = volcengine.mongodb.Endpoint("fooPrivate",
+        instance_id=foo_instance.id,
+        network_type="Private",
+        object_id=foo_instance.config_servers_id)
+    foo_endpoints = volcengine.mongodb.endpoints_output(instance_id=foo_instance.id)
     ```
 
 

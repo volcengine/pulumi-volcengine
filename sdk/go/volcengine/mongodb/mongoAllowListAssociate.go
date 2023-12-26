@@ -21,15 +21,70 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/mongodb"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodb.NewMongoAllowListAssociate(ctx, "foo", &mongodb.MongoAllowListAssociateArgs{
-//				AllowListId: pulumi.String("acl-9e307ce4efe843fb9ffd8cb6a6cb225f"),
-//				InstanceId:  pulumi.String("mongo-replica-f16e9298b121"),
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooInstance, err := mongodb.NewInstance(ctx, "fooInstance", &mongodb.InstanceArgs{
+//				DbEngineVersion:      pulumi.String("MongoDB_4_0"),
+//				InstanceType:         pulumi.String("ReplicaSet"),
+//				SuperAccountPassword: pulumi.String("@acc-test-123"),
+//				NodeSpec:             pulumi.String("mongo.2c4g"),
+//				MongosNodeSpec:       pulumi.String("mongo.mongos.2c4g"),
+//				InstanceName:         pulumi.String("acc-test-mongo-replica"),
+//				ChargeType:           pulumi.String("PostPaid"),
+//				ProjectName:          pulumi.String("default"),
+//				MongosNodeNumber:     pulumi.Int(32),
+//				ShardNumber:          pulumi.Int(3),
+//				StorageSpaceGb:       pulumi.Int(20),
+//				SubnetId:             fooSubnet.ID(),
+//				ZoneId:               *pulumi.String(fooZones.Zones[0].Id),
+//				Tags: mongodb.InstanceTagArray{
+//					&mongodb.InstanceTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooMongoAllowList, err := mongodb.NewMongoAllowList(ctx, "fooMongoAllowList", &mongodb.MongoAllowListArgs{
+//				AllowListName: pulumi.String("acc-test"),
+//				AllowListDesc: pulumi.String("acc-test"),
+//				AllowListType: pulumi.String("IPv4"),
+//				AllowList:     pulumi.String("10.1.1.3,10.2.3.0/24,10.1.1.1"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodb.NewMongoAllowListAssociate(ctx, "fooMongoAllowListAssociate", &mongodb.MongoAllowListAssociateArgs{
+//				AllowListId: fooMongoAllowList.ID(),
+//				InstanceId:  fooInstance.ID(),
 //			})
 //			if err != nil {
 //				return err

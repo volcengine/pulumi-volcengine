@@ -18,22 +18,60 @@ namespace Volcengine.Pulumi.Volcengine.Mongodb
     /// using System.Collections.Generic;
     /// using System.Linq;
     /// using Pulumi;
+    /// using Volcengine = Pulumi.Volcengine;
     /// using Volcengine = Volcengine.Pulumi.Volcengine;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     //    该资源无法创建，需先import资源
-    ///     //    $ terraform import volcengine_mongodb_instance_parameter.default param:mongo-replica-f16e9298b121:connPoolMaxConnsPerHost
-    ///     //    请注意instance_id和parameter_name需与上述import的ID对应
-    ///     var @default = new Volcengine.Mongodb.InstanceParameter("default", new()
+    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+    /// 
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
-    ///         InstanceId = "mongo-replica-f16e9298b121",
-    ///         ParameterName = "connPoolMaxConnsPerHost",
-    ///         ParameterRole = "Node",
-    ///         ParameterValue = "600",
+    ///         VpcName = "acc-test-vpc",
+    ///         CidrBlock = "172.16.0.0/16",
     ///     });
     /// 
-    ///     // 必填
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooInstance = new Volcengine.Mongodb.Instance("fooInstance", new()
+    ///     {
+    ///         DbEngineVersion = "MongoDB_4_0",
+    ///         InstanceType = "ReplicaSet",
+    ///         SuperAccountPassword = "@acc-test-123",
+    ///         NodeSpec = "mongo.2c4g",
+    ///         MongosNodeSpec = "mongo.mongos.2c4g",
+    ///         InstanceName = "acc-test-mongo-replica",
+    ///         ChargeType = "PostPaid",
+    ///         ProjectName = "default",
+    ///         MongosNodeNumber = 32,
+    ///         ShardNumber = 3,
+    ///         StorageSpaceGb = 20,
+    ///         SubnetId = fooSubnet.Id,
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Mongodb.Inputs.InstanceTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var fooInstanceParameter = new Volcengine.Mongodb.InstanceParameter("fooInstanceParameter", new()
+    ///     {
+    ///         InstanceId = fooInstance.Id,
+    ///         ParameterName = "cursorTimeoutMillis",
+    ///         ParameterRole = "Node",
+    ///         ParameterValue = "600111",
+    ///     });
+    /// 
     /// });
     /// ```
     /// 
@@ -44,20 +82,18 @@ namespace Volcengine.Pulumi.Volcengine.Mongodb
     /// ```sh
     ///  $ pulumi import volcengine:mongodb/instanceParameter:InstanceParameter default param:mongo-replica-e405f8e2****:connPoolMaxConnsPerHost
     /// ```
-    /// 
-    ///  NoteThis resource must be imported before it can be used. Please note that instance_id and parameter_name must correspond to the ID of the above import.
     /// </summary>
     [VolcengineResourceType("volcengine:mongodb/instanceParameter:InstanceParameter")]
     public partial class InstanceParameter : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The instance ID. This field cannot be modified after the resource is imported.
+        /// The instance ID.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// The name of parameter. This field cannot be modified after the resource is imported.
+        /// The name of parameter.
         /// </summary>
         [Output("parameterName")]
         public Output<string> ParameterName { get; private set; } = null!;
@@ -122,13 +158,13 @@ namespace Volcengine.Pulumi.Volcengine.Mongodb
     public sealed class InstanceParameterArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The instance ID. This field cannot be modified after the resource is imported.
+        /// The instance ID.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// The name of parameter. This field cannot be modified after the resource is imported.
+        /// The name of parameter.
         /// </summary>
         [Input("parameterName", required: true)]
         public Input<string> ParameterName { get; set; } = null!;
@@ -154,13 +190,13 @@ namespace Volcengine.Pulumi.Volcengine.Mongodb
     public sealed class InstanceParameterState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The instance ID. This field cannot be modified after the resource is imported.
+        /// The instance ID.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
 
         /// <summary>
-        /// The name of parameter. This field cannot be modified after the resource is imported.
+        /// The name of parameter.
         /// </summary>
         [Input("parameterName")]
         public Input<string>? ParameterName { get; set; }

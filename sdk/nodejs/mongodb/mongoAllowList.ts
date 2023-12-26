@@ -14,8 +14,8 @@ import * as utilities from "../utilities";
  *
  * const foo = new volcengine.mongodb.MongoAllowList("foo", {
  *     allowList: "10.1.1.3,10.2.3.0/24,10.1.1.1",
- *     allowListDesc: "test1",
- *     allowListName: "tf-test-hh",
+ *     allowListDesc: "acc-test",
+ *     allowListName: "acc-test",
  *     allowListType: "IPv4",
  * });
  * ```

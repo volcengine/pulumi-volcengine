@@ -29,7 +29,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cr.NewEndpoint(ctx, "default", &cr.EndpointArgs{
 //				Enabled:  pulumi.Bool(true),
-//				Registry: pulumi.String("tf-1"),
+//				Registry: pulumi.String("acc-test-cr"),
 //			})
 //			if err != nil {
 //				return err

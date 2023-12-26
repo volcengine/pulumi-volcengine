@@ -43,6 +43,10 @@ namespace Volcengine.Pulumi.Volcengine.Clb.Outputs
         /// </summary>
         public readonly int ConnectionDrainTimeout;
         /// <summary>
+        /// The name of the cookie for session persistence configured on the backend server.
+        /// </summary>
+        public readonly string Cookie;
+        /// <summary>
         /// The create time of the Listener.
         /// </summary>
         public readonly string CreateTime;
@@ -155,6 +159,8 @@ namespace Volcengine.Pulumi.Volcengine.Clb.Outputs
 
             int connectionDrainTimeout,
 
+            string cookie,
+
             string createTime,
 
             string enabled,
@@ -210,6 +216,7 @@ namespace Volcengine.Pulumi.Volcengine.Clb.Outputs
             CertificateId = certificateId;
             ConnectionDrainEnabled = connectionDrainEnabled;
             ConnectionDrainTimeout = connectionDrainTimeout;
+            Cookie = cookie;
             CreateTime = createTime;
             Enabled = enabled;
             HealthCheckDomain = healthCheckDomain;

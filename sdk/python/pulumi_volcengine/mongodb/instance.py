@@ -311,9 +311,12 @@ class _InstanceState:
     def __init__(__self__, *,
                  auto_renew: Optional[pulumi.Input[bool]] = None,
                  charge_type: Optional[pulumi.Input[str]] = None,
+                 config_servers_id: Optional[pulumi.Input[str]] = None,
                  db_engine_version: Optional[pulumi.Input[str]] = None,
                  instance_name: Optional[pulumi.Input[str]] = None,
                  instance_type: Optional[pulumi.Input[str]] = None,
+                 mongos: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceMongoArgs']]]] = None,
+                 mongos_id: Optional[pulumi.Input[str]] = None,
                  mongos_node_number: Optional[pulumi.Input[int]] = None,
                  mongos_node_spec: Optional[pulumi.Input[str]] = None,
                  node_spec: Optional[pulumi.Input[str]] = None,
@@ -321,6 +324,7 @@ class _InstanceState:
                  period_unit: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  shard_number: Optional[pulumi.Input[int]] = None,
+                 shards: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceShardArgs']]]] = None,
                  storage_space_gb: Optional[pulumi.Input[int]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
                  super_account_password: Optional[pulumi.Input[str]] = None,
@@ -331,9 +335,12 @@ class _InstanceState:
         Input properties used for looking up and filtering Instance resources.
         :param pulumi.Input[bool] auto_renew: Whether to enable automatic renewal.
         :param pulumi.Input[str] charge_type: The charge type of instance, valid value contains `Prepaid` or `PostPaid`.
+        :param pulumi.Input[str] config_servers_id: The config servers id of the ShardedCluster instance.
         :param pulumi.Input[str] db_engine_version: The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_5_0`.
         :param pulumi.Input[str] instance_name: The instance name.
         :param pulumi.Input[str] instance_type: The type of instance,the valid value contains `ReplicaSet` or `ShardedCluster`.
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceMongoArgs']]] mongos: The mongos information of the ShardedCluster instance.
+        :param pulumi.Input[str] mongos_id: The mongos id of the ShardedCluster instance.
         :param pulumi.Input[int] mongos_node_number: The mongos node number of shard cluster,value range is `2~23`, this parameter is required when `InstanceType` is `ShardedCluster`.
         :param pulumi.Input[str] mongos_node_spec: The mongos node spec of shard cluster, this parameter is required when `InstanceType` is `ShardedCluster`.
         :param pulumi.Input[str] node_spec: The spec of node.
@@ -341,6 +348,7 @@ class _InstanceState:
         :param pulumi.Input[str] period_unit: The period unit,valid value contains `Year` or `Month`, this parameter is required when `ChargeType` is `Prepaid`.
         :param pulumi.Input[str] project_name: The project name to which the instance belongs.
         :param pulumi.Input[int] shard_number: The number of shards in shard cluster,value range is `2~32`, this parameter is required when `InstanceType` is `ShardedCluster`.
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceShardArgs']]] shards: The shards information of the ShardedCluster instance.
         :param pulumi.Input[int] storage_space_gb: The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster, in GiB.
         :param pulumi.Input[str] subnet_id: The subnet id of instance.
         :param pulumi.Input[str] super_account_password: The password of database account.
@@ -352,12 +360,18 @@ class _InstanceState:
             pulumi.set(__self__, "auto_renew", auto_renew)
         if charge_type is not None:
             pulumi.set(__self__, "charge_type", charge_type)
+        if config_servers_id is not None:
+            pulumi.set(__self__, "config_servers_id", config_servers_id)
         if db_engine_version is not None:
             pulumi.set(__self__, "db_engine_version", db_engine_version)
         if instance_name is not None:
             pulumi.set(__self__, "instance_name", instance_name)
         if instance_type is not None:
             pulumi.set(__self__, "instance_type", instance_type)
+        if mongos is not None:
+            pulumi.set(__self__, "mongos", mongos)
+        if mongos_id is not None:
+            pulumi.set(__self__, "mongos_id", mongos_id)
         if mongos_node_number is not None:
             pulumi.set(__self__, "mongos_node_number", mongos_node_number)
         if mongos_node_spec is not None:
@@ -372,6 +386,8 @@ class _InstanceState:
             pulumi.set(__self__, "project_name", project_name)
         if shard_number is not None:
             pulumi.set(__self__, "shard_number", shard_number)
+        if shards is not None:
+            pulumi.set(__self__, "shards", shards)
         if storage_space_gb is not None:
             pulumi.set(__self__, "storage_space_gb", storage_space_gb)
         if subnet_id is not None:
@@ -410,6 +426,18 @@ class _InstanceState:
         pulumi.set(self, "charge_type", value)
 
     @property
+    @pulumi.getter(name="configServersId")
+    def config_servers_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The config servers id of the ShardedCluster instance.
+        """
+        return pulumi.get(self, "config_servers_id")
+
+    @config_servers_id.setter
+    def config_servers_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "config_servers_id", value)
+
+    @property
     @pulumi.getter(name="dbEngineVersion")
     def db_engine_version(self) -> Optional[pulumi.Input[str]]:
         """
@@ -444,6 +472,30 @@ class _InstanceState:
     @instance_type.setter
     def instance_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "instance_type", value)
+
+    @property
+    @pulumi.getter
+    def mongos(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceMongoArgs']]]]:
+        """
+        The mongos information of the ShardedCluster instance.
+        """
+        return pulumi.get(self, "mongos")
+
+    @mongos.setter
+    def mongos(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceMongoArgs']]]]):
+        pulumi.set(self, "mongos", value)
+
+    @property
+    @pulumi.getter(name="mongosId")
+    def mongos_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The mongos id of the ShardedCluster instance.
+        """
+        return pulumi.get(self, "mongos_id")
+
+    @mongos_id.setter
+    def mongos_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mongos_id", value)
 
     @property
     @pulumi.getter(name="mongosNodeNumber")
@@ -528,6 +580,18 @@ class _InstanceState:
     @shard_number.setter
     def shard_number(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "shard_number", value)
+
+    @property
+    @pulumi.getter
+    def shards(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceShardArgs']]]]:
+        """
+        The shards information of the ShardedCluster instance.
+        """
+        return pulumi.get(self, "shards")
+
+    @shards.setter
+    def shards(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceShardArgs']]]]):
+        pulumi.set(self, "shards", value)
 
     @property
     @pulumi.getter(name="storageSpaceGb")
@@ -783,6 +847,10 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["tags"] = tags
             __props__.__dict__["vpc_id"] = vpc_id
             __props__.__dict__["zone_id"] = zone_id
+            __props__.__dict__["config_servers_id"] = None
+            __props__.__dict__["mongos"] = None
+            __props__.__dict__["mongos_id"] = None
+            __props__.__dict__["shards"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["superAccountPassword"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Instance, __self__).__init__(
@@ -797,9 +865,12 @@ class Instance(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             auto_renew: Optional[pulumi.Input[bool]] = None,
             charge_type: Optional[pulumi.Input[str]] = None,
+            config_servers_id: Optional[pulumi.Input[str]] = None,
             db_engine_version: Optional[pulumi.Input[str]] = None,
             instance_name: Optional[pulumi.Input[str]] = None,
             instance_type: Optional[pulumi.Input[str]] = None,
+            mongos: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceMongoArgs']]]]] = None,
+            mongos_id: Optional[pulumi.Input[str]] = None,
             mongos_node_number: Optional[pulumi.Input[int]] = None,
             mongos_node_spec: Optional[pulumi.Input[str]] = None,
             node_spec: Optional[pulumi.Input[str]] = None,
@@ -807,6 +878,7 @@ class Instance(pulumi.CustomResource):
             period_unit: Optional[pulumi.Input[str]] = None,
             project_name: Optional[pulumi.Input[str]] = None,
             shard_number: Optional[pulumi.Input[int]] = None,
+            shards: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceShardArgs']]]]] = None,
             storage_space_gb: Optional[pulumi.Input[int]] = None,
             subnet_id: Optional[pulumi.Input[str]] = None,
             super_account_password: Optional[pulumi.Input[str]] = None,
@@ -822,9 +894,12 @@ class Instance(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] auto_renew: Whether to enable automatic renewal.
         :param pulumi.Input[str] charge_type: The charge type of instance, valid value contains `Prepaid` or `PostPaid`.
+        :param pulumi.Input[str] config_servers_id: The config servers id of the ShardedCluster instance.
         :param pulumi.Input[str] db_engine_version: The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_5_0`.
         :param pulumi.Input[str] instance_name: The instance name.
         :param pulumi.Input[str] instance_type: The type of instance,the valid value contains `ReplicaSet` or `ShardedCluster`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceMongoArgs']]]] mongos: The mongos information of the ShardedCluster instance.
+        :param pulumi.Input[str] mongos_id: The mongos id of the ShardedCluster instance.
         :param pulumi.Input[int] mongos_node_number: The mongos node number of shard cluster,value range is `2~23`, this parameter is required when `InstanceType` is `ShardedCluster`.
         :param pulumi.Input[str] mongos_node_spec: The mongos node spec of shard cluster, this parameter is required when `InstanceType` is `ShardedCluster`.
         :param pulumi.Input[str] node_spec: The spec of node.
@@ -832,6 +907,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] period_unit: The period unit,valid value contains `Year` or `Month`, this parameter is required when `ChargeType` is `Prepaid`.
         :param pulumi.Input[str] project_name: The project name to which the instance belongs.
         :param pulumi.Input[int] shard_number: The number of shards in shard cluster,value range is `2~32`, this parameter is required when `InstanceType` is `ShardedCluster`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceShardArgs']]]] shards: The shards information of the ShardedCluster instance.
         :param pulumi.Input[int] storage_space_gb: The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster, in GiB.
         :param pulumi.Input[str] subnet_id: The subnet id of instance.
         :param pulumi.Input[str] super_account_password: The password of database account.
@@ -845,9 +921,12 @@ class Instance(pulumi.CustomResource):
 
         __props__.__dict__["auto_renew"] = auto_renew
         __props__.__dict__["charge_type"] = charge_type
+        __props__.__dict__["config_servers_id"] = config_servers_id
         __props__.__dict__["db_engine_version"] = db_engine_version
         __props__.__dict__["instance_name"] = instance_name
         __props__.__dict__["instance_type"] = instance_type
+        __props__.__dict__["mongos"] = mongos
+        __props__.__dict__["mongos_id"] = mongos_id
         __props__.__dict__["mongos_node_number"] = mongos_node_number
         __props__.__dict__["mongos_node_spec"] = mongos_node_spec
         __props__.__dict__["node_spec"] = node_spec
@@ -855,6 +934,7 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["period_unit"] = period_unit
         __props__.__dict__["project_name"] = project_name
         __props__.__dict__["shard_number"] = shard_number
+        __props__.__dict__["shards"] = shards
         __props__.__dict__["storage_space_gb"] = storage_space_gb
         __props__.__dict__["subnet_id"] = subnet_id
         __props__.__dict__["super_account_password"] = super_account_password
@@ -880,6 +960,14 @@ class Instance(pulumi.CustomResource):
         return pulumi.get(self, "charge_type")
 
     @property
+    @pulumi.getter(name="configServersId")
+    def config_servers_id(self) -> pulumi.Output[str]:
+        """
+        The config servers id of the ShardedCluster instance.
+        """
+        return pulumi.get(self, "config_servers_id")
+
+    @property
     @pulumi.getter(name="dbEngineVersion")
     def db_engine_version(self) -> pulumi.Output[str]:
         """
@@ -902,6 +990,22 @@ class Instance(pulumi.CustomResource):
         The type of instance,the valid value contains `ReplicaSet` or `ShardedCluster`.
         """
         return pulumi.get(self, "instance_type")
+
+    @property
+    @pulumi.getter
+    def mongos(self) -> pulumi.Output[Sequence['outputs.InstanceMongo']]:
+        """
+        The mongos information of the ShardedCluster instance.
+        """
+        return pulumi.get(self, "mongos")
+
+    @property
+    @pulumi.getter(name="mongosId")
+    def mongos_id(self) -> pulumi.Output[str]:
+        """
+        The mongos id of the ShardedCluster instance.
+        """
+        return pulumi.get(self, "mongos_id")
 
     @property
     @pulumi.getter(name="mongosNodeNumber")
@@ -958,6 +1062,14 @@ class Instance(pulumi.CustomResource):
         The number of shards in shard cluster,value range is `2~32`, this parameter is required when `InstanceType` is `ShardedCluster`.
         """
         return pulumi.get(self, "shard_number")
+
+    @property
+    @pulumi.getter
+    def shards(self) -> pulumi.Output[Sequence['outputs.InstanceShard']]:
+        """
+        The shards information of the ShardedCluster instance.
+        """
+        return pulumi.get(self, "shards")
 
     @property
     @pulumi.getter(name="storageSpaceGb")

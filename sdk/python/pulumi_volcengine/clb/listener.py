@@ -27,6 +27,7 @@ class ListenerArgs:
                  certificate_id: Optional[pulumi.Input[str]] = None,
                  connection_drain_enabled: Optional[pulumi.Input[str]] = None,
                  connection_drain_timeout: Optional[pulumi.Input[int]] = None,
+                 cookie: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[str]] = None,
                  established_timeout: Optional[pulumi.Input[int]] = None,
@@ -51,15 +52,15 @@ class ListenerArgs:
                This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
         :param pulumi.Input[int] connection_drain_timeout: The connection drain timeout of the Listener. Valid value range is `1-900`.
                This filed is required when the value of field `connection_drain_enabled` is `on`.
+        :param pulumi.Input[str] cookie: The name of the cookie for session persistence configured on the backend server. When PersistenceType is configured as `server`, this parameter is required. When PersistenceType is configured as any other value, this parameter is not effective.
         :param pulumi.Input[str] description: The description of the Listener.
         :param pulumi.Input[str] enabled: The enable status of the Listener. Optional choice contains `on`, `off`.
         :param pulumi.Input[int] established_timeout: The connection timeout of the Listener.
         :param pulumi.Input['ListenerHealthCheckArgs'] health_check: The config of health check.
         :param pulumi.Input[str] listener_name: The name of the Listener.
-        :param pulumi.Input[int] persistence_timeout: The persistence timeout of the Listener. Unit: second. Valid value range is `1-3600`. Default is `1000`.
-               This filed is valid only when the value of field `persistence_type` is `source_ip`.
-        :param pulumi.Input[str] persistence_type: The persistence type of the Listener. Valid values: `off`, `source_ip`. Default is `off`.
-               This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        :param pulumi.Input[int] persistence_timeout: The persistence timeout of the Listener. Unit: second. Default is `1000`. When PersistenceType is configured as source_ip, the value range is 1-3600. When PersistenceType is configured as insert, the value range is 1-86400. This filed is valid only when the value of field `persistence_type` is `source_ip` or `insert`.
+        :param pulumi.Input[str] persistence_type: The persistence type of the Listener. Valid values: `off`, `source_ip`, `insert`, `server`. Default is `off`.
+               `source_ip`: Represents the source IP address, only effective for TCP/UDP protocols. `insert`: means implanting a cookie, only effective for HTTP/HTTPS protocol and when the scheduler is `wrr`. `server`: Indicates rewriting cookies, only effective for HTTP/HTTPS protocols and when the scheduler is `wrr`.
         :param pulumi.Input[str] proxy_protocol_type: Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
                This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
         :param pulumi.Input[str] scheduler: The scheduling algorithm of the Listener. Optional choice contains `wrr`, `wlc`, `sh`.
@@ -82,6 +83,8 @@ class ListenerArgs:
             pulumi.set(__self__, "connection_drain_enabled", connection_drain_enabled)
         if connection_drain_timeout is not None:
             pulumi.set(__self__, "connection_drain_timeout", connection_drain_timeout)
+        if cookie is not None:
+            pulumi.set(__self__, "cookie", cookie)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if enabled is not None:
@@ -237,6 +240,18 @@ class ListenerArgs:
 
     @property
     @pulumi.getter
+    def cookie(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the cookie for session persistence configured on the backend server. When PersistenceType is configured as `server`, this parameter is required. When PersistenceType is configured as any other value, this parameter is not effective.
+        """
+        return pulumi.get(self, "cookie")
+
+    @cookie.setter
+    def cookie(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cookie", value)
+
+    @property
+    @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
         The description of the Listener.
@@ -299,8 +314,7 @@ class ListenerArgs:
     @pulumi.getter(name="persistenceTimeout")
     def persistence_timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        The persistence timeout of the Listener. Unit: second. Valid value range is `1-3600`. Default is `1000`.
-        This filed is valid only when the value of field `persistence_type` is `source_ip`.
+        The persistence timeout of the Listener. Unit: second. Default is `1000`. When PersistenceType is configured as source_ip, the value range is 1-3600. When PersistenceType is configured as insert, the value range is 1-86400. This filed is valid only when the value of field `persistence_type` is `source_ip` or `insert`.
         """
         return pulumi.get(self, "persistence_timeout")
 
@@ -312,8 +326,8 @@ class ListenerArgs:
     @pulumi.getter(name="persistenceType")
     def persistence_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The persistence type of the Listener. Valid values: `off`, `source_ip`. Default is `off`.
-        This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        The persistence type of the Listener. Valid values: `off`, `source_ip`, `insert`, `server`. Default is `off`.
+        `source_ip`: Represents the source IP address, only effective for TCP/UDP protocols. `insert`: means implanting a cookie, only effective for HTTP/HTTPS protocol and when the scheduler is `wrr`. `server`: Indicates rewriting cookies, only effective for HTTP/HTTPS protocols and when the scheduler is `wrr`.
         """
         return pulumi.get(self, "persistence_type")
 
@@ -357,6 +371,7 @@ class _ListenerState:
                  certificate_id: Optional[pulumi.Input[str]] = None,
                  connection_drain_enabled: Optional[pulumi.Input[str]] = None,
                  connection_drain_timeout: Optional[pulumi.Input[int]] = None,
+                 cookie: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[str]] = None,
                  established_timeout: Optional[pulumi.Input[int]] = None,
@@ -382,6 +397,7 @@ class _ListenerState:
                This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
         :param pulumi.Input[int] connection_drain_timeout: The connection drain timeout of the Listener. Valid value range is `1-900`.
                This filed is required when the value of field `connection_drain_enabled` is `on`.
+        :param pulumi.Input[str] cookie: The name of the cookie for session persistence configured on the backend server. When PersistenceType is configured as `server`, this parameter is required. When PersistenceType is configured as any other value, this parameter is not effective.
         :param pulumi.Input[str] description: The description of the Listener.
         :param pulumi.Input[str] enabled: The enable status of the Listener. Optional choice contains `on`, `off`.
         :param pulumi.Input[int] established_timeout: The connection timeout of the Listener.
@@ -389,10 +405,9 @@ class _ListenerState:
         :param pulumi.Input[str] listener_id: The ID of the Listener.
         :param pulumi.Input[str] listener_name: The name of the Listener.
         :param pulumi.Input[str] load_balancer_id: The region of the request.
-        :param pulumi.Input[int] persistence_timeout: The persistence timeout of the Listener. Unit: second. Valid value range is `1-3600`. Default is `1000`.
-               This filed is valid only when the value of field `persistence_type` is `source_ip`.
-        :param pulumi.Input[str] persistence_type: The persistence type of the Listener. Valid values: `off`, `source_ip`. Default is `off`.
-               This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        :param pulumi.Input[int] persistence_timeout: The persistence timeout of the Listener. Unit: second. Default is `1000`. When PersistenceType is configured as source_ip, the value range is 1-3600. When PersistenceType is configured as insert, the value range is 1-86400. This filed is valid only when the value of field `persistence_type` is `source_ip` or `insert`.
+        :param pulumi.Input[str] persistence_type: The persistence type of the Listener. Valid values: `off`, `source_ip`, `insert`, `server`. Default is `off`.
+               `source_ip`: Represents the source IP address, only effective for TCP/UDP protocols. `insert`: means implanting a cookie, only effective for HTTP/HTTPS protocol and when the scheduler is `wrr`. `server`: Indicates rewriting cookies, only effective for HTTP/HTTPS protocols and when the scheduler is `wrr`.
         :param pulumi.Input[int] port: The port receiving request of the Listener, the value range in 1~65535.
         :param pulumi.Input[str] protocol: The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
         :param pulumi.Input[str] proxy_protocol_type: Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
@@ -414,6 +429,8 @@ class _ListenerState:
             pulumi.set(__self__, "connection_drain_enabled", connection_drain_enabled)
         if connection_drain_timeout is not None:
             pulumi.set(__self__, "connection_drain_timeout", connection_drain_timeout)
+        if cookie is not None:
+            pulumi.set(__self__, "cookie", cookie)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if enabled is not None:
@@ -531,6 +548,18 @@ class _ListenerState:
 
     @property
     @pulumi.getter
+    def cookie(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the cookie for session persistence configured on the backend server. When PersistenceType is configured as `server`, this parameter is required. When PersistenceType is configured as any other value, this parameter is not effective.
+        """
+        return pulumi.get(self, "cookie")
+
+    @cookie.setter
+    def cookie(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cookie", value)
+
+    @property
+    @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
         The description of the Listener.
@@ -617,8 +646,7 @@ class _ListenerState:
     @pulumi.getter(name="persistenceTimeout")
     def persistence_timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        The persistence timeout of the Listener. Unit: second. Valid value range is `1-3600`. Default is `1000`.
-        This filed is valid only when the value of field `persistence_type` is `source_ip`.
+        The persistence timeout of the Listener. Unit: second. Default is `1000`. When PersistenceType is configured as source_ip, the value range is 1-3600. When PersistenceType is configured as insert, the value range is 1-86400. This filed is valid only when the value of field `persistence_type` is `source_ip` or `insert`.
         """
         return pulumi.get(self, "persistence_timeout")
 
@@ -630,8 +658,8 @@ class _ListenerState:
     @pulumi.getter(name="persistenceType")
     def persistence_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The persistence type of the Listener. Valid values: `off`, `source_ip`. Default is `off`.
-        This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        The persistence type of the Listener. Valid values: `off`, `source_ip`, `insert`, `server`. Default is `off`.
+        `source_ip`: Represents the source IP address, only effective for TCP/UDP protocols. `insert`: means implanting a cookie, only effective for HTTP/HTTPS protocol and when the scheduler is `wrr`. `server`: Indicates rewriting cookies, only effective for HTTP/HTTPS protocols and when the scheduler is `wrr`.
         """
         return pulumi.get(self, "persistence_type")
 
@@ -713,6 +741,7 @@ class Listener(pulumi.CustomResource):
                  certificate_id: Optional[pulumi.Input[str]] = None,
                  connection_drain_enabled: Optional[pulumi.Input[str]] = None,
                  connection_drain_timeout: Optional[pulumi.Input[int]] = None,
+                 cookie: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[str]] = None,
                  established_timeout: Optional[pulumi.Input[int]] = None,
@@ -811,16 +840,16 @@ class Listener(pulumi.CustomResource):
                This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
         :param pulumi.Input[int] connection_drain_timeout: The connection drain timeout of the Listener. Valid value range is `1-900`.
                This filed is required when the value of field `connection_drain_enabled` is `on`.
+        :param pulumi.Input[str] cookie: The name of the cookie for session persistence configured on the backend server. When PersistenceType is configured as `server`, this parameter is required. When PersistenceType is configured as any other value, this parameter is not effective.
         :param pulumi.Input[str] description: The description of the Listener.
         :param pulumi.Input[str] enabled: The enable status of the Listener. Optional choice contains `on`, `off`.
         :param pulumi.Input[int] established_timeout: The connection timeout of the Listener.
         :param pulumi.Input[pulumi.InputType['ListenerHealthCheckArgs']] health_check: The config of health check.
         :param pulumi.Input[str] listener_name: The name of the Listener.
         :param pulumi.Input[str] load_balancer_id: The region of the request.
-        :param pulumi.Input[int] persistence_timeout: The persistence timeout of the Listener. Unit: second. Valid value range is `1-3600`. Default is `1000`.
-               This filed is valid only when the value of field `persistence_type` is `source_ip`.
-        :param pulumi.Input[str] persistence_type: The persistence type of the Listener. Valid values: `off`, `source_ip`. Default is `off`.
-               This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        :param pulumi.Input[int] persistence_timeout: The persistence timeout of the Listener. Unit: second. Default is `1000`. When PersistenceType is configured as source_ip, the value range is 1-3600. When PersistenceType is configured as insert, the value range is 1-86400. This filed is valid only when the value of field `persistence_type` is `source_ip` or `insert`.
+        :param pulumi.Input[str] persistence_type: The persistence type of the Listener. Valid values: `off`, `source_ip`, `insert`, `server`. Default is `off`.
+               `source_ip`: Represents the source IP address, only effective for TCP/UDP protocols. `insert`: means implanting a cookie, only effective for HTTP/HTTPS protocol and when the scheduler is `wrr`. `server`: Indicates rewriting cookies, only effective for HTTP/HTTPS protocols and when the scheduler is `wrr`.
         :param pulumi.Input[int] port: The port receiving request of the Listener, the value range in 1~65535.
         :param pulumi.Input[str] protocol: The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
         :param pulumi.Input[str] proxy_protocol_type: Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
@@ -929,6 +958,7 @@ class Listener(pulumi.CustomResource):
                  certificate_id: Optional[pulumi.Input[str]] = None,
                  connection_drain_enabled: Optional[pulumi.Input[str]] = None,
                  connection_drain_timeout: Optional[pulumi.Input[int]] = None,
+                 cookie: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  enabled: Optional[pulumi.Input[str]] = None,
                  established_timeout: Optional[pulumi.Input[int]] = None,
@@ -958,6 +988,7 @@ class Listener(pulumi.CustomResource):
             __props__.__dict__["certificate_id"] = certificate_id
             __props__.__dict__["connection_drain_enabled"] = connection_drain_enabled
             __props__.__dict__["connection_drain_timeout"] = connection_drain_timeout
+            __props__.__dict__["cookie"] = cookie
             __props__.__dict__["description"] = description
             __props__.__dict__["enabled"] = enabled
             __props__.__dict__["established_timeout"] = established_timeout
@@ -997,6 +1028,7 @@ class Listener(pulumi.CustomResource):
             certificate_id: Optional[pulumi.Input[str]] = None,
             connection_drain_enabled: Optional[pulumi.Input[str]] = None,
             connection_drain_timeout: Optional[pulumi.Input[int]] = None,
+            cookie: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             enabled: Optional[pulumi.Input[str]] = None,
             established_timeout: Optional[pulumi.Input[int]] = None,
@@ -1027,6 +1059,7 @@ class Listener(pulumi.CustomResource):
                This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
         :param pulumi.Input[int] connection_drain_timeout: The connection drain timeout of the Listener. Valid value range is `1-900`.
                This filed is required when the value of field `connection_drain_enabled` is `on`.
+        :param pulumi.Input[str] cookie: The name of the cookie for session persistence configured on the backend server. When PersistenceType is configured as `server`, this parameter is required. When PersistenceType is configured as any other value, this parameter is not effective.
         :param pulumi.Input[str] description: The description of the Listener.
         :param pulumi.Input[str] enabled: The enable status of the Listener. Optional choice contains `on`, `off`.
         :param pulumi.Input[int] established_timeout: The connection timeout of the Listener.
@@ -1034,10 +1067,9 @@ class Listener(pulumi.CustomResource):
         :param pulumi.Input[str] listener_id: The ID of the Listener.
         :param pulumi.Input[str] listener_name: The name of the Listener.
         :param pulumi.Input[str] load_balancer_id: The region of the request.
-        :param pulumi.Input[int] persistence_timeout: The persistence timeout of the Listener. Unit: second. Valid value range is `1-3600`. Default is `1000`.
-               This filed is valid only when the value of field `persistence_type` is `source_ip`.
-        :param pulumi.Input[str] persistence_type: The persistence type of the Listener. Valid values: `off`, `source_ip`. Default is `off`.
-               This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        :param pulumi.Input[int] persistence_timeout: The persistence timeout of the Listener. Unit: second. Default is `1000`. When PersistenceType is configured as source_ip, the value range is 1-3600. When PersistenceType is configured as insert, the value range is 1-86400. This filed is valid only when the value of field `persistence_type` is `source_ip` or `insert`.
+        :param pulumi.Input[str] persistence_type: The persistence type of the Listener. Valid values: `off`, `source_ip`, `insert`, `server`. Default is `off`.
+               `source_ip`: Represents the source IP address, only effective for TCP/UDP protocols. `insert`: means implanting a cookie, only effective for HTTP/HTTPS protocol and when the scheduler is `wrr`. `server`: Indicates rewriting cookies, only effective for HTTP/HTTPS protocols and when the scheduler is `wrr`.
         :param pulumi.Input[int] port: The port receiving request of the Listener, the value range in 1~65535.
         :param pulumi.Input[str] protocol: The protocol of the Listener. Optional choice contains `TCP`, `UDP`, `HTTP`, `HTTPS`.
         :param pulumi.Input[str] proxy_protocol_type: Whether to enable proxy protocol. Valid values: `off`, `standard`. Default is `off`.
@@ -1056,6 +1088,7 @@ class Listener(pulumi.CustomResource):
         __props__.__dict__["certificate_id"] = certificate_id
         __props__.__dict__["connection_drain_enabled"] = connection_drain_enabled
         __props__.__dict__["connection_drain_timeout"] = connection_drain_timeout
+        __props__.__dict__["cookie"] = cookie
         __props__.__dict__["description"] = description
         __props__.__dict__["enabled"] = enabled
         __props__.__dict__["established_timeout"] = established_timeout
@@ -1132,6 +1165,14 @@ class Listener(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def cookie(self) -> pulumi.Output[Optional[str]]:
+        """
+        The name of the cookie for session persistence configured on the backend server. When PersistenceType is configured as `server`, this parameter is required. When PersistenceType is configured as any other value, this parameter is not effective.
+        """
+        return pulumi.get(self, "cookie")
+
+    @property
+    @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
         """
         The description of the Listener.
@@ -1190,8 +1231,7 @@ class Listener(pulumi.CustomResource):
     @pulumi.getter(name="persistenceTimeout")
     def persistence_timeout(self) -> pulumi.Output[Optional[int]]:
         """
-        The persistence timeout of the Listener. Unit: second. Valid value range is `1-3600`. Default is `1000`.
-        This filed is valid only when the value of field `persistence_type` is `source_ip`.
+        The persistence timeout of the Listener. Unit: second. Default is `1000`. When PersistenceType is configured as source_ip, the value range is 1-3600. When PersistenceType is configured as insert, the value range is 1-86400. This filed is valid only when the value of field `persistence_type` is `source_ip` or `insert`.
         """
         return pulumi.get(self, "persistence_timeout")
 
@@ -1199,8 +1239,8 @@ class Listener(pulumi.CustomResource):
     @pulumi.getter(name="persistenceType")
     def persistence_type(self) -> pulumi.Output[Optional[str]]:
         """
-        The persistence type of the Listener. Valid values: `off`, `source_ip`. Default is `off`.
-        This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        The persistence type of the Listener. Valid values: `off`, `source_ip`, `insert`, `server`. Default is `off`.
+        `source_ip`: Represents the source IP address, only effective for TCP/UDP protocols. `insert`: means implanting a cookie, only effective for HTTP/HTTPS protocol and when the scheduler is `wrr`. `server`: Indicates rewriting cookies, only effective for HTTP/HTTPS protocols and when the scheduler is `wrr`.
         """
         return pulumi.get(self, "persistence_type")
 

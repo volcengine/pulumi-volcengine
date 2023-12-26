@@ -158,6 +158,12 @@ namespace Volcengine.Pulumi.Volcengine.Clb
         public Output<int> ConnectionDrainTimeout { get; private set; } = null!;
 
         /// <summary>
+        /// The name of the cookie for session persistence configured on the backend server. When PersistenceType is configured as `server`, this parameter is required. When PersistenceType is configured as any other value, this parameter is not effective.
+        /// </summary>
+        [Output("cookie")]
+        public Output<string?> Cookie { get; private set; } = null!;
+
+        /// <summary>
         /// The description of the Listener.
         /// </summary>
         [Output("description")]
@@ -200,15 +206,14 @@ namespace Volcengine.Pulumi.Volcengine.Clb
         public Output<string> LoadBalancerId { get; private set; } = null!;
 
         /// <summary>
-        /// The persistence timeout of the Listener. Unit: second. Valid value range is `1-3600`. Default is `1000`.
-        /// This filed is valid only when the value of field `persistence_type` is `source_ip`.
+        /// The persistence timeout of the Listener. Unit: second. Default is `1000`. When PersistenceType is configured as source_ip, the value range is 1-3600. When PersistenceType is configured as insert, the value range is 1-86400. This filed is valid only when the value of field `persistence_type` is `source_ip` or `insert`.
         /// </summary>
         [Output("persistenceTimeout")]
         public Output<int?> PersistenceTimeout { get; private set; } = null!;
 
         /// <summary>
-        /// The persistence type of the Listener. Valid values: `off`, `source_ip`. Default is `off`.
-        /// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        /// The persistence type of the Listener. Valid values: `off`, `source_ip`, `insert`, `server`. Default is `off`.
+        /// `source_ip`: Represents the source IP address, only effective for TCP/UDP protocols. `insert`: means implanting a cookie, only effective for HTTP/HTTPS protocol and when the scheduler is `wrr`. `server`: Indicates rewriting cookies, only effective for HTTP/HTTPS protocols and when the scheduler is `wrr`.
         /// </summary>
         [Output("persistenceType")]
         public Output<string?> PersistenceType { get; private set; } = null!;
@@ -342,6 +347,12 @@ namespace Volcengine.Pulumi.Volcengine.Clb
         public Input<int>? ConnectionDrainTimeout { get; set; }
 
         /// <summary>
+        /// The name of the cookie for session persistence configured on the backend server. When PersistenceType is configured as `server`, this parameter is required. When PersistenceType is configured as any other value, this parameter is not effective.
+        /// </summary>
+        [Input("cookie")]
+        public Input<string>? Cookie { get; set; }
+
+        /// <summary>
         /// The description of the Listener.
         /// </summary>
         [Input("description")]
@@ -378,15 +389,14 @@ namespace Volcengine.Pulumi.Volcengine.Clb
         public Input<string> LoadBalancerId { get; set; } = null!;
 
         /// <summary>
-        /// The persistence timeout of the Listener. Unit: second. Valid value range is `1-3600`. Default is `1000`.
-        /// This filed is valid only when the value of field `persistence_type` is `source_ip`.
+        /// The persistence timeout of the Listener. Unit: second. Default is `1000`. When PersistenceType is configured as source_ip, the value range is 1-3600. When PersistenceType is configured as insert, the value range is 1-86400. This filed is valid only when the value of field `persistence_type` is `source_ip` or `insert`.
         /// </summary>
         [Input("persistenceTimeout")]
         public Input<int>? PersistenceTimeout { get; set; }
 
         /// <summary>
-        /// The persistence type of the Listener. Valid values: `off`, `source_ip`. Default is `off`.
-        /// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        /// The persistence type of the Listener. Valid values: `off`, `source_ip`, `insert`, `server`. Default is `off`.
+        /// `source_ip`: Represents the source IP address, only effective for TCP/UDP protocols. `insert`: means implanting a cookie, only effective for HTTP/HTTPS protocol and when the scheduler is `wrr`. `server`: Indicates rewriting cookies, only effective for HTTP/HTTPS protocols and when the scheduler is `wrr`.
         /// </summary>
         [Input("persistenceType")]
         public Input<string>? PersistenceType { get; set; }
@@ -481,6 +491,12 @@ namespace Volcengine.Pulumi.Volcengine.Clb
         public Input<int>? ConnectionDrainTimeout { get; set; }
 
         /// <summary>
+        /// The name of the cookie for session persistence configured on the backend server. When PersistenceType is configured as `server`, this parameter is required. When PersistenceType is configured as any other value, this parameter is not effective.
+        /// </summary>
+        [Input("cookie")]
+        public Input<string>? Cookie { get; set; }
+
+        /// <summary>
         /// The description of the Listener.
         /// </summary>
         [Input("description")]
@@ -523,15 +539,14 @@ namespace Volcengine.Pulumi.Volcengine.Clb
         public Input<string>? LoadBalancerId { get; set; }
 
         /// <summary>
-        /// The persistence timeout of the Listener. Unit: second. Valid value range is `1-3600`. Default is `1000`.
-        /// This filed is valid only when the value of field `persistence_type` is `source_ip`.
+        /// The persistence timeout of the Listener. Unit: second. Default is `1000`. When PersistenceType is configured as source_ip, the value range is 1-3600. When PersistenceType is configured as insert, the value range is 1-86400. This filed is valid only when the value of field `persistence_type` is `source_ip` or `insert`.
         /// </summary>
         [Input("persistenceTimeout")]
         public Input<int>? PersistenceTimeout { get; set; }
 
         /// <summary>
-        /// The persistence type of the Listener. Valid values: `off`, `source_ip`. Default is `off`.
-        /// This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
+        /// The persistence type of the Listener. Valid values: `off`, `source_ip`, `insert`, `server`. Default is `off`.
+        /// `source_ip`: Represents the source IP address, only effective for TCP/UDP protocols. `insert`: means implanting a cookie, only effective for HTTP/HTTPS protocol and when the scheduler is `wrr`. `server`: Indicates rewriting cookies, only effective for HTTP/HTTPS protocols and when the scheduler is `wrr`.
         /// </summary>
         [Input("persistenceType")]
         public Input<string>? PersistenceType { get; set; }

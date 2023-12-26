@@ -22,13 +22,16 @@ class InstanceParametersResult:
     """
     A collection of values returned by InstanceParameters.
     """
-    def __init__(__self__, id=None, instance_id=None, output_file=None, parameter_names=None, parameter_role=None, parameters=None, total_count=None):
+    def __init__(__self__, id=None, instance_id=None, instance_parameters=None, output_file=None, parameter_names=None, parameter_role=None, parameters=None, total_count=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
         if instance_id and not isinstance(instance_id, str):
             raise TypeError("Expected argument 'instance_id' to be a str")
         pulumi.set(__self__, "instance_id", instance_id)
+        if instance_parameters and not isinstance(instance_parameters, list):
+            raise TypeError("Expected argument 'instance_parameters' to be a list")
+        pulumi.set(__self__, "instance_parameters", instance_parameters)
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
@@ -38,8 +41,8 @@ class InstanceParametersResult:
         if parameter_role and not isinstance(parameter_role, str):
             raise TypeError("Expected argument 'parameter_role' to be a str")
         pulumi.set(__self__, "parameter_role", parameter_role)
-        if parameters and not isinstance(parameters, dict):
-            raise TypeError("Expected argument 'parameters' to be a dict")
+        if parameters and not isinstance(parameters, list):
+            raise TypeError("Expected argument 'parameters' to be a list")
         pulumi.set(__self__, "parameters", parameters)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
@@ -62,6 +65,14 @@ class InstanceParametersResult:
         return pulumi.get(self, "instance_id")
 
     @property
+    @pulumi.getter(name="instanceParameters")
+    def instance_parameters(self) -> Sequence['outputs.InstanceParametersInstanceParameterResult']:
+        """
+        The list of parameters.
+        """
+        return pulumi.get(self, "instance_parameters")
+
+    @property
     @pulumi.getter(name="outputFile")
     def output_file(self) -> Optional[str]:
         return pulumi.get(self, "output_file")
@@ -81,10 +92,13 @@ class InstanceParametersResult:
 
     @property
     @pulumi.getter
-    def parameters(self) -> 'outputs.InstanceParametersParametersResult':
+    def parameters(self) -> Sequence['outputs.InstanceParametersParameterResult']:
         """
-        The collection of parameter query.
+        (**Deprecated**) This field has been deprecated and it is recommended to use instance_parameters. The collection of parameter query.
         """
+        warnings.warn("""This field has been deprecated and it is recommended to use instance_parameters.""", DeprecationWarning)
+        pulumi.log.warn("""parameters is deprecated: This field has been deprecated and it is recommended to use instance_parameters.""")
+
         return pulumi.get(self, "parameters")
 
     @property
@@ -104,6 +118,7 @@ class AwaitableInstanceParametersResult(InstanceParametersResult):
         return InstanceParametersResult(
             id=self.id,
             instance_id=self.instance_id,
+            instance_parameters=self.instance_parameters,
             output_file=self.output_file,
             parameter_names=self.parameter_names,
             parameter_role=self.parameter_role,
@@ -124,8 +139,40 @@ def instance_parameters(instance_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.mongodb.instance_parameters(instance_id="mongo-replica-f16e9298b121",
-        parameter_names="connPoolMaxConnsPerHost",
+    foo_zones = volcengine.ecs.zones()
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-vpc",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-test-subnet",
+        cidr_block="172.16.0.0/24",
+        zone_id=foo_zones.zones[0].id,
+        vpc_id=foo_vpc.id)
+    foo_instance = volcengine.mongodb.Instance("fooInstance",
+        db_engine_version="MongoDB_4_0",
+        instance_type="ReplicaSet",
+        super_account_password="@acc-test-123",
+        node_spec="mongo.2c4g",
+        mongos_node_spec="mongo.mongos.2c4g",
+        instance_name="acc-test-mongo-replica",
+        charge_type="PostPaid",
+        project_name="default",
+        mongos_node_number=32,
+        shard_number=3,
+        storage_space_gb=20,
+        subnet_id=foo_subnet.id,
+        zone_id=foo_zones.zones[0].id,
+        tags=[volcengine.mongodb.InstanceTagArgs(
+            key="k1",
+            value="v1",
+        )])
+    foo_instance_parameter = volcengine.mongodb.InstanceParameter("fooInstanceParameter",
+        instance_id=foo_instance.id,
+        parameter_name="cursorTimeoutMillis",
+        parameter_role="Node",
+        parameter_value="600111")
+    foo_instance_parameters = volcengine.mongodb.instance_parameters_output(instance_id=foo_instance.id,
+        parameter_names="cursorTimeoutMillis",
         parameter_role="Node")
     ```
 
@@ -146,6 +193,7 @@ def instance_parameters(instance_id: Optional[str] = None,
     return AwaitableInstanceParametersResult(
         id=pulumi.get(__ret__, 'id'),
         instance_id=pulumi.get(__ret__, 'instance_id'),
+        instance_parameters=pulumi.get(__ret__, 'instance_parameters'),
         output_file=pulumi.get(__ret__, 'output_file'),
         parameter_names=pulumi.get(__ret__, 'parameter_names'),
         parameter_role=pulumi.get(__ret__, 'parameter_role'),
@@ -167,8 +215,40 @@ def instance_parameters_output(instance_id: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.mongodb.instance_parameters(instance_id="mongo-replica-f16e9298b121",
-        parameter_names="connPoolMaxConnsPerHost",
+    foo_zones = volcengine.ecs.zones()
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-vpc",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-test-subnet",
+        cidr_block="172.16.0.0/24",
+        zone_id=foo_zones.zones[0].id,
+        vpc_id=foo_vpc.id)
+    foo_instance = volcengine.mongodb.Instance("fooInstance",
+        db_engine_version="MongoDB_4_0",
+        instance_type="ReplicaSet",
+        super_account_password="@acc-test-123",
+        node_spec="mongo.2c4g",
+        mongos_node_spec="mongo.mongos.2c4g",
+        instance_name="acc-test-mongo-replica",
+        charge_type="PostPaid",
+        project_name="default",
+        mongos_node_number=32,
+        shard_number=3,
+        storage_space_gb=20,
+        subnet_id=foo_subnet.id,
+        zone_id=foo_zones.zones[0].id,
+        tags=[volcengine.mongodb.InstanceTagArgs(
+            key="k1",
+            value="v1",
+        )])
+    foo_instance_parameter = volcengine.mongodb.InstanceParameter("fooInstanceParameter",
+        instance_id=foo_instance.id,
+        parameter_name="cursorTimeoutMillis",
+        parameter_role="Node",
+        parameter_value="600111")
+    foo_instance_parameters = volcengine.mongodb.instance_parameters_output(instance_id=foo_instance.id,
+        parameter_names="cursorTimeoutMillis",
         parameter_role="Node")
     ```
 

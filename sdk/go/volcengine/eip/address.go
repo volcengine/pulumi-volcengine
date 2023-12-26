@@ -76,6 +76,8 @@ type Address struct {
 	Period pulumi.IntPtrOutput `pulumi:"period"`
 	// The ProjectName of the EIP.
 	ProjectName pulumi.StringOutput `pulumi:"projectName"`
+	// Security protection types for public IP addresses. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced` or left blank.If the value is `AntiDDoS_Enhanced`, then will create an eip with enhanced protection,(can be added to DDoS native protection (enterprise version) instance). If left blank, it indicates an eip with basic protection.
+	SecurityProtectionTypes pulumi.StringArrayOutput `pulumi:"securityProtectionTypes"`
 	// The status of the EIP.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Tags.
@@ -137,6 +139,8 @@ type addressState struct {
 	Period *int `pulumi:"period"`
 	// The ProjectName of the EIP.
 	ProjectName *string `pulumi:"projectName"`
+	// Security protection types for public IP addresses. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced` or left blank.If the value is `AntiDDoS_Enhanced`, then will create an eip with enhanced protection,(can be added to DDoS native protection (enterprise version) instance). If left blank, it indicates an eip with basic protection.
+	SecurityProtectionTypes []string `pulumi:"securityProtectionTypes"`
 	// The status of the EIP.
 	Status *string `pulumi:"status"`
 	// Tags.
@@ -166,6 +170,8 @@ type AddressState struct {
 	Period pulumi.IntPtrInput
 	// The ProjectName of the EIP.
 	ProjectName pulumi.StringPtrInput
+	// Security protection types for public IP addresses. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced` or left blank.If the value is `AntiDDoS_Enhanced`, then will create an eip with enhanced protection,(can be added to DDoS native protection (enterprise version) instance). If left blank, it indicates an eip with basic protection.
+	SecurityProtectionTypes pulumi.StringArrayInput
 	// The status of the EIP.
 	Status pulumi.StringPtrInput
 	// Tags.
@@ -191,6 +197,8 @@ type addressArgs struct {
 	Period *int `pulumi:"period"`
 	// The ProjectName of the EIP.
 	ProjectName *string `pulumi:"projectName"`
+	// Security protection types for public IP addresses. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced` or left blank.If the value is `AntiDDoS_Enhanced`, then will create an eip with enhanced protection,(can be added to DDoS native protection (enterprise version) instance). If left blank, it indicates an eip with basic protection.
+	SecurityProtectionTypes []string `pulumi:"securityProtectionTypes"`
 	// Tags.
 	Tags []AddressTag `pulumi:"tags"`
 }
@@ -211,6 +219,8 @@ type AddressArgs struct {
 	Period pulumi.IntPtrInput
 	// The ProjectName of the EIP.
 	ProjectName pulumi.StringPtrInput
+	// Security protection types for public IP addresses. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced` or left blank.If the value is `AntiDDoS_Enhanced`, then will create an eip with enhanced protection,(can be added to DDoS native protection (enterprise version) instance). If left blank, it indicates an eip with basic protection.
+	SecurityProtectionTypes pulumi.StringArrayInput
 	// Tags.
 	Tags AddressTagArrayInput
 }
@@ -355,6 +365,11 @@ func (o AddressOutput) Period() pulumi.IntPtrOutput {
 // The ProjectName of the EIP.
 func (o AddressOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Address) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// Security protection types for public IP addresses. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced` or left blank.If the value is `AntiDDoS_Enhanced`, then will create an eip with enhanced protection,(can be added to DDoS native protection (enterprise version) instance). If left blank, it indicates an eip with basic protection.
+func (o AddressOutput) SecurityProtectionTypes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Address) pulumi.StringArrayOutput { return v.SecurityProtectionTypes }).(pulumi.StringArrayOutput)
 }
 
 // The status of the EIP.

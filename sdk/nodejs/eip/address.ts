@@ -103,6 +103,10 @@ export class Address extends pulumi.CustomResource {
      */
     public readonly projectName!: pulumi.Output<string>;
     /**
+     * Security protection types for public IP addresses. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced` or left blank.If the value is `AntiDDoS_Enhanced`, then will create an eip with enhanced protection,(can be added to DDoS native protection (enterprise version) instance). If left blank, it indicates an eip with basic protection.
+     */
+    public readonly securityProtectionTypes!: pulumi.Output<string[] | undefined>;
+    /**
      * The status of the EIP.
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
@@ -135,6 +139,7 @@ export class Address extends pulumi.CustomResource {
             resourceInputs["overdueTime"] = state ? state.overdueTime : undefined;
             resourceInputs["period"] = state ? state.period : undefined;
             resourceInputs["projectName"] = state ? state.projectName : undefined;
+            resourceInputs["securityProtectionTypes"] = state ? state.securityProtectionTypes : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
         } else {
@@ -149,6 +154,7 @@ export class Address extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["period"] = args ? args.period : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
+            resourceInputs["securityProtectionTypes"] = args ? args.securityProtectionTypes : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["deletedTime"] = undefined /*out*/;
             resourceInputs["eipAddress"] = undefined /*out*/;
@@ -210,6 +216,10 @@ export interface AddressState {
      */
     projectName?: pulumi.Input<string>;
     /**
+     * Security protection types for public IP addresses. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced` or left blank.If the value is `AntiDDoS_Enhanced`, then will create an eip with enhanced protection,(can be added to DDoS native protection (enterprise version) instance). If left blank, it indicates an eip with basic protection.
+     */
+    securityProtectionTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * The status of the EIP.
      */
     status?: pulumi.Input<string>;
@@ -251,6 +261,10 @@ export interface AddressArgs {
      * The ProjectName of the EIP.
      */
     projectName?: pulumi.Input<string>;
+    /**
+     * Security protection types for public IP addresses. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced` or left blank.If the value is `AntiDDoS_Enhanced`, then will create an eip with enhanced protection,(can be added to DDoS native protection (enterprise version) instance). If left blank, it indicates an eip with basic protection.
+     */
+    securityProtectionTypes?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Tags.
      */

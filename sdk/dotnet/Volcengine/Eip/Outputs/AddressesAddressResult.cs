@@ -27,6 +27,10 @@ namespace Volcengine.Pulumi.Volcengine.Eip.Outputs
         /// </summary>
         public readonly int Bandwidth;
         /// <summary>
+        /// The id of the bandwidth package.
+        /// </summary>
+        public readonly string BandwidthPackageId;
+        /// <summary>
         /// The billing type of the EIP.
         /// </summary>
         public readonly string BillingType;
@@ -83,6 +87,10 @@ namespace Volcengine.Pulumi.Volcengine.Eip.Outputs
         /// </summary>
         public readonly string ProjectName;
         /// <summary>
+        /// Security protection types for shared bandwidth packages. Parameter - N: Indicates the number of security protection types, currently only supports taking 1. Value: `AntiDDoS_Enhanced`.
+        /// </summary>
+        public readonly ImmutableArray<string> SecurityProtectionTypes;
+        /// <summary>
         /// A status of EIP, the value can be `Attaching` or `Detaching` or `Attached` or `Available`.
         /// </summary>
         public readonly string Status;
@@ -102,6 +110,8 @@ namespace Volcengine.Pulumi.Volcengine.Eip.Outputs
             string allocationTime,
 
             int bandwidth,
+
+            string bandwidthPackageId,
 
             string billingType,
 
@@ -131,6 +141,8 @@ namespace Volcengine.Pulumi.Volcengine.Eip.Outputs
 
             string projectName,
 
+            ImmutableArray<string> securityProtectionTypes,
+
             string status,
 
             ImmutableArray<Outputs.AddressesAddressTagResult> tags,
@@ -140,6 +152,7 @@ namespace Volcengine.Pulumi.Volcengine.Eip.Outputs
             AllocationId = allocationId;
             AllocationTime = allocationTime;
             Bandwidth = bandwidth;
+            BandwidthPackageId = bandwidthPackageId;
             BillingType = billingType;
             BusinessStatus = businessStatus;
             DeletedTime = deletedTime;
@@ -154,6 +167,7 @@ namespace Volcengine.Pulumi.Volcengine.Eip.Outputs
             Name = name;
             OverdueTime = overdueTime;
             ProjectName = projectName;
+            SecurityProtectionTypes = securityProtectionTypes;
             Status = status;
             Tags = tags;
             UpdatedAt = updatedAt;

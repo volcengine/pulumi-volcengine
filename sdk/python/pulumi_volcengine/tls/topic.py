@@ -34,9 +34,11 @@ class TopicArgs:
         :param pulumi.Input[str] topic_name: The name of the tls topic.
         :param pulumi.Input[int] ttl: The data storage time of the tls topic. Unit: Day. Valid value range: 1-3650.
         :param pulumi.Input[bool] auto_split: Whether to enable automatic partition splitting function of the tls topic.
+               true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
+               false: Disables automatic partition splitting.
         :param pulumi.Input[str] description: The description of the tls project.
         :param pulumi.Input[bool] enable_tracking: Whether to enable WebTracking function of the tls topic.
-        :param pulumi.Input[int] max_split_shard: The max count of shards in the tls topic.
+        :param pulumi.Input[int] max_split_shard: The maximum number of partitions, which is the maximum number of partitions after partition splitting. The value range is 1 to 10, with a default of 10.
         :param pulumi.Input[Sequence[pulumi.Input['TopicTagArgs']]] tags: Tags.
         :param pulumi.Input[str] time_format: The format of the time field.
         :param pulumi.Input[str] time_key: The name of the time field.
@@ -113,6 +115,8 @@ class TopicArgs:
     def auto_split(self) -> Optional[pulumi.Input[bool]]:
         """
         Whether to enable automatic partition splitting function of the tls topic.
+        true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
+        false: Disables automatic partition splitting.
         """
         return pulumi.get(self, "auto_split")
 
@@ -148,7 +152,7 @@ class TopicArgs:
     @pulumi.getter(name="maxSplitShard")
     def max_split_shard(self) -> Optional[pulumi.Input[int]]:
         """
-        The max count of shards in the tls topic.
+        The maximum number of partitions, which is the maximum number of partitions after partition splitting. The value range is 1 to 10, with a default of 10.
         """
         return pulumi.get(self, "max_split_shard")
 
@@ -212,10 +216,12 @@ class _TopicState:
         """
         Input properties used for looking up and filtering Topic resources.
         :param pulumi.Input[bool] auto_split: Whether to enable automatic partition splitting function of the tls topic.
+               true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
+               false: Disables automatic partition splitting.
         :param pulumi.Input[str] create_time: The create time of the tls topic.
         :param pulumi.Input[str] description: The description of the tls project.
         :param pulumi.Input[bool] enable_tracking: Whether to enable WebTracking function of the tls topic.
-        :param pulumi.Input[int] max_split_shard: The max count of shards in the tls topic.
+        :param pulumi.Input[int] max_split_shard: The maximum number of partitions, which is the maximum number of partitions after partition splitting. The value range is 1 to 10, with a default of 10.
         :param pulumi.Input[str] modify_time: The modify time of the tls topic.
         :param pulumi.Input[str] project_id: The project id of the tls topic.
         :param pulumi.Input[int] shard_count: The count of shards in the tls topic. Valid value range: 1-10.
@@ -257,6 +263,8 @@ class _TopicState:
     def auto_split(self) -> Optional[pulumi.Input[bool]]:
         """
         Whether to enable automatic partition splitting function of the tls topic.
+        true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
+        false: Disables automatic partition splitting.
         """
         return pulumi.get(self, "auto_split")
 
@@ -304,7 +312,7 @@ class _TopicState:
     @pulumi.getter(name="maxSplitShard")
     def max_split_shard(self) -> Optional[pulumi.Input[int]]:
         """
-        The max count of shards in the tls topic.
+        The maximum number of partitions, which is the maximum number of partitions after partition splitting. The value range is 1 to 10, with a default of 10.
         """
         return pulumi.get(self, "max_split_shard")
 
@@ -462,9 +470,11 @@ class Topic(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] auto_split: Whether to enable automatic partition splitting function of the tls topic.
+               true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
+               false: Disables automatic partition splitting.
         :param pulumi.Input[str] description: The description of the tls project.
         :param pulumi.Input[bool] enable_tracking: Whether to enable WebTracking function of the tls topic.
-        :param pulumi.Input[int] max_split_shard: The max count of shards in the tls topic.
+        :param pulumi.Input[int] max_split_shard: The maximum number of partitions, which is the maximum number of partitions after partition splitting. The value range is 1 to 10, with a default of 10.
         :param pulumi.Input[str] project_id: The project id of the tls topic.
         :param pulumi.Input[int] shard_count: The count of shards in the tls topic. Valid value range: 1-10.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TopicTagArgs']]]] tags: Tags.
@@ -599,10 +609,12 @@ class Topic(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] auto_split: Whether to enable automatic partition splitting function of the tls topic.
+               true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
+               false: Disables automatic partition splitting.
         :param pulumi.Input[str] create_time: The create time of the tls topic.
         :param pulumi.Input[str] description: The description of the tls project.
         :param pulumi.Input[bool] enable_tracking: Whether to enable WebTracking function of the tls topic.
-        :param pulumi.Input[int] max_split_shard: The max count of shards in the tls topic.
+        :param pulumi.Input[int] max_split_shard: The maximum number of partitions, which is the maximum number of partitions after partition splitting. The value range is 1 to 10, with a default of 10.
         :param pulumi.Input[str] modify_time: The modify time of the tls topic.
         :param pulumi.Input[str] project_id: The project id of the tls topic.
         :param pulumi.Input[int] shard_count: The count of shards in the tls topic. Valid value range: 1-10.
@@ -636,6 +648,8 @@ class Topic(pulumi.CustomResource):
     def auto_split(self) -> pulumi.Output[bool]:
         """
         Whether to enable automatic partition splitting function of the tls topic.
+        true: (default) When the amount of data written exceeds the capacity of existing partitions for 5 consecutive minutes, Log Service will automatically split partitions based on the data volume to meet business needs. However, the number of partitions after splitting cannot exceed the maximum number of partitions. Newly split partitions within the last 15 minutes will not be automatically split again.
+        false: Disables automatic partition splitting.
         """
         return pulumi.get(self, "auto_split")
 
@@ -667,7 +681,7 @@ class Topic(pulumi.CustomResource):
     @pulumi.getter(name="maxSplitShard")
     def max_split_shard(self) -> pulumi.Output[int]:
         """
-        The max count of shards in the tls topic.
+        The maximum number of partitions, which is the maximum number of partitions after partition splitting. The value range is 1 to 10, with a default of 10.
         """
         return pulumi.get(self, "max_split_shard")
 

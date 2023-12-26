@@ -200,7 +200,7 @@ def addresses(associated_instance_id: Optional[str] = None,
 
 
     :param str associated_instance_id: An id of associated instance.
-    :param str associated_instance_type: A type of associated instance, the value can be `Nat`, `NetworkInterface`, `ClbInstance` or `EcsInstance`.
+    :param str associated_instance_type: A type of associated instance, the value can be `Nat`, `NetworkInterface`, `ClbInstance`, `AlbInstance`, `HaVip` or `EcsInstance`.
     :param Sequence[str] eip_addresses: A list of EIP ip address that you want to query.
     :param Sequence[str] ids: A list of EIP allocation ids.
     :param str isp: An ISP of EIP Address, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.
@@ -266,7 +266,7 @@ def addresses_output(associated_instance_id: Optional[pulumi.Input[Optional[str]
 
 
     :param str associated_instance_id: An id of associated instance.
-    :param str associated_instance_type: A type of associated instance, the value can be `Nat`, `NetworkInterface`, `ClbInstance` or `EcsInstance`.
+    :param str associated_instance_type: A type of associated instance, the value can be `Nat`, `NetworkInterface`, `ClbInstance`, `AlbInstance`, `HaVip` or `EcsInstance`.
     :param Sequence[str] eip_addresses: A list of EIP ip address that you want to query.
     :param Sequence[str] ids: A list of EIP allocation ids.
     :param str isp: An ISP of EIP Address, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom`.

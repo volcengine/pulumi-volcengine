@@ -39,7 +39,7 @@ import (
 //					&nas.PermissionGroupPermissionRuleArgs{
 //						CidrIp:  pulumi.String("192.168.0.0"),
 //						RwMode:  pulumi.String("RO"),
-//						UseMode: pulumi.String("All_squash"),
+//						UseMode: pulumi.String("No_all_squash"),
 //					},
 //				},
 //			})

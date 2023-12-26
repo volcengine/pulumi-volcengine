@@ -54,6 +54,7 @@ __all__ = [
     'NodePoolNodeConfigSecurityArgs',
     'NodePoolNodeConfigSecurityLoginArgs',
     'NodePoolNodeConfigSystemVolumeArgs',
+    'NodePoolNodeStatisticArgs',
     'NodePoolTagArgs',
     'NodePoolsStatusArgs',
     'NodePoolsTagArgs',
@@ -289,7 +290,11 @@ class ClusterLoggingConfigLogSetupArgs:
                  enabled: Optional[pulumi.Input[bool]] = None,
                  log_ttl: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[str] log_type: The currently enabled log type.
+        :param pulumi.Input[str] log_type: The current types of logs that can be enabled are:
+               Audit: Cluster audit logs.
+               KubeApiServer: kube-apiserver component logs.
+               KubeScheduler: kube-scheduler component logs.
+               KubeControllerManager: kube-controller-manager component logs.
         :param pulumi.Input[bool] enabled: Whether to enable the log option, true means enable, false means not enable, the default is false. When Enabled is changed from false to true, a new Topic will be created.
         :param pulumi.Input[int] log_ttl: The storage time of logs in Log Service. After the specified log storage time is exceeded, the expired logs in this log topic will be automatically cleared. The unit is days, and the default is 30 days. The value range is 1 to 3650, specifying 3650 days means permanent storage.
         """
@@ -303,7 +308,11 @@ class ClusterLoggingConfigLogSetupArgs:
     @pulumi.getter(name="logType")
     def log_type(self) -> pulumi.Input[str]:
         """
-        The currently enabled log type.
+        The current types of logs that can be enabled are:
+        Audit: Cluster audit logs.
+        KubeApiServer: kube-apiserver component logs.
+        KubeScheduler: kube-scheduler component logs.
+        KubeControllerManager: kube-controller-manager component logs.
         """
         return pulumi.get(self, "log_type")
 
@@ -1766,10 +1775,10 @@ class NodePoolAutoScalingArgs:
                  subnet_policy: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[int] desired_replicas: The DesiredReplicas of AutoScaling, default 0, range in min_replicas to max_replicas.
-        :param pulumi.Input[bool] enabled: Is Enabled of AutoScaling.
-        :param pulumi.Input[int] max_replicas: The MaxReplicas of AutoScaling, default 10, range in 1~2000.
-        :param pulumi.Input[int] min_replicas: The MinReplicas of AutoScaling, default 0.
-        :param pulumi.Input[int] priority: The Priority of AutoScaling, default 10, rang in 0~100.
+        :param pulumi.Input[bool] enabled: Whether to enable the auto scaling function of the node pool. When a node needs to be manually added to the node pool, the value of this field must be `false`.
+        :param pulumi.Input[int] max_replicas: The MaxReplicas of AutoScaling, default 10, range in 1~2000. This field is valid when the value of `enabled` is `true`.
+        :param pulumi.Input[int] min_replicas: The MinReplicas of AutoScaling, default 0. This field is valid when the value of `enabled` is `true`.
+        :param pulumi.Input[int] priority: The Priority of AutoScaling, default 10, rang in 0~100. This field is valid when the value of `enabled` is `true` and the value of `subnet_policy` is `Priority`.
         :param pulumi.Input[str] subnet_policy: Multi-subnet scheduling strategy for nodes. The value can be `ZoneBalance` or `Priority`.
         """
         if desired_replicas is not None:
@@ -1801,7 +1810,7 @@ class NodePoolAutoScalingArgs:
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Is Enabled of AutoScaling.
+        Whether to enable the auto scaling function of the node pool. When a node needs to be manually added to the node pool, the value of this field must be `false`.
         """
         return pulumi.get(self, "enabled")
 
@@ -1813,7 +1822,7 @@ class NodePoolAutoScalingArgs:
     @pulumi.getter(name="maxReplicas")
     def max_replicas(self) -> Optional[pulumi.Input[int]]:
         """
-        The MaxReplicas of AutoScaling, default 10, range in 1~2000.
+        The MaxReplicas of AutoScaling, default 10, range in 1~2000. This field is valid when the value of `enabled` is `true`.
         """
         return pulumi.get(self, "max_replicas")
 
@@ -1825,7 +1834,7 @@ class NodePoolAutoScalingArgs:
     @pulumi.getter(name="minReplicas")
     def min_replicas(self) -> Optional[pulumi.Input[int]]:
         """
-        The MinReplicas of AutoScaling, default 0.
+        The MinReplicas of AutoScaling, default 0. This field is valid when the value of `enabled` is `true`.
         """
         return pulumi.get(self, "min_replicas")
 
@@ -1837,7 +1846,7 @@ class NodePoolAutoScalingArgs:
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[int]]:
         """
-        The Priority of AutoScaling, default 10, rang in 0~100.
+        The Priority of AutoScaling, default 10, rang in 0~100. This field is valid when the value of `enabled` is `true` and the value of `subnet_policy` is `Priority`.
         """
         return pulumi.get(self, "priority")
 
@@ -2473,6 +2482,157 @@ class NodePoolNodeConfigSystemVolumeArgs:
     @type.setter
     def type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "type", value)
+
+
+@pulumi.input_type
+class NodePoolNodeStatisticArgs:
+    def __init__(__self__, *,
+                 creating_count: Optional[pulumi.Input[int]] = None,
+                 deleting_count: Optional[pulumi.Input[int]] = None,
+                 failed_count: Optional[pulumi.Input[int]] = None,
+                 running_count: Optional[pulumi.Input[int]] = None,
+                 starting_count: Optional[pulumi.Input[int]] = None,
+                 stopped_count: Optional[pulumi.Input[int]] = None,
+                 stopping_count: Optional[pulumi.Input[int]] = None,
+                 total_count: Optional[pulumi.Input[int]] = None,
+                 updating_count: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] creating_count: The CreatingCount of Node.
+        :param pulumi.Input[int] deleting_count: The DeletingCount of Node.
+        :param pulumi.Input[int] failed_count: The FailedCount of Node.
+        :param pulumi.Input[int] running_count: The RunningCount of Node.
+        :param pulumi.Input[int] starting_count: The StartingCount of Node.
+        :param pulumi.Input[int] stopped_count: The StoppedCount of Node.
+        :param pulumi.Input[int] stopping_count: The StoppingCount of Node.
+        :param pulumi.Input[int] total_count: The TotalCount of Node.
+        :param pulumi.Input[int] updating_count: The UpdatingCount of Node.
+        """
+        if creating_count is not None:
+            pulumi.set(__self__, "creating_count", creating_count)
+        if deleting_count is not None:
+            pulumi.set(__self__, "deleting_count", deleting_count)
+        if failed_count is not None:
+            pulumi.set(__self__, "failed_count", failed_count)
+        if running_count is not None:
+            pulumi.set(__self__, "running_count", running_count)
+        if starting_count is not None:
+            pulumi.set(__self__, "starting_count", starting_count)
+        if stopped_count is not None:
+            pulumi.set(__self__, "stopped_count", stopped_count)
+        if stopping_count is not None:
+            pulumi.set(__self__, "stopping_count", stopping_count)
+        if total_count is not None:
+            pulumi.set(__self__, "total_count", total_count)
+        if updating_count is not None:
+            pulumi.set(__self__, "updating_count", updating_count)
+
+    @property
+    @pulumi.getter(name="creatingCount")
+    def creating_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        The CreatingCount of Node.
+        """
+        return pulumi.get(self, "creating_count")
+
+    @creating_count.setter
+    def creating_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "creating_count", value)
+
+    @property
+    @pulumi.getter(name="deletingCount")
+    def deleting_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        The DeletingCount of Node.
+        """
+        return pulumi.get(self, "deleting_count")
+
+    @deleting_count.setter
+    def deleting_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "deleting_count", value)
+
+    @property
+    @pulumi.getter(name="failedCount")
+    def failed_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        The FailedCount of Node.
+        """
+        return pulumi.get(self, "failed_count")
+
+    @failed_count.setter
+    def failed_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "failed_count", value)
+
+    @property
+    @pulumi.getter(name="runningCount")
+    def running_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        The RunningCount of Node.
+        """
+        return pulumi.get(self, "running_count")
+
+    @running_count.setter
+    def running_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "running_count", value)
+
+    @property
+    @pulumi.getter(name="startingCount")
+    def starting_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        The StartingCount of Node.
+        """
+        return pulumi.get(self, "starting_count")
+
+    @starting_count.setter
+    def starting_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "starting_count", value)
+
+    @property
+    @pulumi.getter(name="stoppedCount")
+    def stopped_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        The StoppedCount of Node.
+        """
+        return pulumi.get(self, "stopped_count")
+
+    @stopped_count.setter
+    def stopped_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "stopped_count", value)
+
+    @property
+    @pulumi.getter(name="stoppingCount")
+    def stopping_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        The StoppingCount of Node.
+        """
+        return pulumi.get(self, "stopping_count")
+
+    @stopping_count.setter
+    def stopping_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "stopping_count", value)
+
+    @property
+    @pulumi.getter(name="totalCount")
+    def total_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        The TotalCount of Node.
+        """
+        return pulumi.get(self, "total_count")
+
+    @total_count.setter
+    def total_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "total_count", value)
+
+    @property
+    @pulumi.getter(name="updatingCount")
+    def updating_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        The UpdatingCount of Node.
+        """
+        return pulumi.get(self, "updating_count")
+
+    @updating_count.setter
+    def updating_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "updating_count", value)
 
 
 @pulumi.input_type

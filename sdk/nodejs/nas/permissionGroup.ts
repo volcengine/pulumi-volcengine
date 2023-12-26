@@ -26,7 +26,7 @@ import * as utilities from "../utilities";
  *         {
  *             cidrIp: "192.168.0.0",
  *             rwMode: "RO",
- *             useMode: "All_squash",
+ *             useMode: "No_all_squash",
  *         },
  *     ],
  * });

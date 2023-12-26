@@ -48,7 +48,7 @@ export interface AddressesArgs {
      */
     associatedInstanceId?: string;
     /**
-     * A type of associated instance, the value can be `Nat`, `NetworkInterface`, `ClbInstance` or `EcsInstance`.
+     * A type of associated instance, the value can be `Nat`, `NetworkInterface`, `ClbInstance`, `AlbInstance`, `HaVip` or `EcsInstance`.
      */
     associatedInstanceType?: string;
     /**
@@ -155,7 +155,7 @@ export interface AddressesOutputArgs {
      */
     associatedInstanceId?: pulumi.Input<string>;
     /**
-     * A type of associated instance, the value can be `Nat`, `NetworkInterface`, `ClbInstance` or `EcsInstance`.
+     * A type of associated instance, the value can be `Nat`, `NetworkInterface`, `ClbInstance`, `AlbInstance`, `HaVip` or `EcsInstance`.
      */
     associatedInstanceType?: pulumi.Input<string>;
     /**

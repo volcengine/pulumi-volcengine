@@ -2297,6 +2297,8 @@ type ListenersListener struct {
 	ConnectionDrainEnabled string `pulumi:"connectionDrainEnabled"`
 	// The connection drain timeout of the Listener.
 	ConnectionDrainTimeout int `pulumi:"connectionDrainTimeout"`
+	// The name of the cookie for session persistence configured on the backend server.
+	Cookie string `pulumi:"cookie"`
 	// The create time of the Listener.
 	CreateTime string `pulumi:"createTime"`
 	// The enable status of the Listener.
@@ -2373,6 +2375,8 @@ type ListenersListenerArgs struct {
 	ConnectionDrainEnabled pulumi.StringInput `pulumi:"connectionDrainEnabled"`
 	// The connection drain timeout of the Listener.
 	ConnectionDrainTimeout pulumi.IntInput `pulumi:"connectionDrainTimeout"`
+	// The name of the cookie for session persistence configured on the backend server.
+	Cookie pulumi.StringInput `pulumi:"cookie"`
 	// The create time of the Listener.
 	CreateTime pulumi.StringInput `pulumi:"createTime"`
 	// The enable status of the Listener.
@@ -2507,6 +2511,11 @@ func (o ListenersListenerOutput) ConnectionDrainEnabled() pulumi.StringOutput {
 // The connection drain timeout of the Listener.
 func (o ListenersListenerOutput) ConnectionDrainTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v ListenersListener) int { return v.ConnectionDrainTimeout }).(pulumi.IntOutput)
+}
+
+// The name of the cookie for session persistence configured on the backend server.
+func (o ListenersListenerOutput) Cookie() pulumi.StringOutput {
+	return o.ApplyT(func(v ListenersListener) string { return v.Cookie }).(pulumi.StringOutput)
 }
 
 // The create time of the Listener.

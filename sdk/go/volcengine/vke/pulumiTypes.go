@@ -1135,7 +1135,11 @@ type ClusterLoggingConfigLogSetup struct {
 	Enabled *bool `pulumi:"enabled"`
 	// The storage time of logs in Log Service. After the specified log storage time is exceeded, the expired logs in this log topic will be automatically cleared. The unit is days, and the default is 30 days. The value range is 1 to 3650, specifying 3650 days means permanent storage.
 	LogTtl *int `pulumi:"logTtl"`
-	// The currently enabled log type.
+	// The current types of logs that can be enabled are:
+	// Audit: Cluster audit logs.
+	// KubeApiServer: kube-apiserver component logs.
+	// KubeScheduler: kube-scheduler component logs.
+	// KubeControllerManager: kube-controller-manager component logs.
 	LogType string `pulumi:"logType"`
 }
 
@@ -1155,7 +1159,11 @@ type ClusterLoggingConfigLogSetupArgs struct {
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
 	// The storage time of logs in Log Service. After the specified log storage time is exceeded, the expired logs in this log topic will be automatically cleared. The unit is days, and the default is 30 days. The value range is 1 to 3650, specifying 3650 days means permanent storage.
 	LogTtl pulumi.IntPtrInput `pulumi:"logTtl"`
-	// The currently enabled log type.
+	// The current types of logs that can be enabled are:
+	// Audit: Cluster audit logs.
+	// KubeApiServer: kube-apiserver component logs.
+	// KubeScheduler: kube-scheduler component logs.
+	// KubeControllerManager: kube-controller-manager component logs.
 	LogType pulumi.StringInput `pulumi:"logType"`
 }
 
@@ -1220,7 +1228,11 @@ func (o ClusterLoggingConfigLogSetupOutput) LogTtl() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ClusterLoggingConfigLogSetup) *int { return v.LogTtl }).(pulumi.IntPtrOutput)
 }
 
-// The currently enabled log type.
+// The current types of logs that can be enabled are:
+// Audit: Cluster audit logs.
+// KubeApiServer: kube-apiserver component logs.
+// KubeScheduler: kube-scheduler component logs.
+// KubeControllerManager: kube-controller-manager component logs.
 func (o ClusterLoggingConfigLogSetupOutput) LogType() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterLoggingConfigLogSetup) string { return v.LogType }).(pulumi.StringOutput)
 }
@@ -6665,13 +6677,13 @@ func (o NodeKubernetesConfigTaintArrayOutput) Index(i pulumi.IntInput) NodeKuber
 type NodePoolAutoScaling struct {
 	// The DesiredReplicas of AutoScaling, default 0, range in minReplicas to max_replicas.
 	DesiredReplicas *int `pulumi:"desiredReplicas"`
-	// Is Enabled of AutoScaling.
+	// Whether to enable the auto scaling function of the node pool. When a node needs to be manually added to the node pool, the value of this field must be `false`.
 	Enabled *bool `pulumi:"enabled"`
-	// The MaxReplicas of AutoScaling, default 10, range in 1~2000.
+	// The MaxReplicas of AutoScaling, default 10, range in 1~2000. This field is valid when the value of `enabled` is `true`.
 	MaxReplicas *int `pulumi:"maxReplicas"`
-	// The MinReplicas of AutoScaling, default 0.
+	// The MinReplicas of AutoScaling, default 0. This field is valid when the value of `enabled` is `true`.
 	MinReplicas *int `pulumi:"minReplicas"`
-	// The Priority of AutoScaling, default 10, rang in 0~100.
+	// The Priority of AutoScaling, default 10, rang in 0~100. This field is valid when the value of `enabled` is `true` and the value of `subnetPolicy` is `Priority`.
 	Priority *int `pulumi:"priority"`
 	// Multi-subnet scheduling strategy for nodes. The value can be `ZoneBalance` or `Priority`.
 	SubnetPolicy *string `pulumi:"subnetPolicy"`
@@ -6691,13 +6703,13 @@ type NodePoolAutoScalingInput interface {
 type NodePoolAutoScalingArgs struct {
 	// The DesiredReplicas of AutoScaling, default 0, range in minReplicas to max_replicas.
 	DesiredReplicas pulumi.IntPtrInput `pulumi:"desiredReplicas"`
-	// Is Enabled of AutoScaling.
+	// Whether to enable the auto scaling function of the node pool. When a node needs to be manually added to the node pool, the value of this field must be `false`.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
-	// The MaxReplicas of AutoScaling, default 10, range in 1~2000.
+	// The MaxReplicas of AutoScaling, default 10, range in 1~2000. This field is valid when the value of `enabled` is `true`.
 	MaxReplicas pulumi.IntPtrInput `pulumi:"maxReplicas"`
-	// The MinReplicas of AutoScaling, default 0.
+	// The MinReplicas of AutoScaling, default 0. This field is valid when the value of `enabled` is `true`.
 	MinReplicas pulumi.IntPtrInput `pulumi:"minReplicas"`
-	// The Priority of AutoScaling, default 10, rang in 0~100.
+	// The Priority of AutoScaling, default 10, rang in 0~100. This field is valid when the value of `enabled` is `true` and the value of `subnetPolicy` is `Priority`.
 	Priority pulumi.IntPtrInput `pulumi:"priority"`
 	// Multi-subnet scheduling strategy for nodes. The value can be `ZoneBalance` or `Priority`.
 	SubnetPolicy pulumi.StringPtrInput `pulumi:"subnetPolicy"`
@@ -6785,22 +6797,22 @@ func (o NodePoolAutoScalingOutput) DesiredReplicas() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v NodePoolAutoScaling) *int { return v.DesiredReplicas }).(pulumi.IntPtrOutput)
 }
 
-// Is Enabled of AutoScaling.
+// Whether to enable the auto scaling function of the node pool. When a node needs to be manually added to the node pool, the value of this field must be `false`.
 func (o NodePoolAutoScalingOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v NodePoolAutoScaling) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
-// The MaxReplicas of AutoScaling, default 10, range in 1~2000.
+// The MaxReplicas of AutoScaling, default 10, range in 1~2000. This field is valid when the value of `enabled` is `true`.
 func (o NodePoolAutoScalingOutput) MaxReplicas() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v NodePoolAutoScaling) *int { return v.MaxReplicas }).(pulumi.IntPtrOutput)
 }
 
-// The MinReplicas of AutoScaling, default 0.
+// The MinReplicas of AutoScaling, default 0. This field is valid when the value of `enabled` is `true`.
 func (o NodePoolAutoScalingOutput) MinReplicas() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v NodePoolAutoScaling) *int { return v.MinReplicas }).(pulumi.IntPtrOutput)
 }
 
-// The Priority of AutoScaling, default 10, rang in 0~100.
+// The Priority of AutoScaling, default 10, rang in 0~100. This field is valid when the value of `enabled` is `true` and the value of `subnetPolicy` is `Priority`.
 func (o NodePoolAutoScalingOutput) Priority() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v NodePoolAutoScaling) *int { return v.Priority }).(pulumi.IntPtrOutput)
 }
@@ -6844,7 +6856,7 @@ func (o NodePoolAutoScalingPtrOutput) DesiredReplicas() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// Is Enabled of AutoScaling.
+// Whether to enable the auto scaling function of the node pool. When a node needs to be manually added to the node pool, the value of this field must be `false`.
 func (o NodePoolAutoScalingPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *NodePoolAutoScaling) *bool {
 		if v == nil {
@@ -6854,7 +6866,7 @@ func (o NodePoolAutoScalingPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// The MaxReplicas of AutoScaling, default 10, range in 1~2000.
+// The MaxReplicas of AutoScaling, default 10, range in 1~2000. This field is valid when the value of `enabled` is `true`.
 func (o NodePoolAutoScalingPtrOutput) MaxReplicas() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *NodePoolAutoScaling) *int {
 		if v == nil {
@@ -6864,7 +6876,7 @@ func (o NodePoolAutoScalingPtrOutput) MaxReplicas() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// The MinReplicas of AutoScaling, default 0.
+// The MinReplicas of AutoScaling, default 0. This field is valid when the value of `enabled` is `true`.
 func (o NodePoolAutoScalingPtrOutput) MinReplicas() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *NodePoolAutoScaling) *int {
 		if v == nil {
@@ -6874,7 +6886,7 @@ func (o NodePoolAutoScalingPtrOutput) MinReplicas() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
-// The Priority of AutoScaling, default 10, rang in 0~100.
+// The Priority of AutoScaling, default 10, rang in 0~100. This field is valid when the value of `enabled` is `true` and the value of `subnetPolicy` is `Priority`.
 func (o NodePoolAutoScalingPtrOutput) Priority() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *NodePoolAutoScaling) *int {
 		if v == nil {
@@ -8401,6 +8413,175 @@ func (o NodePoolNodeConfigSystemVolumePtrOutput) Type() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type NodePoolNodeStatistic struct {
+	// The CreatingCount of Node.
+	CreatingCount *int `pulumi:"creatingCount"`
+	// The DeletingCount of Node.
+	DeletingCount *int `pulumi:"deletingCount"`
+	// The FailedCount of Node.
+	FailedCount *int `pulumi:"failedCount"`
+	// The RunningCount of Node.
+	RunningCount *int `pulumi:"runningCount"`
+	// The StartingCount of Node.
+	StartingCount *int `pulumi:"startingCount"`
+	// The StoppedCount of Node.
+	StoppedCount *int `pulumi:"stoppedCount"`
+	// The StoppingCount of Node.
+	StoppingCount *int `pulumi:"stoppingCount"`
+	// The TotalCount of Node.
+	TotalCount *int `pulumi:"totalCount"`
+	// The UpdatingCount of Node.
+	UpdatingCount *int `pulumi:"updatingCount"`
+}
+
+// NodePoolNodeStatisticInput is an input type that accepts NodePoolNodeStatisticArgs and NodePoolNodeStatisticOutput values.
+// You can construct a concrete instance of `NodePoolNodeStatisticInput` via:
+//
+//	NodePoolNodeStatisticArgs{...}
+type NodePoolNodeStatisticInput interface {
+	pulumi.Input
+
+	ToNodePoolNodeStatisticOutput() NodePoolNodeStatisticOutput
+	ToNodePoolNodeStatisticOutputWithContext(context.Context) NodePoolNodeStatisticOutput
+}
+
+type NodePoolNodeStatisticArgs struct {
+	// The CreatingCount of Node.
+	CreatingCount pulumi.IntPtrInput `pulumi:"creatingCount"`
+	// The DeletingCount of Node.
+	DeletingCount pulumi.IntPtrInput `pulumi:"deletingCount"`
+	// The FailedCount of Node.
+	FailedCount pulumi.IntPtrInput `pulumi:"failedCount"`
+	// The RunningCount of Node.
+	RunningCount pulumi.IntPtrInput `pulumi:"runningCount"`
+	// The StartingCount of Node.
+	StartingCount pulumi.IntPtrInput `pulumi:"startingCount"`
+	// The StoppedCount of Node.
+	StoppedCount pulumi.IntPtrInput `pulumi:"stoppedCount"`
+	// The StoppingCount of Node.
+	StoppingCount pulumi.IntPtrInput `pulumi:"stoppingCount"`
+	// The TotalCount of Node.
+	TotalCount pulumi.IntPtrInput `pulumi:"totalCount"`
+	// The UpdatingCount of Node.
+	UpdatingCount pulumi.IntPtrInput `pulumi:"updatingCount"`
+}
+
+func (NodePoolNodeStatisticArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolNodeStatistic)(nil)).Elem()
+}
+
+func (i NodePoolNodeStatisticArgs) ToNodePoolNodeStatisticOutput() NodePoolNodeStatisticOutput {
+	return i.ToNodePoolNodeStatisticOutputWithContext(context.Background())
+}
+
+func (i NodePoolNodeStatisticArgs) ToNodePoolNodeStatisticOutputWithContext(ctx context.Context) NodePoolNodeStatisticOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolNodeStatisticOutput)
+}
+
+// NodePoolNodeStatisticArrayInput is an input type that accepts NodePoolNodeStatisticArray and NodePoolNodeStatisticArrayOutput values.
+// You can construct a concrete instance of `NodePoolNodeStatisticArrayInput` via:
+//
+//	NodePoolNodeStatisticArray{ NodePoolNodeStatisticArgs{...} }
+type NodePoolNodeStatisticArrayInput interface {
+	pulumi.Input
+
+	ToNodePoolNodeStatisticArrayOutput() NodePoolNodeStatisticArrayOutput
+	ToNodePoolNodeStatisticArrayOutputWithContext(context.Context) NodePoolNodeStatisticArrayOutput
+}
+
+type NodePoolNodeStatisticArray []NodePoolNodeStatisticInput
+
+func (NodePoolNodeStatisticArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodePoolNodeStatistic)(nil)).Elem()
+}
+
+func (i NodePoolNodeStatisticArray) ToNodePoolNodeStatisticArrayOutput() NodePoolNodeStatisticArrayOutput {
+	return i.ToNodePoolNodeStatisticArrayOutputWithContext(context.Background())
+}
+
+func (i NodePoolNodeStatisticArray) ToNodePoolNodeStatisticArrayOutputWithContext(ctx context.Context) NodePoolNodeStatisticArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolNodeStatisticArrayOutput)
+}
+
+type NodePoolNodeStatisticOutput struct{ *pulumi.OutputState }
+
+func (NodePoolNodeStatisticOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolNodeStatistic)(nil)).Elem()
+}
+
+func (o NodePoolNodeStatisticOutput) ToNodePoolNodeStatisticOutput() NodePoolNodeStatisticOutput {
+	return o
+}
+
+func (o NodePoolNodeStatisticOutput) ToNodePoolNodeStatisticOutputWithContext(ctx context.Context) NodePoolNodeStatisticOutput {
+	return o
+}
+
+// The CreatingCount of Node.
+func (o NodePoolNodeStatisticOutput) CreatingCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v NodePoolNodeStatistic) *int { return v.CreatingCount }).(pulumi.IntPtrOutput)
+}
+
+// The DeletingCount of Node.
+func (o NodePoolNodeStatisticOutput) DeletingCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v NodePoolNodeStatistic) *int { return v.DeletingCount }).(pulumi.IntPtrOutput)
+}
+
+// The FailedCount of Node.
+func (o NodePoolNodeStatisticOutput) FailedCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v NodePoolNodeStatistic) *int { return v.FailedCount }).(pulumi.IntPtrOutput)
+}
+
+// The RunningCount of Node.
+func (o NodePoolNodeStatisticOutput) RunningCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v NodePoolNodeStatistic) *int { return v.RunningCount }).(pulumi.IntPtrOutput)
+}
+
+// The StartingCount of Node.
+func (o NodePoolNodeStatisticOutput) StartingCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v NodePoolNodeStatistic) *int { return v.StartingCount }).(pulumi.IntPtrOutput)
+}
+
+// The StoppedCount of Node.
+func (o NodePoolNodeStatisticOutput) StoppedCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v NodePoolNodeStatistic) *int { return v.StoppedCount }).(pulumi.IntPtrOutput)
+}
+
+// The StoppingCount of Node.
+func (o NodePoolNodeStatisticOutput) StoppingCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v NodePoolNodeStatistic) *int { return v.StoppingCount }).(pulumi.IntPtrOutput)
+}
+
+// The TotalCount of Node.
+func (o NodePoolNodeStatisticOutput) TotalCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v NodePoolNodeStatistic) *int { return v.TotalCount }).(pulumi.IntPtrOutput)
+}
+
+// The UpdatingCount of Node.
+func (o NodePoolNodeStatisticOutput) UpdatingCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v NodePoolNodeStatistic) *int { return v.UpdatingCount }).(pulumi.IntPtrOutput)
+}
+
+type NodePoolNodeStatisticArrayOutput struct{ *pulumi.OutputState }
+
+func (NodePoolNodeStatisticArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodePoolNodeStatistic)(nil)).Elem()
+}
+
+func (o NodePoolNodeStatisticArrayOutput) ToNodePoolNodeStatisticArrayOutput() NodePoolNodeStatisticArrayOutput {
+	return o
+}
+
+func (o NodePoolNodeStatisticArrayOutput) ToNodePoolNodeStatisticArrayOutputWithContext(ctx context.Context) NodePoolNodeStatisticArrayOutput {
+	return o
+}
+
+func (o NodePoolNodeStatisticArrayOutput) Index(i pulumi.IntInput) NodePoolNodeStatisticOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NodePoolNodeStatistic {
+		return vs[0].([]NodePoolNodeStatistic)[vs[1].(int)]
+	}).(NodePoolNodeStatisticOutput)
+}
+
 type NodePoolTag struct {
 	// The Key of Tags.
 	Key string `pulumi:"key"`
@@ -8559,7 +8740,7 @@ type NodePoolsNodePool struct {
 	// The NamePrefix of NodeConfig.
 	NamePrefix string `pulumi:"namePrefix"`
 	// The NodeStatistics of NodeConfig.
-	NodeStatistics NodePoolsNodePoolNodeStatistics `pulumi:"nodeStatistics"`
+	NodeStatistics []NodePoolsNodePoolNodeStatistic `pulumi:"nodeStatistics"`
 	// The period of the PrePaid instance of NodeConfig.
 	Period int `pulumi:"period"`
 	// The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
@@ -8577,7 +8758,7 @@ type NodePoolsNodePool struct {
 	// Multi-subnet scheduling strategy for nodes. The value can be `ZoneBalance` or `Priority`.
 	SubnetPolicy string `pulumi:"subnetPolicy"`
 	// The SystemVolume of NodeConfig.
-	SystemVolume NodePoolsNodePoolSystemVolume `pulumi:"systemVolume"`
+	SystemVolumes []NodePoolsNodePoolSystemVolume `pulumi:"systemVolumes"`
 	// Tags.
 	Tags []NodePoolsNodePoolTag `pulumi:"tags"`
 	// The TaintContent of NodeConfig.
@@ -8651,7 +8832,7 @@ type NodePoolsNodePoolArgs struct {
 	// The NamePrefix of NodeConfig.
 	NamePrefix pulumi.StringInput `pulumi:"namePrefix"`
 	// The NodeStatistics of NodeConfig.
-	NodeStatistics NodePoolsNodePoolNodeStatisticsInput `pulumi:"nodeStatistics"`
+	NodeStatistics NodePoolsNodePoolNodeStatisticArrayInput `pulumi:"nodeStatistics"`
 	// The period of the PrePaid instance of NodeConfig.
 	Period pulumi.IntInput `pulumi:"period"`
 	// The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
@@ -8669,7 +8850,7 @@ type NodePoolsNodePoolArgs struct {
 	// Multi-subnet scheduling strategy for nodes. The value can be `ZoneBalance` or `Priority`.
 	SubnetPolicy pulumi.StringInput `pulumi:"subnetPolicy"`
 	// The SystemVolume of NodeConfig.
-	SystemVolume NodePoolsNodePoolSystemVolumeInput `pulumi:"systemVolume"`
+	SystemVolumes NodePoolsNodePoolSystemVolumeArrayInput `pulumi:"systemVolumes"`
 	// Tags.
 	Tags NodePoolsNodePoolTagArrayInput `pulumi:"tags"`
 	// The TaintContent of NodeConfig.
@@ -8857,8 +9038,8 @@ func (o NodePoolsNodePoolOutput) NamePrefix() pulumi.StringOutput {
 }
 
 // The NodeStatistics of NodeConfig.
-func (o NodePoolsNodePoolOutput) NodeStatistics() NodePoolsNodePoolNodeStatisticsOutput {
-	return o.ApplyT(func(v NodePoolsNodePool) NodePoolsNodePoolNodeStatistics { return v.NodeStatistics }).(NodePoolsNodePoolNodeStatisticsOutput)
+func (o NodePoolsNodePoolOutput) NodeStatistics() NodePoolsNodePoolNodeStatisticArrayOutput {
+	return o.ApplyT(func(v NodePoolsNodePool) []NodePoolsNodePoolNodeStatistic { return v.NodeStatistics }).(NodePoolsNodePoolNodeStatisticArrayOutput)
 }
 
 // The period of the PrePaid instance of NodeConfig.
@@ -8902,8 +9083,8 @@ func (o NodePoolsNodePoolOutput) SubnetPolicy() pulumi.StringOutput {
 }
 
 // The SystemVolume of NodeConfig.
-func (o NodePoolsNodePoolOutput) SystemVolume() NodePoolsNodePoolSystemVolumeOutput {
-	return o.ApplyT(func(v NodePoolsNodePool) NodePoolsNodePoolSystemVolume { return v.SystemVolume }).(NodePoolsNodePoolSystemVolumeOutput)
+func (o NodePoolsNodePoolOutput) SystemVolumes() NodePoolsNodePoolSystemVolumeArrayOutput {
+	return o.ApplyT(func(v NodePoolsNodePool) []NodePoolsNodePoolSystemVolume { return v.SystemVolumes }).(NodePoolsNodePoolSystemVolumeArrayOutput)
 }
 
 // Tags.
@@ -9273,7 +9454,7 @@ func (o NodePoolsNodePoolLabelContentArrayOutput) Index(i pulumi.IntInput) NodeP
 	}).(NodePoolsNodePoolLabelContentOutput)
 }
 
-type NodePoolsNodePoolNodeStatistics struct {
+type NodePoolsNodePoolNodeStatistic struct {
 	// The CreatingCount of Node.
 	CreatingCount int `pulumi:"creatingCount"`
 	// The DeletingCount of Node.
@@ -9294,18 +9475,18 @@ type NodePoolsNodePoolNodeStatistics struct {
 	UpdatingCount int `pulumi:"updatingCount"`
 }
 
-// NodePoolsNodePoolNodeStatisticsInput is an input type that accepts NodePoolsNodePoolNodeStatisticsArgs and NodePoolsNodePoolNodeStatisticsOutput values.
-// You can construct a concrete instance of `NodePoolsNodePoolNodeStatisticsInput` via:
+// NodePoolsNodePoolNodeStatisticInput is an input type that accepts NodePoolsNodePoolNodeStatisticArgs and NodePoolsNodePoolNodeStatisticOutput values.
+// You can construct a concrete instance of `NodePoolsNodePoolNodeStatisticInput` via:
 //
-//	NodePoolsNodePoolNodeStatisticsArgs{...}
-type NodePoolsNodePoolNodeStatisticsInput interface {
+//	NodePoolsNodePoolNodeStatisticArgs{...}
+type NodePoolsNodePoolNodeStatisticInput interface {
 	pulumi.Input
 
-	ToNodePoolsNodePoolNodeStatisticsOutput() NodePoolsNodePoolNodeStatisticsOutput
-	ToNodePoolsNodePoolNodeStatisticsOutputWithContext(context.Context) NodePoolsNodePoolNodeStatisticsOutput
+	ToNodePoolsNodePoolNodeStatisticOutput() NodePoolsNodePoolNodeStatisticOutput
+	ToNodePoolsNodePoolNodeStatisticOutputWithContext(context.Context) NodePoolsNodePoolNodeStatisticOutput
 }
 
-type NodePoolsNodePoolNodeStatisticsArgs struct {
+type NodePoolsNodePoolNodeStatisticArgs struct {
 	// The CreatingCount of Node.
 	CreatingCount pulumi.IntInput `pulumi:"creatingCount"`
 	// The DeletingCount of Node.
@@ -9326,75 +9507,120 @@ type NodePoolsNodePoolNodeStatisticsArgs struct {
 	UpdatingCount pulumi.IntInput `pulumi:"updatingCount"`
 }
 
-func (NodePoolsNodePoolNodeStatisticsArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*NodePoolsNodePoolNodeStatistics)(nil)).Elem()
+func (NodePoolsNodePoolNodeStatisticArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolsNodePoolNodeStatistic)(nil)).Elem()
 }
 
-func (i NodePoolsNodePoolNodeStatisticsArgs) ToNodePoolsNodePoolNodeStatisticsOutput() NodePoolsNodePoolNodeStatisticsOutput {
-	return i.ToNodePoolsNodePoolNodeStatisticsOutputWithContext(context.Background())
+func (i NodePoolsNodePoolNodeStatisticArgs) ToNodePoolsNodePoolNodeStatisticOutput() NodePoolsNodePoolNodeStatisticOutput {
+	return i.ToNodePoolsNodePoolNodeStatisticOutputWithContext(context.Background())
 }
 
-func (i NodePoolsNodePoolNodeStatisticsArgs) ToNodePoolsNodePoolNodeStatisticsOutputWithContext(ctx context.Context) NodePoolsNodePoolNodeStatisticsOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NodePoolsNodePoolNodeStatisticsOutput)
+func (i NodePoolsNodePoolNodeStatisticArgs) ToNodePoolsNodePoolNodeStatisticOutputWithContext(ctx context.Context) NodePoolsNodePoolNodeStatisticOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolsNodePoolNodeStatisticOutput)
 }
 
-type NodePoolsNodePoolNodeStatisticsOutput struct{ *pulumi.OutputState }
+// NodePoolsNodePoolNodeStatisticArrayInput is an input type that accepts NodePoolsNodePoolNodeStatisticArray and NodePoolsNodePoolNodeStatisticArrayOutput values.
+// You can construct a concrete instance of `NodePoolsNodePoolNodeStatisticArrayInput` via:
+//
+//	NodePoolsNodePoolNodeStatisticArray{ NodePoolsNodePoolNodeStatisticArgs{...} }
+type NodePoolsNodePoolNodeStatisticArrayInput interface {
+	pulumi.Input
 
-func (NodePoolsNodePoolNodeStatisticsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*NodePoolsNodePoolNodeStatistics)(nil)).Elem()
+	ToNodePoolsNodePoolNodeStatisticArrayOutput() NodePoolsNodePoolNodeStatisticArrayOutput
+	ToNodePoolsNodePoolNodeStatisticArrayOutputWithContext(context.Context) NodePoolsNodePoolNodeStatisticArrayOutput
 }
 
-func (o NodePoolsNodePoolNodeStatisticsOutput) ToNodePoolsNodePoolNodeStatisticsOutput() NodePoolsNodePoolNodeStatisticsOutput {
+type NodePoolsNodePoolNodeStatisticArray []NodePoolsNodePoolNodeStatisticInput
+
+func (NodePoolsNodePoolNodeStatisticArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodePoolsNodePoolNodeStatistic)(nil)).Elem()
+}
+
+func (i NodePoolsNodePoolNodeStatisticArray) ToNodePoolsNodePoolNodeStatisticArrayOutput() NodePoolsNodePoolNodeStatisticArrayOutput {
+	return i.ToNodePoolsNodePoolNodeStatisticArrayOutputWithContext(context.Background())
+}
+
+func (i NodePoolsNodePoolNodeStatisticArray) ToNodePoolsNodePoolNodeStatisticArrayOutputWithContext(ctx context.Context) NodePoolsNodePoolNodeStatisticArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolsNodePoolNodeStatisticArrayOutput)
+}
+
+type NodePoolsNodePoolNodeStatisticOutput struct{ *pulumi.OutputState }
+
+func (NodePoolsNodePoolNodeStatisticOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NodePoolsNodePoolNodeStatistic)(nil)).Elem()
+}
+
+func (o NodePoolsNodePoolNodeStatisticOutput) ToNodePoolsNodePoolNodeStatisticOutput() NodePoolsNodePoolNodeStatisticOutput {
 	return o
 }
 
-func (o NodePoolsNodePoolNodeStatisticsOutput) ToNodePoolsNodePoolNodeStatisticsOutputWithContext(ctx context.Context) NodePoolsNodePoolNodeStatisticsOutput {
+func (o NodePoolsNodePoolNodeStatisticOutput) ToNodePoolsNodePoolNodeStatisticOutputWithContext(ctx context.Context) NodePoolsNodePoolNodeStatisticOutput {
 	return o
 }
 
 // The CreatingCount of Node.
-func (o NodePoolsNodePoolNodeStatisticsOutput) CreatingCount() pulumi.IntOutput {
-	return o.ApplyT(func(v NodePoolsNodePoolNodeStatistics) int { return v.CreatingCount }).(pulumi.IntOutput)
+func (o NodePoolsNodePoolNodeStatisticOutput) CreatingCount() pulumi.IntOutput {
+	return o.ApplyT(func(v NodePoolsNodePoolNodeStatistic) int { return v.CreatingCount }).(pulumi.IntOutput)
 }
 
 // The DeletingCount of Node.
-func (o NodePoolsNodePoolNodeStatisticsOutput) DeletingCount() pulumi.IntOutput {
-	return o.ApplyT(func(v NodePoolsNodePoolNodeStatistics) int { return v.DeletingCount }).(pulumi.IntOutput)
+func (o NodePoolsNodePoolNodeStatisticOutput) DeletingCount() pulumi.IntOutput {
+	return o.ApplyT(func(v NodePoolsNodePoolNodeStatistic) int { return v.DeletingCount }).(pulumi.IntOutput)
 }
 
 // The FailedCount of Node.
-func (o NodePoolsNodePoolNodeStatisticsOutput) FailedCount() pulumi.IntOutput {
-	return o.ApplyT(func(v NodePoolsNodePoolNodeStatistics) int { return v.FailedCount }).(pulumi.IntOutput)
+func (o NodePoolsNodePoolNodeStatisticOutput) FailedCount() pulumi.IntOutput {
+	return o.ApplyT(func(v NodePoolsNodePoolNodeStatistic) int { return v.FailedCount }).(pulumi.IntOutput)
 }
 
 // The RunningCount of Node.
-func (o NodePoolsNodePoolNodeStatisticsOutput) RunningCount() pulumi.IntOutput {
-	return o.ApplyT(func(v NodePoolsNodePoolNodeStatistics) int { return v.RunningCount }).(pulumi.IntOutput)
+func (o NodePoolsNodePoolNodeStatisticOutput) RunningCount() pulumi.IntOutput {
+	return o.ApplyT(func(v NodePoolsNodePoolNodeStatistic) int { return v.RunningCount }).(pulumi.IntOutput)
 }
 
 // The StartingCount of Node.
-func (o NodePoolsNodePoolNodeStatisticsOutput) StartingCount() pulumi.IntOutput {
-	return o.ApplyT(func(v NodePoolsNodePoolNodeStatistics) int { return v.StartingCount }).(pulumi.IntOutput)
+func (o NodePoolsNodePoolNodeStatisticOutput) StartingCount() pulumi.IntOutput {
+	return o.ApplyT(func(v NodePoolsNodePoolNodeStatistic) int { return v.StartingCount }).(pulumi.IntOutput)
 }
 
 // The StoppedCount of Node.
-func (o NodePoolsNodePoolNodeStatisticsOutput) StoppedCount() pulumi.IntOutput {
-	return o.ApplyT(func(v NodePoolsNodePoolNodeStatistics) int { return v.StoppedCount }).(pulumi.IntOutput)
+func (o NodePoolsNodePoolNodeStatisticOutput) StoppedCount() pulumi.IntOutput {
+	return o.ApplyT(func(v NodePoolsNodePoolNodeStatistic) int { return v.StoppedCount }).(pulumi.IntOutput)
 }
 
 // The StoppingCount of Node.
-func (o NodePoolsNodePoolNodeStatisticsOutput) StoppingCount() pulumi.IntOutput {
-	return o.ApplyT(func(v NodePoolsNodePoolNodeStatistics) int { return v.StoppingCount }).(pulumi.IntOutput)
+func (o NodePoolsNodePoolNodeStatisticOutput) StoppingCount() pulumi.IntOutput {
+	return o.ApplyT(func(v NodePoolsNodePoolNodeStatistic) int { return v.StoppingCount }).(pulumi.IntOutput)
 }
 
 // Returns the total amount of the data list.
-func (o NodePoolsNodePoolNodeStatisticsOutput) TotalCount() pulumi.IntOutput {
-	return o.ApplyT(func(v NodePoolsNodePoolNodeStatistics) int { return v.TotalCount }).(pulumi.IntOutput)
+func (o NodePoolsNodePoolNodeStatisticOutput) TotalCount() pulumi.IntOutput {
+	return o.ApplyT(func(v NodePoolsNodePoolNodeStatistic) int { return v.TotalCount }).(pulumi.IntOutput)
 }
 
 // The UpdatingCount of Node.
-func (o NodePoolsNodePoolNodeStatisticsOutput) UpdatingCount() pulumi.IntOutput {
-	return o.ApplyT(func(v NodePoolsNodePoolNodeStatistics) int { return v.UpdatingCount }).(pulumi.IntOutput)
+func (o NodePoolsNodePoolNodeStatisticOutput) UpdatingCount() pulumi.IntOutput {
+	return o.ApplyT(func(v NodePoolsNodePoolNodeStatistic) int { return v.UpdatingCount }).(pulumi.IntOutput)
+}
+
+type NodePoolsNodePoolNodeStatisticArrayOutput struct{ *pulumi.OutputState }
+
+func (NodePoolsNodePoolNodeStatisticArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodePoolsNodePoolNodeStatistic)(nil)).Elem()
+}
+
+func (o NodePoolsNodePoolNodeStatisticArrayOutput) ToNodePoolsNodePoolNodeStatisticArrayOutput() NodePoolsNodePoolNodeStatisticArrayOutput {
+	return o
+}
+
+func (o NodePoolsNodePoolNodeStatisticArrayOutput) ToNodePoolsNodePoolNodeStatisticArrayOutputWithContext(ctx context.Context) NodePoolsNodePoolNodeStatisticArrayOutput {
+	return o
+}
+
+func (o NodePoolsNodePoolNodeStatisticArrayOutput) Index(i pulumi.IntInput) NodePoolsNodePoolNodeStatisticOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NodePoolsNodePoolNodeStatistic {
+		return vs[0].([]NodePoolsNodePoolNodeStatistic)[vs[1].(int)]
+	}).(NodePoolsNodePoolNodeStatisticOutput)
 }
 
 type NodePoolsNodePoolSystemVolume struct {
@@ -9434,6 +9660,31 @@ func (i NodePoolsNodePoolSystemVolumeArgs) ToNodePoolsNodePoolSystemVolumeOutput
 	return pulumi.ToOutputWithContext(ctx, i).(NodePoolsNodePoolSystemVolumeOutput)
 }
 
+// NodePoolsNodePoolSystemVolumeArrayInput is an input type that accepts NodePoolsNodePoolSystemVolumeArray and NodePoolsNodePoolSystemVolumeArrayOutput values.
+// You can construct a concrete instance of `NodePoolsNodePoolSystemVolumeArrayInput` via:
+//
+//	NodePoolsNodePoolSystemVolumeArray{ NodePoolsNodePoolSystemVolumeArgs{...} }
+type NodePoolsNodePoolSystemVolumeArrayInput interface {
+	pulumi.Input
+
+	ToNodePoolsNodePoolSystemVolumeArrayOutput() NodePoolsNodePoolSystemVolumeArrayOutput
+	ToNodePoolsNodePoolSystemVolumeArrayOutputWithContext(context.Context) NodePoolsNodePoolSystemVolumeArrayOutput
+}
+
+type NodePoolsNodePoolSystemVolumeArray []NodePoolsNodePoolSystemVolumeInput
+
+func (NodePoolsNodePoolSystemVolumeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodePoolsNodePoolSystemVolume)(nil)).Elem()
+}
+
+func (i NodePoolsNodePoolSystemVolumeArray) ToNodePoolsNodePoolSystemVolumeArrayOutput() NodePoolsNodePoolSystemVolumeArrayOutput {
+	return i.ToNodePoolsNodePoolSystemVolumeArrayOutputWithContext(context.Background())
+}
+
+func (i NodePoolsNodePoolSystemVolumeArray) ToNodePoolsNodePoolSystemVolumeArrayOutputWithContext(ctx context.Context) NodePoolsNodePoolSystemVolumeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NodePoolsNodePoolSystemVolumeArrayOutput)
+}
+
 type NodePoolsNodePoolSystemVolumeOutput struct{ *pulumi.OutputState }
 
 func (NodePoolsNodePoolSystemVolumeOutput) ElementType() reflect.Type {
@@ -9456,6 +9707,26 @@ func (o NodePoolsNodePoolSystemVolumeOutput) Size() pulumi.StringOutput {
 // The Type of Tags.
 func (o NodePoolsNodePoolSystemVolumeOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolsNodePoolSystemVolume) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type NodePoolsNodePoolSystemVolumeArrayOutput struct{ *pulumi.OutputState }
+
+func (NodePoolsNodePoolSystemVolumeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NodePoolsNodePoolSystemVolume)(nil)).Elem()
+}
+
+func (o NodePoolsNodePoolSystemVolumeArrayOutput) ToNodePoolsNodePoolSystemVolumeArrayOutput() NodePoolsNodePoolSystemVolumeArrayOutput {
+	return o
+}
+
+func (o NodePoolsNodePoolSystemVolumeArrayOutput) ToNodePoolsNodePoolSystemVolumeArrayOutputWithContext(ctx context.Context) NodePoolsNodePoolSystemVolumeArrayOutput {
+	return o
+}
+
+func (o NodePoolsNodePoolSystemVolumeArrayOutput) Index(i pulumi.IntInput) NodePoolsNodePoolSystemVolumeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NodePoolsNodePoolSystemVolume {
+		return vs[0].([]NodePoolsNodePoolSystemVolume)[vs[1].(int)]
+	}).(NodePoolsNodePoolSystemVolumeOutput)
 }
 
 type NodePoolsNodePoolTag struct {
@@ -11097,6 +11368,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolNodeConfigSecurityLoginPtrInput)(nil)).Elem(), NodePoolNodeConfigSecurityLoginArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolNodeConfigSystemVolumeInput)(nil)).Elem(), NodePoolNodeConfigSystemVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolNodeConfigSystemVolumePtrInput)(nil)).Elem(), NodePoolNodeConfigSystemVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolNodeStatisticInput)(nil)).Elem(), NodePoolNodeStatisticArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolNodeStatisticArrayInput)(nil)).Elem(), NodePoolNodeStatisticArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolTagInput)(nil)).Elem(), NodePoolTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolTagArrayInput)(nil)).Elem(), NodePoolTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolInput)(nil)).Elem(), NodePoolsNodePoolArgs{})
@@ -11107,8 +11380,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolEcsTagArrayInput)(nil)).Elem(), NodePoolsNodePoolEcsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolLabelContentInput)(nil)).Elem(), NodePoolsNodePoolLabelContentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolLabelContentArrayInput)(nil)).Elem(), NodePoolsNodePoolLabelContentArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolNodeStatisticsInput)(nil)).Elem(), NodePoolsNodePoolNodeStatisticsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolNodeStatisticInput)(nil)).Elem(), NodePoolsNodePoolNodeStatisticArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolNodeStatisticArrayInput)(nil)).Elem(), NodePoolsNodePoolNodeStatisticArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolSystemVolumeInput)(nil)).Elem(), NodePoolsNodePoolSystemVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolSystemVolumeArrayInput)(nil)).Elem(), NodePoolsNodePoolSystemVolumeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolTagInput)(nil)).Elem(), NodePoolsNodePoolTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolTagArrayInput)(nil)).Elem(), NodePoolsNodePoolTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NodePoolsNodePoolTaintContentInput)(nil)).Elem(), NodePoolsNodePoolTaintContentArgs{})
@@ -11250,6 +11525,8 @@ func init() {
 	pulumi.RegisterOutputType(NodePoolNodeConfigSecurityLoginPtrOutput{})
 	pulumi.RegisterOutputType(NodePoolNodeConfigSystemVolumeOutput{})
 	pulumi.RegisterOutputType(NodePoolNodeConfigSystemVolumePtrOutput{})
+	pulumi.RegisterOutputType(NodePoolNodeStatisticOutput{})
+	pulumi.RegisterOutputType(NodePoolNodeStatisticArrayOutput{})
 	pulumi.RegisterOutputType(NodePoolTagOutput{})
 	pulumi.RegisterOutputType(NodePoolTagArrayOutput{})
 	pulumi.RegisterOutputType(NodePoolsNodePoolOutput{})
@@ -11260,8 +11537,10 @@ func init() {
 	pulumi.RegisterOutputType(NodePoolsNodePoolEcsTagArrayOutput{})
 	pulumi.RegisterOutputType(NodePoolsNodePoolLabelContentOutput{})
 	pulumi.RegisterOutputType(NodePoolsNodePoolLabelContentArrayOutput{})
-	pulumi.RegisterOutputType(NodePoolsNodePoolNodeStatisticsOutput{})
+	pulumi.RegisterOutputType(NodePoolsNodePoolNodeStatisticOutput{})
+	pulumi.RegisterOutputType(NodePoolsNodePoolNodeStatisticArrayOutput{})
 	pulumi.RegisterOutputType(NodePoolsNodePoolSystemVolumeOutput{})
+	pulumi.RegisterOutputType(NodePoolsNodePoolSystemVolumeArrayOutput{})
 	pulumi.RegisterOutputType(NodePoolsNodePoolTagOutput{})
 	pulumi.RegisterOutputType(NodePoolsNodePoolTagArrayOutput{})
 	pulumi.RegisterOutputType(NodePoolsNodePoolTaintContentOutput{})

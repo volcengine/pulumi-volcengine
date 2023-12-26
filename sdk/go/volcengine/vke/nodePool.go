@@ -213,6 +213,8 @@ type NodePool struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The Config of NodePool.
 	NodeConfig NodePoolNodeConfigOutput `pulumi:"nodeConfig"`
+	// The NodeStatistics of NodeConfig.
+	NodeStatistics NodePoolNodeStatisticArrayOutput `pulumi:"nodeStatistics"`
 	// Tags.
 	Tags NodePoolTagArrayOutput `pulumi:"tags"`
 }
@@ -265,6 +267,8 @@ type nodePoolState struct {
 	Name *string `pulumi:"name"`
 	// The Config of NodePool.
 	NodeConfig *NodePoolNodeConfig `pulumi:"nodeConfig"`
+	// The NodeStatistics of NodeConfig.
+	NodeStatistics []NodePoolNodeStatistic `pulumi:"nodeStatistics"`
 	// Tags.
 	Tags []NodePoolTag `pulumi:"tags"`
 }
@@ -282,6 +286,8 @@ type NodePoolState struct {
 	Name pulumi.StringPtrInput
 	// The Config of NodePool.
 	NodeConfig NodePoolNodeConfigPtrInput
+	// The NodeStatistics of NodeConfig.
+	NodeStatistics NodePoolNodeStatisticArrayInput
 	// Tags.
 	Tags NodePoolTagArrayInput
 }
@@ -440,6 +446,11 @@ func (o NodePoolOutput) Name() pulumi.StringOutput {
 // The Config of NodePool.
 func (o NodePoolOutput) NodeConfig() NodePoolNodeConfigOutput {
 	return o.ApplyT(func(v *NodePool) NodePoolNodeConfigOutput { return v.NodeConfig }).(NodePoolNodeConfigOutput)
+}
+
+// The NodeStatistics of NodeConfig.
+func (o NodePoolOutput) NodeStatistics() NodePoolNodeStatisticArrayOutput {
+	return o.ApplyT(func(v *NodePool) NodePoolNodeStatisticArrayOutput { return v.NodeStatistics }).(NodePoolNodeStatisticArrayOutput)
 }
 
 // Tags.

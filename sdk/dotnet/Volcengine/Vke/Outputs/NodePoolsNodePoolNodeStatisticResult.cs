@@ -12,7 +12,7 @@ namespace Volcengine.Pulumi.Volcengine.Vke.Outputs
 {
 
     [OutputType]
-    public sealed class NodePoolsNodePoolNodeStatisticsResult
+    public sealed class NodePoolsNodePoolNodeStatisticResult
     {
         /// <summary>
         /// The CreatingCount of Node.
@@ -52,7 +52,7 @@ namespace Volcengine.Pulumi.Volcengine.Vke.Outputs
         public readonly int UpdatingCount;
 
         [OutputConstructor]
-        private NodePoolsNodePoolNodeStatisticsResult(
+        private NodePoolsNodePoolNodeStatisticResult(
             int creatingCount,
 
             int deletingCount,

@@ -210,11 +210,11 @@ func (o AlarmAlarmPeriodDetailPtrOutput) Sms() pulumi.IntPtrOutput {
 type AlarmNotifyGroupReceiver struct {
 	// The end time.
 	EndTime string `pulumi:"endTime"`
-	// The list of the receiver channels.
+	// The list of the receiver channels. Currently supported channels: Email, Sms, Phone.
 	ReceiverChannels []string `pulumi:"receiverChannels"`
 	// List of the receiver names.
 	ReceiverNames []string `pulumi:"receiverNames"`
-	// The receiver type, value can be User.
+	// The receiver type, Can be set as: `User`(The id of user).
 	ReceiverType string `pulumi:"receiverType"`
 	// The start time.
 	StartTime string `pulumi:"startTime"`
@@ -234,11 +234,11 @@ type AlarmNotifyGroupReceiverInput interface {
 type AlarmNotifyGroupReceiverArgs struct {
 	// The end time.
 	EndTime pulumi.StringInput `pulumi:"endTime"`
-	// The list of the receiver channels.
+	// The list of the receiver channels. Currently supported channels: Email, Sms, Phone.
 	ReceiverChannels pulumi.StringArrayInput `pulumi:"receiverChannels"`
 	// List of the receiver names.
 	ReceiverNames pulumi.StringArrayInput `pulumi:"receiverNames"`
-	// The receiver type, value can be User.
+	// The receiver type, Can be set as: `User`(The id of user).
 	ReceiverType pulumi.StringInput `pulumi:"receiverType"`
 	// The start time.
 	StartTime pulumi.StringInput `pulumi:"startTime"`
@@ -300,7 +300,7 @@ func (o AlarmNotifyGroupReceiverOutput) EndTime() pulumi.StringOutput {
 	return o.ApplyT(func(v AlarmNotifyGroupReceiver) string { return v.EndTime }).(pulumi.StringOutput)
 }
 
-// The list of the receiver channels.
+// The list of the receiver channels. Currently supported channels: Email, Sms, Phone.
 func (o AlarmNotifyGroupReceiverOutput) ReceiverChannels() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AlarmNotifyGroupReceiver) []string { return v.ReceiverChannels }).(pulumi.StringArrayOutput)
 }
@@ -310,7 +310,7 @@ func (o AlarmNotifyGroupReceiverOutput) ReceiverNames() pulumi.StringArrayOutput
 	return o.ApplyT(func(v AlarmNotifyGroupReceiver) []string { return v.ReceiverNames }).(pulumi.StringArrayOutput)
 }
 
-// The receiver type, value can be User.
+// The receiver type, Can be set as: `User`(The id of user).
 func (o AlarmNotifyGroupReceiverOutput) ReceiverType() pulumi.StringOutput {
 	return o.ApplyT(func(v AlarmNotifyGroupReceiver) string { return v.ReceiverType }).(pulumi.StringOutput)
 }
@@ -761,6 +761,8 @@ type AlarmRequestCycle struct {
 	// The cycle of alarm task execution, or the time point of periodic execution. The unit is minutes, and the value range is 1~1440.
 	Time int `pulumi:"time"`
 	// Execution cycle type.
+	// Period: Periodic execution, which means executing once every certain period of time.
+	// Fixed: Regular execution, which means executing at a fixed time point every day.
 	Type string `pulumi:"type"`
 }
 
@@ -779,6 +781,8 @@ type AlarmRequestCycleArgs struct {
 	// The cycle of alarm task execution, or the time point of periodic execution. The unit is minutes, and the value range is 1~1440.
 	Time pulumi.IntInput `pulumi:"time"`
 	// Execution cycle type.
+	// Period: Periodic execution, which means executing once every certain period of time.
+	// Fixed: Regular execution, which means executing at a fixed time point every day.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -865,6 +869,8 @@ func (o AlarmRequestCycleOutput) Time() pulumi.IntOutput {
 }
 
 // Execution cycle type.
+// Period: Periodic execution, which means executing once every certain period of time.
+// Fixed: Regular execution, which means executing at a fixed time point every day.
 func (o AlarmRequestCycleOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v AlarmRequestCycle) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -904,6 +910,8 @@ func (o AlarmRequestCyclePtrOutput) Time() pulumi.IntPtrOutput {
 }
 
 // Execution cycle type.
+// Period: Periodic execution, which means executing once every certain period of time.
+// Fixed: Regular execution, which means executing at a fixed time point every day.
 func (o AlarmRequestCyclePtrOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AlarmRequestCycle) *string {
 		if v == nil {
@@ -6166,7 +6174,12 @@ type RuleContainerRuleKubernetesRule struct {
 	PodNameRegex *string `pulumi:"podNameRegex"`
 	// Specify the container to be collected by the name of the workload. When no workload name is specified, all containers are collected. The workload name supports regular matching.
 	WorkloadNameRegex *string `pulumi:"workloadNameRegex"`
-	// Specify the container to be collected by the type of workload. Only one type can be selected. When no type is specified, it means to collect all types of containers.
+	// Specify the containers to be collected by the type of workload, only one type can be selected. When no type is specified, it means all types of containers are collected. The supported types of workloads are:
+	// Deployment: stateless workload.
+	// StatefulSet: stateful workload.
+	// DaemonSet: daemon process.
+	// Job: task.
+	// CronJob: scheduled task.
 	WorkloadType *string `pulumi:"workloadType"`
 }
 
@@ -6196,7 +6209,12 @@ type RuleContainerRuleKubernetesRuleArgs struct {
 	PodNameRegex pulumi.StringPtrInput `pulumi:"podNameRegex"`
 	// Specify the container to be collected by the name of the workload. When no workload name is specified, all containers are collected. The workload name supports regular matching.
 	WorkloadNameRegex pulumi.StringPtrInput `pulumi:"workloadNameRegex"`
-	// Specify the container to be collected by the type of workload. Only one type can be selected. When no type is specified, it means to collect all types of containers.
+	// Specify the containers to be collected by the type of workload, only one type can be selected. When no type is specified, it means all types of containers are collected. The supported types of workloads are:
+	// Deployment: stateless workload.
+	// StatefulSet: stateful workload.
+	// DaemonSet: daemon process.
+	// Job: task.
+	// CronJob: scheduled task.
 	WorkloadType pulumi.StringPtrInput `pulumi:"workloadType"`
 }
 
@@ -6312,7 +6330,12 @@ func (o RuleContainerRuleKubernetesRuleOutput) WorkloadNameRegex() pulumi.String
 	return o.ApplyT(func(v RuleContainerRuleKubernetesRule) *string { return v.WorkloadNameRegex }).(pulumi.StringPtrOutput)
 }
 
-// Specify the container to be collected by the type of workload. Only one type can be selected. When no type is specified, it means to collect all types of containers.
+// Specify the containers to be collected by the type of workload, only one type can be selected. When no type is specified, it means all types of containers are collected. The supported types of workloads are:
+// Deployment: stateless workload.
+// StatefulSet: stateful workload.
+// DaemonSet: daemon process.
+// Job: task.
+// CronJob: scheduled task.
 func (o RuleContainerRuleKubernetesRuleOutput) WorkloadType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RuleContainerRuleKubernetesRule) *string { return v.WorkloadType }).(pulumi.StringPtrOutput)
 }
@@ -6411,7 +6434,12 @@ func (o RuleContainerRuleKubernetesRulePtrOutput) WorkloadNameRegex() pulumi.Str
 	}).(pulumi.StringPtrOutput)
 }
 
-// Specify the container to be collected by the type of workload. Only one type can be selected. When no type is specified, it means to collect all types of containers.
+// Specify the containers to be collected by the type of workload, only one type can be selected. When no type is specified, it means all types of containers are collected. The supported types of workloads are:
+// Deployment: stateless workload.
+// StatefulSet: stateful workload.
+// DaemonSet: daemon process.
+// Job: task.
+// CronJob: scheduled task.
 func (o RuleContainerRuleKubernetesRulePtrOutput) WorkloadType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RuleContainerRuleKubernetesRule) *string {
 		if v == nil {

@@ -10,9 +10,89 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
+    'InstanceMongoArgs',
+    'InstanceShardArgs',
     'InstanceTagArgs',
     'InstancesTagArgs',
 ]
+
+@pulumi.input_type
+class InstanceMongoArgs:
+    def __init__(__self__, *,
+                 mongos_node_id: Optional[pulumi.Input[str]] = None,
+                 node_spec: Optional[pulumi.Input[str]] = None,
+                 node_status: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] mongos_node_id: The mongos node ID.
+        :param pulumi.Input[str] node_spec: The spec of node.
+        :param pulumi.Input[str] node_status: The node status.
+        """
+        if mongos_node_id is not None:
+            pulumi.set(__self__, "mongos_node_id", mongos_node_id)
+        if node_spec is not None:
+            pulumi.set(__self__, "node_spec", node_spec)
+        if node_status is not None:
+            pulumi.set(__self__, "node_status", node_status)
+
+    @property
+    @pulumi.getter(name="mongosNodeId")
+    def mongos_node_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The mongos node ID.
+        """
+        return pulumi.get(self, "mongos_node_id")
+
+    @mongos_node_id.setter
+    def mongos_node_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mongos_node_id", value)
+
+    @property
+    @pulumi.getter(name="nodeSpec")
+    def node_spec(self) -> Optional[pulumi.Input[str]]:
+        """
+        The spec of node.
+        """
+        return pulumi.get(self, "node_spec")
+
+    @node_spec.setter
+    def node_spec(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "node_spec", value)
+
+    @property
+    @pulumi.getter(name="nodeStatus")
+    def node_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        The node status.
+        """
+        return pulumi.get(self, "node_status")
+
+    @node_status.setter
+    def node_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "node_status", value)
+
+
+@pulumi.input_type
+class InstanceShardArgs:
+    def __init__(__self__, *,
+                 shard_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] shard_id: The shard id.
+        """
+        if shard_id is not None:
+            pulumi.set(__self__, "shard_id", shard_id)
+
+    @property
+    @pulumi.getter(name="shardId")
+    def shard_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The shard id.
+        """
+        return pulumi.get(self, "shard_id")
+
+    @shard_id.setter
+    def shard_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "shard_id", value)
+
 
 @pulumi.input_type
 class InstanceTagArgs:

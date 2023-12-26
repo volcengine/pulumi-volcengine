@@ -19,19 +19,19 @@ namespace Volcengine.Pulumi.Volcengine.Vke.Outputs
         /// </summary>
         public readonly int? DesiredReplicas;
         /// <summary>
-        /// Is Enabled of AutoScaling.
+        /// Whether to enable the auto scaling function of the node pool. When a node needs to be manually added to the node pool, the value of this field must be `false`.
         /// </summary>
         public readonly bool? Enabled;
         /// <summary>
-        /// The MaxReplicas of AutoScaling, default 10, range in 1~2000.
+        /// The MaxReplicas of AutoScaling, default 10, range in 1~2000. This field is valid when the value of `enabled` is `true`.
         /// </summary>
         public readonly int? MaxReplicas;
         /// <summary>
-        /// The MinReplicas of AutoScaling, default 0.
+        /// The MinReplicas of AutoScaling, default 0. This field is valid when the value of `enabled` is `true`.
         /// </summary>
         public readonly int? MinReplicas;
         /// <summary>
-        /// The Priority of AutoScaling, default 10, rang in 0~100.
+        /// The Priority of AutoScaling, default 10, rang in 0~100. This field is valid when the value of `enabled` is `true` and the value of `subnet_policy` is `Priority`.
         /// </summary>
         public readonly int? Priority;
         /// <summary>

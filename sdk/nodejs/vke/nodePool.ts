@@ -187,6 +187,10 @@ export class NodePool extends pulumi.CustomResource {
      */
     public readonly nodeConfig!: pulumi.Output<outputs.vke.NodePoolNodeConfig>;
     /**
+     * The NodeStatistics of NodeConfig.
+     */
+    public /*out*/ readonly nodeStatistics!: pulumi.Output<outputs.vke.NodePoolNodeStatistic[]>;
+    /**
      * Tags.
      */
     public readonly tags!: pulumi.Output<outputs.vke.NodePoolTag[] | undefined>;
@@ -210,6 +214,7 @@ export class NodePool extends pulumi.CustomResource {
             resourceInputs["kubernetesConfig"] = state ? state.kubernetesConfig : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["nodeConfig"] = state ? state.nodeConfig : undefined;
+            resourceInputs["nodeStatistics"] = state ? state.nodeStatistics : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
         } else {
             const args = argsOrState as NodePoolArgs | undefined;
@@ -226,6 +231,7 @@ export class NodePool extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["nodeConfig"] = args ? args.nodeConfig : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["nodeStatistics"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(NodePool.__pulumiType, name, resourceInputs, opts);
@@ -260,6 +266,10 @@ export interface NodePoolState {
      * The Config of NodePool.
      */
     nodeConfig?: pulumi.Input<inputs.vke.NodePoolNodeConfig>;
+    /**
+     * The NodeStatistics of NodeConfig.
+     */
+    nodeStatistics?: pulumi.Input<pulumi.Input<inputs.vke.NodePoolNodeStatistic>[]>;
     /**
      * Tags.
      */

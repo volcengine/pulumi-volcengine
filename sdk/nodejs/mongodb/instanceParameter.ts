@@ -10,18 +10,45 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * //    该资源无法创建，需先import资源
- * //    $ terraform import volcengine_mongodb_instance_parameter.default param:mongo-replica-f16e9298b121:connPoolMaxConnsPerHost
- * //    请注意instance_id和parameter_name需与上述import的ID对应
- * const _default = new volcengine.mongodb.InstanceParameter("default", {
- *     instanceId: "mongo-replica-f16e9298b121",
- *     parameterName: "connPoolMaxConnsPerHost",
- *     parameterRole: "Node",
- *     parameterValue: "600",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
  * });
- * // 必填
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooInstance = new volcengine.mongodb.Instance("fooInstance", {
+ *     dbEngineVersion: "MongoDB_4_0",
+ *     instanceType: "ReplicaSet",
+ *     superAccountPassword: "@acc-test-123",
+ *     nodeSpec: "mongo.2c4g",
+ *     mongosNodeSpec: "mongo.mongos.2c4g",
+ *     instanceName: "acc-test-mongo-replica",
+ *     chargeType: "PostPaid",
+ *     projectName: "default",
+ *     mongosNodeNumber: 32,
+ *     shardNumber: 3,
+ *     storageSpaceGb: 20,
+ *     subnetId: fooSubnet.id,
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooInstanceParameter = new volcengine.mongodb.InstanceParameter("fooInstanceParameter", {
+ *     instanceId: fooInstance.id,
+ *     parameterName: "cursorTimeoutMillis",
+ *     parameterRole: "Node",
+ *     parameterValue: "600111",
+ * });
  * ```
  *
  * ## Import
@@ -31,8 +58,6 @@ import * as utilities from "../utilities";
  * ```sh
  *  $ pulumi import volcengine:mongodb/instanceParameter:InstanceParameter default param:mongo-replica-e405f8e2****:connPoolMaxConnsPerHost
  * ```
- *
- *  NoteThis resource must be imported before it can be used. Please note that instance_id and parameter_name must correspond to the ID of the above import.
  */
 export class InstanceParameter extends pulumi.CustomResource {
     /**
@@ -63,11 +88,11 @@ export class InstanceParameter extends pulumi.CustomResource {
     }
 
     /**
-     * The instance ID. This field cannot be modified after the resource is imported.
+     * The instance ID.
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
-     * The name of parameter. This field cannot be modified after the resource is imported.
+     * The name of parameter.
      */
     public readonly parameterName!: pulumi.Output<string>;
     /**
@@ -125,11 +150,11 @@ export class InstanceParameter extends pulumi.CustomResource {
  */
 export interface InstanceParameterState {
     /**
-     * The instance ID. This field cannot be modified after the resource is imported.
+     * The instance ID.
      */
     instanceId?: pulumi.Input<string>;
     /**
-     * The name of parameter. This field cannot be modified after the resource is imported.
+     * The name of parameter.
      */
     parameterName?: pulumi.Input<string>;
     /**
@@ -147,11 +172,11 @@ export interface InstanceParameterState {
  */
 export interface InstanceParameterArgs {
     /**
-     * The instance ID. This field cannot be modified after the resource is imported.
+     * The instance ID.
      */
     instanceId: pulumi.Input<string>;
     /**
-     * The name of parameter. This field cannot be modified after the resource is imported.
+     * The name of parameter.
      */
     parameterName: pulumi.Input<string>;
     /**

@@ -117,7 +117,7 @@ namespace Volcengine.Pulumi.Volcengine.Vke.Outputs
         /// <summary>
         /// The NodeStatistics of NodeConfig.
         /// </summary>
-        public readonly Outputs.NodePoolsNodePoolNodeStatisticsResult NodeStatistics;
+        public readonly ImmutableArray<Outputs.NodePoolsNodePoolNodeStatisticResult> NodeStatistics;
         /// <summary>
         /// The period of the PrePaid instance of NodeConfig.
         /// </summary>
@@ -153,7 +153,7 @@ namespace Volcengine.Pulumi.Volcengine.Vke.Outputs
         /// <summary>
         /// The SystemVolume of NodeConfig.
         /// </summary>
-        public readonly Outputs.NodePoolsNodePoolSystemVolumeResult SystemVolume;
+        public readonly ImmutableArray<Outputs.NodePoolsNodePoolSystemVolumeResult> SystemVolumes;
         /// <summary>
         /// Tags.
         /// </summary>
@@ -223,7 +223,7 @@ namespace Volcengine.Pulumi.Volcengine.Vke.Outputs
 
             string namePrefix,
 
-            Outputs.NodePoolsNodePoolNodeStatisticsResult nodeStatistics,
+            ImmutableArray<Outputs.NodePoolsNodePoolNodeStatisticResult> nodeStatistics,
 
             int period,
 
@@ -241,7 +241,7 @@ namespace Volcengine.Pulumi.Volcengine.Vke.Outputs
 
             string subnetPolicy,
 
-            Outputs.NodePoolsNodePoolSystemVolumeResult systemVolume,
+            ImmutableArray<Outputs.NodePoolsNodePoolSystemVolumeResult> systemVolumes,
 
             ImmutableArray<Outputs.NodePoolsNodePoolTagResult> tags,
 
@@ -285,7 +285,7 @@ namespace Volcengine.Pulumi.Volcengine.Vke.Outputs
             SecurityStrategyEnabled = securityStrategyEnabled;
             SubnetIds = subnetIds;
             SubnetPolicy = subnetPolicy;
-            SystemVolume = systemVolume;
+            SystemVolumes = systemVolumes;
             Tags = tags;
             TaintContents = taintContents;
             UpdateClientToken = updateClientToken;

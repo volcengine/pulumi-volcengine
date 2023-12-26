@@ -520,6 +520,8 @@ type instanceArgs struct {
 	Password *string `pulumi:"password"`
 	// The period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 12. Unit is Month.
 	Period *int `pulumi:"period"`
+	// The private ip address of primary networkInterface.
+	PrimaryIpAddress *string `pulumi:"primaryIpAddress"`
 	// The ProjectName of the ecs instance.
 	ProjectName *string `pulumi:"projectName"`
 	// The secondary networkInterface detail collection of ECS instance.
@@ -592,6 +594,8 @@ type InstanceArgs struct {
 	Password pulumi.StringPtrInput
 	// The period of ECS instance.Only effective when instanceChargeType is PrePaid. Default is 12. Unit is Month.
 	Period pulumi.IntPtrInput
+	// The private ip address of primary networkInterface.
+	PrimaryIpAddress pulumi.StringPtrInput
 	// The ProjectName of the ecs instance.
 	ProjectName pulumi.StringPtrInput
 	// The secondary networkInterface detail collection of ECS instance.

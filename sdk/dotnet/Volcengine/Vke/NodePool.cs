@@ -255,6 +255,12 @@ namespace Volcengine.Pulumi.Volcengine.Vke
         public Output<Outputs.NodePoolNodeConfig> NodeConfig { get; private set; } = null!;
 
         /// <summary>
+        /// The NodeStatistics of NodeConfig.
+        /// </summary>
+        [Output("nodeStatistics")]
+        public Output<ImmutableArray<Outputs.NodePoolNodeStatistic>> NodeStatistics { get; private set; } = null!;
+
+        /// <summary>
         /// Tags.
         /// </summary>
         [Output("tags")]
@@ -398,6 +404,18 @@ namespace Volcengine.Pulumi.Volcengine.Vke
         /// </summary>
         [Input("nodeConfig")]
         public Input<Inputs.NodePoolNodeConfigGetArgs>? NodeConfig { get; set; }
+
+        [Input("nodeStatistics")]
+        private InputList<Inputs.NodePoolNodeStatisticGetArgs>? _nodeStatistics;
+
+        /// <summary>
+        /// The NodeStatistics of NodeConfig.
+        /// </summary>
+        public InputList<Inputs.NodePoolNodeStatisticGetArgs> NodeStatistics
+        {
+            get => _nodeStatistics ?? (_nodeStatistics = new InputList<Inputs.NodePoolNodeStatisticGetArgs>());
+            set => _nodeStatistics = value;
+        }
 
         [Input("tags")]
         private InputList<Inputs.NodePoolTagGetArgs>? _tags;

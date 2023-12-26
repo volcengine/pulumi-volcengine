@@ -27,6 +27,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &DeploymentSet{}
 	case "volcengine:ecs/deploymentSetAssociate:DeploymentSetAssociate":
 		r = &DeploymentSetAssociate{}
+	case "volcengine:ecs/iamRoleAttachment:IamRoleAttachment":
+		r = &IamRoleAttachment{}
 	case "volcengine:ecs/instance:Instance":
 		r = &Instance{}
 	case "volcengine:ecs/invocation:Invocation":
@@ -65,6 +67,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"volcengine",
 		"ecs/deploymentSetAssociate",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"ecs/iamRoleAttachment",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -69,12 +69,18 @@ type Instance struct {
 	AutoRenew pulumi.BoolOutput `pulumi:"autoRenew"`
 	// The charge type of instance, valid value contains `Prepaid` or `PostPaid`.
 	ChargeType pulumi.StringOutput `pulumi:"chargeType"`
+	// The config servers id of the ShardedCluster instance.
+	ConfigServersId pulumi.StringOutput `pulumi:"configServersId"`
 	// The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_5_0`.
 	DbEngineVersion pulumi.StringOutput `pulumi:"dbEngineVersion"`
 	// The instance name.
 	InstanceName pulumi.StringOutput `pulumi:"instanceName"`
 	// The type of instance,the valid value contains `ReplicaSet` or `ShardedCluster`.
 	InstanceType pulumi.StringOutput `pulumi:"instanceType"`
+	// The mongos information of the ShardedCluster instance.
+	Mongos InstanceMongoArrayOutput `pulumi:"mongos"`
+	// The mongos id of the ShardedCluster instance.
+	MongosId pulumi.StringOutput `pulumi:"mongosId"`
 	// The mongos node number of shard cluster,value range is `2~23`, this parameter is required when `InstanceType` is `ShardedCluster`.
 	MongosNodeNumber pulumi.IntPtrOutput `pulumi:"mongosNodeNumber"`
 	// The mongos node spec of shard cluster, this parameter is required when `InstanceType` is `ShardedCluster`.
@@ -89,6 +95,8 @@ type Instance struct {
 	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The number of shards in shard cluster,value range is `2~32`, this parameter is required when `InstanceType` is `ShardedCluster`.
 	ShardNumber pulumi.IntPtrOutput `pulumi:"shardNumber"`
+	// The shards information of the ShardedCluster instance.
+	Shards InstanceShardArrayOutput `pulumi:"shards"`
 	// The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster, in GiB.
 	StorageSpaceGb pulumi.IntOutput `pulumi:"storageSpaceGb"`
 	// The subnet id of instance.
@@ -153,12 +161,18 @@ type instanceState struct {
 	AutoRenew *bool `pulumi:"autoRenew"`
 	// The charge type of instance, valid value contains `Prepaid` or `PostPaid`.
 	ChargeType *string `pulumi:"chargeType"`
+	// The config servers id of the ShardedCluster instance.
+	ConfigServersId *string `pulumi:"configServersId"`
 	// The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_5_0`.
 	DbEngineVersion *string `pulumi:"dbEngineVersion"`
 	// The instance name.
 	InstanceName *string `pulumi:"instanceName"`
 	// The type of instance,the valid value contains `ReplicaSet` or `ShardedCluster`.
 	InstanceType *string `pulumi:"instanceType"`
+	// The mongos information of the ShardedCluster instance.
+	Mongos []InstanceMongo `pulumi:"mongos"`
+	// The mongos id of the ShardedCluster instance.
+	MongosId *string `pulumi:"mongosId"`
 	// The mongos node number of shard cluster,value range is `2~23`, this parameter is required when `InstanceType` is `ShardedCluster`.
 	MongosNodeNumber *int `pulumi:"mongosNodeNumber"`
 	// The mongos node spec of shard cluster, this parameter is required when `InstanceType` is `ShardedCluster`.
@@ -173,6 +187,8 @@ type instanceState struct {
 	ProjectName *string `pulumi:"projectName"`
 	// The number of shards in shard cluster,value range is `2~32`, this parameter is required when `InstanceType` is `ShardedCluster`.
 	ShardNumber *int `pulumi:"shardNumber"`
+	// The shards information of the ShardedCluster instance.
+	Shards []InstanceShard `pulumi:"shards"`
 	// The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster, in GiB.
 	StorageSpaceGb *int `pulumi:"storageSpaceGb"`
 	// The subnet id of instance.
@@ -192,12 +208,18 @@ type InstanceState struct {
 	AutoRenew pulumi.BoolPtrInput
 	// The charge type of instance, valid value contains `Prepaid` or `PostPaid`.
 	ChargeType pulumi.StringPtrInput
+	// The config servers id of the ShardedCluster instance.
+	ConfigServersId pulumi.StringPtrInput
 	// The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_5_0`.
 	DbEngineVersion pulumi.StringPtrInput
 	// The instance name.
 	InstanceName pulumi.StringPtrInput
 	// The type of instance,the valid value contains `ReplicaSet` or `ShardedCluster`.
 	InstanceType pulumi.StringPtrInput
+	// The mongos information of the ShardedCluster instance.
+	Mongos InstanceMongoArrayInput
+	// The mongos id of the ShardedCluster instance.
+	MongosId pulumi.StringPtrInput
 	// The mongos node number of shard cluster,value range is `2~23`, this parameter is required when `InstanceType` is `ShardedCluster`.
 	MongosNodeNumber pulumi.IntPtrInput
 	// The mongos node spec of shard cluster, this parameter is required when `InstanceType` is `ShardedCluster`.
@@ -212,6 +234,8 @@ type InstanceState struct {
 	ProjectName pulumi.StringPtrInput
 	// The number of shards in shard cluster,value range is `2~32`, this parameter is required when `InstanceType` is `ShardedCluster`.
 	ShardNumber pulumi.IntPtrInput
+	// The shards information of the ShardedCluster instance.
+	Shards InstanceShardArrayInput
 	// The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster, in GiB.
 	StorageSpaceGb pulumi.IntPtrInput
 	// The subnet id of instance.
@@ -406,6 +430,11 @@ func (o InstanceOutput) ChargeType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.ChargeType }).(pulumi.StringOutput)
 }
 
+// The config servers id of the ShardedCluster instance.
+func (o InstanceOutput) ConfigServersId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.ConfigServersId }).(pulumi.StringOutput)
+}
+
 // The version of db engine, valid value contains `MongoDB_4_0`, `MongoDB_5_0`.
 func (o InstanceOutput) DbEngineVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.DbEngineVersion }).(pulumi.StringOutput)
@@ -419,6 +448,16 @@ func (o InstanceOutput) InstanceName() pulumi.StringOutput {
 // The type of instance,the valid value contains `ReplicaSet` or `ShardedCluster`.
 func (o InstanceOutput) InstanceType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.InstanceType }).(pulumi.StringOutput)
+}
+
+// The mongos information of the ShardedCluster instance.
+func (o InstanceOutput) Mongos() InstanceMongoArrayOutput {
+	return o.ApplyT(func(v *Instance) InstanceMongoArrayOutput { return v.Mongos }).(InstanceMongoArrayOutput)
+}
+
+// The mongos id of the ShardedCluster instance.
+func (o InstanceOutput) MongosId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.MongosId }).(pulumi.StringOutput)
 }
 
 // The mongos node number of shard cluster,value range is `2~23`, this parameter is required when `InstanceType` is `ShardedCluster`.
@@ -454,6 +493,11 @@ func (o InstanceOutput) ProjectName() pulumi.StringOutput {
 // The number of shards in shard cluster,value range is `2~32`, this parameter is required when `InstanceType` is `ShardedCluster`.
 func (o InstanceOutput) ShardNumber() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Instance) pulumi.IntPtrOutput { return v.ShardNumber }).(pulumi.IntPtrOutput)
+}
+
+// The shards information of the ShardedCluster instance.
+func (o InstanceOutput) Shards() InstanceShardArrayOutput {
+	return o.ApplyT(func(v *Instance) InstanceShardArrayOutput { return v.Shards }).(InstanceShardArrayOutput)
 }
 
 // The total storage space of a replica set instance, or the storage space of a single shard in a sharded cluster, in GiB.

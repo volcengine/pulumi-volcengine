@@ -580,6 +580,12 @@ namespace Volcengine.Pulumi.Volcengine.Ecs
         public Input<int>? Period { get; set; }
 
         /// <summary>
+        /// The private ip address of primary networkInterface.
+        /// </summary>
+        [Input("primaryIpAddress")]
+        public Input<string>? PrimaryIpAddress { get; set; }
+
+        /// <summary>
         /// The ProjectName of the ecs instance.
         /// </summary>
         [Input("projectName")]

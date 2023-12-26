@@ -38,7 +38,7 @@ namespace Volcengine.Pulumi.Volcengine.Nas
     ///             {
     ///                 CidrIp = "192.168.0.0",
     ///                 RwMode = "RO",
-    ///                 UseMode = "All_squash",
+    ///                 UseMode = "No_all_squash",
     ///             },
     ///         },
     ///     });

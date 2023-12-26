@@ -56,7 +56,7 @@ func Addresses(ctx *pulumi.Context, args *AddressesArgs, opts ...pulumi.InvokeOp
 type AddressesArgs struct {
 	// An id of associated instance.
 	AssociatedInstanceId *string `pulumi:"associatedInstanceId"`
-	// A type of associated instance, the value can be `Nat`, `NetworkInterface`, `ClbInstance` or `EcsInstance`.
+	// A type of associated instance, the value can be `Nat`, `NetworkInterface`, `ClbInstance`, `AlbInstance`, `HaVip` or `EcsInstance`.
 	AssociatedInstanceType *string `pulumi:"associatedInstanceType"`
 	// A list of EIP ip address that you want to query.
 	EipAddresses []string `pulumi:"eipAddresses"`
@@ -118,7 +118,7 @@ func AddressesOutput(ctx *pulumi.Context, args AddressesOutputArgs, opts ...pulu
 type AddressesOutputArgs struct {
 	// An id of associated instance.
 	AssociatedInstanceId pulumi.StringPtrInput `pulumi:"associatedInstanceId"`
-	// A type of associated instance, the value can be `Nat`, `NetworkInterface`, `ClbInstance` or `EcsInstance`.
+	// A type of associated instance, the value can be `Nat`, `NetworkInterface`, `ClbInstance`, `AlbInstance`, `HaVip` or `EcsInstance`.
 	AssociatedInstanceType pulumi.StringPtrInput `pulumi:"associatedInstanceType"`
 	// A list of EIP ip address that you want to query.
 	EipAddresses pulumi.StringArrayInput `pulumi:"eipAddresses"`
