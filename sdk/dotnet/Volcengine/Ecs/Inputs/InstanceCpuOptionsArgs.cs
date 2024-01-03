@@ -14,10 +14,16 @@ namespace Volcengine.Pulumi.Volcengine.Ecs.Inputs
     public sealed class InstanceCpuOptionsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The per core of threads,only support for ebm.
+        /// The number of subnuma in socket, only support for ebm. `1` indicates disabling SNC/NPS function. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
-        [Input("threadsPerCore", required: true)]
-        public Input<int> ThreadsPerCore { get; set; } = null!;
+        [Input("numaPerSocket")]
+        public Input<int>? NumaPerSocket { get; set; }
+
+        /// <summary>
+        /// The per core of threads, only support for ebm. `1` indicates disabling hyper threading function.
+        /// </summary>
+        [Input("threadsPerCore")]
+        public Input<int>? ThreadsPerCore { get; set; }
 
         public InstanceCpuOptionsArgs()
         {

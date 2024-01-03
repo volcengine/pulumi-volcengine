@@ -71,6 +71,13 @@ import (
 //						ParameterValue: pulumi.String("4"),
 //					},
 //				},
+//				ProjectName: pulumi.String("default"),
+//				Tags: rds_mysql.InstanceTagArray{
+//					&rds_mysql.InstanceTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -142,6 +149,8 @@ type Instance struct {
 	Parameters InstanceParameterArrayOutput `pulumi:"parameters"`
 	// The available zone of primary node.
 	PrimaryZoneId pulumi.StringOutput `pulumi:"primaryZoneId"`
+	// The project name of the RDS instance.
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The region of the RDS instance.
 	RegionId pulumi.StringOutput `pulumi:"regionId"`
 	// The available zone of secondary node.
@@ -154,6 +163,8 @@ type Instance struct {
 	StorageUse pulumi.IntOutput `pulumi:"storageUse"`
 	// Subnet ID of the RDS instance.
 	SubnetId pulumi.StringOutput `pulumi:"subnetId"`
+	// Tags.
+	Tags InstanceTagArrayOutput `pulumi:"tags"`
 	// Time zone.
 	TimeZone pulumi.StringOutput `pulumi:"timeZone"`
 	// The update time of the RDS instance.
@@ -263,6 +274,8 @@ type instanceState struct {
 	Parameters []InstanceParameter `pulumi:"parameters"`
 	// The available zone of primary node.
 	PrimaryZoneId *string `pulumi:"primaryZoneId"`
+	// The project name of the RDS instance.
+	ProjectName *string `pulumi:"projectName"`
 	// The region of the RDS instance.
 	RegionId *string `pulumi:"regionId"`
 	// The available zone of secondary node.
@@ -275,6 +288,8 @@ type instanceState struct {
 	StorageUse *int `pulumi:"storageUse"`
 	// Subnet ID of the RDS instance.
 	SubnetId *string `pulumi:"subnetId"`
+	// Tags.
+	Tags []InstanceTag `pulumi:"tags"`
 	// Time zone.
 	TimeZone *string `pulumi:"timeZone"`
 	// The update time of the RDS instance.
@@ -337,6 +352,8 @@ type InstanceState struct {
 	Parameters InstanceParameterArrayInput
 	// The available zone of primary node.
 	PrimaryZoneId pulumi.StringPtrInput
+	// The project name of the RDS instance.
+	ProjectName pulumi.StringPtrInput
 	// The region of the RDS instance.
 	RegionId pulumi.StringPtrInput
 	// The available zone of secondary node.
@@ -349,6 +366,8 @@ type InstanceState struct {
 	StorageUse pulumi.IntPtrInput
 	// Subnet ID of the RDS instance.
 	SubnetId pulumi.StringPtrInput
+	// Tags.
+	Tags InstanceTagArrayInput
 	// Time zone.
 	TimeZone pulumi.StringPtrInput
 	// The update time of the RDS instance.
@@ -391,12 +410,16 @@ type instanceArgs struct {
 	Parameters []InstanceParameter `pulumi:"parameters"`
 	// The available zone of primary node.
 	PrimaryZoneId string `pulumi:"primaryZoneId"`
+	// The project name of the RDS instance.
+	ProjectName *string `pulumi:"projectName"`
 	// The available zone of secondary node.
 	SecondaryZoneId string `pulumi:"secondaryZoneId"`
 	// Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
 	StorageSpace *int `pulumi:"storageSpace"`
 	// Subnet ID of the RDS instance.
 	SubnetId string `pulumi:"subnetId"`
+	// Tags.
+	Tags []InstanceTag `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a Instance resource.
@@ -426,12 +449,16 @@ type InstanceArgs struct {
 	Parameters InstanceParameterArrayInput
 	// The available zone of primary node.
 	PrimaryZoneId pulumi.StringInput
+	// The project name of the RDS instance.
+	ProjectName pulumi.StringPtrInput
 	// The available zone of secondary node.
 	SecondaryZoneId pulumi.StringInput
 	// Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
 	StorageSpace pulumi.IntPtrInput
 	// Subnet ID of the RDS instance.
 	SubnetId pulumi.StringInput
+	// Tags.
+	Tags InstanceTagArrayInput
 }
 
 func (InstanceArgs) ElementType() reflect.Type {
@@ -633,6 +660,11 @@ func (o InstanceOutput) PrimaryZoneId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.PrimaryZoneId }).(pulumi.StringOutput)
 }
 
+// The project name of the RDS instance.
+func (o InstanceOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
+}
+
 // The region of the RDS instance.
 func (o InstanceOutput) RegionId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.RegionId }).(pulumi.StringOutput)
@@ -661,6 +693,11 @@ func (o InstanceOutput) StorageUse() pulumi.IntOutput {
 // Subnet ID of the RDS instance.
 func (o InstanceOutput) SubnetId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.SubnetId }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o InstanceOutput) Tags() InstanceTagArrayOutput {
+	return o.ApplyT(func(v *Instance) InstanceTagArrayOutput { return v.Tags }).(InstanceTagArrayOutput)
 }
 
 // Time zone.

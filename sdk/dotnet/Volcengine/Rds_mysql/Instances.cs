@@ -216,6 +216,18 @@ namespace Volcengine.Pulumi.Volcengine.Rds_mysql
         [Input("outputFile")]
         public string? OutputFile { get; set; }
 
+        [Input("tags")]
+        private List<Inputs.InstancesTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.InstancesTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.InstancesTagArgs>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// The available zone of the RDS instance.
         /// </summary>
@@ -284,6 +296,18 @@ namespace Volcengine.Pulumi.Volcengine.Rds_mysql
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.InstancesTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.InstancesTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.InstancesTagInputArgs>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// The available zone of the RDS instance.
         /// </summary>
@@ -335,6 +359,10 @@ namespace Volcengine.Pulumi.Volcengine.Rds_mysql
         /// </summary>
         public readonly ImmutableArray<Outputs.InstancesRdsMysqlInstanceResult> RdsMysqlInstances;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.InstancesTagResult> Tags;
+        /// <summary>
         /// The total count of RDS instance query.
         /// </summary>
         public readonly int TotalCount;
@@ -367,6 +395,8 @@ namespace Volcengine.Pulumi.Volcengine.Rds_mysql
 
             ImmutableArray<Outputs.InstancesRdsMysqlInstanceResult> rdsMysqlInstances,
 
+            ImmutableArray<Outputs.InstancesTagResult> tags,
+
             int totalCount,
 
             string? zoneId)
@@ -382,6 +412,7 @@ namespace Volcengine.Pulumi.Volcengine.Rds_mysql
             NameRegex = nameRegex;
             OutputFile = outputFile;
             RdsMysqlInstances = rdsMysqlInstances;
+            Tags = tags;
             TotalCount = totalCount;
             ZoneId = zoneId;
         }

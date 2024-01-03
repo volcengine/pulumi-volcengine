@@ -63,10 +63,12 @@ import (
 //	$ pulumi import volcengine:privatelink/vpcEndpointServiceResource:VpcEndpointServiceResource default epsvc-2fe630gurkl37k5gfuy33****:clb-bp1o94dp5i6ea****
 //
 // ```
+//
+//	It is not recommended to use this resource for binding resources, it is recommended to use the resources field of vpc_endpoint_service for binding. If using this resource and vpc_endpoint_service jointly for operations, use lifecycle ignore_changes to suppress changes to the resources field in vpc_endpoint_service.
 type VpcEndpointServiceResource struct {
 	pulumi.CustomResourceState
 
-	// The id of resource.
+	// The id of resource. It is not recommended to use this resource for binding resources, it is recommended to use the resources field of vpcEndpointService for binding. If using this resource and vpcEndpointService jointly for operations, use lifecycle ignoreChanges to suppress changes to the resources field in vpc_endpoint_service.
 	ResourceId pulumi.StringOutput `pulumi:"resourceId"`
 	// The id of service.
 	ServiceId pulumi.StringOutput `pulumi:"serviceId"`
@@ -108,14 +110,14 @@ func GetVpcEndpointServiceResource(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpcEndpointServiceResource resources.
 type vpcEndpointServiceResourceState struct {
-	// The id of resource.
+	// The id of resource. It is not recommended to use this resource for binding resources, it is recommended to use the resources field of vpcEndpointService for binding. If using this resource and vpcEndpointService jointly for operations, use lifecycle ignoreChanges to suppress changes to the resources field in vpc_endpoint_service.
 	ResourceId *string `pulumi:"resourceId"`
 	// The id of service.
 	ServiceId *string `pulumi:"serviceId"`
 }
 
 type VpcEndpointServiceResourceState struct {
-	// The id of resource.
+	// The id of resource. It is not recommended to use this resource for binding resources, it is recommended to use the resources field of vpcEndpointService for binding. If using this resource and vpcEndpointService jointly for operations, use lifecycle ignoreChanges to suppress changes to the resources field in vpc_endpoint_service.
 	ResourceId pulumi.StringPtrInput
 	// The id of service.
 	ServiceId pulumi.StringPtrInput
@@ -126,7 +128,7 @@ func (VpcEndpointServiceResourceState) ElementType() reflect.Type {
 }
 
 type vpcEndpointServiceResourceArgs struct {
-	// The id of resource.
+	// The id of resource. It is not recommended to use this resource for binding resources, it is recommended to use the resources field of vpcEndpointService for binding. If using this resource and vpcEndpointService jointly for operations, use lifecycle ignoreChanges to suppress changes to the resources field in vpc_endpoint_service.
 	ResourceId string `pulumi:"resourceId"`
 	// The id of service.
 	ServiceId string `pulumi:"serviceId"`
@@ -134,7 +136,7 @@ type vpcEndpointServiceResourceArgs struct {
 
 // The set of arguments for constructing a VpcEndpointServiceResource resource.
 type VpcEndpointServiceResourceArgs struct {
-	// The id of resource.
+	// The id of resource. It is not recommended to use this resource for binding resources, it is recommended to use the resources field of vpcEndpointService for binding. If using this resource and vpcEndpointService jointly for operations, use lifecycle ignoreChanges to suppress changes to the resources field in vpc_endpoint_service.
 	ResourceId pulumi.StringInput
 	// The id of service.
 	ServiceId pulumi.StringInput
@@ -227,7 +229,7 @@ func (o VpcEndpointServiceResourceOutput) ToVpcEndpointServiceResourceOutputWith
 	return o
 }
 
-// The id of resource.
+// The id of resource. It is not recommended to use this resource for binding resources, it is recommended to use the resources field of vpcEndpointService for binding. If using this resource and vpcEndpointService jointly for operations, use lifecycle ignoreChanges to suppress changes to the resources field in vpc_endpoint_service.
 func (o VpcEndpointServiceResourceOutput) ResourceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcEndpointServiceResource) pulumi.StringOutput { return v.ResourceId }).(pulumi.StringOutput)
 }

@@ -4292,7 +4292,11 @@ export namespace ecs {
 
     export interface InstanceCpuOptions {
         /**
-         * The per core of threads,only support for ebm.
+         * The number of subnuma in socket, only support for ebm. `1` indicates disabling SNC/NPS function. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+         */
+        numaPerSocket?: number;
+        /**
+         * The per core of threads, only support for ebm. `1` indicates disabling hyper threading function.
          */
         threadsPerCore: number;
     }
@@ -8423,6 +8427,17 @@ export namespace rds_mysql {
         parameterValue: string;
     }
 
+    export interface InstanceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface InstancesRdsMysqlInstance {
         /**
          * The version of allow list.
@@ -8496,6 +8511,10 @@ export namespace rds_mysql {
          */
         nodes: outputs.rds_mysql.InstancesRdsMysqlInstanceNode[];
         /**
+         * The project name of the RDS instance.
+         */
+        projectName: string;
+        /**
          * The region of the RDS instance.
          */
         regionId: string;
@@ -8515,6 +8534,10 @@ export namespace rds_mysql {
          * The subnet ID of the RDS instance.
          */
         subnetId: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.rds_mysql.InstancesRdsMysqlInstanceTag[];
         /**
          * Time zone.
          */
@@ -8747,6 +8770,28 @@ export namespace rds_mysql {
          * The available zone of the RDS instance.
          */
         zoneId: string;
+    }
+
+    export interface InstancesRdsMysqlInstanceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface InstancesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
 }

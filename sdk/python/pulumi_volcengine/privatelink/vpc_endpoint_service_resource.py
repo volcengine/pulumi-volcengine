@@ -18,7 +18,7 @@ class VpcEndpointServiceResourceInitArgs:
                  service_id: pulumi.Input[str]):
         """
         The set of arguments for constructing a VpcEndpointServiceResource resource.
-        :param pulumi.Input[str] resource_id: The id of resource.
+        :param pulumi.Input[str] resource_id: The id of resource. It is not recommended to use this resource for binding resources, it is recommended to use the resources field of vpc_endpoint_service for binding. If using this resource and vpc_endpoint_service jointly for operations, use lifecycle ignore_changes to suppress changes to the resources field in vpc_endpoint_service.
         :param pulumi.Input[str] service_id: The id of service.
         """
         pulumi.set(__self__, "resource_id", resource_id)
@@ -28,7 +28,7 @@ class VpcEndpointServiceResourceInitArgs:
     @pulumi.getter(name="resourceId")
     def resource_id(self) -> pulumi.Input[str]:
         """
-        The id of resource.
+        The id of resource. It is not recommended to use this resource for binding resources, it is recommended to use the resources field of vpc_endpoint_service for binding. If using this resource and vpc_endpoint_service jointly for operations, use lifecycle ignore_changes to suppress changes to the resources field in vpc_endpoint_service.
         """
         return pulumi.get(self, "resource_id")
 
@@ -56,7 +56,7 @@ class _VpcEndpointServiceResourceState:
                  service_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering VpcEndpointServiceResource resources.
-        :param pulumi.Input[str] resource_id: The id of resource.
+        :param pulumi.Input[str] resource_id: The id of resource. It is not recommended to use this resource for binding resources, it is recommended to use the resources field of vpc_endpoint_service for binding. If using this resource and vpc_endpoint_service jointly for operations, use lifecycle ignore_changes to suppress changes to the resources field in vpc_endpoint_service.
         :param pulumi.Input[str] service_id: The id of service.
         """
         if resource_id is not None:
@@ -68,7 +68,7 @@ class _VpcEndpointServiceResourceState:
     @pulumi.getter(name="resourceId")
     def resource_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The id of resource.
+        The id of resource. It is not recommended to use this resource for binding resources, it is recommended to use the resources field of vpc_endpoint_service for binding. If using this resource and vpc_endpoint_service jointly for operations, use lifecycle ignore_changes to suppress changes to the resources field in vpc_endpoint_service.
         """
         return pulumi.get(self, "resource_id")
 
@@ -124,9 +124,11 @@ class VpcEndpointServiceResource(pulumi.CustomResource):
          $ pulumi import volcengine:privatelink/vpcEndpointServiceResource:VpcEndpointServiceResource default epsvc-2fe630gurkl37k5gfuy33****:clb-bp1o94dp5i6ea****
         ```
 
+         It is not recommended to use this resource for binding resources, it is recommended to use the resources field of vpc_endpoint_service for binding. If using this resource and vpc_endpoint_service jointly for operations, use lifecycle ignore_changes to suppress changes to the resources field in vpc_endpoint_service.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] resource_id: The id of resource.
+        :param pulumi.Input[str] resource_id: The id of resource. It is not recommended to use this resource for binding resources, it is recommended to use the resources field of vpc_endpoint_service for binding. If using this resource and vpc_endpoint_service jointly for operations, use lifecycle ignore_changes to suppress changes to the resources field in vpc_endpoint_service.
         :param pulumi.Input[str] service_id: The id of service.
         """
         ...
@@ -161,6 +163,8 @@ class VpcEndpointServiceResource(pulumi.CustomResource):
         ```sh
          $ pulumi import volcengine:privatelink/vpcEndpointServiceResource:VpcEndpointServiceResource default epsvc-2fe630gurkl37k5gfuy33****:clb-bp1o94dp5i6ea****
         ```
+
+         It is not recommended to use this resource for binding resources, it is recommended to use the resources field of vpc_endpoint_service for binding. If using this resource and vpc_endpoint_service jointly for operations, use lifecycle ignore_changes to suppress changes to the resources field in vpc_endpoint_service.
 
         :param str resource_name: The name of the resource.
         :param VpcEndpointServiceResourceInitArgs args: The arguments to use to populate this resource's properties.
@@ -213,7 +217,7 @@ class VpcEndpointServiceResource(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] resource_id: The id of resource.
+        :param pulumi.Input[str] resource_id: The id of resource. It is not recommended to use this resource for binding resources, it is recommended to use the resources field of vpc_endpoint_service for binding. If using this resource and vpc_endpoint_service jointly for operations, use lifecycle ignore_changes to suppress changes to the resources field in vpc_endpoint_service.
         :param pulumi.Input[str] service_id: The id of service.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -228,7 +232,7 @@ class VpcEndpointServiceResource(pulumi.CustomResource):
     @pulumi.getter(name="resourceId")
     def resource_id(self) -> pulumi.Output[str]:
         """
-        The id of resource.
+        The id of resource. It is not recommended to use this resource for binding resources, it is recommended to use the resources field of vpc_endpoint_service for binding. If using this resource and vpc_endpoint_service jointly for operations, use lifecycle ignore_changes to suppress changes to the resources field in vpc_endpoint_service.
         """
         return pulumi.get(self, "resource_id")
 

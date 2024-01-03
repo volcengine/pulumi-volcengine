@@ -86,6 +86,10 @@ namespace Volcengine.Pulumi.Volcengine.Rds_mysql.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.InstancesRdsMysqlInstanceNodeResult> Nodes;
         /// <summary>
+        /// The project name of the RDS instance.
+        /// </summary>
+        public readonly string ProjectName;
+        /// <summary>
         /// The region of the RDS instance.
         /// </summary>
         public readonly string RegionId;
@@ -105,6 +109,10 @@ namespace Volcengine.Pulumi.Volcengine.Rds_mysql.Outputs
         /// The subnet ID of the RDS instance.
         /// </summary>
         public readonly string SubnetId;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.InstancesRdsMysqlInstanceTagResult> Tags;
         /// <summary>
         /// Time zone.
         /// </summary>
@@ -162,6 +170,8 @@ namespace Volcengine.Pulumi.Volcengine.Rds_mysql.Outputs
 
             ImmutableArray<Outputs.InstancesRdsMysqlInstanceNodeResult> nodes,
 
+            string projectName,
+
             string regionId,
 
             int storageSpace,
@@ -171,6 +181,8 @@ namespace Volcengine.Pulumi.Volcengine.Rds_mysql.Outputs
             int storageUse,
 
             string subnetId,
+
+            ImmutableArray<Outputs.InstancesRdsMysqlInstanceTagResult> tags,
 
             string timeZone,
 
@@ -199,11 +211,13 @@ namespace Volcengine.Pulumi.Volcengine.Rds_mysql.Outputs
             NodeNumber = nodeNumber;
             NodeSpec = nodeSpec;
             Nodes = nodes;
+            ProjectName = projectName;
             RegionId = regionId;
             StorageSpace = storageSpace;
             StorageType = storageType;
             StorageUse = storageUse;
             SubnetId = subnetId;
+            Tags = tags;
             TimeZone = timeZone;
             UpdateTime = updateTime;
             VCpu = vCpu;

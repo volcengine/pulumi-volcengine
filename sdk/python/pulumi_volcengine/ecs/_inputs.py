@@ -23,22 +23,39 @@ __all__ = [
 @pulumi.input_type
 class InstanceCpuOptionsArgs:
     def __init__(__self__, *,
-                 threads_per_core: pulumi.Input[int]):
+                 numa_per_socket: Optional[pulumi.Input[int]] = None,
+                 threads_per_core: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[int] threads_per_core: The per core of threads,only support for ebm.
+        :param pulumi.Input[int] numa_per_socket: The number of subnuma in socket, only support for ebm. `1` indicates disabling SNC/NPS function. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param pulumi.Input[int] threads_per_core: The per core of threads, only support for ebm. `1` indicates disabling hyper threading function.
         """
-        pulumi.set(__self__, "threads_per_core", threads_per_core)
+        if numa_per_socket is not None:
+            pulumi.set(__self__, "numa_per_socket", numa_per_socket)
+        if threads_per_core is not None:
+            pulumi.set(__self__, "threads_per_core", threads_per_core)
+
+    @property
+    @pulumi.getter(name="numaPerSocket")
+    def numa_per_socket(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of subnuma in socket, only support for ebm. `1` indicates disabling SNC/NPS function. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "numa_per_socket")
+
+    @numa_per_socket.setter
+    def numa_per_socket(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "numa_per_socket", value)
 
     @property
     @pulumi.getter(name="threadsPerCore")
-    def threads_per_core(self) -> pulumi.Input[int]:
+    def threads_per_core(self) -> Optional[pulumi.Input[int]]:
         """
-        The per core of threads,only support for ebm.
+        The per core of threads, only support for ebm. `1` indicates disabling hyper threading function.
         """
         return pulumi.get(self, "threads_per_core")
 
     @threads_per_core.setter
-    def threads_per_core(self, value: pulumi.Input[int]):
+    def threads_per_core(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "threads_per_core", value)
 
 

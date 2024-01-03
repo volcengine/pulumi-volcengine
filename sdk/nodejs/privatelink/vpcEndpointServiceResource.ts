@@ -33,6 +33,8 @@ import * as utilities from "../utilities";
  * ```sh
  *  $ pulumi import volcengine:privatelink/vpcEndpointServiceResource:VpcEndpointServiceResource default epsvc-2fe630gurkl37k5gfuy33****:clb-bp1o94dp5i6ea****
  * ```
+ *
+ *  It is not recommended to use this resource for binding resources, it is recommended to use the resources field of vpc_endpoint_service for binding. If using this resource and vpc_endpoint_service jointly for operations, use lifecycle ignore_changes to suppress changes to the resources field in vpc_endpoint_service.
  */
 export class VpcEndpointServiceResource extends pulumi.CustomResource {
     /**
@@ -63,7 +65,7 @@ export class VpcEndpointServiceResource extends pulumi.CustomResource {
     }
 
     /**
-     * The id of resource.
+     * The id of resource. It is not recommended to use this resource for binding resources, it is recommended to use the resources field of vpcEndpointService for binding. If using this resource and vpcEndpointService jointly for operations, use lifecycle ignoreChanges to suppress changes to the resources field in vpc_endpoint_service.
      */
     public readonly resourceId!: pulumi.Output<string>;
     /**
@@ -107,7 +109,7 @@ export class VpcEndpointServiceResource extends pulumi.CustomResource {
  */
 export interface VpcEndpointServiceResourceState {
     /**
-     * The id of resource.
+     * The id of resource. It is not recommended to use this resource for binding resources, it is recommended to use the resources field of vpcEndpointService for binding. If using this resource and vpcEndpointService jointly for operations, use lifecycle ignoreChanges to suppress changes to the resources field in vpc_endpoint_service.
      */
     resourceId?: pulumi.Input<string>;
     /**
@@ -121,7 +123,7 @@ export interface VpcEndpointServiceResourceState {
  */
 export interface VpcEndpointServiceResourceArgs {
     /**
-     * The id of resource.
+     * The id of resource. It is not recommended to use this resource for binding resources, it is recommended to use the resources field of vpcEndpointService for binding. If using this resource and vpcEndpointService jointly for operations, use lifecycle ignoreChanges to suppress changes to the resources field in vpc_endpoint_service.
      */
     resourceId: pulumi.Input<string>;
     /**

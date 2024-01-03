@@ -21,7 +21,7 @@ class VpcEndpointServiceArgs:
                  description: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a VpcEndpointService resource.
-        :param pulumi.Input[Sequence[pulumi.Input['VpcEndpointServiceResourceArgs']]] resources: The resources info. When create vpc endpoint service, the resource must exist.
+        :param pulumi.Input[Sequence[pulumi.Input['VpcEndpointServiceResourceArgs']]] resources: The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignore_changes to suppress changes to the resources field.
         :param pulumi.Input[bool] auto_accept_enabled: Whether auto accept node connect.
         :param pulumi.Input[str] description: The description of service.
         """
@@ -35,7 +35,7 @@ class VpcEndpointServiceArgs:
     @pulumi.getter
     def resources(self) -> pulumi.Input[Sequence[pulumi.Input['VpcEndpointServiceResourceArgs']]]:
         """
-        The resources info. When create vpc endpoint service, the resource must exist.
+        The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignore_changes to suppress changes to the resources field.
         """
         return pulumi.get(self, "resources")
 
@@ -88,7 +88,7 @@ class _VpcEndpointServiceState:
         :param pulumi.Input[bool] auto_accept_enabled: Whether auto accept node connect.
         :param pulumi.Input[str] creation_time: The create time of service.
         :param pulumi.Input[str] description: The description of service.
-        :param pulumi.Input[Sequence[pulumi.Input['VpcEndpointServiceResourceArgs']]] resources: The resources info. When create vpc endpoint service, the resource must exist.
+        :param pulumi.Input[Sequence[pulumi.Input['VpcEndpointServiceResourceArgs']]] resources: The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignore_changes to suppress changes to the resources field.
         :param pulumi.Input[str] service_domain: The domain of service.
         :param pulumi.Input[str] service_id: The Id of service.
         :param pulumi.Input[str] service_name: The name of service.
@@ -163,7 +163,7 @@ class _VpcEndpointServiceState:
     @pulumi.getter
     def resources(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VpcEndpointServiceResourceArgs']]]]:
         """
-        The resources info. When create vpc endpoint service, the resource must exist.
+        The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignore_changes to suppress changes to the resources field.
         """
         return pulumi.get(self, "resources")
 
@@ -302,11 +302,13 @@ class VpcEndpointService(pulumi.CustomResource):
          $ pulumi import volcengine:privatelink/vpcEndpointService:VpcEndpointService default epsvc-2fe630gurkl37k5gfuy33****
         ```
 
+         It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignore_changes to suppress changes to the resources field.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] auto_accept_enabled: Whether auto accept node connect.
         :param pulumi.Input[str] description: The description of service.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcEndpointServiceResourceArgs']]]] resources: The resources info. When create vpc endpoint service, the resource must exist.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcEndpointServiceResourceArgs']]]] resources: The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignore_changes to suppress changes to the resources field.
         """
         ...
     @overload
@@ -338,6 +340,8 @@ class VpcEndpointService(pulumi.CustomResource):
         ```sh
          $ pulumi import volcengine:privatelink/vpcEndpointService:VpcEndpointService default epsvc-2fe630gurkl37k5gfuy33****
         ```
+
+         It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignore_changes to suppress changes to the resources field.
 
         :param str resource_name: The name of the resource.
         :param VpcEndpointServiceArgs args: The arguments to use to populate this resource's properties.
@@ -412,7 +416,7 @@ class VpcEndpointService(pulumi.CustomResource):
         :param pulumi.Input[bool] auto_accept_enabled: Whether auto accept node connect.
         :param pulumi.Input[str] creation_time: The create time of service.
         :param pulumi.Input[str] description: The description of service.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcEndpointServiceResourceArgs']]]] resources: The resources info. When create vpc endpoint service, the resource must exist.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcEndpointServiceResourceArgs']]]] resources: The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignore_changes to suppress changes to the resources field.
         :param pulumi.Input[str] service_domain: The domain of service.
         :param pulumi.Input[str] service_id: The Id of service.
         :param pulumi.Input[str] service_name: The name of service.
@@ -468,7 +472,7 @@ class VpcEndpointService(pulumi.CustomResource):
     @pulumi.getter
     def resources(self) -> pulumi.Output[Sequence['outputs.VpcEndpointServiceResource']]:
         """
-        The resources info. When create vpc endpoint service, the resource must exist.
+        The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignore_changes to suppress changes to the resources field.
         """
         return pulumi.get(self, "resources")
 

@@ -2157,6 +2157,112 @@ func (o InstanceParameterArrayOutput) Index(i pulumi.IntInput) InstanceParameter
 	}).(InstanceParameterOutput)
 }
 
+type InstanceTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// InstanceTagInput is an input type that accepts InstanceTagArgs and InstanceTagOutput values.
+// You can construct a concrete instance of `InstanceTagInput` via:
+//
+//	InstanceTagArgs{...}
+type InstanceTagInput interface {
+	pulumi.Input
+
+	ToInstanceTagOutput() InstanceTagOutput
+	ToInstanceTagOutputWithContext(context.Context) InstanceTagOutput
+}
+
+type InstanceTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (InstanceTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceTag)(nil)).Elem()
+}
+
+func (i InstanceTagArgs) ToInstanceTagOutput() InstanceTagOutput {
+	return i.ToInstanceTagOutputWithContext(context.Background())
+}
+
+func (i InstanceTagArgs) ToInstanceTagOutputWithContext(ctx context.Context) InstanceTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTagOutput)
+}
+
+// InstanceTagArrayInput is an input type that accepts InstanceTagArray and InstanceTagArrayOutput values.
+// You can construct a concrete instance of `InstanceTagArrayInput` via:
+//
+//	InstanceTagArray{ InstanceTagArgs{...} }
+type InstanceTagArrayInput interface {
+	pulumi.Input
+
+	ToInstanceTagArrayOutput() InstanceTagArrayOutput
+	ToInstanceTagArrayOutputWithContext(context.Context) InstanceTagArrayOutput
+}
+
+type InstanceTagArray []InstanceTagInput
+
+func (InstanceTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceTag)(nil)).Elem()
+}
+
+func (i InstanceTagArray) ToInstanceTagArrayOutput() InstanceTagArrayOutput {
+	return i.ToInstanceTagArrayOutputWithContext(context.Background())
+}
+
+func (i InstanceTagArray) ToInstanceTagArrayOutputWithContext(ctx context.Context) InstanceTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceTagArrayOutput)
+}
+
+type InstanceTagOutput struct{ *pulumi.OutputState }
+
+func (InstanceTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceTag)(nil)).Elem()
+}
+
+func (o InstanceTagOutput) ToInstanceTagOutput() InstanceTagOutput {
+	return o
+}
+
+func (o InstanceTagOutput) ToInstanceTagOutputWithContext(ctx context.Context) InstanceTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o InstanceTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v InstanceTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o InstanceTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v InstanceTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type InstanceTagArrayOutput struct{ *pulumi.OutputState }
+
+func (InstanceTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceTag)(nil)).Elem()
+}
+
+func (o InstanceTagArrayOutput) ToInstanceTagArrayOutput() InstanceTagArrayOutput {
+	return o
+}
+
+func (o InstanceTagArrayOutput) ToInstanceTagArrayOutputWithContext(ctx context.Context) InstanceTagArrayOutput {
+	return o
+}
+
+func (o InstanceTagArrayOutput) Index(i pulumi.IntInput) InstanceTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstanceTag {
+		return vs[0].([]InstanceTag)[vs[1].(int)]
+	}).(InstanceTagOutput)
+}
+
 type InstancesRdsMysqlInstance struct {
 	// The version of allow list.
 	AllowListVersion string `pulumi:"allowListVersion"`
@@ -2195,6 +2301,8 @@ type InstancesRdsMysqlInstance struct {
 	NodeSpec string `pulumi:"nodeSpec"`
 	// Instance node information.
 	Nodes []InstancesRdsMysqlInstanceNode `pulumi:"nodes"`
+	// The project name of the RDS instance.
+	ProjectName string `pulumi:"projectName"`
 	// The region of the RDS instance.
 	RegionId string `pulumi:"regionId"`
 	// Total instance storage space. Unit: GB.
@@ -2205,6 +2313,8 @@ type InstancesRdsMysqlInstance struct {
 	StorageUse int `pulumi:"storageUse"`
 	// The subnet ID of the RDS instance.
 	SubnetId string `pulumi:"subnetId"`
+	// Tags.
+	Tags []InstancesRdsMysqlInstanceTag `pulumi:"tags"`
 	// Time zone.
 	TimeZone string `pulumi:"timeZone"`
 	// The update time of the RDS instance.
@@ -2266,6 +2376,8 @@ type InstancesRdsMysqlInstanceArgs struct {
 	NodeSpec pulumi.StringInput `pulumi:"nodeSpec"`
 	// Instance node information.
 	Nodes InstancesRdsMysqlInstanceNodeArrayInput `pulumi:"nodes"`
+	// The project name of the RDS instance.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The region of the RDS instance.
 	RegionId pulumi.StringInput `pulumi:"regionId"`
 	// Total instance storage space. Unit: GB.
@@ -2276,6 +2388,8 @@ type InstancesRdsMysqlInstanceArgs struct {
 	StorageUse pulumi.IntInput `pulumi:"storageUse"`
 	// The subnet ID of the RDS instance.
 	SubnetId pulumi.StringInput `pulumi:"subnetId"`
+	// Tags.
+	Tags InstancesRdsMysqlInstanceTagArrayInput `pulumi:"tags"`
 	// Time zone.
 	TimeZone pulumi.StringInput `pulumi:"timeZone"`
 	// The update time of the RDS instance.
@@ -2429,6 +2543,11 @@ func (o InstancesRdsMysqlInstanceOutput) Nodes() InstancesRdsMysqlInstanceNodeAr
 	return o.ApplyT(func(v InstancesRdsMysqlInstance) []InstancesRdsMysqlInstanceNode { return v.Nodes }).(InstancesRdsMysqlInstanceNodeArrayOutput)
 }
 
+// The project name of the RDS instance.
+func (o InstancesRdsMysqlInstanceOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v InstancesRdsMysqlInstance) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
 // The region of the RDS instance.
 func (o InstancesRdsMysqlInstanceOutput) RegionId() pulumi.StringOutput {
 	return o.ApplyT(func(v InstancesRdsMysqlInstance) string { return v.RegionId }).(pulumi.StringOutput)
@@ -2452,6 +2571,11 @@ func (o InstancesRdsMysqlInstanceOutput) StorageUse() pulumi.IntOutput {
 // The subnet ID of the RDS instance.
 func (o InstancesRdsMysqlInstanceOutput) SubnetId() pulumi.StringOutput {
 	return o.ApplyT(func(v InstancesRdsMysqlInstance) string { return v.SubnetId }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o InstancesRdsMysqlInstanceOutput) Tags() InstancesRdsMysqlInstanceTagArrayOutput {
+	return o.ApplyT(func(v InstancesRdsMysqlInstance) []InstancesRdsMysqlInstanceTag { return v.Tags }).(InstancesRdsMysqlInstanceTagArrayOutput)
 }
 
 // Time zone.
@@ -3436,6 +3560,218 @@ func (o InstancesRdsMysqlInstanceNodeArrayOutput) Index(i pulumi.IntInput) Insta
 	}).(InstancesRdsMysqlInstanceNodeOutput)
 }
 
+type InstancesRdsMysqlInstanceTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// InstancesRdsMysqlInstanceTagInput is an input type that accepts InstancesRdsMysqlInstanceTagArgs and InstancesRdsMysqlInstanceTagOutput values.
+// You can construct a concrete instance of `InstancesRdsMysqlInstanceTagInput` via:
+//
+//	InstancesRdsMysqlInstanceTagArgs{...}
+type InstancesRdsMysqlInstanceTagInput interface {
+	pulumi.Input
+
+	ToInstancesRdsMysqlInstanceTagOutput() InstancesRdsMysqlInstanceTagOutput
+	ToInstancesRdsMysqlInstanceTagOutputWithContext(context.Context) InstancesRdsMysqlInstanceTagOutput
+}
+
+type InstancesRdsMysqlInstanceTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (InstancesRdsMysqlInstanceTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstancesRdsMysqlInstanceTag)(nil)).Elem()
+}
+
+func (i InstancesRdsMysqlInstanceTagArgs) ToInstancesRdsMysqlInstanceTagOutput() InstancesRdsMysqlInstanceTagOutput {
+	return i.ToInstancesRdsMysqlInstanceTagOutputWithContext(context.Background())
+}
+
+func (i InstancesRdsMysqlInstanceTagArgs) ToInstancesRdsMysqlInstanceTagOutputWithContext(ctx context.Context) InstancesRdsMysqlInstanceTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstancesRdsMysqlInstanceTagOutput)
+}
+
+// InstancesRdsMysqlInstanceTagArrayInput is an input type that accepts InstancesRdsMysqlInstanceTagArray and InstancesRdsMysqlInstanceTagArrayOutput values.
+// You can construct a concrete instance of `InstancesRdsMysqlInstanceTagArrayInput` via:
+//
+//	InstancesRdsMysqlInstanceTagArray{ InstancesRdsMysqlInstanceTagArgs{...} }
+type InstancesRdsMysqlInstanceTagArrayInput interface {
+	pulumi.Input
+
+	ToInstancesRdsMysqlInstanceTagArrayOutput() InstancesRdsMysqlInstanceTagArrayOutput
+	ToInstancesRdsMysqlInstanceTagArrayOutputWithContext(context.Context) InstancesRdsMysqlInstanceTagArrayOutput
+}
+
+type InstancesRdsMysqlInstanceTagArray []InstancesRdsMysqlInstanceTagInput
+
+func (InstancesRdsMysqlInstanceTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstancesRdsMysqlInstanceTag)(nil)).Elem()
+}
+
+func (i InstancesRdsMysqlInstanceTagArray) ToInstancesRdsMysqlInstanceTagArrayOutput() InstancesRdsMysqlInstanceTagArrayOutput {
+	return i.ToInstancesRdsMysqlInstanceTagArrayOutputWithContext(context.Background())
+}
+
+func (i InstancesRdsMysqlInstanceTagArray) ToInstancesRdsMysqlInstanceTagArrayOutputWithContext(ctx context.Context) InstancesRdsMysqlInstanceTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstancesRdsMysqlInstanceTagArrayOutput)
+}
+
+type InstancesRdsMysqlInstanceTagOutput struct{ *pulumi.OutputState }
+
+func (InstancesRdsMysqlInstanceTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstancesRdsMysqlInstanceTag)(nil)).Elem()
+}
+
+func (o InstancesRdsMysqlInstanceTagOutput) ToInstancesRdsMysqlInstanceTagOutput() InstancesRdsMysqlInstanceTagOutput {
+	return o
+}
+
+func (o InstancesRdsMysqlInstanceTagOutput) ToInstancesRdsMysqlInstanceTagOutputWithContext(ctx context.Context) InstancesRdsMysqlInstanceTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o InstancesRdsMysqlInstanceTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v InstancesRdsMysqlInstanceTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o InstancesRdsMysqlInstanceTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v InstancesRdsMysqlInstanceTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type InstancesRdsMysqlInstanceTagArrayOutput struct{ *pulumi.OutputState }
+
+func (InstancesRdsMysqlInstanceTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstancesRdsMysqlInstanceTag)(nil)).Elem()
+}
+
+func (o InstancesRdsMysqlInstanceTagArrayOutput) ToInstancesRdsMysqlInstanceTagArrayOutput() InstancesRdsMysqlInstanceTagArrayOutput {
+	return o
+}
+
+func (o InstancesRdsMysqlInstanceTagArrayOutput) ToInstancesRdsMysqlInstanceTagArrayOutputWithContext(ctx context.Context) InstancesRdsMysqlInstanceTagArrayOutput {
+	return o
+}
+
+func (o InstancesRdsMysqlInstanceTagArrayOutput) Index(i pulumi.IntInput) InstancesRdsMysqlInstanceTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstancesRdsMysqlInstanceTag {
+		return vs[0].([]InstancesRdsMysqlInstanceTag)[vs[1].(int)]
+	}).(InstancesRdsMysqlInstanceTagOutput)
+}
+
+type InstancesTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// InstancesTagInput is an input type that accepts InstancesTagArgs and InstancesTagOutput values.
+// You can construct a concrete instance of `InstancesTagInput` via:
+//
+//	InstancesTagArgs{...}
+type InstancesTagInput interface {
+	pulumi.Input
+
+	ToInstancesTagOutput() InstancesTagOutput
+	ToInstancesTagOutputWithContext(context.Context) InstancesTagOutput
+}
+
+type InstancesTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (InstancesTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstancesTag)(nil)).Elem()
+}
+
+func (i InstancesTagArgs) ToInstancesTagOutput() InstancesTagOutput {
+	return i.ToInstancesTagOutputWithContext(context.Background())
+}
+
+func (i InstancesTagArgs) ToInstancesTagOutputWithContext(ctx context.Context) InstancesTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstancesTagOutput)
+}
+
+// InstancesTagArrayInput is an input type that accepts InstancesTagArray and InstancesTagArrayOutput values.
+// You can construct a concrete instance of `InstancesTagArrayInput` via:
+//
+//	InstancesTagArray{ InstancesTagArgs{...} }
+type InstancesTagArrayInput interface {
+	pulumi.Input
+
+	ToInstancesTagArrayOutput() InstancesTagArrayOutput
+	ToInstancesTagArrayOutputWithContext(context.Context) InstancesTagArrayOutput
+}
+
+type InstancesTagArray []InstancesTagInput
+
+func (InstancesTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstancesTag)(nil)).Elem()
+}
+
+func (i InstancesTagArray) ToInstancesTagArrayOutput() InstancesTagArrayOutput {
+	return i.ToInstancesTagArrayOutputWithContext(context.Background())
+}
+
+func (i InstancesTagArray) ToInstancesTagArrayOutputWithContext(ctx context.Context) InstancesTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstancesTagArrayOutput)
+}
+
+type InstancesTagOutput struct{ *pulumi.OutputState }
+
+func (InstancesTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstancesTag)(nil)).Elem()
+}
+
+func (o InstancesTagOutput) ToInstancesTagOutput() InstancesTagOutput {
+	return o
+}
+
+func (o InstancesTagOutput) ToInstancesTagOutputWithContext(ctx context.Context) InstancesTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o InstancesTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v InstancesTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o InstancesTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v InstancesTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type InstancesTagArrayOutput struct{ *pulumi.OutputState }
+
+func (InstancesTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstancesTag)(nil)).Elem()
+}
+
+func (o InstancesTagArrayOutput) ToInstancesTagArrayOutput() InstancesTagArrayOutput {
+	return o
+}
+
+func (o InstancesTagArrayOutput) ToInstancesTagArrayOutputWithContext(ctx context.Context) InstancesTagArrayOutput {
+	return o
+}
+
+func (o InstancesTagArrayOutput) Index(i pulumi.IntInput) InstancesTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstancesTag {
+		return vs[0].([]InstancesTag)[vs[1].(int)]
+	}).(InstancesTagOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AccountAccountPrivilegeInput)(nil)).Elem(), AccountAccountPrivilegeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccountAccountPrivilegeArrayInput)(nil)).Elem(), AccountAccountPrivilegeArray{})
@@ -3467,6 +3803,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceNodeArrayInput)(nil)).Elem(), InstanceNodeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceParameterInput)(nil)).Elem(), InstanceParameterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceParameterArrayInput)(nil)).Elem(), InstanceParameterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTagInput)(nil)).Elem(), InstanceTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTagArrayInput)(nil)).Elem(), InstanceTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesRdsMysqlInstanceInput)(nil)).Elem(), InstancesRdsMysqlInstanceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesRdsMysqlInstanceArrayInput)(nil)).Elem(), InstancesRdsMysqlInstanceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesRdsMysqlInstanceChargeDetailInput)(nil)).Elem(), InstancesRdsMysqlInstanceChargeDetailArgs{})
@@ -3480,6 +3818,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesRdsMysqlInstanceMaintenanceWindowArrayInput)(nil)).Elem(), InstancesRdsMysqlInstanceMaintenanceWindowArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesRdsMysqlInstanceNodeInput)(nil)).Elem(), InstancesRdsMysqlInstanceNodeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesRdsMysqlInstanceNodeArrayInput)(nil)).Elem(), InstancesRdsMysqlInstanceNodeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstancesRdsMysqlInstanceTagInput)(nil)).Elem(), InstancesRdsMysqlInstanceTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstancesRdsMysqlInstanceTagArrayInput)(nil)).Elem(), InstancesRdsMysqlInstanceTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstancesTagInput)(nil)).Elem(), InstancesTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstancesTagArrayInput)(nil)).Elem(), InstancesTagArray{})
 	pulumi.RegisterOutputType(AccountAccountPrivilegeOutput{})
 	pulumi.RegisterOutputType(AccountAccountPrivilegeArrayOutput{})
 	pulumi.RegisterOutputType(AccountsAccountOutput{})
@@ -3510,6 +3852,8 @@ func init() {
 	pulumi.RegisterOutputType(InstanceNodeArrayOutput{})
 	pulumi.RegisterOutputType(InstanceParameterOutput{})
 	pulumi.RegisterOutputType(InstanceParameterArrayOutput{})
+	pulumi.RegisterOutputType(InstanceTagOutput{})
+	pulumi.RegisterOutputType(InstanceTagArrayOutput{})
 	pulumi.RegisterOutputType(InstancesRdsMysqlInstanceOutput{})
 	pulumi.RegisterOutputType(InstancesRdsMysqlInstanceArrayOutput{})
 	pulumi.RegisterOutputType(InstancesRdsMysqlInstanceChargeDetailOutput{})
@@ -3523,4 +3867,8 @@ func init() {
 	pulumi.RegisterOutputType(InstancesRdsMysqlInstanceMaintenanceWindowArrayOutput{})
 	pulumi.RegisterOutputType(InstancesRdsMysqlInstanceNodeOutput{})
 	pulumi.RegisterOutputType(InstancesRdsMysqlInstanceNodeArrayOutput{})
+	pulumi.RegisterOutputType(InstancesRdsMysqlInstanceTagOutput{})
+	pulumi.RegisterOutputType(InstancesRdsMysqlInstanceTagArrayOutput{})
+	pulumi.RegisterOutputType(InstancesTagOutput{})
+	pulumi.RegisterOutputType(InstancesTagArrayOutput{})
 }

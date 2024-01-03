@@ -915,8 +915,10 @@ func (o ImagesImageArrayOutput) Index(i pulumi.IntInput) ImagesImageOutput {
 }
 
 type InstanceCpuOptions struct {
-	// The per core of threads,only support for ebm.
-	ThreadsPerCore int `pulumi:"threadsPerCore"`
+	// The number of subnuma in socket, only support for ebm. `1` indicates disabling SNC/NPS function. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	NumaPerSocket *int `pulumi:"numaPerSocket"`
+	// The per core of threads, only support for ebm. `1` indicates disabling hyper threading function.
+	ThreadsPerCore *int `pulumi:"threadsPerCore"`
 }
 
 // InstanceCpuOptionsInput is an input type that accepts InstanceCpuOptionsArgs and InstanceCpuOptionsOutput values.
@@ -931,8 +933,10 @@ type InstanceCpuOptionsInput interface {
 }
 
 type InstanceCpuOptionsArgs struct {
-	// The per core of threads,only support for ebm.
-	ThreadsPerCore pulumi.IntInput `pulumi:"threadsPerCore"`
+	// The number of subnuma in socket, only support for ebm. `1` indicates disabling SNC/NPS function. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	NumaPerSocket pulumi.IntPtrInput `pulumi:"numaPerSocket"`
+	// The per core of threads, only support for ebm. `1` indicates disabling hyper threading function.
+	ThreadsPerCore pulumi.IntPtrInput `pulumi:"threadsPerCore"`
 }
 
 func (InstanceCpuOptionsArgs) ElementType() reflect.Type {
@@ -1012,9 +1016,14 @@ func (o InstanceCpuOptionsOutput) ToInstanceCpuOptionsPtrOutputWithContext(ctx c
 	}).(InstanceCpuOptionsPtrOutput)
 }
 
-// The per core of threads,only support for ebm.
-func (o InstanceCpuOptionsOutput) ThreadsPerCore() pulumi.IntOutput {
-	return o.ApplyT(func(v InstanceCpuOptions) int { return v.ThreadsPerCore }).(pulumi.IntOutput)
+// The number of subnuma in socket, only support for ebm. `1` indicates disabling SNC/NPS function. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+func (o InstanceCpuOptionsOutput) NumaPerSocket() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v InstanceCpuOptions) *int { return v.NumaPerSocket }).(pulumi.IntPtrOutput)
+}
+
+// The per core of threads, only support for ebm. `1` indicates disabling hyper threading function.
+func (o InstanceCpuOptionsOutput) ThreadsPerCore() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v InstanceCpuOptions) *int { return v.ThreadsPerCore }).(pulumi.IntPtrOutput)
 }
 
 type InstanceCpuOptionsPtrOutput struct{ *pulumi.OutputState }
@@ -1041,13 +1050,23 @@ func (o InstanceCpuOptionsPtrOutput) Elem() InstanceCpuOptionsOutput {
 	}).(InstanceCpuOptionsOutput)
 }
 
-// The per core of threads,only support for ebm.
+// The number of subnuma in socket, only support for ebm. `1` indicates disabling SNC/NPS function. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+func (o InstanceCpuOptionsPtrOutput) NumaPerSocket() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *InstanceCpuOptions) *int {
+		if v == nil {
+			return nil
+		}
+		return v.NumaPerSocket
+	}).(pulumi.IntPtrOutput)
+}
+
+// The per core of threads, only support for ebm. `1` indicates disabling hyper threading function.
 func (o InstanceCpuOptionsPtrOutput) ThreadsPerCore() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *InstanceCpuOptions) *int {
 		if v == nil {
 			return nil
 		}
-		return &v.ThreadsPerCore
+		return v.ThreadsPerCore
 	}).(pulumi.IntPtrOutput)
 }
 

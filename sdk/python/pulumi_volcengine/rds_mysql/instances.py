@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'InstancesResult',
@@ -22,7 +23,7 @@ class InstancesResult:
     """
     A collection of values returned by Instances.
     """
-    def __init__(__self__, charge_type=None, create_time_end=None, create_time_start=None, db_engine_version=None, id=None, instance_id=None, instance_name=None, instance_status=None, name_regex=None, output_file=None, rds_mysql_instances=None, total_count=None, zone_id=None):
+    def __init__(__self__, charge_type=None, create_time_end=None, create_time_start=None, db_engine_version=None, id=None, instance_id=None, instance_name=None, instance_status=None, name_regex=None, output_file=None, rds_mysql_instances=None, tags=None, total_count=None, zone_id=None):
         if charge_type and not isinstance(charge_type, str):
             raise TypeError("Expected argument 'charge_type' to be a str")
         pulumi.set(__self__, "charge_type", charge_type)
@@ -56,6 +57,9 @@ class InstancesResult:
         if rds_mysql_instances and not isinstance(rds_mysql_instances, list):
             raise TypeError("Expected argument 'rds_mysql_instances' to be a list")
         pulumi.set(__self__, "rds_mysql_instances", rds_mysql_instances)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -142,6 +146,14 @@ class InstancesResult:
         return pulumi.get(self, "rds_mysql_instances")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.InstancesTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
         """
@@ -175,6 +187,7 @@ class AwaitableInstancesResult(InstancesResult):
             name_regex=self.name_regex,
             output_file=self.output_file,
             rds_mysql_instances=self.rds_mysql_instances,
+            tags=self.tags,
             total_count=self.total_count,
             zone_id=self.zone_id)
 
@@ -188,6 +201,7 @@ def instances(charge_type: Optional[str] = None,
               instance_status: Optional[str] = None,
               name_regex: Optional[str] = None,
               output_file: Optional[str] = None,
+              tags: Optional[Sequence[pulumi.InputType['InstancesTagArgs']]] = None,
               zone_id: Optional[str] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableInstancesResult:
     """
@@ -242,6 +256,7 @@ def instances(charge_type: Optional[str] = None,
     :param str instance_status: The status of the RDS instance.
     :param str name_regex: A Name Regex of RDS instance.
     :param str output_file: File name where to save data source results.
+    :param Sequence[pulumi.InputType['InstancesTagArgs']] tags: Tags.
     :param str zone_id: The available zone of the RDS instance.
     """
     __args__ = dict()
@@ -254,6 +269,7 @@ def instances(charge_type: Optional[str] = None,
     __args__['instanceStatus'] = instance_status
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
+    __args__['tags'] = tags
     __args__['zoneId'] = zone_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:rds_mysql/instances:Instances', __args__, opts=opts, typ=InstancesResult).value
@@ -270,6 +286,7 @@ def instances(charge_type: Optional[str] = None,
         name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
         rds_mysql_instances=pulumi.get(__ret__, 'rds_mysql_instances'),
+        tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'),
         zone_id=pulumi.get(__ret__, 'zone_id'))
 
@@ -284,6 +301,7 @@ def instances_output(charge_type: Optional[pulumi.Input[Optional[str]]] = None,
                      instance_status: Optional[pulumi.Input[Optional[str]]] = None,
                      name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                      output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                     tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['InstancesTagArgs']]]]] = None,
                      zone_id: Optional[pulumi.Input[Optional[str]]] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[InstancesResult]:
     """
@@ -338,6 +356,7 @@ def instances_output(charge_type: Optional[pulumi.Input[Optional[str]]] = None,
     :param str instance_status: The status of the RDS instance.
     :param str name_regex: A Name Regex of RDS instance.
     :param str output_file: File name where to save data source results.
+    :param Sequence[pulumi.InputType['InstancesTagArgs']] tags: Tags.
     :param str zone_id: The available zone of the RDS instance.
     """
     ...

@@ -55,6 +55,8 @@ import (
 //	$ pulumi import volcengine:privatelink/vpcEndpointService:VpcEndpointService default epsvc-2fe630gurkl37k5gfuy33****
 //
 // ```
+//
+//	It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignore_changes to suppress changes to the resources field.
 type VpcEndpointService struct {
 	pulumi.CustomResourceState
 
@@ -64,7 +66,7 @@ type VpcEndpointService struct {
 	CreationTime pulumi.StringOutput `pulumi:"creationTime"`
 	// The description of service.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	// The resources info. When create vpc endpoint service, the resource must exist.
+	// The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignoreChanges to suppress changes to the resources field.
 	Resources VpcEndpointServiceResourceTypeArrayOutput `pulumi:"resources"`
 	// The domain of service.
 	ServiceDomain pulumi.StringOutput `pulumi:"serviceDomain"`
@@ -123,7 +125,7 @@ type vpcEndpointServiceState struct {
 	CreationTime *string `pulumi:"creationTime"`
 	// The description of service.
 	Description *string `pulumi:"description"`
-	// The resources info. When create vpc endpoint service, the resource must exist.
+	// The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignoreChanges to suppress changes to the resources field.
 	Resources []VpcEndpointServiceResourceType `pulumi:"resources"`
 	// The domain of service.
 	ServiceDomain *string `pulumi:"serviceDomain"`
@@ -150,7 +152,7 @@ type VpcEndpointServiceState struct {
 	CreationTime pulumi.StringPtrInput
 	// The description of service.
 	Description pulumi.StringPtrInput
-	// The resources info. When create vpc endpoint service, the resource must exist.
+	// The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignoreChanges to suppress changes to the resources field.
 	Resources VpcEndpointServiceResourceTypeArrayInput
 	// The domain of service.
 	ServiceDomain pulumi.StringPtrInput
@@ -179,7 +181,7 @@ type vpcEndpointServiceArgs struct {
 	AutoAcceptEnabled *bool `pulumi:"autoAcceptEnabled"`
 	// The description of service.
 	Description *string `pulumi:"description"`
-	// The resources info. When create vpc endpoint service, the resource must exist.
+	// The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignoreChanges to suppress changes to the resources field.
 	Resources []VpcEndpointServiceResourceType `pulumi:"resources"`
 }
 
@@ -189,7 +191,7 @@ type VpcEndpointServiceArgs struct {
 	AutoAcceptEnabled pulumi.BoolPtrInput
 	// The description of service.
 	Description pulumi.StringPtrInput
-	// The resources info. When create vpc endpoint service, the resource must exist.
+	// The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignoreChanges to suppress changes to the resources field.
 	Resources VpcEndpointServiceResourceTypeArrayInput
 }
 
@@ -295,7 +297,7 @@ func (o VpcEndpointServiceOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VpcEndpointService) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// The resources info. When create vpc endpoint service, the resource must exist.
+// The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignoreChanges to suppress changes to the resources field.
 func (o VpcEndpointServiceOutput) Resources() VpcEndpointServiceResourceTypeArrayOutput {
 	return o.ApplyT(func(v *VpcEndpointService) VpcEndpointServiceResourceTypeArrayOutput { return v.Resources }).(VpcEndpointServiceResourceTypeArrayOutput)
 }

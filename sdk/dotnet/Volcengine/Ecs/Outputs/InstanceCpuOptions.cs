@@ -15,13 +15,21 @@ namespace Volcengine.Pulumi.Volcengine.Ecs.Outputs
     public sealed class InstanceCpuOptions
     {
         /// <summary>
-        /// The per core of threads,only support for ebm.
+        /// The number of subnuma in socket, only support for ebm. `1` indicates disabling SNC/NPS function. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         /// </summary>
-        public readonly int ThreadsPerCore;
+        public readonly int? NumaPerSocket;
+        /// <summary>
+        /// The per core of threads, only support for ebm. `1` indicates disabling hyper threading function.
+        /// </summary>
+        public readonly int? ThreadsPerCore;
 
         [OutputConstructor]
-        private InstanceCpuOptions(int threadsPerCore)
+        private InstanceCpuOptions(
+            int? numaPerSocket,
+
+            int? threadsPerCore)
         {
+            NumaPerSocket = numaPerSocket;
             ThreadsPerCore = threadsPerCore;
         }
     }

@@ -548,7 +548,9 @@ class InstanceCpuOptions(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "threadsPerCore":
+        if key == "numaPerSocket":
+            suggest = "numa_per_socket"
+        elif key == "threadsPerCore":
             suggest = "threads_per_core"
 
         if suggest:
@@ -563,17 +565,30 @@ class InstanceCpuOptions(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 threads_per_core: int):
+                 numa_per_socket: Optional[int] = None,
+                 threads_per_core: Optional[int] = None):
         """
-        :param int threads_per_core: The per core of threads,only support for ebm.
+        :param int numa_per_socket: The number of subnuma in socket, only support for ebm. `1` indicates disabling SNC/NPS function. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        :param int threads_per_core: The per core of threads, only support for ebm. `1` indicates disabling hyper threading function.
         """
-        pulumi.set(__self__, "threads_per_core", threads_per_core)
+        if numa_per_socket is not None:
+            pulumi.set(__self__, "numa_per_socket", numa_per_socket)
+        if threads_per_core is not None:
+            pulumi.set(__self__, "threads_per_core", threads_per_core)
+
+    @property
+    @pulumi.getter(name="numaPerSocket")
+    def numa_per_socket(self) -> Optional[int]:
+        """
+        The number of subnuma in socket, only support for ebm. `1` indicates disabling SNC/NPS function. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "numa_per_socket")
 
     @property
     @pulumi.getter(name="threadsPerCore")
-    def threads_per_core(self) -> int:
+    def threads_per_core(self) -> Optional[int]:
         """
-        The per core of threads,only support for ebm.
+        The per core of threads, only support for ebm. `1` indicates disabling hyper threading function.
         """
         return pulumi.get(self, "threads_per_core")
 

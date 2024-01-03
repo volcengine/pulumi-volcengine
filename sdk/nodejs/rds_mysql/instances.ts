@@ -68,6 +68,7 @@ export function instances(args?: InstancesArgs, opts?: pulumi.InvokeOptions): Pr
         "instanceStatus": args.instanceStatus,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
+        "tags": args.tags,
         "zoneId": args.zoneId,
     }, opts);
 }
@@ -113,6 +114,10 @@ export interface InstancesArgs {
      */
     outputFile?: string;
     /**
+     * Tags.
+     */
+    tags?: inputs.rds_mysql.InstancesTag[];
+    /**
      * The available zone of the RDS instance.
      */
     zoneId?: string;
@@ -156,6 +161,10 @@ export interface InstancesResult {
      * The collection of RDS instance query.
      */
     readonly rdsMysqlInstances: outputs.rds_mysql.InstancesRdsMysqlInstance[];
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.rds_mysql.InstancesTag[];
     /**
      * The total count of RDS instance query.
      */
@@ -257,6 +266,10 @@ export interface InstancesOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.rds_mysql.InstancesTagArgs>[]>;
     /**
      * The available zone of the RDS instance.
      */

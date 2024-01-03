@@ -27,7 +27,9 @@ class InstanceArgs:
                  instance_name: Optional[pulumi.Input[str]] = None,
                  lower_case_table_names: Optional[pulumi.Input[str]] = None,
                  parameters: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceParameterArgs']]]] = None,
-                 storage_space: Optional[pulumi.Input[int]] = None):
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 storage_space: Optional[pulumi.Input[int]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]]] = None):
         """
         The set of arguments for constructing a Instance resource.
         :param pulumi.Input['InstanceChargeInfoArgs'] charge_info: Payment methods.
@@ -48,7 +50,9 @@ class InstanceArgs:
                0: Table names are stored as fixed and table names are case-sensitive.
                1: Table names will be stored in lowercase and table names are not case sensitive.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceParameterArgs']]] parameters: Parameter of the RDS instance. This field can only be added or modified. Deleting this field is invalid.
+        :param pulumi.Input[str] project_name: The project name of the RDS instance.
         :param pulumi.Input[int] storage_space: Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "charge_info", charge_info)
         pulumi.set(__self__, "db_engine_version", db_engine_version)
@@ -66,8 +70,12 @@ class InstanceArgs:
             pulumi.set(__self__, "lower_case_table_names", lower_case_table_names)
         if parameters is not None:
             pulumi.set(__self__, "parameters", parameters)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if storage_space is not None:
             pulumi.set(__self__, "storage_space", storage_space)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="chargeInfo")
@@ -209,6 +217,18 @@ class InstanceArgs:
         pulumi.set(self, "parameters", value)
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name of the RDS instance.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
     @pulumi.getter(name="storageSpace")
     def storage_space(self) -> Optional[pulumi.Input[int]]:
         """
@@ -219,6 +239,18 @@ class InstanceArgs:
     @storage_space.setter
     def storage_space(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "storage_space", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]]]):
+        pulumi.set(self, "tags", value)
 
 
 @pulumi.input_type
@@ -245,12 +277,14 @@ class _InstanceState:
                  nodes: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceNodeArgs']]]] = None,
                  parameters: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceParameterArgs']]]] = None,
                  primary_zone_id: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  region_id: Optional[pulumi.Input[str]] = None,
                  secondary_zone_id: Optional[pulumi.Input[str]] = None,
                  storage_space: Optional[pulumi.Input[int]] = None,
                  storage_type: Optional[pulumi.Input[str]] = None,
                  storage_use: Optional[pulumi.Input[int]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]]] = None,
                  time_zone: Optional[pulumi.Input[str]] = None,
                  update_time: Optional[pulumi.Input[str]] = None,
                  v_cpu: Optional[pulumi.Input[int]] = None,
@@ -286,12 +320,14 @@ class _InstanceState:
         :param pulumi.Input[Sequence[pulumi.Input['InstanceNodeArgs']]] nodes: Instance node information.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceParameterArgs']]] parameters: Parameter of the RDS instance. This field can only be added or modified. Deleting this field is invalid.
         :param pulumi.Input[str] primary_zone_id: The available zone of primary node.
+        :param pulumi.Input[str] project_name: The project name of the RDS instance.
         :param pulumi.Input[str] region_id: The region of the RDS instance.
         :param pulumi.Input[str] secondary_zone_id: The available zone of secondary node.
         :param pulumi.Input[int] storage_space: Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
         :param pulumi.Input[str] storage_type: Instance storage type.
         :param pulumi.Input[int] storage_use: The instance has used storage space. Unit: GB.
         :param pulumi.Input[str] subnet_id: Subnet ID of the RDS instance.
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]] tags: Tags.
         :param pulumi.Input[str] time_zone: Time zone.
         :param pulumi.Input[str] update_time: The update time of the RDS instance.
         :param pulumi.Input[int] v_cpu: CPU size.
@@ -340,6 +376,8 @@ class _InstanceState:
             pulumi.set(__self__, "parameters", parameters)
         if primary_zone_id is not None:
             pulumi.set(__self__, "primary_zone_id", primary_zone_id)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if region_id is not None:
             pulumi.set(__self__, "region_id", region_id)
         if secondary_zone_id is not None:
@@ -352,6 +390,8 @@ class _InstanceState:
             pulumi.set(__self__, "storage_use", storage_use)
         if subnet_id is not None:
             pulumi.set(__self__, "subnet_id", subnet_id)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if time_zone is not None:
             pulumi.set(__self__, "time_zone", time_zone)
         if update_time is not None:
@@ -623,6 +663,18 @@ class _InstanceState:
         pulumi.set(self, "primary_zone_id", value)
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The project name of the RDS instance.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
     @pulumi.getter(name="regionId")
     def region_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -693,6 +745,18 @@ class _InstanceState:
     @subnet_id.setter
     def subnet_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "subnet_id", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceTagArgs']]]]):
+        pulumi.set(self, "tags", value)
 
     @property
     @pulumi.getter(name="timeZone")
@@ -769,9 +833,11 @@ class Instance(pulumi.CustomResource):
                  node_spec: Optional[pulumi.Input[str]] = None,
                  parameters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceParameterArgs']]]]] = None,
                  primary_zone_id: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  secondary_zone_id: Optional[pulumi.Input[str]] = None,
                  storage_space: Optional[pulumi.Input[int]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceTagArgs']]]]] = None,
                  __props__=None):
         """
         Provides a resource to manage rds mysql instance
@@ -811,7 +877,12 @@ class Instance(pulumi.CustomResource):
                     parameter_name="auto_increment_offset",
                     parameter_value="4",
                 ),
-            ])
+            ],
+            project_name="default",
+            tags=[volcengine.rds_mysql.InstanceTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -840,9 +911,11 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] node_spec: The specification of primary node and secondary node.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceParameterArgs']]]] parameters: Parameter of the RDS instance. This field can only be added or modified. Deleting this field is invalid.
         :param pulumi.Input[str] primary_zone_id: The available zone of primary node.
+        :param pulumi.Input[str] project_name: The project name of the RDS instance.
         :param pulumi.Input[str] secondary_zone_id: The available zone of secondary node.
         :param pulumi.Input[int] storage_space: Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
         :param pulumi.Input[str] subnet_id: Subnet ID of the RDS instance.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceTagArgs']]]] tags: Tags.
         """
         ...
     @overload
@@ -888,7 +961,12 @@ class Instance(pulumi.CustomResource):
                     parameter_name="auto_increment_offset",
                     parameter_value="4",
                 ),
-            ])
+            ],
+            project_name="default",
+            tags=[volcengine.rds_mysql.InstanceTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -923,9 +1001,11 @@ class Instance(pulumi.CustomResource):
                  node_spec: Optional[pulumi.Input[str]] = None,
                  parameters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceParameterArgs']]]]] = None,
                  primary_zone_id: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  secondary_zone_id: Optional[pulumi.Input[str]] = None,
                  storage_space: Optional[pulumi.Input[int]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceTagArgs']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -952,6 +1032,7 @@ class Instance(pulumi.CustomResource):
             if primary_zone_id is None and not opts.urn:
                 raise TypeError("Missing required property 'primary_zone_id'")
             __props__.__dict__["primary_zone_id"] = primary_zone_id
+            __props__.__dict__["project_name"] = project_name
             if secondary_zone_id is None and not opts.urn:
                 raise TypeError("Missing required property 'secondary_zone_id'")
             __props__.__dict__["secondary_zone_id"] = secondary_zone_id
@@ -959,6 +1040,7 @@ class Instance(pulumi.CustomResource):
             if subnet_id is None and not opts.urn:
                 raise TypeError("Missing required property 'subnet_id'")
             __props__.__dict__["subnet_id"] = subnet_id
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["allow_list_version"] = None
             __props__.__dict__["backup_use"] = None
             __props__.__dict__["charge_details"] = None
@@ -1010,12 +1092,14 @@ class Instance(pulumi.CustomResource):
             nodes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceNodeArgs']]]]] = None,
             parameters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceParameterArgs']]]]] = None,
             primary_zone_id: Optional[pulumi.Input[str]] = None,
+            project_name: Optional[pulumi.Input[str]] = None,
             region_id: Optional[pulumi.Input[str]] = None,
             secondary_zone_id: Optional[pulumi.Input[str]] = None,
             storage_space: Optional[pulumi.Input[int]] = None,
             storage_type: Optional[pulumi.Input[str]] = None,
             storage_use: Optional[pulumi.Input[int]] = None,
             subnet_id: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceTagArgs']]]]] = None,
             time_zone: Optional[pulumi.Input[str]] = None,
             update_time: Optional[pulumi.Input[str]] = None,
             v_cpu: Optional[pulumi.Input[int]] = None,
@@ -1056,12 +1140,14 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceNodeArgs']]]] nodes: Instance node information.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceParameterArgs']]]] parameters: Parameter of the RDS instance. This field can only be added or modified. Deleting this field is invalid.
         :param pulumi.Input[str] primary_zone_id: The available zone of primary node.
+        :param pulumi.Input[str] project_name: The project name of the RDS instance.
         :param pulumi.Input[str] region_id: The region of the RDS instance.
         :param pulumi.Input[str] secondary_zone_id: The available zone of secondary node.
         :param pulumi.Input[int] storage_space: Instance storage space. Value range: [20, 3000], unit: GB, increments every 100GB. Default value: 100.
         :param pulumi.Input[str] storage_type: Instance storage type.
         :param pulumi.Input[int] storage_use: The instance has used storage space. Unit: GB.
         :param pulumi.Input[str] subnet_id: Subnet ID of the RDS instance.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] time_zone: Time zone.
         :param pulumi.Input[str] update_time: The update time of the RDS instance.
         :param pulumi.Input[int] v_cpu: CPU size.
@@ -1093,12 +1179,14 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["nodes"] = nodes
         __props__.__dict__["parameters"] = parameters
         __props__.__dict__["primary_zone_id"] = primary_zone_id
+        __props__.__dict__["project_name"] = project_name
         __props__.__dict__["region_id"] = region_id
         __props__.__dict__["secondary_zone_id"] = secondary_zone_id
         __props__.__dict__["storage_space"] = storage_space
         __props__.__dict__["storage_type"] = storage_type
         __props__.__dict__["storage_use"] = storage_use
         __props__.__dict__["subnet_id"] = subnet_id
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["time_zone"] = time_zone
         __props__.__dict__["update_time"] = update_time
         __props__.__dict__["v_cpu"] = v_cpu
@@ -1282,6 +1370,14 @@ class Instance(pulumi.CustomResource):
         return pulumi.get(self, "primary_zone_id")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[str]:
+        """
+        The project name of the RDS instance.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="regionId")
     def region_id(self) -> pulumi.Output[str]:
         """
@@ -1328,6 +1424,14 @@ class Instance(pulumi.CustomResource):
         Subnet ID of the RDS instance.
         """
         return pulumi.get(self, "subnet_id")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.InstanceTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="timeZone")
