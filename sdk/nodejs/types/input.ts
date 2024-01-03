@@ -792,9 +792,13 @@ export namespace ebs {
 export namespace ecs {
     export interface InstanceCpuOptions {
         /**
-         * The per core of threads,only support for ebm.
+         * The number of subnuma in socket, only support for ebm. `1` indicates disabling SNC/NPS function. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
          */
-        threadsPerCore: pulumi.Input<number>;
+        numaPerSocket?: pulumi.Input<number>;
+        /**
+         * The per core of threads, only support for ebm. `1` indicates disabling hyper threading function.
+         */
+        threadsPerCore?: pulumi.Input<number>;
     }
 
     export interface InstanceDataVolume {
@@ -1578,6 +1582,38 @@ export namespace rds_mysql {
         parameterValue: pulumi.Input<string>;
     }
 
+    export interface InstanceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface InstancesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface InstancesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
 }
 
 export namespace rds_v2 {

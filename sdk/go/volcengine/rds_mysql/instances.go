@@ -112,6 +112,8 @@ type InstancesArgs struct {
 	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// Tags.
+	Tags []InstancesTag `pulumi:"tags"`
 	// The available zone of the RDS instance.
 	ZoneId *string `pulumi:"zoneId"`
 }
@@ -138,6 +140,8 @@ type InstancesResult struct {
 	OutputFile     *string `pulumi:"outputFile"`
 	// The collection of RDS instance query.
 	RdsMysqlInstances []InstancesRdsMysqlInstance `pulumi:"rdsMysqlInstances"`
+	// Tags.
+	Tags []InstancesTag `pulumi:"tags"`
 	// The total count of RDS instance query.
 	TotalCount int `pulumi:"totalCount"`
 	// The available zone of the RDS instance.
@@ -177,6 +181,8 @@ type InstancesOutputArgs struct {
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// Tags.
+	Tags InstancesTagArrayInput `pulumi:"tags"`
 	// The available zone of the RDS instance.
 	ZoneId pulumi.StringPtrInput `pulumi:"zoneId"`
 }
@@ -251,6 +257,11 @@ func (o InstancesResultOutput) OutputFile() pulumi.StringPtrOutput {
 // The collection of RDS instance query.
 func (o InstancesResultOutput) RdsMysqlInstances() InstancesRdsMysqlInstanceArrayOutput {
 	return o.ApplyT(func(v InstancesResult) []InstancesRdsMysqlInstance { return v.RdsMysqlInstances }).(InstancesRdsMysqlInstanceArrayOutput)
+}
+
+// Tags.
+func (o InstancesResultOutput) Tags() InstancesTagArrayOutput {
+	return o.ApplyT(func(v InstancesResult) []InstancesTag { return v.Tags }).(InstancesTagArrayOutput)
 }
 
 // The total count of RDS instance query.

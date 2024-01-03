@@ -48,6 +48,11 @@ import * as utilities from "../utilities";
  *             parameterValue: "4",
  *         },
  *     ],
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
  * ```
  *
@@ -179,6 +184,10 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly primaryZoneId!: pulumi.Output<string>;
     /**
+     * The project name of the RDS instance.
+     */
+    public readonly projectName!: pulumi.Output<string>;
+    /**
      * The region of the RDS instance.
      */
     public /*out*/ readonly regionId!: pulumi.Output<string>;
@@ -202,6 +211,10 @@ export class Instance extends pulumi.CustomResource {
      * Subnet ID of the RDS instance.
      */
     public readonly subnetId!: pulumi.Output<string>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.rds_mysql.InstanceTag[] | undefined>;
     /**
      * Time zone.
      */
@@ -257,12 +270,14 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["nodes"] = state ? state.nodes : undefined;
             resourceInputs["parameters"] = state ? state.parameters : undefined;
             resourceInputs["primaryZoneId"] = state ? state.primaryZoneId : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["regionId"] = state ? state.regionId : undefined;
             resourceInputs["secondaryZoneId"] = state ? state.secondaryZoneId : undefined;
             resourceInputs["storageSpace"] = state ? state.storageSpace : undefined;
             resourceInputs["storageType"] = state ? state.storageType : undefined;
             resourceInputs["storageUse"] = state ? state.storageUse : undefined;
             resourceInputs["subnetId"] = state ? state.subnetId : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["timeZone"] = state ? state.timeZone : undefined;
             resourceInputs["updateTime"] = state ? state.updateTime : undefined;
             resourceInputs["vCpu"] = state ? state.vCpu : undefined;
@@ -297,9 +312,11 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["nodeSpec"] = args ? args.nodeSpec : undefined;
             resourceInputs["parameters"] = args ? args.parameters : undefined;
             resourceInputs["primaryZoneId"] = args ? args.primaryZoneId : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["secondaryZoneId"] = args ? args.secondaryZoneId : undefined;
             resourceInputs["storageSpace"] = args ? args.storageSpace : undefined;
             resourceInputs["subnetId"] = args ? args.subnetId : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["allowListVersion"] = undefined /*out*/;
             resourceInputs["backupUse"] = undefined /*out*/;
             resourceInputs["chargeDetails"] = undefined /*out*/;
@@ -422,6 +439,10 @@ export interface InstanceState {
      */
     primaryZoneId?: pulumi.Input<string>;
     /**
+     * The project name of the RDS instance.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * The region of the RDS instance.
      */
     regionId?: pulumi.Input<string>;
@@ -445,6 +466,10 @@ export interface InstanceState {
      * Subnet ID of the RDS instance.
      */
     subnetId?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.rds_mysql.InstanceTag>[]>;
     /**
      * Time zone.
      */
@@ -515,6 +540,10 @@ export interface InstanceArgs {
      */
     primaryZoneId: pulumi.Input<string>;
     /**
+     * The project name of the RDS instance.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * The available zone of secondary node.
      */
     secondaryZoneId: pulumi.Input<string>;
@@ -526,4 +555,8 @@ export interface InstanceArgs {
      * Subnet ID of the RDS instance.
      */
     subnetId: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.rds_mysql.InstanceTag>[]>;
 }

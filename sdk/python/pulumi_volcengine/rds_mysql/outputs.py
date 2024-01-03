@@ -26,6 +26,7 @@ __all__ = [
     'InstanceMaintenanceWindow',
     'InstanceNode',
     'InstanceParameter',
+    'InstanceTag',
     'InstancesRdsMysqlInstanceResult',
     'InstancesRdsMysqlInstanceChargeDetailResult',
     'InstancesRdsMysqlInstanceEndpointResult',
@@ -33,6 +34,8 @@ __all__ = [
     'InstancesRdsMysqlInstanceEndpointNodeWeightResult',
     'InstancesRdsMysqlInstanceMaintenanceWindowResult',
     'InstancesRdsMysqlInstanceNodeResult',
+    'InstancesRdsMysqlInstanceTagResult',
+    'InstancesTagResult',
 ]
 
 @pulumi.output_type
@@ -1294,6 +1297,35 @@ class InstanceParameter(dict):
 
 
 @pulumi.output_type
+class InstanceTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class InstancesRdsMysqlInstanceResult(dict):
     def __init__(__self__, *,
                  allow_list_version: str,
@@ -1313,11 +1345,13 @@ class InstancesRdsMysqlInstanceResult(dict):
                  node_number: int,
                  node_spec: str,
                  nodes: Sequence['outputs.InstancesRdsMysqlInstanceNodeResult'],
+                 project_name: str,
                  region_id: str,
                  storage_space: int,
                  storage_type: str,
                  storage_use: int,
                  subnet_id: str,
+                 tags: Sequence['outputs.InstancesRdsMysqlInstanceTagResult'],
                  time_zone: str,
                  update_time: str,
                  v_cpu: int,
@@ -1344,11 +1378,13 @@ class InstancesRdsMysqlInstanceResult(dict):
         :param int node_number: The number of nodes.
         :param str node_spec: General instance type, different from Custom instance type.
         :param Sequence['InstancesRdsMysqlInstanceNodeArgs'] nodes: Instance node information.
+        :param str project_name: The project name of the RDS instance.
         :param str region_id: The region of the RDS instance.
         :param int storage_space: Total instance storage space. Unit: GB.
         :param str storage_type: Instance storage type.
         :param int storage_use: The instance has used storage space. Unit: GB.
         :param str subnet_id: The subnet ID of the RDS instance.
+        :param Sequence['InstancesRdsMysqlInstanceTagArgs'] tags: Tags.
         :param str time_zone: Time zone.
         :param str update_time: The update time of the RDS instance.
         :param int v_cpu: CPU size.
@@ -1372,11 +1408,13 @@ class InstancesRdsMysqlInstanceResult(dict):
         pulumi.set(__self__, "node_number", node_number)
         pulumi.set(__self__, "node_spec", node_spec)
         pulumi.set(__self__, "nodes", nodes)
+        pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "region_id", region_id)
         pulumi.set(__self__, "storage_space", storage_space)
         pulumi.set(__self__, "storage_type", storage_type)
         pulumi.set(__self__, "storage_use", storage_use)
         pulumi.set(__self__, "subnet_id", subnet_id)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "time_zone", time_zone)
         pulumi.set(__self__, "update_time", update_time)
         pulumi.set(__self__, "v_cpu", v_cpu)
@@ -1523,6 +1561,14 @@ class InstancesRdsMysqlInstanceResult(dict):
         return pulumi.get(self, "nodes")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the RDS instance.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="regionId")
     def region_id(self) -> str:
         """
@@ -1561,6 +1607,14 @@ class InstancesRdsMysqlInstanceResult(dict):
         The subnet ID of the RDS instance.
         """
         return pulumi.get(self, "subnet_id")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.InstancesRdsMysqlInstanceTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="timeZone")
@@ -2163,5 +2217,63 @@ class InstancesRdsMysqlInstanceNodeResult(dict):
         The available zone of the RDS instance.
         """
         return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class InstancesRdsMysqlInstanceTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class InstancesTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 

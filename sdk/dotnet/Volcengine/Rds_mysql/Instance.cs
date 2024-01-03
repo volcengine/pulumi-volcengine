@@ -66,6 +66,15 @@ namespace Volcengine.Pulumi.Volcengine.Rds_mysql
     ///                 ParameterValue = "4",
     ///             },
     ///         },
+    ///         ProjectName = "default",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Rds_mysql.Inputs.InstanceTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
     ///     });
     /// 
     /// });
@@ -216,6 +225,12 @@ namespace Volcengine.Pulumi.Volcengine.Rds_mysql
         public Output<string> PrimaryZoneId { get; private set; } = null!;
 
         /// <summary>
+        /// The project name of the RDS instance.
+        /// </summary>
+        [Output("projectName")]
+        public Output<string> ProjectName { get; private set; } = null!;
+
+        /// <summary>
         /// The region of the RDS instance.
         /// </summary>
         [Output("regionId")]
@@ -250,6 +265,12 @@ namespace Volcengine.Pulumi.Volcengine.Rds_mysql
         /// </summary>
         [Output("subnetId")]
         public Output<string> SubnetId { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.InstanceTag>> Tags { get; private set; } = null!;
 
         /// <summary>
         /// Time zone.
@@ -402,6 +423,12 @@ namespace Volcengine.Pulumi.Volcengine.Rds_mysql
         public Input<string> PrimaryZoneId { get; set; } = null!;
 
         /// <summary>
+        /// The project name of the RDS instance.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
         /// The available zone of secondary node.
         /// </summary>
         [Input("secondaryZoneId", required: true)]
@@ -418,6 +445,18 @@ namespace Volcengine.Pulumi.Volcengine.Rds_mysql
         /// </summary>
         [Input("subnetId", required: true)]
         public Input<string> SubnetId { get; set; } = null!;
+
+        [Input("tags")]
+        private InputList<Inputs.InstanceTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.InstanceTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.InstanceTagArgs>());
+            set => _tags = value;
+        }
 
         public InstanceArgs()
         {
@@ -597,6 +636,12 @@ namespace Volcengine.Pulumi.Volcengine.Rds_mysql
         public Input<string>? PrimaryZoneId { get; set; }
 
         /// <summary>
+        /// The project name of the RDS instance.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
         /// The region of the RDS instance.
         /// </summary>
         [Input("regionId")]
@@ -631,6 +676,18 @@ namespace Volcengine.Pulumi.Volcengine.Rds_mysql
         /// </summary>
         [Input("subnetId")]
         public Input<string>? SubnetId { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.InstanceTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.InstanceTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.InstanceTagGetArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// Time zone.

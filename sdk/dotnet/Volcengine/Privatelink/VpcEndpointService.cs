@@ -46,6 +46,8 @@ namespace Volcengine.Pulumi.Volcengine.Privatelink
     /// ```sh
     ///  $ pulumi import volcengine:privatelink/vpcEndpointService:VpcEndpointService default epsvc-2fe630gurkl37k5gfuy33****
     /// ```
+    /// 
+    ///  It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignore_changes to suppress changes to the resources field.
     /// </summary>
     [VolcengineResourceType("volcengine:privatelink/vpcEndpointService:VpcEndpointService")]
     public partial class VpcEndpointService : global::Pulumi.CustomResource
@@ -69,7 +71,7 @@ namespace Volcengine.Pulumi.Volcengine.Privatelink
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// The resources info. When create vpc endpoint service, the resource must exist.
+        /// The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignore_changes to suppress changes to the resources field.
         /// </summary>
         [Output("resources")]
         public Output<ImmutableArray<Outputs.VpcEndpointServiceResource>> Resources { get; private set; } = null!;
@@ -185,7 +187,7 @@ namespace Volcengine.Pulumi.Volcengine.Privatelink
         private InputList<Inputs.VpcEndpointServiceResourceArgs>? _resources;
 
         /// <summary>
-        /// The resources info. When create vpc endpoint service, the resource must exist.
+        /// The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignore_changes to suppress changes to the resources field.
         /// </summary>
         public InputList<Inputs.VpcEndpointServiceResourceArgs> Resources
         {
@@ -223,7 +225,7 @@ namespace Volcengine.Pulumi.Volcengine.Privatelink
         private InputList<Inputs.VpcEndpointServiceResourceGetArgs>? _resources;
 
         /// <summary>
-        /// The resources info. When create vpc endpoint service, the resource must exist.
+        /// The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignore_changes to suppress changes to the resources field.
         /// </summary>
         public InputList<Inputs.VpcEndpointServiceResourceGetArgs> Resources
         {

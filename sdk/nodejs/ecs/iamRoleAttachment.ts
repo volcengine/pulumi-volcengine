@@ -6,6 +6,68 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a resource to manage iam role attachment
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
+ *
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
+ *     securityGroupName: "acc-test-security-group",
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooImages = volcengine.ecs.Images({
+ *     osType: "Linux",
+ *     visibility: "public",
+ *     instanceTypeId: "ecs.g1ie.large",
+ * });
+ * const fooInstance = new volcengine.ecs.Instance("fooInstance", {
+ *     instanceName: "acc-test-ecs",
+ *     description: "acc-test",
+ *     hostName: "tf-acc-test",
+ *     imageId: fooImages.then(fooImages => fooImages.images?.[0]?.imageId),
+ *     instanceType: "ecs.g1ie.large",
+ *     password: "93f0cb0614Aab12",
+ *     instanceChargeType: "PostPaid",
+ *     systemVolumeType: "ESSD_PL0",
+ *     systemVolumeSize: 40,
+ *     dataVolumes: [{
+ *         volumeType: "ESSD_PL0",
+ *         size: 50,
+ *         deleteWithInstance: true,
+ *     }],
+ *     subnetId: fooSubnet.id,
+ *     securityGroupIds: [fooSecurityGroup.id],
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooRole = new volcengine.iam.Role("fooRole", {
+ *     roleName: "acc-test-role",
+ *     displayName: "acc-test",
+ *     description: "acc-test",
+ *     trustPolicyDocument: "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"ecs\"]}}]}",
+ *     maxSessionDuration: 36000,
+ * });
+ * const fooIamRoleAttachment = new volcengine.ecs.IamRoleAttachment("fooIamRoleAttachment", {
+ *     iamRoleName: fooRole.id,
+ *     instanceId: fooInstance.id,
+ * });
+ * ```
  *
  * ## Import
  *

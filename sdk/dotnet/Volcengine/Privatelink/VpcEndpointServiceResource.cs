@@ -50,12 +50,14 @@ namespace Volcengine.Pulumi.Volcengine.Privatelink
     /// ```sh
     ///  $ pulumi import volcengine:privatelink/vpcEndpointServiceResource:VpcEndpointServiceResource default epsvc-2fe630gurkl37k5gfuy33****:clb-bp1o94dp5i6ea****
     /// ```
+    /// 
+    ///  It is not recommended to use this resource for binding resources, it is recommended to use the resources field of vpc_endpoint_service for binding. If using this resource and vpc_endpoint_service jointly for operations, use lifecycle ignore_changes to suppress changes to the resources field in vpc_endpoint_service.
     /// </summary>
     [VolcengineResourceType("volcengine:privatelink/vpcEndpointServiceResource:VpcEndpointServiceResource")]
     public partial class VpcEndpointServiceResource : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The id of resource.
+        /// The id of resource. It is not recommended to use this resource for binding resources, it is recommended to use the resources field of vpc_endpoint_service for binding. If using this resource and vpc_endpoint_service jointly for operations, use lifecycle ignore_changes to suppress changes to the resources field in vpc_endpoint_service.
         /// </summary>
         [Output("resourceId")]
         public Output<string> ResourceId { get; private set; } = null!;
@@ -114,7 +116,7 @@ namespace Volcengine.Pulumi.Volcengine.Privatelink
     public sealed class VpcEndpointServiceResourceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The id of resource.
+        /// The id of resource. It is not recommended to use this resource for binding resources, it is recommended to use the resources field of vpc_endpoint_service for binding. If using this resource and vpc_endpoint_service jointly for operations, use lifecycle ignore_changes to suppress changes to the resources field in vpc_endpoint_service.
         /// </summary>
         [Input("resourceId", required: true)]
         public Input<string> ResourceId { get; set; } = null!;
@@ -134,7 +136,7 @@ namespace Volcengine.Pulumi.Volcengine.Privatelink
     public sealed class VpcEndpointServiceResourceState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The id of resource.
+        /// The id of resource. It is not recommended to use this resource for binding resources, it is recommended to use the resources field of vpc_endpoint_service for binding. If using this resource and vpc_endpoint_service jointly for operations, use lifecycle ignore_changes to suppress changes to the resources field in vpc_endpoint_service.
         /// </summary>
         [Input("resourceId")]
         public Input<string>? ResourceId { get; set; }

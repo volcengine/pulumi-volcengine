@@ -12,6 +12,99 @@ namespace Volcengine.Pulumi.Volcengine.Ecs
 {
     /// <summary>
     /// Provides a resource to manage iam role attachment
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Volcengine = Pulumi.Volcengine;
+    /// using Volcengine = Volcengine.Pulumi.Volcengine;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
+    /// 
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
+    ///     {
+    ///         VpcName = "acc-test-vpc",
+    ///         CidrBlock = "172.16.0.0/16",
+    ///     });
+    /// 
+    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
+    ///     {
+    ///         SubnetName = "acc-test-subnet",
+    ///         CidrBlock = "172.16.0.0/24",
+    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooSecurityGroup = new Volcengine.Vpc.SecurityGroup("fooSecurityGroup", new()
+    ///     {
+    ///         SecurityGroupName = "acc-test-security-group",
+    ///         VpcId = fooVpc.Id,
+    ///     });
+    /// 
+    ///     var fooImages = Volcengine.Ecs.Images.Invoke(new()
+    ///     {
+    ///         OsType = "Linux",
+    ///         Visibility = "public",
+    ///         InstanceTypeId = "ecs.g1ie.large",
+    ///     });
+    /// 
+    ///     var fooInstance = new Volcengine.Ecs.Instance("fooInstance", new()
+    ///     {
+    ///         InstanceName = "acc-test-ecs",
+    ///         Description = "acc-test",
+    ///         HostName = "tf-acc-test",
+    ///         ImageId = fooImages.Apply(imagesResult =&gt; imagesResult.Images[0]?.ImageId),
+    ///         InstanceType = "ecs.g1ie.large",
+    ///         Password = "93f0cb0614Aab12",
+    ///         InstanceChargeType = "PostPaid",
+    ///         SystemVolumeType = "ESSD_PL0",
+    ///         SystemVolumeSize = 40,
+    ///         DataVolumes = new[]
+    ///         {
+    ///             new Volcengine.Ecs.Inputs.InstanceDataVolumeArgs
+    ///             {
+    ///                 VolumeType = "ESSD_PL0",
+    ///                 Size = 50,
+    ///                 DeleteWithInstance = true,
+    ///             },
+    ///         },
+    ///         SubnetId = fooSubnet.Id,
+    ///         SecurityGroupIds = new[]
+    ///         {
+    ///             fooSecurityGroup.Id,
+    ///         },
+    ///         ProjectName = "default",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Ecs.Inputs.InstanceTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var fooRole = new Volcengine.Iam.Role("fooRole", new()
+    ///     {
+    ///         RoleName = "acc-test-role",
+    ///         DisplayName = "acc-test",
+    ///         Description = "acc-test",
+    ///         TrustPolicyDocument = "{\"Statement\":[{\"Effect\":\"Allow\",\"Action\":[\"sts:AssumeRole\"],\"Principal\":{\"Service\":[\"ecs\"]}}]}",
+    ///         MaxSessionDuration = 36000,
+    ///     });
+    /// 
+    ///     var fooIamRoleAttachment = new Volcengine.Ecs.IamRoleAttachment("fooIamRoleAttachment", new()
+    ///     {
+    ///         IamRoleName = fooRole.Id,
+    ///         InstanceId = fooInstance.Id,
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// 
     /// ## Import
     /// 

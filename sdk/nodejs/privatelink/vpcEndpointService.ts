@@ -31,6 +31,8 @@ import * as utilities from "../utilities";
  * ```sh
  *  $ pulumi import volcengine:privatelink/vpcEndpointService:VpcEndpointService default epsvc-2fe630gurkl37k5gfuy33****
  * ```
+ *
+ *  It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignore_changes to suppress changes to the resources field.
  */
 export class VpcEndpointService extends pulumi.CustomResource {
     /**
@@ -73,7 +75,7 @@ export class VpcEndpointService extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
-     * The resources info. When create vpc endpoint service, the resource must exist.
+     * The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignoreChanges to suppress changes to the resources field.
      */
     public readonly resources!: pulumi.Output<outputs.privatelink.VpcEndpointServiceResource[]>;
     /**
@@ -174,7 +176,7 @@ export interface VpcEndpointServiceState {
      */
     description?: pulumi.Input<string>;
     /**
-     * The resources info. When create vpc endpoint service, the resource must exist.
+     * The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignoreChanges to suppress changes to the resources field.
      */
     resources?: pulumi.Input<pulumi.Input<inputs.privatelink.VpcEndpointServiceResource>[]>;
     /**
@@ -224,7 +226,7 @@ export interface VpcEndpointServiceArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * The resources info. When create vpc endpoint service, the resource must exist.
+     * The resources info. When create vpc endpoint service, the resource must exist. It is recommended to bind resources using the resources' field in this resource instead of using vpc_endpoint_service_resource. For operations that jointly use this resource and vpc_endpoint_service_resource, use lifecycle ignoreChanges to suppress changes to the resources field.
      */
     resources: pulumi.Input<pulumi.Input<inputs.privatelink.VpcEndpointServiceResource>[]>;
 }
