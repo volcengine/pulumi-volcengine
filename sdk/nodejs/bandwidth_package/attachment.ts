@@ -10,6 +10,7 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const fooAddress = new volcengine.eip.Address("fooAddress", {
@@ -18,24 +19,84 @@ import * as utilities from "../utilities";
  *     isp: "BGP",
  *     description: "acc-test",
  *     projectName: "default",
- *     securityProtectionTypes: ["AntiDDoS_Enhanced"],
  * });
- * const fooBandwidthPackage = new volcengine.bandwidth_package.BandwidthPackage("fooBandwidthPackage", {
- *     bandwidthPackageName: "acc-test",
+ * const ipv4BandwidthPackage = new volcengine.bandwidth_package.BandwidthPackage("ipv4BandwidthPackage", {
+ *     bandwidthPackageName: "acc-test-bp",
  *     billingType: "PostPaidByBandwidth",
  *     isp: "BGP",
- *     description: "tftest-description",
- *     bandwidth: 10,
+ *     description: "acc-test",
+ *     bandwidth: 2,
  *     protocol: "IPv4",
  *     tags: [{
- *         key: "tftest",
- *         value: "tftest",
+ *         key: "k1",
+ *         value: "v1",
  *     }],
- *     securityProtectionTypes: ["AntiDDoS_Enhanced"],
+ * });
+ * const ipv4Attachment = new volcengine.bandwidth_package.Attachment("ipv4Attachment", {
+ *     allocationId: fooAddress.id,
+ *     bandwidthPackageId: ipv4BandwidthPackage.id,
+ * });
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooImages = volcengine.ecs.Images({
+ *     osType: "Linux",
+ *     visibility: "public",
+ *     instanceTypeId: "ecs.g1.large",
+ * });
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ *     enableIpv6: true,
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ *     ipv6CidrBlock: 1,
+ * });
+ * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
+ *     vpcId: fooVpc.id,
+ *     securityGroupName: "acc-test-security-group",
+ * });
+ * const fooIpv6Gateway = new volcengine.vpc.Ipv6Gateway("fooIpv6Gateway", {
+ *     vpcId: fooVpc.id,
+ *     description: "test",
+ * });
+ * const fooInstance = new volcengine.ecs.Instance("fooInstance", {
+ *     imageId: fooImages.then(fooImages => fooImages.images?.[0]?.imageId),
+ *     instanceType: "ecs.g1.large",
+ *     instanceName: "acc-test-ecs-name",
+ *     password: "93f0cb0614Aab12",
+ *     instanceChargeType: "PostPaid",
+ *     systemVolumeType: "ESSD_PL0",
+ *     systemVolumeSize: 40,
+ *     subnetId: fooSubnet.id,
+ *     securityGroupIds: [fooSecurityGroup.id],
+ *     ipv6AddressCount: 1,
+ * });
+ * const fooIpv6Addresses = volcengine.vpc.Ipv6AddressesOutput({
+ *     associatedInstanceId: fooInstance.id,
+ * });
+ * const fooIpv6AddressBandwidth = new volcengine.vpc.Ipv6AddressBandwidth("fooIpv6AddressBandwidth", {
+ *     ipv6Address: fooIpv6Addresses.apply(fooIpv6Addresses => fooIpv6Addresses.ipv6Addresses?.[0]?.ipv6Address),
+ *     billingType: "PostPaidByBandwidth",
+ *     bandwidth: 5,
+ * });
+ * const ipv6 = new volcengine.bandwidth_package.BandwidthPackage("ipv6", {
+ *     bandwidthPackageName: "acc-test-bp",
+ *     billingType: "PostPaidByBandwidth",
+ *     isp: "BGP",
+ *     description: "acc-test",
+ *     bandwidth: 2,
+ *     protocol: "IPv6",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
  * const fooAttachment = new volcengine.bandwidth_package.Attachment("fooAttachment", {
- *     allocationId: fooAddress.id,
- *     bandwidthPackageId: fooBandwidthPackage.id,
+ *     allocationId: fooIpv6AddressBandwidth.id,
+ *     bandwidthPackageId: ipv6.id,
  * });
  * ```
  *

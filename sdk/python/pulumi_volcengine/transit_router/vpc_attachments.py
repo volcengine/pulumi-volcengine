@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'VpcAttachmentsResult',
@@ -22,7 +23,7 @@ class VpcAttachmentsResult:
     """
     A collection of values returned by VpcAttachments.
     """
-    def __init__(__self__, attachments=None, id=None, output_file=None, total_count=None, transit_router_attachment_ids=None, transit_router_id=None, vpc_id=None):
+    def __init__(__self__, attachments=None, id=None, output_file=None, tags=None, total_count=None, transit_router_attachment_ids=None, transit_router_id=None, vpc_id=None):
         if attachments and not isinstance(attachments, list):
             raise TypeError("Expected argument 'attachments' to be a list")
         pulumi.set(__self__, "attachments", attachments)
@@ -32,6 +33,9 @@ class VpcAttachmentsResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -65,6 +69,14 @@ class VpcAttachmentsResult:
     @pulumi.getter(name="outputFile")
     def output_file(self) -> Optional[str]:
         return pulumi.get(self, "output_file")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.VpcAttachmentsTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="totalCount")
@@ -105,6 +117,7 @@ class AwaitableVpcAttachmentsResult(VpcAttachmentsResult):
             attachments=self.attachments,
             id=self.id,
             output_file=self.output_file,
+            tags=self.tags,
             total_count=self.total_count,
             transit_router_attachment_ids=self.transit_router_attachment_ids,
             transit_router_id=self.transit_router_id,
@@ -112,6 +125,7 @@ class AwaitableVpcAttachmentsResult(VpcAttachmentsResult):
 
 
 def vpc_attachments(output_file: Optional[str] = None,
+                    tags: Optional[Sequence[pulumi.InputType['VpcAttachmentsTagArgs']]] = None,
                     transit_router_attachment_ids: Optional[Sequence[str]] = None,
                     transit_router_id: Optional[str] = None,
                     vpc_id: Optional[str] = None,
@@ -130,12 +144,14 @@ def vpc_attachments(output_file: Optional[str] = None,
 
 
     :param str output_file: File name where to save data source results.
+    :param Sequence[pulumi.InputType['VpcAttachmentsTagArgs']] tags: Tags.
     :param Sequence[str] transit_router_attachment_ids: A list of Transit Router Attachment ids.
     :param str transit_router_id: The id of transit router.
     :param str vpc_id: The id of vpc.
     """
     __args__ = dict()
     __args__['outputFile'] = output_file
+    __args__['tags'] = tags
     __args__['transitRouterAttachmentIds'] = transit_router_attachment_ids
     __args__['transitRouterId'] = transit_router_id
     __args__['vpcId'] = vpc_id
@@ -146,6 +162,7 @@ def vpc_attachments(output_file: Optional[str] = None,
         attachments=pulumi.get(__ret__, 'attachments'),
         id=pulumi.get(__ret__, 'id'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'),
         transit_router_attachment_ids=pulumi.get(__ret__, 'transit_router_attachment_ids'),
         transit_router_id=pulumi.get(__ret__, 'transit_router_id'),
@@ -154,6 +171,7 @@ def vpc_attachments(output_file: Optional[str] = None,
 
 @_utilities.lift_output_func(vpc_attachments)
 def vpc_attachments_output(output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                           tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['VpcAttachmentsTagArgs']]]]] = None,
                            transit_router_attachment_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                            transit_router_id: Optional[pulumi.Input[str]] = None,
                            vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -172,6 +190,7 @@ def vpc_attachments_output(output_file: Optional[pulumi.Input[Optional[str]]] = 
 
 
     :param str output_file: File name where to save data source results.
+    :param Sequence[pulumi.InputType['VpcAttachmentsTagArgs']] tags: Tags.
     :param Sequence[str] transit_router_attachment_ids: A list of Transit Router Attachment ids.
     :param str transit_router_id: The id of transit router.
     :param str vpc_id: The id of vpc.

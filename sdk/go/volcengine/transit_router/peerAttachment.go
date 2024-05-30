@@ -27,14 +27,39 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := transit_router.NewPeerAttachment(ctx, "foo", &transit_router.PeerAttachmentArgs{
-//				Bandwidth:                       pulumi.Int(2),
+//			fooBandwidthPackage, err := transit_router.NewBandwidthPackage(ctx, "fooBandwidthPackage", &transit_router.BandwidthPackageArgs{
+//				TransitRouterBandwidthPackageName: pulumi.String("acc-tf-test"),
+//				Description:                       pulumi.String("acc-test"),
+//				Bandwidth:                         pulumi.Int(2),
+//				Period:                            pulumi.Int(1),
+//				RenewType:                         pulumi.String("Manual"),
+//				RenewPeriod:                       pulumi.Int(1),
+//				RemainRenewTimes:                  -1,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooTransitRouter, err := transit_router.NewTransitRouter(ctx, "fooTransitRouter", &transit_router.TransitRouterArgs{
+//				TransitRouterName: pulumi.String("acc-test-tf"),
+//				Description:       pulumi.String("acc-test-tf"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = transit_router.NewPeerAttachment(ctx, "fooPeerAttachment", &transit_router.PeerAttachmentArgs{
+//				TransitRouterId:                 fooTransitRouter.ID(),
+//				TransitRouterAttachmentName:     pulumi.String("acc-test-tf"),
 //				Description:                     pulumi.String("tf-test"),
-//				PeerTransitRouterId:             pulumi.String("tr-3jgsfiktn0feo3pncmfb5****"),
-//				PeerTransitRouterRegionId:       pulumi.String("cn-beijing"),
-//				TransitRouterAttachmentName:     pulumi.String("tf-test-tra"),
-//				TransitRouterBandwidthPackageId: pulumi.String("tbp-cd-2felfww0i6pkw59gp68bq****"),
-//				TransitRouterId:                 pulumi.String("tr-12bbdsa6ode6817q7y1f5****"),
+//				PeerTransitRouterId:             pulumi.String("tr-xxx"),
+//				PeerTransitRouterRegionId:       pulumi.String("cn-xx"),
+//				TransitRouterBandwidthPackageId: fooBandwidthPackage.ID(),
+//				Bandwidth:                       pulumi.Int(2),
+//				Tags: transit_router.PeerAttachmentTagArray{
+//					&transit_router.PeerAttachmentTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -69,6 +94,8 @@ type PeerAttachment struct {
 	PeerTransitRouterRegionId pulumi.StringOutput `pulumi:"peerTransitRouterRegionId"`
 	// The status of the transit router peer attachment.
 	Status pulumi.StringOutput `pulumi:"status"`
+	// Tags.
+	Tags PeerAttachmentTagArrayOutput `pulumi:"tags"`
 	// The name of the transit router peer attachment.
 	TransitRouterAttachmentName pulumi.StringOutput `pulumi:"transitRouterAttachmentName"`
 	// The bandwidth package id of the transit router peer attachment. When specifying this field, the field `bandwidth` must also be specified.
@@ -132,6 +159,8 @@ type peerAttachmentState struct {
 	PeerTransitRouterRegionId *string `pulumi:"peerTransitRouterRegionId"`
 	// The status of the transit router peer attachment.
 	Status *string `pulumi:"status"`
+	// Tags.
+	Tags []PeerAttachmentTag `pulumi:"tags"`
 	// The name of the transit router peer attachment.
 	TransitRouterAttachmentName *string `pulumi:"transitRouterAttachmentName"`
 	// The bandwidth package id of the transit router peer attachment. When specifying this field, the field `bandwidth` must also be specified.
@@ -157,6 +186,8 @@ type PeerAttachmentState struct {
 	PeerTransitRouterRegionId pulumi.StringPtrInput
 	// The status of the transit router peer attachment.
 	Status pulumi.StringPtrInput
+	// Tags.
+	Tags PeerAttachmentTagArrayInput
 	// The name of the transit router peer attachment.
 	TransitRouterAttachmentName pulumi.StringPtrInput
 	// The bandwidth package id of the transit router peer attachment. When specifying this field, the field `bandwidth` must also be specified.
@@ -182,6 +213,8 @@ type peerAttachmentArgs struct {
 	PeerTransitRouterId string `pulumi:"peerTransitRouterId"`
 	// The region id of the peer transit router.
 	PeerTransitRouterRegionId string `pulumi:"peerTransitRouterRegionId"`
+	// Tags.
+	Tags []PeerAttachmentTag `pulumi:"tags"`
 	// The name of the transit router peer attachment.
 	TransitRouterAttachmentName *string `pulumi:"transitRouterAttachmentName"`
 	// The bandwidth package id of the transit router peer attachment. When specifying this field, the field `bandwidth` must also be specified.
@@ -200,6 +233,8 @@ type PeerAttachmentArgs struct {
 	PeerTransitRouterId pulumi.StringInput
 	// The region id of the peer transit router.
 	PeerTransitRouterRegionId pulumi.StringInput
+	// Tags.
+	Tags PeerAttachmentTagArrayInput
 	// The name of the transit router peer attachment.
 	TransitRouterAttachmentName pulumi.StringPtrInput
 	// The bandwidth package id of the transit router peer attachment. When specifying this field, the field `bandwidth` must also be specified.
@@ -323,6 +358,11 @@ func (o PeerAttachmentOutput) PeerTransitRouterRegionId() pulumi.StringOutput {
 // The status of the transit router peer attachment.
 func (o PeerAttachmentOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *PeerAttachment) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o PeerAttachmentOutput) Tags() PeerAttachmentTagArrayOutput {
+	return o.ApplyT(func(v *PeerAttachment) PeerAttachmentTagArrayOutput { return v.Tags }).(PeerAttachmentTagArrayOutput)
 }
 
 // The name of the transit router peer attachment.

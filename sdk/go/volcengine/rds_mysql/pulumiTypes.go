@@ -378,6 +378,8 @@ type AllowlistsAllowList struct {
 	AllowListName string `pulumi:"allowListName"`
 	// The type of the allow list.
 	AllowListType string `pulumi:"allowListType"`
+	// The IP address or a range of IP addresses in CIDR format.
+	AllowLists []string `pulumi:"allowLists"`
 	// The total number of instances bound under the whitelist.
 	AssociatedInstanceNum int `pulumi:"associatedInstanceNum"`
 	// The list of instances.
@@ -406,6 +408,8 @@ type AllowlistsAllowListArgs struct {
 	AllowListName pulumi.StringInput `pulumi:"allowListName"`
 	// The type of the allow list.
 	AllowListType pulumi.StringInput `pulumi:"allowListType"`
+	// The IP address or a range of IP addresses in CIDR format.
+	AllowLists pulumi.StringArrayInput `pulumi:"allowLists"`
 	// The total number of instances bound under the whitelist.
 	AssociatedInstanceNum pulumi.IntInput `pulumi:"associatedInstanceNum"`
 	// The list of instances.
@@ -486,6 +490,11 @@ func (o AllowlistsAllowListOutput) AllowListName() pulumi.StringOutput {
 // The type of the allow list.
 func (o AllowlistsAllowListOutput) AllowListType() pulumi.StringOutput {
 	return o.ApplyT(func(v AllowlistsAllowList) string { return v.AllowListType }).(pulumi.StringOutput)
+}
+
+// The IP address or a range of IP addresses in CIDR format.
+func (o AllowlistsAllowListOutput) AllowLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AllowlistsAllowList) []string { return v.AllowLists }).(pulumi.StringArrayOutput)
 }
 
 // The total number of instances bound under the whitelist.

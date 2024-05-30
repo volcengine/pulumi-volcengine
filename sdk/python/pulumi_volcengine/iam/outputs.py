@@ -10,12 +10,76 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
+    'AccessKeysAccessKeyMetadataResult',
     'PoliciesPolicyResult',
     'RolesRoleResult',
+    'SamlProvidersProviderResult',
     'UserGroupPolicyAttachmentsPolicyResult',
     'UserGroupsUserGroupResult',
     'UsersUserResult',
 ]
+
+@pulumi.output_type
+class AccessKeysAccessKeyMetadataResult(dict):
+    def __init__(__self__, *,
+                 access_key_id: str,
+                 create_date: str,
+                 status: str,
+                 update_date: str,
+                 user_name: str):
+        """
+        :param str access_key_id: The user access key id.
+        :param str create_date: The user access key create date.
+        :param str status: The user access key status.
+        :param str update_date: The user access key update date.
+        :param str user_name: The user names.
+        """
+        pulumi.set(__self__, "access_key_id", access_key_id)
+        pulumi.set(__self__, "create_date", create_date)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "update_date", update_date)
+        pulumi.set(__self__, "user_name", user_name)
+
+    @property
+    @pulumi.getter(name="accessKeyId")
+    def access_key_id(self) -> str:
+        """
+        The user access key id.
+        """
+        return pulumi.get(self, "access_key_id")
+
+    @property
+    @pulumi.getter(name="createDate")
+    def create_date(self) -> str:
+        """
+        The user access key create date.
+        """
+        return pulumi.get(self, "create_date")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The user access key status.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="updateDate")
+    def update_date(self) -> str:
+        """
+        The user access key update date.
+        """
+        return pulumi.get(self, "update_date")
+
+    @property
+    @pulumi.getter(name="userName")
+    def user_name(self) -> str:
+        """
+        The user names.
+        """
+        return pulumi.get(self, "user_name")
+
 
 @pulumi.output_type
 class PoliciesPolicyResult(dict):
@@ -227,6 +291,101 @@ class RolesRoleResult(dict):
         The trust policy document of the Role.
         """
         return pulumi.get(self, "trust_policy_document")
+
+
+@pulumi.output_type
+class SamlProvidersProviderResult(dict):
+    def __init__(__self__, *,
+                 create_date: str,
+                 description: str,
+                 encoded_saml_metadata_document: str,
+                 saml_provider_name: str,
+                 sso_type: int,
+                 status: int,
+                 trn: str,
+                 update_date: str):
+        """
+        :param str create_date: Identity provider creation time, such as 20150123T123318Z.
+        :param str description: The description of the SAML provider.
+        :param str encoded_saml_metadata_document: Metadata document, encoded in Base64.
+        :param str saml_provider_name: The name of the SAML provider.
+        :param int sso_type: SSO types, 1. Role-based SSO, 2. User-based SSO.
+        :param int status: User SSO status, 1. Enabled, 2. Disable other console login methods after enabling, 3. Disabled, is a required field when creating user SSO.
+        :param str trn: The format for the resource name of an identity provider is trn:iam::${accountID}:saml-provider/{$SAMLProviderName}.
+        :param str update_date: Identity provider update time, such as: 20150123T123318Z.
+        """
+        pulumi.set(__self__, "create_date", create_date)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "encoded_saml_metadata_document", encoded_saml_metadata_document)
+        pulumi.set(__self__, "saml_provider_name", saml_provider_name)
+        pulumi.set(__self__, "sso_type", sso_type)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "trn", trn)
+        pulumi.set(__self__, "update_date", update_date)
+
+    @property
+    @pulumi.getter(name="createDate")
+    def create_date(self) -> str:
+        """
+        Identity provider creation time, such as 20150123T123318Z.
+        """
+        return pulumi.get(self, "create_date")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The description of the SAML provider.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="encodedSamlMetadataDocument")
+    def encoded_saml_metadata_document(self) -> str:
+        """
+        Metadata document, encoded in Base64.
+        """
+        return pulumi.get(self, "encoded_saml_metadata_document")
+
+    @property
+    @pulumi.getter(name="samlProviderName")
+    def saml_provider_name(self) -> str:
+        """
+        The name of the SAML provider.
+        """
+        return pulumi.get(self, "saml_provider_name")
+
+    @property
+    @pulumi.getter(name="ssoType")
+    def sso_type(self) -> int:
+        """
+        SSO types, 1. Role-based SSO, 2. User-based SSO.
+        """
+        return pulumi.get(self, "sso_type")
+
+    @property
+    @pulumi.getter
+    def status(self) -> int:
+        """
+        User SSO status, 1. Enabled, 2. Disable other console login methods after enabling, 3. Disabled, is a required field when creating user SSO.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def trn(self) -> str:
+        """
+        The format for the resource name of an identity provider is trn:iam::${accountID}:saml-provider/{$SAMLProviderName}.
+        """
+        return pulumi.get(self, "trn")
+
+    @property
+    @pulumi.getter(name="updateDate")
+    def update_date(self) -> str:
+        """
+        Identity provider update time, such as: 20150123T123318Z.
+        """
+        return pulumi.get(self, "update_date")
 
 
 @pulumi.output_type

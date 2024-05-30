@@ -10,6 +10,11 @@ export type AccessKey = import("./accessKey").AccessKey;
 export const AccessKey: typeof import("./accessKey").AccessKey = null as any;
 utilities.lazyLoad(exports, ["AccessKey"], () => require("./accessKey"));
 
+export { AccessKeysArgs, AccessKeysResult, AccessKeysOutputArgs } from "./accessKeys";
+export const accessKeys: typeof import("./accessKeys").accessKeys = null as any;
+export const accessKeysOutput: typeof import("./accessKeys").accessKeysOutput = null as any;
+utilities.lazyLoad(exports, ["accessKeys","accessKeysOutput"], () => require("./accessKeys"));
+
 export { LoginProfileArgs, LoginProfileState } from "./loginProfile";
 export type LoginProfile = import("./loginProfile").LoginProfile;
 export const LoginProfile: typeof import("./loginProfile").LoginProfile = null as any;
@@ -39,6 +44,16 @@ export { RolesArgs, RolesResult, RolesOutputArgs } from "./roles";
 export const roles: typeof import("./roles").roles = null as any;
 export const rolesOutput: typeof import("./roles").rolesOutput = null as any;
 utilities.lazyLoad(exports, ["roles","rolesOutput"], () => require("./roles"));
+
+export { SamlProviderArgs, SamlProviderState } from "./samlProvider";
+export type SamlProvider = import("./samlProvider").SamlProvider;
+export const SamlProvider: typeof import("./samlProvider").SamlProvider = null as any;
+utilities.lazyLoad(exports, ["SamlProvider"], () => require("./samlProvider"));
+
+export { SamlProvidersArgs, SamlProvidersResult, SamlProvidersOutputArgs } from "./samlProviders";
+export const samlProviders: typeof import("./samlProviders").samlProviders = null as any;
+export const samlProvidersOutput: typeof import("./samlProviders").samlProvidersOutput = null as any;
+utilities.lazyLoad(exports, ["samlProviders","samlProvidersOutput"], () => require("./samlProviders"));
 
 export { UserArgs, UserState } from "./user";
 export type User = import("./user").User;
@@ -95,6 +110,8 @@ const _module = {
                 return new Role(name, <any>undefined, { urn })
             case "volcengine:iam/rolePolicyAttachment:RolePolicyAttachment":
                 return new RolePolicyAttachment(name, <any>undefined, { urn })
+            case "volcengine:iam/samlProvider:SamlProvider":
+                return new SamlProvider(name, <any>undefined, { urn })
             case "volcengine:iam/user:User":
                 return new User(name, <any>undefined, { urn })
             case "volcengine:iam/userGroup:UserGroup":
@@ -115,6 +132,7 @@ pulumi.runtime.registerResourceModule("volcengine", "iam/loginProfile", _module)
 pulumi.runtime.registerResourceModule("volcengine", "iam/policy", _module)
 pulumi.runtime.registerResourceModule("volcengine", "iam/role", _module)
 pulumi.runtime.registerResourceModule("volcengine", "iam/rolePolicyAttachment", _module)
+pulumi.runtime.registerResourceModule("volcengine", "iam/samlProvider", _module)
 pulumi.runtime.registerResourceModule("volcengine", "iam/user", _module)
 pulumi.runtime.registerResourceModule("volcengine", "iam/userGroup", _module)
 pulumi.runtime.registerResourceModule("volcengine", "iam/userGroupAttachment", _module)

@@ -25,9 +25,14 @@ import * as utilities from "../utilities";
  *             permission: "WRITE_ACP",
  *         },
  *     ],
- *     bucketName: "test-xym-1",
+ *     bucketName: "tf-acc-test-bucket",
  *     enableVersion: true,
+ *     projectName: "default",
  *     publicAcl: "private",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
  * ```
  *
@@ -96,6 +101,10 @@ export class Bucket extends pulumi.CustomResource {
      */
     public /*out*/ readonly location!: pulumi.Output<string>;
     /**
+     * The ProjectName of the Tos Bucket. Default is `default`.
+     */
+    public readonly projectName!: pulumi.Output<string | undefined>;
+    /**
      * The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
      */
     public readonly publicAcl!: pulumi.Output<string | undefined>;
@@ -103,6 +112,10 @@ export class Bucket extends pulumi.CustomResource {
      * The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
      */
     public readonly storageClass!: pulumi.Output<string | undefined>;
+    /**
+     * Tos Bucket Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.tos.BucketTag[] | undefined>;
 
     /**
      * Create a Bucket resource with the given unique name, arguments, and options.
@@ -124,8 +137,10 @@ export class Bucket extends pulumi.CustomResource {
             resourceInputs["extranetEndpoint"] = state ? state.extranetEndpoint : undefined;
             resourceInputs["intranetEndpoint"] = state ? state.intranetEndpoint : undefined;
             resourceInputs["location"] = state ? state.location : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["publicAcl"] = state ? state.publicAcl : undefined;
             resourceInputs["storageClass"] = state ? state.storageClass : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
         } else {
             const args = argsOrState as BucketArgs | undefined;
             if ((!args || args.bucketName === undefined) && !opts.urn) {
@@ -134,8 +149,10 @@ export class Bucket extends pulumi.CustomResource {
             resourceInputs["accountAcls"] = args ? args.accountAcls : undefined;
             resourceInputs["bucketName"] = args ? args.bucketName : undefined;
             resourceInputs["enableVersion"] = args ? args.enableVersion : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["publicAcl"] = args ? args.publicAcl : undefined;
             resourceInputs["storageClass"] = args ? args.storageClass : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["creationDate"] = undefined /*out*/;
             resourceInputs["extranetEndpoint"] = undefined /*out*/;
             resourceInputs["intranetEndpoint"] = undefined /*out*/;
@@ -179,6 +196,10 @@ export interface BucketState {
      */
     location?: pulumi.Input<string>;
     /**
+     * The ProjectName of the Tos Bucket. Default is `default`.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
      */
     publicAcl?: pulumi.Input<string>;
@@ -186,6 +207,10 @@ export interface BucketState {
      * The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
      */
     storageClass?: pulumi.Input<string>;
+    /**
+     * Tos Bucket Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.tos.BucketTag>[]>;
 }
 
 /**
@@ -205,6 +230,10 @@ export interface BucketArgs {
      */
     enableVersion?: pulumi.Input<boolean>;
     /**
+     * The ProjectName of the Tos Bucket. Default is `default`.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
      */
     publicAcl?: pulumi.Input<string>;
@@ -212,4 +241,8 @@ export interface BucketArgs {
      * The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
      */
     storageClass?: pulumi.Input<string>;
+    /**
+     * Tos Bucket Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.tos.BucketTag>[]>;
 }

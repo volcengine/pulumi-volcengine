@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'PeerAttachmentsResult',
@@ -22,7 +23,7 @@ class PeerAttachmentsResult:
     """
     A collection of values returned by PeerAttachments.
     """
-    def __init__(__self__, id=None, ids=None, name_regex=None, output_file=None, peer_transit_router_id=None, peer_transit_router_region_id=None, total_count=None, transit_router_attachment_name=None, transit_router_attachments=None, transit_router_id=None):
+    def __init__(__self__, id=None, ids=None, name_regex=None, output_file=None, peer_transit_router_id=None, peer_transit_router_region_id=None, tags=None, total_count=None, transit_router_attachment_name=None, transit_router_attachments=None, transit_router_id=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -41,6 +42,9 @@ class PeerAttachmentsResult:
         if peer_transit_router_region_id and not isinstance(peer_transit_router_region_id, str):
             raise TypeError("Expected argument 'peer_transit_router_region_id' to be a str")
         pulumi.set(__self__, "peer_transit_router_region_id", peer_transit_router_region_id)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -94,6 +98,14 @@ class PeerAttachmentsResult:
         return pulumi.get(self, "peer_transit_router_region_id")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.PeerAttachmentsTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
         """
@@ -138,6 +150,7 @@ class AwaitablePeerAttachmentsResult(PeerAttachmentsResult):
             output_file=self.output_file,
             peer_transit_router_id=self.peer_transit_router_id,
             peer_transit_router_region_id=self.peer_transit_router_region_id,
+            tags=self.tags,
             total_count=self.total_count,
             transit_router_attachment_name=self.transit_router_attachment_name,
             transit_router_attachments=self.transit_router_attachments,
@@ -149,6 +162,7 @@ def peer_attachments(ids: Optional[Sequence[str]] = None,
                      output_file: Optional[str] = None,
                      peer_transit_router_id: Optional[str] = None,
                      peer_transit_router_region_id: Optional[str] = None,
+                     tags: Optional[Sequence[pulumi.InputType['PeerAttachmentsTagArgs']]] = None,
                      transit_router_attachment_name: Optional[str] = None,
                      transit_router_id: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitablePeerAttachmentsResult:
@@ -169,6 +183,7 @@ def peer_attachments(ids: Optional[Sequence[str]] = None,
     :param str output_file: File name where to save data source results.
     :param str peer_transit_router_id: The id of peer transit router.
     :param str peer_transit_router_region_id: The region id of peer transit router.
+    :param Sequence[pulumi.InputType['PeerAttachmentsTagArgs']] tags: Tags.
     :param str transit_router_attachment_name: The name of transit router peer attachment.
     :param str transit_router_id: The id of local transit router.
     """
@@ -178,6 +193,7 @@ def peer_attachments(ids: Optional[Sequence[str]] = None,
     __args__['outputFile'] = output_file
     __args__['peerTransitRouterId'] = peer_transit_router_id
     __args__['peerTransitRouterRegionId'] = peer_transit_router_region_id
+    __args__['tags'] = tags
     __args__['transitRouterAttachmentName'] = transit_router_attachment_name
     __args__['transitRouterId'] = transit_router_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -190,6 +206,7 @@ def peer_attachments(ids: Optional[Sequence[str]] = None,
         output_file=pulumi.get(__ret__, 'output_file'),
         peer_transit_router_id=pulumi.get(__ret__, 'peer_transit_router_id'),
         peer_transit_router_region_id=pulumi.get(__ret__, 'peer_transit_router_region_id'),
+        tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'),
         transit_router_attachment_name=pulumi.get(__ret__, 'transit_router_attachment_name'),
         transit_router_attachments=pulumi.get(__ret__, 'transit_router_attachments'),
@@ -202,6 +219,7 @@ def peer_attachments_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]]
                             output_file: Optional[pulumi.Input[Optional[str]]] = None,
                             peer_transit_router_id: Optional[pulumi.Input[Optional[str]]] = None,
                             peer_transit_router_region_id: Optional[pulumi.Input[Optional[str]]] = None,
+                            tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['PeerAttachmentsTagArgs']]]]] = None,
                             transit_router_attachment_name: Optional[pulumi.Input[Optional[str]]] = None,
                             transit_router_id: Optional[pulumi.Input[Optional[str]]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[PeerAttachmentsResult]:
@@ -222,6 +240,7 @@ def peer_attachments_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]]
     :param str output_file: File name where to save data source results.
     :param str peer_transit_router_id: The id of peer transit router.
     :param str peer_transit_router_region_id: The region id of peer transit router.
+    :param Sequence[pulumi.InputType['PeerAttachmentsTagArgs']] tags: Tags.
     :param str transit_router_attachment_name: The name of transit router peer attachment.
     :param str transit_router_id: The id of local transit router.
     """

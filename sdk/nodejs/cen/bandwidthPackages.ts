@@ -13,10 +13,28 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = volcengine.cen.BandwidthPackages({
- *     cenId: "cen-2bzrl3srxsv0g2dx0efyoojn3",
- *     ids: ["cbp-2bzeew3s8p79c2dx0eeohej4x"],
+ * const fooBandwidthPackage: volcengine.cen.BandwidthPackage[] = [];
+ * for (const range = {value: 0}; range.value < 2; range.value++) {
+ *     fooBandwidthPackage.push(new volcengine.cen.BandwidthPackage(`fooBandwidthPackage-${range.value}`, {
+ *         localGeographicRegionSetId: "China",
+ *         peerGeographicRegionSetId: "China",
+ *         bandwidth: 2,
+ *         cenBandwidthPackageName: `acc-test-cen-bp-${range.value}`,
+ *         description: "acc-test",
+ *         billingType: "PrePaid",
+ *         periodUnit: "Month",
+ *         period: 1,
+ *         projectName: "default",
+ *         tags: [{
+ *             key: "k1",
+ *             value: "v1",
+ *         }],
+ *     }));
+ * }
+ * const fooBandwidthPackages = volcengine.cen.BandwidthPackagesOutput({
+ *     ids: fooBandwidthPackage.map(__item => __item.id),
  * });
  * ```
  */
@@ -115,10 +133,28 @@ export interface BandwidthPackagesResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = volcengine.cen.BandwidthPackages({
- *     cenId: "cen-2bzrl3srxsv0g2dx0efyoojn3",
- *     ids: ["cbp-2bzeew3s8p79c2dx0eeohej4x"],
+ * const fooBandwidthPackage: volcengine.cen.BandwidthPackage[] = [];
+ * for (const range = {value: 0}; range.value < 2; range.value++) {
+ *     fooBandwidthPackage.push(new volcengine.cen.BandwidthPackage(`fooBandwidthPackage-${range.value}`, {
+ *         localGeographicRegionSetId: "China",
+ *         peerGeographicRegionSetId: "China",
+ *         bandwidth: 2,
+ *         cenBandwidthPackageName: `acc-test-cen-bp-${range.value}`,
+ *         description: "acc-test",
+ *         billingType: "PrePaid",
+ *         periodUnit: "Month",
+ *         period: 1,
+ *         projectName: "default",
+ *         tags: [{
+ *             key: "k1",
+ *             value: "v1",
+ *         }],
+ *     }));
+ * }
+ * const fooBandwidthPackages = volcengine.cen.BandwidthPackagesOutput({
+ *     ids: fooBandwidthPackage.map(__item => __item.id),
  * });
  * ```
  */

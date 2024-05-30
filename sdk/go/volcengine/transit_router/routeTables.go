@@ -26,15 +26,27 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := transit_router.RouteTables(ctx, &transit_router.RouteTablesArgs{
-//				Ids: []string{
-//					"tr-rtb-12b7qd3fmzf2817q7y2jkbd55",
-//				},
-//				TransitRouterId: "tr-2ff4v69tkxji859gp684cm14e",
-//			}, nil)
+//			fooTransitRouter, err := transit_router.NewTransitRouter(ctx, "fooTransitRouter", &transit_router.TransitRouterArgs{
+//				TransitRouterName: pulumi.String("test-tf-acc"),
+//				Description:       pulumi.String("test-tf-acc"),
+//			})
 //			if err != nil {
 //				return err
 //			}
+//			fooRouteTable, err := transit_router.NewRouteTable(ctx, "fooRouteTable", &transit_router.RouteTableArgs{
+//				Description:                 pulumi.String("tf-test-acc-description"),
+//				TransitRouterRouteTableName: pulumi.String("tf-table-test-acc"),
+//				TransitRouterId:             fooTransitRouter.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = transit_router.RouteTablesOutput(ctx, transit_router.RouteTablesOutputArgs{
+//				TransitRouterId: fooTransitRouter.ID(),
+//				Ids: pulumi.StringArray{
+//					fooRouteTable.TransitRouterRouteTableId,
+//				},
+//			}, nil)
 //			return nil
 //		})
 //	}
@@ -56,6 +68,8 @@ type RouteTablesArgs struct {
 	Ids []string `pulumi:"ids"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// Tags.
+	Tags []RouteTablesTag `pulumi:"tags"`
 	// The id of the transit router.
 	TransitRouterId string `pulumi:"transitRouterId"`
 	// The type of the route table. The value can be System or Custom.
@@ -70,6 +84,8 @@ type RouteTablesResult struct {
 	OutputFile *string  `pulumi:"outputFile"`
 	// The list of route tables query.
 	RouteTables []RouteTablesRouteTable `pulumi:"routeTables"`
+	// Tags.
+	Tags []RouteTablesTag `pulumi:"tags"`
 	// The total count of data query.
 	TotalCount      int    `pulumi:"totalCount"`
 	TransitRouterId string `pulumi:"transitRouterId"`
@@ -96,6 +112,8 @@ type RouteTablesOutputArgs struct {
 	Ids pulumi.StringArrayInput `pulumi:"ids"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// Tags.
+	Tags RouteTablesTagArrayInput `pulumi:"tags"`
 	// The id of the transit router.
 	TransitRouterId pulumi.StringInput `pulumi:"transitRouterId"`
 	// The type of the route table. The value can be System or Custom.
@@ -137,6 +155,11 @@ func (o RouteTablesResultOutput) OutputFile() pulumi.StringPtrOutput {
 // The list of route tables query.
 func (o RouteTablesResultOutput) RouteTables() RouteTablesRouteTableArrayOutput {
 	return o.ApplyT(func(v RouteTablesResult) []RouteTablesRouteTable { return v.RouteTables }).(RouteTablesRouteTableArrayOutput)
+}
+
+// Tags.
+func (o RouteTablesResultOutput) Tags() RouteTablesTagArrayOutput {
+	return o.ApplyT(func(v RouteTablesResult) []RouteTablesTag { return v.Tags }).(RouteTablesTagArrayOutput)
 }
 
 // The total count of data query.

@@ -41,8 +41,11 @@ __all__ = [
     'SecurityGroupsSecurityGroupResult',
     'SecurityGroupsSecurityGroupTagResult',
     'SecurityGroupsTagResult',
+    'SubnetTag',
     'SubnetsSubnetResult',
     'SubnetsSubnetRouteTableResult',
+    'SubnetsSubnetTagResult',
+    'SubnetsTagResult',
     'VpcAssociateCen',
     'VpcTag',
     'VpcsTagResult',
@@ -2551,6 +2554,35 @@ class SecurityGroupsTagResult(dict):
 
 
 @pulumi.output_type
+class SubnetTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class SubnetsSubnetResult(dict):
     def __init__(__self__, *,
                  account_id: str,
@@ -2566,6 +2598,7 @@ class SubnetsSubnetResult(dict):
                  route_table_type: str,
                  status: str,
                  subnet_name: str,
+                 tags: Sequence['outputs.SubnetsSubnetTagResult'],
                  total_ipv4_count: int,
                  update_time: str,
                  vpc_id: str,
@@ -2584,6 +2617,7 @@ class SubnetsSubnetResult(dict):
         :param str route_table_type: The route table type.
         :param str status: The Status of Subnet.
         :param str subnet_name: The subnet name to query.
+        :param Sequence['SubnetsSubnetTagArgs'] tags: Tags.
         :param int total_ipv4_count: The Count of ipv4.
         :param str update_time: Update time of Subnet.
         :param str vpc_id: The ID of VPC which subnet belongs to.
@@ -2602,6 +2636,7 @@ class SubnetsSubnetResult(dict):
         pulumi.set(__self__, "route_table_type", route_table_type)
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "subnet_name", subnet_name)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "total_ipv4_count", total_ipv4_count)
         pulumi.set(__self__, "update_time", update_time)
         pulumi.set(__self__, "vpc_id", vpc_id)
@@ -2712,6 +2747,14 @@ class SubnetsSubnetResult(dict):
         return pulumi.get(self, "subnet_name")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.SubnetsSubnetTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="totalIpv4Count")
     def total_ipv4_count(self) -> int:
         """
@@ -2771,6 +2814,64 @@ class SubnetsSubnetRouteTableResult(dict):
         The route table type.
         """
         return pulumi.get(self, "route_table_type")
+
+
+@pulumi.output_type
+class SubnetsSubnetTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class SubnetsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type

@@ -302,63 +302,45 @@ class ServiceRouteEntry(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.cen.ServiceRouteEntry("foo",
-            cen_id="cen-12ar8uclj68sg17q7y20v9gil",
-            description="test-tf",
+        foo_vpc = []
+        for range in [{"value": i} for i in range(0, 3)]:
+            foo_vpc.append(volcengine.vpc.Vpc(f"fooVpc-{range['value']}",
+                vpc_name="acc-test-vpc",
+                cidr_block="172.16.0.0/16"))
+        foo_cen = volcengine.cen.Cen("fooCen",
+            cen_name="acc-test-cen",
+            description="acc-test",
+            project_name="default",
+            tags=[volcengine.cen.CenTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_attach_instance = []
+        for range in [{"value": i} for i in range(0, 3)]:
+            foo_attach_instance.append(volcengine.cen.AttachInstance(f"fooAttachInstance-{range['value']}",
+                cen_id=foo_cen.id,
+                instance_id=foo_vpc[range["value"]].id,
+                instance_region_id="cn-beijing",
+                instance_type="VPC"))
+        foo_service_route_entry = volcengine.cen.ServiceRouteEntry("fooServiceRouteEntry",
+            cen_id=foo_cen.id,
             destination_cidr_block="100.64.0.0/11",
+            service_region_id="cn-beijing",
+            service_vpc_id=foo_attach_instance[0].instance_id,
+            description="acc-test",
             publish_mode="Custom",
             publish_to_instances=[
                 volcengine.cen.ServiceRouteEntryPublishToInstanceArgs(
-                    instance_id="vpc-2fepz36a5ra4g59gp67w197xo",
                     instance_region_id="cn-beijing",
                     instance_type="VPC",
+                    instance_id=foo_attach_instance[1].instance_id,
                 ),
                 volcengine.cen.ServiceRouteEntryPublishToInstanceArgs(
-                    instance_id="vpc-im67wjcikxkw8gbssx8ufpj8",
                     instance_region_id="cn-beijing",
                     instance_type="VPC",
+                    instance_id=foo_attach_instance[2].instance_id,
                 ),
-            ],
-            service_region_id="cn-beijing",
-            service_vpc_id="vpc-im67wjcikxkw8gbssx8ufpj8")
-        foo1 = volcengine.cen.ServiceRouteEntry("foo1",
-            cen_id="cen-12ar8uclj68sg17q7y20v9gil",
-            description="test-tf",
-            destination_cidr_block="100.64.0.0/10",
-            publish_mode="Custom",
-            publish_to_instances=[
-                volcengine.cen.ServiceRouteEntryPublishToInstanceArgs(
-                    instance_id="vpc-2fepz36a5ra4g59gp67w197xo",
-                    instance_region_id="cn-beijing",
-                    instance_type="VPC",
-                ),
-                volcengine.cen.ServiceRouteEntryPublishToInstanceArgs(
-                    instance_id="vpc-im67wjcikxkw8gbssx8ufpj8",
-                    instance_region_id="cn-beijing",
-                    instance_type="VPC",
-                ),
-            ],
-            service_region_id="cn-beijing",
-            service_vpc_id="vpc-im67wjcikxkw8gbssx8ufpj8")
-        foo2 = volcengine.cen.ServiceRouteEntry("foo2",
-            cen_id="cen-12ar8uclj68sg17q7y20v9gil",
-            description="test-tf",
-            destination_cidr_block="100.64.0.0/12",
-            publish_mode="Custom",
-            publish_to_instances=[
-                volcengine.cen.ServiceRouteEntryPublishToInstanceArgs(
-                    instance_id="vpc-2fepz36a5ra4g59gp67w197xo",
-                    instance_region_id="cn-beijing",
-                    instance_type="VPC",
-                ),
-                volcengine.cen.ServiceRouteEntryPublishToInstanceArgs(
-                    instance_id="vpc-im67wjcikxkw8gbssx8ufpj8",
-                    instance_region_id="cn-beijing",
-                    instance_type="VPC",
-                ),
-            ],
-            service_region_id="cn-beijing",
-            service_vpc_id="vpc-im67wjcikxkw8gbssx8ufpj8")
+            ])
         ```
 
         ## Import
@@ -393,63 +375,45 @@ class ServiceRouteEntry(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.cen.ServiceRouteEntry("foo",
-            cen_id="cen-12ar8uclj68sg17q7y20v9gil",
-            description="test-tf",
+        foo_vpc = []
+        for range in [{"value": i} for i in range(0, 3)]:
+            foo_vpc.append(volcengine.vpc.Vpc(f"fooVpc-{range['value']}",
+                vpc_name="acc-test-vpc",
+                cidr_block="172.16.0.0/16"))
+        foo_cen = volcengine.cen.Cen("fooCen",
+            cen_name="acc-test-cen",
+            description="acc-test",
+            project_name="default",
+            tags=[volcengine.cen.CenTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_attach_instance = []
+        for range in [{"value": i} for i in range(0, 3)]:
+            foo_attach_instance.append(volcengine.cen.AttachInstance(f"fooAttachInstance-{range['value']}",
+                cen_id=foo_cen.id,
+                instance_id=foo_vpc[range["value"]].id,
+                instance_region_id="cn-beijing",
+                instance_type="VPC"))
+        foo_service_route_entry = volcengine.cen.ServiceRouteEntry("fooServiceRouteEntry",
+            cen_id=foo_cen.id,
             destination_cidr_block="100.64.0.0/11",
+            service_region_id="cn-beijing",
+            service_vpc_id=foo_attach_instance[0].instance_id,
+            description="acc-test",
             publish_mode="Custom",
             publish_to_instances=[
                 volcengine.cen.ServiceRouteEntryPublishToInstanceArgs(
-                    instance_id="vpc-2fepz36a5ra4g59gp67w197xo",
                     instance_region_id="cn-beijing",
                     instance_type="VPC",
+                    instance_id=foo_attach_instance[1].instance_id,
                 ),
                 volcengine.cen.ServiceRouteEntryPublishToInstanceArgs(
-                    instance_id="vpc-im67wjcikxkw8gbssx8ufpj8",
                     instance_region_id="cn-beijing",
                     instance_type="VPC",
+                    instance_id=foo_attach_instance[2].instance_id,
                 ),
-            ],
-            service_region_id="cn-beijing",
-            service_vpc_id="vpc-im67wjcikxkw8gbssx8ufpj8")
-        foo1 = volcengine.cen.ServiceRouteEntry("foo1",
-            cen_id="cen-12ar8uclj68sg17q7y20v9gil",
-            description="test-tf",
-            destination_cidr_block="100.64.0.0/10",
-            publish_mode="Custom",
-            publish_to_instances=[
-                volcengine.cen.ServiceRouteEntryPublishToInstanceArgs(
-                    instance_id="vpc-2fepz36a5ra4g59gp67w197xo",
-                    instance_region_id="cn-beijing",
-                    instance_type="VPC",
-                ),
-                volcengine.cen.ServiceRouteEntryPublishToInstanceArgs(
-                    instance_id="vpc-im67wjcikxkw8gbssx8ufpj8",
-                    instance_region_id="cn-beijing",
-                    instance_type="VPC",
-                ),
-            ],
-            service_region_id="cn-beijing",
-            service_vpc_id="vpc-im67wjcikxkw8gbssx8ufpj8")
-        foo2 = volcengine.cen.ServiceRouteEntry("foo2",
-            cen_id="cen-12ar8uclj68sg17q7y20v9gil",
-            description="test-tf",
-            destination_cidr_block="100.64.0.0/12",
-            publish_mode="Custom",
-            publish_to_instances=[
-                volcengine.cen.ServiceRouteEntryPublishToInstanceArgs(
-                    instance_id="vpc-2fepz36a5ra4g59gp67w197xo",
-                    instance_region_id="cn-beijing",
-                    instance_type="VPC",
-                ),
-                volcengine.cen.ServiceRouteEntryPublishToInstanceArgs(
-                    instance_id="vpc-im67wjcikxkw8gbssx8ufpj8",
-                    instance_region_id="cn-beijing",
-                    instance_type="VPC",
-                ),
-            ],
-            service_region_id="cn-beijing",
-            service_vpc_id="vpc-im67wjcikxkw8gbssx8ufpj8")
+            ])
         ```
 
         ## Import

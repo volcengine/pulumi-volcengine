@@ -97,9 +97,9 @@ export class Gateway extends pulumi.CustomResource {
      */
     public readonly projectName!: pulumi.Output<string>;
     /**
-     * The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
+     * The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
      */
-    public readonly spec!: pulumi.Output<string | undefined>;
+    public readonly spec!: pulumi.Output<string>;
     /**
      * The ID of the Subnet.
      */
@@ -183,7 +183,7 @@ export interface GatewayState {
      */
     projectName?: pulumi.Input<string>;
     /**
-     * The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
+     * The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
      */
     spec?: pulumi.Input<string>;
     /**
@@ -225,7 +225,7 @@ export interface GatewayArgs {
      */
     projectName?: pulumi.Input<string>;
     /**
-     * The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
+     * The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
      */
     spec?: pulumi.Input<string>;
     /**

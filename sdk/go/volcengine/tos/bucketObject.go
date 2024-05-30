@@ -38,11 +38,17 @@ import (
 //						Permission: pulumi.String("WRITE_ACP"),
 //					},
 //				},
-//				BucketName: pulumi.String("test-xym-1"),
+//				BucketName: pulumi.String("tf-acc-test-bucket"),
 //				Encryption: pulumi.String("AES256"),
 //				FilePath:   pulumi.String("/Users/bytedance/Work/Go/build/test.txt"),
-//				ObjectName: pulumi.String("demo_xym"),
+//				ObjectName: pulumi.String("tf-acc-test-object"),
 //				PublicAcl:  pulumi.String("private"),
+//				Tags: tos.BucketObjectTagArray{
+//					&tos.BucketObjectTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -69,7 +75,7 @@ type BucketObject struct {
 	AccountAcls BucketObjectAccountAclArrayOutput `pulumi:"accountAcls"`
 	// The name of the bucket.
 	BucketName pulumi.StringOutput `pulumi:"bucketName"`
-	// The content the TOS Object when content type is json or text and xml.
+	// The content of the TOS Object when content type is json or text and xml. Only one of `file_path,content` can be specified.
 	Content pulumi.StringOutput `pulumi:"content"`
 	// The file md5 sum (32-bit hexadecimal string) for upload.
 	ContentMd5 pulumi.StringPtrOutput `pulumi:"contentMd5"`
@@ -79,14 +85,16 @@ type BucketObject struct {
 	EnableVersion pulumi.BoolOutput `pulumi:"enableVersion"`
 	// The encryption of the object.Valid value is AES256.
 	Encryption pulumi.StringPtrOutput `pulumi:"encryption"`
-	// The file path for upload.
-	FilePath pulumi.StringOutput `pulumi:"filePath"`
+	// The file path for upload. Only one of `file_path,content` can be specified.
+	FilePath pulumi.StringPtrOutput `pulumi:"filePath"`
 	// The name of the object.
 	ObjectName pulumi.StringOutput `pulumi:"objectName"`
 	// The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
 	PublicAcl pulumi.StringPtrOutput `pulumi:"publicAcl"`
 	// The storage type of the object.Valid value is STANDARD|IA.
 	StorageClass pulumi.StringPtrOutput `pulumi:"storageClass"`
+	// Tos Bucket Tags.
+	Tags BucketObjectTagArrayOutput `pulumi:"tags"`
 	// The version ids of the object if exist.
 	VersionIds pulumi.StringArrayOutput `pulumi:"versionIds"`
 }
@@ -100,9 +108,6 @@ func NewBucketObject(ctx *pulumi.Context,
 
 	if args.BucketName == nil {
 		return nil, errors.New("invalid value for required argument 'BucketName'")
-	}
-	if args.FilePath == nil {
-		return nil, errors.New("invalid value for required argument 'FilePath'")
 	}
 	if args.ObjectName == nil {
 		return nil, errors.New("invalid value for required argument 'ObjectName'")
@@ -134,7 +139,7 @@ type bucketObjectState struct {
 	AccountAcls []BucketObjectAccountAcl `pulumi:"accountAcls"`
 	// The name of the bucket.
 	BucketName *string `pulumi:"bucketName"`
-	// The content the TOS Object when content type is json or text and xml.
+	// The content of the TOS Object when content type is json or text and xml. Only one of `file_path,content` can be specified.
 	Content *string `pulumi:"content"`
 	// The file md5 sum (32-bit hexadecimal string) for upload.
 	ContentMd5 *string `pulumi:"contentMd5"`
@@ -144,7 +149,7 @@ type bucketObjectState struct {
 	EnableVersion *bool `pulumi:"enableVersion"`
 	// The encryption of the object.Valid value is AES256.
 	Encryption *string `pulumi:"encryption"`
-	// The file path for upload.
+	// The file path for upload. Only one of `file_path,content` can be specified.
 	FilePath *string `pulumi:"filePath"`
 	// The name of the object.
 	ObjectName *string `pulumi:"objectName"`
@@ -152,6 +157,8 @@ type bucketObjectState struct {
 	PublicAcl *string `pulumi:"publicAcl"`
 	// The storage type of the object.Valid value is STANDARD|IA.
 	StorageClass *string `pulumi:"storageClass"`
+	// Tos Bucket Tags.
+	Tags []BucketObjectTag `pulumi:"tags"`
 	// The version ids of the object if exist.
 	VersionIds []string `pulumi:"versionIds"`
 }
@@ -161,7 +168,7 @@ type BucketObjectState struct {
 	AccountAcls BucketObjectAccountAclArrayInput
 	// The name of the bucket.
 	BucketName pulumi.StringPtrInput
-	// The content the TOS Object when content type is json or text and xml.
+	// The content of the TOS Object when content type is json or text and xml. Only one of `file_path,content` can be specified.
 	Content pulumi.StringPtrInput
 	// The file md5 sum (32-bit hexadecimal string) for upload.
 	ContentMd5 pulumi.StringPtrInput
@@ -171,7 +178,7 @@ type BucketObjectState struct {
 	EnableVersion pulumi.BoolPtrInput
 	// The encryption of the object.Valid value is AES256.
 	Encryption pulumi.StringPtrInput
-	// The file path for upload.
+	// The file path for upload. Only one of `file_path,content` can be specified.
 	FilePath pulumi.StringPtrInput
 	// The name of the object.
 	ObjectName pulumi.StringPtrInput
@@ -179,6 +186,8 @@ type BucketObjectState struct {
 	PublicAcl pulumi.StringPtrInput
 	// The storage type of the object.Valid value is STANDARD|IA.
 	StorageClass pulumi.StringPtrInput
+	// Tos Bucket Tags.
+	Tags BucketObjectTagArrayInput
 	// The version ids of the object if exist.
 	VersionIds pulumi.StringArrayInput
 }
@@ -192,20 +201,24 @@ type bucketObjectArgs struct {
 	AccountAcls []BucketObjectAccountAcl `pulumi:"accountAcls"`
 	// The name of the bucket.
 	BucketName string `pulumi:"bucketName"`
+	// The content of the TOS Object when content type is json or text and xml. Only one of `file_path,content` can be specified.
+	Content *string `pulumi:"content"`
 	// The file md5 sum (32-bit hexadecimal string) for upload.
 	ContentMd5 *string `pulumi:"contentMd5"`
 	// The content type of the object.
 	ContentType *string `pulumi:"contentType"`
 	// The encryption of the object.Valid value is AES256.
 	Encryption *string `pulumi:"encryption"`
-	// The file path for upload.
-	FilePath string `pulumi:"filePath"`
+	// The file path for upload. Only one of `file_path,content` can be specified.
+	FilePath *string `pulumi:"filePath"`
 	// The name of the object.
 	ObjectName string `pulumi:"objectName"`
 	// The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
 	PublicAcl *string `pulumi:"publicAcl"`
 	// The storage type of the object.Valid value is STANDARD|IA.
 	StorageClass *string `pulumi:"storageClass"`
+	// Tos Bucket Tags.
+	Tags []BucketObjectTag `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a BucketObject resource.
@@ -214,20 +227,24 @@ type BucketObjectArgs struct {
 	AccountAcls BucketObjectAccountAclArrayInput
 	// The name of the bucket.
 	BucketName pulumi.StringInput
+	// The content of the TOS Object when content type is json or text and xml. Only one of `file_path,content` can be specified.
+	Content pulumi.StringPtrInput
 	// The file md5 sum (32-bit hexadecimal string) for upload.
 	ContentMd5 pulumi.StringPtrInput
 	// The content type of the object.
 	ContentType pulumi.StringPtrInput
 	// The encryption of the object.Valid value is AES256.
 	Encryption pulumi.StringPtrInput
-	// The file path for upload.
-	FilePath pulumi.StringInput
+	// The file path for upload. Only one of `file_path,content` can be specified.
+	FilePath pulumi.StringPtrInput
 	// The name of the object.
 	ObjectName pulumi.StringInput
 	// The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
 	PublicAcl pulumi.StringPtrInput
 	// The storage type of the object.Valid value is STANDARD|IA.
 	StorageClass pulumi.StringPtrInput
+	// Tos Bucket Tags.
+	Tags BucketObjectTagArrayInput
 }
 
 func (BucketObjectArgs) ElementType() reflect.Type {
@@ -327,7 +344,7 @@ func (o BucketObjectOutput) BucketName() pulumi.StringOutput {
 	return o.ApplyT(func(v *BucketObject) pulumi.StringOutput { return v.BucketName }).(pulumi.StringOutput)
 }
 
-// The content the TOS Object when content type is json or text and xml.
+// The content of the TOS Object when content type is json or text and xml. Only one of `file_path,content` can be specified.
 func (o BucketObjectOutput) Content() pulumi.StringOutput {
 	return o.ApplyT(func(v *BucketObject) pulumi.StringOutput { return v.Content }).(pulumi.StringOutput)
 }
@@ -352,9 +369,9 @@ func (o BucketObjectOutput) Encryption() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BucketObject) pulumi.StringPtrOutput { return v.Encryption }).(pulumi.StringPtrOutput)
 }
 
-// The file path for upload.
-func (o BucketObjectOutput) FilePath() pulumi.StringOutput {
-	return o.ApplyT(func(v *BucketObject) pulumi.StringOutput { return v.FilePath }).(pulumi.StringOutput)
+// The file path for upload. Only one of `file_path,content` can be specified.
+func (o BucketObjectOutput) FilePath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BucketObject) pulumi.StringPtrOutput { return v.FilePath }).(pulumi.StringPtrOutput)
 }
 
 // The name of the object.
@@ -370,6 +387,11 @@ func (o BucketObjectOutput) PublicAcl() pulumi.StringPtrOutput {
 // The storage type of the object.Valid value is STANDARD|IA.
 func (o BucketObjectOutput) StorageClass() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BucketObject) pulumi.StringPtrOutput { return v.StorageClass }).(pulumi.StringPtrOutput)
+}
+
+// Tos Bucket Tags.
+func (o BucketObjectOutput) Tags() BucketObjectTagArrayOutput {
+	return o.ApplyT(func(v *BucketObject) BucketObjectTagArrayOutput { return v.Tags }).(BucketObjectTagArrayOutput)
 }
 
 // The version ids of the object if exist.

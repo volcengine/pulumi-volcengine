@@ -10,11 +10,54 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.transit_router.RouteTablePropagation("foo", {
- *     transitRouterAttachmentId: "tr-attach-im73ng3n5kao8gbssz2ddpuq",
- *     transitRouterRouteTableId: "tr-rtb-12b7qd3fmzf2817q7y2jkbd55",
+ * const fooTransitRouter = new volcengine.transit_router.TransitRouter("fooTransitRouter", {
+ *     transitRouterName: "test-tf-acc",
+ *     description: "test-tf-acc",
+ * });
+ * const fooRouteTable = new volcengine.transit_router.RouteTable("fooRouteTable", {
+ *     description: "tf-test-acc-description",
+ *     transitRouterRouteTableName: "tf-table-test-acc",
+ *     transitRouterId: fooTransitRouter.id,
+ * });
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc-acc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     vpcId: fooVpc.id,
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     subnetName: "acc-test-subnet",
+ * });
+ * const foo2 = new volcengine.vpc.Subnet("foo2", {
+ *     vpcId: fooVpc.id,
+ *     cidrBlock: "172.16.255.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[1]?.id),
+ *     subnetName: "acc-test-subnet2",
+ * });
+ * const fooVpcAttachment = new volcengine.transit_router.VpcAttachment("fooVpcAttachment", {
+ *     transitRouterId: fooTransitRouter.id,
+ *     vpcId: fooVpc.id,
+ *     attachPoints: [
+ *         {
+ *             subnetId: fooSubnet.id,
+ *             zoneId: "cn-beijing-a",
+ *         },
+ *         {
+ *             subnetId: foo2.id,
+ *             zoneId: "cn-beijing-b",
+ *         },
+ *     ],
+ *     transitRouterAttachmentName: "tf-test-acc-name1",
+ *     description: "tf-test-acc-description",
+ * });
+ * const fooRouteTablePropagation = new volcengine.transit_router.RouteTablePropagation("fooRouteTablePropagation", {
+ *     transitRouterAttachmentId: fooVpcAttachment.transitRouterAttachmentId,
+ *     transitRouterRouteTableId: fooRouteTable.transitRouterRouteTableId,
  * });
  * ```
  *

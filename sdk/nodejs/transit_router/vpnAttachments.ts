@@ -26,6 +26,7 @@ export function vpnAttachments(args: VpnAttachmentsArgs, opts?: pulumi.InvokeOpt
     return pulumi.runtime.invoke("volcengine:transit_router/vpnAttachments:VpnAttachments", {
         "ids": args.ids,
         "outputFile": args.outputFile,
+        "tags": args.tags,
         "transitRouterId": args.transitRouterId,
         "vpnConnectionId": args.vpnConnectionId,
     }, opts);
@@ -43,6 +44,10 @@ export interface VpnAttachmentsArgs {
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.transit_router.VpnAttachmentsTag[];
     /**
      * The id of the transit router.
      */
@@ -67,6 +72,10 @@ export interface VpnAttachmentsResult {
     readonly id: string;
     readonly ids?: string[];
     readonly outputFile?: string;
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.transit_router.VpnAttachmentsTag[];
     /**
      * The total count of query.
      */
@@ -110,6 +119,10 @@ export interface VpnAttachmentsOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.transit_router.VpnAttachmentsTagArgs>[]>;
     /**
      * The id of the transit router.
      */

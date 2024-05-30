@@ -29,8 +29,7 @@ class BandwidthPackageArgs:
         """
         The set of arguments for constructing a BandwidthPackage resource.
         :param pulumi.Input[int] bandwidth: The bandwidth of the cen bandwidth package. Value: 2~10000.
-        :param pulumi.Input[str] billing_type: The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`. Terraform will
-               only remove the PrePaid cen bandwidth package from the state file, not actually remove.
+        :param pulumi.Input[str] billing_type: The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`.
         :param pulumi.Input[str] cen_bandwidth_package_name: The name of the cen bandwidth package.
         :param pulumi.Input[str] description: The description of the cen bandwidth package.
         :param pulumi.Input[str] local_geographic_region_set_id: The local geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
@@ -77,8 +76,7 @@ class BandwidthPackageArgs:
     @pulumi.getter(name="billingType")
     def billing_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`. Terraform will
-        only remove the PrePaid cen bandwidth package from the state file, not actually remove.
+        The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`.
         """
         return pulumi.get(self, "billing_type")
 
@@ -210,8 +208,7 @@ class _BandwidthPackageState:
         Input properties used for looking up and filtering BandwidthPackage resources.
         :param pulumi.Input[str] account_id: The account ID of the cen bandwidth package.
         :param pulumi.Input[int] bandwidth: The bandwidth of the cen bandwidth package. Value: 2~10000.
-        :param pulumi.Input[str] billing_type: The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`. Terraform will
-               only remove the PrePaid cen bandwidth package from the state file, not actually remove.
+        :param pulumi.Input[str] billing_type: The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`.
         :param pulumi.Input[str] business_status: The business status of the cen bandwidth package.
         :param pulumi.Input[str] cen_bandwidth_package_id: The ID of the cen bandwidth package.
         :param pulumi.Input[str] cen_bandwidth_package_name: The name of the cen bandwidth package.
@@ -299,8 +296,7 @@ class _BandwidthPackageState:
     @pulumi.getter(name="billingType")
     def billing_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`. Terraform will
-        only remove the PrePaid cen bandwidth package from the state file, not actually remove.
+        The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`.
         """
         return pulumi.get(self, "billing_type")
 
@@ -537,15 +533,19 @@ class BandwidthPackage(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.cen.BandwidthPackage("foo",
-            bandwidth=32,
+            bandwidth=2,
             billing_type="PrePaid",
-            cen_bandwidth_package_name="tf-test",
-            description="tf-test1",
+            cen_bandwidth_package_name="acc-test-cen-bp",
+            description="acc-test",
             local_geographic_region_set_id="China",
             peer_geographic_region_set_id="China",
             period=1,
-            period_unit="Year",
-            project_name="default")
+            period_unit="Month",
+            project_name="default",
+            tags=[volcengine.cen.BandwidthPackageTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -559,8 +559,7 @@ class BandwidthPackage(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] bandwidth: The bandwidth of the cen bandwidth package. Value: 2~10000.
-        :param pulumi.Input[str] billing_type: The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`. Terraform will
-               only remove the PrePaid cen bandwidth package from the state file, not actually remove.
+        :param pulumi.Input[str] billing_type: The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`.
         :param pulumi.Input[str] cen_bandwidth_package_name: The name of the cen bandwidth package.
         :param pulumi.Input[str] description: The description of the cen bandwidth package.
         :param pulumi.Input[str] local_geographic_region_set_id: The local geographic region set id of the cen bandwidth package. Valid value: `China`, `Asia`.
@@ -584,15 +583,19 @@ class BandwidthPackage(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.cen.BandwidthPackage("foo",
-            bandwidth=32,
+            bandwidth=2,
             billing_type="PrePaid",
-            cen_bandwidth_package_name="tf-test",
-            description="tf-test1",
+            cen_bandwidth_package_name="acc-test-cen-bp",
+            description="acc-test",
             local_geographic_region_set_id="China",
             peer_geographic_region_set_id="China",
             period=1,
-            period_unit="Year",
-            project_name="default")
+            period_unit="Month",
+            project_name="default",
+            tags=[volcengine.cen.BandwidthPackageTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -696,8 +699,7 @@ class BandwidthPackage(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] account_id: The account ID of the cen bandwidth package.
         :param pulumi.Input[int] bandwidth: The bandwidth of the cen bandwidth package. Value: 2~10000.
-        :param pulumi.Input[str] billing_type: The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`. Terraform will
-               only remove the PrePaid cen bandwidth package from the state file, not actually remove.
+        :param pulumi.Input[str] billing_type: The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`.
         :param pulumi.Input[str] business_status: The business status of the cen bandwidth package.
         :param pulumi.Input[str] cen_bandwidth_package_id: The ID of the cen bandwidth package.
         :param pulumi.Input[str] cen_bandwidth_package_name: The name of the cen bandwidth package.
@@ -762,8 +764,7 @@ class BandwidthPackage(pulumi.CustomResource):
     @pulumi.getter(name="billingType")
     def billing_type(self) -> pulumi.Output[Optional[str]]:
         """
-        The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`. Terraform will
-        only remove the PrePaid cen bandwidth package from the state file, not actually remove.
+        The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`.
         """
         return pulumi.get(self, "billing_type")
 

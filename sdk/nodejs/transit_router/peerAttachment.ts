@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -12,14 +14,31 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.transit_router.PeerAttachment("foo", {
+ * const fooBandwidthPackage = new volcengine.transit_router.BandwidthPackage("fooBandwidthPackage", {
+ *     transitRouterBandwidthPackageName: "acc-tf-test",
+ *     description: "acc-test",
  *     bandwidth: 2,
+ *     period: 1,
+ *     renewType: "Manual",
+ *     renewPeriod: 1,
+ *     remainRenewTimes: -1,
+ * });
+ * const fooTransitRouter = new volcengine.transit_router.TransitRouter("fooTransitRouter", {
+ *     transitRouterName: "acc-test-tf",
+ *     description: "acc-test-tf",
+ * });
+ * const fooPeerAttachment = new volcengine.transit_router.PeerAttachment("fooPeerAttachment", {
+ *     transitRouterId: fooTransitRouter.id,
+ *     transitRouterAttachmentName: "acc-test-tf",
  *     description: "tf-test",
- *     peerTransitRouterId: "tr-3jgsfiktn0feo3pncmfb5****",
- *     peerTransitRouterRegionId: "cn-beijing",
- *     transitRouterAttachmentName: "tf-test-tra",
- *     transitRouterBandwidthPackageId: "tbp-cd-2felfww0i6pkw59gp68bq****",
- *     transitRouterId: "tr-12bbdsa6ode6817q7y1f5****",
+ *     peerTransitRouterId: "tr-xxx",
+ *     peerTransitRouterRegionId: "cn-xx",
+ *     transitRouterBandwidthPackageId: fooBandwidthPackage.id,
+ *     bandwidth: 2,
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
  * ```
  *
@@ -84,6 +103,10 @@ export class PeerAttachment extends pulumi.CustomResource {
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.transit_router.PeerAttachmentTag[] | undefined>;
+    /**
      * The name of the transit router peer attachment.
      */
     public readonly transitRouterAttachmentName!: pulumi.Output<string>;
@@ -123,6 +146,7 @@ export class PeerAttachment extends pulumi.CustomResource {
             resourceInputs["peerTransitRouterId"] = state ? state.peerTransitRouterId : undefined;
             resourceInputs["peerTransitRouterRegionId"] = state ? state.peerTransitRouterRegionId : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["transitRouterAttachmentName"] = state ? state.transitRouterAttachmentName : undefined;
             resourceInputs["transitRouterBandwidthPackageId"] = state ? state.transitRouterBandwidthPackageId : undefined;
             resourceInputs["transitRouterId"] = state ? state.transitRouterId : undefined;
@@ -143,6 +167,7 @@ export class PeerAttachment extends pulumi.CustomResource {
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["peerTransitRouterId"] = args ? args.peerTransitRouterId : undefined;
             resourceInputs["peerTransitRouterRegionId"] = args ? args.peerTransitRouterRegionId : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["transitRouterAttachmentName"] = args ? args.transitRouterAttachmentName : undefined;
             resourceInputs["transitRouterBandwidthPackageId"] = args ? args.transitRouterBandwidthPackageId : undefined;
             resourceInputs["transitRouterId"] = args ? args.transitRouterId : undefined;
@@ -185,6 +210,10 @@ export interface PeerAttachmentState {
      */
     status?: pulumi.Input<string>;
     /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.transit_router.PeerAttachmentTag>[]>;
+    /**
      * The name of the transit router peer attachment.
      */
     transitRouterAttachmentName?: pulumi.Input<string>;
@@ -226,6 +255,10 @@ export interface PeerAttachmentArgs {
      * The region id of the peer transit router.
      */
     peerTransitRouterRegionId: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.transit_router.PeerAttachmentTag>[]>;
     /**
      * The name of the transit router peer attachment.
      */

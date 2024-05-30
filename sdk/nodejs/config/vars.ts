@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 declare var exports: any;
@@ -14,6 +16,18 @@ export declare const accessKey: string | undefined;
 Object.defineProperty(exports, "accessKey", {
     get() {
         return __config.get("accessKey") ?? utilities.getEnv("VOLCENGINE_ACCESS_KEY");
+    },
+    enumerable: true,
+});
+
+/**
+ * The ASSUME ROLE block for Volcengine Provider. If provided, terraform will attempt to assume this role using the
+ * supplied credentials.
+ */
+export declare const assumeRole: outputs.config.AssumeRole | undefined;
+Object.defineProperty(exports, "assumeRole", {
+    get() {
+        return __config.getObject<outputs.config.AssumeRole>("assumeRole");
     },
     enumerable: true,
 });

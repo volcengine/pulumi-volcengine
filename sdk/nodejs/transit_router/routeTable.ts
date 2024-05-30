@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -12,10 +14,18 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.transit_router.RouteTable("foo", {
- *     description: "tf test23",
- *     transitRouterId: "tr-2ff4v69tkxji859gp684cm14e",
- *     transitRouterRouteTableName: "tf-table-23",
+ * const fooTransitRouter = new volcengine.transit_router.TransitRouter("fooTransitRouter", {
+ *     transitRouterName: "test-tf-acc",
+ *     description: "test-tf-acc",
+ * });
+ * const fooRouteTable = new volcengine.transit_router.RouteTable("fooRouteTable", {
+ *     description: "tf-test-acc-description",
+ *     transitRouterRouteTableName: "tf-table-test-acc",
+ *     transitRouterId: fooTransitRouter.id,
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
  * ```
  *
@@ -68,6 +78,10 @@ export class RouteTable extends pulumi.CustomResource {
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.transit_router.RouteTableTag[] | undefined>;
+    /**
      * Id of the transit router.
      */
     public readonly transitRouterId!: pulumi.Output<string>;
@@ -104,6 +118,7 @@ export class RouteTable extends pulumi.CustomResource {
             resourceInputs["creationTime"] = state ? state.creationTime : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["transitRouterId"] = state ? state.transitRouterId : undefined;
             resourceInputs["transitRouterRouteTableId"] = state ? state.transitRouterRouteTableId : undefined;
             resourceInputs["transitRouterRouteTableName"] = state ? state.transitRouterRouteTableName : undefined;
@@ -115,6 +130,7 @@ export class RouteTable extends pulumi.CustomResource {
                 throw new Error("Missing required property 'transitRouterId'");
             }
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["transitRouterId"] = args ? args.transitRouterId : undefined;
             resourceInputs["transitRouterRouteTableName"] = args ? args.transitRouterRouteTableName : undefined;
             resourceInputs["creationTime"] = undefined /*out*/;
@@ -145,6 +161,10 @@ export interface RouteTableState {
      */
     status?: pulumi.Input<string>;
     /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.transit_router.RouteTableTag>[]>;
+    /**
      * Id of the transit router.
      */
     transitRouterId?: pulumi.Input<string>;
@@ -174,6 +194,10 @@ export interface RouteTableArgs {
      * Description of the transit router route table.
      */
     description?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.transit_router.RouteTableTag>[]>;
     /**
      * Id of the transit router.
      */

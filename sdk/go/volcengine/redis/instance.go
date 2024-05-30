@@ -148,7 +148,7 @@ type Instance struct {
 	Password pulumi.StringOutput `pulumi:"password"`
 	// The port of custom define private network address. The valid value range is `1024-65535`. The default value is `6379`.
 	Port pulumi.IntPtrOutput `pulumi:"port"`
-	// The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will not be added to any project.
+	// The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will be added to the `default` project.
 	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The purchase months of redis instance, the unit is month. the valid value range is as fallows: `1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36`. This field is valid and required when `ChargeType` is `Prepaid`.
 	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
@@ -259,7 +259,7 @@ type instanceState struct {
 	Password *string `pulumi:"password"`
 	// The port of custom define private network address. The valid value range is `1024-65535`. The default value is `6379`.
 	Port *int `pulumi:"port"`
-	// The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will not be added to any project.
+	// The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will be added to the `default` project.
 	ProjectName *string `pulumi:"projectName"`
 	// The purchase months of redis instance, the unit is month. the valid value range is as fallows: `1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36`. This field is valid and required when `ChargeType` is `Prepaid`.
 	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
@@ -313,7 +313,7 @@ type InstanceState struct {
 	Password pulumi.StringPtrInput
 	// The port of custom define private network address. The valid value range is `1024-65535`. The default value is `6379`.
 	Port pulumi.IntPtrInput
-	// The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will not be added to any project.
+	// The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will be added to the `default` project.
 	ProjectName pulumi.StringPtrInput
 	// The purchase months of redis instance, the unit is month. the valid value range is as fallows: `1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36`. This field is valid and required when `ChargeType` is `Prepaid`.
 	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
@@ -371,7 +371,7 @@ type instanceArgs struct {
 	Password string `pulumi:"password"`
 	// The port of custom define private network address. The valid value range is `1024-65535`. The default value is `6379`.
 	Port *int `pulumi:"port"`
-	// The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will not be added to any project.
+	// The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will be added to the `default` project.
 	ProjectName *string `pulumi:"projectName"`
 	// The purchase months of redis instance, the unit is month. the valid value range is as fallows: `1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36`. This field is valid and required when `ChargeType` is `Prepaid`.
 	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
@@ -426,7 +426,7 @@ type InstanceArgs struct {
 	Password pulumi.StringInput
 	// The port of custom define private network address. The valid value range is `1024-65535`. The default value is `6379`.
 	Port pulumi.IntPtrInput
-	// The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will not be added to any project.
+	// The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will be added to the `default` project.
 	ProjectName pulumi.StringPtrInput
 	// The purchase months of redis instance, the unit is month. the valid value range is as fallows: `1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36`. This field is valid and required when `ChargeType` is `Prepaid`.
 	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
@@ -608,7 +608,7 @@ func (o InstanceOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Instance) pulumi.IntPtrOutput { return v.Port }).(pulumi.IntPtrOutput)
 }
 
-// The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will not be added to any project.
+// The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will be added to the `default` project.
 func (o InstanceOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
 }

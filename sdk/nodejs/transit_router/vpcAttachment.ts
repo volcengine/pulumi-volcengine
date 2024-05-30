@@ -12,23 +12,49 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.transit_router.VpcAttachment("foo", {
+ * const fooTransitRouter = new volcengine.transit_router.TransitRouter("fooTransitRouter", {
+ *     transitRouterName: "test-tf-acc",
+ *     description: "test-tf-acc",
+ * });
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc-acc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     vpcId: fooVpc.id,
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     subnetName: "acc-test-subnet",
+ * });
+ * const foo2 = new volcengine.vpc.Subnet("foo2", {
+ *     vpcId: fooVpc.id,
+ *     cidrBlock: "172.16.255.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[1]?.id),
+ *     subnetName: "acc-test-subnet2",
+ * });
+ * const fooVpcAttachment = new volcengine.transit_router.VpcAttachment("fooVpcAttachment", {
+ *     transitRouterId: fooTransitRouter.id,
+ *     vpcId: fooVpc.id,
  *     attachPoints: [
  *         {
- *             subnetId: "subnet-3refsrxdswsn45zsk2hmdg4zx",
+ *             subnetId: fooSubnet.id,
  *             zoneId: "cn-beijing-a",
  *         },
  *         {
- *             subnetId: "subnet-2d68bh74345q858ozfekrm8fj",
- *             zoneId: "cn-beijing-a",
+ *             subnetId: foo2.id,
+ *             zoneId: "cn-beijing-b",
  *         },
  *     ],
- *     description: "desc",
- *     transitRouterAttachmentName: "tfname1",
- *     transitRouterId: "tr-2d6fr7f39unsw58ozfe1ow21x",
- *     vpcId: "vpc-2bysvq1xx543k2dx0eeulpeiv",
+ *     transitRouterAttachmentName: "tf-test-acc-name1",
+ *     description: "tf-test-acc-description",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
  * ```
  *
@@ -85,6 +111,10 @@ export class VpcAttachment extends pulumi.CustomResource {
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.transit_router.VpcAttachmentTag[] | undefined>;
+    /**
      * The id of the transit router attachment.
      */
     public /*out*/ readonly transitRouterAttachmentId!: pulumi.Output<string>;
@@ -122,6 +152,7 @@ export class VpcAttachment extends pulumi.CustomResource {
             resourceInputs["creationTime"] = state ? state.creationTime : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["transitRouterAttachmentId"] = state ? state.transitRouterAttachmentId : undefined;
             resourceInputs["transitRouterAttachmentName"] = state ? state.transitRouterAttachmentName : undefined;
             resourceInputs["transitRouterId"] = state ? state.transitRouterId : undefined;
@@ -140,6 +171,7 @@ export class VpcAttachment extends pulumi.CustomResource {
             }
             resourceInputs["attachPoints"] = args ? args.attachPoints : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["transitRouterAttachmentName"] = args ? args.transitRouterAttachmentName : undefined;
             resourceInputs["transitRouterId"] = args ? args.transitRouterId : undefined;
             resourceInputs["vpcId"] = args ? args.vpcId : undefined;
@@ -174,6 +206,10 @@ export interface VpcAttachmentState {
      */
     status?: pulumi.Input<string>;
     /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.transit_router.VpcAttachmentTag>[]>;
+    /**
      * The id of the transit router attachment.
      */
     transitRouterAttachmentId?: pulumi.Input<string>;
@@ -207,6 +243,10 @@ export interface VpcAttachmentArgs {
      * The description of the transit router vpc attachment.
      */
     description?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.transit_router.VpcAttachmentTag>[]>;
     /**
      * The name of the transit router vpc attachment.
      */

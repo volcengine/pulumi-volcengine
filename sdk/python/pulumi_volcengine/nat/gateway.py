@@ -34,7 +34,7 @@ class GatewayArgs:
         :param pulumi.Input[str] nat_gateway_name: The name of the NatGateway.
         :param pulumi.Input[int] period: The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] project_name: The ProjectName of the NatGateway.
-        :param pulumi.Input[str] spec: The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
+        :param pulumi.Input[str] spec: The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
         :param pulumi.Input[Sequence[pulumi.Input['GatewayTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "subnet_id", subnet_id)
@@ -142,7 +142,7 @@ class GatewayArgs:
     @pulumi.getter
     def spec(self) -> Optional[pulumi.Input[str]]:
         """
-        The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
+        The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
         """
         return pulumi.get(self, "spec")
 
@@ -182,7 +182,7 @@ class _GatewayState:
         :param pulumi.Input[str] nat_gateway_name: The name of the NatGateway.
         :param pulumi.Input[int] period: The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] project_name: The ProjectName of the NatGateway.
-        :param pulumi.Input[str] spec: The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
+        :param pulumi.Input[str] spec: The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
         :param pulumi.Input[str] subnet_id: The ID of the Subnet.
         :param pulumi.Input[Sequence[pulumi.Input['GatewayTagArgs']]] tags: Tags.
         :param pulumi.Input[str] vpc_id: The ID of the VPC.
@@ -270,7 +270,7 @@ class _GatewayState:
     @pulumi.getter
     def spec(self) -> Optional[pulumi.Input[str]]:
         """
-        The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
+        The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
         """
         return pulumi.get(self, "spec")
 
@@ -375,7 +375,7 @@ class Gateway(pulumi.CustomResource):
         :param pulumi.Input[str] nat_gateway_name: The name of the NatGateway.
         :param pulumi.Input[int] period: The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] project_name: The ProjectName of the NatGateway.
-        :param pulumi.Input[str] spec: The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
+        :param pulumi.Input[str] spec: The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
         :param pulumi.Input[str] subnet_id: The ID of the Subnet.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GatewayTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] vpc_id: The ID of the VPC.
@@ -501,7 +501,7 @@ class Gateway(pulumi.CustomResource):
         :param pulumi.Input[str] nat_gateway_name: The name of the NatGateway.
         :param pulumi.Input[int] period: The period of the NatGateway, the valid value range in 1~9 or 12 or 24 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid NatGateway. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] project_name: The ProjectName of the NatGateway.
-        :param pulumi.Input[str] spec: The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
+        :param pulumi.Input[str] spec: The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
         :param pulumi.Input[str] subnet_id: The ID of the Subnet.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GatewayTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] vpc_id: The ID of the VPC.
@@ -563,9 +563,9 @@ class Gateway(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def spec(self) -> pulumi.Output[Optional[str]]:
+    def spec(self) -> pulumi.Output[str]:
         """
-        The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
+        The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
         """
         return pulumi.get(self, "spec")
 

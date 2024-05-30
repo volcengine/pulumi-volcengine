@@ -111,8 +111,8 @@ type State struct {
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// Status of Instance.
 	Status pulumi.StringOutput `pulumi:"status"`
-	// Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`, default `KeepCharging`.
-	StoppedMode pulumi.StringPtrOutput `pulumi:"stoppedMode"`
+	// Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`.
+	StoppedMode pulumi.StringOutput `pulumi:"stoppedMode"`
 }
 
 // NewState registers a new resource with the given unique name, arguments, and options.
@@ -157,7 +157,7 @@ type stateState struct {
 	InstanceId *string `pulumi:"instanceId"`
 	// Status of Instance.
 	Status *string `pulumi:"status"`
-	// Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`, default `KeepCharging`.
+	// Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`.
 	StoppedMode *string `pulumi:"stoppedMode"`
 }
 
@@ -168,7 +168,7 @@ type StateState struct {
 	InstanceId pulumi.StringPtrInput
 	// Status of Instance.
 	Status pulumi.StringPtrInput
-	// Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`, default `KeepCharging`.
+	// Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`.
 	StoppedMode pulumi.StringPtrInput
 }
 
@@ -181,7 +181,7 @@ type stateArgs struct {
 	Action string `pulumi:"action"`
 	// Id of Instance.
 	InstanceId string `pulumi:"instanceId"`
-	// Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`, default `KeepCharging`.
+	// Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`.
 	StoppedMode *string `pulumi:"stoppedMode"`
 }
 
@@ -191,7 +191,7 @@ type StateArgs struct {
 	Action pulumi.StringInput
 	// Id of Instance.
 	InstanceId pulumi.StringInput
-	// Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`, default `KeepCharging`.
+	// Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`.
 	StoppedMode pulumi.StringPtrInput
 }
 
@@ -297,9 +297,9 @@ func (o StateOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *State) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
-// Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`, default `KeepCharging`.
-func (o StateOutput) StoppedMode() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *State) pulumi.StringPtrOutput { return v.StoppedMode }).(pulumi.StringPtrOutput)
+// Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`.
+func (o StateOutput) StoppedMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *State) pulumi.StringOutput { return v.StoppedMode }).(pulumi.StringOutput)
 }
 
 type StateArrayOutput struct{ *pulumi.OutputState }

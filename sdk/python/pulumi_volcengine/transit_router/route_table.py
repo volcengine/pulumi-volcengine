@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['RouteTableArgs', 'RouteTable']
 
@@ -16,16 +18,20 @@ class RouteTableArgs:
     def __init__(__self__, *,
                  transit_router_id: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['RouteTableTagArgs']]]] = None,
                  transit_router_route_table_name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a RouteTable resource.
         :param pulumi.Input[str] transit_router_id: Id of the transit router.
         :param pulumi.Input[str] description: Description of the transit router route table.
+        :param pulumi.Input[Sequence[pulumi.Input['RouteTableTagArgs']]] tags: Tags.
         :param pulumi.Input[str] transit_router_route_table_name: The name of the route table.
         """
         pulumi.set(__self__, "transit_router_id", transit_router_id)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if transit_router_route_table_name is not None:
             pulumi.set(__self__, "transit_router_route_table_name", transit_router_route_table_name)
 
@@ -54,6 +60,18 @@ class RouteTableArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RouteTableTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RouteTableTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="transitRouterRouteTableName")
     def transit_router_route_table_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -72,6 +90,7 @@ class _RouteTableState:
                  creation_time: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['RouteTableTagArgs']]]] = None,
                  transit_router_id: Optional[pulumi.Input[str]] = None,
                  transit_router_route_table_id: Optional[pulumi.Input[str]] = None,
                  transit_router_route_table_name: Optional[pulumi.Input[str]] = None,
@@ -82,6 +101,7 @@ class _RouteTableState:
         :param pulumi.Input[str] creation_time: The creation time of the route table.
         :param pulumi.Input[str] description: Description of the transit router route table.
         :param pulumi.Input[str] status: The status of the route table.
+        :param pulumi.Input[Sequence[pulumi.Input['RouteTableTagArgs']]] tags: Tags.
         :param pulumi.Input[str] transit_router_id: Id of the transit router.
         :param pulumi.Input[str] transit_router_route_table_id: The id of the route table.
         :param pulumi.Input[str] transit_router_route_table_name: The name of the route table.
@@ -94,6 +114,8 @@ class _RouteTableState:
             pulumi.set(__self__, "description", description)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if transit_router_id is not None:
             pulumi.set(__self__, "transit_router_id", transit_router_id)
         if transit_router_route_table_id is not None:
@@ -140,6 +162,18 @@ class _RouteTableState:
     @status.setter
     def status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RouteTableTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RouteTableTagArgs']]]]):
+        pulumi.set(self, "tags", value)
 
     @property
     @pulumi.getter(name="transitRouterId")
@@ -208,6 +242,7 @@ class RouteTable(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouteTableTagArgs']]]]] = None,
                  transit_router_id: Optional[pulumi.Input[str]] = None,
                  transit_router_route_table_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -219,10 +254,17 @@ class RouteTable(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.transit_router.RouteTable("foo",
-            description="tf test23",
-            transit_router_id="tr-2ff4v69tkxji859gp684cm14e",
-            transit_router_route_table_name="tf-table-23")
+        foo_transit_router = volcengine.transit_router.TransitRouter("fooTransitRouter",
+            transit_router_name="test-tf-acc",
+            description="test-tf-acc")
+        foo_route_table = volcengine.transit_router.RouteTable("fooRouteTable",
+            description="tf-test-acc-description",
+            transit_router_route_table_name="tf-table-test-acc",
+            transit_router_id=foo_transit_router.id,
+            tags=[volcengine.transit_router.RouteTableTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -236,6 +278,7 @@ class RouteTable(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Description of the transit router route table.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouteTableTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] transit_router_id: Id of the transit router.
         :param pulumi.Input[str] transit_router_route_table_name: The name of the route table.
         """
@@ -253,10 +296,17 @@ class RouteTable(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.transit_router.RouteTable("foo",
-            description="tf test23",
-            transit_router_id="tr-2ff4v69tkxji859gp684cm14e",
-            transit_router_route_table_name="tf-table-23")
+        foo_transit_router = volcengine.transit_router.TransitRouter("fooTransitRouter",
+            transit_router_name="test-tf-acc",
+            description="test-tf-acc")
+        foo_route_table = volcengine.transit_router.RouteTable("fooRouteTable",
+            description="tf-test-acc-description",
+            transit_router_route_table_name="tf-table-test-acc",
+            transit_router_id=foo_transit_router.id,
+            tags=[volcengine.transit_router.RouteTableTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -283,6 +333,7 @@ class RouteTable(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouteTableTagArgs']]]]] = None,
                  transit_router_id: Optional[pulumi.Input[str]] = None,
                  transit_router_route_table_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -295,6 +346,7 @@ class RouteTable(pulumi.CustomResource):
             __props__ = RouteTableArgs.__new__(RouteTableArgs)
 
             __props__.__dict__["description"] = description
+            __props__.__dict__["tags"] = tags
             if transit_router_id is None and not opts.urn:
                 raise TypeError("Missing required property 'transit_router_id'")
             __props__.__dict__["transit_router_id"] = transit_router_id
@@ -317,6 +369,7 @@ class RouteTable(pulumi.CustomResource):
             creation_time: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouteTableTagArgs']]]]] = None,
             transit_router_id: Optional[pulumi.Input[str]] = None,
             transit_router_route_table_id: Optional[pulumi.Input[str]] = None,
             transit_router_route_table_name: Optional[pulumi.Input[str]] = None,
@@ -332,6 +385,7 @@ class RouteTable(pulumi.CustomResource):
         :param pulumi.Input[str] creation_time: The creation time of the route table.
         :param pulumi.Input[str] description: Description of the transit router route table.
         :param pulumi.Input[str] status: The status of the route table.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouteTableTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] transit_router_id: Id of the transit router.
         :param pulumi.Input[str] transit_router_route_table_id: The id of the route table.
         :param pulumi.Input[str] transit_router_route_table_name: The name of the route table.
@@ -345,6 +399,7 @@ class RouteTable(pulumi.CustomResource):
         __props__.__dict__["creation_time"] = creation_time
         __props__.__dict__["description"] = description
         __props__.__dict__["status"] = status
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["transit_router_id"] = transit_router_id
         __props__.__dict__["transit_router_route_table_id"] = transit_router_route_table_id
         __props__.__dict__["transit_router_route_table_name"] = transit_router_route_table_name
@@ -375,6 +430,14 @@ class RouteTable(pulumi.CustomResource):
         The status of the route table.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.RouteTableTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="transitRouterId")

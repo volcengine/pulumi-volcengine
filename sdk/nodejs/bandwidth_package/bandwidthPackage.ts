@@ -15,15 +15,15 @@ import * as utilities from "../utilities";
  *
  * const foo = new volcengine.bandwidth_package.BandwidthPackage("foo", {
  *     bandwidth: 10,
- *     bandwidthPackageName: "tf-test",
+ *     bandwidthPackageName: "acc-test-bp",
  *     billingType: "PostPaidByBandwidth",
- *     description: "tftest-description",
+ *     description: "acc-test",
  *     isp: "BGP",
  *     protocol: "IPv4",
  *     securityProtectionTypes: ["AntiDDoS_Enhanced"],
  *     tags: [{
- *         key: "tftest",
- *         value: "tftest",
+ *         key: "k1",
+ *         value: "v1",
  *     }],
  * });
  * ```

@@ -24,6 +24,12 @@ func GetAccessKey(ctx *pulumi.Context) string {
 	return value
 }
 
+// The ASSUME ROLE block for Volcengine Provider. If provided, terraform will attempt to assume this role using the
+// supplied credentials.
+func GetAssumeRole(ctx *pulumi.Context) string {
+	return config.Get(ctx, "volcengine:assumeRole")
+}
+
 // CUSTOMER ENDPOINTS for Volcengine Provider
 func GetCustomerEndpoints(ctx *pulumi.Context) string {
 	return config.Get(ctx, "volcengine:customerEndpoints")

@@ -111,14 +111,14 @@ class BucketPolicy(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         default = volcengine.tos.BucketPolicy("default",
-            bucket_name="bucket-20230418",
+            bucket_name="tf-acc-test-bucket",
             policy=json.dumps({
                 "Statement": [{
                     "Sid": "test",
                     "Effect": "Allow",
                     "Principal": ["AccountId/subUserName"],
                     "Action": ["tos:List*"],
-                    "Resource": ["trn:tos:::bucket-20230418"],
+                    "Resource": ["trn:tos:::tf-acc-test-bucket"],
                 }],
             }))
         ```
@@ -153,14 +153,14 @@ class BucketPolicy(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         default = volcengine.tos.BucketPolicy("default",
-            bucket_name="bucket-20230418",
+            bucket_name="tf-acc-test-bucket",
             policy=json.dumps({
                 "Statement": [{
                     "Sid": "test",
                     "Effect": "Allow",
                     "Principal": ["AccountId/subUserName"],
                     "Action": ["tos:List*"],
-                    "Resource": ["trn:tos:::bucket-20230418"],
+                    "Resource": ["trn:tos:::tf-acc-test-bucket"],
                 }],
             }))
         ```

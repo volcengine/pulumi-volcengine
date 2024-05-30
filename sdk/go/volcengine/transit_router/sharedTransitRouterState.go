@@ -27,9 +27,16 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := transit_router.NewSharedTransitRouterState(ctx, "foo", &transit_router.SharedTransitRouterStateArgs{
+//			fooTransitRouter, err := transit_router.NewTransitRouter(ctx, "fooTransitRouter", &transit_router.TransitRouterArgs{
+//				TransitRouterName: pulumi.String("acc-test-tr"),
+//				Description:       pulumi.String("acc-test"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = transit_router.NewSharedTransitRouterState(ctx, "fooSharedTransitRouterState", &transit_router.SharedTransitRouterStateArgs{
+//				TransitRouterId: fooTransitRouter.ID(),
 //				Action:          pulumi.String("Reject"),
-//				TransitRouterId: pulumi.String("tr-2bzy39uy6u3282dx0efxiqyq0"),
 //			})
 //			if err != nil {
 //				return err

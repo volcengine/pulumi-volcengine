@@ -105,9 +105,12 @@ class SharedTransitRouterState(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.transit_router.SharedTransitRouterState("foo",
-            action="Reject",
-            transit_router_id="tr-2bzy39uy6u3282dx0efxiqyq0")
+        foo_transit_router = volcengine.transit_router.TransitRouter("fooTransitRouter",
+            transit_router_name="acc-test-tr",
+            description="acc-test")
+        foo_shared_transit_router_state = volcengine.transit_router.SharedTransitRouterState("fooSharedTransitRouterState",
+            transit_router_id=foo_transit_router.id,
+            action="Reject")
         ```
 
         ## Import
@@ -137,9 +140,12 @@ class SharedTransitRouterState(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.transit_router.SharedTransitRouterState("foo",
-            action="Reject",
-            transit_router_id="tr-2bzy39uy6u3282dx0efxiqyq0")
+        foo_transit_router = volcengine.transit_router.TransitRouter("fooTransitRouter",
+            transit_router_name="acc-test-tr",
+            description="acc-test")
+        foo_shared_transit_router_state = volcengine.transit_router.SharedTransitRouterState("fooSharedTransitRouterState",
+            transit_router_id=foo_transit_router.id,
+            action="Reject")
         ```
 
         ## Import

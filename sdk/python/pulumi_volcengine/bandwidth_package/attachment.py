@@ -110,23 +110,71 @@ class Attachment(pulumi.CustomResource):
             bandwidth=1,
             isp="BGP",
             description="acc-test",
-            project_name="default",
-            security_protection_types=["AntiDDoS_Enhanced"])
-        foo_bandwidth_package = volcengine.bandwidth_package.BandwidthPackage("fooBandwidthPackage",
-            bandwidth_package_name="acc-test",
+            project_name="default")
+        ipv4_bandwidth_package = volcengine.bandwidth_package.BandwidthPackage("ipv4BandwidthPackage",
+            bandwidth_package_name="acc-test-bp",
             billing_type="PostPaidByBandwidth",
             isp="BGP",
-            description="tftest-description",
-            bandwidth=10,
+            description="acc-test",
+            bandwidth=2,
             protocol="IPv4",
             tags=[volcengine.bandwidth_package.BandwidthPackageTagArgs(
-                key="tftest",
-                value="tftest",
-            )],
-            security_protection_types=["AntiDDoS_Enhanced"])
-        foo_attachment = volcengine.bandwidth_package.Attachment("fooAttachment",
+                key="k1",
+                value="v1",
+            )])
+        ipv4_attachment = volcengine.bandwidth_package.Attachment("ipv4Attachment",
             allocation_id=foo_address.id,
-            bandwidth_package_id=foo_bandwidth_package.id)
+            bandwidth_package_id=ipv4_bandwidth_package.id)
+        foo_zones = volcengine.ecs.zones()
+        foo_images = volcengine.ecs.images(os_type="Linux",
+            visibility="public",
+            instance_type_id="ecs.g1.large")
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16",
+            enable_ipv6=True)
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id,
+            ipv6_cidr_block=1)
+        foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+            vpc_id=foo_vpc.id,
+            security_group_name="acc-test-security-group")
+        foo_ipv6_gateway = volcengine.vpc.Ipv6Gateway("fooIpv6Gateway",
+            vpc_id=foo_vpc.id,
+            description="test")
+        foo_instance = volcengine.ecs.Instance("fooInstance",
+            image_id=foo_images.images[0].image_id,
+            instance_type="ecs.g1.large",
+            instance_name="acc-test-ecs-name",
+            password="93f0cb0614Aab12",
+            instance_charge_type="PostPaid",
+            system_volume_type="ESSD_PL0",
+            system_volume_size=40,
+            subnet_id=foo_subnet.id,
+            security_group_ids=[foo_security_group.id],
+            ipv6_address_count=1)
+        foo_ipv6_addresses = volcengine.vpc.ipv6_addresses_output(associated_instance_id=foo_instance.id)
+        foo_ipv6_address_bandwidth = volcengine.vpc.Ipv6AddressBandwidth("fooIpv6AddressBandwidth",
+            ipv6_address=foo_ipv6_addresses.ipv6_addresses[0].ipv6_address,
+            billing_type="PostPaidByBandwidth",
+            bandwidth=5)
+        ipv6 = volcengine.bandwidth_package.BandwidthPackage("ipv6",
+            bandwidth_package_name="acc-test-bp",
+            billing_type="PostPaidByBandwidth",
+            isp="BGP",
+            description="acc-test",
+            bandwidth=2,
+            protocol="IPv6",
+            tags=[volcengine.bandwidth_package.BandwidthPackageTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_attachment = volcengine.bandwidth_package.Attachment("fooAttachment",
+            allocation_id=foo_ipv6_address_bandwidth.id,
+            bandwidth_package_id=ipv6.id)
         ```
 
         ## Import
@@ -161,23 +209,71 @@ class Attachment(pulumi.CustomResource):
             bandwidth=1,
             isp="BGP",
             description="acc-test",
-            project_name="default",
-            security_protection_types=["AntiDDoS_Enhanced"])
-        foo_bandwidth_package = volcengine.bandwidth_package.BandwidthPackage("fooBandwidthPackage",
-            bandwidth_package_name="acc-test",
+            project_name="default")
+        ipv4_bandwidth_package = volcengine.bandwidth_package.BandwidthPackage("ipv4BandwidthPackage",
+            bandwidth_package_name="acc-test-bp",
             billing_type="PostPaidByBandwidth",
             isp="BGP",
-            description="tftest-description",
-            bandwidth=10,
+            description="acc-test",
+            bandwidth=2,
             protocol="IPv4",
             tags=[volcengine.bandwidth_package.BandwidthPackageTagArgs(
-                key="tftest",
-                value="tftest",
-            )],
-            security_protection_types=["AntiDDoS_Enhanced"])
-        foo_attachment = volcengine.bandwidth_package.Attachment("fooAttachment",
+                key="k1",
+                value="v1",
+            )])
+        ipv4_attachment = volcengine.bandwidth_package.Attachment("ipv4Attachment",
             allocation_id=foo_address.id,
-            bandwidth_package_id=foo_bandwidth_package.id)
+            bandwidth_package_id=ipv4_bandwidth_package.id)
+        foo_zones = volcengine.ecs.zones()
+        foo_images = volcengine.ecs.images(os_type="Linux",
+            visibility="public",
+            instance_type_id="ecs.g1.large")
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16",
+            enable_ipv6=True)
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id,
+            ipv6_cidr_block=1)
+        foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+            vpc_id=foo_vpc.id,
+            security_group_name="acc-test-security-group")
+        foo_ipv6_gateway = volcengine.vpc.Ipv6Gateway("fooIpv6Gateway",
+            vpc_id=foo_vpc.id,
+            description="test")
+        foo_instance = volcengine.ecs.Instance("fooInstance",
+            image_id=foo_images.images[0].image_id,
+            instance_type="ecs.g1.large",
+            instance_name="acc-test-ecs-name",
+            password="93f0cb0614Aab12",
+            instance_charge_type="PostPaid",
+            system_volume_type="ESSD_PL0",
+            system_volume_size=40,
+            subnet_id=foo_subnet.id,
+            security_group_ids=[foo_security_group.id],
+            ipv6_address_count=1)
+        foo_ipv6_addresses = volcengine.vpc.ipv6_addresses_output(associated_instance_id=foo_instance.id)
+        foo_ipv6_address_bandwidth = volcengine.vpc.Ipv6AddressBandwidth("fooIpv6AddressBandwidth",
+            ipv6_address=foo_ipv6_addresses.ipv6_addresses[0].ipv6_address,
+            billing_type="PostPaidByBandwidth",
+            bandwidth=5)
+        ipv6 = volcengine.bandwidth_package.BandwidthPackage("ipv6",
+            bandwidth_package_name="acc-test-bp",
+            billing_type="PostPaidByBandwidth",
+            isp="BGP",
+            description="acc-test",
+            bandwidth=2,
+            protocol="IPv6",
+            tags=[volcengine.bandwidth_package.BandwidthPackageTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_attachment = volcengine.bandwidth_package.Attachment("fooAttachment",
+            allocation_id=foo_ipv6_address_bandwidth.id,
+            bandwidth_package_id=ipv6.id)
         ```
 
         ## Import

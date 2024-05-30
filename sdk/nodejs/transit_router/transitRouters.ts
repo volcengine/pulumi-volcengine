@@ -13,10 +13,15 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.transit_router.TransitRouters({
- *     ids: ["tr-2d6fr7mzya2gw58ozfes5g2oh"],
- *     transitRouterName: "tf2",
+ * const foo = new volcengine.transit_router.TransitRouter("foo", {
+ *     transitRouterName: "test-tf-acc",
+ *     description: "test-tf-acc",
+ * });
+ * const default = volcengine.transit_router.TransitRoutersOutput({
+ *     ids: [foo.id],
+ *     transitRouterName: "test",
  * });
  * ```
  */
@@ -27,6 +32,8 @@ export function transitRouters(args?: TransitRoutersArgs, opts?: pulumi.InvokeOp
     return pulumi.runtime.invoke("volcengine:transit_router/transitRouters:TransitRouters", {
         "ids": args.ids,
         "outputFile": args.outputFile,
+        "projectName": args.projectName,
+        "tags": args.tags,
         "transitRouterName": args.transitRouterName,
     }, opts);
 }
@@ -44,6 +51,14 @@ export interface TransitRoutersArgs {
      */
     outputFile?: string;
     /**
+     * The ProjectName of the transit router.
+     */
+    projectName?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.transit_router.TransitRoutersTag[];
+    /**
      * The name info.
      */
     transitRouterName?: string;
@@ -59,6 +74,14 @@ export interface TransitRoutersResult {
     readonly id: string;
     readonly ids?: string[];
     readonly outputFile?: string;
+    /**
+     * The ProjectName of the transit router.
+     */
+    readonly projectName?: string;
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.transit_router.TransitRoutersTag[];
     /**
      * The total count of query.
      */
@@ -79,10 +102,15 @@ export interface TransitRoutersResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.transit_router.TransitRouters({
- *     ids: ["tr-2d6fr7mzya2gw58ozfes5g2oh"],
- *     transitRouterName: "tf2",
+ * const foo = new volcengine.transit_router.TransitRouter("foo", {
+ *     transitRouterName: "test-tf-acc",
+ *     description: "test-tf-acc",
+ * });
+ * const default = volcengine.transit_router.TransitRoutersOutput({
+ *     ids: [foo.id],
+ *     transitRouterName: "test",
  * });
  * ```
  */
@@ -102,6 +130,14 @@ export interface TransitRoutersOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The ProjectName of the transit router.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.transit_router.TransitRoutersTagArgs>[]>;
     /**
      * The name info.
      */

@@ -105,12 +105,41 @@ class VpcEndpointServicePermission(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.privatelink.VpcEndpointServicePermission("foo",
-            permit_account_id="210000000",
-            service_id="epsvc-3rel73uf2ewao5zsk2j2l58ro")
-        foo1 = volcengine.privatelink.VpcEndpointServicePermission("foo1",
-            permit_account_id="210000001",
-            service_id="epsvc-3rel73uf2ewao5zsk2j2l58ro")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_clb = volcengine.clb.Clb("fooClb",
+            type="public",
+            subnet_id=foo_subnet.id,
+            load_balancer_spec="small_1",
+            description="acc-test-demo",
+            load_balancer_name="acc-test-clb",
+            load_balancer_billing_type="PostPaid",
+            eip_billing_config=volcengine.clb.ClbEipBillingConfigArgs(
+                isp="BGP",
+                eip_billing_type="PostPaidByBandwidth",
+                bandwidth=1,
+            ),
+            tags=[volcengine.clb.ClbTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_vpc_endpoint_service = volcengine.privatelink.VpcEndpointService("fooVpcEndpointService",
+            resources=[volcengine.privatelink.VpcEndpointServiceResourceArgs(
+                resource_id=foo_clb.id,
+                resource_type="CLB",
+            )],
+            description="acc-test",
+            auto_accept_enabled=True)
+        foo_vpc_endpoint_service_permission = volcengine.privatelink.VpcEndpointServicePermission("fooVpcEndpointServicePermission",
+            service_id=foo_vpc_endpoint_service.id,
+            permit_account_id="210000000")
         ```
 
         ## Import
@@ -140,12 +169,41 @@ class VpcEndpointServicePermission(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.privatelink.VpcEndpointServicePermission("foo",
-            permit_account_id="210000000",
-            service_id="epsvc-3rel73uf2ewao5zsk2j2l58ro")
-        foo1 = volcengine.privatelink.VpcEndpointServicePermission("foo1",
-            permit_account_id="210000001",
-            service_id="epsvc-3rel73uf2ewao5zsk2j2l58ro")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_clb = volcengine.clb.Clb("fooClb",
+            type="public",
+            subnet_id=foo_subnet.id,
+            load_balancer_spec="small_1",
+            description="acc-test-demo",
+            load_balancer_name="acc-test-clb",
+            load_balancer_billing_type="PostPaid",
+            eip_billing_config=volcengine.clb.ClbEipBillingConfigArgs(
+                isp="BGP",
+                eip_billing_type="PostPaidByBandwidth",
+                bandwidth=1,
+            ),
+            tags=[volcengine.clb.ClbTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_vpc_endpoint_service = volcengine.privatelink.VpcEndpointService("fooVpcEndpointService",
+            resources=[volcengine.privatelink.VpcEndpointServiceResourceArgs(
+                resource_id=foo_clb.id,
+                resource_type="CLB",
+            )],
+            description="acc-test",
+            auto_accept_enabled=True)
+        foo_vpc_endpoint_service_permission = volcengine.privatelink.VpcEndpointServicePermission("fooVpcEndpointServicePermission",
+            service_id=foo_vpc_endpoint_service.id,
+            permit_account_id="210000000")
         ```
 
         ## Import

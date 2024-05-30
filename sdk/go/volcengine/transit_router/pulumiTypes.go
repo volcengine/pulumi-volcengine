@@ -137,6 +137,112 @@ func (o BandwidthPackageAllocationArrayOutput) Index(i pulumi.IntInput) Bandwidt
 	}).(BandwidthPackageAllocationOutput)
 }
 
+type BandwidthPackageTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// BandwidthPackageTagInput is an input type that accepts BandwidthPackageTagArgs and BandwidthPackageTagOutput values.
+// You can construct a concrete instance of `BandwidthPackageTagInput` via:
+//
+//	BandwidthPackageTagArgs{...}
+type BandwidthPackageTagInput interface {
+	pulumi.Input
+
+	ToBandwidthPackageTagOutput() BandwidthPackageTagOutput
+	ToBandwidthPackageTagOutputWithContext(context.Context) BandwidthPackageTagOutput
+}
+
+type BandwidthPackageTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (BandwidthPackageTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BandwidthPackageTag)(nil)).Elem()
+}
+
+func (i BandwidthPackageTagArgs) ToBandwidthPackageTagOutput() BandwidthPackageTagOutput {
+	return i.ToBandwidthPackageTagOutputWithContext(context.Background())
+}
+
+func (i BandwidthPackageTagArgs) ToBandwidthPackageTagOutputWithContext(ctx context.Context) BandwidthPackageTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BandwidthPackageTagOutput)
+}
+
+// BandwidthPackageTagArrayInput is an input type that accepts BandwidthPackageTagArray and BandwidthPackageTagArrayOutput values.
+// You can construct a concrete instance of `BandwidthPackageTagArrayInput` via:
+//
+//	BandwidthPackageTagArray{ BandwidthPackageTagArgs{...} }
+type BandwidthPackageTagArrayInput interface {
+	pulumi.Input
+
+	ToBandwidthPackageTagArrayOutput() BandwidthPackageTagArrayOutput
+	ToBandwidthPackageTagArrayOutputWithContext(context.Context) BandwidthPackageTagArrayOutput
+}
+
+type BandwidthPackageTagArray []BandwidthPackageTagInput
+
+func (BandwidthPackageTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BandwidthPackageTag)(nil)).Elem()
+}
+
+func (i BandwidthPackageTagArray) ToBandwidthPackageTagArrayOutput() BandwidthPackageTagArrayOutput {
+	return i.ToBandwidthPackageTagArrayOutputWithContext(context.Background())
+}
+
+func (i BandwidthPackageTagArray) ToBandwidthPackageTagArrayOutputWithContext(ctx context.Context) BandwidthPackageTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BandwidthPackageTagArrayOutput)
+}
+
+type BandwidthPackageTagOutput struct{ *pulumi.OutputState }
+
+func (BandwidthPackageTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BandwidthPackageTag)(nil)).Elem()
+}
+
+func (o BandwidthPackageTagOutput) ToBandwidthPackageTagOutput() BandwidthPackageTagOutput {
+	return o
+}
+
+func (o BandwidthPackageTagOutput) ToBandwidthPackageTagOutputWithContext(ctx context.Context) BandwidthPackageTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o BandwidthPackageTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v BandwidthPackageTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o BandwidthPackageTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v BandwidthPackageTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type BandwidthPackageTagArrayOutput struct{ *pulumi.OutputState }
+
+func (BandwidthPackageTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BandwidthPackageTag)(nil)).Elem()
+}
+
+func (o BandwidthPackageTagArrayOutput) ToBandwidthPackageTagArrayOutput() BandwidthPackageTagArrayOutput {
+	return o
+}
+
+func (o BandwidthPackageTagArrayOutput) ToBandwidthPackageTagArrayOutputWithContext(ctx context.Context) BandwidthPackageTagArrayOutput {
+	return o
+}
+
+func (o BandwidthPackageTagArrayOutput) Index(i pulumi.IntInput) BandwidthPackageTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BandwidthPackageTag {
+		return vs[0].([]BandwidthPackageTag)[vs[1].(int)]
+	}).(BandwidthPackageTagOutput)
+}
+
 type BandwidthPackagesBandwidthPackage struct {
 	// The account id.
 	AccountId string `pulumi:"accountId"`
@@ -162,10 +268,14 @@ type BandwidthPackagesBandwidthPackage struct {
 	LocalGeographicRegionSetId string `pulumi:"localGeographicRegionSetId"`
 	// The peer geographic region set ID.
 	PeerGeographicRegionSetId string `pulumi:"peerGeographicRegionSetId"`
+	// The ProjectName of the TransitRouter bandwidth package.
+	ProjectName string `pulumi:"projectName"`
 	// The remaining bandwidth of the transit router bandwidth package. Unit: Mbps.
 	RemainingBandwidth int `pulumi:"remainingBandwidth"`
 	// The status of the transit router bandwidth package.
 	Status string `pulumi:"status"`
+	// Tags.
+	Tags []BandwidthPackagesBandwidthPackageTag `pulumi:"tags"`
 	// The id of the transit router attachment.
 	TransitRouterBandwidthPackageId string `pulumi:"transitRouterBandwidthPackageId"`
 	// The name of the TransitRouter bandwidth package.
@@ -210,10 +320,14 @@ type BandwidthPackagesBandwidthPackageArgs struct {
 	LocalGeographicRegionSetId pulumi.StringInput `pulumi:"localGeographicRegionSetId"`
 	// The peer geographic region set ID.
 	PeerGeographicRegionSetId pulumi.StringInput `pulumi:"peerGeographicRegionSetId"`
+	// The ProjectName of the TransitRouter bandwidth package.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The remaining bandwidth of the transit router bandwidth package. Unit: Mbps.
 	RemainingBandwidth pulumi.IntInput `pulumi:"remainingBandwidth"`
 	// The status of the transit router bandwidth package.
 	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags BandwidthPackagesBandwidthPackageTagArrayInput `pulumi:"tags"`
 	// The id of the transit router attachment.
 	TransitRouterBandwidthPackageId pulumi.StringInput `pulumi:"transitRouterBandwidthPackageId"`
 	// The name of the TransitRouter bandwidth package.
@@ -335,6 +449,11 @@ func (o BandwidthPackagesBandwidthPackageOutput) PeerGeographicRegionSetId() pul
 	return o.ApplyT(func(v BandwidthPackagesBandwidthPackage) string { return v.PeerGeographicRegionSetId }).(pulumi.StringOutput)
 }
 
+// The ProjectName of the TransitRouter bandwidth package.
+func (o BandwidthPackagesBandwidthPackageOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v BandwidthPackagesBandwidthPackage) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
 // The remaining bandwidth of the transit router bandwidth package. Unit: Mbps.
 func (o BandwidthPackagesBandwidthPackageOutput) RemainingBandwidth() pulumi.IntOutput {
 	return o.ApplyT(func(v BandwidthPackagesBandwidthPackage) int { return v.RemainingBandwidth }).(pulumi.IntOutput)
@@ -343,6 +462,11 @@ func (o BandwidthPackagesBandwidthPackageOutput) RemainingBandwidth() pulumi.Int
 // The status of the transit router bandwidth package.
 func (o BandwidthPackagesBandwidthPackageOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v BandwidthPackagesBandwidthPackage) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o BandwidthPackagesBandwidthPackageOutput) Tags() BandwidthPackagesBandwidthPackageTagArrayOutput {
+	return o.ApplyT(func(v BandwidthPackagesBandwidthPackage) []BandwidthPackagesBandwidthPackageTag { return v.Tags }).(BandwidthPackagesBandwidthPackageTagArrayOutput)
 }
 
 // The id of the transit router attachment.
@@ -504,6 +628,324 @@ func (o BandwidthPackagesBandwidthPackageAllocationArrayOutput) Index(i pulumi.I
 	}).(BandwidthPackagesBandwidthPackageAllocationOutput)
 }
 
+type BandwidthPackagesBandwidthPackageTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// BandwidthPackagesBandwidthPackageTagInput is an input type that accepts BandwidthPackagesBandwidthPackageTagArgs and BandwidthPackagesBandwidthPackageTagOutput values.
+// You can construct a concrete instance of `BandwidthPackagesBandwidthPackageTagInput` via:
+//
+//	BandwidthPackagesBandwidthPackageTagArgs{...}
+type BandwidthPackagesBandwidthPackageTagInput interface {
+	pulumi.Input
+
+	ToBandwidthPackagesBandwidthPackageTagOutput() BandwidthPackagesBandwidthPackageTagOutput
+	ToBandwidthPackagesBandwidthPackageTagOutputWithContext(context.Context) BandwidthPackagesBandwidthPackageTagOutput
+}
+
+type BandwidthPackagesBandwidthPackageTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (BandwidthPackagesBandwidthPackageTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BandwidthPackagesBandwidthPackageTag)(nil)).Elem()
+}
+
+func (i BandwidthPackagesBandwidthPackageTagArgs) ToBandwidthPackagesBandwidthPackageTagOutput() BandwidthPackagesBandwidthPackageTagOutput {
+	return i.ToBandwidthPackagesBandwidthPackageTagOutputWithContext(context.Background())
+}
+
+func (i BandwidthPackagesBandwidthPackageTagArgs) ToBandwidthPackagesBandwidthPackageTagOutputWithContext(ctx context.Context) BandwidthPackagesBandwidthPackageTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BandwidthPackagesBandwidthPackageTagOutput)
+}
+
+// BandwidthPackagesBandwidthPackageTagArrayInput is an input type that accepts BandwidthPackagesBandwidthPackageTagArray and BandwidthPackagesBandwidthPackageTagArrayOutput values.
+// You can construct a concrete instance of `BandwidthPackagesBandwidthPackageTagArrayInput` via:
+//
+//	BandwidthPackagesBandwidthPackageTagArray{ BandwidthPackagesBandwidthPackageTagArgs{...} }
+type BandwidthPackagesBandwidthPackageTagArrayInput interface {
+	pulumi.Input
+
+	ToBandwidthPackagesBandwidthPackageTagArrayOutput() BandwidthPackagesBandwidthPackageTagArrayOutput
+	ToBandwidthPackagesBandwidthPackageTagArrayOutputWithContext(context.Context) BandwidthPackagesBandwidthPackageTagArrayOutput
+}
+
+type BandwidthPackagesBandwidthPackageTagArray []BandwidthPackagesBandwidthPackageTagInput
+
+func (BandwidthPackagesBandwidthPackageTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BandwidthPackagesBandwidthPackageTag)(nil)).Elem()
+}
+
+func (i BandwidthPackagesBandwidthPackageTagArray) ToBandwidthPackagesBandwidthPackageTagArrayOutput() BandwidthPackagesBandwidthPackageTagArrayOutput {
+	return i.ToBandwidthPackagesBandwidthPackageTagArrayOutputWithContext(context.Background())
+}
+
+func (i BandwidthPackagesBandwidthPackageTagArray) ToBandwidthPackagesBandwidthPackageTagArrayOutputWithContext(ctx context.Context) BandwidthPackagesBandwidthPackageTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BandwidthPackagesBandwidthPackageTagArrayOutput)
+}
+
+type BandwidthPackagesBandwidthPackageTagOutput struct{ *pulumi.OutputState }
+
+func (BandwidthPackagesBandwidthPackageTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BandwidthPackagesBandwidthPackageTag)(nil)).Elem()
+}
+
+func (o BandwidthPackagesBandwidthPackageTagOutput) ToBandwidthPackagesBandwidthPackageTagOutput() BandwidthPackagesBandwidthPackageTagOutput {
+	return o
+}
+
+func (o BandwidthPackagesBandwidthPackageTagOutput) ToBandwidthPackagesBandwidthPackageTagOutputWithContext(ctx context.Context) BandwidthPackagesBandwidthPackageTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o BandwidthPackagesBandwidthPackageTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v BandwidthPackagesBandwidthPackageTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o BandwidthPackagesBandwidthPackageTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v BandwidthPackagesBandwidthPackageTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type BandwidthPackagesBandwidthPackageTagArrayOutput struct{ *pulumi.OutputState }
+
+func (BandwidthPackagesBandwidthPackageTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BandwidthPackagesBandwidthPackageTag)(nil)).Elem()
+}
+
+func (o BandwidthPackagesBandwidthPackageTagArrayOutput) ToBandwidthPackagesBandwidthPackageTagArrayOutput() BandwidthPackagesBandwidthPackageTagArrayOutput {
+	return o
+}
+
+func (o BandwidthPackagesBandwidthPackageTagArrayOutput) ToBandwidthPackagesBandwidthPackageTagArrayOutputWithContext(ctx context.Context) BandwidthPackagesBandwidthPackageTagArrayOutput {
+	return o
+}
+
+func (o BandwidthPackagesBandwidthPackageTagArrayOutput) Index(i pulumi.IntInput) BandwidthPackagesBandwidthPackageTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BandwidthPackagesBandwidthPackageTag {
+		return vs[0].([]BandwidthPackagesBandwidthPackageTag)[vs[1].(int)]
+	}).(BandwidthPackagesBandwidthPackageTagOutput)
+}
+
+type BandwidthPackagesTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// BandwidthPackagesTagInput is an input type that accepts BandwidthPackagesTagArgs and BandwidthPackagesTagOutput values.
+// You can construct a concrete instance of `BandwidthPackagesTagInput` via:
+//
+//	BandwidthPackagesTagArgs{...}
+type BandwidthPackagesTagInput interface {
+	pulumi.Input
+
+	ToBandwidthPackagesTagOutput() BandwidthPackagesTagOutput
+	ToBandwidthPackagesTagOutputWithContext(context.Context) BandwidthPackagesTagOutput
+}
+
+type BandwidthPackagesTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (BandwidthPackagesTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BandwidthPackagesTag)(nil)).Elem()
+}
+
+func (i BandwidthPackagesTagArgs) ToBandwidthPackagesTagOutput() BandwidthPackagesTagOutput {
+	return i.ToBandwidthPackagesTagOutputWithContext(context.Background())
+}
+
+func (i BandwidthPackagesTagArgs) ToBandwidthPackagesTagOutputWithContext(ctx context.Context) BandwidthPackagesTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BandwidthPackagesTagOutput)
+}
+
+// BandwidthPackagesTagArrayInput is an input type that accepts BandwidthPackagesTagArray and BandwidthPackagesTagArrayOutput values.
+// You can construct a concrete instance of `BandwidthPackagesTagArrayInput` via:
+//
+//	BandwidthPackagesTagArray{ BandwidthPackagesTagArgs{...} }
+type BandwidthPackagesTagArrayInput interface {
+	pulumi.Input
+
+	ToBandwidthPackagesTagArrayOutput() BandwidthPackagesTagArrayOutput
+	ToBandwidthPackagesTagArrayOutputWithContext(context.Context) BandwidthPackagesTagArrayOutput
+}
+
+type BandwidthPackagesTagArray []BandwidthPackagesTagInput
+
+func (BandwidthPackagesTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BandwidthPackagesTag)(nil)).Elem()
+}
+
+func (i BandwidthPackagesTagArray) ToBandwidthPackagesTagArrayOutput() BandwidthPackagesTagArrayOutput {
+	return i.ToBandwidthPackagesTagArrayOutputWithContext(context.Background())
+}
+
+func (i BandwidthPackagesTagArray) ToBandwidthPackagesTagArrayOutputWithContext(ctx context.Context) BandwidthPackagesTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BandwidthPackagesTagArrayOutput)
+}
+
+type BandwidthPackagesTagOutput struct{ *pulumi.OutputState }
+
+func (BandwidthPackagesTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BandwidthPackagesTag)(nil)).Elem()
+}
+
+func (o BandwidthPackagesTagOutput) ToBandwidthPackagesTagOutput() BandwidthPackagesTagOutput {
+	return o
+}
+
+func (o BandwidthPackagesTagOutput) ToBandwidthPackagesTagOutputWithContext(ctx context.Context) BandwidthPackagesTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o BandwidthPackagesTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v BandwidthPackagesTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o BandwidthPackagesTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v BandwidthPackagesTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type BandwidthPackagesTagArrayOutput struct{ *pulumi.OutputState }
+
+func (BandwidthPackagesTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BandwidthPackagesTag)(nil)).Elem()
+}
+
+func (o BandwidthPackagesTagArrayOutput) ToBandwidthPackagesTagArrayOutput() BandwidthPackagesTagArrayOutput {
+	return o
+}
+
+func (o BandwidthPackagesTagArrayOutput) ToBandwidthPackagesTagArrayOutputWithContext(ctx context.Context) BandwidthPackagesTagArrayOutput {
+	return o
+}
+
+func (o BandwidthPackagesTagArrayOutput) Index(i pulumi.IntInput) BandwidthPackagesTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BandwidthPackagesTag {
+		return vs[0].([]BandwidthPackagesTag)[vs[1].(int)]
+	}).(BandwidthPackagesTagOutput)
+}
+
+type DirectConnectGatewayAttachmentTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// DirectConnectGatewayAttachmentTagInput is an input type that accepts DirectConnectGatewayAttachmentTagArgs and DirectConnectGatewayAttachmentTagOutput values.
+// You can construct a concrete instance of `DirectConnectGatewayAttachmentTagInput` via:
+//
+//	DirectConnectGatewayAttachmentTagArgs{...}
+type DirectConnectGatewayAttachmentTagInput interface {
+	pulumi.Input
+
+	ToDirectConnectGatewayAttachmentTagOutput() DirectConnectGatewayAttachmentTagOutput
+	ToDirectConnectGatewayAttachmentTagOutputWithContext(context.Context) DirectConnectGatewayAttachmentTagOutput
+}
+
+type DirectConnectGatewayAttachmentTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (DirectConnectGatewayAttachmentTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DirectConnectGatewayAttachmentTag)(nil)).Elem()
+}
+
+func (i DirectConnectGatewayAttachmentTagArgs) ToDirectConnectGatewayAttachmentTagOutput() DirectConnectGatewayAttachmentTagOutput {
+	return i.ToDirectConnectGatewayAttachmentTagOutputWithContext(context.Background())
+}
+
+func (i DirectConnectGatewayAttachmentTagArgs) ToDirectConnectGatewayAttachmentTagOutputWithContext(ctx context.Context) DirectConnectGatewayAttachmentTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DirectConnectGatewayAttachmentTagOutput)
+}
+
+// DirectConnectGatewayAttachmentTagArrayInput is an input type that accepts DirectConnectGatewayAttachmentTagArray and DirectConnectGatewayAttachmentTagArrayOutput values.
+// You can construct a concrete instance of `DirectConnectGatewayAttachmentTagArrayInput` via:
+//
+//	DirectConnectGatewayAttachmentTagArray{ DirectConnectGatewayAttachmentTagArgs{...} }
+type DirectConnectGatewayAttachmentTagArrayInput interface {
+	pulumi.Input
+
+	ToDirectConnectGatewayAttachmentTagArrayOutput() DirectConnectGatewayAttachmentTagArrayOutput
+	ToDirectConnectGatewayAttachmentTagArrayOutputWithContext(context.Context) DirectConnectGatewayAttachmentTagArrayOutput
+}
+
+type DirectConnectGatewayAttachmentTagArray []DirectConnectGatewayAttachmentTagInput
+
+func (DirectConnectGatewayAttachmentTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DirectConnectGatewayAttachmentTag)(nil)).Elem()
+}
+
+func (i DirectConnectGatewayAttachmentTagArray) ToDirectConnectGatewayAttachmentTagArrayOutput() DirectConnectGatewayAttachmentTagArrayOutput {
+	return i.ToDirectConnectGatewayAttachmentTagArrayOutputWithContext(context.Background())
+}
+
+func (i DirectConnectGatewayAttachmentTagArray) ToDirectConnectGatewayAttachmentTagArrayOutputWithContext(ctx context.Context) DirectConnectGatewayAttachmentTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DirectConnectGatewayAttachmentTagArrayOutput)
+}
+
+type DirectConnectGatewayAttachmentTagOutput struct{ *pulumi.OutputState }
+
+func (DirectConnectGatewayAttachmentTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DirectConnectGatewayAttachmentTag)(nil)).Elem()
+}
+
+func (o DirectConnectGatewayAttachmentTagOutput) ToDirectConnectGatewayAttachmentTagOutput() DirectConnectGatewayAttachmentTagOutput {
+	return o
+}
+
+func (o DirectConnectGatewayAttachmentTagOutput) ToDirectConnectGatewayAttachmentTagOutputWithContext(ctx context.Context) DirectConnectGatewayAttachmentTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o DirectConnectGatewayAttachmentTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v DirectConnectGatewayAttachmentTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o DirectConnectGatewayAttachmentTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v DirectConnectGatewayAttachmentTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type DirectConnectGatewayAttachmentTagArrayOutput struct{ *pulumi.OutputState }
+
+func (DirectConnectGatewayAttachmentTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DirectConnectGatewayAttachmentTag)(nil)).Elem()
+}
+
+func (o DirectConnectGatewayAttachmentTagArrayOutput) ToDirectConnectGatewayAttachmentTagArrayOutput() DirectConnectGatewayAttachmentTagArrayOutput {
+	return o
+}
+
+func (o DirectConnectGatewayAttachmentTagArrayOutput) ToDirectConnectGatewayAttachmentTagArrayOutputWithContext(ctx context.Context) DirectConnectGatewayAttachmentTagArrayOutput {
+	return o
+}
+
+func (o DirectConnectGatewayAttachmentTagArrayOutput) Index(i pulumi.IntInput) DirectConnectGatewayAttachmentTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DirectConnectGatewayAttachmentTag {
+		return vs[0].([]DirectConnectGatewayAttachmentTag)[vs[1].(int)]
+	}).(DirectConnectGatewayAttachmentTagOutput)
+}
+
 type DirectConnectGatewayAttachmentsAttachment struct {
 	// The account id.
 	AccountId string `pulumi:"accountId"`
@@ -515,6 +957,8 @@ type DirectConnectGatewayAttachmentsAttachment struct {
 	DirectConnectGatewayId string `pulumi:"directConnectGatewayId"`
 	// The status of the network instance connection.
 	Status string `pulumi:"status"`
+	// Tags.
+	Tags []DirectConnectGatewayAttachmentsAttachmentTag `pulumi:"tags"`
 	// The id of the transit router attachment.
 	TransitRouterAttachmentId string `pulumi:"transitRouterAttachmentId"`
 	// The name of the transit router attachment.
@@ -547,6 +991,8 @@ type DirectConnectGatewayAttachmentsAttachmentArgs struct {
 	DirectConnectGatewayId pulumi.StringInput `pulumi:"directConnectGatewayId"`
 	// The status of the network instance connection.
 	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags DirectConnectGatewayAttachmentsAttachmentTagArrayInput `pulumi:"tags"`
 	// The id of the transit router attachment.
 	TransitRouterAttachmentId pulumi.StringInput `pulumi:"transitRouterAttachmentId"`
 	// The name of the transit router attachment.
@@ -633,6 +1079,13 @@ func (o DirectConnectGatewayAttachmentsAttachmentOutput) Status() pulumi.StringO
 	return o.ApplyT(func(v DirectConnectGatewayAttachmentsAttachment) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// Tags.
+func (o DirectConnectGatewayAttachmentsAttachmentOutput) Tags() DirectConnectGatewayAttachmentsAttachmentTagArrayOutput {
+	return o.ApplyT(func(v DirectConnectGatewayAttachmentsAttachment) []DirectConnectGatewayAttachmentsAttachmentTag {
+		return v.Tags
+	}).(DirectConnectGatewayAttachmentsAttachmentTagArrayOutput)
+}
+
 // The id of the transit router attachment.
 func (o DirectConnectGatewayAttachmentsAttachmentOutput) TransitRouterAttachmentId() pulumi.StringOutput {
 	return o.ApplyT(func(v DirectConnectGatewayAttachmentsAttachment) string { return v.TransitRouterAttachmentId }).(pulumi.StringOutput)
@@ -671,6 +1124,218 @@ func (o DirectConnectGatewayAttachmentsAttachmentArrayOutput) Index(i pulumi.Int
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DirectConnectGatewayAttachmentsAttachment {
 		return vs[0].([]DirectConnectGatewayAttachmentsAttachment)[vs[1].(int)]
 	}).(DirectConnectGatewayAttachmentsAttachmentOutput)
+}
+
+type DirectConnectGatewayAttachmentsAttachmentTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// DirectConnectGatewayAttachmentsAttachmentTagInput is an input type that accepts DirectConnectGatewayAttachmentsAttachmentTagArgs and DirectConnectGatewayAttachmentsAttachmentTagOutput values.
+// You can construct a concrete instance of `DirectConnectGatewayAttachmentsAttachmentTagInput` via:
+//
+//	DirectConnectGatewayAttachmentsAttachmentTagArgs{...}
+type DirectConnectGatewayAttachmentsAttachmentTagInput interface {
+	pulumi.Input
+
+	ToDirectConnectGatewayAttachmentsAttachmentTagOutput() DirectConnectGatewayAttachmentsAttachmentTagOutput
+	ToDirectConnectGatewayAttachmentsAttachmentTagOutputWithContext(context.Context) DirectConnectGatewayAttachmentsAttachmentTagOutput
+}
+
+type DirectConnectGatewayAttachmentsAttachmentTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (DirectConnectGatewayAttachmentsAttachmentTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DirectConnectGatewayAttachmentsAttachmentTag)(nil)).Elem()
+}
+
+func (i DirectConnectGatewayAttachmentsAttachmentTagArgs) ToDirectConnectGatewayAttachmentsAttachmentTagOutput() DirectConnectGatewayAttachmentsAttachmentTagOutput {
+	return i.ToDirectConnectGatewayAttachmentsAttachmentTagOutputWithContext(context.Background())
+}
+
+func (i DirectConnectGatewayAttachmentsAttachmentTagArgs) ToDirectConnectGatewayAttachmentsAttachmentTagOutputWithContext(ctx context.Context) DirectConnectGatewayAttachmentsAttachmentTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DirectConnectGatewayAttachmentsAttachmentTagOutput)
+}
+
+// DirectConnectGatewayAttachmentsAttachmentTagArrayInput is an input type that accepts DirectConnectGatewayAttachmentsAttachmentTagArray and DirectConnectGatewayAttachmentsAttachmentTagArrayOutput values.
+// You can construct a concrete instance of `DirectConnectGatewayAttachmentsAttachmentTagArrayInput` via:
+//
+//	DirectConnectGatewayAttachmentsAttachmentTagArray{ DirectConnectGatewayAttachmentsAttachmentTagArgs{...} }
+type DirectConnectGatewayAttachmentsAttachmentTagArrayInput interface {
+	pulumi.Input
+
+	ToDirectConnectGatewayAttachmentsAttachmentTagArrayOutput() DirectConnectGatewayAttachmentsAttachmentTagArrayOutput
+	ToDirectConnectGatewayAttachmentsAttachmentTagArrayOutputWithContext(context.Context) DirectConnectGatewayAttachmentsAttachmentTagArrayOutput
+}
+
+type DirectConnectGatewayAttachmentsAttachmentTagArray []DirectConnectGatewayAttachmentsAttachmentTagInput
+
+func (DirectConnectGatewayAttachmentsAttachmentTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DirectConnectGatewayAttachmentsAttachmentTag)(nil)).Elem()
+}
+
+func (i DirectConnectGatewayAttachmentsAttachmentTagArray) ToDirectConnectGatewayAttachmentsAttachmentTagArrayOutput() DirectConnectGatewayAttachmentsAttachmentTagArrayOutput {
+	return i.ToDirectConnectGatewayAttachmentsAttachmentTagArrayOutputWithContext(context.Background())
+}
+
+func (i DirectConnectGatewayAttachmentsAttachmentTagArray) ToDirectConnectGatewayAttachmentsAttachmentTagArrayOutputWithContext(ctx context.Context) DirectConnectGatewayAttachmentsAttachmentTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DirectConnectGatewayAttachmentsAttachmentTagArrayOutput)
+}
+
+type DirectConnectGatewayAttachmentsAttachmentTagOutput struct{ *pulumi.OutputState }
+
+func (DirectConnectGatewayAttachmentsAttachmentTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DirectConnectGatewayAttachmentsAttachmentTag)(nil)).Elem()
+}
+
+func (o DirectConnectGatewayAttachmentsAttachmentTagOutput) ToDirectConnectGatewayAttachmentsAttachmentTagOutput() DirectConnectGatewayAttachmentsAttachmentTagOutput {
+	return o
+}
+
+func (o DirectConnectGatewayAttachmentsAttachmentTagOutput) ToDirectConnectGatewayAttachmentsAttachmentTagOutputWithContext(ctx context.Context) DirectConnectGatewayAttachmentsAttachmentTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o DirectConnectGatewayAttachmentsAttachmentTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v DirectConnectGatewayAttachmentsAttachmentTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o DirectConnectGatewayAttachmentsAttachmentTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v DirectConnectGatewayAttachmentsAttachmentTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type DirectConnectGatewayAttachmentsAttachmentTagArrayOutput struct{ *pulumi.OutputState }
+
+func (DirectConnectGatewayAttachmentsAttachmentTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DirectConnectGatewayAttachmentsAttachmentTag)(nil)).Elem()
+}
+
+func (o DirectConnectGatewayAttachmentsAttachmentTagArrayOutput) ToDirectConnectGatewayAttachmentsAttachmentTagArrayOutput() DirectConnectGatewayAttachmentsAttachmentTagArrayOutput {
+	return o
+}
+
+func (o DirectConnectGatewayAttachmentsAttachmentTagArrayOutput) ToDirectConnectGatewayAttachmentsAttachmentTagArrayOutputWithContext(ctx context.Context) DirectConnectGatewayAttachmentsAttachmentTagArrayOutput {
+	return o
+}
+
+func (o DirectConnectGatewayAttachmentsAttachmentTagArrayOutput) Index(i pulumi.IntInput) DirectConnectGatewayAttachmentsAttachmentTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DirectConnectGatewayAttachmentsAttachmentTag {
+		return vs[0].([]DirectConnectGatewayAttachmentsAttachmentTag)[vs[1].(int)]
+	}).(DirectConnectGatewayAttachmentsAttachmentTagOutput)
+}
+
+type DirectConnectGatewayAttachmentsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// DirectConnectGatewayAttachmentsTagInput is an input type that accepts DirectConnectGatewayAttachmentsTagArgs and DirectConnectGatewayAttachmentsTagOutput values.
+// You can construct a concrete instance of `DirectConnectGatewayAttachmentsTagInput` via:
+//
+//	DirectConnectGatewayAttachmentsTagArgs{...}
+type DirectConnectGatewayAttachmentsTagInput interface {
+	pulumi.Input
+
+	ToDirectConnectGatewayAttachmentsTagOutput() DirectConnectGatewayAttachmentsTagOutput
+	ToDirectConnectGatewayAttachmentsTagOutputWithContext(context.Context) DirectConnectGatewayAttachmentsTagOutput
+}
+
+type DirectConnectGatewayAttachmentsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (DirectConnectGatewayAttachmentsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DirectConnectGatewayAttachmentsTag)(nil)).Elem()
+}
+
+func (i DirectConnectGatewayAttachmentsTagArgs) ToDirectConnectGatewayAttachmentsTagOutput() DirectConnectGatewayAttachmentsTagOutput {
+	return i.ToDirectConnectGatewayAttachmentsTagOutputWithContext(context.Background())
+}
+
+func (i DirectConnectGatewayAttachmentsTagArgs) ToDirectConnectGatewayAttachmentsTagOutputWithContext(ctx context.Context) DirectConnectGatewayAttachmentsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DirectConnectGatewayAttachmentsTagOutput)
+}
+
+// DirectConnectGatewayAttachmentsTagArrayInput is an input type that accepts DirectConnectGatewayAttachmentsTagArray and DirectConnectGatewayAttachmentsTagArrayOutput values.
+// You can construct a concrete instance of `DirectConnectGatewayAttachmentsTagArrayInput` via:
+//
+//	DirectConnectGatewayAttachmentsTagArray{ DirectConnectGatewayAttachmentsTagArgs{...} }
+type DirectConnectGatewayAttachmentsTagArrayInput interface {
+	pulumi.Input
+
+	ToDirectConnectGatewayAttachmentsTagArrayOutput() DirectConnectGatewayAttachmentsTagArrayOutput
+	ToDirectConnectGatewayAttachmentsTagArrayOutputWithContext(context.Context) DirectConnectGatewayAttachmentsTagArrayOutput
+}
+
+type DirectConnectGatewayAttachmentsTagArray []DirectConnectGatewayAttachmentsTagInput
+
+func (DirectConnectGatewayAttachmentsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DirectConnectGatewayAttachmentsTag)(nil)).Elem()
+}
+
+func (i DirectConnectGatewayAttachmentsTagArray) ToDirectConnectGatewayAttachmentsTagArrayOutput() DirectConnectGatewayAttachmentsTagArrayOutput {
+	return i.ToDirectConnectGatewayAttachmentsTagArrayOutputWithContext(context.Background())
+}
+
+func (i DirectConnectGatewayAttachmentsTagArray) ToDirectConnectGatewayAttachmentsTagArrayOutputWithContext(ctx context.Context) DirectConnectGatewayAttachmentsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DirectConnectGatewayAttachmentsTagArrayOutput)
+}
+
+type DirectConnectGatewayAttachmentsTagOutput struct{ *pulumi.OutputState }
+
+func (DirectConnectGatewayAttachmentsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DirectConnectGatewayAttachmentsTag)(nil)).Elem()
+}
+
+func (o DirectConnectGatewayAttachmentsTagOutput) ToDirectConnectGatewayAttachmentsTagOutput() DirectConnectGatewayAttachmentsTagOutput {
+	return o
+}
+
+func (o DirectConnectGatewayAttachmentsTagOutput) ToDirectConnectGatewayAttachmentsTagOutputWithContext(ctx context.Context) DirectConnectGatewayAttachmentsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o DirectConnectGatewayAttachmentsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v DirectConnectGatewayAttachmentsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o DirectConnectGatewayAttachmentsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v DirectConnectGatewayAttachmentsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type DirectConnectGatewayAttachmentsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (DirectConnectGatewayAttachmentsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DirectConnectGatewayAttachmentsTag)(nil)).Elem()
+}
+
+func (o DirectConnectGatewayAttachmentsTagArrayOutput) ToDirectConnectGatewayAttachmentsTagArrayOutput() DirectConnectGatewayAttachmentsTagArrayOutput {
+	return o
+}
+
+func (o DirectConnectGatewayAttachmentsTagArrayOutput) ToDirectConnectGatewayAttachmentsTagArrayOutputWithContext(ctx context.Context) DirectConnectGatewayAttachmentsTagArrayOutput {
+	return o
+}
+
+func (o DirectConnectGatewayAttachmentsTagArrayOutput) Index(i pulumi.IntInput) DirectConnectGatewayAttachmentsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DirectConnectGatewayAttachmentsTag {
+		return vs[0].([]DirectConnectGatewayAttachmentsTag)[vs[1].(int)]
+	}).(DirectConnectGatewayAttachmentsTagOutput)
 }
 
 type GrantRulesRule struct {
@@ -815,6 +1480,218 @@ func (o GrantRulesRuleArrayOutput) Index(i pulumi.IntInput) GrantRulesRuleOutput
 	}).(GrantRulesRuleOutput)
 }
 
+type PeerAttachmentTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// PeerAttachmentTagInput is an input type that accepts PeerAttachmentTagArgs and PeerAttachmentTagOutput values.
+// You can construct a concrete instance of `PeerAttachmentTagInput` via:
+//
+//	PeerAttachmentTagArgs{...}
+type PeerAttachmentTagInput interface {
+	pulumi.Input
+
+	ToPeerAttachmentTagOutput() PeerAttachmentTagOutput
+	ToPeerAttachmentTagOutputWithContext(context.Context) PeerAttachmentTagOutput
+}
+
+type PeerAttachmentTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (PeerAttachmentTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PeerAttachmentTag)(nil)).Elem()
+}
+
+func (i PeerAttachmentTagArgs) ToPeerAttachmentTagOutput() PeerAttachmentTagOutput {
+	return i.ToPeerAttachmentTagOutputWithContext(context.Background())
+}
+
+func (i PeerAttachmentTagArgs) ToPeerAttachmentTagOutputWithContext(ctx context.Context) PeerAttachmentTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PeerAttachmentTagOutput)
+}
+
+// PeerAttachmentTagArrayInput is an input type that accepts PeerAttachmentTagArray and PeerAttachmentTagArrayOutput values.
+// You can construct a concrete instance of `PeerAttachmentTagArrayInput` via:
+//
+//	PeerAttachmentTagArray{ PeerAttachmentTagArgs{...} }
+type PeerAttachmentTagArrayInput interface {
+	pulumi.Input
+
+	ToPeerAttachmentTagArrayOutput() PeerAttachmentTagArrayOutput
+	ToPeerAttachmentTagArrayOutputWithContext(context.Context) PeerAttachmentTagArrayOutput
+}
+
+type PeerAttachmentTagArray []PeerAttachmentTagInput
+
+func (PeerAttachmentTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PeerAttachmentTag)(nil)).Elem()
+}
+
+func (i PeerAttachmentTagArray) ToPeerAttachmentTagArrayOutput() PeerAttachmentTagArrayOutput {
+	return i.ToPeerAttachmentTagArrayOutputWithContext(context.Background())
+}
+
+func (i PeerAttachmentTagArray) ToPeerAttachmentTagArrayOutputWithContext(ctx context.Context) PeerAttachmentTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PeerAttachmentTagArrayOutput)
+}
+
+type PeerAttachmentTagOutput struct{ *pulumi.OutputState }
+
+func (PeerAttachmentTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PeerAttachmentTag)(nil)).Elem()
+}
+
+func (o PeerAttachmentTagOutput) ToPeerAttachmentTagOutput() PeerAttachmentTagOutput {
+	return o
+}
+
+func (o PeerAttachmentTagOutput) ToPeerAttachmentTagOutputWithContext(ctx context.Context) PeerAttachmentTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o PeerAttachmentTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v PeerAttachmentTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o PeerAttachmentTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v PeerAttachmentTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type PeerAttachmentTagArrayOutput struct{ *pulumi.OutputState }
+
+func (PeerAttachmentTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PeerAttachmentTag)(nil)).Elem()
+}
+
+func (o PeerAttachmentTagArrayOutput) ToPeerAttachmentTagArrayOutput() PeerAttachmentTagArrayOutput {
+	return o
+}
+
+func (o PeerAttachmentTagArrayOutput) ToPeerAttachmentTagArrayOutputWithContext(ctx context.Context) PeerAttachmentTagArrayOutput {
+	return o
+}
+
+func (o PeerAttachmentTagArrayOutput) Index(i pulumi.IntInput) PeerAttachmentTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PeerAttachmentTag {
+		return vs[0].([]PeerAttachmentTag)[vs[1].(int)]
+	}).(PeerAttachmentTagOutput)
+}
+
+type PeerAttachmentsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// PeerAttachmentsTagInput is an input type that accepts PeerAttachmentsTagArgs and PeerAttachmentsTagOutput values.
+// You can construct a concrete instance of `PeerAttachmentsTagInput` via:
+//
+//	PeerAttachmentsTagArgs{...}
+type PeerAttachmentsTagInput interface {
+	pulumi.Input
+
+	ToPeerAttachmentsTagOutput() PeerAttachmentsTagOutput
+	ToPeerAttachmentsTagOutputWithContext(context.Context) PeerAttachmentsTagOutput
+}
+
+type PeerAttachmentsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (PeerAttachmentsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PeerAttachmentsTag)(nil)).Elem()
+}
+
+func (i PeerAttachmentsTagArgs) ToPeerAttachmentsTagOutput() PeerAttachmentsTagOutput {
+	return i.ToPeerAttachmentsTagOutputWithContext(context.Background())
+}
+
+func (i PeerAttachmentsTagArgs) ToPeerAttachmentsTagOutputWithContext(ctx context.Context) PeerAttachmentsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PeerAttachmentsTagOutput)
+}
+
+// PeerAttachmentsTagArrayInput is an input type that accepts PeerAttachmentsTagArray and PeerAttachmentsTagArrayOutput values.
+// You can construct a concrete instance of `PeerAttachmentsTagArrayInput` via:
+//
+//	PeerAttachmentsTagArray{ PeerAttachmentsTagArgs{...} }
+type PeerAttachmentsTagArrayInput interface {
+	pulumi.Input
+
+	ToPeerAttachmentsTagArrayOutput() PeerAttachmentsTagArrayOutput
+	ToPeerAttachmentsTagArrayOutputWithContext(context.Context) PeerAttachmentsTagArrayOutput
+}
+
+type PeerAttachmentsTagArray []PeerAttachmentsTagInput
+
+func (PeerAttachmentsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PeerAttachmentsTag)(nil)).Elem()
+}
+
+func (i PeerAttachmentsTagArray) ToPeerAttachmentsTagArrayOutput() PeerAttachmentsTagArrayOutput {
+	return i.ToPeerAttachmentsTagArrayOutputWithContext(context.Background())
+}
+
+func (i PeerAttachmentsTagArray) ToPeerAttachmentsTagArrayOutputWithContext(ctx context.Context) PeerAttachmentsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PeerAttachmentsTagArrayOutput)
+}
+
+type PeerAttachmentsTagOutput struct{ *pulumi.OutputState }
+
+func (PeerAttachmentsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PeerAttachmentsTag)(nil)).Elem()
+}
+
+func (o PeerAttachmentsTagOutput) ToPeerAttachmentsTagOutput() PeerAttachmentsTagOutput {
+	return o
+}
+
+func (o PeerAttachmentsTagOutput) ToPeerAttachmentsTagOutputWithContext(ctx context.Context) PeerAttachmentsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o PeerAttachmentsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v PeerAttachmentsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o PeerAttachmentsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v PeerAttachmentsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type PeerAttachmentsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (PeerAttachmentsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PeerAttachmentsTag)(nil)).Elem()
+}
+
+func (o PeerAttachmentsTagArrayOutput) ToPeerAttachmentsTagArrayOutput() PeerAttachmentsTagArrayOutput {
+	return o
+}
+
+func (o PeerAttachmentsTagArrayOutput) ToPeerAttachmentsTagArrayOutputWithContext(ctx context.Context) PeerAttachmentsTagArrayOutput {
+	return o
+}
+
+func (o PeerAttachmentsTagArrayOutput) Index(i pulumi.IntInput) PeerAttachmentsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PeerAttachmentsTag {
+		return vs[0].([]PeerAttachmentsTag)[vs[1].(int)]
+	}).(PeerAttachmentsTagOutput)
+}
+
 type PeerAttachmentsTransitRouterAttachment struct {
 	// The bandwidth of the transit router peer attachment.
 	Bandwidth int `pulumi:"bandwidth"`
@@ -830,6 +1707,8 @@ type PeerAttachmentsTransitRouterAttachment struct {
 	PeerTransitRouterRegionId string `pulumi:"peerTransitRouterRegionId"`
 	// The status of the transit router peer attachment.
 	Status string `pulumi:"status"`
+	// Tags.
+	Tags []PeerAttachmentsTransitRouterAttachmentTag `pulumi:"tags"`
 	// The id of the transit router peer attachment.
 	TransitRouterAttachmentId string `pulumi:"transitRouterAttachmentId"`
 	// The name of transit router peer attachment.
@@ -870,6 +1749,8 @@ type PeerAttachmentsTransitRouterAttachmentArgs struct {
 	PeerTransitRouterRegionId pulumi.StringInput `pulumi:"peerTransitRouterRegionId"`
 	// The status of the transit router peer attachment.
 	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags PeerAttachmentsTransitRouterAttachmentTagArrayInput `pulumi:"tags"`
 	// The id of the transit router peer attachment.
 	TransitRouterAttachmentId pulumi.StringInput `pulumi:"transitRouterAttachmentId"`
 	// The name of transit router peer attachment.
@@ -970,6 +1851,13 @@ func (o PeerAttachmentsTransitRouterAttachmentOutput) Status() pulumi.StringOutp
 	return o.ApplyT(func(v PeerAttachmentsTransitRouterAttachment) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// Tags.
+func (o PeerAttachmentsTransitRouterAttachmentOutput) Tags() PeerAttachmentsTransitRouterAttachmentTagArrayOutput {
+	return o.ApplyT(func(v PeerAttachmentsTransitRouterAttachment) []PeerAttachmentsTransitRouterAttachmentTag {
+		return v.Tags
+	}).(PeerAttachmentsTransitRouterAttachmentTagArrayOutput)
+}
+
 // The id of the transit router peer attachment.
 func (o PeerAttachmentsTransitRouterAttachmentOutput) TransitRouterAttachmentId() pulumi.StringOutput {
 	return o.ApplyT(func(v PeerAttachmentsTransitRouterAttachment) string { return v.TransitRouterAttachmentId }).(pulumi.StringOutput)
@@ -1018,6 +1906,112 @@ func (o PeerAttachmentsTransitRouterAttachmentArrayOutput) Index(i pulumi.IntInp
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PeerAttachmentsTransitRouterAttachment {
 		return vs[0].([]PeerAttachmentsTransitRouterAttachment)[vs[1].(int)]
 	}).(PeerAttachmentsTransitRouterAttachmentOutput)
+}
+
+type PeerAttachmentsTransitRouterAttachmentTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// PeerAttachmentsTransitRouterAttachmentTagInput is an input type that accepts PeerAttachmentsTransitRouterAttachmentTagArgs and PeerAttachmentsTransitRouterAttachmentTagOutput values.
+// You can construct a concrete instance of `PeerAttachmentsTransitRouterAttachmentTagInput` via:
+//
+//	PeerAttachmentsTransitRouterAttachmentTagArgs{...}
+type PeerAttachmentsTransitRouterAttachmentTagInput interface {
+	pulumi.Input
+
+	ToPeerAttachmentsTransitRouterAttachmentTagOutput() PeerAttachmentsTransitRouterAttachmentTagOutput
+	ToPeerAttachmentsTransitRouterAttachmentTagOutputWithContext(context.Context) PeerAttachmentsTransitRouterAttachmentTagOutput
+}
+
+type PeerAttachmentsTransitRouterAttachmentTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (PeerAttachmentsTransitRouterAttachmentTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PeerAttachmentsTransitRouterAttachmentTag)(nil)).Elem()
+}
+
+func (i PeerAttachmentsTransitRouterAttachmentTagArgs) ToPeerAttachmentsTransitRouterAttachmentTagOutput() PeerAttachmentsTransitRouterAttachmentTagOutput {
+	return i.ToPeerAttachmentsTransitRouterAttachmentTagOutputWithContext(context.Background())
+}
+
+func (i PeerAttachmentsTransitRouterAttachmentTagArgs) ToPeerAttachmentsTransitRouterAttachmentTagOutputWithContext(ctx context.Context) PeerAttachmentsTransitRouterAttachmentTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PeerAttachmentsTransitRouterAttachmentTagOutput)
+}
+
+// PeerAttachmentsTransitRouterAttachmentTagArrayInput is an input type that accepts PeerAttachmentsTransitRouterAttachmentTagArray and PeerAttachmentsTransitRouterAttachmentTagArrayOutput values.
+// You can construct a concrete instance of `PeerAttachmentsTransitRouterAttachmentTagArrayInput` via:
+//
+//	PeerAttachmentsTransitRouterAttachmentTagArray{ PeerAttachmentsTransitRouterAttachmentTagArgs{...} }
+type PeerAttachmentsTransitRouterAttachmentTagArrayInput interface {
+	pulumi.Input
+
+	ToPeerAttachmentsTransitRouterAttachmentTagArrayOutput() PeerAttachmentsTransitRouterAttachmentTagArrayOutput
+	ToPeerAttachmentsTransitRouterAttachmentTagArrayOutputWithContext(context.Context) PeerAttachmentsTransitRouterAttachmentTagArrayOutput
+}
+
+type PeerAttachmentsTransitRouterAttachmentTagArray []PeerAttachmentsTransitRouterAttachmentTagInput
+
+func (PeerAttachmentsTransitRouterAttachmentTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PeerAttachmentsTransitRouterAttachmentTag)(nil)).Elem()
+}
+
+func (i PeerAttachmentsTransitRouterAttachmentTagArray) ToPeerAttachmentsTransitRouterAttachmentTagArrayOutput() PeerAttachmentsTransitRouterAttachmentTagArrayOutput {
+	return i.ToPeerAttachmentsTransitRouterAttachmentTagArrayOutputWithContext(context.Background())
+}
+
+func (i PeerAttachmentsTransitRouterAttachmentTagArray) ToPeerAttachmentsTransitRouterAttachmentTagArrayOutputWithContext(ctx context.Context) PeerAttachmentsTransitRouterAttachmentTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PeerAttachmentsTransitRouterAttachmentTagArrayOutput)
+}
+
+type PeerAttachmentsTransitRouterAttachmentTagOutput struct{ *pulumi.OutputState }
+
+func (PeerAttachmentsTransitRouterAttachmentTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PeerAttachmentsTransitRouterAttachmentTag)(nil)).Elem()
+}
+
+func (o PeerAttachmentsTransitRouterAttachmentTagOutput) ToPeerAttachmentsTransitRouterAttachmentTagOutput() PeerAttachmentsTransitRouterAttachmentTagOutput {
+	return o
+}
+
+func (o PeerAttachmentsTransitRouterAttachmentTagOutput) ToPeerAttachmentsTransitRouterAttachmentTagOutputWithContext(ctx context.Context) PeerAttachmentsTransitRouterAttachmentTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o PeerAttachmentsTransitRouterAttachmentTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v PeerAttachmentsTransitRouterAttachmentTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o PeerAttachmentsTransitRouterAttachmentTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v PeerAttachmentsTransitRouterAttachmentTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type PeerAttachmentsTransitRouterAttachmentTagArrayOutput struct{ *pulumi.OutputState }
+
+func (PeerAttachmentsTransitRouterAttachmentTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PeerAttachmentsTransitRouterAttachmentTag)(nil)).Elem()
+}
+
+func (o PeerAttachmentsTransitRouterAttachmentTagArrayOutput) ToPeerAttachmentsTransitRouterAttachmentTagArrayOutput() PeerAttachmentsTransitRouterAttachmentTagArrayOutput {
+	return o
+}
+
+func (o PeerAttachmentsTransitRouterAttachmentTagArrayOutput) ToPeerAttachmentsTransitRouterAttachmentTagArrayOutputWithContext(ctx context.Context) PeerAttachmentsTransitRouterAttachmentTagArrayOutput {
+	return o
+}
+
+func (o PeerAttachmentsTransitRouterAttachmentTagArrayOutput) Index(i pulumi.IntInput) PeerAttachmentsTransitRouterAttachmentTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PeerAttachmentsTransitRouterAttachmentTag {
+		return vs[0].([]PeerAttachmentsTransitRouterAttachmentTag)[vs[1].(int)]
+	}).(PeerAttachmentsTransitRouterAttachmentTagOutput)
 }
 
 type RouteEntriesEntry struct {
@@ -1437,6 +2431,112 @@ func (o RouteTablePropagationsPropagationArrayOutput) Index(i pulumi.IntInput) R
 	}).(RouteTablePropagationsPropagationOutput)
 }
 
+type RouteTableTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// RouteTableTagInput is an input type that accepts RouteTableTagArgs and RouteTableTagOutput values.
+// You can construct a concrete instance of `RouteTableTagInput` via:
+//
+//	RouteTableTagArgs{...}
+type RouteTableTagInput interface {
+	pulumi.Input
+
+	ToRouteTableTagOutput() RouteTableTagOutput
+	ToRouteTableTagOutputWithContext(context.Context) RouteTableTagOutput
+}
+
+type RouteTableTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (RouteTableTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouteTableTag)(nil)).Elem()
+}
+
+func (i RouteTableTagArgs) ToRouteTableTagOutput() RouteTableTagOutput {
+	return i.ToRouteTableTagOutputWithContext(context.Background())
+}
+
+func (i RouteTableTagArgs) ToRouteTableTagOutputWithContext(ctx context.Context) RouteTableTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteTableTagOutput)
+}
+
+// RouteTableTagArrayInput is an input type that accepts RouteTableTagArray and RouteTableTagArrayOutput values.
+// You can construct a concrete instance of `RouteTableTagArrayInput` via:
+//
+//	RouteTableTagArray{ RouteTableTagArgs{...} }
+type RouteTableTagArrayInput interface {
+	pulumi.Input
+
+	ToRouteTableTagArrayOutput() RouteTableTagArrayOutput
+	ToRouteTableTagArrayOutputWithContext(context.Context) RouteTableTagArrayOutput
+}
+
+type RouteTableTagArray []RouteTableTagInput
+
+func (RouteTableTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RouteTableTag)(nil)).Elem()
+}
+
+func (i RouteTableTagArray) ToRouteTableTagArrayOutput() RouteTableTagArrayOutput {
+	return i.ToRouteTableTagArrayOutputWithContext(context.Background())
+}
+
+func (i RouteTableTagArray) ToRouteTableTagArrayOutputWithContext(ctx context.Context) RouteTableTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteTableTagArrayOutput)
+}
+
+type RouteTableTagOutput struct{ *pulumi.OutputState }
+
+func (RouteTableTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouteTableTag)(nil)).Elem()
+}
+
+func (o RouteTableTagOutput) ToRouteTableTagOutput() RouteTableTagOutput {
+	return o
+}
+
+func (o RouteTableTagOutput) ToRouteTableTagOutputWithContext(ctx context.Context) RouteTableTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o RouteTableTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v RouteTableTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o RouteTableTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v RouteTableTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type RouteTableTagArrayOutput struct{ *pulumi.OutputState }
+
+func (RouteTableTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RouteTableTag)(nil)).Elem()
+}
+
+func (o RouteTableTagArrayOutput) ToRouteTableTagArrayOutput() RouteTableTagArrayOutput {
+	return o
+}
+
+func (o RouteTableTagArrayOutput) ToRouteTableTagArrayOutputWithContext(ctx context.Context) RouteTableTagArrayOutput {
+	return o
+}
+
+func (o RouteTableTagArrayOutput) Index(i pulumi.IntInput) RouteTableTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RouteTableTag {
+		return vs[0].([]RouteTableTag)[vs[1].(int)]
+	}).(RouteTableTagOutput)
+}
+
 type RouteTablesRouteTable struct {
 	// The creation time of the route table.
 	CreationTime string `pulumi:"creationTime"`
@@ -1444,6 +2544,8 @@ type RouteTablesRouteTable struct {
 	Description string `pulumi:"description"`
 	// The status of the route table.
 	Status string `pulumi:"status"`
+	// Tags.
+	Tags []RouteTablesRouteTableTag `pulumi:"tags"`
 	// The id of the route table.
 	TransitRouterRouteTableId string `pulumi:"transitRouterRouteTableId"`
 	// The name of the route table.
@@ -1472,6 +2574,8 @@ type RouteTablesRouteTableArgs struct {
 	Description pulumi.StringInput `pulumi:"description"`
 	// The status of the route table.
 	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags RouteTablesRouteTableTagArrayInput `pulumi:"tags"`
 	// The id of the route table.
 	TransitRouterRouteTableId pulumi.StringInput `pulumi:"transitRouterRouteTableId"`
 	// The name of the route table.
@@ -1548,6 +2652,11 @@ func (o RouteTablesRouteTableOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v RouteTablesRouteTable) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// Tags.
+func (o RouteTablesRouteTableOutput) Tags() RouteTablesRouteTableTagArrayOutput {
+	return o.ApplyT(func(v RouteTablesRouteTable) []RouteTablesRouteTableTag { return v.Tags }).(RouteTablesRouteTableTagArrayOutput)
+}
+
 // The id of the route table.
 func (o RouteTablesRouteTableOutput) TransitRouterRouteTableId() pulumi.StringOutput {
 	return o.ApplyT(func(v RouteTablesRouteTable) string { return v.TransitRouterRouteTableId }).(pulumi.StringOutput)
@@ -1586,6 +2695,324 @@ func (o RouteTablesRouteTableArrayOutput) Index(i pulumi.IntInput) RouteTablesRo
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RouteTablesRouteTable {
 		return vs[0].([]RouteTablesRouteTable)[vs[1].(int)]
 	}).(RouteTablesRouteTableOutput)
+}
+
+type RouteTablesRouteTableTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// RouteTablesRouteTableTagInput is an input type that accepts RouteTablesRouteTableTagArgs and RouteTablesRouteTableTagOutput values.
+// You can construct a concrete instance of `RouteTablesRouteTableTagInput` via:
+//
+//	RouteTablesRouteTableTagArgs{...}
+type RouteTablesRouteTableTagInput interface {
+	pulumi.Input
+
+	ToRouteTablesRouteTableTagOutput() RouteTablesRouteTableTagOutput
+	ToRouteTablesRouteTableTagOutputWithContext(context.Context) RouteTablesRouteTableTagOutput
+}
+
+type RouteTablesRouteTableTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (RouteTablesRouteTableTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouteTablesRouteTableTag)(nil)).Elem()
+}
+
+func (i RouteTablesRouteTableTagArgs) ToRouteTablesRouteTableTagOutput() RouteTablesRouteTableTagOutput {
+	return i.ToRouteTablesRouteTableTagOutputWithContext(context.Background())
+}
+
+func (i RouteTablesRouteTableTagArgs) ToRouteTablesRouteTableTagOutputWithContext(ctx context.Context) RouteTablesRouteTableTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteTablesRouteTableTagOutput)
+}
+
+// RouteTablesRouteTableTagArrayInput is an input type that accepts RouteTablesRouteTableTagArray and RouteTablesRouteTableTagArrayOutput values.
+// You can construct a concrete instance of `RouteTablesRouteTableTagArrayInput` via:
+//
+//	RouteTablesRouteTableTagArray{ RouteTablesRouteTableTagArgs{...} }
+type RouteTablesRouteTableTagArrayInput interface {
+	pulumi.Input
+
+	ToRouteTablesRouteTableTagArrayOutput() RouteTablesRouteTableTagArrayOutput
+	ToRouteTablesRouteTableTagArrayOutputWithContext(context.Context) RouteTablesRouteTableTagArrayOutput
+}
+
+type RouteTablesRouteTableTagArray []RouteTablesRouteTableTagInput
+
+func (RouteTablesRouteTableTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RouteTablesRouteTableTag)(nil)).Elem()
+}
+
+func (i RouteTablesRouteTableTagArray) ToRouteTablesRouteTableTagArrayOutput() RouteTablesRouteTableTagArrayOutput {
+	return i.ToRouteTablesRouteTableTagArrayOutputWithContext(context.Background())
+}
+
+func (i RouteTablesRouteTableTagArray) ToRouteTablesRouteTableTagArrayOutputWithContext(ctx context.Context) RouteTablesRouteTableTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteTablesRouteTableTagArrayOutput)
+}
+
+type RouteTablesRouteTableTagOutput struct{ *pulumi.OutputState }
+
+func (RouteTablesRouteTableTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouteTablesRouteTableTag)(nil)).Elem()
+}
+
+func (o RouteTablesRouteTableTagOutput) ToRouteTablesRouteTableTagOutput() RouteTablesRouteTableTagOutput {
+	return o
+}
+
+func (o RouteTablesRouteTableTagOutput) ToRouteTablesRouteTableTagOutputWithContext(ctx context.Context) RouteTablesRouteTableTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o RouteTablesRouteTableTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v RouteTablesRouteTableTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o RouteTablesRouteTableTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v RouteTablesRouteTableTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type RouteTablesRouteTableTagArrayOutput struct{ *pulumi.OutputState }
+
+func (RouteTablesRouteTableTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RouteTablesRouteTableTag)(nil)).Elem()
+}
+
+func (o RouteTablesRouteTableTagArrayOutput) ToRouteTablesRouteTableTagArrayOutput() RouteTablesRouteTableTagArrayOutput {
+	return o
+}
+
+func (o RouteTablesRouteTableTagArrayOutput) ToRouteTablesRouteTableTagArrayOutputWithContext(ctx context.Context) RouteTablesRouteTableTagArrayOutput {
+	return o
+}
+
+func (o RouteTablesRouteTableTagArrayOutput) Index(i pulumi.IntInput) RouteTablesRouteTableTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RouteTablesRouteTableTag {
+		return vs[0].([]RouteTablesRouteTableTag)[vs[1].(int)]
+	}).(RouteTablesRouteTableTagOutput)
+}
+
+type RouteTablesTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// RouteTablesTagInput is an input type that accepts RouteTablesTagArgs and RouteTablesTagOutput values.
+// You can construct a concrete instance of `RouteTablesTagInput` via:
+//
+//	RouteTablesTagArgs{...}
+type RouteTablesTagInput interface {
+	pulumi.Input
+
+	ToRouteTablesTagOutput() RouteTablesTagOutput
+	ToRouteTablesTagOutputWithContext(context.Context) RouteTablesTagOutput
+}
+
+type RouteTablesTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (RouteTablesTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouteTablesTag)(nil)).Elem()
+}
+
+func (i RouteTablesTagArgs) ToRouteTablesTagOutput() RouteTablesTagOutput {
+	return i.ToRouteTablesTagOutputWithContext(context.Background())
+}
+
+func (i RouteTablesTagArgs) ToRouteTablesTagOutputWithContext(ctx context.Context) RouteTablesTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteTablesTagOutput)
+}
+
+// RouteTablesTagArrayInput is an input type that accepts RouteTablesTagArray and RouteTablesTagArrayOutput values.
+// You can construct a concrete instance of `RouteTablesTagArrayInput` via:
+//
+//	RouteTablesTagArray{ RouteTablesTagArgs{...} }
+type RouteTablesTagArrayInput interface {
+	pulumi.Input
+
+	ToRouteTablesTagArrayOutput() RouteTablesTagArrayOutput
+	ToRouteTablesTagArrayOutputWithContext(context.Context) RouteTablesTagArrayOutput
+}
+
+type RouteTablesTagArray []RouteTablesTagInput
+
+func (RouteTablesTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RouteTablesTag)(nil)).Elem()
+}
+
+func (i RouteTablesTagArray) ToRouteTablesTagArrayOutput() RouteTablesTagArrayOutput {
+	return i.ToRouteTablesTagArrayOutputWithContext(context.Background())
+}
+
+func (i RouteTablesTagArray) ToRouteTablesTagArrayOutputWithContext(ctx context.Context) RouteTablesTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteTablesTagArrayOutput)
+}
+
+type RouteTablesTagOutput struct{ *pulumi.OutputState }
+
+func (RouteTablesTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouteTablesTag)(nil)).Elem()
+}
+
+func (o RouteTablesTagOutput) ToRouteTablesTagOutput() RouteTablesTagOutput {
+	return o
+}
+
+func (o RouteTablesTagOutput) ToRouteTablesTagOutputWithContext(ctx context.Context) RouteTablesTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o RouteTablesTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v RouteTablesTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o RouteTablesTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v RouteTablesTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type RouteTablesTagArrayOutput struct{ *pulumi.OutputState }
+
+func (RouteTablesTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RouteTablesTag)(nil)).Elem()
+}
+
+func (o RouteTablesTagArrayOutput) ToRouteTablesTagArrayOutput() RouteTablesTagArrayOutput {
+	return o
+}
+
+func (o RouteTablesTagArrayOutput) ToRouteTablesTagArrayOutputWithContext(ctx context.Context) RouteTablesTagArrayOutput {
+	return o
+}
+
+func (o RouteTablesTagArrayOutput) Index(i pulumi.IntInput) RouteTablesTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RouteTablesTag {
+		return vs[0].([]RouteTablesTag)[vs[1].(int)]
+	}).(RouteTablesTagOutput)
+}
+
+type TransitRouterTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// TransitRouterTagInput is an input type that accepts TransitRouterTagArgs and TransitRouterTagOutput values.
+// You can construct a concrete instance of `TransitRouterTagInput` via:
+//
+//	TransitRouterTagArgs{...}
+type TransitRouterTagInput interface {
+	pulumi.Input
+
+	ToTransitRouterTagOutput() TransitRouterTagOutput
+	ToTransitRouterTagOutputWithContext(context.Context) TransitRouterTagOutput
+}
+
+type TransitRouterTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (TransitRouterTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TransitRouterTag)(nil)).Elem()
+}
+
+func (i TransitRouterTagArgs) ToTransitRouterTagOutput() TransitRouterTagOutput {
+	return i.ToTransitRouterTagOutputWithContext(context.Background())
+}
+
+func (i TransitRouterTagArgs) ToTransitRouterTagOutputWithContext(ctx context.Context) TransitRouterTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TransitRouterTagOutput)
+}
+
+// TransitRouterTagArrayInput is an input type that accepts TransitRouterTagArray and TransitRouterTagArrayOutput values.
+// You can construct a concrete instance of `TransitRouterTagArrayInput` via:
+//
+//	TransitRouterTagArray{ TransitRouterTagArgs{...} }
+type TransitRouterTagArrayInput interface {
+	pulumi.Input
+
+	ToTransitRouterTagArrayOutput() TransitRouterTagArrayOutput
+	ToTransitRouterTagArrayOutputWithContext(context.Context) TransitRouterTagArrayOutput
+}
+
+type TransitRouterTagArray []TransitRouterTagInput
+
+func (TransitRouterTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TransitRouterTag)(nil)).Elem()
+}
+
+func (i TransitRouterTagArray) ToTransitRouterTagArrayOutput() TransitRouterTagArrayOutput {
+	return i.ToTransitRouterTagArrayOutputWithContext(context.Background())
+}
+
+func (i TransitRouterTagArray) ToTransitRouterTagArrayOutputWithContext(ctx context.Context) TransitRouterTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TransitRouterTagArrayOutput)
+}
+
+type TransitRouterTagOutput struct{ *pulumi.OutputState }
+
+func (TransitRouterTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TransitRouterTag)(nil)).Elem()
+}
+
+func (o TransitRouterTagOutput) ToTransitRouterTagOutput() TransitRouterTagOutput {
+	return o
+}
+
+func (o TransitRouterTagOutput) ToTransitRouterTagOutputWithContext(ctx context.Context) TransitRouterTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o TransitRouterTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v TransitRouterTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o TransitRouterTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v TransitRouterTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type TransitRouterTagArrayOutput struct{ *pulumi.OutputState }
+
+func (TransitRouterTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TransitRouterTag)(nil)).Elem()
+}
+
+func (o TransitRouterTagArrayOutput) ToTransitRouterTagArrayOutput() TransitRouterTagArrayOutput {
+	return o
+}
+
+func (o TransitRouterTagArrayOutput) ToTransitRouterTagArrayOutputWithContext(ctx context.Context) TransitRouterTagArrayOutput {
+	return o
+}
+
+func (o TransitRouterTagArrayOutput) Index(i pulumi.IntInput) TransitRouterTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TransitRouterTag {
+		return vs[0].([]TransitRouterTag)[vs[1].(int)]
+	}).(TransitRouterTagOutput)
 }
 
 type TransitRouterTransitRouterAttachment struct {
@@ -1748,6 +3175,112 @@ func (o TransitRouterTransitRouterAttachmentArrayOutput) Index(i pulumi.IntInput
 	}).(TransitRouterTransitRouterAttachmentOutput)
 }
 
+type TransitRoutersTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// TransitRoutersTagInput is an input type that accepts TransitRoutersTagArgs and TransitRoutersTagOutput values.
+// You can construct a concrete instance of `TransitRoutersTagInput` via:
+//
+//	TransitRoutersTagArgs{...}
+type TransitRoutersTagInput interface {
+	pulumi.Input
+
+	ToTransitRoutersTagOutput() TransitRoutersTagOutput
+	ToTransitRoutersTagOutputWithContext(context.Context) TransitRoutersTagOutput
+}
+
+type TransitRoutersTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (TransitRoutersTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TransitRoutersTag)(nil)).Elem()
+}
+
+func (i TransitRoutersTagArgs) ToTransitRoutersTagOutput() TransitRoutersTagOutput {
+	return i.ToTransitRoutersTagOutputWithContext(context.Background())
+}
+
+func (i TransitRoutersTagArgs) ToTransitRoutersTagOutputWithContext(ctx context.Context) TransitRoutersTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TransitRoutersTagOutput)
+}
+
+// TransitRoutersTagArrayInput is an input type that accepts TransitRoutersTagArray and TransitRoutersTagArrayOutput values.
+// You can construct a concrete instance of `TransitRoutersTagArrayInput` via:
+//
+//	TransitRoutersTagArray{ TransitRoutersTagArgs{...} }
+type TransitRoutersTagArrayInput interface {
+	pulumi.Input
+
+	ToTransitRoutersTagArrayOutput() TransitRoutersTagArrayOutput
+	ToTransitRoutersTagArrayOutputWithContext(context.Context) TransitRoutersTagArrayOutput
+}
+
+type TransitRoutersTagArray []TransitRoutersTagInput
+
+func (TransitRoutersTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TransitRoutersTag)(nil)).Elem()
+}
+
+func (i TransitRoutersTagArray) ToTransitRoutersTagArrayOutput() TransitRoutersTagArrayOutput {
+	return i.ToTransitRoutersTagArrayOutputWithContext(context.Background())
+}
+
+func (i TransitRoutersTagArray) ToTransitRoutersTagArrayOutputWithContext(ctx context.Context) TransitRoutersTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TransitRoutersTagArrayOutput)
+}
+
+type TransitRoutersTagOutput struct{ *pulumi.OutputState }
+
+func (TransitRoutersTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TransitRoutersTag)(nil)).Elem()
+}
+
+func (o TransitRoutersTagOutput) ToTransitRoutersTagOutput() TransitRoutersTagOutput {
+	return o
+}
+
+func (o TransitRoutersTagOutput) ToTransitRoutersTagOutputWithContext(ctx context.Context) TransitRoutersTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o TransitRoutersTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v TransitRoutersTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o TransitRoutersTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v TransitRoutersTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type TransitRoutersTagArrayOutput struct{ *pulumi.OutputState }
+
+func (TransitRoutersTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TransitRoutersTag)(nil)).Elem()
+}
+
+func (o TransitRoutersTagArrayOutput) ToTransitRoutersTagArrayOutput() TransitRoutersTagArrayOutput {
+	return o
+}
+
+func (o TransitRoutersTagArrayOutput) ToTransitRoutersTagArrayOutputWithContext(ctx context.Context) TransitRoutersTagArrayOutput {
+	return o
+}
+
+func (o TransitRoutersTagArrayOutput) Index(i pulumi.IntInput) TransitRoutersTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TransitRoutersTag {
+		return vs[0].([]TransitRoutersTag)[vs[1].(int)]
+	}).(TransitRoutersTagOutput)
+}
+
 type TransitRoutersTransitRouter struct {
 	// The ID of account.
 	AccountId string `pulumi:"accountId"`
@@ -1761,8 +3294,12 @@ type TransitRoutersTransitRouter struct {
 	Id string `pulumi:"id"`
 	// The overdue time.
 	OverdueTime string `pulumi:"overdueTime"`
+	// The ProjectName of the transit router.
+	ProjectName string `pulumi:"projectName"`
 	// The status of the transit router.
 	Status string `pulumi:"status"`
+	// Tags.
+	Tags []TransitRoutersTransitRouterTag `pulumi:"tags"`
 	// The attachments of transit router.
 	TransitRouterAttachments []TransitRoutersTransitRouterTransitRouterAttachment `pulumi:"transitRouterAttachments"`
 	// The ID of the transit router.
@@ -1797,8 +3334,12 @@ type TransitRoutersTransitRouterArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// The overdue time.
 	OverdueTime pulumi.StringInput `pulumi:"overdueTime"`
+	// The ProjectName of the transit router.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The status of the transit router.
 	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags TransitRoutersTransitRouterTagArrayInput `pulumi:"tags"`
 	// The attachments of transit router.
 	TransitRouterAttachments TransitRoutersTransitRouterTransitRouterAttachmentArrayInput `pulumi:"transitRouterAttachments"`
 	// The ID of the transit router.
@@ -1890,9 +3431,19 @@ func (o TransitRoutersTransitRouterOutput) OverdueTime() pulumi.StringOutput {
 	return o.ApplyT(func(v TransitRoutersTransitRouter) string { return v.OverdueTime }).(pulumi.StringOutput)
 }
 
+// The ProjectName of the transit router.
+func (o TransitRoutersTransitRouterOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v TransitRoutersTransitRouter) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
 // The status of the transit router.
 func (o TransitRoutersTransitRouterOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v TransitRoutersTransitRouter) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o TransitRoutersTransitRouterOutput) Tags() TransitRoutersTransitRouterTagArrayOutput {
+	return o.ApplyT(func(v TransitRoutersTransitRouter) []TransitRoutersTransitRouterTag { return v.Tags }).(TransitRoutersTransitRouterTagArrayOutput)
 }
 
 // The attachments of transit router.
@@ -1935,6 +3486,112 @@ func (o TransitRoutersTransitRouterArrayOutput) Index(i pulumi.IntInput) Transit
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TransitRoutersTransitRouter {
 		return vs[0].([]TransitRoutersTransitRouter)[vs[1].(int)]
 	}).(TransitRoutersTransitRouterOutput)
+}
+
+type TransitRoutersTransitRouterTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// TransitRoutersTransitRouterTagInput is an input type that accepts TransitRoutersTransitRouterTagArgs and TransitRoutersTransitRouterTagOutput values.
+// You can construct a concrete instance of `TransitRoutersTransitRouterTagInput` via:
+//
+//	TransitRoutersTransitRouterTagArgs{...}
+type TransitRoutersTransitRouterTagInput interface {
+	pulumi.Input
+
+	ToTransitRoutersTransitRouterTagOutput() TransitRoutersTransitRouterTagOutput
+	ToTransitRoutersTransitRouterTagOutputWithContext(context.Context) TransitRoutersTransitRouterTagOutput
+}
+
+type TransitRoutersTransitRouterTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (TransitRoutersTransitRouterTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*TransitRoutersTransitRouterTag)(nil)).Elem()
+}
+
+func (i TransitRoutersTransitRouterTagArgs) ToTransitRoutersTransitRouterTagOutput() TransitRoutersTransitRouterTagOutput {
+	return i.ToTransitRoutersTransitRouterTagOutputWithContext(context.Background())
+}
+
+func (i TransitRoutersTransitRouterTagArgs) ToTransitRoutersTransitRouterTagOutputWithContext(ctx context.Context) TransitRoutersTransitRouterTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TransitRoutersTransitRouterTagOutput)
+}
+
+// TransitRoutersTransitRouterTagArrayInput is an input type that accepts TransitRoutersTransitRouterTagArray and TransitRoutersTransitRouterTagArrayOutput values.
+// You can construct a concrete instance of `TransitRoutersTransitRouterTagArrayInput` via:
+//
+//	TransitRoutersTransitRouterTagArray{ TransitRoutersTransitRouterTagArgs{...} }
+type TransitRoutersTransitRouterTagArrayInput interface {
+	pulumi.Input
+
+	ToTransitRoutersTransitRouterTagArrayOutput() TransitRoutersTransitRouterTagArrayOutput
+	ToTransitRoutersTransitRouterTagArrayOutputWithContext(context.Context) TransitRoutersTransitRouterTagArrayOutput
+}
+
+type TransitRoutersTransitRouterTagArray []TransitRoutersTransitRouterTagInput
+
+func (TransitRoutersTransitRouterTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TransitRoutersTransitRouterTag)(nil)).Elem()
+}
+
+func (i TransitRoutersTransitRouterTagArray) ToTransitRoutersTransitRouterTagArrayOutput() TransitRoutersTransitRouterTagArrayOutput {
+	return i.ToTransitRoutersTransitRouterTagArrayOutputWithContext(context.Background())
+}
+
+func (i TransitRoutersTransitRouterTagArray) ToTransitRoutersTransitRouterTagArrayOutputWithContext(ctx context.Context) TransitRoutersTransitRouterTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(TransitRoutersTransitRouterTagArrayOutput)
+}
+
+type TransitRoutersTransitRouterTagOutput struct{ *pulumi.OutputState }
+
+func (TransitRoutersTransitRouterTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*TransitRoutersTransitRouterTag)(nil)).Elem()
+}
+
+func (o TransitRoutersTransitRouterTagOutput) ToTransitRoutersTransitRouterTagOutput() TransitRoutersTransitRouterTagOutput {
+	return o
+}
+
+func (o TransitRoutersTransitRouterTagOutput) ToTransitRoutersTransitRouterTagOutputWithContext(ctx context.Context) TransitRoutersTransitRouterTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o TransitRoutersTransitRouterTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v TransitRoutersTransitRouterTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o TransitRoutersTransitRouterTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v TransitRoutersTransitRouterTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type TransitRoutersTransitRouterTagArrayOutput struct{ *pulumi.OutputState }
+
+func (TransitRoutersTransitRouterTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]TransitRoutersTransitRouterTag)(nil)).Elem()
+}
+
+func (o TransitRoutersTransitRouterTagArrayOutput) ToTransitRoutersTransitRouterTagArrayOutput() TransitRoutersTransitRouterTagArrayOutput {
+	return o
+}
+
+func (o TransitRoutersTransitRouterTagArrayOutput) ToTransitRoutersTransitRouterTagArrayOutputWithContext(ctx context.Context) TransitRoutersTransitRouterTagArrayOutput {
+	return o
+}
+
+func (o TransitRoutersTransitRouterTagArrayOutput) Index(i pulumi.IntInput) TransitRoutersTransitRouterTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) TransitRoutersTransitRouterTag {
+		return vs[0].([]TransitRoutersTransitRouterTag)[vs[1].(int)]
+	}).(TransitRoutersTransitRouterTagOutput)
 }
 
 type TransitRoutersTransitRouterTransitRouterAttachment struct {
@@ -2205,6 +3862,112 @@ func (o VpcAttachmentAttachPointArrayOutput) Index(i pulumi.IntInput) VpcAttachm
 	}).(VpcAttachmentAttachPointOutput)
 }
 
+type VpcAttachmentTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// VpcAttachmentTagInput is an input type that accepts VpcAttachmentTagArgs and VpcAttachmentTagOutput values.
+// You can construct a concrete instance of `VpcAttachmentTagInput` via:
+//
+//	VpcAttachmentTagArgs{...}
+type VpcAttachmentTagInput interface {
+	pulumi.Input
+
+	ToVpcAttachmentTagOutput() VpcAttachmentTagOutput
+	ToVpcAttachmentTagOutputWithContext(context.Context) VpcAttachmentTagOutput
+}
+
+type VpcAttachmentTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (VpcAttachmentTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpcAttachmentTag)(nil)).Elem()
+}
+
+func (i VpcAttachmentTagArgs) ToVpcAttachmentTagOutput() VpcAttachmentTagOutput {
+	return i.ToVpcAttachmentTagOutputWithContext(context.Background())
+}
+
+func (i VpcAttachmentTagArgs) ToVpcAttachmentTagOutputWithContext(ctx context.Context) VpcAttachmentTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcAttachmentTagOutput)
+}
+
+// VpcAttachmentTagArrayInput is an input type that accepts VpcAttachmentTagArray and VpcAttachmentTagArrayOutput values.
+// You can construct a concrete instance of `VpcAttachmentTagArrayInput` via:
+//
+//	VpcAttachmentTagArray{ VpcAttachmentTagArgs{...} }
+type VpcAttachmentTagArrayInput interface {
+	pulumi.Input
+
+	ToVpcAttachmentTagArrayOutput() VpcAttachmentTagArrayOutput
+	ToVpcAttachmentTagArrayOutputWithContext(context.Context) VpcAttachmentTagArrayOutput
+}
+
+type VpcAttachmentTagArray []VpcAttachmentTagInput
+
+func (VpcAttachmentTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpcAttachmentTag)(nil)).Elem()
+}
+
+func (i VpcAttachmentTagArray) ToVpcAttachmentTagArrayOutput() VpcAttachmentTagArrayOutput {
+	return i.ToVpcAttachmentTagArrayOutputWithContext(context.Background())
+}
+
+func (i VpcAttachmentTagArray) ToVpcAttachmentTagArrayOutputWithContext(ctx context.Context) VpcAttachmentTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcAttachmentTagArrayOutput)
+}
+
+type VpcAttachmentTagOutput struct{ *pulumi.OutputState }
+
+func (VpcAttachmentTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpcAttachmentTag)(nil)).Elem()
+}
+
+func (o VpcAttachmentTagOutput) ToVpcAttachmentTagOutput() VpcAttachmentTagOutput {
+	return o
+}
+
+func (o VpcAttachmentTagOutput) ToVpcAttachmentTagOutputWithContext(ctx context.Context) VpcAttachmentTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o VpcAttachmentTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v VpcAttachmentTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o VpcAttachmentTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v VpcAttachmentTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type VpcAttachmentTagArrayOutput struct{ *pulumi.OutputState }
+
+func (VpcAttachmentTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpcAttachmentTag)(nil)).Elem()
+}
+
+func (o VpcAttachmentTagArrayOutput) ToVpcAttachmentTagArrayOutput() VpcAttachmentTagArrayOutput {
+	return o
+}
+
+func (o VpcAttachmentTagArrayOutput) ToVpcAttachmentTagArrayOutputWithContext(ctx context.Context) VpcAttachmentTagArrayOutput {
+	return o
+}
+
+func (o VpcAttachmentTagArrayOutput) Index(i pulumi.IntInput) VpcAttachmentTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpcAttachmentTag {
+		return vs[0].([]VpcAttachmentTag)[vs[1].(int)]
+	}).(VpcAttachmentTagOutput)
+}
+
 type VpcAttachmentsAttachment struct {
 	// The collection of attach points.
 	AttachPoints []VpcAttachmentsAttachmentAttachPoint `pulumi:"attachPoints"`
@@ -2214,6 +3977,8 @@ type VpcAttachmentsAttachment struct {
 	Description string `pulumi:"description"`
 	// The status of the transit router.
 	Status string `pulumi:"status"`
+	// Tags.
+	Tags []VpcAttachmentsAttachmentTag `pulumi:"tags"`
 	// The id of the transit router attachment.
 	TransitRouterAttachmentId string `pulumi:"transitRouterAttachmentId"`
 	// The name of the transit router attachment.
@@ -2246,6 +4011,8 @@ type VpcAttachmentsAttachmentArgs struct {
 	Description pulumi.StringInput `pulumi:"description"`
 	// The status of the transit router.
 	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags VpcAttachmentsAttachmentTagArrayInput `pulumi:"tags"`
 	// The id of the transit router attachment.
 	TransitRouterAttachmentId pulumi.StringInput `pulumi:"transitRouterAttachmentId"`
 	// The name of the transit router attachment.
@@ -2327,6 +4094,11 @@ func (o VpcAttachmentsAttachmentOutput) Description() pulumi.StringOutput {
 // The status of the transit router.
 func (o VpcAttachmentsAttachmentOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v VpcAttachmentsAttachment) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o VpcAttachmentsAttachmentOutput) Tags() VpcAttachmentsAttachmentTagArrayOutput {
+	return o.ApplyT(func(v VpcAttachmentsAttachment) []VpcAttachmentsAttachmentTag { return v.Tags }).(VpcAttachmentsAttachmentTagArrayOutput)
 }
 
 // The id of the transit router attachment.
@@ -2489,6 +4261,324 @@ func (o VpcAttachmentsAttachmentAttachPointArrayOutput) Index(i pulumi.IntInput)
 	}).(VpcAttachmentsAttachmentAttachPointOutput)
 }
 
+type VpcAttachmentsAttachmentTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// VpcAttachmentsAttachmentTagInput is an input type that accepts VpcAttachmentsAttachmentTagArgs and VpcAttachmentsAttachmentTagOutput values.
+// You can construct a concrete instance of `VpcAttachmentsAttachmentTagInput` via:
+//
+//	VpcAttachmentsAttachmentTagArgs{...}
+type VpcAttachmentsAttachmentTagInput interface {
+	pulumi.Input
+
+	ToVpcAttachmentsAttachmentTagOutput() VpcAttachmentsAttachmentTagOutput
+	ToVpcAttachmentsAttachmentTagOutputWithContext(context.Context) VpcAttachmentsAttachmentTagOutput
+}
+
+type VpcAttachmentsAttachmentTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (VpcAttachmentsAttachmentTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpcAttachmentsAttachmentTag)(nil)).Elem()
+}
+
+func (i VpcAttachmentsAttachmentTagArgs) ToVpcAttachmentsAttachmentTagOutput() VpcAttachmentsAttachmentTagOutput {
+	return i.ToVpcAttachmentsAttachmentTagOutputWithContext(context.Background())
+}
+
+func (i VpcAttachmentsAttachmentTagArgs) ToVpcAttachmentsAttachmentTagOutputWithContext(ctx context.Context) VpcAttachmentsAttachmentTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcAttachmentsAttachmentTagOutput)
+}
+
+// VpcAttachmentsAttachmentTagArrayInput is an input type that accepts VpcAttachmentsAttachmentTagArray and VpcAttachmentsAttachmentTagArrayOutput values.
+// You can construct a concrete instance of `VpcAttachmentsAttachmentTagArrayInput` via:
+//
+//	VpcAttachmentsAttachmentTagArray{ VpcAttachmentsAttachmentTagArgs{...} }
+type VpcAttachmentsAttachmentTagArrayInput interface {
+	pulumi.Input
+
+	ToVpcAttachmentsAttachmentTagArrayOutput() VpcAttachmentsAttachmentTagArrayOutput
+	ToVpcAttachmentsAttachmentTagArrayOutputWithContext(context.Context) VpcAttachmentsAttachmentTagArrayOutput
+}
+
+type VpcAttachmentsAttachmentTagArray []VpcAttachmentsAttachmentTagInput
+
+func (VpcAttachmentsAttachmentTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpcAttachmentsAttachmentTag)(nil)).Elem()
+}
+
+func (i VpcAttachmentsAttachmentTagArray) ToVpcAttachmentsAttachmentTagArrayOutput() VpcAttachmentsAttachmentTagArrayOutput {
+	return i.ToVpcAttachmentsAttachmentTagArrayOutputWithContext(context.Background())
+}
+
+func (i VpcAttachmentsAttachmentTagArray) ToVpcAttachmentsAttachmentTagArrayOutputWithContext(ctx context.Context) VpcAttachmentsAttachmentTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcAttachmentsAttachmentTagArrayOutput)
+}
+
+type VpcAttachmentsAttachmentTagOutput struct{ *pulumi.OutputState }
+
+func (VpcAttachmentsAttachmentTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpcAttachmentsAttachmentTag)(nil)).Elem()
+}
+
+func (o VpcAttachmentsAttachmentTagOutput) ToVpcAttachmentsAttachmentTagOutput() VpcAttachmentsAttachmentTagOutput {
+	return o
+}
+
+func (o VpcAttachmentsAttachmentTagOutput) ToVpcAttachmentsAttachmentTagOutputWithContext(ctx context.Context) VpcAttachmentsAttachmentTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o VpcAttachmentsAttachmentTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v VpcAttachmentsAttachmentTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o VpcAttachmentsAttachmentTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v VpcAttachmentsAttachmentTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type VpcAttachmentsAttachmentTagArrayOutput struct{ *pulumi.OutputState }
+
+func (VpcAttachmentsAttachmentTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpcAttachmentsAttachmentTag)(nil)).Elem()
+}
+
+func (o VpcAttachmentsAttachmentTagArrayOutput) ToVpcAttachmentsAttachmentTagArrayOutput() VpcAttachmentsAttachmentTagArrayOutput {
+	return o
+}
+
+func (o VpcAttachmentsAttachmentTagArrayOutput) ToVpcAttachmentsAttachmentTagArrayOutputWithContext(ctx context.Context) VpcAttachmentsAttachmentTagArrayOutput {
+	return o
+}
+
+func (o VpcAttachmentsAttachmentTagArrayOutput) Index(i pulumi.IntInput) VpcAttachmentsAttachmentTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpcAttachmentsAttachmentTag {
+		return vs[0].([]VpcAttachmentsAttachmentTag)[vs[1].(int)]
+	}).(VpcAttachmentsAttachmentTagOutput)
+}
+
+type VpcAttachmentsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// VpcAttachmentsTagInput is an input type that accepts VpcAttachmentsTagArgs and VpcAttachmentsTagOutput values.
+// You can construct a concrete instance of `VpcAttachmentsTagInput` via:
+//
+//	VpcAttachmentsTagArgs{...}
+type VpcAttachmentsTagInput interface {
+	pulumi.Input
+
+	ToVpcAttachmentsTagOutput() VpcAttachmentsTagOutput
+	ToVpcAttachmentsTagOutputWithContext(context.Context) VpcAttachmentsTagOutput
+}
+
+type VpcAttachmentsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (VpcAttachmentsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpcAttachmentsTag)(nil)).Elem()
+}
+
+func (i VpcAttachmentsTagArgs) ToVpcAttachmentsTagOutput() VpcAttachmentsTagOutput {
+	return i.ToVpcAttachmentsTagOutputWithContext(context.Background())
+}
+
+func (i VpcAttachmentsTagArgs) ToVpcAttachmentsTagOutputWithContext(ctx context.Context) VpcAttachmentsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcAttachmentsTagOutput)
+}
+
+// VpcAttachmentsTagArrayInput is an input type that accepts VpcAttachmentsTagArray and VpcAttachmentsTagArrayOutput values.
+// You can construct a concrete instance of `VpcAttachmentsTagArrayInput` via:
+//
+//	VpcAttachmentsTagArray{ VpcAttachmentsTagArgs{...} }
+type VpcAttachmentsTagArrayInput interface {
+	pulumi.Input
+
+	ToVpcAttachmentsTagArrayOutput() VpcAttachmentsTagArrayOutput
+	ToVpcAttachmentsTagArrayOutputWithContext(context.Context) VpcAttachmentsTagArrayOutput
+}
+
+type VpcAttachmentsTagArray []VpcAttachmentsTagInput
+
+func (VpcAttachmentsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpcAttachmentsTag)(nil)).Elem()
+}
+
+func (i VpcAttachmentsTagArray) ToVpcAttachmentsTagArrayOutput() VpcAttachmentsTagArrayOutput {
+	return i.ToVpcAttachmentsTagArrayOutputWithContext(context.Background())
+}
+
+func (i VpcAttachmentsTagArray) ToVpcAttachmentsTagArrayOutputWithContext(ctx context.Context) VpcAttachmentsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcAttachmentsTagArrayOutput)
+}
+
+type VpcAttachmentsTagOutput struct{ *pulumi.OutputState }
+
+func (VpcAttachmentsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpcAttachmentsTag)(nil)).Elem()
+}
+
+func (o VpcAttachmentsTagOutput) ToVpcAttachmentsTagOutput() VpcAttachmentsTagOutput {
+	return o
+}
+
+func (o VpcAttachmentsTagOutput) ToVpcAttachmentsTagOutputWithContext(ctx context.Context) VpcAttachmentsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o VpcAttachmentsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v VpcAttachmentsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o VpcAttachmentsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v VpcAttachmentsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type VpcAttachmentsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (VpcAttachmentsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpcAttachmentsTag)(nil)).Elem()
+}
+
+func (o VpcAttachmentsTagArrayOutput) ToVpcAttachmentsTagArrayOutput() VpcAttachmentsTagArrayOutput {
+	return o
+}
+
+func (o VpcAttachmentsTagArrayOutput) ToVpcAttachmentsTagArrayOutputWithContext(ctx context.Context) VpcAttachmentsTagArrayOutput {
+	return o
+}
+
+func (o VpcAttachmentsTagArrayOutput) Index(i pulumi.IntInput) VpcAttachmentsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpcAttachmentsTag {
+		return vs[0].([]VpcAttachmentsTag)[vs[1].(int)]
+	}).(VpcAttachmentsTagOutput)
+}
+
+type VpnAttachmentTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// VpnAttachmentTagInput is an input type that accepts VpnAttachmentTagArgs and VpnAttachmentTagOutput values.
+// You can construct a concrete instance of `VpnAttachmentTagInput` via:
+//
+//	VpnAttachmentTagArgs{...}
+type VpnAttachmentTagInput interface {
+	pulumi.Input
+
+	ToVpnAttachmentTagOutput() VpnAttachmentTagOutput
+	ToVpnAttachmentTagOutputWithContext(context.Context) VpnAttachmentTagOutput
+}
+
+type VpnAttachmentTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (VpnAttachmentTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnAttachmentTag)(nil)).Elem()
+}
+
+func (i VpnAttachmentTagArgs) ToVpnAttachmentTagOutput() VpnAttachmentTagOutput {
+	return i.ToVpnAttachmentTagOutputWithContext(context.Background())
+}
+
+func (i VpnAttachmentTagArgs) ToVpnAttachmentTagOutputWithContext(ctx context.Context) VpnAttachmentTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnAttachmentTagOutput)
+}
+
+// VpnAttachmentTagArrayInput is an input type that accepts VpnAttachmentTagArray and VpnAttachmentTagArrayOutput values.
+// You can construct a concrete instance of `VpnAttachmentTagArrayInput` via:
+//
+//	VpnAttachmentTagArray{ VpnAttachmentTagArgs{...} }
+type VpnAttachmentTagArrayInput interface {
+	pulumi.Input
+
+	ToVpnAttachmentTagArrayOutput() VpnAttachmentTagArrayOutput
+	ToVpnAttachmentTagArrayOutputWithContext(context.Context) VpnAttachmentTagArrayOutput
+}
+
+type VpnAttachmentTagArray []VpnAttachmentTagInput
+
+func (VpnAttachmentTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnAttachmentTag)(nil)).Elem()
+}
+
+func (i VpnAttachmentTagArray) ToVpnAttachmentTagArrayOutput() VpnAttachmentTagArrayOutput {
+	return i.ToVpnAttachmentTagArrayOutputWithContext(context.Background())
+}
+
+func (i VpnAttachmentTagArray) ToVpnAttachmentTagArrayOutputWithContext(ctx context.Context) VpnAttachmentTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnAttachmentTagArrayOutput)
+}
+
+type VpnAttachmentTagOutput struct{ *pulumi.OutputState }
+
+func (VpnAttachmentTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnAttachmentTag)(nil)).Elem()
+}
+
+func (o VpnAttachmentTagOutput) ToVpnAttachmentTagOutput() VpnAttachmentTagOutput {
+	return o
+}
+
+func (o VpnAttachmentTagOutput) ToVpnAttachmentTagOutputWithContext(ctx context.Context) VpnAttachmentTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o VpnAttachmentTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v VpnAttachmentTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o VpnAttachmentTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v VpnAttachmentTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type VpnAttachmentTagArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnAttachmentTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnAttachmentTag)(nil)).Elem()
+}
+
+func (o VpnAttachmentTagArrayOutput) ToVpnAttachmentTagArrayOutput() VpnAttachmentTagArrayOutput {
+	return o
+}
+
+func (o VpnAttachmentTagArrayOutput) ToVpnAttachmentTagArrayOutputWithContext(ctx context.Context) VpnAttachmentTagArrayOutput {
+	return o
+}
+
+func (o VpnAttachmentTagArrayOutput) Index(i pulumi.IntInput) VpnAttachmentTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnAttachmentTag {
+		return vs[0].([]VpnAttachmentTag)[vs[1].(int)]
+	}).(VpnAttachmentTagOutput)
+}
+
 type VpnAttachmentsAttachment struct {
 	// The create time.
 	CreationTime string `pulumi:"creationTime"`
@@ -2496,6 +4586,8 @@ type VpnAttachmentsAttachment struct {
 	Description string `pulumi:"description"`
 	// The status of the transit router.
 	Status string `pulumi:"status"`
+	// Tags.
+	Tags []VpnAttachmentsAttachmentTag `pulumi:"tags"`
 	// The id of the transit router attachment.
 	TransitRouterAttachmentId string `pulumi:"transitRouterAttachmentId"`
 	// The name of the transit router attachment.
@@ -2528,6 +4620,8 @@ type VpnAttachmentsAttachmentArgs struct {
 	Description pulumi.StringInput `pulumi:"description"`
 	// The status of the transit router.
 	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags VpnAttachmentsAttachmentTagArrayInput `pulumi:"tags"`
 	// The id of the transit router attachment.
 	TransitRouterAttachmentId pulumi.StringInput `pulumi:"transitRouterAttachmentId"`
 	// The name of the transit router attachment.
@@ -2608,6 +4702,11 @@ func (o VpnAttachmentsAttachmentOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v VpnAttachmentsAttachment) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// Tags.
+func (o VpnAttachmentsAttachmentOutput) Tags() VpnAttachmentsAttachmentTagArrayOutput {
+	return o.ApplyT(func(v VpnAttachmentsAttachment) []VpnAttachmentsAttachmentTag { return v.Tags }).(VpnAttachmentsAttachmentTagArrayOutput)
+}
+
 // The id of the transit router attachment.
 func (o VpnAttachmentsAttachmentOutput) TransitRouterAttachmentId() pulumi.StringOutput {
 	return o.ApplyT(func(v VpnAttachmentsAttachment) string { return v.TransitRouterAttachmentId }).(pulumi.StringOutput)
@@ -2658,73 +4757,369 @@ func (o VpnAttachmentsAttachmentArrayOutput) Index(i pulumi.IntInput) VpnAttachm
 	}).(VpnAttachmentsAttachmentOutput)
 }
 
+type VpnAttachmentsAttachmentTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// VpnAttachmentsAttachmentTagInput is an input type that accepts VpnAttachmentsAttachmentTagArgs and VpnAttachmentsAttachmentTagOutput values.
+// You can construct a concrete instance of `VpnAttachmentsAttachmentTagInput` via:
+//
+//	VpnAttachmentsAttachmentTagArgs{...}
+type VpnAttachmentsAttachmentTagInput interface {
+	pulumi.Input
+
+	ToVpnAttachmentsAttachmentTagOutput() VpnAttachmentsAttachmentTagOutput
+	ToVpnAttachmentsAttachmentTagOutputWithContext(context.Context) VpnAttachmentsAttachmentTagOutput
+}
+
+type VpnAttachmentsAttachmentTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (VpnAttachmentsAttachmentTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnAttachmentsAttachmentTag)(nil)).Elem()
+}
+
+func (i VpnAttachmentsAttachmentTagArgs) ToVpnAttachmentsAttachmentTagOutput() VpnAttachmentsAttachmentTagOutput {
+	return i.ToVpnAttachmentsAttachmentTagOutputWithContext(context.Background())
+}
+
+func (i VpnAttachmentsAttachmentTagArgs) ToVpnAttachmentsAttachmentTagOutputWithContext(ctx context.Context) VpnAttachmentsAttachmentTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnAttachmentsAttachmentTagOutput)
+}
+
+// VpnAttachmentsAttachmentTagArrayInput is an input type that accepts VpnAttachmentsAttachmentTagArray and VpnAttachmentsAttachmentTagArrayOutput values.
+// You can construct a concrete instance of `VpnAttachmentsAttachmentTagArrayInput` via:
+//
+//	VpnAttachmentsAttachmentTagArray{ VpnAttachmentsAttachmentTagArgs{...} }
+type VpnAttachmentsAttachmentTagArrayInput interface {
+	pulumi.Input
+
+	ToVpnAttachmentsAttachmentTagArrayOutput() VpnAttachmentsAttachmentTagArrayOutput
+	ToVpnAttachmentsAttachmentTagArrayOutputWithContext(context.Context) VpnAttachmentsAttachmentTagArrayOutput
+}
+
+type VpnAttachmentsAttachmentTagArray []VpnAttachmentsAttachmentTagInput
+
+func (VpnAttachmentsAttachmentTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnAttachmentsAttachmentTag)(nil)).Elem()
+}
+
+func (i VpnAttachmentsAttachmentTagArray) ToVpnAttachmentsAttachmentTagArrayOutput() VpnAttachmentsAttachmentTagArrayOutput {
+	return i.ToVpnAttachmentsAttachmentTagArrayOutputWithContext(context.Background())
+}
+
+func (i VpnAttachmentsAttachmentTagArray) ToVpnAttachmentsAttachmentTagArrayOutputWithContext(ctx context.Context) VpnAttachmentsAttachmentTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnAttachmentsAttachmentTagArrayOutput)
+}
+
+type VpnAttachmentsAttachmentTagOutput struct{ *pulumi.OutputState }
+
+func (VpnAttachmentsAttachmentTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnAttachmentsAttachmentTag)(nil)).Elem()
+}
+
+func (o VpnAttachmentsAttachmentTagOutput) ToVpnAttachmentsAttachmentTagOutput() VpnAttachmentsAttachmentTagOutput {
+	return o
+}
+
+func (o VpnAttachmentsAttachmentTagOutput) ToVpnAttachmentsAttachmentTagOutputWithContext(ctx context.Context) VpnAttachmentsAttachmentTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o VpnAttachmentsAttachmentTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v VpnAttachmentsAttachmentTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o VpnAttachmentsAttachmentTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v VpnAttachmentsAttachmentTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type VpnAttachmentsAttachmentTagArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnAttachmentsAttachmentTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnAttachmentsAttachmentTag)(nil)).Elem()
+}
+
+func (o VpnAttachmentsAttachmentTagArrayOutput) ToVpnAttachmentsAttachmentTagArrayOutput() VpnAttachmentsAttachmentTagArrayOutput {
+	return o
+}
+
+func (o VpnAttachmentsAttachmentTagArrayOutput) ToVpnAttachmentsAttachmentTagArrayOutputWithContext(ctx context.Context) VpnAttachmentsAttachmentTagArrayOutput {
+	return o
+}
+
+func (o VpnAttachmentsAttachmentTagArrayOutput) Index(i pulumi.IntInput) VpnAttachmentsAttachmentTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnAttachmentsAttachmentTag {
+		return vs[0].([]VpnAttachmentsAttachmentTag)[vs[1].(int)]
+	}).(VpnAttachmentsAttachmentTagOutput)
+}
+
+type VpnAttachmentsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// VpnAttachmentsTagInput is an input type that accepts VpnAttachmentsTagArgs and VpnAttachmentsTagOutput values.
+// You can construct a concrete instance of `VpnAttachmentsTagInput` via:
+//
+//	VpnAttachmentsTagArgs{...}
+type VpnAttachmentsTagInput interface {
+	pulumi.Input
+
+	ToVpnAttachmentsTagOutput() VpnAttachmentsTagOutput
+	ToVpnAttachmentsTagOutputWithContext(context.Context) VpnAttachmentsTagOutput
+}
+
+type VpnAttachmentsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (VpnAttachmentsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnAttachmentsTag)(nil)).Elem()
+}
+
+func (i VpnAttachmentsTagArgs) ToVpnAttachmentsTagOutput() VpnAttachmentsTagOutput {
+	return i.ToVpnAttachmentsTagOutputWithContext(context.Background())
+}
+
+func (i VpnAttachmentsTagArgs) ToVpnAttachmentsTagOutputWithContext(ctx context.Context) VpnAttachmentsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnAttachmentsTagOutput)
+}
+
+// VpnAttachmentsTagArrayInput is an input type that accepts VpnAttachmentsTagArray and VpnAttachmentsTagArrayOutput values.
+// You can construct a concrete instance of `VpnAttachmentsTagArrayInput` via:
+//
+//	VpnAttachmentsTagArray{ VpnAttachmentsTagArgs{...} }
+type VpnAttachmentsTagArrayInput interface {
+	pulumi.Input
+
+	ToVpnAttachmentsTagArrayOutput() VpnAttachmentsTagArrayOutput
+	ToVpnAttachmentsTagArrayOutputWithContext(context.Context) VpnAttachmentsTagArrayOutput
+}
+
+type VpnAttachmentsTagArray []VpnAttachmentsTagInput
+
+func (VpnAttachmentsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnAttachmentsTag)(nil)).Elem()
+}
+
+func (i VpnAttachmentsTagArray) ToVpnAttachmentsTagArrayOutput() VpnAttachmentsTagArrayOutput {
+	return i.ToVpnAttachmentsTagArrayOutputWithContext(context.Background())
+}
+
+func (i VpnAttachmentsTagArray) ToVpnAttachmentsTagArrayOutputWithContext(ctx context.Context) VpnAttachmentsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnAttachmentsTagArrayOutput)
+}
+
+type VpnAttachmentsTagOutput struct{ *pulumi.OutputState }
+
+func (VpnAttachmentsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnAttachmentsTag)(nil)).Elem()
+}
+
+func (o VpnAttachmentsTagOutput) ToVpnAttachmentsTagOutput() VpnAttachmentsTagOutput {
+	return o
+}
+
+func (o VpnAttachmentsTagOutput) ToVpnAttachmentsTagOutputWithContext(ctx context.Context) VpnAttachmentsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o VpnAttachmentsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v VpnAttachmentsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o VpnAttachmentsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v VpnAttachmentsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type VpnAttachmentsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnAttachmentsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnAttachmentsTag)(nil)).Elem()
+}
+
+func (o VpnAttachmentsTagArrayOutput) ToVpnAttachmentsTagArrayOutput() VpnAttachmentsTagArrayOutput {
+	return o
+}
+
+func (o VpnAttachmentsTagArrayOutput) ToVpnAttachmentsTagArrayOutputWithContext(ctx context.Context) VpnAttachmentsTagArrayOutput {
+	return o
+}
+
+func (o VpnAttachmentsTagArrayOutput) Index(i pulumi.IntInput) VpnAttachmentsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnAttachmentsTag {
+		return vs[0].([]VpnAttachmentsTag)[vs[1].(int)]
+	}).(VpnAttachmentsTagOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BandwidthPackageAllocationInput)(nil)).Elem(), BandwidthPackageAllocationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BandwidthPackageAllocationArrayInput)(nil)).Elem(), BandwidthPackageAllocationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BandwidthPackageTagInput)(nil)).Elem(), BandwidthPackageTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BandwidthPackageTagArrayInput)(nil)).Elem(), BandwidthPackageTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BandwidthPackagesBandwidthPackageInput)(nil)).Elem(), BandwidthPackagesBandwidthPackageArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BandwidthPackagesBandwidthPackageArrayInput)(nil)).Elem(), BandwidthPackagesBandwidthPackageArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BandwidthPackagesBandwidthPackageAllocationInput)(nil)).Elem(), BandwidthPackagesBandwidthPackageAllocationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BandwidthPackagesBandwidthPackageAllocationArrayInput)(nil)).Elem(), BandwidthPackagesBandwidthPackageAllocationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BandwidthPackagesBandwidthPackageTagInput)(nil)).Elem(), BandwidthPackagesBandwidthPackageTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BandwidthPackagesBandwidthPackageTagArrayInput)(nil)).Elem(), BandwidthPackagesBandwidthPackageTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BandwidthPackagesTagInput)(nil)).Elem(), BandwidthPackagesTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BandwidthPackagesTagArrayInput)(nil)).Elem(), BandwidthPackagesTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DirectConnectGatewayAttachmentTagInput)(nil)).Elem(), DirectConnectGatewayAttachmentTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DirectConnectGatewayAttachmentTagArrayInput)(nil)).Elem(), DirectConnectGatewayAttachmentTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DirectConnectGatewayAttachmentsAttachmentInput)(nil)).Elem(), DirectConnectGatewayAttachmentsAttachmentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DirectConnectGatewayAttachmentsAttachmentArrayInput)(nil)).Elem(), DirectConnectGatewayAttachmentsAttachmentArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DirectConnectGatewayAttachmentsAttachmentTagInput)(nil)).Elem(), DirectConnectGatewayAttachmentsAttachmentTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DirectConnectGatewayAttachmentsAttachmentTagArrayInput)(nil)).Elem(), DirectConnectGatewayAttachmentsAttachmentTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DirectConnectGatewayAttachmentsTagInput)(nil)).Elem(), DirectConnectGatewayAttachmentsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DirectConnectGatewayAttachmentsTagArrayInput)(nil)).Elem(), DirectConnectGatewayAttachmentsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GrantRulesRuleInput)(nil)).Elem(), GrantRulesRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GrantRulesRuleArrayInput)(nil)).Elem(), GrantRulesRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PeerAttachmentTagInput)(nil)).Elem(), PeerAttachmentTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PeerAttachmentTagArrayInput)(nil)).Elem(), PeerAttachmentTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PeerAttachmentsTagInput)(nil)).Elem(), PeerAttachmentsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PeerAttachmentsTagArrayInput)(nil)).Elem(), PeerAttachmentsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PeerAttachmentsTransitRouterAttachmentInput)(nil)).Elem(), PeerAttachmentsTransitRouterAttachmentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PeerAttachmentsTransitRouterAttachmentArrayInput)(nil)).Elem(), PeerAttachmentsTransitRouterAttachmentArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PeerAttachmentsTransitRouterAttachmentTagInput)(nil)).Elem(), PeerAttachmentsTransitRouterAttachmentTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PeerAttachmentsTransitRouterAttachmentTagArrayInput)(nil)).Elem(), PeerAttachmentsTransitRouterAttachmentTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteEntriesEntryInput)(nil)).Elem(), RouteEntriesEntryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteEntriesEntryArrayInput)(nil)).Elem(), RouteEntriesEntryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteTableAssociationsAssociationInput)(nil)).Elem(), RouteTableAssociationsAssociationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteTableAssociationsAssociationArrayInput)(nil)).Elem(), RouteTableAssociationsAssociationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteTablePropagationsPropagationInput)(nil)).Elem(), RouteTablePropagationsPropagationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteTablePropagationsPropagationArrayInput)(nil)).Elem(), RouteTablePropagationsPropagationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouteTableTagInput)(nil)).Elem(), RouteTableTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouteTableTagArrayInput)(nil)).Elem(), RouteTableTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteTablesRouteTableInput)(nil)).Elem(), RouteTablesRouteTableArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteTablesRouteTableArrayInput)(nil)).Elem(), RouteTablesRouteTableArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouteTablesRouteTableTagInput)(nil)).Elem(), RouteTablesRouteTableTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouteTablesRouteTableTagArrayInput)(nil)).Elem(), RouteTablesRouteTableTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouteTablesTagInput)(nil)).Elem(), RouteTablesTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouteTablesTagArrayInput)(nil)).Elem(), RouteTablesTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TransitRouterTagInput)(nil)).Elem(), TransitRouterTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TransitRouterTagArrayInput)(nil)).Elem(), TransitRouterTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TransitRouterTransitRouterAttachmentInput)(nil)).Elem(), TransitRouterTransitRouterAttachmentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TransitRouterTransitRouterAttachmentArrayInput)(nil)).Elem(), TransitRouterTransitRouterAttachmentArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TransitRoutersTagInput)(nil)).Elem(), TransitRoutersTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TransitRoutersTagArrayInput)(nil)).Elem(), TransitRoutersTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TransitRoutersTransitRouterInput)(nil)).Elem(), TransitRoutersTransitRouterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TransitRoutersTransitRouterArrayInput)(nil)).Elem(), TransitRoutersTransitRouterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TransitRoutersTransitRouterTagInput)(nil)).Elem(), TransitRoutersTransitRouterTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*TransitRoutersTransitRouterTagArrayInput)(nil)).Elem(), TransitRoutersTransitRouterTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TransitRoutersTransitRouterTransitRouterAttachmentInput)(nil)).Elem(), TransitRoutersTransitRouterTransitRouterAttachmentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TransitRoutersTransitRouterTransitRouterAttachmentArrayInput)(nil)).Elem(), TransitRoutersTransitRouterTransitRouterAttachmentArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcAttachmentAttachPointInput)(nil)).Elem(), VpcAttachmentAttachPointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcAttachmentAttachPointArrayInput)(nil)).Elem(), VpcAttachmentAttachPointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpcAttachmentTagInput)(nil)).Elem(), VpcAttachmentTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpcAttachmentTagArrayInput)(nil)).Elem(), VpcAttachmentTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcAttachmentsAttachmentInput)(nil)).Elem(), VpcAttachmentsAttachmentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcAttachmentsAttachmentArrayInput)(nil)).Elem(), VpcAttachmentsAttachmentArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcAttachmentsAttachmentAttachPointInput)(nil)).Elem(), VpcAttachmentsAttachmentAttachPointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcAttachmentsAttachmentAttachPointArrayInput)(nil)).Elem(), VpcAttachmentsAttachmentAttachPointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpcAttachmentsAttachmentTagInput)(nil)).Elem(), VpcAttachmentsAttachmentTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpcAttachmentsAttachmentTagArrayInput)(nil)).Elem(), VpcAttachmentsAttachmentTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpcAttachmentsTagInput)(nil)).Elem(), VpcAttachmentsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpcAttachmentsTagArrayInput)(nil)).Elem(), VpcAttachmentsTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnAttachmentTagInput)(nil)).Elem(), VpnAttachmentTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnAttachmentTagArrayInput)(nil)).Elem(), VpnAttachmentTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpnAttachmentsAttachmentInput)(nil)).Elem(), VpnAttachmentsAttachmentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpnAttachmentsAttachmentArrayInput)(nil)).Elem(), VpnAttachmentsAttachmentArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnAttachmentsAttachmentTagInput)(nil)).Elem(), VpnAttachmentsAttachmentTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnAttachmentsAttachmentTagArrayInput)(nil)).Elem(), VpnAttachmentsAttachmentTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnAttachmentsTagInput)(nil)).Elem(), VpnAttachmentsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnAttachmentsTagArrayInput)(nil)).Elem(), VpnAttachmentsTagArray{})
 	pulumi.RegisterOutputType(BandwidthPackageAllocationOutput{})
 	pulumi.RegisterOutputType(BandwidthPackageAllocationArrayOutput{})
+	pulumi.RegisterOutputType(BandwidthPackageTagOutput{})
+	pulumi.RegisterOutputType(BandwidthPackageTagArrayOutput{})
 	pulumi.RegisterOutputType(BandwidthPackagesBandwidthPackageOutput{})
 	pulumi.RegisterOutputType(BandwidthPackagesBandwidthPackageArrayOutput{})
 	pulumi.RegisterOutputType(BandwidthPackagesBandwidthPackageAllocationOutput{})
 	pulumi.RegisterOutputType(BandwidthPackagesBandwidthPackageAllocationArrayOutput{})
+	pulumi.RegisterOutputType(BandwidthPackagesBandwidthPackageTagOutput{})
+	pulumi.RegisterOutputType(BandwidthPackagesBandwidthPackageTagArrayOutput{})
+	pulumi.RegisterOutputType(BandwidthPackagesTagOutput{})
+	pulumi.RegisterOutputType(BandwidthPackagesTagArrayOutput{})
+	pulumi.RegisterOutputType(DirectConnectGatewayAttachmentTagOutput{})
+	pulumi.RegisterOutputType(DirectConnectGatewayAttachmentTagArrayOutput{})
 	pulumi.RegisterOutputType(DirectConnectGatewayAttachmentsAttachmentOutput{})
 	pulumi.RegisterOutputType(DirectConnectGatewayAttachmentsAttachmentArrayOutput{})
+	pulumi.RegisterOutputType(DirectConnectGatewayAttachmentsAttachmentTagOutput{})
+	pulumi.RegisterOutputType(DirectConnectGatewayAttachmentsAttachmentTagArrayOutput{})
+	pulumi.RegisterOutputType(DirectConnectGatewayAttachmentsTagOutput{})
+	pulumi.RegisterOutputType(DirectConnectGatewayAttachmentsTagArrayOutput{})
 	pulumi.RegisterOutputType(GrantRulesRuleOutput{})
 	pulumi.RegisterOutputType(GrantRulesRuleArrayOutput{})
+	pulumi.RegisterOutputType(PeerAttachmentTagOutput{})
+	pulumi.RegisterOutputType(PeerAttachmentTagArrayOutput{})
+	pulumi.RegisterOutputType(PeerAttachmentsTagOutput{})
+	pulumi.RegisterOutputType(PeerAttachmentsTagArrayOutput{})
 	pulumi.RegisterOutputType(PeerAttachmentsTransitRouterAttachmentOutput{})
 	pulumi.RegisterOutputType(PeerAttachmentsTransitRouterAttachmentArrayOutput{})
+	pulumi.RegisterOutputType(PeerAttachmentsTransitRouterAttachmentTagOutput{})
+	pulumi.RegisterOutputType(PeerAttachmentsTransitRouterAttachmentTagArrayOutput{})
 	pulumi.RegisterOutputType(RouteEntriesEntryOutput{})
 	pulumi.RegisterOutputType(RouteEntriesEntryArrayOutput{})
 	pulumi.RegisterOutputType(RouteTableAssociationsAssociationOutput{})
 	pulumi.RegisterOutputType(RouteTableAssociationsAssociationArrayOutput{})
 	pulumi.RegisterOutputType(RouteTablePropagationsPropagationOutput{})
 	pulumi.RegisterOutputType(RouteTablePropagationsPropagationArrayOutput{})
+	pulumi.RegisterOutputType(RouteTableTagOutput{})
+	pulumi.RegisterOutputType(RouteTableTagArrayOutput{})
 	pulumi.RegisterOutputType(RouteTablesRouteTableOutput{})
 	pulumi.RegisterOutputType(RouteTablesRouteTableArrayOutput{})
+	pulumi.RegisterOutputType(RouteTablesRouteTableTagOutput{})
+	pulumi.RegisterOutputType(RouteTablesRouteTableTagArrayOutput{})
+	pulumi.RegisterOutputType(RouteTablesTagOutput{})
+	pulumi.RegisterOutputType(RouteTablesTagArrayOutput{})
+	pulumi.RegisterOutputType(TransitRouterTagOutput{})
+	pulumi.RegisterOutputType(TransitRouterTagArrayOutput{})
 	pulumi.RegisterOutputType(TransitRouterTransitRouterAttachmentOutput{})
 	pulumi.RegisterOutputType(TransitRouterTransitRouterAttachmentArrayOutput{})
+	pulumi.RegisterOutputType(TransitRoutersTagOutput{})
+	pulumi.RegisterOutputType(TransitRoutersTagArrayOutput{})
 	pulumi.RegisterOutputType(TransitRoutersTransitRouterOutput{})
 	pulumi.RegisterOutputType(TransitRoutersTransitRouterArrayOutput{})
+	pulumi.RegisterOutputType(TransitRoutersTransitRouterTagOutput{})
+	pulumi.RegisterOutputType(TransitRoutersTransitRouterTagArrayOutput{})
 	pulumi.RegisterOutputType(TransitRoutersTransitRouterTransitRouterAttachmentOutput{})
 	pulumi.RegisterOutputType(TransitRoutersTransitRouterTransitRouterAttachmentArrayOutput{})
 	pulumi.RegisterOutputType(VpcAttachmentAttachPointOutput{})
 	pulumi.RegisterOutputType(VpcAttachmentAttachPointArrayOutput{})
+	pulumi.RegisterOutputType(VpcAttachmentTagOutput{})
+	pulumi.RegisterOutputType(VpcAttachmentTagArrayOutput{})
 	pulumi.RegisterOutputType(VpcAttachmentsAttachmentOutput{})
 	pulumi.RegisterOutputType(VpcAttachmentsAttachmentArrayOutput{})
 	pulumi.RegisterOutputType(VpcAttachmentsAttachmentAttachPointOutput{})
 	pulumi.RegisterOutputType(VpcAttachmentsAttachmentAttachPointArrayOutput{})
+	pulumi.RegisterOutputType(VpcAttachmentsAttachmentTagOutput{})
+	pulumi.RegisterOutputType(VpcAttachmentsAttachmentTagArrayOutput{})
+	pulumi.RegisterOutputType(VpcAttachmentsTagOutput{})
+	pulumi.RegisterOutputType(VpcAttachmentsTagArrayOutput{})
+	pulumi.RegisterOutputType(VpnAttachmentTagOutput{})
+	pulumi.RegisterOutputType(VpnAttachmentTagArrayOutput{})
 	pulumi.RegisterOutputType(VpnAttachmentsAttachmentOutput{})
 	pulumi.RegisterOutputType(VpnAttachmentsAttachmentArrayOutput{})
+	pulumi.RegisterOutputType(VpnAttachmentsAttachmentTagOutput{})
+	pulumi.RegisterOutputType(VpnAttachmentsAttachmentTagArrayOutput{})
+	pulumi.RegisterOutputType(VpnAttachmentsTagOutput{})
+	pulumi.RegisterOutputType(VpnAttachmentsTagArrayOutput{})
 }

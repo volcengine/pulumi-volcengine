@@ -6,27 +6,6 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a resource to manage cen route entry
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@volcengine/pulumi";
- *
- * const foo = new volcengine.cen.RouteEntry("foo", {
- *     cenId: "cen-12ar8uclj68sg17q7y20v9gil",
- *     destinationCidrBlock: "192.168.0.0/24",
- *     instanceId: "vpc-im67wjcikxkw8gbssx8ufpj8",
- *     instanceRegionId: "cn-beijing",
- *     instanceType: "VPC",
- * });
- * const foo1 = new volcengine.cen.RouteEntry("foo1", {
- *     cenId: "cen-12ar8uclj68sg17q7y20v9gil",
- *     destinationCidrBlock: "192.168.17.0/24",
- *     instanceId: "vpc-im67wjcikxkw8gbssx8ufpj8",
- *     instanceRegionId: "cn-beijing",
- *     instanceType: "VPC",
- * });
- * ```
  *
  * ## Import
  *

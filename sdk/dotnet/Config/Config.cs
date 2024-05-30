@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Immutable;
 
-namespace Volcengine.Pulumi.Volcengine
+namespace Pulumi.Volcengine
 {
     public static class Config
     {
@@ -40,6 +40,17 @@ namespace Volcengine.Pulumi.Volcengine
         {
             get => _accessKey.Get();
             set => _accessKey.Set(value);
+        }
+
+        private static readonly __Value<Pulumi.Volcengine.Config.Types.AssumeRole?> _assumeRole = new __Value<Pulumi.Volcengine.Config.Types.AssumeRole?>(() => __config.GetObject<Pulumi.Volcengine.Config.Types.AssumeRole>("assumeRole"));
+        /// <summary>
+        /// The ASSUME ROLE block for Volcengine Provider. If provided, terraform will attempt to assume this role using the
+        /// supplied credentials.
+        /// </summary>
+        public static Pulumi.Volcengine.Config.Types.AssumeRole? AssumeRole
+        {
+            get => _assumeRole.Get();
+            set => _assumeRole.Set(value);
         }
 
         private static readonly __Value<string?> _customerEndpoints = new __Value<string?>(() => __config.Get("customerEndpoints"));
@@ -122,5 +133,16 @@ namespace Volcengine.Pulumi.Volcengine
             set => _sessionToken.Set(value);
         }
 
+        public static class Types
+        {
+
+             public class AssumeRole
+             {
+                public string AssumeRoleSessionName { get; set; }
+                public string AssumeRoleTrn { get; set; }
+                public int DurationSeconds { get; set; }
+                public string? Policy { get; set; } = null!;
+            }
+        }
     }
 }

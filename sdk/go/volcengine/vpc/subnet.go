@@ -68,6 +68,8 @@ type Subnet struct {
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The name of the Subnet.
 	SubnetName pulumi.StringOutput `pulumi:"subnetName"`
+	// Tags.
+	Tags SubnetTagArrayOutput `pulumi:"tags"`
 	// Id of the VPC.
 	VpcId pulumi.StringOutput `pulumi:"vpcId"`
 	// Id of the Zone.
@@ -127,6 +129,8 @@ type subnetState struct {
 	Status *string `pulumi:"status"`
 	// The name of the Subnet.
 	SubnetName *string `pulumi:"subnetName"`
+	// Tags.
+	Tags []SubnetTag `pulumi:"tags"`
 	// Id of the VPC.
 	VpcId *string `pulumi:"vpcId"`
 	// Id of the Zone.
@@ -148,6 +152,8 @@ type SubnetState struct {
 	Status pulumi.StringPtrInput
 	// The name of the Subnet.
 	SubnetName pulumi.StringPtrInput
+	// Tags.
+	Tags SubnetTagArrayInput
 	// Id of the VPC.
 	VpcId pulumi.StringPtrInput
 	// Id of the Zone.
@@ -169,6 +175,8 @@ type subnetArgs struct {
 	Ipv6CidrBlock *int `pulumi:"ipv6CidrBlock"`
 	// The name of the Subnet.
 	SubnetName *string `pulumi:"subnetName"`
+	// Tags.
+	Tags []SubnetTag `pulumi:"tags"`
 	// Id of the VPC.
 	VpcId string `pulumi:"vpcId"`
 	// Id of the Zone.
@@ -187,6 +195,8 @@ type SubnetArgs struct {
 	Ipv6CidrBlock pulumi.IntPtrInput
 	// The name of the Subnet.
 	SubnetName pulumi.StringPtrInput
+	// Tags.
+	Tags SubnetTagArrayInput
 	// Id of the VPC.
 	VpcId pulumi.StringInput
 	// Id of the Zone.
@@ -313,6 +323,11 @@ func (o SubnetOutput) Status() pulumi.StringOutput {
 // The name of the Subnet.
 func (o SubnetOutput) SubnetName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Subnet) pulumi.StringOutput { return v.SubnetName }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o SubnetOutput) Tags() SubnetTagArrayOutput {
+	return o.ApplyT(func(v *Subnet) SubnetTagArrayOutput { return v.Tags }).(SubnetTagArrayOutput)
 }
 
 // Id of the VPC.

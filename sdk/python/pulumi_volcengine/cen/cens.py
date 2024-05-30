@@ -132,7 +132,17 @@ def cens(cen_names: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cen.cens(ids=["cen-2bzrl3srxsv0g2dx0efyoojn3"])
+    foo_cen = []
+    for range in [{"value": i} for i in range(0, 2)]:
+        foo_cen.append(volcengine.cen.Cen(f"fooCen-{range['value']}",
+            cen_name="acc-test-cen",
+            description="acc-test",
+            project_name="default",
+            tags=[volcengine.cen.CenTagArgs(
+                key="k1",
+                value="v1",
+            )]))
+    foo_cens = volcengine.cen.cens_output(ids=[__item.id for __item in foo_cen])
     ```
 
 
@@ -177,7 +187,17 @@ def cens_output(cen_names: Optional[pulumi.Input[Optional[Sequence[str]]]] = Non
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cen.cens(ids=["cen-2bzrl3srxsv0g2dx0efyoojn3"])
+    foo_cen = []
+    for range in [{"value": i} for i in range(0, 2)]:
+        foo_cen.append(volcengine.cen.Cen(f"fooCen-{range['value']}",
+            cen_name="acc-test-cen",
+            description="acc-test",
+            project_name="default",
+            tags=[volcengine.cen.CenTagArgs(
+                key="k1",
+                value="v1",
+            )]))
+    foo_cens = volcengine.cen.cens_output(ids=[__item.id for __item in foo_cen])
     ```
 
 

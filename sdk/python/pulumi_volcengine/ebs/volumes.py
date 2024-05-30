@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'VolumesResult',
@@ -22,7 +23,7 @@ class VolumesResult:
     """
     A collection of values returned by Volumes.
     """
-    def __init__(__self__, id=None, ids=None, instance_id=None, kind=None, name_regex=None, output_file=None, total_count=None, volume_name=None, volume_status=None, volume_type=None, volumes=None, zone_id=None):
+    def __init__(__self__, id=None, ids=None, instance_id=None, kind=None, name_regex=None, output_file=None, tags=None, total_count=None, volume_name=None, volume_status=None, volume_type=None, volumes=None, zone_id=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -41,6 +42,9 @@ class VolumesResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -94,6 +98,14 @@ class VolumesResult:
         return pulumi.get(self, "output_file")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.VolumesTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
         """
@@ -142,6 +154,7 @@ class AwaitableVolumesResult(VolumesResult):
             kind=self.kind,
             name_regex=self.name_regex,
             output_file=self.output_file,
+            tags=self.tags,
             total_count=self.total_count,
             volume_name=self.volume_name,
             volume_status=self.volume_status,
@@ -155,6 +168,7 @@ def volumes(ids: Optional[Sequence[str]] = None,
             kind: Optional[str] = None,
             name_regex: Optional[str] = None,
             output_file: Optional[str] = None,
+            tags: Optional[Sequence[pulumi.InputType['VolumesTagArgs']]] = None,
             volume_name: Optional[str] = None,
             volume_status: Optional[str] = None,
             volume_type: Optional[str] = None,
@@ -189,6 +203,7 @@ def volumes(ids: Optional[Sequence[str]] = None,
     :param str kind: The Kind of Volume.
     :param str name_regex: A Name Regex of Volume.
     :param str output_file: File name where to save data source results.
+    :param Sequence[pulumi.InputType['VolumesTagArgs']] tags: Tags.
     :param str volume_name: The name of Volume.
     :param str volume_status: The Status of Volume, the value can be `available` or `attaching` or `attached` or `detaching` or `creating` or `deleting` or `error` or `extending`.
     :param str volume_type: The type of Volume.
@@ -200,6 +215,7 @@ def volumes(ids: Optional[Sequence[str]] = None,
     __args__['kind'] = kind
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
+    __args__['tags'] = tags
     __args__['volumeName'] = volume_name
     __args__['volumeStatus'] = volume_status
     __args__['volumeType'] = volume_type
@@ -214,6 +230,7 @@ def volumes(ids: Optional[Sequence[str]] = None,
         kind=pulumi.get(__ret__, 'kind'),
         name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'),
         volume_name=pulumi.get(__ret__, 'volume_name'),
         volume_status=pulumi.get(__ret__, 'volume_status'),
@@ -228,6 +245,7 @@ def volumes_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                    kind: Optional[pulumi.Input[Optional[str]]] = None,
                    name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                    output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                   tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['VolumesTagArgs']]]]] = None,
                    volume_name: Optional[pulumi.Input[Optional[str]]] = None,
                    volume_status: Optional[pulumi.Input[Optional[str]]] = None,
                    volume_type: Optional[pulumi.Input[Optional[str]]] = None,
@@ -262,6 +280,7 @@ def volumes_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
     :param str kind: The Kind of Volume.
     :param str name_regex: A Name Regex of Volume.
     :param str output_file: File name where to save data source results.
+    :param Sequence[pulumi.InputType['VolumesTagArgs']] tags: Tags.
     :param str volume_name: The name of Volume.
     :param str volume_status: The Status of Volume, the value can be `available` or `attaching` or `attached` or `detaching` or `creating` or `deleting` or `error` or `extending`.
     :param str volume_type: The type of Volume.

@@ -22,23 +22,36 @@ import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/cen"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cen.NewAttachInstance(ctx, "foo", &cen.AttachInstanceArgs{
-//				CenId:            pulumi.String("cen-12ar8uclj68sg17q7y20v9gil"),
-//				InstanceId:       pulumi.String("vpc-2fe5dpn0av2m859gp68rhk2dc"),
-//				InstanceRegionId: pulumi.String("cn-beijing"),
-//				InstanceType:     pulumi.String("VPC"),
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = cen.NewAttachInstance(ctx, "foo1", &cen.AttachInstanceArgs{
-//				CenId:            pulumi.String("cen-12ar8uclj68sg17q7y20v9gil"),
-//				InstanceId:       pulumi.String("vpc-in66ktl5t24g8gbssz0sqva1"),
+//			fooCen, err := cen.NewCen(ctx, "fooCen", &cen.CenArgs{
+//				CenName:     pulumi.String("acc-test-cen"),
+//				Description: pulumi.String("acc-test"),
+//				ProjectName: pulumi.String("default"),
+//				Tags: cen.CenTagArray{
+//					&cen.CenTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cen.NewAttachInstance(ctx, "fooAttachInstance", &cen.AttachInstanceArgs{
+//				CenId:            fooCen.ID(),
+//				InstanceId:       fooVpc.ID(),
 //				InstanceRegionId: pulumi.String("cn-beijing"),
 //				InstanceType:     pulumi.String("VPC"),
 //			})

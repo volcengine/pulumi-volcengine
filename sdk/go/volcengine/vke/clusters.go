@@ -20,7 +20,6 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vke"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
@@ -44,25 +43,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			fooSecurityGroup, err := vpc.NewSecurityGroup(ctx, "fooSecurityGroup", &vpc.SecurityGroupArgs{
+//			_, err = vpc.NewSecurityGroup(ctx, "fooSecurityGroup", &vpc.SecurityGroupArgs{
 //				VpcId:             fooVpc.ID(),
 //				SecurityGroupName: pulumi.String("acc-test-security-group2"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = ecs.NewInstance(ctx, "fooInstance", &ecs.InstanceArgs{
-//				ImageId:            pulumi.String("image-ybqi99s7yq8rx7mnk44b"),
-//				InstanceType:       pulumi.String("ecs.g1ie.large"),
-//				InstanceName:       pulumi.String("acc-test-ecs-name2"),
-//				Password:           pulumi.String("93f0cb0614Aab12"),
-//				InstanceChargeType: pulumi.String("PostPaid"),
-//				SystemVolumeType:   pulumi.String("ESSD_PL0"),
-//				SystemVolumeSize:   pulumi.Int(40),
-//				SubnetId:           fooSubnet.ID(),
-//				SecurityGroupIds: pulumi.StringArray{
-//					fooSecurityGroup.ID(),
-//				},
 //			})
 //			if err != nil {
 //				return err

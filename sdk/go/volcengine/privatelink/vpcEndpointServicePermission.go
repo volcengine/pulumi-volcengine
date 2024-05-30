@@ -21,22 +21,73 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/clb"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/privatelink"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := privatelink.NewVpcEndpointServicePermission(ctx, "foo", &privatelink.VpcEndpointServicePermissionArgs{
-//				PermitAccountId: pulumi.String("210000000"),
-//				ServiceId:       pulumi.String("epsvc-3rel73uf2ewao5zsk2j2l58ro"),
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = privatelink.NewVpcEndpointServicePermission(ctx, "foo1", &privatelink.VpcEndpointServicePermissionArgs{
-//				PermitAccountId: pulumi.String("210000001"),
-//				ServiceId:       pulumi.String("epsvc-3rel73uf2ewao5zsk2j2l58ro"),
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooClb, err := clb.NewClb(ctx, "fooClb", &clb.ClbArgs{
+//				Type:                    pulumi.String("public"),
+//				SubnetId:                fooSubnet.ID(),
+//				LoadBalancerSpec:        pulumi.String("small_1"),
+//				Description:             pulumi.String("acc-test-demo"),
+//				LoadBalancerName:        pulumi.String("acc-test-clb"),
+//				LoadBalancerBillingType: pulumi.String("PostPaid"),
+//				EipBillingConfig: &clb.ClbEipBillingConfigArgs{
+//					Isp:            pulumi.String("BGP"),
+//					EipBillingType: pulumi.String("PostPaidByBandwidth"),
+//					Bandwidth:      pulumi.Int(1),
+//				},
+//				Tags: clb.ClbTagArray{
+//					&clb.ClbTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooVpcEndpointService, err := privatelink.NewVpcEndpointService(ctx, "fooVpcEndpointService", &privatelink.VpcEndpointServiceArgs{
+//				Resources: privatelink.VpcEndpointServiceResourceTypeArray{
+//					&privatelink.VpcEndpointServiceResourceTypeArgs{
+//						ResourceId:   fooClb.ID(),
+//						ResourceType: pulumi.String("CLB"),
+//					},
+//				},
+//				Description:       pulumi.String("acc-test"),
+//				AutoAcceptEnabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = privatelink.NewVpcEndpointServicePermission(ctx, "fooVpcEndpointServicePermission", &privatelink.VpcEndpointServicePermissionArgs{
+//				ServiceId:       fooVpcEndpointService.ID(),
+//				PermitAccountId: pulumi.String("210000000"),
 //			})
 //			if err != nil {
 //				return err

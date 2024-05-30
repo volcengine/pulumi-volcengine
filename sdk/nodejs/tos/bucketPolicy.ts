@@ -13,14 +13,14 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const _default = new volcengine.tos.BucketPolicy("default", {
- *     bucketName: "bucket-20230418",
+ *     bucketName: "tf-acc-test-bucket",
  *     policy: JSON.stringify({
  *         Statement: [{
  *             Sid: "test",
  *             Effect: "Allow",
  *             Principal: ["AccountId/subUserName"],
  *             Action: ["tos:List*"],
- *             Resource: ["trn:tos:::bucket-20230418"],
+ *             Resource: ["trn:tos:::tf-acc-test-bucket"],
  *         }],
  *     }),
  * });

@@ -14,65 +14,50 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.cen.ServiceRouteEntry("foo", {
- *     cenId: "cen-12ar8uclj68sg17q7y20v9gil",
- *     description: "test-tf",
+ * const fooVpc: volcengine.vpc.Vpc[] = [];
+ * for (const range = {value: 0}; range.value < 3; range.value++) {
+ *     fooVpc.push(new volcengine.vpc.Vpc(`fooVpc-${range.value}`, {
+ *         vpcName: "acc-test-vpc",
+ *         cidrBlock: "172.16.0.0/16",
+ *     }));
+ * }
+ * const fooCen = new volcengine.cen.Cen("fooCen", {
+ *     cenName: "acc-test-cen",
+ *     description: "acc-test",
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooAttachInstance: volcengine.cen.AttachInstance[] = [];
+ * for (const range = {value: 0}; range.value < 3; range.value++) {
+ *     fooAttachInstance.push(new volcengine.cen.AttachInstance(`fooAttachInstance-${range.value}`, {
+ *         cenId: fooCen.id,
+ *         instanceId: fooVpc[range.value].id,
+ *         instanceRegionId: "cn-beijing",
+ *         instanceType: "VPC",
+ *     }));
+ * }
+ * const fooServiceRouteEntry = new volcengine.cen.ServiceRouteEntry("fooServiceRouteEntry", {
+ *     cenId: fooCen.id,
  *     destinationCidrBlock: "100.64.0.0/11",
+ *     serviceRegionId: "cn-beijing",
+ *     serviceVpcId: fooAttachInstance[0].instanceId,
+ *     description: "acc-test",
  *     publishMode: "Custom",
  *     publishToInstances: [
  *         {
- *             instanceId: "vpc-2fepz36a5ra4g59gp67w197xo",
  *             instanceRegionId: "cn-beijing",
  *             instanceType: "VPC",
+ *             instanceId: fooAttachInstance[1].instanceId,
  *         },
  *         {
- *             instanceId: "vpc-im67wjcikxkw8gbssx8ufpj8",
  *             instanceRegionId: "cn-beijing",
  *             instanceType: "VPC",
+ *             instanceId: fooAttachInstance[2].instanceId,
  *         },
  *     ],
- *     serviceRegionId: "cn-beijing",
- *     serviceVpcId: "vpc-im67wjcikxkw8gbssx8ufpj8",
- * });
- * const foo1 = new volcengine.cen.ServiceRouteEntry("foo1", {
- *     cenId: "cen-12ar8uclj68sg17q7y20v9gil",
- *     description: "test-tf",
- *     destinationCidrBlock: "100.64.0.0/10",
- *     publishMode: "Custom",
- *     publishToInstances: [
- *         {
- *             instanceId: "vpc-2fepz36a5ra4g59gp67w197xo",
- *             instanceRegionId: "cn-beijing",
- *             instanceType: "VPC",
- *         },
- *         {
- *             instanceId: "vpc-im67wjcikxkw8gbssx8ufpj8",
- *             instanceRegionId: "cn-beijing",
- *             instanceType: "VPC",
- *         },
- *     ],
- *     serviceRegionId: "cn-beijing",
- *     serviceVpcId: "vpc-im67wjcikxkw8gbssx8ufpj8",
- * });
- * const foo2 = new volcengine.cen.ServiceRouteEntry("foo2", {
- *     cenId: "cen-12ar8uclj68sg17q7y20v9gil",
- *     description: "test-tf",
- *     destinationCidrBlock: "100.64.0.0/12",
- *     publishMode: "Custom",
- *     publishToInstances: [
- *         {
- *             instanceId: "vpc-2fepz36a5ra4g59gp67w197xo",
- *             instanceRegionId: "cn-beijing",
- *             instanceType: "VPC",
- *         },
- *         {
- *             instanceId: "vpc-im67wjcikxkw8gbssx8ufpj8",
- *             instanceRegionId: "cn-beijing",
- *             instanceType: "VPC",
- *         },
- *     ],
- *     serviceRegionId: "cn-beijing",
- *     serviceVpcId: "vpc-im67wjcikxkw8gbssx8ufpj8",
  * });
  * ```
  *

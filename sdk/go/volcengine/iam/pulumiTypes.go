@@ -13,6 +13,139 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type AccessKeysAccessKeyMetadata struct {
+	// The user access key id.
+	AccessKeyId string `pulumi:"accessKeyId"`
+	// The user access key create date.
+	CreateDate string `pulumi:"createDate"`
+	// The user access key status.
+	Status string `pulumi:"status"`
+	// The user access key update date.
+	UpdateDate string `pulumi:"updateDate"`
+	// The user names.
+	UserName string `pulumi:"userName"`
+}
+
+// AccessKeysAccessKeyMetadataInput is an input type that accepts AccessKeysAccessKeyMetadataArgs and AccessKeysAccessKeyMetadataOutput values.
+// You can construct a concrete instance of `AccessKeysAccessKeyMetadataInput` via:
+//
+//	AccessKeysAccessKeyMetadataArgs{...}
+type AccessKeysAccessKeyMetadataInput interface {
+	pulumi.Input
+
+	ToAccessKeysAccessKeyMetadataOutput() AccessKeysAccessKeyMetadataOutput
+	ToAccessKeysAccessKeyMetadataOutputWithContext(context.Context) AccessKeysAccessKeyMetadataOutput
+}
+
+type AccessKeysAccessKeyMetadataArgs struct {
+	// The user access key id.
+	AccessKeyId pulumi.StringInput `pulumi:"accessKeyId"`
+	// The user access key create date.
+	CreateDate pulumi.StringInput `pulumi:"createDate"`
+	// The user access key status.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The user access key update date.
+	UpdateDate pulumi.StringInput `pulumi:"updateDate"`
+	// The user names.
+	UserName pulumi.StringInput `pulumi:"userName"`
+}
+
+func (AccessKeysAccessKeyMetadataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccessKeysAccessKeyMetadata)(nil)).Elem()
+}
+
+func (i AccessKeysAccessKeyMetadataArgs) ToAccessKeysAccessKeyMetadataOutput() AccessKeysAccessKeyMetadataOutput {
+	return i.ToAccessKeysAccessKeyMetadataOutputWithContext(context.Background())
+}
+
+func (i AccessKeysAccessKeyMetadataArgs) ToAccessKeysAccessKeyMetadataOutputWithContext(ctx context.Context) AccessKeysAccessKeyMetadataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccessKeysAccessKeyMetadataOutput)
+}
+
+// AccessKeysAccessKeyMetadataArrayInput is an input type that accepts AccessKeysAccessKeyMetadataArray and AccessKeysAccessKeyMetadataArrayOutput values.
+// You can construct a concrete instance of `AccessKeysAccessKeyMetadataArrayInput` via:
+//
+//	AccessKeysAccessKeyMetadataArray{ AccessKeysAccessKeyMetadataArgs{...} }
+type AccessKeysAccessKeyMetadataArrayInput interface {
+	pulumi.Input
+
+	ToAccessKeysAccessKeyMetadataArrayOutput() AccessKeysAccessKeyMetadataArrayOutput
+	ToAccessKeysAccessKeyMetadataArrayOutputWithContext(context.Context) AccessKeysAccessKeyMetadataArrayOutput
+}
+
+type AccessKeysAccessKeyMetadataArray []AccessKeysAccessKeyMetadataInput
+
+func (AccessKeysAccessKeyMetadataArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AccessKeysAccessKeyMetadata)(nil)).Elem()
+}
+
+func (i AccessKeysAccessKeyMetadataArray) ToAccessKeysAccessKeyMetadataArrayOutput() AccessKeysAccessKeyMetadataArrayOutput {
+	return i.ToAccessKeysAccessKeyMetadataArrayOutputWithContext(context.Background())
+}
+
+func (i AccessKeysAccessKeyMetadataArray) ToAccessKeysAccessKeyMetadataArrayOutputWithContext(ctx context.Context) AccessKeysAccessKeyMetadataArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AccessKeysAccessKeyMetadataArrayOutput)
+}
+
+type AccessKeysAccessKeyMetadataOutput struct{ *pulumi.OutputState }
+
+func (AccessKeysAccessKeyMetadataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AccessKeysAccessKeyMetadata)(nil)).Elem()
+}
+
+func (o AccessKeysAccessKeyMetadataOutput) ToAccessKeysAccessKeyMetadataOutput() AccessKeysAccessKeyMetadataOutput {
+	return o
+}
+
+func (o AccessKeysAccessKeyMetadataOutput) ToAccessKeysAccessKeyMetadataOutputWithContext(ctx context.Context) AccessKeysAccessKeyMetadataOutput {
+	return o
+}
+
+// The user access key id.
+func (o AccessKeysAccessKeyMetadataOutput) AccessKeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v AccessKeysAccessKeyMetadata) string { return v.AccessKeyId }).(pulumi.StringOutput)
+}
+
+// The user access key create date.
+func (o AccessKeysAccessKeyMetadataOutput) CreateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v AccessKeysAccessKeyMetadata) string { return v.CreateDate }).(pulumi.StringOutput)
+}
+
+// The user access key status.
+func (o AccessKeysAccessKeyMetadataOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v AccessKeysAccessKeyMetadata) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The user access key update date.
+func (o AccessKeysAccessKeyMetadataOutput) UpdateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v AccessKeysAccessKeyMetadata) string { return v.UpdateDate }).(pulumi.StringOutput)
+}
+
+// The user names.
+func (o AccessKeysAccessKeyMetadataOutput) UserName() pulumi.StringOutput {
+	return o.ApplyT(func(v AccessKeysAccessKeyMetadata) string { return v.UserName }).(pulumi.StringOutput)
+}
+
+type AccessKeysAccessKeyMetadataArrayOutput struct{ *pulumi.OutputState }
+
+func (AccessKeysAccessKeyMetadataArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AccessKeysAccessKeyMetadata)(nil)).Elem()
+}
+
+func (o AccessKeysAccessKeyMetadataArrayOutput) ToAccessKeysAccessKeyMetadataArrayOutput() AccessKeysAccessKeyMetadataArrayOutput {
+	return o
+}
+
+func (o AccessKeysAccessKeyMetadataArrayOutput) ToAccessKeysAccessKeyMetadataArrayOutputWithContext(ctx context.Context) AccessKeysAccessKeyMetadataArrayOutput {
+	return o
+}
+
+func (o AccessKeysAccessKeyMetadataArrayOutput) Index(i pulumi.IntInput) AccessKeysAccessKeyMetadataOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AccessKeysAccessKeyMetadata {
+		return vs[0].([]AccessKeysAccessKeyMetadata)[vs[1].(int)]
+	}).(AccessKeysAccessKeyMetadataOutput)
+}
+
 type PoliciesPolicy struct {
 	// The create time of the Policy.
 	CreateDate string `pulumi:"createDate"`
@@ -349,6 +482,166 @@ func (o RolesRoleArrayOutput) Index(i pulumi.IntInput) RolesRoleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RolesRole {
 		return vs[0].([]RolesRole)[vs[1].(int)]
 	}).(RolesRoleOutput)
+}
+
+type SamlProvidersProvider struct {
+	// Identity provider creation time, such as 20150123T123318Z.
+	CreateDate string `pulumi:"createDate"`
+	// The description of the SAML provider.
+	Description string `pulumi:"description"`
+	// Metadata document, encoded in Base64.
+	EncodedSamlMetadataDocument string `pulumi:"encodedSamlMetadataDocument"`
+	// The name of the SAML provider.
+	SamlProviderName string `pulumi:"samlProviderName"`
+	// SSO types, 1. Role-based SSO, 2. User-based SSO.
+	SsoType int `pulumi:"ssoType"`
+	// User SSO status, 1. Enabled, 2. Disable other console login methods after enabling, 3. Disabled, is a required field when creating user SSO.
+	Status int `pulumi:"status"`
+	// The format for the resource name of an identity provider is trn:iam::${accountID}:saml-provider/{$SAMLProviderName}.
+	Trn string `pulumi:"trn"`
+	// Identity provider update time, such as: 20150123T123318Z.
+	UpdateDate string `pulumi:"updateDate"`
+}
+
+// SamlProvidersProviderInput is an input type that accepts SamlProvidersProviderArgs and SamlProvidersProviderOutput values.
+// You can construct a concrete instance of `SamlProvidersProviderInput` via:
+//
+//	SamlProvidersProviderArgs{...}
+type SamlProvidersProviderInput interface {
+	pulumi.Input
+
+	ToSamlProvidersProviderOutput() SamlProvidersProviderOutput
+	ToSamlProvidersProviderOutputWithContext(context.Context) SamlProvidersProviderOutput
+}
+
+type SamlProvidersProviderArgs struct {
+	// Identity provider creation time, such as 20150123T123318Z.
+	CreateDate pulumi.StringInput `pulumi:"createDate"`
+	// The description of the SAML provider.
+	Description pulumi.StringInput `pulumi:"description"`
+	// Metadata document, encoded in Base64.
+	EncodedSamlMetadataDocument pulumi.StringInput `pulumi:"encodedSamlMetadataDocument"`
+	// The name of the SAML provider.
+	SamlProviderName pulumi.StringInput `pulumi:"samlProviderName"`
+	// SSO types, 1. Role-based SSO, 2. User-based SSO.
+	SsoType pulumi.IntInput `pulumi:"ssoType"`
+	// User SSO status, 1. Enabled, 2. Disable other console login methods after enabling, 3. Disabled, is a required field when creating user SSO.
+	Status pulumi.IntInput `pulumi:"status"`
+	// The format for the resource name of an identity provider is trn:iam::${accountID}:saml-provider/{$SAMLProviderName}.
+	Trn pulumi.StringInput `pulumi:"trn"`
+	// Identity provider update time, such as: 20150123T123318Z.
+	UpdateDate pulumi.StringInput `pulumi:"updateDate"`
+}
+
+func (SamlProvidersProviderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SamlProvidersProvider)(nil)).Elem()
+}
+
+func (i SamlProvidersProviderArgs) ToSamlProvidersProviderOutput() SamlProvidersProviderOutput {
+	return i.ToSamlProvidersProviderOutputWithContext(context.Background())
+}
+
+func (i SamlProvidersProviderArgs) ToSamlProvidersProviderOutputWithContext(ctx context.Context) SamlProvidersProviderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SamlProvidersProviderOutput)
+}
+
+// SamlProvidersProviderArrayInput is an input type that accepts SamlProvidersProviderArray and SamlProvidersProviderArrayOutput values.
+// You can construct a concrete instance of `SamlProvidersProviderArrayInput` via:
+//
+//	SamlProvidersProviderArray{ SamlProvidersProviderArgs{...} }
+type SamlProvidersProviderArrayInput interface {
+	pulumi.Input
+
+	ToSamlProvidersProviderArrayOutput() SamlProvidersProviderArrayOutput
+	ToSamlProvidersProviderArrayOutputWithContext(context.Context) SamlProvidersProviderArrayOutput
+}
+
+type SamlProvidersProviderArray []SamlProvidersProviderInput
+
+func (SamlProvidersProviderArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SamlProvidersProvider)(nil)).Elem()
+}
+
+func (i SamlProvidersProviderArray) ToSamlProvidersProviderArrayOutput() SamlProvidersProviderArrayOutput {
+	return i.ToSamlProvidersProviderArrayOutputWithContext(context.Background())
+}
+
+func (i SamlProvidersProviderArray) ToSamlProvidersProviderArrayOutputWithContext(ctx context.Context) SamlProvidersProviderArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SamlProvidersProviderArrayOutput)
+}
+
+type SamlProvidersProviderOutput struct{ *pulumi.OutputState }
+
+func (SamlProvidersProviderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SamlProvidersProvider)(nil)).Elem()
+}
+
+func (o SamlProvidersProviderOutput) ToSamlProvidersProviderOutput() SamlProvidersProviderOutput {
+	return o
+}
+
+func (o SamlProvidersProviderOutput) ToSamlProvidersProviderOutputWithContext(ctx context.Context) SamlProvidersProviderOutput {
+	return o
+}
+
+// Identity provider creation time, such as 20150123T123318Z.
+func (o SamlProvidersProviderOutput) CreateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v SamlProvidersProvider) string { return v.CreateDate }).(pulumi.StringOutput)
+}
+
+// The description of the SAML provider.
+func (o SamlProvidersProviderOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v SamlProvidersProvider) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Metadata document, encoded in Base64.
+func (o SamlProvidersProviderOutput) EncodedSamlMetadataDocument() pulumi.StringOutput {
+	return o.ApplyT(func(v SamlProvidersProvider) string { return v.EncodedSamlMetadataDocument }).(pulumi.StringOutput)
+}
+
+// The name of the SAML provider.
+func (o SamlProvidersProviderOutput) SamlProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v SamlProvidersProvider) string { return v.SamlProviderName }).(pulumi.StringOutput)
+}
+
+// SSO types, 1. Role-based SSO, 2. User-based SSO.
+func (o SamlProvidersProviderOutput) SsoType() pulumi.IntOutput {
+	return o.ApplyT(func(v SamlProvidersProvider) int { return v.SsoType }).(pulumi.IntOutput)
+}
+
+// User SSO status, 1. Enabled, 2. Disable other console login methods after enabling, 3. Disabled, is a required field when creating user SSO.
+func (o SamlProvidersProviderOutput) Status() pulumi.IntOutput {
+	return o.ApplyT(func(v SamlProvidersProvider) int { return v.Status }).(pulumi.IntOutput)
+}
+
+// The format for the resource name of an identity provider is trn:iam::${accountID}:saml-provider/{$SAMLProviderName}.
+func (o SamlProvidersProviderOutput) Trn() pulumi.StringOutput {
+	return o.ApplyT(func(v SamlProvidersProvider) string { return v.Trn }).(pulumi.StringOutput)
+}
+
+// Identity provider update time, such as: 20150123T123318Z.
+func (o SamlProvidersProviderOutput) UpdateDate() pulumi.StringOutput {
+	return o.ApplyT(func(v SamlProvidersProvider) string { return v.UpdateDate }).(pulumi.StringOutput)
+}
+
+type SamlProvidersProviderArrayOutput struct{ *pulumi.OutputState }
+
+func (SamlProvidersProviderArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SamlProvidersProvider)(nil)).Elem()
+}
+
+func (o SamlProvidersProviderArrayOutput) ToSamlProvidersProviderArrayOutput() SamlProvidersProviderArrayOutput {
+	return o
+}
+
+func (o SamlProvidersProviderArrayOutput) ToSamlProvidersProviderArrayOutputWithContext(ctx context.Context) SamlProvidersProviderArrayOutput {
+	return o
+}
+
+func (o SamlProvidersProviderArrayOutput) Index(i pulumi.IntInput) SamlProvidersProviderOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SamlProvidersProvider {
+		return vs[0].([]SamlProvidersProvider)[vs[1].(int)]
+	}).(SamlProvidersProviderOutput)
 }
 
 type UserGroupPolicyAttachmentsPolicy struct {
@@ -823,20 +1116,28 @@ func (o UsersUserArrayOutput) Index(i pulumi.IntInput) UsersUserOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AccessKeysAccessKeyMetadataInput)(nil)).Elem(), AccessKeysAccessKeyMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AccessKeysAccessKeyMetadataArrayInput)(nil)).Elem(), AccessKeysAccessKeyMetadataArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PoliciesPolicyInput)(nil)).Elem(), PoliciesPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PoliciesPolicyArrayInput)(nil)).Elem(), PoliciesPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RolesRoleInput)(nil)).Elem(), RolesRoleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RolesRoleArrayInput)(nil)).Elem(), RolesRoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SamlProvidersProviderInput)(nil)).Elem(), SamlProvidersProviderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SamlProvidersProviderArrayInput)(nil)).Elem(), SamlProvidersProviderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UserGroupPolicyAttachmentsPolicyInput)(nil)).Elem(), UserGroupPolicyAttachmentsPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UserGroupPolicyAttachmentsPolicyArrayInput)(nil)).Elem(), UserGroupPolicyAttachmentsPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UserGroupsUserGroupInput)(nil)).Elem(), UserGroupsUserGroupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UserGroupsUserGroupArrayInput)(nil)).Elem(), UserGroupsUserGroupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UsersUserInput)(nil)).Elem(), UsersUserArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UsersUserArrayInput)(nil)).Elem(), UsersUserArray{})
+	pulumi.RegisterOutputType(AccessKeysAccessKeyMetadataOutput{})
+	pulumi.RegisterOutputType(AccessKeysAccessKeyMetadataArrayOutput{})
 	pulumi.RegisterOutputType(PoliciesPolicyOutput{})
 	pulumi.RegisterOutputType(PoliciesPolicyArrayOutput{})
 	pulumi.RegisterOutputType(RolesRoleOutput{})
 	pulumi.RegisterOutputType(RolesRoleArrayOutput{})
+	pulumi.RegisterOutputType(SamlProvidersProviderOutput{})
+	pulumi.RegisterOutputType(SamlProvidersProviderArrayOutput{})
 	pulumi.RegisterOutputType(UserGroupPolicyAttachmentsPolicyOutput{})
 	pulumi.RegisterOutputType(UserGroupPolicyAttachmentsPolicyArrayOutput{})
 	pulumi.RegisterOutputType(UserGroupsUserGroupOutput{})

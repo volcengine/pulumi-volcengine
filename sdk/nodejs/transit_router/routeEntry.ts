@@ -10,14 +10,81 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.transit_router.RouteEntry("foo", {
- *     description: "tf test 23",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooGateway = new volcengine.vpn.Gateway("fooGateway", {
+ *     vpcId: fooVpc.id,
+ *     subnetId: fooSubnet.id,
+ *     bandwidth: 20,
+ *     vpnGatewayName: "acc-test",
+ *     description: "acc-test",
+ *     period: 2,
+ * });
+ * const fooCustomerGateway = new volcengine.vpn.CustomerGateway("fooCustomerGateway", {
+ *     ipAddress: "192.0.1.3",
+ *     customerGatewayName: "acc-test",
+ *     description: "acc-test",
+ * });
+ * const fooConnection = new volcengine.vpn.Connection("fooConnection", {
+ *     vpnConnectionName: "acc-tf-test",
+ *     description: "acc-tf-test",
+ *     attachType: "TransitRouter",
+ *     vpnGatewayId: fooGateway.id,
+ *     customerGatewayId: fooCustomerGateway.id,
+ *     localSubnets: ["192.168.0.0/22"],
+ *     remoteSubnets: ["192.161.0.0/20"],
+ *     dpdAction: "none",
+ *     natTraversal: true,
+ *     ikeConfigPsk: "acctest@!3",
+ *     ikeConfigVersion: "ikev1",
+ *     ikeConfigMode: "main",
+ *     ikeConfigEncAlg: "aes",
+ *     ikeConfigAuthAlg: "md5",
+ *     ikeConfigDhGroup: "group2",
+ *     ikeConfigLifetime: 9000,
+ *     ikeConfigLocalId: "acc_test",
+ *     ikeConfigRemoteId: "acc_test",
+ *     ipsecConfigEncAlg: "aes",
+ *     ipsecConfigAuthAlg: "sha256",
+ *     ipsecConfigDhGroup: "group2",
+ *     ipsecConfigLifetime: 9000,
+ *     logEnabled: false,
+ * });
+ * const fooTransitRouter = new volcengine.transit_router.TransitRouter("fooTransitRouter", {
+ *     transitRouterName: "test-tf-acc",
+ *     description: "test-tf-acc",
+ * });
+ * const fooVpnAttachment = new volcengine.transit_router.VpnAttachment("fooVpnAttachment", {
+ *     zoneId: "cn-beijing-a",
+ *     transitRouterAttachmentName: "tf-test-acc",
+ *     description: "tf-test-acc-desc",
+ *     transitRouterId: fooTransitRouter.id,
+ *     vpnConnectionId: fooConnection.id,
+ * });
+ * const fooRouteTable = new volcengine.transit_router.RouteTable("fooRouteTable", {
+ *     description: "tf-test-acc-description-route-route-table",
+ *     transitRouterRouteTableName: "tf-table-test-acc",
+ *     transitRouterId: fooTransitRouter.id,
+ * });
+ * const fooRouteEntry = new volcengine.transit_router.RouteEntry("fooRouteEntry", {
+ *     description: "tf-test-acc-description-entry",
+ *     transitRouterRouteEntryName: "tf-acc-test-entry",
  *     destinationCidrBlock: "192.168.0.0/24",
- *     transitRouterRouteEntryName: "tf-entry-23",
- *     transitRouterRouteEntryNextHopType: "BlackHole",
- *     transitRouterRouteTableId: "tr-rtb-12b7qd3fmzf2817q7y2jkbd55",
+ *     transitRouterRouteEntryNextHopType: "Attachment",
+ *     transitRouterRouteTableId: fooRouteTable.transitRouterRouteTableId,
+ *     transitRouterRouteEntryNextHopId: fooVpnAttachment.transitRouterAttachmentId,
  * });
  * ```
  *

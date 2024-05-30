@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -62,6 +64,10 @@ import * as utilities from "../utilities";
  *     instanceId: fooInstance.id,
  *     projectName: "default",
  *     deleteWithInstance: true,
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
  * const postVolume = new volcengine.ebs.Volume("postVolume", {
  *     volumeName: "acc-test-volume",
@@ -72,6 +78,10 @@ import * as utilities from "../utilities";
  *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
  *     volumeChargeType: "PostPaid",
  *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
  * ```
  *
@@ -147,6 +157,10 @@ export class Volume extends pulumi.CustomResource {
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.ebs.VolumeTag[] | undefined>;
+    /**
      * Status of Trade.
      */
     public /*out*/ readonly tradeStatus!: pulumi.Output<number>;
@@ -188,6 +202,7 @@ export class Volume extends pulumi.CustomResource {
             resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["size"] = state ? state.size : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["tradeStatus"] = state ? state.tradeStatus : undefined;
             resourceInputs["volumeChargeType"] = state ? state.volumeChargeType : undefined;
             resourceInputs["volumeName"] = state ? state.volumeName : undefined;
@@ -216,6 +231,7 @@ export class Volume extends pulumi.CustomResource {
             resourceInputs["kind"] = args ? args.kind : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["size"] = args ? args.size : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["volumeChargeType"] = args ? args.volumeChargeType : undefined;
             resourceInputs["volumeName"] = args ? args.volumeName : undefined;
             resourceInputs["volumeType"] = args ? args.volumeType : undefined;
@@ -269,6 +285,10 @@ export interface VolumeState {
      */
     status?: pulumi.Input<string>;
     /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.ebs.VolumeTag>[]>;
+    /**
      * Status of Trade.
      */
     tradeStatus?: pulumi.Input<number>;
@@ -321,6 +341,10 @@ export interface VolumeArgs {
      * The size of Volume.
      */
     size: pulumi.Input<number>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.ebs.VolumeTag>[]>;
     /**
      * The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
      */

@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['SubnetArgs', 'Subnet']
 
@@ -20,7 +22,8 @@ class SubnetArgs:
                  description: Optional[pulumi.Input[str]] = None,
                  enable_ipv6: Optional[pulumi.Input[bool]] = None,
                  ipv6_cidr_block: Optional[pulumi.Input[int]] = None,
-                 subnet_name: Optional[pulumi.Input[str]] = None):
+                 subnet_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['SubnetTagArgs']]]] = None):
         """
         The set of arguments for constructing a Subnet resource.
         :param pulumi.Input[str] cidr_block: A network address block which should be a subnet of the three internal network segments (10.0.0.0/16, 172.16.0.0/12 and 192.168.0.0/16).
@@ -30,6 +33,7 @@ class SubnetArgs:
         :param pulumi.Input[bool] enable_ipv6: Specifies whether to enable the IPv6 CIDR block of the Subnet. This field is only valid when modifying the Subnet.
         :param pulumi.Input[int] ipv6_cidr_block: The last eight bits of the IPv6 CIDR block of the Subnet. Valid values: 0 - 255.
         :param pulumi.Input[str] subnet_name: The name of the Subnet.
+        :param pulumi.Input[Sequence[pulumi.Input['SubnetTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "cidr_block", cidr_block)
         pulumi.set(__self__, "vpc_id", vpc_id)
@@ -42,6 +46,8 @@ class SubnetArgs:
             pulumi.set(__self__, "ipv6_cidr_block", ipv6_cidr_block)
         if subnet_name is not None:
             pulumi.set(__self__, "subnet_name", subnet_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="cidrBlock")
@@ -127,6 +133,18 @@ class SubnetArgs:
     def subnet_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "subnet_name", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SubnetTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SubnetTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _SubnetState:
@@ -138,6 +156,7 @@ class _SubnetState:
                  ipv6_cidr_block: Optional[pulumi.Input[int]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  subnet_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['SubnetTagArgs']]]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  zone_id: Optional[pulumi.Input[str]] = None):
         """
@@ -149,6 +168,7 @@ class _SubnetState:
         :param pulumi.Input[int] ipv6_cidr_block: The last eight bits of the IPv6 CIDR block of the Subnet. Valid values: 0 - 255.
         :param pulumi.Input[str] status: Status of Subnet.
         :param pulumi.Input[str] subnet_name: The name of the Subnet.
+        :param pulumi.Input[Sequence[pulumi.Input['SubnetTagArgs']]] tags: Tags.
         :param pulumi.Input[str] vpc_id: Id of the VPC.
         :param pulumi.Input[str] zone_id: Id of the Zone.
         """
@@ -166,6 +186,8 @@ class _SubnetState:
             pulumi.set(__self__, "status", status)
         if subnet_name is not None:
             pulumi.set(__self__, "subnet_name", subnet_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if vpc_id is not None:
             pulumi.set(__self__, "vpc_id", vpc_id)
         if zone_id is not None:
@@ -256,6 +278,18 @@ class _SubnetState:
         pulumi.set(self, "subnet_name", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SubnetTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SubnetTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -290,6 +324,7 @@ class Subnet(pulumi.CustomResource):
                  enable_ipv6: Optional[pulumi.Input[bool]] = None,
                  ipv6_cidr_block: Optional[pulumi.Input[int]] = None,
                  subnet_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SubnetTagArgs']]]]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  zone_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -323,6 +358,7 @@ class Subnet(pulumi.CustomResource):
         :param pulumi.Input[bool] enable_ipv6: Specifies whether to enable the IPv6 CIDR block of the Subnet. This field is only valid when modifying the Subnet.
         :param pulumi.Input[int] ipv6_cidr_block: The last eight bits of the IPv6 CIDR block of the Subnet. Valid values: 0 - 255.
         :param pulumi.Input[str] subnet_name: The name of the Subnet.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SubnetTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] vpc_id: Id of the VPC.
         :param pulumi.Input[str] zone_id: Id of the Zone.
         """
@@ -375,6 +411,7 @@ class Subnet(pulumi.CustomResource):
                  enable_ipv6: Optional[pulumi.Input[bool]] = None,
                  ipv6_cidr_block: Optional[pulumi.Input[int]] = None,
                  subnet_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SubnetTagArgs']]]]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  zone_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -393,6 +430,7 @@ class Subnet(pulumi.CustomResource):
             __props__.__dict__["enable_ipv6"] = enable_ipv6
             __props__.__dict__["ipv6_cidr_block"] = ipv6_cidr_block
             __props__.__dict__["subnet_name"] = subnet_name
+            __props__.__dict__["tags"] = tags
             if vpc_id is None and not opts.urn:
                 raise TypeError("Missing required property 'vpc_id'")
             __props__.__dict__["vpc_id"] = vpc_id
@@ -418,6 +456,7 @@ class Subnet(pulumi.CustomResource):
             ipv6_cidr_block: Optional[pulumi.Input[int]] = None,
             status: Optional[pulumi.Input[str]] = None,
             subnet_name: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SubnetTagArgs']]]]] = None,
             vpc_id: Optional[pulumi.Input[str]] = None,
             zone_id: Optional[pulumi.Input[str]] = None) -> 'Subnet':
         """
@@ -434,6 +473,7 @@ class Subnet(pulumi.CustomResource):
         :param pulumi.Input[int] ipv6_cidr_block: The last eight bits of the IPv6 CIDR block of the Subnet. Valid values: 0 - 255.
         :param pulumi.Input[str] status: Status of Subnet.
         :param pulumi.Input[str] subnet_name: The name of the Subnet.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SubnetTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] vpc_id: Id of the VPC.
         :param pulumi.Input[str] zone_id: Id of the Zone.
         """
@@ -448,6 +488,7 @@ class Subnet(pulumi.CustomResource):
         __props__.__dict__["ipv6_cidr_block"] = ipv6_cidr_block
         __props__.__dict__["status"] = status
         __props__.__dict__["subnet_name"] = subnet_name
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["vpc_id"] = vpc_id
         __props__.__dict__["zone_id"] = zone_id
         return Subnet(resource_name, opts=opts, __props__=__props__)
@@ -507,6 +548,14 @@ class Subnet(pulumi.CustomResource):
         The name of the Subnet.
         """
         return pulumi.get(self, "subnet_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.SubnetTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcId")

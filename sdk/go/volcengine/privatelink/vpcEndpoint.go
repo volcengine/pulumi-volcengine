@@ -21,27 +21,84 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/clb"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/privatelink"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			endpoint, err := privatelink.NewVpcEndpoint(ctx, "endpoint", &privatelink.VpcEndpointArgs{
-//				SecurityGroupIds: pulumi.StringArray{
-//					pulumi.String("sg-2d5z8cr53k45c58ozfdum****"),
-//				},
-//				ServiceId:    pulumi.String("epsvc-2byz5nzgiansw2dx0eehh****"),
-//				EndpointName: pulumi.String("tf-test-ep"),
-//				Description:  pulumi.String("tf-test"),
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = privatelink.NewVpcEndpointZone(ctx, "zone", &privatelink.VpcEndpointZoneArgs{
-//				EndpointId:       endpoint.ID(),
-//				SubnetId:         pulumi.String("subnet-2bz47q19zhx4w2dx0eevn****"),
-//				PrivateIpAddress: pulumi.String("172.16.0.252"),
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSecurityGroup, err := vpc.NewSecurityGroup(ctx, "fooSecurityGroup", &vpc.SecurityGroupArgs{
+//				SecurityGroupName: pulumi.String("acc-test-security-group"),
+//				VpcId:             fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooClb, err := clb.NewClb(ctx, "fooClb", &clb.ClbArgs{
+//				Type:                    pulumi.String("public"),
+//				SubnetId:                fooSubnet.ID(),
+//				LoadBalancerSpec:        pulumi.String("small_1"),
+//				Description:             pulumi.String("acc-test-demo"),
+//				LoadBalancerName:        pulumi.String("acc-test-clb"),
+//				LoadBalancerBillingType: pulumi.String("PostPaid"),
+//				EipBillingConfig: &clb.ClbEipBillingConfigArgs{
+//					Isp:            pulumi.String("BGP"),
+//					EipBillingType: pulumi.String("PostPaidByBandwidth"),
+//					Bandwidth:      pulumi.Int(1),
+//				},
+//				Tags: clb.ClbTagArray{
+//					&clb.ClbTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooVpcEndpointService, err := privatelink.NewVpcEndpointService(ctx, "fooVpcEndpointService", &privatelink.VpcEndpointServiceArgs{
+//				Resources: privatelink.VpcEndpointServiceResourceTypeArray{
+//					&privatelink.VpcEndpointServiceResourceTypeArgs{
+//						ResourceId:   fooClb.ID(),
+//						ResourceType: pulumi.String("CLB"),
+//					},
+//				},
+//				Description:       pulumi.String("acc-test"),
+//				AutoAcceptEnabled: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = privatelink.NewVpcEndpoint(ctx, "fooVpcEndpoint", &privatelink.VpcEndpointArgs{
+//				SecurityGroupIds: pulumi.StringArray{
+//					fooSecurityGroup.ID(),
+//				},
+//				ServiceId:    fooVpcEndpointService.ID(),
+//				EndpointName: pulumi.String("acc-test-ep"),
+//				Description:  pulumi.String("acc-test"),
 //			})
 //			if err != nil {
 //				return err
@@ -80,7 +137,8 @@ type VpcEndpoint struct {
 	EndpointName pulumi.StringOutput `pulumi:"endpointName"`
 	// The type of vpc endpoint.
 	EndpointType pulumi.StringOutput `pulumi:"endpointType"`
-	// the security group ids of vpc endpoint.
+	// The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `privatelink.SecurityGroup`.
+	// For operations that jointly use this resource and `privatelink.SecurityGroup`, use lifecycle ignoreChanges to suppress changes to the 'security_group_ids' field.
 	SecurityGroupIds pulumi.StringArrayOutput `pulumi:"securityGroupIds"`
 	// The id of vpc endpoint service.
 	ServiceId pulumi.StringOutput `pulumi:"serviceId"`
@@ -146,7 +204,8 @@ type vpcEndpointState struct {
 	EndpointName *string `pulumi:"endpointName"`
 	// The type of vpc endpoint.
 	EndpointType *string `pulumi:"endpointType"`
-	// the security group ids of vpc endpoint.
+	// The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `privatelink.SecurityGroup`.
+	// For operations that jointly use this resource and `privatelink.SecurityGroup`, use lifecycle ignoreChanges to suppress changes to the 'security_group_ids' field.
 	SecurityGroupIds []string `pulumi:"securityGroupIds"`
 	// The id of vpc endpoint service.
 	ServiceId *string `pulumi:"serviceId"`
@@ -177,7 +236,8 @@ type VpcEndpointState struct {
 	EndpointName pulumi.StringPtrInput
 	// The type of vpc endpoint.
 	EndpointType pulumi.StringPtrInput
-	// the security group ids of vpc endpoint.
+	// The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `privatelink.SecurityGroup`.
+	// For operations that jointly use this resource and `privatelink.SecurityGroup`, use lifecycle ignoreChanges to suppress changes to the 'security_group_ids' field.
 	SecurityGroupIds pulumi.StringArrayInput
 	// The id of vpc endpoint service.
 	ServiceId pulumi.StringPtrInput
@@ -200,7 +260,8 @@ type vpcEndpointArgs struct {
 	Description *string `pulumi:"description"`
 	// The name of vpc endpoint.
 	EndpointName *string `pulumi:"endpointName"`
-	// the security group ids of vpc endpoint.
+	// The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `privatelink.SecurityGroup`.
+	// For operations that jointly use this resource and `privatelink.SecurityGroup`, use lifecycle ignoreChanges to suppress changes to the 'security_group_ids' field.
 	SecurityGroupIds []string `pulumi:"securityGroupIds"`
 	// The id of vpc endpoint service.
 	ServiceId string `pulumi:"serviceId"`
@@ -214,7 +275,8 @@ type VpcEndpointArgs struct {
 	Description pulumi.StringPtrInput
 	// The name of vpc endpoint.
 	EndpointName pulumi.StringPtrInput
-	// the security group ids of vpc endpoint.
+	// The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `privatelink.SecurityGroup`.
+	// For operations that jointly use this resource and `privatelink.SecurityGroup`, use lifecycle ignoreChanges to suppress changes to the 'security_group_ids' field.
 	SecurityGroupIds pulumi.StringArrayInput
 	// The id of vpc endpoint service.
 	ServiceId pulumi.StringInput
@@ -349,7 +411,8 @@ func (o VpcEndpointOutput) EndpointType() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcEndpoint) pulumi.StringOutput { return v.EndpointType }).(pulumi.StringOutput)
 }
 
-// the security group ids of vpc endpoint.
+// The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `privatelink.SecurityGroup`.
+// For operations that jointly use this resource and `privatelink.SecurityGroup`, use lifecycle ignoreChanges to suppress changes to the 'security_group_ids' field.
 func (o VpcEndpointOutput) SecurityGroupIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *VpcEndpoint) pulumi.StringArrayOutput { return v.SecurityGroupIds }).(pulumi.StringArrayOutput)
 }

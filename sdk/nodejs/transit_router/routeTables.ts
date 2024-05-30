@@ -13,10 +13,20 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.transit_router.RouteTables({
- *     ids: ["tr-rtb-12b7qd3fmzf2817q7y2jkbd55"],
- *     transitRouterId: "tr-2ff4v69tkxji859gp684cm14e",
+ * const fooTransitRouter = new volcengine.transit_router.TransitRouter("fooTransitRouter", {
+ *     transitRouterName: "test-tf-acc",
+ *     description: "test-tf-acc",
+ * });
+ * const fooRouteTable = new volcengine.transit_router.RouteTable("fooRouteTable", {
+ *     description: "tf-test-acc-description",
+ *     transitRouterRouteTableName: "tf-table-test-acc",
+ *     transitRouterId: fooTransitRouter.id,
+ * });
+ * const default = volcengine.transit_router.RouteTablesOutput({
+ *     transitRouterId: fooTransitRouter.id,
+ *     ids: [fooRouteTable.transitRouterRouteTableId],
  * });
  * ```
  */
@@ -26,6 +36,7 @@ export function routeTables(args: RouteTablesArgs, opts?: pulumi.InvokeOptions):
     return pulumi.runtime.invoke("volcengine:transit_router/routeTables:RouteTables", {
         "ids": args.ids,
         "outputFile": args.outputFile,
+        "tags": args.tags,
         "transitRouterId": args.transitRouterId,
         "transitRouterRouteTableType": args.transitRouterRouteTableType,
     }, opts);
@@ -43,6 +54,10 @@ export interface RouteTablesArgs {
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.transit_router.RouteTablesTag[];
     /**
      * The id of the transit router.
      */
@@ -68,6 +83,10 @@ export interface RouteTablesResult {
      */
     readonly routeTables: outputs.transit_router.RouteTablesRouteTable[];
     /**
+     * Tags.
+     */
+    readonly tags?: outputs.transit_router.RouteTablesTag[];
+    /**
      * The total count of data query.
      */
     readonly totalCount: number;
@@ -84,10 +103,20 @@ export interface RouteTablesResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.transit_router.RouteTables({
- *     ids: ["tr-rtb-12b7qd3fmzf2817q7y2jkbd55"],
- *     transitRouterId: "tr-2ff4v69tkxji859gp684cm14e",
+ * const fooTransitRouter = new volcengine.transit_router.TransitRouter("fooTransitRouter", {
+ *     transitRouterName: "test-tf-acc",
+ *     description: "test-tf-acc",
+ * });
+ * const fooRouteTable = new volcengine.transit_router.RouteTable("fooRouteTable", {
+ *     description: "tf-test-acc-description",
+ *     transitRouterRouteTableName: "tf-table-test-acc",
+ *     transitRouterId: fooTransitRouter.id,
+ * });
+ * const default = volcengine.transit_router.RouteTablesOutput({
+ *     transitRouterId: fooTransitRouter.id,
+ *     ids: [fooRouteTable.transitRouterRouteTableId],
  * });
  * ```
  */
@@ -107,6 +136,10 @@ export interface RouteTablesOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.transit_router.RouteTablesTagArgs>[]>;
     /**
      * The id of the transit router.
      */

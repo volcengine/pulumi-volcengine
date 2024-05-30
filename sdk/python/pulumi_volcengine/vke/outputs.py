@@ -1350,7 +1350,7 @@ class ClustersClusterNodeStatisticsResult(dict):
         :param int deleting_count: Phase=Deleting total number of nodes.
         :param int failed_count: Phase=Failed total number of nodes.
         :param int running_count: Phase=Running total number of nodes.
-        :param int stopped_count: Phase=Stopped total number of nodes.
+        :param int stopped_count: (**Deprecated**) This field has been deprecated and is not recommended for use. Phase=Stopped total number of nodes.
         :param int total_count: The total count of Cluster query.
         :param int updating_count: Phase=Updating total number of nodes.
         """
@@ -1398,8 +1398,11 @@ class ClustersClusterNodeStatisticsResult(dict):
     @pulumi.getter(name="stoppedCount")
     def stopped_count(self) -> int:
         """
-        Phase=Stopped total number of nodes.
+        (**Deprecated**) This field has been deprecated and is not recommended for use. Phase=Stopped total number of nodes.
         """
+        warnings.warn("""This field has been deprecated and is not recommended for use.""", DeprecationWarning)
+        pulumi.log.warn("""stopped_count is deprecated: This field has been deprecated and is not recommended for use.""")
+
         return pulumi.get(self, "stopped_count")
 
     @property
@@ -2269,18 +2272,39 @@ class DefaultNodePoolInstance(dict):
 
 @pulumi.output_type
 class DefaultNodePoolKubernetesConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "namePrefix":
+            suggest = "name_prefix"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DefaultNodePoolKubernetesConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DefaultNodePoolKubernetesConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DefaultNodePoolKubernetesConfig.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  cordon: bool,
                  labels: Optional[Sequence['outputs.DefaultNodePoolKubernetesConfigLabel']] = None,
+                 name_prefix: Optional[str] = None,
                  taints: Optional[Sequence['outputs.DefaultNodePoolKubernetesConfigTaint']] = None):
         """
         :param bool cordon: The Cordon of KubernetesConfig.
         :param Sequence['DefaultNodePoolKubernetesConfigLabelArgs'] labels: The Labels of KubernetesConfig.
+        :param str name_prefix: The NamePrefix of node metadata.
         :param Sequence['DefaultNodePoolKubernetesConfigTaintArgs'] taints: The Taints of KubernetesConfig.
         """
         pulumi.set(__self__, "cordon", cordon)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
+        if name_prefix is not None:
+            pulumi.set(__self__, "name_prefix", name_prefix)
         if taints is not None:
             pulumi.set(__self__, "taints", taints)
 
@@ -2299,6 +2323,14 @@ class DefaultNodePoolKubernetesConfig(dict):
         The Labels of KubernetesConfig.
         """
         return pulumi.get(self, "labels")
+
+    @property
+    @pulumi.getter(name="namePrefix")
+    def name_prefix(self) -> Optional[str]:
+        """
+        The NamePrefix of node metadata.
+        """
+        return pulumi.get(self, "name_prefix")
 
     @property
     @pulumi.getter
@@ -2941,18 +2973,39 @@ class NodePoolAutoScaling(dict):
 
 @pulumi.output_type
 class NodePoolKubernetesConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "namePrefix":
+            suggest = "name_prefix"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in NodePoolKubernetesConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        NodePoolKubernetesConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        NodePoolKubernetesConfig.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  cordon: bool,
                  labels: Optional[Sequence['outputs.NodePoolKubernetesConfigLabel']] = None,
+                 name_prefix: Optional[str] = None,
                  taints: Optional[Sequence['outputs.NodePoolKubernetesConfigTaint']] = None):
         """
         :param bool cordon: The Cordon of KubernetesConfig.
         :param Sequence['NodePoolKubernetesConfigLabelArgs'] labels: The Labels of KubernetesConfig.
+        :param str name_prefix: The NamePrefix of node metadata.
         :param Sequence['NodePoolKubernetesConfigTaintArgs'] taints: The Taints of KubernetesConfig.
         """
         pulumi.set(__self__, "cordon", cordon)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
+        if name_prefix is not None:
+            pulumi.set(__self__, "name_prefix", name_prefix)
         if taints is not None:
             pulumi.set(__self__, "taints", taints)
 
@@ -2971,6 +3024,14 @@ class NodePoolKubernetesConfig(dict):
         The Labels of KubernetesConfig.
         """
         return pulumi.get(self, "labels")
+
+    @property
+    @pulumi.getter(name="namePrefix")
+    def name_prefix(self) -> Optional[str]:
+        """
+        The NamePrefix of node metadata.
+        """
+        return pulumi.get(self, "name_prefix")
 
     @property
     @pulumi.getter
@@ -3560,9 +3621,9 @@ class NodePoolNodeStatistic(dict):
         :param int deleting_count: The DeletingCount of Node.
         :param int failed_count: The FailedCount of Node.
         :param int running_count: The RunningCount of Node.
-        :param int starting_count: The StartingCount of Node.
-        :param int stopped_count: The StoppedCount of Node.
-        :param int stopping_count: The StoppingCount of Node.
+        :param int starting_count: (**Deprecated**) This field has been deprecated and is not recommended for use. The StartingCount of Node.
+        :param int stopped_count: (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppedCount of Node.
+        :param int stopping_count: (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppingCount of Node.
         :param int total_count: The TotalCount of Node.
         :param int updating_count: The UpdatingCount of Node.
         """
@@ -3621,24 +3682,33 @@ class NodePoolNodeStatistic(dict):
     @pulumi.getter(name="startingCount")
     def starting_count(self) -> Optional[int]:
         """
-        The StartingCount of Node.
+        (**Deprecated**) This field has been deprecated and is not recommended for use. The StartingCount of Node.
         """
+        warnings.warn("""This field has been deprecated and is not recommended for use.""", DeprecationWarning)
+        pulumi.log.warn("""starting_count is deprecated: This field has been deprecated and is not recommended for use.""")
+
         return pulumi.get(self, "starting_count")
 
     @property
     @pulumi.getter(name="stoppedCount")
     def stopped_count(self) -> Optional[int]:
         """
-        The StoppedCount of Node.
+        (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppedCount of Node.
         """
+        warnings.warn("""This field has been deprecated and is not recommended for use.""", DeprecationWarning)
+        pulumi.log.warn("""stopped_count is deprecated: This field has been deprecated and is not recommended for use.""")
+
         return pulumi.get(self, "stopped_count")
 
     @property
     @pulumi.getter(name="stoppingCount")
     def stopping_count(self) -> Optional[int]:
         """
-        The StoppingCount of Node.
+        (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppingCount of Node.
         """
+        warnings.warn("""This field has been deprecated and is not recommended for use.""", DeprecationWarning)
+        pulumi.log.warn("""stopping_count is deprecated: This field has been deprecated and is not recommended for use.""")
+
         return pulumi.get(self, "stopping_count")
 
     @property
@@ -3708,6 +3778,7 @@ class NodePoolsNodePoolResult(dict):
                  initialize_script: str,
                  instance_charge_type: str,
                  instance_type_ids: Sequence[str],
+                 kube_config_name_prefix: str,
                  label_contents: Sequence['outputs.NodePoolsNodePoolLabelContentResult'],
                  login_key_pair_name: str,
                  login_type: str,
@@ -3748,6 +3819,7 @@ class NodePoolsNodePoolResult(dict):
         :param str initialize_script: The InitializeScript of NodeConfig.
         :param str instance_charge_type: The InstanceChargeType of NodeConfig.
         :param Sequence[str] instance_type_ids: The InstanceTypeIds of NodeConfig.
+        :param str kube_config_name_prefix: The NamePrefix of node metadata.
         :param Sequence['NodePoolsNodePoolLabelContentArgs'] label_contents: The LabelContent of KubernetesConfig.
         :param str login_key_pair_name: The login SshKeyPairName of NodeConfig.
         :param str login_type: The login type of NodeConfig.
@@ -3788,6 +3860,7 @@ class NodePoolsNodePoolResult(dict):
         pulumi.set(__self__, "initialize_script", initialize_script)
         pulumi.set(__self__, "instance_charge_type", instance_charge_type)
         pulumi.set(__self__, "instance_type_ids", instance_type_ids)
+        pulumi.set(__self__, "kube_config_name_prefix", kube_config_name_prefix)
         pulumi.set(__self__, "label_contents", label_contents)
         pulumi.set(__self__, "login_key_pair_name", login_key_pair_name)
         pulumi.set(__self__, "login_type", login_type)
@@ -3953,6 +4026,14 @@ class NodePoolsNodePoolResult(dict):
         The InstanceTypeIds of NodeConfig.
         """
         return pulumi.get(self, "instance_type_ids")
+
+    @property
+    @pulumi.getter(name="kubeConfigNamePrefix")
+    def kube_config_name_prefix(self) -> str:
+        """
+        The NamePrefix of node metadata.
+        """
+        return pulumi.get(self, "kube_config_name_prefix")
 
     @property
     @pulumi.getter(name="labelContents")
@@ -4238,9 +4319,9 @@ class NodePoolsNodePoolNodeStatisticResult(dict):
         :param int deleting_count: The DeletingCount of Node.
         :param int failed_count: The FailedCount of Node.
         :param int running_count: The RunningCount of Node.
-        :param int starting_count: The StartingCount of Node.
-        :param int stopped_count: The StoppedCount of Node.
-        :param int stopping_count: The StoppingCount of Node.
+        :param int starting_count: (**Deprecated**) This field has been deprecated and is not recommended for use. The StartingCount of Node.
+        :param int stopped_count: (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppedCount of Node.
+        :param int stopping_count: (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppingCount of Node.
         :param int total_count: Returns the total amount of the data list.
         :param int updating_count: The UpdatingCount of Node.
         """
@@ -4290,24 +4371,33 @@ class NodePoolsNodePoolNodeStatisticResult(dict):
     @pulumi.getter(name="startingCount")
     def starting_count(self) -> int:
         """
-        The StartingCount of Node.
+        (**Deprecated**) This field has been deprecated and is not recommended for use. The StartingCount of Node.
         """
+        warnings.warn("""This field has been deprecated and is not recommended for use.""", DeprecationWarning)
+        pulumi.log.warn("""starting_count is deprecated: This field has been deprecated and is not recommended for use.""")
+
         return pulumi.get(self, "starting_count")
 
     @property
     @pulumi.getter(name="stoppedCount")
     def stopped_count(self) -> int:
         """
-        The StoppedCount of Node.
+        (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppedCount of Node.
         """
+        warnings.warn("""This field has been deprecated and is not recommended for use.""", DeprecationWarning)
+        pulumi.log.warn("""stopped_count is deprecated: This field has been deprecated and is not recommended for use.""")
+
         return pulumi.get(self, "stopped_count")
 
     @property
     @pulumi.getter(name="stoppingCount")
     def stopping_count(self) -> int:
         """
-        The StoppingCount of Node.
+        (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppingCount of Node.
         """
+        warnings.warn("""This field has been deprecated and is not recommended for use.""", DeprecationWarning)
+        pulumi.log.warn("""stopping_count is deprecated: This field has been deprecated and is not recommended for use.""")
+
         return pulumi.get(self, "stopping_count")
 
     @property

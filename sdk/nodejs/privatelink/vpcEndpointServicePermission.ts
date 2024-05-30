@@ -10,15 +10,48 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.privatelink.VpcEndpointServicePermission("foo", {
- *     permitAccountId: "210000000",
- *     serviceId: "epsvc-3rel73uf2ewao5zsk2j2l58ro",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
  * });
- * const foo1 = new volcengine.privatelink.VpcEndpointServicePermission("foo1", {
- *     permitAccountId: "210000001",
- *     serviceId: "epsvc-3rel73uf2ewao5zsk2j2l58ro",
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooClb = new volcengine.clb.Clb("fooClb", {
+ *     type: "public",
+ *     subnetId: fooSubnet.id,
+ *     loadBalancerSpec: "small_1",
+ *     description: "acc-test-demo",
+ *     loadBalancerName: "acc-test-clb",
+ *     loadBalancerBillingType: "PostPaid",
+ *     eipBillingConfig: {
+ *         isp: "BGP",
+ *         eipBillingType: "PostPaidByBandwidth",
+ *         bandwidth: 1,
+ *     },
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooVpcEndpointService = new volcengine.privatelink.VpcEndpointService("fooVpcEndpointService", {
+ *     resources: [{
+ *         resourceId: fooClb.id,
+ *         resourceType: "CLB",
+ *     }],
+ *     description: "acc-test",
+ *     autoAcceptEnabled: true,
+ * });
+ * const fooVpcEndpointServicePermission = new volcengine.privatelink.VpcEndpointServicePermission("fooVpcEndpointServicePermission", {
+ *     serviceId: fooVpcEndpointService.id,
+ *     permitAccountId: "210000000",
  * });
  * ```
  *
