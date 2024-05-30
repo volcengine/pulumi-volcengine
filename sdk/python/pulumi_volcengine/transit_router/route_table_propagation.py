@@ -105,9 +105,45 @@ class RouteTablePropagation(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.transit_router.RouteTablePropagation("foo",
-            transit_router_attachment_id="tr-attach-im73ng3n5kao8gbssz2ddpuq",
-            transit_router_route_table_id="tr-rtb-12b7qd3fmzf2817q7y2jkbd55")
+        foo_transit_router = volcengine.transit_router.TransitRouter("fooTransitRouter",
+            transit_router_name="test-tf-acc",
+            description="test-tf-acc")
+        foo_route_table = volcengine.transit_router.RouteTable("fooRouteTable",
+            description="tf-test-acc-description",
+            transit_router_route_table_name="tf-table-test-acc",
+            transit_router_id=foo_transit_router.id)
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc-acc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            vpc_id=foo_vpc.id,
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            subnet_name="acc-test-subnet")
+        foo2 = volcengine.vpc.Subnet("foo2",
+            vpc_id=foo_vpc.id,
+            cidr_block="172.16.255.0/24",
+            zone_id=foo_zones.zones[1].id,
+            subnet_name="acc-test-subnet2")
+        foo_vpc_attachment = volcengine.transit_router.VpcAttachment("fooVpcAttachment",
+            transit_router_id=foo_transit_router.id,
+            vpc_id=foo_vpc.id,
+            attach_points=[
+                volcengine.transit_router.VpcAttachmentAttachPointArgs(
+                    subnet_id=foo_subnet.id,
+                    zone_id="cn-beijing-a",
+                ),
+                volcengine.transit_router.VpcAttachmentAttachPointArgs(
+                    subnet_id=foo2.id,
+                    zone_id="cn-beijing-b",
+                ),
+            ],
+            transit_router_attachment_name="tf-test-acc-name1",
+            description="tf-test-acc-description")
+        foo_route_table_propagation = volcengine.transit_router.RouteTablePropagation("fooRouteTablePropagation",
+            transit_router_attachment_id=foo_vpc_attachment.transit_router_attachment_id,
+            transit_router_route_table_id=foo_route_table.transit_router_route_table_id)
         ```
 
         ## Import
@@ -137,9 +173,45 @@ class RouteTablePropagation(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.transit_router.RouteTablePropagation("foo",
-            transit_router_attachment_id="tr-attach-im73ng3n5kao8gbssz2ddpuq",
-            transit_router_route_table_id="tr-rtb-12b7qd3fmzf2817q7y2jkbd55")
+        foo_transit_router = volcengine.transit_router.TransitRouter("fooTransitRouter",
+            transit_router_name="test-tf-acc",
+            description="test-tf-acc")
+        foo_route_table = volcengine.transit_router.RouteTable("fooRouteTable",
+            description="tf-test-acc-description",
+            transit_router_route_table_name="tf-table-test-acc",
+            transit_router_id=foo_transit_router.id)
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc-acc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            vpc_id=foo_vpc.id,
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            subnet_name="acc-test-subnet")
+        foo2 = volcengine.vpc.Subnet("foo2",
+            vpc_id=foo_vpc.id,
+            cidr_block="172.16.255.0/24",
+            zone_id=foo_zones.zones[1].id,
+            subnet_name="acc-test-subnet2")
+        foo_vpc_attachment = volcengine.transit_router.VpcAttachment("fooVpcAttachment",
+            transit_router_id=foo_transit_router.id,
+            vpc_id=foo_vpc.id,
+            attach_points=[
+                volcengine.transit_router.VpcAttachmentAttachPointArgs(
+                    subnet_id=foo_subnet.id,
+                    zone_id="cn-beijing-a",
+                ),
+                volcengine.transit_router.VpcAttachmentAttachPointArgs(
+                    subnet_id=foo2.id,
+                    zone_id="cn-beijing-b",
+                ),
+            ],
+            transit_router_attachment_name="tf-test-acc-name1",
+            description="tf-test-acc-description")
+        foo_route_table_propagation = volcengine.transit_router.RouteTablePropagation("fooRouteTablePropagation",
+            transit_router_attachment_id=foo_vpc_attachment.transit_router_attachment_id,
+            transit_router_route_table_id=foo_route_table.transit_router_route_table_id)
         ```
 
         ## Import

@@ -105,15 +105,57 @@ class VpcEndpointServiceResource(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.privatelink.VpcEndpointServiceResource("foo",
-            resource_id="clb-3reii8qfbp7gg5zsk2hsrbe3c",
-            service_id="epsvc-3rel73uf2ewao5zsk2j2l58ro")
-        foo1 = volcengine.privatelink.VpcEndpointServiceResource("foo1",
-            resource_id="clb-2d6sfye98rzls58ozfducee1o",
-            service_id="epsvc-3rel73uf2ewao5zsk2j2l58ro")
-        foo2 = volcengine.privatelink.VpcEndpointServiceResource("foo2",
-            resource_id="clb-3refkvae02gow5zsk2ilaev5y",
-            service_id="epsvc-3rel73uf2ewao5zsk2j2l58ro")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_clb = volcengine.clb.Clb("fooClb",
+            type="public",
+            subnet_id=foo_subnet.id,
+            load_balancer_spec="small_1",
+            description="acc-test-demo",
+            load_balancer_name="acc-test-clb",
+            load_balancer_billing_type="PostPaid",
+            eip_billing_config=volcengine.clb.ClbEipBillingConfigArgs(
+                isp="BGP",
+                eip_billing_type="PostPaidByBandwidth",
+                bandwidth=1,
+            ),
+            tags=[volcengine.clb.ClbTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo1 = volcengine.clb.Clb("foo1",
+            type="public",
+            subnet_id=foo_subnet.id,
+            load_balancer_spec="small_1",
+            description="acc-test-demo",
+            load_balancer_name="acc-test-clb-new",
+            load_balancer_billing_type="PostPaid",
+            eip_billing_config=volcengine.clb.ClbEipBillingConfigArgs(
+                isp="BGP",
+                eip_billing_type="PostPaidByBandwidth",
+                bandwidth=1,
+            ),
+            tags=[volcengine.clb.ClbTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_vpc_endpoint_service = volcengine.privatelink.VpcEndpointService("fooVpcEndpointService",
+            resources=[volcengine.privatelink.VpcEndpointServiceResourceArgs(
+                resource_id=foo_clb.id,
+                resource_type="CLB",
+            )],
+            description="acc-test",
+            auto_accept_enabled=True)
+        foo_vpc_endpoint_service_resource = volcengine.privatelink.VpcEndpointServiceResource("fooVpcEndpointServiceResource",
+            service_id=foo_vpc_endpoint_service.id,
+            resource_id=foo1.id)
         ```
 
         ## Import
@@ -145,15 +187,57 @@ class VpcEndpointServiceResource(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.privatelink.VpcEndpointServiceResource("foo",
-            resource_id="clb-3reii8qfbp7gg5zsk2hsrbe3c",
-            service_id="epsvc-3rel73uf2ewao5zsk2j2l58ro")
-        foo1 = volcengine.privatelink.VpcEndpointServiceResource("foo1",
-            resource_id="clb-2d6sfye98rzls58ozfducee1o",
-            service_id="epsvc-3rel73uf2ewao5zsk2j2l58ro")
-        foo2 = volcengine.privatelink.VpcEndpointServiceResource("foo2",
-            resource_id="clb-3refkvae02gow5zsk2ilaev5y",
-            service_id="epsvc-3rel73uf2ewao5zsk2j2l58ro")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_clb = volcengine.clb.Clb("fooClb",
+            type="public",
+            subnet_id=foo_subnet.id,
+            load_balancer_spec="small_1",
+            description="acc-test-demo",
+            load_balancer_name="acc-test-clb",
+            load_balancer_billing_type="PostPaid",
+            eip_billing_config=volcengine.clb.ClbEipBillingConfigArgs(
+                isp="BGP",
+                eip_billing_type="PostPaidByBandwidth",
+                bandwidth=1,
+            ),
+            tags=[volcengine.clb.ClbTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo1 = volcengine.clb.Clb("foo1",
+            type="public",
+            subnet_id=foo_subnet.id,
+            load_balancer_spec="small_1",
+            description="acc-test-demo",
+            load_balancer_name="acc-test-clb-new",
+            load_balancer_billing_type="PostPaid",
+            eip_billing_config=volcengine.clb.ClbEipBillingConfigArgs(
+                isp="BGP",
+                eip_billing_type="PostPaidByBandwidth",
+                bandwidth=1,
+            ),
+            tags=[volcengine.clb.ClbTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_vpc_endpoint_service = volcengine.privatelink.VpcEndpointService("fooVpcEndpointService",
+            resources=[volcengine.privatelink.VpcEndpointServiceResourceArgs(
+                resource_id=foo_clb.id,
+                resource_type="CLB",
+            )],
+            description="acc-test",
+            auto_accept_enabled=True)
+        foo_vpc_endpoint_service_resource = volcengine.privatelink.VpcEndpointServiceResource("fooVpcEndpointServiceResource",
+            service_id=foo_vpc_endpoint_service.id,
+            resource_id=foo1.id)
         ```
 
         ## Import

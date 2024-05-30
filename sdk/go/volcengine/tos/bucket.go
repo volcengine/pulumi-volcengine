@@ -38,9 +38,16 @@ import (
 //						Permission: pulumi.String("WRITE_ACP"),
 //					},
 //				},
-//				BucketName:    pulumi.String("test-xym-1"),
+//				BucketName:    pulumi.String("tf-acc-test-bucket"),
 //				EnableVersion: pulumi.Bool(true),
+//				ProjectName:   pulumi.String("default"),
 //				PublicAcl:     pulumi.String("private"),
+//				Tags: tos.BucketTagArray{
+//					&tos.BucketTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -77,10 +84,14 @@ type Bucket struct {
 	IntranetEndpoint pulumi.StringOutput `pulumi:"intranetEndpoint"`
 	// The location of the TOS bucket.
 	Location pulumi.StringOutput `pulumi:"location"`
+	// The ProjectName of the Tos Bucket. Default is `default`.
+	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
 	// The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
 	PublicAcl pulumi.StringPtrOutput `pulumi:"publicAcl"`
 	// The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
 	StorageClass pulumi.StringPtrOutput `pulumi:"storageClass"`
+	// Tos Bucket Tags.
+	Tags BucketTagArrayOutput `pulumi:"tags"`
 }
 
 // NewBucket registers a new resource with the given unique name, arguments, and options.
@@ -130,10 +141,14 @@ type bucketState struct {
 	IntranetEndpoint *string `pulumi:"intranetEndpoint"`
 	// The location of the TOS bucket.
 	Location *string `pulumi:"location"`
+	// The ProjectName of the Tos Bucket. Default is `default`.
+	ProjectName *string `pulumi:"projectName"`
 	// The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
 	PublicAcl *string `pulumi:"publicAcl"`
 	// The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
 	StorageClass *string `pulumi:"storageClass"`
+	// Tos Bucket Tags.
+	Tags []BucketTag `pulumi:"tags"`
 }
 
 type BucketState struct {
@@ -151,10 +166,14 @@ type BucketState struct {
 	IntranetEndpoint pulumi.StringPtrInput
 	// The location of the TOS bucket.
 	Location pulumi.StringPtrInput
+	// The ProjectName of the Tos Bucket. Default is `default`.
+	ProjectName pulumi.StringPtrInput
 	// The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
 	PublicAcl pulumi.StringPtrInput
 	// The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
 	StorageClass pulumi.StringPtrInput
+	// Tos Bucket Tags.
+	Tags BucketTagArrayInput
 }
 
 func (BucketState) ElementType() reflect.Type {
@@ -168,10 +187,14 @@ type bucketArgs struct {
 	BucketName string `pulumi:"bucketName"`
 	// The flag of enable tos version.
 	EnableVersion *bool `pulumi:"enableVersion"`
+	// The ProjectName of the Tos Bucket. Default is `default`.
+	ProjectName *string `pulumi:"projectName"`
 	// The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
 	PublicAcl *string `pulumi:"publicAcl"`
 	// The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
 	StorageClass *string `pulumi:"storageClass"`
+	// Tos Bucket Tags.
+	Tags []BucketTag `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a Bucket resource.
@@ -182,10 +205,14 @@ type BucketArgs struct {
 	BucketName pulumi.StringInput
 	// The flag of enable tos version.
 	EnableVersion pulumi.BoolPtrInput
+	// The ProjectName of the Tos Bucket. Default is `default`.
+	ProjectName pulumi.StringPtrInput
 	// The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
 	PublicAcl pulumi.StringPtrInput
 	// The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
 	StorageClass pulumi.StringPtrInput
+	// Tos Bucket Tags.
+	Tags BucketTagArrayInput
 }
 
 func (BucketArgs) ElementType() reflect.Type {
@@ -310,6 +337,11 @@ func (o BucketOutput) Location() pulumi.StringOutput {
 	return o.ApplyT(func(v *Bucket) pulumi.StringOutput { return v.Location }).(pulumi.StringOutput)
 }
 
+// The ProjectName of the Tos Bucket. Default is `default`.
+func (o BucketOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Bucket) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
 // The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
 func (o BucketOutput) PublicAcl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Bucket) pulumi.StringPtrOutput { return v.PublicAcl }).(pulumi.StringPtrOutput)
@@ -318,6 +350,11 @@ func (o BucketOutput) PublicAcl() pulumi.StringPtrOutput {
 // The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
 func (o BucketOutput) StorageClass() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Bucket) pulumi.StringPtrOutput { return v.StorageClass }).(pulumi.StringPtrOutput)
+}
+
+// Tos Bucket Tags.
+func (o BucketOutput) Tags() BucketTagArrayOutput {
+	return o.ApplyT(func(v *Bucket) BucketTagArrayOutput { return v.Tags }).(BucketTagArrayOutput)
 }
 
 type BucketArrayOutput struct{ *pulumi.OutputState }

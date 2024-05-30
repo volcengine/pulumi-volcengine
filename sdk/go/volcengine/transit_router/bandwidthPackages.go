@@ -62,6 +62,10 @@ type BandwidthPackagesArgs struct {
 	Ids []string `pulumi:"ids"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The ProjectName of the TransitRouter bandwidth package.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []BandwidthPackagesTag `pulumi:"tags"`
 	// The name of the TransitRouter bandwidth package.
 	TransitRouterBandwidthPackageName *string `pulumi:"transitRouterBandwidthPackageName"`
 	// The ID of the peer attachment.
@@ -76,6 +80,10 @@ type BandwidthPackagesResult struct {
 	Id         string   `pulumi:"id"`
 	Ids        []string `pulumi:"ids"`
 	OutputFile *string  `pulumi:"outputFile"`
+	// The ProjectName of the transit router bandwidth package.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []BandwidthPackagesTag `pulumi:"tags"`
 	// The total count of query.
 	TotalCount int `pulumi:"totalCount"`
 	// The name of the transit router bandwidth package.
@@ -103,6 +111,10 @@ type BandwidthPackagesOutputArgs struct {
 	Ids pulumi.StringArrayInput `pulumi:"ids"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The ProjectName of the TransitRouter bandwidth package.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
+	// Tags.
+	Tags BandwidthPackagesTagArrayInput `pulumi:"tags"`
 	// The name of the TransitRouter bandwidth package.
 	TransitRouterBandwidthPackageName pulumi.StringPtrInput `pulumi:"transitRouterBandwidthPackageName"`
 	// The ID of the peer attachment.
@@ -144,6 +156,16 @@ func (o BandwidthPackagesResultOutput) Ids() pulumi.StringArrayOutput {
 
 func (o BandwidthPackagesResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BandwidthPackagesResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
+}
+
+// The ProjectName of the transit router bandwidth package.
+func (o BandwidthPackagesResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BandwidthPackagesResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o BandwidthPackagesResultOutput) Tags() BandwidthPackagesTagArrayOutput {
+	return o.ApplyT(func(v BandwidthPackagesResult) []BandwidthPackagesTag { return v.Tags }).(BandwidthPackagesTagArrayOutput)
 }
 
 // The total count of query.

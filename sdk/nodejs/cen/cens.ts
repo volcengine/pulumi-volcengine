@@ -13,9 +13,22 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = volcengine.cen.Cens({
- *     ids: ["cen-2bzrl3srxsv0g2dx0efyoojn3"],
+ * const fooCen: volcengine.cen.Cen[] = [];
+ * for (const range = {value: 0}; range.value < 2; range.value++) {
+ *     fooCen.push(new volcengine.cen.Cen(`fooCen-${range.value}`, {
+ *         cenName: "acc-test-cen",
+ *         description: "acc-test",
+ *         projectName: "default",
+ *         tags: [{
+ *             key: "k1",
+ *             value: "v1",
+ *         }],
+ *     }));
+ * }
+ * const fooCens = volcengine.cen.CensOutput({
+ *     ids: fooCen.map(__item => __item.id),
  * });
  * ```
  */
@@ -90,9 +103,22 @@ export interface CensResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = volcengine.cen.Cens({
- *     ids: ["cen-2bzrl3srxsv0g2dx0efyoojn3"],
+ * const fooCen: volcengine.cen.Cen[] = [];
+ * for (const range = {value: 0}; range.value < 2; range.value++) {
+ *     fooCen.push(new volcengine.cen.Cen(`fooCen-${range.value}`, {
+ *         cenName: "acc-test-cen",
+ *         description: "acc-test",
+ *         projectName: "default",
+ *         tags: [{
+ *             key: "k1",
+ *             value: "v1",
+ *         }],
+ *     }));
+ * }
+ * const fooCens = volcengine.cen.CensOutput({
+ *     ids: fooCen.map(__item => __item.id),
  * });
  * ```
  */

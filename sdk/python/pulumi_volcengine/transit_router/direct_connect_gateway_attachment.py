@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['DirectConnectGatewayAttachmentArgs', 'DirectConnectGatewayAttachment']
 
@@ -17,18 +19,22 @@ class DirectConnectGatewayAttachmentArgs:
                  direct_connect_gateway_id: pulumi.Input[str],
                  transit_router_id: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['DirectConnectGatewayAttachmentTagArgs']]]] = None,
                  transit_router_attachment_name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a DirectConnectGatewayAttachment resource.
         :param pulumi.Input[str] direct_connect_gateway_id: The id of the direct connect gateway.
         :param pulumi.Input[str] transit_router_id: The id of the transit router.
         :param pulumi.Input[str] description: The description.
+        :param pulumi.Input[Sequence[pulumi.Input['DirectConnectGatewayAttachmentTagArgs']]] tags: Tags.
         :param pulumi.Input[str] transit_router_attachment_name: The name of the transit router direct connect gateway attachment.
         """
         pulumi.set(__self__, "direct_connect_gateway_id", direct_connect_gateway_id)
         pulumi.set(__self__, "transit_router_id", transit_router_id)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if transit_router_attachment_name is not None:
             pulumi.set(__self__, "transit_router_attachment_name", transit_router_attachment_name)
 
@@ -69,6 +75,18 @@ class DirectConnectGatewayAttachmentArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DirectConnectGatewayAttachmentTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DirectConnectGatewayAttachmentTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="transitRouterAttachmentName")
     def transit_router_attachment_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -86,6 +104,7 @@ class _DirectConnectGatewayAttachmentState:
     def __init__(__self__, *,
                  description: Optional[pulumi.Input[str]] = None,
                  direct_connect_gateway_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['DirectConnectGatewayAttachmentTagArgs']]]] = None,
                  transit_router_attachment_id: Optional[pulumi.Input[str]] = None,
                  transit_router_attachment_name: Optional[pulumi.Input[str]] = None,
                  transit_router_id: Optional[pulumi.Input[str]] = None):
@@ -93,6 +112,7 @@ class _DirectConnectGatewayAttachmentState:
         Input properties used for looking up and filtering DirectConnectGatewayAttachment resources.
         :param pulumi.Input[str] description: The description.
         :param pulumi.Input[str] direct_connect_gateway_id: The id of the direct connect gateway.
+        :param pulumi.Input[Sequence[pulumi.Input['DirectConnectGatewayAttachmentTagArgs']]] tags: Tags.
         :param pulumi.Input[str] transit_router_attachment_id: The id of the transit router direct connect gateway attachment.
         :param pulumi.Input[str] transit_router_attachment_name: The name of the transit router direct connect gateway attachment.
         :param pulumi.Input[str] transit_router_id: The id of the transit router.
@@ -101,6 +121,8 @@ class _DirectConnectGatewayAttachmentState:
             pulumi.set(__self__, "description", description)
         if direct_connect_gateway_id is not None:
             pulumi.set(__self__, "direct_connect_gateway_id", direct_connect_gateway_id)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if transit_router_attachment_id is not None:
             pulumi.set(__self__, "transit_router_attachment_id", transit_router_attachment_id)
         if transit_router_attachment_name is not None:
@@ -131,6 +153,18 @@ class _DirectConnectGatewayAttachmentState:
     @direct_connect_gateway_id.setter
     def direct_connect_gateway_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "direct_connect_gateway_id", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DirectConnectGatewayAttachmentTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DirectConnectGatewayAttachmentTagArgs']]]]):
+        pulumi.set(self, "tags", value)
 
     @property
     @pulumi.getter(name="transitRouterAttachmentId")
@@ -176,6 +210,7 @@ class DirectConnectGatewayAttachment(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  direct_connect_gateway_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DirectConnectGatewayAttachmentTagArgs']]]]] = None,
                  transit_router_attachment_name: Optional[pulumi.Input[str]] = None,
                  transit_router_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -187,11 +222,25 @@ class DirectConnectGatewayAttachment(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.transit_router.DirectConnectGatewayAttachment("foo",
-            description="tf-test-modify",
-            direct_connect_gateway_id="dcg-3reaq6ymdzegw5zsk2igxzusb",
-            transit_router_attachment_name="tf-test-modify",
-            transit_router_id="tr-2bzy39x27qtxc2dx0eg5qaj05")
+        foo_transit_router = volcengine.transit_router.TransitRouter("fooTransitRouter",
+            transit_router_name="acc-test-tf-acc",
+            description="acc-test-tf-acc")
+        foo_gateway = volcengine.direct_connect.Gateway("fooGateway",
+            direct_connect_gateway_name="acc-test-gateway-acc",
+            description="acc-test-acc",
+            tags=[volcengine.direct_connect.GatewayTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_direct_connect_gateway_attachment = volcengine.transit_router.DirectConnectGatewayAttachment("fooDirectConnectGatewayAttachment",
+            description="acc-test-tf",
+            transit_router_attachment_name="acc-test-tf",
+            transit_router_id=foo_transit_router.id,
+            direct_connect_gateway_id=foo_gateway.id,
+            tags=[volcengine.transit_router.DirectConnectGatewayAttachmentTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -206,6 +255,7 @@ class DirectConnectGatewayAttachment(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description.
         :param pulumi.Input[str] direct_connect_gateway_id: The id of the direct connect gateway.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DirectConnectGatewayAttachmentTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] transit_router_attachment_name: The name of the transit router direct connect gateway attachment.
         :param pulumi.Input[str] transit_router_id: The id of the transit router.
         """
@@ -223,11 +273,25 @@ class DirectConnectGatewayAttachment(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.transit_router.DirectConnectGatewayAttachment("foo",
-            description="tf-test-modify",
-            direct_connect_gateway_id="dcg-3reaq6ymdzegw5zsk2igxzusb",
-            transit_router_attachment_name="tf-test-modify",
-            transit_router_id="tr-2bzy39x27qtxc2dx0eg5qaj05")
+        foo_transit_router = volcengine.transit_router.TransitRouter("fooTransitRouter",
+            transit_router_name="acc-test-tf-acc",
+            description="acc-test-tf-acc")
+        foo_gateway = volcengine.direct_connect.Gateway("fooGateway",
+            direct_connect_gateway_name="acc-test-gateway-acc",
+            description="acc-test-acc",
+            tags=[volcengine.direct_connect.GatewayTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_direct_connect_gateway_attachment = volcengine.transit_router.DirectConnectGatewayAttachment("fooDirectConnectGatewayAttachment",
+            description="acc-test-tf",
+            transit_router_attachment_name="acc-test-tf",
+            transit_router_id=foo_transit_router.id,
+            direct_connect_gateway_id=foo_gateway.id,
+            tags=[volcengine.transit_router.DirectConnectGatewayAttachmentTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -255,6 +319,7 @@ class DirectConnectGatewayAttachment(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  direct_connect_gateway_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DirectConnectGatewayAttachmentTagArgs']]]]] = None,
                  transit_router_attachment_name: Optional[pulumi.Input[str]] = None,
                  transit_router_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -270,6 +335,7 @@ class DirectConnectGatewayAttachment(pulumi.CustomResource):
             if direct_connect_gateway_id is None and not opts.urn:
                 raise TypeError("Missing required property 'direct_connect_gateway_id'")
             __props__.__dict__["direct_connect_gateway_id"] = direct_connect_gateway_id
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["transit_router_attachment_name"] = transit_router_attachment_name
             if transit_router_id is None and not opts.urn:
                 raise TypeError("Missing required property 'transit_router_id'")
@@ -287,6 +353,7 @@ class DirectConnectGatewayAttachment(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             description: Optional[pulumi.Input[str]] = None,
             direct_connect_gateway_id: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DirectConnectGatewayAttachmentTagArgs']]]]] = None,
             transit_router_attachment_id: Optional[pulumi.Input[str]] = None,
             transit_router_attachment_name: Optional[pulumi.Input[str]] = None,
             transit_router_id: Optional[pulumi.Input[str]] = None) -> 'DirectConnectGatewayAttachment':
@@ -299,6 +366,7 @@ class DirectConnectGatewayAttachment(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description.
         :param pulumi.Input[str] direct_connect_gateway_id: The id of the direct connect gateway.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DirectConnectGatewayAttachmentTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] transit_router_attachment_id: The id of the transit router direct connect gateway attachment.
         :param pulumi.Input[str] transit_router_attachment_name: The name of the transit router direct connect gateway attachment.
         :param pulumi.Input[str] transit_router_id: The id of the transit router.
@@ -309,6 +377,7 @@ class DirectConnectGatewayAttachment(pulumi.CustomResource):
 
         __props__.__dict__["description"] = description
         __props__.__dict__["direct_connect_gateway_id"] = direct_connect_gateway_id
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["transit_router_attachment_id"] = transit_router_attachment_id
         __props__.__dict__["transit_router_attachment_name"] = transit_router_attachment_name
         __props__.__dict__["transit_router_id"] = transit_router_id
@@ -329,6 +398,14 @@ class DirectConnectGatewayAttachment(pulumi.CustomResource):
         The id of the direct connect gateway.
         """
         return pulumi.get(self, "direct_connect_gateway_id")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.DirectConnectGatewayAttachmentTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="transitRouterAttachmentId")

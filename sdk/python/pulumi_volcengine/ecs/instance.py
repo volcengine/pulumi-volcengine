@@ -28,6 +28,7 @@ class InstanceArgs:
                  data_volumes: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceDataVolumeArgs']]]] = None,
                  deployment_set_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 eip_id: Optional[pulumi.Input[str]] = None,
                  host_name: Optional[pulumi.Input[str]] = None,
                  hpc_cluster_id: Optional[pulumi.Input[str]] = None,
                  include_data_volumes: Optional[pulumi.Input[bool]] = None,
@@ -62,6 +63,8 @@ class InstanceArgs:
         :param pulumi.Input[Sequence[pulumi.Input['InstanceDataVolumeArgs']]] data_volumes: The data volumes collection of  ECS instance.
         :param pulumi.Input[str] deployment_set_id: The ID of Ecs Deployment Set.
         :param pulumi.Input[str] description: The description of ECS instance.
+        :param pulumi.Input[str] eip_id: The id of an existing Available EIP which will be automatically assigned to this instance. 
+               It is not recommended to use this field, it is recommended to use `eip.Associate` resource to bind EIP.
         :param pulumi.Input[str] host_name: The host name of ECS instance.
         :param pulumi.Input[str] hpc_cluster_id: The hpc cluster ID of ECS instance.
         :param pulumi.Input[bool] include_data_volumes: The include data volumes flag of ECS instance.Only effective when change instance charge type.include_data_volumes.
@@ -107,6 +110,8 @@ class InstanceArgs:
             pulumi.set(__self__, "deployment_set_id", deployment_set_id)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if eip_id is not None:
+            pulumi.set(__self__, "eip_id", eip_id)
         if host_name is not None:
             pulumi.set(__self__, "host_name", host_name)
         if hpc_cluster_id is not None:
@@ -291,6 +296,19 @@ class InstanceArgs:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="eipId")
+    def eip_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The id of an existing Available EIP which will be automatically assigned to this instance. 
+        It is not recommended to use this field, it is recommended to use `eip.Associate` resource to bind EIP.
+        """
+        return pulumi.get(self, "eip_id")
+
+    @eip_id.setter
+    def eip_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "eip_id", value)
 
     @property
     @pulumi.getter(name="hostName")
@@ -550,6 +568,7 @@ class _InstanceState:
                  data_volumes: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceDataVolumeArgs']]]] = None,
                  deployment_set_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 eip_id: Optional[pulumi.Input[str]] = None,
                  gpu_devices: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceGpuDeviceArgs']]]] = None,
                  host_name: Optional[pulumi.Input[str]] = None,
                  hpc_cluster_id: Optional[pulumi.Input[str]] = None,
@@ -599,6 +618,8 @@ class _InstanceState:
         :param pulumi.Input[Sequence[pulumi.Input['InstanceDataVolumeArgs']]] data_volumes: The data volumes collection of  ECS instance.
         :param pulumi.Input[str] deployment_set_id: The ID of Ecs Deployment Set.
         :param pulumi.Input[str] description: The description of ECS instance.
+        :param pulumi.Input[str] eip_id: The id of an existing Available EIP which will be automatically assigned to this instance. 
+               It is not recommended to use this field, it is recommended to use `eip.Associate` resource to bind EIP.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceGpuDeviceArgs']]] gpu_devices: The GPU device info of Instance.
         :param pulumi.Input[str] host_name: The host name of ECS instance.
         :param pulumi.Input[str] hpc_cluster_id: The hpc cluster ID of ECS instance.
@@ -661,6 +682,8 @@ class _InstanceState:
             pulumi.set(__self__, "deployment_set_id", deployment_set_id)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if eip_id is not None:
+            pulumi.set(__self__, "eip_id", eip_id)
         if gpu_devices is not None:
             pulumi.set(__self__, "gpu_devices", gpu_devices)
         if host_name is not None:
@@ -835,6 +858,19 @@ class _InstanceState:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="eipId")
+    def eip_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The id of an existing Available EIP which will be automatically assigned to this instance. 
+        It is not recommended to use this field, it is recommended to use `eip.Associate` resource to bind EIP.
+        """
+        return pulumi.get(self, "eip_id")
+
+    @eip_id.setter
+    def eip_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "eip_id", value)
 
     @property
     @pulumi.getter(name="gpuDevices")
@@ -1322,6 +1358,7 @@ class Instance(pulumi.CustomResource):
                  data_volumes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceDataVolumeArgs']]]]] = None,
                  deployment_set_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 eip_id: Optional[pulumi.Input[str]] = None,
                  host_name: Optional[pulumi.Input[str]] = None,
                  hpc_cluster_id: Optional[pulumi.Input[str]] = None,
                  image_id: Optional[pulumi.Input[str]] = None,
@@ -1411,6 +1448,8 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceDataVolumeArgs']]]] data_volumes: The data volumes collection of  ECS instance.
         :param pulumi.Input[str] deployment_set_id: The ID of Ecs Deployment Set.
         :param pulumi.Input[str] description: The description of ECS instance.
+        :param pulumi.Input[str] eip_id: The id of an existing Available EIP which will be automatically assigned to this instance. 
+               It is not recommended to use this field, it is recommended to use `eip.Associate` resource to bind EIP.
         :param pulumi.Input[str] host_name: The host name of ECS instance.
         :param pulumi.Input[str] hpc_cluster_id: The hpc cluster ID of ECS instance.
         :param pulumi.Input[str] image_id: The Image ID of ECS instance.
@@ -1525,6 +1564,7 @@ class Instance(pulumi.CustomResource):
                  data_volumes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceDataVolumeArgs']]]]] = None,
                  deployment_set_id: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 eip_id: Optional[pulumi.Input[str]] = None,
                  host_name: Optional[pulumi.Input[str]] = None,
                  hpc_cluster_id: Optional[pulumi.Input[str]] = None,
                  image_id: Optional[pulumi.Input[str]] = None,
@@ -1566,6 +1606,7 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["data_volumes"] = data_volumes
             __props__.__dict__["deployment_set_id"] = deployment_set_id
             __props__.__dict__["description"] = description
+            __props__.__dict__["eip_id"] = eip_id
             __props__.__dict__["host_name"] = host_name
             __props__.__dict__["hpc_cluster_id"] = hpc_cluster_id
             if image_id is None and not opts.urn:
@@ -1639,6 +1680,7 @@ class Instance(pulumi.CustomResource):
             data_volumes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceDataVolumeArgs']]]]] = None,
             deployment_set_id: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            eip_id: Optional[pulumi.Input[str]] = None,
             gpu_devices: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceGpuDeviceArgs']]]]] = None,
             host_name: Optional[pulumi.Input[str]] = None,
             hpc_cluster_id: Optional[pulumi.Input[str]] = None,
@@ -1693,6 +1735,8 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceDataVolumeArgs']]]] data_volumes: The data volumes collection of  ECS instance.
         :param pulumi.Input[str] deployment_set_id: The ID of Ecs Deployment Set.
         :param pulumi.Input[str] description: The description of ECS instance.
+        :param pulumi.Input[str] eip_id: The id of an existing Available EIP which will be automatically assigned to this instance. 
+               It is not recommended to use this field, it is recommended to use `eip.Associate` resource to bind EIP.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['InstanceGpuDeviceArgs']]]] gpu_devices: The GPU device info of Instance.
         :param pulumi.Input[str] host_name: The host name of ECS instance.
         :param pulumi.Input[str] hpc_cluster_id: The hpc cluster ID of ECS instance.
@@ -1751,6 +1795,7 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["data_volumes"] = data_volumes
         __props__.__dict__["deployment_set_id"] = deployment_set_id
         __props__.__dict__["description"] = description
+        __props__.__dict__["eip_id"] = eip_id
         __props__.__dict__["gpu_devices"] = gpu_devices
         __props__.__dict__["host_name"] = host_name
         __props__.__dict__["hpc_cluster_id"] = hpc_cluster_id
@@ -1855,6 +1900,15 @@ class Instance(pulumi.CustomResource):
         The description of ECS instance.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="eipId")
+    def eip_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The id of an existing Available EIP which will be automatically assigned to this instance. 
+        It is not recommended to use this field, it is recommended to use `eip.Associate` resource to bind EIP.
+        """
+        return pulumi.get(self, "eip_id")
 
     @property
     @pulumi.getter(name="gpuDevices")

@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -85,6 +87,10 @@ export class Subnet extends pulumi.CustomResource {
      */
     public readonly subnetName!: pulumi.Output<string>;
     /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.vpc.SubnetTag[] | undefined>;
+    /**
      * Id of the VPC.
      */
     public readonly vpcId!: pulumi.Output<string>;
@@ -113,6 +119,7 @@ export class Subnet extends pulumi.CustomResource {
             resourceInputs["ipv6CidrBlock"] = state ? state.ipv6CidrBlock : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["subnetName"] = state ? state.subnetName : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["vpcId"] = state ? state.vpcId : undefined;
             resourceInputs["zoneId"] = state ? state.zoneId : undefined;
         } else {
@@ -131,6 +138,7 @@ export class Subnet extends pulumi.CustomResource {
             resourceInputs["enableIpv6"] = args ? args.enableIpv6 : undefined;
             resourceInputs["ipv6CidrBlock"] = args ? args.ipv6CidrBlock : undefined;
             resourceInputs["subnetName"] = args ? args.subnetName : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["vpcId"] = args ? args.vpcId : undefined;
             resourceInputs["zoneId"] = args ? args.zoneId : undefined;
             resourceInputs["creationTime"] = undefined /*out*/;
@@ -174,6 +182,10 @@ export interface SubnetState {
      */
     subnetName?: pulumi.Input<string>;
     /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpc.SubnetTag>[]>;
+    /**
      * Id of the VPC.
      */
     vpcId?: pulumi.Input<string>;
@@ -207,6 +219,10 @@ export interface SubnetArgs {
      * The name of the Subnet.
      */
     subnetName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpc.SubnetTag>[]>;
     /**
      * Id of the VPC.
      */

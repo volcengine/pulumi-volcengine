@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'BandwidthPackagesResult',
@@ -22,7 +23,7 @@ class BandwidthPackagesResult:
     """
     A collection of values returned by BandwidthPackages.
     """
-    def __init__(__self__, bandwidth_packages=None, id=None, ids=None, output_file=None, total_count=None, transit_router_bandwidth_package_name=None, transit_router_peer_attachment_id=None):
+    def __init__(__self__, bandwidth_packages=None, id=None, ids=None, output_file=None, project_name=None, tags=None, total_count=None, transit_router_bandwidth_package_name=None, transit_router_peer_attachment_id=None):
         if bandwidth_packages and not isinstance(bandwidth_packages, list):
             raise TypeError("Expected argument 'bandwidth_packages' to be a list")
         pulumi.set(__self__, "bandwidth_packages", bandwidth_packages)
@@ -35,6 +36,12 @@ class BandwidthPackagesResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if project_name and not isinstance(project_name, str):
+            raise TypeError("Expected argument 'project_name' to be a str")
+        pulumi.set(__self__, "project_name", project_name)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -72,6 +79,22 @@ class BandwidthPackagesResult:
         return pulumi.get(self, "output_file")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[str]:
+        """
+        The ProjectName of the transit router bandwidth package.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.BandwidthPackagesTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
         """
@@ -106,6 +129,8 @@ class AwaitableBandwidthPackagesResult(BandwidthPackagesResult):
             id=self.id,
             ids=self.ids,
             output_file=self.output_file,
+            project_name=self.project_name,
+            tags=self.tags,
             total_count=self.total_count,
             transit_router_bandwidth_package_name=self.transit_router_bandwidth_package_name,
             transit_router_peer_attachment_id=self.transit_router_peer_attachment_id)
@@ -113,6 +138,8 @@ class AwaitableBandwidthPackagesResult(BandwidthPackagesResult):
 
 def bandwidth_packages(ids: Optional[Sequence[str]] = None,
                        output_file: Optional[str] = None,
+                       project_name: Optional[str] = None,
+                       tags: Optional[Sequence[pulumi.InputType['BandwidthPackagesTagArgs']]] = None,
                        transit_router_bandwidth_package_name: Optional[str] = None,
                        transit_router_peer_attachment_id: Optional[str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableBandwidthPackagesResult:
@@ -136,12 +163,16 @@ def bandwidth_packages(ids: Optional[Sequence[str]] = None,
 
     :param Sequence[str] ids: The ID list of the TransitRouter bandwidth package.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The ProjectName of the TransitRouter bandwidth package.
+    :param Sequence[pulumi.InputType['BandwidthPackagesTagArgs']] tags: Tags.
     :param str transit_router_bandwidth_package_name: The name of the TransitRouter bandwidth package.
     :param str transit_router_peer_attachment_id: The ID of the peer attachment.
     """
     __args__ = dict()
     __args__['ids'] = ids
     __args__['outputFile'] = output_file
+    __args__['projectName'] = project_name
+    __args__['tags'] = tags
     __args__['transitRouterBandwidthPackageName'] = transit_router_bandwidth_package_name
     __args__['transitRouterPeerAttachmentId'] = transit_router_peer_attachment_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -152,6 +183,8 @@ def bandwidth_packages(ids: Optional[Sequence[str]] = None,
         id=pulumi.get(__ret__, 'id'),
         ids=pulumi.get(__ret__, 'ids'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        project_name=pulumi.get(__ret__, 'project_name'),
+        tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'),
         transit_router_bandwidth_package_name=pulumi.get(__ret__, 'transit_router_bandwidth_package_name'),
         transit_router_peer_attachment_id=pulumi.get(__ret__, 'transit_router_peer_attachment_id'))
@@ -160,6 +193,8 @@ def bandwidth_packages(ids: Optional[Sequence[str]] = None,
 @_utilities.lift_output_func(bandwidth_packages)
 def bandwidth_packages_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                               output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                              project_name: Optional[pulumi.Input[Optional[str]]] = None,
+                              tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['BandwidthPackagesTagArgs']]]]] = None,
                               transit_router_bandwidth_package_name: Optional[pulumi.Input[Optional[str]]] = None,
                               transit_router_peer_attachment_id: Optional[pulumi.Input[Optional[str]]] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[BandwidthPackagesResult]:
@@ -183,6 +218,8 @@ def bandwidth_packages_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]
 
     :param Sequence[str] ids: The ID list of the TransitRouter bandwidth package.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The ProjectName of the TransitRouter bandwidth package.
+    :param Sequence[pulumi.InputType['BandwidthPackagesTagArgs']] tags: Tags.
     :param str transit_router_bandwidth_package_name: The name of the TransitRouter bandwidth package.
     :param str transit_router_peer_attachment_id: The ID of the peer attachment.
     """

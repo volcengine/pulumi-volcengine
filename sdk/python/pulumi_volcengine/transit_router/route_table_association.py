@@ -105,9 +105,66 @@ class RouteTableAssociation(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.transit_router.RouteTableAssociation("foo",
-            transit_router_attachment_id="tr-attach-im73ng3n5kao8gbssz2ddpuq",
-            transit_router_route_table_id="tr-rtb-12b7qd3fmzf2817q7y2jkbd55")
+        foo_transit_router = volcengine.transit_router.TransitRouter("fooTransitRouter",
+            transit_router_name="test-tf-acc",
+            description="test-tf-acc")
+        foo_route_table = volcengine.transit_router.RouteTable("fooRouteTable",
+            description="tf-test-acc-description",
+            transit_router_route_table_name="tf-table-test-acc",
+            transit_router_id=foo_transit_router.id)
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_gateway = volcengine.vpn.Gateway("fooGateway",
+            vpc_id=foo_vpc.id,
+            subnet_id=foo_subnet.id,
+            bandwidth=20,
+            vpn_gateway_name="acc-test",
+            description="acc-test",
+            period=2)
+        foo_customer_gateway = volcengine.vpn.CustomerGateway("fooCustomerGateway",
+            ip_address="192.0.1.3",
+            customer_gateway_name="acc-test",
+            description="acc-test")
+        foo_connection = volcengine.vpn.Connection("fooConnection",
+            vpn_connection_name="acc-tf-test",
+            description="acc-tf-test",
+            attach_type="TransitRouter",
+            vpn_gateway_id=foo_gateway.id,
+            customer_gateway_id=foo_customer_gateway.id,
+            local_subnets=["192.168.0.0/22"],
+            remote_subnets=["192.161.0.0/20"],
+            dpd_action="none",
+            nat_traversal=True,
+            ike_config_psk="acctest@!3",
+            ike_config_version="ikev1",
+            ike_config_mode="main",
+            ike_config_enc_alg="aes",
+            ike_config_auth_alg="md5",
+            ike_config_dh_group="group2",
+            ike_config_lifetime=9000,
+            ike_config_local_id="acc_test",
+            ike_config_remote_id="acc_test",
+            ipsec_config_enc_alg="aes",
+            ipsec_config_auth_alg="sha256",
+            ipsec_config_dh_group="group2",
+            ipsec_config_lifetime=9000,
+            log_enabled=False)
+        foo_vpn_attachment = volcengine.transit_router.VpnAttachment("fooVpnAttachment",
+            zone_id="cn-beijing-a",
+            transit_router_attachment_name="tf-test-acc",
+            description="tf-test-acc-desc",
+            transit_router_id=foo_transit_router.id,
+            vpn_connection_id=foo_connection.id)
+        foo_route_table_association = volcengine.transit_router.RouteTableAssociation("fooRouteTableAssociation",
+            transit_router_attachment_id=foo_vpn_attachment.transit_router_attachment_id,
+            transit_router_route_table_id=foo_route_table.transit_router_route_table_id)
         ```
 
         ## Import
@@ -137,9 +194,66 @@ class RouteTableAssociation(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.transit_router.RouteTableAssociation("foo",
-            transit_router_attachment_id="tr-attach-im73ng3n5kao8gbssz2ddpuq",
-            transit_router_route_table_id="tr-rtb-12b7qd3fmzf2817q7y2jkbd55")
+        foo_transit_router = volcengine.transit_router.TransitRouter("fooTransitRouter",
+            transit_router_name="test-tf-acc",
+            description="test-tf-acc")
+        foo_route_table = volcengine.transit_router.RouteTable("fooRouteTable",
+            description="tf-test-acc-description",
+            transit_router_route_table_name="tf-table-test-acc",
+            transit_router_id=foo_transit_router.id)
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_gateway = volcengine.vpn.Gateway("fooGateway",
+            vpc_id=foo_vpc.id,
+            subnet_id=foo_subnet.id,
+            bandwidth=20,
+            vpn_gateway_name="acc-test",
+            description="acc-test",
+            period=2)
+        foo_customer_gateway = volcengine.vpn.CustomerGateway("fooCustomerGateway",
+            ip_address="192.0.1.3",
+            customer_gateway_name="acc-test",
+            description="acc-test")
+        foo_connection = volcengine.vpn.Connection("fooConnection",
+            vpn_connection_name="acc-tf-test",
+            description="acc-tf-test",
+            attach_type="TransitRouter",
+            vpn_gateway_id=foo_gateway.id,
+            customer_gateway_id=foo_customer_gateway.id,
+            local_subnets=["192.168.0.0/22"],
+            remote_subnets=["192.161.0.0/20"],
+            dpd_action="none",
+            nat_traversal=True,
+            ike_config_psk="acctest@!3",
+            ike_config_version="ikev1",
+            ike_config_mode="main",
+            ike_config_enc_alg="aes",
+            ike_config_auth_alg="md5",
+            ike_config_dh_group="group2",
+            ike_config_lifetime=9000,
+            ike_config_local_id="acc_test",
+            ike_config_remote_id="acc_test",
+            ipsec_config_enc_alg="aes",
+            ipsec_config_auth_alg="sha256",
+            ipsec_config_dh_group="group2",
+            ipsec_config_lifetime=9000,
+            log_enabled=False)
+        foo_vpn_attachment = volcengine.transit_router.VpnAttachment("fooVpnAttachment",
+            zone_id="cn-beijing-a",
+            transit_router_attachment_name="tf-test-acc",
+            description="tf-test-acc-desc",
+            transit_router_id=foo_transit_router.id,
+            vpn_connection_id=foo_connection.id)
+        foo_route_table_association = volcengine.transit_router.RouteTableAssociation("fooRouteTableAssociation",
+            transit_router_attachment_id=foo_vpn_attachment.transit_router_attachment_id,
+            transit_router_route_table_id=foo_route_table.transit_router_route_table_id)
         ```
 
         ## Import

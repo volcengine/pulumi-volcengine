@@ -12,10 +12,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.transit_router.GrantRule("foo", {
- *     description: "tf-test",
- *     grantAccountId: "200000xxxx",
- *     transitRouterId: "tr-2bzy39uy6u3282dx0efxiqyq0",
+ * const fooTransitRouter = new volcengine.transit_router.TransitRouter("fooTransitRouter", {
+ *     transitRouterName: "acc-test-tf",
+ *     description: "acc-test-tf",
+ * });
+ * const fooGrantRule = new volcengine.transit_router.GrantRule("fooGrantRule", {
+ *     grantAccountId: "2000xxxxx",
+ *     description: "acc-test-tf",
+ *     transitRouterId: fooTransitRouter.id,
  * });
  * ```
  *

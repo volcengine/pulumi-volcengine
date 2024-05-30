@@ -13,9 +13,46 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = volcengine.cen.InterRegionBandwidths({
- *     ids: ["cirb-274q484wxao007fap8tlvl6si"],
+ * const fooCen = new volcengine.cen.Cen("fooCen", {
+ *     cenName: "acc-test-cen",
+ *     description: "acc-test",
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooBandwidthPackage = new volcengine.cen.BandwidthPackage("fooBandwidthPackage", {
+ *     localGeographicRegionSetId: "China",
+ *     peerGeographicRegionSetId: "China",
+ *     bandwidth: 5,
+ *     cenBandwidthPackageName: "acc-test-cen-bp",
+ *     description: "acc-test",
+ *     billingType: "PrePaid",
+ *     periodUnit: "Month",
+ *     period: 1,
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooBandwidthPackageAssociate = new volcengine.cen.BandwidthPackageAssociate("fooBandwidthPackageAssociate", {
+ *     cenBandwidthPackageId: fooBandwidthPackage.id,
+ *     cenId: fooCen.id,
+ * });
+ * const fooInterRegionBandwidth = new volcengine.cen.InterRegionBandwidth("fooInterRegionBandwidth", {
+ *     cenId: fooCen.id,
+ *     localRegionId: "cn-beijing",
+ *     peerRegionId: "cn-shanghai",
+ *     bandwidth: 2,
+ * }, {
+ *     dependsOn: [fooBandwidthPackageAssociate],
+ * });
+ * const fooInterRegionBandwidths = volcengine.cen.InterRegionBandwidthsOutput({
+ *     ids: [fooInterRegionBandwidth.id],
  * });
  * ```
  */
@@ -69,9 +106,46 @@ export interface InterRegionBandwidthsResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = volcengine.cen.InterRegionBandwidths({
- *     ids: ["cirb-274q484wxao007fap8tlvl6si"],
+ * const fooCen = new volcengine.cen.Cen("fooCen", {
+ *     cenName: "acc-test-cen",
+ *     description: "acc-test",
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooBandwidthPackage = new volcengine.cen.BandwidthPackage("fooBandwidthPackage", {
+ *     localGeographicRegionSetId: "China",
+ *     peerGeographicRegionSetId: "China",
+ *     bandwidth: 5,
+ *     cenBandwidthPackageName: "acc-test-cen-bp",
+ *     description: "acc-test",
+ *     billingType: "PrePaid",
+ *     periodUnit: "Month",
+ *     period: 1,
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooBandwidthPackageAssociate = new volcengine.cen.BandwidthPackageAssociate("fooBandwidthPackageAssociate", {
+ *     cenBandwidthPackageId: fooBandwidthPackage.id,
+ *     cenId: fooCen.id,
+ * });
+ * const fooInterRegionBandwidth = new volcengine.cen.InterRegionBandwidth("fooInterRegionBandwidth", {
+ *     cenId: fooCen.id,
+ *     localRegionId: "cn-beijing",
+ *     peerRegionId: "cn-shanghai",
+ *     bandwidth: 2,
+ * }, {
+ *     dependsOn: [fooBandwidthPackageAssociate],
+ * });
+ * const fooInterRegionBandwidths = volcengine.cen.InterRegionBandwidthsOutput({
+ *     ids: [fooInterRegionBandwidth.id],
  * });
  * ```
  */

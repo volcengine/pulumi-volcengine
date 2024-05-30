@@ -27,9 +27,43 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cen.NewBandwidthPackageAssociate(ctx, "foo", &cen.BandwidthPackageAssociateArgs{
-//				CenBandwidthPackageId: pulumi.String("cbp-2bzeew3s8p79c2dx0eeohej4x"),
-//				CenId:                 pulumi.String("cen-2bzrl3srxsv0g2dx0efyoojn3"),
+//			fooCen, err := cen.NewCen(ctx, "fooCen", &cen.CenArgs{
+//				CenName:     pulumi.String("acc-test-cen"),
+//				Description: pulumi.String("acc-test"),
+//				ProjectName: pulumi.String("default"),
+//				Tags: cen.CenTagArray{
+//					&cen.CenTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooBandwidthPackage, err := cen.NewBandwidthPackage(ctx, "fooBandwidthPackage", &cen.BandwidthPackageArgs{
+//				LocalGeographicRegionSetId: pulumi.String("China"),
+//				PeerGeographicRegionSetId:  pulumi.String("China"),
+//				Bandwidth:                  pulumi.Int(2),
+//				CenBandwidthPackageName:    pulumi.String("acc-test-cen-bp"),
+//				Description:                pulumi.String("acc-test"),
+//				BillingType:                pulumi.String("PrePaid"),
+//				PeriodUnit:                 pulumi.String("Month"),
+//				Period:                     pulumi.Int(1),
+//				ProjectName:                pulumi.String("default"),
+//				Tags: cen.BandwidthPackageTagArray{
+//					&cen.BandwidthPackageTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = cen.NewBandwidthPackageAssociate(ctx, "fooBandwidthPackageAssociate", &cen.BandwidthPackageAssociateArgs{
+//				CenBandwidthPackageId: fooBandwidthPackage.ID(),
+//				CenId:                 fooCen.ID(),
 //			})
 //			if err != nil {
 //				return err

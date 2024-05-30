@@ -2900,7 +2900,9 @@ type ClustersClusterNodeStatistics struct {
 	FailedCount int `pulumi:"failedCount"`
 	// Phase=Running total number of nodes.
 	RunningCount int `pulumi:"runningCount"`
-	// Phase=Stopped total number of nodes.
+	// (**Deprecated**) This field has been deprecated and is not recommended for use. Phase=Stopped total number of nodes.
+	//
+	// Deprecated: This field has been deprecated and is not recommended for use.
 	StoppedCount int `pulumi:"stoppedCount"`
 	// The total count of Cluster query.
 	TotalCount int `pulumi:"totalCount"`
@@ -2928,7 +2930,9 @@ type ClustersClusterNodeStatisticsArgs struct {
 	FailedCount pulumi.IntInput `pulumi:"failedCount"`
 	// Phase=Running total number of nodes.
 	RunningCount pulumi.IntInput `pulumi:"runningCount"`
-	// Phase=Stopped total number of nodes.
+	// (**Deprecated**) This field has been deprecated and is not recommended for use. Phase=Stopped total number of nodes.
+	//
+	// Deprecated: This field has been deprecated and is not recommended for use.
 	StoppedCount pulumi.IntInput `pulumi:"stoppedCount"`
 	// The total count of Cluster query.
 	TotalCount pulumi.IntInput `pulumi:"totalCount"`
@@ -2982,7 +2986,9 @@ func (o ClustersClusterNodeStatisticsOutput) RunningCount() pulumi.IntOutput {
 	return o.ApplyT(func(v ClustersClusterNodeStatistics) int { return v.RunningCount }).(pulumi.IntOutput)
 }
 
-// Phase=Stopped total number of nodes.
+// (**Deprecated**) This field has been deprecated and is not recommended for use. Phase=Stopped total number of nodes.
+//
+// Deprecated: This field has been deprecated and is not recommended for use.
 func (o ClustersClusterNodeStatisticsOutput) StoppedCount() pulumi.IntOutput {
 	return o.ApplyT(func(v ClustersClusterNodeStatistics) int { return v.StoppedCount }).(pulumi.IntOutput)
 }
@@ -4990,6 +4996,8 @@ type DefaultNodePoolKubernetesConfig struct {
 	Cordon bool `pulumi:"cordon"`
 	// The Labels of KubernetesConfig.
 	Labels []DefaultNodePoolKubernetesConfigLabel `pulumi:"labels"`
+	// The NamePrefix of node metadata.
+	NamePrefix *string `pulumi:"namePrefix"`
 	// The Taints of KubernetesConfig.
 	Taints []DefaultNodePoolKubernetesConfigTaint `pulumi:"taints"`
 }
@@ -5010,6 +5018,8 @@ type DefaultNodePoolKubernetesConfigArgs struct {
 	Cordon pulumi.BoolInput `pulumi:"cordon"`
 	// The Labels of KubernetesConfig.
 	Labels DefaultNodePoolKubernetesConfigLabelArrayInput `pulumi:"labels"`
+	// The NamePrefix of node metadata.
+	NamePrefix pulumi.StringPtrInput `pulumi:"namePrefix"`
 	// The Taints of KubernetesConfig.
 	Taints DefaultNodePoolKubernetesConfigTaintArrayInput `pulumi:"taints"`
 }
@@ -5101,6 +5111,11 @@ func (o DefaultNodePoolKubernetesConfigOutput) Labels() DefaultNodePoolKubernete
 	return o.ApplyT(func(v DefaultNodePoolKubernetesConfig) []DefaultNodePoolKubernetesConfigLabel { return v.Labels }).(DefaultNodePoolKubernetesConfigLabelArrayOutput)
 }
 
+// The NamePrefix of node metadata.
+func (o DefaultNodePoolKubernetesConfigOutput) NamePrefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DefaultNodePoolKubernetesConfig) *string { return v.NamePrefix }).(pulumi.StringPtrOutput)
+}
+
 // The Taints of KubernetesConfig.
 func (o DefaultNodePoolKubernetesConfigOutput) Taints() DefaultNodePoolKubernetesConfigTaintArrayOutput {
 	return o.ApplyT(func(v DefaultNodePoolKubernetesConfig) []DefaultNodePoolKubernetesConfigTaint { return v.Taints }).(DefaultNodePoolKubernetesConfigTaintArrayOutput)
@@ -5148,6 +5163,16 @@ func (o DefaultNodePoolKubernetesConfigPtrOutput) Labels() DefaultNodePoolKubern
 		}
 		return v.Labels
 	}).(DefaultNodePoolKubernetesConfigLabelArrayOutput)
+}
+
+// The NamePrefix of node metadata.
+func (o DefaultNodePoolKubernetesConfigPtrOutput) NamePrefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DefaultNodePoolKubernetesConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NamePrefix
+	}).(pulumi.StringPtrOutput)
 }
 
 // The Taints of KubernetesConfig.
@@ -6911,6 +6936,8 @@ type NodePoolKubernetesConfig struct {
 	Cordon bool `pulumi:"cordon"`
 	// The Labels of KubernetesConfig.
 	Labels []NodePoolKubernetesConfigLabel `pulumi:"labels"`
+	// The NamePrefix of node metadata.
+	NamePrefix *string `pulumi:"namePrefix"`
 	// The Taints of KubernetesConfig.
 	Taints []NodePoolKubernetesConfigTaint `pulumi:"taints"`
 }
@@ -6931,6 +6958,8 @@ type NodePoolKubernetesConfigArgs struct {
 	Cordon pulumi.BoolInput `pulumi:"cordon"`
 	// The Labels of KubernetesConfig.
 	Labels NodePoolKubernetesConfigLabelArrayInput `pulumi:"labels"`
+	// The NamePrefix of node metadata.
+	NamePrefix pulumi.StringPtrInput `pulumi:"namePrefix"`
 	// The Taints of KubernetesConfig.
 	Taints NodePoolKubernetesConfigTaintArrayInput `pulumi:"taints"`
 }
@@ -7022,6 +7051,11 @@ func (o NodePoolKubernetesConfigOutput) Labels() NodePoolKubernetesConfigLabelAr
 	return o.ApplyT(func(v NodePoolKubernetesConfig) []NodePoolKubernetesConfigLabel { return v.Labels }).(NodePoolKubernetesConfigLabelArrayOutput)
 }
 
+// The NamePrefix of node metadata.
+func (o NodePoolKubernetesConfigOutput) NamePrefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NodePoolKubernetesConfig) *string { return v.NamePrefix }).(pulumi.StringPtrOutput)
+}
+
 // The Taints of KubernetesConfig.
 func (o NodePoolKubernetesConfigOutput) Taints() NodePoolKubernetesConfigTaintArrayOutput {
 	return o.ApplyT(func(v NodePoolKubernetesConfig) []NodePoolKubernetesConfigTaint { return v.Taints }).(NodePoolKubernetesConfigTaintArrayOutput)
@@ -7069,6 +7103,16 @@ func (o NodePoolKubernetesConfigPtrOutput) Labels() NodePoolKubernetesConfigLabe
 		}
 		return v.Labels
 	}).(NodePoolKubernetesConfigLabelArrayOutput)
+}
+
+// The NamePrefix of node metadata.
+func (o NodePoolKubernetesConfigPtrOutput) NamePrefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NodePoolKubernetesConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NamePrefix
+	}).(pulumi.StringPtrOutput)
 }
 
 // The Taints of KubernetesConfig.
@@ -8422,11 +8466,17 @@ type NodePoolNodeStatistic struct {
 	FailedCount *int `pulumi:"failedCount"`
 	// The RunningCount of Node.
 	RunningCount *int `pulumi:"runningCount"`
-	// The StartingCount of Node.
+	// (**Deprecated**) This field has been deprecated and is not recommended for use. The StartingCount of Node.
+	//
+	// Deprecated: This field has been deprecated and is not recommended for use.
 	StartingCount *int `pulumi:"startingCount"`
-	// The StoppedCount of Node.
+	// (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppedCount of Node.
+	//
+	// Deprecated: This field has been deprecated and is not recommended for use.
 	StoppedCount *int `pulumi:"stoppedCount"`
-	// The StoppingCount of Node.
+	// (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppingCount of Node.
+	//
+	// Deprecated: This field has been deprecated and is not recommended for use.
 	StoppingCount *int `pulumi:"stoppingCount"`
 	// The TotalCount of Node.
 	TotalCount *int `pulumi:"totalCount"`
@@ -8454,11 +8504,17 @@ type NodePoolNodeStatisticArgs struct {
 	FailedCount pulumi.IntPtrInput `pulumi:"failedCount"`
 	// The RunningCount of Node.
 	RunningCount pulumi.IntPtrInput `pulumi:"runningCount"`
-	// The StartingCount of Node.
+	// (**Deprecated**) This field has been deprecated and is not recommended for use. The StartingCount of Node.
+	//
+	// Deprecated: This field has been deprecated and is not recommended for use.
 	StartingCount pulumi.IntPtrInput `pulumi:"startingCount"`
-	// The StoppedCount of Node.
+	// (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppedCount of Node.
+	//
+	// Deprecated: This field has been deprecated and is not recommended for use.
 	StoppedCount pulumi.IntPtrInput `pulumi:"stoppedCount"`
-	// The StoppingCount of Node.
+	// (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppingCount of Node.
+	//
+	// Deprecated: This field has been deprecated and is not recommended for use.
 	StoppingCount pulumi.IntPtrInput `pulumi:"stoppingCount"`
 	// The TotalCount of Node.
 	TotalCount pulumi.IntPtrInput `pulumi:"totalCount"`
@@ -8537,17 +8593,23 @@ func (o NodePoolNodeStatisticOutput) RunningCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v NodePoolNodeStatistic) *int { return v.RunningCount }).(pulumi.IntPtrOutput)
 }
 
-// The StartingCount of Node.
+// (**Deprecated**) This field has been deprecated and is not recommended for use. The StartingCount of Node.
+//
+// Deprecated: This field has been deprecated and is not recommended for use.
 func (o NodePoolNodeStatisticOutput) StartingCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v NodePoolNodeStatistic) *int { return v.StartingCount }).(pulumi.IntPtrOutput)
 }
 
-// The StoppedCount of Node.
+// (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppedCount of Node.
+//
+// Deprecated: This field has been deprecated and is not recommended for use.
 func (o NodePoolNodeStatisticOutput) StoppedCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v NodePoolNodeStatistic) *int { return v.StoppedCount }).(pulumi.IntPtrOutput)
 }
 
-// The StoppingCount of Node.
+// (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppingCount of Node.
+//
+// Deprecated: This field has been deprecated and is not recommended for use.
 func (o NodePoolNodeStatisticOutput) StoppingCount() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v NodePoolNodeStatistic) *int { return v.StoppingCount }).(pulumi.IntPtrOutput)
 }
@@ -8725,6 +8787,8 @@ type NodePoolsNodePool struct {
 	InstanceChargeType string `pulumi:"instanceChargeType"`
 	// The InstanceTypeIds of NodeConfig.
 	InstanceTypeIds []string `pulumi:"instanceTypeIds"`
+	// The NamePrefix of node metadata.
+	KubeConfigNamePrefix string `pulumi:"kubeConfigNamePrefix"`
 	// The LabelContent of KubernetesConfig.
 	LabelContents []NodePoolsNodePoolLabelContent `pulumi:"labelContents"`
 	// The login SshKeyPairName of NodeConfig.
@@ -8817,6 +8881,8 @@ type NodePoolsNodePoolArgs struct {
 	InstanceChargeType pulumi.StringInput `pulumi:"instanceChargeType"`
 	// The InstanceTypeIds of NodeConfig.
 	InstanceTypeIds pulumi.StringArrayInput `pulumi:"instanceTypeIds"`
+	// The NamePrefix of node metadata.
+	KubeConfigNamePrefix pulumi.StringInput `pulumi:"kubeConfigNamePrefix"`
 	// The LabelContent of KubernetesConfig.
 	LabelContents NodePoolsNodePoolLabelContentArrayInput `pulumi:"labelContents"`
 	// The login SshKeyPairName of NodeConfig.
@@ -9000,6 +9066,11 @@ func (o NodePoolsNodePoolOutput) InstanceChargeType() pulumi.StringOutput {
 // The InstanceTypeIds of NodeConfig.
 func (o NodePoolsNodePoolOutput) InstanceTypeIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v NodePoolsNodePool) []string { return v.InstanceTypeIds }).(pulumi.StringArrayOutput)
+}
+
+// The NamePrefix of node metadata.
+func (o NodePoolsNodePoolOutput) KubeConfigNamePrefix() pulumi.StringOutput {
+	return o.ApplyT(func(v NodePoolsNodePool) string { return v.KubeConfigNamePrefix }).(pulumi.StringOutput)
 }
 
 // The LabelContent of KubernetesConfig.
@@ -9463,11 +9534,17 @@ type NodePoolsNodePoolNodeStatistic struct {
 	FailedCount int `pulumi:"failedCount"`
 	// The RunningCount of Node.
 	RunningCount int `pulumi:"runningCount"`
-	// The StartingCount of Node.
+	// (**Deprecated**) This field has been deprecated and is not recommended for use. The StartingCount of Node.
+	//
+	// Deprecated: This field has been deprecated and is not recommended for use.
 	StartingCount int `pulumi:"startingCount"`
-	// The StoppedCount of Node.
+	// (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppedCount of Node.
+	//
+	// Deprecated: This field has been deprecated and is not recommended for use.
 	StoppedCount int `pulumi:"stoppedCount"`
-	// The StoppingCount of Node.
+	// (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppingCount of Node.
+	//
+	// Deprecated: This field has been deprecated and is not recommended for use.
 	StoppingCount int `pulumi:"stoppingCount"`
 	// Returns the total amount of the data list.
 	TotalCount int `pulumi:"totalCount"`
@@ -9495,11 +9572,17 @@ type NodePoolsNodePoolNodeStatisticArgs struct {
 	FailedCount pulumi.IntInput `pulumi:"failedCount"`
 	// The RunningCount of Node.
 	RunningCount pulumi.IntInput `pulumi:"runningCount"`
-	// The StartingCount of Node.
+	// (**Deprecated**) This field has been deprecated and is not recommended for use. The StartingCount of Node.
+	//
+	// Deprecated: This field has been deprecated and is not recommended for use.
 	StartingCount pulumi.IntInput `pulumi:"startingCount"`
-	// The StoppedCount of Node.
+	// (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppedCount of Node.
+	//
+	// Deprecated: This field has been deprecated and is not recommended for use.
 	StoppedCount pulumi.IntInput `pulumi:"stoppedCount"`
-	// The StoppingCount of Node.
+	// (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppingCount of Node.
+	//
+	// Deprecated: This field has been deprecated and is not recommended for use.
 	StoppingCount pulumi.IntInput `pulumi:"stoppingCount"`
 	// Returns the total amount of the data list.
 	TotalCount pulumi.IntInput `pulumi:"totalCount"`
@@ -9578,17 +9661,23 @@ func (o NodePoolsNodePoolNodeStatisticOutput) RunningCount() pulumi.IntOutput {
 	return o.ApplyT(func(v NodePoolsNodePoolNodeStatistic) int { return v.RunningCount }).(pulumi.IntOutput)
 }
 
-// The StartingCount of Node.
+// (**Deprecated**) This field has been deprecated and is not recommended for use. The StartingCount of Node.
+//
+// Deprecated: This field has been deprecated and is not recommended for use.
 func (o NodePoolsNodePoolNodeStatisticOutput) StartingCount() pulumi.IntOutput {
 	return o.ApplyT(func(v NodePoolsNodePoolNodeStatistic) int { return v.StartingCount }).(pulumi.IntOutput)
 }
 
-// The StoppedCount of Node.
+// (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppedCount of Node.
+//
+// Deprecated: This field has been deprecated and is not recommended for use.
 func (o NodePoolsNodePoolNodeStatisticOutput) StoppedCount() pulumi.IntOutput {
 	return o.ApplyT(func(v NodePoolsNodePoolNodeStatistic) int { return v.StoppedCount }).(pulumi.IntOutput)
 }
 
-// The StoppingCount of Node.
+// (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppingCount of Node.
+//
+// Deprecated: This field has been deprecated and is not recommended for use.
 func (o NodePoolsNodePoolNodeStatisticOutput) StoppingCount() pulumi.IntOutput {
 	return o.ApplyT(func(v NodePoolsNodePoolNodeStatistic) int { return v.StoppingCount }).(pulumi.IntOutput)
 }

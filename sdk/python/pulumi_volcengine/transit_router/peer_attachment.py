@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['PeerAttachmentArgs', 'PeerAttachment']
 
@@ -19,6 +21,7 @@ class PeerAttachmentArgs:
                  transit_router_id: pulumi.Input[str],
                  bandwidth: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['PeerAttachmentTagArgs']]]] = None,
                  transit_router_attachment_name: Optional[pulumi.Input[str]] = None,
                  transit_router_bandwidth_package_id: Optional[pulumi.Input[str]] = None):
         """
@@ -28,6 +31,7 @@ class PeerAttachmentArgs:
         :param pulumi.Input[str] transit_router_id: The id of the local transit router.
         :param pulumi.Input[int] bandwidth: The bandwidth of the transit router peer attachment. Unit: Mbps.
         :param pulumi.Input[str] description: The description of the transit router peer attachment.
+        :param pulumi.Input[Sequence[pulumi.Input['PeerAttachmentTagArgs']]] tags: Tags.
         :param pulumi.Input[str] transit_router_attachment_name: The name of the transit router peer attachment.
         :param pulumi.Input[str] transit_router_bandwidth_package_id: The bandwidth package id of the transit router peer attachment. When specifying this field, the field `bandwidth` must also be specified.
         """
@@ -38,6 +42,8 @@ class PeerAttachmentArgs:
             pulumi.set(__self__, "bandwidth", bandwidth)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if transit_router_attachment_name is not None:
             pulumi.set(__self__, "transit_router_attachment_name", transit_router_attachment_name)
         if transit_router_bandwidth_package_id is not None:
@@ -104,6 +110,18 @@ class PeerAttachmentArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PeerAttachmentTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PeerAttachmentTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="transitRouterAttachmentName")
     def transit_router_attachment_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -137,6 +155,7 @@ class _PeerAttachmentState:
                  peer_transit_router_id: Optional[pulumi.Input[str]] = None,
                  peer_transit_router_region_id: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['PeerAttachmentTagArgs']]]] = None,
                  transit_router_attachment_name: Optional[pulumi.Input[str]] = None,
                  transit_router_bandwidth_package_id: Optional[pulumi.Input[str]] = None,
                  transit_router_id: Optional[pulumi.Input[str]] = None,
@@ -150,6 +169,7 @@ class _PeerAttachmentState:
         :param pulumi.Input[str] peer_transit_router_id: The id of the peer transit router.
         :param pulumi.Input[str] peer_transit_router_region_id: The region id of the peer transit router.
         :param pulumi.Input[str] status: The status of the transit router peer attachment.
+        :param pulumi.Input[Sequence[pulumi.Input['PeerAttachmentTagArgs']]] tags: Tags.
         :param pulumi.Input[str] transit_router_attachment_name: The name of the transit router peer attachment.
         :param pulumi.Input[str] transit_router_bandwidth_package_id: The bandwidth package id of the transit router peer attachment. When specifying this field, the field `bandwidth` must also be specified.
         :param pulumi.Input[str] transit_router_id: The id of the local transit router.
@@ -168,6 +188,8 @@ class _PeerAttachmentState:
             pulumi.set(__self__, "peer_transit_router_region_id", peer_transit_router_region_id)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if transit_router_attachment_name is not None:
             pulumi.set(__self__, "transit_router_attachment_name", transit_router_attachment_name)
         if transit_router_bandwidth_package_id is not None:
@@ -252,6 +274,18 @@ class _PeerAttachmentState:
         pulumi.set(self, "status", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PeerAttachmentTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PeerAttachmentTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="transitRouterAttachmentName")
     def transit_router_attachment_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -321,6 +355,7 @@ class PeerAttachment(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  peer_transit_router_id: Optional[pulumi.Input[str]] = None,
                  peer_transit_router_region_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PeerAttachmentTagArgs']]]]] = None,
                  transit_router_attachment_name: Optional[pulumi.Input[str]] = None,
                  transit_router_bandwidth_package_id: Optional[pulumi.Input[str]] = None,
                  transit_router_id: Optional[pulumi.Input[str]] = None,
@@ -333,14 +368,29 @@ class PeerAttachment(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.transit_router.PeerAttachment("foo",
+        foo_bandwidth_package = volcengine.transit_router.BandwidthPackage("fooBandwidthPackage",
+            transit_router_bandwidth_package_name="acc-tf-test",
+            description="acc-test",
             bandwidth=2,
+            period=1,
+            renew_type="Manual",
+            renew_period=1,
+            remain_renew_times=-1)
+        foo_transit_router = volcengine.transit_router.TransitRouter("fooTransitRouter",
+            transit_router_name="acc-test-tf",
+            description="acc-test-tf")
+        foo_peer_attachment = volcengine.transit_router.PeerAttachment("fooPeerAttachment",
+            transit_router_id=foo_transit_router.id,
+            transit_router_attachment_name="acc-test-tf",
             description="tf-test",
-            peer_transit_router_id="tr-3jgsfiktn0feo3pncmfb5****",
-            peer_transit_router_region_id="cn-beijing",
-            transit_router_attachment_name="tf-test-tra",
-            transit_router_bandwidth_package_id="tbp-cd-2felfww0i6pkw59gp68bq****",
-            transit_router_id="tr-12bbdsa6ode6817q7y1f5****")
+            peer_transit_router_id="tr-xxx",
+            peer_transit_router_region_id="cn-xx",
+            transit_router_bandwidth_package_id=foo_bandwidth_package.id,
+            bandwidth=2,
+            tags=[volcengine.transit_router.PeerAttachmentTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -357,6 +407,7 @@ class PeerAttachment(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the transit router peer attachment.
         :param pulumi.Input[str] peer_transit_router_id: The id of the peer transit router.
         :param pulumi.Input[str] peer_transit_router_region_id: The region id of the peer transit router.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PeerAttachmentTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] transit_router_attachment_name: The name of the transit router peer attachment.
         :param pulumi.Input[str] transit_router_bandwidth_package_id: The bandwidth package id of the transit router peer attachment. When specifying this field, the field `bandwidth` must also be specified.
         :param pulumi.Input[str] transit_router_id: The id of the local transit router.
@@ -375,14 +426,29 @@ class PeerAttachment(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.transit_router.PeerAttachment("foo",
+        foo_bandwidth_package = volcengine.transit_router.BandwidthPackage("fooBandwidthPackage",
+            transit_router_bandwidth_package_name="acc-tf-test",
+            description="acc-test",
             bandwidth=2,
+            period=1,
+            renew_type="Manual",
+            renew_period=1,
+            remain_renew_times=-1)
+        foo_transit_router = volcengine.transit_router.TransitRouter("fooTransitRouter",
+            transit_router_name="acc-test-tf",
+            description="acc-test-tf")
+        foo_peer_attachment = volcengine.transit_router.PeerAttachment("fooPeerAttachment",
+            transit_router_id=foo_transit_router.id,
+            transit_router_attachment_name="acc-test-tf",
             description="tf-test",
-            peer_transit_router_id="tr-3jgsfiktn0feo3pncmfb5****",
-            peer_transit_router_region_id="cn-beijing",
-            transit_router_attachment_name="tf-test-tra",
-            transit_router_bandwidth_package_id="tbp-cd-2felfww0i6pkw59gp68bq****",
-            transit_router_id="tr-12bbdsa6ode6817q7y1f5****")
+            peer_transit_router_id="tr-xxx",
+            peer_transit_router_region_id="cn-xx",
+            transit_router_bandwidth_package_id=foo_bandwidth_package.id,
+            bandwidth=2,
+            tags=[volcengine.transit_router.PeerAttachmentTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -412,6 +478,7 @@ class PeerAttachment(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  peer_transit_router_id: Optional[pulumi.Input[str]] = None,
                  peer_transit_router_region_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PeerAttachmentTagArgs']]]]] = None,
                  transit_router_attachment_name: Optional[pulumi.Input[str]] = None,
                  transit_router_bandwidth_package_id: Optional[pulumi.Input[str]] = None,
                  transit_router_id: Optional[pulumi.Input[str]] = None,
@@ -432,6 +499,7 @@ class PeerAttachment(pulumi.CustomResource):
             if peer_transit_router_region_id is None and not opts.urn:
                 raise TypeError("Missing required property 'peer_transit_router_region_id'")
             __props__.__dict__["peer_transit_router_region_id"] = peer_transit_router_region_id
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["transit_router_attachment_name"] = transit_router_attachment_name
             __props__.__dict__["transit_router_bandwidth_package_id"] = transit_router_bandwidth_package_id
             if transit_router_id is None and not opts.urn:
@@ -457,6 +525,7 @@ class PeerAttachment(pulumi.CustomResource):
             peer_transit_router_id: Optional[pulumi.Input[str]] = None,
             peer_transit_router_region_id: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PeerAttachmentTagArgs']]]]] = None,
             transit_router_attachment_name: Optional[pulumi.Input[str]] = None,
             transit_router_bandwidth_package_id: Optional[pulumi.Input[str]] = None,
             transit_router_id: Optional[pulumi.Input[str]] = None,
@@ -475,6 +544,7 @@ class PeerAttachment(pulumi.CustomResource):
         :param pulumi.Input[str] peer_transit_router_id: The id of the peer transit router.
         :param pulumi.Input[str] peer_transit_router_region_id: The region id of the peer transit router.
         :param pulumi.Input[str] status: The status of the transit router peer attachment.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PeerAttachmentTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] transit_router_attachment_name: The name of the transit router peer attachment.
         :param pulumi.Input[str] transit_router_bandwidth_package_id: The bandwidth package id of the transit router peer attachment. When specifying this field, the field `bandwidth` must also be specified.
         :param pulumi.Input[str] transit_router_id: The id of the local transit router.
@@ -491,6 +561,7 @@ class PeerAttachment(pulumi.CustomResource):
         __props__.__dict__["peer_transit_router_id"] = peer_transit_router_id
         __props__.__dict__["peer_transit_router_region_id"] = peer_transit_router_region_id
         __props__.__dict__["status"] = status
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["transit_router_attachment_name"] = transit_router_attachment_name
         __props__.__dict__["transit_router_bandwidth_package_id"] = transit_router_bandwidth_package_id
         __props__.__dict__["transit_router_id"] = transit_router_id
@@ -545,6 +616,14 @@ class PeerAttachment(pulumi.CustomResource):
         The status of the transit router peer attachment.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.PeerAttachmentTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="transitRouterAttachmentName")

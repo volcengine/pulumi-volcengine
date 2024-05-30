@@ -8,16 +8,6 @@ import * as utilities from "../utilities";
 
 /**
  * Use this data source to query detailed information of cen route entries
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
- *
- * const foo = volcengine.cen.RouteEntries({
- *     cenId: "cen-12ar8uclj68sg17q7y20v9gil",
- * });
- * ```
  */
 export function routeEntries(args: RouteEntriesArgs, opts?: pulumi.InvokeOptions): Promise<RouteEntriesResult> {
 
@@ -102,16 +92,6 @@ export interface RouteEntriesResult {
 }
 /**
  * Use this data source to query detailed information of cen route entries
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as volcengine from "@pulumi/volcengine";
- *
- * const foo = volcengine.cen.RouteEntries({
- *     cenId: "cen-12ar8uclj68sg17q7y20v9gil",
- * });
- * ```
  */
 export function routeEntriesOutput(args: RouteEntriesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<RouteEntriesResult> {
     return pulumi.output(args).apply((a: any) => routeEntries(a, opts))

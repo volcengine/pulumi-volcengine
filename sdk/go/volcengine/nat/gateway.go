@@ -94,8 +94,8 @@ type Gateway struct {
 	Period pulumi.IntPtrOutput `pulumi:"period"`
 	// The ProjectName of the NatGateway.
 	ProjectName pulumi.StringOutput `pulumi:"projectName"`
-	// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
-	Spec pulumi.StringPtrOutput `pulumi:"spec"`
+	// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
+	Spec pulumi.StringOutput `pulumi:"spec"`
 	// The ID of the Subnet.
 	SubnetId pulumi.StringOutput `pulumi:"subnetId"`
 	// Tags.
@@ -150,7 +150,7 @@ type gatewayState struct {
 	Period *int `pulumi:"period"`
 	// The ProjectName of the NatGateway.
 	ProjectName *string `pulumi:"projectName"`
-	// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
+	// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
 	Spec *string `pulumi:"spec"`
 	// The ID of the Subnet.
 	SubnetId *string `pulumi:"subnetId"`
@@ -171,7 +171,7 @@ type GatewayState struct {
 	Period pulumi.IntPtrInput
 	// The ProjectName of the NatGateway.
 	ProjectName pulumi.StringPtrInput
-	// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
+	// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
 	Spec pulumi.StringPtrInput
 	// The ID of the Subnet.
 	SubnetId pulumi.StringPtrInput
@@ -196,7 +196,7 @@ type gatewayArgs struct {
 	Period *int `pulumi:"period"`
 	// The ProjectName of the NatGateway.
 	ProjectName *string `pulumi:"projectName"`
-	// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
+	// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
 	Spec *string `pulumi:"spec"`
 	// The ID of the Subnet.
 	SubnetId string `pulumi:"subnetId"`
@@ -218,7 +218,7 @@ type GatewayArgs struct {
 	Period pulumi.IntPtrInput
 	// The ProjectName of the NatGateway.
 	ProjectName pulumi.StringPtrInput
-	// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
+	// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
 	Spec pulumi.StringPtrInput
 	// The ID of the Subnet.
 	SubnetId pulumi.StringInput
@@ -340,9 +340,9 @@ func (o GatewayOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Gateway) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
 }
 
-// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large`.
-func (o GatewayOutput) Spec() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Gateway) pulumi.StringPtrOutput { return v.Spec }).(pulumi.StringPtrOutput)
+// The specification of the NatGateway. Optional choice contains `Small`(default), `Medium`, `Large` or leave blank.
+func (o GatewayOutput) Spec() pulumi.StringOutput {
+	return o.ApplyT(func(v *Gateway) pulumi.StringOutput { return v.Spec }).(pulumi.StringOutput)
 }
 
 // The ID of the Subnet.

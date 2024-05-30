@@ -14,15 +14,19 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.cen.BandwidthPackage("foo", {
- *     bandwidth: 32,
+ *     bandwidth: 2,
  *     billingType: "PrePaid",
- *     cenBandwidthPackageName: "tf-test",
- *     description: "tf-test1",
+ *     cenBandwidthPackageName: "acc-test-cen-bp",
+ *     description: "acc-test",
  *     localGeographicRegionSetId: "China",
  *     peerGeographicRegionSetId: "China",
  *     period: 1,
- *     periodUnit: "Year",
+ *     periodUnit: "Month",
  *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
  * ```
  *
@@ -71,8 +75,7 @@ export class BandwidthPackage extends pulumi.CustomResource {
      */
     public readonly bandwidth!: pulumi.Output<number>;
     /**
-     * The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`. Terraform will
-     * only remove the PrePaid cen bandwidth package from the state file, not actually remove.
+     * The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`.
      */
     public readonly billingType!: pulumi.Output<string | undefined>;
     /**
@@ -218,8 +221,7 @@ export interface BandwidthPackageState {
      */
     bandwidth?: pulumi.Input<number>;
     /**
-     * The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`. Terraform will
-     * only remove the PrePaid cen bandwidth package from the state file, not actually remove.
+     * The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`.
      */
     billingType?: pulumi.Input<string>;
     /**
@@ -301,8 +303,7 @@ export interface BandwidthPackageArgs {
      */
     bandwidth?: pulumi.Input<number>;
     /**
-     * The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`. Terraform will
-     * only remove the PrePaid cen bandwidth package from the state file, not actually remove.
+     * The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`.
      */
     billingType?: pulumi.Input<string>;
     /**

@@ -20,25 +20,83 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/clb"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/privatelink"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// fooZones, err := ecs.Zones(ctx, nil, nil);
+// if err != nil {
+// return err
+// }
+// fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+// VpcName: pulumi.String("acc-test-vpc"),
+// CidrBlock: pulumi.String("172.16.0.0/16"),
+// })
+// if err != nil {
+// return err
+// }
+// fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+// SubnetName: pulumi.String("acc-test-subnet"),
+// CidrBlock: pulumi.String("172.16.0.0/24"),
+// ZoneId: *pulumi.String(fooZones.Zones[0].Id),
+// VpcId: fooVpc.ID(),
+// })
+// if err != nil {
+// return err
+// }
+// fooClb, err := clb.NewClb(ctx, "fooClb", &clb.ClbArgs{
+// Type: pulumi.String("public"),
+// SubnetId: fooSubnet.ID(),
+// LoadBalancerSpec: pulumi.String("small_1"),
+// Description: pulumi.String("acc-test-demo"),
+// LoadBalancerName: pulumi.String("acc-test-clb"),
+// LoadBalancerBillingType: pulumi.String("PostPaid"),
+// EipBillingConfig: &clb.ClbEipBillingConfigArgs{
+// Isp: pulumi.String("BGP"),
+// EipBillingType: pulumi.String("PostPaidByBandwidth"),
+// Bandwidth: pulumi.Int(1),
+// },
+// Tags: clb.ClbTagArray{
+// &clb.ClbTagArgs{
+// Key: pulumi.String("k1"),
+// Value: pulumi.String("v1"),
+// },
+// },
+// })
+// if err != nil {
+// return err
+// }
+// var fooVpcEndpointService []*privatelink.VpcEndpointService
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := privatelink.VpcEndpointServices(ctx, &privatelink.VpcEndpointServicesArgs{
-//				Ids: []string{
-//					"epsvc-3rel73uf2ewao5zsk2j2l58ro",
-//					"epsvc-2d72mxjgq02yo58ozfe5tndeh",
-//				},
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
+//	for index := 0; index < 2; index++ {
+//	    key0 := index
+//	    _ := index
 //
+// __res, err := privatelink.NewVpcEndpointService(ctx, fmt.Sprintf("fooVpcEndpointService-%v", key0), &privatelink.VpcEndpointServiceArgs{
+// Resources: privatelink.VpcEndpointServiceResourceTypeArray{
+// &privatelink.VpcEndpointServiceResourceTypeArgs{
+// ResourceId: fooClb.ID(),
+// ResourceType: pulumi.String("CLB"),
+// },
+// },
+// Description: pulumi.String("acc-test"),
+// AutoAcceptEnabled: pulumi.Bool(true),
+// })
+// if err != nil {
+// return err
+// }
+// fooVpcEndpointService = append(fooVpcEndpointService, __res)
+// }
+// _ = privatelink.VpcEndpointServicesOutput(ctx, privatelink.VpcEndpointServicesOutputArgs{
+// Ids: %!v(PANIC=Format method: fatal: A failure has occurred: unlowered splat expression @ #-functions-volcengine:privatelink-vpcEndpointServices:VpcEndpointServices.pp:42,9-36),
+// }, nil);
+// return nil
+// })
+// }
 // ```
 func VpcEndpointServices(ctx *pulumi.Context, args *VpcEndpointServicesArgs, opts ...pulumi.InvokeOption) (*VpcEndpointServicesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)

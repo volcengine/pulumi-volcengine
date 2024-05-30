@@ -234,14 +234,20 @@ class AttachInstance(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.cen.AttachInstance("foo",
-            cen_id="cen-12ar8uclj68sg17q7y20v9gil",
-            instance_id="vpc-2fe5dpn0av2m859gp68rhk2dc",
-            instance_region_id="cn-beijing",
-            instance_type="VPC")
-        foo1 = volcengine.cen.AttachInstance("foo1",
-            cen_id="cen-12ar8uclj68sg17q7y20v9gil",
-            instance_id="vpc-in66ktl5t24g8gbssz0sqva1",
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_cen = volcengine.cen.Cen("fooCen",
+            cen_name="acc-test-cen",
+            description="acc-test",
+            project_name="default",
+            tags=[volcengine.cen.CenTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_attach_instance = volcengine.cen.AttachInstance("fooAttachInstance",
+            cen_id=foo_cen.id,
+            instance_id=foo_vpc.id,
             instance_region_id="cn-beijing",
             instance_type="VPC")
         ```
@@ -276,14 +282,20 @@ class AttachInstance(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.cen.AttachInstance("foo",
-            cen_id="cen-12ar8uclj68sg17q7y20v9gil",
-            instance_id="vpc-2fe5dpn0av2m859gp68rhk2dc",
-            instance_region_id="cn-beijing",
-            instance_type="VPC")
-        foo1 = volcengine.cen.AttachInstance("foo1",
-            cen_id="cen-12ar8uclj68sg17q7y20v9gil",
-            instance_id="vpc-in66ktl5t24g8gbssz0sqva1",
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_cen = volcengine.cen.Cen("fooCen",
+            cen_name="acc-test-cen",
+            description="acc-test",
+            project_name="default",
+            tags=[volcengine.cen.CenTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_attach_instance = volcengine.cen.AttachInstance("fooAttachInstance",
+            cen_id=foo_cen.id,
+            instance_id=foo_vpc.id,
             instance_region_id="cn-beijing",
             instance_type="VPC")
         ```

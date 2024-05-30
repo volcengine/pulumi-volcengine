@@ -2056,6 +2056,401 @@ export namespace bioos {
 
 }
 
+export namespace cdn {
+    export interface CdnDomainSharedCname {
+        /**
+         * Assign a CNAME to the accelerated domain.
+         */
+        cname: string;
+        /**
+         * Specify whether to enable shared CNAME.
+         */
+        switch: boolean;
+    }
+
+    export interface CdnDomainTag {
+        /**
+         * The key of the tag.
+         */
+        key: string;
+        /**
+         * The value of the tag.
+         */
+        value: string;
+    }
+
+    export interface CertificatesCertInfo {
+        /**
+         * ID indicating the certificate.
+         */
+        certId: string;
+        /**
+         * The domain name to which the certificate is issued.
+         */
+        certName: string;
+        /**
+         * The domain name associated with the certificate. If the certificate is not yet associated with any domain name, the parameter value is null.
+         */
+        configuredDomain: string;
+        /**
+         * The remark of the cert.
+         */
+        desc: string;
+        /**
+         * The domain names included in the SAN field of the certificate.
+         */
+        dnsName: string;
+        /**
+         * The issuance time of the certificate is indicated. The unit is Unix timestamp.
+         */
+        effectiveTime: number;
+        /**
+         * The expiration time of the certificate is indicated. The unit is Unix timestamp.
+         */
+        expireTime: number;
+        /**
+         * Specify the location for storing the certificate. The parameter can take the following values: `volcCertCenter`: indicates that the certificate will be stored in the certificate center.`cdnCertHosting`: indicates that the certificate will be hosted on the content delivery network.
+         */
+        source: string;
+        /**
+         * Specify one or more states to retrieve certificates in those states. By default, all certificates in all states are returned. You can specify the following states. Multiple states are separated by commas. running: Retrieves certificates with a validity period greater than 30 days. expired: Retrieves certificates that have already expired. expiring_soon: Retrieves certificates with a validity period less than or equal to 30 days but have not yet expired.
+         */
+        status: string;
+    }
+
+    export interface ConfigsDomainConfig {
+        /**
+         * The cname of the domain.
+         */
+        cname: string;
+        /**
+         * The create time of the domain.
+         */
+        createTime: number;
+        /**
+         * The domain name.
+         */
+        domain: string;
+        /**
+         * Indicates whether the configuration of this domain name is allowed to be changed.
+         */
+        lockStatus: string;
+        /**
+         * The project name.
+         */
+        project: string;
+        /**
+         * The service region of the domain.
+         */
+        serviceRegion: string;
+        /**
+         * The service type of the domain.
+         */
+        serviceType: string;
+        /**
+         * The status of the domain.
+         */
+        status: string;
+        /**
+         * The update time of the domain.
+         */
+        updateTime: number;
+    }
+
+    export interface DomainsDomain {
+        /**
+         * The list of backup origin servers for accelerating this domain name. If no backup origin server is configured for this acceleration domain name, the parameter value is null.
+         */
+        backupOrigins: string[];
+        /**
+         * Indicates the role of the accelerated domain in the shared cache configuration. This parameter can take the following values: `targetHost`: Indicates that there is a shared cache configuration where the role of the accelerated domain is the target domain.`cacheSharedOn`: Indicates that there is a shared cache configuration where the role of the accelerated domain is the configured domain.`""`: This parameter value is empty, indicating that the accelerated domain does not exist in any shared cache configuration.
+         */
+        cacheShared: string;
+        /**
+         * If CacheShared is cache_shared_on, it means the target domain name that shares cache with the accelerated domain name. If CacheShared is targetHost or an empty value, the parameter value is empty.
+         */
+        cacheSharedTargetHost: string;
+        /**
+         * The CNAME address of the domain is automatically assigned when adding the domain.
+         */
+        cname: string;
+        /**
+         * The creation time of the domain.
+         */
+        createTime: number;
+        /**
+         * Search by specifying domain name keywords, with fuzzy matching.
+         */
+        domain: string;
+        /**
+         * Indicates the locked status of the accelerated domain.
+         */
+        domainLocks: outputs.cdn.DomainsDomainDomainLock[];
+        /**
+         * Specify HTTPS configuration to filter accelerated domains. The optional values for this parameter are as follows: `true`: Indicates that the accelerated domain has enabled HTTPS function.`false`: Indicates that the accelerated domain has not enabled HTTPS function.
+         */
+        https: boolean;
+        /**
+         * Specify IPv6 configuration to filter accelerated domain names. The optional values for this parameter are as follows: `true`: Indicates that the accelerated domain name supports requests using IPv6 addresses.`false`: Indicates that the accelerated domain name does not support requests using IPv6 addresses.
+         */
+        ipv6: boolean;
+        /**
+         * Indicates whether the accelerated domain name is a conflicting domain name. By default, each accelerated domain name is unique in the content delivery network. If you need to add an accelerated domain name that already exists in the content delivery network, you need to submit a ticket. If the domain name is added successfully, it becomes a conflicting domain name.
+         */
+        isConflictDomain: boolean;
+        /**
+         * Configure the origin protocol for the accelerated domain.
+         */
+        originProtocol: string;
+        /**
+         * Specify a primary origin server for filtering accelerated domains.
+         */
+        primaryOrigins: string[];
+        /**
+         * The project name of the domain.
+         */
+        project: string;
+        /**
+         * Indicates the acceleration area. The parameter can take the following values: `chineseMainland`: Indicates mainland China. `global`: Indicates global. `outsideChineseMainland`: Indicates global (excluding mainland China).
+         */
+        serviceRegion: string;
+        /**
+         * The business type of the domain name is indicated by this parameter. The possible values are: `download`: for file downloads. `web`: for web pages. `video`: for audio and video on demand.
+         */
+        serviceType: string;
+        /**
+         * The status of the domain.
+         */
+        status: string;
+        /**
+         * Filter by specified domain name tags, up to 10 tags can be specified. Each tag is entered as a string in the format of key:value.
+         */
+        tags: outputs.cdn.DomainsDomainTag[];
+        /**
+         * The update time of the domain.
+         */
+        updateTime: number;
+    }
+
+    export interface DomainsDomainDomainLock {
+        /**
+         * If the Status is on, this parameter value records the reason for the lock.
+         */
+        remark: string;
+        /**
+         * The status of the domain.
+         */
+        status: string;
+    }
+
+    export interface DomainsDomainTag {
+        /**
+         * The key of the tag.
+         */
+        key: string;
+        /**
+         * The value of the tag.
+         */
+        value: string;
+    }
+
+    export interface SharedConfigAllowIpAccessRule {
+        /**
+         * The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+         */
+        rules: string[];
+    }
+
+    export interface SharedConfigAllowRefererAccessRule {
+        /**
+         * Indicates whether an empty Referer header, or a request without a Referer header, is not allowed. Default is false.
+         */
+        allowEmpty?: boolean;
+        /**
+         * The content indicating the Referer whitelist.
+         */
+        commonType: outputs.cdn.SharedConfigAllowRefererAccessRuleCommonType;
+    }
+
+    export interface SharedConfigAllowRefererAccessRuleCommonType {
+        /**
+         * This list is case-sensitive when matching requests. Default is true.
+         */
+        ignoreCase?: boolean;
+        /**
+         * The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+         */
+        rules: string[];
+    }
+
+    export interface SharedConfigCommonMatchList {
+        /**
+         * The content indicating the Referer blacklist.
+         */
+        commonType: outputs.cdn.SharedConfigCommonMatchListCommonType;
+    }
+
+    export interface SharedConfigCommonMatchListCommonType {
+        /**
+         * This list is case-sensitive when matching requests. Default is true.
+         */
+        ignoreCase?: boolean;
+        /**
+         * The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+         */
+        rules: string[];
+    }
+
+    export interface SharedConfigDenyIpAccessRule {
+        /**
+         * The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+         */
+        rules: string[];
+    }
+
+    export interface SharedConfigDenyRefererAccessRule {
+        /**
+         * Indicates whether an empty Referer header, or a request without a Referer header, is not allowed. Default is false.
+         */
+        allowEmpty?: boolean;
+        /**
+         * The content indicating the Referer blacklist.
+         */
+        commonType: outputs.cdn.SharedConfigDenyRefererAccessRuleCommonType;
+    }
+
+    export interface SharedConfigDenyRefererAccessRuleCommonType {
+        /**
+         * This list is case-sensitive when matching requests. Default is true.
+         */
+        ignoreCase?: boolean;
+        /**
+         * The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+         */
+        rules: string[];
+    }
+
+    export interface SharedConfigsConfigData {
+        /**
+         * The configuration for IP whitelist corresponds to ConfigType allow_ip_access_rule.
+         */
+        allowIpAccessRules: outputs.cdn.SharedConfigsConfigDataAllowIpAccessRule[];
+        /**
+         * The configuration for the Referer whitelist corresponds to ConfigType allow_referer_access_rule.
+         */
+        allowRefererAccessRules: outputs.cdn.SharedConfigsConfigDataAllowRefererAccessRule[];
+        /**
+         * The configuration for a common list is represented by ConfigType common_match_list.
+         */
+        commonMatchLists: outputs.cdn.SharedConfigsConfigDataCommonMatchList[];
+        /**
+         * The name of the shared config.
+         */
+        configName: string;
+        /**
+         * The type of the shared config.
+         */
+        configType: string;
+        /**
+         * The configuration for IP blacklist is denoted by ConfigType deny_ip_access_rule.
+         */
+        denyIpAccessRules: outputs.cdn.SharedConfigsConfigDataDenyIpAccessRule[];
+        /**
+         * The configuration for the Referer blacklist corresponds to ConfigType deny_referer_access_rule.
+         */
+        denyRefererAccessRules: outputs.cdn.SharedConfigsConfigDataDenyRefererAccessRule[];
+        /**
+         * The number of domains.
+         */
+        domainCount: number;
+        /**
+         * The name of the project.
+         */
+        projectName: string;
+        /**
+         * The update time of the shared config.
+         */
+        updateTime: number;
+    }
+
+    export interface SharedConfigsConfigDataAllowIpAccessRule {
+        /**
+         * The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+         */
+        rules: string[];
+    }
+
+    export interface SharedConfigsConfigDataAllowRefererAccessRule {
+        /**
+         * Indicates whether an empty Referer header, or a request without a Referer header, is not allowed. Default is false.
+         */
+        allowEmpty: boolean;
+        /**
+         * The content indicating the Referer blacklist.
+         */
+        commonTypes: outputs.cdn.SharedConfigsConfigDataAllowRefererAccessRuleCommonType[];
+    }
+
+    export interface SharedConfigsConfigDataAllowRefererAccessRuleCommonType {
+        /**
+         * This list is case-sensitive when matching requests. Default is true.
+         */
+        ignoreCase: boolean;
+        /**
+         * The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+         */
+        rules: string[];
+    }
+
+    export interface SharedConfigsConfigDataCommonMatchList {
+        /**
+         * The content indicating the Referer blacklist.
+         */
+        commonTypes: outputs.cdn.SharedConfigsConfigDataCommonMatchListCommonType[];
+    }
+
+    export interface SharedConfigsConfigDataCommonMatchListCommonType {
+        /**
+         * This list is case-sensitive when matching requests. Default is true.
+         */
+        ignoreCase: boolean;
+        /**
+         * The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+         */
+        rules: string[];
+    }
+
+    export interface SharedConfigsConfigDataDenyIpAccessRule {
+        /**
+         * The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+         */
+        rules: string[];
+    }
+
+    export interface SharedConfigsConfigDataDenyRefererAccessRule {
+        /**
+         * Indicates whether an empty Referer header, or a request without a Referer header, is not allowed. Default is false.
+         */
+        allowEmpty: boolean;
+        /**
+         * The content indicating the Referer blacklist.
+         */
+        commonTypes: outputs.cdn.SharedConfigsConfigDataDenyRefererAccessRuleCommonType[];
+    }
+
+    export interface SharedConfigsConfigDataDenyRefererAccessRuleCommonType {
+        /**
+         * This list is case-sensitive when matching requests. Default is true.
+         */
+        ignoreCase: boolean;
+        /**
+         * The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+         */
+        rules: string[];
+    }
+
+}
+
 export namespace cen {
     export interface AttachInstancesAttachInstance {
         /**
@@ -2562,7 +2957,7 @@ export namespace clb {
          */
         eipBillingType: string;
         /**
-         * The ISP of the EIP which automatically associated to CLB, the value can be `BGP`.
+         * The ISP of the EIP which automatically associated to CLB, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP` or `Fusion_BGP`.
          */
         isp: string;
     }
@@ -3084,6 +3479,465 @@ export namespace clb {
 
 }
 
+export namespace cloud_monitor {
+    export interface ContactGroupsGroup {
+        /**
+         * The id of the account.
+         */
+        accountId: string;
+        /**
+         * Contact information in the contact group.
+         */
+        contacts: outputs.cloud_monitor.ContactGroupsGroupContact[];
+        /**
+         * The create time.
+         */
+        createdAt: string;
+        /**
+         * The description of the contact group.
+         */
+        description: string;
+        /**
+         * The id of the contact group.
+         */
+        id: string;
+        /**
+         * Search for keywords in contact group names, supports fuzzy search.
+         */
+        name: string;
+        /**
+         * The update time.
+         */
+        updatedAt: string;
+    }
+
+    export interface ContactGroupsGroupContact {
+        /**
+         * The email of contact.
+         */
+        email: string;
+        /**
+         * The id of the contact group.
+         */
+        id: string;
+        /**
+         * Search for keywords in contact group names, supports fuzzy search.
+         */
+        name: string;
+        /**
+         * The phone of contact.
+         */
+        phone: string;
+    }
+
+    export interface ContactsContact {
+        /**
+         * The email of contact.
+         */
+        email: string;
+        /**
+         * The ID of contact.
+         */
+        id: string;
+        /**
+         * The name of contact.
+         */
+        name: string;
+        /**
+         * The phone of contact.
+         */
+        phone: string;
+    }
+
+    export interface EventRuleEffectiveTime {
+        /**
+         * End time for rule activation.
+         */
+        endTime: string;
+        /**
+         * Start time for rule activation.
+         */
+        startTime: string;
+    }
+
+    export interface EventRuleFilterPattern {
+        /**
+         * Event source corresponding to pattern matching.
+         */
+        source: string;
+        /**
+         * The list of corresponding event types in pattern matching, currently set to match any.
+         */
+        types: string[];
+    }
+
+    export interface EventRuleMessageQueue {
+        /**
+         * The kafka instance id.
+         */
+        instanceId: string;
+        /**
+         * The region.
+         */
+        region: string;
+        /**
+         * The topic name.
+         */
+        topic: string;
+        /**
+         * The message queue type, only support kafka now.
+         */
+        type: string;
+        /**
+         * The vpc id.
+         */
+        vpcId: string;
+    }
+
+    export interface EventRuleTlsTarget {
+        /**
+         * The project id.
+         */
+        projectId: string;
+        /**
+         * The project name.
+         */
+        projectName: string;
+        /**
+         * The Chinese region name.
+         */
+        regionNameCn: string;
+        /**
+         * The English region name.
+         */
+        regionNameEn: string;
+        /**
+         * The topic id.
+         */
+        topicId: string;
+    }
+
+    export interface EventRulesRule {
+        /**
+         * The id of the account.
+         */
+        accountId: string;
+        /**
+         * When the alarm notification method is phone, SMS, or email, the triggered alarm contact group ID.
+         */
+        contactGroupIds: string[];
+        /**
+         * List of contact methods.
+         */
+        contactMethods: string[];
+        /**
+         * The create time.
+         */
+        createdAt: number;
+        /**
+         * The description of the rule.
+         */
+        description: string;
+        /**
+         * The end time of the rule.
+         */
+        effectEndAt: string;
+        /**
+         * The start time of the rule.
+         */
+        effectStartAt: string;
+        /**
+         * When the alarm notification method is alarm callback, it triggers the callback address.
+         */
+        endpoint: string;
+        /**
+         * The name of the event bus.
+         */
+        eventBusName: string;
+        /**
+         * The source of the event.
+         */
+        eventSource: string;
+        /**
+         * The event type.
+         */
+        eventTypes: string[];
+        /**
+         * Filter mode, also known as event matching rules. Custom matching rules are not currently supported.
+         */
+        filterPatterns: outputs.cloud_monitor.EventRulesRuleFilterPattern[];
+        /**
+         * The id of the rule.
+         */
+        id: string;
+        /**
+         * The level of the rule.
+         */
+        level: string;
+        /**
+         * The triggered message queue when the alarm notification method is Kafka message queue.
+         */
+        messageQueues: outputs.cloud_monitor.EventRulesRuleMessageQueue[];
+        /**
+         * The name of the region.
+         */
+        region: string;
+        /**
+         * The id of the rule.
+         */
+        ruleId: string;
+        /**
+         * Rule name, search rules by name using fuzzy search.
+         */
+        ruleName: string;
+        /**
+         * Enable the state of the rule.
+         */
+        status: string;
+        /**
+         * The alarm method for log service triggers the configuration of the log service.
+         */
+        tlsTargets: outputs.cloud_monitor.EventRulesRuleTlsTarget[];
+        /**
+         * The updated time.
+         */
+        updatedAt: number;
+    }
+
+    export interface EventRulesRuleFilterPattern {
+        /**
+         * Event source.
+         */
+        source: string;
+        /**
+         * The message queue type, only support kafka now.
+         */
+        types: string[];
+    }
+
+    export interface EventRulesRuleMessageQueue {
+        /**
+         * The kafka instance id.
+         */
+        instanceId: string;
+        /**
+         * The name of the region.
+         */
+        region: string;
+        /**
+         * The topic name.
+         */
+        topic: string;
+        /**
+         * The message queue type, only support kafka now.
+         */
+        type: string;
+        /**
+         * The vpc id.
+         */
+        vpcId: string;
+    }
+
+    export interface EventRulesRuleTlsTarget {
+        /**
+         * The project id.
+         */
+        projectId: string;
+        /**
+         * The project name.
+         */
+        projectName: string;
+        /**
+         * The Chinese region name.
+         */
+        regionNameCn: string;
+        /**
+         * The English region name.
+         */
+        regionNameEn: string;
+        /**
+         * The topic id.
+         */
+        topicId: string;
+        /**
+         * The topic name.
+         */
+        topicName: string;
+    }
+
+    export interface RuleCondition {
+        /**
+         * The comparison operation of the cloud monitor rule. Valid values: `>`, `>=`, `<`, `<=`, `!=`, `=`.
+         */
+        comparisonOperator: string;
+        /**
+         * The metric name of the cloud monitor rule.
+         */
+        metricName: string;
+        /**
+         * The metric unit of the cloud monitor rule.
+         */
+        metricUnit: string;
+        period: string;
+        /**
+         * The statistics of the cloud monitor rule. Valid values: `avg`, `max`, `min`.
+         */
+        statistics: string;
+        /**
+         * The threshold of the cloud monitor rule.
+         */
+        threshold: string;
+    }
+
+    export interface RuleOriginalDimension {
+        /**
+         * The key of the dimension.
+         */
+        key: string;
+        /**
+         * The value of the dimension.
+         */
+        values: string[];
+    }
+
+    export interface RuleRecoveryNotify {
+        /**
+         * Whether to enable the recovery notify function.
+         */
+        enable?: boolean;
+    }
+
+    export interface RulesRule {
+        /**
+         * The alert methods of the cloud monitor rule.
+         */
+        alertMethods: string[];
+        /**
+         * The alert state of the cloud monitor rule. Valid values: `altering`, `normal`.
+         */
+        alertState: string;
+        /**
+         * The condition operator of the cloud monitor rule. Valid values: `&&`, `||`.
+         */
+        conditionOperator: string;
+        /**
+         * The conditions of the cloud monitor rule.
+         */
+        conditions: outputs.cloud_monitor.RulesRuleCondition[];
+        /**
+         * The contact group ids of the cloud monitor rule.
+         */
+        contactGroupIds: string[];
+        /**
+         * The created time of the cloud monitor rule.
+         */
+        createdAt: string;
+        /**
+         * The description of the cloud monitor rule.
+         */
+        description: string;
+        /**
+         * The effect end time of the cloud monitor rule.
+         */
+        effectEndAt: string;
+        /**
+         * The effect start time of the cloud monitor rule.
+         */
+        effectStartAt: string;
+        /**
+         * The enable state of the cloud monitor rule. Valid values: `enable`, `disable`.
+         */
+        enableState: string;
+        /**
+         * The evaluation count of the cloud monitor rule.
+         */
+        evaluationCount: number;
+        /**
+         * The id of the cloud monitor rule.
+         */
+        id: string;
+        /**
+         * The level of the cloud monitor rule. Valid values: `critical`, `warning`, `notice`.
+         */
+        level: string;
+        /**
+         * Whether to enable the multiple conditions function of the cloud monitor rule.
+         */
+        multipleConditions: boolean;
+        /**
+         * The namespace of the cloud monitor rule.
+         */
+        namespace: string;
+        /**
+         * The original dimensions of the cloud monitor rule.
+         */
+        originalDimensions: outputs.cloud_monitor.RulesRuleOriginalDimension[];
+        /**
+         * The region id of the cloud monitor rule.
+         */
+        regions: string[];
+        /**
+         * The name of the cloud monitor rule. This field support fuzzy query.
+         */
+        ruleName: string;
+        /**
+         * The silence time of the cloud monitor rule. Unit in minutes.
+         */
+        silenceTime: number;
+        /**
+         * The sub namespace of the cloud monitor rule.
+         */
+        subNamespace: string;
+        /**
+         * The updated time of the cloud monitor rule.
+         */
+        updatedAt: string;
+        /**
+         * The web hook of the cloud monitor rule.
+         */
+        webHook: string;
+    }
+
+    export interface RulesRuleCondition {
+        /**
+         * The comparison operation of the cloud monitor rule.
+         */
+        comparisonOperator: string;
+        /**
+         * The metric name of the cloud monitor rule.
+         */
+        metricName: string;
+        /**
+         * The metric unit of the cloud monitor rule.
+         */
+        metricUnit: string;
+        /**
+         * The period of the cloud monitor rule.
+         */
+        period: string;
+        /**
+         * The statistics of the cloud monitor rule.
+         */
+        statistics: string;
+        /**
+         * The threshold of the cloud monitor rule.
+         */
+        threshold: string;
+    }
+
+    export interface RulesRuleOriginalDimension {
+        /**
+         * The key of the dimension.
+         */
+        key: string;
+        /**
+         * The value of the dimension.
+         */
+        values: string[];
+    }
+
+}
+
 export namespace cloudfs {
     export interface AccessesAccess {
         /**
@@ -3278,6 +4132,16 @@ export namespace cloudfs {
          * Whether is enough of cloud fs.
          */
         quotaEnough: boolean;
+    }
+
+}
+
+export namespace config {
+    export interface AssumeRole {
+        assumeRoleSessionName: string;
+        assumeRoleTrn: string;
+        durationSeconds: number;
+        policy?: string;
     }
 
 }
@@ -4067,6 +4931,28 @@ export namespace direct_connect {
 }
 
 export namespace ebs {
+    export interface VolumeTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface VolumesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface VolumesVolume {
         billingType: number;
         createdAt: string;
@@ -4088,6 +4974,10 @@ export namespace ebs {
         renewType: number;
         size: number;
         status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.ebs.VolumesVolumeTag[];
         tradeStatus: number;
         updatedAt: string;
         volumeId: string;
@@ -4103,6 +4993,17 @@ export namespace ebs {
          * The Id of Zone.
          */
         zoneId: string;
+    }
+
+    export interface VolumesVolumeTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
 }
@@ -5850,6 +6751,29 @@ export namespace escloud {
 }
 
 export namespace iam {
+    export interface AccessKeysAccessKeyMetadata {
+        /**
+         * The user access key id.
+         */
+        accessKeyId: string;
+        /**
+         * The user access key create date.
+         */
+        createDate: string;
+        /**
+         * The user access key status.
+         */
+        status: string;
+        /**
+         * The user access key update date.
+         */
+        updateDate: string;
+        /**
+         * The user names.
+         */
+        userName: string;
+    }
+
     export interface PoliciesPolicy {
         /**
          * The create time of the Policy.
@@ -5926,6 +6850,41 @@ export namespace iam {
          * The trust policy document of the Role.
          */
         trustPolicyDocument: string;
+    }
+
+    export interface SamlProvidersProvider {
+        /**
+         * Identity provider creation time, such as 20150123T123318Z.
+         */
+        createDate: string;
+        /**
+         * The description of the SAML provider.
+         */
+        description: string;
+        /**
+         * Metadata document, encoded in Base64.
+         */
+        encodedSamlMetadataDocument: string;
+        /**
+         * The name of the SAML provider.
+         */
+        samlProviderName: string;
+        /**
+         * SSO types, 1. Role-based SSO, 2. User-based SSO.
+         */
+        ssoType: number;
+        /**
+         * User SSO status, 1. Enabled, 2. Disable other console login methods after enabling, 3. Disabled, is a required field when creating user SSO.
+         */
+        status: number;
+        /**
+         * The format for the resource name of an identity provider is trn:iam::${accountID}:saml-provider/{$SAMLProviderName}.
+         */
+        trn: string;
+        /**
+         * Identity provider update time, such as: 20150123T123318Z.
+         */
+        updateDate: string;
     }
 
     export interface UserGroupPolicyAttachmentsPolicy {
@@ -7446,6 +8405,255 @@ export namespace nat {
 
 }
 
+export namespace organization {
+    export interface AccountTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface AccountsAccount {
+        /**
+         * The id of the account.
+         */
+        accountId: string;
+        /**
+         * The name of the account.
+         */
+        accountName: string;
+        /**
+         * Whether to allow the account enable console. `0` means allowed, `1` means not allowed.
+         */
+        allowConsole: number;
+        /**
+         * Whether to allow exit the organization. `0` means allowed, `1` means not allowed.
+         */
+        allowExit: number;
+        /**
+         * The created time of the account.
+         */
+        createdTime: string;
+        /**
+         * The delete uk of the account.
+         */
+        deleteUk: string;
+        /**
+         * The deleted time of the account.
+         */
+        deletedTime: string;
+        /**
+         * The description of the account.
+         */
+        description: string;
+        /**
+         * The name of the iam role.
+         */
+        iamRole: string;
+        /**
+         * The id of the account.
+         */
+        id: string;
+        /**
+         * Whether the account is owner. `0` means not owner, `1` means owner.
+         */
+        isOwner: number;
+        /**
+         * The join type of the account. `0` means create, `1` means invitation.
+         */
+        joinType: number;
+        /**
+         * The id of the organization.
+         */
+        orgId: string;
+        /**
+         * The type of the organization. `1` means business organization.
+         */
+        orgType: number;
+        /**
+         * The id of the organization unit.
+         */
+        orgUnitId: string;
+        /**
+         * The name of the organization unit.
+         */
+        orgUnitName: string;
+        /**
+         * The id of the organization verification.
+         */
+        orgVerificationId: string;
+        /**
+         * The owner id of the account.
+         */
+        owner: string;
+        /**
+         * The show name of the account.
+         */
+        showName: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.organization.AccountsAccountTag[];
+        /**
+         * The updated time of the account.
+         */
+        updatedTime: string;
+    }
+
+    export interface AccountsAccountTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface OrganizationsOrganization {
+        /**
+         * The account id of the organization owner.
+         */
+        accountId: number;
+        /**
+         * The account name of the organization owner.
+         */
+        accountName: string;
+        /**
+         * The created time of the organization.
+         */
+        createdTime: string;
+        /**
+         * The delete uk of the organization.
+         */
+        deleteUk: string;
+        /**
+         * The deleted time of the organization.
+         */
+        deletedTime: string;
+        /**
+         * The description of the organization.
+         */
+        description: string;
+        /**
+         * The id of the organization.
+         */
+        id: string;
+        /**
+         * The main name of the organization owner.
+         */
+        mainName: string;
+        /**
+         * The name of the organization.
+         */
+        name: string;
+        /**
+         * The owner id of the organization.
+         */
+        owner: string;
+        /**
+         * The status of the organization.
+         */
+        status: number;
+        /**
+         * The type of the organization.
+         */
+        type: number;
+        /**
+         * The updated time of the organization.
+         */
+        updatedTime: string;
+    }
+
+    export interface ServiceControlPoliciesPolicy {
+        /**
+         * The create time of the Policy.
+         */
+        createDate: string;
+        /**
+         * The description of the Policy.
+         */
+        description: string;
+        /**
+         * The ID of the Policy.
+         */
+        id: string;
+        /**
+         * The name of the Policy.
+         */
+        policyName: string;
+        /**
+         * The type of policy. The value can be System or Custom.
+         */
+        policyType: string;
+        /**
+         * The statement of the Policy.
+         */
+        statement: string;
+        /**
+         * The update time of the Policy.
+         */
+        updateDate: string;
+    }
+
+    export interface UnitsUnit {
+        /**
+         * The created time of the organization unit.
+         */
+        createdTime: string;
+        /**
+         * Delete marker.
+         */
+        deleteUk: string;
+        /**
+         * The deleted time of the organization unit.
+         */
+        deletedTime: string;
+        /**
+         * The depth of the organization unit.
+         */
+        depth: number;
+        /**
+         * The description of the organization unit.
+         */
+        description: string;
+        /**
+         * The id of the organization unit.
+         */
+        id: string;
+        /**
+         * The name of the organization unit.
+         */
+        name: string;
+        /**
+         * The id of the organization.
+         */
+        orgId: string;
+        /**
+         * The organization type.
+         */
+        orgType: number;
+        /**
+         * The owner of the organization unit.
+         */
+        owner: string;
+        /**
+         * Parent Unit ID.
+         */
+        parentId: string;
+        /**
+         * The updated time of the organization unit.
+         */
+        updatedTime: string;
+    }
+
+}
+
 export namespace privatelink {
     export interface VpcEndpointConnectionZone {
         /**
@@ -8055,6 +9263,511 @@ export namespace rds {
 
 }
 
+export namespace rds_mssql {
+    export interface BackupBackupMeta {
+        /**
+         * The name of the database.
+         */
+        dbName: string;
+    }
+
+    export interface BackupsBackup {
+        /**
+         * The detail of the database.
+         */
+        backupDatabaseDetails: outputs.rds_mssql.BackupsBackupBackupDatabaseDetail[];
+        /**
+         * The end time of the backup.
+         */
+        backupEndTime: string;
+        /**
+         * The size of the backup file.
+         */
+        backupFileSize: number;
+        /**
+         * The id of the backup.
+         */
+        backupId: string;
+        /**
+         * The name of the backup method.
+         */
+        backupMethod: string;
+        /**
+         * The start time of the backup.
+         */
+        backupStartTime: string;
+        /**
+         * The status of the backup.
+         */
+        backupStatus: string;
+        /**
+         * The type of the backup.
+         */
+        backupType: string;
+        /**
+         * The type of the backup create.
+         */
+        createType: string;
+        /**
+         * The id of the backup.
+         */
+        id: string;
+    }
+
+    export interface BackupsBackupBackupDatabaseDetail {
+        /**
+         * External backup download link.
+         */
+        backupDownloadLinkEip: string;
+        /**
+         * Intranet backup download link.
+         */
+        backupDownloadLinkInner: string;
+        /**
+         * The end time of the backup.
+         */
+        backupEndTime: string;
+        /**
+         * The name of the backup file.
+         */
+        backupFileName: string;
+        /**
+         * The size of the backup file.
+         */
+        backupFileSize: number;
+        /**
+         * The start time of the backup.
+         */
+        backupStartTime: string;
+        /**
+         * The type of the backup.
+         */
+        backupType: string;
+        /**
+         * The name of the database.
+         */
+        databaseName: string;
+        /**
+         * Backup file preparation progress, unit: %.
+         */
+        downloadProgress: number;
+        /**
+         * Download status.
+         */
+        downloadStatus: string;
+        /**
+         * Download link expiration time.
+         */
+        linkExpiredTime: string;
+    }
+
+    export interface InstanceChargeInfo {
+        /**
+         * Whether to enable automatic renewal in the prepaid scenario. This parameter can be set when the ChargeType is `Prepaid`.
+         */
+        autoRenew: boolean;
+        chargeEndTime: string;
+        chargeStartTime: string;
+        chargeStatus: string;
+        /**
+         * The charge type. Valid values: `PostPaid`, `PrePaid`.
+         */
+        chargeType: string;
+        overdueReclaimTime: string;
+        overdueTime: string;
+        /**
+         * Purchase duration in a prepaid scenario. This parameter is required when the ChargeType is `Prepaid`.
+         */
+        period: number;
+    }
+
+    export interface InstanceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface InstancesInstance {
+        /**
+         * The used backup space of the instance. Unit: GiB.
+         */
+        backupUse: number;
+        /**
+         * The charge detail.
+         */
+        chargeDetails: outputs.rds_mssql.InstancesInstanceChargeDetail[];
+        /**
+         * The connection info of the instance.
+         */
+        connectionInfos: outputs.rds_mssql.InstancesInstanceConnectionInfo[];
+        /**
+         * Node creation time.
+         */
+        createTime: string;
+        /**
+         * Compatible version. Valid values: `SQLServer_2019_Std`, `SQLServer_2019_Web`, `SQLServer_2019_Ent`.
+         */
+        dbEngineVersion: string;
+        /**
+         * The id of the instance.
+         */
+        id: string;
+        /**
+         * The inner version of the instance.
+         */
+        innerVersion: string;
+        /**
+         * The instance category.
+         */
+        instanceCategory: string;
+        /**
+         * Id of the instance.
+         */
+        instanceId: string;
+        /**
+         * Name of the instance.
+         */
+        instanceName: string;
+        /**
+         * Status of the instance.
+         */
+        instanceStatus: string;
+        /**
+         * Instance type. Valid values: `HA`, `Basic`, `Cluster`.
+         */
+        instanceType: string;
+        /**
+         * The Memory.
+         */
+        memory: number;
+        /**
+         * Node detail information.
+         */
+        nodeDetailInfos: outputs.rds_mssql.InstancesInstanceNodeDetailInfo[];
+        /**
+         * The node spec.
+         */
+        nodeSpec: string;
+        /**
+         * The count of instance parameters.
+         */
+        parameterCount: number;
+        /**
+         * The list of instance parameters.
+         */
+        parameters: outputs.rds_mssql.InstancesInstanceParameter[];
+        /**
+         * The port of the instance.
+         */
+        port: string;
+        /**
+         * The id of the primary instance.
+         */
+        primaryInstanceId: string;
+        /**
+         * The project name.
+         */
+        projectName: string;
+        /**
+         * The number of read only instance.
+         */
+        readOnlyNumber: number;
+        /**
+         * The region id.
+         */
+        regionId: string;
+        /**
+         * Server sorting rules.
+         */
+        serverCollation: string;
+        /**
+         * Whether to enable slow query function.
+         */
+        slowQueryEnable: boolean;
+        /**
+         * The slow query time. Unit: second.
+         */
+        slowQueryTime: string;
+        /**
+         * The storage space.
+         */
+        storageSpace: number;
+        /**
+         * The storage type.
+         */
+        storageType: string;
+        /**
+         * The used storage space.
+         */
+        storageUse: number;
+        /**
+         * The subnet id.
+         */
+        subnetId: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.rds_mssql.InstancesInstanceTag[];
+        /**
+         * The time zone.
+         */
+        timeZone: string;
+        /**
+         * The update time of the instance.
+         */
+        updateTime: string;
+        /**
+         * The CPU size of the instance. For example: 1 represents 1U.
+         */
+        vCpu: number;
+        /**
+         * The vpc id.
+         */
+        vpcId: string;
+        /**
+         * The id of the zone.
+         */
+        zoneId: string;
+    }
+
+    export interface InstancesInstanceChargeDetail {
+        /**
+         * Whether to enable automatic renewal in the prepaid scenario. This parameter can be set when ChargeType is Prepaid.
+         */
+        autoRenew: boolean;
+        /**
+         * Charge end time.
+         */
+        chargeEndTime: string;
+        /**
+         * Charge start time.
+         */
+        chargeStartTime: string;
+        /**
+         * The charge status.
+         */
+        chargeStatus: string;
+        /**
+         * The charge type. Valid values: `PostPaid`, `PrePaid`.
+         */
+        chargeType: string;
+        /**
+         * Expected release time when overdue fees are shut down.
+         */
+        overdueReclaimTime: string;
+        /**
+         * Time for Disconnection due to Unpaid Fees.
+         */
+        overdueTime: string;
+        /**
+         * Purchase duration in a prepaid scenario.
+         */
+        period: number;
+        /**
+         * Purchase cycle in prepaid scenarios. This parameter can be set when ChargeType is Prepaid.
+         */
+        periodUnit: string;
+    }
+
+    export interface InstancesInstanceConnectionInfo {
+        /**
+         * The address info.
+         */
+        addresses: outputs.rds_mssql.InstancesInstanceConnectionInfoAddress[];
+        /**
+         * The description.
+         */
+        description: string;
+        /**
+         * The endpoint id.
+         */
+        endpointId: string;
+        /**
+         * The endpoint name.
+         */
+        endpointName: string;
+        /**
+         * The endpoint type.
+         */
+        endpointType: string;
+    }
+
+    export interface InstancesInstanceConnectionInfoAddress {
+        /**
+         * Whether to enable private to public network resolution.
+         */
+        dnsVisibility: boolean;
+        /**
+         * The domain.
+         */
+        domain: string;
+        /**
+         * The eip id for public address.
+         */
+        eipId: string;
+        /**
+         * The ip address.
+         */
+        ipAddress: string;
+        /**
+         * The network type.
+         */
+        networkType: string;
+        /**
+         * The port of the instance.
+         */
+        port: string;
+        /**
+         * The subnet id.
+         */
+        subnetId: string;
+    }
+
+    export interface InstancesInstanceNodeDetailInfo {
+        /**
+         * Node creation time.
+         */
+        createTime: string;
+        /**
+         * Id of the instance.
+         */
+        instanceId: string;
+        /**
+         * The Memory.
+         */
+        memory: number;
+        /**
+         * The Node ID.
+         */
+        nodeId: string;
+        /**
+         * The node ip.
+         */
+        nodeIp: string;
+        /**
+         * The node spec.
+         */
+        nodeSpec: string;
+        /**
+         * The node status.
+         */
+        nodeStatus: string;
+        /**
+         * The node type.
+         */
+        nodeType: string;
+        /**
+         * The region id.
+         */
+        regionId: string;
+        /**
+         * The update time of the instance.
+         */
+        updateTime: string;
+        /**
+         * The CPU size of the instance. For example: 1 represents 1U.
+         */
+        vCpu: number;
+        /**
+         * The id of the zone.
+         */
+        zoneId: string;
+    }
+
+    export interface InstancesInstanceParameter {
+        /**
+         * The valid value range of the parameter.
+         */
+        checkingCode: string;
+        /**
+         * Indicates whether the parameter running value can be modified.
+         */
+        forceModify: boolean;
+        /**
+         * Indicates whether the instance needs to be restarted to take effect after modifying the running value of the parameter.
+         */
+        forceRestart: boolean;
+        /**
+         * The default value of the parameter.
+         */
+        parameterDefaultValue: string;
+        /**
+         * The description of the parameter.
+         */
+        parameterDescription: string;
+        /**
+         * The name of the parameter.
+         */
+        parameterName: string;
+        /**
+         * The type of the parameter.
+         */
+        parameterType: string;
+        /**
+         * The value of the parameter.
+         */
+        parameterValue: string;
+    }
+
+    export interface InstancesInstanceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface InstancesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface RegionsRegion {
+        /**
+         * The id of the region.
+         */
+        regionId: string;
+        /**
+         * The name of region.
+         */
+        regionName: string;
+    }
+
+    export interface ZonesZone {
+        /**
+         * The description of the zone.
+         */
+        description: string;
+        /**
+         * The id of the zone.
+         */
+        id: string;
+        /**
+         * The id of the zone.
+         */
+        zoneId: string;
+        /**
+         * The name of the zone.
+         */
+        zoneName: string;
+    }
+
+}
+
 export namespace rds_mysql {
     export interface AccountAccountPrivilege {
         /**
@@ -8126,6 +9839,10 @@ export namespace rds_mysql {
          * The type of the allow list.
          */
         allowListType: string;
+        /**
+         * The IP address or a range of IP addresses in CIDR format.
+         */
+        allowLists: string[];
         /**
          * The total number of instances bound under the whitelist.
          */
@@ -8792,6 +10509,646 @@ export namespace rds_mysql {
          * The Value of Tags.
          */
         value: string;
+    }
+
+}
+
+export namespace rds_postgresql {
+    export interface AccountsAccount {
+        /**
+         * The name of the database account. This field supports fuzzy query.
+         */
+        accountName: string;
+        /**
+         * The privileges of the database account.
+         */
+        accountPrivileges: string;
+        /**
+         * The status of the database account.
+         */
+        accountStatus: string;
+        /**
+         * The type of the database account.
+         */
+        accountType: string;
+    }
+
+    export interface DatabasesDatabase {
+        /**
+         * Character classification.
+         */
+        cType: string;
+        /**
+         * The character set of the RDS database.
+         */
+        characterSetName: string;
+        /**
+         * The collate of database.
+         */
+        collate: string;
+        /**
+         * The name of the RDS database.
+         */
+        dbName: string;
+        /**
+         * The status of the RDS database.
+         */
+        dbStatus: string;
+        /**
+         * The owner of database.
+         */
+        owner: string;
+    }
+
+    export interface InstanceChargeDetail {
+        /**
+         * Whether to automatically renew in prepaid scenarios.
+         */
+        autoRenew: boolean;
+        /**
+         * Billing expiry time (yearly and monthly only).
+         */
+        chargeEndTime: string;
+        /**
+         * Billing start time (pay-as-you-go & monthly subscription).
+         */
+        chargeStartTime: string;
+        /**
+         * Pay status. Value:
+         * normal - normal
+         * overdue - overdue
+         * .
+         */
+        chargeStatus: string;
+        /**
+         * Payment type. Value:
+         * PostPaid - Pay-As-You-Go
+         * PrePaid - Yearly and monthly (default).
+         */
+        chargeType: string;
+        /**
+         * Estimated release time when arrears are closed (pay-as-you-go & monthly subscription).
+         */
+        overdueReclaimTime: string;
+        /**
+         * Shutdown time in arrears (pay-as-you-go & monthly subscription).
+         */
+        overdueTime: string;
+        /**
+         * Purchase duration in prepaid scenarios. Default: 1.
+         */
+        period: number;
+        /**
+         * The purchase cycle in the prepaid scenario.
+         * Month - monthly subscription (default)
+         * Year - Package year.
+         */
+        periodUnit: string;
+        /**
+         * Temporary upgrade of restoration time.
+         */
+        tempModifyEndTime: string;
+        /**
+         * Start time of temporary upgrade.
+         */
+        tempModifyStartTime: string;
+    }
+
+    export interface InstanceChargeInfo {
+        /**
+         * Whether to automatically renew in prepaid scenarios.
+         */
+        autoRenew: boolean;
+        /**
+         * Payment type. Value:
+         * PostPaid - Pay-As-You-Go
+         * PrePaid - Yearly and monthly (default).
+         */
+        chargeType: string;
+        /**
+         * Purchase duration in prepaid scenarios. Default: 1.
+         */
+        period: number;
+        /**
+         * The purchase cycle in the prepaid scenario.
+         * Month - monthly subscription (default)
+         * Year - Package year.
+         */
+        periodUnit: string;
+    }
+
+    export interface InstanceEndpoint {
+        /**
+         * Address list.
+         */
+        addresses: outputs.rds_postgresql.InstanceEndpointAddress[];
+        /**
+         * When the terminal type is read-write terminal or read-only terminal, it supports setting whether new nodes are automatically added.
+         */
+        autoAddNewNodes: string;
+        /**
+         * Address description.
+         */
+        description: string;
+        /**
+         * Whether global read-only is enabled, value: Enable: Enable. Disable: Disabled.
+         */
+        enableReadOnly: string;
+        /**
+         * Whether read-write separation is enabled, value: Enable: Enable. Disable: Disabled.
+         */
+        enableReadWriteSplitting: string;
+        /**
+         * Instance connection terminal ID.
+         */
+        endpointId: string;
+        /**
+         * The instance connection terminal name.
+         */
+        endpointName: string;
+        /**
+         * Terminal type:
+         * Cluster: The default terminal. (created by default)
+         * Primary: Primary node terminal.
+         * Custom: Custom terminal.
+         * Direct: Direct connection to the terminal. (Only the operation and maintenance side)
+         * AllNode: All node terminals. (Only the operation and maintenance side).
+         */
+        endpointType: string;
+        /**
+         * The list of nodes configured by the connection terminal and the corresponding read-only weights.
+         */
+        readOnlyNodeWeights: outputs.rds_postgresql.InstanceEndpointReadOnlyNodeWeight[];
+        /**
+         * Read and write mode:
+         * ReadWrite: read and write
+         * ReadOnly: read only (default).
+         */
+        readWriteMode: string;
+    }
+
+    export interface InstanceEndpointAddress {
+        /**
+         * DNS Visibility.
+         */
+        dnsVisibility: boolean;
+        /**
+         * Connect domain name.
+         */
+        domain: string;
+        /**
+         * The ID of the EIP, only valid for Public addresses.
+         */
+        eipId: string;
+        /**
+         * The IP Address.
+         */
+        ipAddress: string;
+        /**
+         * Network address type, temporarily Private, Public, PublicService.
+         */
+        networkType: string;
+        /**
+         * The Port.
+         */
+        port: string;
+        /**
+         * Subnet ID of the RDS PostgreSQL instance.
+         */
+        subnetId: string;
+    }
+
+    export interface InstanceEndpointReadOnlyNodeWeight {
+        /**
+         * Node ID.
+         */
+        nodeId: string;
+        /**
+         * Node type. Value: Primary: Primary node.
+         * Secondary: Standby node.
+         * ReadOnly: Read-only node.
+         */
+        nodeType: string;
+        /**
+         * The weight of the node.
+         */
+        weight: number;
+    }
+
+    export interface InstanceNode {
+        /**
+         * Node creation local time.
+         */
+        createTime: string;
+        /**
+         * Instance ID.
+         */
+        instanceId: string;
+        /**
+         * Memory size in GB.
+         */
+        memory: number;
+        /**
+         * Node ID.
+         */
+        nodeId: string;
+        /**
+         * The specification of primary node and secondary node.
+         */
+        nodeSpec: string;
+        /**
+         * Node state, value: aligned with instance state.
+         */
+        nodeStatus: string;
+        /**
+         * Node type. Value: Primary: Primary node.
+         * Secondary: Standby node.
+         * ReadOnly: Read-only node.
+         */
+        nodeType: string;
+        /**
+         * The region of the RDS PostgreSQL instance.
+         */
+        regionId: string;
+        /**
+         * The update time of the RDS PostgreSQL instance.
+         */
+        updateTime: string;
+        /**
+         * CPU size.
+         */
+        vCpu: number;
+        /**
+         * The available zone of the RDS PostgreSQL instance.
+         */
+        zoneId: string;
+    }
+
+    export interface InstanceParameter {
+        /**
+         * Parameter name.
+         */
+        name: string;
+        /**
+         * Parameter value.
+         */
+        value: string;
+    }
+
+    export interface InstanceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface InstancesInstance {
+        /**
+         * The instance has used backup space. Unit: GB.
+         */
+        backupUse: number;
+        /**
+         * Payment methods.
+         */
+        chargeDetails: outputs.rds_postgresql.InstancesInstanceChargeDetail[];
+        /**
+         * Node creation local time.
+         */
+        createTime: string;
+        /**
+         * Data synchronization mode.
+         */
+        dataSyncMode: string;
+        /**
+         * The version of the RDS PostgreSQL instance.
+         */
+        dbEngineVersion: string;
+        /**
+         * The endpoint info of the RDS instance.
+         */
+        endpoints: outputs.rds_postgresql.InstancesInstanceEndpoint[];
+        /**
+         * The ID of the RDS PostgreSQL instance.
+         */
+        id: string;
+        /**
+         * The id of the RDS PostgreSQL instance.
+         */
+        instanceId: string;
+        /**
+         * The name of the RDS PostgreSQL instance.
+         */
+        instanceName: string;
+        /**
+         * The status of the RDS PostgreSQL instance.
+         */
+        instanceStatus: string;
+        /**
+         * The instance type of the RDS PostgreSQL instance.
+         */
+        instanceType: string;
+        /**
+         * Memory size in GB.
+         */
+        memory: number;
+        /**
+         * The number of nodes.
+         */
+        nodeNumber: number;
+        /**
+         * General instance type, different from Custom instance type.
+         */
+        nodeSpec: string;
+        /**
+         * Instance node information.
+         */
+        nodes: outputs.rds_postgresql.InstancesInstanceNode[];
+        /**
+         * The project name of the RDS PostgreSQL instance.
+         */
+        projectName: string;
+        /**
+         * The region of the RDS PostgreSQL instance.
+         */
+        regionId: string;
+        /**
+         * Total instance storage space. Unit: GB.
+         */
+        storageSpace: number;
+        /**
+         * Instance storage type.
+         */
+        storageType: string;
+        /**
+         * The subnet ID of the RDS PostgreSQL instance.
+         */
+        subnetId: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.rds_postgresql.InstancesInstanceTag[];
+        /**
+         * The update time of the RDS PostgreSQL instance.
+         */
+        updateTime: string;
+        /**
+         * CPU size.
+         */
+        vCpu: number;
+        /**
+         * The vpc ID of the RDS PostgreSQL instance.
+         */
+        vpcId: string;
+        /**
+         * The available zone of the RDS PostgreSQL instance.
+         */
+        zoneId: string;
+        /**
+         * ID of the availability zone where each instance is located.
+         */
+        zoneIds: string[];
+    }
+
+    export interface InstancesInstanceChargeDetail {
+        /**
+         * Whether to automatically renew in prepaid scenarios.
+         * Autorenew_Enable
+         * Autorenew_Disable (default).
+         */
+        autoRenew: boolean;
+        /**
+         * Billing expiry time (yearly and monthly only).
+         */
+        chargeEndTime: string;
+        /**
+         * Billing start time (pay-as-you-go & monthly subscription).
+         */
+        chargeStartTime: string;
+        /**
+         * Pay status. Value:
+         * normal - normal
+         * overdue - overdue
+         * .
+         */
+        chargeStatus: string;
+        /**
+         * The charge type of the RDS instance.
+         */
+        chargeType: string;
+        /**
+         * Estimated release time when arrears are closed (pay-as-you-go & monthly subscription).
+         */
+        overdueReclaimTime: string;
+        /**
+         * Shutdown time in arrears (pay-as-you-go & monthly subscription).
+         */
+        overdueTime: string;
+        /**
+         * Purchase duration in prepaid scenarios. Default: 1.
+         */
+        period: number;
+        /**
+         * The purchase cycle in the prepaid scenario.
+         * Month - monthly subscription (default)
+         * Year - Package year.
+         */
+        periodUnit: string;
+        /**
+         * Temporary upgrade of restoration time.
+         */
+        tempModifyEndTime: string;
+        /**
+         * Start time of temporary upgrade.
+         */
+        tempModifyStartTime: string;
+    }
+
+    export interface InstancesInstanceEndpoint {
+        /**
+         * Address list.
+         */
+        addresses: outputs.rds_postgresql.InstancesInstanceEndpointAddress[];
+        /**
+         * When the terminal type is read-write terminal or read-only terminal, it supports setting whether new nodes are automatically added.
+         */
+        autoAddNewNodes: string;
+        /**
+         * Address description.
+         */
+        description: string;
+        /**
+         * Whether global read-only is enabled, value: Enable: Enable. Disable: Disabled.
+         */
+        enableReadOnly: string;
+        /**
+         * Whether read-write separation is enabled, value: Enable: Enable. Disable: Disabled.
+         */
+        enableReadWriteSplitting: string;
+        /**
+         * Instance connection terminal ID.
+         */
+        endpointId: string;
+        /**
+         * The instance connection terminal name.
+         */
+        endpointName: string;
+        /**
+         * Terminal type:
+         * Cluster: The default terminal. (created by default)
+         * Primary: Primary node terminal.
+         * Custom: Custom terminal.
+         * Direct: Direct connection to the terminal. (Only the operation and maintenance side)
+         * AllNode: All node terminals. (Only the operation and maintenance side).
+         */
+        endpointType: string;
+        /**
+         * The list of nodes configured by the connection terminal and the corresponding read-only weights.
+         */
+        readOnlyNodeWeights: outputs.rds_postgresql.InstancesInstanceEndpointReadOnlyNodeWeight[];
+        /**
+         * Read and write mode:
+         * ReadWrite: read and write
+         * ReadOnly: read only (default).
+         */
+        readWriteMode: string;
+    }
+
+    export interface InstancesInstanceEndpointAddress {
+        /**
+         * DNS Visibility.
+         */
+        dnsVisibility: boolean;
+        /**
+         * Connect domain name.
+         */
+        domain: string;
+        /**
+         * The ID of the EIP, only valid for Public addresses.
+         */
+        eipId: string;
+        /**
+         * The IP Address.
+         */
+        ipAddress: string;
+        /**
+         * Network address type, temporarily Private, Public, PublicService.
+         */
+        networkType: string;
+        /**
+         * The Port.
+         */
+        port: string;
+        /**
+         * The subnet ID of the RDS PostgreSQL instance.
+         */
+        subnetId: string;
+    }
+
+    export interface InstancesInstanceEndpointReadOnlyNodeWeight {
+        /**
+         * Node ID.
+         */
+        nodeId: string;
+        /**
+         * Node type. Value: Primary: Primary node.
+         * Secondary: Standby node.
+         * ReadOnly: Read-only node.
+         */
+        nodeType: string;
+        /**
+         * The weight of the node.
+         */
+        weight: number;
+    }
+
+    export interface InstancesInstanceNode {
+        /**
+         * Node creation local time.
+         */
+        createTime: string;
+        /**
+         * The id of the RDS PostgreSQL instance.
+         */
+        instanceId: string;
+        /**
+         * Memory size in GB.
+         */
+        memory: number;
+        /**
+         * Node ID.
+         */
+        nodeId: string;
+        /**
+         * General instance type, different from Custom instance type.
+         */
+        nodeSpec: string;
+        /**
+         * Node state, value: aligned with instance state.
+         */
+        nodeStatus: string;
+        /**
+         * Node type. Value: Primary: Primary node.
+         * Secondary: Standby node.
+         * ReadOnly: Read-only node.
+         */
+        nodeType: string;
+        /**
+         * The region of the RDS PostgreSQL instance.
+         */
+        regionId: string;
+        /**
+         * The update time of the RDS PostgreSQL instance.
+         */
+        updateTime: string;
+        /**
+         * CPU size.
+         */
+        vCpu: number;
+        /**
+         * The available zone of the RDS PostgreSQL instance.
+         */
+        zoneId: string;
+    }
+
+    export interface InstancesInstanceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface InstancesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface SchemasSchema {
+        /**
+         * The name of the database.
+         */
+        dbName: string;
+        /**
+         * The owner of the schema.
+         */
+        owner: string;
+        /**
+         * The name of the schema.
+         */
+        schemaName: string;
     }
 
 }
@@ -11579,6 +13936,17 @@ export namespace tos {
         permission: string;
     }
 
+    export interface BucketObjectTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface BucketObjectsObject {
         /**
          * The content the TOS Object when content type is json or text and xml.
@@ -11596,6 +13964,17 @@ export namespace tos {
          * The name the TOS Object storage class.
          */
         storageClass: string;
+    }
+
+    export interface BucketTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface BucketsBucket {
@@ -11667,6 +14046,17 @@ export namespace transit_router {
         transitRouterPeerAttachmentId: string;
     }
 
+    export interface BandwidthPackageTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface BandwidthPackagesBandwidthPackage {
         /**
          * The account id.
@@ -11717,6 +14107,10 @@ export namespace transit_router {
          */
         peerGeographicRegionSetId: string;
         /**
+         * The ProjectName of the TransitRouter bandwidth package.
+         */
+        projectName: string;
+        /**
          * The remaining bandwidth of the transit router bandwidth package. Unit: Mbps.
          */
         remainingBandwidth: number;
@@ -11724,6 +14118,10 @@ export namespace transit_router {
          * The status of the transit router bandwidth package.
          */
         status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.transit_router.BandwidthPackagesBandwidthPackageTag[];
         /**
          * The id of the transit router attachment.
          */
@@ -11757,6 +14155,39 @@ export namespace transit_router {
         transitRouterPeerAttachmentId: string;
     }
 
+    export interface BandwidthPackagesBandwidthPackageTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface BandwidthPackagesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface DirectConnectGatewayAttachmentTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface DirectConnectGatewayAttachmentsAttachment {
         /**
          * The account id.
@@ -11779,6 +14210,10 @@ export namespace transit_router {
          */
         status: string;
         /**
+         * Tags.
+         */
+        tags: outputs.transit_router.DirectConnectGatewayAttachmentsAttachmentTag[];
+        /**
          * The id of the transit router attachment.
          */
         transitRouterAttachmentId: string;
@@ -11794,6 +14229,28 @@ export namespace transit_router {
          * The update time.
          */
         updateTime: string;
+    }
+
+    export interface DirectConnectGatewayAttachmentsAttachmentTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface DirectConnectGatewayAttachmentsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface GrantRulesRule {
@@ -11821,6 +14278,28 @@ export namespace transit_router {
          * The update time of the rule.
          */
         updateTime: string;
+    }
+
+    export interface PeerAttachmentTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface PeerAttachmentsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface PeerAttachmentsTransitRouterAttachment {
@@ -11853,6 +14332,10 @@ export namespace transit_router {
          */
         status: string;
         /**
+         * Tags.
+         */
+        tags: outputs.transit_router.PeerAttachmentsTransitRouterAttachmentTag[];
+        /**
          * The id of the transit router peer attachment.
          */
         transitRouterAttachmentId: string;
@@ -11876,6 +14359,17 @@ export namespace transit_router {
          * The update time of the transit router peer attachment.
          */
         updateTime: string;
+    }
+
+    export interface PeerAttachmentsTransitRouterAttachmentTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface RouteEntriesEntry {
@@ -11955,6 +14449,17 @@ export namespace transit_router {
         transitRouterRouteTableId: string;
     }
 
+    export interface RouteTableTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface RouteTablesRouteTable {
         /**
          * The creation time of the route table.
@@ -11968,6 +14473,10 @@ export namespace transit_router {
          * The status of the route table.
          */
         status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.transit_router.RouteTablesRouteTableTag[];
         /**
          * The id of the route table.
          */
@@ -11984,6 +14493,39 @@ export namespace transit_router {
          * The update time of the route table.
          */
         updateTime: string;
+    }
+
+    export interface RouteTablesRouteTableTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface RouteTablesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface TransitRouterTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface TransitRouterTransitRouterAttachment {
@@ -12021,6 +14563,17 @@ export namespace transit_router {
         updateTime: string;
     }
 
+    export interface TransitRoutersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface TransitRoutersTransitRouter {
         /**
          * The ID of account.
@@ -12047,9 +14600,17 @@ export namespace transit_router {
          */
         overdueTime: string;
         /**
+         * The ProjectName of the transit router.
+         */
+        projectName: string;
+        /**
          * The status of the transit router.
          */
         status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.transit_router.TransitRoutersTransitRouterTag[];
         /**
          * The attachments of transit router.
          */
@@ -12066,6 +14627,17 @@ export namespace transit_router {
          * The update time.
          */
         updateTime: string;
+    }
+
+    export interface TransitRoutersTransitRouterTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface TransitRoutersTransitRouterTransitRouterAttachment {
@@ -12114,6 +14686,17 @@ export namespace transit_router {
         zoneId: string;
     }
 
+    export interface VpcAttachmentTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface VpcAttachmentsAttachment {
         /**
          * The collection of attach points.
@@ -12131,6 +14714,10 @@ export namespace transit_router {
          * The status of the transit router.
          */
         status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.transit_router.VpcAttachmentsAttachmentTag[];
         /**
          * The id of the transit router attachment.
          */
@@ -12168,6 +14755,39 @@ export namespace transit_router {
         zoneId: string;
     }
 
+    export interface VpcAttachmentsAttachmentTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface VpcAttachmentsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface VpnAttachmentTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface VpnAttachmentsAttachment {
         /**
          * The create time.
@@ -12181,6 +14801,10 @@ export namespace transit_router {
          * The status of the transit router.
          */
         status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.transit_router.VpnAttachmentsAttachmentTag[];
         /**
          * The id of the transit router attachment.
          */
@@ -12205,6 +14829,28 @@ export namespace transit_router {
          * The ID of the availability zone.
          */
         zoneId: string;
+    }
+
+    export interface VpnAttachmentsAttachmentTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface VpnAttachmentsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
 }
@@ -13636,7 +16282,9 @@ export namespace vke {
          */
         runningCount: number;
         /**
-         * Phase=Stopped total number of nodes.
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. Phase=Stopped total number of nodes.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
          */
         stoppedCount: number;
         /**
@@ -13922,6 +16570,10 @@ export namespace vke {
          */
         labels?: outputs.vke.DefaultNodePoolKubernetesConfigLabel[];
         /**
+         * The NamePrefix of node metadata.
+         */
+        namePrefix?: string;
+        /**
          * The Taints of KubernetesConfig.
          */
         taints?: outputs.vke.DefaultNodePoolKubernetesConfigTaint[];
@@ -14133,6 +16785,10 @@ export namespace vke {
          */
         labels?: outputs.vke.NodePoolKubernetesConfigLabel[];
         /**
+         * The NamePrefix of node metadata.
+         */
+        namePrefix?: string;
+        /**
          * The Taints of KubernetesConfig.
          */
         taints?: outputs.vke.NodePoolKubernetesConfigTaint[];
@@ -14308,15 +16964,21 @@ export namespace vke {
          */
         runningCount: number;
         /**
-         * The StartingCount of Node.
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. The StartingCount of Node.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
          */
         startingCount: number;
         /**
-         * The StoppedCount of Node.
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppedCount of Node.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
          */
         stoppedCount: number;
         /**
-         * The StoppingCount of Node.
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppingCount of Node.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
          */
         stoppingCount: number;
         /**
@@ -14413,6 +17075,10 @@ export namespace vke {
          * The InstanceTypeIds of NodeConfig.
          */
         instanceTypeIds: string[];
+        /**
+         * The NamePrefix of node metadata.
+         */
+        kubeConfigNamePrefix: string;
         /**
          * The LabelContent of KubernetesConfig.
          */
@@ -14554,15 +17220,21 @@ export namespace vke {
          */
         runningCount: number;
         /**
-         * The StartingCount of Node.
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. The StartingCount of Node.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
          */
         startingCount: number;
         /**
-         * The StoppedCount of Node.
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppedCount of Node.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
          */
         stoppedCount: number;
         /**
-         * The StoppingCount of Node.
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppingCount of Node.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
          */
         stoppingCount: number;
         /**
@@ -15716,6 +18388,17 @@ export namespace vpc {
         value: string;
     }
 
+    export interface SubnetTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface SubnetsSubnet {
         /**
          * The account ID which the subnet belongs to.
@@ -15770,6 +18453,10 @@ export namespace vpc {
          */
         subnetName: string;
         /**
+         * Tags.
+         */
+        tags: outputs.vpc.SubnetsSubnetTag[];
+        /**
          * The Count of ipv4.
          */
         totalIpv4Count: number;
@@ -15796,6 +18483,28 @@ export namespace vpc {
          * The route table type.
          */
         routeTableType: string;
+    }
+
+    export interface SubnetsSubnetTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface SubnetsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface VpcAssociateCen {

@@ -83,7 +83,7 @@ export class Address extends pulumi.CustomResource {
      */
     public /*out*/ readonly expiredTime!: pulumi.Output<string>;
     /**
-     * The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP`.
+     * The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP` or `Fusion_BGP`.
      */
     public readonly isp!: pulumi.Output<string>;
     /**
@@ -196,7 +196,7 @@ export interface AddressState {
      */
     expiredTime?: pulumi.Input<string>;
     /**
-     * The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP`.
+     * The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP` or `Fusion_BGP`.
      */
     isp?: pulumi.Input<string>;
     /**
@@ -246,7 +246,7 @@ export interface AddressArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP`.
+     * The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP` or `Fusion_BGP`.
      */
     isp?: pulumi.Input<string>;
     /**

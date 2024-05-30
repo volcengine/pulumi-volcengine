@@ -6,12 +6,15 @@ from .. import _utilities
 import typing
 # Export this package's modules as members:
 from .access_key import *
+from .access_keys import *
 from .login_profile import *
 from .policies import *
 from .policy import *
 from .role import *
 from .role_policy_attachment import *
 from .roles import *
+from .saml_provider import *
+from .saml_providers import *
 from .user import *
 from .user_group import *
 from .user_group_attachment import *

@@ -22,7 +22,9 @@ import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/bandwidth_package"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/eip"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
@@ -34,36 +36,128 @@ import (
 //				Isp:         pulumi.String("BGP"),
 //				Description: pulumi.String("acc-test"),
 //				ProjectName: pulumi.String("default"),
-//				SecurityProtectionTypes: pulumi.StringArray{
-//					pulumi.String("AntiDDoS_Enhanced"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			ipv4BandwidthPackage, err := bandwidth_package.NewBandwidthPackage(ctx, "ipv4BandwidthPackage", &bandwidth_package.BandwidthPackageArgs{
+//				BandwidthPackageName: pulumi.String("acc-test-bp"),
+//				BillingType:          pulumi.String("PostPaidByBandwidth"),
+//				Isp:                  pulumi.String("BGP"),
+//				Description:          pulumi.String("acc-test"),
+//				Bandwidth:            pulumi.Int(2),
+//				Protocol:             pulumi.String("IPv4"),
+//				Tags: bandwidth_package.BandwidthPackageTagArray{
+//					&bandwidth_package.BandwidthPackageTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
 //				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			fooBandwidthPackage, err := bandwidth_package.NewBandwidthPackage(ctx, "fooBandwidthPackage", &bandwidth_package.BandwidthPackageArgs{
-//				BandwidthPackageName: pulumi.String("acc-test"),
+//			_, err = bandwidth_package.NewAttachment(ctx, "ipv4Attachment", &bandwidth_package.AttachmentArgs{
+//				AllocationId:       fooAddress.ID(),
+//				BandwidthPackageId: ipv4BandwidthPackage.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooImages, err := ecs.Images(ctx, &ecs.ImagesArgs{
+//				OsType:         pulumi.StringRef("Linux"),
+//				Visibility:     pulumi.StringRef("public"),
+//				InstanceTypeId: pulumi.StringRef("ecs.g1.large"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:    pulumi.String("acc-test-vpc"),
+//				CidrBlock:  pulumi.String("172.16.0.0/16"),
+//				EnableIpv6: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName:    pulumi.String("acc-test-subnet"),
+//				CidrBlock:     pulumi.String("172.16.0.0/24"),
+//				ZoneId:        *pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:         fooVpc.ID(),
+//				Ipv6CidrBlock: pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSecurityGroup, err := vpc.NewSecurityGroup(ctx, "fooSecurityGroup", &vpc.SecurityGroupArgs{
+//				VpcId:             fooVpc.ID(),
+//				SecurityGroupName: pulumi.String("acc-test-security-group"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = vpc.NewIpv6Gateway(ctx, "fooIpv6Gateway", &vpc.Ipv6GatewayArgs{
+//				VpcId:       fooVpc.ID(),
+//				Description: pulumi.String("test"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooInstance, err := ecs.NewInstance(ctx, "fooInstance", &ecs.InstanceArgs{
+//				ImageId:            *pulumi.String(fooImages.Images[0].ImageId),
+//				InstanceType:       pulumi.String("ecs.g1.large"),
+//				InstanceName:       pulumi.String("acc-test-ecs-name"),
+//				Password:           pulumi.String("93f0cb0614Aab12"),
+//				InstanceChargeType: pulumi.String("PostPaid"),
+//				SystemVolumeType:   pulumi.String("ESSD_PL0"),
+//				SystemVolumeSize:   pulumi.Int(40),
+//				SubnetId:           fooSubnet.ID(),
+//				SecurityGroupIds: pulumi.StringArray{
+//					fooSecurityGroup.ID(),
+//				},
+//				Ipv6AddressCount: pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooIpv6Addresses := vpc.Ipv6AddressesOutput(ctx, vpc.Ipv6AddressesOutputArgs{
+//				AssociatedInstanceId: fooInstance.ID(),
+//			}, nil)
+//			fooIpv6AddressBandwidth, err := vpc.NewIpv6AddressBandwidth(ctx, "fooIpv6AddressBandwidth", &vpc.Ipv6AddressBandwidthArgs{
+//				Ipv6Address: fooIpv6Addresses.ApplyT(func(fooIpv6Addresses vpc.Ipv6AddressesResult) (*string, error) {
+//					return &fooIpv6Addresses.Ipv6Addresses[0].Ipv6Address, nil
+//				}).(pulumi.StringPtrOutput),
+//				BillingType: pulumi.String("PostPaidByBandwidth"),
+//				Bandwidth:   pulumi.Int(5),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			ipv6, err := bandwidth_package.NewBandwidthPackage(ctx, "ipv6", &bandwidth_package.BandwidthPackageArgs{
+//				BandwidthPackageName: pulumi.String("acc-test-bp"),
 //				BillingType:          pulumi.String("PostPaidByBandwidth"),
 //				Isp:                  pulumi.String("BGP"),
-//				Description:          pulumi.String("tftest-description"),
-//				Bandwidth:            pulumi.Int(10),
-//				Protocol:             pulumi.String("IPv4"),
+//				Description:          pulumi.String("acc-test"),
+//				Bandwidth:            pulumi.Int(2),
+//				Protocol:             pulumi.String("IPv6"),
 //				Tags: bandwidth_package.BandwidthPackageTagArray{
 //					&bandwidth_package.BandwidthPackageTagArgs{
-//						Key:   pulumi.String("tftest"),
-//						Value: pulumi.String("tftest"),
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
 //					},
-//				},
-//				SecurityProtectionTypes: pulumi.StringArray{
-//					pulumi.String("AntiDDoS_Enhanced"),
 //				},
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = bandwidth_package.NewAttachment(ctx, "fooAttachment", &bandwidth_package.AttachmentArgs{
-//				AllocationId:       fooAddress.ID(),
-//				BandwidthPackageId: fooBandwidthPackage.ID(),
+//				AllocationId:       fooIpv6AddressBandwidth.ID(),
+//				BandwidthPackageId: ipv6.ID(),
 //			})
 //			if err != nil {
 //				return err

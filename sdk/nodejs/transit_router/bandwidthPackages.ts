@@ -34,6 +34,8 @@ export function bandwidthPackages(args?: BandwidthPackagesArgs, opts?: pulumi.In
     return pulumi.runtime.invoke("volcengine:transit_router/bandwidthPackages:BandwidthPackages", {
         "ids": args.ids,
         "outputFile": args.outputFile,
+        "projectName": args.projectName,
+        "tags": args.tags,
         "transitRouterBandwidthPackageName": args.transitRouterBandwidthPackageName,
         "transitRouterPeerAttachmentId": args.transitRouterPeerAttachmentId,
     }, opts);
@@ -51,6 +53,14 @@ export interface BandwidthPackagesArgs {
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * The ProjectName of the TransitRouter bandwidth package.
+     */
+    projectName?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.transit_router.BandwidthPackagesTag[];
     /**
      * The name of the TransitRouter bandwidth package.
      */
@@ -75,6 +85,14 @@ export interface BandwidthPackagesResult {
     readonly id: string;
     readonly ids?: string[];
     readonly outputFile?: string;
+    /**
+     * The ProjectName of the transit router bandwidth package.
+     */
+    readonly projectName?: string;
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.transit_router.BandwidthPackagesTag[];
     /**
      * The total count of query.
      */
@@ -125,6 +143,14 @@ export interface BandwidthPackagesOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The ProjectName of the TransitRouter bandwidth package.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.transit_router.BandwidthPackagesTagArgs>[]>;
     /**
      * The name of the TransitRouter bandwidth package.
      */

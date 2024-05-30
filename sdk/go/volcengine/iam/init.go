@@ -31,6 +31,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Role{}
 	case "volcengine:iam/rolePolicyAttachment:RolePolicyAttachment":
 		r = &RolePolicyAttachment{}
+	case "volcengine:iam/samlProvider:SamlProvider":
+		r = &SamlProvider{}
 	case "volcengine:iam/user:User":
 		r = &User{}
 	case "volcengine:iam/userGroup:UserGroup":
@@ -77,6 +79,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"volcengine",
 		"iam/rolePolicyAttachment",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"iam/samlProvider",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

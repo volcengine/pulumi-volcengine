@@ -56,6 +56,8 @@ type VpnAttachmentsArgs struct {
 	Ids []string `pulumi:"ids"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// Tags.
+	Tags []VpnAttachmentsTag `pulumi:"tags"`
 	// The id of the transit router.
 	TransitRouterId string `pulumi:"transitRouterId"`
 	// The ID of the IPSec connection.
@@ -70,6 +72,8 @@ type VpnAttachmentsResult struct {
 	Id         string   `pulumi:"id"`
 	Ids        []string `pulumi:"ids"`
 	OutputFile *string  `pulumi:"outputFile"`
+	// Tags.
+	Tags []VpnAttachmentsTag `pulumi:"tags"`
 	// The total count of query.
 	TotalCount int `pulumi:"totalCount"`
 	// The id of the transit router.
@@ -97,6 +101,8 @@ type VpnAttachmentsOutputArgs struct {
 	Ids pulumi.StringArrayInput `pulumi:"ids"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// Tags.
+	Tags VpnAttachmentsTagArrayInput `pulumi:"tags"`
 	// The id of the transit router.
 	TransitRouterId pulumi.StringInput `pulumi:"transitRouterId"`
 	// The ID of the IPSec connection.
@@ -138,6 +144,11 @@ func (o VpnAttachmentsResultOutput) Ids() pulumi.StringArrayOutput {
 
 func (o VpnAttachmentsResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VpnAttachmentsResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o VpnAttachmentsResultOutput) Tags() VpnAttachmentsTagArrayOutput {
+	return o.ApplyT(func(v VpnAttachmentsResult) []VpnAttachmentsTag { return v.Tags }).(VpnAttachmentsTagArrayOutput)
 }
 
 // The total count of query.

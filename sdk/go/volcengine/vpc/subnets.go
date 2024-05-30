@@ -61,6 +61,8 @@ type SubnetsArgs struct {
 	RouteTableId *string `pulumi:"routeTableId"`
 	// The subnet name to query.
 	SubnetName *string `pulumi:"subnetName"`
+	// Tags.
+	Tags []SubnetsTag `pulumi:"tags"`
 	// The ID of VPC which subnet belongs to.
 	VpcId *string `pulumi:"vpcId"`
 	// The ID of zone which subnet belongs to.
@@ -80,6 +82,8 @@ type SubnetsResult struct {
 	SubnetName *string `pulumi:"subnetName"`
 	// The collection of Subnet query.
 	Subnets []SubnetsSubnet `pulumi:"subnets"`
+	// Tags.
+	Tags []SubnetsTag `pulumi:"tags"`
 	// The total count of Subnet query.
 	TotalCount int `pulumi:"totalCount"`
 	// The Vpc ID of Subnet.
@@ -113,6 +117,8 @@ type SubnetsOutputArgs struct {
 	RouteTableId pulumi.StringPtrInput `pulumi:"routeTableId"`
 	// The subnet name to query.
 	SubnetName pulumi.StringPtrInput `pulumi:"subnetName"`
+	// Tags.
+	Tags SubnetsTagArrayInput `pulumi:"tags"`
 	// The ID of VPC which subnet belongs to.
 	VpcId pulumi.StringPtrInput `pulumi:"vpcId"`
 	// The ID of zone which subnet belongs to.
@@ -168,6 +174,11 @@ func (o SubnetsResultOutput) SubnetName() pulumi.StringPtrOutput {
 // The collection of Subnet query.
 func (o SubnetsResultOutput) Subnets() SubnetsSubnetArrayOutput {
 	return o.ApplyT(func(v SubnetsResult) []SubnetsSubnet { return v.Subnets }).(SubnetsSubnetArrayOutput)
+}
+
+// Tags.
+func (o SubnetsResultOutput) Tags() SubnetsTagArrayOutput {
+	return o.ApplyT(func(v SubnetsResult) []SubnetsTag { return v.Tags }).(SubnetsTagArrayOutput)
 }
 
 // The total count of Subnet query.

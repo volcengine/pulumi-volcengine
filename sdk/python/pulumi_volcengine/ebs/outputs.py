@@ -8,10 +8,72 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
 
 __all__ = [
+    'VolumeTag',
+    'VolumesTagResult',
     'VolumesVolumeResult',
+    'VolumesVolumeTagResult',
 ]
+
+@pulumi.output_type
+class VolumeTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class VolumesTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
 
 @pulumi.output_type
 class VolumesVolumeResult(dict):
@@ -30,6 +92,7 @@ class VolumesVolumeResult(dict):
                  renew_type: int,
                  size: int,
                  status: str,
+                 tags: Sequence['outputs.VolumesVolumeTagResult'],
                  trade_status: int,
                  updated_at: str,
                  volume_id: str,
@@ -39,6 +102,7 @@ class VolumesVolumeResult(dict):
         """
         :param str instance_id: The Id of instance.
         :param str kind: The Kind of Volume.
+        :param Sequence['VolumesVolumeTagArgs'] tags: Tags.
         :param str volume_name: The name of Volume.
         :param str volume_type: The type of Volume.
         :param str zone_id: The Id of Zone.
@@ -57,6 +121,7 @@ class VolumesVolumeResult(dict):
         pulumi.set(__self__, "renew_type", renew_type)
         pulumi.set(__self__, "size", size)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "trade_status", trade_status)
         pulumi.set(__self__, "updated_at", updated_at)
         pulumi.set(__self__, "volume_id", volume_id)
@@ -141,6 +206,14 @@ class VolumesVolumeResult(dict):
         return pulumi.get(self, "status")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.VolumesVolumeTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="tradeStatus")
     def trade_status(self) -> int:
         return pulumi.get(self, "trade_status")
@@ -178,5 +251,34 @@ class VolumesVolumeResult(dict):
         The Id of Zone.
         """
         return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class VolumesVolumeTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 

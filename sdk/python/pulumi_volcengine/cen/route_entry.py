@@ -244,25 +244,6 @@ class RouteEntry(pulumi.CustomResource):
                  __props__=None):
         """
         Provides a resource to manage cen route entry
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_volcengine as volcengine
-
-        foo = volcengine.cen.RouteEntry("foo",
-            cen_id="cen-12ar8uclj68sg17q7y20v9gil",
-            destination_cidr_block="192.168.0.0/24",
-            instance_id="vpc-im67wjcikxkw8gbssx8ufpj8",
-            instance_region_id="cn-beijing",
-            instance_type="VPC")
-        foo1 = volcengine.cen.RouteEntry("foo1",
-            cen_id="cen-12ar8uclj68sg17q7y20v9gil",
-            destination_cidr_block="192.168.17.0/24",
-            instance_id="vpc-im67wjcikxkw8gbssx8ufpj8",
-            instance_region_id="cn-beijing",
-            instance_type="VPC")
-        ```
 
         ## Import
 
@@ -288,25 +269,6 @@ class RouteEntry(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides a resource to manage cen route entry
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_volcengine as volcengine
-
-        foo = volcengine.cen.RouteEntry("foo",
-            cen_id="cen-12ar8uclj68sg17q7y20v9gil",
-            destination_cidr_block="192.168.0.0/24",
-            instance_id="vpc-im67wjcikxkw8gbssx8ufpj8",
-            instance_region_id="cn-beijing",
-            instance_type="VPC")
-        foo1 = volcengine.cen.RouteEntry("foo1",
-            cen_id="cen-12ar8uclj68sg17q7y20v9gil",
-            destination_cidr_block="192.168.17.0/24",
-            instance_id="vpc-im67wjcikxkw8gbssx8ufpj8",
-            instance_region_id="cn-beijing",
-            instance_type="VPC")
-        ```
 
         ## Import
 

@@ -10,18 +10,54 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as volcengine from "@pulumi/volcengine";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const endpoint = new volcengine.privatelink.VpcEndpoint("endpoint", {
- *     securityGroupIds: ["sg-2d5z8cr53k45c58ozfdum****"],
- *     serviceId: "epsvc-2byz5nzgiansw2dx0eehh****",
- *     endpointName: "tf-test-ep",
- *     description: "tf-test",
+ * const fooZones = volcengine.ecs.Zones({});
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
  * });
- * const zone = new volcengine.privatelink.VpcEndpointZone("zone", {
- *     endpointId: endpoint.id,
- *     subnetId: "subnet-2bz47q19zhx4w2dx0eevn****",
- *     privateIpAddress: "172.16.0.252",
+ * const fooSubnet = new volcengine.vpc.Subnet("fooSubnet", {
+ *     subnetName: "acc-test-subnet",
+ *     cidrBlock: "172.16.0.0/24",
+ *     zoneId: fooZones.then(fooZones => fooZones.zones?.[0]?.id),
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
+ *     securityGroupName: "acc-test-security-group",
+ *     vpcId: fooVpc.id,
+ * });
+ * const fooClb = new volcengine.clb.Clb("fooClb", {
+ *     type: "public",
+ *     subnetId: fooSubnet.id,
+ *     loadBalancerSpec: "small_1",
+ *     description: "acc-test-demo",
+ *     loadBalancerName: "acc-test-clb",
+ *     loadBalancerBillingType: "PostPaid",
+ *     eipBillingConfig: {
+ *         isp: "BGP",
+ *         eipBillingType: "PostPaidByBandwidth",
+ *         bandwidth: 1,
+ *     },
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooVpcEndpointService = new volcengine.privatelink.VpcEndpointService("fooVpcEndpointService", {
+ *     resources: [{
+ *         resourceId: fooClb.id,
+ *         resourceType: "CLB",
+ *     }],
+ *     description: "acc-test",
+ *     autoAcceptEnabled: true,
+ * });
+ * const fooVpcEndpoint = new volcengine.privatelink.VpcEndpoint("fooVpcEndpoint", {
+ *     securityGroupIds: [fooSecurityGroup.id],
+ *     serviceId: fooVpcEndpointService.id,
+ *     endpointName: "acc-test-ep",
+ *     description: "acc-test",
  * });
  * ```
  *
@@ -94,7 +130,8 @@ export class VpcEndpoint extends pulumi.CustomResource {
      */
     public /*out*/ readonly endpointType!: pulumi.Output<string>;
     /**
-     * the security group ids of vpc endpoint.
+     * The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `volcengine.privatelink.SecurityGroup`.
+     * For operations that jointly use this resource and `volcengine.privatelink.SecurityGroup`, use lifecycle ignoreChanges to suppress changes to the 'security_group_ids' field.
      */
     public readonly securityGroupIds!: pulumi.Output<string[]>;
     /**
@@ -210,7 +247,8 @@ export interface VpcEndpointState {
      */
     endpointType?: pulumi.Input<string>;
     /**
-     * the security group ids of vpc endpoint.
+     * The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `volcengine.privatelink.SecurityGroup`.
+     * For operations that jointly use this resource and `volcengine.privatelink.SecurityGroup`, use lifecycle ignoreChanges to suppress changes to the 'security_group_ids' field.
      */
     securityGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -248,7 +286,8 @@ export interface VpcEndpointArgs {
      */
     endpointName?: pulumi.Input<string>;
     /**
-     * the security group ids of vpc endpoint.
+     * The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `volcengine.privatelink.SecurityGroup`.
+     * For operations that jointly use this resource and `volcengine.privatelink.SecurityGroup`, use lifecycle ignoreChanges to suppress changes to the 'security_group_ids' field.
      */
     securityGroupIds: pulumi.Input<pulumi.Input<string>[]>;
     /**

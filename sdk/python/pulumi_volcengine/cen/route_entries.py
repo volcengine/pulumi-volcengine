@@ -147,14 +147,6 @@ def route_entries(cen_id: Optional[str] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableRouteEntriesResult:
     """
     Use this data source to query detailed information of cen route entries
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_volcengine as volcengine
-
-    foo = volcengine.cen.route_entries(cen_id="cen-12ar8uclj68sg17q7y20v9gil")
-    ```
 
 
     :param str cen_id: A cen ID.
@@ -196,14 +188,6 @@ def route_entries_output(cen_id: Optional[pulumi.Input[str]] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[RouteEntriesResult]:
     """
     Use this data source to query detailed information of cen route entries
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_volcengine as volcengine
-
-    foo = volcengine.cen.route_entries(cen_id="cen-12ar8uclj68sg17q7y20v9gil")
-    ```
 
 
     :param str cen_id: A cen ID.

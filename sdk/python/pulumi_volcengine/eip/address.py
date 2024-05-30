@@ -30,7 +30,7 @@ class AddressArgs:
         :param pulumi.Input[str] billing_type: The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
         :param pulumi.Input[int] bandwidth: The peek bandwidth of the EIP.
         :param pulumi.Input[str] description: The description of the EIP.
-        :param pulumi.Input[str] isp: The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP`.
+        :param pulumi.Input[str] isp: The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP` or `Fusion_BGP`.
         :param pulumi.Input[str] name: The name of the EIP Address.
         :param pulumi.Input[int] period: The period of the EIP Address, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid Eip or changing the billing_type from PostPaid to PrePaid.
         :param pulumi.Input[str] project_name: The ProjectName of the EIP.
@@ -95,7 +95,7 @@ class AddressArgs:
     @pulumi.getter
     def isp(self) -> Optional[pulumi.Input[str]]:
         """
-        The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP`.
+        The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP` or `Fusion_BGP`.
         """
         return pulumi.get(self, "isp")
 
@@ -189,7 +189,7 @@ class _AddressState:
         :param pulumi.Input[str] description: The description of the EIP.
         :param pulumi.Input[str] eip_address: The ip address of the EIP.
         :param pulumi.Input[str] expired_time: The expired time of the EIP.
-        :param pulumi.Input[str] isp: The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP`.
+        :param pulumi.Input[str] isp: The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP` or `Fusion_BGP`.
         :param pulumi.Input[str] name: The name of the EIP Address.
         :param pulumi.Input[str] overdue_time: The overdue time of the EIP.
         :param pulumi.Input[int] period: The period of the EIP Address, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid Eip or changing the billing_type from PostPaid to PrePaid.
@@ -303,7 +303,7 @@ class _AddressState:
     @pulumi.getter
     def isp(self) -> Optional[pulumi.Input[str]]:
         """
-        The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP`.
+        The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP` or `Fusion_BGP`.
         """
         return pulumi.get(self, "isp")
 
@@ -439,7 +439,7 @@ class Address(pulumi.CustomResource):
         :param pulumi.Input[int] bandwidth: The peek bandwidth of the EIP.
         :param pulumi.Input[str] billing_type: The billing type of the EIP Address. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.
         :param pulumi.Input[str] description: The description of the EIP.
-        :param pulumi.Input[str] isp: The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP`.
+        :param pulumi.Input[str] isp: The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP` or `Fusion_BGP`.
         :param pulumi.Input[str] name: The name of the EIP Address.
         :param pulumi.Input[int] period: The period of the EIP Address, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid Eip or changing the billing_type from PostPaid to PrePaid.
         :param pulumi.Input[str] project_name: The ProjectName of the EIP.
@@ -561,7 +561,7 @@ class Address(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the EIP.
         :param pulumi.Input[str] eip_address: The ip address of the EIP.
         :param pulumi.Input[str] expired_time: The expired time of the EIP.
-        :param pulumi.Input[str] isp: The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP`.
+        :param pulumi.Input[str] isp: The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP` or `Fusion_BGP`.
         :param pulumi.Input[str] name: The name of the EIP Address.
         :param pulumi.Input[str] overdue_time: The overdue time of the EIP.
         :param pulumi.Input[int] period: The period of the EIP Address, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.This field is only effective when creating a PrePaid Eip or changing the billing_type from PostPaid to PrePaid.
@@ -642,7 +642,7 @@ class Address(pulumi.CustomResource):
     @pulumi.getter
     def isp(self) -> pulumi.Output[str]:
         """
-        The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP`.
+        The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP` or `Fusion_BGP`.
         """
         return pulumi.get(self, "isp")
 

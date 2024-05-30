@@ -17,41 +17,50 @@ __all__ = ['BucketObjectArgs', 'BucketObject']
 class BucketObjectArgs:
     def __init__(__self__, *,
                  bucket_name: pulumi.Input[str],
-                 file_path: pulumi.Input[str],
                  object_name: pulumi.Input[str],
                  account_acls: Optional[pulumi.Input[Sequence[pulumi.Input['BucketObjectAccountAclArgs']]]] = None,
+                 content: Optional[pulumi.Input[str]] = None,
                  content_md5: Optional[pulumi.Input[str]] = None,
                  content_type: Optional[pulumi.Input[str]] = None,
                  encryption: Optional[pulumi.Input[str]] = None,
+                 file_path: Optional[pulumi.Input[str]] = None,
                  public_acl: Optional[pulumi.Input[str]] = None,
-                 storage_class: Optional[pulumi.Input[str]] = None):
+                 storage_class: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['BucketObjectTagArgs']]]] = None):
         """
         The set of arguments for constructing a BucketObject resource.
         :param pulumi.Input[str] bucket_name: The name of the bucket.
-        :param pulumi.Input[str] file_path: The file path for upload.
         :param pulumi.Input[str] object_name: The name of the object.
         :param pulumi.Input[Sequence[pulumi.Input['BucketObjectAccountAclArgs']]] account_acls: The user set of grant full control.
+        :param pulumi.Input[str] content: The content of the TOS Object when content type is json or text and xml. Only one of `file_path,content` can be specified.
         :param pulumi.Input[str] content_md5: The file md5 sum (32-bit hexadecimal string) for upload.
         :param pulumi.Input[str] content_type: The content type of the object.
         :param pulumi.Input[str] encryption: The encryption of the object.Valid value is AES256.
+        :param pulumi.Input[str] file_path: The file path for upload. Only one of `file_path,content` can be specified.
         :param pulumi.Input[str] public_acl: The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
         :param pulumi.Input[str] storage_class: The storage type of the object.Valid value is STANDARD|IA.
+        :param pulumi.Input[Sequence[pulumi.Input['BucketObjectTagArgs']]] tags: Tos Bucket Tags.
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
-        pulumi.set(__self__, "file_path", file_path)
         pulumi.set(__self__, "object_name", object_name)
         if account_acls is not None:
             pulumi.set(__self__, "account_acls", account_acls)
+        if content is not None:
+            pulumi.set(__self__, "content", content)
         if content_md5 is not None:
             pulumi.set(__self__, "content_md5", content_md5)
         if content_type is not None:
             pulumi.set(__self__, "content_type", content_type)
         if encryption is not None:
             pulumi.set(__self__, "encryption", encryption)
+        if file_path is not None:
+            pulumi.set(__self__, "file_path", file_path)
         if public_acl is not None:
             pulumi.set(__self__, "public_acl", public_acl)
         if storage_class is not None:
             pulumi.set(__self__, "storage_class", storage_class)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="bucketName")
@@ -64,18 +73,6 @@ class BucketObjectArgs:
     @bucket_name.setter
     def bucket_name(self, value: pulumi.Input[str]):
         pulumi.set(self, "bucket_name", value)
-
-    @property
-    @pulumi.getter(name="filePath")
-    def file_path(self) -> pulumi.Input[str]:
-        """
-        The file path for upload.
-        """
-        return pulumi.get(self, "file_path")
-
-    @file_path.setter
-    def file_path(self, value: pulumi.Input[str]):
-        pulumi.set(self, "file_path", value)
 
     @property
     @pulumi.getter(name="objectName")
@@ -100,6 +97,18 @@ class BucketObjectArgs:
     @account_acls.setter
     def account_acls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BucketObjectAccountAclArgs']]]]):
         pulumi.set(self, "account_acls", value)
+
+    @property
+    @pulumi.getter
+    def content(self) -> Optional[pulumi.Input[str]]:
+        """
+        The content of the TOS Object when content type is json or text and xml. Only one of `file_path,content` can be specified.
+        """
+        return pulumi.get(self, "content")
+
+    @content.setter
+    def content(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "content", value)
 
     @property
     @pulumi.getter(name="contentMd5")
@@ -138,6 +147,18 @@ class BucketObjectArgs:
         pulumi.set(self, "encryption", value)
 
     @property
+    @pulumi.getter(name="filePath")
+    def file_path(self) -> Optional[pulumi.Input[str]]:
+        """
+        The file path for upload. Only one of `file_path,content` can be specified.
+        """
+        return pulumi.get(self, "file_path")
+
+    @file_path.setter
+    def file_path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "file_path", value)
+
+    @property
     @pulumi.getter(name="publicAcl")
     def public_acl(self) -> Optional[pulumi.Input[str]]:
         """
@@ -161,6 +182,18 @@ class BucketObjectArgs:
     def storage_class(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "storage_class", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BucketObjectTagArgs']]]]:
+        """
+        Tos Bucket Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BucketObjectTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _BucketObjectState:
@@ -176,20 +209,22 @@ class _BucketObjectState:
                  object_name: Optional[pulumi.Input[str]] = None,
                  public_acl: Optional[pulumi.Input[str]] = None,
                  storage_class: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['BucketObjectTagArgs']]]] = None,
                  version_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering BucketObject resources.
         :param pulumi.Input[Sequence[pulumi.Input['BucketObjectAccountAclArgs']]] account_acls: The user set of grant full control.
         :param pulumi.Input[str] bucket_name: The name of the bucket.
-        :param pulumi.Input[str] content: The content the TOS Object when content type is json or text and xml.
+        :param pulumi.Input[str] content: The content of the TOS Object when content type is json or text and xml. Only one of `file_path,content` can be specified.
         :param pulumi.Input[str] content_md5: The file md5 sum (32-bit hexadecimal string) for upload.
         :param pulumi.Input[str] content_type: The content type of the object.
         :param pulumi.Input[bool] enable_version: The flag of enable tos version.
         :param pulumi.Input[str] encryption: The encryption of the object.Valid value is AES256.
-        :param pulumi.Input[str] file_path: The file path for upload.
+        :param pulumi.Input[str] file_path: The file path for upload. Only one of `file_path,content` can be specified.
         :param pulumi.Input[str] object_name: The name of the object.
         :param pulumi.Input[str] public_acl: The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
         :param pulumi.Input[str] storage_class: The storage type of the object.Valid value is STANDARD|IA.
+        :param pulumi.Input[Sequence[pulumi.Input['BucketObjectTagArgs']]] tags: Tos Bucket Tags.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] version_ids: The version ids of the object if exist.
         """
         if account_acls is not None:
@@ -214,6 +249,8 @@ class _BucketObjectState:
             pulumi.set(__self__, "public_acl", public_acl)
         if storage_class is not None:
             pulumi.set(__self__, "storage_class", storage_class)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if version_ids is not None:
             pulumi.set(__self__, "version_ids", version_ids)
 
@@ -245,7 +282,7 @@ class _BucketObjectState:
     @pulumi.getter
     def content(self) -> Optional[pulumi.Input[str]]:
         """
-        The content the TOS Object when content type is json or text and xml.
+        The content of the TOS Object when content type is json or text and xml. Only one of `file_path,content` can be specified.
         """
         return pulumi.get(self, "content")
 
@@ -305,7 +342,7 @@ class _BucketObjectState:
     @pulumi.getter(name="filePath")
     def file_path(self) -> Optional[pulumi.Input[str]]:
         """
-        The file path for upload.
+        The file path for upload. Only one of `file_path,content` can be specified.
         """
         return pulumi.get(self, "file_path")
 
@@ -350,6 +387,18 @@ class _BucketObjectState:
         pulumi.set(self, "storage_class", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BucketObjectTagArgs']]]]:
+        """
+        Tos Bucket Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BucketObjectTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="versionIds")
     def version_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -369,6 +418,7 @@ class BucketObject(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  account_acls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BucketObjectAccountAclArgs']]]]] = None,
                  bucket_name: Optional[pulumi.Input[str]] = None,
+                 content: Optional[pulumi.Input[str]] = None,
                  content_md5: Optional[pulumi.Input[str]] = None,
                  content_type: Optional[pulumi.Input[str]] = None,
                  encryption: Optional[pulumi.Input[str]] = None,
@@ -376,6 +426,7 @@ class BucketObject(pulumi.CustomResource):
                  object_name: Optional[pulumi.Input[str]] = None,
                  public_acl: Optional[pulumi.Input[str]] = None,
                  storage_class: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BucketObjectTagArgs']]]]] = None,
                  __props__=None):
         """
         Provides a resource to manage tos object
@@ -396,11 +447,15 @@ class BucketObject(pulumi.CustomResource):
                     permission="WRITE_ACP",
                 ),
             ],
-            bucket_name="test-xym-1",
+            bucket_name="tf-acc-test-bucket",
             encryption="AES256",
             file_path="/Users/bytedance/Work/Go/build/test.txt",
-            object_name="demo_xym",
-            public_acl="private")
+            object_name="tf-acc-test-object",
+            public_acl="private",
+            tags=[volcengine.tos.BucketObjectTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -415,13 +470,15 @@ class BucketObject(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BucketObjectAccountAclArgs']]]] account_acls: The user set of grant full control.
         :param pulumi.Input[str] bucket_name: The name of the bucket.
+        :param pulumi.Input[str] content: The content of the TOS Object when content type is json or text and xml. Only one of `file_path,content` can be specified.
         :param pulumi.Input[str] content_md5: The file md5 sum (32-bit hexadecimal string) for upload.
         :param pulumi.Input[str] content_type: The content type of the object.
         :param pulumi.Input[str] encryption: The encryption of the object.Valid value is AES256.
-        :param pulumi.Input[str] file_path: The file path for upload.
+        :param pulumi.Input[str] file_path: The file path for upload. Only one of `file_path,content` can be specified.
         :param pulumi.Input[str] object_name: The name of the object.
         :param pulumi.Input[str] public_acl: The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
         :param pulumi.Input[str] storage_class: The storage type of the object.Valid value is STANDARD|IA.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BucketObjectTagArgs']]]] tags: Tos Bucket Tags.
         """
         ...
     @overload
@@ -448,11 +505,15 @@ class BucketObject(pulumi.CustomResource):
                     permission="WRITE_ACP",
                 ),
             ],
-            bucket_name="test-xym-1",
+            bucket_name="tf-acc-test-bucket",
             encryption="AES256",
             file_path="/Users/bytedance/Work/Go/build/test.txt",
-            object_name="demo_xym",
-            public_acl="private")
+            object_name="tf-acc-test-object",
+            public_acl="private",
+            tags=[volcengine.tos.BucketObjectTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -480,6 +541,7 @@ class BucketObject(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  account_acls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BucketObjectAccountAclArgs']]]]] = None,
                  bucket_name: Optional[pulumi.Input[str]] = None,
+                 content: Optional[pulumi.Input[str]] = None,
                  content_md5: Optional[pulumi.Input[str]] = None,
                  content_type: Optional[pulumi.Input[str]] = None,
                  encryption: Optional[pulumi.Input[str]] = None,
@@ -487,6 +549,7 @@ class BucketObject(pulumi.CustomResource):
                  object_name: Optional[pulumi.Input[str]] = None,
                  public_acl: Optional[pulumi.Input[str]] = None,
                  storage_class: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BucketObjectTagArgs']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -500,18 +563,17 @@ class BucketObject(pulumi.CustomResource):
             if bucket_name is None and not opts.urn:
                 raise TypeError("Missing required property 'bucket_name'")
             __props__.__dict__["bucket_name"] = bucket_name
+            __props__.__dict__["content"] = content
             __props__.__dict__["content_md5"] = content_md5
             __props__.__dict__["content_type"] = content_type
             __props__.__dict__["encryption"] = encryption
-            if file_path is None and not opts.urn:
-                raise TypeError("Missing required property 'file_path'")
             __props__.__dict__["file_path"] = file_path
             if object_name is None and not opts.urn:
                 raise TypeError("Missing required property 'object_name'")
             __props__.__dict__["object_name"] = object_name
             __props__.__dict__["public_acl"] = public_acl
             __props__.__dict__["storage_class"] = storage_class
-            __props__.__dict__["content"] = None
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["enable_version"] = None
             __props__.__dict__["version_ids"] = None
         super(BucketObject, __self__).__init__(
@@ -535,6 +597,7 @@ class BucketObject(pulumi.CustomResource):
             object_name: Optional[pulumi.Input[str]] = None,
             public_acl: Optional[pulumi.Input[str]] = None,
             storage_class: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BucketObjectTagArgs']]]]] = None,
             version_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'BucketObject':
         """
         Get an existing BucketObject resource's state with the given name, id, and optional extra
@@ -545,15 +608,16 @@ class BucketObject(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BucketObjectAccountAclArgs']]]] account_acls: The user set of grant full control.
         :param pulumi.Input[str] bucket_name: The name of the bucket.
-        :param pulumi.Input[str] content: The content the TOS Object when content type is json or text and xml.
+        :param pulumi.Input[str] content: The content of the TOS Object when content type is json or text and xml. Only one of `file_path,content` can be specified.
         :param pulumi.Input[str] content_md5: The file md5 sum (32-bit hexadecimal string) for upload.
         :param pulumi.Input[str] content_type: The content type of the object.
         :param pulumi.Input[bool] enable_version: The flag of enable tos version.
         :param pulumi.Input[str] encryption: The encryption of the object.Valid value is AES256.
-        :param pulumi.Input[str] file_path: The file path for upload.
+        :param pulumi.Input[str] file_path: The file path for upload. Only one of `file_path,content` can be specified.
         :param pulumi.Input[str] object_name: The name of the object.
         :param pulumi.Input[str] public_acl: The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
         :param pulumi.Input[str] storage_class: The storage type of the object.Valid value is STANDARD|IA.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BucketObjectTagArgs']]]] tags: Tos Bucket Tags.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] version_ids: The version ids of the object if exist.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -571,6 +635,7 @@ class BucketObject(pulumi.CustomResource):
         __props__.__dict__["object_name"] = object_name
         __props__.__dict__["public_acl"] = public_acl
         __props__.__dict__["storage_class"] = storage_class
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["version_ids"] = version_ids
         return BucketObject(resource_name, opts=opts, __props__=__props__)
 
@@ -594,7 +659,7 @@ class BucketObject(pulumi.CustomResource):
     @pulumi.getter
     def content(self) -> pulumi.Output[str]:
         """
-        The content the TOS Object when content type is json or text and xml.
+        The content of the TOS Object when content type is json or text and xml. Only one of `file_path,content` can be specified.
         """
         return pulumi.get(self, "content")
 
@@ -632,9 +697,9 @@ class BucketObject(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="filePath")
-    def file_path(self) -> pulumi.Output[str]:
+    def file_path(self) -> pulumi.Output[Optional[str]]:
         """
-        The file path for upload.
+        The file path for upload. Only one of `file_path,content` can be specified.
         """
         return pulumi.get(self, "file_path")
 
@@ -661,6 +726,14 @@ class BucketObject(pulumi.CustomResource):
         The storage type of the object.Valid value is STANDARD|IA.
         """
         return pulumi.get(self, "storage_class")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.BucketObjectTag']]]:
+        """
+        Tos Bucket Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="versionIds")

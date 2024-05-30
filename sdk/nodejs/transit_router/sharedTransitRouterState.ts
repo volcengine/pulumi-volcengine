@@ -12,9 +12,13 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.transit_router.SharedTransitRouterState("foo", {
+ * const fooTransitRouter = new volcengine.transit_router.TransitRouter("fooTransitRouter", {
+ *     transitRouterName: "acc-test-tr",
+ *     description: "acc-test",
+ * });
+ * const fooSharedTransitRouterState = new volcengine.transit_router.SharedTransitRouterState("fooSharedTransitRouterState", {
+ *     transitRouterId: fooTransitRouter.id,
  *     action: "Reject",
- *     transitRouterId: "tr-2bzy39uy6u3282dx0efxiqyq0",
  * });
  * ```
  *

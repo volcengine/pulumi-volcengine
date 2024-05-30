@@ -272,9 +272,13 @@ class Cen(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.cen.Cen("foo",
-            cen_name="tf-test-3",
-            description="tf-test",
-            project_name="default")
+            cen_name="acc-test-cen",
+            description="acc-test",
+            project_name="default",
+            tags=[volcengine.cen.CenTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -307,9 +311,13 @@ class Cen(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.cen.Cen("foo",
-            cen_name="tf-test-3",
-            description="tf-test",
-            project_name="default")
+            cen_name="acc-test-cen",
+            description="acc-test",
+            project_name="default",
+            tags=[volcengine.cen.CenTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import

@@ -29,6 +29,7 @@ export function subnets(args?: SubnetsArgs, opts?: pulumi.InvokeOptions): Promis
         "outputFile": args.outputFile,
         "routeTableId": args.routeTableId,
         "subnetName": args.subnetName,
+        "tags": args.tags,
         "vpcId": args.vpcId,
         "zoneId": args.zoneId,
     }, opts);
@@ -58,6 +59,10 @@ export interface SubnetsArgs {
      * The subnet name to query.
      */
     subnetName?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.vpc.SubnetsTag[];
     /**
      * The ID of VPC which subnet belongs to.
      */
@@ -91,6 +96,10 @@ export interface SubnetsResult {
      * The collection of Subnet query.
      */
     readonly subnets: outputs.vpc.SubnetsSubnet[];
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.vpc.SubnetsTag[];
     /**
      * The total count of Subnet query.
      */
@@ -145,6 +154,10 @@ export interface SubnetsOutputArgs {
      * The subnet name to query.
      */
     subnetName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpc.SubnetsTagArgs>[]>;
     /**
      * The ID of VPC which subnet belongs to.
      */

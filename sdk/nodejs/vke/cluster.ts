@@ -28,17 +28,6 @@ import * as utilities from "../utilities";
  *     vpcId: fooVpc.id,
  *     securityGroupName: "acc-test-security-group2",
  * });
- * const fooInstance = new volcengine.ecs.Instance("fooInstance", {
- *     imageId: "image-ybqi99s7yq8rx7mnk44b",
- *     instanceType: "ecs.g1ie.large",
- *     instanceName: "acc-test-ecs-name2",
- *     password: "93f0cb0614Aab12",
- *     instanceChargeType: "PostPaid",
- *     systemVolumeType: "ESSD_PL0",
- *     systemVolumeSize: 40,
- *     subnetId: fooSubnet.id,
- *     securityGroupIds: [fooSecurityGroup.id],
- * });
  * const fooCluster = new volcengine.vke.Cluster("fooCluster", {
  *     description: "created by terraform",
  *     deleteProtectionEnabled: false,
@@ -134,7 +123,7 @@ export class Cluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly kubeconfigPublic!: pulumi.Output<string>;
     /**
-     * The version of Kubernetes specified when creating a VKE cluster (specified to patch version), if not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
+     * The version of Kubernetes specified when creating a VKE cluster (specified to patch version), with an example value of `v1.24`. If not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
      */
     public readonly kubernetesVersion!: pulumi.Output<string>;
     /**
@@ -247,7 +236,7 @@ export interface ClusterState {
      */
     kubeconfigPublic?: pulumi.Input<string>;
     /**
-     * The version of Kubernetes specified when creating a VKE cluster (specified to patch version), if not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
+     * The version of Kubernetes specified when creating a VKE cluster (specified to patch version), with an example value of `v1.24`. If not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
      */
     kubernetesVersion?: pulumi.Input<string>;
     /**
@@ -293,7 +282,7 @@ export interface ClusterArgs {
      */
     description?: pulumi.Input<string>;
     /**
-     * The version of Kubernetes specified when creating a VKE cluster (specified to patch version), if not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
+     * The version of Kubernetes specified when creating a VKE cluster (specified to patch version), with an example value of `v1.24`. If not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
      */
     kubernetesVersion?: pulumi.Input<string>;
     /**

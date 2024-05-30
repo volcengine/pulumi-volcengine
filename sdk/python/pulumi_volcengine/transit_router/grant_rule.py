@@ -138,10 +138,13 @@ class GrantRule(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.transit_router.GrantRule("foo",
-            description="tf-test",
-            grant_account_id="200000xxxx",
-            transit_router_id="tr-2bzy39uy6u3282dx0efxiqyq0")
+        foo_transit_router = volcengine.transit_router.TransitRouter("fooTransitRouter",
+            transit_router_name="acc-test-tf",
+            description="acc-test-tf")
+        foo_grant_rule = volcengine.transit_router.GrantRule("fooGrantRule",
+            grant_account_id="2000xxxxx",
+            description="acc-test-tf",
+            transit_router_id=foo_transit_router.id)
         ```
 
         ## Import
@@ -172,10 +175,13 @@ class GrantRule(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.transit_router.GrantRule("foo",
-            description="tf-test",
-            grant_account_id="200000xxxx",
-            transit_router_id="tr-2bzy39uy6u3282dx0efxiqyq0")
+        foo_transit_router = volcengine.transit_router.TransitRouter("fooTransitRouter",
+            transit_router_name="acc-test-tf",
+            description="acc-test-tf")
+        foo_grant_rule = volcengine.transit_router.GrantRule("fooGrantRule",
+            grant_account_id="2000xxxxx",
+            description="acc-test-tf",
+            transit_router_id=foo_transit_router.id)
         ```
 
         ## Import

@@ -139,7 +139,7 @@ class ClbEipBillingConfigArgs:
                  bandwidth: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[str] eip_billing_type: The billing type of the EIP which automatically assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.When creating a `PrePaid` public CLB, this field must be specified as `PrePaid` simultaneously.When the LoadBalancerBillingType changes from `PostPaid` to `PrePaid`, please manually modify the value of this field to `PrePaid` simultaneously.
-        :param pulumi.Input[str] isp: The ISP of the EIP which automatically associated to CLB, the value can be `BGP`.
+        :param pulumi.Input[str] isp: The ISP of the EIP which automatically associated to CLB, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP` or `Fusion_BGP`.
         :param pulumi.Input[int] bandwidth: The peek bandwidth of the EIP which automatically assigned to CLB.
         """
         pulumi.set(__self__, "eip_billing_type", eip_billing_type)
@@ -163,7 +163,7 @@ class ClbEipBillingConfigArgs:
     @pulumi.getter
     def isp(self) -> pulumi.Input[str]:
         """
-        The ISP of the EIP which automatically associated to CLB, the value can be `BGP`.
+        The ISP of the EIP which automatically associated to CLB, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP` or `Fusion_BGP`.
         """
         return pulumi.get(self, "isp")
 

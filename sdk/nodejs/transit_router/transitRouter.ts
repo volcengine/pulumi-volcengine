@@ -16,6 +16,11 @@ import * as utilities from "../utilities";
  *
  * const foo = new volcengine.transit_router.TransitRouter("foo", {
  *     description: "acc-test",
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  *     transitRouterName: "acc-test-tr",
  * });
  * ```
@@ -77,9 +82,17 @@ export class TransitRouter extends pulumi.CustomResource {
      */
     public /*out*/ readonly overdueTime!: pulumi.Output<string>;
     /**
+     * The ProjectName of the transit router.
+     */
+    public readonly projectName!: pulumi.Output<string>;
+    /**
      * The status of the transit router.
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.transit_router.TransitRouterTag[] | undefined>;
     /**
      * The attachments of transit router.
      */
@@ -115,7 +128,9 @@ export class TransitRouter extends pulumi.CustomResource {
             resourceInputs["creationTime"] = state ? state.creationTime : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["overdueTime"] = state ? state.overdueTime : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["transitRouterAttachments"] = state ? state.transitRouterAttachments : undefined;
             resourceInputs["transitRouterId"] = state ? state.transitRouterId : undefined;
             resourceInputs["transitRouterName"] = state ? state.transitRouterName : undefined;
@@ -123,6 +138,8 @@ export class TransitRouter extends pulumi.CustomResource {
         } else {
             const args = argsOrState as TransitRouterArgs | undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["transitRouterName"] = args ? args.transitRouterName : undefined;
             resourceInputs["accountId"] = undefined /*out*/;
             resourceInputs["businessStatus"] = undefined /*out*/;
@@ -163,9 +180,17 @@ export interface TransitRouterState {
      */
     overdueTime?: pulumi.Input<string>;
     /**
+     * The ProjectName of the transit router.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * The status of the transit router.
      */
     status?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.transit_router.TransitRouterTag>[]>;
     /**
      * The attachments of transit router.
      */
@@ -192,6 +217,14 @@ export interface TransitRouterArgs {
      * The description of the transit router.
      */
     description?: pulumi.Input<string>;
+    /**
+     * The ProjectName of the transit router.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.transit_router.TransitRouterTag>[]>;
     /**
      * The name of the transit router.
      */

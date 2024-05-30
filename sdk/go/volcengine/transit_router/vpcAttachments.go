@@ -54,6 +54,8 @@ func VpcAttachments(ctx *pulumi.Context, args *VpcAttachmentsArgs, opts ...pulum
 type VpcAttachmentsArgs struct {
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// Tags.
+	Tags []VpcAttachmentsTag `pulumi:"tags"`
 	// A list of Transit Router Attachment ids.
 	TransitRouterAttachmentIds []string `pulumi:"transitRouterAttachmentIds"`
 	// The id of transit router.
@@ -69,6 +71,8 @@ type VpcAttachmentsResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id         string  `pulumi:"id"`
 	OutputFile *string `pulumi:"outputFile"`
+	// Tags.
+	Tags []VpcAttachmentsTag `pulumi:"tags"`
 	// The total count of query.
 	TotalCount                 int      `pulumi:"totalCount"`
 	TransitRouterAttachmentIds []string `pulumi:"transitRouterAttachmentIds"`
@@ -95,6 +99,8 @@ func VpcAttachmentsOutput(ctx *pulumi.Context, args VpcAttachmentsOutputArgs, op
 type VpcAttachmentsOutputArgs struct {
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// Tags.
+	Tags VpcAttachmentsTagArrayInput `pulumi:"tags"`
 	// A list of Transit Router Attachment ids.
 	TransitRouterAttachmentIds pulumi.StringArrayInput `pulumi:"transitRouterAttachmentIds"`
 	// The id of transit router.
@@ -134,6 +140,11 @@ func (o VpcAttachmentsResultOutput) Id() pulumi.StringOutput {
 
 func (o VpcAttachmentsResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VpcAttachmentsResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o VpcAttachmentsResultOutput) Tags() VpcAttachmentsTagArrayOutput {
+	return o.ApplyT(func(v VpcAttachmentsResult) []VpcAttachmentsTag { return v.Tags }).(VpcAttachmentsTagArrayOutput)
 }
 
 // The total count of query.

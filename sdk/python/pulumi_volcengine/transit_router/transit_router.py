@@ -17,14 +17,22 @@ __all__ = ['TransitRouterArgs', 'TransitRouter']
 class TransitRouterArgs:
     def __init__(__self__, *,
                  description: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['TransitRouterTagArgs']]]] = None,
                  transit_router_name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a TransitRouter resource.
         :param pulumi.Input[str] description: The description of the transit router.
+        :param pulumi.Input[str] project_name: The ProjectName of the transit router.
+        :param pulumi.Input[Sequence[pulumi.Input['TransitRouterTagArgs']]] tags: Tags.
         :param pulumi.Input[str] transit_router_name: The name of the transit router.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if transit_router_name is not None:
             pulumi.set(__self__, "transit_router_name", transit_router_name)
 
@@ -39,6 +47,30 @@ class TransitRouterArgs:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of the transit router.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TransitRouterTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TransitRouterTagArgs']]]]):
+        pulumi.set(self, "tags", value)
 
     @property
     @pulumi.getter(name="transitRouterName")
@@ -61,7 +93,9 @@ class _TransitRouterState:
                  creation_time: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  overdue_time: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['TransitRouterTagArgs']]]] = None,
                  transit_router_attachments: Optional[pulumi.Input[Sequence[pulumi.Input['TransitRouterTransitRouterAttachmentArgs']]]] = None,
                  transit_router_id: Optional[pulumi.Input[str]] = None,
                  transit_router_name: Optional[pulumi.Input[str]] = None,
@@ -73,7 +107,9 @@ class _TransitRouterState:
         :param pulumi.Input[str] creation_time: The create time.
         :param pulumi.Input[str] description: The description of the transit router.
         :param pulumi.Input[str] overdue_time: The overdue time.
+        :param pulumi.Input[str] project_name: The ProjectName of the transit router.
         :param pulumi.Input[str] status: The status of the transit router.
+        :param pulumi.Input[Sequence[pulumi.Input['TransitRouterTagArgs']]] tags: Tags.
         :param pulumi.Input[Sequence[pulumi.Input['TransitRouterTransitRouterAttachmentArgs']]] transit_router_attachments: The attachments of transit router.
         :param pulumi.Input[str] transit_router_id: The ID of the transit router.
         :param pulumi.Input[str] transit_router_name: The name of the transit router.
@@ -89,8 +125,12 @@ class _TransitRouterState:
             pulumi.set(__self__, "description", description)
         if overdue_time is not None:
             pulumi.set(__self__, "overdue_time", overdue_time)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if transit_router_attachments is not None:
             pulumi.set(__self__, "transit_router_attachments", transit_router_attachments)
         if transit_router_id is not None:
@@ -161,6 +201,18 @@ class _TransitRouterState:
         pulumi.set(self, "overdue_time", value)
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of the transit router.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
@@ -171,6 +223,18 @@ class _TransitRouterState:
     @status.setter
     def status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['TransitRouterTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['TransitRouterTagArgs']]]]):
+        pulumi.set(self, "tags", value)
 
     @property
     @pulumi.getter(name="transitRouterAttachments")
@@ -227,6 +291,8 @@ class TransitRouter(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TransitRouterTagArgs']]]]] = None,
                  transit_router_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -239,6 +305,11 @@ class TransitRouter(pulumi.CustomResource):
 
         foo = volcengine.transit_router.TransitRouter("foo",
             description="acc-test",
+            project_name="default",
+            tags=[volcengine.transit_router.TransitRouterTagArgs(
+                key="k1",
+                value="v1",
+            )],
             transit_router_name="acc-test-tr")
         ```
 
@@ -253,6 +324,8 @@ class TransitRouter(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the transit router.
+        :param pulumi.Input[str] project_name: The ProjectName of the transit router.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TransitRouterTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] transit_router_name: The name of the transit router.
         """
         ...
@@ -271,6 +344,11 @@ class TransitRouter(pulumi.CustomResource):
 
         foo = volcengine.transit_router.TransitRouter("foo",
             description="acc-test",
+            project_name="default",
+            tags=[volcengine.transit_router.TransitRouterTagArgs(
+                key="k1",
+                value="v1",
+            )],
             transit_router_name="acc-test-tr")
         ```
 
@@ -298,6 +376,8 @@ class TransitRouter(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TransitRouterTagArgs']]]]] = None,
                  transit_router_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -309,6 +389,8 @@ class TransitRouter(pulumi.CustomResource):
             __props__ = TransitRouterArgs.__new__(TransitRouterArgs)
 
             __props__.__dict__["description"] = description
+            __props__.__dict__["project_name"] = project_name
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["transit_router_name"] = transit_router_name
             __props__.__dict__["account_id"] = None
             __props__.__dict__["business_status"] = None
@@ -333,7 +415,9 @@ class TransitRouter(pulumi.CustomResource):
             creation_time: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             overdue_time: Optional[pulumi.Input[str]] = None,
+            project_name: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TransitRouterTagArgs']]]]] = None,
             transit_router_attachments: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TransitRouterTransitRouterAttachmentArgs']]]]] = None,
             transit_router_id: Optional[pulumi.Input[str]] = None,
             transit_router_name: Optional[pulumi.Input[str]] = None,
@@ -350,7 +434,9 @@ class TransitRouter(pulumi.CustomResource):
         :param pulumi.Input[str] creation_time: The create time.
         :param pulumi.Input[str] description: The description of the transit router.
         :param pulumi.Input[str] overdue_time: The overdue time.
+        :param pulumi.Input[str] project_name: The ProjectName of the transit router.
         :param pulumi.Input[str] status: The status of the transit router.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TransitRouterTagArgs']]]] tags: Tags.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TransitRouterTransitRouterAttachmentArgs']]]] transit_router_attachments: The attachments of transit router.
         :param pulumi.Input[str] transit_router_id: The ID of the transit router.
         :param pulumi.Input[str] transit_router_name: The name of the transit router.
@@ -365,7 +451,9 @@ class TransitRouter(pulumi.CustomResource):
         __props__.__dict__["creation_time"] = creation_time
         __props__.__dict__["description"] = description
         __props__.__dict__["overdue_time"] = overdue_time
+        __props__.__dict__["project_name"] = project_name
         __props__.__dict__["status"] = status
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["transit_router_attachments"] = transit_router_attachments
         __props__.__dict__["transit_router_id"] = transit_router_id
         __props__.__dict__["transit_router_name"] = transit_router_name
@@ -413,12 +501,28 @@ class TransitRouter(pulumi.CustomResource):
         return pulumi.get(self, "overdue_time")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[str]:
+        """
+        The ProjectName of the transit router.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
         """
         The status of the transit router.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.TransitRouterTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="transitRouterAttachments")

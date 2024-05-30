@@ -16,8 +16,10 @@ import * as alb from "./alb";
 import * as autoscaling from "./autoscaling";
 import * as bandwidth_package from "./bandwidth_package";
 import * as bioos from "./bioos";
+import * as cdn from "./cdn";
 import * as cen from "./cen";
 import * as clb from "./clb";
+import * as cloud_monitor from "./cloud_monitor";
 import * as cloudfs from "./cloudfs";
 import * as config from "./config";
 import * as cr from "./cr";
@@ -30,9 +32,12 @@ import * as iam from "./iam";
 import * as mongodb from "./mongodb";
 import * as nas from "./nas";
 import * as nat from "./nat";
+import * as organization from "./organization";
 import * as privatelink from "./privatelink";
 import * as rds from "./rds";
+import * as rds_mssql from "./rds_mssql";
 import * as rds_mysql from "./rds_mysql";
+import * as rds_postgresql from "./rds_postgresql";
 import * as rds_v2 from "./rds_v2";
 import * as redis from "./redis";
 import * as tls from "./tls";
@@ -49,8 +54,10 @@ export {
     autoscaling,
     bandwidth_package,
     bioos,
+    cdn,
     cen,
     clb,
+    cloud_monitor,
     cloudfs,
     config,
     cr,
@@ -63,9 +70,12 @@ export {
     mongodb,
     nas,
     nat,
+    organization,
     privatelink,
     rds,
+    rds_mssql,
     rds_mysql,
+    rds_postgresql,
     rds_v2,
     redis,
     tls,

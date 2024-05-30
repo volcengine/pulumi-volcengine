@@ -12,9 +12,33 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.cen.BandwidthPackageAssociate("foo", {
- *     cenBandwidthPackageId: "cbp-2bzeew3s8p79c2dx0eeohej4x",
- *     cenId: "cen-2bzrl3srxsv0g2dx0efyoojn3",
+ * const fooCen = new volcengine.cen.Cen("fooCen", {
+ *     cenName: "acc-test-cen",
+ *     description: "acc-test",
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooBandwidthPackage = new volcengine.cen.BandwidthPackage("fooBandwidthPackage", {
+ *     localGeographicRegionSetId: "China",
+ *     peerGeographicRegionSetId: "China",
+ *     bandwidth: 2,
+ *     cenBandwidthPackageName: "acc-test-cen-bp",
+ *     description: "acc-test",
+ *     billingType: "PrePaid",
+ *     periodUnit: "Month",
+ *     period: 1,
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooBandwidthPackageAssociate = new volcengine.cen.BandwidthPackageAssociate("fooBandwidthPackageAssociate", {
+ *     cenBandwidthPackageId: fooBandwidthPackage.id,
+ *     cenId: fooCen.id,
  * });
  * ```
  *

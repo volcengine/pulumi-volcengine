@@ -12,15 +12,22 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.cen.AttachInstance("foo", {
- *     cenId: "cen-12ar8uclj68sg17q7y20v9gil",
- *     instanceId: "vpc-2fe5dpn0av2m859gp68rhk2dc",
- *     instanceRegionId: "cn-beijing",
- *     instanceType: "VPC",
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
  * });
- * const foo1 = new volcengine.cen.AttachInstance("foo1", {
- *     cenId: "cen-12ar8uclj68sg17q7y20v9gil",
- *     instanceId: "vpc-in66ktl5t24g8gbssz0sqva1",
+ * const fooCen = new volcengine.cen.Cen("fooCen", {
+ *     cenName: "acc-test-cen",
+ *     description: "acc-test",
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooAttachInstance = new volcengine.cen.AttachInstance("fooAttachInstance", {
+ *     cenId: fooCen.id,
+ *     instanceId: fooVpc.id,
  *     instanceRegionId: "cn-beijing",
  *     instanceType: "VPC",
  * });

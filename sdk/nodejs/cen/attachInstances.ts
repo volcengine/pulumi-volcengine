@@ -13,9 +13,29 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = volcengine.cen.AttachInstances({
- *     cenId: "cen-2bzrl3srxsv0g2dx0efyoojn3",
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooCen = new volcengine.cen.Cen("fooCen", {
+ *     cenName: "acc-test-cen",
+ *     description: "acc-test",
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooAttachInstance = new volcengine.cen.AttachInstance("fooAttachInstance", {
+ *     cenId: fooCen.id,
+ *     instanceId: fooVpc.id,
+ *     instanceRegionId: "cn-beijing",
+ *     instanceType: "VPC",
+ * });
+ * const fooAttachInstances = volcengine.cen.AttachInstancesOutput({
+ *     cenId: fooAttachInstance.cenId,
  * });
  * ```
  */
@@ -99,9 +119,29 @@ export interface AttachInstancesResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = volcengine.cen.AttachInstances({
- *     cenId: "cen-2bzrl3srxsv0g2dx0efyoojn3",
+ * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
+ *     vpcName: "acc-test-vpc",
+ *     cidrBlock: "172.16.0.0/16",
+ * });
+ * const fooCen = new volcengine.cen.Cen("fooCen", {
+ *     cenName: "acc-test-cen",
+ *     description: "acc-test",
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooAttachInstance = new volcengine.cen.AttachInstance("fooAttachInstance", {
+ *     cenId: fooCen.id,
+ *     instanceId: fooVpc.id,
+ *     instanceRegionId: "cn-beijing",
+ *     instanceType: "VPC",
+ * });
+ * const fooAttachInstances = volcengine.cen.AttachInstancesOutput({
+ *     cenId: fooAttachInstance.cenId,
  * });
  * ```
  */

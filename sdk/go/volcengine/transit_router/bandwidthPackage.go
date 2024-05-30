@@ -27,10 +27,17 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := transit_router.NewBandwidthPackage(ctx, "foo", &transit_router.BandwidthPackageArgs{
-//				Bandwidth:                         pulumi.Int(2),
-//				Description:                       pulumi.String("acc-test"),
-//				Period:                            pulumi.Int(1),
-//				RenewType:                         pulumi.String("Manual"),
+//				Bandwidth:   pulumi.Int(2),
+//				Description: pulumi.String("acc-test"),
+//				Period:      pulumi.Int(1),
+//				ProjectName: pulumi.String("default"),
+//				RenewType:   pulumi.String("Manual"),
+//				Tags: transit_router.BandwidthPackageTagArray{
+//					&transit_router.BandwidthPackageTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
 //				TransitRouterBandwidthPackageName: pulumi.String("acc-tf-test"),
 //			})
 //			if err != nil {
@@ -70,6 +77,8 @@ type BandwidthPackage struct {
 	ExpiredTime pulumi.StringOutput `pulumi:"expiredTime"`
 	// The period of the transit router bandwidth package, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.The modification of this field only takes effect when the value of the `renewType` is `Manual`.
 	Period pulumi.IntPtrOutput `pulumi:"period"`
+	// The ProjectName of the transit router bandwidth package.
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The remaining renewal times of of the transit router bandwidth package. Valid values: -1 or 1~100. Default value is -1, means unlimited renewal.This field is only effective when the value of the `renewType` is `Auto`.
 	RemainRenewTimes pulumi.IntPtrOutput `pulumi:"remainRenewTimes"`
 	// The remaining bandwidth of the transit router bandwidth package. Unit: Mbps.
@@ -80,6 +89,8 @@ type BandwidthPackage struct {
 	RenewType pulumi.StringPtrOutput `pulumi:"renewType"`
 	// The status of the transit router bandwidth package.
 	Status pulumi.StringOutput `pulumi:"status"`
+	// Tags.
+	Tags BandwidthPackageTagArrayOutput `pulumi:"tags"`
 	// The name of the transit router bandwidth package.
 	TransitRouterBandwidthPackageName pulumi.StringOutput `pulumi:"transitRouterBandwidthPackageName"`
 	// The update time of the transit router bandwidth package.
@@ -132,6 +143,8 @@ type bandwidthPackageState struct {
 	ExpiredTime *string `pulumi:"expiredTime"`
 	// The period of the transit router bandwidth package, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.The modification of this field only takes effect when the value of the `renewType` is `Manual`.
 	Period *int `pulumi:"period"`
+	// The ProjectName of the transit router bandwidth package.
+	ProjectName *string `pulumi:"projectName"`
 	// The remaining renewal times of of the transit router bandwidth package. Valid values: -1 or 1~100. Default value is -1, means unlimited renewal.This field is only effective when the value of the `renewType` is `Auto`.
 	RemainRenewTimes *int `pulumi:"remainRenewTimes"`
 	// The remaining bandwidth of the transit router bandwidth package. Unit: Mbps.
@@ -142,6 +155,8 @@ type bandwidthPackageState struct {
 	RenewType *string `pulumi:"renewType"`
 	// The status of the transit router bandwidth package.
 	Status *string `pulumi:"status"`
+	// Tags.
+	Tags []BandwidthPackageTag `pulumi:"tags"`
 	// The name of the transit router bandwidth package.
 	TransitRouterBandwidthPackageName *string `pulumi:"transitRouterBandwidthPackageName"`
 	// The update time of the transit router bandwidth package.
@@ -165,6 +180,8 @@ type BandwidthPackageState struct {
 	ExpiredTime pulumi.StringPtrInput
 	// The period of the transit router bandwidth package, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.The modification of this field only takes effect when the value of the `renewType` is `Manual`.
 	Period pulumi.IntPtrInput
+	// The ProjectName of the transit router bandwidth package.
+	ProjectName pulumi.StringPtrInput
 	// The remaining renewal times of of the transit router bandwidth package. Valid values: -1 or 1~100. Default value is -1, means unlimited renewal.This field is only effective when the value of the `renewType` is `Auto`.
 	RemainRenewTimes pulumi.IntPtrInput
 	// The remaining bandwidth of the transit router bandwidth package. Unit: Mbps.
@@ -175,6 +192,8 @@ type BandwidthPackageState struct {
 	RenewType pulumi.StringPtrInput
 	// The status of the transit router bandwidth package.
 	Status pulumi.StringPtrInput
+	// Tags.
+	Tags BandwidthPackageTagArrayInput
 	// The name of the transit router bandwidth package.
 	TransitRouterBandwidthPackageName pulumi.StringPtrInput
 	// The update time of the transit router bandwidth package.
@@ -192,12 +211,16 @@ type bandwidthPackageArgs struct {
 	Description *string `pulumi:"description"`
 	// The period of the transit router bandwidth package, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.The modification of this field only takes effect when the value of the `renewType` is `Manual`.
 	Period *int `pulumi:"period"`
+	// The ProjectName of the transit router bandwidth package.
+	ProjectName *string `pulumi:"projectName"`
 	// The remaining renewal times of of the transit router bandwidth package. Valid values: -1 or 1~100. Default value is -1, means unlimited renewal.This field is only effective when the value of the `renewType` is `Auto`.
 	RemainRenewTimes *int `pulumi:"remainRenewTimes"`
 	// The auto renewal period of the transit router bandwidth package. Valid values: 1,2,3,6,12. Default value is 1. Unit: Month.This field is only effective when the value of the `renewType` is `Auto`. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	RenewPeriod *int `pulumi:"renewPeriod"`
 	// The renewal type of the transit router bandwidth package. Valid values: `Manual`, `Auto`, `NoRenew`. Default is `Manual`.This field is only effective when modifying the bandwidth package.
 	RenewType *string `pulumi:"renewType"`
+	// Tags.
+	Tags []BandwidthPackageTag `pulumi:"tags"`
 	// The name of the transit router bandwidth package.
 	TransitRouterBandwidthPackageName *string `pulumi:"transitRouterBandwidthPackageName"`
 }
@@ -210,12 +233,16 @@ type BandwidthPackageArgs struct {
 	Description pulumi.StringPtrInput
 	// The period of the transit router bandwidth package, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.The modification of this field only takes effect when the value of the `renewType` is `Manual`.
 	Period pulumi.IntPtrInput
+	// The ProjectName of the transit router bandwidth package.
+	ProjectName pulumi.StringPtrInput
 	// The remaining renewal times of of the transit router bandwidth package. Valid values: -1 or 1~100. Default value is -1, means unlimited renewal.This field is only effective when the value of the `renewType` is `Auto`.
 	RemainRenewTimes pulumi.IntPtrInput
 	// The auto renewal period of the transit router bandwidth package. Valid values: 1,2,3,6,12. Default value is 1. Unit: Month.This field is only effective when the value of the `renewType` is `Auto`. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	RenewPeriod pulumi.IntPtrInput
 	// The renewal type of the transit router bandwidth package. Valid values: `Manual`, `Auto`, `NoRenew`. Default is `Manual`.This field is only effective when modifying the bandwidth package.
 	RenewType pulumi.StringPtrInput
+	// Tags.
+	Tags BandwidthPackageTagArrayInput
 	// The name of the transit router bandwidth package.
 	TransitRouterBandwidthPackageName pulumi.StringPtrInput
 }
@@ -347,6 +374,11 @@ func (o BandwidthPackageOutput) Period() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *BandwidthPackage) pulumi.IntPtrOutput { return v.Period }).(pulumi.IntPtrOutput)
 }
 
+// The ProjectName of the transit router bandwidth package.
+func (o BandwidthPackageOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *BandwidthPackage) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
+}
+
 // The remaining renewal times of of the transit router bandwidth package. Valid values: -1 or 1~100. Default value is -1, means unlimited renewal.This field is only effective when the value of the `renewType` is `Auto`.
 func (o BandwidthPackageOutput) RemainRenewTimes() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *BandwidthPackage) pulumi.IntPtrOutput { return v.RemainRenewTimes }).(pulumi.IntPtrOutput)
@@ -370,6 +402,11 @@ func (o BandwidthPackageOutput) RenewType() pulumi.StringPtrOutput {
 // The status of the transit router bandwidth package.
 func (o BandwidthPackageOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *BandwidthPackage) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o BandwidthPackageOutput) Tags() BandwidthPackageTagArrayOutput {
+	return o.ApplyT(func(v *BandwidthPackage) BandwidthPackageTagArrayOutput { return v.Tags }).(BandwidthPackageTagArrayOutput)
 }
 
 // The name of the transit router bandwidth package.

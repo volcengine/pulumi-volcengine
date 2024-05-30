@@ -18,7 +18,12 @@ import * as utilities from "../utilities";
  *     bandwidth: 2,
  *     description: "acc-test",
  *     period: 1,
+ *     projectName: "default",
  *     renewType: "Manual",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  *     transitRouterBandwidthPackageName: "acc-tf-test",
  * });
  * ```
@@ -92,6 +97,10 @@ export class BandwidthPackage extends pulumi.CustomResource {
      */
     public readonly period!: pulumi.Output<number | undefined>;
     /**
+     * The ProjectName of the transit router bandwidth package.
+     */
+    public readonly projectName!: pulumi.Output<string>;
+    /**
      * The remaining renewal times of of the transit router bandwidth package. Valid values: -1 or 1~100. Default value is -1, means unlimited renewal.This field is only effective when the value of the `renewType` is `Auto`.
      */
     public readonly remainRenewTimes!: pulumi.Output<number | undefined>;
@@ -111,6 +120,10 @@ export class BandwidthPackage extends pulumi.CustomResource {
      * The status of the transit router bandwidth package.
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
+    /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.transit_router.BandwidthPackageTag[] | undefined>;
     /**
      * The name of the transit router bandwidth package.
      */
@@ -141,11 +154,13 @@ export class BandwidthPackage extends pulumi.CustomResource {
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["expiredTime"] = state ? state.expiredTime : undefined;
             resourceInputs["period"] = state ? state.period : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["remainRenewTimes"] = state ? state.remainRenewTimes : undefined;
             resourceInputs["remainingBandwidth"] = state ? state.remainingBandwidth : undefined;
             resourceInputs["renewPeriod"] = state ? state.renewPeriod : undefined;
             resourceInputs["renewType"] = state ? state.renewType : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["transitRouterBandwidthPackageName"] = state ? state.transitRouterBandwidthPackageName : undefined;
             resourceInputs["updateTime"] = state ? state.updateTime : undefined;
         } else {
@@ -153,9 +168,11 @@ export class BandwidthPackage extends pulumi.CustomResource {
             resourceInputs["bandwidth"] = args ? args.bandwidth : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["period"] = args ? args.period : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["remainRenewTimes"] = args ? args.remainRenewTimes : undefined;
             resourceInputs["renewPeriod"] = args ? args.renewPeriod : undefined;
             resourceInputs["renewType"] = args ? args.renewType : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["transitRouterBandwidthPackageName"] = args ? args.transitRouterBandwidthPackageName : undefined;
             resourceInputs["allocations"] = undefined /*out*/;
             resourceInputs["businessStatus"] = undefined /*out*/;
@@ -208,6 +225,10 @@ export interface BandwidthPackageState {
      */
     period?: pulumi.Input<number>;
     /**
+     * The ProjectName of the transit router bandwidth package.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * The remaining renewal times of of the transit router bandwidth package. Valid values: -1 or 1~100. Default value is -1, means unlimited renewal.This field is only effective when the value of the `renewType` is `Auto`.
      */
     remainRenewTimes?: pulumi.Input<number>;
@@ -227,6 +248,10 @@ export interface BandwidthPackageState {
      * The status of the transit router bandwidth package.
      */
     status?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.transit_router.BandwidthPackageTag>[]>;
     /**
      * The name of the transit router bandwidth package.
      */
@@ -254,6 +279,10 @@ export interface BandwidthPackageArgs {
      */
     period?: pulumi.Input<number>;
     /**
+     * The ProjectName of the transit router bandwidth package.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * The remaining renewal times of of the transit router bandwidth package. Valid values: -1 or 1~100. Default value is -1, means unlimited renewal.This field is only effective when the value of the `renewType` is `Auto`.
      */
     remainRenewTimes?: pulumi.Input<number>;
@@ -265,6 +294,10 @@ export interface BandwidthPackageArgs {
      * The renewal type of the transit router bandwidth package. Valid values: `Manual`, `Auto`, `NoRenew`. Default is `Manual`.This field is only effective when modifying the bandwidth package.
      */
     renewType?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.transit_router.BandwidthPackageTag>[]>;
     /**
      * The name of the transit router bandwidth package.
      */

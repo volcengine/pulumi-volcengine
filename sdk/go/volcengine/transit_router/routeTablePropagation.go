@@ -21,15 +21,80 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/transit_router"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := transit_router.NewRouteTablePropagation(ctx, "foo", &transit_router.RouteTablePropagationArgs{
-//				TransitRouterAttachmentId: pulumi.String("tr-attach-im73ng3n5kao8gbssz2ddpuq"),
-//				TransitRouterRouteTableId: pulumi.String("tr-rtb-12b7qd3fmzf2817q7y2jkbd55"),
+//			fooTransitRouter, err := transit_router.NewTransitRouter(ctx, "fooTransitRouter", &transit_router.TransitRouterArgs{
+//				TransitRouterName: pulumi.String("test-tf-acc"),
+//				Description:       pulumi.String("test-tf-acc"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooRouteTable, err := transit_router.NewRouteTable(ctx, "fooRouteTable", &transit_router.RouteTableArgs{
+//				Description:                 pulumi.String("tf-test-acc-description"),
+//				TransitRouterRouteTableName: pulumi.String("tf-table-test-acc"),
+//				TransitRouterId:             fooTransitRouter.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc-acc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				VpcId:      fooVpc.ID(),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			foo2, err := vpc.NewSubnet(ctx, "foo2", &vpc.SubnetArgs{
+//				VpcId:      fooVpc.ID(),
+//				CidrBlock:  pulumi.String("172.16.255.0/24"),
+//				ZoneId:     *pulumi.String(fooZones.Zones[1].Id),
+//				SubnetName: pulumi.String("acc-test-subnet2"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooVpcAttachment, err := transit_router.NewVpcAttachment(ctx, "fooVpcAttachment", &transit_router.VpcAttachmentArgs{
+//				TransitRouterId: fooTransitRouter.ID(),
+//				VpcId:           fooVpc.ID(),
+//				AttachPoints: transit_router.VpcAttachmentAttachPointArray{
+//					&transit_router.VpcAttachmentAttachPointArgs{
+//						SubnetId: fooSubnet.ID(),
+//						ZoneId:   pulumi.String("cn-beijing-a"),
+//					},
+//					&transit_router.VpcAttachmentAttachPointArgs{
+//						SubnetId: foo2.ID(),
+//						ZoneId:   pulumi.String("cn-beijing-b"),
+//					},
+//				},
+//				TransitRouterAttachmentName: pulumi.String("tf-test-acc-name1"),
+//				Description:                 pulumi.String("tf-test-acc-description"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = transit_router.NewRouteTablePropagation(ctx, "fooRouteTablePropagation", &transit_router.RouteTablePropagationArgs{
+//				TransitRouterAttachmentId: fooVpcAttachment.TransitRouterAttachmentId,
+//				TransitRouterRouteTableId: fooRouteTable.TransitRouterRouteTableId,
 //			})
 //			if err != nil {
 //				return err

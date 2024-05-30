@@ -25,11 +25,15 @@ import * as utilities from "../utilities";
  *             permission: "WRITE_ACP",
  *         },
  *     ],
- *     bucketName: "test-xym-1",
+ *     bucketName: "tf-acc-test-bucket",
  *     encryption: "AES256",
  *     filePath: "/Users/bytedance/Work/Go/build/test.txt",
- *     objectName: "demo_xym",
+ *     objectName: "tf-acc-test-object",
  *     publicAcl: "private",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
  * ```
  *
@@ -78,9 +82,9 @@ export class BucketObject extends pulumi.CustomResource {
      */
     public readonly bucketName!: pulumi.Output<string>;
     /**
-     * The content the TOS Object when content type is json or text and xml.
+     * The content of the TOS Object when content type is json or text and xml. Only one of `file_path,content` can be specified.
      */
-    public /*out*/ readonly content!: pulumi.Output<string>;
+    public readonly content!: pulumi.Output<string>;
     /**
      * The file md5 sum (32-bit hexadecimal string) for upload.
      */
@@ -98,9 +102,9 @@ export class BucketObject extends pulumi.CustomResource {
      */
     public readonly encryption!: pulumi.Output<string | undefined>;
     /**
-     * The file path for upload.
+     * The file path for upload. Only one of `file_path,content` can be specified.
      */
-    public readonly filePath!: pulumi.Output<string>;
+    public readonly filePath!: pulumi.Output<string | undefined>;
     /**
      * The name of the object.
      */
@@ -113,6 +117,10 @@ export class BucketObject extends pulumi.CustomResource {
      * The storage type of the object.Valid value is STANDARD|IA.
      */
     public readonly storageClass!: pulumi.Output<string | undefined>;
+    /**
+     * Tos Bucket Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.tos.BucketObjectTag[] | undefined>;
     /**
      * The version ids of the object if exist.
      */
@@ -142,20 +150,19 @@ export class BucketObject extends pulumi.CustomResource {
             resourceInputs["objectName"] = state ? state.objectName : undefined;
             resourceInputs["publicAcl"] = state ? state.publicAcl : undefined;
             resourceInputs["storageClass"] = state ? state.storageClass : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["versionIds"] = state ? state.versionIds : undefined;
         } else {
             const args = argsOrState as BucketObjectArgs | undefined;
             if ((!args || args.bucketName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'bucketName'");
             }
-            if ((!args || args.filePath === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'filePath'");
-            }
             if ((!args || args.objectName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'objectName'");
             }
             resourceInputs["accountAcls"] = args ? args.accountAcls : undefined;
             resourceInputs["bucketName"] = args ? args.bucketName : undefined;
+            resourceInputs["content"] = args ? args.content : undefined;
             resourceInputs["contentMd5"] = args ? args.contentMd5 : undefined;
             resourceInputs["contentType"] = args ? args.contentType : undefined;
             resourceInputs["encryption"] = args ? args.encryption : undefined;
@@ -163,7 +170,7 @@ export class BucketObject extends pulumi.CustomResource {
             resourceInputs["objectName"] = args ? args.objectName : undefined;
             resourceInputs["publicAcl"] = args ? args.publicAcl : undefined;
             resourceInputs["storageClass"] = args ? args.storageClass : undefined;
-            resourceInputs["content"] = undefined /*out*/;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["enableVersion"] = undefined /*out*/;
             resourceInputs["versionIds"] = undefined /*out*/;
         }
@@ -185,7 +192,7 @@ export interface BucketObjectState {
      */
     bucketName?: pulumi.Input<string>;
     /**
-     * The content the TOS Object when content type is json or text and xml.
+     * The content of the TOS Object when content type is json or text and xml. Only one of `file_path,content` can be specified.
      */
     content?: pulumi.Input<string>;
     /**
@@ -205,7 +212,7 @@ export interface BucketObjectState {
      */
     encryption?: pulumi.Input<string>;
     /**
-     * The file path for upload.
+     * The file path for upload. Only one of `file_path,content` can be specified.
      */
     filePath?: pulumi.Input<string>;
     /**
@@ -220,6 +227,10 @@ export interface BucketObjectState {
      * The storage type of the object.Valid value is STANDARD|IA.
      */
     storageClass?: pulumi.Input<string>;
+    /**
+     * Tos Bucket Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.tos.BucketObjectTag>[]>;
     /**
      * The version ids of the object if exist.
      */
@@ -239,6 +250,10 @@ export interface BucketObjectArgs {
      */
     bucketName: pulumi.Input<string>;
     /**
+     * The content of the TOS Object when content type is json or text and xml. Only one of `file_path,content` can be specified.
+     */
+    content?: pulumi.Input<string>;
+    /**
      * The file md5 sum (32-bit hexadecimal string) for upload.
      */
     contentMd5?: pulumi.Input<string>;
@@ -251,9 +266,9 @@ export interface BucketObjectArgs {
      */
     encryption?: pulumi.Input<string>;
     /**
-     * The file path for upload.
+     * The file path for upload. Only one of `file_path,content` can be specified.
      */
-    filePath: pulumi.Input<string>;
+    filePath?: pulumi.Input<string>;
     /**
      * The name of the object.
      */
@@ -266,4 +281,8 @@ export interface BucketObjectArgs {
      * The storage type of the object.Valid value is STANDARD|IA.
      */
     storageClass?: pulumi.Input<string>;
+    /**
+     * Tos Bucket Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.tos.BucketObjectTag>[]>;
 }

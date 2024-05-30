@@ -23,21 +23,36 @@ import (
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/cen"
 //
 // )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// var fooCen []*cen.Cen
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cen.Cens(ctx, &cen.CensArgs{
-//				Ids: []string{
-//					"cen-2bzrl3srxsv0g2dx0efyoojn3",
-//				},
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
+//	for index := 0; index < 2; index++ {
+//	    key0 := index
+//	    _ := index
 //
+// __res, err := cen.NewCen(ctx, fmt.Sprintf("fooCen-%v", key0), &cen.CenArgs{
+// CenName: pulumi.String("acc-test-cen"),
+// Description: pulumi.String("acc-test"),
+// ProjectName: pulumi.String("default"),
+// Tags: cen.CenTagArray{
+// &cen.CenTagArgs{
+// Key: pulumi.String("k1"),
+// Value: pulumi.String("v1"),
+// },
+// },
+// })
+// if err != nil {
+// return err
+// }
+// fooCen = append(fooCen, __res)
+// }
+// _ = cen.CensOutput(ctx, cen.CensOutputArgs{
+// Ids: %!v(PANIC=Format method: fatal: A failure has occurred: unlowered splat expression @ #-functions-volcengine:cen-cens:Cens.pp:14,9-21),
+// }, nil);
+// return nil
+// })
+// }
 // ```
 func Cens(ctx *pulumi.Context, args *CensArgs, opts ...pulumi.InvokeOption) (*CensResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)

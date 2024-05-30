@@ -27,10 +27,17 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := transit_router.NewGrantRule(ctx, "foo", &transit_router.GrantRuleArgs{
-//				Description:     pulumi.String("tf-test"),
-//				GrantAccountId:  pulumi.String("200000xxxx"),
-//				TransitRouterId: pulumi.String("tr-2bzy39uy6u3282dx0efxiqyq0"),
+//			fooTransitRouter, err := transit_router.NewTransitRouter(ctx, "fooTransitRouter", &transit_router.TransitRouterArgs{
+//				TransitRouterName: pulumi.String("acc-test-tf"),
+//				Description:       pulumi.String("acc-test-tf"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = transit_router.NewGrantRule(ctx, "fooGrantRule", &transit_router.GrantRuleArgs{
+//				GrantAccountId:  pulumi.String("2000xxxxx"),
+//				Description:     pulumi.String("acc-test-tf"),
+//				TransitRouterId: fooTransitRouter.ID(),
 //			})
 //			if err != nil {
 //				return err

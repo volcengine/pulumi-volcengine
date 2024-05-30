@@ -145,6 +145,8 @@ type KubeconfigsArgs struct {
 	PageNumber *int `pulumi:"pageNumber"`
 	// The page size of Kubeconfigs query.
 	PageSize *int `pulumi:"pageSize"`
+	// A list of Role IDs.
+	RoleIds []int `pulumi:"roleIds"`
 	// The type of Kubeconfigs query.
 	Types []string `pulumi:"types"`
 }
@@ -161,6 +163,7 @@ type KubeconfigsResult struct {
 	OutputFile  *string                 `pulumi:"outputFile"`
 	PageNumber  int                     `pulumi:"pageNumber"`
 	PageSize    int                     `pulumi:"pageSize"`
+	RoleIds     []int                   `pulumi:"roleIds"`
 	// The total count of Kubeconfig query.
 	TotalCount int      `pulumi:"totalCount"`
 	Types      []string `pulumi:"types"`
@@ -193,6 +196,8 @@ type KubeconfigsOutputArgs struct {
 	PageNumber pulumi.IntPtrInput `pulumi:"pageNumber"`
 	// The page size of Kubeconfigs query.
 	PageSize pulumi.IntPtrInput `pulumi:"pageSize"`
+	// A list of Role IDs.
+	RoleIds pulumi.IntArrayInput `pulumi:"roleIds"`
 	// The type of Kubeconfigs query.
 	Types pulumi.StringArrayInput `pulumi:"types"`
 }
@@ -248,6 +253,10 @@ func (o KubeconfigsResultOutput) PageNumber() pulumi.IntOutput {
 
 func (o KubeconfigsResultOutput) PageSize() pulumi.IntOutput {
 	return o.ApplyT(func(v KubeconfigsResult) int { return v.PageSize }).(pulumi.IntOutput)
+}
+
+func (o KubeconfigsResultOutput) RoleIds() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v KubeconfigsResult) []int { return v.RoleIds }).(pulumi.IntArrayOutput)
 }
 
 // The total count of Kubeconfig query.

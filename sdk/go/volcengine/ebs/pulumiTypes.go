@@ -13,6 +13,218 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type VolumeTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// VolumeTagInput is an input type that accepts VolumeTagArgs and VolumeTagOutput values.
+// You can construct a concrete instance of `VolumeTagInput` via:
+//
+//	VolumeTagArgs{...}
+type VolumeTagInput interface {
+	pulumi.Input
+
+	ToVolumeTagOutput() VolumeTagOutput
+	ToVolumeTagOutputWithContext(context.Context) VolumeTagOutput
+}
+
+type VolumeTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (VolumeTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VolumeTag)(nil)).Elem()
+}
+
+func (i VolumeTagArgs) ToVolumeTagOutput() VolumeTagOutput {
+	return i.ToVolumeTagOutputWithContext(context.Background())
+}
+
+func (i VolumeTagArgs) ToVolumeTagOutputWithContext(ctx context.Context) VolumeTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VolumeTagOutput)
+}
+
+// VolumeTagArrayInput is an input type that accepts VolumeTagArray and VolumeTagArrayOutput values.
+// You can construct a concrete instance of `VolumeTagArrayInput` via:
+//
+//	VolumeTagArray{ VolumeTagArgs{...} }
+type VolumeTagArrayInput interface {
+	pulumi.Input
+
+	ToVolumeTagArrayOutput() VolumeTagArrayOutput
+	ToVolumeTagArrayOutputWithContext(context.Context) VolumeTagArrayOutput
+}
+
+type VolumeTagArray []VolumeTagInput
+
+func (VolumeTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VolumeTag)(nil)).Elem()
+}
+
+func (i VolumeTagArray) ToVolumeTagArrayOutput() VolumeTagArrayOutput {
+	return i.ToVolumeTagArrayOutputWithContext(context.Background())
+}
+
+func (i VolumeTagArray) ToVolumeTagArrayOutputWithContext(ctx context.Context) VolumeTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VolumeTagArrayOutput)
+}
+
+type VolumeTagOutput struct{ *pulumi.OutputState }
+
+func (VolumeTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VolumeTag)(nil)).Elem()
+}
+
+func (o VolumeTagOutput) ToVolumeTagOutput() VolumeTagOutput {
+	return o
+}
+
+func (o VolumeTagOutput) ToVolumeTagOutputWithContext(ctx context.Context) VolumeTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o VolumeTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v VolumeTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o VolumeTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v VolumeTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type VolumeTagArrayOutput struct{ *pulumi.OutputState }
+
+func (VolumeTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VolumeTag)(nil)).Elem()
+}
+
+func (o VolumeTagArrayOutput) ToVolumeTagArrayOutput() VolumeTagArrayOutput {
+	return o
+}
+
+func (o VolumeTagArrayOutput) ToVolumeTagArrayOutputWithContext(ctx context.Context) VolumeTagArrayOutput {
+	return o
+}
+
+func (o VolumeTagArrayOutput) Index(i pulumi.IntInput) VolumeTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VolumeTag {
+		return vs[0].([]VolumeTag)[vs[1].(int)]
+	}).(VolumeTagOutput)
+}
+
+type VolumesTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// VolumesTagInput is an input type that accepts VolumesTagArgs and VolumesTagOutput values.
+// You can construct a concrete instance of `VolumesTagInput` via:
+//
+//	VolumesTagArgs{...}
+type VolumesTagInput interface {
+	pulumi.Input
+
+	ToVolumesTagOutput() VolumesTagOutput
+	ToVolumesTagOutputWithContext(context.Context) VolumesTagOutput
+}
+
+type VolumesTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (VolumesTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VolumesTag)(nil)).Elem()
+}
+
+func (i VolumesTagArgs) ToVolumesTagOutput() VolumesTagOutput {
+	return i.ToVolumesTagOutputWithContext(context.Background())
+}
+
+func (i VolumesTagArgs) ToVolumesTagOutputWithContext(ctx context.Context) VolumesTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VolumesTagOutput)
+}
+
+// VolumesTagArrayInput is an input type that accepts VolumesTagArray and VolumesTagArrayOutput values.
+// You can construct a concrete instance of `VolumesTagArrayInput` via:
+//
+//	VolumesTagArray{ VolumesTagArgs{...} }
+type VolumesTagArrayInput interface {
+	pulumi.Input
+
+	ToVolumesTagArrayOutput() VolumesTagArrayOutput
+	ToVolumesTagArrayOutputWithContext(context.Context) VolumesTagArrayOutput
+}
+
+type VolumesTagArray []VolumesTagInput
+
+func (VolumesTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VolumesTag)(nil)).Elem()
+}
+
+func (i VolumesTagArray) ToVolumesTagArrayOutput() VolumesTagArrayOutput {
+	return i.ToVolumesTagArrayOutputWithContext(context.Background())
+}
+
+func (i VolumesTagArray) ToVolumesTagArrayOutputWithContext(ctx context.Context) VolumesTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VolumesTagArrayOutput)
+}
+
+type VolumesTagOutput struct{ *pulumi.OutputState }
+
+func (VolumesTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VolumesTag)(nil)).Elem()
+}
+
+func (o VolumesTagOutput) ToVolumesTagOutput() VolumesTagOutput {
+	return o
+}
+
+func (o VolumesTagOutput) ToVolumesTagOutputWithContext(ctx context.Context) VolumesTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o VolumesTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v VolumesTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o VolumesTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v VolumesTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type VolumesTagArrayOutput struct{ *pulumi.OutputState }
+
+func (VolumesTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VolumesTag)(nil)).Elem()
+}
+
+func (o VolumesTagArrayOutput) ToVolumesTagArrayOutput() VolumesTagArrayOutput {
+	return o
+}
+
+func (o VolumesTagArrayOutput) ToVolumesTagArrayOutputWithContext(ctx context.Context) VolumesTagArrayOutput {
+	return o
+}
+
+func (o VolumesTagArrayOutput) Index(i pulumi.IntInput) VolumesTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VolumesTag {
+		return vs[0].([]VolumesTag)[vs[1].(int)]
+	}).(VolumesTagOutput)
+}
+
 type VolumesVolume struct {
 	BillingType        int    `pulumi:"billingType"`
 	CreatedAt          string `pulumi:"createdAt"`
@@ -25,14 +237,16 @@ type VolumesVolume struct {
 	// The Id of instance.
 	InstanceId string `pulumi:"instanceId"`
 	// The Kind of Volume.
-	Kind        string `pulumi:"kind"`
-	PayType     string `pulumi:"payType"`
-	RenewType   int    `pulumi:"renewType"`
-	Size        int    `pulumi:"size"`
-	Status      string `pulumi:"status"`
-	TradeStatus int    `pulumi:"tradeStatus"`
-	UpdatedAt   string `pulumi:"updatedAt"`
-	VolumeId    string `pulumi:"volumeId"`
+	Kind      string `pulumi:"kind"`
+	PayType   string `pulumi:"payType"`
+	RenewType int    `pulumi:"renewType"`
+	Size      int    `pulumi:"size"`
+	Status    string `pulumi:"status"`
+	// Tags.
+	Tags        []VolumesVolumeTag `pulumi:"tags"`
+	TradeStatus int                `pulumi:"tradeStatus"`
+	UpdatedAt   string             `pulumi:"updatedAt"`
+	VolumeId    string             `pulumi:"volumeId"`
 	// The name of Volume.
 	VolumeName string `pulumi:"volumeName"`
 	// The type of Volume.
@@ -64,14 +278,16 @@ type VolumesVolumeArgs struct {
 	// The Id of instance.
 	InstanceId pulumi.StringInput `pulumi:"instanceId"`
 	// The Kind of Volume.
-	Kind        pulumi.StringInput `pulumi:"kind"`
-	PayType     pulumi.StringInput `pulumi:"payType"`
-	RenewType   pulumi.IntInput    `pulumi:"renewType"`
-	Size        pulumi.IntInput    `pulumi:"size"`
-	Status      pulumi.StringInput `pulumi:"status"`
-	TradeStatus pulumi.IntInput    `pulumi:"tradeStatus"`
-	UpdatedAt   pulumi.StringInput `pulumi:"updatedAt"`
-	VolumeId    pulumi.StringInput `pulumi:"volumeId"`
+	Kind      pulumi.StringInput `pulumi:"kind"`
+	PayType   pulumi.StringInput `pulumi:"payType"`
+	RenewType pulumi.IntInput    `pulumi:"renewType"`
+	Size      pulumi.IntInput    `pulumi:"size"`
+	Status    pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags        VolumesVolumeTagArrayInput `pulumi:"tags"`
+	TradeStatus pulumi.IntInput            `pulumi:"tradeStatus"`
+	UpdatedAt   pulumi.StringInput         `pulumi:"updatedAt"`
+	VolumeId    pulumi.StringInput         `pulumi:"volumeId"`
 	// The name of Volume.
 	VolumeName pulumi.StringInput `pulumi:"volumeName"`
 	// The type of Volume.
@@ -189,6 +405,11 @@ func (o VolumesVolumeOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v VolumesVolume) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// Tags.
+func (o VolumesVolumeOutput) Tags() VolumesVolumeTagArrayOutput {
+	return o.ApplyT(func(v VolumesVolume) []VolumesVolumeTag { return v.Tags }).(VolumesVolumeTagArrayOutput)
+}
+
 func (o VolumesVolumeOutput) TradeStatus() pulumi.IntOutput {
 	return o.ApplyT(func(v VolumesVolume) int { return v.TradeStatus }).(pulumi.IntOutput)
 }
@@ -236,9 +457,127 @@ func (o VolumesVolumeArrayOutput) Index(i pulumi.IntInput) VolumesVolumeOutput {
 	}).(VolumesVolumeOutput)
 }
 
+type VolumesVolumeTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// VolumesVolumeTagInput is an input type that accepts VolumesVolumeTagArgs and VolumesVolumeTagOutput values.
+// You can construct a concrete instance of `VolumesVolumeTagInput` via:
+//
+//	VolumesVolumeTagArgs{...}
+type VolumesVolumeTagInput interface {
+	pulumi.Input
+
+	ToVolumesVolumeTagOutput() VolumesVolumeTagOutput
+	ToVolumesVolumeTagOutputWithContext(context.Context) VolumesVolumeTagOutput
+}
+
+type VolumesVolumeTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (VolumesVolumeTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VolumesVolumeTag)(nil)).Elem()
+}
+
+func (i VolumesVolumeTagArgs) ToVolumesVolumeTagOutput() VolumesVolumeTagOutput {
+	return i.ToVolumesVolumeTagOutputWithContext(context.Background())
+}
+
+func (i VolumesVolumeTagArgs) ToVolumesVolumeTagOutputWithContext(ctx context.Context) VolumesVolumeTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VolumesVolumeTagOutput)
+}
+
+// VolumesVolumeTagArrayInput is an input type that accepts VolumesVolumeTagArray and VolumesVolumeTagArrayOutput values.
+// You can construct a concrete instance of `VolumesVolumeTagArrayInput` via:
+//
+//	VolumesVolumeTagArray{ VolumesVolumeTagArgs{...} }
+type VolumesVolumeTagArrayInput interface {
+	pulumi.Input
+
+	ToVolumesVolumeTagArrayOutput() VolumesVolumeTagArrayOutput
+	ToVolumesVolumeTagArrayOutputWithContext(context.Context) VolumesVolumeTagArrayOutput
+}
+
+type VolumesVolumeTagArray []VolumesVolumeTagInput
+
+func (VolumesVolumeTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VolumesVolumeTag)(nil)).Elem()
+}
+
+func (i VolumesVolumeTagArray) ToVolumesVolumeTagArrayOutput() VolumesVolumeTagArrayOutput {
+	return i.ToVolumesVolumeTagArrayOutputWithContext(context.Background())
+}
+
+func (i VolumesVolumeTagArray) ToVolumesVolumeTagArrayOutputWithContext(ctx context.Context) VolumesVolumeTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VolumesVolumeTagArrayOutput)
+}
+
+type VolumesVolumeTagOutput struct{ *pulumi.OutputState }
+
+func (VolumesVolumeTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VolumesVolumeTag)(nil)).Elem()
+}
+
+func (o VolumesVolumeTagOutput) ToVolumesVolumeTagOutput() VolumesVolumeTagOutput {
+	return o
+}
+
+func (o VolumesVolumeTagOutput) ToVolumesVolumeTagOutputWithContext(ctx context.Context) VolumesVolumeTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o VolumesVolumeTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v VolumesVolumeTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o VolumesVolumeTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v VolumesVolumeTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type VolumesVolumeTagArrayOutput struct{ *pulumi.OutputState }
+
+func (VolumesVolumeTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VolumesVolumeTag)(nil)).Elem()
+}
+
+func (o VolumesVolumeTagArrayOutput) ToVolumesVolumeTagArrayOutput() VolumesVolumeTagArrayOutput {
+	return o
+}
+
+func (o VolumesVolumeTagArrayOutput) ToVolumesVolumeTagArrayOutputWithContext(ctx context.Context) VolumesVolumeTagArrayOutput {
+	return o
+}
+
+func (o VolumesVolumeTagArrayOutput) Index(i pulumi.IntInput) VolumesVolumeTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VolumesVolumeTag {
+		return vs[0].([]VolumesVolumeTag)[vs[1].(int)]
+	}).(VolumesVolumeTagOutput)
+}
+
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*VolumeTagInput)(nil)).Elem(), VolumeTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VolumeTagArrayInput)(nil)).Elem(), VolumeTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VolumesTagInput)(nil)).Elem(), VolumesTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VolumesTagArrayInput)(nil)).Elem(), VolumesTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VolumesVolumeInput)(nil)).Elem(), VolumesVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VolumesVolumeArrayInput)(nil)).Elem(), VolumesVolumeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VolumesVolumeTagInput)(nil)).Elem(), VolumesVolumeTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VolumesVolumeTagArrayInput)(nil)).Elem(), VolumesVolumeTagArray{})
+	pulumi.RegisterOutputType(VolumeTagOutput{})
+	pulumi.RegisterOutputType(VolumeTagArrayOutput{})
+	pulumi.RegisterOutputType(VolumesTagOutput{})
+	pulumi.RegisterOutputType(VolumesTagArrayOutput{})
 	pulumi.RegisterOutputType(VolumesVolumeOutput{})
 	pulumi.RegisterOutputType(VolumesVolumeArrayOutput{})
+	pulumi.RegisterOutputType(VolumesVolumeTagOutput{})
+	pulumi.RegisterOutputType(VolumesVolumeTagArrayOutput{})
 }

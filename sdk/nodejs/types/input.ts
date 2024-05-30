@@ -5,6 +5,12 @@ import * as pulumi from "@pulumi/pulumi";
 import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
+export interface ProviderAssumeRole {
+    assumeRoleSessionName: pulumi.Input<string>;
+    assumeRoleTrn: pulumi.Input<string>;
+    durationSeconds: pulumi.Input<number>;
+    policy?: pulumi.Input<string>;
+}
 export namespace alb {
     export interface AclAclEntry {
         /**
@@ -349,6 +355,107 @@ export namespace bioos {
 
 }
 
+export namespace cdn {
+    export interface CdnDomainSharedCname {
+        /**
+         * Assign a CNAME to the accelerated domain.
+         */
+        cname: pulumi.Input<string>;
+        /**
+         * Specify whether to enable shared CNAME.
+         */
+        switch: pulumi.Input<boolean>;
+    }
+
+    export interface CdnDomainTag {
+        /**
+         * The key of the tag.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The value of the tag.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface SharedConfigAllowIpAccessRule {
+        /**
+         * The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+         */
+        rules: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface SharedConfigAllowRefererAccessRule {
+        /**
+         * Indicates whether an empty Referer header, or a request without a Referer header, is not allowed. Default is false.
+         */
+        allowEmpty?: pulumi.Input<boolean>;
+        /**
+         * The content indicating the Referer whitelist.
+         */
+        commonType: pulumi.Input<inputs.cdn.SharedConfigAllowRefererAccessRuleCommonType>;
+    }
+
+    export interface SharedConfigAllowRefererAccessRuleCommonType {
+        /**
+         * This list is case-sensitive when matching requests. Default is true.
+         */
+        ignoreCase?: pulumi.Input<boolean>;
+        /**
+         * The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+         */
+        rules: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface SharedConfigCommonMatchList {
+        /**
+         * The content indicating the Referer blacklist.
+         */
+        commonType: pulumi.Input<inputs.cdn.SharedConfigCommonMatchListCommonType>;
+    }
+
+    export interface SharedConfigCommonMatchListCommonType {
+        /**
+         * This list is case-sensitive when matching requests. Default is true.
+         */
+        ignoreCase?: pulumi.Input<boolean>;
+        /**
+         * The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+         */
+        rules: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface SharedConfigDenyIpAccessRule {
+        /**
+         * The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+         */
+        rules: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface SharedConfigDenyRefererAccessRule {
+        /**
+         * Indicates whether an empty Referer header, or a request without a Referer header, is not allowed. Default is false.
+         */
+        allowEmpty?: pulumi.Input<boolean>;
+        /**
+         * The content indicating the Referer blacklist.
+         */
+        commonType: pulumi.Input<inputs.cdn.SharedConfigDenyRefererAccessRuleCommonType>;
+    }
+
+    export interface SharedConfigDenyRefererAccessRuleCommonType {
+        /**
+         * This list is case-sensitive when matching requests. Default is true.
+         */
+        ignoreCase?: pulumi.Input<boolean>;
+        /**
+         * The entries in this list are an array of IP addresses and CIDR network segments. The total number of entries cannot exceed 3,000. The IP addresses and segments can be in IPv4 and IPv6 format. Duplicate entries in the list will be removed and will not count towards the limit.
+         */
+        rules: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+}
+
 export namespace cen {
     export interface BandwidthPackageTag {
         /**
@@ -487,7 +594,7 @@ export namespace clb {
          */
         eipBillingType: pulumi.Input<string>;
         /**
-         * The ISP of the EIP which automatically associated to CLB, the value can be `BGP`.
+         * The ISP of the EIP which automatically associated to CLB, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP` or `Fusion_BGP`.
          */
         isp: pulumi.Input<string>;
     }
@@ -574,7 +681,123 @@ export namespace clb {
 
 }
 
+export namespace cloud_monitor {
+    export interface EventRuleEffectiveTime {
+        /**
+         * End time for rule activation.
+         */
+        endTime: pulumi.Input<string>;
+        /**
+         * Start time for rule activation.
+         */
+        startTime: pulumi.Input<string>;
+    }
+
+    export interface EventRuleFilterPattern {
+        /**
+         * Event source corresponding to pattern matching.
+         */
+        source: pulumi.Input<string>;
+        /**
+         * The list of corresponding event types in pattern matching, currently set to match any.
+         */
+        types: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface EventRuleMessageQueue {
+        /**
+         * The kafka instance id.
+         */
+        instanceId: pulumi.Input<string>;
+        /**
+         * The region.
+         */
+        region: pulumi.Input<string>;
+        /**
+         * The topic name.
+         */
+        topic: pulumi.Input<string>;
+        /**
+         * The message queue type, only support kafka now.
+         */
+        type: pulumi.Input<string>;
+        /**
+         * The vpc id.
+         */
+        vpcId: pulumi.Input<string>;
+    }
+
+    export interface EventRuleTlsTarget {
+        /**
+         * The project id.
+         */
+        projectId: pulumi.Input<string>;
+        /**
+         * The project name.
+         */
+        projectName: pulumi.Input<string>;
+        /**
+         * The Chinese region name.
+         */
+        regionNameCn: pulumi.Input<string>;
+        /**
+         * The English region name.
+         */
+        regionNameEn: pulumi.Input<string>;
+        /**
+         * The topic id.
+         */
+        topicId: pulumi.Input<string>;
+    }
+
+    export interface RuleCondition {
+        /**
+         * The comparison operation of the cloud monitor rule. Valid values: `>`, `>=`, `<`, `<=`, `!=`, `=`.
+         */
+        comparisonOperator: pulumi.Input<string>;
+        /**
+         * The metric name of the cloud monitor rule.
+         */
+        metricName: pulumi.Input<string>;
+        /**
+         * The metric unit of the cloud monitor rule.
+         */
+        metricUnit: pulumi.Input<string>;
+        period?: pulumi.Input<string>;
+        /**
+         * The statistics of the cloud monitor rule. Valid values: `avg`, `max`, `min`.
+         */
+        statistics: pulumi.Input<string>;
+        /**
+         * The threshold of the cloud monitor rule.
+         */
+        threshold: pulumi.Input<string>;
+    }
+
+    export interface RuleOriginalDimension {
+        /**
+         * The key of the dimension.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The value of the dimension.
+         */
+        values: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface RuleRecoveryNotify {
+        /**
+         * Whether to enable the recovery notify function.
+         */
+        enable?: pulumi.Input<boolean>;
+    }
+
+}
+
 export namespace cloudfs {
+}
+
+export namespace config {
 }
 
 export namespace cr {
@@ -787,6 +1010,39 @@ export namespace direct_connect {
 }
 
 export namespace ebs {
+    export interface VolumeTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface VolumesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface VolumesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
 }
 
 export namespace ecs {
@@ -1219,6 +1475,20 @@ export namespace nat {
 
 }
 
+export namespace organization {
+    export interface AccountTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+}
+
 export namespace privatelink {
     export interface VpcEndpointConnectionZone {
         /**
@@ -1316,6 +1586,69 @@ export namespace rds {
          * Parameter running value.
          */
         runningValue?: pulumi.Input<string>;
+    }
+
+}
+
+export namespace rds_mssql {
+    export interface BackupBackupMeta {
+        /**
+         * The name of the database.
+         */
+        dbName: pulumi.Input<string>;
+    }
+
+    export interface InstanceChargeInfo {
+        /**
+         * Whether to enable automatic renewal in the prepaid scenario. This parameter can be set when the ChargeType is `Prepaid`.
+         */
+        autoRenew?: pulumi.Input<boolean>;
+        chargeEndTime?: pulumi.Input<string>;
+        chargeStartTime?: pulumi.Input<string>;
+        chargeStatus?: pulumi.Input<string>;
+        /**
+         * The charge type. Valid values: `PostPaid`, `PrePaid`.
+         */
+        chargeType: pulumi.Input<string>;
+        overdueReclaimTime?: pulumi.Input<string>;
+        overdueTime?: pulumi.Input<string>;
+        /**
+         * Purchase duration in a prepaid scenario. This parameter is required when the ChargeType is `Prepaid`.
+         */
+        period?: pulumi.Input<number>;
+    }
+
+    export interface InstanceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface InstancesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface InstancesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
     }
 
 }
@@ -1614,6 +1947,277 @@ export namespace rds_mysql {
          */
         value: pulumi.Input<string>;
     }
+}
+
+export namespace rds_postgresql {
+    export interface InstanceChargeDetail {
+        /**
+         * Whether to automatically renew in prepaid scenarios.
+         */
+        autoRenew?: pulumi.Input<boolean>;
+        /**
+         * Billing expiry time (yearly and monthly only).
+         */
+        chargeEndTime?: pulumi.Input<string>;
+        /**
+         * Billing start time (pay-as-you-go & monthly subscription).
+         */
+        chargeStartTime?: pulumi.Input<string>;
+        /**
+         * Pay status. Value:
+         * normal - normal
+         * overdue - overdue
+         * .
+         */
+        chargeStatus?: pulumi.Input<string>;
+        /**
+         * Payment type. Value:
+         * PostPaid - Pay-As-You-Go
+         * PrePaid - Yearly and monthly (default).
+         */
+        chargeType?: pulumi.Input<string>;
+        /**
+         * Estimated release time when arrears are closed (pay-as-you-go & monthly subscription).
+         */
+        overdueReclaimTime?: pulumi.Input<string>;
+        /**
+         * Shutdown time in arrears (pay-as-you-go & monthly subscription).
+         */
+        overdueTime?: pulumi.Input<string>;
+        /**
+         * Purchase duration in prepaid scenarios. Default: 1.
+         */
+        period?: pulumi.Input<number>;
+        /**
+         * The purchase cycle in the prepaid scenario.
+         * Month - monthly subscription (default)
+         * Year - Package year.
+         */
+        periodUnit?: pulumi.Input<string>;
+        /**
+         * Temporary upgrade of restoration time.
+         */
+        tempModifyEndTime?: pulumi.Input<string>;
+        /**
+         * Start time of temporary upgrade.
+         */
+        tempModifyStartTime?: pulumi.Input<string>;
+    }
+
+    export interface InstanceChargeInfo {
+        /**
+         * Whether to automatically renew in prepaid scenarios.
+         */
+        autoRenew?: pulumi.Input<boolean>;
+        /**
+         * Payment type. Value:
+         * PostPaid - Pay-As-You-Go
+         * PrePaid - Yearly and monthly (default).
+         */
+        chargeType: pulumi.Input<string>;
+        /**
+         * Purchase duration in prepaid scenarios. Default: 1.
+         */
+        period?: pulumi.Input<number>;
+        /**
+         * The purchase cycle in the prepaid scenario.
+         * Month - monthly subscription (default)
+         * Year - Package year.
+         */
+        periodUnit?: pulumi.Input<string>;
+    }
+
+    export interface InstanceEndpoint {
+        /**
+         * Address list.
+         */
+        addresses?: pulumi.Input<pulumi.Input<inputs.rds_postgresql.InstanceEndpointAddress>[]>;
+        /**
+         * When the terminal type is read-write terminal or read-only terminal, it supports setting whether new nodes are automatically added.
+         */
+        autoAddNewNodes?: pulumi.Input<string>;
+        /**
+         * Address description.
+         */
+        description?: pulumi.Input<string>;
+        /**
+         * Whether global read-only is enabled, value: Enable: Enable. Disable: Disabled.
+         */
+        enableReadOnly?: pulumi.Input<string>;
+        /**
+         * Whether read-write separation is enabled, value: Enable: Enable. Disable: Disabled.
+         */
+        enableReadWriteSplitting?: pulumi.Input<string>;
+        /**
+         * Instance connection terminal ID.
+         */
+        endpointId?: pulumi.Input<string>;
+        /**
+         * The instance connection terminal name.
+         */
+        endpointName?: pulumi.Input<string>;
+        /**
+         * Terminal type:
+         * Cluster: The default terminal. (created by default)
+         * Primary: Primary node terminal.
+         * Custom: Custom terminal.
+         * Direct: Direct connection to the terminal. (Only the operation and maintenance side)
+         * AllNode: All node terminals. (Only the operation and maintenance side).
+         */
+        endpointType?: pulumi.Input<string>;
+        /**
+         * The list of nodes configured by the connection terminal and the corresponding read-only weights.
+         */
+        readOnlyNodeWeights?: pulumi.Input<pulumi.Input<inputs.rds_postgresql.InstanceEndpointReadOnlyNodeWeight>[]>;
+        /**
+         * Read and write mode:
+         * ReadWrite: read and write
+         * ReadOnly: read only (default).
+         */
+        readWriteMode?: pulumi.Input<string>;
+    }
+
+    export interface InstanceEndpointAddress {
+        /**
+         * DNS Visibility.
+         */
+        dnsVisibility?: pulumi.Input<boolean>;
+        /**
+         * Connect domain name.
+         */
+        domain?: pulumi.Input<string>;
+        /**
+         * The ID of the EIP, only valid for Public addresses.
+         */
+        eipId?: pulumi.Input<string>;
+        /**
+         * The IP Address.
+         */
+        ipAddress?: pulumi.Input<string>;
+        /**
+         * Network address type, temporarily Private, Public, PublicService.
+         */
+        networkType?: pulumi.Input<string>;
+        /**
+         * The Port.
+         */
+        port?: pulumi.Input<string>;
+        /**
+         * Subnet ID of the RDS PostgreSQL instance.
+         */
+        subnetId?: pulumi.Input<string>;
+    }
+
+    export interface InstanceEndpointReadOnlyNodeWeight {
+        /**
+         * Node ID.
+         */
+        nodeId?: pulumi.Input<string>;
+        /**
+         * Node type. Value: Primary: Primary node.
+         * Secondary: Standby node.
+         * ReadOnly: Read-only node.
+         */
+        nodeType?: pulumi.Input<string>;
+        /**
+         * The weight of the node.
+         */
+        weight?: pulumi.Input<number>;
+    }
+
+    export interface InstanceNode {
+        /**
+         * Node creation local time.
+         */
+        createTime?: pulumi.Input<string>;
+        /**
+         * Instance ID.
+         */
+        instanceId?: pulumi.Input<string>;
+        /**
+         * Memory size in GB.
+         */
+        memory?: pulumi.Input<number>;
+        /**
+         * Node ID.
+         */
+        nodeId?: pulumi.Input<string>;
+        /**
+         * The specification of primary node and secondary node.
+         */
+        nodeSpec?: pulumi.Input<string>;
+        /**
+         * Node state, value: aligned with instance state.
+         */
+        nodeStatus?: pulumi.Input<string>;
+        /**
+         * Node type. Value: Primary: Primary node.
+         * Secondary: Standby node.
+         * ReadOnly: Read-only node.
+         */
+        nodeType?: pulumi.Input<string>;
+        /**
+         * The region of the RDS PostgreSQL instance.
+         */
+        regionId?: pulumi.Input<string>;
+        /**
+         * The update time of the RDS PostgreSQL instance.
+         */
+        updateTime?: pulumi.Input<string>;
+        /**
+         * CPU size.
+         */
+        vCpu?: pulumi.Input<number>;
+        /**
+         * The available zone of the RDS PostgreSQL instance.
+         */
+        zoneId?: pulumi.Input<string>;
+    }
+
+    export interface InstanceParameter {
+        /**
+         * Parameter name.
+         */
+        name: pulumi.Input<string>;
+        /**
+         * Parameter value.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface InstanceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface InstancesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface InstancesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
 }
 
 export namespace rds_v2 {
@@ -2417,6 +3021,28 @@ export namespace tos {
         permission: pulumi.Input<string>;
     }
 
+    export interface BucketObjectTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface BucketTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
 }
 
 export namespace transit_router {
@@ -2437,6 +3063,149 @@ export namespace transit_router {
          * The ID of the peer attachment.
          */
         transitRouterPeerAttachmentId?: pulumi.Input<string>;
+    }
+
+    export interface BandwidthPackageTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface BandwidthPackagesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface BandwidthPackagesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface DirectConnectGatewayAttachmentTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface DirectConnectGatewayAttachmentsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface DirectConnectGatewayAttachmentsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface PeerAttachmentTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface PeerAttachmentsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface PeerAttachmentsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface RouteTableTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface RouteTablesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface RouteTablesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface TransitRouterTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
     }
 
     export interface TransitRouterTransitRouterAttachment {
@@ -2474,6 +3243,28 @@ export namespace transit_router {
         updateTime?: pulumi.Input<string>;
     }
 
+    export interface TransitRoutersTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface TransitRoutersTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface VpcAttachmentAttachPoint {
         /**
          * The id of subnet.
@@ -2485,6 +3276,71 @@ export namespace transit_router {
         zoneId: pulumi.Input<string>;
     }
 
+    export interface VpcAttachmentTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface VpcAttachmentsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface VpcAttachmentsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface VpnAttachmentTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface VpnAttachmentsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface VpnAttachmentsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
 }
 
 export namespace veenedge {
@@ -2943,6 +3799,10 @@ export namespace vke {
          */
         labels?: pulumi.Input<pulumi.Input<inputs.vke.DefaultNodePoolKubernetesConfigLabel>[]>;
         /**
+         * The NamePrefix of node metadata.
+         */
+        namePrefix?: pulumi.Input<string>;
+        /**
          * The Taints of KubernetesConfig.
          */
         taints?: pulumi.Input<pulumi.Input<inputs.vke.DefaultNodePoolKubernetesConfigTaint>[]>;
@@ -3119,6 +3979,10 @@ export namespace vke {
          */
         labels?: pulumi.Input<pulumi.Input<inputs.vke.NodePoolKubernetesConfigLabel>[]>;
         /**
+         * The NamePrefix of node metadata.
+         */
+        namePrefix?: pulumi.Input<string>;
+        /**
          * The Taints of KubernetesConfig.
          */
         taints?: pulumi.Input<pulumi.Input<inputs.vke.NodePoolKubernetesConfigTaint>[]>;
@@ -3294,15 +4158,21 @@ export namespace vke {
          */
         runningCount?: pulumi.Input<number>;
         /**
-         * The StartingCount of Node.
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. The StartingCount of Node.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
          */
         startingCount?: pulumi.Input<number>;
         /**
-         * The StoppedCount of Node.
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppedCount of Node.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
          */
         stoppedCount?: pulumi.Input<number>;
         /**
-         * The StoppingCount of Node.
+         * (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppingCount of Node.
+         *
+         * @deprecated This field has been deprecated and is not recommended for use.
          */
         stoppingCount?: pulumi.Input<number>;
         /**
@@ -3564,6 +4434,39 @@ export namespace vpc {
     }
 
     export interface SecurityGroupsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface SubnetTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface SubnetsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface SubnetsTagArgs {
         /**
          * The Key of Tags.
          */
