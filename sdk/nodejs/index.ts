@@ -19,6 +19,7 @@ import * as bioos from "./bioos";
 import * as cdn from "./cdn";
 import * as cen from "./cen";
 import * as clb from "./clb";
+import * as cloud_identity from "./cloud_identity";
 import * as cloud_monitor from "./cloud_monitor";
 import * as cloudfs from "./cloudfs";
 import * as config from "./config";
@@ -28,7 +29,9 @@ import * as ebs from "./ebs";
 import * as ecs from "./ecs";
 import * as eip from "./eip";
 import * as escloud from "./escloud";
+import * as financial_relation from "./financial_relation";
 import * as iam from "./iam";
+import * as kafka from "./kafka";
 import * as mongodb from "./mongodb";
 import * as nas from "./nas";
 import * as nat from "./nat";
@@ -57,6 +60,7 @@ export {
     cdn,
     cen,
     clb,
+    cloud_identity,
     cloud_monitor,
     cloudfs,
     config,
@@ -66,7 +70,9 @@ export {
     ecs,
     eip,
     escloud,
+    financial_relation,
     iam,
+    kafka,
     mongodb,
     nas,
     nat,

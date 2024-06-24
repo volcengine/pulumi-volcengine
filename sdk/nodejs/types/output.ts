@@ -3479,6 +3479,328 @@ export namespace clb {
 
 }
 
+export namespace cloud_identity {
+    export interface GroupMember {
+        /**
+         * The description of the cloud identity group.
+         */
+        description: string;
+        /**
+         * The display name of the cloud identity group.
+         */
+        displayName: string;
+        /**
+         * The email of the cloud identity user.
+         */
+        email: string;
+        /**
+         * The identity type of the cloud identity user.
+         */
+        identityType: string;
+        /**
+         * The join time of the cloud identity user.
+         */
+        joinTime: string;
+        /**
+         * The phone of the cloud identity user.
+         */
+        phone: string;
+        /**
+         * The source of the cloud identity group.
+         */
+        source: string;
+        /**
+         * The id of the cloud identity user.
+         */
+        userId: string;
+        /**
+         * The name of the cloud identity user.
+         */
+        userName: string;
+    }
+
+    export interface GroupsGroup {
+        /**
+         * The created time of the cloud identity group.
+         */
+        createdTime: string;
+        /**
+         * The description of the cloud identity group.
+         */
+        description: string;
+        /**
+         * The display name of cloud identity group.
+         */
+        displayName: string;
+        /**
+         * The id of the cloud identity group.
+         */
+        groupId: string;
+        /**
+         * The name of cloud identity group.
+         */
+        groupName: string;
+        /**
+         * The id of the cloud identity group.
+         */
+        id: string;
+        /**
+         * The join type of cloud identity group. Valid values: `Auto`, `Manual`.
+         */
+        joinType: string;
+        /**
+         * The source of the cloud identity group.
+         */
+        source: string;
+        /**
+         * The updated time of the cloud identity group.
+         */
+        updatedTime: string;
+    }
+
+    export interface PermissionSetAssignmentsAssignment {
+        /**
+         * The create time of the cloud identity permission set assignment.
+         */
+        createTime: string;
+        /**
+         * The id of the cloud identity permission set.
+         */
+        id: string;
+        /**
+         * The id of cloud identity permission set.
+         */
+        permissionSetId: string;
+        /**
+         * The name of the cloud identity permission set.
+         */
+        permissionSetName: string;
+        /**
+         * The principal id of cloud identity permission set. When the `principalType` is `User`, this field is specified to `UserId`. When the `principalType` is `Group`, this field is specified to `GroupId`.
+         */
+        principalId: string;
+        /**
+         * The principal type of cloud identity permission set. Valid values: `User`, `Group`.
+         */
+        principalType: string;
+        /**
+         * The target account id of cloud identity permission set assignment.
+         */
+        targetId: string;
+    }
+
+    export interface PermissionSetPermissionPolicy {
+        /**
+         * The document of the cloud identity permission set inline policy. When the `permissionPolicyType` is `Inline`, this field must be specified.
+         */
+        inlinePolicyDocument?: string;
+        /**
+         * The name of the cloud identity permission set system policy. When the `permissionPolicyType` is `System`, this field must be specified.
+         */
+        permissionPolicyName: string;
+        /**
+         * The type of the cloud identity permission set policy. Valid values: `System`, `Inline`.
+         */
+        permissionPolicyType: string;
+    }
+
+    export interface PermissionSetProvisioningsPermissionProvisioning {
+        /**
+         * The create time of the cloud identity permission set provisioning.
+         */
+        createTime: string;
+        /**
+         * The id of the cloud identity permission set.
+         */
+        id: string;
+        /**
+         * The id of cloud identity permission set.
+         */
+        permissionSetId: string;
+        /**
+         * The name of the cloud identity permission set.
+         */
+        permissionSetName: string;
+        /**
+         * The target account id of cloud identity permission set.
+         */
+        targetId: string;
+        /**
+         * The update time of the cloud identity permission set provisioning.
+         */
+        updateTime: string;
+    }
+
+    export interface PermissionSetsPermissionSet {
+        /**
+         * The create time of the cloud identity permission set.
+         */
+        createdTime: string;
+        /**
+         * The description of the cloud identity permission set.
+         */
+        description: string;
+        /**
+         * The id of the cloud identity permission set.
+         */
+        id: string;
+        /**
+         * The name of the cloud identity permission set.
+         */
+        name: string;
+        /**
+         * The policies of the cloud identity permission set.
+         */
+        permissionPolicies: outputs.cloud_identity.PermissionSetsPermissionSetPermissionPolicy[];
+        /**
+         * The id of the cloud identity permission set.
+         */
+        permissionSetId: string;
+        /**
+         * The relay state of the cloud identity permission set.
+         */
+        relayState: string;
+        /**
+         * The session duration of the cloud identity permission set.
+         */
+        sessionDuration: number;
+        /**
+         * The updated time of the cloud identity permission set.
+         */
+        updatedTime: string;
+    }
+
+    export interface PermissionSetsPermissionSetPermissionPolicy {
+        /**
+         * The create time of the cloud identity permission set policy.
+         */
+        createTime: string;
+        /**
+         * The document of the cloud identity permission set policy.
+         */
+        permissionPolicyDocument: string;
+        /**
+         * The name of the cloud identity permission set policy.
+         */
+        permissionPolicyName: string;
+        /**
+         * The type of the cloud identity permission set policy.
+         */
+        permissionPolicyType: string;
+    }
+
+    export interface UserProvisioningsUserProvisioning {
+        /**
+         * The created time of the cloud identity user provisioning.
+         */
+        createdTime: string;
+        /**
+         * The deletion strategy of the cloud identity user provisioning.
+         */
+        deletionStrategy: string;
+        /**
+         * The department names of the cloud identity user provisioning.
+         */
+        departmentNames: string[];
+        /**
+         * The description of the cloud identity user provisioning.
+         */
+        description: string;
+        /**
+         * The duplication strategy of the cloud identity user provisioning.
+         */
+        duplicationStrategy: string;
+        /**
+         * The duplication suffix of the cloud identity user provisioning.
+         */
+        duplicationSuffix: string;
+        /**
+         * The id of the cloud identity user provisioning.
+         */
+        id: string;
+        /**
+         * The identity source strategy of the cloud identity user provisioning.
+         */
+        identitySourceStrategy: string;
+        /**
+         * The principal id of the cloud identity user provisioning.
+         */
+        principalId: string;
+        /**
+         * The principal name of the cloud identity user provisioning.
+         */
+        principalName: string;
+        /**
+         * The principal type of the cloud identity user provisioning.
+         */
+        principalType: string;
+        /**
+         * The status of the cloud identity user provisioning.
+         */
+        provisionStatus: string;
+        /**
+         * The target account id of the cloud identity user provisioning.
+         */
+        targetId: string;
+        /**
+         * The updated time of the cloud identity user provisioning.
+         */
+        updatedTime: string;
+        /**
+         * The id of the cloud identity user provisioning.
+         */
+        userProvisioningId: string;
+    }
+
+    export interface UsersUser {
+        /**
+         * The created time of the cloud identity user.
+         */
+        createdTime: string;
+        /**
+         * The description of the cloud identity user.
+         */
+        description: string;
+        /**
+         * The display name of cloud identity user.
+         */
+        displayName: string;
+        /**
+         * The email of the cloud identity user.
+         */
+        email: string;
+        /**
+         * The id of the cloud identity user.
+         */
+        id: string;
+        /**
+         * The identity type of the cloud identity user.
+         */
+        identityType: string;
+        /**
+         * The phone of the cloud identity user.
+         */
+        phone: string;
+        /**
+         * The source of cloud identity user. Valid values: `Sync`, `Manual`.
+         */
+        source: string;
+        /**
+         * The updated time of the cloud identity user.
+         */
+        updatedTime: string;
+        /**
+         * The id of the cloud identity user.
+         */
+        userId: string;
+        /**
+         * The name of cloud identity user.
+         */
+        userName: string;
+    }
+
+}
+
 export namespace cloud_monitor {
     export interface ContactGroupsGroup {
         /**
@@ -6750,6 +7072,83 @@ export namespace escloud {
 
 }
 
+export namespace financial_relation {
+    export interface FinancialRelationsFinancialRelation {
+        /**
+         * The display name of the sub account.
+         */
+        accountAlias: string;
+        /**
+         * The authorization info of the financial relation.
+         */
+        authInfos: outputs.financial_relation.FinancialRelationsFinancialRelationAuthInfo[];
+        /**
+         * The filiation of the financial relation.
+         */
+        filiation: number;
+        /**
+         * The filiation description of the financial relation.
+         */
+        filiationDesc: string;
+        /**
+         * The id of the major account.
+         */
+        majorAccountId: number;
+        /**
+         * The name of the major account.
+         */
+        majorAccountName: string;
+        /**
+         * A list of relation. Valid values: `1`, `4`.
+         */
+        relation: number;
+        /**
+         * The relation description of the financial.
+         */
+        relationDesc: string;
+        /**
+         * The id of the financial relation.
+         */
+        relationId: string;
+        /**
+         * A list of status. Valid values: `100`, `200`, `250`, `300`, `400`, `500`.
+         */
+        status: number;
+        /**
+         * The status description of the financial relation.
+         */
+        statusDesc: string;
+        /**
+         * The id of the sub account.
+         */
+        subAccountId: number;
+        /**
+         * The name of the sub account.
+         */
+        subAccountName: string;
+        /**
+         * The update time of the financial relation.
+         */
+        updateTime: string;
+    }
+
+    export interface FinancialRelationsFinancialRelationAuthInfo {
+        /**
+         * The auth id of the financial relation.
+         */
+        authId: string;
+        /**
+         * The auth list of the financial relation.
+         */
+        authLists: number[];
+        /**
+         * The auth status of the financial relation.
+         */
+        authStatus: number;
+    }
+
+}
+
 export namespace iam {
     export interface AccessKeysAccessKeyMetadata {
         /**
@@ -6986,6 +7385,462 @@ export namespace iam {
          * The name of the user.
          */
         userName: string;
+    }
+
+}
+
+export namespace kafka {
+    export interface ConsumedPartitionsConsumedPartition {
+        /**
+         * The total amount of message accumulation in this topic partition for the consumer group.
+         */
+        accumulation: number;
+        /**
+         * The consumed client info of partition.
+         */
+        consumedClient: string;
+        /**
+         * The consumed offset of partition.
+         */
+        consumedOffset: number;
+        /**
+         * The end offset of partition.
+         */
+        endOffset: number;
+        /**
+         * The index number of partition.
+         */
+        partitionId: number;
+        /**
+         * The start offset of partition.
+         */
+        startOffset: number;
+    }
+
+    export interface ConsumedTopicsConsumedTopic {
+        /**
+         * The total amount of message accumulation in this topic for the consumer group.
+         */
+        accumulation: number;
+        /**
+         * The name of kafka topic. This field supports fuzzy query.
+         */
+        topicName: string;
+    }
+
+    export interface GroupsGroup {
+        /**
+         * The id of kafka group, support fuzzy matching.
+         */
+        groupId: string;
+        /**
+         * The state of kafka group.
+         */
+        state: string;
+    }
+
+    export interface InstanceParameter {
+        /**
+         * Parameter name.
+         */
+        parameterName: string;
+        /**
+         * Parameter value.
+         */
+        parameterValue: string;
+    }
+
+    export interface InstanceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface InstancesInstance {
+        /**
+         * The id of account.
+         */
+        accountId: string;
+        /**
+         * The auto renew status of instance.
+         */
+        autoRenew: boolean;
+        /**
+         * The charge expire time of instance.
+         */
+        chargeExpireTime: string;
+        /**
+         * The charge start time of instance.
+         */
+        chargeStartTime: string;
+        /**
+         * The charge status of instance.
+         */
+        chargeStatus: string;
+        /**
+         * The charge type of instance.
+         */
+        chargeType: string;
+        /**
+         * The compute spec of instance.
+         */
+        computeSpec: string;
+        /**
+         * Connection info of the instance.
+         */
+        connectionInfos: outputs.kafka.InstancesInstanceConnectionInfo[];
+        /**
+         * The create time of instance.
+         */
+        createTime: string;
+        /**
+         * The id of eip.
+         */
+        eipId: string;
+        /**
+         * The id of instance.
+         */
+        id: string;
+        /**
+         * The description of instance.
+         */
+        instanceDescription: string;
+        /**
+         * The id of instance.
+         */
+        instanceId: string;
+        /**
+         * The name of instance.
+         */
+        instanceName: string;
+        /**
+         * The status of instance.
+         */
+        instanceStatus: string;
+        /**
+         * The overdue reclaim time of instance.
+         */
+        overdueReclaimTime: string;
+        /**
+         * The overdue time of instance.
+         */
+        overdueTime: string;
+        /**
+         * Parameters of the instance.
+         */
+        parameters: outputs.kafka.InstancesInstanceParameter[];
+        /**
+         * The period unit of instance.
+         */
+        periodUnit: string;
+        /**
+         * Whether enable private domain on public.
+         */
+        privateDomainOnPublic: boolean;
+        /**
+         * The name of project.
+         */
+        projectName: string;
+        /**
+         * The id of region.
+         */
+        regionId: string;
+        /**
+         * The storage space of instance.
+         */
+        storageSpace: number;
+        /**
+         * The storage type of instance.
+         */
+        storageType: string;
+        /**
+         * The id of subnet.
+         */
+        subnetId: string;
+        /**
+         * The tags of instance.
+         */
+        tags: outputs.kafka.InstancesInstanceTag[];
+        /**
+         * The usable partition number of instance.
+         */
+        usablePartitionNumber: number;
+        /**
+         * The used group number of instance.
+         */
+        usedGroupNumber: number;
+        /**
+         * The used partition number of instance.
+         */
+        usedPartitionNumber: number;
+        /**
+         * The used storage space of instance.
+         */
+        usedStorageSpace: number;
+        /**
+         * The used topic number of instance.
+         */
+        usedTopicNumber: number;
+        /**
+         * The version of instance.
+         */
+        version: string;
+        /**
+         * The id of vpc.
+         */
+        vpcId: string;
+        /**
+         * The zone id of instance.
+         */
+        zoneId: string;
+    }
+
+    export interface InstancesInstanceConnectionInfo {
+        /**
+         * The endpoint type of instance.
+         */
+        endpointType: string;
+        /**
+         * The internal endpoint of instance.
+         */
+        internalEndpoint: string;
+        /**
+         * The network type of instance.
+         */
+        networkType: string;
+        /**
+         * The public endpoint of instance.
+         */
+        publicEndpoint: string;
+    }
+
+    export interface InstancesInstanceParameter {
+        /**
+         * Parameter name.
+         */
+        parameterName: string;
+        /**
+         * Parameter value.
+         */
+        parameterValue: string;
+    }
+
+    export interface InstancesInstanceTag {
+        /**
+         * The key of tag.
+         */
+        key: string;
+        /**
+         * The value of tag.
+         */
+        value: string;
+    }
+
+    export interface InstancesTag {
+        /**
+         * The key of tag.
+         */
+        key: string;
+        /**
+         * The value of tag.
+         */
+        value: string;
+    }
+
+    export interface RegionsRegion {
+        /**
+         * The description of region.
+         */
+        description: string;
+        /**
+         * The id of the region.
+         */
+        regionId: string;
+        /**
+         * The name of region.
+         */
+        regionName: string;
+        /**
+         * The status of region.
+         */
+        status: string;
+    }
+
+    export interface SaslUsersUser {
+        /**
+         * Whether this user has read and write permissions for all topics.
+         */
+        allAuthority: boolean;
+        /**
+         * The create time.
+         */
+        createTime: string;
+        /**
+         * The description of user.
+         */
+        description: string;
+        /**
+         * The type of password.
+         */
+        passwordType: string;
+        /**
+         * The user name, support fuzzy matching.
+         */
+        userName: string;
+    }
+
+    export interface TopicAccessPolicy {
+        /**
+         * The access policy of SASL user. Valid values: `PubSub`, `Pub`, `Sub`.
+         */
+        accessPolicy: string;
+        /**
+         * The name of SASL user.
+         */
+        userName: string;
+    }
+
+    export interface TopicParameters {
+        /**
+         * The retention hours of log. Unit: hour. Valid values: 0-2160. Default is 72.
+         */
+        logRetentionHours?: number;
+        /**
+         * The max byte of message. Unit: MB. Valid values: 1-12. Default is 10.
+         */
+        messageMaxByte?: number;
+        /**
+         * The min number of sync replica. The default value is the replica number minus 1.
+         */
+        minInsyncReplicaNumber: number;
+    }
+
+    export interface TopicPartitionsPartition {
+        /**
+         * The end offset of partition leader.
+         */
+        endOffset: number;
+        /**
+         * The insync replica info.
+         */
+        insyncReplicas: number[];
+        /**
+         * The leader info of partition.
+         */
+        leader: number;
+        /**
+         * The count of message.
+         */
+        messageCount: number;
+        /**
+         * The index number of partition.
+         */
+        partitionId: number;
+        /**
+         * The replica info.
+         */
+        replicas: number[];
+        /**
+         * The start offset of partition leader.
+         */
+        startOffset: number;
+        /**
+         * The under insync replica info.
+         */
+        underInsyncReplicas: number[];
+    }
+
+    export interface TopicsTopic {
+        /**
+         * The access policies info of the kafka topic.
+         */
+        accessPolicies: outputs.kafka.TopicsTopicAccessPolicy[];
+        /**
+         * Whether the kafka topic is configured to be accessible by all users.
+         */
+        allAuthority: boolean;
+        /**
+         * The create time of the kafka topic.
+         */
+        createTime: string;
+        /**
+         * The description of the kafka topic.
+         */
+        description: string;
+        /**
+         * The parameters of the kafka topic.
+         */
+        parameters: outputs.kafka.TopicsTopicParameters;
+        /**
+         * The number of partition in kafka topic.
+         */
+        partitionNumber: number;
+        /**
+         * The number of replica in kafka topic.
+         */
+        replicaNumber: number;
+        /**
+         * The status of the kafka topic.
+         */
+        status: string;
+        /**
+         * The name of kafka topic. This field supports fuzzy query.
+         */
+        topicName: string;
+    }
+
+    export interface TopicsTopicAccessPolicy {
+        /**
+         * The access policy of SASL user.
+         */
+        accessPolicy: string;
+        /**
+         * When a user name is specified, only the access policy of the specified user for this Topic will be returned.
+         */
+        userName: string;
+    }
+
+    export interface TopicsTopicParameters {
+        /**
+         * The retention hours of log.
+         */
+        logRetentionHours: number;
+        /**
+         * The max byte of message.
+         */
+        messageMaxByte: number;
+        /**
+         * The min number of sync replica.
+         */
+        minInsyncReplicaNumber: number;
+    }
+
+    export interface ZonesZone {
+        /**
+         * The description of the zone.
+         */
+        description: string;
+        /**
+         * The id of the zone.
+         */
+        id: string;
+        /**
+         * The status of the zone.
+         */
+        status: string;
+        /**
+         * The id of the zone.
+         */
+        zoneId: string;
+        /**
+         * The name of the zone.
+         */
+        zoneName: string;
     }
 
 }
@@ -12647,6 +13502,10 @@ export namespace tls {
          */
         includeChinese?: boolean;
         /**
+         * Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+         */
+        indexAll?: boolean;
+        /**
          * The JSON subfield key value index.
          */
         jsonKeys?: outputs.tls.IndexKeyValueJsonKey[];
@@ -12776,6 +13635,10 @@ export namespace tls {
          * Whether the value include chinese.
          */
         includeChinese: boolean;
+        /**
+         * Whether to create indexes for all fields in JSON fields with text values.
+         */
+        indexAll: boolean;
         /**
          * The JSON subfield key value index.
          */

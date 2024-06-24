@@ -30,6 +30,7 @@ namespace Pulumi.Volcengine.Tls
     ///                 CaseSensitive = true,
     ///                 Delimiter = "!",
     ///                 IncludeChinese = false,
+    ///                 IndexAll = true,
     ///                 JsonKeys = new[]
     ///                 {
     ///                     new Volcengine.Tls.Inputs.IndexKeyValueJsonKeyArgs
@@ -44,7 +45,7 @@ namespace Pulumi.Volcengine.Tls
     ///                     },
     ///                 },
     ///                 Key = "k1",
-    ///                 SqlFlag = false,
+    ///                 SqlFlag = true,
     ///                 ValueType = "json",
     ///             },
     ///             new Volcengine.Tls.Inputs.IndexKeyValueArgs
@@ -57,7 +58,7 @@ namespace Pulumi.Volcengine.Tls
     ///                 ValueType = "text",
     ///             },
     ///         },
-    ///         TopicId = "7ce12237-6670-44a7-9d79-2e36961586e6",
+    ///         TopicId = "227a8d0c-b85b-48df-bee1-0927a595****",
     ///         UserInnerKeyValues = new[]
     ///         {
     ///             new Volcengine.Tls.Inputs.IndexUserInnerKeyValueArgs

@@ -26,6 +26,10 @@ namespace Pulumi.Volcengine.Tls.Outputs
         /// </summary>
         public readonly bool IncludeChinese;
         /// <summary>
+        /// Whether to create indexes for all fields in JSON fields with text values.
+        /// </summary>
+        public readonly bool IndexAll;
+        /// <summary>
         /// The JSON subfield key value index.
         /// </summary>
         public readonly ImmutableArray<Outputs.IndexesTlsIndexKeyValueJsonKeyResult> JsonKeys;
@@ -50,6 +54,8 @@ namespace Pulumi.Volcengine.Tls.Outputs
 
             bool includeChinese,
 
+            bool indexAll,
+
             ImmutableArray<Outputs.IndexesTlsIndexKeyValueJsonKeyResult> jsonKeys,
 
             string key,
@@ -61,6 +67,7 @@ namespace Pulumi.Volcengine.Tls.Outputs
             CaseSensitive = caseSensitive;
             Delimiter = delimiter;
             IncludeChinese = includeChinese;
+            IndexAll = indexAll;
             JsonKeys = jsonKeys;
             Key = key;
             SqlFlag = sqlFlag;

@@ -35,10 +35,11 @@ import (
 //				return err
 //			}
 //			_, err = organization.NewAccount(ctx, "fooAccount", &organization.AccountArgs{
-//				AccountName: pulumi.String("acc-test-account"),
-//				ShowName:    pulumi.String("acc-test-account"),
-//				Description: pulumi.String("acc-test"),
-//				OrgUnitId:   fooUnit.ID(),
+//				AccountName:            pulumi.String("acc-test-account"),
+//				ShowName:               pulumi.String("acc-test-account"),
+//				Description:            pulumi.String("acc-test"),
+//				OrgUnitId:              fooUnit.ID(),
+//				VerificationRelationId: pulumi.String("210026****"),
 //				Tags: organization.AccountTagArray{
 //					&organization.AccountTagArgs{
 //						Key:   pulumi.String("k1"),
@@ -87,6 +88,8 @@ type Account struct {
 	ShowName pulumi.StringOutput `pulumi:"showName"`
 	// Tags.
 	Tags AccountTagArrayOutput `pulumi:"tags"`
+	// The verification relation id of the account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	VerificationRelationId pulumi.StringPtrOutput `pulumi:"verificationRelationId"`
 }
 
 // NewAccount registers a new resource with the given unique name, arguments, and options.
@@ -145,6 +148,8 @@ type accountState struct {
 	ShowName *string `pulumi:"showName"`
 	// Tags.
 	Tags []AccountTag `pulumi:"tags"`
+	// The verification relation id of the account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	VerificationRelationId *string `pulumi:"verificationRelationId"`
 }
 
 type AccountState struct {
@@ -168,6 +173,8 @@ type AccountState struct {
 	ShowName pulumi.StringPtrInput
 	// Tags.
 	Tags AccountTagArrayInput
+	// The verification relation id of the account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	VerificationRelationId pulumi.StringPtrInput
 }
 
 func (AccountState) ElementType() reflect.Type {
@@ -185,6 +192,8 @@ type accountArgs struct {
 	ShowName string `pulumi:"showName"`
 	// Tags.
 	Tags []AccountTag `pulumi:"tags"`
+	// The verification relation id of the account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	VerificationRelationId *string `pulumi:"verificationRelationId"`
 }
 
 // The set of arguments for constructing a Account resource.
@@ -199,6 +208,8 @@ type AccountArgs struct {
 	ShowName pulumi.StringInput
 	// Tags.
 	Tags AccountTagArrayInput
+	// The verification relation id of the account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	VerificationRelationId pulumi.StringPtrInput
 }
 
 func (AccountArgs) ElementType() reflect.Type {
@@ -336,6 +347,11 @@ func (o AccountOutput) ShowName() pulumi.StringOutput {
 // Tags.
 func (o AccountOutput) Tags() AccountTagArrayOutput {
 	return o.ApplyT(func(v *Account) AccountTagArrayOutput { return v.Tags }).(AccountTagArrayOutput)
+}
+
+// The verification relation id of the account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+func (o AccountOutput) VerificationRelationId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Account) pulumi.StringPtrOutput { return v.VerificationRelationId }).(pulumi.StringPtrOutput)
 }
 
 type AccountArrayOutput struct{ *pulumi.OutputState }
