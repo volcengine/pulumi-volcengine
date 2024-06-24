@@ -53,6 +53,8 @@ type DirectConnectGatewayAttachmentsArgs struct {
 	DirectConnectGatewayId *string `pulumi:"directConnectGatewayId"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// Tags.
+	Tags []DirectConnectGatewayAttachmentsTag `pulumi:"tags"`
 	// ID of the network instance connection.
 	TransitRouterAttachmentIds []string `pulumi:"transitRouterAttachmentIds"`
 	// The id of the transit router.
@@ -68,6 +70,8 @@ type DirectConnectGatewayAttachmentsResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id         string  `pulumi:"id"`
 	OutputFile *string `pulumi:"outputFile"`
+	// Tags.
+	Tags []DirectConnectGatewayAttachmentsTag `pulumi:"tags"`
 	// The total count of query.
 	TotalCount                 int      `pulumi:"totalCount"`
 	TransitRouterAttachmentIds []string `pulumi:"transitRouterAttachmentIds"`
@@ -94,6 +98,8 @@ type DirectConnectGatewayAttachmentsOutputArgs struct {
 	DirectConnectGatewayId pulumi.StringPtrInput `pulumi:"directConnectGatewayId"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// Tags.
+	Tags DirectConnectGatewayAttachmentsTagArrayInput `pulumi:"tags"`
 	// ID of the network instance connection.
 	TransitRouterAttachmentIds pulumi.StringArrayInput `pulumi:"transitRouterAttachmentIds"`
 	// The id of the transit router.
@@ -138,6 +144,11 @@ func (o DirectConnectGatewayAttachmentsResultOutput) Id() pulumi.StringOutput {
 
 func (o DirectConnectGatewayAttachmentsResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DirectConnectGatewayAttachmentsResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o DirectConnectGatewayAttachmentsResultOutput) Tags() DirectConnectGatewayAttachmentsTagArrayOutput {
+	return o.ApplyT(func(v DirectConnectGatewayAttachmentsResult) []DirectConnectGatewayAttachmentsTag { return v.Tags }).(DirectConnectGatewayAttachmentsTagArrayOutput)
 }
 
 // The total count of query.

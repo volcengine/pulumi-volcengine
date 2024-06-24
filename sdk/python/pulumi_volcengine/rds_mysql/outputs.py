@@ -199,6 +199,7 @@ class AllowlistsAllowListResult(dict):
                  allow_list_ip_num: int,
                  allow_list_name: str,
                  allow_list_type: str,
+                 allow_lists: Sequence[str],
                  associated_instance_num: int,
                  associated_instances: Sequence['outputs.AllowlistsAllowListAssociatedInstanceResult']):
         """
@@ -207,6 +208,7 @@ class AllowlistsAllowListResult(dict):
         :param int allow_list_ip_num: The total number of IP addresses (or address ranges) in the whitelist.
         :param str allow_list_name: The name of the allow list.
         :param str allow_list_type: The type of the allow list.
+        :param Sequence[str] allow_lists: The IP address or a range of IP addresses in CIDR format.
         :param int associated_instance_num: The total number of instances bound under the whitelist.
         :param Sequence['AllowlistsAllowListAssociatedInstanceArgs'] associated_instances: The list of instances.
         """
@@ -215,6 +217,7 @@ class AllowlistsAllowListResult(dict):
         pulumi.set(__self__, "allow_list_ip_num", allow_list_ip_num)
         pulumi.set(__self__, "allow_list_name", allow_list_name)
         pulumi.set(__self__, "allow_list_type", allow_list_type)
+        pulumi.set(__self__, "allow_lists", allow_lists)
         pulumi.set(__self__, "associated_instance_num", associated_instance_num)
         pulumi.set(__self__, "associated_instances", associated_instances)
 
@@ -257,6 +260,14 @@ class AllowlistsAllowListResult(dict):
         The type of the allow list.
         """
         return pulumi.get(self, "allow_list_type")
+
+    @property
+    @pulumi.getter(name="allowLists")
+    def allow_lists(self) -> Sequence[str]:
+        """
+        The IP address or a range of IP addresses in CIDR format.
+        """
+        return pulumi.get(self, "allow_lists")
 
     @property
     @pulumi.getter(name="associatedInstanceNum")

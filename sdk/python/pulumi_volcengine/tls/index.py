@@ -212,6 +212,7 @@ class Index(pulumi.CustomResource):
                     case_sensitive=True,
                     delimiter="!",
                     include_chinese=False,
+                    index_all=True,
                     json_keys=[
                         volcengine.tls.IndexKeyValueJsonKeyArgs(
                             key="class",
@@ -223,7 +224,7 @@ class Index(pulumi.CustomResource):
                         ),
                     ],
                     key="k1",
-                    sql_flag=False,
+                    sql_flag=True,
                     value_type="json",
                 ),
                 volcengine.tls.IndexKeyValueArgs(
@@ -235,7 +236,7 @@ class Index(pulumi.CustomResource):
                     value_type="text",
                 ),
             ],
-            topic_id="7ce12237-6670-44a7-9d79-2e36961586e6",
+            topic_id="227a8d0c-b85b-48df-bee1-0927a595****",
             user_inner_key_values=[volcengine.tls.IndexUserInnerKeyValueArgs(
                 case_sensitive=False,
                 delimiter=",:-/ ",
@@ -291,6 +292,7 @@ class Index(pulumi.CustomResource):
                     case_sensitive=True,
                     delimiter="!",
                     include_chinese=False,
+                    index_all=True,
                     json_keys=[
                         volcengine.tls.IndexKeyValueJsonKeyArgs(
                             key="class",
@@ -302,7 +304,7 @@ class Index(pulumi.CustomResource):
                         ),
                     ],
                     key="k1",
-                    sql_flag=False,
+                    sql_flag=True,
                     value_type="json",
                 ),
                 volcengine.tls.IndexKeyValueArgs(
@@ -314,7 +316,7 @@ class Index(pulumi.CustomResource):
                     value_type="text",
                 ),
             ],
-            topic_id="7ce12237-6670-44a7-9d79-2e36961586e6",
+            topic_id="227a8d0c-b85b-48df-bee1-0927a595****",
             user_inner_key_values=[volcengine.tls.IndexUserInnerKeyValueArgs(
                 case_sensitive=False,
                 delimiter=",:-/ ",

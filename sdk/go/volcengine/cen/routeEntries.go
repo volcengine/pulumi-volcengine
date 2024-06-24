@@ -12,31 +12,6 @@ import (
 )
 
 // Use this data source to query detailed information of cen route entries
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/cen"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cen.RouteEntries(ctx, &cen.RouteEntriesArgs{
-//				CenId: "cen-12ar8uclj68sg17q7y20v9gil",
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func RouteEntries(ctx *pulumi.Context, args *RouteEntriesArgs, opts ...pulumi.InvokeOption) (*RouteEntriesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv RouteEntriesResult

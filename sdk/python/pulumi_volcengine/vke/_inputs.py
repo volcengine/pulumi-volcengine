@@ -1235,15 +1235,19 @@ class DefaultNodePoolKubernetesConfigArgs:
     def __init__(__self__, *,
                  cordon: pulumi.Input[bool],
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolKubernetesConfigLabelArgs']]]] = None,
+                 name_prefix: Optional[pulumi.Input[str]] = None,
                  taints: Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolKubernetesConfigTaintArgs']]]] = None):
         """
         :param pulumi.Input[bool] cordon: The Cordon of KubernetesConfig.
         :param pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolKubernetesConfigLabelArgs']]] labels: The Labels of KubernetesConfig.
+        :param pulumi.Input[str] name_prefix: The NamePrefix of node metadata.
         :param pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolKubernetesConfigTaintArgs']]] taints: The Taints of KubernetesConfig.
         """
         pulumi.set(__self__, "cordon", cordon)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
+        if name_prefix is not None:
+            pulumi.set(__self__, "name_prefix", name_prefix)
         if taints is not None:
             pulumi.set(__self__, "taints", taints)
 
@@ -1270,6 +1274,18 @@ class DefaultNodePoolKubernetesConfigArgs:
     @labels.setter
     def labels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DefaultNodePoolKubernetesConfigLabelArgs']]]]):
         pulumi.set(self, "labels", value)
+
+    @property
+    @pulumi.getter(name="namePrefix")
+    def name_prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        The NamePrefix of node metadata.
+        """
+        return pulumi.get(self, "name_prefix")
+
+    @name_prefix.setter
+    def name_prefix(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name_prefix", value)
 
     @property
     @pulumi.getter
@@ -1872,15 +1888,19 @@ class NodePoolKubernetesConfigArgs:
     def __init__(__self__, *,
                  cordon: pulumi.Input[bool],
                  labels: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolKubernetesConfigLabelArgs']]]] = None,
+                 name_prefix: Optional[pulumi.Input[str]] = None,
                  taints: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolKubernetesConfigTaintArgs']]]] = None):
         """
         :param pulumi.Input[bool] cordon: The Cordon of KubernetesConfig.
         :param pulumi.Input[Sequence[pulumi.Input['NodePoolKubernetesConfigLabelArgs']]] labels: The Labels of KubernetesConfig.
+        :param pulumi.Input[str] name_prefix: The NamePrefix of node metadata.
         :param pulumi.Input[Sequence[pulumi.Input['NodePoolKubernetesConfigTaintArgs']]] taints: The Taints of KubernetesConfig.
         """
         pulumi.set(__self__, "cordon", cordon)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
+        if name_prefix is not None:
+            pulumi.set(__self__, "name_prefix", name_prefix)
         if taints is not None:
             pulumi.set(__self__, "taints", taints)
 
@@ -1907,6 +1927,18 @@ class NodePoolKubernetesConfigArgs:
     @labels.setter
     def labels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolKubernetesConfigLabelArgs']]]]):
         pulumi.set(self, "labels", value)
+
+    @property
+    @pulumi.getter(name="namePrefix")
+    def name_prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        The NamePrefix of node metadata.
+        """
+        return pulumi.get(self, "name_prefix")
+
+    @name_prefix.setter
+    def name_prefix(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name_prefix", value)
 
     @property
     @pulumi.getter
@@ -2501,9 +2533,9 @@ class NodePoolNodeStatisticArgs:
         :param pulumi.Input[int] deleting_count: The DeletingCount of Node.
         :param pulumi.Input[int] failed_count: The FailedCount of Node.
         :param pulumi.Input[int] running_count: The RunningCount of Node.
-        :param pulumi.Input[int] starting_count: The StartingCount of Node.
-        :param pulumi.Input[int] stopped_count: The StoppedCount of Node.
-        :param pulumi.Input[int] stopping_count: The StoppingCount of Node.
+        :param pulumi.Input[int] starting_count: (**Deprecated**) This field has been deprecated and is not recommended for use. The StartingCount of Node.
+        :param pulumi.Input[int] stopped_count: (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppedCount of Node.
+        :param pulumi.Input[int] stopping_count: (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppingCount of Node.
         :param pulumi.Input[int] total_count: The TotalCount of Node.
         :param pulumi.Input[int] updating_count: The UpdatingCount of Node.
         """
@@ -2516,9 +2548,18 @@ class NodePoolNodeStatisticArgs:
         if running_count is not None:
             pulumi.set(__self__, "running_count", running_count)
         if starting_count is not None:
+            warnings.warn("""This field has been deprecated and is not recommended for use.""", DeprecationWarning)
+            pulumi.log.warn("""starting_count is deprecated: This field has been deprecated and is not recommended for use.""")
+        if starting_count is not None:
             pulumi.set(__self__, "starting_count", starting_count)
         if stopped_count is not None:
+            warnings.warn("""This field has been deprecated and is not recommended for use.""", DeprecationWarning)
+            pulumi.log.warn("""stopped_count is deprecated: This field has been deprecated and is not recommended for use.""")
+        if stopped_count is not None:
             pulumi.set(__self__, "stopped_count", stopped_count)
+        if stopping_count is not None:
+            warnings.warn("""This field has been deprecated and is not recommended for use.""", DeprecationWarning)
+            pulumi.log.warn("""stopping_count is deprecated: This field has been deprecated and is not recommended for use.""")
         if stopping_count is not None:
             pulumi.set(__self__, "stopping_count", stopping_count)
         if total_count is not None:
@@ -2578,8 +2619,11 @@ class NodePoolNodeStatisticArgs:
     @pulumi.getter(name="startingCount")
     def starting_count(self) -> Optional[pulumi.Input[int]]:
         """
-        The StartingCount of Node.
+        (**Deprecated**) This field has been deprecated and is not recommended for use. The StartingCount of Node.
         """
+        warnings.warn("""This field has been deprecated and is not recommended for use.""", DeprecationWarning)
+        pulumi.log.warn("""starting_count is deprecated: This field has been deprecated and is not recommended for use.""")
+
         return pulumi.get(self, "starting_count")
 
     @starting_count.setter
@@ -2590,8 +2634,11 @@ class NodePoolNodeStatisticArgs:
     @pulumi.getter(name="stoppedCount")
     def stopped_count(self) -> Optional[pulumi.Input[int]]:
         """
-        The StoppedCount of Node.
+        (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppedCount of Node.
         """
+        warnings.warn("""This field has been deprecated and is not recommended for use.""", DeprecationWarning)
+        pulumi.log.warn("""stopped_count is deprecated: This field has been deprecated and is not recommended for use.""")
+
         return pulumi.get(self, "stopped_count")
 
     @stopped_count.setter
@@ -2602,8 +2649,11 @@ class NodePoolNodeStatisticArgs:
     @pulumi.getter(name="stoppingCount")
     def stopping_count(self) -> Optional[pulumi.Input[int]]:
         """
-        The StoppingCount of Node.
+        (**Deprecated**) This field has been deprecated and is not recommended for use. The StoppingCount of Node.
         """
+        warnings.warn("""This field has been deprecated and is not recommended for use.""", DeprecationWarning)
+        pulumi.log.warn("""stopping_count is deprecated: This field has been deprecated and is not recommended for use.""")
+
         return pulumi.get(self, "stopping_count")
 
     @stopping_count.setter

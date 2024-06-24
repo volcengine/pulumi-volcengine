@@ -100,6 +100,12 @@ import (
 //				InstanceId:         fooInstance.ID(),
 //				ProjectName:        pulumi.String("default"),
 //				DeleteWithInstance: pulumi.Bool(true),
+//				Tags: ebs.VolumeTagArray{
+//					&ebs.VolumeTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -113,6 +119,12 @@ import (
 //				ZoneId:           *pulumi.String(fooZones.Zones[0].Id),
 //				VolumeChargeType: pulumi.String("PostPaid"),
 //				ProjectName:      pulumi.String("default"),
+//				Tags: ebs.VolumeTagArray{
+//					&ebs.VolumeTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -154,6 +166,8 @@ type Volume struct {
 	Size pulumi.IntOutput `pulumi:"size"`
 	// Status of Volume.
 	Status pulumi.StringOutput `pulumi:"status"`
+	// Tags.
+	Tags VolumeTagArrayOutput `pulumi:"tags"`
 	// Status of Trade.
 	TradeStatus pulumi.IntOutput `pulumi:"tradeStatus"`
 	// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
@@ -230,6 +244,8 @@ type volumeState struct {
 	Size *int `pulumi:"size"`
 	// Status of Volume.
 	Status *string `pulumi:"status"`
+	// Tags.
+	Tags []VolumeTag `pulumi:"tags"`
 	// Status of Trade.
 	TradeStatus *int `pulumi:"tradeStatus"`
 	// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
@@ -262,6 +278,8 @@ type VolumeState struct {
 	Size pulumi.IntPtrInput
 	// Status of Volume.
 	Status pulumi.StringPtrInput
+	// Tags.
+	Tags VolumeTagArrayInput
 	// Status of Trade.
 	TradeStatus pulumi.IntPtrInput
 	// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
@@ -294,6 +312,8 @@ type volumeArgs struct {
 	ProjectName *string `pulumi:"projectName"`
 	// The size of Volume.
 	Size int `pulumi:"size"`
+	// Tags.
+	Tags []VolumeTag `pulumi:"tags"`
 	// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
 	VolumeChargeType *string `pulumi:"volumeChargeType"`
 	// The name of Volume.
@@ -321,6 +341,8 @@ type VolumeArgs struct {
 	ProjectName pulumi.StringPtrInput
 	// The size of Volume.
 	Size pulumi.IntInput
+	// Tags.
+	Tags VolumeTagArrayInput
 	// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
 	VolumeChargeType pulumi.StringPtrInput
 	// The name of Volume.
@@ -459,6 +481,11 @@ func (o VolumeOutput) Size() pulumi.IntOutput {
 // Status of Volume.
 func (o VolumeOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o VolumeOutput) Tags() VolumeTagArrayOutput {
+	return o.ApplyT(func(v *Volume) VolumeTagArrayOutput { return v.Tags }).(VolumeTagArrayOutput)
 }
 
 // Status of Trade.

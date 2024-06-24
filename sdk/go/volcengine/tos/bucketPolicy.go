@@ -41,7 +41,7 @@ import (
 //							"tos:List*",
 //						},
 //						"Resource": []string{
-//							"trn:tos:::bucket-20230418",
+//							"trn:tos:::tf-acc-test-bucket",
 //						},
 //					},
 //				},
@@ -51,7 +51,7 @@ import (
 //			}
 //			json0 := string(tmpJSON0)
 //			_, err = tos.NewBucketPolicy(ctx, "default", &tos.BucketPolicyArgs{
-//				BucketName: pulumi.String("bucket-20230418"),
+//				BucketName: pulumi.String("tf-acc-test-bucket"),
 //				Policy:     pulumi.String(json0),
 //			})
 //			if err != nil {

@@ -15,9 +15,13 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.cen.Cen("foo", {
- *     cenName: "tf-test-3",
- *     description: "tf-test",
+ *     cenName: "acc-test-cen",
+ *     description: "acc-test",
  *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
  * ```
  *

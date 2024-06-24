@@ -98,7 +98,38 @@ def inter_region_bandwidths(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cen.inter_region_bandwidths(ids=["cirb-274q484wxao007fap8tlvl6si"])
+    foo_cen = volcengine.cen.Cen("fooCen",
+        cen_name="acc-test-cen",
+        description="acc-test",
+        project_name="default",
+        tags=[volcengine.cen.CenTagArgs(
+            key="k1",
+            value="v1",
+        )])
+    foo_bandwidth_package = volcengine.cen.BandwidthPackage("fooBandwidthPackage",
+        local_geographic_region_set_id="China",
+        peer_geographic_region_set_id="China",
+        bandwidth=5,
+        cen_bandwidth_package_name="acc-test-cen-bp",
+        description="acc-test",
+        billing_type="PrePaid",
+        period_unit="Month",
+        period=1,
+        project_name="default",
+        tags=[volcengine.cen.BandwidthPackageTagArgs(
+            key="k1",
+            value="v1",
+        )])
+    foo_bandwidth_package_associate = volcengine.cen.BandwidthPackageAssociate("fooBandwidthPackageAssociate",
+        cen_bandwidth_package_id=foo_bandwidth_package.id,
+        cen_id=foo_cen.id)
+    foo_inter_region_bandwidth = volcengine.cen.InterRegionBandwidth("fooInterRegionBandwidth",
+        cen_id=foo_cen.id,
+        local_region_id="cn-beijing",
+        peer_region_id="cn-shanghai",
+        bandwidth=2,
+        opts=pulumi.ResourceOptions(depends_on=[foo_bandwidth_package_associate]))
+    foo_inter_region_bandwidths = volcengine.cen.inter_region_bandwidths_output(ids=[foo_inter_region_bandwidth.id])
     ```
 
 
@@ -131,7 +162,38 @@ def inter_region_bandwidths_output(ids: Optional[pulumi.Input[Optional[Sequence[
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cen.inter_region_bandwidths(ids=["cirb-274q484wxao007fap8tlvl6si"])
+    foo_cen = volcengine.cen.Cen("fooCen",
+        cen_name="acc-test-cen",
+        description="acc-test",
+        project_name="default",
+        tags=[volcengine.cen.CenTagArgs(
+            key="k1",
+            value="v1",
+        )])
+    foo_bandwidth_package = volcengine.cen.BandwidthPackage("fooBandwidthPackage",
+        local_geographic_region_set_id="China",
+        peer_geographic_region_set_id="China",
+        bandwidth=5,
+        cen_bandwidth_package_name="acc-test-cen-bp",
+        description="acc-test",
+        billing_type="PrePaid",
+        period_unit="Month",
+        period=1,
+        project_name="default",
+        tags=[volcengine.cen.BandwidthPackageTagArgs(
+            key="k1",
+            value="v1",
+        )])
+    foo_bandwidth_package_associate = volcengine.cen.BandwidthPackageAssociate("fooBandwidthPackageAssociate",
+        cen_bandwidth_package_id=foo_bandwidth_package.id,
+        cen_id=foo_cen.id)
+    foo_inter_region_bandwidth = volcengine.cen.InterRegionBandwidth("fooInterRegionBandwidth",
+        cen_id=foo_cen.id,
+        local_region_id="cn-beijing",
+        peer_region_id="cn-shanghai",
+        bandwidth=2,
+        opts=pulumi.ResourceOptions(depends_on=[foo_bandwidth_package_associate]))
+    foo_inter_region_bandwidths = volcengine.cen.inter_region_bandwidths_output(ids=[foo_inter_region_bandwidth.id])
     ```
 
 

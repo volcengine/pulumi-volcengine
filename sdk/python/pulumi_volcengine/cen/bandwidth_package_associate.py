@@ -105,9 +105,31 @@ class BandwidthPackageAssociate(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.cen.BandwidthPackageAssociate("foo",
-            cen_bandwidth_package_id="cbp-2bzeew3s8p79c2dx0eeohej4x",
-            cen_id="cen-2bzrl3srxsv0g2dx0efyoojn3")
+        foo_cen = volcengine.cen.Cen("fooCen",
+            cen_name="acc-test-cen",
+            description="acc-test",
+            project_name="default",
+            tags=[volcengine.cen.CenTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_bandwidth_package = volcengine.cen.BandwidthPackage("fooBandwidthPackage",
+            local_geographic_region_set_id="China",
+            peer_geographic_region_set_id="China",
+            bandwidth=2,
+            cen_bandwidth_package_name="acc-test-cen-bp",
+            description="acc-test",
+            billing_type="PrePaid",
+            period_unit="Month",
+            period=1,
+            project_name="default",
+            tags=[volcengine.cen.BandwidthPackageTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_bandwidth_package_associate = volcengine.cen.BandwidthPackageAssociate("fooBandwidthPackageAssociate",
+            cen_bandwidth_package_id=foo_bandwidth_package.id,
+            cen_id=foo_cen.id)
         ```
 
         ## Import
@@ -137,9 +159,31 @@ class BandwidthPackageAssociate(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.cen.BandwidthPackageAssociate("foo",
-            cen_bandwidth_package_id="cbp-2bzeew3s8p79c2dx0eeohej4x",
-            cen_id="cen-2bzrl3srxsv0g2dx0efyoojn3")
+        foo_cen = volcengine.cen.Cen("fooCen",
+            cen_name="acc-test-cen",
+            description="acc-test",
+            project_name="default",
+            tags=[volcengine.cen.CenTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_bandwidth_package = volcengine.cen.BandwidthPackage("fooBandwidthPackage",
+            local_geographic_region_set_id="China",
+            peer_geographic_region_set_id="China",
+            bandwidth=2,
+            cen_bandwidth_package_name="acc-test-cen-bp",
+            description="acc-test",
+            billing_type="PrePaid",
+            period_unit="Month",
+            period=1,
+            project_name="default",
+            tags=[volcengine.cen.BandwidthPackageTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_bandwidth_package_associate = volcengine.cen.BandwidthPackageAssociate("fooBandwidthPackageAssociate",
+            cen_bandwidth_package_id=foo_bandwidth_package.id,
+            cen_id=foo_cen.id)
         ```
 
         ## Import

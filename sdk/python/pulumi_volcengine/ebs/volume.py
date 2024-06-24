@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['VolumeArgs', 'Volume']
 
@@ -23,6 +25,7 @@ class VolumeArgs:
                  description: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['VolumeTagArgs']]]] = None,
                  volume_charge_type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Volume resource.
@@ -38,6 +41,7 @@ class VolumeArgs:
                deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
                terraform state file and management.
         :param pulumi.Input[str] project_name: The ProjectName of the Volume.
+        :param pulumi.Input[Sequence[pulumi.Input['VolumeTagArgs']]] tags: Tags.
         :param pulumi.Input[str] volume_charge_type: The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
         """
         pulumi.set(__self__, "kind", kind)
@@ -53,6 +57,8 @@ class VolumeArgs:
             pulumi.set(__self__, "instance_id", instance_id)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if volume_charge_type is not None:
             pulumi.set(__self__, "volume_charge_type", volume_charge_type)
 
@@ -168,6 +174,18 @@ class VolumeArgs:
         pulumi.set(self, "project_name", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VolumeTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VolumeTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="volumeChargeType")
     def volume_charge_type(self) -> Optional[pulumi.Input[str]]:
         """
@@ -191,6 +209,7 @@ class _VolumeState:
                  project_name: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[int]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['VolumeTagArgs']]]] = None,
                  trade_status: Optional[pulumi.Input[int]] = None,
                  volume_charge_type: Optional[pulumi.Input[str]] = None,
                  volume_name: Optional[pulumi.Input[str]] = None,
@@ -209,6 +228,7 @@ class _VolumeState:
         :param pulumi.Input[str] project_name: The ProjectName of the Volume.
         :param pulumi.Input[int] size: The size of Volume.
         :param pulumi.Input[str] status: Status of Volume.
+        :param pulumi.Input[Sequence[pulumi.Input['VolumeTagArgs']]] tags: Tags.
         :param pulumi.Input[int] trade_status: Status of Trade.
         :param pulumi.Input[str] volume_charge_type: The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
         :param pulumi.Input[str] volume_name: The name of Volume.
@@ -231,6 +251,8 @@ class _VolumeState:
             pulumi.set(__self__, "size", size)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if trade_status is not None:
             pulumi.set(__self__, "trade_status", trade_status)
         if volume_charge_type is not None:
@@ -342,6 +364,18 @@ class _VolumeState:
         pulumi.set(self, "status", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VolumeTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VolumeTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="tradeStatus")
     def trade_status(self) -> Optional[pulumi.Input[int]]:
         """
@@ -413,6 +447,7 @@ class Volume(pulumi.CustomResource):
                  kind: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[int]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeTagArgs']]]]] = None,
                  volume_charge_type: Optional[pulumi.Input[str]] = None,
                  volume_name: Optional[pulumi.Input[str]] = None,
                  volume_type: Optional[pulumi.Input[str]] = None,
@@ -468,7 +503,11 @@ class Volume(pulumi.CustomResource):
             volume_charge_type="PrePaid",
             instance_id=foo_instance.id,
             project_name="default",
-            delete_with_instance=True)
+            delete_with_instance=True,
+            tags=[volcengine.ebs.VolumeTagArgs(
+                key="k1",
+                value="v1",
+            )])
         post_volume = volcengine.ebs.Volume("postVolume",
             volume_name="acc-test-volume",
             volume_type="ESSD_PL0",
@@ -477,7 +516,11 @@ class Volume(pulumi.CustomResource):
             size=40,
             zone_id=foo_zones.zones[0].id,
             volume_charge_type="PostPaid",
-            project_name="default")
+            project_name="default",
+            tags=[volcengine.ebs.VolumeTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -499,6 +542,7 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[str] kind: The kind of Volume, the value is `data`.
         :param pulumi.Input[str] project_name: The ProjectName of the Volume.
         :param pulumi.Input[int] size: The size of Volume.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] volume_charge_type: The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
         :param pulumi.Input[str] volume_name: The name of Volume.
         :param pulumi.Input[str] volume_type: The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
@@ -560,7 +604,11 @@ class Volume(pulumi.CustomResource):
             volume_charge_type="PrePaid",
             instance_id=foo_instance.id,
             project_name="default",
-            delete_with_instance=True)
+            delete_with_instance=True,
+            tags=[volcengine.ebs.VolumeTagArgs(
+                key="k1",
+                value="v1",
+            )])
         post_volume = volcengine.ebs.Volume("postVolume",
             volume_name="acc-test-volume",
             volume_type="ESSD_PL0",
@@ -569,7 +617,11 @@ class Volume(pulumi.CustomResource):
             size=40,
             zone_id=foo_zones.zones[0].id,
             volume_charge_type="PostPaid",
-            project_name="default")
+            project_name="default",
+            tags=[volcengine.ebs.VolumeTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -601,6 +653,7 @@ class Volume(pulumi.CustomResource):
                  kind: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[int]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeTagArgs']]]]] = None,
                  volume_charge_type: Optional[pulumi.Input[str]] = None,
                  volume_name: Optional[pulumi.Input[str]] = None,
                  volume_type: Optional[pulumi.Input[str]] = None,
@@ -624,6 +677,7 @@ class Volume(pulumi.CustomResource):
             if size is None and not opts.urn:
                 raise TypeError("Missing required property 'size'")
             __props__.__dict__["size"] = size
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["volume_charge_type"] = volume_charge_type
             if volume_name is None and not opts.urn:
                 raise TypeError("Missing required property 'volume_name'")
@@ -655,6 +709,7 @@ class Volume(pulumi.CustomResource):
             project_name: Optional[pulumi.Input[str]] = None,
             size: Optional[pulumi.Input[int]] = None,
             status: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeTagArgs']]]]] = None,
             trade_status: Optional[pulumi.Input[int]] = None,
             volume_charge_type: Optional[pulumi.Input[str]] = None,
             volume_name: Optional[pulumi.Input[str]] = None,
@@ -678,6 +733,7 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[str] project_name: The ProjectName of the Volume.
         :param pulumi.Input[int] size: The size of Volume.
         :param pulumi.Input[str] status: Status of Volume.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeTagArgs']]]] tags: Tags.
         :param pulumi.Input[int] trade_status: Status of Trade.
         :param pulumi.Input[str] volume_charge_type: The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
         :param pulumi.Input[str] volume_name: The name of Volume.
@@ -696,6 +752,7 @@ class Volume(pulumi.CustomResource):
         __props__.__dict__["project_name"] = project_name
         __props__.__dict__["size"] = size
         __props__.__dict__["status"] = status
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["trade_status"] = trade_status
         __props__.__dict__["volume_charge_type"] = volume_charge_type
         __props__.__dict__["volume_name"] = volume_name
@@ -769,6 +826,14 @@ class Volume(pulumi.CustomResource):
         Status of Volume.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.VolumeTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="tradeStatus")

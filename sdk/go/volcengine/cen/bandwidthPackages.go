@@ -19,26 +19,48 @@ import (
 //
 // import (
 //
+//	"fmt"
+//
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/cen"
 //
 // )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// var fooBandwidthPackage []*cen.BandwidthPackage
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cen.BandwidthPackages(ctx, &cen.BandwidthPackagesArgs{
-//				CenId: pulumi.StringRef("cen-2bzrl3srxsv0g2dx0efyoojn3"),
-//				Ids: []string{
-//					"cbp-2bzeew3s8p79c2dx0eeohej4x",
-//				},
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
+//	for index := 0; index < 2; index++ {
+//	    key0 := index
+//	    val0 := index
 //
+// __res, err := cen.NewBandwidthPackage(ctx, fmt.Sprintf("fooBandwidthPackage-%v", key0), &cen.BandwidthPackageArgs{
+// LocalGeographicRegionSetId: pulumi.String("China"),
+// PeerGeographicRegionSetId: pulumi.String("China"),
+// Bandwidth: pulumi.Int(2),
+// CenBandwidthPackageName: pulumi.String(fmt.Sprintf("acc-test-cen-bp-%v", val0)),
+// Description: pulumi.String("acc-test"),
+// BillingType: pulumi.String("PrePaid"),
+// PeriodUnit: pulumi.String("Month"),
+// Period: pulumi.Int(1),
+// ProjectName: pulumi.String("default"),
+// Tags: cen.BandwidthPackageTagArray{
+// &cen.BandwidthPackageTagArgs{
+// Key: pulumi.String("k1"),
+// Value: pulumi.String("v1"),
+// },
+// },
+// })
+// if err != nil {
+// return err
+// }
+// fooBandwidthPackage = append(fooBandwidthPackage, __res)
+// }
+// _ = cen.BandwidthPackagesOutput(ctx, cen.BandwidthPackagesOutputArgs{
+// Ids: %!v(PANIC=Format method: fatal: A failure has occurred: unlowered splat expression @ #-functions-volcengine:cen-bandwidthPackages:BandwidthPackages.pp:20,9-34),
+// }, nil);
+// return nil
+// })
+// }
 // ```
 func BandwidthPackages(ctx *pulumi.Context, args *BandwidthPackagesArgs, opts ...pulumi.InvokeOption) (*BandwidthPackagesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)

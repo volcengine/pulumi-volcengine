@@ -19,18 +19,22 @@ class BandwidthPackageArgs:
                  bandwidth: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  remain_renew_times: Optional[pulumi.Input[int]] = None,
                  renew_period: Optional[pulumi.Input[int]] = None,
                  renew_type: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['BandwidthPackageTagArgs']]]] = None,
                  transit_router_bandwidth_package_name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a BandwidthPackage resource.
         :param pulumi.Input[int] bandwidth: The bandwidth peak of the transit router bandwidth package. Unit: Mbps. Valid values: 2-10000. Default is 2 Mbps.
         :param pulumi.Input[str] description: The description of the transit router bandwidth package.
         :param pulumi.Input[int] period: The period of the transit router bandwidth package, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.The modification of this field only takes effect when the value of the `renew_type` is `Manual`.
+        :param pulumi.Input[str] project_name: The ProjectName of the transit router bandwidth package.
         :param pulumi.Input[int] remain_renew_times: The remaining renewal times of of the transit router bandwidth package. Valid values: -1 or 1~100. Default value is -1, means unlimited renewal.This field is only effective when the value of the `renew_type` is `Auto`.
         :param pulumi.Input[int] renew_period: The auto renewal period of the transit router bandwidth package. Valid values: 1,2,3,6,12. Default value is 1. Unit: Month.This field is only effective when the value of the `renew_type` is `Auto`. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] renew_type: The renewal type of the transit router bandwidth package. Valid values: `Manual`, `Auto`, `NoRenew`. Default is `Manual`.This field is only effective when modifying the bandwidth package.
+        :param pulumi.Input[Sequence[pulumi.Input['BandwidthPackageTagArgs']]] tags: Tags.
         :param pulumi.Input[str] transit_router_bandwidth_package_name: The name of the transit router bandwidth package.
         """
         if bandwidth is not None:
@@ -39,12 +43,16 @@ class BandwidthPackageArgs:
             pulumi.set(__self__, "description", description)
         if period is not None:
             pulumi.set(__self__, "period", period)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if remain_renew_times is not None:
             pulumi.set(__self__, "remain_renew_times", remain_renew_times)
         if renew_period is not None:
             pulumi.set(__self__, "renew_period", renew_period)
         if renew_type is not None:
             pulumi.set(__self__, "renew_type", renew_type)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if transit_router_bandwidth_package_name is not None:
             pulumi.set(__self__, "transit_router_bandwidth_package_name", transit_router_bandwidth_package_name)
 
@@ -85,6 +93,18 @@ class BandwidthPackageArgs:
         pulumi.set(self, "period", value)
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of the transit router bandwidth package.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
     @pulumi.getter(name="remainRenewTimes")
     def remain_renew_times(self) -> Optional[pulumi.Input[int]]:
         """
@@ -121,6 +141,18 @@ class BandwidthPackageArgs:
         pulumi.set(self, "renew_type", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BandwidthPackageTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BandwidthPackageTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="transitRouterBandwidthPackageName")
     def transit_router_bandwidth_package_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -144,11 +176,13 @@ class _BandwidthPackageState:
                  description: Optional[pulumi.Input[str]] = None,
                  expired_time: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  remain_renew_times: Optional[pulumi.Input[int]] = None,
                  remaining_bandwidth: Optional[pulumi.Input[int]] = None,
                  renew_period: Optional[pulumi.Input[int]] = None,
                  renew_type: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['BandwidthPackageTagArgs']]]] = None,
                  transit_router_bandwidth_package_name: Optional[pulumi.Input[str]] = None,
                  update_time: Optional[pulumi.Input[str]] = None):
         """
@@ -161,11 +195,13 @@ class _BandwidthPackageState:
         :param pulumi.Input[str] description: The description of the transit router bandwidth package.
         :param pulumi.Input[str] expired_time: The expired time of the transit router bandwidth package.
         :param pulumi.Input[int] period: The period of the transit router bandwidth package, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.The modification of this field only takes effect when the value of the `renew_type` is `Manual`.
+        :param pulumi.Input[str] project_name: The ProjectName of the transit router bandwidth package.
         :param pulumi.Input[int] remain_renew_times: The remaining renewal times of of the transit router bandwidth package. Valid values: -1 or 1~100. Default value is -1, means unlimited renewal.This field is only effective when the value of the `renew_type` is `Auto`.
         :param pulumi.Input[int] remaining_bandwidth: The remaining bandwidth of the transit router bandwidth package. Unit: Mbps.
         :param pulumi.Input[int] renew_period: The auto renewal period of the transit router bandwidth package. Valid values: 1,2,3,6,12. Default value is 1. Unit: Month.This field is only effective when the value of the `renew_type` is `Auto`. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] renew_type: The renewal type of the transit router bandwidth package. Valid values: `Manual`, `Auto`, `NoRenew`. Default is `Manual`.This field is only effective when modifying the bandwidth package.
         :param pulumi.Input[str] status: The status of the transit router bandwidth package.
+        :param pulumi.Input[Sequence[pulumi.Input['BandwidthPackageTagArgs']]] tags: Tags.
         :param pulumi.Input[str] transit_router_bandwidth_package_name: The name of the transit router bandwidth package.
         :param pulumi.Input[str] update_time: The update time of the transit router bandwidth package.
         """
@@ -185,6 +221,8 @@ class _BandwidthPackageState:
             pulumi.set(__self__, "expired_time", expired_time)
         if period is not None:
             pulumi.set(__self__, "period", period)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if remain_renew_times is not None:
             pulumi.set(__self__, "remain_renew_times", remain_renew_times)
         if remaining_bandwidth is not None:
@@ -195,6 +233,8 @@ class _BandwidthPackageState:
             pulumi.set(__self__, "renew_type", renew_type)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if transit_router_bandwidth_package_name is not None:
             pulumi.set(__self__, "transit_router_bandwidth_package_name", transit_router_bandwidth_package_name)
         if update_time is not None:
@@ -297,6 +337,18 @@ class _BandwidthPackageState:
         pulumi.set(self, "period", value)
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of the transit router bandwidth package.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
     @pulumi.getter(name="remainRenewTimes")
     def remain_renew_times(self) -> Optional[pulumi.Input[int]]:
         """
@@ -357,6 +409,18 @@ class _BandwidthPackageState:
         pulumi.set(self, "status", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BandwidthPackageTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BandwidthPackageTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="transitRouterBandwidthPackageName")
     def transit_router_bandwidth_package_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -389,9 +453,11 @@ class BandwidthPackage(pulumi.CustomResource):
                  bandwidth: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  remain_renew_times: Optional[pulumi.Input[int]] = None,
                  renew_period: Optional[pulumi.Input[int]] = None,
                  renew_type: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BandwidthPackageTagArgs']]]]] = None,
                  transit_router_bandwidth_package_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -406,7 +472,12 @@ class BandwidthPackage(pulumi.CustomResource):
             bandwidth=2,
             description="acc-test",
             period=1,
+            project_name="default",
             renew_type="Manual",
+            tags=[volcengine.transit_router.BandwidthPackageTagArgs(
+                key="k1",
+                value="v1",
+            )],
             transit_router_bandwidth_package_name="acc-tf-test")
         ```
 
@@ -423,9 +494,11 @@ class BandwidthPackage(pulumi.CustomResource):
         :param pulumi.Input[int] bandwidth: The bandwidth peak of the transit router bandwidth package. Unit: Mbps. Valid values: 2-10000. Default is 2 Mbps.
         :param pulumi.Input[str] description: The description of the transit router bandwidth package.
         :param pulumi.Input[int] period: The period of the transit router bandwidth package, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.The modification of this field only takes effect when the value of the `renew_type` is `Manual`.
+        :param pulumi.Input[str] project_name: The ProjectName of the transit router bandwidth package.
         :param pulumi.Input[int] remain_renew_times: The remaining renewal times of of the transit router bandwidth package. Valid values: -1 or 1~100. Default value is -1, means unlimited renewal.This field is only effective when the value of the `renew_type` is `Auto`.
         :param pulumi.Input[int] renew_period: The auto renewal period of the transit router bandwidth package. Valid values: 1,2,3,6,12. Default value is 1. Unit: Month.This field is only effective when the value of the `renew_type` is `Auto`. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] renew_type: The renewal type of the transit router bandwidth package. Valid values: `Manual`, `Auto`, `NoRenew`. Default is `Manual`.This field is only effective when modifying the bandwidth package.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BandwidthPackageTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] transit_router_bandwidth_package_name: The name of the transit router bandwidth package.
         """
         ...
@@ -446,7 +519,12 @@ class BandwidthPackage(pulumi.CustomResource):
             bandwidth=2,
             description="acc-test",
             period=1,
+            project_name="default",
             renew_type="Manual",
+            tags=[volcengine.transit_router.BandwidthPackageTagArgs(
+                key="k1",
+                value="v1",
+            )],
             transit_router_bandwidth_package_name="acc-tf-test")
         ```
 
@@ -476,9 +554,11 @@ class BandwidthPackage(pulumi.CustomResource):
                  bandwidth: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  remain_renew_times: Optional[pulumi.Input[int]] = None,
                  renew_period: Optional[pulumi.Input[int]] = None,
                  renew_type: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BandwidthPackageTagArgs']]]]] = None,
                  transit_router_bandwidth_package_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -492,9 +572,11 @@ class BandwidthPackage(pulumi.CustomResource):
             __props__.__dict__["bandwidth"] = bandwidth
             __props__.__dict__["description"] = description
             __props__.__dict__["period"] = period
+            __props__.__dict__["project_name"] = project_name
             __props__.__dict__["remain_renew_times"] = remain_renew_times
             __props__.__dict__["renew_period"] = renew_period
             __props__.__dict__["renew_type"] = renew_type
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["transit_router_bandwidth_package_name"] = transit_router_bandwidth_package_name
             __props__.__dict__["allocations"] = None
             __props__.__dict__["business_status"] = None
@@ -522,11 +604,13 @@ class BandwidthPackage(pulumi.CustomResource):
             description: Optional[pulumi.Input[str]] = None,
             expired_time: Optional[pulumi.Input[str]] = None,
             period: Optional[pulumi.Input[int]] = None,
+            project_name: Optional[pulumi.Input[str]] = None,
             remain_renew_times: Optional[pulumi.Input[int]] = None,
             remaining_bandwidth: Optional[pulumi.Input[int]] = None,
             renew_period: Optional[pulumi.Input[int]] = None,
             renew_type: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BandwidthPackageTagArgs']]]]] = None,
             transit_router_bandwidth_package_name: Optional[pulumi.Input[str]] = None,
             update_time: Optional[pulumi.Input[str]] = None) -> 'BandwidthPackage':
         """
@@ -544,11 +628,13 @@ class BandwidthPackage(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the transit router bandwidth package.
         :param pulumi.Input[str] expired_time: The expired time of the transit router bandwidth package.
         :param pulumi.Input[int] period: The period of the transit router bandwidth package, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.The modification of this field only takes effect when the value of the `renew_type` is `Manual`.
+        :param pulumi.Input[str] project_name: The ProjectName of the transit router bandwidth package.
         :param pulumi.Input[int] remain_renew_times: The remaining renewal times of of the transit router bandwidth package. Valid values: -1 or 1~100. Default value is -1, means unlimited renewal.This field is only effective when the value of the `renew_type` is `Auto`.
         :param pulumi.Input[int] remaining_bandwidth: The remaining bandwidth of the transit router bandwidth package. Unit: Mbps.
         :param pulumi.Input[int] renew_period: The auto renewal period of the transit router bandwidth package. Valid values: 1,2,3,6,12. Default value is 1. Unit: Month.This field is only effective when the value of the `renew_type` is `Auto`. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] renew_type: The renewal type of the transit router bandwidth package. Valid values: `Manual`, `Auto`, `NoRenew`. Default is `Manual`.This field is only effective when modifying the bandwidth package.
         :param pulumi.Input[str] status: The status of the transit router bandwidth package.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BandwidthPackageTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] transit_router_bandwidth_package_name: The name of the transit router bandwidth package.
         :param pulumi.Input[str] update_time: The update time of the transit router bandwidth package.
         """
@@ -564,11 +650,13 @@ class BandwidthPackage(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["expired_time"] = expired_time
         __props__.__dict__["period"] = period
+        __props__.__dict__["project_name"] = project_name
         __props__.__dict__["remain_renew_times"] = remain_renew_times
         __props__.__dict__["remaining_bandwidth"] = remaining_bandwidth
         __props__.__dict__["renew_period"] = renew_period
         __props__.__dict__["renew_type"] = renew_type
         __props__.__dict__["status"] = status
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["transit_router_bandwidth_package_name"] = transit_router_bandwidth_package_name
         __props__.__dict__["update_time"] = update_time
         return BandwidthPackage(resource_name, opts=opts, __props__=__props__)
@@ -638,6 +726,14 @@ class BandwidthPackage(pulumi.CustomResource):
         return pulumi.get(self, "period")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[str]:
+        """
+        The ProjectName of the transit router bandwidth package.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="remainRenewTimes")
     def remain_renew_times(self) -> pulumi.Output[Optional[int]]:
         """
@@ -676,6 +772,14 @@ class BandwidthPackage(pulumi.CustomResource):
         The status of the transit router bandwidth package.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.BandwidthPackageTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="transitRouterBandwidthPackageName")

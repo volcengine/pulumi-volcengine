@@ -243,6 +243,112 @@ func (o BucketObjectAccountAclArrayOutput) Index(i pulumi.IntInput) BucketObject
 	}).(BucketObjectAccountAclOutput)
 }
 
+type BucketObjectTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// BucketObjectTagInput is an input type that accepts BucketObjectTagArgs and BucketObjectTagOutput values.
+// You can construct a concrete instance of `BucketObjectTagInput` via:
+//
+//	BucketObjectTagArgs{...}
+type BucketObjectTagInput interface {
+	pulumi.Input
+
+	ToBucketObjectTagOutput() BucketObjectTagOutput
+	ToBucketObjectTagOutputWithContext(context.Context) BucketObjectTagOutput
+}
+
+type BucketObjectTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (BucketObjectTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketObjectTag)(nil)).Elem()
+}
+
+func (i BucketObjectTagArgs) ToBucketObjectTagOutput() BucketObjectTagOutput {
+	return i.ToBucketObjectTagOutputWithContext(context.Background())
+}
+
+func (i BucketObjectTagArgs) ToBucketObjectTagOutputWithContext(ctx context.Context) BucketObjectTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketObjectTagOutput)
+}
+
+// BucketObjectTagArrayInput is an input type that accepts BucketObjectTagArray and BucketObjectTagArrayOutput values.
+// You can construct a concrete instance of `BucketObjectTagArrayInput` via:
+//
+//	BucketObjectTagArray{ BucketObjectTagArgs{...} }
+type BucketObjectTagArrayInput interface {
+	pulumi.Input
+
+	ToBucketObjectTagArrayOutput() BucketObjectTagArrayOutput
+	ToBucketObjectTagArrayOutputWithContext(context.Context) BucketObjectTagArrayOutput
+}
+
+type BucketObjectTagArray []BucketObjectTagInput
+
+func (BucketObjectTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketObjectTag)(nil)).Elem()
+}
+
+func (i BucketObjectTagArray) ToBucketObjectTagArrayOutput() BucketObjectTagArrayOutput {
+	return i.ToBucketObjectTagArrayOutputWithContext(context.Background())
+}
+
+func (i BucketObjectTagArray) ToBucketObjectTagArrayOutputWithContext(ctx context.Context) BucketObjectTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketObjectTagArrayOutput)
+}
+
+type BucketObjectTagOutput struct{ *pulumi.OutputState }
+
+func (BucketObjectTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketObjectTag)(nil)).Elem()
+}
+
+func (o BucketObjectTagOutput) ToBucketObjectTagOutput() BucketObjectTagOutput {
+	return o
+}
+
+func (o BucketObjectTagOutput) ToBucketObjectTagOutputWithContext(ctx context.Context) BucketObjectTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o BucketObjectTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v BucketObjectTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o BucketObjectTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v BucketObjectTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type BucketObjectTagArrayOutput struct{ *pulumi.OutputState }
+
+func (BucketObjectTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketObjectTag)(nil)).Elem()
+}
+
+func (o BucketObjectTagArrayOutput) ToBucketObjectTagArrayOutput() BucketObjectTagArrayOutput {
+	return o
+}
+
+func (o BucketObjectTagArrayOutput) ToBucketObjectTagArrayOutputWithContext(ctx context.Context) BucketObjectTagArrayOutput {
+	return o
+}
+
+func (o BucketObjectTagArrayOutput) Index(i pulumi.IntInput) BucketObjectTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BucketObjectTag {
+		return vs[0].([]BucketObjectTag)[vs[1].(int)]
+	}).(BucketObjectTagOutput)
+}
+
 type BucketObjectsObject struct {
 	// The content the TOS Object when content type is json or text and xml.
 	Content string `pulumi:"content"`
@@ -365,6 +471,112 @@ func (o BucketObjectsObjectArrayOutput) Index(i pulumi.IntInput) BucketObjectsOb
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BucketObjectsObject {
 		return vs[0].([]BucketObjectsObject)[vs[1].(int)]
 	}).(BucketObjectsObjectOutput)
+}
+
+type BucketTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// BucketTagInput is an input type that accepts BucketTagArgs and BucketTagOutput values.
+// You can construct a concrete instance of `BucketTagInput` via:
+//
+//	BucketTagArgs{...}
+type BucketTagInput interface {
+	pulumi.Input
+
+	ToBucketTagOutput() BucketTagOutput
+	ToBucketTagOutputWithContext(context.Context) BucketTagOutput
+}
+
+type BucketTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (BucketTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketTag)(nil)).Elem()
+}
+
+func (i BucketTagArgs) ToBucketTagOutput() BucketTagOutput {
+	return i.ToBucketTagOutputWithContext(context.Background())
+}
+
+func (i BucketTagArgs) ToBucketTagOutputWithContext(ctx context.Context) BucketTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketTagOutput)
+}
+
+// BucketTagArrayInput is an input type that accepts BucketTagArray and BucketTagArrayOutput values.
+// You can construct a concrete instance of `BucketTagArrayInput` via:
+//
+//	BucketTagArray{ BucketTagArgs{...} }
+type BucketTagArrayInput interface {
+	pulumi.Input
+
+	ToBucketTagArrayOutput() BucketTagArrayOutput
+	ToBucketTagArrayOutputWithContext(context.Context) BucketTagArrayOutput
+}
+
+type BucketTagArray []BucketTagInput
+
+func (BucketTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketTag)(nil)).Elem()
+}
+
+func (i BucketTagArray) ToBucketTagArrayOutput() BucketTagArrayOutput {
+	return i.ToBucketTagArrayOutputWithContext(context.Background())
+}
+
+func (i BucketTagArray) ToBucketTagArrayOutputWithContext(ctx context.Context) BucketTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketTagArrayOutput)
+}
+
+type BucketTagOutput struct{ *pulumi.OutputState }
+
+func (BucketTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketTag)(nil)).Elem()
+}
+
+func (o BucketTagOutput) ToBucketTagOutput() BucketTagOutput {
+	return o
+}
+
+func (o BucketTagOutput) ToBucketTagOutputWithContext(ctx context.Context) BucketTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o BucketTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v BucketTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o BucketTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v BucketTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type BucketTagArrayOutput struct{ *pulumi.OutputState }
+
+func (BucketTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketTag)(nil)).Elem()
+}
+
+func (o BucketTagArrayOutput) ToBucketTagArrayOutput() BucketTagArrayOutput {
+	return o
+}
+
+func (o BucketTagArrayOutput) ToBucketTagArrayOutputWithContext(ctx context.Context) BucketTagArrayOutput {
+	return o
+}
+
+func (o BucketTagArrayOutput) Index(i pulumi.IntInput) BucketTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BucketTag {
+		return vs[0].([]BucketTag)[vs[1].(int)]
+	}).(BucketTagOutput)
 }
 
 type BucketsBucket struct {
@@ -565,16 +777,24 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketAccountAclArrayInput)(nil)).Elem(), BucketAccountAclArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketObjectAccountAclInput)(nil)).Elem(), BucketObjectAccountAclArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketObjectAccountAclArrayInput)(nil)).Elem(), BucketObjectAccountAclArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketObjectTagInput)(nil)).Elem(), BucketObjectTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketObjectTagArrayInput)(nil)).Elem(), BucketObjectTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketObjectsObjectInput)(nil)).Elem(), BucketObjectsObjectArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketObjectsObjectArrayInput)(nil)).Elem(), BucketObjectsObjectArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketTagInput)(nil)).Elem(), BucketTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketTagArrayInput)(nil)).Elem(), BucketTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketsBucketInput)(nil)).Elem(), BucketsBucketArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketsBucketArrayInput)(nil)).Elem(), BucketsBucketArray{})
 	pulumi.RegisterOutputType(BucketAccountAclOutput{})
 	pulumi.RegisterOutputType(BucketAccountAclArrayOutput{})
 	pulumi.RegisterOutputType(BucketObjectAccountAclOutput{})
 	pulumi.RegisterOutputType(BucketObjectAccountAclArrayOutput{})
+	pulumi.RegisterOutputType(BucketObjectTagOutput{})
+	pulumi.RegisterOutputType(BucketObjectTagArrayOutput{})
 	pulumi.RegisterOutputType(BucketObjectsObjectOutput{})
 	pulumi.RegisterOutputType(BucketObjectsObjectArrayOutput{})
+	pulumi.RegisterOutputType(BucketTagOutput{})
+	pulumi.RegisterOutputType(BucketTagArrayOutput{})
 	pulumi.RegisterOutputType(BucketsBucketOutput{})
 	pulumi.RegisterOutputType(BucketsBucketArrayOutput{})
 }

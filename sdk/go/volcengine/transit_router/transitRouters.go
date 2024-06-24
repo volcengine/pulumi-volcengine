@@ -26,15 +26,19 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := transit_router.TransitRouters(ctx, &transit_router.TransitRoutersArgs{
-//				Ids: []string{
-//					"tr-2d6fr7mzya2gw58ozfes5g2oh",
-//				},
-//				TransitRouterName: pulumi.StringRef("tf2"),
-//			}, nil)
+//			foo, err := transit_router.NewTransitRouter(ctx, "foo", &transit_router.TransitRouterArgs{
+//				TransitRouterName: pulumi.String("test-tf-acc"),
+//				Description:       pulumi.String("test-tf-acc"),
+//			})
 //			if err != nil {
 //				return err
 //			}
+//			_ = transit_router.TransitRoutersOutput(ctx, transit_router.TransitRoutersOutputArgs{
+//				Ids: pulumi.StringArray{
+//					foo.ID(),
+//				},
+//				TransitRouterName: pulumi.String("test"),
+//			}, nil)
 //			return nil
 //		})
 //	}
@@ -56,6 +60,10 @@ type TransitRoutersArgs struct {
 	Ids []string `pulumi:"ids"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The ProjectName of the transit router.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []TransitRoutersTag `pulumi:"tags"`
 	// The name info.
 	TransitRouterName *string `pulumi:"transitRouterName"`
 }
@@ -66,6 +74,10 @@ type TransitRoutersResult struct {
 	Id         string   `pulumi:"id"`
 	Ids        []string `pulumi:"ids"`
 	OutputFile *string  `pulumi:"outputFile"`
+	// The ProjectName of the transit router.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []TransitRoutersTag `pulumi:"tags"`
 	// The total count of query.
 	TotalCount int `pulumi:"totalCount"`
 	// The name of the transit router.
@@ -93,6 +105,10 @@ type TransitRoutersOutputArgs struct {
 	Ids pulumi.StringArrayInput `pulumi:"ids"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The ProjectName of the transit router.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
+	// Tags.
+	Tags TransitRoutersTagArrayInput `pulumi:"tags"`
 	// The name info.
 	TransitRouterName pulumi.StringPtrInput `pulumi:"transitRouterName"`
 }
@@ -127,6 +143,16 @@ func (o TransitRoutersResultOutput) Ids() pulumi.StringArrayOutput {
 
 func (o TransitRoutersResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v TransitRoutersResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
+}
+
+// The ProjectName of the transit router.
+func (o TransitRoutersResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v TransitRoutersResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o TransitRoutersResultOutput) Tags() TransitRoutersTagArrayOutput {
+	return o.ApplyT(func(v TransitRoutersResult) []TransitRoutersTag { return v.Tags }).(TransitRoutersTagArrayOutput)
 }
 
 // The total count of query.

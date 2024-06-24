@@ -63,7 +63,7 @@ class InstanceArgs:
         :param pulumi.Input[Sequence[pulumi.Input['InstanceParamValueArgs']]] param_values: The configuration item information to be modified. This field can only be added or modified. Deleting this field is invalid.
                When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields, or use the command `pulumi up` to perform a modification operation.
         :param pulumi.Input[int] port: The port of custom define private network address. The valid value range is `1024-65535`. The default value is `6379`.
-        :param pulumi.Input[str] project_name: The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will not be added to any project.
+        :param pulumi.Input[str] project_name: The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will be added to the `default` project.
         :param pulumi.Input[int] purchase_months: The purchase months of redis instance, the unit is month. the valid value range is as fallows: `1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36`. This field is valid and required when `ChargeType` is `Prepaid`. 
                When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[int] shard_number: The number of shards in redis instance, the valid value range is `2-256`. This field is valid and required when the value of `ShardedCluster` is 1.
@@ -334,7 +334,7 @@ class InstanceArgs:
     @pulumi.getter(name="projectName")
     def project_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will not be added to any project.
+        The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will be added to the `default` project.
         """
         return pulumi.get(self, "project_name")
 
@@ -438,7 +438,7 @@ class _InstanceState:
                When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields, or use the command `pulumi up` to perform a modification operation.
         :param pulumi.Input[str] password: The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[int] port: The port of custom define private network address. The valid value range is `1024-65535`. The default value is `6379`.
-        :param pulumi.Input[str] project_name: The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will not be added to any project.
+        :param pulumi.Input[str] project_name: The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will be added to the `default` project.
         :param pulumi.Input[int] purchase_months: The purchase months of redis instance, the unit is month. the valid value range is as fallows: `1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36`. This field is valid and required when `ChargeType` is `Prepaid`. 
                When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[int] shard_capacity: The memory capacity of each shard, unit is MiB. The valid value range is as fallows: When the value of `ShardedCluster` is 0: 256, 1024, 2048, 4096, 8192, 16384, 32768, 65536. When the value of `ShardedCluster` is 1: 1024, 2048, 4096, 8192, 16384. When the value of `node_number` is 1, the value of this field can not be 256.
@@ -672,7 +672,7 @@ class _InstanceState:
     @pulumi.getter(name="projectName")
     def project_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will not be added to any project.
+        The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will be added to the `default` project.
         """
         return pulumi.get(self, "project_name")
 
@@ -897,7 +897,7 @@ class Instance(pulumi.CustomResource):
                When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields, or use the command `pulumi up` to perform a modification operation.
         :param pulumi.Input[str] password: The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[int] port: The port of custom define private network address. The valid value range is `1024-65535`. The default value is `6379`.
-        :param pulumi.Input[str] project_name: The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will not be added to any project.
+        :param pulumi.Input[str] project_name: The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will be added to the `default` project.
         :param pulumi.Input[int] purchase_months: The purchase months of redis instance, the unit is month. the valid value range is as fallows: `1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36`. This field is valid and required when `ChargeType` is `Prepaid`. 
                When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[int] shard_capacity: The memory capacity of each shard, unit is MiB. The valid value range is as fallows: When the value of `ShardedCluster` is 0: 256, 1024, 2048, 4096, 8192, 16384, 32768, 65536. When the value of `ShardedCluster` is 1: 1024, 2048, 4096, 8192, 16384. When the value of `node_number` is 1, the value of this field can not be 256.
@@ -1128,7 +1128,7 @@ class Instance(pulumi.CustomResource):
                When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields, or use the command `pulumi up` to perform a modification operation.
         :param pulumi.Input[str] password: The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[int] port: The port of custom define private network address. The valid value range is `1024-65535`. The default value is `6379`.
-        :param pulumi.Input[str] project_name: The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will not be added to any project.
+        :param pulumi.Input[str] project_name: The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will be added to the `default` project.
         :param pulumi.Input[int] purchase_months: The purchase months of redis instance, the unit is month. the valid value range is as fallows: `1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 24, 36`. This field is valid and required when `ChargeType` is `Prepaid`. 
                When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[int] shard_capacity: The memory capacity of each shard, unit is MiB. The valid value range is as fallows: When the value of `ShardedCluster` is 0: 256, 1024, 2048, 4096, 8192, 16384, 32768, 65536. When the value of `ShardedCluster` is 1: 1024, 2048, 4096, 8192, 16384. When the value of `node_number` is 1, the value of this field can not be 256.
@@ -1288,7 +1288,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="projectName")
     def project_name(self) -> pulumi.Output[str]:
         """
-        The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will not be added to any project.
+        The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will be added to the `default` project.
         """
         return pulumi.get(self, "project_name")
 

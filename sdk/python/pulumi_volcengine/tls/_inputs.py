@@ -370,6 +370,7 @@ class IndexKeyValueArgs:
                  case_sensitive: Optional[pulumi.Input[bool]] = None,
                  delimiter: Optional[pulumi.Input[str]] = None,
                  include_chinese: Optional[pulumi.Input[bool]] = None,
+                 index_all: Optional[pulumi.Input[bool]] = None,
                  json_keys: Optional[pulumi.Input[Sequence[pulumi.Input['IndexKeyValueJsonKeyArgs']]]] = None,
                  sql_flag: Optional[pulumi.Input[bool]] = None):
         """
@@ -378,6 +379,7 @@ class IndexKeyValueArgs:
         :param pulumi.Input[bool] case_sensitive: Whether the value is case sensitive.
         :param pulumi.Input[str] delimiter: The delimiter of the value.
         :param pulumi.Input[bool] include_chinese: Whether the value include chinese.
+        :param pulumi.Input[bool] index_all: Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `value_type` is `json`.
         :param pulumi.Input[Sequence[pulumi.Input['IndexKeyValueJsonKeyArgs']]] json_keys: The JSON subfield key value index.
         :param pulumi.Input[bool] sql_flag: Whether the filed is enabled for analysis.
         """
@@ -389,6 +391,8 @@ class IndexKeyValueArgs:
             pulumi.set(__self__, "delimiter", delimiter)
         if include_chinese is not None:
             pulumi.set(__self__, "include_chinese", include_chinese)
+        if index_all is not None:
+            pulumi.set(__self__, "index_all", index_all)
         if json_keys is not None:
             pulumi.set(__self__, "json_keys", json_keys)
         if sql_flag is not None:
@@ -453,6 +457,18 @@ class IndexKeyValueArgs:
     @include_chinese.setter
     def include_chinese(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "include_chinese", value)
+
+    @property
+    @pulumi.getter(name="indexAll")
+    def index_all(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `value_type` is `json`.
+        """
+        return pulumi.get(self, "index_all")
+
+    @index_all.setter
+    def index_all(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "index_all", value)
 
     @property
     @pulumi.getter(name="jsonKeys")

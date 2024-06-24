@@ -25,6 +25,7 @@ export function vpcAttachments(args: VpcAttachmentsArgs, opts?: pulumi.InvokeOpt
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:transit_router/vpcAttachments:VpcAttachments", {
         "outputFile": args.outputFile,
+        "tags": args.tags,
         "transitRouterAttachmentIds": args.transitRouterAttachmentIds,
         "transitRouterId": args.transitRouterId,
         "vpcId": args.vpcId,
@@ -39,6 +40,10 @@ export interface VpcAttachmentsArgs {
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.transit_router.VpcAttachmentsTag[];
     /**
      * A list of Transit Router Attachment ids.
      */
@@ -66,6 +71,10 @@ export interface VpcAttachmentsResult {
      */
     readonly id: string;
     readonly outputFile?: string;
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.transit_router.VpcAttachmentsTag[];
     /**
      * The total count of query.
      */
@@ -106,6 +115,10 @@ export interface VpcAttachmentsOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.transit_router.VpcAttachmentsTagArgs>[]>;
     /**
      * A list of Transit Router Attachment ids.
      */

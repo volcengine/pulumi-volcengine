@@ -19,7 +19,8 @@ class SecurityGroupArgs:
         """
         The set of arguments for constructing a SecurityGroup resource.
         :param pulumi.Input[str] endpoint_id: The id of the endpoint.
-        :param pulumi.Input[str] security_group_id: The id of the security group.
+        :param pulumi.Input[str] security_group_id: The id of the security group. It is not recommended to use this resource for binding security groups, it is recommended to use the `security_group_id` field of `privatelink.VpcEndpoint` for binding.
+               If using this resource and `privatelink.VpcEndpoint` jointly for operations, use lifecycle ignore_changes to suppress changes to the `security_group_id` field in `privatelink.VpcEndpoint`.
         """
         pulumi.set(__self__, "endpoint_id", endpoint_id)
         pulumi.set(__self__, "security_group_id", security_group_id)
@@ -40,7 +41,8 @@ class SecurityGroupArgs:
     @pulumi.getter(name="securityGroupId")
     def security_group_id(self) -> pulumi.Input[str]:
         """
-        The id of the security group.
+        The id of the security group. It is not recommended to use this resource for binding security groups, it is recommended to use the `security_group_id` field of `privatelink.VpcEndpoint` for binding.
+        If using this resource and `privatelink.VpcEndpoint` jointly for operations, use lifecycle ignore_changes to suppress changes to the `security_group_id` field in `privatelink.VpcEndpoint`.
         """
         return pulumi.get(self, "security_group_id")
 
@@ -57,7 +59,8 @@ class _SecurityGroupState:
         """
         Input properties used for looking up and filtering SecurityGroup resources.
         :param pulumi.Input[str] endpoint_id: The id of the endpoint.
-        :param pulumi.Input[str] security_group_id: The id of the security group.
+        :param pulumi.Input[str] security_group_id: The id of the security group. It is not recommended to use this resource for binding security groups, it is recommended to use the `security_group_id` field of `privatelink.VpcEndpoint` for binding.
+               If using this resource and `privatelink.VpcEndpoint` jointly for operations, use lifecycle ignore_changes to suppress changes to the `security_group_id` field in `privatelink.VpcEndpoint`.
         """
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
@@ -80,7 +83,8 @@ class _SecurityGroupState:
     @pulumi.getter(name="securityGroupId")
     def security_group_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The id of the security group.
+        The id of the security group. It is not recommended to use this resource for binding security groups, it is recommended to use the `security_group_id` field of `privatelink.VpcEndpoint` for binding.
+        If using this resource and `privatelink.VpcEndpoint` jointly for operations, use lifecycle ignore_changes to suppress changes to the `security_group_id` field in `privatelink.VpcEndpoint`.
         """
         return pulumi.get(self, "security_group_id")
 
@@ -105,9 +109,52 @@ class SecurityGroup(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.privatelink.SecurityGroup("foo",
-            endpoint_id="ep-2byz5npiuu1hc2dx0efkv7ehc",
-            security_group_id="sg-2d6722jpp55og58ozfd1sqtdb")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+            security_group_name="acc-test-security-group",
+            vpc_id=foo_vpc.id)
+        foo1 = volcengine.vpc.SecurityGroup("foo1",
+            security_group_name="acc-test-security-group-new",
+            vpc_id=foo_vpc.id)
+        foo_clb = volcengine.clb.Clb("fooClb",
+            type="public",
+            subnet_id=foo_subnet.id,
+            load_balancer_spec="small_1",
+            description="acc-test-demo",
+            load_balancer_name="acc-test-clb",
+            load_balancer_billing_type="PostPaid",
+            eip_billing_config=volcengine.clb.ClbEipBillingConfigArgs(
+                isp="BGP",
+                eip_billing_type="PostPaidByBandwidth",
+                bandwidth=1,
+            ),
+            tags=[volcengine.clb.ClbTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_vpc_endpoint_service = volcengine.privatelink.VpcEndpointService("fooVpcEndpointService",
+            resources=[volcengine.privatelink.VpcEndpointServiceResourceArgs(
+                resource_id=foo_clb.id,
+                resource_type="CLB",
+            )],
+            description="acc-test",
+            auto_accept_enabled=True)
+        foo_vpc_endpoint = volcengine.privatelink.VpcEndpoint("fooVpcEndpoint",
+            security_group_ids=[foo_security_group.id],
+            service_id=foo_vpc_endpoint_service.id,
+            endpoint_name="acc-test-ep",
+            description="acc-test")
+        foo_privatelink_security_group_security_group = volcengine.privatelink.SecurityGroup("fooPrivatelink/securityGroupSecurityGroup",
+            endpoint_id=foo_vpc_endpoint.id,
+            security_group_id=foo1.id)
         ```
 
         ## Import
@@ -121,7 +168,8 @@ class SecurityGroup(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] endpoint_id: The id of the endpoint.
-        :param pulumi.Input[str] security_group_id: The id of the security group.
+        :param pulumi.Input[str] security_group_id: The id of the security group. It is not recommended to use this resource for binding security groups, it is recommended to use the `security_group_id` field of `privatelink.VpcEndpoint` for binding.
+               If using this resource and `privatelink.VpcEndpoint` jointly for operations, use lifecycle ignore_changes to suppress changes to the `security_group_id` field in `privatelink.VpcEndpoint`.
         """
         ...
     @overload
@@ -137,9 +185,52 @@ class SecurityGroup(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.privatelink.SecurityGroup("foo",
-            endpoint_id="ep-2byz5npiuu1hc2dx0efkv7ehc",
-            security_group_id="sg-2d6722jpp55og58ozfd1sqtdb")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+            security_group_name="acc-test-security-group",
+            vpc_id=foo_vpc.id)
+        foo1 = volcengine.vpc.SecurityGroup("foo1",
+            security_group_name="acc-test-security-group-new",
+            vpc_id=foo_vpc.id)
+        foo_clb = volcengine.clb.Clb("fooClb",
+            type="public",
+            subnet_id=foo_subnet.id,
+            load_balancer_spec="small_1",
+            description="acc-test-demo",
+            load_balancer_name="acc-test-clb",
+            load_balancer_billing_type="PostPaid",
+            eip_billing_config=volcengine.clb.ClbEipBillingConfigArgs(
+                isp="BGP",
+                eip_billing_type="PostPaidByBandwidth",
+                bandwidth=1,
+            ),
+            tags=[volcengine.clb.ClbTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_vpc_endpoint_service = volcengine.privatelink.VpcEndpointService("fooVpcEndpointService",
+            resources=[volcengine.privatelink.VpcEndpointServiceResourceArgs(
+                resource_id=foo_clb.id,
+                resource_type="CLB",
+            )],
+            description="acc-test",
+            auto_accept_enabled=True)
+        foo_vpc_endpoint = volcengine.privatelink.VpcEndpoint("fooVpcEndpoint",
+            security_group_ids=[foo_security_group.id],
+            service_id=foo_vpc_endpoint_service.id,
+            endpoint_name="acc-test-ep",
+            description="acc-test")
+        foo_privatelink_security_group_security_group = volcengine.privatelink.SecurityGroup("fooPrivatelink/securityGroupSecurityGroup",
+            endpoint_id=foo_vpc_endpoint.id,
+            security_group_id=foo1.id)
         ```
 
         ## Import
@@ -202,7 +293,8 @@ class SecurityGroup(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] endpoint_id: The id of the endpoint.
-        :param pulumi.Input[str] security_group_id: The id of the security group.
+        :param pulumi.Input[str] security_group_id: The id of the security group. It is not recommended to use this resource for binding security groups, it is recommended to use the `security_group_id` field of `privatelink.VpcEndpoint` for binding.
+               If using this resource and `privatelink.VpcEndpoint` jointly for operations, use lifecycle ignore_changes to suppress changes to the `security_group_id` field in `privatelink.VpcEndpoint`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -224,7 +316,8 @@ class SecurityGroup(pulumi.CustomResource):
     @pulumi.getter(name="securityGroupId")
     def security_group_id(self) -> pulumi.Output[str]:
         """
-        The id of the security group.
+        The id of the security group. It is not recommended to use this resource for binding security groups, it is recommended to use the `security_group_id` field of `privatelink.VpcEndpoint` for binding.
+        If using this resource and `privatelink.VpcEndpoint` jointly for operations, use lifecycle ignore_changes to suppress changes to the `security_group_id` field in `privatelink.VpcEndpoint`.
         """
         return pulumi.get(self, "security_group_id")
 

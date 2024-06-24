@@ -82,6 +82,8 @@ type VolumesArgs struct {
 	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// Tags.
+	Tags []VolumesTag `pulumi:"tags"`
 	// The name of Volume.
 	VolumeName *string `pulumi:"volumeName"`
 	// The Status of Volume, the value can be `available` or `attaching` or `attached` or `detaching` or `creating` or `deleting` or `error` or `extending`.
@@ -101,6 +103,8 @@ type VolumesResult struct {
 	Kind       *string  `pulumi:"kind"`
 	NameRegex  *string  `pulumi:"nameRegex"`
 	OutputFile *string  `pulumi:"outputFile"`
+	// Tags.
+	Tags []VolumesTag `pulumi:"tags"`
 	// The total count of Volume query.
 	TotalCount   int     `pulumi:"totalCount"`
 	VolumeName   *string `pulumi:"volumeName"`
@@ -136,6 +140,8 @@ type VolumesOutputArgs struct {
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// Tags.
+	Tags VolumesTagArrayInput `pulumi:"tags"`
 	// The name of Volume.
 	VolumeName pulumi.StringPtrInput `pulumi:"volumeName"`
 	// The Status of Volume, the value can be `available` or `attaching` or `attached` or `detaching` or `creating` or `deleting` or `error` or `extending`.
@@ -188,6 +194,11 @@ func (o VolumesResultOutput) NameRegex() pulumi.StringPtrOutput {
 
 func (o VolumesResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VolumesResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o VolumesResultOutput) Tags() VolumesTagArrayOutput {
+	return o.ApplyT(func(v VolumesResult) []VolumesTag { return v.Tags }).(VolumesTagArrayOutput)
 }
 
 // The total count of Volume query.

@@ -21,7 +21,8 @@ class VpcEndpointArgs:
                  service_name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a VpcEndpoint resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: the security group ids of vpc endpoint.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `privatelink.SecurityGroup`.
+               For operations that jointly use this resource and `privatelink.SecurityGroup`, use lifecycle ignore_changes to suppress changes to the 'security_group_ids' field.
         :param pulumi.Input[str] service_id: The id of vpc endpoint service.
         :param pulumi.Input[str] description: The description of vpc endpoint.
         :param pulumi.Input[str] endpoint_name: The name of vpc endpoint.
@@ -40,7 +41,8 @@ class VpcEndpointArgs:
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        the security group ids of vpc endpoint.
+        The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `privatelink.SecurityGroup`.
+        For operations that jointly use this resource and `privatelink.SecurityGroup`, use lifecycle ignore_changes to suppress changes to the 'security_group_ids' field.
         """
         return pulumi.get(self, "security_group_ids")
 
@@ -124,7 +126,8 @@ class _VpcEndpointState:
         :param pulumi.Input[str] endpoint_domain: The domain of vpc endpoint.
         :param pulumi.Input[str] endpoint_name: The name of vpc endpoint.
         :param pulumi.Input[str] endpoint_type: The type of vpc endpoint.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: the security group ids of vpc endpoint.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `privatelink.SecurityGroup`.
+               For operations that jointly use this resource and `privatelink.SecurityGroup`, use lifecycle ignore_changes to suppress changes to the 'security_group_ids' field.
         :param pulumi.Input[str] service_id: The id of vpc endpoint service.
         :param pulumi.Input[str] service_name: The name of vpc endpoint service.
         :param pulumi.Input[str] status: The status of vpc endpoint.
@@ -260,7 +263,8 @@ class _VpcEndpointState:
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        the security group ids of vpc endpoint.
+        The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `privatelink.SecurityGroup`.
+        For operations that jointly use this resource and `privatelink.SecurityGroup`, use lifecycle ignore_changes to suppress changes to the 'security_group_ids' field.
         """
         return pulumi.get(self, "security_group_ids")
 
@@ -348,15 +352,46 @@ class VpcEndpoint(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        endpoint = volcengine.privatelink.VpcEndpoint("endpoint",
-            security_group_ids=["sg-2d5z8cr53k45c58ozfdum****"],
-            service_id="epsvc-2byz5nzgiansw2dx0eehh****",
-            endpoint_name="tf-test-ep",
-            description="tf-test")
-        zone = volcengine.privatelink.VpcEndpointZone("zone",
-            endpoint_id=endpoint.id,
-            subnet_id="subnet-2bz47q19zhx4w2dx0eevn****",
-            private_ip_address="172.16.0.252")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+            security_group_name="acc-test-security-group",
+            vpc_id=foo_vpc.id)
+        foo_clb = volcengine.clb.Clb("fooClb",
+            type="public",
+            subnet_id=foo_subnet.id,
+            load_balancer_spec="small_1",
+            description="acc-test-demo",
+            load_balancer_name="acc-test-clb",
+            load_balancer_billing_type="PostPaid",
+            eip_billing_config=volcengine.clb.ClbEipBillingConfigArgs(
+                isp="BGP",
+                eip_billing_type="PostPaidByBandwidth",
+                bandwidth=1,
+            ),
+            tags=[volcengine.clb.ClbTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_vpc_endpoint_service = volcengine.privatelink.VpcEndpointService("fooVpcEndpointService",
+            resources=[volcengine.privatelink.VpcEndpointServiceResourceArgs(
+                resource_id=foo_clb.id,
+                resource_type="CLB",
+            )],
+            description="acc-test",
+            auto_accept_enabled=True)
+        foo_vpc_endpoint = volcengine.privatelink.VpcEndpoint("fooVpcEndpoint",
+            security_group_ids=[foo_security_group.id],
+            service_id=foo_vpc_endpoint_service.id,
+            endpoint_name="acc-test-ep",
+            description="acc-test")
         ```
 
         ## Import
@@ -371,7 +406,8 @@ class VpcEndpoint(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of vpc endpoint.
         :param pulumi.Input[str] endpoint_name: The name of vpc endpoint.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: the security group ids of vpc endpoint.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `privatelink.SecurityGroup`.
+               For operations that jointly use this resource and `privatelink.SecurityGroup`, use lifecycle ignore_changes to suppress changes to the 'security_group_ids' field.
         :param pulumi.Input[str] service_id: The id of vpc endpoint service.
         :param pulumi.Input[str] service_name: The name of vpc endpoint service.
         """
@@ -389,15 +425,46 @@ class VpcEndpoint(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        endpoint = volcengine.privatelink.VpcEndpoint("endpoint",
-            security_group_ids=["sg-2d5z8cr53k45c58ozfdum****"],
-            service_id="epsvc-2byz5nzgiansw2dx0eehh****",
-            endpoint_name="tf-test-ep",
-            description="tf-test")
-        zone = volcengine.privatelink.VpcEndpointZone("zone",
-            endpoint_id=endpoint.id,
-            subnet_id="subnet-2bz47q19zhx4w2dx0eevn****",
-            private_ip_address="172.16.0.252")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+            security_group_name="acc-test-security-group",
+            vpc_id=foo_vpc.id)
+        foo_clb = volcengine.clb.Clb("fooClb",
+            type="public",
+            subnet_id=foo_subnet.id,
+            load_balancer_spec="small_1",
+            description="acc-test-demo",
+            load_balancer_name="acc-test-clb",
+            load_balancer_billing_type="PostPaid",
+            eip_billing_config=volcengine.clb.ClbEipBillingConfigArgs(
+                isp="BGP",
+                eip_billing_type="PostPaidByBandwidth",
+                bandwidth=1,
+            ),
+            tags=[volcengine.clb.ClbTagArgs(
+                key="k1",
+                value="v1",
+            )])
+        foo_vpc_endpoint_service = volcengine.privatelink.VpcEndpointService("fooVpcEndpointService",
+            resources=[volcengine.privatelink.VpcEndpointServiceResourceArgs(
+                resource_id=foo_clb.id,
+                resource_type="CLB",
+            )],
+            description="acc-test",
+            auto_accept_enabled=True)
+        foo_vpc_endpoint = volcengine.privatelink.VpcEndpoint("fooVpcEndpoint",
+            security_group_ids=[foo_security_group.id],
+            service_id=foo_vpc_endpoint_service.id,
+            endpoint_name="acc-test-ep",
+            description="acc-test")
         ```
 
         ## Import
@@ -494,7 +561,8 @@ class VpcEndpoint(pulumi.CustomResource):
         :param pulumi.Input[str] endpoint_domain: The domain of vpc endpoint.
         :param pulumi.Input[str] endpoint_name: The name of vpc endpoint.
         :param pulumi.Input[str] endpoint_type: The type of vpc endpoint.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: the security group ids of vpc endpoint.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `privatelink.SecurityGroup`.
+               For operations that jointly use this resource and `privatelink.SecurityGroup`, use lifecycle ignore_changes to suppress changes to the 'security_group_ids' field.
         :param pulumi.Input[str] service_id: The id of vpc endpoint service.
         :param pulumi.Input[str] service_name: The name of vpc endpoint service.
         :param pulumi.Input[str] status: The status of vpc endpoint.
@@ -589,7 +657,8 @@ class VpcEndpoint(pulumi.CustomResource):
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> pulumi.Output[Sequence[str]]:
         """
-        the security group ids of vpc endpoint.
+        The security group ids of vpc endpoint. It is recommended to bind security groups using the 'security_group_ids' field in this resource instead of using `privatelink.SecurityGroup`.
+        For operations that jointly use this resource and `privatelink.SecurityGroup`, use lifecycle ignore_changes to suppress changes to the 'security_group_ids' field.
         """
         return pulumi.get(self, "security_group_ids")
 

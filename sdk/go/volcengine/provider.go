@@ -75,6 +75,9 @@ func NewProvider(ctx *pulumi.Context,
 type providerArgs struct {
 	// The Access Key for Volcengine Provider
 	AccessKey *string `pulumi:"accessKey"`
+	// The ASSUME ROLE block for Volcengine Provider. If provided, terraform will attempt to assume this role using the
+	// supplied credentials.
+	AssumeRole *ProviderAssumeRole `pulumi:"assumeRole"`
 	// CUSTOMER ENDPOINTS for Volcengine Provider
 	CustomerEndpoints *string `pulumi:"customerEndpoints"`
 	// CUSTOMER HEADERS for Volcengine Provider
@@ -97,6 +100,9 @@ type providerArgs struct {
 type ProviderArgs struct {
 	// The Access Key for Volcengine Provider
 	AccessKey pulumi.StringPtrInput
+	// The ASSUME ROLE block for Volcengine Provider. If provided, terraform will attempt to assume this role using the
+	// supplied credentials.
+	AssumeRole ProviderAssumeRolePtrInput
 	// CUSTOMER ENDPOINTS for Volcengine Provider
 	CustomerEndpoints pulumi.StringPtrInput
 	// CUSTOMER HEADERS for Volcengine Provider

@@ -21,27 +21,71 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/transit_router"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := transit_router.NewVpcAttachment(ctx, "foo", &transit_router.VpcAttachmentArgs{
+//			fooTransitRouter, err := transit_router.NewTransitRouter(ctx, "fooTransitRouter", &transit_router.TransitRouterArgs{
+//				TransitRouterName: pulumi.String("test-tf-acc"),
+//				Description:       pulumi.String("test-tf-acc"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc-acc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				VpcId:      fooVpc.ID(),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			foo2, err := vpc.NewSubnet(ctx, "foo2", &vpc.SubnetArgs{
+//				VpcId:      fooVpc.ID(),
+//				CidrBlock:  pulumi.String("172.16.255.0/24"),
+//				ZoneId:     *pulumi.String(fooZones.Zones[1].Id),
+//				SubnetName: pulumi.String("acc-test-subnet2"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = transit_router.NewVpcAttachment(ctx, "fooVpcAttachment", &transit_router.VpcAttachmentArgs{
+//				TransitRouterId: fooTransitRouter.ID(),
+//				VpcId:           fooVpc.ID(),
 //				AttachPoints: transit_router.VpcAttachmentAttachPointArray{
 //					&transit_router.VpcAttachmentAttachPointArgs{
-//						SubnetId: pulumi.String("subnet-3refsrxdswsn45zsk2hmdg4zx"),
+//						SubnetId: fooSubnet.ID(),
 //						ZoneId:   pulumi.String("cn-beijing-a"),
 //					},
 //					&transit_router.VpcAttachmentAttachPointArgs{
-//						SubnetId: pulumi.String("subnet-2d68bh74345q858ozfekrm8fj"),
-//						ZoneId:   pulumi.String("cn-beijing-a"),
+//						SubnetId: foo2.ID(),
+//						ZoneId:   pulumi.String("cn-beijing-b"),
 //					},
 //				},
-//				Description:                 pulumi.String("desc"),
-//				TransitRouterAttachmentName: pulumi.String("tfname1"),
-//				TransitRouterId:             pulumi.String("tr-2d6fr7f39unsw58ozfe1ow21x"),
-//				VpcId:                       pulumi.String("vpc-2bysvq1xx543k2dx0eeulpeiv"),
+//				TransitRouterAttachmentName: pulumi.String("tf-test-acc-name1"),
+//				Description:                 pulumi.String("tf-test-acc-description"),
+//				Tags: transit_router.VpcAttachmentTagArray{
+//					&transit_router.VpcAttachmentTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -72,6 +116,8 @@ type VpcAttachment struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The status of the transit router.
 	Status pulumi.StringOutput `pulumi:"status"`
+	// Tags.
+	Tags VpcAttachmentTagArrayOutput `pulumi:"tags"`
 	// The id of the transit router attachment.
 	TransitRouterAttachmentId pulumi.StringOutput `pulumi:"transitRouterAttachmentId"`
 	// The name of the transit router vpc attachment.
@@ -131,6 +177,8 @@ type vpcAttachmentState struct {
 	Description *string `pulumi:"description"`
 	// The status of the transit router.
 	Status *string `pulumi:"status"`
+	// Tags.
+	Tags []VpcAttachmentTag `pulumi:"tags"`
 	// The id of the transit router attachment.
 	TransitRouterAttachmentId *string `pulumi:"transitRouterAttachmentId"`
 	// The name of the transit router vpc attachment.
@@ -152,6 +200,8 @@ type VpcAttachmentState struct {
 	Description pulumi.StringPtrInput
 	// The status of the transit router.
 	Status pulumi.StringPtrInput
+	// Tags.
+	Tags VpcAttachmentTagArrayInput
 	// The id of the transit router attachment.
 	TransitRouterAttachmentId pulumi.StringPtrInput
 	// The name of the transit router vpc attachment.
@@ -173,6 +223,8 @@ type vpcAttachmentArgs struct {
 	AttachPoints []VpcAttachmentAttachPoint `pulumi:"attachPoints"`
 	// The description of the transit router vpc attachment.
 	Description *string `pulumi:"description"`
+	// Tags.
+	Tags []VpcAttachmentTag `pulumi:"tags"`
 	// The name of the transit router vpc attachment.
 	TransitRouterAttachmentName *string `pulumi:"transitRouterAttachmentName"`
 	// The id of the transit router.
@@ -187,6 +239,8 @@ type VpcAttachmentArgs struct {
 	AttachPoints VpcAttachmentAttachPointArrayInput
 	// The description of the transit router vpc attachment.
 	Description pulumi.StringPtrInput
+	// Tags.
+	Tags VpcAttachmentTagArrayInput
 	// The name of the transit router vpc attachment.
 	TransitRouterAttachmentName pulumi.StringPtrInput
 	// The id of the transit router.
@@ -300,6 +354,11 @@ func (o VpcAttachmentOutput) Description() pulumi.StringPtrOutput {
 // The status of the transit router.
 func (o VpcAttachmentOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcAttachment) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o VpcAttachmentOutput) Tags() VpcAttachmentTagArrayOutput {
+	return o.ApplyT(func(v *VpcAttachment) VpcAttachmentTagArrayOutput { return v.Tags }).(VpcAttachmentTagArrayOutput)
 }
 
 // The id of the transit router attachment.

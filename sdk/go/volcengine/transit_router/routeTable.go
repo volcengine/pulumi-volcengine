@@ -27,10 +27,23 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := transit_router.NewRouteTable(ctx, "foo", &transit_router.RouteTableArgs{
-//				Description:                 pulumi.String("tf test23"),
-//				TransitRouterId:             pulumi.String("tr-2ff4v69tkxji859gp684cm14e"),
-//				TransitRouterRouteTableName: pulumi.String("tf-table-23"),
+//			fooTransitRouter, err := transit_router.NewTransitRouter(ctx, "fooTransitRouter", &transit_router.TransitRouterArgs{
+//				TransitRouterName: pulumi.String("test-tf-acc"),
+//				Description:       pulumi.String("test-tf-acc"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = transit_router.NewRouteTable(ctx, "fooRouteTable", &transit_router.RouteTableArgs{
+//				Description:                 pulumi.String("tf-test-acc-description"),
+//				TransitRouterRouteTableName: pulumi.String("tf-table-test-acc"),
+//				TransitRouterId:             fooTransitRouter.ID(),
+//				Tags: transit_router.RouteTableTagArray{
+//					&transit_router.RouteTableTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -59,6 +72,8 @@ type RouteTable struct {
 	Description pulumi.StringOutput `pulumi:"description"`
 	// The status of the route table.
 	Status pulumi.StringOutput `pulumi:"status"`
+	// Tags.
+	Tags RouteTableTagArrayOutput `pulumi:"tags"`
 	// Id of the transit router.
 	TransitRouterId pulumi.StringOutput `pulumi:"transitRouterId"`
 	// The id of the route table.
@@ -110,6 +125,8 @@ type routeTableState struct {
 	Description *string `pulumi:"description"`
 	// The status of the route table.
 	Status *string `pulumi:"status"`
+	// Tags.
+	Tags []RouteTableTag `pulumi:"tags"`
 	// Id of the transit router.
 	TransitRouterId *string `pulumi:"transitRouterId"`
 	// The id of the route table.
@@ -129,6 +146,8 @@ type RouteTableState struct {
 	Description pulumi.StringPtrInput
 	// The status of the route table.
 	Status pulumi.StringPtrInput
+	// Tags.
+	Tags RouteTableTagArrayInput
 	// Id of the transit router.
 	TransitRouterId pulumi.StringPtrInput
 	// The id of the route table.
@@ -148,6 +167,8 @@ func (RouteTableState) ElementType() reflect.Type {
 type routeTableArgs struct {
 	// Description of the transit router route table.
 	Description *string `pulumi:"description"`
+	// Tags.
+	Tags []RouteTableTag `pulumi:"tags"`
 	// Id of the transit router.
 	TransitRouterId string `pulumi:"transitRouterId"`
 	// The name of the route table.
@@ -158,6 +179,8 @@ type routeTableArgs struct {
 type RouteTableArgs struct {
 	// Description of the transit router route table.
 	Description pulumi.StringPtrInput
+	// Tags.
+	Tags RouteTableTagArrayInput
 	// Id of the transit router.
 	TransitRouterId pulumi.StringInput
 	// The name of the route table.
@@ -264,6 +287,11 @@ func (o RouteTableOutput) Description() pulumi.StringOutput {
 // The status of the route table.
 func (o RouteTableOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *RouteTable) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o RouteTableOutput) Tags() RouteTableTagArrayOutput {
+	return o.ApplyT(func(v *RouteTable) RouteTableTagArrayOutput { return v.Tags }).(RouteTableTagArrayOutput)
 }
 
 // Id of the transit router.

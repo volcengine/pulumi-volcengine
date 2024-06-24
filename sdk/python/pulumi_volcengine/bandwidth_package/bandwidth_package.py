@@ -373,15 +373,15 @@ class BandwidthPackage(pulumi.CustomResource):
 
         foo = volcengine.bandwidth_package.BandwidthPackage("foo",
             bandwidth=10,
-            bandwidth_package_name="tf-test",
+            bandwidth_package_name="acc-test-bp",
             billing_type="PostPaidByBandwidth",
-            description="tftest-description",
+            description="acc-test",
             isp="BGP",
             protocol="IPv4",
             security_protection_types=["AntiDDoS_Enhanced"],
             tags=[volcengine.bandwidth_package.BandwidthPackageTagArgs(
-                key="tftest",
-                value="tftest",
+                key="k1",
+                value="v1",
             )])
         ```
 
@@ -421,15 +421,15 @@ class BandwidthPackage(pulumi.CustomResource):
 
         foo = volcengine.bandwidth_package.BandwidthPackage("foo",
             bandwidth=10,
-            bandwidth_package_name="tf-test",
+            bandwidth_package_name="acc-test-bp",
             billing_type="PostPaidByBandwidth",
-            description="tftest-description",
+            description="acc-test",
             isp="BGP",
             protocol="IPv4",
             security_protection_types=["AntiDDoS_Enhanced"],
             tags=[volcengine.bandwidth_package.BandwidthPackageTagArgs(
-                key="tftest",
-                value="tftest",
+                key="k1",
+                value="v1",
             )])
         ```
 

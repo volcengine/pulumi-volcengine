@@ -12,22 +12,43 @@ from . import outputs
 
 __all__ = [
     'BandwidthPackageAllocation',
+    'BandwidthPackageTag',
     'BandwidthPackagesBandwidthPackageResult',
     'BandwidthPackagesBandwidthPackageAllocationResult',
+    'BandwidthPackagesBandwidthPackageTagResult',
+    'BandwidthPackagesTagResult',
+    'DirectConnectGatewayAttachmentTag',
     'DirectConnectGatewayAttachmentsAttachmentResult',
+    'DirectConnectGatewayAttachmentsAttachmentTagResult',
+    'DirectConnectGatewayAttachmentsTagResult',
     'GrantRulesRuleResult',
+    'PeerAttachmentTag',
+    'PeerAttachmentsTagResult',
     'PeerAttachmentsTransitRouterAttachmentResult',
+    'PeerAttachmentsTransitRouterAttachmentTagResult',
     'RouteEntriesEntryResult',
     'RouteTableAssociationsAssociationResult',
     'RouteTablePropagationsPropagationResult',
+    'RouteTableTag',
     'RouteTablesRouteTableResult',
+    'RouteTablesRouteTableTagResult',
+    'RouteTablesTagResult',
+    'TransitRouterTag',
     'TransitRouterTransitRouterAttachment',
+    'TransitRoutersTagResult',
     'TransitRoutersTransitRouterResult',
+    'TransitRoutersTransitRouterTagResult',
     'TransitRoutersTransitRouterTransitRouterAttachmentResult',
     'VpcAttachmentAttachPoint',
+    'VpcAttachmentTag',
     'VpcAttachmentsAttachmentResult',
     'VpcAttachmentsAttachmentAttachPointResult',
+    'VpcAttachmentsAttachmentTagResult',
+    'VpcAttachmentsTagResult',
+    'VpnAttachmentTag',
     'VpnAttachmentsAttachmentResult',
+    'VpnAttachmentsAttachmentTagResult',
+    'VpnAttachmentsTagResult',
 ]
 
 @pulumi.output_type
@@ -109,6 +130,35 @@ class BandwidthPackageAllocation(dict):
 
 
 @pulumi.output_type
+class BandwidthPackageTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class BandwidthPackagesBandwidthPackageResult(dict):
     def __init__(__self__, *,
                  account_id: str,
@@ -123,8 +173,10 @@ class BandwidthPackagesBandwidthPackageResult(dict):
                  id: str,
                  local_geographic_region_set_id: str,
                  peer_geographic_region_set_id: str,
+                 project_name: str,
                  remaining_bandwidth: int,
                  status: str,
+                 tags: Sequence['outputs.BandwidthPackagesBandwidthPackageTagResult'],
                  transit_router_bandwidth_package_id: str,
                  transit_router_bandwidth_package_name: str,
                  update_time: str):
@@ -141,8 +193,10 @@ class BandwidthPackagesBandwidthPackageResult(dict):
         :param str id: The id of the transit router bandwidth package.
         :param str local_geographic_region_set_id: The local geographic region set ID.
         :param str peer_geographic_region_set_id: The peer geographic region set ID.
+        :param str project_name: The ProjectName of the TransitRouter bandwidth package.
         :param int remaining_bandwidth: The remaining bandwidth of the transit router bandwidth package. Unit: Mbps.
         :param str status: The status of the transit router bandwidth package.
+        :param Sequence['BandwidthPackagesBandwidthPackageTagArgs'] tags: Tags.
         :param str transit_router_bandwidth_package_id: The id of the transit router attachment.
         :param str transit_router_bandwidth_package_name: The name of the TransitRouter bandwidth package.
         :param str update_time: The update time of the transit router bandwidth package.
@@ -159,8 +213,10 @@ class BandwidthPackagesBandwidthPackageResult(dict):
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "local_geographic_region_set_id", local_geographic_region_set_id)
         pulumi.set(__self__, "peer_geographic_region_set_id", peer_geographic_region_set_id)
+        pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "remaining_bandwidth", remaining_bandwidth)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "transit_router_bandwidth_package_id", transit_router_bandwidth_package_id)
         pulumi.set(__self__, "transit_router_bandwidth_package_name", transit_router_bandwidth_package_name)
         pulumi.set(__self__, "update_time", update_time)
@@ -262,6 +318,14 @@ class BandwidthPackagesBandwidthPackageResult(dict):
         return pulumi.get(self, "peer_geographic_region_set_id")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The ProjectName of the TransitRouter bandwidth package.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="remainingBandwidth")
     def remaining_bandwidth(self) -> int:
         """
@@ -276,6 +340,14 @@ class BandwidthPackagesBandwidthPackageResult(dict):
         The status of the transit router bandwidth package.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.BandwidthPackagesBandwidthPackageTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="transitRouterBandwidthPackageId")
@@ -354,6 +426,93 @@ class BandwidthPackagesBandwidthPackageAllocationResult(dict):
 
 
 @pulumi.output_type
+class BandwidthPackagesBandwidthPackageTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class BandwidthPackagesTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class DirectConnectGatewayAttachmentTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class DirectConnectGatewayAttachmentsAttachmentResult(dict):
     def __init__(__self__, *,
                  account_id: str,
@@ -361,6 +520,7 @@ class DirectConnectGatewayAttachmentsAttachmentResult(dict):
                  description: str,
                  direct_connect_gateway_id: str,
                  status: str,
+                 tags: Sequence['outputs.DirectConnectGatewayAttachmentsAttachmentTagResult'],
                  transit_router_attachment_id: str,
                  transit_router_attachment_name: str,
                  transit_router_id: str,
@@ -371,6 +531,7 @@ class DirectConnectGatewayAttachmentsAttachmentResult(dict):
         :param str description: The description info.
         :param str direct_connect_gateway_id: ID of the direct connection gateway.
         :param str status: The status of the network instance connection.
+        :param Sequence['DirectConnectGatewayAttachmentsAttachmentTagArgs'] tags: Tags.
         :param str transit_router_attachment_id: The id of the transit router attachment.
         :param str transit_router_attachment_name: The name of the transit router attachment.
         :param str transit_router_id: The id of the transit router.
@@ -381,6 +542,7 @@ class DirectConnectGatewayAttachmentsAttachmentResult(dict):
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "direct_connect_gateway_id", direct_connect_gateway_id)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "transit_router_attachment_id", transit_router_attachment_id)
         pulumi.set(__self__, "transit_router_attachment_name", transit_router_attachment_name)
         pulumi.set(__self__, "transit_router_id", transit_router_id)
@@ -427,6 +589,14 @@ class DirectConnectGatewayAttachmentsAttachmentResult(dict):
         return pulumi.get(self, "status")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.DirectConnectGatewayAttachmentsAttachmentTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="transitRouterAttachmentId")
     def transit_router_attachment_id(self) -> str:
         """
@@ -457,6 +627,64 @@ class DirectConnectGatewayAttachmentsAttachmentResult(dict):
         The update time.
         """
         return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class DirectConnectGatewayAttachmentsAttachmentTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class DirectConnectGatewayAttachmentsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -533,6 +761,64 @@ class GrantRulesRuleResult(dict):
 
 
 @pulumi.output_type
+class PeerAttachmentTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class PeerAttachmentsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class PeerAttachmentsTransitRouterAttachmentResult(dict):
     def __init__(__self__, *,
                  bandwidth: int,
@@ -542,6 +828,7 @@ class PeerAttachmentsTransitRouterAttachmentResult(dict):
                  peer_transit_router_id: str,
                  peer_transit_router_region_id: str,
                  status: str,
+                 tags: Sequence['outputs.PeerAttachmentsTransitRouterAttachmentTagResult'],
                  transit_router_attachment_id: str,
                  transit_router_attachment_name: str,
                  transit_router_bandwidth_package_id: str,
@@ -556,6 +843,7 @@ class PeerAttachmentsTransitRouterAttachmentResult(dict):
         :param str peer_transit_router_id: The id of peer transit router.
         :param str peer_transit_router_region_id: The region id of peer transit router.
         :param str status: The status of the transit router peer attachment.
+        :param Sequence['PeerAttachmentsTransitRouterAttachmentTagArgs'] tags: Tags.
         :param str transit_router_attachment_id: The id of the transit router peer attachment.
         :param str transit_router_attachment_name: The name of transit router peer attachment.
         :param str transit_router_bandwidth_package_id: The bandwidth package id of the transit router peer attachment.
@@ -570,6 +858,7 @@ class PeerAttachmentsTransitRouterAttachmentResult(dict):
         pulumi.set(__self__, "peer_transit_router_id", peer_transit_router_id)
         pulumi.set(__self__, "peer_transit_router_region_id", peer_transit_router_region_id)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "transit_router_attachment_id", transit_router_attachment_id)
         pulumi.set(__self__, "transit_router_attachment_name", transit_router_attachment_name)
         pulumi.set(__self__, "transit_router_bandwidth_package_id", transit_router_bandwidth_package_id)
@@ -634,6 +923,14 @@ class PeerAttachmentsTransitRouterAttachmentResult(dict):
         return pulumi.get(self, "status")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.PeerAttachmentsTransitRouterAttachmentTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="transitRouterAttachmentId")
     def transit_router_attachment_id(self) -> str:
         """
@@ -680,6 +977,35 @@ class PeerAttachmentsTransitRouterAttachmentResult(dict):
         The update time of the transit router peer attachment.
         """
         return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class PeerAttachmentsTransitRouterAttachmentTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -891,11 +1217,41 @@ class RouteTablePropagationsPropagationResult(dict):
 
 
 @pulumi.output_type
+class RouteTableTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class RouteTablesRouteTableResult(dict):
     def __init__(__self__, *,
                  creation_time: str,
                  description: str,
                  status: str,
+                 tags: Sequence['outputs.RouteTablesRouteTableTagResult'],
                  transit_router_route_table_id: str,
                  transit_router_route_table_name: str,
                  transit_router_route_table_type: str,
@@ -904,6 +1260,7 @@ class RouteTablesRouteTableResult(dict):
         :param str creation_time: The creation time of the route table.
         :param str description: The description.
         :param str status: The status of the route table.
+        :param Sequence['RouteTablesRouteTableTagArgs'] tags: Tags.
         :param str transit_router_route_table_id: The id of the route table.
         :param str transit_router_route_table_name: The name of the route table.
         :param str transit_router_route_table_type: The type of the route table. The value can be System or Custom.
@@ -912,6 +1269,7 @@ class RouteTablesRouteTableResult(dict):
         pulumi.set(__self__, "creation_time", creation_time)
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "transit_router_route_table_id", transit_router_route_table_id)
         pulumi.set(__self__, "transit_router_route_table_name", transit_router_route_table_name)
         pulumi.set(__self__, "transit_router_route_table_type", transit_router_route_table_type)
@@ -940,6 +1298,14 @@ class RouteTablesRouteTableResult(dict):
         The status of the route table.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.RouteTablesRouteTableTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="transitRouterRouteTableId")
@@ -972,6 +1338,93 @@ class RouteTablesRouteTableResult(dict):
         The update time of the route table.
         """
         return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class RouteTablesRouteTableTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class RouteTablesTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class TransitRouterTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -1107,6 +1560,35 @@ class TransitRouterTransitRouterAttachment(dict):
 
 
 @pulumi.output_type
+class TransitRoutersTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class TransitRoutersTransitRouterResult(dict):
     def __init__(__self__, *,
                  account_id: str,
@@ -1115,7 +1597,9 @@ class TransitRoutersTransitRouterResult(dict):
                  description: str,
                  id: str,
                  overdue_time: str,
+                 project_name: str,
                  status: str,
+                 tags: Sequence['outputs.TransitRoutersTransitRouterTagResult'],
                  transit_router_attachments: Sequence['outputs.TransitRoutersTransitRouterTransitRouterAttachmentResult'],
                  transit_router_id: str,
                  transit_router_name: str,
@@ -1127,7 +1611,9 @@ class TransitRoutersTransitRouterResult(dict):
         :param str description: The description info.
         :param str id: The ID of the transit router.
         :param str overdue_time: The overdue time.
+        :param str project_name: The ProjectName of the transit router.
         :param str status: The status of the transit router.
+        :param Sequence['TransitRoutersTransitRouterTagArgs'] tags: Tags.
         :param Sequence['TransitRoutersTransitRouterTransitRouterAttachmentArgs'] transit_router_attachments: The attachments of transit router.
         :param str transit_router_id: The ID of the transit router.
         :param str transit_router_name: The name info.
@@ -1139,7 +1625,9 @@ class TransitRoutersTransitRouterResult(dict):
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "overdue_time", overdue_time)
+        pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "transit_router_attachments", transit_router_attachments)
         pulumi.set(__self__, "transit_router_id", transit_router_id)
         pulumi.set(__self__, "transit_router_name", transit_router_name)
@@ -1194,12 +1682,28 @@ class TransitRoutersTransitRouterResult(dict):
         return pulumi.get(self, "overdue_time")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The ProjectName of the transit router.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter
     def status(self) -> str:
         """
         The status of the transit router.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.TransitRoutersTransitRouterTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="transitRouterAttachments")
@@ -1232,6 +1736,35 @@ class TransitRoutersTransitRouterResult(dict):
         The update time.
         """
         return pulumi.get(self, "update_time")
+
+
+@pulumi.output_type
+class TransitRoutersTransitRouterTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -1378,12 +1911,42 @@ class VpcAttachmentAttachPoint(dict):
 
 
 @pulumi.output_type
+class VpcAttachmentTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class VpcAttachmentsAttachmentResult(dict):
     def __init__(__self__, *,
                  attach_points: Sequence['outputs.VpcAttachmentsAttachmentAttachPointResult'],
                  creation_time: str,
                  description: str,
                  status: str,
+                 tags: Sequence['outputs.VpcAttachmentsAttachmentTagResult'],
                  transit_router_attachment_id: str,
                  transit_router_attachment_name: str,
                  transit_router_id: str,
@@ -1394,6 +1957,7 @@ class VpcAttachmentsAttachmentResult(dict):
         :param str creation_time: The create time.
         :param str description: The description info.
         :param str status: The status of the transit router.
+        :param Sequence['VpcAttachmentsAttachmentTagArgs'] tags: Tags.
         :param str transit_router_attachment_id: The id of the transit router attachment.
         :param str transit_router_attachment_name: The name of the transit router attachment.
         :param str transit_router_id: The id of transit router.
@@ -1404,6 +1968,7 @@ class VpcAttachmentsAttachmentResult(dict):
         pulumi.set(__self__, "creation_time", creation_time)
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "transit_router_attachment_id", transit_router_attachment_id)
         pulumi.set(__self__, "transit_router_attachment_name", transit_router_attachment_name)
         pulumi.set(__self__, "transit_router_id", transit_router_id)
@@ -1441,6 +2006,14 @@ class VpcAttachmentsAttachmentResult(dict):
         The status of the transit router.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.VpcAttachmentsAttachmentTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="transitRouterAttachmentId")
@@ -1524,11 +2097,99 @@ class VpcAttachmentsAttachmentAttachPointResult(dict):
 
 
 @pulumi.output_type
+class VpcAttachmentsAttachmentTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class VpcAttachmentsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class VpnAttachmentTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class VpnAttachmentsAttachmentResult(dict):
     def __init__(__self__, *,
                  creation_time: str,
                  description: str,
                  status: str,
+                 tags: Sequence['outputs.VpnAttachmentsAttachmentTagResult'],
                  transit_router_attachment_id: str,
                  transit_router_attachment_name: str,
                  transit_router_id: str,
@@ -1539,6 +2200,7 @@ class VpnAttachmentsAttachmentResult(dict):
         :param str creation_time: The create time.
         :param str description: The description info.
         :param str status: The status of the transit router.
+        :param Sequence['VpnAttachmentsAttachmentTagArgs'] tags: Tags.
         :param str transit_router_attachment_id: The id of the transit router attachment.
         :param str transit_router_attachment_name: The name of the transit router attachment.
         :param str transit_router_id: The id of the transit router.
@@ -1549,6 +2211,7 @@ class VpnAttachmentsAttachmentResult(dict):
         pulumi.set(__self__, "creation_time", creation_time)
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "transit_router_attachment_id", transit_router_attachment_id)
         pulumi.set(__self__, "transit_router_attachment_name", transit_router_attachment_name)
         pulumi.set(__self__, "transit_router_id", transit_router_id)
@@ -1579,6 +2242,14 @@ class VpnAttachmentsAttachmentResult(dict):
         The status of the transit router.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.VpnAttachmentsAttachmentTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="transitRouterAttachmentId")
@@ -1627,5 +2298,63 @@ class VpnAttachmentsAttachmentResult(dict):
         The ID of the availability zone.
         """
         return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class VpnAttachmentsAttachmentTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class VpnAttachmentsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 

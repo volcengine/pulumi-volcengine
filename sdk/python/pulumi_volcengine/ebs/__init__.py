@@ -8,4 +8,5 @@ import typing
 from .volume import *
 from .volume_attach import *
 from .volumes import *
+from ._inputs import *
 from . import outputs

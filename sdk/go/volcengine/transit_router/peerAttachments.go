@@ -61,6 +61,8 @@ type PeerAttachmentsArgs struct {
 	PeerTransitRouterId *string `pulumi:"peerTransitRouterId"`
 	// The region id of peer transit router.
 	PeerTransitRouterRegionId *string `pulumi:"peerTransitRouterRegionId"`
+	// Tags.
+	Tags []PeerAttachmentsTag `pulumi:"tags"`
 	// The name of transit router peer attachment.
 	TransitRouterAttachmentName *string `pulumi:"transitRouterAttachmentName"`
 	// The id of local transit router.
@@ -78,6 +80,8 @@ type PeerAttachmentsResult struct {
 	PeerTransitRouterId *string `pulumi:"peerTransitRouterId"`
 	// The region id of the peer transit router.
 	PeerTransitRouterRegionId *string `pulumi:"peerTransitRouterRegionId"`
+	// Tags.
+	Tags []PeerAttachmentsTag `pulumi:"tags"`
 	// The total count of query.
 	TotalCount int `pulumi:"totalCount"`
 	// The name of the transit router peer attachment.
@@ -113,6 +117,8 @@ type PeerAttachmentsOutputArgs struct {
 	PeerTransitRouterId pulumi.StringPtrInput `pulumi:"peerTransitRouterId"`
 	// The region id of peer transit router.
 	PeerTransitRouterRegionId pulumi.StringPtrInput `pulumi:"peerTransitRouterRegionId"`
+	// Tags.
+	Tags PeerAttachmentsTagArrayInput `pulumi:"tags"`
 	// The name of transit router peer attachment.
 	TransitRouterAttachmentName pulumi.StringPtrInput `pulumi:"transitRouterAttachmentName"`
 	// The id of local transit router.
@@ -163,6 +169,11 @@ func (o PeerAttachmentsResultOutput) PeerTransitRouterId() pulumi.StringPtrOutpu
 // The region id of the peer transit router.
 func (o PeerAttachmentsResultOutput) PeerTransitRouterRegionId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v PeerAttachmentsResult) *string { return v.PeerTransitRouterRegionId }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o PeerAttachmentsResultOutput) Tags() PeerAttachmentsTagArrayOutput {
+	return o.ApplyT(func(v PeerAttachmentsResult) []PeerAttachmentsTag { return v.Tags }).(PeerAttachmentsTagArrayOutput)
 }
 
 // The total count of query.

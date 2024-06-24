@@ -29,6 +29,7 @@ export function peerAttachments(args?: PeerAttachmentsArgs, opts?: pulumi.Invoke
         "outputFile": args.outputFile,
         "peerTransitRouterId": args.peerTransitRouterId,
         "peerTransitRouterRegionId": args.peerTransitRouterRegionId,
+        "tags": args.tags,
         "transitRouterAttachmentName": args.transitRouterAttachmentName,
         "transitRouterId": args.transitRouterId,
     }, opts);
@@ -59,6 +60,10 @@ export interface PeerAttachmentsArgs {
      */
     peerTransitRouterRegionId?: string;
     /**
+     * Tags.
+     */
+    tags?: inputs.transit_router.PeerAttachmentsTag[];
+    /**
      * The name of transit router peer attachment.
      */
     transitRouterAttachmentName?: string;
@@ -87,6 +92,10 @@ export interface PeerAttachmentsResult {
      * The region id of the peer transit router.
      */
     readonly peerTransitRouterRegionId?: string;
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.transit_router.PeerAttachmentsTag[];
     /**
      * The total count of query.
      */
@@ -145,6 +154,10 @@ export interface PeerAttachmentsOutputArgs {
      * The region id of peer transit router.
      */
     peerTransitRouterRegionId?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.transit_router.PeerAttachmentsTagArgs>[]>;
     /**
      * The name of transit router peer attachment.
      */

@@ -21,17 +21,81 @@ import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/cen"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cen.ServiceRouteEntries(ctx, &cen.ServiceRouteEntriesArgs{
-//				CenId: pulumi.StringRef("cen-12ar8uclj68sg17q7y20v9gil"),
-//			}, nil)
+//			var fooVpc []*vpc.Vpc
+//			for index := 0; index < 3; index++ {
+//				key0 := index
+//				_ := index
+//				__res, err := vpc.NewVpc(ctx, fmt.Sprintf("fooVpc-%v", key0), &vpc.VpcArgs{
+//					VpcName:   pulumi.String("acc-test-vpc"),
+//					CidrBlock: pulumi.String("172.16.0.0/16"),
+//				})
+//				if err != nil {
+//					return err
+//				}
+//				fooVpc = append(fooVpc, __res)
+//			}
+//			fooCen, err := cen.NewCen(ctx, "fooCen", &cen.CenArgs{
+//				CenName:     pulumi.String("acc-test-cen"),
+//				Description: pulumi.String("acc-test"),
+//				ProjectName: pulumi.String("default"),
+//				Tags: cen.CenTagArray{
+//					&cen.CenTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
+//			})
 //			if err != nil {
 //				return err
 //			}
+//			var fooAttachInstance []*cen.AttachInstance
+//			for index := 0; index < 3; index++ {
+//				key0 := index
+//				val0 := index
+//				__res, err := cen.NewAttachInstance(ctx, fmt.Sprintf("fooAttachInstance-%v", key0), &cen.AttachInstanceArgs{
+//					CenId:            fooCen.ID(),
+//					InstanceId:       fooVpc[val0].ID(),
+//					InstanceRegionId: pulumi.String("cn-beijing"),
+//					InstanceType:     pulumi.String("VPC"),
+//				})
+//				if err != nil {
+//					return err
+//				}
+//				fooAttachInstance = append(fooAttachInstance, __res)
+//			}
+//			fooServiceRouteEntry, err := cen.NewServiceRouteEntry(ctx, "fooServiceRouteEntry", &cen.ServiceRouteEntryArgs{
+//				CenId:                fooCen.ID(),
+//				DestinationCidrBlock: pulumi.String("100.64.0.0/11"),
+//				ServiceRegionId:      pulumi.String("cn-beijing"),
+//				ServiceVpcId:         fooAttachInstance[0].InstanceId,
+//				Description:          pulumi.String("acc-test"),
+//				PublishMode:          pulumi.String("Custom"),
+//				PublishToInstances: cen.ServiceRouteEntryPublishToInstanceArray{
+//					&cen.ServiceRouteEntryPublishToInstanceArgs{
+//						InstanceRegionId: pulumi.String("cn-beijing"),
+//						InstanceType:     pulumi.String("VPC"),
+//						InstanceId:       fooAttachInstance[1].InstanceId,
+//					},
+//					&cen.ServiceRouteEntryPublishToInstanceArgs{
+//						InstanceRegionId: pulumi.String("cn-beijing"),
+//						InstanceType:     pulumi.String("VPC"),
+//						InstanceId:       fooAttachInstance[2].InstanceId,
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = cen.ServiceRouteEntriesOutput(ctx, cen.ServiceRouteEntriesOutputArgs{
+//				CenId:                fooCen.ID(),
+//				DestinationCidrBlock: fooServiceRouteEntry.DestinationCidrBlock,
+//			}, nil)
 //			return nil
 //		})
 //	}

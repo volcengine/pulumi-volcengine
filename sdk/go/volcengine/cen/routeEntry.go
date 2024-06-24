@@ -13,45 +13,6 @@ import (
 )
 
 // Provides a resource to manage cen route entry
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/cen"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cen.NewRouteEntry(ctx, "foo", &cen.RouteEntryArgs{
-//				CenId:                pulumi.String("cen-12ar8uclj68sg17q7y20v9gil"),
-//				DestinationCidrBlock: pulumi.String("192.168.0.0/24"),
-//				InstanceId:           pulumi.String("vpc-im67wjcikxkw8gbssx8ufpj8"),
-//				InstanceRegionId:     pulumi.String("cn-beijing"),
-//				InstanceType:         pulumi.String("VPC"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = cen.NewRouteEntry(ctx, "foo1", &cen.RouteEntryArgs{
-//				CenId:                pulumi.String("cen-12ar8uclj68sg17q7y20v9gil"),
-//				DestinationCidrBlock: pulumi.String("192.168.17.0/24"),
-//				InstanceId:           pulumi.String("vpc-im67wjcikxkw8gbssx8ufpj8"),
-//				InstanceRegionId:     pulumi.String("cn-beijing"),
-//				InstanceType:         pulumi.String("VPC"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 //
 // ## Import
 //

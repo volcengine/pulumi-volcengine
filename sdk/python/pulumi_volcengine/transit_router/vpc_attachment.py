@@ -20,6 +20,7 @@ class VpcAttachmentArgs:
                  transit_router_id: pulumi.Input[str],
                  vpc_id: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['VpcAttachmentTagArgs']]]] = None,
                  transit_router_attachment_name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a VpcAttachment resource.
@@ -27,6 +28,7 @@ class VpcAttachmentArgs:
         :param pulumi.Input[str] transit_router_id: The id of the transit router.
         :param pulumi.Input[str] vpc_id: The ID of vpc.
         :param pulumi.Input[str] description: The description of the transit router vpc attachment.
+        :param pulumi.Input[Sequence[pulumi.Input['VpcAttachmentTagArgs']]] tags: Tags.
         :param pulumi.Input[str] transit_router_attachment_name: The name of the transit router vpc attachment.
         """
         pulumi.set(__self__, "attach_points", attach_points)
@@ -34,6 +36,8 @@ class VpcAttachmentArgs:
         pulumi.set(__self__, "vpc_id", vpc_id)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if transit_router_attachment_name is not None:
             pulumi.set(__self__, "transit_router_attachment_name", transit_router_attachment_name)
 
@@ -86,6 +90,18 @@ class VpcAttachmentArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VpcAttachmentTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VpcAttachmentTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="transitRouterAttachmentName")
     def transit_router_attachment_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -105,6 +121,7 @@ class _VpcAttachmentState:
                  creation_time: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['VpcAttachmentTagArgs']]]] = None,
                  transit_router_attachment_id: Optional[pulumi.Input[str]] = None,
                  transit_router_attachment_name: Optional[pulumi.Input[str]] = None,
                  transit_router_id: Optional[pulumi.Input[str]] = None,
@@ -116,6 +133,7 @@ class _VpcAttachmentState:
         :param pulumi.Input[str] creation_time: The create time.
         :param pulumi.Input[str] description: The description of the transit router vpc attachment.
         :param pulumi.Input[str] status: The status of the transit router.
+        :param pulumi.Input[Sequence[pulumi.Input['VpcAttachmentTagArgs']]] tags: Tags.
         :param pulumi.Input[str] transit_router_attachment_id: The id of the transit router attachment.
         :param pulumi.Input[str] transit_router_attachment_name: The name of the transit router vpc attachment.
         :param pulumi.Input[str] transit_router_id: The id of the transit router.
@@ -130,6 +148,8 @@ class _VpcAttachmentState:
             pulumi.set(__self__, "description", description)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if transit_router_attachment_id is not None:
             pulumi.set(__self__, "transit_router_attachment_id", transit_router_attachment_id)
         if transit_router_attachment_name is not None:
@@ -188,6 +208,18 @@ class _VpcAttachmentState:
     @status.setter
     def status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VpcAttachmentTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VpcAttachmentTagArgs']]]]):
+        pulumi.set(self, "tags", value)
 
     @property
     @pulumi.getter(name="transitRouterAttachmentId")
@@ -257,6 +289,7 @@ class VpcAttachment(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  attach_points: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcAttachmentAttachPointArgs']]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcAttachmentTagArgs']]]]] = None,
                  transit_router_attachment_name: Optional[pulumi.Input[str]] = None,
                  transit_router_id: Optional[pulumi.Input[str]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
@@ -269,21 +302,42 @@ class VpcAttachment(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.transit_router.VpcAttachment("foo",
+        foo_transit_router = volcengine.transit_router.TransitRouter("fooTransitRouter",
+            transit_router_name="test-tf-acc",
+            description="test-tf-acc")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc-acc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            vpc_id=foo_vpc.id,
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            subnet_name="acc-test-subnet")
+        foo2 = volcengine.vpc.Subnet("foo2",
+            vpc_id=foo_vpc.id,
+            cidr_block="172.16.255.0/24",
+            zone_id=foo_zones.zones[1].id,
+            subnet_name="acc-test-subnet2")
+        foo_vpc_attachment = volcengine.transit_router.VpcAttachment("fooVpcAttachment",
+            transit_router_id=foo_transit_router.id,
+            vpc_id=foo_vpc.id,
             attach_points=[
                 volcengine.transit_router.VpcAttachmentAttachPointArgs(
-                    subnet_id="subnet-3refsrxdswsn45zsk2hmdg4zx",
+                    subnet_id=foo_subnet.id,
                     zone_id="cn-beijing-a",
                 ),
                 volcengine.transit_router.VpcAttachmentAttachPointArgs(
-                    subnet_id="subnet-2d68bh74345q858ozfekrm8fj",
-                    zone_id="cn-beijing-a",
+                    subnet_id=foo2.id,
+                    zone_id="cn-beijing-b",
                 ),
             ],
-            description="desc",
-            transit_router_attachment_name="tfname1",
-            transit_router_id="tr-2d6fr7f39unsw58ozfe1ow21x",
-            vpc_id="vpc-2bysvq1xx543k2dx0eeulpeiv")
+            transit_router_attachment_name="tf-test-acc-name1",
+            description="tf-test-acc-description",
+            tags=[volcengine.transit_router.VpcAttachmentTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -298,6 +352,7 @@ class VpcAttachment(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcAttachmentAttachPointArgs']]]] attach_points: The attach points of transit router vpc attachment.
         :param pulumi.Input[str] description: The description of the transit router vpc attachment.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcAttachmentTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] transit_router_attachment_name: The name of the transit router vpc attachment.
         :param pulumi.Input[str] transit_router_id: The id of the transit router.
         :param pulumi.Input[str] vpc_id: The ID of vpc.
@@ -316,21 +371,42 @@ class VpcAttachment(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.transit_router.VpcAttachment("foo",
+        foo_transit_router = volcengine.transit_router.TransitRouter("fooTransitRouter",
+            transit_router_name="test-tf-acc",
+            description="test-tf-acc")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc-acc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            vpc_id=foo_vpc.id,
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            subnet_name="acc-test-subnet")
+        foo2 = volcengine.vpc.Subnet("foo2",
+            vpc_id=foo_vpc.id,
+            cidr_block="172.16.255.0/24",
+            zone_id=foo_zones.zones[1].id,
+            subnet_name="acc-test-subnet2")
+        foo_vpc_attachment = volcengine.transit_router.VpcAttachment("fooVpcAttachment",
+            transit_router_id=foo_transit_router.id,
+            vpc_id=foo_vpc.id,
             attach_points=[
                 volcengine.transit_router.VpcAttachmentAttachPointArgs(
-                    subnet_id="subnet-3refsrxdswsn45zsk2hmdg4zx",
+                    subnet_id=foo_subnet.id,
                     zone_id="cn-beijing-a",
                 ),
                 volcengine.transit_router.VpcAttachmentAttachPointArgs(
-                    subnet_id="subnet-2d68bh74345q858ozfekrm8fj",
-                    zone_id="cn-beijing-a",
+                    subnet_id=foo2.id,
+                    zone_id="cn-beijing-b",
                 ),
             ],
-            description="desc",
-            transit_router_attachment_name="tfname1",
-            transit_router_id="tr-2d6fr7f39unsw58ozfe1ow21x",
-            vpc_id="vpc-2bysvq1xx543k2dx0eeulpeiv")
+            transit_router_attachment_name="tf-test-acc-name1",
+            description="tf-test-acc-description",
+            tags=[volcengine.transit_router.VpcAttachmentTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -358,6 +434,7 @@ class VpcAttachment(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  attach_points: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcAttachmentAttachPointArgs']]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcAttachmentTagArgs']]]]] = None,
                  transit_router_attachment_name: Optional[pulumi.Input[str]] = None,
                  transit_router_id: Optional[pulumi.Input[str]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
@@ -374,6 +451,7 @@ class VpcAttachment(pulumi.CustomResource):
                 raise TypeError("Missing required property 'attach_points'")
             __props__.__dict__["attach_points"] = attach_points
             __props__.__dict__["description"] = description
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["transit_router_attachment_name"] = transit_router_attachment_name
             if transit_router_id is None and not opts.urn:
                 raise TypeError("Missing required property 'transit_router_id'")
@@ -399,6 +477,7 @@ class VpcAttachment(pulumi.CustomResource):
             creation_time: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcAttachmentTagArgs']]]]] = None,
             transit_router_attachment_id: Optional[pulumi.Input[str]] = None,
             transit_router_attachment_name: Optional[pulumi.Input[str]] = None,
             transit_router_id: Optional[pulumi.Input[str]] = None,
@@ -415,6 +494,7 @@ class VpcAttachment(pulumi.CustomResource):
         :param pulumi.Input[str] creation_time: The create time.
         :param pulumi.Input[str] description: The description of the transit router vpc attachment.
         :param pulumi.Input[str] status: The status of the transit router.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcAttachmentTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] transit_router_attachment_id: The id of the transit router attachment.
         :param pulumi.Input[str] transit_router_attachment_name: The name of the transit router vpc attachment.
         :param pulumi.Input[str] transit_router_id: The id of the transit router.
@@ -429,6 +509,7 @@ class VpcAttachment(pulumi.CustomResource):
         __props__.__dict__["creation_time"] = creation_time
         __props__.__dict__["description"] = description
         __props__.__dict__["status"] = status
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["transit_router_attachment_id"] = transit_router_attachment_id
         __props__.__dict__["transit_router_attachment_name"] = transit_router_attachment_name
         __props__.__dict__["transit_router_id"] = transit_router_id
@@ -467,6 +548,14 @@ class VpcAttachment(pulumi.CustomResource):
         The status of the transit router.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.VpcAttachmentTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="transitRouterAttachmentId")

@@ -27,9 +27,15 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cen.NewCen(ctx, "foo", &cen.CenArgs{
-//				CenName:     pulumi.String("tf-test-3"),
-//				Description: pulumi.String("tf-test"),
+//				CenName:     pulumi.String("acc-test-cen"),
+//				Description: pulumi.String("acc-test"),
 //				ProjectName: pulumi.String("default"),
+//				Tags: cen.CenTagArray{
+//					&cen.CenTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err

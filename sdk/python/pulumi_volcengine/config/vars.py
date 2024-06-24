@@ -8,6 +8,7 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
 
 import types
 
@@ -21,6 +22,14 @@ class _ExportableConfig(types.ModuleType):
         The Access Key for Volcengine Provider
         """
         return __config__.get('accessKey') or _utilities.get_env('VOLCENGINE_ACCESS_KEY')
+
+    @property
+    def assume_role(self) -> Optional[str]:
+        """
+        The ASSUME ROLE block for Volcengine Provider. If provided, terraform will attempt to assume this role using the
+        supplied credentials.
+        """
+        return __config__.get('assumeRole')
 
     @property
     def customer_endpoints(self) -> Optional[str]:

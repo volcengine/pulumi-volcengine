@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['VpnAttachmentArgs', 'VpnAttachment']
 
@@ -18,6 +20,7 @@ class VpnAttachmentArgs:
                  vpn_connection_id: pulumi.Input[str],
                  zone_id: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['VpnAttachmentTagArgs']]]] = None,
                  transit_router_attachment_name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a VpnAttachment resource.
@@ -25,6 +28,7 @@ class VpnAttachmentArgs:
         :param pulumi.Input[str] vpn_connection_id: The ID of the IPSec connection.
         :param pulumi.Input[str] zone_id: The ID of the availability zone.
         :param pulumi.Input[str] description: The description of the transit router vpn attachment.
+        :param pulumi.Input[Sequence[pulumi.Input['VpnAttachmentTagArgs']]] tags: Tags.
         :param pulumi.Input[str] transit_router_attachment_name: The name of the transit router vpn attachment.
         """
         pulumi.set(__self__, "transit_router_id", transit_router_id)
@@ -32,6 +36,8 @@ class VpnAttachmentArgs:
         pulumi.set(__self__, "zone_id", zone_id)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if transit_router_attachment_name is not None:
             pulumi.set(__self__, "transit_router_attachment_name", transit_router_attachment_name)
 
@@ -84,6 +90,18 @@ class VpnAttachmentArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VpnAttachmentTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VpnAttachmentTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="transitRouterAttachmentName")
     def transit_router_attachment_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -102,6 +120,7 @@ class _VpnAttachmentState:
                  creation_time: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['VpnAttachmentTagArgs']]]] = None,
                  transit_router_attachment_id: Optional[pulumi.Input[str]] = None,
                  transit_router_attachment_name: Optional[pulumi.Input[str]] = None,
                  transit_router_id: Optional[pulumi.Input[str]] = None,
@@ -113,6 +132,7 @@ class _VpnAttachmentState:
         :param pulumi.Input[str] creation_time: The create time.
         :param pulumi.Input[str] description: The description of the transit router vpn attachment.
         :param pulumi.Input[str] status: The status of the transit router.
+        :param pulumi.Input[Sequence[pulumi.Input['VpnAttachmentTagArgs']]] tags: Tags.
         :param pulumi.Input[str] transit_router_attachment_id: The id of the transit router vpn attachment.
         :param pulumi.Input[str] transit_router_attachment_name: The name of the transit router vpn attachment.
         :param pulumi.Input[str] transit_router_id: The id of the transit router.
@@ -126,6 +146,8 @@ class _VpnAttachmentState:
             pulumi.set(__self__, "description", description)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if transit_router_attachment_id is not None:
             pulumi.set(__self__, "transit_router_attachment_id", transit_router_attachment_id)
         if transit_router_attachment_name is not None:
@@ -174,6 +196,18 @@ class _VpnAttachmentState:
     @status.setter
     def status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VpnAttachmentTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VpnAttachmentTagArgs']]]]):
+        pulumi.set(self, "tags", value)
 
     @property
     @pulumi.getter(name="transitRouterAttachmentId")
@@ -254,6 +288,7 @@ class VpnAttachment(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnAttachmentTagArgs']]]]] = None,
                  transit_router_attachment_name: Optional[pulumi.Input[str]] = None,
                  transit_router_id: Optional[pulumi.Input[str]] = None,
                  vpn_connection_id: Optional[pulumi.Input[str]] = None,
@@ -267,12 +302,63 @@ class VpnAttachment(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.transit_router.VpnAttachment("foo",
-            description="desc",
-            transit_router_attachment_name="tf-test",
-            transit_router_id="tr-2d6frp10q687458ozfep4****",
-            vpn_connection_id="vgc-3reidwjf1t1c05zsk2hik****",
-            zone_id="cn-beijing-a")
+        foo_transit_router = volcengine.transit_router.TransitRouter("fooTransitRouter",
+            transit_router_name="test-tf-acc",
+            description="test-tf-acc")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_gateway = volcengine.vpn.Gateway("fooGateway",
+            vpc_id=foo_vpc.id,
+            subnet_id=foo_subnet.id,
+            bandwidth=20,
+            vpn_gateway_name="acc-test",
+            description="acc-test",
+            period=2)
+        foo_customer_gateway = volcengine.vpn.CustomerGateway("fooCustomerGateway",
+            ip_address="192.0.1.3",
+            customer_gateway_name="acc-test",
+            description="acc-test")
+        foo_connection = volcengine.vpn.Connection("fooConnection",
+            vpn_connection_name="acc-tf-test",
+            description="acc-tf-test",
+            attach_type="TransitRouter",
+            vpn_gateway_id=foo_gateway.id,
+            customer_gateway_id=foo_customer_gateway.id,
+            local_subnets=["192.168.0.0/22"],
+            remote_subnets=["192.161.0.0/20"],
+            dpd_action="none",
+            nat_traversal=True,
+            ike_config_psk="acctest@!3",
+            ike_config_version="ikev1",
+            ike_config_mode="main",
+            ike_config_enc_alg="aes",
+            ike_config_auth_alg="md5",
+            ike_config_dh_group="group2",
+            ike_config_lifetime=9000,
+            ike_config_local_id="acc_test",
+            ike_config_remote_id="acc_test",
+            ipsec_config_enc_alg="aes",
+            ipsec_config_auth_alg="sha256",
+            ipsec_config_dh_group="group2",
+            ipsec_config_lifetime=9000,
+            log_enabled=False)
+        foo_vpn_attachment = volcengine.transit_router.VpnAttachment("fooVpnAttachment",
+            zone_id="cn-beijing-a",
+            transit_router_attachment_name="tf-test-acc",
+            description="tf-test-acc-desc",
+            transit_router_id=foo_transit_router.id,
+            vpn_connection_id=foo_connection.id,
+            tags=[volcengine.transit_router.VpnAttachmentTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -286,6 +372,7 @@ class VpnAttachment(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: The description of the transit router vpn attachment.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnAttachmentTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] transit_router_attachment_name: The name of the transit router vpn attachment.
         :param pulumi.Input[str] transit_router_id: The id of the transit router.
         :param pulumi.Input[str] vpn_connection_id: The ID of the IPSec connection.
@@ -305,12 +392,63 @@ class VpnAttachment(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.transit_router.VpnAttachment("foo",
-            description="desc",
-            transit_router_attachment_name="tf-test",
-            transit_router_id="tr-2d6frp10q687458ozfep4****",
-            vpn_connection_id="vgc-3reidwjf1t1c05zsk2hik****",
-            zone_id="cn-beijing-a")
+        foo_transit_router = volcengine.transit_router.TransitRouter("fooTransitRouter",
+            transit_router_name="test-tf-acc",
+            description="test-tf-acc")
+        foo_zones = volcengine.ecs.zones()
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+            subnet_name="acc-test-subnet",
+            cidr_block="172.16.0.0/24",
+            zone_id=foo_zones.zones[0].id,
+            vpc_id=foo_vpc.id)
+        foo_gateway = volcengine.vpn.Gateway("fooGateway",
+            vpc_id=foo_vpc.id,
+            subnet_id=foo_subnet.id,
+            bandwidth=20,
+            vpn_gateway_name="acc-test",
+            description="acc-test",
+            period=2)
+        foo_customer_gateway = volcengine.vpn.CustomerGateway("fooCustomerGateway",
+            ip_address="192.0.1.3",
+            customer_gateway_name="acc-test",
+            description="acc-test")
+        foo_connection = volcengine.vpn.Connection("fooConnection",
+            vpn_connection_name="acc-tf-test",
+            description="acc-tf-test",
+            attach_type="TransitRouter",
+            vpn_gateway_id=foo_gateway.id,
+            customer_gateway_id=foo_customer_gateway.id,
+            local_subnets=["192.168.0.0/22"],
+            remote_subnets=["192.161.0.0/20"],
+            dpd_action="none",
+            nat_traversal=True,
+            ike_config_psk="acctest@!3",
+            ike_config_version="ikev1",
+            ike_config_mode="main",
+            ike_config_enc_alg="aes",
+            ike_config_auth_alg="md5",
+            ike_config_dh_group="group2",
+            ike_config_lifetime=9000,
+            ike_config_local_id="acc_test",
+            ike_config_remote_id="acc_test",
+            ipsec_config_enc_alg="aes",
+            ipsec_config_auth_alg="sha256",
+            ipsec_config_dh_group="group2",
+            ipsec_config_lifetime=9000,
+            log_enabled=False)
+        foo_vpn_attachment = volcengine.transit_router.VpnAttachment("fooVpnAttachment",
+            zone_id="cn-beijing-a",
+            transit_router_attachment_name="tf-test-acc",
+            description="tf-test-acc-desc",
+            transit_router_id=foo_transit_router.id,
+            vpn_connection_id=foo_connection.id,
+            tags=[volcengine.transit_router.VpnAttachmentTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -337,6 +475,7 @@ class VpnAttachment(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnAttachmentTagArgs']]]]] = None,
                  transit_router_attachment_name: Optional[pulumi.Input[str]] = None,
                  transit_router_id: Optional[pulumi.Input[str]] = None,
                  vpn_connection_id: Optional[pulumi.Input[str]] = None,
@@ -351,6 +490,7 @@ class VpnAttachment(pulumi.CustomResource):
             __props__ = VpnAttachmentArgs.__new__(VpnAttachmentArgs)
 
             __props__.__dict__["description"] = description
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["transit_router_attachment_name"] = transit_router_attachment_name
             if transit_router_id is None and not opts.urn:
                 raise TypeError("Missing required property 'transit_router_id'")
@@ -378,6 +518,7 @@ class VpnAttachment(pulumi.CustomResource):
             creation_time: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnAttachmentTagArgs']]]]] = None,
             transit_router_attachment_id: Optional[pulumi.Input[str]] = None,
             transit_router_attachment_name: Optional[pulumi.Input[str]] = None,
             transit_router_id: Optional[pulumi.Input[str]] = None,
@@ -394,6 +535,7 @@ class VpnAttachment(pulumi.CustomResource):
         :param pulumi.Input[str] creation_time: The create time.
         :param pulumi.Input[str] description: The description of the transit router vpn attachment.
         :param pulumi.Input[str] status: The status of the transit router.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnAttachmentTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] transit_router_attachment_id: The id of the transit router vpn attachment.
         :param pulumi.Input[str] transit_router_attachment_name: The name of the transit router vpn attachment.
         :param pulumi.Input[str] transit_router_id: The id of the transit router.
@@ -408,6 +550,7 @@ class VpnAttachment(pulumi.CustomResource):
         __props__.__dict__["creation_time"] = creation_time
         __props__.__dict__["description"] = description
         __props__.__dict__["status"] = status
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["transit_router_attachment_id"] = transit_router_attachment_id
         __props__.__dict__["transit_router_attachment_name"] = transit_router_attachment_name
         __props__.__dict__["transit_router_id"] = transit_router_id
@@ -439,6 +582,14 @@ class VpnAttachment(pulumi.CustomResource):
         The status of the transit router.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.VpnAttachmentTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="transitRouterAttachmentId")

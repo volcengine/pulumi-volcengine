@@ -128,6 +128,9 @@ type Instance struct {
 	DeploymentSetId pulumi.StringOutput `pulumi:"deploymentSetId"`
 	// The description of ECS instance.
 	Description pulumi.StringOutput `pulumi:"description"`
+	// The id of an existing Available EIP which will be automatically assigned to this instance.
+	// It is not recommended to use this field, it is recommended to use `eip.Associate` resource to bind EIP.
+	EipId pulumi.StringPtrOutput `pulumi:"eipId"`
 	// The GPU device info of Instance.
 	GpuDevices InstanceGpuDeviceArrayOutput `pulumi:"gpuDevices"`
 	// The host name of ECS instance.
@@ -285,6 +288,9 @@ type instanceState struct {
 	DeploymentSetId *string `pulumi:"deploymentSetId"`
 	// The description of ECS instance.
 	Description *string `pulumi:"description"`
+	// The id of an existing Available EIP which will be automatically assigned to this instance.
+	// It is not recommended to use this field, it is recommended to use `eip.Associate` resource to bind EIP.
+	EipId *string `pulumi:"eipId"`
 	// The GPU device info of Instance.
 	GpuDevices []InstanceGpuDevice `pulumi:"gpuDevices"`
 	// The host name of ECS instance.
@@ -388,6 +394,9 @@ type InstanceState struct {
 	DeploymentSetId pulumi.StringPtrInput
 	// The description of ECS instance.
 	Description pulumi.StringPtrInput
+	// The id of an existing Available EIP which will be automatically assigned to this instance.
+	// It is not recommended to use this field, it is recommended to use `eip.Associate` resource to bind EIP.
+	EipId pulumi.StringPtrInput
 	// The GPU device info of Instance.
 	GpuDevices InstanceGpuDeviceArrayInput
 	// The host name of ECS instance.
@@ -491,6 +500,9 @@ type instanceArgs struct {
 	DeploymentSetId *string `pulumi:"deploymentSetId"`
 	// The description of ECS instance.
 	Description *string `pulumi:"description"`
+	// The id of an existing Available EIP which will be automatically assigned to this instance.
+	// It is not recommended to use this field, it is recommended to use `eip.Associate` resource to bind EIP.
+	EipId *string `pulumi:"eipId"`
 	// The host name of ECS instance.
 	HostName *string `pulumi:"hostName"`
 	// The hpc cluster ID of ECS instance.
@@ -565,6 +577,9 @@ type InstanceArgs struct {
 	DeploymentSetId pulumi.StringPtrInput
 	// The description of ECS instance.
 	Description pulumi.StringPtrInput
+	// The id of an existing Available EIP which will be automatically assigned to this instance.
+	// It is not recommended to use this field, it is recommended to use `eip.Associate` resource to bind EIP.
+	EipId pulumi.StringPtrInput
 	// The host name of ECS instance.
 	HostName pulumi.StringPtrInput
 	// The hpc cluster ID of ECS instance.
@@ -750,6 +765,12 @@ func (o InstanceOutput) DeploymentSetId() pulumi.StringOutput {
 // The description of ECS instance.
 func (o InstanceOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+// The id of an existing Available EIP which will be automatically assigned to this instance.
+// It is not recommended to use this field, it is recommended to use `eip.Associate` resource to bind EIP.
+func (o InstanceOutput) EipId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.EipId }).(pulumi.StringPtrOutput)
 }
 
 // The GPU device info of Instance.

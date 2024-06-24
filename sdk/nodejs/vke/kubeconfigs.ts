@@ -87,6 +87,7 @@ export function kubeconfigs(args?: KubeconfigsArgs, opts?: pulumi.InvokeOptions)
         "outputFile": args.outputFile,
         "pageNumber": args.pageNumber,
         "pageSize": args.pageSize,
+        "roleIds": args.roleIds,
         "types": args.types,
     }, opts);
 }
@@ -120,6 +121,10 @@ export interface KubeconfigsArgs {
      */
     pageSize?: number;
     /**
+     * A list of Role IDs.
+     */
+    roleIds?: number[];
+    /**
      * The type of Kubeconfigs query.
      */
     types?: string[];
@@ -143,6 +148,7 @@ export interface KubeconfigsResult {
     readonly outputFile?: string;
     readonly pageNumber: number;
     readonly pageSize: number;
+    readonly roleIds?: number[];
     /**
      * The total count of Kubeconfig query.
      */
@@ -251,6 +257,10 @@ export interface KubeconfigsOutputArgs {
      * The page size of Kubeconfigs query.
      */
     pageSize?: pulumi.Input<number>;
+    /**
+     * A list of Role IDs.
+     */
+    roleIds?: pulumi.Input<pulumi.Input<number>[]>;
     /**
      * The type of Kubeconfigs query.
      */

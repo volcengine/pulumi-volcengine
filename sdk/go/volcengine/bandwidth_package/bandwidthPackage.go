@@ -28,9 +28,9 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := bandwidth_package.NewBandwidthPackage(ctx, "foo", &bandwidth_package.BandwidthPackageArgs{
 //				Bandwidth:            pulumi.Int(10),
-//				BandwidthPackageName: pulumi.String("tf-test"),
+//				BandwidthPackageName: pulumi.String("acc-test-bp"),
 //				BillingType:          pulumi.String("PostPaidByBandwidth"),
-//				Description:          pulumi.String("tftest-description"),
+//				Description:          pulumi.String("acc-test"),
 //				Isp:                  pulumi.String("BGP"),
 //				Protocol:             pulumi.String("IPv4"),
 //				SecurityProtectionTypes: pulumi.StringArray{
@@ -38,8 +38,8 @@ import (
 //				},
 //				Tags: bandwidth_package.BandwidthPackageTagArray{
 //					&bandwidth_package.BandwidthPackageTagArgs{
-//						Key:   pulumi.String("tftest"),
-//						Value: pulumi.String("tftest"),
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
 //					},
 //				},
 //			})

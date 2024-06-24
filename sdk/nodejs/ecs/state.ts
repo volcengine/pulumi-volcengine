@@ -100,9 +100,9 @@ export class State extends pulumi.CustomResource {
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
-     * Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`, default `KeepCharging`.
+     * Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`.
      */
-    public readonly stoppedMode!: pulumi.Output<string | undefined>;
+    public readonly stoppedMode!: pulumi.Output<string>;
 
     /**
      * Create a State resource with the given unique name, arguments, and options.
@@ -156,7 +156,7 @@ export interface StateState {
      */
     status?: pulumi.Input<string>;
     /**
-     * Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`, default `KeepCharging`.
+     * Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`.
      */
     stoppedMode?: pulumi.Input<string>;
 }
@@ -174,7 +174,7 @@ export interface StateArgs {
      */
     instanceId: pulumi.Input<string>;
     /**
-     * Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`, default `KeepCharging`.
+     * Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`.
      */
     stoppedMode?: pulumi.Input<string>;
 }

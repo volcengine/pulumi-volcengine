@@ -27,7 +27,14 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := transit_router.NewTransitRouter(ctx, "foo", &transit_router.TransitRouterArgs{
-//				Description:       pulumi.String("acc-test"),
+//				Description: pulumi.String("acc-test"),
+//				ProjectName: pulumi.String("default"),
+//				Tags: transit_router.TransitRouterTagArray{
+//					&transit_router.TransitRouterTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
 //				TransitRouterName: pulumi.String("acc-test-tr"),
 //			})
 //			if err != nil {
@@ -61,8 +68,12 @@ type TransitRouter struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The overdue time.
 	OverdueTime pulumi.StringOutput `pulumi:"overdueTime"`
+	// The ProjectName of the transit router.
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The status of the transit router.
 	Status pulumi.StringOutput `pulumi:"status"`
+	// Tags.
+	Tags TransitRouterTagArrayOutput `pulumi:"tags"`
 	// The attachments of transit router.
 	TransitRouterAttachments TransitRouterTransitRouterAttachmentArrayOutput `pulumi:"transitRouterAttachments"`
 	// The ID of the transit router.
@@ -113,8 +124,12 @@ type transitRouterState struct {
 	Description *string `pulumi:"description"`
 	// The overdue time.
 	OverdueTime *string `pulumi:"overdueTime"`
+	// The ProjectName of the transit router.
+	ProjectName *string `pulumi:"projectName"`
 	// The status of the transit router.
 	Status *string `pulumi:"status"`
+	// Tags.
+	Tags []TransitRouterTag `pulumi:"tags"`
 	// The attachments of transit router.
 	TransitRouterAttachments []TransitRouterTransitRouterAttachment `pulumi:"transitRouterAttachments"`
 	// The ID of the transit router.
@@ -136,8 +151,12 @@ type TransitRouterState struct {
 	Description pulumi.StringPtrInput
 	// The overdue time.
 	OverdueTime pulumi.StringPtrInput
+	// The ProjectName of the transit router.
+	ProjectName pulumi.StringPtrInput
 	// The status of the transit router.
 	Status pulumi.StringPtrInput
+	// Tags.
+	Tags TransitRouterTagArrayInput
 	// The attachments of transit router.
 	TransitRouterAttachments TransitRouterTransitRouterAttachmentArrayInput
 	// The ID of the transit router.
@@ -155,6 +174,10 @@ func (TransitRouterState) ElementType() reflect.Type {
 type transitRouterArgs struct {
 	// The description of the transit router.
 	Description *string `pulumi:"description"`
+	// The ProjectName of the transit router.
+	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []TransitRouterTag `pulumi:"tags"`
 	// The name of the transit router.
 	TransitRouterName *string `pulumi:"transitRouterName"`
 }
@@ -163,6 +186,10 @@ type transitRouterArgs struct {
 type TransitRouterArgs struct {
 	// The description of the transit router.
 	Description pulumi.StringPtrInput
+	// The ProjectName of the transit router.
+	ProjectName pulumi.StringPtrInput
+	// Tags.
+	Tags TransitRouterTagArrayInput
 	// The name of the transit router.
 	TransitRouterName pulumi.StringPtrInput
 }
@@ -279,9 +306,19 @@ func (o TransitRouterOutput) OverdueTime() pulumi.StringOutput {
 	return o.ApplyT(func(v *TransitRouter) pulumi.StringOutput { return v.OverdueTime }).(pulumi.StringOutput)
 }
 
+// The ProjectName of the transit router.
+func (o TransitRouterOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *TransitRouter) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
+}
+
 // The status of the transit router.
 func (o TransitRouterOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *TransitRouter) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o TransitRouterOutput) Tags() TransitRouterTagArrayOutput {
+	return o.ApplyT(func(v *TransitRouter) TransitRouterTagArrayOutput { return v.Tags }).(TransitRouterTagArrayOutput)
 }
 
 // The attachments of transit router.

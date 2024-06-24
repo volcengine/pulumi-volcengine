@@ -128,6 +128,11 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string>;
     /**
+     * The id of an existing Available EIP which will be automatically assigned to this instance. 
+     * It is not recommended to use this field, it is recommended to use `volcengine.eip.Associate` resource to bind EIP.
+     */
+    public readonly eipId!: pulumi.Output<string | undefined>;
+    /**
      * The GPU device info of Instance.
      */
     public /*out*/ readonly gpuDevices!: pulumi.Output<outputs.ecs.InstanceGpuDevice[]>;
@@ -311,6 +316,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["dataVolumes"] = state ? state.dataVolumes : undefined;
             resourceInputs["deploymentSetId"] = state ? state.deploymentSetId : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["eipId"] = state ? state.eipId : undefined;
             resourceInputs["gpuDevices"] = state ? state.gpuDevices : undefined;
             resourceInputs["hostName"] = state ? state.hostName : undefined;
             resourceInputs["hpcClusterId"] = state ? state.hpcClusterId : undefined;
@@ -376,6 +382,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["dataVolumes"] = args ? args.dataVolumes : undefined;
             resourceInputs["deploymentSetId"] = args ? args.deploymentSetId : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["eipId"] = args ? args.eipId : undefined;
             resourceInputs["hostName"] = args ? args.hostName : undefined;
             resourceInputs["hpcClusterId"] = args ? args.hpcClusterId : undefined;
             resourceInputs["imageId"] = args ? args.imageId : undefined;
@@ -461,6 +468,11 @@ export interface InstanceState {
      * The description of ECS instance.
      */
     description?: pulumi.Input<string>;
+    /**
+     * The id of an existing Available EIP which will be automatically assigned to this instance. 
+     * It is not recommended to use this field, it is recommended to use `volcengine.eip.Associate` resource to bind EIP.
+     */
+    eipId?: pulumi.Input<string>;
     /**
      * The GPU device info of Instance.
      */
@@ -653,6 +665,11 @@ export interface InstanceArgs {
      * The description of ECS instance.
      */
     description?: pulumi.Input<string>;
+    /**
+     * The id of an existing Available EIP which will be automatically assigned to this instance. 
+     * It is not recommended to use this field, it is recommended to use `volcengine.eip.Associate` resource to bind EIP.
+     */
+    eipId?: pulumi.Input<string>;
     /**
      * The host name of ECS instance.
      */

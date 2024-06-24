@@ -26,14 +26,63 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := cen.InterRegionBandwidths(ctx, &cen.InterRegionBandwidthsArgs{
-//				Ids: []string{
-//					"cirb-274q484wxao007fap8tlvl6si",
+//			fooCen, err := cen.NewCen(ctx, "fooCen", &cen.CenArgs{
+//				CenName:     pulumi.String("acc-test-cen"),
+//				Description: pulumi.String("acc-test"),
+//				ProjectName: pulumi.String("default"),
+//				Tags: cen.CenTagArray{
+//					&cen.CenTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
 //				},
-//			}, nil)
+//			})
 //			if err != nil {
 //				return err
 //			}
+//			fooBandwidthPackage, err := cen.NewBandwidthPackage(ctx, "fooBandwidthPackage", &cen.BandwidthPackageArgs{
+//				LocalGeographicRegionSetId: pulumi.String("China"),
+//				PeerGeographicRegionSetId:  pulumi.String("China"),
+//				Bandwidth:                  pulumi.Int(5),
+//				CenBandwidthPackageName:    pulumi.String("acc-test-cen-bp"),
+//				Description:                pulumi.String("acc-test"),
+//				BillingType:                pulumi.String("PrePaid"),
+//				PeriodUnit:                 pulumi.String("Month"),
+//				Period:                     pulumi.Int(1),
+//				ProjectName:                pulumi.String("default"),
+//				Tags: cen.BandwidthPackageTagArray{
+//					&cen.BandwidthPackageTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooBandwidthPackageAssociate, err := cen.NewBandwidthPackageAssociate(ctx, "fooBandwidthPackageAssociate", &cen.BandwidthPackageAssociateArgs{
+//				CenBandwidthPackageId: fooBandwidthPackage.ID(),
+//				CenId:                 fooCen.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooInterRegionBandwidth, err := cen.NewInterRegionBandwidth(ctx, "fooInterRegionBandwidth", &cen.InterRegionBandwidthArgs{
+//				CenId:         fooCen.ID(),
+//				LocalRegionId: pulumi.String("cn-beijing"),
+//				PeerRegionId:  pulumi.String("cn-shanghai"),
+//				Bandwidth:     pulumi.Int(2),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				fooBandwidthPackageAssociate,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			_ = cen.InterRegionBandwidthsOutput(ctx, cen.InterRegionBandwidthsOutputArgs{
+//				Ids: pulumi.StringArray{
+//					fooInterRegionBandwidth.ID(),
+//				},
+//			}, nil)
 //			return nil
 //		})
 //	}

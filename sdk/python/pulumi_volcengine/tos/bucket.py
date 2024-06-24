@@ -19,25 +19,33 @@ class BucketArgs:
                  bucket_name: pulumi.Input[str],
                  account_acls: Optional[pulumi.Input[Sequence[pulumi.Input['BucketAccountAclArgs']]]] = None,
                  enable_version: Optional[pulumi.Input[bool]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  public_acl: Optional[pulumi.Input[str]] = None,
-                 storage_class: Optional[pulumi.Input[str]] = None):
+                 storage_class: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['BucketTagArgs']]]] = None):
         """
         The set of arguments for constructing a Bucket resource.
         :param pulumi.Input[str] bucket_name: The name of the bucket.
         :param pulumi.Input[Sequence[pulumi.Input['BucketAccountAclArgs']]] account_acls: The user set of grant full control.
         :param pulumi.Input[bool] enable_version: The flag of enable tos version.
+        :param pulumi.Input[str] project_name: The ProjectName of the Tos Bucket. Default is `default`.
         :param pulumi.Input[str] public_acl: The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
         :param pulumi.Input[str] storage_class: The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
+        :param pulumi.Input[Sequence[pulumi.Input['BucketTagArgs']]] tags: Tos Bucket Tags.
         """
         pulumi.set(__self__, "bucket_name", bucket_name)
         if account_acls is not None:
             pulumi.set(__self__, "account_acls", account_acls)
         if enable_version is not None:
             pulumi.set(__self__, "enable_version", enable_version)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if public_acl is not None:
             pulumi.set(__self__, "public_acl", public_acl)
         if storage_class is not None:
             pulumi.set(__self__, "storage_class", storage_class)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="bucketName")
@@ -76,6 +84,18 @@ class BucketArgs:
         pulumi.set(self, "enable_version", value)
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of the Tos Bucket. Default is `default`.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
     @pulumi.getter(name="publicAcl")
     def public_acl(self) -> Optional[pulumi.Input[str]]:
         """
@@ -99,6 +119,18 @@ class BucketArgs:
     def storage_class(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "storage_class", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BucketTagArgs']]]]:
+        """
+        Tos Bucket Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BucketTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _BucketState:
@@ -110,8 +142,10 @@ class _BucketState:
                  extranet_endpoint: Optional[pulumi.Input[str]] = None,
                  intranet_endpoint: Optional[pulumi.Input[str]] = None,
                  location: Optional[pulumi.Input[str]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  public_acl: Optional[pulumi.Input[str]] = None,
-                 storage_class: Optional[pulumi.Input[str]] = None):
+                 storage_class: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['BucketTagArgs']]]] = None):
         """
         Input properties used for looking up and filtering Bucket resources.
         :param pulumi.Input[Sequence[pulumi.Input['BucketAccountAclArgs']]] account_acls: The user set of grant full control.
@@ -121,8 +155,10 @@ class _BucketState:
         :param pulumi.Input[str] extranet_endpoint: The extranet endpoint of the TOS bucket.
         :param pulumi.Input[str] intranet_endpoint: The intranet endpoint the TOS bucket.
         :param pulumi.Input[str] location: The location of the TOS bucket.
+        :param pulumi.Input[str] project_name: The ProjectName of the Tos Bucket. Default is `default`.
         :param pulumi.Input[str] public_acl: The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
         :param pulumi.Input[str] storage_class: The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
+        :param pulumi.Input[Sequence[pulumi.Input['BucketTagArgs']]] tags: Tos Bucket Tags.
         """
         if account_acls is not None:
             pulumi.set(__self__, "account_acls", account_acls)
@@ -138,10 +174,14 @@ class _BucketState:
             pulumi.set(__self__, "intranet_endpoint", intranet_endpoint)
         if location is not None:
             pulumi.set(__self__, "location", location)
+        if project_name is not None:
+            pulumi.set(__self__, "project_name", project_name)
         if public_acl is not None:
             pulumi.set(__self__, "public_acl", public_acl)
         if storage_class is not None:
             pulumi.set(__self__, "storage_class", storage_class)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="accountAcls")
@@ -228,6 +268,18 @@ class _BucketState:
         pulumi.set(self, "location", value)
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ProjectName of the Tos Bucket. Default is `default`.
+        """
+        return pulumi.get(self, "project_name")
+
+    @project_name.setter
+    def project_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "project_name", value)
+
+    @property
     @pulumi.getter(name="publicAcl")
     def public_acl(self) -> Optional[pulumi.Input[str]]:
         """
@@ -251,6 +303,18 @@ class _BucketState:
     def storage_class(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "storage_class", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BucketTagArgs']]]]:
+        """
+        Tos Bucket Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BucketTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 class Bucket(pulumi.CustomResource):
     @overload
@@ -260,8 +324,10 @@ class Bucket(pulumi.CustomResource):
                  account_acls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BucketAccountAclArgs']]]]] = None,
                  bucket_name: Optional[pulumi.Input[str]] = None,
                  enable_version: Optional[pulumi.Input[bool]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  public_acl: Optional[pulumi.Input[str]] = None,
                  storage_class: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BucketTagArgs']]]]] = None,
                  __props__=None):
         """
         Provides a resource to manage tos bucket
@@ -282,9 +348,14 @@ class Bucket(pulumi.CustomResource):
                     permission="WRITE_ACP",
                 ),
             ],
-            bucket_name="test-xym-1",
+            bucket_name="tf-acc-test-bucket",
             enable_version=True,
-            public_acl="private")
+            project_name="default",
+            public_acl="private",
+            tags=[volcengine.tos.BucketTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -300,8 +371,10 @@ class Bucket(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BucketAccountAclArgs']]]] account_acls: The user set of grant full control.
         :param pulumi.Input[str] bucket_name: The name of the bucket.
         :param pulumi.Input[bool] enable_version: The flag of enable tos version.
+        :param pulumi.Input[str] project_name: The ProjectName of the Tos Bucket. Default is `default`.
         :param pulumi.Input[str] public_acl: The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
         :param pulumi.Input[str] storage_class: The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BucketTagArgs']]]] tags: Tos Bucket Tags.
         """
         ...
     @overload
@@ -328,9 +401,14 @@ class Bucket(pulumi.CustomResource):
                     permission="WRITE_ACP",
                 ),
             ],
-            bucket_name="test-xym-1",
+            bucket_name="tf-acc-test-bucket",
             enable_version=True,
-            public_acl="private")
+            project_name="default",
+            public_acl="private",
+            tags=[volcengine.tos.BucketTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -359,8 +437,10 @@ class Bucket(pulumi.CustomResource):
                  account_acls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BucketAccountAclArgs']]]]] = None,
                  bucket_name: Optional[pulumi.Input[str]] = None,
                  enable_version: Optional[pulumi.Input[bool]] = None,
+                 project_name: Optional[pulumi.Input[str]] = None,
                  public_acl: Optional[pulumi.Input[str]] = None,
                  storage_class: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BucketTagArgs']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -375,8 +455,10 @@ class Bucket(pulumi.CustomResource):
                 raise TypeError("Missing required property 'bucket_name'")
             __props__.__dict__["bucket_name"] = bucket_name
             __props__.__dict__["enable_version"] = enable_version
+            __props__.__dict__["project_name"] = project_name
             __props__.__dict__["public_acl"] = public_acl
             __props__.__dict__["storage_class"] = storage_class
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["creation_date"] = None
             __props__.__dict__["extranet_endpoint"] = None
             __props__.__dict__["intranet_endpoint"] = None
@@ -398,8 +480,10 @@ class Bucket(pulumi.CustomResource):
             extranet_endpoint: Optional[pulumi.Input[str]] = None,
             intranet_endpoint: Optional[pulumi.Input[str]] = None,
             location: Optional[pulumi.Input[str]] = None,
+            project_name: Optional[pulumi.Input[str]] = None,
             public_acl: Optional[pulumi.Input[str]] = None,
-            storage_class: Optional[pulumi.Input[str]] = None) -> 'Bucket':
+            storage_class: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BucketTagArgs']]]]] = None) -> 'Bucket':
         """
         Get an existing Bucket resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -414,8 +498,10 @@ class Bucket(pulumi.CustomResource):
         :param pulumi.Input[str] extranet_endpoint: The extranet endpoint of the TOS bucket.
         :param pulumi.Input[str] intranet_endpoint: The intranet endpoint the TOS bucket.
         :param pulumi.Input[str] location: The location of the TOS bucket.
+        :param pulumi.Input[str] project_name: The ProjectName of the Tos Bucket. Default is `default`.
         :param pulumi.Input[str] public_acl: The public acl control of object.Valid value is private|public-read|public-read-write|authenticated-read|bucket-owner-read.
         :param pulumi.Input[str] storage_class: The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['BucketTagArgs']]]] tags: Tos Bucket Tags.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -428,8 +514,10 @@ class Bucket(pulumi.CustomResource):
         __props__.__dict__["extranet_endpoint"] = extranet_endpoint
         __props__.__dict__["intranet_endpoint"] = intranet_endpoint
         __props__.__dict__["location"] = location
+        __props__.__dict__["project_name"] = project_name
         __props__.__dict__["public_acl"] = public_acl
         __props__.__dict__["storage_class"] = storage_class
+        __props__.__dict__["tags"] = tags
         return Bucket(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -489,6 +577,14 @@ class Bucket(pulumi.CustomResource):
         return pulumi.get(self, "location")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        The ProjectName of the Tos Bucket. Default is `default`.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="publicAcl")
     def public_acl(self) -> pulumi.Output[Optional[str]]:
         """
@@ -503,4 +599,12 @@ class Bucket(pulumi.CustomResource):
         The storage type of the object.Valid value is STANDARD|IA|ARCHIVE_FR.Default is STANDARD.
         """
         return pulumi.get(self, "storage_class")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.BucketTag']]]:
+        """
+        Tos Bucket Tags.
+        """
+        return pulumi.get(self, "tags")
 

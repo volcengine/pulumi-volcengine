@@ -789,7 +789,7 @@ type ClbEipBillingConfig struct {
 	Bandwidth *int `pulumi:"bandwidth"`
 	// The billing type of the EIP which automatically assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.When creating a `PrePaid` public CLB, this field must be specified as `PrePaid` simultaneously.When the LoadBalancerBillingType changes from `PostPaid` to `PrePaid`, please manually modify the value of this field to `PrePaid` simultaneously.
 	EipBillingType string `pulumi:"eipBillingType"`
-	// The ISP of the EIP which automatically associated to CLB, the value can be `BGP`.
+	// The ISP of the EIP which automatically associated to CLB, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP` or `Fusion_BGP`.
 	Isp string `pulumi:"isp"`
 }
 
@@ -809,7 +809,7 @@ type ClbEipBillingConfigArgs struct {
 	Bandwidth pulumi.IntPtrInput `pulumi:"bandwidth"`
 	// The billing type of the EIP which automatically assigned to CLB. And optional choice contains `PostPaidByBandwidth` or `PostPaidByTraffic` or `PrePaid`.When creating a `PrePaid` public CLB, this field must be specified as `PrePaid` simultaneously.When the LoadBalancerBillingType changes from `PostPaid` to `PrePaid`, please manually modify the value of this field to `PrePaid` simultaneously.
 	EipBillingType pulumi.StringInput `pulumi:"eipBillingType"`
-	// The ISP of the EIP which automatically associated to CLB, the value can be `BGP`.
+	// The ISP of the EIP which automatically associated to CLB, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP` or `Fusion_BGP`.
 	Isp pulumi.StringInput `pulumi:"isp"`
 }
 
@@ -900,7 +900,7 @@ func (o ClbEipBillingConfigOutput) EipBillingType() pulumi.StringOutput {
 	return o.ApplyT(func(v ClbEipBillingConfig) string { return v.EipBillingType }).(pulumi.StringOutput)
 }
 
-// The ISP of the EIP which automatically associated to CLB, the value can be `BGP`.
+// The ISP of the EIP which automatically associated to CLB, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP` or `Fusion_BGP`.
 func (o ClbEipBillingConfigOutput) Isp() pulumi.StringOutput {
 	return o.ApplyT(func(v ClbEipBillingConfig) string { return v.Isp }).(pulumi.StringOutput)
 }
@@ -949,7 +949,7 @@ func (o ClbEipBillingConfigPtrOutput) EipBillingType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The ISP of the EIP which automatically associated to CLB, the value can be `BGP`.
+// The ISP of the EIP which automatically associated to CLB, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP` or `Fusion_BGP`.
 func (o ClbEipBillingConfigPtrOutput) Isp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClbEipBillingConfig) *string {
 		if v == nil {

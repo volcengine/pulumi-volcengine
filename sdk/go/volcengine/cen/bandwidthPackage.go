@@ -26,15 +26,21 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := cen.NewBandwidthPackage(ctx, "foo", &cen.BandwidthPackageArgs{
-//				Bandwidth:                  pulumi.Int(32),
+//				Bandwidth:                  pulumi.Int(2),
 //				BillingType:                pulumi.String("PrePaid"),
-//				CenBandwidthPackageName:    pulumi.String("tf-test"),
-//				Description:                pulumi.String("tf-test1"),
+//				CenBandwidthPackageName:    pulumi.String("acc-test-cen-bp"),
+//				Description:                pulumi.String("acc-test"),
 //				LocalGeographicRegionSetId: pulumi.String("China"),
 //				PeerGeographicRegionSetId:  pulumi.String("China"),
 //				Period:                     pulumi.Int(1),
-//				PeriodUnit:                 pulumi.String("Year"),
+//				PeriodUnit:                 pulumi.String("Month"),
 //				ProjectName:                pulumi.String("default"),
+//				Tags: cen.BandwidthPackageTagArray{
+//					&cen.BandwidthPackageTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -61,8 +67,7 @@ type BandwidthPackage struct {
 	AccountId pulumi.StringOutput `pulumi:"accountId"`
 	// The bandwidth of the cen bandwidth package. Value: 2~10000.
 	Bandwidth pulumi.IntOutput `pulumi:"bandwidth"`
-	// The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`. Terraform will
-	// only remove the PrePaid cen bandwidth package from the state file, not actually remove.
+	// The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`.
 	BillingType pulumi.StringPtrOutput `pulumi:"billingType"`
 	// The business status of the cen bandwidth package.
 	BusinessStatus pulumi.StringOutput `pulumi:"businessStatus"`
@@ -134,8 +139,7 @@ type bandwidthPackageState struct {
 	AccountId *string `pulumi:"accountId"`
 	// The bandwidth of the cen bandwidth package. Value: 2~10000.
 	Bandwidth *int `pulumi:"bandwidth"`
-	// The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`. Terraform will
-	// only remove the PrePaid cen bandwidth package from the state file, not actually remove.
+	// The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`.
 	BillingType *string `pulumi:"billingType"`
 	// The business status of the cen bandwidth package.
 	BusinessStatus *string `pulumi:"businessStatus"`
@@ -178,8 +182,7 @@ type BandwidthPackageState struct {
 	AccountId pulumi.StringPtrInput
 	// The bandwidth of the cen bandwidth package. Value: 2~10000.
 	Bandwidth pulumi.IntPtrInput
-	// The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`. Terraform will
-	// only remove the PrePaid cen bandwidth package from the state file, not actually remove.
+	// The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`.
 	BillingType pulumi.StringPtrInput
 	// The business status of the cen bandwidth package.
 	BusinessStatus pulumi.StringPtrInput
@@ -224,8 +227,7 @@ func (BandwidthPackageState) ElementType() reflect.Type {
 type bandwidthPackageArgs struct {
 	// The bandwidth of the cen bandwidth package. Value: 2~10000.
 	Bandwidth *int `pulumi:"bandwidth"`
-	// The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`. Terraform will
-	// only remove the PrePaid cen bandwidth package from the state file, not actually remove.
+	// The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`.
 	BillingType *string `pulumi:"billingType"`
 	// The name of the cen bandwidth package.
 	CenBandwidthPackageName *string `pulumi:"cenBandwidthPackageName"`
@@ -249,8 +251,7 @@ type bandwidthPackageArgs struct {
 type BandwidthPackageArgs struct {
 	// The bandwidth of the cen bandwidth package. Value: 2~10000.
 	Bandwidth pulumi.IntPtrInput
-	// The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`. Terraform will
-	// only remove the PrePaid cen bandwidth package from the state file, not actually remove.
+	// The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`.
 	BillingType pulumi.StringPtrInput
 	// The name of the cen bandwidth package.
 	CenBandwidthPackageName pulumi.StringPtrInput
@@ -367,8 +368,7 @@ func (o BandwidthPackageOutput) Bandwidth() pulumi.IntOutput {
 	return o.ApplyT(func(v *BandwidthPackage) pulumi.IntOutput { return v.Bandwidth }).(pulumi.IntOutput)
 }
 
-// The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`. Terraform will
-// only remove the PrePaid cen bandwidth package from the state file, not actually remove.
+// The billing type of the cen bandwidth package. Only support `PrePaid` and default value is `PrePaid`.
 func (o BandwidthPackageOutput) BillingType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BandwidthPackage) pulumi.StringPtrOutput { return v.BillingType }).(pulumi.StringPtrOutput)
 }

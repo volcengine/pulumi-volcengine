@@ -181,7 +181,21 @@ def bandwidth_packages(bandwidth_package_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.bandwidth_package.bandwidth_packages(ids=["bwp-rr0eev56j7y8v0x58ggbclr"])
+    foo_bandwidth_package = []
+    for range in [{"value": i} for i in range(0, 2)]:
+        foo_bandwidth_package.append(volcengine.bandwidth_package.BandwidthPackage(f"fooBandwidthPackage-{range['value']}",
+            bandwidth_package_name="acc-test-bp",
+            billing_type="PostPaidByBandwidth",
+            isp="BGP",
+            description="acc-test",
+            bandwidth=2,
+            protocol="IPv4",
+            security_protection_types=["AntiDDoS_Enhanced"],
+            tags=[volcengine.bandwidth_package.BandwidthPackageTagArgs(
+                key="k1",
+                value="v1",
+            )]))
+    foo_bandwidth_packages = volcengine.bandwidth_package.bandwidth_packages_output(ids=[__item.id for __item in foo_bandwidth_package])
     ```
 
 
@@ -242,7 +256,21 @@ def bandwidth_packages_output(bandwidth_package_name: Optional[pulumi.Input[Opti
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.bandwidth_package.bandwidth_packages(ids=["bwp-rr0eev56j7y8v0x58ggbclr"])
+    foo_bandwidth_package = []
+    for range in [{"value": i} for i in range(0, 2)]:
+        foo_bandwidth_package.append(volcengine.bandwidth_package.BandwidthPackage(f"fooBandwidthPackage-{range['value']}",
+            bandwidth_package_name="acc-test-bp",
+            billing_type="PostPaidByBandwidth",
+            isp="BGP",
+            description="acc-test",
+            bandwidth=2,
+            protocol="IPv4",
+            security_protection_types=["AntiDDoS_Enhanced"],
+            tags=[volcengine.bandwidth_package.BandwidthPackageTagArgs(
+                key="k1",
+                value="v1",
+            )]))
+    foo_bandwidth_packages = volcengine.bandwidth_package.bandwidth_packages_output(ids=[__item.id for __item in foo_bandwidth_package])
     ```
 
 

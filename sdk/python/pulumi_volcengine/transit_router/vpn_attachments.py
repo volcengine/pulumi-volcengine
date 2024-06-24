@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'VpnAttachmentsResult',
@@ -22,7 +23,7 @@ class VpnAttachmentsResult:
     """
     A collection of values returned by VpnAttachments.
     """
-    def __init__(__self__, attachments=None, id=None, ids=None, output_file=None, total_count=None, transit_router_id=None, vpn_connection_id=None):
+    def __init__(__self__, attachments=None, id=None, ids=None, output_file=None, tags=None, total_count=None, transit_router_id=None, vpn_connection_id=None):
         if attachments and not isinstance(attachments, list):
             raise TypeError("Expected argument 'attachments' to be a list")
         pulumi.set(__self__, "attachments", attachments)
@@ -35,6 +36,9 @@ class VpnAttachmentsResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -72,6 +76,14 @@ class VpnAttachmentsResult:
         return pulumi.get(self, "output_file")
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.VpnAttachmentsTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
         """
@@ -106,6 +118,7 @@ class AwaitableVpnAttachmentsResult(VpnAttachmentsResult):
             id=self.id,
             ids=self.ids,
             output_file=self.output_file,
+            tags=self.tags,
             total_count=self.total_count,
             transit_router_id=self.transit_router_id,
             vpn_connection_id=self.vpn_connection_id)
@@ -113,6 +126,7 @@ class AwaitableVpnAttachmentsResult(VpnAttachmentsResult):
 
 def vpn_attachments(ids: Optional[Sequence[str]] = None,
                     output_file: Optional[str] = None,
+                    tags: Optional[Sequence[pulumi.InputType['VpnAttachmentsTagArgs']]] = None,
                     transit_router_id: Optional[str] = None,
                     vpn_connection_id: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableVpnAttachmentsResult:
@@ -131,12 +145,14 @@ def vpn_attachments(ids: Optional[Sequence[str]] = None,
 
     :param Sequence[str] ids: The ID list of the VPN attachment.
     :param str output_file: File name where to save data source results.
+    :param Sequence[pulumi.InputType['VpnAttachmentsTagArgs']] tags: Tags.
     :param str transit_router_id: The id of the transit router.
     :param str vpn_connection_id: The ID of the IPSec connection.
     """
     __args__ = dict()
     __args__['ids'] = ids
     __args__['outputFile'] = output_file
+    __args__['tags'] = tags
     __args__['transitRouterId'] = transit_router_id
     __args__['vpnConnectionId'] = vpn_connection_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -147,6 +163,7 @@ def vpn_attachments(ids: Optional[Sequence[str]] = None,
         id=pulumi.get(__ret__, 'id'),
         ids=pulumi.get(__ret__, 'ids'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'),
         transit_router_id=pulumi.get(__ret__, 'transit_router_id'),
         vpn_connection_id=pulumi.get(__ret__, 'vpn_connection_id'))
@@ -155,6 +172,7 @@ def vpn_attachments(ids: Optional[Sequence[str]] = None,
 @_utilities.lift_output_func(vpn_attachments)
 def vpn_attachments_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                            output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                           tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['VpnAttachmentsTagArgs']]]]] = None,
                            transit_router_id: Optional[pulumi.Input[str]] = None,
                            vpn_connection_id: Optional[pulumi.Input[Optional[str]]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[VpnAttachmentsResult]:
@@ -173,6 +191,7 @@ def vpn_attachments_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] 
 
     :param Sequence[str] ids: The ID list of the VPN attachment.
     :param str output_file: File name where to save data source results.
+    :param Sequence[pulumi.InputType['VpnAttachmentsTagArgs']] tags: Tags.
     :param str transit_router_id: The id of the transit router.
     :param str vpn_connection_id: The ID of the IPSec connection.
     """

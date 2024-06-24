@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -70,6 +72,7 @@ export class Provider extends pulumi.ProviderResource {
         opts = opts || {};
         {
             resourceInputs["accessKey"] = (args ? args.accessKey : undefined) ?? utilities.getEnv("VOLCENGINE_ACCESS_KEY");
+            resourceInputs["assumeRole"] = pulumi.output(args ? args.assumeRole : undefined).apply(JSON.stringify);
             resourceInputs["customerEndpoints"] = args ? args.customerEndpoints : undefined;
             resourceInputs["customerHeaders"] = args ? args.customerHeaders : undefined;
             resourceInputs["disableSsl"] = pulumi.output(args ? args.disableSsl : undefined).apply(JSON.stringify);
@@ -92,6 +95,11 @@ export interface ProviderArgs {
      * The Access Key for Volcengine Provider
      */
     accessKey?: pulumi.Input<string>;
+    /**
+     * The ASSUME ROLE block for Volcengine Provider. If provided, terraform will attempt to assume this role using the
+     * supplied credentials.
+     */
+    assumeRole?: pulumi.Input<inputs.ProviderAssumeRole>;
     /**
      * CUSTOMER ENDPOINTS for Volcengine Provider
      */

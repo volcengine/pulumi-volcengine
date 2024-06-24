@@ -13,9 +13,26 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = volcengine.bandwidth_package.BandwidthPackages({
- *     ids: ["bwp-rr0eev56j7y8v0x58ggbclr"],
+ * const fooBandwidthPackage: volcengine.bandwidth_package.BandwidthPackage[] = [];
+ * for (const range = {value: 0}; range.value < 2; range.value++) {
+ *     fooBandwidthPackage.push(new volcengine.bandwidth_package.BandwidthPackage(`fooBandwidthPackage-${range.value}`, {
+ *         bandwidthPackageName: "acc-test-bp",
+ *         billingType: "PostPaidByBandwidth",
+ *         isp: "BGP",
+ *         description: "acc-test",
+ *         bandwidth: 2,
+ *         protocol: "IPv4",
+ *         securityProtectionTypes: ["AntiDDoS_Enhanced"],
+ *         tags: [{
+ *             key: "k1",
+ *             value: "v1",
+ *         }],
+ *     }));
+ * }
+ * const fooBandwidthPackages = volcengine.bandwidth_package.BandwidthPackagesOutput({
+ *     ids: fooBandwidthPackage.map(__item => __item.id),
  * });
  * ```
  */
@@ -123,9 +140,26 @@ export interface BandwidthPackagesResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = volcengine.bandwidth_package.BandwidthPackages({
- *     ids: ["bwp-rr0eev56j7y8v0x58ggbclr"],
+ * const fooBandwidthPackage: volcengine.bandwidth_package.BandwidthPackage[] = [];
+ * for (const range = {value: 0}; range.value < 2; range.value++) {
+ *     fooBandwidthPackage.push(new volcengine.bandwidth_package.BandwidthPackage(`fooBandwidthPackage-${range.value}`, {
+ *         bandwidthPackageName: "acc-test-bp",
+ *         billingType: "PostPaidByBandwidth",
+ *         isp: "BGP",
+ *         description: "acc-test",
+ *         bandwidth: 2,
+ *         protocol: "IPv4",
+ *         securityProtectionTypes: ["AntiDDoS_Enhanced"],
+ *         tags: [{
+ *             key: "k1",
+ *             value: "v1",
+ *         }],
+ *     }));
+ * }
+ * const fooBandwidthPackages = volcengine.bandwidth_package.BandwidthPackagesOutput({
+ *     ids: fooBandwidthPackage.map(__item => __item.id),
  * });
  * ```
  */

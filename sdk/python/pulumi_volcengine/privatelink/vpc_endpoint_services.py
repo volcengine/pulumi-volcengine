@@ -121,10 +121,41 @@ def vpc_endpoint_services(ids: Optional[Sequence[str]] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.privatelink.vpc_endpoint_services(ids=[
-        "epsvc-3rel73uf2ewao5zsk2j2l58ro",
-        "epsvc-2d72mxjgq02yo58ozfe5tndeh",
-    ])
+    foo_zones = volcengine.ecs.zones()
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-vpc",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-test-subnet",
+        cidr_block="172.16.0.0/24",
+        zone_id=foo_zones.zones[0].id,
+        vpc_id=foo_vpc.id)
+    foo_clb = volcengine.clb.Clb("fooClb",
+        type="public",
+        subnet_id=foo_subnet.id,
+        load_balancer_spec="small_1",
+        description="acc-test-demo",
+        load_balancer_name="acc-test-clb",
+        load_balancer_billing_type="PostPaid",
+        eip_billing_config=volcengine.clb.ClbEipBillingConfigArgs(
+            isp="BGP",
+            eip_billing_type="PostPaidByBandwidth",
+            bandwidth=1,
+        ),
+        tags=[volcengine.clb.ClbTagArgs(
+            key="k1",
+            value="v1",
+        )])
+    foo_vpc_endpoint_service = []
+    for range in [{"value": i} for i in range(0, 2)]:
+        foo_vpc_endpoint_service.append(volcengine.privatelink.VpcEndpointService(f"fooVpcEndpointService-{range['value']}",
+            resources=[volcengine.privatelink.VpcEndpointServiceResourceArgs(
+                resource_id=foo_clb.id,
+                resource_type="CLB",
+            )],
+            description="acc-test",
+            auto_accept_enabled=True))
+    foo_vpc_endpoint_services = volcengine.privatelink.vpc_endpoint_services_output(ids=[__item.id for __item in foo_vpc_endpoint_service])
     ```
 
 
@@ -165,10 +196,41 @@ def vpc_endpoint_services_output(ids: Optional[pulumi.Input[Optional[Sequence[st
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.privatelink.vpc_endpoint_services(ids=[
-        "epsvc-3rel73uf2ewao5zsk2j2l58ro",
-        "epsvc-2d72mxjgq02yo58ozfe5tndeh",
-    ])
+    foo_zones = volcengine.ecs.zones()
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-vpc",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-test-subnet",
+        cidr_block="172.16.0.0/24",
+        zone_id=foo_zones.zones[0].id,
+        vpc_id=foo_vpc.id)
+    foo_clb = volcengine.clb.Clb("fooClb",
+        type="public",
+        subnet_id=foo_subnet.id,
+        load_balancer_spec="small_1",
+        description="acc-test-demo",
+        load_balancer_name="acc-test-clb",
+        load_balancer_billing_type="PostPaid",
+        eip_billing_config=volcengine.clb.ClbEipBillingConfigArgs(
+            isp="BGP",
+            eip_billing_type="PostPaidByBandwidth",
+            bandwidth=1,
+        ),
+        tags=[volcengine.clb.ClbTagArgs(
+            key="k1",
+            value="v1",
+        )])
+    foo_vpc_endpoint_service = []
+    for range in [{"value": i} for i in range(0, 2)]:
+        foo_vpc_endpoint_service.append(volcengine.privatelink.VpcEndpointService(f"fooVpcEndpointService-{range['value']}",
+            resources=[volcengine.privatelink.VpcEndpointServiceResourceArgs(
+                resource_id=foo_clb.id,
+                resource_type="CLB",
+            )],
+            description="acc-test",
+            auto_accept_enabled=True))
+    foo_vpc_endpoint_services = volcengine.privatelink.vpc_endpoint_services_output(ids=[__item.id for __item in foo_vpc_endpoint_service])
     ```
 
 

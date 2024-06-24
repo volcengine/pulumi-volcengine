@@ -4465,6 +4465,112 @@ func (o SecurityGroupsTagArrayOutput) Index(i pulumi.IntInput) SecurityGroupsTag
 	}).(SecurityGroupsTagOutput)
 }
 
+type SubnetTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// SubnetTagInput is an input type that accepts SubnetTagArgs and SubnetTagOutput values.
+// You can construct a concrete instance of `SubnetTagInput` via:
+//
+//	SubnetTagArgs{...}
+type SubnetTagInput interface {
+	pulumi.Input
+
+	ToSubnetTagOutput() SubnetTagOutput
+	ToSubnetTagOutputWithContext(context.Context) SubnetTagOutput
+}
+
+type SubnetTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (SubnetTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubnetTag)(nil)).Elem()
+}
+
+func (i SubnetTagArgs) ToSubnetTagOutput() SubnetTagOutput {
+	return i.ToSubnetTagOutputWithContext(context.Background())
+}
+
+func (i SubnetTagArgs) ToSubnetTagOutputWithContext(ctx context.Context) SubnetTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubnetTagOutput)
+}
+
+// SubnetTagArrayInput is an input type that accepts SubnetTagArray and SubnetTagArrayOutput values.
+// You can construct a concrete instance of `SubnetTagArrayInput` via:
+//
+//	SubnetTagArray{ SubnetTagArgs{...} }
+type SubnetTagArrayInput interface {
+	pulumi.Input
+
+	ToSubnetTagArrayOutput() SubnetTagArrayOutput
+	ToSubnetTagArrayOutputWithContext(context.Context) SubnetTagArrayOutput
+}
+
+type SubnetTagArray []SubnetTagInput
+
+func (SubnetTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SubnetTag)(nil)).Elem()
+}
+
+func (i SubnetTagArray) ToSubnetTagArrayOutput() SubnetTagArrayOutput {
+	return i.ToSubnetTagArrayOutputWithContext(context.Background())
+}
+
+func (i SubnetTagArray) ToSubnetTagArrayOutputWithContext(ctx context.Context) SubnetTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubnetTagArrayOutput)
+}
+
+type SubnetTagOutput struct{ *pulumi.OutputState }
+
+func (SubnetTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubnetTag)(nil)).Elem()
+}
+
+func (o SubnetTagOutput) ToSubnetTagOutput() SubnetTagOutput {
+	return o
+}
+
+func (o SubnetTagOutput) ToSubnetTagOutputWithContext(ctx context.Context) SubnetTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o SubnetTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v SubnetTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o SubnetTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v SubnetTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type SubnetTagArrayOutput struct{ *pulumi.OutputState }
+
+func (SubnetTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SubnetTag)(nil)).Elem()
+}
+
+func (o SubnetTagArrayOutput) ToSubnetTagArrayOutput() SubnetTagArrayOutput {
+	return o
+}
+
+func (o SubnetTagArrayOutput) ToSubnetTagArrayOutputWithContext(ctx context.Context) SubnetTagArrayOutput {
+	return o
+}
+
+func (o SubnetTagArrayOutput) Index(i pulumi.IntInput) SubnetTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SubnetTag {
+		return vs[0].([]SubnetTag)[vs[1].(int)]
+	}).(SubnetTagOutput)
+}
+
 type SubnetsSubnet struct {
 	// The account ID which the subnet belongs to.
 	AccountId string `pulumi:"accountId"`
@@ -4492,6 +4598,8 @@ type SubnetsSubnet struct {
 	Status string `pulumi:"status"`
 	// The subnet name to query.
 	SubnetName string `pulumi:"subnetName"`
+	// Tags.
+	Tags []SubnetsSubnetTag `pulumi:"tags"`
 	// The Count of ipv4.
 	TotalIpv4Count int `pulumi:"totalIpv4Count"`
 	// Update time of Subnet.
@@ -4540,6 +4648,8 @@ type SubnetsSubnetArgs struct {
 	Status pulumi.StringInput `pulumi:"status"`
 	// The subnet name to query.
 	SubnetName pulumi.StringInput `pulumi:"subnetName"`
+	// Tags.
+	Tags SubnetsSubnetTagArrayInput `pulumi:"tags"`
 	// The Count of ipv4.
 	TotalIpv4Count pulumi.IntInput `pulumi:"totalIpv4Count"`
 	// Update time of Subnet.
@@ -4666,6 +4776,11 @@ func (o SubnetsSubnetOutput) SubnetName() pulumi.StringOutput {
 	return o.ApplyT(func(v SubnetsSubnet) string { return v.SubnetName }).(pulumi.StringOutput)
 }
 
+// Tags.
+func (o SubnetsSubnetOutput) Tags() SubnetsSubnetTagArrayOutput {
+	return o.ApplyT(func(v SubnetsSubnet) []SubnetsSubnetTag { return v.Tags }).(SubnetsSubnetTagArrayOutput)
+}
+
 // The Count of ipv4.
 func (o SubnetsSubnetOutput) TotalIpv4Count() pulumi.IntOutput {
 	return o.ApplyT(func(v SubnetsSubnet) int { return v.TotalIpv4Count }).(pulumi.IntOutput)
@@ -4765,6 +4880,218 @@ func (o SubnetsSubnetRouteTableOutput) RouteTableId() pulumi.StringOutput {
 // The route table type.
 func (o SubnetsSubnetRouteTableOutput) RouteTableType() pulumi.StringOutput {
 	return o.ApplyT(func(v SubnetsSubnetRouteTable) string { return v.RouteTableType }).(pulumi.StringOutput)
+}
+
+type SubnetsSubnetTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// SubnetsSubnetTagInput is an input type that accepts SubnetsSubnetTagArgs and SubnetsSubnetTagOutput values.
+// You can construct a concrete instance of `SubnetsSubnetTagInput` via:
+//
+//	SubnetsSubnetTagArgs{...}
+type SubnetsSubnetTagInput interface {
+	pulumi.Input
+
+	ToSubnetsSubnetTagOutput() SubnetsSubnetTagOutput
+	ToSubnetsSubnetTagOutputWithContext(context.Context) SubnetsSubnetTagOutput
+}
+
+type SubnetsSubnetTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (SubnetsSubnetTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubnetsSubnetTag)(nil)).Elem()
+}
+
+func (i SubnetsSubnetTagArgs) ToSubnetsSubnetTagOutput() SubnetsSubnetTagOutput {
+	return i.ToSubnetsSubnetTagOutputWithContext(context.Background())
+}
+
+func (i SubnetsSubnetTagArgs) ToSubnetsSubnetTagOutputWithContext(ctx context.Context) SubnetsSubnetTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubnetsSubnetTagOutput)
+}
+
+// SubnetsSubnetTagArrayInput is an input type that accepts SubnetsSubnetTagArray and SubnetsSubnetTagArrayOutput values.
+// You can construct a concrete instance of `SubnetsSubnetTagArrayInput` via:
+//
+//	SubnetsSubnetTagArray{ SubnetsSubnetTagArgs{...} }
+type SubnetsSubnetTagArrayInput interface {
+	pulumi.Input
+
+	ToSubnetsSubnetTagArrayOutput() SubnetsSubnetTagArrayOutput
+	ToSubnetsSubnetTagArrayOutputWithContext(context.Context) SubnetsSubnetTagArrayOutput
+}
+
+type SubnetsSubnetTagArray []SubnetsSubnetTagInput
+
+func (SubnetsSubnetTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SubnetsSubnetTag)(nil)).Elem()
+}
+
+func (i SubnetsSubnetTagArray) ToSubnetsSubnetTagArrayOutput() SubnetsSubnetTagArrayOutput {
+	return i.ToSubnetsSubnetTagArrayOutputWithContext(context.Background())
+}
+
+func (i SubnetsSubnetTagArray) ToSubnetsSubnetTagArrayOutputWithContext(ctx context.Context) SubnetsSubnetTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubnetsSubnetTagArrayOutput)
+}
+
+type SubnetsSubnetTagOutput struct{ *pulumi.OutputState }
+
+func (SubnetsSubnetTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubnetsSubnetTag)(nil)).Elem()
+}
+
+func (o SubnetsSubnetTagOutput) ToSubnetsSubnetTagOutput() SubnetsSubnetTagOutput {
+	return o
+}
+
+func (o SubnetsSubnetTagOutput) ToSubnetsSubnetTagOutputWithContext(ctx context.Context) SubnetsSubnetTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o SubnetsSubnetTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v SubnetsSubnetTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o SubnetsSubnetTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v SubnetsSubnetTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type SubnetsSubnetTagArrayOutput struct{ *pulumi.OutputState }
+
+func (SubnetsSubnetTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SubnetsSubnetTag)(nil)).Elem()
+}
+
+func (o SubnetsSubnetTagArrayOutput) ToSubnetsSubnetTagArrayOutput() SubnetsSubnetTagArrayOutput {
+	return o
+}
+
+func (o SubnetsSubnetTagArrayOutput) ToSubnetsSubnetTagArrayOutputWithContext(ctx context.Context) SubnetsSubnetTagArrayOutput {
+	return o
+}
+
+func (o SubnetsSubnetTagArrayOutput) Index(i pulumi.IntInput) SubnetsSubnetTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SubnetsSubnetTag {
+		return vs[0].([]SubnetsSubnetTag)[vs[1].(int)]
+	}).(SubnetsSubnetTagOutput)
+}
+
+type SubnetsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// SubnetsTagInput is an input type that accepts SubnetsTagArgs and SubnetsTagOutput values.
+// You can construct a concrete instance of `SubnetsTagInput` via:
+//
+//	SubnetsTagArgs{...}
+type SubnetsTagInput interface {
+	pulumi.Input
+
+	ToSubnetsTagOutput() SubnetsTagOutput
+	ToSubnetsTagOutputWithContext(context.Context) SubnetsTagOutput
+}
+
+type SubnetsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (SubnetsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubnetsTag)(nil)).Elem()
+}
+
+func (i SubnetsTagArgs) ToSubnetsTagOutput() SubnetsTagOutput {
+	return i.ToSubnetsTagOutputWithContext(context.Background())
+}
+
+func (i SubnetsTagArgs) ToSubnetsTagOutputWithContext(ctx context.Context) SubnetsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubnetsTagOutput)
+}
+
+// SubnetsTagArrayInput is an input type that accepts SubnetsTagArray and SubnetsTagArrayOutput values.
+// You can construct a concrete instance of `SubnetsTagArrayInput` via:
+//
+//	SubnetsTagArray{ SubnetsTagArgs{...} }
+type SubnetsTagArrayInput interface {
+	pulumi.Input
+
+	ToSubnetsTagArrayOutput() SubnetsTagArrayOutput
+	ToSubnetsTagArrayOutputWithContext(context.Context) SubnetsTagArrayOutput
+}
+
+type SubnetsTagArray []SubnetsTagInput
+
+func (SubnetsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SubnetsTag)(nil)).Elem()
+}
+
+func (i SubnetsTagArray) ToSubnetsTagArrayOutput() SubnetsTagArrayOutput {
+	return i.ToSubnetsTagArrayOutputWithContext(context.Background())
+}
+
+func (i SubnetsTagArray) ToSubnetsTagArrayOutputWithContext(ctx context.Context) SubnetsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SubnetsTagArrayOutput)
+}
+
+type SubnetsTagOutput struct{ *pulumi.OutputState }
+
+func (SubnetsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SubnetsTag)(nil)).Elem()
+}
+
+func (o SubnetsTagOutput) ToSubnetsTagOutput() SubnetsTagOutput {
+	return o
+}
+
+func (o SubnetsTagOutput) ToSubnetsTagOutputWithContext(ctx context.Context) SubnetsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o SubnetsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v SubnetsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o SubnetsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v SubnetsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type SubnetsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (SubnetsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SubnetsTag)(nil)).Elem()
+}
+
+func (o SubnetsTagArrayOutput) ToSubnetsTagArrayOutput() SubnetsTagArrayOutput {
+	return o
+}
+
+func (o SubnetsTagArrayOutput) ToSubnetsTagArrayOutputWithContext(ctx context.Context) SubnetsTagArrayOutput {
+	return o
+}
+
+func (o SubnetsTagArrayOutput) Index(i pulumi.IntInput) SubnetsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SubnetsTag {
+		return vs[0].([]SubnetsTag)[vs[1].(int)]
+	}).(SubnetsTagOutput)
 }
 
 type VpcAssociateCen struct {
@@ -5626,9 +5953,15 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityGroupsSecurityGroupTagArrayInput)(nil)).Elem(), SecurityGroupsSecurityGroupTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityGroupsTagInput)(nil)).Elem(), SecurityGroupsTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityGroupsTagArrayInput)(nil)).Elem(), SecurityGroupsTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SubnetTagInput)(nil)).Elem(), SubnetTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SubnetTagArrayInput)(nil)).Elem(), SubnetTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SubnetsSubnetInput)(nil)).Elem(), SubnetsSubnetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SubnetsSubnetArrayInput)(nil)).Elem(), SubnetsSubnetArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SubnetsSubnetRouteTableInput)(nil)).Elem(), SubnetsSubnetRouteTableArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SubnetsSubnetTagInput)(nil)).Elem(), SubnetsSubnetTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SubnetsSubnetTagArrayInput)(nil)).Elem(), SubnetsSubnetTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SubnetsTagInput)(nil)).Elem(), SubnetsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SubnetsTagArrayInput)(nil)).Elem(), SubnetsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcAssociateCenInput)(nil)).Elem(), VpcAssociateCenArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcAssociateCenArrayInput)(nil)).Elem(), VpcAssociateCenArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcTagInput)(nil)).Elem(), VpcTagArgs{})
@@ -5701,9 +6034,15 @@ func init() {
 	pulumi.RegisterOutputType(SecurityGroupsSecurityGroupTagArrayOutput{})
 	pulumi.RegisterOutputType(SecurityGroupsTagOutput{})
 	pulumi.RegisterOutputType(SecurityGroupsTagArrayOutput{})
+	pulumi.RegisterOutputType(SubnetTagOutput{})
+	pulumi.RegisterOutputType(SubnetTagArrayOutput{})
 	pulumi.RegisterOutputType(SubnetsSubnetOutput{})
 	pulumi.RegisterOutputType(SubnetsSubnetArrayOutput{})
 	pulumi.RegisterOutputType(SubnetsSubnetRouteTableOutput{})
+	pulumi.RegisterOutputType(SubnetsSubnetTagOutput{})
+	pulumi.RegisterOutputType(SubnetsSubnetTagArrayOutput{})
+	pulumi.RegisterOutputType(SubnetsTagOutput{})
+	pulumi.RegisterOutputType(SubnetsTagArrayOutput{})
 	pulumi.RegisterOutputType(VpcAssociateCenOutput{})
 	pulumi.RegisterOutputType(VpcAssociateCenArrayOutput{})
 	pulumi.RegisterOutputType(VpcTagOutput{})

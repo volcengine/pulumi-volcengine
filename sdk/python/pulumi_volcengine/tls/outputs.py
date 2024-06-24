@@ -1277,6 +1277,8 @@ class IndexKeyValue(dict):
             suggest = "case_sensitive"
         elif key == "includeChinese":
             suggest = "include_chinese"
+        elif key == "indexAll":
+            suggest = "index_all"
         elif key == "jsonKeys":
             suggest = "json_keys"
         elif key == "sqlFlag":
@@ -1299,6 +1301,7 @@ class IndexKeyValue(dict):
                  case_sensitive: Optional[bool] = None,
                  delimiter: Optional[str] = None,
                  include_chinese: Optional[bool] = None,
+                 index_all: Optional[bool] = None,
                  json_keys: Optional[Sequence['outputs.IndexKeyValueJsonKey']] = None,
                  sql_flag: Optional[bool] = None):
         """
@@ -1307,6 +1310,7 @@ class IndexKeyValue(dict):
         :param bool case_sensitive: Whether the value is case sensitive.
         :param str delimiter: The delimiter of the value.
         :param bool include_chinese: Whether the value include chinese.
+        :param bool index_all: Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `value_type` is `json`.
         :param Sequence['IndexKeyValueJsonKeyArgs'] json_keys: The JSON subfield key value index.
         :param bool sql_flag: Whether the filed is enabled for analysis.
         """
@@ -1318,6 +1322,8 @@ class IndexKeyValue(dict):
             pulumi.set(__self__, "delimiter", delimiter)
         if include_chinese is not None:
             pulumi.set(__self__, "include_chinese", include_chinese)
+        if index_all is not None:
+            pulumi.set(__self__, "index_all", index_all)
         if json_keys is not None:
             pulumi.set(__self__, "json_keys", json_keys)
         if sql_flag is not None:
@@ -1362,6 +1368,14 @@ class IndexKeyValue(dict):
         Whether the value include chinese.
         """
         return pulumi.get(self, "include_chinese")
+
+    @property
+    @pulumi.getter(name="indexAll")
+    def index_all(self) -> Optional[bool]:
+        """
+        Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `value_type` is `json`.
+        """
+        return pulumi.get(self, "index_all")
 
     @property
     @pulumi.getter(name="jsonKeys")
@@ -1716,6 +1730,7 @@ class IndexesTlsIndexKeyValueResult(dict):
                  case_sensitive: bool,
                  delimiter: str,
                  include_chinese: bool,
+                 index_all: bool,
                  json_keys: Sequence['outputs.IndexesTlsIndexKeyValueJsonKeyResult'],
                  key: str,
                  sql_flag: bool,
@@ -1724,6 +1739,7 @@ class IndexesTlsIndexKeyValueResult(dict):
         :param bool case_sensitive: Whether the value is case sensitive.
         :param str delimiter: The delimiter of the value.
         :param bool include_chinese: Whether the value include chinese.
+        :param bool index_all: Whether to create indexes for all fields in JSON fields with text values.
         :param Sequence['IndexesTlsIndexKeyValueJsonKeyArgs'] json_keys: The JSON subfield key value index.
         :param str key: The key of the KeyValue index.
         :param bool sql_flag: Whether the filed is enabled for analysis.
@@ -1732,6 +1748,7 @@ class IndexesTlsIndexKeyValueResult(dict):
         pulumi.set(__self__, "case_sensitive", case_sensitive)
         pulumi.set(__self__, "delimiter", delimiter)
         pulumi.set(__self__, "include_chinese", include_chinese)
+        pulumi.set(__self__, "index_all", index_all)
         pulumi.set(__self__, "json_keys", json_keys)
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "sql_flag", sql_flag)
@@ -1760,6 +1777,14 @@ class IndexesTlsIndexKeyValueResult(dict):
         Whether the value include chinese.
         """
         return pulumi.get(self, "include_chinese")
+
+    @property
+    @pulumi.getter(name="indexAll")
+    def index_all(self) -> bool:
+        """
+        Whether to create indexes for all fields in JSON fields with text values.
+        """
+        return pulumi.get(self, "index_all")
 
     @property
     @pulumi.getter(name="jsonKeys")

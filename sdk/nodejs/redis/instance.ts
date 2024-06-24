@@ -169,7 +169,7 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly port!: pulumi.Output<number | undefined>;
     /**
-     * The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will not be added to any project.
+     * The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will be added to the `default` project.
      */
     public readonly projectName!: pulumi.Output<string>;
     /**
@@ -361,7 +361,7 @@ export interface InstanceState {
      */
     port?: pulumi.Input<number>;
     /**
-     * The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will not be added to any project.
+     * The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will be added to the `default` project.
      */
     projectName?: pulumi.Input<string>;
     /**
@@ -464,7 +464,7 @@ export interface InstanceArgs {
      */
     port?: pulumi.Input<number>;
     /**
-     * The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will not be added to any project.
+     * The project name to which the redis instance belongs, if this parameter is empty, the new redis instance will be added to the `default` project.
      */
     projectName?: pulumi.Input<string>;
     /**

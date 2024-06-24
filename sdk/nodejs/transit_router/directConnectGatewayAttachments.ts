@@ -25,6 +25,7 @@ export function directConnectGatewayAttachments(args: DirectConnectGatewayAttach
     return pulumi.runtime.invoke("volcengine:transit_router/directConnectGatewayAttachments:DirectConnectGatewayAttachments", {
         "directConnectGatewayId": args.directConnectGatewayId,
         "outputFile": args.outputFile,
+        "tags": args.tags,
         "transitRouterAttachmentIds": args.transitRouterAttachmentIds,
         "transitRouterId": args.transitRouterId,
     }, opts);
@@ -42,6 +43,10 @@ export interface DirectConnectGatewayAttachmentsArgs {
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.transit_router.DirectConnectGatewayAttachmentsTag[];
     /**
      * ID of the network instance connection.
      */
@@ -69,6 +74,10 @@ export interface DirectConnectGatewayAttachmentsResult {
      */
     readonly id: string;
     readonly outputFile?: string;
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.transit_router.DirectConnectGatewayAttachmentsTag[];
     /**
      * The total count of query.
      */
@@ -108,6 +117,10 @@ export interface DirectConnectGatewayAttachmentsOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.transit_router.DirectConnectGatewayAttachmentsTagArgs>[]>;
     /**
      * ID of the network instance connection.
      */

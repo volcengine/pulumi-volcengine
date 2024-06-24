@@ -20,6 +20,7 @@ import * as utilities from "../utilities";
  *             caseSensitive: true,
  *             delimiter: "!",
  *             includeChinese: false,
+ *             indexAll: true,
  *             jsonKeys: [
  *                 {
  *                     key: "class",
@@ -31,7 +32,7 @@ import * as utilities from "../utilities";
  *                 },
  *             ],
  *             key: "k1",
- *             sqlFlag: false,
+ *             sqlFlag: true,
  *             valueType: "json",
  *         },
  *         {
@@ -43,7 +44,7 @@ import * as utilities from "../utilities";
  *             valueType: "text",
  *         },
  *     ],
- *     topicId: "7ce12237-6670-44a7-9d79-2e36961586e6",
+ *     topicId: "227a8d0c-b85b-48df-bee1-0927a595****",
  *     userInnerKeyValues: [{
  *         caseSensitive: false,
  *         delimiter: ",:-/ ",

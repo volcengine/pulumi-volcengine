@@ -98,7 +98,51 @@ def vpc_endpoint_zones(endpoint_id: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.privatelink.vpc_endpoint_zones(endpoint_id="ep-2byz5npiuu1hc2dx0efkv****")
+    foo_zones = volcengine.ecs.zones()
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-vpc",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-test-subnet",
+        cidr_block="172.16.0.0/24",
+        zone_id=foo_zones.zones[0].id,
+        vpc_id=foo_vpc.id)
+    foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+        security_group_name="acc-test-security-group",
+        vpc_id=foo_vpc.id)
+    foo_clb = volcengine.clb.Clb("fooClb",
+        type="public",
+        subnet_id=foo_subnet.id,
+        load_balancer_spec="small_1",
+        description="acc-test-demo",
+        load_balancer_name="acc-test-clb",
+        load_balancer_billing_type="PostPaid",
+        eip_billing_config=volcengine.clb.ClbEipBillingConfigArgs(
+            isp="BGP",
+            eip_billing_type="PostPaidByBandwidth",
+            bandwidth=1,
+        ),
+        tags=[volcengine.clb.ClbTagArgs(
+            key="k1",
+            value="v1",
+        )])
+    foo_vpc_endpoint_service = volcengine.privatelink.VpcEndpointService("fooVpcEndpointService",
+        resources=[volcengine.privatelink.VpcEndpointServiceResourceArgs(
+            resource_id=foo_clb.id,
+            resource_type="CLB",
+        )],
+        description="acc-test",
+        auto_accept_enabled=True)
+    foo_vpc_endpoint = volcengine.privatelink.VpcEndpoint("fooVpcEndpoint",
+        security_group_ids=[foo_security_group.id],
+        service_id=foo_vpc_endpoint_service.id,
+        endpoint_name="acc-test-ep",
+        description="acc-test")
+    foo_vpc_endpoint_zone = volcengine.privatelink.VpcEndpointZone("fooVpcEndpointZone",
+        endpoint_id=foo_vpc_endpoint.id,
+        subnet_id=foo_subnet.id,
+        private_ip_address="172.16.0.251")
+    foo_vpc_endpoint_zones = volcengine.privatelink.vpc_endpoint_zones_output(endpoint_id=foo_vpc_endpoint_zone.endpoint_id)
     ```
 
 
@@ -131,7 +175,51 @@ def vpc_endpoint_zones_output(endpoint_id: Optional[pulumi.Input[Optional[str]]]
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.privatelink.vpc_endpoint_zones(endpoint_id="ep-2byz5npiuu1hc2dx0efkv****")
+    foo_zones = volcengine.ecs.zones()
+    foo_vpc = volcengine.vpc.Vpc("fooVpc",
+        vpc_name="acc-test-vpc",
+        cidr_block="172.16.0.0/16")
+    foo_subnet = volcengine.vpc.Subnet("fooSubnet",
+        subnet_name="acc-test-subnet",
+        cidr_block="172.16.0.0/24",
+        zone_id=foo_zones.zones[0].id,
+        vpc_id=foo_vpc.id)
+    foo_security_group = volcengine.vpc.SecurityGroup("fooSecurityGroup",
+        security_group_name="acc-test-security-group",
+        vpc_id=foo_vpc.id)
+    foo_clb = volcengine.clb.Clb("fooClb",
+        type="public",
+        subnet_id=foo_subnet.id,
+        load_balancer_spec="small_1",
+        description="acc-test-demo",
+        load_balancer_name="acc-test-clb",
+        load_balancer_billing_type="PostPaid",
+        eip_billing_config=volcengine.clb.ClbEipBillingConfigArgs(
+            isp="BGP",
+            eip_billing_type="PostPaidByBandwidth",
+            bandwidth=1,
+        ),
+        tags=[volcengine.clb.ClbTagArgs(
+            key="k1",
+            value="v1",
+        )])
+    foo_vpc_endpoint_service = volcengine.privatelink.VpcEndpointService("fooVpcEndpointService",
+        resources=[volcengine.privatelink.VpcEndpointServiceResourceArgs(
+            resource_id=foo_clb.id,
+            resource_type="CLB",
+        )],
+        description="acc-test",
+        auto_accept_enabled=True)
+    foo_vpc_endpoint = volcengine.privatelink.VpcEndpoint("fooVpcEndpoint",
+        security_group_ids=[foo_security_group.id],
+        service_id=foo_vpc_endpoint_service.id,
+        endpoint_name="acc-test-ep",
+        description="acc-test")
+    foo_vpc_endpoint_zone = volcengine.privatelink.VpcEndpointZone("fooVpcEndpointZone",
+        endpoint_id=foo_vpc_endpoint.id,
+        subnet_id=foo_subnet.id,
+        private_ip_address="172.16.0.251")
+    foo_vpc_endpoint_zones = volcengine.privatelink.vpc_endpoint_zones_output(endpoint_id=foo_vpc_endpoint_zone.endpoint_id)
     ```
 
 

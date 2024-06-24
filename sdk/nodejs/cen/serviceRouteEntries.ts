@@ -13,9 +13,56 @@ import * as utilities from "../utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.cen.ServiceRouteEntries({
- *     cenId: "cen-12ar8uclj68sg17q7y20v9gil",
+ * const fooVpc: volcengine.vpc.Vpc[] = [];
+ * for (const range = {value: 0}; range.value < 3; range.value++) {
+ *     fooVpc.push(new volcengine.vpc.Vpc(`fooVpc-${range.value}`, {
+ *         vpcName: "acc-test-vpc",
+ *         cidrBlock: "172.16.0.0/16",
+ *     }));
+ * }
+ * const fooCen = new volcengine.cen.Cen("fooCen", {
+ *     cenName: "acc-test-cen",
+ *     description: "acc-test",
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooAttachInstance: volcengine.cen.AttachInstance[] = [];
+ * for (const range = {value: 0}; range.value < 3; range.value++) {
+ *     fooAttachInstance.push(new volcengine.cen.AttachInstance(`fooAttachInstance-${range.value}`, {
+ *         cenId: fooCen.id,
+ *         instanceId: fooVpc[range.value].id,
+ *         instanceRegionId: "cn-beijing",
+ *         instanceType: "VPC",
+ *     }));
+ * }
+ * const fooServiceRouteEntry = new volcengine.cen.ServiceRouteEntry("fooServiceRouteEntry", {
+ *     cenId: fooCen.id,
+ *     destinationCidrBlock: "100.64.0.0/11",
+ *     serviceRegionId: "cn-beijing",
+ *     serviceVpcId: fooAttachInstance[0].instanceId,
+ *     description: "acc-test",
+ *     publishMode: "Custom",
+ *     publishToInstances: [
+ *         {
+ *             instanceRegionId: "cn-beijing",
+ *             instanceType: "VPC",
+ *             instanceId: fooAttachInstance[1].instanceId,
+ *         },
+ *         {
+ *             instanceRegionId: "cn-beijing",
+ *             instanceType: "VPC",
+ *             instanceId: fooAttachInstance[2].instanceId,
+ *         },
+ *     ],
+ * });
+ * const fooServiceRouteEntries = volcengine.cen.ServiceRouteEntriesOutput({
+ *     cenId: fooCen.id,
+ *     destinationCidrBlock: fooServiceRouteEntry.destinationCidrBlock,
  * });
  * ```
  */
@@ -99,9 +146,56 @@ export interface ServiceRouteEntriesResult {
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
+ * import * as volcengine from "@volcengine/pulumi";
  *
- * const default = volcengine.cen.ServiceRouteEntries({
- *     cenId: "cen-12ar8uclj68sg17q7y20v9gil",
+ * const fooVpc: volcengine.vpc.Vpc[] = [];
+ * for (const range = {value: 0}; range.value < 3; range.value++) {
+ *     fooVpc.push(new volcengine.vpc.Vpc(`fooVpc-${range.value}`, {
+ *         vpcName: "acc-test-vpc",
+ *         cidrBlock: "172.16.0.0/16",
+ *     }));
+ * }
+ * const fooCen = new volcengine.cen.Cen("fooCen", {
+ *     cenName: "acc-test-cen",
+ *     description: "acc-test",
+ *     projectName: "default",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooAttachInstance: volcengine.cen.AttachInstance[] = [];
+ * for (const range = {value: 0}; range.value < 3; range.value++) {
+ *     fooAttachInstance.push(new volcengine.cen.AttachInstance(`fooAttachInstance-${range.value}`, {
+ *         cenId: fooCen.id,
+ *         instanceId: fooVpc[range.value].id,
+ *         instanceRegionId: "cn-beijing",
+ *         instanceType: "VPC",
+ *     }));
+ * }
+ * const fooServiceRouteEntry = new volcengine.cen.ServiceRouteEntry("fooServiceRouteEntry", {
+ *     cenId: fooCen.id,
+ *     destinationCidrBlock: "100.64.0.0/11",
+ *     serviceRegionId: "cn-beijing",
+ *     serviceVpcId: fooAttachInstance[0].instanceId,
+ *     description: "acc-test",
+ *     publishMode: "Custom",
+ *     publishToInstances: [
+ *         {
+ *             instanceRegionId: "cn-beijing",
+ *             instanceType: "VPC",
+ *             instanceId: fooAttachInstance[1].instanceId,
+ *         },
+ *         {
+ *             instanceRegionId: "cn-beijing",
+ *             instanceType: "VPC",
+ *             instanceId: fooAttachInstance[2].instanceId,
+ *         },
+ *     ],
+ * });
+ * const fooServiceRouteEntries = volcengine.cen.ServiceRouteEntriesOutput({
+ *     cenId: fooCen.id,
+ *     destinationCidrBlock: fooServiceRouteEntry.destinationCidrBlock,
  * });
  * ```
  */

@@ -44,6 +44,7 @@ export function volumes(args?: VolumesArgs, opts?: pulumi.InvokeOptions): Promis
         "kind": args.kind,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
+        "tags": args.tags,
         "volumeName": args.volumeName,
         "volumeStatus": args.volumeStatus,
         "volumeType": args.volumeType,
@@ -76,6 +77,10 @@ export interface VolumesArgs {
      */
     outputFile?: string;
     /**
+     * Tags.
+     */
+    tags?: inputs.ebs.VolumesTag[];
+    /**
      * The name of Volume.
      */
     volumeName?: string;
@@ -106,6 +111,10 @@ export interface VolumesResult {
     readonly kind?: string;
     readonly nameRegex?: string;
     readonly outputFile?: string;
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.ebs.VolumesTag[];
     /**
      * The total count of Volume query.
      */
@@ -175,6 +184,10 @@ export interface VolumesOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.ebs.VolumesTagArgs>[]>;
     /**
      * The name of Volume.
      */

@@ -168,8 +168,23 @@ def bandwidth_packages(cen_bandwidth_package_names: Optional[Sequence[str]] = No
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cen.bandwidth_packages(cen_id="cen-2bzrl3srxsv0g2dx0efyoojn3",
-        ids=["cbp-2bzeew3s8p79c2dx0eeohej4x"])
+    foo_bandwidth_package = []
+    for range in [{"value": i} for i in range(0, 2)]:
+        foo_bandwidth_package.append(volcengine.cen.BandwidthPackage(f"fooBandwidthPackage-{range['value']}",
+            local_geographic_region_set_id="China",
+            peer_geographic_region_set_id="China",
+            bandwidth=2,
+            cen_bandwidth_package_name=f"acc-test-cen-bp-{range['value']}",
+            description="acc-test",
+            billing_type="PrePaid",
+            period_unit="Month",
+            period=1,
+            project_name="default",
+            tags=[volcengine.cen.BandwidthPackageTagArgs(
+                key="k1",
+                value="v1",
+            )]))
+    foo_bandwidth_packages = volcengine.cen.bandwidth_packages_output(ids=[__item.id for __item in foo_bandwidth_package])
     ```
 
 
@@ -226,8 +241,23 @@ def bandwidth_packages_output(cen_bandwidth_package_names: Optional[pulumi.Input
     import pulumi
     import pulumi_volcengine as volcengine
 
-    foo = volcengine.cen.bandwidth_packages(cen_id="cen-2bzrl3srxsv0g2dx0efyoojn3",
-        ids=["cbp-2bzeew3s8p79c2dx0eeohej4x"])
+    foo_bandwidth_package = []
+    for range in [{"value": i} for i in range(0, 2)]:
+        foo_bandwidth_package.append(volcengine.cen.BandwidthPackage(f"fooBandwidthPackage-{range['value']}",
+            local_geographic_region_set_id="China",
+            peer_geographic_region_set_id="China",
+            bandwidth=2,
+            cen_bandwidth_package_name=f"acc-test-cen-bp-{range['value']}",
+            description="acc-test",
+            billing_type="PrePaid",
+            period_unit="Month",
+            period=1,
+            project_name="default",
+            tags=[volcengine.cen.BandwidthPackageTagArgs(
+                key="k1",
+                value="v1",
+            )]))
+    foo_bandwidth_packages = volcengine.cen.bandwidth_packages_output(ids=[__item.id for __item in foo_bandwidth_package])
     ```
 
 

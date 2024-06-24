@@ -20,19 +20,108 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/clb"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/privatelink"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := privatelink.VpcEndpointConnections(ctx, &privatelink.VpcEndpointConnectionsArgs{
-//				EndpointId: pulumi.StringRef("ep-3rel74u229dz45zsk2i6l69qa"),
-//				ServiceId:  "epsvc-2byz5mykk9y4g2dx0efs4aqz3",
-//			}, nil)
+//			fooZones, err := ecs.Zones(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
+//				SubnetName: pulumi.String("acc-test-subnet"),
+//				CidrBlock:  pulumi.String("172.16.0.0/24"),
+//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				VpcId:      fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooSecurityGroup, err := vpc.NewSecurityGroup(ctx, "fooSecurityGroup", &vpc.SecurityGroupArgs{
+//				SecurityGroupName: pulumi.String("acc-test-security-group"),
+//				VpcId:             fooVpc.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooClb, err := clb.NewClb(ctx, "fooClb", &clb.ClbArgs{
+//				Type:                    pulumi.String("public"),
+//				SubnetId:                fooSubnet.ID(),
+//				LoadBalancerSpec:        pulumi.String("small_1"),
+//				Description:             pulumi.String("acc-test-demo"),
+//				LoadBalancerName:        pulumi.String("acc-test-clb"),
+//				LoadBalancerBillingType: pulumi.String("PostPaid"),
+//				EipBillingConfig: &clb.ClbEipBillingConfigArgs{
+//					Isp:            pulumi.String("BGP"),
+//					EipBillingType: pulumi.String("PostPaidByBandwidth"),
+//					Bandwidth:      pulumi.Int(1),
+//				},
+//				Tags: clb.ClbTagArray{
+//					&clb.ClbTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooVpcEndpointService, err := privatelink.NewVpcEndpointService(ctx, "fooVpcEndpointService", &privatelink.VpcEndpointServiceArgs{
+//				Resources: privatelink.VpcEndpointServiceResourceTypeArray{
+//					&privatelink.VpcEndpointServiceResourceTypeArgs{
+//						ResourceId:   fooClb.ID(),
+//						ResourceType: pulumi.String("CLB"),
+//					},
+//				},
+//				Description: pulumi.String("acc-test"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooVpcEndpoint, err := privatelink.NewVpcEndpoint(ctx, "fooVpcEndpoint", &privatelink.VpcEndpointArgs{
+//				SecurityGroupIds: pulumi.StringArray{
+//					fooSecurityGroup.ID(),
+//				},
+//				ServiceId:    fooVpcEndpointService.ID(),
+//				EndpointName: pulumi.String("acc-test-ep"),
+//				Description:  pulumi.String("acc-test"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooVpcEndpointZone, err := privatelink.NewVpcEndpointZone(ctx, "fooVpcEndpointZone", &privatelink.VpcEndpointZoneArgs{
+//				EndpointId:       fooVpcEndpoint.ID(),
+//				SubnetId:         fooSubnet.ID(),
+//				PrivateIpAddress: pulumi.String("172.16.0.251"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooVpcEndpointConnection, err := privatelink.NewVpcEndpointConnection(ctx, "fooVpcEndpointConnection", &privatelink.VpcEndpointConnectionArgs{
+//				EndpointId: fooVpcEndpoint.ID(),
+//				ServiceId:  fooVpcEndpointService.ID(),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				fooVpcEndpointZone,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			_ = privatelink.VpcEndpointConnectionsOutput(ctx, privatelink.VpcEndpointConnectionsOutputArgs{
+//				EndpointId: fooVpcEndpointConnection.EndpointId,
+//				ServiceId:  fooVpcEndpointConnection.ServiceId,
+//			}, nil)
 //			return nil
 //		})
 //	}

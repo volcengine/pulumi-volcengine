@@ -66,7 +66,7 @@ type Address struct {
 	EipAddress pulumi.StringOutput `pulumi:"eipAddress"`
 	// The expired time of the EIP.
 	ExpiredTime pulumi.StringOutput `pulumi:"expiredTime"`
-	// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP`.
+	// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP` or `Fusion_BGP`.
 	Isp pulumi.StringOutput `pulumi:"isp"`
 	// The name of the EIP Address.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -129,7 +129,7 @@ type addressState struct {
 	EipAddress *string `pulumi:"eipAddress"`
 	// The expired time of the EIP.
 	ExpiredTime *string `pulumi:"expiredTime"`
-	// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP`.
+	// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP` or `Fusion_BGP`.
 	Isp *string `pulumi:"isp"`
 	// The name of the EIP Address.
 	Name *string `pulumi:"name"`
@@ -160,7 +160,7 @@ type AddressState struct {
 	EipAddress pulumi.StringPtrInput
 	// The expired time of the EIP.
 	ExpiredTime pulumi.StringPtrInput
-	// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP`.
+	// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP` or `Fusion_BGP`.
 	Isp pulumi.StringPtrInput
 	// The name of the EIP Address.
 	Name pulumi.StringPtrInput
@@ -189,7 +189,7 @@ type addressArgs struct {
 	BillingType string `pulumi:"billingType"`
 	// The description of the EIP.
 	Description *string `pulumi:"description"`
-	// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP`.
+	// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP` or `Fusion_BGP`.
 	Isp *string `pulumi:"isp"`
 	// The name of the EIP Address.
 	Name *string `pulumi:"name"`
@@ -211,7 +211,7 @@ type AddressArgs struct {
 	BillingType pulumi.StringInput
 	// The description of the EIP.
 	Description pulumi.StringPtrInput
-	// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP`.
+	// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP` or `Fusion_BGP`.
 	Isp pulumi.StringPtrInput
 	// The name of the EIP Address.
 	Name pulumi.StringPtrInput
@@ -342,7 +342,7 @@ func (o AddressOutput) ExpiredTime() pulumi.StringOutput {
 	return o.ApplyT(func(v *Address) pulumi.StringOutput { return v.ExpiredTime }).(pulumi.StringOutput)
 }
 
-// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP`.
+// The ISP of the EIP, the value can be `BGP` or `ChinaMobile` or `ChinaUnicom` or `ChinaTelecom` or `SingleLine_BGP` or `Static_BGP` or `Fusion_BGP`.
 func (o AddressOutput) Isp() pulumi.StringOutput {
 	return o.ApplyT(func(v *Address) pulumi.StringOutput { return v.Isp }).(pulumi.StringOutput)
 }

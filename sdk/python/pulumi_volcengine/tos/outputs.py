@@ -12,7 +12,9 @@ from .. import _utilities
 __all__ = [
     'BucketAccountAcl',
     'BucketObjectAccountAcl',
+    'BucketObjectTag',
     'BucketObjectsObjectResult',
+    'BucketTag',
     'BucketsBucketResult',
 ]
 
@@ -137,6 +139,35 @@ class BucketObjectAccountAcl(dict):
 
 
 @pulumi.output_type
+class BucketObjectTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class BucketObjectsObjectResult(dict):
     def __init__(__self__, *,
                  content: str,
@@ -185,6 +216,35 @@ class BucketObjectsObjectResult(dict):
         The name the TOS Object storage class.
         """
         return pulumi.get(self, "storage_class")
+
+
+@pulumi.output_type
+class BucketTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type

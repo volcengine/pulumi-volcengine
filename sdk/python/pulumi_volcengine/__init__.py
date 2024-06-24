@@ -6,6 +6,7 @@ from . import _utilities
 import typing
 # Export this package's modules as members:
 from .provider import *
+from ._inputs import *
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
@@ -17,10 +18,16 @@ if typing.TYPE_CHECKING:
     bandwidth_package = __bandwidth_package
     import pulumi_volcengine.bioos as __bioos
     bioos = __bioos
+    import pulumi_volcengine.cdn as __cdn
+    cdn = __cdn
     import pulumi_volcengine.cen as __cen
     cen = __cen
     import pulumi_volcengine.clb as __clb
     clb = __clb
+    import pulumi_volcengine.cloud_identity as __cloud_identity
+    cloud_identity = __cloud_identity
+    import pulumi_volcengine.cloud_monitor as __cloud_monitor
+    cloud_monitor = __cloud_monitor
     import pulumi_volcengine.cloudfs as __cloudfs
     cloudfs = __cloudfs
     import pulumi_volcengine.config as __config
@@ -37,20 +44,30 @@ if typing.TYPE_CHECKING:
     eip = __eip
     import pulumi_volcengine.escloud as __escloud
     escloud = __escloud
+    import pulumi_volcengine.financial_relation as __financial_relation
+    financial_relation = __financial_relation
     import pulumi_volcengine.iam as __iam
     iam = __iam
+    import pulumi_volcengine.kafka as __kafka
+    kafka = __kafka
     import pulumi_volcengine.mongodb as __mongodb
     mongodb = __mongodb
     import pulumi_volcengine.nas as __nas
     nas = __nas
     import pulumi_volcengine.nat as __nat
     nat = __nat
+    import pulumi_volcengine.organization as __organization
+    organization = __organization
     import pulumi_volcengine.privatelink as __privatelink
     privatelink = __privatelink
     import pulumi_volcengine.rds as __rds
     rds = __rds
+    import pulumi_volcengine.rds_mssql as __rds_mssql
+    rds_mssql = __rds_mssql
     import pulumi_volcengine.rds_mysql as __rds_mysql
     rds_mysql = __rds_mysql
+    import pulumi_volcengine.rds_postgresql as __rds_postgresql
+    rds_postgresql = __rds_postgresql
     import pulumi_volcengine.rds_v2 as __rds_v2
     rds_v2 = __rds_v2
     import pulumi_volcengine.redis as __redis
@@ -74,8 +91,11 @@ else:
     autoscaling = _utilities.lazy_import('pulumi_volcengine.autoscaling')
     bandwidth_package = _utilities.lazy_import('pulumi_volcengine.bandwidth_package')
     bioos = _utilities.lazy_import('pulumi_volcengine.bioos')
+    cdn = _utilities.lazy_import('pulumi_volcengine.cdn')
     cen = _utilities.lazy_import('pulumi_volcengine.cen')
     clb = _utilities.lazy_import('pulumi_volcengine.clb')
+    cloud_identity = _utilities.lazy_import('pulumi_volcengine.cloud_identity')
+    cloud_monitor = _utilities.lazy_import('pulumi_volcengine.cloud_monitor')
     cloudfs = _utilities.lazy_import('pulumi_volcengine.cloudfs')
     config = _utilities.lazy_import('pulumi_volcengine.config')
     cr = _utilities.lazy_import('pulumi_volcengine.cr')
@@ -84,13 +104,18 @@ else:
     ecs = _utilities.lazy_import('pulumi_volcengine.ecs')
     eip = _utilities.lazy_import('pulumi_volcengine.eip')
     escloud = _utilities.lazy_import('pulumi_volcengine.escloud')
+    financial_relation = _utilities.lazy_import('pulumi_volcengine.financial_relation')
     iam = _utilities.lazy_import('pulumi_volcengine.iam')
+    kafka = _utilities.lazy_import('pulumi_volcengine.kafka')
     mongodb = _utilities.lazy_import('pulumi_volcengine.mongodb')
     nas = _utilities.lazy_import('pulumi_volcengine.nas')
     nat = _utilities.lazy_import('pulumi_volcengine.nat')
+    organization = _utilities.lazy_import('pulumi_volcengine.organization')
     privatelink = _utilities.lazy_import('pulumi_volcengine.privatelink')
     rds = _utilities.lazy_import('pulumi_volcengine.rds')
+    rds_mssql = _utilities.lazy_import('pulumi_volcengine.rds_mssql')
     rds_mysql = _utilities.lazy_import('pulumi_volcengine.rds_mysql')
+    rds_postgresql = _utilities.lazy_import('pulumi_volcengine.rds_postgresql')
     rds_v2 = _utilities.lazy_import('pulumi_volcengine.rds_v2')
     redis = _utilities.lazy_import('pulumi_volcengine.redis')
     tls = _utilities.lazy_import('pulumi_volcengine.tls')
@@ -290,6 +315,30 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "cdn/cdnCertificate",
+  "fqn": "pulumi_volcengine.cdn",
+  "classes": {
+   "volcengine:cdn/cdnCertificate:CdnCertificate": "CdnCertificate"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cdn/cdnDomain",
+  "fqn": "pulumi_volcengine.cdn",
+  "classes": {
+   "volcengine:cdn/cdnDomain:CdnDomain": "CdnDomain"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cdn/sharedConfig",
+  "fqn": "pulumi_volcengine.cdn",
+  "classes": {
+   "volcengine:cdn/sharedConfig:SharedConfig": "SharedConfig"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "cen/attachInstance",
   "fqn": "pulumi_volcengine.cen",
   "classes": {
@@ -414,6 +463,94 @@ _utilities.register(
   "fqn": "pulumi_volcengine.clb",
   "classes": {
    "volcengine:clb/serverGroupServer:ServerGroupServer": "ServerGroupServer"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cloud_identity/group",
+  "fqn": "pulumi_volcengine.cloud_identity",
+  "classes": {
+   "volcengine:cloud_identity/group:Group": "Group"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cloud_identity/permissionSet",
+  "fqn": "pulumi_volcengine.cloud_identity",
+  "classes": {
+   "volcengine:cloud_identity/permissionSet:PermissionSet": "PermissionSet"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cloud_identity/permissionSetAssignment",
+  "fqn": "pulumi_volcengine.cloud_identity",
+  "classes": {
+   "volcengine:cloud_identity/permissionSetAssignment:PermissionSetAssignment": "PermissionSetAssignment"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cloud_identity/permissionSetProvisioning",
+  "fqn": "pulumi_volcengine.cloud_identity",
+  "classes": {
+   "volcengine:cloud_identity/permissionSetProvisioning:PermissionSetProvisioning": "PermissionSetProvisioning"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cloud_identity/user",
+  "fqn": "pulumi_volcengine.cloud_identity",
+  "classes": {
+   "volcengine:cloud_identity/user:User": "User"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cloud_identity/userAttachment",
+  "fqn": "pulumi_volcengine.cloud_identity",
+  "classes": {
+   "volcengine:cloud_identity/userAttachment:UserAttachment": "UserAttachment"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cloud_identity/userProvisioning",
+  "fqn": "pulumi_volcengine.cloud_identity",
+  "classes": {
+   "volcengine:cloud_identity/userProvisioning:UserProvisioning": "UserProvisioning"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cloud_monitor/contact",
+  "fqn": "pulumi_volcengine.cloud_monitor",
+  "classes": {
+   "volcengine:cloud_monitor/contact:Contact": "Contact"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cloud_monitor/contactGroup",
+  "fqn": "pulumi_volcengine.cloud_monitor",
+  "classes": {
+   "volcengine:cloud_monitor/contactGroup:ContactGroup": "ContactGroup"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cloud_monitor/eventRule",
+  "fqn": "pulumi_volcengine.cloud_monitor",
+  "classes": {
+   "volcengine:cloud_monitor/eventRule:EventRule": "EventRule"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cloud_monitor/rule",
+  "fqn": "pulumi_volcengine.cloud_monitor",
+  "classes": {
+   "volcengine:cloud_monitor/rule:Rule": "Rule"
   }
  },
  {
@@ -658,6 +795,14 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "financial_relation/financialRelation",
+  "fqn": "pulumi_volcengine.financial_relation",
+  "classes": {
+   "volcengine:financial_relation/financialRelation:FinancialRelation": "FinancialRelation"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "iam/accessKey",
   "fqn": "pulumi_volcengine.iam",
   "classes": {
@@ -698,6 +843,14 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "iam/samlProvider",
+  "fqn": "pulumi_volcengine.iam",
+  "classes": {
+   "volcengine:iam/samlProvider:SamlProvider": "SamlProvider"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "iam/user",
   "fqn": "pulumi_volcengine.iam",
   "classes": {
@@ -734,6 +887,46 @@ _utilities.register(
   "fqn": "pulumi_volcengine.iam",
   "classes": {
    "volcengine:iam/userPolicyAttachment:UserPolicyAttachment": "UserPolicyAttachment"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "kafka/group",
+  "fqn": "pulumi_volcengine.kafka",
+  "classes": {
+   "volcengine:kafka/group:Group": "Group"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "kafka/instance",
+  "fqn": "pulumi_volcengine.kafka",
+  "classes": {
+   "volcengine:kafka/instance:Instance": "Instance"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "kafka/publicAddress",
+  "fqn": "pulumi_volcengine.kafka",
+  "classes": {
+   "volcengine:kafka/publicAddress:PublicAddress": "PublicAddress"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "kafka/saslUser",
+  "fqn": "pulumi_volcengine.kafka",
+  "classes": {
+   "volcengine:kafka/saslUser:SaslUser": "SaslUser"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "kafka/topic",
+  "fqn": "pulumi_volcengine.kafka",
+  "classes": {
+   "volcengine:kafka/topic:Topic": "Topic"
   }
  },
  {
@@ -842,6 +1035,54 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "organization/account",
+  "fqn": "pulumi_volcengine.organization",
+  "classes": {
+   "volcengine:organization/account:Account": "Account"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "organization/organization",
+  "fqn": "pulumi_volcengine.organization",
+  "classes": {
+   "volcengine:organization/organization:Organization": "Organization"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "organization/serviceControlPolicy",
+  "fqn": "pulumi_volcengine.organization",
+  "classes": {
+   "volcengine:organization/serviceControlPolicy:ServiceControlPolicy": "ServiceControlPolicy"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "organization/serviceControlPolicyAttachment",
+  "fqn": "pulumi_volcengine.organization",
+  "classes": {
+   "volcengine:organization/serviceControlPolicyAttachment:ServiceControlPolicyAttachment": "ServiceControlPolicyAttachment"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "organization/serviceControlPolicyEnabler",
+  "fqn": "pulumi_volcengine.organization",
+  "classes": {
+   "volcengine:organization/serviceControlPolicyEnabler:ServiceControlPolicyEnabler": "ServiceControlPolicyEnabler"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "organization/unit",
+  "fqn": "pulumi_volcengine.organization",
+  "classes": {
+   "volcengine:organization/unit:Unit": "Unit"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "privatelink/securityGroup",
   "fqn": "pulumi_volcengine.privatelink",
   "classes": {
@@ -946,6 +1187,22 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "rds_mssql/backup",
+  "fqn": "pulumi_volcengine.rds_mssql",
+  "classes": {
+   "volcengine:rds_mssql/backup:Backup": "Backup"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds_mssql/instance",
+  "fqn": "pulumi_volcengine.rds_mssql",
+  "classes": {
+   "volcengine:rds_mssql/instance:Instance": "Instance"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "rds_mysql/account",
   "fqn": "pulumi_volcengine.rds_mysql",
   "classes": {
@@ -990,6 +1247,46 @@ _utilities.register(
   "fqn": "pulumi_volcengine.rds_mysql",
   "classes": {
    "volcengine:rds_mysql/instanceReadonlyNode:InstanceReadonlyNode": "InstanceReadonlyNode"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds_postgresql/account",
+  "fqn": "pulumi_volcengine.rds_postgresql",
+  "classes": {
+   "volcengine:rds_postgresql/account:Account": "Account"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds_postgresql/database",
+  "fqn": "pulumi_volcengine.rds_postgresql",
+  "classes": {
+   "volcengine:rds_postgresql/database:Database": "Database"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds_postgresql/instance",
+  "fqn": "pulumi_volcengine.rds_postgresql",
+  "classes": {
+   "volcengine:rds_postgresql/instance:Instance": "Instance"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds_postgresql/instanceReadonlyNode",
+  "fqn": "pulumi_volcengine.rds_postgresql",
+  "classes": {
+   "volcengine:rds_postgresql/instanceReadonlyNode:InstanceReadonlyNode": "InstanceReadonlyNode"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds_postgresql/schema",
+  "fqn": "pulumi_volcengine.rds_postgresql",
+  "classes": {
+   "volcengine:rds_postgresql/schema:Schema": "Schema"
   }
  },
  {

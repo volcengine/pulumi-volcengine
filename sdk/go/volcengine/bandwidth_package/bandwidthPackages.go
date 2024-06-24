@@ -23,21 +23,42 @@ import (
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/bandwidth_package"
 //
 // )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// var fooBandwidthPackage []*bandwidth_package.BandwidthPackage
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := bandwidth_package.BandwidthPackages(ctx, &bandwidth_package.BandwidthPackagesArgs{
-//				Ids: []string{
-//					"bwp-rr0eev56j7y8v0x58ggbclr",
-//				},
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
+//	for index := 0; index < 2; index++ {
+//	    key0 := index
+//	    _ := index
 //
+// __res, err := bandwidth_package.NewBandwidthPackage(ctx, fmt.Sprintf("fooBandwidthPackage-%v", key0), &bandwidth_package.BandwidthPackageArgs{
+// BandwidthPackageName: pulumi.String("acc-test-bp"),
+// BillingType: pulumi.String("PostPaidByBandwidth"),
+// Isp: pulumi.String("BGP"),
+// Description: pulumi.String("acc-test"),
+// Bandwidth: pulumi.Int(2),
+// Protocol: pulumi.String("IPv4"),
+// SecurityProtectionTypes: pulumi.StringArray{
+// pulumi.String("AntiDDoS_Enhanced"),
+// },
+// Tags: bandwidth_package.BandwidthPackageTagArray{
+// &bandwidth_package.BandwidthPackageTagArgs{
+// Key: pulumi.String("k1"),
+// Value: pulumi.String("v1"),
+// },
+// },
+// })
+// if err != nil {
+// return err
+// }
+// fooBandwidthPackage = append(fooBandwidthPackage, __res)
+// }
+// _ = bandwidth_package.BandwidthPackagesOutput(ctx, bandwidth_package.BandwidthPackagesOutputArgs{
+// Ids: %!v(PANIC=Format method: fatal: A failure has occurred: unlowered splat expression @ #-functions-volcengine:bandwidth_package-bandwidthPackages:BandwidthPackages.pp:18,9-34),
+// }, nil);
+// return nil
+// })
+// }
 // ```
 func BandwidthPackages(ctx *pulumi.Context, args *BandwidthPackagesArgs, opts ...pulumi.InvokeOption) (*BandwidthPackagesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)

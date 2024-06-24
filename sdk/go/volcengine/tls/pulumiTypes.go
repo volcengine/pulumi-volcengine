@@ -2338,6 +2338,8 @@ type IndexKeyValue struct {
 	Delimiter *string `pulumi:"delimiter"`
 	// Whether the value include chinese.
 	IncludeChinese *bool `pulumi:"includeChinese"`
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+	IndexAll *bool `pulumi:"indexAll"`
 	// The JSON subfield key value index.
 	JsonKeys []IndexKeyValueJsonKey `pulumi:"jsonKeys"`
 	// The key of the KeyValueInfo.
@@ -2366,6 +2368,8 @@ type IndexKeyValueArgs struct {
 	Delimiter pulumi.StringPtrInput `pulumi:"delimiter"`
 	// Whether the value include chinese.
 	IncludeChinese pulumi.BoolPtrInput `pulumi:"includeChinese"`
+	// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+	IndexAll pulumi.BoolPtrInput `pulumi:"indexAll"`
 	// The JSON subfield key value index.
 	JsonKeys IndexKeyValueJsonKeyArrayInput `pulumi:"jsonKeys"`
 	// The key of the KeyValueInfo.
@@ -2440,6 +2444,11 @@ func (o IndexKeyValueOutput) Delimiter() pulumi.StringPtrOutput {
 // Whether the value include chinese.
 func (o IndexKeyValueOutput) IncludeChinese() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v IndexKeyValue) *bool { return v.IncludeChinese }).(pulumi.BoolPtrOutput)
+}
+
+// Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+func (o IndexKeyValueOutput) IndexAll() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v IndexKeyValue) *bool { return v.IndexAll }).(pulumi.BoolPtrOutput)
 }
 
 // The JSON subfield key value index.
@@ -3073,6 +3082,8 @@ type IndexesTlsIndexKeyValue struct {
 	Delimiter string `pulumi:"delimiter"`
 	// Whether the value include chinese.
 	IncludeChinese bool `pulumi:"includeChinese"`
+	// Whether to create indexes for all fields in JSON fields with text values.
+	IndexAll bool `pulumi:"indexAll"`
 	// The JSON subfield key value index.
 	JsonKeys []IndexesTlsIndexKeyValueJsonKey `pulumi:"jsonKeys"`
 	// The key of the KeyValue index.
@@ -3101,6 +3112,8 @@ type IndexesTlsIndexKeyValueArgs struct {
 	Delimiter pulumi.StringInput `pulumi:"delimiter"`
 	// Whether the value include chinese.
 	IncludeChinese pulumi.BoolInput `pulumi:"includeChinese"`
+	// Whether to create indexes for all fields in JSON fields with text values.
+	IndexAll pulumi.BoolInput `pulumi:"indexAll"`
 	// The JSON subfield key value index.
 	JsonKeys IndexesTlsIndexKeyValueJsonKeyArrayInput `pulumi:"jsonKeys"`
 	// The key of the KeyValue index.
@@ -3175,6 +3188,11 @@ func (o IndexesTlsIndexKeyValueOutput) Delimiter() pulumi.StringOutput {
 // Whether the value include chinese.
 func (o IndexesTlsIndexKeyValueOutput) IncludeChinese() pulumi.BoolOutput {
 	return o.ApplyT(func(v IndexesTlsIndexKeyValue) bool { return v.IncludeChinese }).(pulumi.BoolOutput)
+}
+
+// Whether to create indexes for all fields in JSON fields with text values.
+func (o IndexesTlsIndexKeyValueOutput) IndexAll() pulumi.BoolOutput {
+	return o.ApplyT(func(v IndexesTlsIndexKeyValue) bool { return v.IndexAll }).(pulumi.BoolOutput)
 }
 
 // The JSON subfield key value index.

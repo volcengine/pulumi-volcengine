@@ -16,8 +16,11 @@ import * as alb from "./alb";
 import * as autoscaling from "./autoscaling";
 import * as bandwidth_package from "./bandwidth_package";
 import * as bioos from "./bioos";
+import * as cdn from "./cdn";
 import * as cen from "./cen";
 import * as clb from "./clb";
+import * as cloud_identity from "./cloud_identity";
+import * as cloud_monitor from "./cloud_monitor";
 import * as cloudfs from "./cloudfs";
 import * as config from "./config";
 import * as cr from "./cr";
@@ -26,13 +29,18 @@ import * as ebs from "./ebs";
 import * as ecs from "./ecs";
 import * as eip from "./eip";
 import * as escloud from "./escloud";
+import * as financial_relation from "./financial_relation";
 import * as iam from "./iam";
+import * as kafka from "./kafka";
 import * as mongodb from "./mongodb";
 import * as nas from "./nas";
 import * as nat from "./nat";
+import * as organization from "./organization";
 import * as privatelink from "./privatelink";
 import * as rds from "./rds";
+import * as rds_mssql from "./rds_mssql";
 import * as rds_mysql from "./rds_mysql";
+import * as rds_postgresql from "./rds_postgresql";
 import * as rds_v2 from "./rds_v2";
 import * as redis from "./redis";
 import * as tls from "./tls";
@@ -49,8 +57,11 @@ export {
     autoscaling,
     bandwidth_package,
     bioos,
+    cdn,
     cen,
     clb,
+    cloud_identity,
+    cloud_monitor,
     cloudfs,
     config,
     cr,
@@ -59,13 +70,18 @@ export {
     ecs,
     eip,
     escloud,
+    financial_relation,
     iam,
+    kafka,
     mongodb,
     nas,
     nat,
+    organization,
     privatelink,
     rds,
+    rds_mssql,
     rds_mysql,
+    rds_postgresql,
     rds_v2,
     redis,
     tls,

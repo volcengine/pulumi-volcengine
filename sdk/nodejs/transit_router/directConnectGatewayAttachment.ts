@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -12,11 +14,27 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@volcengine/pulumi";
  *
- * const foo = new volcengine.transit_router.DirectConnectGatewayAttachment("foo", {
- *     description: "tf-test-modify",
- *     directConnectGatewayId: "dcg-3reaq6ymdzegw5zsk2igxzusb",
- *     transitRouterAttachmentName: "tf-test-modify",
- *     transitRouterId: "tr-2bzy39x27qtxc2dx0eg5qaj05",
+ * const fooTransitRouter = new volcengine.transit_router.TransitRouter("fooTransitRouter", {
+ *     transitRouterName: "acc-test-tf-acc",
+ *     description: "acc-test-tf-acc",
+ * });
+ * const fooGateway = new volcengine.direct_connect.Gateway("fooGateway", {
+ *     directConnectGatewayName: "acc-test-gateway-acc",
+ *     description: "acc-test-acc",
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
+ * });
+ * const fooDirectConnectGatewayAttachment = new volcengine.transit_router.DirectConnectGatewayAttachment("fooDirectConnectGatewayAttachment", {
+ *     description: "acc-test-tf",
+ *     transitRouterAttachmentName: "acc-test-tf",
+ *     transitRouterId: fooTransitRouter.id,
+ *     directConnectGatewayId: fooGateway.id,
+ *     tags: [{
+ *         key: "k1",
+ *         value: "v1",
+ *     }],
  * });
  * ```
  *
@@ -65,6 +83,10 @@ export class DirectConnectGatewayAttachment extends pulumi.CustomResource {
      */
     public readonly directConnectGatewayId!: pulumi.Output<string>;
     /**
+     * Tags.
+     */
+    public readonly tags!: pulumi.Output<outputs.transit_router.DirectConnectGatewayAttachmentTag[] | undefined>;
+    /**
      * The id of the transit router direct connect gateway attachment.
      */
     public /*out*/ readonly transitRouterAttachmentId!: pulumi.Output<string>;
@@ -92,6 +114,7 @@ export class DirectConnectGatewayAttachment extends pulumi.CustomResource {
             const state = argsOrState as DirectConnectGatewayAttachmentState | undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["directConnectGatewayId"] = state ? state.directConnectGatewayId : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["transitRouterAttachmentId"] = state ? state.transitRouterAttachmentId : undefined;
             resourceInputs["transitRouterAttachmentName"] = state ? state.transitRouterAttachmentName : undefined;
             resourceInputs["transitRouterId"] = state ? state.transitRouterId : undefined;
@@ -105,6 +128,7 @@ export class DirectConnectGatewayAttachment extends pulumi.CustomResource {
             }
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["directConnectGatewayId"] = args ? args.directConnectGatewayId : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["transitRouterAttachmentName"] = args ? args.transitRouterAttachmentName : undefined;
             resourceInputs["transitRouterId"] = args ? args.transitRouterId : undefined;
             resourceInputs["transitRouterAttachmentId"] = undefined /*out*/;
@@ -126,6 +150,10 @@ export interface DirectConnectGatewayAttachmentState {
      * The id of the direct connect gateway.
      */
     directConnectGatewayId?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.transit_router.DirectConnectGatewayAttachmentTag>[]>;
     /**
      * The id of the transit router direct connect gateway attachment.
      */
@@ -152,6 +180,10 @@ export interface DirectConnectGatewayAttachmentArgs {
      * The id of the direct connect gateway.
      */
     directConnectGatewayId: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.transit_router.DirectConnectGatewayAttachmentTag>[]>;
     /**
      * The name of the transit router direct connect gateway attachment.
      */

@@ -21,7 +21,6 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vke"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //
@@ -45,25 +44,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			fooSecurityGroup, err := vpc.NewSecurityGroup(ctx, "fooSecurityGroup", &vpc.SecurityGroupArgs{
+//			_, err = vpc.NewSecurityGroup(ctx, "fooSecurityGroup", &vpc.SecurityGroupArgs{
 //				VpcId:             fooVpc.ID(),
 //				SecurityGroupName: pulumi.String("acc-test-security-group2"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = ecs.NewInstance(ctx, "fooInstance", &ecs.InstanceArgs{
-//				ImageId:            pulumi.String("image-ybqi99s7yq8rx7mnk44b"),
-//				InstanceType:       pulumi.String("ecs.g1ie.large"),
-//				InstanceName:       pulumi.String("acc-test-ecs-name2"),
-//				Password:           pulumi.String("93f0cb0614Aab12"),
-//				InstanceChargeType: pulumi.String("PostPaid"),
-//				SystemVolumeType:   pulumi.String("ESSD_PL0"),
-//				SystemVolumeSize:   pulumi.Int(40),
-//				SubnetId:           fooSubnet.ID(),
-//				SecurityGroupIds: pulumi.StringArray{
-//					fooSecurityGroup.ID(),
-//				},
 //			})
 //			if err != nil {
 //				return err
@@ -139,7 +122,7 @@ type Cluster struct {
 	KubeconfigPrivate pulumi.StringOutput `pulumi:"kubeconfigPrivate"`
 	// Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
 	KubeconfigPublic pulumi.StringOutput `pulumi:"kubeconfigPublic"`
-	// The version of Kubernetes specified when creating a VKE cluster (specified to patch version), if not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
+	// The version of Kubernetes specified when creating a VKE cluster (specified to patch version), with an example value of `v1.24`. If not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
 	KubernetesVersion pulumi.StringOutput `pulumi:"kubernetesVersion"`
 	// Cluster log configuration information.
 	LoggingConfig ClusterLoggingConfigPtrOutput `pulumi:"loggingConfig"`
@@ -206,7 +189,7 @@ type clusterState struct {
 	KubeconfigPrivate *string `pulumi:"kubeconfigPrivate"`
 	// Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
 	KubeconfigPublic *string `pulumi:"kubeconfigPublic"`
-	// The version of Kubernetes specified when creating a VKE cluster (specified to patch version), if not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
+	// The version of Kubernetes specified when creating a VKE cluster (specified to patch version), with an example value of `v1.24`. If not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
 	KubernetesVersion *string `pulumi:"kubernetesVersion"`
 	// Cluster log configuration information.
 	LoggingConfig *ClusterLoggingConfig `pulumi:"loggingConfig"`
@@ -235,7 +218,7 @@ type ClusterState struct {
 	KubeconfigPrivate pulumi.StringPtrInput
 	// Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vkeKubeconfig instead.
 	KubeconfigPublic pulumi.StringPtrInput
-	// The version of Kubernetes specified when creating a VKE cluster (specified to patch version), if not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
+	// The version of Kubernetes specified when creating a VKE cluster (specified to patch version), with an example value of `v1.24`. If not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
 	KubernetesVersion pulumi.StringPtrInput
 	// Cluster log configuration information.
 	LoggingConfig ClusterLoggingConfigPtrInput
@@ -262,7 +245,7 @@ type clusterArgs struct {
 	DeleteProtectionEnabled *bool `pulumi:"deleteProtectionEnabled"`
 	// The description of the cluster.
 	Description *string `pulumi:"description"`
-	// The version of Kubernetes specified when creating a VKE cluster (specified to patch version), if not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
+	// The version of Kubernetes specified when creating a VKE cluster (specified to patch version), with an example value of `v1.24`. If not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
 	KubernetesVersion *string `pulumi:"kubernetesVersion"`
 	// Cluster log configuration information.
 	LoggingConfig *ClusterLoggingConfig `pulumi:"loggingConfig"`
@@ -286,7 +269,7 @@ type ClusterArgs struct {
 	DeleteProtectionEnabled pulumi.BoolPtrInput
 	// The description of the cluster.
 	Description pulumi.StringPtrInput
-	// The version of Kubernetes specified when creating a VKE cluster (specified to patch version), if not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
+	// The version of Kubernetes specified when creating a VKE cluster (specified to patch version), with an example value of `v1.24`. If not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
 	KubernetesVersion pulumi.StringPtrInput
 	// Cluster log configuration information.
 	LoggingConfig ClusterLoggingConfigPtrInput
@@ -422,7 +405,7 @@ func (o ClusterOutput) KubeconfigPublic() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.KubeconfigPublic }).(pulumi.StringOutput)
 }
 
-// The version of Kubernetes specified when creating a VKE cluster (specified to patch version), if not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
+// The version of Kubernetes specified when creating a VKE cluster (specified to patch version), with an example value of `v1.24`. If not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
 func (o ClusterOutput) KubernetesVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.KubernetesVersion }).(pulumi.StringOutput)
 }

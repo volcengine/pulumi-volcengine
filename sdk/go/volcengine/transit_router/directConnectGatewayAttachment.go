@@ -21,17 +21,44 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/direct_connect"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/transit_router"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := transit_router.NewDirectConnectGatewayAttachment(ctx, "foo", &transit_router.DirectConnectGatewayAttachmentArgs{
-//				Description:                 pulumi.String("tf-test-modify"),
-//				DirectConnectGatewayId:      pulumi.String("dcg-3reaq6ymdzegw5zsk2igxzusb"),
-//				TransitRouterAttachmentName: pulumi.String("tf-test-modify"),
-//				TransitRouterId:             pulumi.String("tr-2bzy39x27qtxc2dx0eg5qaj05"),
+//			fooTransitRouter, err := transit_router.NewTransitRouter(ctx, "fooTransitRouter", &transit_router.TransitRouterArgs{
+//				TransitRouterName: pulumi.String("acc-test-tf-acc"),
+//				Description:       pulumi.String("acc-test-tf-acc"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooGateway, err := direct_connect.NewGateway(ctx, "fooGateway", &direct_connect.GatewayArgs{
+//				DirectConnectGatewayName: pulumi.String("acc-test-gateway-acc"),
+//				Description:              pulumi.String("acc-test-acc"),
+//				Tags: direct_connect.GatewayTagArray{
+//					&direct_connect.GatewayTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = transit_router.NewDirectConnectGatewayAttachment(ctx, "fooDirectConnectGatewayAttachment", &transit_router.DirectConnectGatewayAttachmentArgs{
+//				Description:                 pulumi.String("acc-test-tf"),
+//				TransitRouterAttachmentName: pulumi.String("acc-test-tf"),
+//				TransitRouterId:             fooTransitRouter.ID(),
+//				DirectConnectGatewayId:      fooGateway.ID(),
+//				Tags: transit_router.DirectConnectGatewayAttachmentTagArray{
+//					&transit_router.DirectConnectGatewayAttachmentTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -58,6 +85,8 @@ type DirectConnectGatewayAttachment struct {
 	Description pulumi.StringOutput `pulumi:"description"`
 	// The id of the direct connect gateway.
 	DirectConnectGatewayId pulumi.StringOutput `pulumi:"directConnectGatewayId"`
+	// Tags.
+	Tags DirectConnectGatewayAttachmentTagArrayOutput `pulumi:"tags"`
 	// The id of the transit router direct connect gateway attachment.
 	TransitRouterAttachmentId pulumi.StringOutput `pulumi:"transitRouterAttachmentId"`
 	// The name of the transit router direct connect gateway attachment.
@@ -106,6 +135,8 @@ type directConnectGatewayAttachmentState struct {
 	Description *string `pulumi:"description"`
 	// The id of the direct connect gateway.
 	DirectConnectGatewayId *string `pulumi:"directConnectGatewayId"`
+	// Tags.
+	Tags []DirectConnectGatewayAttachmentTag `pulumi:"tags"`
 	// The id of the transit router direct connect gateway attachment.
 	TransitRouterAttachmentId *string `pulumi:"transitRouterAttachmentId"`
 	// The name of the transit router direct connect gateway attachment.
@@ -119,6 +150,8 @@ type DirectConnectGatewayAttachmentState struct {
 	Description pulumi.StringPtrInput
 	// The id of the direct connect gateway.
 	DirectConnectGatewayId pulumi.StringPtrInput
+	// Tags.
+	Tags DirectConnectGatewayAttachmentTagArrayInput
 	// The id of the transit router direct connect gateway attachment.
 	TransitRouterAttachmentId pulumi.StringPtrInput
 	// The name of the transit router direct connect gateway attachment.
@@ -136,6 +169,8 @@ type directConnectGatewayAttachmentArgs struct {
 	Description *string `pulumi:"description"`
 	// The id of the direct connect gateway.
 	DirectConnectGatewayId string `pulumi:"directConnectGatewayId"`
+	// Tags.
+	Tags []DirectConnectGatewayAttachmentTag `pulumi:"tags"`
 	// The name of the transit router direct connect gateway attachment.
 	TransitRouterAttachmentName *string `pulumi:"transitRouterAttachmentName"`
 	// The id of the transit router.
@@ -148,6 +183,8 @@ type DirectConnectGatewayAttachmentArgs struct {
 	Description pulumi.StringPtrInput
 	// The id of the direct connect gateway.
 	DirectConnectGatewayId pulumi.StringInput
+	// Tags.
+	Tags DirectConnectGatewayAttachmentTagArrayInput
 	// The name of the transit router direct connect gateway attachment.
 	TransitRouterAttachmentName pulumi.StringPtrInput
 	// The id of the transit router.
@@ -249,6 +286,11 @@ func (o DirectConnectGatewayAttachmentOutput) Description() pulumi.StringOutput 
 // The id of the direct connect gateway.
 func (o DirectConnectGatewayAttachmentOutput) DirectConnectGatewayId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DirectConnectGatewayAttachment) pulumi.StringOutput { return v.DirectConnectGatewayId }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o DirectConnectGatewayAttachmentOutput) Tags() DirectConnectGatewayAttachmentTagArrayOutput {
+	return o.ApplyT(func(v *DirectConnectGatewayAttachment) DirectConnectGatewayAttachmentTagArrayOutput { return v.Tags }).(DirectConnectGatewayAttachmentTagArrayOutput)
 }
 
 // The id of the transit router direct connect gateway attachment.

@@ -29,17 +29,6 @@ import * as utilities from "../utilities";
  *     vpcId: fooVpc.id,
  *     securityGroupName: "acc-test-security-group2",
  * });
- * const fooInstance = new volcengine.ecs.Instance("fooInstance", {
- *     imageId: "image-ybqi99s7yq8rx7mnk44b",
- *     instanceType: "ecs.g1ie.large",
- *     instanceName: "acc-test-ecs-name2",
- *     password: "93f0cb0614Aab12",
- *     instanceChargeType: "PostPaid",
- *     systemVolumeType: "ESSD_PL0",
- *     systemVolumeSize: 40,
- *     subnetId: fooSubnet.id,
- *     securityGroupIds: [fooSecurityGroup.id],
- * });
  * const fooCluster = new volcengine.vke.Cluster("fooCluster", {
  *     description: "created by terraform",
  *     deleteProtectionEnabled: false,
@@ -207,17 +196,6 @@ export interface ClustersResult {
  * const fooSecurityGroup = new volcengine.vpc.SecurityGroup("fooSecurityGroup", {
  *     vpcId: fooVpc.id,
  *     securityGroupName: "acc-test-security-group2",
- * });
- * const fooInstance = new volcengine.ecs.Instance("fooInstance", {
- *     imageId: "image-ybqi99s7yq8rx7mnk44b",
- *     instanceType: "ecs.g1ie.large",
- *     instanceName: "acc-test-ecs-name2",
- *     password: "93f0cb0614Aab12",
- *     instanceChargeType: "PostPaid",
- *     systemVolumeType: "ESSD_PL0",
- *     systemVolumeSize: 40,
- *     subnetId: fooSubnet.id,
- *     securityGroupIds: [fooSecurityGroup.id],
  * });
  * const fooCluster = new volcengine.vke.Cluster("fooCluster", {
  *     description: "created by terraform",
