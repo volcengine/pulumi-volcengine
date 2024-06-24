@@ -681,6 +681,63 @@ export namespace clb {
 
 }
 
+export namespace cloud_identity {
+    export interface GroupMember {
+        /**
+         * The description of the cloud identity group.
+         */
+        description?: pulumi.Input<string>;
+        /**
+         * The display name of the cloud identity group.
+         */
+        displayName?: pulumi.Input<string>;
+        /**
+         * The email of the cloud identity user.
+         */
+        email?: pulumi.Input<string>;
+        /**
+         * The identity type of the cloud identity user.
+         */
+        identityType?: pulumi.Input<string>;
+        /**
+         * The join time of the cloud identity user.
+         */
+        joinTime?: pulumi.Input<string>;
+        /**
+         * The phone of the cloud identity user.
+         */
+        phone?: pulumi.Input<string>;
+        /**
+         * The source of the cloud identity group.
+         */
+        source?: pulumi.Input<string>;
+        /**
+         * The id of the cloud identity user.
+         */
+        userId?: pulumi.Input<string>;
+        /**
+         * The name of the cloud identity user.
+         */
+        userName?: pulumi.Input<string>;
+    }
+
+    export interface PermissionSetPermissionPolicy {
+        /**
+         * The document of the cloud identity permission set inline policy. When the `permissionPolicyType` is `Inline`, this field must be specified.
+         */
+        inlinePolicyDocument?: pulumi.Input<string>;
+        /**
+         * The name of the cloud identity permission set system policy. When the `permissionPolicyType` is `System`, this field must be specified.
+         */
+        permissionPolicyName?: pulumi.Input<string>;
+        /**
+         * The type of the cloud identity permission set policy. Valid values: `System`, `Inline`.
+         */
+        permissionPolicyType: pulumi.Input<string>;
+    }
+
+}
+
 export namespace cloud_monitor {
     export interface EventRuleEffectiveTime {
         /**
@@ -1299,7 +1356,83 @@ export namespace escloud {
 
 }
 
+export namespace financial_relation {
+}
+
 export namespace iam {
+}
+
+export namespace kafka {
+    export interface InstanceParameter {
+        /**
+         * Parameter name.
+         */
+        parameterName: pulumi.Input<string>;
+        /**
+         * Parameter value.
+         */
+        parameterValue: pulumi.Input<string>;
+    }
+
+    export interface InstanceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface InstancesTag {
+        /**
+         * The key of tag.
+         */
+        key: string;
+        /**
+         * The value of tag.
+         */
+        value: string;
+    }
+
+    export interface InstancesTagArgs {
+        /**
+         * The key of tag.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The value of tag.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface TopicAccessPolicy {
+        /**
+         * The access policy of SASL user. Valid values: `PubSub`, `Pub`, `Sub`.
+         */
+        accessPolicy: pulumi.Input<string>;
+        /**
+         * The name of SASL user.
+         */
+        userName: pulumi.Input<string>;
+    }
+
+    export interface TopicParameters {
+        /**
+         * The retention hours of log. Unit: hour. Valid values: 0-2160. Default is 72.
+         */
+        logRetentionHours?: pulumi.Input<number>;
+        /**
+         * The max byte of message. Unit: MB. Valid values: 1-12. Default is 10.
+         */
+        messageMaxByte?: pulumi.Input<number>;
+        /**
+         * The min number of sync replica. The default value is the replica number minus 1.
+         */
+        minInsyncReplicaNumber?: pulumi.Input<number>;
+    }
+
 }
 
 export namespace mongodb {
@@ -2617,6 +2750,10 @@ export namespace tls {
          * Whether the value include chinese.
          */
         includeChinese?: pulumi.Input<boolean>;
+        /**
+         * Whether to create indexes for all fields in JSON fields with text values. This field is valid when the `valueType` is `json`.
+         */
+        indexAll?: pulumi.Input<boolean>;
         /**
          * The JSON subfield key value index.
          */

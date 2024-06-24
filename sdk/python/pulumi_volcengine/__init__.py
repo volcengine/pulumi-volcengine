@@ -24,6 +24,8 @@ if typing.TYPE_CHECKING:
     cen = __cen
     import pulumi_volcengine.clb as __clb
     clb = __clb
+    import pulumi_volcengine.cloud_identity as __cloud_identity
+    cloud_identity = __cloud_identity
     import pulumi_volcengine.cloud_monitor as __cloud_monitor
     cloud_monitor = __cloud_monitor
     import pulumi_volcengine.cloudfs as __cloudfs
@@ -42,8 +44,12 @@ if typing.TYPE_CHECKING:
     eip = __eip
     import pulumi_volcengine.escloud as __escloud
     escloud = __escloud
+    import pulumi_volcengine.financial_relation as __financial_relation
+    financial_relation = __financial_relation
     import pulumi_volcengine.iam as __iam
     iam = __iam
+    import pulumi_volcengine.kafka as __kafka
+    kafka = __kafka
     import pulumi_volcengine.mongodb as __mongodb
     mongodb = __mongodb
     import pulumi_volcengine.nas as __nas
@@ -88,6 +94,7 @@ else:
     cdn = _utilities.lazy_import('pulumi_volcengine.cdn')
     cen = _utilities.lazy_import('pulumi_volcengine.cen')
     clb = _utilities.lazy_import('pulumi_volcengine.clb')
+    cloud_identity = _utilities.lazy_import('pulumi_volcengine.cloud_identity')
     cloud_monitor = _utilities.lazy_import('pulumi_volcengine.cloud_monitor')
     cloudfs = _utilities.lazy_import('pulumi_volcengine.cloudfs')
     config = _utilities.lazy_import('pulumi_volcengine.config')
@@ -97,7 +104,9 @@ else:
     ecs = _utilities.lazy_import('pulumi_volcengine.ecs')
     eip = _utilities.lazy_import('pulumi_volcengine.eip')
     escloud = _utilities.lazy_import('pulumi_volcengine.escloud')
+    financial_relation = _utilities.lazy_import('pulumi_volcengine.financial_relation')
     iam = _utilities.lazy_import('pulumi_volcengine.iam')
+    kafka = _utilities.lazy_import('pulumi_volcengine.kafka')
     mongodb = _utilities.lazy_import('pulumi_volcengine.mongodb')
     nas = _utilities.lazy_import('pulumi_volcengine.nas')
     nat = _utilities.lazy_import('pulumi_volcengine.nat')
@@ -458,6 +467,62 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "cloud_identity/group",
+  "fqn": "pulumi_volcengine.cloud_identity",
+  "classes": {
+   "volcengine:cloud_identity/group:Group": "Group"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cloud_identity/permissionSet",
+  "fqn": "pulumi_volcengine.cloud_identity",
+  "classes": {
+   "volcengine:cloud_identity/permissionSet:PermissionSet": "PermissionSet"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cloud_identity/permissionSetAssignment",
+  "fqn": "pulumi_volcengine.cloud_identity",
+  "classes": {
+   "volcengine:cloud_identity/permissionSetAssignment:PermissionSetAssignment": "PermissionSetAssignment"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cloud_identity/permissionSetProvisioning",
+  "fqn": "pulumi_volcengine.cloud_identity",
+  "classes": {
+   "volcengine:cloud_identity/permissionSetProvisioning:PermissionSetProvisioning": "PermissionSetProvisioning"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cloud_identity/user",
+  "fqn": "pulumi_volcengine.cloud_identity",
+  "classes": {
+   "volcengine:cloud_identity/user:User": "User"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cloud_identity/userAttachment",
+  "fqn": "pulumi_volcengine.cloud_identity",
+  "classes": {
+   "volcengine:cloud_identity/userAttachment:UserAttachment": "UserAttachment"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "cloud_identity/userProvisioning",
+  "fqn": "pulumi_volcengine.cloud_identity",
+  "classes": {
+   "volcengine:cloud_identity/userProvisioning:UserProvisioning": "UserProvisioning"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "cloud_monitor/contact",
   "fqn": "pulumi_volcengine.cloud_monitor",
   "classes": {
@@ -730,6 +795,14 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "financial_relation/financialRelation",
+  "fqn": "pulumi_volcengine.financial_relation",
+  "classes": {
+   "volcengine:financial_relation/financialRelation:FinancialRelation": "FinancialRelation"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "iam/accessKey",
   "fqn": "pulumi_volcengine.iam",
   "classes": {
@@ -814,6 +887,46 @@ _utilities.register(
   "fqn": "pulumi_volcengine.iam",
   "classes": {
    "volcengine:iam/userPolicyAttachment:UserPolicyAttachment": "UserPolicyAttachment"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "kafka/group",
+  "fqn": "pulumi_volcengine.kafka",
+  "classes": {
+   "volcengine:kafka/group:Group": "Group"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "kafka/instance",
+  "fqn": "pulumi_volcengine.kafka",
+  "classes": {
+   "volcengine:kafka/instance:Instance": "Instance"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "kafka/publicAddress",
+  "fqn": "pulumi_volcengine.kafka",
+  "classes": {
+   "volcengine:kafka/publicAddress:PublicAddress": "PublicAddress"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "kafka/saslUser",
+  "fqn": "pulumi_volcengine.kafka",
+  "classes": {
+   "volcengine:kafka/saslUser:SaslUser": "SaslUser"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "kafka/topic",
+  "fqn": "pulumi_volcengine.kafka",
+  "classes": {
+   "volcengine:kafka/topic:Topic": "Topic"
   }
  },
  {

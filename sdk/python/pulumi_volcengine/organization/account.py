@@ -20,7 +20,8 @@ class AccountArgs:
                  show_name: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
                  org_unit_id: Optional[pulumi.Input[str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['AccountTagArgs']]]] = None):
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['AccountTagArgs']]]] = None,
+                 verification_relation_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Account resource.
         :param pulumi.Input[str] account_name: The name of the account.
@@ -28,6 +29,7 @@ class AccountArgs:
         :param pulumi.Input[str] description: The description of the account.
         :param pulumi.Input[str] org_unit_id: The id of the organization unit. Default is root organization.
         :param pulumi.Input[Sequence[pulumi.Input['AccountTagArgs']]] tags: Tags.
+        :param pulumi.Input[str] verification_relation_id: The verification relation id of the account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         pulumi.set(__self__, "account_name", account_name)
         pulumi.set(__self__, "show_name", show_name)
@@ -37,6 +39,8 @@ class AccountArgs:
             pulumi.set(__self__, "org_unit_id", org_unit_id)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if verification_relation_id is not None:
+            pulumi.set(__self__, "verification_relation_id", verification_relation_id)
 
     @property
     @pulumi.getter(name="accountName")
@@ -98,6 +102,18 @@ class AccountArgs:
     def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AccountTagArgs']]]]):
         pulumi.set(self, "tags", value)
 
+    @property
+    @pulumi.getter(name="verificationRelationId")
+    def verification_relation_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The verification relation id of the account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "verification_relation_id")
+
+    @verification_relation_id.setter
+    def verification_relation_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "verification_relation_id", value)
+
 
 @pulumi.input_type
 class _AccountState:
@@ -111,7 +127,8 @@ class _AccountState:
                  org_verification_id: Optional[pulumi.Input[str]] = None,
                  owner: Optional[pulumi.Input[str]] = None,
                  show_name: Optional[pulumi.Input[str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['AccountTagArgs']]]] = None):
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['AccountTagArgs']]]] = None,
+                 verification_relation_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Account resources.
         :param pulumi.Input[str] account_name: The name of the account.
@@ -124,6 +141,7 @@ class _AccountState:
         :param pulumi.Input[str] owner: The owner id of the account.
         :param pulumi.Input[str] show_name: The show name of the account.
         :param pulumi.Input[Sequence[pulumi.Input['AccountTagArgs']]] tags: Tags.
+        :param pulumi.Input[str] verification_relation_id: The verification relation id of the account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         if account_name is not None:
             pulumi.set(__self__, "account_name", account_name)
@@ -145,6 +163,8 @@ class _AccountState:
             pulumi.set(__self__, "show_name", show_name)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if verification_relation_id is not None:
+            pulumi.set(__self__, "verification_relation_id", verification_relation_id)
 
     @property
     @pulumi.getter(name="accountName")
@@ -266,6 +286,18 @@ class _AccountState:
     def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AccountTagArgs']]]]):
         pulumi.set(self, "tags", value)
 
+    @property
+    @pulumi.getter(name="verificationRelationId")
+    def verification_relation_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The verification relation id of the account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "verification_relation_id")
+
+    @verification_relation_id.setter
+    def verification_relation_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "verification_relation_id", value)
+
 
 class Account(pulumi.CustomResource):
     @overload
@@ -277,6 +309,7 @@ class Account(pulumi.CustomResource):
                  org_unit_id: Optional[pulumi.Input[str]] = None,
                  show_name: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccountTagArgs']]]]] = None,
+                 verification_relation_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Provides a resource to manage organization account
@@ -294,6 +327,7 @@ class Account(pulumi.CustomResource):
             show_name="acc-test-account",
             description="acc-test",
             org_unit_id=foo_unit.id,
+            verification_relation_id="210026****",
             tags=[volcengine.organization.AccountTagArgs(
                 key="k1",
                 value="v1",
@@ -315,6 +349,7 @@ class Account(pulumi.CustomResource):
         :param pulumi.Input[str] org_unit_id: The id of the organization unit. Default is root organization.
         :param pulumi.Input[str] show_name: The show name of the account.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccountTagArgs']]]] tags: Tags.
+        :param pulumi.Input[str] verification_relation_id: The verification relation id of the account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         ...
     @overload
@@ -338,6 +373,7 @@ class Account(pulumi.CustomResource):
             show_name="acc-test-account",
             description="acc-test",
             org_unit_id=foo_unit.id,
+            verification_relation_id="210026****",
             tags=[volcengine.organization.AccountTagArgs(
                 key="k1",
                 value="v1",
@@ -372,6 +408,7 @@ class Account(pulumi.CustomResource):
                  org_unit_id: Optional[pulumi.Input[str]] = None,
                  show_name: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccountTagArgs']]]]] = None,
+                 verification_relation_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -390,6 +427,7 @@ class Account(pulumi.CustomResource):
                 raise TypeError("Missing required property 'show_name'")
             __props__.__dict__["show_name"] = show_name
             __props__.__dict__["tags"] = tags
+            __props__.__dict__["verification_relation_id"] = verification_relation_id
             __props__.__dict__["iam_role"] = None
             __props__.__dict__["org_id"] = None
             __props__.__dict__["org_unit_name"] = None
@@ -414,7 +452,8 @@ class Account(pulumi.CustomResource):
             org_verification_id: Optional[pulumi.Input[str]] = None,
             owner: Optional[pulumi.Input[str]] = None,
             show_name: Optional[pulumi.Input[str]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccountTagArgs']]]]] = None) -> 'Account':
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccountTagArgs']]]]] = None,
+            verification_relation_id: Optional[pulumi.Input[str]] = None) -> 'Account':
         """
         Get an existing Account resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -432,6 +471,7 @@ class Account(pulumi.CustomResource):
         :param pulumi.Input[str] owner: The owner id of the account.
         :param pulumi.Input[str] show_name: The show name of the account.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AccountTagArgs']]]] tags: Tags.
+        :param pulumi.Input[str] verification_relation_id: The verification relation id of the account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -447,6 +487,7 @@ class Account(pulumi.CustomResource):
         __props__.__dict__["owner"] = owner
         __props__.__dict__["show_name"] = show_name
         __props__.__dict__["tags"] = tags
+        __props__.__dict__["verification_relation_id"] = verification_relation_id
         return Account(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -528,4 +569,12 @@ class Account(pulumi.CustomResource):
         Tags.
         """
         return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="verificationRelationId")
+    def verification_relation_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The verification relation id of the account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        """
+        return pulumi.get(self, "verification_relation_id")
 

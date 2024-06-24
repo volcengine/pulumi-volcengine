@@ -33,6 +33,7 @@ namespace Pulumi.Volcengine.Organization
     ///         ShowName = "acc-test-account",
     ///         Description = "acc-test",
     ///         OrgUnitId = fooUnit.Id,
+    ///         VerificationRelationId = "210026****",
     ///         Tags = new[]
     ///         {
     ///             new Volcengine.Organization.Inputs.AccountTagArgs
@@ -117,6 +118,12 @@ namespace Pulumi.Volcengine.Organization
         [Output("tags")]
         public Output<ImmutableArray<Outputs.AccountTag>> Tags { get; private set; } = null!;
 
+        /// <summary>
+        /// The verification relation id of the account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        [Output("verificationRelationId")]
+        public Output<string?> VerificationRelationId { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a Account resource with the given unique name, arguments, and options.
@@ -200,6 +207,12 @@ namespace Pulumi.Volcengine.Organization
             set => _tags = value;
         }
 
+        /// <summary>
+        /// The verification relation id of the account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        [Input("verificationRelationId")]
+        public Input<string>? VerificationRelationId { get; set; }
+
         public AccountArgs()
         {
         }
@@ -273,6 +286,12 @@ namespace Pulumi.Volcengine.Organization
             get => _tags ?? (_tags = new InputList<Inputs.AccountTagGetArgs>());
             set => _tags = value;
         }
+
+        /// <summary>
+        /// The verification relation id of the account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        [Input("verificationRelationId")]
+        public Input<string>? VerificationRelationId { get; set; }
 
         public AccountState()
         {

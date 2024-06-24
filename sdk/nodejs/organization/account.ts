@@ -23,6 +23,7 @@ import * as utilities from "../utilities";
  *     showName: "acc-test-account",
  *     description: "acc-test",
  *     orgUnitId: fooUnit.id,
+ *     verificationRelationId: "210026****",
  *     tags: [{
  *         key: "k1",
  *         value: "v1",
@@ -106,6 +107,10 @@ export class Account extends pulumi.CustomResource {
      * Tags.
      */
     public readonly tags!: pulumi.Output<outputs.organization.AccountTag[] | undefined>;
+    /**
+     * The verification relation id of the account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    public readonly verificationRelationId!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Account resource with the given unique name, arguments, and options.
@@ -130,6 +135,7 @@ export class Account extends pulumi.CustomResource {
             resourceInputs["owner"] = state ? state.owner : undefined;
             resourceInputs["showName"] = state ? state.showName : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
+            resourceInputs["verificationRelationId"] = state ? state.verificationRelationId : undefined;
         } else {
             const args = argsOrState as AccountArgs | undefined;
             if ((!args || args.accountName === undefined) && !opts.urn) {
@@ -143,6 +149,7 @@ export class Account extends pulumi.CustomResource {
             resourceInputs["orgUnitId"] = args ? args.orgUnitId : undefined;
             resourceInputs["showName"] = args ? args.showName : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["verificationRelationId"] = args ? args.verificationRelationId : undefined;
             resourceInputs["iamRole"] = undefined /*out*/;
             resourceInputs["orgId"] = undefined /*out*/;
             resourceInputs["orgUnitName"] = undefined /*out*/;
@@ -198,6 +205,10 @@ export interface AccountState {
      * Tags.
      */
     tags?: pulumi.Input<pulumi.Input<inputs.organization.AccountTag>[]>;
+    /**
+     * The verification relation id of the account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    verificationRelationId?: pulumi.Input<string>;
 }
 
 /**
@@ -224,4 +235,8 @@ export interface AccountArgs {
      * Tags.
      */
     tags?: pulumi.Input<pulumi.Input<inputs.organization.AccountTag>[]>;
+    /**
+     * The verification relation id of the account. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+     */
+    verificationRelationId?: pulumi.Input<string>;
 }
