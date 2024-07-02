@@ -129,7 +129,7 @@ export class BandwidthPackage extends pulumi.CustomResource {
     /**
      * The ProjectName of the cen bandwidth package.
      */
-    public readonly projectName!: pulumi.Output<string | undefined>;
+    public readonly projectName!: pulumi.Output<string>;
     /**
      * The remain bandwidth of the cen bandwidth package.
      */

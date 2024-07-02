@@ -18,6 +18,10 @@ namespace Pulumi.Volcengine.Transit_router.Outputs
         /// </summary>
         public readonly string AccountId;
         /// <summary>
+        /// The asn of the transit router.
+        /// </summary>
+        public readonly int Asn;
+        /// <summary>
         /// The business status of the transit router.
         /// </summary>
         public readonly string BusinessStatus;
@@ -70,6 +74,8 @@ namespace Pulumi.Volcengine.Transit_router.Outputs
         private TransitRoutersTransitRouterResult(
             string accountId,
 
+            int asn,
+
             string businessStatus,
 
             string creationTime,
@@ -95,6 +101,7 @@ namespace Pulumi.Volcengine.Transit_router.Outputs
             string updateTime)
         {
             AccountId = accountId;
+            Asn = asn;
             BusinessStatus = businessStatus;
             CreationTime = creationTime;
             Description = description;

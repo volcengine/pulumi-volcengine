@@ -185,7 +185,7 @@ export class ScalingConfiguration extends pulumi.CustomResource {
     /**
      * The project to which the instance created by the scaling configuration belongs.
      */
-    public readonly projectName!: pulumi.Output<string | undefined>;
+    public readonly projectName!: pulumi.Output<string>;
     /**
      * The id of the scaling configuration.
      */

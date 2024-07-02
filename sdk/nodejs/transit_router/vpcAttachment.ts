@@ -18,6 +18,7 @@ import * as utilities from "../utilities";
  * const fooTransitRouter = new volcengine.transit_router.TransitRouter("fooTransitRouter", {
  *     transitRouterName: "test-tf-acc",
  *     description: "test-tf-acc",
+ *     asn: 4294967293,
  * });
  * const fooZones = volcengine.ecs.Zones({});
  * const fooVpc = new volcengine.vpc.Vpc("fooVpc", {
@@ -49,8 +50,9 @@ import * as utilities from "../utilities";
  *             zoneId: "cn-beijing-b",
  *         },
  *     ],
- *     transitRouterAttachmentName: "tf-test-acc-name1",
+ *     transitRouterAttachmentName: "tf-test-acc-vpc-attach",
  *     description: "tf-test-acc-description",
+ *     autoPublishRouteEnabled: true,
  *     tags: [{
  *         key: "k1",
  *         value: "v1",
@@ -98,6 +100,10 @@ export class VpcAttachment extends pulumi.CustomResource {
      * The attach points of transit router vpc attachment.
      */
     public readonly attachPoints!: pulumi.Output<outputs.transit_router.VpcAttachmentAttachPoint[]>;
+    /**
+     * Whether to auto publish route of the transit router to vpc instance. Default is false.
+     */
+    public readonly autoPublishRouteEnabled!: pulumi.Output<boolean | undefined>;
     /**
      * The create time.
      */
@@ -149,6 +155,7 @@ export class VpcAttachment extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as VpcAttachmentState | undefined;
             resourceInputs["attachPoints"] = state ? state.attachPoints : undefined;
+            resourceInputs["autoPublishRouteEnabled"] = state ? state.autoPublishRouteEnabled : undefined;
             resourceInputs["creationTime"] = state ? state.creationTime : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
@@ -170,6 +177,7 @@ export class VpcAttachment extends pulumi.CustomResource {
                 throw new Error("Missing required property 'vpcId'");
             }
             resourceInputs["attachPoints"] = args ? args.attachPoints : undefined;
+            resourceInputs["autoPublishRouteEnabled"] = args ? args.autoPublishRouteEnabled : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["transitRouterAttachmentName"] = args ? args.transitRouterAttachmentName : undefined;
@@ -193,6 +201,10 @@ export interface VpcAttachmentState {
      * The attach points of transit router vpc attachment.
      */
     attachPoints?: pulumi.Input<pulumi.Input<inputs.transit_router.VpcAttachmentAttachPoint>[]>;
+    /**
+     * Whether to auto publish route of the transit router to vpc instance. Default is false.
+     */
+    autoPublishRouteEnabled?: pulumi.Input<boolean>;
     /**
      * The create time.
      */
@@ -239,6 +251,10 @@ export interface VpcAttachmentArgs {
      * The attach points of transit router vpc attachment.
      */
     attachPoints: pulumi.Input<pulumi.Input<inputs.transit_router.VpcAttachmentAttachPoint>[]>;
+    /**
+     * Whether to auto publish route of the transit router to vpc instance. Default is false.
+     */
+    autoPublishRouteEnabled?: pulumi.Input<boolean>;
     /**
      * The description of the transit router vpc attachment.
      */

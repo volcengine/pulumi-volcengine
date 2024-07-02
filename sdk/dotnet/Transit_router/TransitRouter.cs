@@ -23,6 +23,7 @@ namespace Pulumi.Volcengine.Transit_router
     /// {
     ///     var foo = new Volcengine.Transit_router.TransitRouter("foo", new()
     ///     {
+    ///         Asn = 4294967294,
     ///         Description = "acc-test",
     ///         ProjectName = "default",
     ///         Tags = new[]
@@ -55,6 +56,12 @@ namespace Pulumi.Volcengine.Transit_router
         /// </summary>
         [Output("accountId")]
         public Output<string> AccountId { get; private set; } = null!;
+
+        /// <summary>
+        /// The asn of the transit router. Valid value range in 64512-65534 and 4200000000-4294967294. Default is 64512.
+        /// </summary>
+        [Output("asn")]
+        public Output<int> Asn { get; private set; } = null!;
 
         /// <summary>
         /// The business status of the transit router.
@@ -170,6 +177,12 @@ namespace Pulumi.Volcengine.Transit_router
     public sealed class TransitRouterArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The asn of the transit router. Valid value range in 64512-65534 and 4200000000-4294967294. Default is 64512.
+        /// </summary>
+        [Input("asn")]
+        public Input<int>? Asn { get; set; }
+
+        /// <summary>
         /// The description of the transit router.
         /// </summary>
         [Input("description")]
@@ -212,6 +225,12 @@ namespace Pulumi.Volcengine.Transit_router
         /// </summary>
         [Input("accountId")]
         public Input<string>? AccountId { get; set; }
+
+        /// <summary>
+        /// The asn of the transit router. Valid value range in 64512-65534 and 4200000000-4294967294. Default is 64512.
+        /// </summary>
+        [Input("asn")]
+        public Input<int>? Asn { get; set; }
 
         /// <summary>
         /// The business status of the transit router.

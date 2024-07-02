@@ -88,7 +88,7 @@ export class Cen extends pulumi.CustomResource {
     /**
      * The ProjectName of the cen instance.
      */
-    public readonly projectName!: pulumi.Output<string | undefined>;
+    public readonly projectName!: pulumi.Output<string>;
     /**
      * The status of the cen.
      */

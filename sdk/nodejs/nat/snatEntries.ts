@@ -56,7 +56,7 @@ import * as utilities from "../utilities";
  *     eipId: fooAddress.id,
  *     sourceCidr: "172.16.0.0/24",
  * }, {
- *     dependsOn: ["volcengine_eip_associate.foo"],
+ *     dependsOn: [fooAssociate],
  * });
  * const foo2 = new volcengine.nat.SnatEntry("foo2", {
  *     snatEntryName: "acc-test-snat-entry",
@@ -64,7 +64,7 @@ import * as utilities from "../utilities";
  *     eipId: fooAddress.id,
  *     sourceCidr: "172.16.0.0/16",
  * }, {
- *     dependsOn: ["volcengine_eip_associate.foo"],
+ *     dependsOn: [fooAssociate],
  * });
  * const fooSnatEntries = volcengine.nat.SnatEntriesOutput({
  *     ids: [
@@ -212,7 +212,7 @@ export interface SnatEntriesResult {
  *     eipId: fooAddress.id,
  *     sourceCidr: "172.16.0.0/24",
  * }, {
- *     dependsOn: ["volcengine_eip_associate.foo"],
+ *     dependsOn: [fooAssociate],
  * });
  * const foo2 = new volcengine.nat.SnatEntry("foo2", {
  *     snatEntryName: "acc-test-snat-entry",
@@ -220,7 +220,7 @@ export interface SnatEntriesResult {
  *     eipId: fooAddress.id,
  *     sourceCidr: "172.16.0.0/16",
  * }, {
- *     dependsOn: ["volcengine_eip_associate.foo"],
+ *     dependsOn: [fooAssociate],
  * });
  * const fooSnatEntries = volcengine.nat.SnatEntriesOutput({
  *     ids: [

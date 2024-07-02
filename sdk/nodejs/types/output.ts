@@ -15443,6 +15443,10 @@ export namespace transit_router {
          */
         accountId: string;
         /**
+         * The asn of the transit router.
+         */
+        asn: number;
+        /**
          * The business status of the transit router.
          */
         businessStatus: string;
@@ -15565,6 +15569,10 @@ export namespace transit_router {
          * The collection of attach points.
          */
         attachPoints: outputs.transit_router.VpcAttachmentsAttachmentAttachPoint[];
+        /**
+         * Whether to auto publish route of the transit router to vpc instance.
+         */
+        autoPublishRouteEnabled: boolean;
         /**
          * The create time.
          */
