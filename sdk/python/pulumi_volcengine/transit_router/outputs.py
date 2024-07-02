@@ -1592,6 +1592,7 @@ class TransitRoutersTagResult(dict):
 class TransitRoutersTransitRouterResult(dict):
     def __init__(__self__, *,
                  account_id: str,
+                 asn: int,
                  business_status: str,
                  creation_time: str,
                  description: str,
@@ -1606,6 +1607,7 @@ class TransitRoutersTransitRouterResult(dict):
                  update_time: str):
         """
         :param str account_id: The ID of account.
+        :param int asn: The asn of the transit router.
         :param str business_status: The business status of the transit router.
         :param str creation_time: The create time.
         :param str description: The description info.
@@ -1620,6 +1622,7 @@ class TransitRoutersTransitRouterResult(dict):
         :param str update_time: The update time.
         """
         pulumi.set(__self__, "account_id", account_id)
+        pulumi.set(__self__, "asn", asn)
         pulumi.set(__self__, "business_status", business_status)
         pulumi.set(__self__, "creation_time", creation_time)
         pulumi.set(__self__, "description", description)
@@ -1640,6 +1643,14 @@ class TransitRoutersTransitRouterResult(dict):
         The ID of account.
         """
         return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter
+    def asn(self) -> int:
+        """
+        The asn of the transit router.
+        """
+        return pulumi.get(self, "asn")
 
     @property
     @pulumi.getter(name="businessStatus")
@@ -1943,6 +1954,7 @@ class VpcAttachmentTag(dict):
 class VpcAttachmentsAttachmentResult(dict):
     def __init__(__self__, *,
                  attach_points: Sequence['outputs.VpcAttachmentsAttachmentAttachPointResult'],
+                 auto_publish_route_enabled: bool,
                  creation_time: str,
                  description: str,
                  status: str,
@@ -1954,6 +1966,7 @@ class VpcAttachmentsAttachmentResult(dict):
                  vpc_id: str):
         """
         :param Sequence['VpcAttachmentsAttachmentAttachPointArgs'] attach_points: The collection of attach points.
+        :param bool auto_publish_route_enabled: Whether to auto publish route of the transit router to vpc instance.
         :param str creation_time: The create time.
         :param str description: The description info.
         :param str status: The status of the transit router.
@@ -1965,6 +1978,7 @@ class VpcAttachmentsAttachmentResult(dict):
         :param str vpc_id: The id of vpc.
         """
         pulumi.set(__self__, "attach_points", attach_points)
+        pulumi.set(__self__, "auto_publish_route_enabled", auto_publish_route_enabled)
         pulumi.set(__self__, "creation_time", creation_time)
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "status", status)
@@ -1982,6 +1996,14 @@ class VpcAttachmentsAttachmentResult(dict):
         The collection of attach points.
         """
         return pulumi.get(self, "attach_points")
+
+    @property
+    @pulumi.getter(name="autoPublishRouteEnabled")
+    def auto_publish_route_enabled(self) -> bool:
+        """
+        Whether to auto publish route of the transit router to vpc instance.
+        """
+        return pulumi.get(self, "auto_publish_route_enabled")
 
     @property
     @pulumi.getter(name="creationTime")

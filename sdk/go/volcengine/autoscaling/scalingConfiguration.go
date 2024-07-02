@@ -176,7 +176,7 @@ type ScalingConfiguration struct {
 	// The ECS password which the scaling configuration set.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// The project to which the instance created by the scaling configuration belongs.
-	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The id of the scaling configuration.
 	ScalingConfigurationId pulumi.StringOutput `pulumi:"scalingConfigurationId"`
 	// The name of the scaling configuration.
@@ -625,8 +625,8 @@ func (o ScalingConfigurationOutput) Password() pulumi.StringPtrOutput {
 }
 
 // The project to which the instance created by the scaling configuration belongs.
-func (o ScalingConfigurationOutput) ProjectName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ScalingConfiguration) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
+func (o ScalingConfigurationOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *ScalingConfiguration) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 // The id of the scaling configuration.

@@ -71,7 +71,7 @@ type Cen struct {
 	// The description of the cen.
 	Description pulumi.StringOutput `pulumi:"description"`
 	// The ProjectName of the cen instance.
-	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The status of the cen.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Tags.
@@ -300,8 +300,8 @@ func (o CenOutput) Description() pulumi.StringOutput {
 }
 
 // The ProjectName of the cen instance.
-func (o CenOutput) ProjectName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Cen) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
+func (o CenOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *Cen) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 // The status of the cen.

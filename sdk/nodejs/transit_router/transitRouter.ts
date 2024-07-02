@@ -15,6 +15,7 @@ import * as utilities from "../utilities";
  * import * as volcengine from "@volcengine/pulumi";
  *
  * const foo = new volcengine.transit_router.TransitRouter("foo", {
+ *     asn: 4294967294,
  *     description: "acc-test",
  *     projectName: "default",
  *     tags: [{
@@ -65,6 +66,10 @@ export class TransitRouter extends pulumi.CustomResource {
      * The ID of account.
      */
     public /*out*/ readonly accountId!: pulumi.Output<string>;
+    /**
+     * The asn of the transit router. Valid value range in 64512-65534 and 4200000000-4294967294. Default is 64512.
+     */
+    public readonly asn!: pulumi.Output<number>;
     /**
      * The business status of the transit router.
      */
@@ -124,6 +129,7 @@ export class TransitRouter extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as TransitRouterState | undefined;
             resourceInputs["accountId"] = state ? state.accountId : undefined;
+            resourceInputs["asn"] = state ? state.asn : undefined;
             resourceInputs["businessStatus"] = state ? state.businessStatus : undefined;
             resourceInputs["creationTime"] = state ? state.creationTime : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
@@ -137,6 +143,7 @@ export class TransitRouter extends pulumi.CustomResource {
             resourceInputs["updateTime"] = state ? state.updateTime : undefined;
         } else {
             const args = argsOrState as TransitRouterArgs | undefined;
+            resourceInputs["asn"] = args ? args.asn : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
@@ -163,6 +170,10 @@ export interface TransitRouterState {
      * The ID of account.
      */
     accountId?: pulumi.Input<string>;
+    /**
+     * The asn of the transit router. Valid value range in 64512-65534 and 4200000000-4294967294. Default is 64512.
+     */
+    asn?: pulumi.Input<number>;
     /**
      * The business status of the transit router.
      */
@@ -213,6 +224,10 @@ export interface TransitRouterState {
  * The set of arguments for constructing a TransitRouter resource.
  */
 export interface TransitRouterArgs {
+    /**
+     * The asn of the transit router. Valid value range in 64512-65534 and 4200000000-4294967294. Default is 64512.
+     */
+    asn?: pulumi.Input<number>;
     /**
      * The description of the transit router.
      */

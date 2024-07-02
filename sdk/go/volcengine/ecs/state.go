@@ -106,6 +106,7 @@ type State struct {
 	pulumi.CustomResourceState
 
 	// Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
+	// If the target status of the action is consistent with the current status of the instance, the action will not actually be executed.
 	Action pulumi.StringOutput `pulumi:"action"`
 	// Id of Instance.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
@@ -152,6 +153,7 @@ func GetState(ctx *pulumi.Context,
 // Input properties used for looking up and filtering State resources.
 type stateState struct {
 	// Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
+	// If the target status of the action is consistent with the current status of the instance, the action will not actually be executed.
 	Action *string `pulumi:"action"`
 	// Id of Instance.
 	InstanceId *string `pulumi:"instanceId"`
@@ -163,6 +165,7 @@ type stateState struct {
 
 type StateState struct {
 	// Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
+	// If the target status of the action is consistent with the current status of the instance, the action will not actually be executed.
 	Action pulumi.StringPtrInput
 	// Id of Instance.
 	InstanceId pulumi.StringPtrInput
@@ -178,6 +181,7 @@ func (StateState) ElementType() reflect.Type {
 
 type stateArgs struct {
 	// Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
+	// If the target status of the action is consistent with the current status of the instance, the action will not actually be executed.
 	Action string `pulumi:"action"`
 	// Id of Instance.
 	InstanceId string `pulumi:"instanceId"`
@@ -188,6 +192,7 @@ type stateArgs struct {
 // The set of arguments for constructing a State resource.
 type StateArgs struct {
 	// Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
+	// If the target status of the action is consistent with the current status of the instance, the action will not actually be executed.
 	Action pulumi.StringInput
 	// Id of Instance.
 	InstanceId pulumi.StringInput
@@ -283,6 +288,7 @@ func (o StateOutput) ToStateOutputWithContext(ctx context.Context) StateOutput {
 }
 
 // Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
+// If the target status of the action is consistent with the current status of the instance, the action will not actually be executed.
 func (o StateOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v *State) pulumi.StringOutput { return v.Action }).(pulumi.StringOutput)
 }

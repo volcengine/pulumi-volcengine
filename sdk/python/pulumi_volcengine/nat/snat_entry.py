@@ -255,7 +255,7 @@ class SnatEntry(pulumi.CustomResource):
             nat_gateway_id=foo_gateway.id,
             eip_id=foo_address.id,
             source_cidr="172.16.0.0/24",
-            opts=pulumi.ResourceOptions(depends_on=["volcengine_eip_associate.foo"]))
+            opts=pulumi.ResourceOptions(depends_on=[foo_associate]))
         ```
 
         ## Import
@@ -323,7 +323,7 @@ class SnatEntry(pulumi.CustomResource):
             nat_gateway_id=foo_gateway.id,
             eip_id=foo_address.id,
             source_cidr="172.16.0.0/24",
-            opts=pulumi.ResourceOptions(depends_on=["volcengine_eip_associate.foo"]))
+            opts=pulumi.ResourceOptions(depends_on=[foo_associate]))
         ```
 
         ## Import

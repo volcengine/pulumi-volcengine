@@ -88,7 +88,8 @@ namespace Pulumi.Volcengine.Ecs
     public partial class State : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
+        /// Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`. 
+        /// If the target status of the action is consistent with the current status of the instance, the action will not actually be executed.
         /// </summary>
         [Output("action")]
         public Output<string> Action { get; private set; } = null!;
@@ -159,7 +160,8 @@ namespace Pulumi.Volcengine.Ecs
     public sealed class StateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
+        /// Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`. 
+        /// If the target status of the action is consistent with the current status of the instance, the action will not actually be executed.
         /// </summary>
         [Input("action", required: true)]
         public Input<string> Action { get; set; } = null!;
@@ -185,7 +187,8 @@ namespace Pulumi.Volcengine.Ecs
     public sealed class StateState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
+        /// Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`. 
+        /// If the target status of the action is consistent with the current status of the instance, the action will not actually be executed.
         /// </summary>
         [Input("action")]
         public Input<string>? Action { get; set; }

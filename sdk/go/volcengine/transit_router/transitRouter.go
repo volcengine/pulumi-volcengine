@@ -27,6 +27,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := transit_router.NewTransitRouter(ctx, "foo", &transit_router.TransitRouterArgs{
+//				Asn:         pulumi.Int(4294967294),
 //				Description: pulumi.String("acc-test"),
 //				ProjectName: pulumi.String("default"),
 //				Tags: transit_router.TransitRouterTagArray{
@@ -60,6 +61,8 @@ type TransitRouter struct {
 
 	// The ID of account.
 	AccountId pulumi.StringOutput `pulumi:"accountId"`
+	// The asn of the transit router. Valid value range in 64512-65534 and 4200000000-4294967294. Default is 64512.
+	Asn pulumi.IntOutput `pulumi:"asn"`
 	// The business status of the transit router.
 	BusinessStatus pulumi.StringOutput `pulumi:"businessStatus"`
 	// The create time.
@@ -116,6 +119,8 @@ func GetTransitRouter(ctx *pulumi.Context,
 type transitRouterState struct {
 	// The ID of account.
 	AccountId *string `pulumi:"accountId"`
+	// The asn of the transit router. Valid value range in 64512-65534 and 4200000000-4294967294. Default is 64512.
+	Asn *int `pulumi:"asn"`
 	// The business status of the transit router.
 	BusinessStatus *string `pulumi:"businessStatus"`
 	// The create time.
@@ -143,6 +148,8 @@ type transitRouterState struct {
 type TransitRouterState struct {
 	// The ID of account.
 	AccountId pulumi.StringPtrInput
+	// The asn of the transit router. Valid value range in 64512-65534 and 4200000000-4294967294. Default is 64512.
+	Asn pulumi.IntPtrInput
 	// The business status of the transit router.
 	BusinessStatus pulumi.StringPtrInput
 	// The create time.
@@ -172,6 +179,8 @@ func (TransitRouterState) ElementType() reflect.Type {
 }
 
 type transitRouterArgs struct {
+	// The asn of the transit router. Valid value range in 64512-65534 and 4200000000-4294967294. Default is 64512.
+	Asn *int `pulumi:"asn"`
 	// The description of the transit router.
 	Description *string `pulumi:"description"`
 	// The ProjectName of the transit router.
@@ -184,6 +193,8 @@ type transitRouterArgs struct {
 
 // The set of arguments for constructing a TransitRouter resource.
 type TransitRouterArgs struct {
+	// The asn of the transit router. Valid value range in 64512-65534 and 4200000000-4294967294. Default is 64512.
+	Asn pulumi.IntPtrInput
 	// The description of the transit router.
 	Description pulumi.StringPtrInput
 	// The ProjectName of the transit router.
@@ -284,6 +295,11 @@ func (o TransitRouterOutput) ToTransitRouterOutputWithContext(ctx context.Contex
 // The ID of account.
 func (o TransitRouterOutput) AccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v *TransitRouter) pulumi.StringOutput { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// The asn of the transit router. Valid value range in 64512-65534 and 4200000000-4294967294. Default is 64512.
+func (o TransitRouterOutput) Asn() pulumi.IntOutput {
+	return o.ApplyT(func(v *TransitRouter) pulumi.IntOutput { return v.Asn }).(pulumi.IntOutput)
 }
 
 // The business status of the transit router.

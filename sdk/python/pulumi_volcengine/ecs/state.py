@@ -19,7 +19,8 @@ class StateArgs:
                  stopped_mode: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a State resource.
-        :param pulumi.Input[str] action: Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
+        :param pulumi.Input[str] action: Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`. 
+               If the target status of the action is consistent with the current status of the instance, the action will not actually be executed.
         :param pulumi.Input[str] instance_id: Id of Instance.
         :param pulumi.Input[str] stopped_mode: Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`.
         """
@@ -32,7 +33,8 @@ class StateArgs:
     @pulumi.getter
     def action(self) -> pulumi.Input[str]:
         """
-        Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
+        Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`. 
+        If the target status of the action is consistent with the current status of the instance, the action will not actually be executed.
         """
         return pulumi.get(self, "action")
 
@@ -74,7 +76,8 @@ class _StateState:
                  stopped_mode: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering State resources.
-        :param pulumi.Input[str] action: Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
+        :param pulumi.Input[str] action: Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`. 
+               If the target status of the action is consistent with the current status of the instance, the action will not actually be executed.
         :param pulumi.Input[str] instance_id: Id of Instance.
         :param pulumi.Input[str] status: Status of Instance.
         :param pulumi.Input[str] stopped_mode: Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`.
@@ -92,7 +95,8 @@ class _StateState:
     @pulumi.getter
     def action(self) -> Optional[pulumi.Input[str]]:
         """
-        Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
+        Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`. 
+        If the target status of the action is consistent with the current status of the instance, the action will not actually be executed.
         """
         return pulumi.get(self, "action")
 
@@ -195,7 +199,8 @@ class State(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] action: Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
+        :param pulumi.Input[str] action: Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`. 
+               If the target status of the action is consistent with the current status of the instance, the action will not actually be executed.
         :param pulumi.Input[str] instance_id: Id of Instance.
         :param pulumi.Input[str] stopped_mode: Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`.
         """
@@ -308,7 +313,8 @@ class State(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] action: Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
+        :param pulumi.Input[str] action: Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`. 
+               If the target status of the action is consistent with the current status of the instance, the action will not actually be executed.
         :param pulumi.Input[str] instance_id: Id of Instance.
         :param pulumi.Input[str] status: Status of Instance.
         :param pulumi.Input[str] stopped_mode: Stop Mode of Instance, the value can be `KeepCharging` or `StopCharging`.
@@ -327,7 +333,8 @@ class State(pulumi.CustomResource):
     @pulumi.getter
     def action(self) -> pulumi.Output[str]:
         """
-        Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
+        Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`. 
+        If the target status of the action is consistent with the current status of the instance, the action will not actually be executed.
         """
         return pulumi.get(self, "action")
 
