@@ -198,13 +198,13 @@ def snat_entries(eip_id: Optional[str] = None,
         nat_gateway_id=foo_gateway.id,
         eip_id=foo_address.id,
         source_cidr="172.16.0.0/24",
-        opts=pulumi.ResourceOptions(depends_on=["volcengine_eip_associate.foo"]))
+        opts=pulumi.ResourceOptions(depends_on=[foo_associate]))
     foo2 = volcengine.nat.SnatEntry("foo2",
         snat_entry_name="acc-test-snat-entry",
         nat_gateway_id=foo_gateway.id,
         eip_id=foo_address.id,
         source_cidr="172.16.0.0/16",
-        opts=pulumi.ResourceOptions(depends_on=["volcengine_eip_associate.foo"]))
+        opts=pulumi.ResourceOptions(depends_on=[foo_associate]))
     foo_snat_entries = volcengine.nat.snat_entries_output(ids=[
         foo1.id,
         foo2.id,
@@ -296,13 +296,13 @@ def snat_entries_output(eip_id: Optional[pulumi.Input[Optional[str]]] = None,
         nat_gateway_id=foo_gateway.id,
         eip_id=foo_address.id,
         source_cidr="172.16.0.0/24",
-        opts=pulumi.ResourceOptions(depends_on=["volcengine_eip_associate.foo"]))
+        opts=pulumi.ResourceOptions(depends_on=[foo_associate]))
     foo2 = volcengine.nat.SnatEntry("foo2",
         snat_entry_name="acc-test-snat-entry",
         nat_gateway_id=foo_gateway.id,
         eip_id=foo_address.id,
         source_cidr="172.16.0.0/16",
-        opts=pulumi.ResourceOptions(depends_on=["volcengine_eip_associate.foo"]))
+        opts=pulumi.ResourceOptions(depends_on=[foo_associate]))
     foo_snat_entries = volcengine.nat.snat_entries_output(ids=[
         foo1.id,
         foo2.id,

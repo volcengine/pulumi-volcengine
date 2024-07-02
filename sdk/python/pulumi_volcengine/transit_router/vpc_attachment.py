@@ -19,6 +19,7 @@ class VpcAttachmentArgs:
                  attach_points: pulumi.Input[Sequence[pulumi.Input['VpcAttachmentAttachPointArgs']]],
                  transit_router_id: pulumi.Input[str],
                  vpc_id: pulumi.Input[str],
+                 auto_publish_route_enabled: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['VpcAttachmentTagArgs']]]] = None,
                  transit_router_attachment_name: Optional[pulumi.Input[str]] = None):
@@ -27,6 +28,7 @@ class VpcAttachmentArgs:
         :param pulumi.Input[Sequence[pulumi.Input['VpcAttachmentAttachPointArgs']]] attach_points: The attach points of transit router vpc attachment.
         :param pulumi.Input[str] transit_router_id: The id of the transit router.
         :param pulumi.Input[str] vpc_id: The ID of vpc.
+        :param pulumi.Input[bool] auto_publish_route_enabled: Whether to auto publish route of the transit router to vpc instance. Default is false.
         :param pulumi.Input[str] description: The description of the transit router vpc attachment.
         :param pulumi.Input[Sequence[pulumi.Input['VpcAttachmentTagArgs']]] tags: Tags.
         :param pulumi.Input[str] transit_router_attachment_name: The name of the transit router vpc attachment.
@@ -34,6 +36,8 @@ class VpcAttachmentArgs:
         pulumi.set(__self__, "attach_points", attach_points)
         pulumi.set(__self__, "transit_router_id", transit_router_id)
         pulumi.set(__self__, "vpc_id", vpc_id)
+        if auto_publish_route_enabled is not None:
+            pulumi.set(__self__, "auto_publish_route_enabled", auto_publish_route_enabled)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if tags is not None:
@@ -78,6 +82,18 @@ class VpcAttachmentArgs:
         pulumi.set(self, "vpc_id", value)
 
     @property
+    @pulumi.getter(name="autoPublishRouteEnabled")
+    def auto_publish_route_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to auto publish route of the transit router to vpc instance. Default is false.
+        """
+        return pulumi.get(self, "auto_publish_route_enabled")
+
+    @auto_publish_route_enabled.setter
+    def auto_publish_route_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "auto_publish_route_enabled", value)
+
+    @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
@@ -118,6 +134,7 @@ class VpcAttachmentArgs:
 class _VpcAttachmentState:
     def __init__(__self__, *,
                  attach_points: Optional[pulumi.Input[Sequence[pulumi.Input['VpcAttachmentAttachPointArgs']]]] = None,
+                 auto_publish_route_enabled: Optional[pulumi.Input[bool]] = None,
                  creation_time: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -130,6 +147,7 @@ class _VpcAttachmentState:
         """
         Input properties used for looking up and filtering VpcAttachment resources.
         :param pulumi.Input[Sequence[pulumi.Input['VpcAttachmentAttachPointArgs']]] attach_points: The attach points of transit router vpc attachment.
+        :param pulumi.Input[bool] auto_publish_route_enabled: Whether to auto publish route of the transit router to vpc instance. Default is false.
         :param pulumi.Input[str] creation_time: The create time.
         :param pulumi.Input[str] description: The description of the transit router vpc attachment.
         :param pulumi.Input[str] status: The status of the transit router.
@@ -142,6 +160,8 @@ class _VpcAttachmentState:
         """
         if attach_points is not None:
             pulumi.set(__self__, "attach_points", attach_points)
+        if auto_publish_route_enabled is not None:
+            pulumi.set(__self__, "auto_publish_route_enabled", auto_publish_route_enabled)
         if creation_time is not None:
             pulumi.set(__self__, "creation_time", creation_time)
         if description is not None:
@@ -172,6 +192,18 @@ class _VpcAttachmentState:
     @attach_points.setter
     def attach_points(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VpcAttachmentAttachPointArgs']]]]):
         pulumi.set(self, "attach_points", value)
+
+    @property
+    @pulumi.getter(name="autoPublishRouteEnabled")
+    def auto_publish_route_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to auto publish route of the transit router to vpc instance. Default is false.
+        """
+        return pulumi.get(self, "auto_publish_route_enabled")
+
+    @auto_publish_route_enabled.setter
+    def auto_publish_route_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "auto_publish_route_enabled", value)
 
     @property
     @pulumi.getter(name="creationTime")
@@ -288,6 +320,7 @@ class VpcAttachment(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  attach_points: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcAttachmentAttachPointArgs']]]]] = None,
+                 auto_publish_route_enabled: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcAttachmentTagArgs']]]]] = None,
                  transit_router_attachment_name: Optional[pulumi.Input[str]] = None,
@@ -304,7 +337,8 @@ class VpcAttachment(pulumi.CustomResource):
 
         foo_transit_router = volcengine.transit_router.TransitRouter("fooTransitRouter",
             transit_router_name="test-tf-acc",
-            description="test-tf-acc")
+            description="test-tf-acc",
+            asn=4294967293)
         foo_zones = volcengine.ecs.zones()
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
             vpc_name="acc-test-vpc-acc",
@@ -332,8 +366,9 @@ class VpcAttachment(pulumi.CustomResource):
                     zone_id="cn-beijing-b",
                 ),
             ],
-            transit_router_attachment_name="tf-test-acc-name1",
+            transit_router_attachment_name="tf-test-acc-vpc-attach",
             description="tf-test-acc-description",
+            auto_publish_route_enabled=True,
             tags=[volcengine.transit_router.VpcAttachmentTagArgs(
                 key="k1",
                 value="v1",
@@ -351,6 +386,7 @@ class VpcAttachment(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcAttachmentAttachPointArgs']]]] attach_points: The attach points of transit router vpc attachment.
+        :param pulumi.Input[bool] auto_publish_route_enabled: Whether to auto publish route of the transit router to vpc instance. Default is false.
         :param pulumi.Input[str] description: The description of the transit router vpc attachment.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcAttachmentTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] transit_router_attachment_name: The name of the transit router vpc attachment.
@@ -373,7 +409,8 @@ class VpcAttachment(pulumi.CustomResource):
 
         foo_transit_router = volcengine.transit_router.TransitRouter("fooTransitRouter",
             transit_router_name="test-tf-acc",
-            description="test-tf-acc")
+            description="test-tf-acc",
+            asn=4294967293)
         foo_zones = volcengine.ecs.zones()
         foo_vpc = volcengine.vpc.Vpc("fooVpc",
             vpc_name="acc-test-vpc-acc",
@@ -401,8 +438,9 @@ class VpcAttachment(pulumi.CustomResource):
                     zone_id="cn-beijing-b",
                 ),
             ],
-            transit_router_attachment_name="tf-test-acc-name1",
+            transit_router_attachment_name="tf-test-acc-vpc-attach",
             description="tf-test-acc-description",
+            auto_publish_route_enabled=True,
             tags=[volcengine.transit_router.VpcAttachmentTagArgs(
                 key="k1",
                 value="v1",
@@ -433,6 +471,7 @@ class VpcAttachment(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  attach_points: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcAttachmentAttachPointArgs']]]]] = None,
+                 auto_publish_route_enabled: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcAttachmentTagArgs']]]]] = None,
                  transit_router_attachment_name: Optional[pulumi.Input[str]] = None,
@@ -450,6 +489,7 @@ class VpcAttachment(pulumi.CustomResource):
             if attach_points is None and not opts.urn:
                 raise TypeError("Missing required property 'attach_points'")
             __props__.__dict__["attach_points"] = attach_points
+            __props__.__dict__["auto_publish_route_enabled"] = auto_publish_route_enabled
             __props__.__dict__["description"] = description
             __props__.__dict__["tags"] = tags
             __props__.__dict__["transit_router_attachment_name"] = transit_router_attachment_name
@@ -474,6 +514,7 @@ class VpcAttachment(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             attach_points: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcAttachmentAttachPointArgs']]]]] = None,
+            auto_publish_route_enabled: Optional[pulumi.Input[bool]] = None,
             creation_time: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
@@ -491,6 +532,7 @@ class VpcAttachment(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcAttachmentAttachPointArgs']]]] attach_points: The attach points of transit router vpc attachment.
+        :param pulumi.Input[bool] auto_publish_route_enabled: Whether to auto publish route of the transit router to vpc instance. Default is false.
         :param pulumi.Input[str] creation_time: The create time.
         :param pulumi.Input[str] description: The description of the transit router vpc attachment.
         :param pulumi.Input[str] status: The status of the transit router.
@@ -506,6 +548,7 @@ class VpcAttachment(pulumi.CustomResource):
         __props__ = _VpcAttachmentState.__new__(_VpcAttachmentState)
 
         __props__.__dict__["attach_points"] = attach_points
+        __props__.__dict__["auto_publish_route_enabled"] = auto_publish_route_enabled
         __props__.__dict__["creation_time"] = creation_time
         __props__.__dict__["description"] = description
         __props__.__dict__["status"] = status
@@ -524,6 +567,14 @@ class VpcAttachment(pulumi.CustomResource):
         The attach points of transit router vpc attachment.
         """
         return pulumi.get(self, "attach_points")
+
+    @property
+    @pulumi.getter(name="autoPublishRouteEnabled")
+    def auto_publish_route_enabled(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether to auto publish route of the transit router to vpc instance. Default is false.
+        """
+        return pulumi.get(self, "auto_publish_route_enabled")
 
     @property
     @pulumi.getter(name="creationTime")

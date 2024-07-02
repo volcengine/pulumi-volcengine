@@ -25,6 +25,7 @@ namespace Pulumi.Volcengine.Transit_router
     ///     {
     ///         TransitRouterName = "test-tf-acc",
     ///         Description = "test-tf-acc",
+    ///         Asn = 4294967293,
     ///     });
     /// 
     ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
@@ -68,8 +69,9 @@ namespace Pulumi.Volcengine.Transit_router
     ///                 ZoneId = "cn-beijing-b",
     ///             },
     ///         },
-    ///         TransitRouterAttachmentName = "tf-test-acc-name1",
+    ///         TransitRouterAttachmentName = "tf-test-acc-vpc-attach",
     ///         Description = "tf-test-acc-description",
+    ///         AutoPublishRouteEnabled = true,
     ///         Tags = new[]
     ///         {
     ///             new Volcengine.Transit_router.Inputs.VpcAttachmentTagArgs
@@ -99,6 +101,12 @@ namespace Pulumi.Volcengine.Transit_router
         /// </summary>
         [Output("attachPoints")]
         public Output<ImmutableArray<Outputs.VpcAttachmentAttachPoint>> AttachPoints { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether to auto publish route of the transit router to vpc instance. Default is false.
+        /// </summary>
+        [Output("autoPublishRouteEnabled")]
+        public Output<bool?> AutoPublishRouteEnabled { get; private set; } = null!;
 
         /// <summary>
         /// The create time.
@@ -214,6 +222,12 @@ namespace Pulumi.Volcengine.Transit_router
         }
 
         /// <summary>
+        /// Whether to auto publish route of the transit router to vpc instance. Default is false.
+        /// </summary>
+        [Input("autoPublishRouteEnabled")]
+        public Input<bool>? AutoPublishRouteEnabled { get; set; }
+
+        /// <summary>
         /// The description of the transit router vpc attachment.
         /// </summary>
         [Input("description")]
@@ -268,6 +282,12 @@ namespace Pulumi.Volcengine.Transit_router
             get => _attachPoints ?? (_attachPoints = new InputList<Inputs.VpcAttachmentAttachPointGetArgs>());
             set => _attachPoints = value;
         }
+
+        /// <summary>
+        /// Whether to auto publish route of the transit router to vpc instance. Default is false.
+        /// </summary>
+        [Input("autoPublishRouteEnabled")]
+        public Input<bool>? AutoPublishRouteEnabled { get; set; }
 
         /// <summary>
         /// The create time.

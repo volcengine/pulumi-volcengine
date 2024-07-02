@@ -54,7 +54,7 @@ import * as utilities from "../utilities";
  *     eipId: fooAddress.id,
  *     sourceCidr: "172.16.0.0/24",
  * }, {
- *     dependsOn: ["volcengine_eip_associate.foo"],
+ *     dependsOn: [fooAssociate],
  * });
  * ```
  *

@@ -16,17 +16,21 @@ __all__ = ['TransitRouterArgs', 'TransitRouter']
 @pulumi.input_type
 class TransitRouterArgs:
     def __init__(__self__, *,
+                 asn: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['TransitRouterTagArgs']]]] = None,
                  transit_router_name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a TransitRouter resource.
+        :param pulumi.Input[int] asn: The asn of the transit router. Valid value range in 64512-65534 and 4200000000-4294967294. Default is 64512.
         :param pulumi.Input[str] description: The description of the transit router.
         :param pulumi.Input[str] project_name: The ProjectName of the transit router.
         :param pulumi.Input[Sequence[pulumi.Input['TransitRouterTagArgs']]] tags: Tags.
         :param pulumi.Input[str] transit_router_name: The name of the transit router.
         """
+        if asn is not None:
+            pulumi.set(__self__, "asn", asn)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if project_name is not None:
@@ -35,6 +39,18 @@ class TransitRouterArgs:
             pulumi.set(__self__, "tags", tags)
         if transit_router_name is not None:
             pulumi.set(__self__, "transit_router_name", transit_router_name)
+
+    @property
+    @pulumi.getter
+    def asn(self) -> Optional[pulumi.Input[int]]:
+        """
+        The asn of the transit router. Valid value range in 64512-65534 and 4200000000-4294967294. Default is 64512.
+        """
+        return pulumi.get(self, "asn")
+
+    @asn.setter
+    def asn(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "asn", value)
 
     @property
     @pulumi.getter
@@ -89,6 +105,7 @@ class TransitRouterArgs:
 class _TransitRouterState:
     def __init__(__self__, *,
                  account_id: Optional[pulumi.Input[str]] = None,
+                 asn: Optional[pulumi.Input[int]] = None,
                  business_status: Optional[pulumi.Input[str]] = None,
                  creation_time: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
@@ -103,6 +120,7 @@ class _TransitRouterState:
         """
         Input properties used for looking up and filtering TransitRouter resources.
         :param pulumi.Input[str] account_id: The ID of account.
+        :param pulumi.Input[int] asn: The asn of the transit router. Valid value range in 64512-65534 and 4200000000-4294967294. Default is 64512.
         :param pulumi.Input[str] business_status: The business status of the transit router.
         :param pulumi.Input[str] creation_time: The create time.
         :param pulumi.Input[str] description: The description of the transit router.
@@ -117,6 +135,8 @@ class _TransitRouterState:
         """
         if account_id is not None:
             pulumi.set(__self__, "account_id", account_id)
+        if asn is not None:
+            pulumi.set(__self__, "asn", asn)
         if business_status is not None:
             pulumi.set(__self__, "business_status", business_status)
         if creation_time is not None:
@@ -151,6 +171,18 @@ class _TransitRouterState:
     @account_id.setter
     def account_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "account_id", value)
+
+    @property
+    @pulumi.getter
+    def asn(self) -> Optional[pulumi.Input[int]]:
+        """
+        The asn of the transit router. Valid value range in 64512-65534 and 4200000000-4294967294. Default is 64512.
+        """
+        return pulumi.get(self, "asn")
+
+    @asn.setter
+    def asn(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "asn", value)
 
     @property
     @pulumi.getter(name="businessStatus")
@@ -290,6 +322,7 @@ class TransitRouter(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 asn: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TransitRouterTagArgs']]]]] = None,
@@ -304,6 +337,7 @@ class TransitRouter(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.transit_router.TransitRouter("foo",
+            asn=4294967294,
             description="acc-test",
             project_name="default",
             tags=[volcengine.transit_router.TransitRouterTagArgs(
@@ -323,6 +357,7 @@ class TransitRouter(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[int] asn: The asn of the transit router. Valid value range in 64512-65534 and 4200000000-4294967294. Default is 64512.
         :param pulumi.Input[str] description: The description of the transit router.
         :param pulumi.Input[str] project_name: The ProjectName of the transit router.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TransitRouterTagArgs']]]] tags: Tags.
@@ -343,6 +378,7 @@ class TransitRouter(pulumi.CustomResource):
         import pulumi_volcengine as volcengine
 
         foo = volcengine.transit_router.TransitRouter("foo",
+            asn=4294967294,
             description="acc-test",
             project_name="default",
             tags=[volcengine.transit_router.TransitRouterTagArgs(
@@ -375,6 +411,7 @@ class TransitRouter(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 asn: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['TransitRouterTagArgs']]]]] = None,
@@ -388,6 +425,7 @@ class TransitRouter(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = TransitRouterArgs.__new__(TransitRouterArgs)
 
+            __props__.__dict__["asn"] = asn
             __props__.__dict__["description"] = description
             __props__.__dict__["project_name"] = project_name
             __props__.__dict__["tags"] = tags
@@ -411,6 +449,7 @@ class TransitRouter(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             account_id: Optional[pulumi.Input[str]] = None,
+            asn: Optional[pulumi.Input[int]] = None,
             business_status: Optional[pulumi.Input[str]] = None,
             creation_time: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
@@ -430,6 +469,7 @@ class TransitRouter(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] account_id: The ID of account.
+        :param pulumi.Input[int] asn: The asn of the transit router. Valid value range in 64512-65534 and 4200000000-4294967294. Default is 64512.
         :param pulumi.Input[str] business_status: The business status of the transit router.
         :param pulumi.Input[str] creation_time: The create time.
         :param pulumi.Input[str] description: The description of the transit router.
@@ -447,6 +487,7 @@ class TransitRouter(pulumi.CustomResource):
         __props__ = _TransitRouterState.__new__(_TransitRouterState)
 
         __props__.__dict__["account_id"] = account_id
+        __props__.__dict__["asn"] = asn
         __props__.__dict__["business_status"] = business_status
         __props__.__dict__["creation_time"] = creation_time
         __props__.__dict__["description"] = description
@@ -467,6 +508,14 @@ class TransitRouter(pulumi.CustomResource):
         The ID of account.
         """
         return pulumi.get(self, "account_id")
+
+    @property
+    @pulumi.getter
+    def asn(self) -> pulumi.Output[int]:
+        """
+        The asn of the transit router. Valid value range in 64512-65534 and 4200000000-4294967294. Default is 64512.
+        """
+        return pulumi.get(self, "asn")
 
     @property
     @pulumi.getter(name="businessStatus")

@@ -90,7 +90,7 @@ namespace Pulumi.Volcengine.Cen
         /// The ProjectName of the cen instance.
         /// </summary>
         [Output("projectName")]
-        public Output<string?> ProjectName { get; private set; } = null!;
+        public Output<string> ProjectName { get; private set; } = null!;
 
         /// <summary>
         /// The status of the cen.

@@ -94,7 +94,7 @@ type BandwidthPackage struct {
 	// The period unit of the cen bandwidth package. Value: `Month`, `Year`. Default value is `Month`.
 	PeriodUnit pulumi.StringPtrOutput `pulumi:"periodUnit"`
 	// The ProjectName of the cen bandwidth package.
-	ProjectName pulumi.StringPtrOutput `pulumi:"projectName"`
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The remain bandwidth of the cen bandwidth package.
 	RemainingBandwidth pulumi.IntOutput `pulumi:"remainingBandwidth"`
 	// The status of the cen bandwidth package.
@@ -434,8 +434,8 @@ func (o BandwidthPackageOutput) PeriodUnit() pulumi.StringPtrOutput {
 }
 
 // The ProjectName of the cen bandwidth package.
-func (o BandwidthPackageOutput) ProjectName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *BandwidthPackage) pulumi.StringPtrOutput { return v.ProjectName }).(pulumi.StringPtrOutput)
+func (o BandwidthPackageOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *BandwidthPackage) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 // The remain bandwidth of the cen bandwidth package.

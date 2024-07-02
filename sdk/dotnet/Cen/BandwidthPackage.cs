@@ -149,7 +149,7 @@ namespace Pulumi.Volcengine.Cen
         /// The ProjectName of the cen bandwidth package.
         /// </summary>
         [Output("projectName")]
-        public Output<string?> ProjectName { get; private set; } = null!;
+        public Output<string> ProjectName { get; private set; } = null!;
 
         /// <summary>
         /// The remain bandwidth of the cen bandwidth package.

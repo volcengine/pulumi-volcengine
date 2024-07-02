@@ -81,7 +81,7 @@ namespace Pulumi.Volcengine.Nat
     ///     {
     ///         DependsOn = new[]
     ///         {
-    ///             "volcengine_eip_associate.foo",
+    ///             fooAssociate,
     ///         },
     ///     });
     /// 

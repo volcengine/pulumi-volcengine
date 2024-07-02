@@ -18,6 +18,10 @@ namespace Pulumi.Volcengine.Transit_router.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.VpcAttachmentsAttachmentAttachPointResult> AttachPoints;
         /// <summary>
+        /// Whether to auto publish route of the transit router to vpc instance.
+        /// </summary>
+        public readonly bool AutoPublishRouteEnabled;
+        /// <summary>
         /// The create time.
         /// </summary>
         public readonly string CreationTime;
@@ -58,6 +62,8 @@ namespace Pulumi.Volcengine.Transit_router.Outputs
         private VpcAttachmentsAttachmentResult(
             ImmutableArray<Outputs.VpcAttachmentsAttachmentAttachPointResult> attachPoints,
 
+            bool autoPublishRouteEnabled,
+
             string creationTime,
 
             string description,
@@ -77,6 +83,7 @@ namespace Pulumi.Volcengine.Transit_router.Outputs
             string vpcId)
         {
             AttachPoints = attachPoints;
+            AutoPublishRouteEnabled = autoPublishRouteEnabled;
             CreationTime = creationTime;
             Description = description;
             Status = status;

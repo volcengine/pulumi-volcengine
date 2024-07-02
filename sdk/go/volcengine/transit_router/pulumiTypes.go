@@ -3284,6 +3284,8 @@ func (o TransitRoutersTagArrayOutput) Index(i pulumi.IntInput) TransitRoutersTag
 type TransitRoutersTransitRouter struct {
 	// The ID of account.
 	AccountId string `pulumi:"accountId"`
+	// The asn of the transit router.
+	Asn int `pulumi:"asn"`
 	// The business status of the transit router.
 	BusinessStatus string `pulumi:"businessStatus"`
 	// The create time.
@@ -3324,6 +3326,8 @@ type TransitRoutersTransitRouterInput interface {
 type TransitRoutersTransitRouterArgs struct {
 	// The ID of account.
 	AccountId pulumi.StringInput `pulumi:"accountId"`
+	// The asn of the transit router.
+	Asn pulumi.IntInput `pulumi:"asn"`
 	// The business status of the transit router.
 	BusinessStatus pulumi.StringInput `pulumi:"businessStatus"`
 	// The create time.
@@ -3404,6 +3408,11 @@ func (o TransitRoutersTransitRouterOutput) ToTransitRoutersTransitRouterOutputWi
 // The ID of account.
 func (o TransitRoutersTransitRouterOutput) AccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v TransitRoutersTransitRouter) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// The asn of the transit router.
+func (o TransitRoutersTransitRouterOutput) Asn() pulumi.IntOutput {
+	return o.ApplyT(func(v TransitRoutersTransitRouter) int { return v.Asn }).(pulumi.IntOutput)
 }
 
 // The business status of the transit router.
@@ -3971,6 +3980,8 @@ func (o VpcAttachmentTagArrayOutput) Index(i pulumi.IntInput) VpcAttachmentTagOu
 type VpcAttachmentsAttachment struct {
 	// The collection of attach points.
 	AttachPoints []VpcAttachmentsAttachmentAttachPoint `pulumi:"attachPoints"`
+	// Whether to auto publish route of the transit router to vpc instance.
+	AutoPublishRouteEnabled bool `pulumi:"autoPublishRouteEnabled"`
 	// The create time.
 	CreationTime string `pulumi:"creationTime"`
 	// The description info.
@@ -4005,6 +4016,8 @@ type VpcAttachmentsAttachmentInput interface {
 type VpcAttachmentsAttachmentArgs struct {
 	// The collection of attach points.
 	AttachPoints VpcAttachmentsAttachmentAttachPointArrayInput `pulumi:"attachPoints"`
+	// Whether to auto publish route of the transit router to vpc instance.
+	AutoPublishRouteEnabled pulumi.BoolInput `pulumi:"autoPublishRouteEnabled"`
 	// The create time.
 	CreationTime pulumi.StringInput `pulumi:"creationTime"`
 	// The description info.
@@ -4079,6 +4092,11 @@ func (o VpcAttachmentsAttachmentOutput) ToVpcAttachmentsAttachmentOutputWithCont
 // The collection of attach points.
 func (o VpcAttachmentsAttachmentOutput) AttachPoints() VpcAttachmentsAttachmentAttachPointArrayOutput {
 	return o.ApplyT(func(v VpcAttachmentsAttachment) []VpcAttachmentsAttachmentAttachPoint { return v.AttachPoints }).(VpcAttachmentsAttachmentAttachPointArrayOutput)
+}
+
+// Whether to auto publish route of the transit router to vpc instance.
+func (o VpcAttachmentsAttachmentOutput) AutoPublishRouteEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v VpcAttachmentsAttachment) bool { return v.AutoPublishRouteEnabled }).(pulumi.BoolOutput)
 }
 
 // The create time.

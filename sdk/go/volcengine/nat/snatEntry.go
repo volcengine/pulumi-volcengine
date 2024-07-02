@@ -77,7 +77,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = eip.NewAssociate(ctx, "fooAssociate", &eip.AssociateArgs{
+//			fooAssociate, err := eip.NewAssociate(ctx, "fooAssociate", &eip.AssociateArgs{
 //				AllocationId: fooAddress.ID(),
 //				InstanceId:   fooGateway.ID(),
 //				InstanceType: pulumi.String("Nat"),
@@ -91,7 +91,7 @@ import (
 //				EipId:         fooAddress.ID(),
 //				SourceCidr:    pulumi.String("172.16.0.0/24"),
 //			}, pulumi.DependsOn([]pulumi.Resource{
-//				pulumi.Resource("volcengine_eip_associate.foo"),
+//				fooAssociate,
 //			}))
 //			if err != nil {
 //				return err

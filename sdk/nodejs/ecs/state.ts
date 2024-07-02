@@ -88,7 +88,8 @@ export class State extends pulumi.CustomResource {
     }
 
     /**
-     * Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
+     * Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`. 
+     * If the target status of the action is consistent with the current status of the instance, the action will not actually be executed.
      */
     public readonly action!: pulumi.Output<string>;
     /**
@@ -144,7 +145,8 @@ export class State extends pulumi.CustomResource {
  */
 export interface StateState {
     /**
-     * Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
+     * Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`. 
+     * If the target status of the action is consistent with the current status of the instance, the action will not actually be executed.
      */
     action?: pulumi.Input<string>;
     /**
@@ -166,7 +168,8 @@ export interface StateState {
  */
 export interface StateArgs {
     /**
-     * Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`.
+     * Start or Stop of Instance Action, the value can be `Start`, `Stop` or `ForceStop`. 
+     * If the target status of the action is consistent with the current status of the instance, the action will not actually be executed.
      */
     action: pulumi.Input<string>;
     /**
