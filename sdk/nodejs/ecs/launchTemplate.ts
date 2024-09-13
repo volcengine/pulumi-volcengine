@@ -128,7 +128,7 @@ export class LaunchTemplate extends pulumi.CustomResource {
     /**
      * The index of the ordered suffix.
      */
-    public readonly suffixIndex!: pulumi.Output<number | undefined>;
+    public readonly suffixIndex!: pulumi.Output<number>;
     /**
      * Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.
      */

@@ -202,6 +202,141 @@ namespace Pulumi.Volcengine.Vke
     ///         },
     ///     });
     /// 
+    ///     // add existing instances to a custom node pool
+    ///     var fooInstance = new List&lt;Volcengine.Ecs.Instance&gt;();
+    ///     for (var rangeIndex = 0; rangeIndex &lt; 2; rangeIndex++)
+    ///     {
+    ///         var range = new { Value = rangeIndex };
+    ///         fooInstance.Add(new Volcengine.Ecs.Instance($"fooInstance-{range.Value}", new()
+    ///         {
+    ///             InstanceName = $"acc-test-ecs-{range.Value}",
+    ///             HostName = "tf-acc-test",
+    ///             ImageId = .Where(image =&gt; image.ImageName == "veLinux 1.0 CentOS兼容版 64位").Select(image =&gt; 
+    ///             {
+    ///                 return  image.ImageId;
+    ///             })[0],
+    ///             InstanceType = "ecs.g1ie.xlarge",
+    ///             Password = "93f0cb0614Aab12",
+    ///             InstanceChargeType = "PostPaid",
+    ///             SystemVolumeType = "ESSD_PL0",
+    ///             SystemVolumeSize = 50,
+    ///             DataVolumes = new[]
+    ///             {
+    ///                 new Volcengine.Ecs.Inputs.InstanceDataVolumeArgs
+    ///                 {
+    ///                     VolumeType = "ESSD_PL0",
+    ///                     Size = 50,
+    ///                     DeleteWithInstance = true,
+    ///                 },
+    ///             },
+    ///             SubnetId = fooSubnet.Id,
+    ///             SecurityGroupIds = new[]
+    ///             {
+    ///                 fooSecurityGroup.Id,
+    ///             },
+    ///             ProjectName = "default",
+    ///             Tags = new[]
+    ///             {
+    ///                 new Volcengine.Ecs.Inputs.InstanceTagArgs
+    ///                 {
+    ///                     Key = "k1",
+    ///                     Value = "v1",
+    ///                 },
+    ///             },
+    ///         }));
+    ///     }
+    ///     var foo1 = new Volcengine.Vke.NodePool("foo1", new()
+    ///     {
+    ///         ClusterId = fooCluster.Id,
+    ///         InstanceIds = fooInstance.Select(__item =&gt; __item.Id).ToList(),
+    ///         KeepInstanceName = true,
+    ///         NodeConfig = new Volcengine.Vke.Inputs.NodePoolNodeConfigArgs
+    ///         {
+    ///             InstanceTypeIds = new[]
+    ///             {
+    ///                 "ecs.g1ie.xlarge",
+    ///             },
+    ///             SubnetIds = new[]
+    ///             {
+    ///                 fooSubnet.Id,
+    ///             },
+    ///             ImageId = .Where(image =&gt; image.ImageName == "veLinux 1.0 CentOS兼容版 64位").Select(image =&gt; 
+    ///             {
+    ///                 return  image.ImageId;
+    ///             })[0],
+    ///             SystemVolume = new Volcengine.Vke.Inputs.NodePoolNodeConfigSystemVolumeArgs
+    ///             {
+    ///                 Type = "ESSD_PL0",
+    ///                 Size = 50,
+    ///             },
+    ///             DataVolumes = new[]
+    ///             {
+    ///                 new Volcengine.Vke.Inputs.NodePoolNodeConfigDataVolumeArgs
+    ///                 {
+    ///                     Type = "ESSD_PL0",
+    ///                     Size = 50,
+    ///                     MountPoint = "/tf1",
+    ///                 },
+    ///             },
+    ///             InitializeScript = "ZWNobyBoZWxsbyB0ZXJyYWZvcm0h",
+    ///             Security = new Volcengine.Vke.Inputs.NodePoolNodeConfigSecurityArgs
+    ///             {
+    ///                 Login = new Volcengine.Vke.Inputs.NodePoolNodeConfigSecurityLoginArgs
+    ///                 {
+    ///                     Password = "UHdkMTIzNDU2",
+    ///                 },
+    ///                 SecurityStrategies = new[]
+    ///                 {
+    ///                     "Hids",
+    ///                 },
+    ///                 SecurityGroupIds = new[]
+    ///                 {
+    ///                     fooSecurityGroup.Id,
+    ///                 },
+    ///             },
+    ///             AdditionalContainerStorageEnabled = false,
+    ///             InstanceChargeType = "PostPaid",
+    ///             NamePrefix = "acc-test",
+    ///             EcsTags = new[]
+    ///             {
+    ///                 new Volcengine.Vke.Inputs.NodePoolNodeConfigEcsTagArgs
+    ///                 {
+    ///                     Key = "ecs_k1",
+    ///                     Value = "ecs_v1",
+    ///                 },
+    ///             },
+    ///         },
+    ///         KubernetesConfig = new Volcengine.Vke.Inputs.NodePoolKubernetesConfigArgs
+    ///         {
+    ///             Labels = new[]
+    ///             {
+    ///                 new Volcengine.Vke.Inputs.NodePoolKubernetesConfigLabelArgs
+    ///                 {
+    ///                     Key = "label1",
+    ///                     Value = "value1",
+    ///                 },
+    ///             },
+    ///             Taints = new[]
+    ///             {
+    ///                 new Volcengine.Vke.Inputs.NodePoolKubernetesConfigTaintArgs
+    ///                 {
+    ///                     Key = "taint-key/node-type",
+    ///                     Value = "taint-value",
+    ///                     Effect = "NoSchedule",
+    ///                 },
+    ///             },
+    ///             Cordon = true,
+    ///         },
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Vke.Inputs.NodePoolTagArgs
+    ///             {
+    ///                 Key = "node-pool-k1",
+    ///                 Value = "node-pool-v1",
+    ///             },
+    ///         },
+    ///     });
+    /// 
     /// });
     /// ```
     /// 
@@ -233,6 +368,21 @@ namespace Pulumi.Volcengine.Vke
         /// </summary>
         [Output("clusterId")]
         public Output<string?> ClusterId { get; private set; } = null!;
+
+        /// <summary>
+        /// The list of existing ECS instance ids. Add existing instances with same type of security group under the same cluster VPC to the custom node pool.
+        /// Note that removing instance ids from the list will only remove the nodes from cluster and not release the ECS instances. But deleting node pool will release the ECS instances in it.
+        /// It is not recommended to use this field, it is recommended to use `volcengine.vke.Node` resource to add an existing instance to a custom node pool.
+        /// </summary>
+        [Output("instanceIds")]
+        public Output<ImmutableArray<string>> InstanceIds { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether to keep instance name when adding an existing instance to a custom node pool, the value is `true` or `false`.
+        /// This field is valid only when adding new instances to the custom node pool.
+        /// </summary>
+        [Output("keepInstanceName")]
+        public Output<bool?> KeepInstanceName { get; private set; } = null!;
 
         /// <summary>
         /// The KubernetesConfig of NodeConfig.
@@ -329,6 +479,27 @@ namespace Pulumi.Volcengine.Vke
         [Input("clusterId")]
         public Input<string>? ClusterId { get; set; }
 
+        [Input("instanceIds")]
+        private InputList<string>? _instanceIds;
+
+        /// <summary>
+        /// The list of existing ECS instance ids. Add existing instances with same type of security group under the same cluster VPC to the custom node pool.
+        /// Note that removing instance ids from the list will only remove the nodes from cluster and not release the ECS instances. But deleting node pool will release the ECS instances in it.
+        /// It is not recommended to use this field, it is recommended to use `volcengine.vke.Node` resource to add an existing instance to a custom node pool.
+        /// </summary>
+        public InputList<string> InstanceIds
+        {
+            get => _instanceIds ?? (_instanceIds = new InputList<string>());
+            set => _instanceIds = value;
+        }
+
+        /// <summary>
+        /// Whether to keep instance name when adding an existing instance to a custom node pool, the value is `true` or `false`.
+        /// This field is valid only when adding new instances to the custom node pool.
+        /// </summary>
+        [Input("keepInstanceName")]
+        public Input<bool>? KeepInstanceName { get; set; }
+
         /// <summary>
         /// The KubernetesConfig of NodeConfig.
         /// </summary>
@@ -384,6 +555,27 @@ namespace Pulumi.Volcengine.Vke
         /// </summary>
         [Input("clusterId")]
         public Input<string>? ClusterId { get; set; }
+
+        [Input("instanceIds")]
+        private InputList<string>? _instanceIds;
+
+        /// <summary>
+        /// The list of existing ECS instance ids. Add existing instances with same type of security group under the same cluster VPC to the custom node pool.
+        /// Note that removing instance ids from the list will only remove the nodes from cluster and not release the ECS instances. But deleting node pool will release the ECS instances in it.
+        /// It is not recommended to use this field, it is recommended to use `volcengine.vke.Node` resource to add an existing instance to a custom node pool.
+        /// </summary>
+        public InputList<string> InstanceIds
+        {
+            get => _instanceIds ?? (_instanceIds = new InputList<string>());
+            set => _instanceIds = value;
+        }
+
+        /// <summary>
+        /// Whether to keep instance name when adding an existing instance to a custom node pool, the value is `true` or `false`.
+        /// This field is valid only when adding new instances to the custom node pool.
+        /// </summary>
+        [Input("keepInstanceName")]
+        public Input<bool>? KeepInstanceName { get; set; }
 
         /// <summary>
         /// The KubernetesConfig of NodeConfig.

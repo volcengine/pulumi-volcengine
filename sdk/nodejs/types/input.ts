@@ -1622,6 +1622,57 @@ export namespace organization {
 
 }
 
+export namespace private_zone {
+    export interface PrivateZoneVpc {
+        /**
+         * The region of the bind vpc. The default value is the region of the default provider config.
+         */
+        region?: pulumi.Input<string>;
+        /**
+         * The id of the bind vpc.
+         */
+        vpcId: pulumi.Input<string>;
+    }
+
+    export interface ResolverEndpointIpConfig {
+        /**
+         * Id of the availability zone.
+         */
+        azId: pulumi.Input<string>;
+        /**
+         * Source IP address of traffic. You can add up to 6 IP addresses at most. To ensure high availability, you must add at least two IP addresses.
+         */
+        ip: pulumi.Input<string>;
+        /**
+         * Id of the subnet.
+         */
+        subnetId: pulumi.Input<string>;
+    }
+
+    export interface ResolverRuleForwardIp {
+        /**
+         * IP address of the external DNS server. This parameter is only valid when the Type parameter is OUTBOUND and is a required parameter.
+         */
+        ip: pulumi.Input<string>;
+        /**
+         * The port of the external DNS server. Default is 53. This parameter is only valid and optional when the Type parameter is OUTBOUND.
+         */
+        port?: pulumi.Input<number>;
+    }
+
+    export interface ResolverRuleVpc {
+        /**
+         * The region of the bind vpc. The default value is the region of the default provider config.
+         */
+        region?: pulumi.Input<string>;
+        /**
+         * The id of the bind vpc.
+         */
+        vpcId: pulumi.Input<string>;
+    }
+
+}
+
 export namespace privatelink {
     export interface VpcEndpointConnectionZone {
         /**
@@ -2083,6 +2134,21 @@ export namespace rds_mysql {
 }
 
 export namespace rds_postgresql {
+    export interface AllowlistAssociatedInstance {
+        /**
+         * The id of the postgresql instance.
+         */
+        instanceId?: pulumi.Input<string>;
+        /**
+         * The name of the postgresql instance.
+         */
+        instanceName?: pulumi.Input<string>;
+        /**
+         * The id of the vpc.
+         */
+        vpc?: pulumi.Input<string>;
+    }
+
     export interface InstanceChargeDetail {
         /**
          * Whether to automatically renew in prepaid scenarios.
@@ -3572,6 +3638,54 @@ export namespace veenedge {
 
 }
 
+export namespace vepfs {
+    export interface FileSystemTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface MountServiceAttachFileSystem {
+        /**
+         * The account id of the vepfs file system.
+         */
+        accountId?: pulumi.Input<string>;
+        /**
+         * The id of the vepfs file system.
+         */
+        customerPath?: pulumi.Input<string>;
+        /**
+         * The id of the vepfs file system.
+         */
+        fileSystemId?: pulumi.Input<string>;
+        /**
+         * The name of the vepfs file system.
+         */
+        fileSystemName?: pulumi.Input<string>;
+        /**
+         * The status of the mount service.
+         */
+        status?: pulumi.Input<string>;
+    }
+
+    export interface MountServiceNode {
+        /**
+         * The default password of ecs instance.
+         */
+        defaultPassword?: pulumi.Input<string>;
+        /**
+         * The id of ecs instance.
+         */
+        nodeId?: pulumi.Input<string>;
+    }
+
+}
+
 export namespace vke {
     export interface AddonsStatus {
         /**
@@ -3611,6 +3725,8 @@ export namespace vke {
         resourcePublicAccessDefaultEnabled?: pulumi.Input<boolean>;
         /**
          * The subnet ID for the cluster control plane to communicate within the private network.
+         * Up to 3 subnets can be selected from each available zone, and a maximum of 2 subnets can be added to each available zone.
+         * Cannot support deleting configured subnets.
          */
         subnetIds: pulumi.Input<pulumi.Input<string>[]>;
     }

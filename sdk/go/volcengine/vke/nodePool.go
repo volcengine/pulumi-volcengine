@@ -20,6 +20,8 @@ import (
 //
 // import (
 //
+//	"fmt"
+//
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vke"
@@ -183,6 +185,118 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			var fooInstance []*ecs.Instance
+//			for index := 0; index < 2; index++ {
+//				key0 := index
+//				val0 := index
+//				__res, err := ecs.NewInstance(ctx, fmt.Sprintf("fooInstance-%v", key0), &ecs.InstanceArgs{
+//					InstanceName:       pulumi.String(fmt.Sprintf("acc-test-ecs-%v", val0)),
+//					HostName:           pulumi.String("tf-acc-test"),
+//					ImageId:            "TODO: For expression"[0],
+//					InstanceType:       pulumi.String("ecs.g1ie.xlarge"),
+//					Password:           pulumi.String("93f0cb0614Aab12"),
+//					InstanceChargeType: pulumi.String("PostPaid"),
+//					SystemVolumeType:   pulumi.String("ESSD_PL0"),
+//					SystemVolumeSize:   pulumi.Int(50),
+//					DataVolumes: ecs.InstanceDataVolumeArray{
+//						&ecs.InstanceDataVolumeArgs{
+//							VolumeType:         pulumi.String("ESSD_PL0"),
+//							Size:               pulumi.Int(50),
+//							DeleteWithInstance: pulumi.Bool(true),
+//						},
+//					},
+//					SubnetId: fooSubnet.ID(),
+//					SecurityGroupIds: pulumi.StringArray{
+//						fooSecurityGroup.ID(),
+//					},
+//					ProjectName: pulumi.String("default"),
+//					Tags: ecs.InstanceTagArray{
+//						&ecs.InstanceTagArgs{
+//							Key:   pulumi.String("k1"),
+//							Value: pulumi.String("v1"),
+//						},
+//					},
+//				})
+//				if err != nil {
+//					return err
+//				}
+//				fooInstance = append(fooInstance, __res)
+//			}
+//			var splat0 pulumi.StringArray
+//			for _, val0 := range fooInstance {
+//				splat0 = append(splat0, val0.ID())
+//			}
+//			_, err = vke.NewNodePool(ctx, "foo1", &vke.NodePoolArgs{
+//				ClusterId:        fooCluster.ID(),
+//				InstanceIds:      splat0,
+//				KeepInstanceName: pulumi.Bool(true),
+//				NodeConfig: &vke.NodePoolNodeConfigArgs{
+//					InstanceTypeIds: pulumi.StringArray{
+//						pulumi.String("ecs.g1ie.xlarge"),
+//					},
+//					SubnetIds: pulumi.StringArray{
+//						fooSubnet.ID(),
+//					},
+//					ImageId: "TODO: For expression"[0],
+//					SystemVolume: &vke.NodePoolNodeConfigSystemVolumeArgs{
+//						Type: pulumi.String("ESSD_PL0"),
+//						Size: pulumi.Int(50),
+//					},
+//					DataVolumes: vke.NodePoolNodeConfigDataVolumeArray{
+//						&vke.NodePoolNodeConfigDataVolumeArgs{
+//							Type:       pulumi.String("ESSD_PL0"),
+//							Size:       pulumi.Int(50),
+//							MountPoint: pulumi.String("/tf1"),
+//						},
+//					},
+//					InitializeScript: pulumi.String("ZWNobyBoZWxsbyB0ZXJyYWZvcm0h"),
+//					Security: &vke.NodePoolNodeConfigSecurityArgs{
+//						Login: &vke.NodePoolNodeConfigSecurityLoginArgs{
+//							Password: pulumi.String("UHdkMTIzNDU2"),
+//						},
+//						SecurityStrategies: pulumi.StringArray{
+//							pulumi.String("Hids"),
+//						},
+//						SecurityGroupIds: pulumi.StringArray{
+//							fooSecurityGroup.ID(),
+//						},
+//					},
+//					AdditionalContainerStorageEnabled: pulumi.Bool(false),
+//					InstanceChargeType:                pulumi.String("PostPaid"),
+//					NamePrefix:                        pulumi.String("acc-test"),
+//					EcsTags: vke.NodePoolNodeConfigEcsTagArray{
+//						&vke.NodePoolNodeConfigEcsTagArgs{
+//							Key:   pulumi.String("ecs_k1"),
+//							Value: pulumi.String("ecs_v1"),
+//						},
+//					},
+//				},
+//				KubernetesConfig: &vke.NodePoolKubernetesConfigArgs{
+//					Labels: vke.NodePoolKubernetesConfigLabelArray{
+//						&vke.NodePoolKubernetesConfigLabelArgs{
+//							Key:   pulumi.String("label1"),
+//							Value: pulumi.String("value1"),
+//						},
+//					},
+//					Taints: vke.NodePoolKubernetesConfigTaintArray{
+//						&vke.NodePoolKubernetesConfigTaintArgs{
+//							Key:    pulumi.String("taint-key/node-type"),
+//							Value:  pulumi.String("taint-value"),
+//							Effect: pulumi.String("NoSchedule"),
+//						},
+//					},
+//					Cordon: pulumi.Bool(true),
+//				},
+//				Tags: vke.NodePoolTagArray{
+//					&vke.NodePoolTagArgs{
+//						Key:   pulumi.String("node-pool-k1"),
+//						Value: pulumi.String("node-pool-v1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			return nil
 //		})
 //	}
@@ -207,6 +321,13 @@ type NodePool struct {
 	ClientToken pulumi.StringPtrOutput `pulumi:"clientToken"`
 	// The ClusterId of NodePool.
 	ClusterId pulumi.StringPtrOutput `pulumi:"clusterId"`
+	// The list of existing ECS instance ids. Add existing instances with same type of security group under the same cluster VPC to the custom node pool.
+	// Note that removing instance ids from the list will only remove the nodes from cluster and not release the ECS instances. But deleting node pool will release the ECS instances in it.
+	// It is not recommended to use this field, it is recommended to use `vke.Node` resource to add an existing instance to a custom node pool.
+	InstanceIds pulumi.StringArrayOutput `pulumi:"instanceIds"`
+	// Whether to keep instance name when adding an existing instance to a custom node pool, the value is `true` or `false`.
+	// This field is valid only when adding new instances to the custom node pool.
+	KeepInstanceName pulumi.BoolPtrOutput `pulumi:"keepInstanceName"`
 	// The KubernetesConfig of NodeConfig.
 	KubernetesConfig NodePoolKubernetesConfigOutput `pulumi:"kubernetesConfig"`
 	// The Name of NodePool.
@@ -261,6 +382,13 @@ type nodePoolState struct {
 	ClientToken *string `pulumi:"clientToken"`
 	// The ClusterId of NodePool.
 	ClusterId *string `pulumi:"clusterId"`
+	// The list of existing ECS instance ids. Add existing instances with same type of security group under the same cluster VPC to the custom node pool.
+	// Note that removing instance ids from the list will only remove the nodes from cluster and not release the ECS instances. But deleting node pool will release the ECS instances in it.
+	// It is not recommended to use this field, it is recommended to use `vke.Node` resource to add an existing instance to a custom node pool.
+	InstanceIds []string `pulumi:"instanceIds"`
+	// Whether to keep instance name when adding an existing instance to a custom node pool, the value is `true` or `false`.
+	// This field is valid only when adding new instances to the custom node pool.
+	KeepInstanceName *bool `pulumi:"keepInstanceName"`
 	// The KubernetesConfig of NodeConfig.
 	KubernetesConfig *NodePoolKubernetesConfig `pulumi:"kubernetesConfig"`
 	// The Name of NodePool.
@@ -280,6 +408,13 @@ type NodePoolState struct {
 	ClientToken pulumi.StringPtrInput
 	// The ClusterId of NodePool.
 	ClusterId pulumi.StringPtrInput
+	// The list of existing ECS instance ids. Add existing instances with same type of security group under the same cluster VPC to the custom node pool.
+	// Note that removing instance ids from the list will only remove the nodes from cluster and not release the ECS instances. But deleting node pool will release the ECS instances in it.
+	// It is not recommended to use this field, it is recommended to use `vke.Node` resource to add an existing instance to a custom node pool.
+	InstanceIds pulumi.StringArrayInput
+	// Whether to keep instance name when adding an existing instance to a custom node pool, the value is `true` or `false`.
+	// This field is valid only when adding new instances to the custom node pool.
+	KeepInstanceName pulumi.BoolPtrInput
 	// The KubernetesConfig of NodeConfig.
 	KubernetesConfig NodePoolKubernetesConfigPtrInput
 	// The Name of NodePool.
@@ -303,6 +438,13 @@ type nodePoolArgs struct {
 	ClientToken *string `pulumi:"clientToken"`
 	// The ClusterId of NodePool.
 	ClusterId *string `pulumi:"clusterId"`
+	// The list of existing ECS instance ids. Add existing instances with same type of security group under the same cluster VPC to the custom node pool.
+	// Note that removing instance ids from the list will only remove the nodes from cluster and not release the ECS instances. But deleting node pool will release the ECS instances in it.
+	// It is not recommended to use this field, it is recommended to use `vke.Node` resource to add an existing instance to a custom node pool.
+	InstanceIds []string `pulumi:"instanceIds"`
+	// Whether to keep instance name when adding an existing instance to a custom node pool, the value is `true` or `false`.
+	// This field is valid only when adding new instances to the custom node pool.
+	KeepInstanceName *bool `pulumi:"keepInstanceName"`
 	// The KubernetesConfig of NodeConfig.
 	KubernetesConfig NodePoolKubernetesConfig `pulumi:"kubernetesConfig"`
 	// The Name of NodePool.
@@ -321,6 +463,13 @@ type NodePoolArgs struct {
 	ClientToken pulumi.StringPtrInput
 	// The ClusterId of NodePool.
 	ClusterId pulumi.StringPtrInput
+	// The list of existing ECS instance ids. Add existing instances with same type of security group under the same cluster VPC to the custom node pool.
+	// Note that removing instance ids from the list will only remove the nodes from cluster and not release the ECS instances. But deleting node pool will release the ECS instances in it.
+	// It is not recommended to use this field, it is recommended to use `vke.Node` resource to add an existing instance to a custom node pool.
+	InstanceIds pulumi.StringArrayInput
+	// Whether to keep instance name when adding an existing instance to a custom node pool, the value is `true` or `false`.
+	// This field is valid only when adding new instances to the custom node pool.
+	KeepInstanceName pulumi.BoolPtrInput
 	// The KubernetesConfig of NodeConfig.
 	KubernetesConfig NodePoolKubernetesConfigInput
 	// The Name of NodePool.
@@ -431,6 +580,19 @@ func (o NodePoolOutput) ClientToken() pulumi.StringPtrOutput {
 // The ClusterId of NodePool.
 func (o NodePoolOutput) ClusterId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *NodePool) pulumi.StringPtrOutput { return v.ClusterId }).(pulumi.StringPtrOutput)
+}
+
+// The list of existing ECS instance ids. Add existing instances with same type of security group under the same cluster VPC to the custom node pool.
+// Note that removing instance ids from the list will only remove the nodes from cluster and not release the ECS instances. But deleting node pool will release the ECS instances in it.
+// It is not recommended to use this field, it is recommended to use `vke.Node` resource to add an existing instance to a custom node pool.
+func (o NodePoolOutput) InstanceIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *NodePool) pulumi.StringArrayOutput { return v.InstanceIds }).(pulumi.StringArrayOutput)
+}
+
+// Whether to keep instance name when adding an existing instance to a custom node pool, the value is `true` or `false`.
+// This field is valid only when adding new instances to the custom node pool.
+func (o NodePoolOutput) KeepInstanceName() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *NodePool) pulumi.BoolPtrOutput { return v.KeepInstanceName }).(pulumi.BoolPtrOutput)
 }
 
 // The KubernetesConfig of NodeConfig.

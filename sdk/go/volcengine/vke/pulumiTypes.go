@@ -473,6 +473,8 @@ type ClusterClusterConfig struct {
 	// Node public network access configuration, the value is `true` or `false`.
 	ResourcePublicAccessDefaultEnabled *bool `pulumi:"resourcePublicAccessDefaultEnabled"`
 	// The subnet ID for the cluster control plane to communicate within the private network.
+	// Up to 3 subnets can be selected from each available zone, and a maximum of 2 subnets can be added to each available zone.
+	// Cannot support deleting configured subnets.
 	SubnetIds []string `pulumi:"subnetIds"`
 }
 
@@ -496,6 +498,8 @@ type ClusterClusterConfigArgs struct {
 	// Node public network access configuration, the value is `true` or `false`.
 	ResourcePublicAccessDefaultEnabled pulumi.BoolPtrInput `pulumi:"resourcePublicAccessDefaultEnabled"`
 	// The subnet ID for the cluster control plane to communicate within the private network.
+	// Up to 3 subnets can be selected from each available zone, and a maximum of 2 subnets can be added to each available zone.
+	// Cannot support deleting configured subnets.
 	SubnetIds pulumi.StringArrayInput `pulumi:"subnetIds"`
 }
 
@@ -598,6 +602,8 @@ func (o ClusterClusterConfigOutput) ResourcePublicAccessDefaultEnabled() pulumi.
 }
 
 // The subnet ID for the cluster control plane to communicate within the private network.
+// Up to 3 subnets can be selected from each available zone, and a maximum of 2 subnets can be added to each available zone.
+// Cannot support deleting configured subnets.
 func (o ClusterClusterConfigOutput) SubnetIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ClusterClusterConfig) []string { return v.SubnetIds }).(pulumi.StringArrayOutput)
 }
@@ -666,6 +672,8 @@ func (o ClusterClusterConfigPtrOutput) ResourcePublicAccessDefaultEnabled() pulu
 }
 
 // The subnet ID for the cluster control plane to communicate within the private network.
+// Up to 3 subnets can be selected from each available zone, and a maximum of 2 subnets can be added to each available zone.
+// Cannot support deleting configured subnets.
 func (o ClusterClusterConfigPtrOutput) SubnetIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ClusterClusterConfig) []string {
 		if v == nil {

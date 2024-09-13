@@ -1318,7 +1318,7 @@ class InstancesInstanceResult(dict):
         :param str image_id: The image ID of ECS instance.
         :param str instance_charge_type: The charge type of ECS instance.
         :param str instance_id: The ID of ECS instance.
-        :param str instance_name: The name of ECS instance.
+        :param str instance_name: The name of ECS instance. This field support fuzzy query.
         :param str instance_type: The spec type of ECS instance.
         :param int ipv6_address_count: The number of IPv6 addresses of the ECS instance.
         :param Sequence[str] ipv6_addresses: The  IPv6 address list of the ECS instance.
@@ -1447,7 +1447,7 @@ class InstancesInstanceResult(dict):
     @pulumi.getter(name="instanceName")
     def instance_name(self) -> str:
         """
-        The name of ECS instance.
+        The name of ECS instance. This field support fuzzy query.
         """
         return pulumi.get(self, "instance_name")
 

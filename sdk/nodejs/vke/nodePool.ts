@@ -124,6 +124,82 @@ import * as utilities from "../utilities";
  *         value: "node-pool-v1",
  *     }],
  * });
+ * // add existing instances to a custom node pool
+ * const fooInstance: volcengine.ecs.Instance[] = [];
+ * for (const range = {value: 0}; range.value < 2; range.value++) {
+ *     fooInstance.push(new volcengine.ecs.Instance(`fooInstance-${range.value}`, {
+ *         instanceName: `acc-test-ecs-${range.value}`,
+ *         hostName: "tf-acc-test",
+ *         imageId: fooImages.then(fooImages => .filter(image => image.imageName == "veLinux 1.0 CentOS兼容版 64位").map(image => (image.imageId))[0]),
+ *         instanceType: "ecs.g1ie.xlarge",
+ *         password: "93f0cb0614Aab12",
+ *         instanceChargeType: "PostPaid",
+ *         systemVolumeType: "ESSD_PL0",
+ *         systemVolumeSize: 50,
+ *         dataVolumes: [{
+ *             volumeType: "ESSD_PL0",
+ *             size: 50,
+ *             deleteWithInstance: true,
+ *         }],
+ *         subnetId: fooSubnet.id,
+ *         securityGroupIds: [fooSecurityGroup.id],
+ *         projectName: "default",
+ *         tags: [{
+ *             key: "k1",
+ *             value: "v1",
+ *         }],
+ *     }));
+ * }
+ * const foo1 = new volcengine.vke.NodePool("foo1", {
+ *     clusterId: fooCluster.id,
+ *     instanceIds: fooInstance.map(__item => __item.id),
+ *     keepInstanceName: true,
+ *     nodeConfig: {
+ *         instanceTypeIds: ["ecs.g1ie.xlarge"],
+ *         subnetIds: [fooSubnet.id],
+ *         imageId: fooImages.then(fooImages => .filter(image => image.imageName == "veLinux 1.0 CentOS兼容版 64位").map(image => (image.imageId))[0]),
+ *         systemVolume: {
+ *             type: "ESSD_PL0",
+ *             size: 50,
+ *         },
+ *         dataVolumes: [{
+ *             type: "ESSD_PL0",
+ *             size: 50,
+ *             mountPoint: "/tf1",
+ *         }],
+ *         initializeScript: "ZWNobyBoZWxsbyB0ZXJyYWZvcm0h",
+ *         security: {
+ *             login: {
+ *                 password: "UHdkMTIzNDU2",
+ *             },
+ *             securityStrategies: ["Hids"],
+ *             securityGroupIds: [fooSecurityGroup.id],
+ *         },
+ *         additionalContainerStorageEnabled: false,
+ *         instanceChargeType: "PostPaid",
+ *         namePrefix: "acc-test",
+ *         ecsTags: [{
+ *             key: "ecs_k1",
+ *             value: "ecs_v1",
+ *         }],
+ *     },
+ *     kubernetesConfig: {
+ *         labels: [{
+ *             key: "label1",
+ *             value: "value1",
+ *         }],
+ *         taints: [{
+ *             key: "taint-key/node-type",
+ *             value: "taint-value",
+ *             effect: "NoSchedule",
+ *         }],
+ *         cordon: true,
+ *     },
+ *     tags: [{
+ *         key: "node-pool-k1",
+ *         value: "node-pool-v1",
+ *     }],
+ * });
  * ```
  *
  * ## Import
@@ -175,6 +251,17 @@ export class NodePool extends pulumi.CustomResource {
      */
     public readonly clusterId!: pulumi.Output<string | undefined>;
     /**
+     * The list of existing ECS instance ids. Add existing instances with same type of security group under the same cluster VPC to the custom node pool.
+     * Note that removing instance ids from the list will only remove the nodes from cluster and not release the ECS instances. But deleting node pool will release the ECS instances in it.
+     * It is not recommended to use this field, it is recommended to use `volcengine.vke.Node` resource to add an existing instance to a custom node pool.
+     */
+    public readonly instanceIds!: pulumi.Output<string[] | undefined>;
+    /**
+     * Whether to keep instance name when adding an existing instance to a custom node pool, the value is `true` or `false`.
+     * This field is valid only when adding new instances to the custom node pool.
+     */
+    public readonly keepInstanceName!: pulumi.Output<boolean | undefined>;
+    /**
      * The KubernetesConfig of NodeConfig.
      */
     public readonly kubernetesConfig!: pulumi.Output<outputs.vke.NodePoolKubernetesConfig>;
@@ -211,6 +298,8 @@ export class NodePool extends pulumi.CustomResource {
             resourceInputs["autoScaling"] = state ? state.autoScaling : undefined;
             resourceInputs["clientToken"] = state ? state.clientToken : undefined;
             resourceInputs["clusterId"] = state ? state.clusterId : undefined;
+            resourceInputs["instanceIds"] = state ? state.instanceIds : undefined;
+            resourceInputs["keepInstanceName"] = state ? state.keepInstanceName : undefined;
             resourceInputs["kubernetesConfig"] = state ? state.kubernetesConfig : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["nodeConfig"] = state ? state.nodeConfig : undefined;
@@ -227,6 +316,8 @@ export class NodePool extends pulumi.CustomResource {
             resourceInputs["autoScaling"] = args ? args.autoScaling : undefined;
             resourceInputs["clientToken"] = args ? args.clientToken : undefined;
             resourceInputs["clusterId"] = args ? args.clusterId : undefined;
+            resourceInputs["instanceIds"] = args ? args.instanceIds : undefined;
+            resourceInputs["keepInstanceName"] = args ? args.keepInstanceName : undefined;
             resourceInputs["kubernetesConfig"] = args ? args.kubernetesConfig : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["nodeConfig"] = args ? args.nodeConfig : undefined;
@@ -254,6 +345,17 @@ export interface NodePoolState {
      * The ClusterId of NodePool.
      */
     clusterId?: pulumi.Input<string>;
+    /**
+     * The list of existing ECS instance ids. Add existing instances with same type of security group under the same cluster VPC to the custom node pool.
+     * Note that removing instance ids from the list will only remove the nodes from cluster and not release the ECS instances. But deleting node pool will release the ECS instances in it.
+     * It is not recommended to use this field, it is recommended to use `volcengine.vke.Node` resource to add an existing instance to a custom node pool.
+     */
+    instanceIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Whether to keep instance name when adding an existing instance to a custom node pool, the value is `true` or `false`.
+     * This field is valid only when adding new instances to the custom node pool.
+     */
+    keepInstanceName?: pulumi.Input<boolean>;
     /**
      * The KubernetesConfig of NodeConfig.
      */
@@ -292,6 +394,17 @@ export interface NodePoolArgs {
      * The ClusterId of NodePool.
      */
     clusterId?: pulumi.Input<string>;
+    /**
+     * The list of existing ECS instance ids. Add existing instances with same type of security group under the same cluster VPC to the custom node pool.
+     * Note that removing instance ids from the list will only remove the nodes from cluster and not release the ECS instances. But deleting node pool will release the ECS instances in it.
+     * It is not recommended to use this field, it is recommended to use `volcengine.vke.Node` resource to add an existing instance to a custom node pool.
+     */
+    instanceIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Whether to keep instance name when adding an existing instance to a custom node pool, the value is `true` or `false`.
+     * This field is valid only when adding new instances to the custom node pool.
+     */
+    keepInstanceName?: pulumi.Input<boolean>;
     /**
      * The KubernetesConfig of NodeConfig.
      */

@@ -197,7 +197,7 @@ namespace Pulumi.Volcengine.Ebs
         public Output<int> TradeStatus { get; private set; } = null!;
 
         /// <summary>
-        /// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
+        /// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
         /// </summary>
         [Output("volumeChargeType")]
         public Output<string?> VolumeChargeType { get; private set; } = null!;
@@ -319,7 +319,7 @@ namespace Pulumi.Volcengine.Ebs
         }
 
         /// <summary>
-        /// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
+        /// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
         /// </summary>
         [Input("volumeChargeType")]
         public Input<string>? VolumeChargeType { get; set; }
@@ -420,7 +420,7 @@ namespace Pulumi.Volcengine.Ebs
         public Input<int>? TradeStatus { get; set; }
 
         /// <summary>
-        /// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
+        /// The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
         /// </summary>
         [Input("volumeChargeType")]
         public Input<string>? VolumeChargeType { get; set; }

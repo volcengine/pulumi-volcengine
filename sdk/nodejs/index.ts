@@ -36,6 +36,7 @@ import * as mongodb from "./mongodb";
 import * as nas from "./nas";
 import * as nat from "./nat";
 import * as organization from "./organization";
+import * as private_zone from "./private_zone";
 import * as privatelink from "./privatelink";
 import * as rds from "./rds";
 import * as rds_mssql from "./rds_mssql";
@@ -48,6 +49,7 @@ import * as tos from "./tos";
 import * as transit_router from "./transit_router";
 import * as types from "./types";
 import * as veenedge from "./veenedge";
+import * as vepfs from "./vepfs";
 import * as vke from "./vke";
 import * as vpc from "./vpc";
 import * as vpn from "./vpn";
@@ -77,6 +79,7 @@ export {
     nas,
     nat,
     organization,
+    private_zone,
     privatelink,
     rds,
     rds_mssql,
@@ -89,6 +92,7 @@ export {
     transit_router,
     types,
     veenedge,
+    vepfs,
     vke,
     vpc,
     vpn,

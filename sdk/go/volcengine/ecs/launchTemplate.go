@@ -92,7 +92,7 @@ type LaunchTemplate struct {
 	// Whether to open the security reinforcement.
 	SecurityEnhancementStrategy pulumi.StringPtrOutput `pulumi:"securityEnhancementStrategy"`
 	// The index of the ordered suffix.
-	SuffixIndex pulumi.IntPtrOutput `pulumi:"suffixIndex"`
+	SuffixIndex pulumi.IntOutput `pulumi:"suffixIndex"`
 	// Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.
 	UniqueSuffix pulumi.BoolPtrOutput `pulumi:"uniqueSuffix"`
 	// Instance custom data. The set custom data must be Base64 encoded, and the size of the custom data before Base64 encoding cannot exceed 16KB.
@@ -491,8 +491,8 @@ func (o LaunchTemplateOutput) SecurityEnhancementStrategy() pulumi.StringPtrOutp
 }
 
 // The index of the ordered suffix.
-func (o LaunchTemplateOutput) SuffixIndex() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *LaunchTemplate) pulumi.IntPtrOutput { return v.SuffixIndex }).(pulumi.IntPtrOutput)
+func (o LaunchTemplateOutput) SuffixIndex() pulumi.IntOutput {
+	return o.ApplyT(func(v *LaunchTemplate) pulumi.IntOutput { return v.SuffixIndex }).(pulumi.IntOutput)
 }
 
 // Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.
