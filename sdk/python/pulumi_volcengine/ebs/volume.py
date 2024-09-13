@@ -42,7 +42,7 @@ class VolumeArgs:
                terraform state file and management.
         :param pulumi.Input[str] project_name: The ProjectName of the Volume.
         :param pulumi.Input[Sequence[pulumi.Input['VolumeTagArgs']]] tags: Tags.
-        :param pulumi.Input[str] volume_charge_type: The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
+        :param pulumi.Input[str] volume_charge_type: The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
         """
         pulumi.set(__self__, "kind", kind)
         pulumi.set(__self__, "size", size)
@@ -189,7 +189,7 @@ class VolumeArgs:
     @pulumi.getter(name="volumeChargeType")
     def volume_charge_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
+        The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
         """
         return pulumi.get(self, "volume_charge_type")
 
@@ -230,7 +230,7 @@ class _VolumeState:
         :param pulumi.Input[str] status: Status of Volume.
         :param pulumi.Input[Sequence[pulumi.Input['VolumeTagArgs']]] tags: Tags.
         :param pulumi.Input[int] trade_status: Status of Trade.
-        :param pulumi.Input[str] volume_charge_type: The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
+        :param pulumi.Input[str] volume_charge_type: The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
         :param pulumi.Input[str] volume_name: The name of Volume.
         :param pulumi.Input[str] volume_type: The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         :param pulumi.Input[str] zone_id: The id of the Zone.
@@ -391,7 +391,7 @@ class _VolumeState:
     @pulumi.getter(name="volumeChargeType")
     def volume_charge_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
+        The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
         """
         return pulumi.get(self, "volume_charge_type")
 
@@ -543,7 +543,7 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[str] project_name: The ProjectName of the Volume.
         :param pulumi.Input[int] size: The size of Volume.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeTagArgs']]]] tags: Tags.
-        :param pulumi.Input[str] volume_charge_type: The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
+        :param pulumi.Input[str] volume_charge_type: The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
         :param pulumi.Input[str] volume_name: The name of Volume.
         :param pulumi.Input[str] volume_type: The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         :param pulumi.Input[str] zone_id: The id of the Zone.
@@ -735,7 +735,7 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[str] status: Status of Volume.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VolumeTagArgs']]]] tags: Tags.
         :param pulumi.Input[int] trade_status: Status of Trade.
-        :param pulumi.Input[str] volume_charge_type: The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
+        :param pulumi.Input[str] volume_charge_type: The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
         :param pulumi.Input[str] volume_name: The name of Volume.
         :param pulumi.Input[str] volume_type: The type of Volume, the value is `PTSSD` or `ESSD_PL0` or `ESSD_PL1` or `ESSD_PL2` or `ESSD_FlexPL`.
         :param pulumi.Input[str] zone_id: The id of the Zone.
@@ -847,7 +847,7 @@ class Volume(pulumi.CustomResource):
     @pulumi.getter(name="volumeChargeType")
     def volume_charge_type(self) -> pulumi.Output[Optional[str]]:
         """
-        The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
+        The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
         """
         return pulumi.get(self, "volume_charge_type")
 

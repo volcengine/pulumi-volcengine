@@ -58,6 +58,8 @@ if typing.TYPE_CHECKING:
     nat = __nat
     import pulumi_volcengine.organization as __organization
     organization = __organization
+    import pulumi_volcengine.private_zone as __private_zone
+    private_zone = __private_zone
     import pulumi_volcengine.privatelink as __privatelink
     privatelink = __privatelink
     import pulumi_volcengine.rds as __rds
@@ -80,6 +82,8 @@ if typing.TYPE_CHECKING:
     transit_router = __transit_router
     import pulumi_volcengine.veenedge as __veenedge
     veenedge = __veenedge
+    import pulumi_volcengine.vepfs as __vepfs
+    vepfs = __vepfs
     import pulumi_volcengine.vke as __vke
     vke = __vke
     import pulumi_volcengine.vpc as __vpc
@@ -111,6 +115,7 @@ else:
     nas = _utilities.lazy_import('pulumi_volcengine.nas')
     nat = _utilities.lazy_import('pulumi_volcengine.nat')
     organization = _utilities.lazy_import('pulumi_volcengine.organization')
+    private_zone = _utilities.lazy_import('pulumi_volcengine.private_zone')
     privatelink = _utilities.lazy_import('pulumi_volcengine.privatelink')
     rds = _utilities.lazy_import('pulumi_volcengine.rds')
     rds_mssql = _utilities.lazy_import('pulumi_volcengine.rds_mssql')
@@ -122,6 +127,7 @@ else:
     tos = _utilities.lazy_import('pulumi_volcengine.tos')
     transit_router = _utilities.lazy_import('pulumi_volcengine.transit_router')
     veenedge = _utilities.lazy_import('pulumi_volcengine.veenedge')
+    vepfs = _utilities.lazy_import('pulumi_volcengine.vepfs')
     vke = _utilities.lazy_import('pulumi_volcengine.vke')
     vpc = _utilities.lazy_import('pulumi_volcengine.vpc')
     vpn = _utilities.lazy_import('pulumi_volcengine.vpn')
@@ -1083,6 +1089,54 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "private_zone/privateZone",
+  "fqn": "pulumi_volcengine.private_zone",
+  "classes": {
+   "volcengine:private_zone/privateZone:PrivateZone": "PrivateZone"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "private_zone/record",
+  "fqn": "pulumi_volcengine.private_zone",
+  "classes": {
+   "volcengine:private_zone/record:Record": "Record"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "private_zone/recordWeightEnabler",
+  "fqn": "pulumi_volcengine.private_zone",
+  "classes": {
+   "volcengine:private_zone/recordWeightEnabler:RecordWeightEnabler": "RecordWeightEnabler"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "private_zone/resolverEndpoint",
+  "fqn": "pulumi_volcengine.private_zone",
+  "classes": {
+   "volcengine:private_zone/resolverEndpoint:ResolverEndpoint": "ResolverEndpoint"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "private_zone/resolverRule",
+  "fqn": "pulumi_volcengine.private_zone",
+  "classes": {
+   "volcengine:private_zone/resolverRule:ResolverRule": "ResolverRule"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "private_zone/userVpcAuthorization",
+  "fqn": "pulumi_volcengine.private_zone",
+  "classes": {
+   "volcengine:private_zone/userVpcAuthorization:UserVpcAuthorization": "UserVpcAuthorization"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "privatelink/securityGroup",
   "fqn": "pulumi_volcengine.privatelink",
   "classes": {
@@ -1255,6 +1309,22 @@ _utilities.register(
   "fqn": "pulumi_volcengine.rds_postgresql",
   "classes": {
    "volcengine:rds_postgresql/account:Account": "Account"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds_postgresql/allowlist",
+  "fqn": "pulumi_volcengine.rds_postgresql",
+  "classes": {
+   "volcengine:rds_postgresql/allowlist:Allowlist": "Allowlist"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "rds_postgresql/allowlistAssociate",
+  "fqn": "pulumi_volcengine.rds_postgresql",
+  "classes": {
+   "volcengine:rds_postgresql/allowlistAssociate:AllowlistAssociate": "AllowlistAssociate"
   }
  },
  {
@@ -1591,6 +1661,38 @@ _utilities.register(
   "fqn": "pulumi_volcengine.veenedge",
   "classes": {
    "volcengine:veenedge/vpc:Vpc": "Vpc"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vepfs/fileSystem",
+  "fqn": "pulumi_volcengine.vepfs",
+  "classes": {
+   "volcengine:vepfs/fileSystem:FileSystem": "FileSystem"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vepfs/fileset",
+  "fqn": "pulumi_volcengine.vepfs",
+  "classes": {
+   "volcengine:vepfs/fileset:Fileset": "Fileset"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vepfs/mountService",
+  "fqn": "pulumi_volcengine.vepfs",
+  "classes": {
+   "volcengine:vepfs/mountService:MountService": "MountService"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vepfs/mountServiceAttachment",
+  "fqn": "pulumi_volcengine.vepfs",
+  "classes": {
+   "volcengine:vepfs/mountServiceAttachment:MountServiceAttachment": "MountServiceAttachment"
   }
  },
  {

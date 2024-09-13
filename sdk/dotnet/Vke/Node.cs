@@ -251,7 +251,7 @@ namespace Pulumi.Volcengine.Vke
     public partial class Node : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The flag of additional container storage enable, the value is `true` or `false`.
+        /// The flag of additional container storage enable, the value is `true` or `false`. This field is valid only when adding an existing instance to the default node pool.
         /// </summary>
         [Output("additionalContainerStorageEnabled")]
         public Output<bool?> AdditionalContainerStorageEnabled { get; private set; } = null!;
@@ -269,19 +269,19 @@ namespace Pulumi.Volcengine.Vke
         public Output<string> ClusterId { get; private set; } = null!;
 
         /// <summary>
-        /// The container storage path.
+        /// The container storage path. This field is valid only when adding an existing instance to the default node pool.
         /// </summary>
         [Output("containerStoragePath")]
         public Output<string> ContainerStoragePath { get; private set; } = null!;
 
         /// <summary>
-        /// The ImageId of NodeConfig.
+        /// The ImageId of NodeConfig. This field is valid only when adding an existing instance to the default node pool.
         /// </summary>
         [Output("imageId")]
         public Output<string> ImageId { get; private set; } = null!;
 
         /// <summary>
-        /// The initializeScript of Node.
+        /// The initializeScript of Node. This field is valid only when adding an existing instance to the default node pool.
         /// </summary>
         [Output("initializeScript")]
         public Output<string> InitializeScript { get; private set; } = null!;
@@ -299,13 +299,13 @@ namespace Pulumi.Volcengine.Vke
         public Output<bool?> KeepInstanceName { get; private set; } = null!;
 
         /// <summary>
-        /// The KubernetesConfig of Node.
+        /// The KubernetesConfig of Node. This field is valid only when adding an existing instance to the default node pool.
         /// </summary>
         [Output("kubernetesConfig")]
         public Output<Outputs.NodeKubernetesConfig> KubernetesConfig { get; private set; } = null!;
 
         /// <summary>
-        /// The node pool id.
+        /// The node pool id. This field is used to specify the custom node pool to which you want to add nodes. If not filled in, it means added to the default node pool.
         /// </summary>
         [Output("nodePoolId")]
         public Output<string> NodePoolId { get; private set; } = null!;
@@ -358,7 +358,7 @@ namespace Pulumi.Volcengine.Vke
     public sealed class NodeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The flag of additional container storage enable, the value is `true` or `false`.
+        /// The flag of additional container storage enable, the value is `true` or `false`. This field is valid only when adding an existing instance to the default node pool.
         /// </summary>
         [Input("additionalContainerStorageEnabled")]
         public Input<bool>? AdditionalContainerStorageEnabled { get; set; }
@@ -376,19 +376,19 @@ namespace Pulumi.Volcengine.Vke
         public Input<string> ClusterId { get; set; } = null!;
 
         /// <summary>
-        /// The container storage path.
+        /// The container storage path. This field is valid only when adding an existing instance to the default node pool.
         /// </summary>
         [Input("containerStoragePath")]
         public Input<string>? ContainerStoragePath { get; set; }
 
         /// <summary>
-        /// The ImageId of NodeConfig.
+        /// The ImageId of NodeConfig. This field is valid only when adding an existing instance to the default node pool.
         /// </summary>
         [Input("imageId")]
         public Input<string>? ImageId { get; set; }
 
         /// <summary>
-        /// The initializeScript of Node.
+        /// The initializeScript of Node. This field is valid only when adding an existing instance to the default node pool.
         /// </summary>
         [Input("initializeScript")]
         public Input<string>? InitializeScript { get; set; }
@@ -406,13 +406,13 @@ namespace Pulumi.Volcengine.Vke
         public Input<bool>? KeepInstanceName { get; set; }
 
         /// <summary>
-        /// The KubernetesConfig of Node.
+        /// The KubernetesConfig of Node. This field is valid only when adding an existing instance to the default node pool.
         /// </summary>
         [Input("kubernetesConfig")]
         public Input<Inputs.NodeKubernetesConfigArgs>? KubernetesConfig { get; set; }
 
         /// <summary>
-        /// The node pool id.
+        /// The node pool id. This field is used to specify the custom node pool to which you want to add nodes. If not filled in, it means added to the default node pool.
         /// </summary>
         [Input("nodePoolId")]
         public Input<string>? NodePoolId { get; set; }
@@ -426,7 +426,7 @@ namespace Pulumi.Volcengine.Vke
     public sealed class NodeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The flag of additional container storage enable, the value is `true` or `false`.
+        /// The flag of additional container storage enable, the value is `true` or `false`. This field is valid only when adding an existing instance to the default node pool.
         /// </summary>
         [Input("additionalContainerStorageEnabled")]
         public Input<bool>? AdditionalContainerStorageEnabled { get; set; }
@@ -444,19 +444,19 @@ namespace Pulumi.Volcengine.Vke
         public Input<string>? ClusterId { get; set; }
 
         /// <summary>
-        /// The container storage path.
+        /// The container storage path. This field is valid only when adding an existing instance to the default node pool.
         /// </summary>
         [Input("containerStoragePath")]
         public Input<string>? ContainerStoragePath { get; set; }
 
         /// <summary>
-        /// The ImageId of NodeConfig.
+        /// The ImageId of NodeConfig. This field is valid only when adding an existing instance to the default node pool.
         /// </summary>
         [Input("imageId")]
         public Input<string>? ImageId { get; set; }
 
         /// <summary>
-        /// The initializeScript of Node.
+        /// The initializeScript of Node. This field is valid only when adding an existing instance to the default node pool.
         /// </summary>
         [Input("initializeScript")]
         public Input<string>? InitializeScript { get; set; }
@@ -474,13 +474,13 @@ namespace Pulumi.Volcengine.Vke
         public Input<bool>? KeepInstanceName { get; set; }
 
         /// <summary>
-        /// The KubernetesConfig of Node.
+        /// The KubernetesConfig of Node. This field is valid only when adding an existing instance to the default node pool.
         /// </summary>
         [Input("kubernetesConfig")]
         public Input<Inputs.NodeKubernetesConfigGetArgs>? KubernetesConfig { get; set; }
 
         /// <summary>
-        /// The node pool id.
+        /// The node pool id. This field is used to specify the custom node pool to which you want to add nodes. If not filled in, it means added to the default node pool.
         /// </summary>
         [Input("nodePoolId")]
         public Input<string>? NodePoolId { get; set; }

@@ -12,6 +12,9 @@ from . import outputs
 
 __all__ = [
     'AccountsAccountResult',
+    'AllowlistAssociatedInstance',
+    'AllowlistsPostgresqlAllowListResult',
+    'AllowlistsPostgresqlAllowListAssociatedInstanceResult',
     'DatabasesDatabaseResult',
     'InstanceChargeDetail',
     'InstanceChargeInfo',
@@ -81,6 +84,214 @@ class AccountsAccountResult(dict):
         The type of the database account.
         """
         return pulumi.get(self, "account_type")
+
+
+@pulumi.output_type
+class AllowlistAssociatedInstance(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "instanceId":
+            suggest = "instance_id"
+        elif key == "instanceName":
+            suggest = "instance_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AllowlistAssociatedInstance. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AllowlistAssociatedInstance.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AllowlistAssociatedInstance.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 instance_id: Optional[str] = None,
+                 instance_name: Optional[str] = None,
+                 vpc: Optional[str] = None):
+        """
+        :param str instance_id: The id of the postgresql instance.
+        :param str instance_name: The name of the postgresql instance.
+        :param str vpc: The id of the vpc.
+        """
+        if instance_id is not None:
+            pulumi.set(__self__, "instance_id", instance_id)
+        if instance_name is not None:
+            pulumi.set(__self__, "instance_name", instance_name)
+        if vpc is not None:
+            pulumi.set(__self__, "vpc", vpc)
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> Optional[str]:
+        """
+        The id of the postgresql instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> Optional[str]:
+        """
+        The name of the postgresql instance.
+        """
+        return pulumi.get(self, "instance_name")
+
+    @property
+    @pulumi.getter
+    def vpc(self) -> Optional[str]:
+        """
+        The id of the vpc.
+        """
+        return pulumi.get(self, "vpc")
+
+
+@pulumi.output_type
+class AllowlistsPostgresqlAllowListResult(dict):
+    def __init__(__self__, *,
+                 allow_list_desc: str,
+                 allow_list_id: str,
+                 allow_list_ip_num: int,
+                 allow_list_name: str,
+                 allow_list_type: str,
+                 allow_lists: Sequence[str],
+                 associated_instance_num: int,
+                 associated_instances: Sequence['outputs.AllowlistsPostgresqlAllowListAssociatedInstanceResult'],
+                 id: str):
+        """
+        :param str allow_list_desc: The description of the postgresql allow list.
+        :param str allow_list_id: The id of the postgresql allow list.
+        :param int allow_list_ip_num: The total number of IP addresses (or address ranges) in the whitelist.
+        :param str allow_list_name: The name of the postgresql allow list.
+        :param str allow_list_type: The type of the postgresql allow list.
+        :param Sequence[str] allow_lists: The IP address or a range of IP addresses in CIDR format.
+        :param int associated_instance_num: The total number of instances bound under the whitelist.
+        :param Sequence['AllowlistsPostgresqlAllowListAssociatedInstanceArgs'] associated_instances: The list of postgresql instances.
+        :param str id: The id of the postgresql allow list.
+        """
+        pulumi.set(__self__, "allow_list_desc", allow_list_desc)
+        pulumi.set(__self__, "allow_list_id", allow_list_id)
+        pulumi.set(__self__, "allow_list_ip_num", allow_list_ip_num)
+        pulumi.set(__self__, "allow_list_name", allow_list_name)
+        pulumi.set(__self__, "allow_list_type", allow_list_type)
+        pulumi.set(__self__, "allow_lists", allow_lists)
+        pulumi.set(__self__, "associated_instance_num", associated_instance_num)
+        pulumi.set(__self__, "associated_instances", associated_instances)
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter(name="allowListDesc")
+    def allow_list_desc(self) -> str:
+        """
+        The description of the postgresql allow list.
+        """
+        return pulumi.get(self, "allow_list_desc")
+
+    @property
+    @pulumi.getter(name="allowListId")
+    def allow_list_id(self) -> str:
+        """
+        The id of the postgresql allow list.
+        """
+        return pulumi.get(self, "allow_list_id")
+
+    @property
+    @pulumi.getter(name="allowListIpNum")
+    def allow_list_ip_num(self) -> int:
+        """
+        The total number of IP addresses (or address ranges) in the whitelist.
+        """
+        return pulumi.get(self, "allow_list_ip_num")
+
+    @property
+    @pulumi.getter(name="allowListName")
+    def allow_list_name(self) -> str:
+        """
+        The name of the postgresql allow list.
+        """
+        return pulumi.get(self, "allow_list_name")
+
+    @property
+    @pulumi.getter(name="allowListType")
+    def allow_list_type(self) -> str:
+        """
+        The type of the postgresql allow list.
+        """
+        return pulumi.get(self, "allow_list_type")
+
+    @property
+    @pulumi.getter(name="allowLists")
+    def allow_lists(self) -> Sequence[str]:
+        """
+        The IP address or a range of IP addresses in CIDR format.
+        """
+        return pulumi.get(self, "allow_lists")
+
+    @property
+    @pulumi.getter(name="associatedInstanceNum")
+    def associated_instance_num(self) -> int:
+        """
+        The total number of instances bound under the whitelist.
+        """
+        return pulumi.get(self, "associated_instance_num")
+
+    @property
+    @pulumi.getter(name="associatedInstances")
+    def associated_instances(self) -> Sequence['outputs.AllowlistsPostgresqlAllowListAssociatedInstanceResult']:
+        """
+        The list of postgresql instances.
+        """
+        return pulumi.get(self, "associated_instances")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the postgresql allow list.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class AllowlistsPostgresqlAllowListAssociatedInstanceResult(dict):
+    def __init__(__self__, *,
+                 instance_id: str,
+                 instance_name: str,
+                 vpc: str):
+        """
+        :param str instance_id: The id of the postgresql Instance.
+        :param str instance_name: The name of the postgresql instance.
+        :param str vpc: The id of the vpc.
+        """
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "instance_name", instance_name)
+        pulumi.set(__self__, "vpc", vpc)
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        The id of the postgresql Instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> str:
+        """
+        The name of the postgresql instance.
+        """
+        return pulumi.get(self, "instance_name")
+
+    @property
+    @pulumi.getter
+    def vpc(self) -> str:
+        """
+        The id of the vpc.
+        """
+        return pulumi.get(self, "vpc")
 
 
 @pulumi.output_type

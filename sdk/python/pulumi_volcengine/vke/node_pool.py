@@ -21,6 +21,8 @@ class NodePoolArgs:
                  auto_scaling: Optional[pulumi.Input['NodePoolAutoScalingArgs']] = None,
                  client_token: Optional[pulumi.Input[str]] = None,
                  cluster_id: Optional[pulumi.Input[str]] = None,
+                 instance_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 keep_instance_name: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['NodePoolTagArgs']]]] = None):
         """
@@ -30,6 +32,11 @@ class NodePoolArgs:
         :param pulumi.Input['NodePoolAutoScalingArgs'] auto_scaling: The node pool elastic scaling configuration information.
         :param pulumi.Input[str] client_token: The ClientToken of NodePool.
         :param pulumi.Input[str] cluster_id: The ClusterId of NodePool.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_ids: The list of existing ECS instance ids. Add existing instances with same type of security group under the same cluster VPC to the custom node pool.
+               Note that removing instance ids from the list will only remove the nodes from cluster and not release the ECS instances. But deleting node pool will release the ECS instances in it.
+               It is not recommended to use this field, it is recommended to use `vke.Node` resource to add an existing instance to a custom node pool.
+        :param pulumi.Input[bool] keep_instance_name: Whether to keep instance name when adding an existing instance to a custom node pool, the value is `true` or `false`.
+               This field is valid only when adding new instances to the custom node pool.
         :param pulumi.Input[str] name: The Name of NodePool.
         :param pulumi.Input[Sequence[pulumi.Input['NodePoolTagArgs']]] tags: Tags.
         """
@@ -41,6 +48,10 @@ class NodePoolArgs:
             pulumi.set(__self__, "client_token", client_token)
         if cluster_id is not None:
             pulumi.set(__self__, "cluster_id", cluster_id)
+        if instance_ids is not None:
+            pulumi.set(__self__, "instance_ids", instance_ids)
+        if keep_instance_name is not None:
+            pulumi.set(__self__, "keep_instance_name", keep_instance_name)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if tags is not None:
@@ -107,6 +118,33 @@ class NodePoolArgs:
         pulumi.set(self, "cluster_id", value)
 
     @property
+    @pulumi.getter(name="instanceIds")
+    def instance_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The list of existing ECS instance ids. Add existing instances with same type of security group under the same cluster VPC to the custom node pool.
+        Note that removing instance ids from the list will only remove the nodes from cluster and not release the ECS instances. But deleting node pool will release the ECS instances in it.
+        It is not recommended to use this field, it is recommended to use `vke.Node` resource to add an existing instance to a custom node pool.
+        """
+        return pulumi.get(self, "instance_ids")
+
+    @instance_ids.setter
+    def instance_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "instance_ids", value)
+
+    @property
+    @pulumi.getter(name="keepInstanceName")
+    def keep_instance_name(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to keep instance name when adding an existing instance to a custom node pool, the value is `true` or `false`.
+        This field is valid only when adding new instances to the custom node pool.
+        """
+        return pulumi.get(self, "keep_instance_name")
+
+    @keep_instance_name.setter
+    def keep_instance_name(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "keep_instance_name", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -137,6 +175,8 @@ class _NodePoolState:
                  auto_scaling: Optional[pulumi.Input['NodePoolAutoScalingArgs']] = None,
                  client_token: Optional[pulumi.Input[str]] = None,
                  cluster_id: Optional[pulumi.Input[str]] = None,
+                 instance_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 keep_instance_name: Optional[pulumi.Input[bool]] = None,
                  kubernetes_config: Optional[pulumi.Input['NodePoolKubernetesConfigArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_config: Optional[pulumi.Input['NodePoolNodeConfigArgs']] = None,
@@ -147,6 +187,11 @@ class _NodePoolState:
         :param pulumi.Input['NodePoolAutoScalingArgs'] auto_scaling: The node pool elastic scaling configuration information.
         :param pulumi.Input[str] client_token: The ClientToken of NodePool.
         :param pulumi.Input[str] cluster_id: The ClusterId of NodePool.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_ids: The list of existing ECS instance ids. Add existing instances with same type of security group under the same cluster VPC to the custom node pool.
+               Note that removing instance ids from the list will only remove the nodes from cluster and not release the ECS instances. But deleting node pool will release the ECS instances in it.
+               It is not recommended to use this field, it is recommended to use `vke.Node` resource to add an existing instance to a custom node pool.
+        :param pulumi.Input[bool] keep_instance_name: Whether to keep instance name when adding an existing instance to a custom node pool, the value is `true` or `false`.
+               This field is valid only when adding new instances to the custom node pool.
         :param pulumi.Input['NodePoolKubernetesConfigArgs'] kubernetes_config: The KubernetesConfig of NodeConfig.
         :param pulumi.Input[str] name: The Name of NodePool.
         :param pulumi.Input['NodePoolNodeConfigArgs'] node_config: The Config of NodePool.
@@ -159,6 +204,10 @@ class _NodePoolState:
             pulumi.set(__self__, "client_token", client_token)
         if cluster_id is not None:
             pulumi.set(__self__, "cluster_id", cluster_id)
+        if instance_ids is not None:
+            pulumi.set(__self__, "instance_ids", instance_ids)
+        if keep_instance_name is not None:
+            pulumi.set(__self__, "keep_instance_name", keep_instance_name)
         if kubernetes_config is not None:
             pulumi.set(__self__, "kubernetes_config", kubernetes_config)
         if name is not None:
@@ -205,6 +254,33 @@ class _NodePoolState:
     @cluster_id.setter
     def cluster_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "cluster_id", value)
+
+    @property
+    @pulumi.getter(name="instanceIds")
+    def instance_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The list of existing ECS instance ids. Add existing instances with same type of security group under the same cluster VPC to the custom node pool.
+        Note that removing instance ids from the list will only remove the nodes from cluster and not release the ECS instances. But deleting node pool will release the ECS instances in it.
+        It is not recommended to use this field, it is recommended to use `vke.Node` resource to add an existing instance to a custom node pool.
+        """
+        return pulumi.get(self, "instance_ids")
+
+    @instance_ids.setter
+    def instance_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "instance_ids", value)
+
+    @property
+    @pulumi.getter(name="keepInstanceName")
+    def keep_instance_name(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to keep instance name when adding an existing instance to a custom node pool, the value is `true` or `false`.
+        This field is valid only when adding new instances to the custom node pool.
+        """
+        return pulumi.get(self, "keep_instance_name")
+
+    @keep_instance_name.setter
+    def keep_instance_name(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "keep_instance_name", value)
 
     @property
     @pulumi.getter(name="kubernetesConfig")
@@ -275,6 +351,8 @@ class NodePool(pulumi.CustomResource):
                  auto_scaling: Optional[pulumi.Input[pulumi.InputType['NodePoolAutoScalingArgs']]] = None,
                  client_token: Optional[pulumi.Input[str]] = None,
                  cluster_id: Optional[pulumi.Input[str]] = None,
+                 instance_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 keep_instance_name: Optional[pulumi.Input[bool]] = None,
                  kubernetes_config: Optional[pulumi.Input[pulumi.InputType['NodePoolKubernetesConfigArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_config: Optional[pulumi.Input[pulumi.InputType['NodePoolNodeConfigArgs']]] = None,
@@ -390,6 +468,79 @@ class NodePool(pulumi.CustomResource):
                 key="node-pool-k1",
                 value="node-pool-v1",
             )])
+        # add existing instances to a custom node pool
+        foo_instance = []
+        for range in [{"value": i} for i in range(0, 2)]:
+            foo_instance.append(volcengine.ecs.Instance(f"fooInstance-{range['value']}",
+                instance_name=f"acc-test-ecs-{range['value']}",
+                host_name="tf-acc-test",
+                image_id=[image.image_id for image in foo_images.images if image.image_name == "veLinux 1.0 CentOS兼容版 64位"][0],
+                instance_type="ecs.g1ie.xlarge",
+                password="93f0cb0614Aab12",
+                instance_charge_type="PostPaid",
+                system_volume_type="ESSD_PL0",
+                system_volume_size=50,
+                data_volumes=[volcengine.ecs.InstanceDataVolumeArgs(
+                    volume_type="ESSD_PL0",
+                    size=50,
+                    delete_with_instance=True,
+                )],
+                subnet_id=foo_subnet.id,
+                security_group_ids=[foo_security_group.id],
+                project_name="default",
+                tags=[volcengine.ecs.InstanceTagArgs(
+                    key="k1",
+                    value="v1",
+                )]))
+        foo1 = volcengine.vke.NodePool("foo1",
+            cluster_id=foo_cluster.id,
+            instance_ids=[__item.id for __item in foo_instance],
+            keep_instance_name=True,
+            node_config=volcengine.vke.NodePoolNodeConfigArgs(
+                instance_type_ids=["ecs.g1ie.xlarge"],
+                subnet_ids=[foo_subnet.id],
+                image_id=[image.image_id for image in foo_images.images if image.image_name == "veLinux 1.0 CentOS兼容版 64位"][0],
+                system_volume=volcengine.vke.NodePoolNodeConfigSystemVolumeArgs(
+                    type="ESSD_PL0",
+                    size=50,
+                ),
+                data_volumes=[volcengine.vke.NodePoolNodeConfigDataVolumeArgs(
+                    type="ESSD_PL0",
+                    size=50,
+                    mount_point="/tf1",
+                )],
+                initialize_script="ZWNobyBoZWxsbyB0ZXJyYWZvcm0h",
+                security=volcengine.vke.NodePoolNodeConfigSecurityArgs(
+                    login=volcengine.vke.NodePoolNodeConfigSecurityLoginArgs(
+                        password="UHdkMTIzNDU2",
+                    ),
+                    security_strategies=["Hids"],
+                    security_group_ids=[foo_security_group.id],
+                ),
+                additional_container_storage_enabled=False,
+                instance_charge_type="PostPaid",
+                name_prefix="acc-test",
+                ecs_tags=[volcengine.vke.NodePoolNodeConfigEcsTagArgs(
+                    key="ecs_k1",
+                    value="ecs_v1",
+                )],
+            ),
+            kubernetes_config=volcengine.vke.NodePoolKubernetesConfigArgs(
+                labels=[volcengine.vke.NodePoolKubernetesConfigLabelArgs(
+                    key="label1",
+                    value="value1",
+                )],
+                taints=[volcengine.vke.NodePoolKubernetesConfigTaintArgs(
+                    key="taint-key/node-type",
+                    value="taint-value",
+                    effect="NoSchedule",
+                )],
+                cordon=True,
+            ),
+            tags=[volcengine.vke.NodePoolTagArgs(
+                key="node-pool-k1",
+                value="node-pool-v1",
+            )])
         ```
 
         ## Import
@@ -405,6 +556,11 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['NodePoolAutoScalingArgs']] auto_scaling: The node pool elastic scaling configuration information.
         :param pulumi.Input[str] client_token: The ClientToken of NodePool.
         :param pulumi.Input[str] cluster_id: The ClusterId of NodePool.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_ids: The list of existing ECS instance ids. Add existing instances with same type of security group under the same cluster VPC to the custom node pool.
+               Note that removing instance ids from the list will only remove the nodes from cluster and not release the ECS instances. But deleting node pool will release the ECS instances in it.
+               It is not recommended to use this field, it is recommended to use `vke.Node` resource to add an existing instance to a custom node pool.
+        :param pulumi.Input[bool] keep_instance_name: Whether to keep instance name when adding an existing instance to a custom node pool, the value is `true` or `false`.
+               This field is valid only when adding new instances to the custom node pool.
         :param pulumi.Input[pulumi.InputType['NodePoolKubernetesConfigArgs']] kubernetes_config: The KubernetesConfig of NodeConfig.
         :param pulumi.Input[str] name: The Name of NodePool.
         :param pulumi.Input[pulumi.InputType['NodePoolNodeConfigArgs']] node_config: The Config of NodePool.
@@ -526,6 +682,79 @@ class NodePool(pulumi.CustomResource):
                 key="node-pool-k1",
                 value="node-pool-v1",
             )])
+        # add existing instances to a custom node pool
+        foo_instance = []
+        for range in [{"value": i} for i in range(0, 2)]:
+            foo_instance.append(volcengine.ecs.Instance(f"fooInstance-{range['value']}",
+                instance_name=f"acc-test-ecs-{range['value']}",
+                host_name="tf-acc-test",
+                image_id=[image.image_id for image in foo_images.images if image.image_name == "veLinux 1.0 CentOS兼容版 64位"][0],
+                instance_type="ecs.g1ie.xlarge",
+                password="93f0cb0614Aab12",
+                instance_charge_type="PostPaid",
+                system_volume_type="ESSD_PL0",
+                system_volume_size=50,
+                data_volumes=[volcengine.ecs.InstanceDataVolumeArgs(
+                    volume_type="ESSD_PL0",
+                    size=50,
+                    delete_with_instance=True,
+                )],
+                subnet_id=foo_subnet.id,
+                security_group_ids=[foo_security_group.id],
+                project_name="default",
+                tags=[volcengine.ecs.InstanceTagArgs(
+                    key="k1",
+                    value="v1",
+                )]))
+        foo1 = volcengine.vke.NodePool("foo1",
+            cluster_id=foo_cluster.id,
+            instance_ids=[__item.id for __item in foo_instance],
+            keep_instance_name=True,
+            node_config=volcengine.vke.NodePoolNodeConfigArgs(
+                instance_type_ids=["ecs.g1ie.xlarge"],
+                subnet_ids=[foo_subnet.id],
+                image_id=[image.image_id for image in foo_images.images if image.image_name == "veLinux 1.0 CentOS兼容版 64位"][0],
+                system_volume=volcengine.vke.NodePoolNodeConfigSystemVolumeArgs(
+                    type="ESSD_PL0",
+                    size=50,
+                ),
+                data_volumes=[volcengine.vke.NodePoolNodeConfigDataVolumeArgs(
+                    type="ESSD_PL0",
+                    size=50,
+                    mount_point="/tf1",
+                )],
+                initialize_script="ZWNobyBoZWxsbyB0ZXJyYWZvcm0h",
+                security=volcengine.vke.NodePoolNodeConfigSecurityArgs(
+                    login=volcengine.vke.NodePoolNodeConfigSecurityLoginArgs(
+                        password="UHdkMTIzNDU2",
+                    ),
+                    security_strategies=["Hids"],
+                    security_group_ids=[foo_security_group.id],
+                ),
+                additional_container_storage_enabled=False,
+                instance_charge_type="PostPaid",
+                name_prefix="acc-test",
+                ecs_tags=[volcengine.vke.NodePoolNodeConfigEcsTagArgs(
+                    key="ecs_k1",
+                    value="ecs_v1",
+                )],
+            ),
+            kubernetes_config=volcengine.vke.NodePoolKubernetesConfigArgs(
+                labels=[volcengine.vke.NodePoolKubernetesConfigLabelArgs(
+                    key="label1",
+                    value="value1",
+                )],
+                taints=[volcengine.vke.NodePoolKubernetesConfigTaintArgs(
+                    key="taint-key/node-type",
+                    value="taint-value",
+                    effect="NoSchedule",
+                )],
+                cordon=True,
+            ),
+            tags=[volcengine.vke.NodePoolTagArgs(
+                key="node-pool-k1",
+                value="node-pool-v1",
+            )])
         ```
 
         ## Import
@@ -554,6 +783,8 @@ class NodePool(pulumi.CustomResource):
                  auto_scaling: Optional[pulumi.Input[pulumi.InputType['NodePoolAutoScalingArgs']]] = None,
                  client_token: Optional[pulumi.Input[str]] = None,
                  cluster_id: Optional[pulumi.Input[str]] = None,
+                 instance_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 keep_instance_name: Optional[pulumi.Input[bool]] = None,
                  kubernetes_config: Optional[pulumi.Input[pulumi.InputType['NodePoolKubernetesConfigArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_config: Optional[pulumi.Input[pulumi.InputType['NodePoolNodeConfigArgs']]] = None,
@@ -570,6 +801,8 @@ class NodePool(pulumi.CustomResource):
             __props__.__dict__["auto_scaling"] = auto_scaling
             __props__.__dict__["client_token"] = client_token
             __props__.__dict__["cluster_id"] = cluster_id
+            __props__.__dict__["instance_ids"] = instance_ids
+            __props__.__dict__["keep_instance_name"] = keep_instance_name
             if kubernetes_config is None and not opts.urn:
                 raise TypeError("Missing required property 'kubernetes_config'")
             __props__.__dict__["kubernetes_config"] = kubernetes_config
@@ -592,6 +825,8 @@ class NodePool(pulumi.CustomResource):
             auto_scaling: Optional[pulumi.Input[pulumi.InputType['NodePoolAutoScalingArgs']]] = None,
             client_token: Optional[pulumi.Input[str]] = None,
             cluster_id: Optional[pulumi.Input[str]] = None,
+            instance_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            keep_instance_name: Optional[pulumi.Input[bool]] = None,
             kubernetes_config: Optional[pulumi.Input[pulumi.InputType['NodePoolKubernetesConfigArgs']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             node_config: Optional[pulumi.Input[pulumi.InputType['NodePoolNodeConfigArgs']]] = None,
@@ -607,6 +842,11 @@ class NodePool(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['NodePoolAutoScalingArgs']] auto_scaling: The node pool elastic scaling configuration information.
         :param pulumi.Input[str] client_token: The ClientToken of NodePool.
         :param pulumi.Input[str] cluster_id: The ClusterId of NodePool.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_ids: The list of existing ECS instance ids. Add existing instances with same type of security group under the same cluster VPC to the custom node pool.
+               Note that removing instance ids from the list will only remove the nodes from cluster and not release the ECS instances. But deleting node pool will release the ECS instances in it.
+               It is not recommended to use this field, it is recommended to use `vke.Node` resource to add an existing instance to a custom node pool.
+        :param pulumi.Input[bool] keep_instance_name: Whether to keep instance name when adding an existing instance to a custom node pool, the value is `true` or `false`.
+               This field is valid only when adding new instances to the custom node pool.
         :param pulumi.Input[pulumi.InputType['NodePoolKubernetesConfigArgs']] kubernetes_config: The KubernetesConfig of NodeConfig.
         :param pulumi.Input[str] name: The Name of NodePool.
         :param pulumi.Input[pulumi.InputType['NodePoolNodeConfigArgs']] node_config: The Config of NodePool.
@@ -620,6 +860,8 @@ class NodePool(pulumi.CustomResource):
         __props__.__dict__["auto_scaling"] = auto_scaling
         __props__.__dict__["client_token"] = client_token
         __props__.__dict__["cluster_id"] = cluster_id
+        __props__.__dict__["instance_ids"] = instance_ids
+        __props__.__dict__["keep_instance_name"] = keep_instance_name
         __props__.__dict__["kubernetes_config"] = kubernetes_config
         __props__.__dict__["name"] = name
         __props__.__dict__["node_config"] = node_config
@@ -650,6 +892,25 @@ class NodePool(pulumi.CustomResource):
         The ClusterId of NodePool.
         """
         return pulumi.get(self, "cluster_id")
+
+    @property
+    @pulumi.getter(name="instanceIds")
+    def instance_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        The list of existing ECS instance ids. Add existing instances with same type of security group under the same cluster VPC to the custom node pool.
+        Note that removing instance ids from the list will only remove the nodes from cluster and not release the ECS instances. But deleting node pool will release the ECS instances in it.
+        It is not recommended to use this field, it is recommended to use `vke.Node` resource to add an existing instance to a custom node pool.
+        """
+        return pulumi.get(self, "instance_ids")
+
+    @property
+    @pulumi.getter(name="keepInstanceName")
+    def keep_instance_name(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether to keep instance name when adding an existing instance to a custom node pool, the value is `true` or `false`.
+        This field is valid only when adding new instances to the custom node pool.
+        """
+        return pulumi.get(self, "keep_instance_name")
 
     @property
     @pulumi.getter(name="kubernetesConfig")

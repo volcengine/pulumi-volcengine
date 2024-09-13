@@ -34,7 +34,7 @@ class ClusterArgs:
         :param pulumi.Input[str] client_token: ClientToken is a case-sensitive string of no more than 64 ASCII characters passed in by the caller.
         :param pulumi.Input[bool] delete_protection_enabled: The delete protection of the cluster, the value is `true` or `false`.
         :param pulumi.Input[str] description: The description of the cluster.
-        :param pulumi.Input[str] kubernetes_version: The version of Kubernetes specified when creating a VKE cluster (specified to patch version), with an example value of `v1.24`. If not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
+        :param pulumi.Input[str] kubernetes_version: The version of Kubernetes specified when creating a VKE cluster (specified to patch version), with an example value of `1.24`. If not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
         :param pulumi.Input['ClusterLoggingConfigArgs'] logging_config: Cluster log configuration information.
         :param pulumi.Input[str] name: The name of the cluster.
         :param pulumi.Input[Sequence[pulumi.Input['ClusterTagArgs']]] tags: Tags.
@@ -133,7 +133,7 @@ class ClusterArgs:
     @pulumi.getter(name="kubernetesVersion")
     def kubernetes_version(self) -> Optional[pulumi.Input[str]]:
         """
-        The version of Kubernetes specified when creating a VKE cluster (specified to patch version), with an example value of `v1.24`. If not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
+        The version of Kubernetes specified when creating a VKE cluster (specified to patch version), with an example value of `1.24`. If not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
         """
         return pulumi.get(self, "kubernetes_version")
 
@@ -203,7 +203,7 @@ class _ClusterState:
         :param pulumi.Input[str] eip_allocation_id: Eip allocation Id.
         :param pulumi.Input[str] kubeconfig_private: Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.
         :param pulumi.Input[str] kubeconfig_public: Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.
-        :param pulumi.Input[str] kubernetes_version: The version of Kubernetes specified when creating a VKE cluster (specified to patch version), with an example value of `v1.24`. If not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
+        :param pulumi.Input[str] kubernetes_version: The version of Kubernetes specified when creating a VKE cluster (specified to patch version), with an example value of `1.24`. If not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
         :param pulumi.Input['ClusterLoggingConfigArgs'] logging_config: Cluster log configuration information.
         :param pulumi.Input[str] name: The name of the cluster.
         :param pulumi.Input['ClusterPodsConfigArgs'] pods_config: The config of the pods.
@@ -325,7 +325,7 @@ class _ClusterState:
     @pulumi.getter(name="kubernetesVersion")
     def kubernetes_version(self) -> Optional[pulumi.Input[str]]:
         """
-        The version of Kubernetes specified when creating a VKE cluster (specified to patch version), with an example value of `v1.24`. If not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
+        The version of Kubernetes specified when creating a VKE cluster (specified to patch version), with an example value of `1.24`. If not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
         """
         return pulumi.get(self, "kubernetes_version")
 
@@ -472,7 +472,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['ClusterClusterConfigArgs']] cluster_config: The config of the cluster.
         :param pulumi.Input[bool] delete_protection_enabled: The delete protection of the cluster, the value is `true` or `false`.
         :param pulumi.Input[str] description: The description of the cluster.
-        :param pulumi.Input[str] kubernetes_version: The version of Kubernetes specified when creating a VKE cluster (specified to patch version), with an example value of `v1.24`. If not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
+        :param pulumi.Input[str] kubernetes_version: The version of Kubernetes specified when creating a VKE cluster (specified to patch version), with an example value of `1.24`. If not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
         :param pulumi.Input[pulumi.InputType['ClusterLoggingConfigArgs']] logging_config: Cluster log configuration information.
         :param pulumi.Input[str] name: The name of the cluster.
         :param pulumi.Input[pulumi.InputType['ClusterPodsConfigArgs']] pods_config: The config of the pods.
@@ -631,7 +631,7 @@ class Cluster(pulumi.CustomResource):
         :param pulumi.Input[str] eip_allocation_id: Eip allocation Id.
         :param pulumi.Input[str] kubeconfig_private: Kubeconfig data with private network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.
         :param pulumi.Input[str] kubeconfig_public: Kubeconfig data with public network access, returned in BASE64 encoding, it is suggested to use vke_kubeconfig instead.
-        :param pulumi.Input[str] kubernetes_version: The version of Kubernetes specified when creating a VKE cluster (specified to patch version), with an example value of `v1.24`. If not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
+        :param pulumi.Input[str] kubernetes_version: The version of Kubernetes specified when creating a VKE cluster (specified to patch version), with an example value of `1.24`. If not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
         :param pulumi.Input[pulumi.InputType['ClusterLoggingConfigArgs']] logging_config: Cluster log configuration information.
         :param pulumi.Input[str] name: The name of the cluster.
         :param pulumi.Input[pulumi.InputType['ClusterPodsConfigArgs']] pods_config: The config of the pods.
@@ -717,7 +717,7 @@ class Cluster(pulumi.CustomResource):
     @pulumi.getter(name="kubernetesVersion")
     def kubernetes_version(self) -> pulumi.Output[str]:
         """
-        The version of Kubernetes specified when creating a VKE cluster (specified to patch version), with an example value of `v1.24`. If not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
+        The version of Kubernetes specified when creating a VKE cluster (specified to patch version), with an example value of `1.24`. If not specified, the latest Kubernetes version supported by VKE is used by default, which is a 3-segment version format starting with a lowercase v, that is, KubernetesVersion with IsLatestVersion=True in the return value of ListSupportedVersions.
         """
         return pulumi.get(self, "kubernetes_version")
 

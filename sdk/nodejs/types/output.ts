@@ -5792,7 +5792,7 @@ export namespace ecs {
          */
         instanceId: string;
         /**
-         * The name of ECS instance.
+         * The name of ECS instance. This field support fuzzy query.
          */
         instanceName: string;
         /**
@@ -9509,6 +9509,336 @@ export namespace organization {
 
 }
 
+export namespace private_zone {
+    export interface PrivateZoneVpc {
+        /**
+         * The region of the bind vpc. The default value is the region of the default provider config.
+         */
+        region: string;
+        /**
+         * The id of the bind vpc.
+         */
+        vpcId: string;
+    }
+
+    export interface PrivateZonesPrivateZone {
+        /**
+         * The Bind vpc info of the private zone.
+         */
+        bindVpcs: outputs.private_zone.PrivateZonesPrivateZoneBindVpc[];
+        /**
+         * The created time of the private zone.
+         */
+        createdAt: string;
+        /**
+         * The id of the private zone.
+         */
+        id: string;
+        /**
+         * The account id of the last operator who created the private zone.
+         */
+        lastOperator: string;
+        /**
+         * The line mode of Private Zone, specified whether the intelligent mode and the load balance function is enabled.
+         */
+        lineMode: number;
+        /**
+         * The record count of the private zone.
+         */
+        recordCount: number;
+        /**
+         * Whether the recursion mode of Private Zone is enabled.
+         */
+        recursionMode: boolean;
+        /**
+         * The region of Private Zone.
+         */
+        regions: string[];
+        /**
+         * The remark of the private zone.
+         */
+        remark: string;
+        /**
+         * The updated time of the private zone.
+         */
+        updatedAt: string;
+        /**
+         * The zid of Private Zone.
+         */
+        zid: number;
+        /**
+         * The name of Private Zone.
+         */
+        zoneName: string;
+    }
+
+    export interface PrivateZonesPrivateZoneBindVpc {
+        /**
+         * The account id of the bind vpc.
+         */
+        accountId: string;
+        /**
+         * The id of the private zone.
+         */
+        id: string;
+        /**
+         * The region of Private Zone.
+         */
+        region: string;
+        /**
+         * The region name of the bind vpc.
+         */
+        regionName: string;
+    }
+
+    export interface RecordSetsRecordSet {
+        /**
+         * The Complete domain name of the private zone record.
+         */
+        fqdn: string;
+        /**
+         * The host of Private Zone Record Set.
+         */
+        host: string;
+        /**
+         * The subnet id of the private zone record. This field is only effected when the `intelligentMode` of the private zone is true.
+         */
+        line: string;
+        /**
+         * The id of Private Zone Record Set.
+         */
+        recordSetId: string;
+        /**
+         * The type of the private zone record.
+         */
+        type: string;
+        /**
+         * Whether to enable the load balance of the private zone record set.
+         */
+        weightEnabled: boolean;
+    }
+
+    export interface RecordsRecord {
+        /**
+         * The created time of the private zone record.
+         */
+        createdAt: string;
+        /**
+         * Whether the private zone record is enabling.
+         */
+        enable: boolean;
+        /**
+         * The host of Private Zone Record.
+         */
+        host: string;
+        /**
+         * The last operator account id of Private Zone Record.
+         */
+        lastOperator: string;
+        /**
+         * The subnet id of Private Zone Record. This field is only effected when the `intelligentMode` of the private zone is true.
+         */
+        line: string;
+        /**
+         * The id of Private Zone Record.
+         */
+        recordId: string;
+        /**
+         * The remark of the private zone record.
+         */
+        remark: string;
+        /**
+         * The ttl of the private zone record. Unit: second.
+         */
+        ttl: number;
+        /**
+         * The type of Private Zone Record.
+         */
+        type: string;
+        /**
+         * The updated time of the private zone record.
+         */
+        updatedAt: string;
+        /**
+         * The value of Private Zone Record.
+         */
+        value: string;
+        /**
+         * The weight of the private zone record.
+         */
+        weight: number;
+        /**
+         * The zid of Private Zone.
+         */
+        zid: number;
+    }
+
+    export interface ResolverEndpointIpConfig {
+        /**
+         * Id of the availability zone.
+         */
+        azId: string;
+        /**
+         * Source IP address of traffic. You can add up to 6 IP addresses at most. To ensure high availability, you must add at least two IP addresses.
+         */
+        ip: string;
+        /**
+         * Id of the subnet.
+         */
+        subnetId: string;
+    }
+
+    export interface ResolverEndpointsEndpoint {
+        /**
+         * The created time of the endpoint.
+         */
+        createdAt: string;
+        /**
+         * The direction of the private zone resolver endpoint.
+         */
+        direction: string;
+        /**
+         * The endpoint id.
+         */
+        endpointId: number;
+        /**
+         * The id of the endpoint.
+         */
+        id: string;
+        /**
+         * List of IP configurations.
+         */
+        ipConfigs: outputs.private_zone.ResolverEndpointsEndpointIpConfig[];
+        /**
+         * The name of the private zone resolver endpoint.
+         */
+        name: string;
+        /**
+         * The security group id of the endpoint.
+         */
+        securityGroupId: string;
+        /**
+         * The status of the private zone resolver endpoint.
+         */
+        status: string;
+        /**
+         * The updated time of the endpoint.
+         */
+        updatedAt: string;
+        /**
+         * The vpc ID of the private zone resolver endpoint.
+         */
+        vpcId: string;
+        /**
+         * The vpc region of the endpoint.
+         */
+        vpcRegion: string;
+    }
+
+    export interface ResolverEndpointsEndpointIpConfig {
+        /**
+         * The availability zone id of the endpoint.
+         */
+        azId: string;
+        /**
+         * The IP address of the endpoint.
+         */
+        ip: string;
+        /**
+         * The subnet id of the endpoint.
+         */
+        subnetId: string;
+    }
+
+    export interface ResolverRuleForwardIp {
+        /**
+         * IP address of the external DNS server. This parameter is only valid when the Type parameter is OUTBOUND and is a required parameter.
+         */
+        ip: string;
+        /**
+         * The port of the external DNS server. Default is 53. This parameter is only valid and optional when the Type parameter is OUTBOUND.
+         */
+        port: number;
+    }
+
+    export interface ResolverRuleVpc {
+        /**
+         * The region of the bind vpc. The default value is the region of the default provider config.
+         */
+        region: string;
+        /**
+         * The id of the bind vpc.
+         */
+        vpcId: string;
+    }
+
+    export interface ResolverRulesRule {
+        bindVpcs: outputs.private_zone.ResolverRulesRuleBindVpc[];
+        /**
+         * The created time of the rule.
+         */
+        createdAt: string;
+        /**
+         * ID of the exit terminal node.
+         */
+        endpointId: number;
+        /**
+         * The IP address and port of the DNS server outside of the VPC.
+         */
+        forwardIps: outputs.private_zone.ResolverRulesRuleForwardIp[];
+        /**
+         * The id of the rule.
+         */
+        id: string;
+        /**
+         * The ISP of the exit IP address of the recursive DNS server.
+         */
+        line: number;
+        /**
+         * The name of the rule.
+         */
+        name: string;
+        /**
+         * The id of the rule.
+         */
+        ruleId: number;
+        /**
+         * The type of the rule.
+         */
+        type: string;
+        /**
+         * The updated time of the rule.
+         */
+        updatedAt: string;
+        /**
+         * The main domain associated with the forwarding rule. For example, if you set this parameter to example.com, DNS requests for example.com and all subdomains of example.com will be forwarded.
+         */
+        zoneNames: string[];
+    }
+
+    export interface ResolverRulesRuleBindVpc {
+        accountId: string;
+        /**
+         * The id of the rule.
+         */
+        id: string;
+        region: string;
+        regionName: string;
+    }
+
+    export interface ResolverRulesRuleForwardIp {
+        /**
+         * The IP address of the DNS server outside of the VPC.
+         */
+        ip: string;
+        /**
+         * The port of the DNS server outside of the VPC.
+         */
+        port: number;
+    }
+
+}
+
 export namespace privatelink {
     export interface VpcEndpointConnectionZone {
         /**
@@ -11386,6 +11716,75 @@ export namespace rds_postgresql {
          * The type of the database account.
          */
         accountType: string;
+    }
+
+    export interface AllowlistAssociatedInstance {
+        /**
+         * The id of the postgresql instance.
+         */
+        instanceId: string;
+        /**
+         * The name of the postgresql instance.
+         */
+        instanceName: string;
+        /**
+         * The id of the vpc.
+         */
+        vpc: string;
+    }
+
+    export interface AllowlistsPostgresqlAllowList {
+        /**
+         * The description of the postgresql allow list.
+         */
+        allowListDesc: string;
+        /**
+         * The id of the postgresql allow list.
+         */
+        allowListId: string;
+        /**
+         * The total number of IP addresses (or address ranges) in the whitelist.
+         */
+        allowListIpNum: number;
+        /**
+         * The name of the postgresql allow list.
+         */
+        allowListName: string;
+        /**
+         * The type of the postgresql allow list.
+         */
+        allowListType: string;
+        /**
+         * The IP address or a range of IP addresses in CIDR format.
+         */
+        allowLists: string[];
+        /**
+         * The total number of instances bound under the whitelist.
+         */
+        associatedInstanceNum: number;
+        /**
+         * The list of postgresql instances.
+         */
+        associatedInstances: outputs.rds_postgresql.AllowlistsPostgresqlAllowListAssociatedInstance[];
+        /**
+         * The id of the postgresql allow list.
+         */
+        id: string;
+    }
+
+    export interface AllowlistsPostgresqlAllowListAssociatedInstance {
+        /**
+         * The id of the postgresql Instance.
+         */
+        instanceId: string;
+        /**
+         * The name of the postgresql instance.
+         */
+        instanceName: string;
+        /**
+         * The id of the vpc.
+         */
+        vpc: string;
     }
 
     export interface DatabasesDatabase {
@@ -16747,6 +17146,331 @@ export namespace veenedge {
 
 }
 
+export namespace vepfs {
+    export interface FileSystemTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface FileSystemsFileSystem {
+        /**
+         * The id of the account.
+         */
+        accountId: string;
+        /**
+         * The bandwidth info of the vepfs file system.
+         */
+        bandwidth: number;
+        /**
+         * The capacity info of the vepfs file system.
+         */
+        capacityInfo: outputs.vepfs.FileSystemsFileSystemCapacityInfo;
+        /**
+         * The charge status of the vepfs file system.
+         */
+        chargeStatus: string;
+        /**
+         * The charge type of the vepfs file system.
+         */
+        chargeType: string;
+        /**
+         * The create time of the vepfs file system.
+         */
+        createTime: string;
+        /**
+         * The description of the vepfs file system.
+         */
+        description: string;
+        /**
+         * The expire time of the vepfs file system.
+         */
+        expireTime: string;
+        /**
+         * The id of the vepfs file system.
+         */
+        fileSystemId: string;
+        /**
+         * The Name of Vepfs File System. This field support fuzzy query.
+         */
+        fileSystemName: string;
+        /**
+         * The type of the vepfs file system.
+         */
+        fileSystemType: string;
+        /**
+         * The free time of the vepfs file system.
+         */
+        freeTime: string;
+        /**
+         * The id of the vepfs file system.
+         */
+        id: string;
+        /**
+         * The last modify time of the vepfs file system.
+         */
+        lastModifyTime: string;
+        /**
+         * The project of Vepfs File System.
+         */
+        project: string;
+        /**
+         * The protocol type of the vepfs file system.
+         */
+        protocolType: string;
+        /**
+         * The id of the region.
+         */
+        regionId: string;
+        /**
+         * The query status list of Vepfs File System.
+         */
+        status: string;
+        /**
+         * The stop service time of the vepfs file system.
+         */
+        stopServiceTime: string;
+        /**
+         * The Store Type of Vepfs File System.
+         */
+        storeType: string;
+        /**
+         * The store type cn name of the vepfs file system.
+         */
+        storeTypeCn: string;
+        /**
+         * The tags of the vepfs file system.
+         */
+        tags: outputs.vepfs.FileSystemsFileSystemTag[];
+        /**
+         * The version info of the vepfs file system.
+         */
+        version: string;
+        /**
+         * The zone id of File System.
+         */
+        zoneId: string;
+        /**
+         * The name of the zone.
+         */
+        zoneName: string;
+    }
+
+    export interface FileSystemsFileSystemCapacityInfo {
+        /**
+         * The total size. Unit: TiB.
+         */
+        totalTib: number;
+        /**
+         * The used size. Unit: GiB.
+         */
+        usedGib: number;
+    }
+
+    export interface FileSystemsFileSystemTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Type of Tags.
+         */
+        type: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface FilesetsFileset {
+        /**
+         * The bandwidth Qos of the vepfs fileset.
+         */
+        bandwidthQos: number;
+        /**
+         * The capacity limit of the vepfs fileset. Unit: GiB.
+         */
+        capacityLimit: number;
+        /**
+         * The used capacity of the vepfs fileset. Unit: GiB.
+         */
+        capacityUsed: number;
+        /**
+         * The create time of the vepfs fileset.
+         */
+        createTime: string;
+        /**
+         * Quota for the number of files or directories. A return of 0 indicates that there is no quota limit set for the number of directories after the file.
+         */
+        fileLimit: number;
+        /**
+         * The used file number of the vepfs fileset.
+         */
+        fileUsed: number;
+        /**
+         * The id of Vepfs Fileset.
+         */
+        filesetId: string;
+        /**
+         * The name of Vepfs Fileset. This field support fuzzy query.
+         */
+        filesetName: string;
+        /**
+         * The path of Vepfs Fileset. This field support fuzzy query.
+         */
+        filesetPath: string;
+        /**
+         * The id of the vepfs fileset.
+         */
+        id: string;
+        /**
+         * The IOPS Qos of the vepfs fileset.
+         */
+        iopsQos: number;
+        /**
+         * The max number of inode in the vepfs fileset.
+         */
+        maxInodeNum: number;
+        /**
+         * The query status list of Vepfs Fileset.
+         */
+        status: string;
+    }
+
+    export interface MountServiceAttachFileSystem {
+        /**
+         * The account id of the vepfs file system.
+         */
+        accountId: string;
+        /**
+         * The id of the vepfs file system.
+         */
+        customerPath: string;
+        /**
+         * The id of the vepfs file system.
+         */
+        fileSystemId: string;
+        /**
+         * The name of the vepfs file system.
+         */
+        fileSystemName: string;
+        /**
+         * The status of the mount service.
+         */
+        status: string;
+    }
+
+    export interface MountServiceNode {
+        /**
+         * The default password of ecs instance.
+         */
+        defaultPassword: string;
+        /**
+         * The id of ecs instance.
+         */
+        nodeId: string;
+    }
+
+    export interface MountServicesMountService {
+        /**
+         * The account id of the vepfs file system.
+         */
+        accountId: string;
+        /**
+         * The attached file system info of the mount service.
+         */
+        attachFileSystems: outputs.vepfs.MountServicesMountServiceAttachFileSystem[];
+        /**
+         * The created time of the mount service.
+         */
+        createTime: string;
+        /**
+         * The id of the mount service.
+         */
+        id: string;
+        /**
+         * The id of mount service.
+         */
+        mountServiceId: string;
+        /**
+         * The name of mount service. This field support fuzzy query.
+         */
+        mountServiceName: string;
+        /**
+         * The nodes info of the mount service.
+         */
+        nodes: outputs.vepfs.MountServicesMountServiceNode[];
+        /**
+         * The project of the mount service.
+         */
+        project: string;
+        /**
+         * The region id of the mount service.
+         */
+        regionId: string;
+        /**
+         * The query status list of mount service.
+         */
+        status: string;
+        /**
+         * The subnet id of the mount service.
+         */
+        subnetId: string;
+        /**
+         * The vpc id of the mount service.
+         */
+        vpcId: string;
+        /**
+         * The zone id of the mount service.
+         */
+        zoneId: string;
+        /**
+         * The zone name of the mount service.
+         */
+        zoneName: string;
+    }
+
+    export interface MountServicesMountServiceAttachFileSystem {
+        /**
+         * The account id of the vepfs file system.
+         */
+        accountId: string;
+        /**
+         * The id of the vepfs file system.
+         */
+        customerPath: string;
+        /**
+         * The id of Vepfs File System.
+         */
+        fileSystemId: string;
+        /**
+         * The name of the vepfs file system.
+         */
+        fileSystemName: string;
+        /**
+         * The query status list of mount service.
+         */
+        status: string;
+    }
+
+    export interface MountServicesMountServiceNode {
+        /**
+         * The default password of ecs instance.
+         */
+        defaultPassword: string;
+        /**
+         * The id of ecs instance.
+         */
+        nodeId: string;
+    }
+
+}
+
 export namespace vke {
     export interface AddonsAddon {
         /**
@@ -16840,6 +17564,8 @@ export namespace vke {
         resourcePublicAccessDefaultEnabled?: boolean;
         /**
          * The subnet ID for the cluster control plane to communicate within the private network.
+         * Up to 3 subnets can be selected from each available zone, and a maximum of 2 subnets can be added to each available zone.
+         * Cannot support deleting configured subnets.
          */
         subnetIds: string[];
     }

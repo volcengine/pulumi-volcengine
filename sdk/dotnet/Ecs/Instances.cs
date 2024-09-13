@@ -244,6 +244,12 @@ namespace Pulumi.Volcengine.Ecs
         public string? InstanceChargeType { get; set; }
 
         /// <summary>
+        /// The name of ECS instance. This field support fuzzy query.
+        /// </summary>
+        [Input("instanceName")]
+        public string? InstanceName { get; set; }
+
+        /// <summary>
         /// The key pair name of ECS instance.
         /// </summary>
         [Input("keyPairName")]
@@ -348,6 +354,12 @@ namespace Pulumi.Volcengine.Ecs
         public Input<string>? InstanceChargeType { get; set; }
 
         /// <summary>
+        /// The name of ECS instance. This field support fuzzy query.
+        /// </summary>
+        [Input("instanceName")]
+        public Input<string>? InstanceName { get; set; }
+
+        /// <summary>
         /// The key pair name of ECS instance.
         /// </summary>
         [Input("keyPairName")]
@@ -429,6 +441,10 @@ namespace Pulumi.Volcengine.Ecs
         /// </summary>
         public readonly string? InstanceChargeType;
         /// <summary>
+        /// The name of ECS instance.
+        /// </summary>
+        public readonly string? InstanceName;
+        /// <summary>
         /// The collection of ECS instance query.
         /// </summary>
         public readonly ImmutableArray<Outputs.InstancesInstanceResult> Instances;
@@ -479,6 +495,8 @@ namespace Pulumi.Volcengine.Ecs
 
             string? instanceChargeType,
 
+            string? instanceName,
+
             ImmutableArray<Outputs.InstancesInstanceResult> instances,
 
             string? keyPairName,
@@ -506,6 +524,7 @@ namespace Pulumi.Volcengine.Ecs
             Id = id;
             Ids = ids;
             InstanceChargeType = instanceChargeType;
+            InstanceName = instanceName;
             Instances = instances;
             KeyPairName = keyPairName;
             NameRegex = nameRegex;

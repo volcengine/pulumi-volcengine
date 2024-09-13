@@ -130,6 +130,8 @@ type InstancesArgs struct {
 	Ids []string `pulumi:"ids"`
 	// The charge type of ECS instance.
 	InstanceChargeType *string `pulumi:"instanceChargeType"`
+	// The name of ECS instance. This field support fuzzy query.
+	InstanceName *string `pulumi:"instanceName"`
 	// The key pair name of ECS instance.
 	KeyPairName *string `pulumi:"keyPairName"`
 	// A Name Regex of ECS instance.
@@ -159,6 +161,8 @@ type InstancesResult struct {
 	Ids []string `pulumi:"ids"`
 	// The charge type of ECS instance.
 	InstanceChargeType *string `pulumi:"instanceChargeType"`
+	// The name of ECS instance.
+	InstanceName *string `pulumi:"instanceName"`
 	// The collection of ECS instance query.
 	Instances []InstancesInstance `pulumi:"instances"`
 	// The ssh key name of ECS instance.
@@ -204,6 +208,8 @@ type InstancesOutputArgs struct {
 	Ids pulumi.StringArrayInput `pulumi:"ids"`
 	// The charge type of ECS instance.
 	InstanceChargeType pulumi.StringPtrInput `pulumi:"instanceChargeType"`
+	// The name of ECS instance. This field support fuzzy query.
+	InstanceName pulumi.StringPtrInput `pulumi:"instanceName"`
 	// The key pair name of ECS instance.
 	KeyPairName pulumi.StringPtrInput `pulumi:"keyPairName"`
 	// A Name Regex of ECS instance.
@@ -263,6 +269,11 @@ func (o InstancesResultOutput) Ids() pulumi.StringArrayOutput {
 // The charge type of ECS instance.
 func (o InstancesResultOutput) InstanceChargeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstancesResult) *string { return v.InstanceChargeType }).(pulumi.StringPtrOutput)
+}
+
+// The name of ECS instance.
+func (o InstancesResultOutput) InstanceName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InstancesResult) *string { return v.InstanceName }).(pulumi.StringPtrOutput)
 }
 
 // The collection of ECS instance query.

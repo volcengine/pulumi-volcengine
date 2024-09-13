@@ -50,7 +50,7 @@ namespace Pulumi.Volcengine.Ecs.Outputs
         /// </summary>
         public readonly string InstanceId;
         /// <summary>
-        /// The name of ECS instance.
+        /// The name of ECS instance. This field support fuzzy query.
         /// </summary>
         public readonly string InstanceName;
         /// <summary>

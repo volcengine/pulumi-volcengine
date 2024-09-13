@@ -341,6 +341,8 @@ class ClusterClusterConfig(dict):
                  resource_public_access_default_enabled: Optional[bool] = None):
         """
         :param Sequence[str] subnet_ids: The subnet ID for the cluster control plane to communicate within the private network.
+               Up to 3 subnets can be selected from each available zone, and a maximum of 2 subnets can be added to each available zone.
+               Cannot support deleting configured subnets.
         :param 'ClusterClusterConfigApiServerPublicAccessConfigArgs' api_server_public_access_config: Cluster API Server public network access configuration.
         :param bool api_server_public_access_enabled: Cluster API Server public network access configuration, the value is `true` or `false`.
         :param bool resource_public_access_default_enabled: Node public network access configuration, the value is `true` or `false`.
@@ -360,6 +362,8 @@ class ClusterClusterConfig(dict):
     def subnet_ids(self) -> Sequence[str]:
         """
         The subnet ID for the cluster control plane to communicate within the private network.
+        Up to 3 subnets can be selected from each available zone, and a maximum of 2 subnets can be added to each available zone.
+        Cannot support deleting configured subnets.
         """
         return pulumi.get(self, "subnet_ids")
 

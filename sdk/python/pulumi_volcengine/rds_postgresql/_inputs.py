@@ -10,6 +10,7 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
+    'AllowlistAssociatedInstanceArgs',
     'InstanceChargeDetailArgs',
     'InstanceChargeInfoArgs',
     'InstanceEndpointArgs',
@@ -20,6 +21,61 @@ __all__ = [
     'InstanceTagArgs',
     'InstancesTagArgs',
 ]
+
+@pulumi.input_type
+class AllowlistAssociatedInstanceArgs:
+    def __init__(__self__, *,
+                 instance_id: Optional[pulumi.Input[str]] = None,
+                 instance_name: Optional[pulumi.Input[str]] = None,
+                 vpc: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] instance_id: The id of the postgresql instance.
+        :param pulumi.Input[str] instance_name: The name of the postgresql instance.
+        :param pulumi.Input[str] vpc: The id of the vpc.
+        """
+        if instance_id is not None:
+            pulumi.set(__self__, "instance_id", instance_id)
+        if instance_name is not None:
+            pulumi.set(__self__, "instance_name", instance_name)
+        if vpc is not None:
+            pulumi.set(__self__, "vpc", vpc)
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The id of the postgresql instance.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @instance_id.setter
+    def instance_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "instance_id", value)
+
+    @property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the postgresql instance.
+        """
+        return pulumi.get(self, "instance_name")
+
+    @instance_name.setter
+    def instance_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "instance_name", value)
+
+    @property
+    @pulumi.getter
+    def vpc(self) -> Optional[pulumi.Input[str]]:
+        """
+        The id of the vpc.
+        """
+        return pulumi.get(self, "vpc")
+
+    @vpc.setter
+    def vpc(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vpc", value)
+
 
 @pulumi.input_type
 class InstanceChargeDetailArgs:

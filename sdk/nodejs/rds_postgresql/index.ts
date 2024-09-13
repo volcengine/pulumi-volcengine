@@ -15,6 +15,21 @@ export const accounts: typeof import("./accounts").accounts = null as any;
 export const accountsOutput: typeof import("./accounts").accountsOutput = null as any;
 utilities.lazyLoad(exports, ["accounts","accountsOutput"], () => require("./accounts"));
 
+export { AllowlistArgs, AllowlistState } from "./allowlist";
+export type Allowlist = import("./allowlist").Allowlist;
+export const Allowlist: typeof import("./allowlist").Allowlist = null as any;
+utilities.lazyLoad(exports, ["Allowlist"], () => require("./allowlist"));
+
+export { AllowlistAssociateArgs, AllowlistAssociateState } from "./allowlistAssociate";
+export type AllowlistAssociate = import("./allowlistAssociate").AllowlistAssociate;
+export const AllowlistAssociate: typeof import("./allowlistAssociate").AllowlistAssociate = null as any;
+utilities.lazyLoad(exports, ["AllowlistAssociate"], () => require("./allowlistAssociate"));
+
+export { AllowlistsArgs, AllowlistsResult, AllowlistsOutputArgs } from "./allowlists";
+export const allowlists: typeof import("./allowlists").allowlists = null as any;
+export const allowlistsOutput: typeof import("./allowlists").allowlistsOutput = null as any;
+utilities.lazyLoad(exports, ["allowlists","allowlistsOutput"], () => require("./allowlists"));
+
 export { DatabaseArgs, DatabaseState } from "./database";
 export type Database = import("./database").Database;
 export const Database: typeof import("./database").Database = null as any;
@@ -57,6 +72,10 @@ const _module = {
         switch (type) {
             case "volcengine:rds_postgresql/account:Account":
                 return new Account(name, <any>undefined, { urn })
+            case "volcengine:rds_postgresql/allowlist:Allowlist":
+                return new Allowlist(name, <any>undefined, { urn })
+            case "volcengine:rds_postgresql/allowlistAssociate:AllowlistAssociate":
+                return new AllowlistAssociate(name, <any>undefined, { urn })
             case "volcengine:rds_postgresql/database:Database":
                 return new Database(name, <any>undefined, { urn })
             case "volcengine:rds_postgresql/instance:Instance":
@@ -71,6 +90,8 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("volcengine", "rds_postgresql/account", _module)
+pulumi.runtime.registerResourceModule("volcengine", "rds_postgresql/allowlist", _module)
+pulumi.runtime.registerResourceModule("volcengine", "rds_postgresql/allowlistAssociate", _module)
 pulumi.runtime.registerResourceModule("volcengine", "rds_postgresql/database", _module)
 pulumi.runtime.registerResourceModule("volcengine", "rds_postgresql/instance", _module)
 pulumi.runtime.registerResourceModule("volcengine", "rds_postgresql/instanceReadonlyNode", _module)
