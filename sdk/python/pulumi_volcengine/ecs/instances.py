@@ -23,7 +23,7 @@ class InstancesResult:
     """
     A collection of values returned by Instances.
     """
-    def __init__(__self__, deployment_set_ids=None, hpc_cluster_id=None, id=None, ids=None, instance_charge_type=None, instances=None, key_pair_name=None, name_regex=None, output_file=None, primary_ip_address=None, project_name=None, status=None, tags=None, total_count=None, vpc_id=None, zone_id=None):
+    def __init__(__self__, deployment_set_ids=None, hpc_cluster_id=None, id=None, ids=None, instance_charge_type=None, instance_name=None, instances=None, key_pair_name=None, name_regex=None, output_file=None, primary_ip_address=None, project_name=None, status=None, tags=None, total_count=None, vpc_id=None, zone_id=None):
         if deployment_set_ids and not isinstance(deployment_set_ids, list):
             raise TypeError("Expected argument 'deployment_set_ids' to be a list")
         pulumi.set(__self__, "deployment_set_ids", deployment_set_ids)
@@ -39,6 +39,9 @@ class InstancesResult:
         if instance_charge_type and not isinstance(instance_charge_type, str):
             raise TypeError("Expected argument 'instance_charge_type' to be a str")
         pulumi.set(__self__, "instance_charge_type", instance_charge_type)
+        if instance_name and not isinstance(instance_name, str):
+            raise TypeError("Expected argument 'instance_name' to be a str")
+        pulumi.set(__self__, "instance_name", instance_name)
         if instances and not isinstance(instances, list):
             raise TypeError("Expected argument 'instances' to be a list")
         pulumi.set(__self__, "instances", instances)
@@ -103,6 +106,14 @@ class InstancesResult:
         The charge type of ECS instance.
         """
         return pulumi.get(self, "instance_charge_type")
+
+    @property
+    @pulumi.getter(name="instanceName")
+    def instance_name(self) -> Optional[str]:
+        """
+        The name of ECS instance.
+        """
+        return pulumi.get(self, "instance_name")
 
     @property
     @pulumi.getter
@@ -198,6 +209,7 @@ class AwaitableInstancesResult(InstancesResult):
             id=self.id,
             ids=self.ids,
             instance_charge_type=self.instance_charge_type,
+            instance_name=self.instance_name,
             instances=self.instances,
             key_pair_name=self.key_pair_name,
             name_regex=self.name_regex,
@@ -215,6 +227,7 @@ def instances(deployment_set_ids: Optional[Sequence[str]] = None,
               hpc_cluster_id: Optional[str] = None,
               ids: Optional[Sequence[str]] = None,
               instance_charge_type: Optional[str] = None,
+              instance_name: Optional[str] = None,
               key_pair_name: Optional[str] = None,
               name_regex: Optional[str] = None,
               output_file: Optional[str] = None,
@@ -280,6 +293,7 @@ def instances(deployment_set_ids: Optional[Sequence[str]] = None,
     :param str hpc_cluster_id: The hpc cluster ID of ECS instance.
     :param Sequence[str] ids: A list of ECS instance IDs.
     :param str instance_charge_type: The charge type of ECS instance.
+    :param str instance_name: The name of ECS instance. This field support fuzzy query.
     :param str key_pair_name: The key pair name of ECS instance.
     :param str name_regex: A Name Regex of ECS instance.
     :param str output_file: File name where to save data source results.
@@ -295,6 +309,7 @@ def instances(deployment_set_ids: Optional[Sequence[str]] = None,
     __args__['hpcClusterId'] = hpc_cluster_id
     __args__['ids'] = ids
     __args__['instanceChargeType'] = instance_charge_type
+    __args__['instanceName'] = instance_name
     __args__['keyPairName'] = key_pair_name
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
@@ -313,6 +328,7 @@ def instances(deployment_set_ids: Optional[Sequence[str]] = None,
         id=pulumi.get(__ret__, 'id'),
         ids=pulumi.get(__ret__, 'ids'),
         instance_charge_type=pulumi.get(__ret__, 'instance_charge_type'),
+        instance_name=pulumi.get(__ret__, 'instance_name'),
         instances=pulumi.get(__ret__, 'instances'),
         key_pair_name=pulumi.get(__ret__, 'key_pair_name'),
         name_regex=pulumi.get(__ret__, 'name_regex'),
@@ -331,6 +347,7 @@ def instances_output(deployment_set_ids: Optional[pulumi.Input[Optional[Sequence
                      hpc_cluster_id: Optional[pulumi.Input[Optional[str]]] = None,
                      ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                      instance_charge_type: Optional[pulumi.Input[Optional[str]]] = None,
+                     instance_name: Optional[pulumi.Input[Optional[str]]] = None,
                      key_pair_name: Optional[pulumi.Input[Optional[str]]] = None,
                      name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                      output_file: Optional[pulumi.Input[Optional[str]]] = None,
@@ -396,6 +413,7 @@ def instances_output(deployment_set_ids: Optional[pulumi.Input[Optional[Sequence
     :param str hpc_cluster_id: The hpc cluster ID of ECS instance.
     :param Sequence[str] ids: A list of ECS instance IDs.
     :param str instance_charge_type: The charge type of ECS instance.
+    :param str instance_name: The name of ECS instance. This field support fuzzy query.
     :param str key_pair_name: The key pair name of ECS instance.
     :param str name_regex: A Name Regex of ECS instance.
     :param str output_file: File name where to save data source results.

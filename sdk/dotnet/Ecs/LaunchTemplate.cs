@@ -144,7 +144,7 @@ namespace Pulumi.Volcengine.Ecs
         /// The index of the ordered suffix.
         /// </summary>
         [Output("suffixIndex")]
-        public Output<int?> SuffixIndex { get; private set; } = null!;
+        public Output<int> SuffixIndex { get; private set; } = null!;
 
         /// <summary>
         /// Indicates whether the ordered suffix is automatically added to Hostname and InstanceName when multiple instances are created.

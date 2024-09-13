@@ -2746,7 +2746,7 @@ type InstancesInstance struct {
 	InstanceChargeType string `pulumi:"instanceChargeType"`
 	// The ID of ECS instance.
 	InstanceId string `pulumi:"instanceId"`
-	// The name of ECS instance.
+	// The name of ECS instance. This field support fuzzy query.
 	InstanceName string `pulumi:"instanceName"`
 	// The spec type of ECS instance.
 	InstanceType string `pulumi:"instanceType"`
@@ -2820,7 +2820,7 @@ type InstancesInstanceArgs struct {
 	InstanceChargeType pulumi.StringInput `pulumi:"instanceChargeType"`
 	// The ID of ECS instance.
 	InstanceId pulumi.StringInput `pulumi:"instanceId"`
-	// The name of ECS instance.
+	// The name of ECS instance. This field support fuzzy query.
 	InstanceName pulumi.StringInput `pulumi:"instanceName"`
 	// The spec type of ECS instance.
 	InstanceType pulumi.StringInput `pulumi:"instanceType"`
@@ -2960,7 +2960,7 @@ func (o InstancesInstanceOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v InstancesInstance) string { return v.InstanceId }).(pulumi.StringOutput)
 }
 
-// The name of ECS instance.
+// The name of ECS instance. This field support fuzzy query.
 func (o InstancesInstanceOutput) InstanceName() pulumi.StringOutput {
 	return o.ApplyT(func(v InstancesInstance) string { return v.InstanceName }).(pulumi.StringOutput)
 }

@@ -38,6 +38,8 @@ namespace Pulumi.Volcengine.Vke.Inputs
 
         /// <summary>
         /// The subnet ID for the cluster control plane to communicate within the private network.
+        /// Up to 3 subnets can be selected from each available zone, and a maximum of 2 subnets can be added to each available zone.
+        /// Cannot support deleting configured subnets.
         /// </summary>
         public InputList<string> SubnetIds
         {

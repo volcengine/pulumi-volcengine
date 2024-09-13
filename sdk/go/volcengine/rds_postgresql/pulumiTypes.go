@@ -137,6 +137,407 @@ func (o AccountsAccountArrayOutput) Index(i pulumi.IntInput) AccountsAccountOutp
 	}).(AccountsAccountOutput)
 }
 
+type AllowlistAssociatedInstance struct {
+	// The id of the postgresql instance.
+	InstanceId *string `pulumi:"instanceId"`
+	// The name of the postgresql instance.
+	InstanceName *string `pulumi:"instanceName"`
+	// The id of the vpc.
+	Vpc *string `pulumi:"vpc"`
+}
+
+// AllowlistAssociatedInstanceInput is an input type that accepts AllowlistAssociatedInstanceArgs and AllowlistAssociatedInstanceOutput values.
+// You can construct a concrete instance of `AllowlistAssociatedInstanceInput` via:
+//
+//	AllowlistAssociatedInstanceArgs{...}
+type AllowlistAssociatedInstanceInput interface {
+	pulumi.Input
+
+	ToAllowlistAssociatedInstanceOutput() AllowlistAssociatedInstanceOutput
+	ToAllowlistAssociatedInstanceOutputWithContext(context.Context) AllowlistAssociatedInstanceOutput
+}
+
+type AllowlistAssociatedInstanceArgs struct {
+	// The id of the postgresql instance.
+	InstanceId pulumi.StringPtrInput `pulumi:"instanceId"`
+	// The name of the postgresql instance.
+	InstanceName pulumi.StringPtrInput `pulumi:"instanceName"`
+	// The id of the vpc.
+	Vpc pulumi.StringPtrInput `pulumi:"vpc"`
+}
+
+func (AllowlistAssociatedInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AllowlistAssociatedInstance)(nil)).Elem()
+}
+
+func (i AllowlistAssociatedInstanceArgs) ToAllowlistAssociatedInstanceOutput() AllowlistAssociatedInstanceOutput {
+	return i.ToAllowlistAssociatedInstanceOutputWithContext(context.Background())
+}
+
+func (i AllowlistAssociatedInstanceArgs) ToAllowlistAssociatedInstanceOutputWithContext(ctx context.Context) AllowlistAssociatedInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AllowlistAssociatedInstanceOutput)
+}
+
+// AllowlistAssociatedInstanceArrayInput is an input type that accepts AllowlistAssociatedInstanceArray and AllowlistAssociatedInstanceArrayOutput values.
+// You can construct a concrete instance of `AllowlistAssociatedInstanceArrayInput` via:
+//
+//	AllowlistAssociatedInstanceArray{ AllowlistAssociatedInstanceArgs{...} }
+type AllowlistAssociatedInstanceArrayInput interface {
+	pulumi.Input
+
+	ToAllowlistAssociatedInstanceArrayOutput() AllowlistAssociatedInstanceArrayOutput
+	ToAllowlistAssociatedInstanceArrayOutputWithContext(context.Context) AllowlistAssociatedInstanceArrayOutput
+}
+
+type AllowlistAssociatedInstanceArray []AllowlistAssociatedInstanceInput
+
+func (AllowlistAssociatedInstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AllowlistAssociatedInstance)(nil)).Elem()
+}
+
+func (i AllowlistAssociatedInstanceArray) ToAllowlistAssociatedInstanceArrayOutput() AllowlistAssociatedInstanceArrayOutput {
+	return i.ToAllowlistAssociatedInstanceArrayOutputWithContext(context.Background())
+}
+
+func (i AllowlistAssociatedInstanceArray) ToAllowlistAssociatedInstanceArrayOutputWithContext(ctx context.Context) AllowlistAssociatedInstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AllowlistAssociatedInstanceArrayOutput)
+}
+
+type AllowlistAssociatedInstanceOutput struct{ *pulumi.OutputState }
+
+func (AllowlistAssociatedInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AllowlistAssociatedInstance)(nil)).Elem()
+}
+
+func (o AllowlistAssociatedInstanceOutput) ToAllowlistAssociatedInstanceOutput() AllowlistAssociatedInstanceOutput {
+	return o
+}
+
+func (o AllowlistAssociatedInstanceOutput) ToAllowlistAssociatedInstanceOutputWithContext(ctx context.Context) AllowlistAssociatedInstanceOutput {
+	return o
+}
+
+// The id of the postgresql instance.
+func (o AllowlistAssociatedInstanceOutput) InstanceId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AllowlistAssociatedInstance) *string { return v.InstanceId }).(pulumi.StringPtrOutput)
+}
+
+// The name of the postgresql instance.
+func (o AllowlistAssociatedInstanceOutput) InstanceName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AllowlistAssociatedInstance) *string { return v.InstanceName }).(pulumi.StringPtrOutput)
+}
+
+// The id of the vpc.
+func (o AllowlistAssociatedInstanceOutput) Vpc() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AllowlistAssociatedInstance) *string { return v.Vpc }).(pulumi.StringPtrOutput)
+}
+
+type AllowlistAssociatedInstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (AllowlistAssociatedInstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AllowlistAssociatedInstance)(nil)).Elem()
+}
+
+func (o AllowlistAssociatedInstanceArrayOutput) ToAllowlistAssociatedInstanceArrayOutput() AllowlistAssociatedInstanceArrayOutput {
+	return o
+}
+
+func (o AllowlistAssociatedInstanceArrayOutput) ToAllowlistAssociatedInstanceArrayOutputWithContext(ctx context.Context) AllowlistAssociatedInstanceArrayOutput {
+	return o
+}
+
+func (o AllowlistAssociatedInstanceArrayOutput) Index(i pulumi.IntInput) AllowlistAssociatedInstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AllowlistAssociatedInstance {
+		return vs[0].([]AllowlistAssociatedInstance)[vs[1].(int)]
+	}).(AllowlistAssociatedInstanceOutput)
+}
+
+type AllowlistsPostgresqlAllowList struct {
+	// The description of the postgresql allow list.
+	AllowListDesc string `pulumi:"allowListDesc"`
+	// The id of the postgresql allow list.
+	AllowListId string `pulumi:"allowListId"`
+	// The total number of IP addresses (or address ranges) in the whitelist.
+	AllowListIpNum int `pulumi:"allowListIpNum"`
+	// The name of the postgresql allow list.
+	AllowListName string `pulumi:"allowListName"`
+	// The type of the postgresql allow list.
+	AllowListType string `pulumi:"allowListType"`
+	// The IP address or a range of IP addresses in CIDR format.
+	AllowLists []string `pulumi:"allowLists"`
+	// The total number of instances bound under the whitelist.
+	AssociatedInstanceNum int `pulumi:"associatedInstanceNum"`
+	// The list of postgresql instances.
+	AssociatedInstances []AllowlistsPostgresqlAllowListAssociatedInstance `pulumi:"associatedInstances"`
+	// The id of the postgresql allow list.
+	Id string `pulumi:"id"`
+}
+
+// AllowlistsPostgresqlAllowListInput is an input type that accepts AllowlistsPostgresqlAllowListArgs and AllowlistsPostgresqlAllowListOutput values.
+// You can construct a concrete instance of `AllowlistsPostgresqlAllowListInput` via:
+//
+//	AllowlistsPostgresqlAllowListArgs{...}
+type AllowlistsPostgresqlAllowListInput interface {
+	pulumi.Input
+
+	ToAllowlistsPostgresqlAllowListOutput() AllowlistsPostgresqlAllowListOutput
+	ToAllowlistsPostgresqlAllowListOutputWithContext(context.Context) AllowlistsPostgresqlAllowListOutput
+}
+
+type AllowlistsPostgresqlAllowListArgs struct {
+	// The description of the postgresql allow list.
+	AllowListDesc pulumi.StringInput `pulumi:"allowListDesc"`
+	// The id of the postgresql allow list.
+	AllowListId pulumi.StringInput `pulumi:"allowListId"`
+	// The total number of IP addresses (or address ranges) in the whitelist.
+	AllowListIpNum pulumi.IntInput `pulumi:"allowListIpNum"`
+	// The name of the postgresql allow list.
+	AllowListName pulumi.StringInput `pulumi:"allowListName"`
+	// The type of the postgresql allow list.
+	AllowListType pulumi.StringInput `pulumi:"allowListType"`
+	// The IP address or a range of IP addresses in CIDR format.
+	AllowLists pulumi.StringArrayInput `pulumi:"allowLists"`
+	// The total number of instances bound under the whitelist.
+	AssociatedInstanceNum pulumi.IntInput `pulumi:"associatedInstanceNum"`
+	// The list of postgresql instances.
+	AssociatedInstances AllowlistsPostgresqlAllowListAssociatedInstanceArrayInput `pulumi:"associatedInstances"`
+	// The id of the postgresql allow list.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (AllowlistsPostgresqlAllowListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AllowlistsPostgresqlAllowList)(nil)).Elem()
+}
+
+func (i AllowlistsPostgresqlAllowListArgs) ToAllowlistsPostgresqlAllowListOutput() AllowlistsPostgresqlAllowListOutput {
+	return i.ToAllowlistsPostgresqlAllowListOutputWithContext(context.Background())
+}
+
+func (i AllowlistsPostgresqlAllowListArgs) ToAllowlistsPostgresqlAllowListOutputWithContext(ctx context.Context) AllowlistsPostgresqlAllowListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AllowlistsPostgresqlAllowListOutput)
+}
+
+// AllowlistsPostgresqlAllowListArrayInput is an input type that accepts AllowlistsPostgresqlAllowListArray and AllowlistsPostgresqlAllowListArrayOutput values.
+// You can construct a concrete instance of `AllowlistsPostgresqlAllowListArrayInput` via:
+//
+//	AllowlistsPostgresqlAllowListArray{ AllowlistsPostgresqlAllowListArgs{...} }
+type AllowlistsPostgresqlAllowListArrayInput interface {
+	pulumi.Input
+
+	ToAllowlistsPostgresqlAllowListArrayOutput() AllowlistsPostgresqlAllowListArrayOutput
+	ToAllowlistsPostgresqlAllowListArrayOutputWithContext(context.Context) AllowlistsPostgresqlAllowListArrayOutput
+}
+
+type AllowlistsPostgresqlAllowListArray []AllowlistsPostgresqlAllowListInput
+
+func (AllowlistsPostgresqlAllowListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AllowlistsPostgresqlAllowList)(nil)).Elem()
+}
+
+func (i AllowlistsPostgresqlAllowListArray) ToAllowlistsPostgresqlAllowListArrayOutput() AllowlistsPostgresqlAllowListArrayOutput {
+	return i.ToAllowlistsPostgresqlAllowListArrayOutputWithContext(context.Background())
+}
+
+func (i AllowlistsPostgresqlAllowListArray) ToAllowlistsPostgresqlAllowListArrayOutputWithContext(ctx context.Context) AllowlistsPostgresqlAllowListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AllowlistsPostgresqlAllowListArrayOutput)
+}
+
+type AllowlistsPostgresqlAllowListOutput struct{ *pulumi.OutputState }
+
+func (AllowlistsPostgresqlAllowListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AllowlistsPostgresqlAllowList)(nil)).Elem()
+}
+
+func (o AllowlistsPostgresqlAllowListOutput) ToAllowlistsPostgresqlAllowListOutput() AllowlistsPostgresqlAllowListOutput {
+	return o
+}
+
+func (o AllowlistsPostgresqlAllowListOutput) ToAllowlistsPostgresqlAllowListOutputWithContext(ctx context.Context) AllowlistsPostgresqlAllowListOutput {
+	return o
+}
+
+// The description of the postgresql allow list.
+func (o AllowlistsPostgresqlAllowListOutput) AllowListDesc() pulumi.StringOutput {
+	return o.ApplyT(func(v AllowlistsPostgresqlAllowList) string { return v.AllowListDesc }).(pulumi.StringOutput)
+}
+
+// The id of the postgresql allow list.
+func (o AllowlistsPostgresqlAllowListOutput) AllowListId() pulumi.StringOutput {
+	return o.ApplyT(func(v AllowlistsPostgresqlAllowList) string { return v.AllowListId }).(pulumi.StringOutput)
+}
+
+// The total number of IP addresses (or address ranges) in the whitelist.
+func (o AllowlistsPostgresqlAllowListOutput) AllowListIpNum() pulumi.IntOutput {
+	return o.ApplyT(func(v AllowlistsPostgresqlAllowList) int { return v.AllowListIpNum }).(pulumi.IntOutput)
+}
+
+// The name of the postgresql allow list.
+func (o AllowlistsPostgresqlAllowListOutput) AllowListName() pulumi.StringOutput {
+	return o.ApplyT(func(v AllowlistsPostgresqlAllowList) string { return v.AllowListName }).(pulumi.StringOutput)
+}
+
+// The type of the postgresql allow list.
+func (o AllowlistsPostgresqlAllowListOutput) AllowListType() pulumi.StringOutput {
+	return o.ApplyT(func(v AllowlistsPostgresqlAllowList) string { return v.AllowListType }).(pulumi.StringOutput)
+}
+
+// The IP address or a range of IP addresses in CIDR format.
+func (o AllowlistsPostgresqlAllowListOutput) AllowLists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AllowlistsPostgresqlAllowList) []string { return v.AllowLists }).(pulumi.StringArrayOutput)
+}
+
+// The total number of instances bound under the whitelist.
+func (o AllowlistsPostgresqlAllowListOutput) AssociatedInstanceNum() pulumi.IntOutput {
+	return o.ApplyT(func(v AllowlistsPostgresqlAllowList) int { return v.AssociatedInstanceNum }).(pulumi.IntOutput)
+}
+
+// The list of postgresql instances.
+func (o AllowlistsPostgresqlAllowListOutput) AssociatedInstances() AllowlistsPostgresqlAllowListAssociatedInstanceArrayOutput {
+	return o.ApplyT(func(v AllowlistsPostgresqlAllowList) []AllowlistsPostgresqlAllowListAssociatedInstance {
+		return v.AssociatedInstances
+	}).(AllowlistsPostgresqlAllowListAssociatedInstanceArrayOutput)
+}
+
+// The id of the postgresql allow list.
+func (o AllowlistsPostgresqlAllowListOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v AllowlistsPostgresqlAllowList) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type AllowlistsPostgresqlAllowListArrayOutput struct{ *pulumi.OutputState }
+
+func (AllowlistsPostgresqlAllowListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AllowlistsPostgresqlAllowList)(nil)).Elem()
+}
+
+func (o AllowlistsPostgresqlAllowListArrayOutput) ToAllowlistsPostgresqlAllowListArrayOutput() AllowlistsPostgresqlAllowListArrayOutput {
+	return o
+}
+
+func (o AllowlistsPostgresqlAllowListArrayOutput) ToAllowlistsPostgresqlAllowListArrayOutputWithContext(ctx context.Context) AllowlistsPostgresqlAllowListArrayOutput {
+	return o
+}
+
+func (o AllowlistsPostgresqlAllowListArrayOutput) Index(i pulumi.IntInput) AllowlistsPostgresqlAllowListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AllowlistsPostgresqlAllowList {
+		return vs[0].([]AllowlistsPostgresqlAllowList)[vs[1].(int)]
+	}).(AllowlistsPostgresqlAllowListOutput)
+}
+
+type AllowlistsPostgresqlAllowListAssociatedInstance struct {
+	// The id of the postgresql Instance.
+	InstanceId string `pulumi:"instanceId"`
+	// The name of the postgresql instance.
+	InstanceName string `pulumi:"instanceName"`
+	// The id of the vpc.
+	Vpc string `pulumi:"vpc"`
+}
+
+// AllowlistsPostgresqlAllowListAssociatedInstanceInput is an input type that accepts AllowlistsPostgresqlAllowListAssociatedInstanceArgs and AllowlistsPostgresqlAllowListAssociatedInstanceOutput values.
+// You can construct a concrete instance of `AllowlistsPostgresqlAllowListAssociatedInstanceInput` via:
+//
+//	AllowlistsPostgresqlAllowListAssociatedInstanceArgs{...}
+type AllowlistsPostgresqlAllowListAssociatedInstanceInput interface {
+	pulumi.Input
+
+	ToAllowlistsPostgresqlAllowListAssociatedInstanceOutput() AllowlistsPostgresqlAllowListAssociatedInstanceOutput
+	ToAllowlistsPostgresqlAllowListAssociatedInstanceOutputWithContext(context.Context) AllowlistsPostgresqlAllowListAssociatedInstanceOutput
+}
+
+type AllowlistsPostgresqlAllowListAssociatedInstanceArgs struct {
+	// The id of the postgresql Instance.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// The name of the postgresql instance.
+	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+	// The id of the vpc.
+	Vpc pulumi.StringInput `pulumi:"vpc"`
+}
+
+func (AllowlistsPostgresqlAllowListAssociatedInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AllowlistsPostgresqlAllowListAssociatedInstance)(nil)).Elem()
+}
+
+func (i AllowlistsPostgresqlAllowListAssociatedInstanceArgs) ToAllowlistsPostgresqlAllowListAssociatedInstanceOutput() AllowlistsPostgresqlAllowListAssociatedInstanceOutput {
+	return i.ToAllowlistsPostgresqlAllowListAssociatedInstanceOutputWithContext(context.Background())
+}
+
+func (i AllowlistsPostgresqlAllowListAssociatedInstanceArgs) ToAllowlistsPostgresqlAllowListAssociatedInstanceOutputWithContext(ctx context.Context) AllowlistsPostgresqlAllowListAssociatedInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AllowlistsPostgresqlAllowListAssociatedInstanceOutput)
+}
+
+// AllowlistsPostgresqlAllowListAssociatedInstanceArrayInput is an input type that accepts AllowlistsPostgresqlAllowListAssociatedInstanceArray and AllowlistsPostgresqlAllowListAssociatedInstanceArrayOutput values.
+// You can construct a concrete instance of `AllowlistsPostgresqlAllowListAssociatedInstanceArrayInput` via:
+//
+//	AllowlistsPostgresqlAllowListAssociatedInstanceArray{ AllowlistsPostgresqlAllowListAssociatedInstanceArgs{...} }
+type AllowlistsPostgresqlAllowListAssociatedInstanceArrayInput interface {
+	pulumi.Input
+
+	ToAllowlistsPostgresqlAllowListAssociatedInstanceArrayOutput() AllowlistsPostgresqlAllowListAssociatedInstanceArrayOutput
+	ToAllowlistsPostgresqlAllowListAssociatedInstanceArrayOutputWithContext(context.Context) AllowlistsPostgresqlAllowListAssociatedInstanceArrayOutput
+}
+
+type AllowlistsPostgresqlAllowListAssociatedInstanceArray []AllowlistsPostgresqlAllowListAssociatedInstanceInput
+
+func (AllowlistsPostgresqlAllowListAssociatedInstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AllowlistsPostgresqlAllowListAssociatedInstance)(nil)).Elem()
+}
+
+func (i AllowlistsPostgresqlAllowListAssociatedInstanceArray) ToAllowlistsPostgresqlAllowListAssociatedInstanceArrayOutput() AllowlistsPostgresqlAllowListAssociatedInstanceArrayOutput {
+	return i.ToAllowlistsPostgresqlAllowListAssociatedInstanceArrayOutputWithContext(context.Background())
+}
+
+func (i AllowlistsPostgresqlAllowListAssociatedInstanceArray) ToAllowlistsPostgresqlAllowListAssociatedInstanceArrayOutputWithContext(ctx context.Context) AllowlistsPostgresqlAllowListAssociatedInstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AllowlistsPostgresqlAllowListAssociatedInstanceArrayOutput)
+}
+
+type AllowlistsPostgresqlAllowListAssociatedInstanceOutput struct{ *pulumi.OutputState }
+
+func (AllowlistsPostgresqlAllowListAssociatedInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AllowlistsPostgresqlAllowListAssociatedInstance)(nil)).Elem()
+}
+
+func (o AllowlistsPostgresqlAllowListAssociatedInstanceOutput) ToAllowlistsPostgresqlAllowListAssociatedInstanceOutput() AllowlistsPostgresqlAllowListAssociatedInstanceOutput {
+	return o
+}
+
+func (o AllowlistsPostgresqlAllowListAssociatedInstanceOutput) ToAllowlistsPostgresqlAllowListAssociatedInstanceOutputWithContext(ctx context.Context) AllowlistsPostgresqlAllowListAssociatedInstanceOutput {
+	return o
+}
+
+// The id of the postgresql Instance.
+func (o AllowlistsPostgresqlAllowListAssociatedInstanceOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v AllowlistsPostgresqlAllowListAssociatedInstance) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The name of the postgresql instance.
+func (o AllowlistsPostgresqlAllowListAssociatedInstanceOutput) InstanceName() pulumi.StringOutput {
+	return o.ApplyT(func(v AllowlistsPostgresqlAllowListAssociatedInstance) string { return v.InstanceName }).(pulumi.StringOutput)
+}
+
+// The id of the vpc.
+func (o AllowlistsPostgresqlAllowListAssociatedInstanceOutput) Vpc() pulumi.StringOutput {
+	return o.ApplyT(func(v AllowlistsPostgresqlAllowListAssociatedInstance) string { return v.Vpc }).(pulumi.StringOutput)
+}
+
+type AllowlistsPostgresqlAllowListAssociatedInstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (AllowlistsPostgresqlAllowListAssociatedInstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AllowlistsPostgresqlAllowListAssociatedInstance)(nil)).Elem()
+}
+
+func (o AllowlistsPostgresqlAllowListAssociatedInstanceArrayOutput) ToAllowlistsPostgresqlAllowListAssociatedInstanceArrayOutput() AllowlistsPostgresqlAllowListAssociatedInstanceArrayOutput {
+	return o
+}
+
+func (o AllowlistsPostgresqlAllowListAssociatedInstanceArrayOutput) ToAllowlistsPostgresqlAllowListAssociatedInstanceArrayOutputWithContext(ctx context.Context) AllowlistsPostgresqlAllowListAssociatedInstanceArrayOutput {
+	return o
+}
+
+func (o AllowlistsPostgresqlAllowListAssociatedInstanceArrayOutput) Index(i pulumi.IntInput) AllowlistsPostgresqlAllowListAssociatedInstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AllowlistsPostgresqlAllowListAssociatedInstance {
+		return vs[0].([]AllowlistsPostgresqlAllowListAssociatedInstance)[vs[1].(int)]
+	}).(AllowlistsPostgresqlAllowListAssociatedInstanceOutput)
+}
+
 type DatabasesDatabase struct {
 	// Character classification.
 	CType string `pulumi:"cType"`
@@ -3099,6 +3500,12 @@ func (o SchemasSchemaArrayOutput) Index(i pulumi.IntInput) SchemasSchemaOutput {
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AccountsAccountInput)(nil)).Elem(), AccountsAccountArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AccountsAccountArrayInput)(nil)).Elem(), AccountsAccountArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AllowlistAssociatedInstanceInput)(nil)).Elem(), AllowlistAssociatedInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AllowlistAssociatedInstanceArrayInput)(nil)).Elem(), AllowlistAssociatedInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AllowlistsPostgresqlAllowListInput)(nil)).Elem(), AllowlistsPostgresqlAllowListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AllowlistsPostgresqlAllowListArrayInput)(nil)).Elem(), AllowlistsPostgresqlAllowListArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AllowlistsPostgresqlAllowListAssociatedInstanceInput)(nil)).Elem(), AllowlistsPostgresqlAllowListAssociatedInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AllowlistsPostgresqlAllowListAssociatedInstanceArrayInput)(nil)).Elem(), AllowlistsPostgresqlAllowListAssociatedInstanceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabasesDatabaseInput)(nil)).Elem(), DatabasesDatabaseArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabasesDatabaseArrayInput)(nil)).Elem(), DatabasesDatabaseArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceChargeDetailInput)(nil)).Elem(), InstanceChargeDetailArgs{})
@@ -3137,6 +3544,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SchemasSchemaArrayInput)(nil)).Elem(), SchemasSchemaArray{})
 	pulumi.RegisterOutputType(AccountsAccountOutput{})
 	pulumi.RegisterOutputType(AccountsAccountArrayOutput{})
+	pulumi.RegisterOutputType(AllowlistAssociatedInstanceOutput{})
+	pulumi.RegisterOutputType(AllowlistAssociatedInstanceArrayOutput{})
+	pulumi.RegisterOutputType(AllowlistsPostgresqlAllowListOutput{})
+	pulumi.RegisterOutputType(AllowlistsPostgresqlAllowListArrayOutput{})
+	pulumi.RegisterOutputType(AllowlistsPostgresqlAllowListAssociatedInstanceOutput{})
+	pulumi.RegisterOutputType(AllowlistsPostgresqlAllowListAssociatedInstanceArrayOutput{})
 	pulumi.RegisterOutputType(DatabasesDatabaseOutput{})
 	pulumi.RegisterOutputType(DatabasesDatabaseArrayOutput{})
 	pulumi.RegisterOutputType(InstanceChargeDetailOutput{})

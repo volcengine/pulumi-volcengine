@@ -75,6 +75,7 @@ export function instances(args?: InstancesArgs, opts?: pulumi.InvokeOptions): Pr
         "hpcClusterId": args.hpcClusterId,
         "ids": args.ids,
         "instanceChargeType": args.instanceChargeType,
+        "instanceName": args.instanceName,
         "keyPairName": args.keyPairName,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
@@ -107,6 +108,10 @@ export interface InstancesArgs {
      * The charge type of ECS instance.
      */
     instanceChargeType?: string;
+    /**
+     * The name of ECS instance. This field support fuzzy query.
+     */
+    instanceName?: string;
     /**
      * The key pair name of ECS instance.
      */
@@ -160,6 +165,10 @@ export interface InstancesResult {
      * The charge type of ECS instance.
      */
     readonly instanceChargeType?: string;
+    /**
+     * The name of ECS instance.
+     */
+    readonly instanceName?: string;
     /**
      * The collection of ECS instance query.
      */
@@ -283,6 +292,10 @@ export interface InstancesOutputArgs {
      * The charge type of ECS instance.
      */
     instanceChargeType?: pulumi.Input<string>;
+    /**
+     * The name of ECS instance. This field support fuzzy query.
+     */
+    instanceName?: pulumi.Input<string>;
     /**
      * The key pair name of ECS instance.
      */

@@ -165,7 +165,7 @@ export class Volume extends pulumi.CustomResource {
      */
     public /*out*/ readonly tradeStatus!: pulumi.Output<number>;
     /**
-     * The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
+     * The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
      */
     public readonly volumeChargeType!: pulumi.Output<string | undefined>;
     /**
@@ -293,7 +293,7 @@ export interface VolumeState {
      */
     tradeStatus?: pulumi.Input<number>;
     /**
-     * The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
+     * The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
      */
     volumeChargeType?: pulumi.Input<string>;
     /**
@@ -346,7 +346,7 @@ export interface VolumeArgs {
      */
     tags?: pulumi.Input<pulumi.Input<inputs.ebs.VolumeTag>[]>;
     /**
-     * The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Cannot convert `PrePaid` volume to `PostPaid`.Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
+     * The charge type of the Volume, the value is `PostPaid` or `PrePaid`. The `PrePaid` volume cannot be detached. Please note that `PrePaid` type needs to ask the system administrator to apply for a whitelist.
      */
     volumeChargeType?: pulumi.Input<string>;
     /**

@@ -178,7 +178,7 @@ export class Node extends pulumi.CustomResource {
     }
 
     /**
-     * The flag of additional container storage enable, the value is `true` or `false`.
+     * The flag of additional container storage enable, the value is `true` or `false`. This field is valid only when adding an existing instance to the default node pool.
      */
     public readonly additionalContainerStorageEnabled!: pulumi.Output<boolean | undefined>;
     /**
@@ -190,15 +190,15 @@ export class Node extends pulumi.CustomResource {
      */
     public readonly clusterId!: pulumi.Output<string>;
     /**
-     * The container storage path.
+     * The container storage path. This field is valid only when adding an existing instance to the default node pool.
      */
     public readonly containerStoragePath!: pulumi.Output<string>;
     /**
-     * The ImageId of NodeConfig.
+     * The ImageId of NodeConfig. This field is valid only when adding an existing instance to the default node pool.
      */
     public readonly imageId!: pulumi.Output<string>;
     /**
-     * The initializeScript of Node.
+     * The initializeScript of Node. This field is valid only when adding an existing instance to the default node pool.
      */
     public readonly initializeScript!: pulumi.Output<string>;
     /**
@@ -210,11 +210,11 @@ export class Node extends pulumi.CustomResource {
      */
     public readonly keepInstanceName!: pulumi.Output<boolean | undefined>;
     /**
-     * The KubernetesConfig of Node.
+     * The KubernetesConfig of Node. This field is valid only when adding an existing instance to the default node pool.
      */
     public readonly kubernetesConfig!: pulumi.Output<outputs.vke.NodeKubernetesConfig>;
     /**
-     * The node pool id.
+     * The node pool id. This field is used to specify the custom node pool to which you want to add nodes. If not filled in, it means added to the default node pool.
      */
     public readonly nodePoolId!: pulumi.Output<string>;
 
@@ -270,7 +270,7 @@ export class Node extends pulumi.CustomResource {
  */
 export interface NodeState {
     /**
-     * The flag of additional container storage enable, the value is `true` or `false`.
+     * The flag of additional container storage enable, the value is `true` or `false`. This field is valid only when adding an existing instance to the default node pool.
      */
     additionalContainerStorageEnabled?: pulumi.Input<boolean>;
     /**
@@ -282,15 +282,15 @@ export interface NodeState {
      */
     clusterId?: pulumi.Input<string>;
     /**
-     * The container storage path.
+     * The container storage path. This field is valid only when adding an existing instance to the default node pool.
      */
     containerStoragePath?: pulumi.Input<string>;
     /**
-     * The ImageId of NodeConfig.
+     * The ImageId of NodeConfig. This field is valid only when adding an existing instance to the default node pool.
      */
     imageId?: pulumi.Input<string>;
     /**
-     * The initializeScript of Node.
+     * The initializeScript of Node. This field is valid only when adding an existing instance to the default node pool.
      */
     initializeScript?: pulumi.Input<string>;
     /**
@@ -302,11 +302,11 @@ export interface NodeState {
      */
     keepInstanceName?: pulumi.Input<boolean>;
     /**
-     * The KubernetesConfig of Node.
+     * The KubernetesConfig of Node. This field is valid only when adding an existing instance to the default node pool.
      */
     kubernetesConfig?: pulumi.Input<inputs.vke.NodeKubernetesConfig>;
     /**
-     * The node pool id.
+     * The node pool id. This field is used to specify the custom node pool to which you want to add nodes. If not filled in, it means added to the default node pool.
      */
     nodePoolId?: pulumi.Input<string>;
 }
@@ -316,7 +316,7 @@ export interface NodeState {
  */
 export interface NodeArgs {
     /**
-     * The flag of additional container storage enable, the value is `true` or `false`.
+     * The flag of additional container storage enable, the value is `true` or `false`. This field is valid only when adding an existing instance to the default node pool.
      */
     additionalContainerStorageEnabled?: pulumi.Input<boolean>;
     /**
@@ -328,15 +328,15 @@ export interface NodeArgs {
      */
     clusterId: pulumi.Input<string>;
     /**
-     * The container storage path.
+     * The container storage path. This field is valid only when adding an existing instance to the default node pool.
      */
     containerStoragePath?: pulumi.Input<string>;
     /**
-     * The ImageId of NodeConfig.
+     * The ImageId of NodeConfig. This field is valid only when adding an existing instance to the default node pool.
      */
     imageId?: pulumi.Input<string>;
     /**
-     * The initializeScript of Node.
+     * The initializeScript of Node. This field is valid only when adding an existing instance to the default node pool.
      */
     initializeScript?: pulumi.Input<string>;
     /**
@@ -348,11 +348,11 @@ export interface NodeArgs {
      */
     keepInstanceName?: pulumi.Input<boolean>;
     /**
-     * The KubernetesConfig of Node.
+     * The KubernetesConfig of Node. This field is valid only when adding an existing instance to the default node pool.
      */
     kubernetesConfig?: pulumi.Input<inputs.vke.NodeKubernetesConfig>;
     /**
-     * The node pool id.
+     * The node pool id. This field is used to specify the custom node pool to which you want to add nodes. If not filled in, it means added to the default node pool.
      */
     nodePoolId?: pulumi.Input<string>;
 }

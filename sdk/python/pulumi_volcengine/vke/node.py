@@ -30,14 +30,14 @@ class NodeArgs:
         The set of arguments for constructing a Node resource.
         :param pulumi.Input[str] cluster_id: The cluster id.
         :param pulumi.Input[str] instance_id: The instance id.
-        :param pulumi.Input[bool] additional_container_storage_enabled: The flag of additional container storage enable, the value is `true` or `false`.
+        :param pulumi.Input[bool] additional_container_storage_enabled: The flag of additional container storage enable, the value is `true` or `false`. This field is valid only when adding an existing instance to the default node pool.
         :param pulumi.Input[str] client_token: The client token.
-        :param pulumi.Input[str] container_storage_path: The container storage path.
-        :param pulumi.Input[str] image_id: The ImageId of NodeConfig.
-        :param pulumi.Input[str] initialize_script: The initializeScript of Node.
+        :param pulumi.Input[str] container_storage_path: The container storage path. This field is valid only when adding an existing instance to the default node pool.
+        :param pulumi.Input[str] image_id: The ImageId of NodeConfig. This field is valid only when adding an existing instance to the default node pool.
+        :param pulumi.Input[str] initialize_script: The initializeScript of Node. This field is valid only when adding an existing instance to the default node pool.
         :param pulumi.Input[bool] keep_instance_name: The flag of keep instance name, the value is `true` or `false`.
-        :param pulumi.Input['NodeKubernetesConfigArgs'] kubernetes_config: The KubernetesConfig of Node.
-        :param pulumi.Input[str] node_pool_id: The node pool id.
+        :param pulumi.Input['NodeKubernetesConfigArgs'] kubernetes_config: The KubernetesConfig of Node. This field is valid only when adding an existing instance to the default node pool.
+        :param pulumi.Input[str] node_pool_id: The node pool id. This field is used to specify the custom node pool to which you want to add nodes. If not filled in, it means added to the default node pool.
         """
         pulumi.set(__self__, "cluster_id", cluster_id)
         pulumi.set(__self__, "instance_id", instance_id)
@@ -86,7 +86,7 @@ class NodeArgs:
     @pulumi.getter(name="additionalContainerStorageEnabled")
     def additional_container_storage_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        The flag of additional container storage enable, the value is `true` or `false`.
+        The flag of additional container storage enable, the value is `true` or `false`. This field is valid only when adding an existing instance to the default node pool.
         """
         return pulumi.get(self, "additional_container_storage_enabled")
 
@@ -110,7 +110,7 @@ class NodeArgs:
     @pulumi.getter(name="containerStoragePath")
     def container_storage_path(self) -> Optional[pulumi.Input[str]]:
         """
-        The container storage path.
+        The container storage path. This field is valid only when adding an existing instance to the default node pool.
         """
         return pulumi.get(self, "container_storage_path")
 
@@ -122,7 +122,7 @@ class NodeArgs:
     @pulumi.getter(name="imageId")
     def image_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ImageId of NodeConfig.
+        The ImageId of NodeConfig. This field is valid only when adding an existing instance to the default node pool.
         """
         return pulumi.get(self, "image_id")
 
@@ -134,7 +134,7 @@ class NodeArgs:
     @pulumi.getter(name="initializeScript")
     def initialize_script(self) -> Optional[pulumi.Input[str]]:
         """
-        The initializeScript of Node.
+        The initializeScript of Node. This field is valid only when adding an existing instance to the default node pool.
         """
         return pulumi.get(self, "initialize_script")
 
@@ -158,7 +158,7 @@ class NodeArgs:
     @pulumi.getter(name="kubernetesConfig")
     def kubernetes_config(self) -> Optional[pulumi.Input['NodeKubernetesConfigArgs']]:
         """
-        The KubernetesConfig of Node.
+        The KubernetesConfig of Node. This field is valid only when adding an existing instance to the default node pool.
         """
         return pulumi.get(self, "kubernetes_config")
 
@@ -170,7 +170,7 @@ class NodeArgs:
     @pulumi.getter(name="nodePoolId")
     def node_pool_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The node pool id.
+        The node pool id. This field is used to specify the custom node pool to which you want to add nodes. If not filled in, it means added to the default node pool.
         """
         return pulumi.get(self, "node_pool_id")
 
@@ -194,16 +194,16 @@ class _NodeState:
                  node_pool_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Node resources.
-        :param pulumi.Input[bool] additional_container_storage_enabled: The flag of additional container storage enable, the value is `true` or `false`.
+        :param pulumi.Input[bool] additional_container_storage_enabled: The flag of additional container storage enable, the value is `true` or `false`. This field is valid only when adding an existing instance to the default node pool.
         :param pulumi.Input[str] client_token: The client token.
         :param pulumi.Input[str] cluster_id: The cluster id.
-        :param pulumi.Input[str] container_storage_path: The container storage path.
-        :param pulumi.Input[str] image_id: The ImageId of NodeConfig.
-        :param pulumi.Input[str] initialize_script: The initializeScript of Node.
+        :param pulumi.Input[str] container_storage_path: The container storage path. This field is valid only when adding an existing instance to the default node pool.
+        :param pulumi.Input[str] image_id: The ImageId of NodeConfig. This field is valid only when adding an existing instance to the default node pool.
+        :param pulumi.Input[str] initialize_script: The initializeScript of Node. This field is valid only when adding an existing instance to the default node pool.
         :param pulumi.Input[str] instance_id: The instance id.
         :param pulumi.Input[bool] keep_instance_name: The flag of keep instance name, the value is `true` or `false`.
-        :param pulumi.Input['NodeKubernetesConfigArgs'] kubernetes_config: The KubernetesConfig of Node.
-        :param pulumi.Input[str] node_pool_id: The node pool id.
+        :param pulumi.Input['NodeKubernetesConfigArgs'] kubernetes_config: The KubernetesConfig of Node. This field is valid only when adding an existing instance to the default node pool.
+        :param pulumi.Input[str] node_pool_id: The node pool id. This field is used to specify the custom node pool to which you want to add nodes. If not filled in, it means added to the default node pool.
         """
         if additional_container_storage_enabled is not None:
             pulumi.set(__self__, "additional_container_storage_enabled", additional_container_storage_enabled)
@@ -230,7 +230,7 @@ class _NodeState:
     @pulumi.getter(name="additionalContainerStorageEnabled")
     def additional_container_storage_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        The flag of additional container storage enable, the value is `true` or `false`.
+        The flag of additional container storage enable, the value is `true` or `false`. This field is valid only when adding an existing instance to the default node pool.
         """
         return pulumi.get(self, "additional_container_storage_enabled")
 
@@ -266,7 +266,7 @@ class _NodeState:
     @pulumi.getter(name="containerStoragePath")
     def container_storage_path(self) -> Optional[pulumi.Input[str]]:
         """
-        The container storage path.
+        The container storage path. This field is valid only when adding an existing instance to the default node pool.
         """
         return pulumi.get(self, "container_storage_path")
 
@@ -278,7 +278,7 @@ class _NodeState:
     @pulumi.getter(name="imageId")
     def image_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ImageId of NodeConfig.
+        The ImageId of NodeConfig. This field is valid only when adding an existing instance to the default node pool.
         """
         return pulumi.get(self, "image_id")
 
@@ -290,7 +290,7 @@ class _NodeState:
     @pulumi.getter(name="initializeScript")
     def initialize_script(self) -> Optional[pulumi.Input[str]]:
         """
-        The initializeScript of Node.
+        The initializeScript of Node. This field is valid only when adding an existing instance to the default node pool.
         """
         return pulumi.get(self, "initialize_script")
 
@@ -326,7 +326,7 @@ class _NodeState:
     @pulumi.getter(name="kubernetesConfig")
     def kubernetes_config(self) -> Optional[pulumi.Input['NodeKubernetesConfigArgs']]:
         """
-        The KubernetesConfig of Node.
+        The KubernetesConfig of Node. This field is valid only when adding an existing instance to the default node pool.
         """
         return pulumi.get(self, "kubernetes_config")
 
@@ -338,7 +338,7 @@ class _NodeState:
     @pulumi.getter(name="nodePoolId")
     def node_pool_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The node pool id.
+        The node pool id. This field is used to specify the custom node pool to which you want to add nodes. If not filled in, it means added to the default node pool.
         """
         return pulumi.get(self, "node_pool_id")
 
@@ -498,16 +498,16 @@ class Node(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] additional_container_storage_enabled: The flag of additional container storage enable, the value is `true` or `false`.
+        :param pulumi.Input[bool] additional_container_storage_enabled: The flag of additional container storage enable, the value is `true` or `false`. This field is valid only when adding an existing instance to the default node pool.
         :param pulumi.Input[str] client_token: The client token.
         :param pulumi.Input[str] cluster_id: The cluster id.
-        :param pulumi.Input[str] container_storage_path: The container storage path.
-        :param pulumi.Input[str] image_id: The ImageId of NodeConfig.
-        :param pulumi.Input[str] initialize_script: The initializeScript of Node.
+        :param pulumi.Input[str] container_storage_path: The container storage path. This field is valid only when adding an existing instance to the default node pool.
+        :param pulumi.Input[str] image_id: The ImageId of NodeConfig. This field is valid only when adding an existing instance to the default node pool.
+        :param pulumi.Input[str] initialize_script: The initializeScript of Node. This field is valid only when adding an existing instance to the default node pool.
         :param pulumi.Input[str] instance_id: The instance id.
         :param pulumi.Input[bool] keep_instance_name: The flag of keep instance name, the value is `true` or `false`.
-        :param pulumi.Input[pulumi.InputType['NodeKubernetesConfigArgs']] kubernetes_config: The KubernetesConfig of Node.
-        :param pulumi.Input[str] node_pool_id: The node pool id.
+        :param pulumi.Input[pulumi.InputType['NodeKubernetesConfigArgs']] kubernetes_config: The KubernetesConfig of Node. This field is valid only when adding an existing instance to the default node pool.
+        :param pulumi.Input[str] node_pool_id: The node pool id. This field is used to specify the custom node pool to which you want to add nodes. If not filled in, it means added to the default node pool.
         """
         ...
     @overload
@@ -723,16 +723,16 @@ class Node(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] additional_container_storage_enabled: The flag of additional container storage enable, the value is `true` or `false`.
+        :param pulumi.Input[bool] additional_container_storage_enabled: The flag of additional container storage enable, the value is `true` or `false`. This field is valid only when adding an existing instance to the default node pool.
         :param pulumi.Input[str] client_token: The client token.
         :param pulumi.Input[str] cluster_id: The cluster id.
-        :param pulumi.Input[str] container_storage_path: The container storage path.
-        :param pulumi.Input[str] image_id: The ImageId of NodeConfig.
-        :param pulumi.Input[str] initialize_script: The initializeScript of Node.
+        :param pulumi.Input[str] container_storage_path: The container storage path. This field is valid only when adding an existing instance to the default node pool.
+        :param pulumi.Input[str] image_id: The ImageId of NodeConfig. This field is valid only when adding an existing instance to the default node pool.
+        :param pulumi.Input[str] initialize_script: The initializeScript of Node. This field is valid only when adding an existing instance to the default node pool.
         :param pulumi.Input[str] instance_id: The instance id.
         :param pulumi.Input[bool] keep_instance_name: The flag of keep instance name, the value is `true` or `false`.
-        :param pulumi.Input[pulumi.InputType['NodeKubernetesConfigArgs']] kubernetes_config: The KubernetesConfig of Node.
-        :param pulumi.Input[str] node_pool_id: The node pool id.
+        :param pulumi.Input[pulumi.InputType['NodeKubernetesConfigArgs']] kubernetes_config: The KubernetesConfig of Node. This field is valid only when adding an existing instance to the default node pool.
+        :param pulumi.Input[str] node_pool_id: The node pool id. This field is used to specify the custom node pool to which you want to add nodes. If not filled in, it means added to the default node pool.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -754,7 +754,7 @@ class Node(pulumi.CustomResource):
     @pulumi.getter(name="additionalContainerStorageEnabled")
     def additional_container_storage_enabled(self) -> pulumi.Output[Optional[bool]]:
         """
-        The flag of additional container storage enable, the value is `true` or `false`.
+        The flag of additional container storage enable, the value is `true` or `false`. This field is valid only when adding an existing instance to the default node pool.
         """
         return pulumi.get(self, "additional_container_storage_enabled")
 
@@ -778,7 +778,7 @@ class Node(pulumi.CustomResource):
     @pulumi.getter(name="containerStoragePath")
     def container_storage_path(self) -> pulumi.Output[str]:
         """
-        The container storage path.
+        The container storage path. This field is valid only when adding an existing instance to the default node pool.
         """
         return pulumi.get(self, "container_storage_path")
 
@@ -786,7 +786,7 @@ class Node(pulumi.CustomResource):
     @pulumi.getter(name="imageId")
     def image_id(self) -> pulumi.Output[str]:
         """
-        The ImageId of NodeConfig.
+        The ImageId of NodeConfig. This field is valid only when adding an existing instance to the default node pool.
         """
         return pulumi.get(self, "image_id")
 
@@ -794,7 +794,7 @@ class Node(pulumi.CustomResource):
     @pulumi.getter(name="initializeScript")
     def initialize_script(self) -> pulumi.Output[str]:
         """
-        The initializeScript of Node.
+        The initializeScript of Node. This field is valid only when adding an existing instance to the default node pool.
         """
         return pulumi.get(self, "initialize_script")
 
@@ -818,7 +818,7 @@ class Node(pulumi.CustomResource):
     @pulumi.getter(name="kubernetesConfig")
     def kubernetes_config(self) -> pulumi.Output['outputs.NodeKubernetesConfig']:
         """
-        The KubernetesConfig of Node.
+        The KubernetesConfig of Node. This field is valid only when adding an existing instance to the default node pool.
         """
         return pulumi.get(self, "kubernetes_config")
 
@@ -826,7 +826,7 @@ class Node(pulumi.CustomResource):
     @pulumi.getter(name="nodePoolId")
     def node_pool_id(self) -> pulumi.Output[str]:
         """
-        The node pool id.
+        The node pool id. This field is used to specify the custom node pool to which you want to add nodes. If not filled in, it means added to the default node pool.
         """
         return pulumi.get(self, "node_pool_id")
 

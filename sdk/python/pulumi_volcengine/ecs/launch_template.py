@@ -1114,7 +1114,7 @@ class LaunchTemplate(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="suffixIndex")
-    def suffix_index(self) -> pulumi.Output[Optional[int]]:
+    def suffix_index(self) -> pulumi.Output[int]:
         """
         The index of the ordered suffix.
         """
