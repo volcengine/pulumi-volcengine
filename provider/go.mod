@@ -2,8 +2,6 @@ module github.com/volcengine/pulumi-volcengine/provider
 
 go 1.21
 
-toolchain go1.22.4
-
 replace (
 	github.com/hashicorp/go-getter => github.com/hashicorp/go-getter v1.4.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20220505215311-795430389fa7
