@@ -261,7 +261,7 @@ class VpcEndpointConnection(pulumi.CustomResource):
         PrivateLink Vpc Endpoint Connection Service can be imported using the endpoint id and service id, e.g.
 
         ```sh
-         $ pulumi import volcengine:privatelink/vpcEndpointConnection:VpcEndpointConnection default ep-3rel74u229dz45zsk2i6l69qa:epsvc-2byz5mykk9y4g2dx0efs4aqz3
+        $ pulumi import volcengine:privatelink/vpcEndpointConnection:VpcEndpointConnection default ep-3rel74u229dz45zsk2i6l69qa:epsvc-2byz5mykk9y4g2dx0efs4aqz3
         ```
 
         :param str resource_name: The name of the resource.
@@ -341,7 +341,7 @@ class VpcEndpointConnection(pulumi.CustomResource):
         PrivateLink Vpc Endpoint Connection Service can be imported using the endpoint id and service id, e.g.
 
         ```sh
-         $ pulumi import volcengine:privatelink/vpcEndpointConnection:VpcEndpointConnection default ep-3rel74u229dz45zsk2i6l69qa:epsvc-2byz5mykk9y4g2dx0efs4aqz3
+        $ pulumi import volcengine:privatelink/vpcEndpointConnection:VpcEndpointConnection default ep-3rel74u229dz45zsk2i6l69qa:epsvc-2byz5mykk9y4g2dx0efs4aqz3
         ```
 
         :param str resource_name: The name of the resource.

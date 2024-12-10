@@ -68,9 +68,9 @@ class AlbEipBillingConfigArgs:
                  eip_billing_type: pulumi.Input[str],
                  isp: pulumi.Input[str]):
         """
-        :param pulumi.Input[int] bandwidth: The peek bandwidth of the Ipv6 EIP which automatically assigned to the Alb. Unit: Mbps.
+        :param pulumi.Input[int] bandwidth: The peek bandwidth of the EIP which automatically assigned to the Alb. Unit: Mbps.
         :param pulumi.Input[str] eip_billing_type: The billing type of the EIP which automatically assigned to the Alb. Valid values: `PostPaidByBandwidth`, `PostPaidByTraffic`.
-        :param pulumi.Input[str] isp: The ISP of the Ipv6 EIP which automatically associated to the Alb, the value can be `BGP`.
+        :param pulumi.Input[str] isp: The ISP of the EIP which automatically associated to the Alb, the value can be `BGP`.
         """
         pulumi.set(__self__, "bandwidth", bandwidth)
         pulumi.set(__self__, "eip_billing_type", eip_billing_type)
@@ -80,7 +80,7 @@ class AlbEipBillingConfigArgs:
     @pulumi.getter
     def bandwidth(self) -> pulumi.Input[int]:
         """
-        The peek bandwidth of the Ipv6 EIP which automatically assigned to the Alb. Unit: Mbps.
+        The peek bandwidth of the EIP which automatically assigned to the Alb. Unit: Mbps.
         """
         return pulumi.get(self, "bandwidth")
 
@@ -104,7 +104,7 @@ class AlbEipBillingConfigArgs:
     @pulumi.getter
     def isp(self) -> pulumi.Input[str]:
         """
-        The ISP of the Ipv6 EIP which automatically associated to the Alb, the value can be `BGP`.
+        The ISP of the EIP which automatically associated to the Alb, the value can be `BGP`.
         """
         return pulumi.get(self, "isp")
 
@@ -120,11 +120,9 @@ class AlbIpv6EipBillingConfigArgs:
                  billing_type: pulumi.Input[str],
                  isp: pulumi.Input[str]):
         """
-        :param pulumi.Input[int] bandwidth: The peek bandwidth of the EIP which automatically assigned to the Alb. Unit: Mbps.
+        :param pulumi.Input[int] bandwidth: The peek bandwidth of the Ipv6 EIP which automatically assigned to the Alb. Unit: Mbps.
         :param pulumi.Input[str] billing_type: The billing type of the Tpv6 EIP which automatically assigned to the Alb. Valid values: `PostPaidByBandwidth`, `PostPaidByTraffic`.
-        :param pulumi.Input[str] isp: The ISP of the EIP which automatically associated to the Alb, the value can be `BGP`.
-               
-               The `ipv6_eip_billing_config` object supports the following:
+        :param pulumi.Input[str] isp: The ISP of the Ipv6 EIP which automatically associated to the Alb, the value can be `BGP`.
         """
         pulumi.set(__self__, "bandwidth", bandwidth)
         pulumi.set(__self__, "billing_type", billing_type)
@@ -134,7 +132,7 @@ class AlbIpv6EipBillingConfigArgs:
     @pulumi.getter
     def bandwidth(self) -> pulumi.Input[int]:
         """
-        The peek bandwidth of the EIP which automatically assigned to the Alb. Unit: Mbps.
+        The peek bandwidth of the Ipv6 EIP which automatically assigned to the Alb. Unit: Mbps.
         """
         return pulumi.get(self, "bandwidth")
 
@@ -158,9 +156,7 @@ class AlbIpv6EipBillingConfigArgs:
     @pulumi.getter
     def isp(self) -> pulumi.Input[str]:
         """
-        The ISP of the EIP which automatically associated to the Alb, the value can be `BGP`.
-
-        The `ipv6_eip_billing_config` object supports the following:
+        The ISP of the Ipv6 EIP which automatically associated to the Alb, the value can be `BGP`.
         """
         return pulumi.get(self, "isp")
 

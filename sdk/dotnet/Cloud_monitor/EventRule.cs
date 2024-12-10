@@ -87,7 +87,7 @@ namespace Pulumi.Volcengine.Cloud_monitor
     /// CloudMonitorEventRule can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:cloud_monitor/eventRule:EventRule default rule_id
+    /// $ pulumi import volcengine:cloud_monitor/eventRule:EventRule default rule_id
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:cloud_monitor/eventRule:EventRule")]

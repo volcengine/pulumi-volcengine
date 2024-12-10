@@ -17,11 +17,6 @@ namespace Pulumi.Volcengine.Rds_postgresql.Outputs
         /// Whether to automatically renew in prepaid scenarios.
         /// </summary>
         public readonly bool? AutoRenew;
-        /// <summary>
-        /// Payment type. Value:
-        /// PostPaid - Pay-As-You-Go
-        /// PrePaid - Yearly and monthly (default).
-        /// </summary>
         public readonly string ChargeType;
         /// <summary>
         /// Purchase duration in prepaid scenarios. Default: 1.

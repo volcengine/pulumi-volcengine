@@ -58,7 +58,7 @@ namespace Pulumi.Volcengine.Vpn.Outputs
         /// </summary>
         public readonly string IpAddress;
         /// <summary>
-        /// Whether ipsec is enabled.
+        /// Whether IPSec is enabled.
         /// </summary>
         public readonly bool IpsecEnabled;
         /// <summary>
@@ -66,7 +66,7 @@ namespace Pulumi.Volcengine.Vpn.Outputs
         /// </summary>
         public readonly string LockReason;
         /// <summary>
-        /// The name of project.
+        /// The project name of the VPN gateway.
         /// </summary>
         public readonly string ProjectName;
         /// <summary>

@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Clb
     {
         /// <summary>
         /// Use this data source to query detailed information of acls
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -35,17 +33,13 @@ namespace Pulumi.Volcengine.Clb
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<AclsResult> InvokeAsync(AclsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<AclsResult>("volcengine:clb/acls:Acls", args ?? new AclsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of acls
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -65,8 +59,6 @@ namespace Pulumi.Volcengine.Clb
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<AclsResult> Invoke(AclsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<AclsResult>("volcengine:clb/acls:Acls", args ?? new AclsInvokeArgs(), options.WithDefaults());

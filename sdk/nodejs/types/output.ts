@@ -96,7 +96,7 @@ export namespace alb {
 
     export interface AlbEipBillingConfig {
         /**
-         * The peek bandwidth of the Ipv6 EIP which automatically assigned to the Alb. Unit: Mbps.
+         * The peek bandwidth of the EIP which automatically assigned to the Alb. Unit: Mbps.
          */
         bandwidth: number;
         /**
@@ -104,14 +104,14 @@ export namespace alb {
          */
         eipBillingType: string;
         /**
-         * The ISP of the Ipv6 EIP which automatically associated to the Alb, the value can be `BGP`.
+         * The ISP of the EIP which automatically associated to the Alb, the value can be `BGP`.
          */
         isp: string;
     }
 
     export interface AlbIpv6EipBillingConfig {
         /**
-         * The peek bandwidth of the EIP which automatically assigned to the Alb. Unit: Mbps.
+         * The peek bandwidth of the Ipv6 EIP which automatically assigned to the Alb. Unit: Mbps.
          */
         bandwidth: number;
         /**
@@ -119,9 +119,7 @@ export namespace alb {
          */
         billingType: string;
         /**
-         * The ISP of the EIP which automatically associated to the Alb, the value can be `BGP`.
-         *
-         * The `ipv6EipBillingConfig` object supports the following:
+         * The ISP of the Ipv6 EIP which automatically associated to the Alb, the value can be `BGP`.
          */
         isp: string;
     }
@@ -1118,7 +1116,13 @@ export namespace alb {
          * The healthy threshold of health check.
          */
         healthyThreshold: number;
+        /**
+         * The normal http status code of health check.
+         */
         httpCode?: string;
+        /**
+         * The http version of health check.
+         */
         httpVersion?: string;
         /**
          * The interval executing health check.
@@ -1128,7 +1132,13 @@ export namespace alb {
          * The method of health check.
          */
         method: string;
+        /**
+         * The protocol of health check.
+         */
         protocol?: string;
+        /**
+         * The response timeout of health check.
+         */
         timeout?: number;
         /**
          * The unhealthy threshold of health check.
@@ -1459,6 +1469,9 @@ export namespace autoscaling {
     }
 
     export interface ScalingGroupServerGroupAttribute {
+        /**
+         * The load balancer id.
+         */
         loadBalancerId: string;
         /**
          * The port receiving request of the server group. Value range: 1 ~ 65535.
@@ -1920,7 +1933,7 @@ export namespace bandwidth_package {
 
     export interface BandwidthPackagesPackageTag {
         /**
-         * The key of the tag.
+         * The Key of Tags.
          */
         key: string;
         /**
@@ -4100,6 +4113,9 @@ export namespace cloud_monitor {
          * The metric unit of the cloud monitor rule.
          */
         metricUnit: string;
+        /**
+         * The period of the cloud monitor rule.
+         */
         period: string;
         /**
          * The statistics of the cloud monitor rule. Valid values: `avg`, `max`, `min`.
@@ -4460,9 +4476,21 @@ export namespace cloudfs {
 
 export namespace config {
     export interface AssumeRole {
+        /**
+         * The session name to use when making the AssumeRole call.
+         */
         assumeRoleSessionName: string;
+        /**
+         * The TRN of the role to assume.
+         */
         assumeRoleTrn: string;
+        /**
+         * The duration of the session when making the AssumeRole call. Its value ranges from 900 to 43200(seconds), and default is 3600 seconds.
+         */
         durationSeconds: number;
+        /**
+         * A more restrictive policy when making the AssumeRole call.
+         */
         policy?: string;
     }
 
@@ -4562,7 +4590,7 @@ export namespace cr {
          */
         conditions: string[];
         /**
-         * The phase of status.
+         * The phase status of registry.
          */
         phase: string;
     }
@@ -4968,11 +4996,11 @@ export namespace direct_connect {
 
     export interface ConnectionsDirectConnectConnectionTag {
         /**
-         * The tag key of cloud resource instance.
+         * The tag key.
          */
         key: string;
         /**
-         * The tag value of cloud resource instance.
+         * The tag value.
          */
         value: string;
     }
@@ -5110,11 +5138,11 @@ export namespace direct_connect {
 
     export interface GatewaysDirectConnectGatewayTag {
         /**
-         * The tag key of cloud resource instance.
+         * The tag key.
          */
         key: string;
         /**
-         * The tag value of cloud resource instance.
+         * The tag value.
          */
         value: string;
     }
@@ -5241,11 +5269,11 @@ export namespace direct_connect {
 
     export interface VirtualInterfacesVirtualInterfaceTag {
         /**
-         * The tag key of cloud resource instance.
+         * The tag key.
          */
         key: string;
         /**
-         * The tag value of cloud resource instance.
+         * The tag value.
          */
         value: string;
     }
@@ -5253,6 +5281,353 @@ export namespace direct_connect {
 }
 
 export namespace ebs {
+    export interface AutoSnapshotPoliciesAutoSnapshotPolicy {
+        /**
+         * The id of the auto snapshot policy.
+         */
+        autoSnapshotPolicyId: string;
+        /**
+         * The name of the auto snapshot policy.
+         */
+        autoSnapshotPolicyName: string;
+        /**
+         * The creation time of the auto snapshot policy.
+         */
+        createdAt: string;
+        /**
+         * The id of the auto snapshot policy.
+         */
+        id: string;
+        /**
+         * The project name of auto snapshot policy.
+         */
+        projectName: string;
+        /**
+         * Create snapshots repeatedly on a daily basis, with intervals of a certain number of days between each snapshot.
+         */
+        repeatDays: number;
+        /**
+         * The date of creating snapshot repeatedly by week. The value range is `1-7`, for example, 1 represents Monday.
+         */
+        repeatWeekdays: string[];
+        /**
+         * The retention days of the auto snapshot. `-1` means permanently preserving the snapshot.
+         */
+        retentionDays: number;
+        /**
+         * The status of the auto snapshot policy.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.ebs.AutoSnapshotPoliciesAutoSnapshotPolicyTag[];
+        /**
+         * The creation time points of the auto snapshot policy. The value range is `0~23`, representing a total of 24 time points from 00:00 to 23:00, for example, 1 represents 01:00.
+         */
+        timePoints: string[];
+        /**
+         * The updated time of the auto snapshot policy.
+         */
+        updatedAt: string;
+        /**
+         * The number of volumes associated with the auto snapshot policy.
+         */
+        volumeNums: number;
+    }
+
+    export interface AutoSnapshotPoliciesAutoSnapshotPolicyTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface AutoSnapshotPoliciesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface AutoSnapshotPolicyTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface SnapshotGroupTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface SnapshotGroupsSnapshotGroup {
+        /**
+         * The creation time of the snapshot.
+         */
+        creationTime: string;
+        /**
+         * The description of the snapshot.
+         */
+        description: string;
+        /**
+         * The id of the snapshot group.
+         */
+        id: string;
+        /**
+         * The image id of the snapshot.
+         */
+        imageId: string;
+        /**
+         * The instance id of snapshot group.
+         */
+        instanceId: string;
+        /**
+         * The name of snapshot group.
+         */
+        name: string;
+        /**
+         * The project name of snapshot group.
+         */
+        projectName: string;
+        /**
+         * The id of the snapshot group.
+         */
+        snapshotGroupId: string;
+        /**
+         * The snapshots of the snapshot group.
+         */
+        snapshots: outputs.ebs.SnapshotGroupsSnapshotGroupSnapshot[];
+        /**
+         * A list of snapshot group status. Valid values: `creating`, `available`, `failed`.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.ebs.SnapshotGroupsSnapshotGroupTag[];
+    }
+
+    export interface SnapshotGroupsSnapshotGroupSnapshot {
+        /**
+         * The creation time of the snapshot.
+         */
+        creationTime: string;
+        /**
+         * The description of the snapshot.
+         */
+        description: string;
+        /**
+         * The image id of the snapshot.
+         */
+        imageId: string;
+        /**
+         * The progress of the snapshot.
+         */
+        progress: number;
+        /**
+         * The project name of snapshot group.
+         */
+        projectName: string;
+        /**
+         * The id of the snapshot.
+         */
+        retentionDays: number;
+        /**
+         * The id of the snapshot.
+         */
+        snapshotId: string;
+        /**
+         * The name of the snapshot.
+         */
+        snapshotName: string;
+        /**
+         * The type of the snapshot.
+         */
+        snapshotType: string;
+        /**
+         * A list of snapshot group status. Valid values: `creating`, `available`, `failed`.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.ebs.SnapshotGroupsSnapshotGroupSnapshotTag[];
+        /**
+         * The volume id of the snapshot.
+         */
+        volumeId: string;
+        /**
+         * The volume kind of the snapshot.
+         */
+        volumeKind: string;
+        /**
+         * The volume name of the snapshot.
+         */
+        volumeName: string;
+        /**
+         * The volume size of the snapshot.
+         */
+        volumeSize: number;
+        /**
+         * The volume status of the snapshot.
+         */
+        volumeStatus: string;
+        /**
+         * The volume type of the snapshot.
+         */
+        volumeType: string;
+        /**
+         * The zone id of the snapshot.
+         */
+        zoneId: string;
+    }
+
+    export interface SnapshotGroupsSnapshotGroupSnapshotTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface SnapshotGroupsSnapshotGroupTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface SnapshotTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface SnapshotsSnapshot {
+        /**
+         * The creation time of the snapshot.
+         */
+        creationTime: string;
+        /**
+         * The description of the snapshot.
+         */
+        description: string;
+        /**
+         * The id of the snapshot.
+         */
+        id: string;
+        /**
+         * The project name of snapshot.
+         */
+        projectName: string;
+        /**
+         * The retention days of the snapshot.
+         */
+        retentionDays: number;
+        /**
+         * The id of the snapshot.
+         */
+        snapshotId: string;
+        /**
+         * The name of the snapshot.
+         */
+        snapshotName: string;
+        /**
+         * The type of the snapshot.
+         */
+        snapshotType: string;
+        /**
+         * The status of the snapshot.
+         */
+        status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.ebs.SnapshotsSnapshotTag[];
+        /**
+         * The volume id of the snapshot.
+         */
+        volumeId: string;
+        /**
+         * The volume kind of the snapshot.
+         */
+        volumeKind: string;
+        /**
+         * The volume name of the snapshot.
+         */
+        volumeName: string;
+        /**
+         * The volume size of the snapshot.
+         */
+        volumeSize: number;
+        /**
+         * The volume status of the snapshot.
+         */
+        volumeStatus: string;
+        /**
+         * The volume type of the snapshot.
+         */
+        volumeType: string;
+        /**
+         * The zone id of snapshot.
+         */
+        zoneId: string;
+    }
+
+    export interface SnapshotsSnapshotTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface SnapshotsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface VolumeTag {
         /**
          * The Key of Tags.
@@ -5276,12 +5651,20 @@ export namespace ebs {
     }
 
     export interface VolumesVolume {
+        /**
+         * The baseline performance of the volume.
+         */
+        baselinePerformances: outputs.ebs.VolumesVolumeBaselinePerformance[];
         billingType: number;
         createdAt: string;
         deleteWithInstance: boolean;
         description: string;
         deviceName: string;
         expiredTime: string;
+        /**
+         * The extra performance of the volume.
+         */
+        extraPerformances: outputs.ebs.VolumesVolumeExtraPerformance[];
         id: string;
         imageId: string;
         /**
@@ -5300,6 +5683,10 @@ export namespace ebs {
          * Tags.
          */
         tags: outputs.ebs.VolumesVolumeTag[];
+        /**
+         * The baseline performance of the volume.
+         */
+        totalPerformances: outputs.ebs.VolumesVolumeTotalPerformance[];
         tradeStatus: number;
         updatedAt: string;
         volumeId: string;
@@ -5317,6 +5704,32 @@ export namespace ebs {
         zoneId: string;
     }
 
+    export interface VolumesVolumeBaselinePerformance {
+        /**
+         * The total IOPS performance size for volume.
+         */
+        iops: number;
+        /**
+         * The total Throughput performance size for volume. Unit: MB/s.
+         */
+        throughput: number;
+    }
+
+    export interface VolumesVolumeExtraPerformance {
+        /**
+         * The type of extra performance for volume.
+         */
+        extraPerformanceTypeId: string;
+        /**
+         * The total IOPS performance size for volume.
+         */
+        iops: number;
+        /**
+         * The total Throughput performance size for volume. Unit: MB/s.
+         */
+        throughput: number;
+    }
+
     export interface VolumesVolumeTag {
         /**
          * The Key of Tags.
@@ -5326,6 +5739,17 @@ export namespace ebs {
          * The Value of Tags.
          */
         value: string;
+    }
+
+    export interface VolumesVolumeTotalPerformance {
+        /**
+         * The total IOPS performance size for volume.
+         */
+        iops: number;
+        /**
+         * The total Throughput performance size for volume. Unit: MB/s.
+         */
+        throughput: number;
     }
 
 }
@@ -5450,11 +5874,79 @@ export namespace ecs {
         strategy: string;
     }
 
+    export interface HpcClustersHpcCluster {
+        /**
+         * The created time of the hpc cluster.
+         */
+        createdAt: string;
+        /**
+         * The description of the hpc cluster.
+         */
+        description: string;
+        /**
+         * The id of the hpc cluster.
+         */
+        hpcClusterId: string;
+        /**
+         * The id of the hpc cluster.
+         */
+        id: string;
+        /**
+         * The name of the hpc cluster.
+         */
+        name: string;
+        /**
+         * The updated time of the hpc cluster.
+         */
+        updatedAt: string;
+        /**
+         * The vpc id of the hpc cluster.
+         */
+        vpcId: string;
+        /**
+         * The zone id of the hpc cluster.
+         */
+        zoneId: string;
+    }
+
+    export interface ImageImportTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface ImageSharePermissionsAccount {
+        /**
+         * The shared account id of the image.
+         */
+        accountId: string;
+    }
+
+    export interface ImageTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
     export interface ImagesImage {
         /**
          * The architecture of Image.
          */
         architecture: string;
+        /**
+         * The boot mode of Image.
+         */
+        bootMode: string;
         /**
          * The create time of Image.
          */
@@ -5504,6 +5996,10 @@ export namespace ecs {
          */
         status: string;
         /**
+         * Tags.
+         */
+        tags: outputs.ecs.ImagesImageTag[];
+        /**
          * The update time of Image.
          */
         updatedAt: string;
@@ -5511,6 +6007,28 @@ export namespace ecs {
          * The visibility of Image.
          */
         visibility: string;
+    }
+
+    export interface ImagesImageTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface ImagesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface InstanceCpuOptions {
@@ -5560,7 +6078,7 @@ export namespace ecs {
 
     export interface InstanceSecondaryNetworkInterface {
         /**
-         * The private ip address of primary networkInterface.
+         * The private ip address of secondary networkInterface.
          */
         primaryIpAddress: string;
         /**
@@ -5804,7 +6322,7 @@ export namespace ecs {
          */
         ipv6AddressCount: number;
         /**
-         * The  IPv6 address list of the ECS instance.
+         * A list of ipv6 addresses.
          */
         ipv6Addresses: string[];
         /**
@@ -9817,12 +10335,21 @@ export namespace private_zone {
     }
 
     export interface ResolverRulesRuleBindVpc {
+        /**
+         * The account id of the bind vpc.
+         */
         accountId: string;
         /**
          * The id of the rule.
          */
         id: string;
+        /**
+         * The region of the bind vpc.
+         */
         region: string;
+        /**
+         * The region name of the bind vpc.
+         */
         regionName: string;
     }
 
@@ -10278,6 +10805,9 @@ export namespace rds {
          * The type of the RDS instance.
          */
         instanceType: string;
+        /**
+         * The ID list of read only instance.
+         */
         readOnlyInstanceIds?: string[];
         /**
          * The region of the RDS instance.
@@ -10551,14 +11081,29 @@ export namespace rds_mssql {
          * Whether to enable automatic renewal in the prepaid scenario. This parameter can be set when the ChargeType is `Prepaid`.
          */
         autoRenew: boolean;
+        /**
+         * Charge end time.
+         */
         chargeEndTime: string;
+        /**
+         * Charge start time.
+         */
         chargeStartTime: string;
+        /**
+         * The charge status.
+         */
         chargeStatus: string;
         /**
          * The charge type. Valid values: `PostPaid`, `PrePaid`.
          */
         chargeType: string;
+        /**
+         * Expected release time when overdue fees are shut down.
+         */
         overdueReclaimTime: string;
+        /**
+         * Time for Disconnection due to Unpaid Fees.
+         */
         overdueTime: string;
         /**
          * Purchase duration in a prepaid scenario. This parameter is required when the ChargeType is `Prepaid`.
@@ -11086,6 +11631,8 @@ export namespace rds_mysql {
     export interface InstanceChargeDetail {
         /**
          * Whether to automatically renew in prepaid scenarios.
+         * Autorenew_Enable
+         * Autorenew_Disable (default).
          */
         autoRenew: boolean;
         /**
@@ -11134,11 +11681,6 @@ export namespace rds_mysql {
          * Whether to automatically renew in prepaid scenarios.
          */
         autoRenew: boolean;
-        /**
-         * Payment type. Value:
-         * PostPaid - Pay-As-You-Go
-         * PrePaid - Yearly and monthly (default).
-         */
         chargeType: string;
         /**
          * Purchase duration in prepaid scenarios. Default: 1.
@@ -11817,6 +12359,8 @@ export namespace rds_postgresql {
     export interface InstanceChargeDetail {
         /**
          * Whether to automatically renew in prepaid scenarios.
+         * Autorenew_Enable
+         * Autorenew_Disable (default).
          */
         autoRenew: boolean;
         /**
@@ -11873,11 +12417,6 @@ export namespace rds_postgresql {
          * Whether to automatically renew in prepaid scenarios.
          */
         autoRenew: boolean;
-        /**
-         * Payment type. Value:
-         * PostPaid - Pay-As-You-Go
-         * PrePaid - Yearly and monthly (default).
-         */
         chargeType: string;
         /**
          * Purchase duration in prepaid scenarios. Default: 1.
@@ -12514,7 +13053,7 @@ export namespace rds_v2 {
          */
         nodeId: string;
         /**
-         * Node type, the value is "Primary", "Secondary", "ReadOnly".
+         * The type of the node.
          */
         nodeType: string;
         /**
@@ -13175,6 +13714,14 @@ export namespace redis {
         name: string;
     }
 
+    export interface InstanceConfigureNode {
+        /**
+         * Set the availability zone to which the node belongs. The number of nodes of an instance (i.e., NodeNumber) and the availability zone deployment scheme (i.e., the value of the MultiAZ parameter) will affect the filling of the current parameter. Among them:
+         * When a new instance is a single-node instance (i.e., the value of NodeNumber is 1), only a single availability zone deployment scheme is allowed (i.e., the value of MultiAZ must be disabled). At this time, only one availability zone needs to be passed in AZ, and all nodes in the instance will be deployed in this availability zone. When creating a new instance as a primary-standby instance (that is, when the value of NodeNumber is greater than or equal to 2), the number of availability zones passed in must be equal to the number of nodes in a single shard (that is, the value of the NodeNumber parameter), and the value of AZ must comply with the multi-availability zone deployment scheme rules. The specific rules are as follows: If the primary-standby instance selects the multi-availability zone deployment scheme (that is, the value of MultiAZ is enabled), then at least two different availability zone IDs must be passed in in AZ, and the first availability zone is the availability zone where the primary node is located. If the primary and standby instances choose a single availability zone deployment scheme (that is, the value of MultiAZ is disabled), then the availability zones passed in for each node must be the same.
+         */
+        az: string;
+    }
+
     export interface InstanceParamValue {
         /**
          * The name of configuration parameter.
@@ -13211,6 +13758,10 @@ export namespace redis {
          */
         chargeType: string;
         /**
+         * Set the list of available zones to which the node belongs.
+         */
+        configureNodes: outputs.redis.InstancesInstanceConfigureNode[];
+        /**
          * The creation time of the redis instance.
          */
         createTime: string;
@@ -13242,6 +13793,14 @@ export namespace redis {
          * The maintainable time of the redis instance.
          */
         maintenanceTime: string;
+        /**
+         * Set the availability zone deployment scheme for the instance. The value range is as follows: 
+         * disabled: Single availability zone deployment scheme.
+         * enabled: Multi-availability zone deployment scheme.
+         * Description:
+         * When the newly created instance is a single-node instance (that is, when the value of NodeNumber is 1), only the single availability zone deployment scheme is allowed. At this time, the value of MultiAZ must be disabled.
+         */
+        multiAz: string;
         /**
          * The list of redis instance node IDs.
          */
@@ -13350,6 +13909,14 @@ export namespace redis {
         used: number;
     }
 
+    export interface InstancesInstanceConfigureNode {
+        /**
+         * Set the availability zone to which the node belongs. The number of nodes of an instance (i.e., NodeNumber) and the availability zone deployment scheme (i.e., the value of the MultiAZ parameter) will affect the filling of the current parameter. Among them:
+         * When a new instance is a single-node instance (i.e., the value of NodeNumber is 1), only a single availability zone deployment scheme is allowed (i.e., the value of MultiAZ must be disabled). At this time, only one availability zone needs to be passed in AZ, and all nodes in the instance will be deployed in this availability zone. When creating a new instance as a primary-standby instance (that is, when the value of NodeNumber is greater than or equal to 2), the number of availability zones passed in must be equal to the number of nodes in a single shard (that is, the value of the NodeNumber parameter), and the value of AZ must comply with the multi-availability zone deployment scheme rules. The specific rules are as follows: If the primary-standby instance selects the multi-availability zone deployment scheme (that is, the value of MultiAZ is enabled), then at least two different availability zone IDs must be passed in in AZ, and the first availability zone is the availability zone where the primary node is located. If the primary and standby instances choose a single availability zone deployment scheme (that is, the value of MultiAZ is disabled), then the availability zones passed in for each node must be the same.
+         */
+        az: string;
+    }
+
     export interface InstancesInstanceParam {
         /**
          * Current value of the configuration parameter.
@@ -13432,6 +13999,14 @@ export namespace redis {
          * The connection port.
          */
         port: string;
+        /**
+         * The ipv4 address of the connection address.
+         */
+        vip: string;
+        /**
+         * The ipv6 address of the connection address.
+         */
+        vipV6: string;
     }
 
     export interface InstancesTag {
@@ -13446,8 +14021,17 @@ export namespace redis {
     }
 
     export interface PitrTimeWindowsPeriod {
+        /**
+         * Recoverable end time (UTC time) supported when restoring data by point in time.
+         */
         endTime: string;
+        /**
+         * The instance id.
+         */
         instanceId: string;
+        /**
+         * The recoverable start time (in UTC time) supported when restoring data by point in time.
+         */
         startTime: string;
     }
 
@@ -15636,6 +16220,10 @@ export namespace transit_router {
 
     export interface RouteEntriesEntry {
         /**
+         * The as path of the route entry.
+         */
+        asPath: string;
+        /**
          * The creation time of the route entry.
          */
         creationTime: string;
@@ -15857,6 +16445,10 @@ export namespace transit_router {
          * The description info.
          */
         description: string;
+        /**
+         * The grant status of the transit router.
+         */
+        grantStatus: string;
         /**
          * The ID of the transit router.
          */
@@ -16113,6 +16705,533 @@ export namespace transit_router {
     }
 
     export interface VpnAttachmentsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+}
+
+export namespace vedb_mysql {
+    export interface AccountAccountPrivilege {
+        /**
+         * Authorization database privilege types: 
+         * ReadWrite: Read and write privilege.
+         * ReadOnly: Read-only privilege.
+         * DDLOnly: Only DDL privilege.
+         * DMLOnly: Only DML privilege.
+         * Custom: Custom privilege.
+         */
+        accountPrivilege: string;
+        /**
+         * The specific SQL operation permissions contained in the permission type are separated by English commas (,) between multiple strings.
+         * When used as a request parameter in the CreateDatabase interface, when the AccountPrivilege value is Custom, this parameter is required. Value range (multiple selections allowed): SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, REFERENCES, INDEX, ALTER, CREATE TEMPORARY TABLES, LOCK TABLES, EXECUTE, CREATE VIEW, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, EVENT, TRIGGER. When used as a return parameter in the DescribeDatabases interface, regardless of the value of AccountPrivilege, the details of the SQL operation permissions contained in this permission type are returned. For the specific SQL operation permissions contained in each permission type, please refer to the account permission list.
+         */
+        accountPrivilegeDetail: string;
+        /**
+         * Database name requiring authorization.
+         */
+        dbName: string;
+    }
+
+    export interface AccountsAccount {
+        /**
+         * The name of the database account. This field supports fuzzy query.
+         */
+        accountName: string;
+        /**
+         * The privilege detail list of RDS mysql instance account.
+         */
+        accountPrivileges: outputs.vedb_mysql.AccountsAccountAccountPrivilege[];
+        /**
+         * The type of the database account.
+         */
+        accountType: string;
+    }
+
+    export interface AccountsAccountAccountPrivilege {
+        /**
+         * The privilege type of the account.
+         */
+        accountPrivilege: string;
+        /**
+         * The privilege detail of the account.
+         */
+        accountPrivilegeDetail: string;
+        /**
+         * The name of database.
+         */
+        dbName: string;
+    }
+
+    export interface AllowlistsAllowList {
+        /**
+         * The description of the allow list.
+         */
+        allowListDesc: string;
+        /**
+         * The id of the allow list.
+         */
+        allowListId: string;
+        /**
+         * The total number of IP addresses (or address ranges) in the whitelist.
+         */
+        allowListIpNum: number;
+        /**
+         * The name of the allow list.
+         */
+        allowListName: string;
+        /**
+         * The type of the allow list.
+         */
+        allowListType: string;
+        /**
+         * The IP address or a range of IP addresses in CIDR format.
+         */
+        allowLists: string[];
+        /**
+         * The total number of instances bound under the whitelist.
+         */
+        associatedInstanceNum: number;
+        /**
+         * The list of instances.
+         */
+        associatedInstances: outputs.vedb_mysql.AllowlistsAllowListAssociatedInstance[];
+    }
+
+    export interface AllowlistsAllowListAssociatedInstance {
+        /**
+         * Instance ID. When an InstanceId is specified, the DescribeAllowLists interface will return the whitelist bound to the specified instance.
+         */
+        instanceId: string;
+        /**
+         * The name of the instance.
+         */
+        instanceName: string;
+        /**
+         * The id of the vpc.
+         */
+        vpc: string;
+    }
+
+    export interface BackupBackupPolicy {
+        /**
+         * Data backup retention period, value: 7 to 30 days.
+         */
+        backupRetentionPeriod: number;
+        /**
+         * The time for executing the backup task has an interval window of 2 hours and must be an even-hour time. Format: HH:mmZ-HH:mmZ (UTC time).
+         */
+        backupTime: string;
+        /**
+         * Full backup period. It is recommended to select at least 2 days per week for full backup. Multiple values are separated by English commas (,). Values: Monday: Monday. Tuesday: Tuesday. Wednesday: Wednesday. Thursday: Thursday. Friday: Friday. Saturday: Saturday. Sunday: Sunday.
+         */
+        fullBackupPeriod: string;
+    }
+
+    export interface BackupsBackup {
+        /**
+         * The end time of the backup.
+         */
+        backupEndTime: string;
+        /**
+         * The size of the backup file.
+         */
+        backupFileSize: number;
+        /**
+         * The id of the backup.
+         */
+        backupId: string;
+        /**
+         * Backup method. Currently, only physical backup is supported. The value is Physical.
+         */
+        backupMethod: string;
+        /**
+         * Data backup strategy for instances.
+         */
+        backupPolicies: outputs.vedb_mysql.BackupsBackupBackupPolicy[];
+        /**
+         * The start time of the backup.
+         */
+        backupStartTime: string;
+        /**
+         * The status of the backup.
+         */
+        backupStatus: string;
+        /**
+         * The type of the backup.
+         */
+        backupType: string;
+        /**
+         * The time point of consistent backup, in the format: yyyy-MM-ddTHH:mm:ssZ (UTC time).
+         */
+        consistentTime: string;
+        /**
+         * The type of the backup create.
+         */
+        createType: string;
+        /**
+         * The id of the backup.
+         */
+        id: string;
+    }
+
+    export interface BackupsBackupBackupPolicy {
+        /**
+         * Data backup retention period, value: 7 to 30 days.
+         */
+        backupRetentionPeriod: number;
+        /**
+         * The time for executing the backup task. The interval window is two hours. Format: HH:mmZ-HH:mmZ (UTC time).
+         */
+        backupTime: string;
+        /**
+         * Whether to enable continuous backup. The value is fixed as true.
+         */
+        continueBackup: boolean;
+        /**
+         * Full backup period. Multiple values are separated by English commas (,). Values:
+         * Monday: Monday.
+         * Tuesday: Tuesday.
+         * Wednesday: Wednesday.
+         * Thursday: Thursday.
+         * Friday: Friday.
+         * Saturday: Saturday.
+         * Sunday: Sunday.
+         */
+        fullBackupPeriod: string;
+        /**
+         * The id of the instance.
+         */
+        instanceId: string;
+    }
+
+    export interface DatabasesDatabase {
+        /**
+         * Database character set: utf8mb4 (default), utf8, latin1, ascii.
+         */
+        characterSetName: string;
+        databasesPrivileges: outputs.vedb_mysql.DatabasesDatabaseDatabasesPrivilege[];
+        /**
+         * Database name.
+         */
+        dbName: string;
+    }
+
+    export interface DatabasesDatabaseDatabasesPrivilege {
+        /**
+         * Account name that requires authorization.
+         */
+        accountName: string;
+        /**
+         * Authorization database privilege types: 
+         * ReadWrite: Read and write privilege.
+         *  ReadOnly: Read-only privilege.
+         *  DDLOnly: Only DDL privilege.
+         *  DMLOnly: Only DML privilege.
+         *  Custom: Custom privilege.
+         */
+        accountPrivilege: string;
+        /**
+         * The specific SQL operation permissions contained in the permission type are separated by English commas (,) between multiple strings.
+         *  When used as a request parameter in the CreateDatabase interface, when the AccountPrivilege value is Custom, this parameter is required. Value range (multiple selections allowed): SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, REFERENCES, INDEX, ALTER, CREATE TEMPORARY TABLES, LOCK TABLES, EXECUTE, CREATE VIEW, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, EVENT, TRIGGER. When used as a return parameter in the DescribeDatabases interface, regardless of the value of AccountPrivilege, the details of the SQL operation permissions contained in this permission type are returned. For the specific SQL operation permissions contained in each permission type, please refer to the account permission list.
+         */
+        accountPrivilegeDetail: string;
+    }
+
+    export interface EndpointsEndpoint {
+        /**
+         * The address information.
+         */
+        addresses: outputs.vedb_mysql.EndpointsEndpointAddress[];
+        /**
+         * Set whether newly created read-only nodes will automatically join this connection endpoint. Values:
+         * true: Automatically join.
+         * false: Do not automatically join (default).
+         */
+        autoAddNewNodes: boolean;
+        /**
+         * Consistency level. For detailed introduction of consistency level, please refer to consistency level. Value range:
+         * Eventual: eventual consistency.
+         * Session: session consistency.
+         * Global: global consistency.
+         * Description
+         * When the value of ReadWriteMode is ReadWrite, the selectable consistency levels are Eventual, Session (default), and Global.
+         * When the value of ReadWriteMode is ReadOnly, the consistency level is Eventual by default and cannot be changed.
+         */
+        consistLevel: string;
+        /**
+         * When there is a large delay, the timeout period for read-only nodes to synchronize the latest data, in us. The value range is from 1us to 100000000us, and the default value is 10000us.
+         * Explanation
+         * This parameter takes effect only when the value of ConsistLevel is Global or Session.
+         */
+        consistTimeout: number;
+        /**
+         * Timeout policy after data synchronization timeout of read-only nodes supports the following two policies:
+         * ReturnError: Return SQL error (wait replication complete timeout, please retry).
+         * ReadMaster: Send a request to the master node (default).
+         * Description
+         * This parameter takes effect only when the value of ConsistLevel is Global or Session.
+         */
+        consistTimeoutAction: string;
+        /**
+         * Description information for connecting endpoint. The length cannot exceed 200 characters.
+         */
+        description: string;
+        /**
+         * Set whether to enable transaction splitting. For detailed introduction to transaction splitting, please refer to transaction splitting. Value range:
+         * true: Enabled (default).
+         * false: Disabled.
+         * Description
+         * Only when the value of ReadWriteMode is ReadWrite, is enabling transaction splitting supported.
+         */
+        distributedTransaction: boolean;
+        /**
+         * The id of the endpoint.
+         */
+        endpointId: string;
+        /**
+         * Connect the endpoint name. The setting rules are as follows:
+         * It cannot start with a number or a hyphen (-).
+         * It can only contain Chinese characters, letters, numbers, underscores (_), and hyphens (-).
+         * The length is 1 to 64 characters.
+         */
+        endpointName: string;
+        /**
+         * Connect terminal type. The value is fixed as Custom, indicating a custom terminal.
+         */
+        endpointType: string;
+        /**
+         * The id of the endpoint.
+         */
+        id: string;
+        /**
+         * The master node accepts read requests. Value range:
+         * true: (default) After enabling the master node to accept read functions, non-transactional read requests will be sent to the master node or read-only nodes in a load-balanced mode according to the number of active requests.
+         * false: After disabling the master node from accepting read requests, at this time, the master node only accepts transactional read requests, and non-transactional read requests will not be sent to the master node.
+         * Description
+         * Only when the value of ReadWriteMode is ReadWrite, enabling the master node to accept reads is supported.
+         */
+        masterAcceptReadRequests: boolean;
+        /**
+         * Connect the node IDs associated with the endpoint.The filling rules are as follows:
+         * When the value of ReadWriteMode is ReadWrite, at least two nodes must be passed in, and the master node must be passed in.
+         * When the value of ReadWriteMode is ReadOnly, one or more read-only nodes can be passed in.
+         */
+        nodeIds: string[];
+        /**
+         * Endpoint read-write mode. Values:
+         * ReadWrite: Read and write terminal.
+         * ReadOnly: Read-only terminal (default).
+         */
+        readWriteMode: string;
+    }
+
+    export interface EndpointsEndpointAddress {
+        /**
+         * Parsing method. Currently, the return value can only be false (Volcengine private network parsing).
+         */
+        dnsVisibility: boolean;
+        /**
+         * Instance intranet access domain name.
+         */
+        domain: string;
+        /**
+         * The EIP id.
+         */
+        eipId: string;
+        /**
+         * IP address.
+         */
+        ipAddress: string;
+        /**
+         * Network type:
+         * Private: Private network VPC.
+         * Public: Public network access.
+         */
+        networkType: string;
+        /**
+         * Instance intranet access port.
+         */
+        port: string;
+        /**
+         * Subnet ID. The subnet must belong to the selected availability zone.
+         * Description
+         * A subnet is an IP address block within a private network. All cloud resources in a private network must be deployed within a subnet. The subnet assigns private IP addresses to cloud resources.
+         */
+        subnetId: string;
+    }
+
+    export interface InstanceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface InstancesInstance {
+        /**
+         * Whether auto-renewal is enabled in the prepaid scenario. Values:
+         * true: Auto-renewal is enabled.
+         * false: Auto-renewal is not enabled.
+         */
+        autoRenew: boolean;
+        /**
+         * The billing expiration time in the prepaid scenario, in the format: yyyy-MM-ddTHH:mm:ssZ (UTC time).
+         */
+        chargeEndTime: string;
+        /**
+         * The time when billing starts. Format: yyyy-MM-ddTHH:mm:ssZ (UTC time).
+         */
+        chargeStartTime: string;
+        /**
+         * Payment status:
+         * Normal: Normal.
+         * Overdue: In arrears.
+         * Shutdown: Shut down.
+         */
+        chargeStatus: string;
+        /**
+         * The charge type of the veDB Mysql instance.
+         */
+        chargeType: string;
+        /**
+         * The create time of the veDB Mysql instance.
+         */
+        createTime: string;
+        /**
+         * The version of the veDB Mysql instance.
+         */
+        dbEngineVersion: string;
+        /**
+         * The ID of the veDB Mysql instance.
+         */
+        id: string;
+        /**
+         * The id of the veDB Mysql instance.
+         */
+        instanceId: string;
+        /**
+         * The name of the veDB Mysql instance.
+         */
+        instanceName: string;
+        /**
+         * The status of the veDB Mysql instance.
+         */
+        instanceStatus: string;
+        /**
+         * Whether the table name is case sensitive, the default value is 1.
+         * Ranges:
+         * 0: Table names are stored as fixed and table names are case-sensitive.
+         * 1: Table names will be stored in lowercase and table names are not case sensitive.
+         */
+        lowerCaseTableNames: string;
+        /**
+         * Detailed information of instance nodes.
+         */
+        nodes: outputs.vedb_mysql.InstancesInstanceNode[];
+        /**
+         * Expected release time when shut down due to arrears. Format: yyyy-MM-ddTHH:mm:ssZ (UTC time).
+         */
+        overdueReclaimTime: string;
+        /**
+         * Overdue shutdown time. Format: yyyy-MM-ddTHH:mm:ssZ (UTC time).
+         */
+        overdueTime: string;
+        /**
+         * Total storage capacity in GiB for prepaid services.
+         */
+        prePaidStorageInGb: number;
+        /**
+         * The project name of the veDB Mysql instance.
+         */
+        projectName: string;
+        /**
+         * The region id.
+         */
+        regionId: string;
+        /**
+         * Storage billing type. Values:
+         * PostPaid: Pay-as-you-go (postpaid).
+         * PrePaid: Monthly/yearly subscription (prepaid).
+         */
+        storageChargeType: string;
+        /**
+         * Used storage size, unit: GiB.
+         */
+        storageUsedGib: number;
+        /**
+         * The subnet ID of the veDB Mysql instance.
+         */
+        subnetId: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.vedb_mysql.InstancesInstanceTag[];
+        /**
+         * Time zone.
+         */
+        timeZone: string;
+        /**
+         * The vpc ID of the veDB Mysql instance.
+         */
+        vpcId: string;
+        /**
+         * The available zone of the veDB Mysql instance.
+         */
+        zoneIds: string;
+    }
+
+    export interface InstancesInstanceNode {
+        /**
+         * Memory size, in GiB.
+         */
+        memory: number;
+        /**
+         * The id of the node.
+         */
+        nodeId: string;
+        /**
+         * Node specification of an instance.
+         */
+        nodeSpec: string;
+        /**
+         * Node type. Values:
+         * Primary: Primary node.
+         * ReadOnly: Read-only node.
+         */
+        nodeType: string;
+        /**
+         * CPU size. For example, when the value is 1, it means the CPU size is 1U.
+         */
+        vCpu: number;
+        /**
+         * The available zone of the veDB Mysql instance.
+         */
+        zoneId: string;
+    }
+
+    export interface InstancesInstanceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface InstancesTag {
         /**
          * The Key of Tags.
          */
@@ -17557,6 +18676,9 @@ export namespace vke {
          * Cluster API Server public network access configuration, the value is `true` or `false`.
          */
         apiServerPublicAccessEnabled?: boolean;
+        /**
+         * [SkipDoc]The IpFamily configuration,the value is `Ipv4` or `DualStack`.
+         */
         ipFamily: string;
         /**
          * Node public network access configuration, the value is `true` or `false`.
@@ -17813,6 +18935,9 @@ export namespace vke {
          * IPv4 public network access whitelist. A null value means all network segments (0.0.0.0/0) are allowed to pass.
          */
         accessSourceIpsv4s: string[];
+        /**
+         * [SkipDoc]The IpFamily configuration,the value is `Ipv4` or `DualStack`.
+         */
         ipFamily: string;
         /**
          * Public network access network configuration.
@@ -18018,6 +19143,9 @@ export namespace vke {
          * The flag of keep instance name, the value is `true` or `false`.Default is `false`.
          */
         keepInstanceName?: boolean;
+        /**
+         * The status phase to the Node.
+         */
         phase: string;
     }
 
@@ -18083,11 +19211,11 @@ export namespace vke {
 
     export interface DefaultNodePoolBatchAttachNodeConfigEcsTag {
         /**
-         * The Key of Labels.
+         * The Key of Tags.
          */
         key: string;
         /**
-         * The Value of Labels.
+         * The Value of Tags.
          */
         value: string;
     }
@@ -18120,11 +19248,11 @@ export namespace vke {
 
     export interface DefaultNodePoolBatchAttachTag {
         /**
-         * The Key of Labels.
+         * The Key of Tags.
          */
         key: string;
         /**
-         * The Value of Labels.
+         * The Value of Tags.
          */
         value: string;
     }
@@ -18154,6 +19282,9 @@ export namespace vke {
          * The flag of keep instance name, the value is `true` or `false`.Default is `false`.
          */
         keepInstanceName?: boolean;
+        /**
+         * The status phase to the Node.
+         */
         phase: string;
     }
 
@@ -18713,7 +19844,7 @@ export namespace vke {
          */
         period: number;
         /**
-         * The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+         * The Phase of Status.
          */
         phase: string;
         /**
@@ -18779,22 +19910,22 @@ export namespace vke {
 
     export interface NodePoolsNodePoolEcsTag {
         /**
-         * The Key of Tags.
+         * The Key of Taint.
          */
         key: string;
         /**
-         * The Value of Tags.
+         * The Value of Taint.
          */
         value: string;
     }
 
     export interface NodePoolsNodePoolLabelContent {
         /**
-         * The Key of Tags.
+         * The Key of Taint.
          */
         key: string;
         /**
-         * The Value of Tags.
+         * The Value of Taint.
          */
         value: string;
     }
@@ -18876,11 +20007,11 @@ export namespace vke {
          */
         effect: string;
         /**
-         * The Key of Tags.
+         * The Key of Taint.
          */
         key: string;
         /**
-         * The Value of Tags.
+         * The Value of Taint.
          */
         value: string;
     }
@@ -18969,7 +20100,7 @@ export namespace vke {
          */
         nodePoolId: string;
         /**
-         * The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
+         * The Phase of Node.
          */
         phase: string;
         /**
@@ -19044,6 +20175,9 @@ export namespace vke {
          * The name of the addon.
          */
         name: string;
+        /**
+         * The necessary of addon.
+         */
         necessary?: string;
         /**
          * The container network model, the value is `Flannel` or `VpcCniShared`. Flannel: Flannel network model, an independent Underlay container network solution, combined with the global routing capability of VPC, to achieve a high-performance network experience for the cluster. VpcCniShared: VPC-CNI network model, an Underlay container network solution based on the ENI of the private network elastic network card, with high network communication performance.
@@ -19288,6 +20422,9 @@ export namespace vpc {
          * The DestinationCidrIp of entry.
          */
         destinationCidrIp?: string;
+        /**
+         * The id of entry.
+         */
         networkAclEntryId: string;
         /**
          * The name of entry.
@@ -19301,6 +20438,9 @@ export namespace vpc {
          * The port of entry. Default is `-1/-1`. When Protocol is `all`, `icmp` or `gre`, the port range is `-1/-1`, which means no port restriction.When the Protocol is `tcp` or `udp`, the port range is `1~65535`, and the format is `1/200`, `80/80`,which means port 1 to port 200, port 80.
          */
         port?: string;
+        /**
+         * The priority of entry.
+         */
         priority: number;
         /**
          * The protocol of entry. The value can be `icmp` or `gre` or `tcp` or `udp` or `all`. Default is `all`.
@@ -19313,6 +20453,9 @@ export namespace vpc {
          * The description of entry.
          */
         description?: string;
+        /**
+         * The id of entry.
+         */
         networkAclEntryId: string;
         /**
          * The name of entry.
@@ -19326,6 +20469,9 @@ export namespace vpc {
          * The port of entry. Default is `-1/-1`. When Protocol is `all`, `icmp` or `gre`, the port range is `-1/-1`, which means no port restriction. When the Protocol is `tcp` or `udp`, the port range is `1~65535`, and the format is `1/200`, `80/80`, which means port 1 to port 200, port 80.
          */
         port?: string;
+        /**
+         * The priority of entry.
+         */
         priority: number;
         /**
          * The protocol of entry, default is `all`. The value can be `icmp` or `gre` or `tcp` or `udp` or `all`.
@@ -19335,6 +20481,17 @@ export namespace vpc {
          * The SourceCidrIp of entry.
          */
         sourceCidrIp?: string;
+    }
+
+    export interface NetworkAclTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface NetworkAclsNetworkAcl {
@@ -19371,6 +20528,10 @@ export namespace vpc {
          */
         networkAclName: string;
         /**
+         * The project name of the network acl.
+         */
+        projectName: string;
+        /**
          * The resources info of Network Acl.
          */
         resources: outputs.vpc.NetworkAclsNetworkAclResource[];
@@ -19378,6 +20539,10 @@ export namespace vpc {
          * The Status of Network Acl.
          */
         status: string;
+        /**
+         * Tags.
+         */
+        tags: outputs.vpc.NetworkAclsNetworkAclTag[];
         /**
          * Update time of Network Acl.
          */
@@ -19467,6 +20632,28 @@ export namespace vpc {
          * The Status of Network Acl.
          */
         status: string;
+    }
+
+    export interface NetworkAclsNetworkAclTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface NetworkAclsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
     }
 
     export interface NetworkInterfaceTag {
@@ -20251,11 +21438,11 @@ export namespace vpn {
          */
         accountId: string;
         /**
-         * The IPsec attach status.
+         * The attach status of VPN connection.
          */
         attachStatus: string;
         /**
-         * The IPsec attach type.
+         * The attach type of VPN connection. Valid values: `VpnGateway`, `TransitRouter`.
          */
         attachType: string;
         /**
@@ -20371,11 +21558,11 @@ export namespace vpn {
          */
         remoteSubnets: string[];
         /**
-         * The status of the VPN connection.
+         * The status of IPSec connection. Valid values: `Creating`, `Deleting`, `Pending`, `Available`.
          */
         status: string;
         /**
-         * The id of transit router, valid when the attach type is 'TransitRouter'.
+         * An ID of transit router.
          */
         transitRouterId: string;
         /**
@@ -20546,7 +21733,7 @@ export namespace vpn {
          */
         ipAddress: string;
         /**
-         * Whether ipsec is enabled.
+         * Whether IPSec is enabled.
          */
         ipsecEnabled: boolean;
         /**
@@ -20554,7 +21741,7 @@ export namespace vpn {
          */
         lockReason: string;
         /**
-         * The name of project.
+         * The project name of the VPN gateway.
          */
         projectName: string;
         /**
@@ -20711,6 +21898,14 @@ export namespace vpn {
          * The local network segment of the SSL server. The local network segment is the address segment that the client accesses through the SSL VPN connection.
          */
         localSubnets: string[];
+        /**
+         * The port of the ssl server.
+         */
+        port: number;
+        /**
+         * The project name of the ssl server.
+         */
+        projectName: string;
         /**
          * The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.
          */

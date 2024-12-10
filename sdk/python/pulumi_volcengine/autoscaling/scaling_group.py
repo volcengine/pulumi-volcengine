@@ -772,7 +772,7 @@ class ScalingGroup(pulumi.CustomResource):
         ScalingGroup can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:autoscaling/scalingGroup:ScalingGroup default scg-mizl7m1kqccg5smt1bdpijuj
+        $ pulumi import volcengine:autoscaling/scalingGroup:ScalingGroup default scg-mizl7m1kqccg5smt1bdpijuj
         ```
 
         :param str resource_name: The name of the resource.
@@ -847,7 +847,7 @@ class ScalingGroup(pulumi.CustomResource):
         ScalingGroup can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:autoscaling/scalingGroup:ScalingGroup default scg-mizl7m1kqccg5smt1bdpijuj
+        $ pulumi import volcengine:autoscaling/scalingGroup:ScalingGroup default scg-mizl7m1kqccg5smt1bdpijuj
         ```
 
         :param str resource_name: The name of the resource.

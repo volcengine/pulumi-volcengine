@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Iam
     {
         /// <summary>
         /// Use this data source to query detailed information of iam users
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -42,17 +40,13 @@ namespace Pulumi.Volcengine.Iam
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<UsersResult> InvokeAsync(UsersArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<UsersResult>("volcengine:iam/users:Users", args ?? new UsersArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of iam users
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -79,8 +73,6 @@ namespace Pulumi.Volcengine.Iam
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<UsersResult> Invoke(UsersInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<UsersResult>("volcengine:iam/users:Users", args ?? new UsersInvokeArgs(), options.WithDefaults());

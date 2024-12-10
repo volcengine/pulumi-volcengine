@@ -73,7 +73,7 @@ namespace Pulumi.Volcengine.Vepfs
     /// VepfsFileset can be imported using the file_system_id:fileset_id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:vepfs/fileset:Fileset default file_system_id:fileset_id
+    /// $ pulumi import volcengine:vepfs/fileset:Fileset default file_system_id:fileset_id
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vepfs/fileset:Fileset")]

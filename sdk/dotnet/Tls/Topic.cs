@@ -51,7 +51,7 @@ namespace Pulumi.Volcengine.Tls
     /// Tls Topic can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:tls/topic:Topic default edf051ed-3c46-49ba-9339-bea628fe****
+    /// $ pulumi import volcengine:tls/topic:Topic default edf051ed-3c46-49ba-9339-bea628fe****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:tls/topic:Topic")]
@@ -84,6 +84,20 @@ namespace Pulumi.Volcengine.Tls
         public Output<bool> EnableTracking { get; private set; } = null!;
 
         /// <summary>
+        /// The id of shard to be manually split. This field is valid only when modifying the topic. 
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        [Output("manualSplitShardId")]
+        public Output<int?> ManualSplitShardId { get; private set; } = null!;
+
+        /// <summary>
+        /// The split number of shard. The valid number should be a non-zero even number, such as 2, 4, 8, or 16. The total number of read-write status shards after splitting cannot exceed 50. 
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        [Output("manualSplitShardNumber")]
+        public Output<int?> ManualSplitShardNumber { get; private set; } = null!;
+
+        /// <summary>
         /// The maximum number of partitions, which is the maximum number of partitions after partition splitting. The value range is 1 to 10, with a default of 10.
         /// </summary>
         [Output("maxSplitShard")]
@@ -102,7 +116,7 @@ namespace Pulumi.Volcengine.Tls
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The count of shards in the tls topic. Valid value range: 1-10.
+        /// The count of shards in the tls topic. Valid value range: 1-10. This field is only valid when creating tls topic.
         /// </summary>
         [Output("shardCount")]
         public Output<int> ShardCount { get; private set; } = null!;
@@ -205,6 +219,20 @@ namespace Pulumi.Volcengine.Tls
         public Input<bool>? EnableTracking { get; set; }
 
         /// <summary>
+        /// The id of shard to be manually split. This field is valid only when modifying the topic. 
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        [Input("manualSplitShardId")]
+        public Input<int>? ManualSplitShardId { get; set; }
+
+        /// <summary>
+        /// The split number of shard. The valid number should be a non-zero even number, such as 2, 4, 8, or 16. The total number of read-write status shards after splitting cannot exceed 50. 
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        [Input("manualSplitShardNumber")]
+        public Input<int>? ManualSplitShardNumber { get; set; }
+
+        /// <summary>
         /// The maximum number of partitions, which is the maximum number of partitions after partition splitting. The value range is 1 to 10, with a default of 10.
         /// </summary>
         [Input("maxSplitShard")]
@@ -217,7 +245,7 @@ namespace Pulumi.Volcengine.Tls
         public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// The count of shards in the tls topic. Valid value range: 1-10.
+        /// The count of shards in the tls topic. Valid value range: 1-10. This field is only valid when creating tls topic.
         /// </summary>
         [Input("shardCount", required: true)]
         public Input<int> ShardCount { get; set; } = null!;
@@ -293,6 +321,20 @@ namespace Pulumi.Volcengine.Tls
         public Input<bool>? EnableTracking { get; set; }
 
         /// <summary>
+        /// The id of shard to be manually split. This field is valid only when modifying the topic. 
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        [Input("manualSplitShardId")]
+        public Input<int>? ManualSplitShardId { get; set; }
+
+        /// <summary>
+        /// The split number of shard. The valid number should be a non-zero even number, such as 2, 4, 8, or 16. The total number of read-write status shards after splitting cannot exceed 50. 
+        /// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// </summary>
+        [Input("manualSplitShardNumber")]
+        public Input<int>? ManualSplitShardNumber { get; set; }
+
+        /// <summary>
         /// The maximum number of partitions, which is the maximum number of partitions after partition splitting. The value range is 1 to 10, with a default of 10.
         /// </summary>
         [Input("maxSplitShard")]
@@ -311,7 +353,7 @@ namespace Pulumi.Volcengine.Tls
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The count of shards in the tls topic. Valid value range: 1-10.
+        /// The count of shards in the tls topic. Valid value range: 1-10. This field is only valid when creating tls topic.
         /// </summary>
         [Input("shardCount")]
         public Input<int>? ShardCount { get; set; }

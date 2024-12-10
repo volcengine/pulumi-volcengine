@@ -9,6 +9,7 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'NetworkAclsResult',
@@ -22,7 +23,7 @@ class NetworkAclsResult:
     """
     A collection of values returned by NetworkAcls.
     """
-    def __init__(__self__, id=None, ids=None, name_regex=None, network_acl_name=None, network_acls=None, output_file=None, subnet_id=None, total_count=None, vpc_id=None):
+    def __init__(__self__, id=None, ids=None, name_regex=None, network_acl_name=None, network_acls=None, output_file=None, project_name=None, subnet_id=None, tags=None, total_count=None, vpc_id=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -41,9 +42,15 @@ class NetworkAclsResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if project_name and not isinstance(project_name, str):
+            raise TypeError("Expected argument 'project_name' to be a str")
+        pulumi.set(__self__, "project_name", project_name)
         if subnet_id and not isinstance(subnet_id, str):
             raise TypeError("Expected argument 'subnet_id' to be a str")
         pulumi.set(__self__, "subnet_id", subnet_id)
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
+        pulumi.set(__self__, "tags", tags)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
@@ -91,9 +98,25 @@ class NetworkAclsResult:
         return pulumi.get(self, "output_file")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[str]:
+        """
+        The project name of the network acl.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> Optional[str]:
         return pulumi.get(self, "subnet_id")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence['outputs.NetworkAclsTagResult']]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="totalCount")
@@ -124,7 +147,9 @@ class AwaitableNetworkAclsResult(NetworkAclsResult):
             network_acl_name=self.network_acl_name,
             network_acls=self.network_acls,
             output_file=self.output_file,
+            project_name=self.project_name,
             subnet_id=self.subnet_id,
+            tags=self.tags,
             total_count=self.total_count,
             vpc_id=self.vpc_id)
 
@@ -133,7 +158,9 @@ def network_acls(ids: Optional[Sequence[str]] = None,
                  name_regex: Optional[str] = None,
                  network_acl_name: Optional[str] = None,
                  output_file: Optional[str] = None,
+                 project_name: Optional[str] = None,
                  subnet_id: Optional[str] = None,
+                 tags: Optional[Sequence[pulumi.InputType['NetworkAclsTagArgs']]] = None,
                  vpc_id: Optional[str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableNetworkAclsResult:
     """
@@ -152,7 +179,9 @@ def network_acls(ids: Optional[Sequence[str]] = None,
     :param str name_regex: A Name Regex of Network Acl.
     :param str network_acl_name: The name of Network Acl.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of the network acl.
     :param str subnet_id: The subnet id of Network Acl.
+    :param Sequence[pulumi.InputType['NetworkAclsTagArgs']] tags: Tags.
     :param str vpc_id: The vpc id of Network Acl.
     """
     __args__ = dict()
@@ -160,7 +189,9 @@ def network_acls(ids: Optional[Sequence[str]] = None,
     __args__['nameRegex'] = name_regex
     __args__['networkAclName'] = network_acl_name
     __args__['outputFile'] = output_file
+    __args__['projectName'] = project_name
     __args__['subnetId'] = subnet_id
+    __args__['tags'] = tags
     __args__['vpcId'] = vpc_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:vpc/networkAcls:NetworkAcls', __args__, opts=opts, typ=NetworkAclsResult).value
@@ -172,7 +203,9 @@ def network_acls(ids: Optional[Sequence[str]] = None,
         network_acl_name=pulumi.get(__ret__, 'network_acl_name'),
         network_acls=pulumi.get(__ret__, 'network_acls'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        project_name=pulumi.get(__ret__, 'project_name'),
         subnet_id=pulumi.get(__ret__, 'subnet_id'),
+        tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'),
         vpc_id=pulumi.get(__ret__, 'vpc_id'))
 
@@ -182,7 +215,9 @@ def network_acls_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = N
                         name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                         network_acl_name: Optional[pulumi.Input[Optional[str]]] = None,
                         output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                        project_name: Optional[pulumi.Input[Optional[str]]] = None,
                         subnet_id: Optional[pulumi.Input[Optional[str]]] = None,
+                        tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['NetworkAclsTagArgs']]]]] = None,
                         vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[NetworkAclsResult]:
     """
@@ -201,7 +236,9 @@ def network_acls_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = N
     :param str name_regex: A Name Regex of Network Acl.
     :param str network_acl_name: The name of Network Acl.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of the network acl.
     :param str subnet_id: The subnet id of Network Acl.
+    :param Sequence[pulumi.InputType['NetworkAclsTagArgs']] tags: Tags.
     :param str vpc_id: The vpc id of Network Acl.
     """
     ...

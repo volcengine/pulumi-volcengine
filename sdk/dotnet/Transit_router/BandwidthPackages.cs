@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Transit_router
     {
         /// <summary>
         /// Use this data source to query detailed information of transit router bandwidth packages
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -44,17 +42,13 @@ namespace Pulumi.Volcengine.Transit_router
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<BandwidthPackagesResult> InvokeAsync(BandwidthPackagesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<BandwidthPackagesResult>("volcengine:transit_router/bandwidthPackages:BandwidthPackages", args ?? new BandwidthPackagesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of transit router bandwidth packages
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -83,8 +77,6 @@ namespace Pulumi.Volcengine.Transit_router
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<BandwidthPackagesResult> Invoke(BandwidthPackagesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<BandwidthPackagesResult>("volcengine:transit_router/bandwidthPackages:BandwidthPackages", args ?? new BandwidthPackagesInvokeArgs(), options.WithDefaults());
@@ -106,10 +98,22 @@ namespace Pulumi.Volcengine.Transit_router
         }
 
         /// <summary>
+        /// The local geographic region set ID.
+        /// </summary>
+        [Input("localGeographicRegionSetId")]
+        public string? LocalGeographicRegionSetId { get; set; }
+
+        /// <summary>
         /// File name where to save data source results.
         /// </summary>
         [Input("outputFile")]
         public string? OutputFile { get; set; }
+
+        /// <summary>
+        /// The peer geographic region set ID.
+        /// </summary>
+        [Input("peerGeographicRegionSetId")]
+        public string? PeerGeographicRegionSetId { get; set; }
 
         /// <summary>
         /// The ProjectName of the TransitRouter bandwidth package.
@@ -162,10 +166,22 @@ namespace Pulumi.Volcengine.Transit_router
         }
 
         /// <summary>
+        /// The local geographic region set ID.
+        /// </summary>
+        [Input("localGeographicRegionSetId")]
+        public Input<string>? LocalGeographicRegionSetId { get; set; }
+
+        /// <summary>
         /// File name where to save data source results.
         /// </summary>
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
+
+        /// <summary>
+        /// The peer geographic region set ID.
+        /// </summary>
+        [Input("peerGeographicRegionSetId")]
+        public Input<string>? PeerGeographicRegionSetId { get; set; }
 
         /// <summary>
         /// The ProjectName of the TransitRouter bandwidth package.
@@ -216,7 +232,15 @@ namespace Pulumi.Volcengine.Transit_router
         /// </summary>
         public readonly string Id;
         public readonly ImmutableArray<string> Ids;
+        /// <summary>
+        /// The local geographic region set ID.
+        /// </summary>
+        public readonly string? LocalGeographicRegionSetId;
         public readonly string? OutputFile;
+        /// <summary>
+        /// The peer geographic region set ID.
+        /// </summary>
+        public readonly string? PeerGeographicRegionSetId;
         /// <summary>
         /// The ProjectName of the transit router bandwidth package.
         /// </summary>
@@ -246,7 +270,11 @@ namespace Pulumi.Volcengine.Transit_router
 
             ImmutableArray<string> ids,
 
+            string? localGeographicRegionSetId,
+
             string? outputFile,
+
+            string? peerGeographicRegionSetId,
 
             string? projectName,
 
@@ -261,7 +289,9 @@ namespace Pulumi.Volcengine.Transit_router
             BandwidthPackages = bandwidthPackages;
             Id = id;
             Ids = ids;
+            LocalGeographicRegionSetId = localGeographicRegionSetId;
             OutputFile = outputFile;
+            PeerGeographicRegionSetId = peerGeographicRegionSetId;
             ProjectName = projectName;
             Tags = tags;
             TotalCount = totalCount;

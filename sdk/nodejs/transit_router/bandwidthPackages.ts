@@ -33,7 +33,9 @@ export function bandwidthPackages(args?: BandwidthPackagesArgs, opts?: pulumi.In
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:transit_router/bandwidthPackages:BandwidthPackages", {
         "ids": args.ids,
+        "localGeographicRegionSetId": args.localGeographicRegionSetId,
         "outputFile": args.outputFile,
+        "peerGeographicRegionSetId": args.peerGeographicRegionSetId,
         "projectName": args.projectName,
         "tags": args.tags,
         "transitRouterBandwidthPackageName": args.transitRouterBandwidthPackageName,
@@ -50,9 +52,17 @@ export interface BandwidthPackagesArgs {
      */
     ids?: string[];
     /**
+     * The local geographic region set ID.
+     */
+    localGeographicRegionSetId?: string;
+    /**
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * The peer geographic region set ID.
+     */
+    peerGeographicRegionSetId?: string;
     /**
      * The ProjectName of the TransitRouter bandwidth package.
      */
@@ -84,7 +94,15 @@ export interface BandwidthPackagesResult {
      */
     readonly id: string;
     readonly ids?: string[];
+    /**
+     * The local geographic region set ID.
+     */
+    readonly localGeographicRegionSetId?: string;
     readonly outputFile?: string;
+    /**
+     * The peer geographic region set ID.
+     */
+    readonly peerGeographicRegionSetId?: string;
     /**
      * The ProjectName of the transit router bandwidth package.
      */
@@ -140,9 +158,17 @@ export interface BandwidthPackagesOutputArgs {
      */
     ids?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * The local geographic region set ID.
+     */
+    localGeographicRegionSetId?: pulumi.Input<string>;
+    /**
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The peer geographic region set ID.
+     */
+    peerGeographicRegionSetId?: pulumi.Input<string>;
     /**
      * The ProjectName of the TransitRouter bandwidth package.
      */

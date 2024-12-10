@@ -134,6 +134,10 @@ type GatewayRoutesArgs struct {
 	NextHopId *string `pulumi:"nextHopId"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The type of the VPN gateway route. Valid values: `Static`, `BGP`, `Cloud`.
+	RouteType *string `pulumi:"routeType"`
+	// The status of the VPN gateway route.
+	Status *string `pulumi:"status"`
 	// An ID of VPN gateway.
 	VpnGatewayId *string `pulumi:"vpnGatewayId"`
 }
@@ -148,6 +152,9 @@ type GatewayRoutesResult struct {
 	// The next hop id of the VPN gateway route.
 	NextHopId  *string `pulumi:"nextHopId"`
 	OutputFile *string `pulumi:"outputFile"`
+	RouteType  *string `pulumi:"routeType"`
+	// The status of the VPN gateway route.
+	Status *string `pulumi:"status"`
 	// The total count of VPN gateway route query.
 	TotalCount int `pulumi:"totalCount"`
 	// The ID of the VPN gateway of the VPN gateway route.
@@ -179,6 +186,10 @@ type GatewayRoutesOutputArgs struct {
 	NextHopId pulumi.StringPtrInput `pulumi:"nextHopId"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The type of the VPN gateway route. Valid values: `Static`, `BGP`, `Cloud`.
+	RouteType pulumi.StringPtrInput `pulumi:"routeType"`
+	// The status of the VPN gateway route.
+	Status pulumi.StringPtrInput `pulumi:"status"`
 	// An ID of VPN gateway.
 	VpnGatewayId pulumi.StringPtrInput `pulumi:"vpnGatewayId"`
 }
@@ -223,6 +234,15 @@ func (o GatewayRoutesResultOutput) NextHopId() pulumi.StringPtrOutput {
 
 func (o GatewayRoutesResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GatewayRoutesResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
+}
+
+func (o GatewayRoutesResultOutput) RouteType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GatewayRoutesResult) *string { return v.RouteType }).(pulumi.StringPtrOutput)
+}
+
+// The status of the VPN gateway route.
+func (o GatewayRoutesResultOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GatewayRoutesResult) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
 // The total count of VPN gateway route query.

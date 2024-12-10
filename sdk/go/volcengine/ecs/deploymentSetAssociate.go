@@ -42,7 +42,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -65,7 +65,7 @@ import (
 //			}
 //			fooInstance, err := ecs.NewInstance(ctx, "fooInstance", &ecs.InstanceArgs{
 //				InstanceName:       pulumi.String("acc-test-ecs"),
-//				ImageId:            *pulumi.String(fooImages.Images[0].ImageId),
+//				ImageId:            pulumi.String(fooImages.Images[0].ImageId),
 //				InstanceType:       pulumi.String("ecs.g1.large"),
 //				Password:           pulumi.String("93f0cb0614Aab12"),
 //				InstanceChargeType: pulumi.String("PostPaid"),
@@ -116,9 +116,7 @@ import (
 // ECS deployment set associate can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:ecs/deploymentSetAssociate:DeploymentSetAssociate default dps-ybti5tkpkv2udbfolrft:i-mizl7m1kqccg5smt1bdpijuj
-//
+// $ pulumi import volcengine:ecs/deploymentSetAssociate:DeploymentSetAssociate default dps-ybti5tkpkv2udbfolrft:i-mizl7m1kqccg5smt1bdpijuj
 // ```
 type DeploymentSetAssociate struct {
 	pulumi.CustomResourceState

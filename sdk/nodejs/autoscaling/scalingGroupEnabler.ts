@@ -69,7 +69,7 @@ import * as utilities from "../utilities";
  * Scaling Group enabler can be imported using the scaling_group_id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:autoscaling/scalingGroupEnabler:ScalingGroupEnabler default enable:scg-mizl7m1kqccg5smt1bdpijuj
+ * $ pulumi import volcengine:autoscaling/scalingGroupEnabler:ScalingGroupEnabler default enable:scg-mizl7m1kqccg5smt1bdpijuj
  * ```
  */
 export class ScalingGroupEnabler extends pulumi.CustomResource {

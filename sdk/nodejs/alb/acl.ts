@@ -35,7 +35,7 @@ import * as utilities from "../utilities";
  * Acl can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:alb/acl:Acl default acl-mizl7m1kqccg5smt1bdpijuj
+ * $ pulumi import volcengine:alb/acl:Acl default acl-mizl7m1kqccg5smt1bdpijuj
  * ```
  */
 export class Acl extends pulumi.CustomResource {

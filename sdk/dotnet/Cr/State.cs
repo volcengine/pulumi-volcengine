@@ -34,7 +34,7 @@ namespace Pulumi.Volcengine.Cr
     /// CR registry state can be imported using the state:registry_name, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:cr/state:State default state:cr-basic
+    /// $ pulumi import volcengine:cr/state:State default state:cr-basic
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:cr/state:State")]

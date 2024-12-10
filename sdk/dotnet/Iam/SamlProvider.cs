@@ -37,7 +37,7 @@ namespace Pulumi.Volcengine.Iam
     /// IamSamlProvider can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:iam/samlProvider:SamlProvider default SAMLProviderName
+    /// $ pulumi import volcengine:iam/samlProvider:SamlProvider default SAMLProviderName
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:iam/samlProvider:SamlProvider")]

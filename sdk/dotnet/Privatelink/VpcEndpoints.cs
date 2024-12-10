@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Privatelink
     {
         /// <summary>
         /// Use this data source to query detailed information of privatelink vpc endpoints
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -107,17 +105,13 @@ namespace Pulumi.Volcengine.Privatelink
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<VpcEndpointsResult> InvokeAsync(VpcEndpointsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<VpcEndpointsResult>("volcengine:privatelink/vpcEndpoints:VpcEndpoints", args ?? new VpcEndpointsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of privatelink vpc endpoints
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -209,8 +203,6 @@ namespace Pulumi.Volcengine.Privatelink
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<VpcEndpointsResult> Invoke(VpcEndpointsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<VpcEndpointsResult>("volcengine:privatelink/vpcEndpoints:VpcEndpoints", args ?? new VpcEndpointsInvokeArgs(), options.WithDefaults());

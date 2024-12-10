@@ -56,7 +56,7 @@ import * as utilities from "../utilities";
  * ScalingPolicy can be imported using the ScalingGroupId:ScalingPolicyId, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:autoscaling/scalingPolicy:ScalingPolicy default scg-yblfbfhy7agh9zn72iaz:sp-yblf9l4fvcl8j1prohsp
+ * $ pulumi import volcengine:autoscaling/scalingPolicy:ScalingPolicy default scg-yblfbfhy7agh9zn72iaz:sp-yblf9l4fvcl8j1prohsp
  * ```
  */
 export class ScalingPolicy extends pulumi.CustomResource {

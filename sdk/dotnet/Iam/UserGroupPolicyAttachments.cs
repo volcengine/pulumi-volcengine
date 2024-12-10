@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Iam
     {
         /// <summary>
         /// Use this data source to query detailed information of iam user group policy attachments
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -53,17 +51,13 @@ namespace Pulumi.Volcengine.Iam
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<UserGroupPolicyAttachmentsResult> InvokeAsync(UserGroupPolicyAttachmentsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<UserGroupPolicyAttachmentsResult>("volcengine:iam/userGroupPolicyAttachments:UserGroupPolicyAttachments", args ?? new UserGroupPolicyAttachmentsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of iam user group policy attachments
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -101,8 +95,6 @@ namespace Pulumi.Volcengine.Iam
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<UserGroupPolicyAttachmentsResult> Invoke(UserGroupPolicyAttachmentsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<UserGroupPolicyAttachmentsResult>("volcengine:iam/userGroupPolicyAttachments:UserGroupPolicyAttachments", args ?? new UserGroupPolicyAttachmentsInvokeArgs(), options.WithDefaults());

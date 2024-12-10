@@ -117,6 +117,10 @@ func Connections(ctx *pulumi.Context, args *ConnectionsArgs, opts ...pulumi.Invo
 
 // A collection of arguments for invoking Connections.
 type ConnectionsArgs struct {
+	// The attach status of VPN connection.
+	AttachStatus *string `pulumi:"attachStatus"`
+	// The attach type of VPN connection. Valid values: `VpnGateway`, `TransitRouter`.
+	AttachType *string `pulumi:"attachType"`
 	// An ID of customer gateway.
 	CustomerGatewayId *string `pulumi:"customerGatewayId"`
 	// A list of VPN connection ids.
@@ -125,6 +129,14 @@ type ConnectionsArgs struct {
 	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The project name of VPN connection.
+	ProjectName *string `pulumi:"projectName"`
+	// The spec of IPSec connection. Valid values: `default`, `large`.
+	Spec *string `pulumi:"spec"`
+	// The status of IPSec connection. Valid values: `Creating`, `Deleting`, `Pending`, `Available`.
+	Status *string `pulumi:"status"`
+	// An ID of transit router.
+	TransitRouterId *string `pulumi:"transitRouterId"`
 	// A list of VPN connection names.
 	VpnConnectionNames []string `pulumi:"vpnConnectionNames"`
 	// An ID of VPN gateway.
@@ -133,15 +145,25 @@ type ConnectionsArgs struct {
 
 // A collection of values returned by Connections.
 type ConnectionsResult struct {
+	// The IPsec attach status.
+	AttachStatus *string `pulumi:"attachStatus"`
+	// The IPsec attach type.
+	AttachType *string `pulumi:"attachType"`
 	// The ID of the customer gateway.
 	CustomerGatewayId *string `pulumi:"customerGatewayId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id         string   `pulumi:"id"`
-	Ids        []string `pulumi:"ids"`
-	NameRegex  *string  `pulumi:"nameRegex"`
-	OutputFile *string  `pulumi:"outputFile"`
+	Id          string   `pulumi:"id"`
+	Ids         []string `pulumi:"ids"`
+	NameRegex   *string  `pulumi:"nameRegex"`
+	OutputFile  *string  `pulumi:"outputFile"`
+	ProjectName *string  `pulumi:"projectName"`
+	Spec        *string  `pulumi:"spec"`
+	// The status of the VPN connection.
+	Status *string `pulumi:"status"`
 	// The total count of VPN connection query.
-	TotalCount         int      `pulumi:"totalCount"`
+	TotalCount int `pulumi:"totalCount"`
+	// The id of transit router, valid when the attach type is 'TransitRouter'.
+	TransitRouterId    *string  `pulumi:"transitRouterId"`
 	VpnConnectionNames []string `pulumi:"vpnConnectionNames"`
 	// The collection of VPN connection query.
 	VpnConnections []ConnectionsVpnConnection `pulumi:"vpnConnections"`
@@ -164,6 +186,10 @@ func ConnectionsOutput(ctx *pulumi.Context, args ConnectionsOutputArgs, opts ...
 
 // A collection of arguments for invoking Connections.
 type ConnectionsOutputArgs struct {
+	// The attach status of VPN connection.
+	AttachStatus pulumi.StringPtrInput `pulumi:"attachStatus"`
+	// The attach type of VPN connection. Valid values: `VpnGateway`, `TransitRouter`.
+	AttachType pulumi.StringPtrInput `pulumi:"attachType"`
 	// An ID of customer gateway.
 	CustomerGatewayId pulumi.StringPtrInput `pulumi:"customerGatewayId"`
 	// A list of VPN connection ids.
@@ -172,6 +198,14 @@ type ConnectionsOutputArgs struct {
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The project name of VPN connection.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
+	// The spec of IPSec connection. Valid values: `default`, `large`.
+	Spec pulumi.StringPtrInput `pulumi:"spec"`
+	// The status of IPSec connection. Valid values: `Creating`, `Deleting`, `Pending`, `Available`.
+	Status pulumi.StringPtrInput `pulumi:"status"`
+	// An ID of transit router.
+	TransitRouterId pulumi.StringPtrInput `pulumi:"transitRouterId"`
 	// A list of VPN connection names.
 	VpnConnectionNames pulumi.StringArrayInput `pulumi:"vpnConnectionNames"`
 	// An ID of VPN gateway.
@@ -197,6 +231,16 @@ func (o ConnectionsResultOutput) ToConnectionsResultOutputWithContext(ctx contex
 	return o
 }
 
+// The IPsec attach status.
+func (o ConnectionsResultOutput) AttachStatus() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConnectionsResult) *string { return v.AttachStatus }).(pulumi.StringPtrOutput)
+}
+
+// The IPsec attach type.
+func (o ConnectionsResultOutput) AttachType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConnectionsResult) *string { return v.AttachType }).(pulumi.StringPtrOutput)
+}
+
 // The ID of the customer gateway.
 func (o ConnectionsResultOutput) CustomerGatewayId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ConnectionsResult) *string { return v.CustomerGatewayId }).(pulumi.StringPtrOutput)
@@ -219,9 +263,27 @@ func (o ConnectionsResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ConnectionsResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
 }
 
+func (o ConnectionsResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConnectionsResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
+func (o ConnectionsResultOutput) Spec() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConnectionsResult) *string { return v.Spec }).(pulumi.StringPtrOutput)
+}
+
+// The status of the VPN connection.
+func (o ConnectionsResultOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConnectionsResult) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
 // The total count of VPN connection query.
 func (o ConnectionsResultOutput) TotalCount() pulumi.IntOutput {
 	return o.ApplyT(func(v ConnectionsResult) int { return v.TotalCount }).(pulumi.IntOutput)
+}
+
+// The id of transit router, valid when the attach type is 'TransitRouter'.
+func (o ConnectionsResultOutput) TransitRouterId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ConnectionsResult) *string { return v.TransitRouterId }).(pulumi.StringPtrOutput)
 }
 
 func (o ConnectionsResultOutput) VpnConnectionNames() pulumi.StringArrayOutput {

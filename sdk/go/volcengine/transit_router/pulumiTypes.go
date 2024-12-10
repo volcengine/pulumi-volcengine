@@ -2015,6 +2015,8 @@ func (o PeerAttachmentsTransitRouterAttachmentTagArrayOutput) Index(i pulumi.Int
 }
 
 type RouteEntriesEntry struct {
+	// The as path of the route entry.
+	AsPath string `pulumi:"asPath"`
 	// The creation time of the route entry.
 	CreationTime string `pulumi:"creationTime"`
 	// Description of the transit router route entry.
@@ -2049,6 +2051,8 @@ type RouteEntriesEntryInput interface {
 }
 
 type RouteEntriesEntryArgs struct {
+	// The as path of the route entry.
+	AsPath pulumi.StringInput `pulumi:"asPath"`
 	// The creation time of the route entry.
 	CreationTime pulumi.StringInput `pulumi:"creationTime"`
 	// Description of the transit router route entry.
@@ -2120,6 +2124,11 @@ func (o RouteEntriesEntryOutput) ToRouteEntriesEntryOutput() RouteEntriesEntryOu
 
 func (o RouteEntriesEntryOutput) ToRouteEntriesEntryOutputWithContext(ctx context.Context) RouteEntriesEntryOutput {
 	return o
+}
+
+// The as path of the route entry.
+func (o RouteEntriesEntryOutput) AsPath() pulumi.StringOutput {
+	return o.ApplyT(func(v RouteEntriesEntry) string { return v.AsPath }).(pulumi.StringOutput)
 }
 
 // The creation time of the route entry.
@@ -3292,6 +3301,8 @@ type TransitRoutersTransitRouter struct {
 	CreationTime string `pulumi:"creationTime"`
 	// The description info.
 	Description string `pulumi:"description"`
+	// The grant status of the transit router.
+	GrantStatus string `pulumi:"grantStatus"`
 	// The ID of the transit router.
 	Id string `pulumi:"id"`
 	// The overdue time.
@@ -3334,6 +3345,8 @@ type TransitRoutersTransitRouterArgs struct {
 	CreationTime pulumi.StringInput `pulumi:"creationTime"`
 	// The description info.
 	Description pulumi.StringInput `pulumi:"description"`
+	// The grant status of the transit router.
+	GrantStatus pulumi.StringInput `pulumi:"grantStatus"`
 	// The ID of the transit router.
 	Id pulumi.StringInput `pulumi:"id"`
 	// The overdue time.
@@ -3428,6 +3441,11 @@ func (o TransitRoutersTransitRouterOutput) CreationTime() pulumi.StringOutput {
 // The description info.
 func (o TransitRoutersTransitRouterOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v TransitRoutersTransitRouter) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The grant status of the transit router.
+func (o TransitRoutersTransitRouterOutput) GrantStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v TransitRoutersTransitRouter) string { return v.GrantStatus }).(pulumi.StringOutput)
 }
 
 // The ID of the transit router.

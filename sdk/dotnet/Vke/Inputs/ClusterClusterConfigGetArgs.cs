@@ -24,6 +24,9 @@ namespace Pulumi.Volcengine.Vke.Inputs
         [Input("apiServerPublicAccessEnabled")]
         public Input<bool>? ApiServerPublicAccessEnabled { get; set; }
 
+        /// <summary>
+        /// [SkipDoc]The IpFamily configuration,the value is `Ipv4` or `DualStack`.
+        /// </summary>
         [Input("ipFamily")]
         public Input<string>? IpFamily { get; set; }
 

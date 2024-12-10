@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Vpc
     {
         /// <summary>
         /// Use this data source to query detailed information of route entries
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -27,23 +25,19 @@ namespace Pulumi.Volcengine.Vpc
         /// {
         ///     var @default = Volcengine.Vpc.RouteEntries.Invoke(new()
         ///     {
-        ///         Ids = new[] {},
+        ///         Ids = new() { },
         ///         RouteTableId = "vtb-274e19skkuhog7fap8u4i8ird",
         ///     });
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<RouteEntriesResult> InvokeAsync(RouteEntriesArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<RouteEntriesResult>("volcengine:vpc/routeEntries:RouteEntries", args ?? new RouteEntriesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of route entries
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -55,14 +49,12 @@ namespace Pulumi.Volcengine.Vpc
         /// {
         ///     var @default = Volcengine.Vpc.RouteEntries.Invoke(new()
         ///     {
-        ///         Ids = new[] {},
+        ///         Ids = new() { },
         ///         RouteTableId = "vtb-274e19skkuhog7fap8u4i8ird",
         ///     });
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<RouteEntriesResult> Invoke(RouteEntriesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<RouteEntriesResult>("volcengine:vpc/routeEntries:RouteEntries", args ?? new RouteEntriesInvokeArgs(), options.WithDefaults());

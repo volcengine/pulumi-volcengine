@@ -98,7 +98,7 @@ namespace Pulumi.Volcengine.Vke
     /// VkeCluster can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:vke/cluster:Cluster default cc9l74mvqtofjnoj5****
+    /// $ pulumi import volcengine:vke/cluster:Cluster default cc9l74mvqtofjnoj5****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vke/cluster:Cluster")]

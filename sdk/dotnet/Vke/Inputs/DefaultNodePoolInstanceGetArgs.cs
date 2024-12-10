@@ -48,6 +48,9 @@ namespace Pulumi.Volcengine.Vke.Inputs
         [Input("keepInstanceName")]
         public Input<bool>? KeepInstanceName { get; set; }
 
+        /// <summary>
+        /// The status phase to the Node.
+        /// </summary>
         [Input("phase")]
         public Input<string>? Phase { get; set; }
 

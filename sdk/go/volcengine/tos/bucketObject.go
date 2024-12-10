@@ -64,9 +64,7 @@ import (
 // TOS Object can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:tos/bucketObject:BucketObject default bucketName:objectName
-//
+// $ pulumi import volcengine:tos/bucketObject:BucketObject default bucketName:objectName
 // ```
 type BucketObject struct {
 	pulumi.CustomResourceState

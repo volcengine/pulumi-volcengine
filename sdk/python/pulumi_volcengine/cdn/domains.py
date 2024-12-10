@@ -224,7 +224,7 @@ def domains(domain: Optional[str] = None,
                 value="tfvalue2",
             ),
         ],
-        domain_config=foo_cdn_certificate.id.apply(lambda id: json.dumps({
+        domain_config=pulumi.Output.json_dumps({
             "OriginProtocol": "https",
             "Origin": [{
                 "OriginAction": {
@@ -241,7 +241,7 @@ def domains(domain: Optional[str] = None,
             }],
             "HTTPS": {
                 "CertInfo": {
-                    "CertId": id,
+                    "CertId": foo_cdn_certificate.id,
                 },
                 "DisableHttp": False,
                 "HTTP2": True,
@@ -252,7 +252,7 @@ def domains(domain: Optional[str] = None,
                     "tlsv1.2",
                 ],
             },
-        })))
+        }))
     foo_domains = volcengine.cdn.domains_output(domain=foo_cdn_domain.id)
     ```
 
@@ -337,7 +337,7 @@ def domains_output(domain: Optional[pulumi.Input[Optional[str]]] = None,
                 value="tfvalue2",
             ),
         ],
-        domain_config=foo_cdn_certificate.id.apply(lambda id: json.dumps({
+        domain_config=pulumi.Output.json_dumps({
             "OriginProtocol": "https",
             "Origin": [{
                 "OriginAction": {
@@ -354,7 +354,7 @@ def domains_output(domain: Optional[pulumi.Input[Optional[str]]] = None,
             }],
             "HTTPS": {
                 "CertInfo": {
-                    "CertId": id,
+                    "CertId": foo_cdn_certificate.id,
                 },
                 "DisableHttp": False,
                 "HTTP2": True,
@@ -365,7 +365,7 @@ def domains_output(domain: Optional[pulumi.Input[Optional[str]]] = None,
                     "tlsv1.2",
                 ],
             },
-        })))
+        }))
     foo_domains = volcengine.cdn.domains_output(domain=foo_cdn_domain.id)
     ```
 

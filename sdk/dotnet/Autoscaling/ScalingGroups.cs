@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Autoscaling
     {
         /// <summary>
         /// Use this data source to query detailed information of scaling groups
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -80,17 +78,13 @@ namespace Pulumi.Volcengine.Autoscaling
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<ScalingGroupsResult> InvokeAsync(ScalingGroupsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ScalingGroupsResult>("volcengine:autoscaling/scalingGroups:ScalingGroups", args ?? new ScalingGroupsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of scaling groups
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -155,8 +149,6 @@ namespace Pulumi.Volcengine.Autoscaling
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<ScalingGroupsResult> Invoke(ScalingGroupsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ScalingGroupsResult>("volcengine:autoscaling/scalingGroups:ScalingGroups", args ?? new ScalingGroupsInvokeArgs(), options.WithDefaults());

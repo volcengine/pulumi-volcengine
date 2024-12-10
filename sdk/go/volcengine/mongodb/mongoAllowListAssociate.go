@@ -43,7 +43,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -62,7 +62,7 @@ import (
 //				ShardNumber:          pulumi.Int(3),
 //				StorageSpaceGb:       pulumi.Int(20),
 //				SubnetId:             fooSubnet.ID(),
-//				ZoneId:               *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:               pulumi.String(fooZones.Zones[0].Id),
 //				Tags: mongodb.InstanceTagArray{
 //					&mongodb.InstanceTagArgs{
 //						Key:   pulumi.String("k1"),
@@ -100,9 +100,7 @@ import (
 // mongodb allow list associate can be imported using the instanceId:allowListId, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:mongodb/mongoAllowListAssociate:MongoAllowListAssociate default mongo-replica-e405f8e2****:acl-d1fd76693bd54e658912e7337d5b****
-//
+// $ pulumi import volcengine:mongodb/mongoAllowListAssociate:MongoAllowListAssociate default mongo-replica-e405f8e2****:acl-d1fd76693bd54e658912e7337d5b****
 // ```
 type MongoAllowListAssociate struct {
 	pulumi.CustomResourceState

@@ -11,7 +11,13 @@ from .commands import *
 from .deployment_set import *
 from .deployment_set_associate import *
 from .deployment_sets import *
+from .hpc_cluster import *
+from .hpc_clusters import *
 from .iam_role_attachment import *
+from .image import *
+from .image_import import *
+from .image_share_permission import *
+from .image_share_permissions import *
 from .images import *
 from .instance import *
 from .instance_types import *

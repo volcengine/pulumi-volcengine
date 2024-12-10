@@ -162,7 +162,7 @@ class SecurityGroup(pulumi.CustomResource):
         PrivateLink Security Group Service can be imported using the endpoint id and security group id, e.g.
 
         ```sh
-         $ pulumi import volcengine:privatelink/securityGroup:SecurityGroup default ep-2fe630gurkl37k5gfuy33****:sg-xxxxx
+        $ pulumi import volcengine:privatelink/securityGroup:SecurityGroup default ep-2fe630gurkl37k5gfuy33****:sg-xxxxx
         ```
 
         :param str resource_name: The name of the resource.
@@ -238,7 +238,7 @@ class SecurityGroup(pulumi.CustomResource):
         PrivateLink Security Group Service can be imported using the endpoint id and security group id, e.g.
 
         ```sh
-         $ pulumi import volcengine:privatelink/securityGroup:SecurityGroup default ep-2fe630gurkl37k5gfuy33****:sg-xxxxx
+        $ pulumi import volcengine:privatelink/securityGroup:SecurityGroup default ep-2fe630gurkl37k5gfuy33****:sg-xxxxx
         ```
 
         :param str resource_name: The name of the resource.

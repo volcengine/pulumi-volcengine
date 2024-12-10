@@ -25,10 +25,12 @@ import * as utilities from "../utilities";
  * CdnCertificate can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:cdn/cdnCertificate:CdnCertificate default resource_id
+ * $ pulumi import volcengine:cdn/cdnCertificate:CdnCertificate default resource_id
  * ```
- *
- *  You can delete the certificate hosted on the content delivery network. You can configure the HTTPS module to associate the certificate and domain name through the domain_config field of volcengine_cdn_domain. If the certificate to be deleted is already associated with a domain name, the deletion will fail. To remove the association between the domain name and the certificate, you can disable the HTTPS function for the domain name in the Content Delivery Network console.
+ * You can delete the certificate hosted on the content delivery network.
+ * You can configure the HTTPS module to associate the certificate and domain name through the domain_config field of volcengine_cdn_domain.
+ * If the certificate to be deleted is already associated with a domain name, the deletion will fail.
+ * To remove the association between the domain name and the certificate, you can disable the HTTPS function for the domain name in the Content Delivery Network console.
  */
 export class CdnCertificate extends pulumi.CustomResource {
     /**

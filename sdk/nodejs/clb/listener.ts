@@ -83,7 +83,7 @@ import * as utilities from "../utilities";
  * Listener can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:clb/listener:Listener default lsn-273yv0mhs5xj47fap8sehiiso
+ * $ pulumi import volcengine:clb/listener:Listener default lsn-273yv0mhs5xj47fap8sehiiso
  * ```
  */
 export class Listener extends pulumi.CustomResource {
@@ -140,7 +140,7 @@ export class Listener extends pulumi.CustomResource {
      */
     public readonly connectionDrainEnabled!: pulumi.Output<string | undefined>;
     /**
-     * The connection drain timeout of the Listener. Valid value range is `1-900`.
+     * The connection drain timeout of the Listener. Valid value range is `0-900`.
      * This filed is required when the value of field `connectionDrainEnabled` is `on`.
      */
     public readonly connectionDrainTimeout!: pulumi.Output<number>;
@@ -314,7 +314,7 @@ export interface ListenerState {
      */
     connectionDrainEnabled?: pulumi.Input<string>;
     /**
-     * The connection drain timeout of the Listener. Valid value range is `1-900`.
+     * The connection drain timeout of the Listener. Valid value range is `0-900`.
      * This filed is required when the value of field `connectionDrainEnabled` is `on`.
      */
     connectionDrainTimeout?: pulumi.Input<number>;
@@ -412,7 +412,7 @@ export interface ListenerArgs {
      */
     connectionDrainEnabled?: pulumi.Input<string>;
     /**
-     * The connection drain timeout of the Listener. Valid value range is `1-900`.
+     * The connection drain timeout of the Listener. Valid value range is `0-900`.
      * This filed is required when the value of field `connectionDrainEnabled` is `on`.
      */
     connectionDrainTimeout?: pulumi.Input<number>;

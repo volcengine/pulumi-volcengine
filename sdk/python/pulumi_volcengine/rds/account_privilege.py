@@ -189,7 +189,7 @@ class AccountPrivilege(pulumi.CustomResource):
         RDS account privilege can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:rds/accountPrivilege:AccountPrivilege default mysql-42b38c769c4b:account_name
+        $ pulumi import volcengine:rds/accountPrivilege:AccountPrivilege default mysql-42b38c769c4b:account_name
         ```
 
         :param str resource_name: The name of the resource.
@@ -247,7 +247,7 @@ class AccountPrivilege(pulumi.CustomResource):
         RDS account privilege can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:rds/accountPrivilege:AccountPrivilege default mysql-42b38c769c4b:account_name
+        $ pulumi import volcengine:rds/accountPrivilege:AccountPrivilege default mysql-42b38c769c4b:account_name
         ```
 
         :param str resource_name: The name of the resource.

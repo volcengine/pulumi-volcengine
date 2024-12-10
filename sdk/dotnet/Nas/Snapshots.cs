@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Nas
     {
         /// <summary>
         /// Use this data source to query detailed information of nas snapshots
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -37,17 +35,13 @@ namespace Pulumi.Volcengine.Nas
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<SnapshotsResult> InvokeAsync(SnapshotsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<SnapshotsResult>("volcengine:nas/snapshots:Snapshots", args ?? new SnapshotsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of nas snapshots
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -69,8 +63,6 @@ namespace Pulumi.Volcengine.Nas
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<SnapshotsResult> Invoke(SnapshotsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<SnapshotsResult>("volcengine:nas/snapshots:Snapshots", args ?? new SnapshotsInvokeArgs(), options.WithDefaults());

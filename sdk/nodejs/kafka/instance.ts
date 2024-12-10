@@ -71,7 +71,7 @@ import * as utilities from "../utilities";
  * KafkaInstance can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:kafka/instance:Instance default kafka-insbjwbbwb
+ * $ pulumi import volcengine:kafka/instance:Instance default kafka-insbjwbbwb
  * ```
  */
 export class Instance extends pulumi.CustomResource {

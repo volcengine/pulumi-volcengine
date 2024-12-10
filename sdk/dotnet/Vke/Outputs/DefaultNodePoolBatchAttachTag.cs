@@ -14,11 +14,11 @@ namespace Pulumi.Volcengine.Vke.Outputs
     public sealed class DefaultNodePoolBatchAttachTag
     {
         /// <summary>
-        /// The Key of Labels.
+        /// The Key of Tags.
         /// </summary>
         public readonly string? Key;
         /// <summary>
-        /// The Value of Labels.
+        /// The Value of Tags.
         /// </summary>
         public readonly string? Value;
 

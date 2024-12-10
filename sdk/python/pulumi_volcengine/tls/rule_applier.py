@@ -115,7 +115,7 @@ class RuleApplier(pulumi.CustomResource):
         tls rule applier can be imported using the rule id and host group id, e.g.
 
         ```sh
-         $ pulumi import volcengine:tls/ruleApplier:RuleApplier default fa************:bcb*******
+        $ pulumi import volcengine:tls/ruleApplier:RuleApplier default fa************:bcb*******
         ```
 
         :param str resource_name: The name of the resource.
@@ -147,7 +147,7 @@ class RuleApplier(pulumi.CustomResource):
         tls rule applier can be imported using the rule id and host group id, e.g.
 
         ```sh
-         $ pulumi import volcengine:tls/ruleApplier:RuleApplier default fa************:bcb*******
+        $ pulumi import volcengine:tls/ruleApplier:RuleApplier default fa************:bcb*******
         ```
 
         :param str resource_name: The name of the resource.

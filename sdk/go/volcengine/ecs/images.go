@@ -53,18 +53,26 @@ func Images(ctx *pulumi.Context, args *ImagesArgs, opts ...pulumi.InvokeOption) 
 type ImagesArgs struct {
 	// A list of Image IDs.
 	Ids []string `pulumi:"ids"`
+	// The name of Image.
+	ImageName *string `pulumi:"imageName"`
 	// The specification of  Instance.
 	InstanceTypeId *string `pulumi:"instanceTypeId"`
 	// Whether the Image support cloud-init.
 	IsSupportCloudInit *bool `pulumi:"isSupportCloudInit"`
+	// Whether the Image maintained for a long time.
+	IsTls *bool `pulumi:"isTls"`
 	// A Name Regex of Image.
 	NameRegex *string `pulumi:"nameRegex"`
 	// The operating system type of Image.
 	OsType *string `pulumi:"osType"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The platform of Image.
+	Platform *string `pulumi:"platform"`
 	// A list of Image status, the value can be `available` or `creating` or `error`.
 	Statuses []string `pulumi:"statuses"`
+	// Tags.
+	Tags []ImagesTag `pulumi:"tags"`
 	// The visibility of Image.
 	Visibility *string `pulumi:"visibility"`
 }
@@ -74,17 +82,24 @@ type ImagesResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id  string   `pulumi:"id"`
 	Ids []string `pulumi:"ids"`
+	// The name of Image.
+	ImageName *string `pulumi:"imageName"`
 	// The collection of Image query.
 	Images         []ImagesImage `pulumi:"images"`
 	InstanceTypeId *string       `pulumi:"instanceTypeId"`
 	// Whether the Image support cloud-init.
 	IsSupportCloudInit *bool   `pulumi:"isSupportCloudInit"`
+	IsTls              *bool   `pulumi:"isTls"`
 	NameRegex          *string `pulumi:"nameRegex"`
 	// The operating system type of Image.
 	OsType     *string `pulumi:"osType"`
 	OutputFile *string `pulumi:"outputFile"`
+	// The platform of Image.
+	Platform *string `pulumi:"platform"`
 	// The status of Image.
 	Statuses []string `pulumi:"statuses"`
+	// Tags.
+	Tags []ImagesTag `pulumi:"tags"`
 	// The total count of Image query.
 	TotalCount int `pulumi:"totalCount"`
 	// The visibility of Image.
@@ -108,18 +123,26 @@ func ImagesOutput(ctx *pulumi.Context, args ImagesOutputArgs, opts ...pulumi.Inv
 type ImagesOutputArgs struct {
 	// A list of Image IDs.
 	Ids pulumi.StringArrayInput `pulumi:"ids"`
+	// The name of Image.
+	ImageName pulumi.StringPtrInput `pulumi:"imageName"`
 	// The specification of  Instance.
 	InstanceTypeId pulumi.StringPtrInput `pulumi:"instanceTypeId"`
 	// Whether the Image support cloud-init.
 	IsSupportCloudInit pulumi.BoolPtrInput `pulumi:"isSupportCloudInit"`
+	// Whether the Image maintained for a long time.
+	IsTls pulumi.BoolPtrInput `pulumi:"isTls"`
 	// A Name Regex of Image.
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// The operating system type of Image.
 	OsType pulumi.StringPtrInput `pulumi:"osType"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The platform of Image.
+	Platform pulumi.StringPtrInput `pulumi:"platform"`
 	// A list of Image status, the value can be `available` or `creating` or `error`.
 	Statuses pulumi.StringArrayInput `pulumi:"statuses"`
+	// Tags.
+	Tags ImagesTagArrayInput `pulumi:"tags"`
 	// The visibility of Image.
 	Visibility pulumi.StringPtrInput `pulumi:"visibility"`
 }
@@ -152,6 +175,11 @@ func (o ImagesResultOutput) Ids() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ImagesResult) []string { return v.Ids }).(pulumi.StringArrayOutput)
 }
 
+// The name of Image.
+func (o ImagesResultOutput) ImageName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ImagesResult) *string { return v.ImageName }).(pulumi.StringPtrOutput)
+}
+
 // The collection of Image query.
 func (o ImagesResultOutput) Images() ImagesImageArrayOutput {
 	return o.ApplyT(func(v ImagesResult) []ImagesImage { return v.Images }).(ImagesImageArrayOutput)
@@ -164,6 +192,10 @@ func (o ImagesResultOutput) InstanceTypeId() pulumi.StringPtrOutput {
 // Whether the Image support cloud-init.
 func (o ImagesResultOutput) IsSupportCloudInit() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ImagesResult) *bool { return v.IsSupportCloudInit }).(pulumi.BoolPtrOutput)
+}
+
+func (o ImagesResultOutput) IsTls() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ImagesResult) *bool { return v.IsTls }).(pulumi.BoolPtrOutput)
 }
 
 func (o ImagesResultOutput) NameRegex() pulumi.StringPtrOutput {
@@ -179,9 +211,19 @@ func (o ImagesResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ImagesResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
 }
 
+// The platform of Image.
+func (o ImagesResultOutput) Platform() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ImagesResult) *string { return v.Platform }).(pulumi.StringPtrOutput)
+}
+
 // The status of Image.
 func (o ImagesResultOutput) Statuses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ImagesResult) []string { return v.Statuses }).(pulumi.StringArrayOutput)
+}
+
+// Tags.
+func (o ImagesResultOutput) Tags() ImagesTagArrayOutput {
+	return o.ApplyT(func(v ImagesResult) []ImagesTag { return v.Tags }).(ImagesTagArrayOutput)
 }
 
 // The total count of Image query.

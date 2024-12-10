@@ -43,7 +43,7 @@ import (
 //			subnetIpv61, err := vpc.NewSubnet(ctx, "subnetIpv61", &vpc.SubnetArgs{
 //				SubnetName:    pulumi.String("acc-test-subnet-ipv6-1"),
 //				CidrBlock:     pulumi.String("172.16.1.0/24"),
-//				ZoneId:        *pulumi.String(foo.Zones[0].Id),
+//				ZoneId:        pulumi.String(foo.Zones[0].Id),
 //				VpcId:         vpcIpv6.ID(),
 //				Ipv6CidrBlock: pulumi.Int(1),
 //			})
@@ -53,7 +53,7 @@ import (
 //			subnetIpv62, err := vpc.NewSubnet(ctx, "subnetIpv62", &vpc.SubnetArgs{
 //				SubnetName:    pulumi.String("acc-test-subnet-ipv6-2"),
 //				CidrBlock:     pulumi.String("172.16.2.0/24"),
-//				ZoneId:        *pulumi.String(foo.Zones[1].Id),
+//				ZoneId:        pulumi.String(foo.Zones[1].Id),
 //				VpcId:         vpcIpv6.ID(),
 //				Ipv6CidrBlock: pulumi.Int(2),
 //			})
@@ -131,9 +131,7 @@ import (
 // Alb can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:alb/alb:Alb default resource_id
-//
+// $ pulumi import volcengine:alb/alb:Alb default resource_id
 // ```
 type Alb struct {
 	pulumi.CustomResourceState

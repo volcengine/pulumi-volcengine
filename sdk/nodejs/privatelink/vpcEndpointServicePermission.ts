@@ -60,7 +60,7 @@ import * as utilities from "../utilities";
  * VpcEndpointServicePermission can be imported using the serviceId:permitAccountId, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:privatelink/vpcEndpointServicePermission:VpcEndpointServicePermission default epsvc-2fe630gurkl37k5gfuy33****:2100000000
+ * $ pulumi import volcengine:privatelink/vpcEndpointServicePermission:VpcEndpointServicePermission default epsvc-2fe630gurkl37k5gfuy33****:2100000000
  * ```
  */
 export class VpcEndpointServicePermission extends pulumi.CustomResource {

@@ -328,7 +328,7 @@ class DnatEntry(pulumi.CustomResource):
         Dnat entry can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:nat/dnatEntry:DnatEntry default dnat-3fvhk47kf56****
+        $ pulumi import volcengine:nat/dnatEntry:DnatEntry default dnat-3fvhk47kf56****
         ```
 
         :param str resource_name: The name of the resource.
@@ -401,7 +401,7 @@ class DnatEntry(pulumi.CustomResource):
         Dnat entry can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:nat/dnatEntry:DnatEntry default dnat-3fvhk47kf56****
+        $ pulumi import volcengine:nat/dnatEntry:DnatEntry default dnat-3fvhk47kf56****
         ```
 
         :param str resource_name: The name of the resource.

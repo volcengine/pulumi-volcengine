@@ -104,9 +104,7 @@ import (
 // CenServiceRouteEntry can be imported using the CenId:DestinationCidrBlock:ServiceRegionId:ServiceVpcId, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:cen/serviceRouteEntry:ServiceRouteEntry default cen-2nim00ybaylts7trquyzt****:100.XX.XX.0/24:cn-beijing:vpc-3rlkeggyn6tc010exd32q****
-//
+// $ pulumi import volcengine:cen/serviceRouteEntry:ServiceRouteEntry default cen-2nim00ybaylts7trquyzt****:100.XX.XX.0/24:cn-beijing:vpc-3rlkeggyn6tc010exd32q****
 // ```
 type ServiceRouteEntry struct {
 	pulumi.CustomResourceState

@@ -132,7 +132,7 @@ class Endpoint(pulumi.CustomResource):
         CR endpoints can be imported using the endpoint:registryName, e.g.
 
         ```sh
-         $ pulumi import volcengine:cr/endpoint:Endpoint default endpoint:cr-basic
+        $ pulumi import volcengine:cr/endpoint:Endpoint default endpoint:cr-basic
         ```
 
         :param str resource_name: The name of the resource.
@@ -164,7 +164,7 @@ class Endpoint(pulumi.CustomResource):
         CR endpoints can be imported using the endpoint:registryName, e.g.
 
         ```sh
-         $ pulumi import volcengine:cr/endpoint:Endpoint default endpoint:cr-basic
+        $ pulumi import volcengine:cr/endpoint:Endpoint default endpoint:cr-basic
         ```
 
         :param str resource_name: The name of the resource.

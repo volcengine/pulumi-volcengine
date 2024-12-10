@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Redis
     {
         /// <summary>
         /// Use this data source to query detailed information of redis backups
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -78,17 +76,13 @@ namespace Pulumi.Volcengine.Redis
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<BackupsResult> InvokeAsync(BackupsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<BackupsResult>("volcengine:redis/backups:Backups", args ?? new BackupsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of redis backups
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -151,8 +145,6 @@ namespace Pulumi.Volcengine.Redis
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<BackupsResult> Invoke(BackupsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<BackupsResult>("volcengine:redis/backups:Backups", args ?? new BackupsInvokeArgs(), options.WithDefaults());

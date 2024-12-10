@@ -101,9 +101,7 @@ import (
 // SecurityGroupRule can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:vpc/securityGroupRule:SecurityGroupRule default ID is a string concatenated with colons(SecurityGroupId:Protocol:PortStart:PortEnd:CidrIp:SourceGroupId:Direction:Policy:Priority)
-//
+// $ pulumi import volcengine:vpc/securityGroupRule:SecurityGroupRule default ID is a string concatenated with colons(SecurityGroupId:Protocol:PortStart:PortEnd:CidrIp:SourceGroupId:Direction:Policy:Priority)
 // ```
 type SecurityGroupRule struct {
 	pulumi.CustomResourceState
@@ -114,13 +112,13 @@ type SecurityGroupRule struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Direction of rule, ingress (inbound) or egress (outbound).
 	Direction pulumi.StringOutput `pulumi:"direction"`
-	// Access strategy.
+	// Access strategy. Valid values: `accept`, `drop`. Default is `accept`.
 	Policy pulumi.StringPtrOutput `pulumi:"policy"`
-	// Port end of egress/ingress Rule.
+	// Port end of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
 	PortEnd pulumi.IntOutput `pulumi:"portEnd"`
-	// Port start of egress/ingress Rule.
+	// Port start of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
 	PortStart pulumi.IntOutput `pulumi:"portStart"`
-	// Priority of a security group rule.
+	// Priority of a security group rule. Valid value range: 1~100. Default is 1.
 	Priority pulumi.IntPtrOutput `pulumi:"priority"`
 	// Protocol of the SecurityGroup, the value can be `tcp` or `udp` or `icmp` or `all` or `icmpv6`.
 	Protocol pulumi.StringOutput `pulumi:"protocol"`
@@ -183,13 +181,13 @@ type securityGroupRuleState struct {
 	Description *string `pulumi:"description"`
 	// Direction of rule, ingress (inbound) or egress (outbound).
 	Direction *string `pulumi:"direction"`
-	// Access strategy.
+	// Access strategy. Valid values: `accept`, `drop`. Default is `accept`.
 	Policy *string `pulumi:"policy"`
-	// Port end of egress/ingress Rule.
+	// Port end of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
 	PortEnd *int `pulumi:"portEnd"`
-	// Port start of egress/ingress Rule.
+	// Port start of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
 	PortStart *int `pulumi:"portStart"`
-	// Priority of a security group rule.
+	// Priority of a security group rule. Valid value range: 1~100. Default is 1.
 	Priority *int `pulumi:"priority"`
 	// Protocol of the SecurityGroup, the value can be `tcp` or `udp` or `icmp` or `all` or `icmpv6`.
 	Protocol *string `pulumi:"protocol"`
@@ -208,13 +206,13 @@ type SecurityGroupRuleState struct {
 	Description pulumi.StringPtrInput
 	// Direction of rule, ingress (inbound) or egress (outbound).
 	Direction pulumi.StringPtrInput
-	// Access strategy.
+	// Access strategy. Valid values: `accept`, `drop`. Default is `accept`.
 	Policy pulumi.StringPtrInput
-	// Port end of egress/ingress Rule.
+	// Port end of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
 	PortEnd pulumi.IntPtrInput
-	// Port start of egress/ingress Rule.
+	// Port start of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
 	PortStart pulumi.IntPtrInput
-	// Priority of a security group rule.
+	// Priority of a security group rule. Valid value range: 1~100. Default is 1.
 	Priority pulumi.IntPtrInput
 	// Protocol of the SecurityGroup, the value can be `tcp` or `udp` or `icmp` or `all` or `icmpv6`.
 	Protocol pulumi.StringPtrInput
@@ -237,13 +235,13 @@ type securityGroupRuleArgs struct {
 	Description *string `pulumi:"description"`
 	// Direction of rule, ingress (inbound) or egress (outbound).
 	Direction string `pulumi:"direction"`
-	// Access strategy.
+	// Access strategy. Valid values: `accept`, `drop`. Default is `accept`.
 	Policy *string `pulumi:"policy"`
-	// Port end of egress/ingress Rule.
+	// Port end of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
 	PortEnd int `pulumi:"portEnd"`
-	// Port start of egress/ingress Rule.
+	// Port start of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
 	PortStart int `pulumi:"portStart"`
-	// Priority of a security group rule.
+	// Priority of a security group rule. Valid value range: 1~100. Default is 1.
 	Priority *int `pulumi:"priority"`
 	// Protocol of the SecurityGroup, the value can be `tcp` or `udp` or `icmp` or `all` or `icmpv6`.
 	Protocol string `pulumi:"protocol"`
@@ -261,13 +259,13 @@ type SecurityGroupRuleArgs struct {
 	Description pulumi.StringPtrInput
 	// Direction of rule, ingress (inbound) or egress (outbound).
 	Direction pulumi.StringInput
-	// Access strategy.
+	// Access strategy. Valid values: `accept`, `drop`. Default is `accept`.
 	Policy pulumi.StringPtrInput
-	// Port end of egress/ingress Rule.
+	// Port end of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
 	PortEnd pulumi.IntInput
-	// Port start of egress/ingress Rule.
+	// Port start of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
 	PortStart pulumi.IntInput
-	// Priority of a security group rule.
+	// Priority of a security group rule. Valid value range: 1~100. Default is 1.
 	Priority pulumi.IntPtrInput
 	// Protocol of the SecurityGroup, the value can be `tcp` or `udp` or `icmp` or `all` or `icmpv6`.
 	Protocol pulumi.StringInput
@@ -379,22 +377,22 @@ func (o SecurityGroupRuleOutput) Direction() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecurityGroupRule) pulumi.StringOutput { return v.Direction }).(pulumi.StringOutput)
 }
 
-// Access strategy.
+// Access strategy. Valid values: `accept`, `drop`. Default is `accept`.
 func (o SecurityGroupRuleOutput) Policy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecurityGroupRule) pulumi.StringPtrOutput { return v.Policy }).(pulumi.StringPtrOutput)
 }
 
-// Port end of egress/ingress Rule.
+// Port end of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
 func (o SecurityGroupRuleOutput) PortEnd() pulumi.IntOutput {
 	return o.ApplyT(func(v *SecurityGroupRule) pulumi.IntOutput { return v.PortEnd }).(pulumi.IntOutput)
 }
 
-// Port start of egress/ingress Rule.
+// Port start of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
 func (o SecurityGroupRuleOutput) PortStart() pulumi.IntOutput {
 	return o.ApplyT(func(v *SecurityGroupRule) pulumi.IntOutput { return v.PortStart }).(pulumi.IntOutput)
 }
 
-// Priority of a security group rule.
+// Priority of a security group rule. Valid value range: 1~100. Default is 1.
 func (o SecurityGroupRuleOutput) Priority() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecurityGroupRule) pulumi.IntPtrOutput { return v.Priority }).(pulumi.IntPtrOutput)
 }

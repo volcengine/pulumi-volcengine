@@ -112,7 +112,7 @@ namespace Pulumi.Volcengine.Privatelink
     /// PrivateLink Security Group Service can be imported using the endpoint id and security group id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:privatelink/securityGroup:SecurityGroup default ep-2fe630gurkl37k5gfuy33****:sg-xxxxx
+    /// $ pulumi import volcengine:privatelink/securityGroup:SecurityGroup default ep-2fe630gurkl37k5gfuy33****:sg-xxxxx
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:privatelink/securityGroup:SecurityGroup")]

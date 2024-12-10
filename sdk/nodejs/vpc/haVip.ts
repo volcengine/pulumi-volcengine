@@ -43,7 +43,7 @@ import * as utilities from "../utilities";
  * HaVip can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:vpc/haVip:HaVip default havip-2byzv8icq1b7k2dx0eegb****
+ * $ pulumi import volcengine:vpc/haVip:HaVip default havip-2byzv8icq1b7k2dx0eegb****
  * ```
  */
 export class HaVip extends pulumi.CustomResource {

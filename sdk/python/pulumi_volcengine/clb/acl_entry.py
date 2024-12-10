@@ -152,7 +152,7 @@ class AclEntry(pulumi.CustomResource):
         AclEntry can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:clb/aclEntry:AclEntry default ID is a string concatenated with colons(AclId:Entry)
+        $ pulumi import volcengine:clb/aclEntry:AclEntry default ID is a string concatenated with colons(AclId:Entry)
         ```
 
         :param str resource_name: The name of the resource.
@@ -189,7 +189,7 @@ class AclEntry(pulumi.CustomResource):
         AclEntry can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:clb/aclEntry:AclEntry default ID is a string concatenated with colons(AclId:Entry)
+        $ pulumi import volcengine:clb/aclEntry:AclEntry default ID is a string concatenated with colons(AclId:Entry)
         ```
 
         :param str resource_name: The name of the resource.

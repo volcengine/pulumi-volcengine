@@ -23,7 +23,7 @@ import * as utilities from "../utilities";
  * CloudMonitor Contact can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:cloud_monitor/contact:Contact default 145258255725730****
+ * $ pulumi import volcengine:cloud_monitor/contact:Contact default 145258255725730****
  * ```
  */
 export class Contact extends pulumi.CustomResource {

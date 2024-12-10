@@ -51,9 +51,7 @@ import (
 // Redis AllowList can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:redis/allowList:AllowList default acl-cn03wk541s55c376xxxx
-//
+// $ pulumi import volcengine:redis/allowList:AllowList default acl-cn03wk541s55c376xxxx
 // ```
 type AllowList struct {
 	pulumi.CustomResourceState

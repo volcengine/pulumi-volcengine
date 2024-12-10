@@ -213,7 +213,7 @@ class Policy(pulumi.CustomResource):
         Iam policy can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:iam/policy:Policy default TerraformTestPolicy
+        $ pulumi import volcengine:iam/policy:Policy default TerraformTestPolicy
         ```
 
         :param str resource_name: The name of the resource.
@@ -247,7 +247,7 @@ class Policy(pulumi.CustomResource):
         Iam policy can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:iam/policy:Policy default TerraformTestPolicy
+        $ pulumi import volcengine:iam/policy:Policy default TerraformTestPolicy
         ```
 
         :param str resource_name: The name of the resource.

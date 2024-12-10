@@ -45,7 +45,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -185,6 +185,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// add existing instances to a custom node pool
 //			var fooInstance []*ecs.Instance
 //			for index := 0; index < 2; index++ {
 //				key0 := index
@@ -308,9 +309,7 @@ import (
 // NodePool can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:vke/nodePool:NodePool default pcabe57vqtofgrbln3dp0
-//
+// $ pulumi import volcengine:vke/nodePool:NodePool default pcabe57vqtofgrbln3dp0
 // ```
 type NodePool struct {
 	pulumi.CustomResourceState

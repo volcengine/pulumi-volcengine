@@ -43,7 +43,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -114,9 +114,7 @@ import (
 // VkeKubeconfig can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:vke/kubeconfig:Kubeconfig default kce8simvqtofl0l6u4qd0
-//
+// $ pulumi import volcengine:vke/kubeconfig:Kubeconfig default kce8simvqtofl0l6u4qd0
 // ```
 type Kubeconfig struct {
 	pulumi.CustomResourceState

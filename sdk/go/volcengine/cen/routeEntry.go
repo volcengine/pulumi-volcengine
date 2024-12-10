@@ -13,15 +13,12 @@ import (
 )
 
 // Provides a resource to manage cen route entry
-//
 // ## Import
 //
 // CenRouteEntry can be imported using the CenId:DestinationCidrBlock:InstanceId:InstanceType:InstanceRegionId, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:cen/routeEntry:RouteEntry default cen-2nim00ybaylts7trquyzt****:100.XX.XX.0/24:vpc-vtbnbb04qw3k2hgi12cv****:VPC:cn-beijing
-//
+// $ pulumi import volcengine:cen/routeEntry:RouteEntry default cen-2nim00ybaylts7trquyzt****:100.XX.XX.0/24:vpc-vtbnbb04qw3k2hgi12cv****:VPC:cn-beijing
 // ```
 type RouteEntry struct {
 	pulumi.CustomResourceState

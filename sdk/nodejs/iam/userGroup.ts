@@ -24,7 +24,7 @@ import * as utilities from "../utilities";
  * IamUserGroup can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:iam/userGroup:UserGroup default user_group_name
+ * $ pulumi import volcengine:iam/userGroup:UserGroup default user_group_name
  * ```
  */
 export class UserGroup extends pulumi.CustomResource {

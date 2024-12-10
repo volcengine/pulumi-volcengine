@@ -50,7 +50,7 @@ namespace Pulumi.Volcengine.Bandwidth_package
     /// BandwidthPackage can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:bandwidth_package/bandwidthPackage:BandwidthPackage default bwp-2zeo05qre24nhrqpy****
+    /// $ pulumi import volcengine:bandwidth_package/bandwidthPackage:BandwidthPackage default bwp-2zeo05qre24nhrqpy****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:bandwidth_package/bandwidthPackage:BandwidthPackage")]

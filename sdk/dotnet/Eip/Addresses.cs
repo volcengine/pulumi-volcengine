@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Eip
     {
         /// <summary>
         /// Use this data source to query detailed information of eip addresses
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -40,17 +38,13 @@ namespace Pulumi.Volcengine.Eip
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<AddressesResult> InvokeAsync(AddressesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<AddressesResult>("volcengine:eip/addresses:Addresses", args ?? new AddressesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of eip addresses
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -75,8 +69,6 @@ namespace Pulumi.Volcengine.Eip
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<AddressesResult> Invoke(AddressesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<AddressesResult>("volcengine:eip/addresses:Addresses", args ?? new AddressesInvokeArgs(), options.WithDefaults());

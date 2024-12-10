@@ -179,7 +179,7 @@ class PermissionGroup(pulumi.CustomResource):
         Nas Permission Group can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:nas/permissionGroup:PermissionGroup default pgroup-1f85db2c****
+        $ pulumi import volcengine:nas/permissionGroup:PermissionGroup default pgroup-1f85db2c****
         ```
 
         :param str resource_name: The name of the resource.
@@ -224,7 +224,7 @@ class PermissionGroup(pulumi.CustomResource):
         Nas Permission Group can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:nas/permissionGroup:PermissionGroup default pgroup-1f85db2c****
+        $ pulumi import volcengine:nas/permissionGroup:PermissionGroup default pgroup-1f85db2c****
         ```
 
         :param str resource_name: The name of the resource.

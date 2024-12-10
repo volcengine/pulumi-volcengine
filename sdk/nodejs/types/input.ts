@@ -6,9 +6,21 @@ import * as inputs from "../types/input";
 import * as outputs from "../types/output";
 
 export interface ProviderAssumeRole {
+    /**
+     * The session name to use when making the AssumeRole call.
+     */
     assumeRoleSessionName: pulumi.Input<string>;
+    /**
+     * The TRN of the role to assume.
+     */
     assumeRoleTrn: pulumi.Input<string>;
+    /**
+     * The duration of the session when making the AssumeRole call. Its value ranges from 900 to 43200(seconds), and default is 3600 seconds.
+     */
     durationSeconds: pulumi.Input<number>;
+    /**
+     * A more restrictive policy when making the AssumeRole call.
+     */
     policy?: pulumi.Input<string>;
 }
 export namespace alb {
@@ -25,7 +37,7 @@ export namespace alb {
 
     export interface AlbEipBillingConfig {
         /**
-         * The peek bandwidth of the Ipv6 EIP which automatically assigned to the Alb. Unit: Mbps.
+         * The peek bandwidth of the EIP which automatically assigned to the Alb. Unit: Mbps.
          */
         bandwidth: pulumi.Input<number>;
         /**
@@ -33,14 +45,14 @@ export namespace alb {
          */
         eipBillingType: pulumi.Input<string>;
         /**
-         * The ISP of the Ipv6 EIP which automatically associated to the Alb, the value can be `BGP`.
+         * The ISP of the EIP which automatically associated to the Alb, the value can be `BGP`.
          */
         isp: pulumi.Input<string>;
     }
 
     export interface AlbIpv6EipBillingConfig {
         /**
-         * The peek bandwidth of the EIP which automatically assigned to the Alb. Unit: Mbps.
+         * The peek bandwidth of the Ipv6 EIP which automatically assigned to the Alb. Unit: Mbps.
          */
         bandwidth: pulumi.Input<number>;
         /**
@@ -48,9 +60,7 @@ export namespace alb {
          */
         billingType: pulumi.Input<string>;
         /**
-         * The ISP of the EIP which automatically associated to the Alb, the value can be `BGP`.
-         *
-         * The `ipv6EipBillingConfig` object supports the following:
+         * The ISP of the Ipv6 EIP which automatically associated to the Alb, the value can be `BGP`.
          */
         isp: pulumi.Input<string>;
     }
@@ -259,6 +269,9 @@ export namespace autoscaling {
     }
 
     export interface ScalingGroupServerGroupAttribute {
+        /**
+         * The load balancer id.
+         */
         loadBalancerId?: pulumi.Input<string>;
         /**
          * The port receiving request of the server group. Value range: 1 ~ 65535.
@@ -820,6 +833,9 @@ export namespace cloud_monitor {
          * The metric unit of the cloud monitor rule.
          */
         metricUnit: pulumi.Input<string>;
+        /**
+         * The period of the cloud monitor rule.
+         */
         period?: pulumi.Input<string>;
         /**
          * The statistics of the cloud monitor rule. Valid values: `avg`, `max`, `min`.
@@ -1067,6 +1083,83 @@ export namespace direct_connect {
 }
 
 export namespace ebs {
+    export interface AutoSnapshotPoliciesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface AutoSnapshotPoliciesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface AutoSnapshotPolicyTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface SnapshotGroupTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface SnapshotTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface SnapshotsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface SnapshotsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface VolumeTag {
         /**
          * The Key of Tags.
@@ -1103,6 +1196,50 @@ export namespace ebs {
 }
 
 export namespace ecs {
+    export interface ImageImportTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface ImageTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface ImagesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface ImagesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
     export interface InstanceCpuOptions {
         /**
          * The number of subnuma in socket, only support for ebm. `1` indicates disabling SNC/NPS function. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
@@ -1150,7 +1287,7 @@ export namespace ecs {
 
     export interface InstanceSecondaryNetworkInterface {
         /**
-         * The private ip address of primary networkInterface.
+         * The private ip address of secondary networkInterface.
          */
         primaryIpAddress?: pulumi.Input<string>;
         /**
@@ -1787,14 +1924,29 @@ export namespace rds_mssql {
          * Whether to enable automatic renewal in the prepaid scenario. This parameter can be set when the ChargeType is `Prepaid`.
          */
         autoRenew?: pulumi.Input<boolean>;
+        /**
+         * Charge end time.
+         */
         chargeEndTime?: pulumi.Input<string>;
+        /**
+         * Charge start time.
+         */
         chargeStartTime?: pulumi.Input<string>;
+        /**
+         * The charge status.
+         */
         chargeStatus?: pulumi.Input<string>;
         /**
          * The charge type. Valid values: `PostPaid`, `PrePaid`.
          */
         chargeType: pulumi.Input<string>;
+        /**
+         * Expected release time when overdue fees are shut down.
+         */
         overdueReclaimTime?: pulumi.Input<string>;
+        /**
+         * Time for Disconnection due to Unpaid Fees.
+         */
         overdueTime?: pulumi.Input<string>;
         /**
          * Purchase duration in a prepaid scenario. This parameter is required when the ChargeType is `Prepaid`.
@@ -1856,6 +2008,8 @@ export namespace rds_mysql {
     export interface InstanceChargeDetail {
         /**
          * Whether to automatically renew in prepaid scenarios.
+         * Autorenew_Enable
+         * Autorenew_Disable (default).
          */
         autoRenew?: pulumi.Input<boolean>;
         /**
@@ -1904,11 +2058,6 @@ export namespace rds_mysql {
          * Whether to automatically renew in prepaid scenarios.
          */
         autoRenew?: pulumi.Input<boolean>;
-        /**
-         * Payment type. Value:
-         * PostPaid - Pay-As-You-Go
-         * PrePaid - Yearly and monthly (default).
-         */
         chargeType: pulumi.Input<string>;
         /**
          * Purchase duration in prepaid scenarios. Default: 1.
@@ -2152,6 +2301,8 @@ export namespace rds_postgresql {
     export interface InstanceChargeDetail {
         /**
          * Whether to automatically renew in prepaid scenarios.
+         * Autorenew_Enable
+         * Autorenew_Disable (default).
          */
         autoRenew?: pulumi.Input<boolean>;
         /**
@@ -2208,11 +2359,6 @@ export namespace rds_postgresql {
          * Whether to automatically renew in prepaid scenarios.
          */
         autoRenew?: pulumi.Input<boolean>;
-        /**
-         * Payment type. Value:
-         * PostPaid - Pay-As-You-Go
-         * PrePaid - Yearly and monthly (default).
-         */
         chargeType: pulumi.Input<string>;
         /**
          * Purchase duration in prepaid scenarios. Default: 1.
@@ -2526,7 +2672,7 @@ export namespace rds_v2 {
          */
         nodeId?: pulumi.Input<string>;
         /**
-         * Node type, the value is "Primary", "Secondary", "ReadOnly".
+         * The type of the node.
          */
         nodeType?: pulumi.Input<string>;
         /**
@@ -2661,6 +2807,14 @@ export namespace redis {
          * Name of vpc.
          */
         name?: pulumi.Input<string>;
+    }
+
+    export interface InstanceConfigureNode {
+        /**
+         * Set the availability zone to which the node belongs. The number of nodes of an instance (i.e., NodeNumber) and the availability zone deployment scheme (i.e., the value of the MultiAZ parameter) will affect the filling of the current parameter. Among them:
+         * When a new instance is a single-node instance (i.e., the value of NodeNumber is 1), only a single availability zone deployment scheme is allowed (i.e., the value of MultiAZ must be disabled). At this time, only one availability zone needs to be passed in AZ, and all nodes in the instance will be deployed in this availability zone. When creating a new instance as a primary-standby instance (that is, when the value of NodeNumber is greater than or equal to 2), the number of availability zones passed in must be equal to the number of nodes in a single shard (that is, the value of the NodeNumber parameter), and the value of AZ must comply with the multi-availability zone deployment scheme rules. The specific rules are as follows: If the primary-standby instance selects the multi-availability zone deployment scheme (that is, the value of MultiAZ is enabled), then at least two different availability zone IDs must be passed in in AZ, and the first availability zone is the availability zone where the primary node is located. If the primary and standby instances choose a single availability zone deployment scheme (that is, the value of MultiAZ is disabled), then the availability zones passed in for each node must be the same.
+         */
+        az: pulumi.Input<string>;
     }
 
     export interface InstanceParamValue {
@@ -3546,6 +3700,77 @@ export namespace transit_router {
     }
 }
 
+export namespace vedb_mysql {
+    export interface AccountAccountPrivilege {
+        /**
+         * Authorization database privilege types: 
+         * ReadWrite: Read and write privilege.
+         * ReadOnly: Read-only privilege.
+         * DDLOnly: Only DDL privilege.
+         * DMLOnly: Only DML privilege.
+         * Custom: Custom privilege.
+         */
+        accountPrivilege: pulumi.Input<string>;
+        /**
+         * The specific SQL operation permissions contained in the permission type are separated by English commas (,) between multiple strings.
+         * When used as a request parameter in the CreateDatabase interface, when the AccountPrivilege value is Custom, this parameter is required. Value range (multiple selections allowed): SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, REFERENCES, INDEX, ALTER, CREATE TEMPORARY TABLES, LOCK TABLES, EXECUTE, CREATE VIEW, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, EVENT, TRIGGER. When used as a return parameter in the DescribeDatabases interface, regardless of the value of AccountPrivilege, the details of the SQL operation permissions contained in this permission type are returned. For the specific SQL operation permissions contained in each permission type, please refer to the account permission list.
+         */
+        accountPrivilegeDetail?: pulumi.Input<string>;
+        /**
+         * Database name requiring authorization.
+         */
+        dbName: pulumi.Input<string>;
+    }
+
+    export interface BackupBackupPolicy {
+        /**
+         * Data backup retention period, value: 7 to 30 days.
+         */
+        backupRetentionPeriod: pulumi.Input<number>;
+        /**
+         * The time for executing the backup task has an interval window of 2 hours and must be an even-hour time. Format: HH:mmZ-HH:mmZ (UTC time).
+         */
+        backupTime: pulumi.Input<string>;
+        /**
+         * Full backup period. It is recommended to select at least 2 days per week for full backup. Multiple values are separated by English commas (,). Values: Monday: Monday. Tuesday: Tuesday. Wednesday: Wednesday. Thursday: Thursday. Friday: Friday. Saturday: Saturday. Sunday: Sunday.
+         */
+        fullBackupPeriod: pulumi.Input<string>;
+    }
+
+    export interface InstanceTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface InstancesTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface InstancesTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+}
+
 export namespace veenedge {
     export interface CloudServerBillingConfig {
         /**
@@ -3718,6 +3943,9 @@ export namespace vke {
          * Cluster API Server public network access configuration, the value is `true` or `false`.
          */
         apiServerPublicAccessEnabled?: pulumi.Input<boolean>;
+        /**
+         * [SkipDoc]The IpFamily configuration,the value is `Ipv4` or `DualStack`.
+         */
         ipFamily?: pulumi.Input<string>;
         /**
          * Node public network access configuration, the value is `true` or `false`.
@@ -3903,6 +4131,9 @@ export namespace vke {
          * The flag of keep instance name, the value is `true` or `false`.Default is `false`.
          */
         keepInstanceName?: pulumi.Input<boolean>;
+        /**
+         * The status phase to the Node.
+         */
         phase?: pulumi.Input<string>;
     }
 
@@ -3968,11 +4199,11 @@ export namespace vke {
 
     export interface DefaultNodePoolBatchAttachNodeConfigEcsTag {
         /**
-         * The Key of Labels.
+         * The Key of Tags.
          */
         key?: pulumi.Input<string>;
         /**
-         * The Value of Labels.
+         * The Value of Tags.
          */
         value?: pulumi.Input<string>;
     }
@@ -4005,11 +4236,11 @@ export namespace vke {
 
     export interface DefaultNodePoolBatchAttachTag {
         /**
-         * The Key of Labels.
+         * The Key of Tags.
          */
         key?: pulumi.Input<string>;
         /**
-         * The Value of Labels.
+         * The Value of Tags.
          */
         value?: pulumi.Input<string>;
     }
@@ -4039,6 +4270,9 @@ export namespace vke {
          * The flag of keep instance name, the value is `true` or `false`.Default is `false`.
          */
         keepInstanceName?: pulumi.Input<boolean>;
+        /**
+         * The status phase to the Node.
+         */
         phase?: pulumi.Input<string>;
     }
 
@@ -4527,6 +4761,9 @@ export namespace vpc {
          * The DestinationCidrIp of entry.
          */
         destinationCidrIp?: pulumi.Input<string>;
+        /**
+         * The id of entry.
+         */
         networkAclEntryId?: pulumi.Input<string>;
         /**
          * The name of entry.
@@ -4540,6 +4777,9 @@ export namespace vpc {
          * The port of entry. Default is `-1/-1`. When Protocol is `all`, `icmp` or `gre`, the port range is `-1/-1`, which means no port restriction.When the Protocol is `tcp` or `udp`, the port range is `1~65535`, and the format is `1/200`, `80/80`,which means port 1 to port 200, port 80.
          */
         port?: pulumi.Input<string>;
+        /**
+         * The priority of entry.
+         */
         priority?: pulumi.Input<number>;
         /**
          * The protocol of entry. The value can be `icmp` or `gre` or `tcp` or `udp` or `all`. Default is `all`.
@@ -4552,6 +4792,9 @@ export namespace vpc {
          * The description of entry.
          */
         description?: pulumi.Input<string>;
+        /**
+         * The id of entry.
+         */
         networkAclEntryId?: pulumi.Input<string>;
         /**
          * The name of entry.
@@ -4565,6 +4808,9 @@ export namespace vpc {
          * The port of entry. Default is `-1/-1`. When Protocol is `all`, `icmp` or `gre`, the port range is `-1/-1`, which means no port restriction. When the Protocol is `tcp` or `udp`, the port range is `1~65535`, and the format is `1/200`, `80/80`, which means port 1 to port 200, port 80.
          */
         port?: pulumi.Input<string>;
+        /**
+         * The priority of entry.
+         */
         priority?: pulumi.Input<number>;
         /**
          * The protocol of entry, default is `all`. The value can be `icmp` or `gre` or `tcp` or `udp` or `all`.
@@ -4574,6 +4820,39 @@ export namespace vpc {
          * The SourceCidrIp of entry.
          */
         sourceCidrIp?: pulumi.Input<string>;
+    }
+
+    export interface NetworkAclTag {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface NetworkAclsTag {
+        /**
+         * The Key of Tags.
+         */
+        key: string;
+        /**
+         * The Value of Tags.
+         */
+        value: string;
+    }
+
+    export interface NetworkAclsTagArgs {
+        /**
+         * The Key of Tags.
+         */
+        key: pulumi.Input<string>;
+        /**
+         * The Value of Tags.
+         */
+        value: pulumi.Input<string>;
     }
 
     export interface NetworkInterfaceTag {

@@ -25,7 +25,7 @@ import * as utilities from "../utilities";
  * CR Repository can be imported using the registry:namespace:name, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:cr/repository:Repository default cr-basic:namespace-1:repo-1
+ * $ pulumi import volcengine:cr/repository:Repository default cr-basic:namespace-1:repo-1
  * ```
  */
 export class Repository extends pulumi.CustomResource {

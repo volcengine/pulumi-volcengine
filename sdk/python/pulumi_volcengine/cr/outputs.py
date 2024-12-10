@@ -272,7 +272,7 @@ class RegistriesRegistryStatusResult(dict):
                  phase: str):
         """
         :param Sequence[str] conditions: The condition of registry.
-        :param str phase: The phase of status.
+        :param str phase: The phase status of registry.
         """
         pulumi.set(__self__, "conditions", conditions)
         pulumi.set(__self__, "phase", phase)
@@ -289,7 +289,7 @@ class RegistriesRegistryStatusResult(dict):
     @pulumi.getter
     def phase(self) -> str:
         """
-        The phase of status.
+        The phase status of registry.
         """
         return pulumi.get(self, "phase")
 

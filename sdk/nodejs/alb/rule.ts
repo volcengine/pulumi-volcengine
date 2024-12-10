@@ -41,7 +41,7 @@ import * as utilities from "../utilities";
  * AlbRule can be imported using the listener id and rule id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:alb/rule:Rule default lsn-273yv0mhs5xj47fap8sehiiso:rule-****
+ * $ pulumi import volcengine:alb/rule:Rule default lsn-273yv0mhs5xj47fap8sehiiso:rule-****
  * ```
  */
 export class Rule extends pulumi.CustomResource {

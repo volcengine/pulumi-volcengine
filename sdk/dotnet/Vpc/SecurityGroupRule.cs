@@ -87,7 +87,7 @@ namespace Pulumi.Volcengine.Vpc
     /// SecurityGroupRule can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:vpc/securityGroupRule:SecurityGroupRule default ID is a string concatenated with colons(SecurityGroupId:Protocol:PortStart:PortEnd:CidrIp:SourceGroupId:Direction:Policy:Priority)
+    /// $ pulumi import volcengine:vpc/securityGroupRule:SecurityGroupRule default ID is a string concatenated with colons(SecurityGroupId:Protocol:PortStart:PortEnd:CidrIp:SourceGroupId:Direction:Policy:Priority)
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vpc/securityGroupRule:SecurityGroupRule")]
@@ -112,25 +112,25 @@ namespace Pulumi.Volcengine.Vpc
         public Output<string> Direction { get; private set; } = null!;
 
         /// <summary>
-        /// Access strategy.
+        /// Access strategy. Valid values: `accept`, `drop`. Default is `accept`.
         /// </summary>
         [Output("policy")]
         public Output<string?> Policy { get; private set; } = null!;
 
         /// <summary>
-        /// Port end of egress/ingress Rule.
+        /// Port end of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
         /// </summary>
         [Output("portEnd")]
         public Output<int> PortEnd { get; private set; } = null!;
 
         /// <summary>
-        /// Port start of egress/ingress Rule.
+        /// Port start of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
         /// </summary>
         [Output("portStart")]
         public Output<int> PortStart { get; private set; } = null!;
 
         /// <summary>
-        /// Priority of a security group rule.
+        /// Priority of a security group rule. Valid value range: 1~100. Default is 1.
         /// </summary>
         [Output("priority")]
         public Output<int?> Priority { get; private set; } = null!;
@@ -225,25 +225,25 @@ namespace Pulumi.Volcengine.Vpc
         public Input<string> Direction { get; set; } = null!;
 
         /// <summary>
-        /// Access strategy.
+        /// Access strategy. Valid values: `accept`, `drop`. Default is `accept`.
         /// </summary>
         [Input("policy")]
         public Input<string>? Policy { get; set; }
 
         /// <summary>
-        /// Port end of egress/ingress Rule.
+        /// Port end of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
         /// </summary>
         [Input("portEnd", required: true)]
         public Input<int> PortEnd { get; set; } = null!;
 
         /// <summary>
-        /// Port start of egress/ingress Rule.
+        /// Port start of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
         /// </summary>
         [Input("portStart", required: true)]
         public Input<int> PortStart { get; set; } = null!;
 
         /// <summary>
-        /// Priority of a security group rule.
+        /// Priority of a security group rule. Valid value range: 1~100. Default is 1.
         /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
@@ -293,25 +293,25 @@ namespace Pulumi.Volcengine.Vpc
         public Input<string>? Direction { get; set; }
 
         /// <summary>
-        /// Access strategy.
+        /// Access strategy. Valid values: `accept`, `drop`. Default is `accept`.
         /// </summary>
         [Input("policy")]
         public Input<string>? Policy { get; set; }
 
         /// <summary>
-        /// Port end of egress/ingress Rule.
+        /// Port end of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
         /// </summary>
         [Input("portEnd")]
         public Input<int>? PortEnd { get; set; }
 
         /// <summary>
-        /// Port start of egress/ingress Rule.
+        /// Port start of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
         /// </summary>
         [Input("portStart")]
         public Input<int>? PortStart { get; set; }
 
         /// <summary>
-        /// Priority of a security group rule.
+        /// Priority of a security group rule. Valid value range: 1~100. Default is 1.
         /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }

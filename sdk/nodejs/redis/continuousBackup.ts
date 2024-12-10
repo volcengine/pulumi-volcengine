@@ -48,7 +48,7 @@ import * as utilities from "../utilities";
  * Redis Continuous Backup can be imported using the continuous:instanceId, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:redis/continuousBackup:ContinuousBackup default continuous:redis-asdljioeixxxx
+ * $ pulumi import volcengine:redis/continuousBackup:ContinuousBackup default continuous:redis-asdljioeixxxx
  * ```
  */
 export class ContinuousBackup extends pulumi.CustomResource {

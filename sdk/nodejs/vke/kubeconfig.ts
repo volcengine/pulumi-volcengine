@@ -68,7 +68,7 @@ import * as utilities from "../utilities";
  * VkeKubeconfig can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:vke/kubeconfig:Kubeconfig default kce8simvqtofl0l6u4qd0
+ * $ pulumi import volcengine:vke/kubeconfig:Kubeconfig default kce8simvqtofl0l6u4qd0
  * ```
  */
 export class Kubeconfig extends pulumi.CustomResource {

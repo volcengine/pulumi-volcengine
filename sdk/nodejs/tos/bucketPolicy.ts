@@ -31,7 +31,7 @@ import * as utilities from "../utilities";
  * Tos Bucket can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:tos/bucketPolicy:BucketPolicy default bucketName:policy
+ * $ pulumi import volcengine:tos/bucketPolicy:BucketPolicy default bucketName:policy
  * ```
  */
 export class BucketPolicy extends pulumi.CustomResource {

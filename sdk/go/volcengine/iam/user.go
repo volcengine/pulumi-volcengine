@@ -46,9 +46,7 @@ import (
 // Iam user can be imported using the UserName, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:iam/user:User default user_name
-//
+// $ pulumi import volcengine:iam/user:User default user_name
 // ```
 type User struct {
 	pulumi.CustomResourceState

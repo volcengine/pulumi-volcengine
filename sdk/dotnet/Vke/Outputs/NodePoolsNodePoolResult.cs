@@ -126,7 +126,7 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// </summary>
         public readonly int Period;
         /// <summary>
-        /// The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+        /// The Phase of Status.
         /// </summary>
         public readonly string Phase;
         /// <summary>

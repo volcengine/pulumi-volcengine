@@ -18,7 +18,7 @@ class SharedTransitRouterStateArgs:
                  transit_router_id: pulumi.Input[str]):
         """
         The set of arguments for constructing a SharedTransitRouterState resource.
-        :param pulumi.Input[str] action: `Accept` or `Reject` the shared transit router.
+        :param pulumi.Input[str] action: `Accept` or `Reject` the shared transit router. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] transit_router_id: The id of the transit router.
         """
         pulumi.set(__self__, "action", action)
@@ -28,7 +28,7 @@ class SharedTransitRouterStateArgs:
     @pulumi.getter
     def action(self) -> pulumi.Input[str]:
         """
-        `Accept` or `Reject` the shared transit router.
+        `Accept` or `Reject` the shared transit router. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         return pulumi.get(self, "action")
 
@@ -56,7 +56,7 @@ class _SharedTransitRouterStateState:
                  transit_router_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SharedTransitRouterState resources.
-        :param pulumi.Input[str] action: `Accept` or `Reject` the shared transit router.
+        :param pulumi.Input[str] action: `Accept` or `Reject` the shared transit router. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] transit_router_id: The id of the transit router.
         """
         if action is not None:
@@ -68,7 +68,7 @@ class _SharedTransitRouterStateState:
     @pulumi.getter
     def action(self) -> Optional[pulumi.Input[str]]:
         """
-        `Accept` or `Reject` the shared transit router.
+        `Accept` or `Reject` the shared transit router. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         return pulumi.get(self, "action")
 
@@ -105,12 +105,21 @@ class SharedTransitRouterState(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
+        second_account = volcengine.Provider("secondAccount",
+            access_key="access_key_2",
+            secret_key="secret_key_2",
+            region="region_2")
         foo_transit_router = volcengine.transit_router.TransitRouter("fooTransitRouter",
             transit_router_name="acc-test-tr",
             description="acc-test")
+        foo_grant_rule = volcengine.transit_router.GrantRule("fooGrantRule",
+            grant_account_id="2000xxxxx",
+            description="acc-test-tf",
+            transit_router_id=foo_transit_router.id)
         foo_shared_transit_router_state = volcengine.transit_router.SharedTransitRouterState("fooSharedTransitRouterState",
             transit_router_id=foo_transit_router.id,
-            action="Reject")
+            action="Accept",
+            opts=pulumi.ResourceOptions(provider=volcengine["second_account"]))
         ```
 
         ## Import
@@ -118,12 +127,12 @@ class SharedTransitRouterState(pulumi.CustomResource):
         SharedTransitRouterState can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:transit_router/sharedTransitRouterState:SharedTransitRouterState default state:transitRouterId
+        $ pulumi import volcengine:transit_router/sharedTransitRouterState:SharedTransitRouterState default state:transitRouterId
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] action: `Accept` or `Reject` the shared transit router.
+        :param pulumi.Input[str] action: `Accept` or `Reject` the shared transit router. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] transit_router_id: The id of the transit router.
         """
         ...
@@ -140,12 +149,21 @@ class SharedTransitRouterState(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
+        second_account = volcengine.Provider("secondAccount",
+            access_key="access_key_2",
+            secret_key="secret_key_2",
+            region="region_2")
         foo_transit_router = volcengine.transit_router.TransitRouter("fooTransitRouter",
             transit_router_name="acc-test-tr",
             description="acc-test")
+        foo_grant_rule = volcengine.transit_router.GrantRule("fooGrantRule",
+            grant_account_id="2000xxxxx",
+            description="acc-test-tf",
+            transit_router_id=foo_transit_router.id)
         foo_shared_transit_router_state = volcengine.transit_router.SharedTransitRouterState("fooSharedTransitRouterState",
             transit_router_id=foo_transit_router.id,
-            action="Reject")
+            action="Accept",
+            opts=pulumi.ResourceOptions(provider=volcengine["second_account"]))
         ```
 
         ## Import
@@ -153,7 +171,7 @@ class SharedTransitRouterState(pulumi.CustomResource):
         SharedTransitRouterState can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:transit_router/sharedTransitRouterState:SharedTransitRouterState default state:transitRouterId
+        $ pulumi import volcengine:transit_router/sharedTransitRouterState:SharedTransitRouterState default state:transitRouterId
         ```
 
         :param str resource_name: The name of the resource.
@@ -207,7 +225,7 @@ class SharedTransitRouterState(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] action: `Accept` or `Reject` the shared transit router.
+        :param pulumi.Input[str] action: `Accept` or `Reject` the shared transit router. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] transit_router_id: The id of the transit router.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -222,7 +240,7 @@ class SharedTransitRouterState(pulumi.CustomResource):
     @pulumi.getter
     def action(self) -> pulumi.Output[str]:
         """
-        `Accept` or `Reject` the shared transit router.
+        `Accept` or `Reject` the shared transit router. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         """
         return pulumi.get(self, "action")
 

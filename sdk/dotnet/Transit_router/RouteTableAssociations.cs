@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Transit_router
     {
         /// <summary>
         /// Use this data source to query detailed information of transit router route table associations
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -33,17 +31,13 @@ namespace Pulumi.Volcengine.Transit_router
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<RouteTableAssociationsResult> InvokeAsync(RouteTableAssociationsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<RouteTableAssociationsResult>("volcengine:transit_router/routeTableAssociations:RouteTableAssociations", args ?? new RouteTableAssociationsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of transit router route table associations
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -61,8 +55,6 @@ namespace Pulumi.Volcengine.Transit_router
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<RouteTableAssociationsResult> Invoke(RouteTableAssociationsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<RouteTableAssociationsResult>("volcengine:transit_router/routeTableAssociations:RouteTableAssociations", args ?? new RouteTableAssociationsInvokeArgs(), options.WithDefaults());

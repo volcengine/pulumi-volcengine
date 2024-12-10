@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Ecs
     {
         /// <summary>
         /// Use this data source to query detailed information of ecs key pairs
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -38,17 +36,13 @@ namespace Pulumi.Volcengine.Ecs
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<KeyPairsResult> InvokeAsync(KeyPairsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<KeyPairsResult>("volcengine:ecs/keyPairs:KeyPairs", args ?? new KeyPairsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of ecs key pairs
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -71,8 +65,6 @@ namespace Pulumi.Volcengine.Ecs
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<KeyPairsResult> Invoke(KeyPairsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<KeyPairsResult>("volcengine:ecs/keyPairs:KeyPairs", args ?? new KeyPairsInvokeArgs(), options.WithDefaults());

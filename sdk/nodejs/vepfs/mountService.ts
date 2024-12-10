@@ -37,7 +37,7 @@ import * as utilities from "../utilities";
  * VepfsMountService can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:vepfs/mountService:MountService default resource_id
+ * $ pulumi import volcengine:vepfs/mountService:MountService default resource_id
  * ```
  */
 export class MountService extends pulumi.CustomResource {

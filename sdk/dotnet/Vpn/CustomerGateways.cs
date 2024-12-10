@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Vpn
     {
         /// <summary>
         /// Use this data source to query detailed information of customer gateways
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -43,17 +41,13 @@ namespace Pulumi.Volcengine.Vpn
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<CustomerGatewaysResult> InvokeAsync(CustomerGatewaysArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<CustomerGatewaysResult>("volcengine:vpn/customerGateways:CustomerGateways", args ?? new CustomerGatewaysArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of customer gateways
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -81,8 +75,6 @@ namespace Pulumi.Volcengine.Vpn
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<CustomerGatewaysResult> Invoke(CustomerGatewaysInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<CustomerGatewaysResult>("volcengine:vpn/customerGateways:CustomerGateways", args ?? new CustomerGatewaysInvokeArgs(), options.WithDefaults());
@@ -132,6 +124,12 @@ namespace Pulumi.Volcengine.Vpn
         /// </summary>
         [Input("outputFile")]
         public string? OutputFile { get; set; }
+
+        /// <summary>
+        /// The project name of the VPN customer gateway.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
 
         public CustomerGatewaysArgs()
         {
@@ -183,6 +181,12 @@ namespace Pulumi.Volcengine.Vpn
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
 
+        /// <summary>
+        /// The project name of the VPN customer gateway.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
         public CustomerGatewaysInvokeArgs()
         {
         }
@@ -209,6 +213,7 @@ namespace Pulumi.Volcengine.Vpn
         public readonly string? IpAddress;
         public readonly string? NameRegex;
         public readonly string? OutputFile;
+        public readonly string? ProjectName;
         /// <summary>
         /// The total count of customer gateway query.
         /// </summary>
@@ -230,6 +235,8 @@ namespace Pulumi.Volcengine.Vpn
 
             string? outputFile,
 
+            string? projectName,
+
             int totalCount)
         {
             CustomerGatewayNames = customerGatewayNames;
@@ -239,6 +246,7 @@ namespace Pulumi.Volcengine.Vpn
             IpAddress = ipAddress;
             NameRegex = nameRegex;
             OutputFile = outputFile;
+            ProjectName = projectName;
             TotalCount = totalCount;
         }
     }

@@ -1600,10 +1600,13 @@ func (o ResolverRulesRuleArrayOutput) Index(i pulumi.IntInput) ResolverRulesRule
 }
 
 type ResolverRulesRuleBindVpc struct {
+	// The account id of the bind vpc.
 	AccountId string `pulumi:"accountId"`
 	// The id of the rule.
-	Id         string `pulumi:"id"`
-	Region     string `pulumi:"region"`
+	Id string `pulumi:"id"`
+	// The region of the bind vpc.
+	Region string `pulumi:"region"`
+	// The region name of the bind vpc.
 	RegionName string `pulumi:"regionName"`
 }
 
@@ -1619,10 +1622,13 @@ type ResolverRulesRuleBindVpcInput interface {
 }
 
 type ResolverRulesRuleBindVpcArgs struct {
+	// The account id of the bind vpc.
 	AccountId pulumi.StringInput `pulumi:"accountId"`
 	// The id of the rule.
-	Id         pulumi.StringInput `pulumi:"id"`
-	Region     pulumi.StringInput `pulumi:"region"`
+	Id pulumi.StringInput `pulumi:"id"`
+	// The region of the bind vpc.
+	Region pulumi.StringInput `pulumi:"region"`
+	// The region name of the bind vpc.
 	RegionName pulumi.StringInput `pulumi:"regionName"`
 }
 
@@ -1677,6 +1683,7 @@ func (o ResolverRulesRuleBindVpcOutput) ToResolverRulesRuleBindVpcOutputWithCont
 	return o
 }
 
+// The account id of the bind vpc.
 func (o ResolverRulesRuleBindVpcOutput) AccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v ResolverRulesRuleBindVpc) string { return v.AccountId }).(pulumi.StringOutput)
 }
@@ -1686,10 +1693,12 @@ func (o ResolverRulesRuleBindVpcOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v ResolverRulesRuleBindVpc) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The region of the bind vpc.
 func (o ResolverRulesRuleBindVpcOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v ResolverRulesRuleBindVpc) string { return v.Region }).(pulumi.StringOutput)
 }
 
+// The region name of the bind vpc.
 func (o ResolverRulesRuleBindVpcOutput) RegionName() pulumi.StringOutput {
 	return o.ApplyT(func(v ResolverRulesRuleBindVpc) string { return v.RegionName }).(pulumi.StringOutput)
 }

@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Vpc
     {
         /// <summary>
         /// Use this data source to query detailed information of network interfaces
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -35,17 +33,13 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<NetworkInterfacesResult> InvokeAsync(NetworkInterfacesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<NetworkInterfacesResult>("volcengine:vpc/networkInterfaces:NetworkInterfaces", args ?? new NetworkInterfacesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of network interfaces
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -65,8 +59,6 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<NetworkInterfacesResult> Invoke(NetworkInterfacesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<NetworkInterfacesResult>("volcengine:vpc/networkInterfaces:NetworkInterfaces", args ?? new NetworkInterfacesInvokeArgs(), options.WithDefaults());

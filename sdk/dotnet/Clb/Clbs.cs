@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Clb
     {
         /// <summary>
         /// Use this data source to query detailed information of clbs
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -76,17 +74,13 @@ namespace Pulumi.Volcengine.Clb
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<ClbsResult> InvokeAsync(ClbsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ClbsResult>("volcengine:clb/clbs:Clbs", args ?? new ClbsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of clbs
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -147,8 +141,6 @@ namespace Pulumi.Volcengine.Clb
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<ClbsResult> Invoke(ClbsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ClbsResult>("volcengine:clb/clbs:Clbs", args ?? new ClbsInvokeArgs(), options.WithDefaults());

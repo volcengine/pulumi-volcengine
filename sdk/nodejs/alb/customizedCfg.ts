@@ -25,7 +25,7 @@ import * as utilities from "../utilities";
  * AlbCustomizedCfg can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:alb/customizedCfg:CustomizedCfg default ccfg-3cj44nv0jhhxc6c6rrtet****
+ * $ pulumi import volcengine:alb/customizedCfg:CustomizedCfg default ccfg-3cj44nv0jhhxc6c6rrtet****
  * ```
  */
 export class CustomizedCfg extends pulumi.CustomResource {

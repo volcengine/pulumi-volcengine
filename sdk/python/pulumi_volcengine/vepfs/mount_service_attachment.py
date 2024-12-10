@@ -189,7 +189,7 @@ class MountServiceAttachment(pulumi.CustomResource):
         VepfsMountServiceAttachment can be imported using the mount_service_id:file_system_id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vepfs/mountServiceAttachment:MountServiceAttachment default mount_service_id:file_system_id
+        $ pulumi import volcengine:vepfs/mountServiceAttachment:MountServiceAttachment default mount_service_id:file_system_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -247,7 +247,7 @@ class MountServiceAttachment(pulumi.CustomResource):
         VepfsMountServiceAttachment can be imported using the mount_service_id:file_system_id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vepfs/mountServiceAttachment:MountServiceAttachment default mount_service_id:file_system_id
+        $ pulumi import volcengine:vepfs/mountServiceAttachment:MountServiceAttachment default mount_service_id:file_system_id
         ```
 
         :param str resource_name: The name of the resource.

@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Organization
     {
         /// <summary>
         /// Use this data source to query detailed information of organization service control policies
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -33,17 +31,13 @@ namespace Pulumi.Volcengine.Organization
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<ServiceControlPoliciesResult> InvokeAsync(ServiceControlPoliciesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ServiceControlPoliciesResult>("volcengine:organization/serviceControlPolicies:ServiceControlPolicies", args ?? new ServiceControlPoliciesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of organization service control policies
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -61,8 +55,6 @@ namespace Pulumi.Volcengine.Organization
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<ServiceControlPoliciesResult> Invoke(ServiceControlPoliciesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ServiceControlPoliciesResult>("volcengine:organization/serviceControlPolicies:ServiceControlPolicies", args ?? new ServiceControlPoliciesInvokeArgs(), options.WithDefaults());

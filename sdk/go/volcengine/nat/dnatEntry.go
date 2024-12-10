@@ -44,7 +44,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -110,9 +110,7 @@ import (
 // Dnat entry can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:nat/dnatEntry:DnatEntry default dnat-3fvhk47kf56****
-//
+// $ pulumi import volcengine:nat/dnatEntry:DnatEntry default dnat-3fvhk47kf56****
 // ```
 type DnatEntry struct {
 	pulumi.CustomResourceState

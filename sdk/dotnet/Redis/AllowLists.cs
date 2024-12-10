@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Redis
     {
         /// <summary>
         /// Use this data source to query detailed information of redis allow lists
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -86,17 +84,13 @@ namespace Pulumi.Volcengine.Redis
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<AllowListsResult> InvokeAsync(AllowListsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<AllowListsResult>("volcengine:redis/allowLists:AllowLists", args ?? new AllowListsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of redis allow lists
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -167,8 +161,6 @@ namespace Pulumi.Volcengine.Redis
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<AllowListsResult> Invoke(AllowListsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<AllowListsResult>("volcengine:redis/allowLists:AllowLists", args ?? new AllowListsInvokeArgs(), options.WithDefaults());

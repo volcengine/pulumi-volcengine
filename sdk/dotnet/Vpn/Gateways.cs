@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Vpn
     {
         /// <summary>
         /// Use this data source to query detailed information of vpn gateways
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -60,17 +58,13 @@ namespace Pulumi.Volcengine.Vpn
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GatewaysResult> InvokeAsync(GatewaysArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GatewaysResult>("volcengine:vpn/gateways:Gateways", args ?? new GatewaysArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of vpn gateways
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -115,8 +109,6 @@ namespace Pulumi.Volcengine.Vpn
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GatewaysResult> Invoke(GatewaysInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GatewaysResult>("volcengine:vpn/gateways:Gateways", args ?? new GatewaysInvokeArgs(), options.WithDefaults());
@@ -144,6 +136,12 @@ namespace Pulumi.Volcengine.Vpn
         public string? IpAddress { get; set; }
 
         /// <summary>
+        /// Whether IPSec is enabled.
+        /// </summary>
+        [Input("ipsecEnabled")]
+        public bool? IpsecEnabled { get; set; }
+
+        /// <summary>
         /// A Name Regex of VPN gateway.
         /// </summary>
         [Input("nameRegex")]
@@ -154,6 +152,24 @@ namespace Pulumi.Volcengine.Vpn
         /// </summary>
         [Input("outputFile")]
         public string? OutputFile { get; set; }
+
+        /// <summary>
+        /// The project name of the VPN gateway.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
+
+        /// <summary>
+        /// Whether ssl is enabled.
+        /// </summary>
+        [Input("sslEnabled")]
+        public bool? SslEnabled { get; set; }
+
+        /// <summary>
+        /// The status of the VPN gateway.
+        /// </summary>
+        [Input("status")]
+        public string? Status { get; set; }
 
         /// <summary>
         /// A subnet ID of the VPN gateway.
@@ -218,6 +234,12 @@ namespace Pulumi.Volcengine.Vpn
         public Input<string>? IpAddress { get; set; }
 
         /// <summary>
+        /// Whether IPSec is enabled.
+        /// </summary>
+        [Input("ipsecEnabled")]
+        public Input<bool>? IpsecEnabled { get; set; }
+
+        /// <summary>
         /// A Name Regex of VPN gateway.
         /// </summary>
         [Input("nameRegex")]
@@ -228,6 +250,24 @@ namespace Pulumi.Volcengine.Vpn
         /// </summary>
         [Input("outputFile")]
         public Input<string>? OutputFile { get; set; }
+
+        /// <summary>
+        /// The project name of the VPN gateway.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
+        /// Whether ssl is enabled.
+        /// </summary>
+        [Input("sslEnabled")]
+        public Input<bool>? SslEnabled { get; set; }
+
+        /// <summary>
+        /// The status of the VPN gateway.
+        /// </summary>
+        [Input("status")]
+        public Input<string>? Status { get; set; }
 
         /// <summary>
         /// A subnet ID of the VPN gateway.
@@ -284,8 +324,24 @@ namespace Pulumi.Volcengine.Vpn
         /// The IP address of the VPN gateway.
         /// </summary>
         public readonly string? IpAddress;
+        /// <summary>
+        /// Whether ipsec is enabled.
+        /// </summary>
+        public readonly bool? IpsecEnabled;
         public readonly string? NameRegex;
         public readonly string? OutputFile;
+        /// <summary>
+        /// The name of project.
+        /// </summary>
+        public readonly string? ProjectName;
+        /// <summary>
+        /// Whether ssl is enabled.
+        /// </summary>
+        public readonly bool? SslEnabled;
+        /// <summary>
+        /// The status of the VPN gateway.
+        /// </summary>
+        public readonly string? Status;
         public readonly string? SubnetId;
         /// <summary>
         /// Tags.
@@ -313,9 +369,17 @@ namespace Pulumi.Volcengine.Vpn
 
             string? ipAddress,
 
+            bool? ipsecEnabled,
+
             string? nameRegex,
 
             string? outputFile,
+
+            string? projectName,
+
+            bool? sslEnabled,
+
+            string? status,
 
             string? subnetId,
 
@@ -332,8 +396,12 @@ namespace Pulumi.Volcengine.Vpn
             Id = id;
             Ids = ids;
             IpAddress = ipAddress;
+            IpsecEnabled = ipsecEnabled;
             NameRegex = nameRegex;
             OutputFile = outputFile;
+            ProjectName = projectName;
+            SslEnabled = sslEnabled;
+            Status = status;
             SubnetId = subnetId;
             Tags = tags;
             TotalCount = totalCount;

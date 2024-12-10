@@ -299,7 +299,7 @@ class Command(pulumi.CustomResource):
         EcsCommand can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:ecs/command:Command default cmd-ychkepkhtim0tr3bcsw1
+        $ pulumi import volcengine:ecs/command:Command default cmd-ychkepkhtim0tr3bcsw1
         ```
 
         :param str resource_name: The name of the resource.
@@ -338,7 +338,7 @@ class Command(pulumi.CustomResource):
         EcsCommand can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:ecs/command:Command default cmd-ychkepkhtim0tr3bcsw1
+        $ pulumi import volcengine:ecs/command:Command default cmd-ychkepkhtim0tr3bcsw1
         ```
 
         :param str resource_name: The name of the resource.

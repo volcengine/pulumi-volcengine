@@ -95,7 +95,7 @@ class _ClusterState:
                  vke_config: Optional[pulumi.Input['ClusterVkeConfigArgs']] = None):
         """
         Input properties used for looking up and filtering Cluster resources.
-        :param pulumi.Input[str] cluster_id: The id of the vke cluster.
+        :param pulumi.Input[str] cluster_id: The id of the bioos cluster.
         :param pulumi.Input[str] description: The description of the cluster.
         :param pulumi.Input[str] name: The name of the cluster.
         :param pulumi.Input['ClusterSharedConfigArgs'] shared_config: The configuration of the shared cluster.
@@ -116,7 +116,7 @@ class _ClusterState:
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The id of the vke cluster.
+        The id of the bioos cluster.
         """
         return pulumi.get(self, "cluster_id")
 
@@ -203,7 +203,7 @@ class Cluster(pulumi.CustomResource):
         Cluster can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:bioos/cluster:Cluster default *****
+        $ pulumi import volcengine:bioos/cluster:Cluster default *****
         ```
 
         :param str resource_name: The name of the resource.
@@ -239,7 +239,7 @@ class Cluster(pulumi.CustomResource):
         Cluster can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:bioos/cluster:Cluster default *****
+        $ pulumi import volcengine:bioos/cluster:Cluster default *****
         ```
 
         :param str resource_name: The name of the resource.
@@ -297,7 +297,7 @@ class Cluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] cluster_id: The id of the vke cluster.
+        :param pulumi.Input[str] cluster_id: The id of the bioos cluster.
         :param pulumi.Input[str] description: The description of the cluster.
         :param pulumi.Input[str] name: The name of the cluster.
         :param pulumi.Input[pulumi.InputType['ClusterSharedConfigArgs']] shared_config: The configuration of the shared cluster.
@@ -318,7 +318,7 @@ class Cluster(pulumi.CustomResource):
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> pulumi.Output[str]:
         """
-        The id of the vke cluster.
+        The id of the bioos cluster.
         """
         return pulumi.get(self, "cluster_id")
 

@@ -21,6 +21,9 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// Cluster API Server public network access configuration, the value is `true` or `false`.
         /// </summary>
         public readonly bool? ApiServerPublicAccessEnabled;
+        /// <summary>
+        /// [SkipDoc]The IpFamily configuration,the value is `Ipv4` or `DualStack`.
+        /// </summary>
         public readonly string? IpFamily;
         /// <summary>
         /// Node public network access configuration, the value is `true` or `false`.

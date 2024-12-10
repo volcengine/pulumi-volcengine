@@ -66,7 +66,7 @@ import * as utilities from "../utilities";
  * TransitRouterRouteTablePropagation can be imported using the propagation:TransitRouterAttachmentId:TransitRouterRouteTableId, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:transit_router/routeTablePropagation:RouteTablePropagation default propagation:tr-attach-13n2l4c****:tr-rt-1i5i8khf9m58gae5kcx6****
+ * $ pulumi import volcengine:transit_router/routeTablePropagation:RouteTablePropagation default propagation:tr-attach-13n2l4c****:tr-rt-1i5i8khf9m58gae5kcx6****
  * ```
  */
 export class RouteTablePropagation extends pulumi.CustomResource {

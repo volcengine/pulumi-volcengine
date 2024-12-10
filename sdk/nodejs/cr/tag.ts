@@ -27,7 +27,7 @@ import * as utilities from "../utilities";
  * CR tags can be imported using the registry:namespace:repository:tag, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:cr/tag:Tag default cr-basic:namespace-1:repo-1:v1
+ * $ pulumi import volcengine:cr/tag:Tag default cr-basic:namespace-1:repo-1:v1
  * ```
  */
 export class Tag extends pulumi.CustomResource {

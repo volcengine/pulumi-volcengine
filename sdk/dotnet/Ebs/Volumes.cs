@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Ebs
     {
         /// <summary>
         /// Use this data source to query detailed information of volumes
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -50,17 +48,13 @@ namespace Pulumi.Volcengine.Ebs
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<VolumesResult> InvokeAsync(VolumesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<VolumesResult>("volcengine:ebs/volumes:Volumes", args ?? new VolumesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of volumes
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -95,8 +89,6 @@ namespace Pulumi.Volcengine.Ebs
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<VolumesResult> Invoke(VolumesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<VolumesResult>("volcengine:ebs/volumes:Volumes", args ?? new VolumesInvokeArgs(), options.WithDefaults());

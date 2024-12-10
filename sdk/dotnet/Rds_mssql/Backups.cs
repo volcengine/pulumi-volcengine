@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Rds_mssql
     {
         /// <summary>
         /// Use this data source to query detailed information of rds mssql backups
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -32,17 +30,13 @@ namespace Pulumi.Volcengine.Rds_mssql
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<BackupsResult> InvokeAsync(BackupsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<BackupsResult>("volcengine:rds_mssql/backups:Backups", args ?? new BackupsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of rds mssql backups
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -59,8 +53,6 @@ namespace Pulumi.Volcengine.Rds_mssql
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<BackupsResult> Invoke(BackupsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<BackupsResult>("volcengine:rds_mssql/backups:Backups", args ?? new BackupsInvokeArgs(), options.WithDefaults());

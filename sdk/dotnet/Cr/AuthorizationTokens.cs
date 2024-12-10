@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Cr
     {
         /// <summary>
         /// Use this data source to query detailed information of cr authorization tokens
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -32,17 +30,13 @@ namespace Pulumi.Volcengine.Cr
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<AuthorizationTokensResult> InvokeAsync(AuthorizationTokensArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<AuthorizationTokensResult>("volcengine:cr/authorizationTokens:AuthorizationTokens", args ?? new AuthorizationTokensArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cr authorization tokens
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -59,8 +53,6 @@ namespace Pulumi.Volcengine.Cr
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<AuthorizationTokensResult> Invoke(AuthorizationTokensInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<AuthorizationTokensResult>("volcengine:cr/authorizationTokens:AuthorizationTokens", args ?? new AuthorizationTokensInvokeArgs(), options.WithDefaults());

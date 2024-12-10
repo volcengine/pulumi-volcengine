@@ -35,7 +35,7 @@ namespace Pulumi.Volcengine.Cr
     /// CR endpoints can be imported using the endpoint:registryName, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:cr/endpoint:Endpoint default endpoint:cr-basic
+    /// $ pulumi import volcengine:cr/endpoint:Endpoint default endpoint:cr-basic
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:cr/endpoint:Endpoint")]

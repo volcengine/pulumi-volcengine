@@ -36,7 +36,7 @@ import * as utilities from "../utilities";
  * DirectConnectVirtualInterface can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:direct_connect/virtualInterface:VirtualInterface default resource_id
+ * $ pulumi import volcengine:direct_connect/virtualInterface:VirtualInterface default resource_id
  * ```
  */
 export class VirtualInterface extends pulumi.CustomResource {

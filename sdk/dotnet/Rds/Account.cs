@@ -37,7 +37,7 @@ namespace Pulumi.Volcengine.Rds
     /// RDS account can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:rds/account:Account default mysql-42b38c769c4b:test
+    /// $ pulumi import volcengine:rds/account:Account default mysql-42b38c769c4b:test
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:rds/account:Account")]

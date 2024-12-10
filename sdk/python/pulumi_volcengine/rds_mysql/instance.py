@@ -890,7 +890,7 @@ class Instance(pulumi.CustomResource):
         Rds Mysql Instance can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:rds_mysql/instance:Instance default mysql-72da4258c2c7
+        $ pulumi import volcengine:rds_mysql/instance:Instance default mysql-72da4258c2c7
         ```
 
         :param str resource_name: The name of the resource.
@@ -974,7 +974,7 @@ class Instance(pulumi.CustomResource):
         Rds Mysql Instance can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:rds_mysql/instance:Instance default mysql-72da4258c2c7
+        $ pulumi import volcengine:rds_mysql/instance:Instance default mysql-72da4258c2c7
         ```
 
         :param str resource_name: The name of the resource.

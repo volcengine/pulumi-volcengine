@@ -63,7 +63,7 @@ import * as utilities from "../utilities";
  * Snat entry can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:nat/snatEntry:SnatEntry default snat-3fvhk47kf56****
+ * $ pulumi import volcengine:nat/snatEntry:SnatEntry default snat-3fvhk47kf56****
  * ```
  */
 export class SnatEntry extends pulumi.CustomResource {

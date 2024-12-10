@@ -72,10 +72,14 @@ export function instances(args?: InstancesArgs, opts?: pulumi.InvokeOptions): Pr
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:ecs/instances:Instances", {
         "deploymentSetIds": args.deploymentSetIds,
+        "eipAddresses": args.eipAddresses,
         "hpcClusterId": args.hpcClusterId,
         "ids": args.ids,
         "instanceChargeType": args.instanceChargeType,
         "instanceName": args.instanceName,
+        "instanceTypeFamilies": args.instanceTypeFamilies,
+        "instanceTypeIds": args.instanceTypeIds,
+        "ipv6Addresses": args.ipv6Addresses,
         "keyPairName": args.keyPairName,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
@@ -97,6 +101,10 @@ export interface InstancesArgs {
      */
     deploymentSetIds?: string[];
     /**
+     * A list of Eip addresses.
+     */
+    eipAddresses?: string[];
+    /**
      * The hpc cluster ID of ECS instance.
      */
     hpcClusterId?: string;
@@ -112,6 +120,18 @@ export interface InstancesArgs {
      * The name of ECS instance. This field support fuzzy query.
      */
     instanceName?: string;
+    /**
+     * A list of instance type families.
+     */
+    instanceTypeFamilies?: string[];
+    /**
+     * A list of instance type IDs.
+     */
+    instanceTypeIds?: string[];
+    /**
+     * A list of ipv6 addresses.
+     */
+    ipv6Addresses?: string[];
     /**
      * The key pair name of ECS instance.
      */
@@ -155,6 +175,7 @@ export interface InstancesArgs {
  */
 export interface InstancesResult {
     readonly deploymentSetIds?: string[];
+    readonly eipAddresses?: string[];
     readonly hpcClusterId?: string;
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -169,10 +190,16 @@ export interface InstancesResult {
      * The name of ECS instance.
      */
     readonly instanceName?: string;
+    readonly instanceTypeFamilies?: string[];
+    readonly instanceTypeIds?: string[];
     /**
      * The collection of ECS instance query.
      */
     readonly instances: outputs.ecs.InstancesInstance[];
+    /**
+     * The  IPv6 address list of the ECS instance.
+     */
+    readonly ipv6Addresses?: string[];
     /**
      * The ssh key name of ECS instance.
      */
@@ -281,6 +308,10 @@ export interface InstancesOutputArgs {
      */
     deploymentSetIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * A list of Eip addresses.
+     */
+    eipAddresses?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * The hpc cluster ID of ECS instance.
      */
     hpcClusterId?: pulumi.Input<string>;
@@ -296,6 +327,18 @@ export interface InstancesOutputArgs {
      * The name of ECS instance. This field support fuzzy query.
      */
     instanceName?: pulumi.Input<string>;
+    /**
+     * A list of instance type families.
+     */
+    instanceTypeFamilies?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * A list of instance type IDs.
+     */
+    instanceTypeIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * A list of ipv6 addresses.
+     */
+    ipv6Addresses?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The key pair name of ECS instance.
      */

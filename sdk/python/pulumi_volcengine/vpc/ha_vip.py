@@ -358,7 +358,7 @@ class HaVip(pulumi.CustomResource):
         HaVip can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vpc/haVip:HaVip default havip-2byzv8icq1b7k2dx0eegb****
+        $ pulumi import volcengine:vpc/haVip:HaVip default havip-2byzv8icq1b7k2dx0eegb****
         ```
 
         :param str resource_name: The name of the resource.
@@ -408,7 +408,7 @@ class HaVip(pulumi.CustomResource):
         HaVip can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vpc/haVip:HaVip default havip-2byzv8icq1b7k2dx0eegb****
+        $ pulumi import volcengine:vpc/haVip:HaVip default havip-2byzv8icq1b7k2dx0eegb****
         ```
 
         :param str resource_name: The name of the resource.

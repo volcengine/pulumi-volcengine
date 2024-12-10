@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Nas
     {
         /// <summary>
         /// Use this data source to query detailed information of nas file systems
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -55,17 +53,13 @@ namespace Pulumi.Volcengine.Nas
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<FileSystemsResult> InvokeAsync(FileSystemsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<FileSystemsResult>("volcengine:nas/fileSystems:FileSystems", args ?? new FileSystemsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of nas file systems
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -105,8 +99,6 @@ namespace Pulumi.Volcengine.Nas
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<FileSystemsResult> Invoke(FileSystemsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<FileSystemsResult>("volcengine:nas/fileSystems:FileSystems", args ?? new FileSystemsInvokeArgs(), options.WithDefaults());

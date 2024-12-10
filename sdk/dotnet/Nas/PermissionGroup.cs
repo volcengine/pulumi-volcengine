@@ -50,7 +50,7 @@ namespace Pulumi.Volcengine.Nas
     /// Nas Permission Group can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:nas/permissionGroup:PermissionGroup default pgroup-1f85db2c****
+    /// $ pulumi import volcengine:nas/permissionGroup:PermissionGroup default pgroup-1f85db2c****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:nas/permissionGroup:PermissionGroup")]

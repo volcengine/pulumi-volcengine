@@ -253,7 +253,7 @@ class VpcEndpointZone(pulumi.CustomResource):
         VpcEndpointZone can be imported using the endpointId:subnetId, e.g.
 
         ```sh
-         $ pulumi import volcengine:privatelink/vpcEndpointZone:VpcEndpointZone default ep-3rel75r081l345zsk2i59****:subnet-2bz47q19zhx4w2dx0eevn****
+        $ pulumi import volcengine:privatelink/vpcEndpointZone:VpcEndpointZone default ep-3rel75r081l345zsk2i59****:subnet-2bz47q19zhx4w2dx0eevn****
         ```
 
         :param str resource_name: The name of the resource.
@@ -327,7 +327,7 @@ class VpcEndpointZone(pulumi.CustomResource):
         VpcEndpointZone can be imported using the endpointId:subnetId, e.g.
 
         ```sh
-         $ pulumi import volcengine:privatelink/vpcEndpointZone:VpcEndpointZone default ep-3rel75r081l345zsk2i59****:subnet-2bz47q19zhx4w2dx0eevn****
+        $ pulumi import volcengine:privatelink/vpcEndpointZone:VpcEndpointZone default ep-3rel75r081l345zsk2i59****:subnet-2bz47q19zhx4w2dx0eevn****
         ```
 
         :param str resource_name: The name of the resource.

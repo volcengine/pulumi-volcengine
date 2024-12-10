@@ -44,7 +44,7 @@ import (
 // Description: pulumi.String("acc-test"),
 // Kind: pulumi.String("data"),
 // Size: pulumi.Int(60),
-// ZoneId: *pulumi.String(fooZones.Zones[0].Id),
+// ZoneId: pulumi.String(fooZones.Zones[0].Id),
 // VolumeChargeType: pulumi.String("PostPaid"),
 // ProjectName: pulumi.String("default"),
 // })

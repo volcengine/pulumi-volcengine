@@ -42,7 +42,7 @@ import (
 // fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 // SubnetName: pulumi.String("acc-test-subnet"),
 // CidrBlock: pulumi.String("172.16.0.0/24"),
-// ZoneId: *pulumi.String(fooZones.Zones[0].Id),
+// ZoneId: pulumi.String(fooZones.Zones[0].Id),
 // VpcId: fooVpc.ID(),
 // })
 // if err != nil {
@@ -73,7 +73,7 @@ import (
 // InstanceName: pulumi.String(fmt.Sprintf("acc-test-ecs-%v", val0)),
 // Description: pulumi.String("acc-test"),
 // HostName: pulumi.String("tf-acc-test"),
-// ImageId: *pulumi.String(fooImages.Images[0].ImageId),
+// ImageId: pulumi.String(fooImages.Images[0].ImageId),
 // InstanceType: pulumi.String("ecs.g1.large"),
 // Password: pulumi.String("93f0cb0614Aab12"),
 // InstanceChargeType: pulumi.String("PostPaid"),
@@ -124,6 +124,8 @@ func Instances(ctx *pulumi.Context, args *InstancesArgs, opts ...pulumi.InvokeOp
 type InstancesArgs struct {
 	// A list of DeploymentSet IDs.
 	DeploymentSetIds []string `pulumi:"deploymentSetIds"`
+	// A list of Eip addresses.
+	EipAddresses []string `pulumi:"eipAddresses"`
 	// The hpc cluster ID of ECS instance.
 	HpcClusterId *string `pulumi:"hpcClusterId"`
 	// A list of ECS instance IDs.
@@ -132,6 +134,12 @@ type InstancesArgs struct {
 	InstanceChargeType *string `pulumi:"instanceChargeType"`
 	// The name of ECS instance. This field support fuzzy query.
 	InstanceName *string `pulumi:"instanceName"`
+	// A list of instance type families.
+	InstanceTypeFamilies []string `pulumi:"instanceTypeFamilies"`
+	// A list of instance type IDs.
+	InstanceTypeIds []string `pulumi:"instanceTypeIds"`
+	// A list of ipv6 addresses.
+	Ipv6Addresses []string `pulumi:"ipv6Addresses"`
 	// The key pair name of ECS instance.
 	KeyPairName *string `pulumi:"keyPairName"`
 	// A Name Regex of ECS instance.
@@ -155,6 +163,7 @@ type InstancesArgs struct {
 // A collection of values returned by Instances.
 type InstancesResult struct {
 	DeploymentSetIds []string `pulumi:"deploymentSetIds"`
+	EipAddresses     []string `pulumi:"eipAddresses"`
 	HpcClusterId     *string  `pulumi:"hpcClusterId"`
 	// The provider-assigned unique ID for this managed resource.
 	Id  string   `pulumi:"id"`
@@ -162,9 +171,13 @@ type InstancesResult struct {
 	// The charge type of ECS instance.
 	InstanceChargeType *string `pulumi:"instanceChargeType"`
 	// The name of ECS instance.
-	InstanceName *string `pulumi:"instanceName"`
+	InstanceName         *string  `pulumi:"instanceName"`
+	InstanceTypeFamilies []string `pulumi:"instanceTypeFamilies"`
+	InstanceTypeIds      []string `pulumi:"instanceTypeIds"`
 	// The collection of ECS instance query.
 	Instances []InstancesInstance `pulumi:"instances"`
+	// The  IPv6 address list of the ECS instance.
+	Ipv6Addresses []string `pulumi:"ipv6Addresses"`
 	// The ssh key name of ECS instance.
 	KeyPairName *string `pulumi:"keyPairName"`
 	NameRegex   *string `pulumi:"nameRegex"`
@@ -202,6 +215,8 @@ func InstancesOutput(ctx *pulumi.Context, args InstancesOutputArgs, opts ...pulu
 type InstancesOutputArgs struct {
 	// A list of DeploymentSet IDs.
 	DeploymentSetIds pulumi.StringArrayInput `pulumi:"deploymentSetIds"`
+	// A list of Eip addresses.
+	EipAddresses pulumi.StringArrayInput `pulumi:"eipAddresses"`
 	// The hpc cluster ID of ECS instance.
 	HpcClusterId pulumi.StringPtrInput `pulumi:"hpcClusterId"`
 	// A list of ECS instance IDs.
@@ -210,6 +225,12 @@ type InstancesOutputArgs struct {
 	InstanceChargeType pulumi.StringPtrInput `pulumi:"instanceChargeType"`
 	// The name of ECS instance. This field support fuzzy query.
 	InstanceName pulumi.StringPtrInput `pulumi:"instanceName"`
+	// A list of instance type families.
+	InstanceTypeFamilies pulumi.StringArrayInput `pulumi:"instanceTypeFamilies"`
+	// A list of instance type IDs.
+	InstanceTypeIds pulumi.StringArrayInput `pulumi:"instanceTypeIds"`
+	// A list of ipv6 addresses.
+	Ipv6Addresses pulumi.StringArrayInput `pulumi:"ipv6Addresses"`
 	// The key pair name of ECS instance.
 	KeyPairName pulumi.StringPtrInput `pulumi:"keyPairName"`
 	// A Name Regex of ECS instance.
@@ -253,6 +274,10 @@ func (o InstancesResultOutput) DeploymentSetIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v InstancesResult) []string { return v.DeploymentSetIds }).(pulumi.StringArrayOutput)
 }
 
+func (o InstancesResultOutput) EipAddresses() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v InstancesResult) []string { return v.EipAddresses }).(pulumi.StringArrayOutput)
+}
+
 func (o InstancesResultOutput) HpcClusterId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstancesResult) *string { return v.HpcClusterId }).(pulumi.StringPtrOutput)
 }
@@ -276,9 +301,22 @@ func (o InstancesResultOutput) InstanceName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstancesResult) *string { return v.InstanceName }).(pulumi.StringPtrOutput)
 }
 
+func (o InstancesResultOutput) InstanceTypeFamilies() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v InstancesResult) []string { return v.InstanceTypeFamilies }).(pulumi.StringArrayOutput)
+}
+
+func (o InstancesResultOutput) InstanceTypeIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v InstancesResult) []string { return v.InstanceTypeIds }).(pulumi.StringArrayOutput)
+}
+
 // The collection of ECS instance query.
 func (o InstancesResultOutput) Instances() InstancesInstanceArrayOutput {
 	return o.ApplyT(func(v InstancesResult) []InstancesInstance { return v.Instances }).(InstancesInstanceArrayOutput)
+}
+
+// The  IPv6 address list of the ECS instance.
+func (o InstancesResultOutput) Ipv6Addresses() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v InstancesResult) []string { return v.Ipv6Addresses }).(pulumi.StringArrayOutput)
 }
 
 // The ssh key name of ECS instance.

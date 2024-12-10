@@ -63,7 +63,7 @@ import * as utilities from "../utilities";
  * VkeCluster can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:vke/cluster:Cluster default cc9l74mvqtofjnoj5****
+ * $ pulumi import volcengine:vke/cluster:Cluster default cc9l74mvqtofjnoj5****
  * ```
  */
 export class Cluster extends pulumi.CustomResource {

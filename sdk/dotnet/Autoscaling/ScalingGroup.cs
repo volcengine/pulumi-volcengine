@@ -77,7 +77,7 @@ namespace Pulumi.Volcengine.Autoscaling
     /// ScalingGroup can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:autoscaling/scalingGroup:ScalingGroup default scg-mizl7m1kqccg5smt1bdpijuj
+    /// $ pulumi import volcengine:autoscaling/scalingGroup:ScalingGroup default scg-mizl7m1kqccg5smt1bdpijuj
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:autoscaling/scalingGroup:ScalingGroup")]

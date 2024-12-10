@@ -51,9 +51,7 @@ import (
 // Cen can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:cen/cen:Cen default cen-7qthudw0ll6jmc****
-//
+// $ pulumi import volcengine:cen/cen:Cen default cen-7qthudw0ll6jmc****
 // ```
 type Cen struct {
 	pulumi.CustomResourceState

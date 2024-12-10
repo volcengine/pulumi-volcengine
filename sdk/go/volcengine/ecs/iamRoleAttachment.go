@@ -43,7 +43,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -68,7 +68,7 @@ import (
 //				InstanceName:       pulumi.String("acc-test-ecs"),
 //				Description:        pulumi.String("acc-test"),
 //				HostName:           pulumi.String("tf-acc-test"),
-//				ImageId:            *pulumi.String(fooImages.Images[0].ImageId),
+//				ImageId:            pulumi.String(fooImages.Images[0].ImageId),
 //				InstanceType:       pulumi.String("ecs.g1ie.large"),
 //				Password:           pulumi.String("93f0cb0614Aab12"),
 //				InstanceChargeType: pulumi.String("PostPaid"),
@@ -124,9 +124,7 @@ import (
 // IamRoleAttachment can be imported using the iam_role_name:instance_id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:ecs/iamRoleAttachment:IamRoleAttachment default role_name:instance_id
-//
+// $ pulumi import volcengine:ecs/iamRoleAttachment:IamRoleAttachment default role_name:instance_id
 // ```
 type IamRoleAttachment struct {
 	pulumi.CustomResourceState

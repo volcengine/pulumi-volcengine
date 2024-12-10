@@ -71,7 +71,7 @@ namespace Pulumi.Volcengine.Cen
     ///         Bandwidth = 2,
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
     ///             fooBandwidthPackageAssociate,
     ///         },
@@ -85,7 +85,7 @@ namespace Pulumi.Volcengine.Cen
     /// CenInterRegionBandwidth can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:cen/interRegionBandwidth:InterRegionBandwidth default cirb-3tex2x1cwd4c6c0v****
+    /// $ pulumi import volcengine:cen/interRegionBandwidth:InterRegionBandwidth default cirb-3tex2x1cwd4c6c0v****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:cen/interRegionBandwidth:InterRegionBandwidth")]

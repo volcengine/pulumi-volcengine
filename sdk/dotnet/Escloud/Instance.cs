@@ -90,7 +90,7 @@ namespace Pulumi.Volcengine.Escloud
     /// ESCloud Instance can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:escloud/instance:Instance default n769ewmjjqyqh5dv
+    /// $ pulumi import volcengine:escloud/instance:Instance default n769ewmjjqyqh5dv
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:escloud/instance:Instance")]

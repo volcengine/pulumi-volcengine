@@ -24,7 +24,7 @@ import * as utilities from "../utilities";
  * Iam policy can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:iam/policy:Policy default TerraformTestPolicy
+ * $ pulumi import volcengine:iam/policy:Policy default TerraformTestPolicy
  * ```
  */
 export class Policy extends pulumi.CustomResource {

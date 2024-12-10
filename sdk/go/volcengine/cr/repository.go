@@ -47,9 +47,7 @@ import (
 // CR Repository can be imported using the registry:namespace:name, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:cr/repository:Repository default cr-basic:namespace-1:repo-1
-//
+// $ pulumi import volcengine:cr/repository:Repository default cr-basic:namespace-1:repo-1
 // ```
 type Repository struct {
 	pulumi.CustomResourceState

@@ -287,7 +287,7 @@ class BandwidthPackagesPackageTagResult(dict):
                  key: str,
                  value: str):
         """
-        :param str key: The key of the tag.
+        :param str key: The Key of Tags.
         :param str value: The Value of Tags.
         """
         pulumi.set(__self__, "key", key)
@@ -297,7 +297,7 @@ class BandwidthPackagesPackageTagResult(dict):
     @pulumi.getter
     def key(self) -> str:
         """
-        The key of the tag.
+        The Key of Tags.
         """
         return pulumi.get(self, "key")
 

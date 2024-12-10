@@ -42,7 +42,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -81,7 +81,7 @@ import (
 //			_, err = autoscaling.NewScalingConfiguration(ctx, "fooScalingConfiguration", &autoscaling.ScalingConfigurationArgs{
 //				ScalingConfigurationName: pulumi.String("tf-test"),
 //				ScalingGroupId:           fooScalingGroup.ID(),
-//				ImageId:                  *pulumi.String(fooImages.Images[0].ImageId),
+//				ImageId:                  pulumi.String(fooImages.Images[0].ImageId),
 //				InstanceTypes: pulumi.StringArray{
 //					pulumi.String("ecs.g2i.large"),
 //				},
@@ -138,9 +138,7 @@ import (
 // ScalingConfiguration can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:autoscaling/scalingConfiguration:ScalingConfiguration default scc-ybkuck3mx8cm9tm5yglz
-//
+// $ pulumi import volcengine:autoscaling/scalingConfiguration:ScalingConfiguration default scc-ybkuck3mx8cm9tm5yglz
 // ```
 type ScalingConfiguration struct {
 	pulumi.CustomResourceState

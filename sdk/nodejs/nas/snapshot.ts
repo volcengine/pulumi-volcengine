@@ -24,7 +24,7 @@ import * as utilities from "../utilities";
  * Nas Snapshot can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:nas/snapshot:Snapshot default snap-472a716f****
+ * $ pulumi import volcengine:nas/snapshot:Snapshot default snap-472a716f****
  * ```
  */
 export class Snapshot extends pulumi.CustomResource {

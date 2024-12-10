@@ -42,7 +42,7 @@ import (
 // subnet1, err := vpc.NewSubnet(ctx, "subnet1", &vpc.SubnetArgs{
 // SubnetName: pulumi.String("acc-test-subnet-1"),
 // CidrBlock: pulumi.String("172.16.1.0/24"),
-// ZoneId: *pulumi.String(fooZones.Zones[0].Id),
+// ZoneId: pulumi.String(fooZones.Zones[0].Id),
 // VpcId: fooVpc.ID(),
 // })
 // if err != nil {
@@ -51,7 +51,7 @@ import (
 // subnet2, err := vpc.NewSubnet(ctx, "subnet2", &vpc.SubnetArgs{
 // SubnetName: pulumi.String("acc-test-subnet-2"),
 // CidrBlock: pulumi.String("172.16.2.0/24"),
-// ZoneId: *pulumi.String(fooZones.Zones[1].Id),
+// ZoneId: pulumi.String(fooZones.Zones[1].Id),
 // VpcId: fooVpc.ID(),
 // })
 // if err != nil {

@@ -249,7 +249,7 @@ class SecurityGroup(pulumi.CustomResource):
         SecurityGroup can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vpc/securityGroup:SecurityGroup default sg-273ycgql3ig3k7fap8t3dyvqx
+        $ pulumi import volcengine:vpc/securityGroup:SecurityGroup default sg-273ycgql3ig3k7fap8t3dyvqx
         ```
 
         :param str resource_name: The name of the resource.
@@ -284,7 +284,7 @@ class SecurityGroup(pulumi.CustomResource):
         SecurityGroup can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vpc/securityGroup:SecurityGroup default sg-273ycgql3ig3k7fap8t3dyvqx
+        $ pulumi import volcengine:vpc/securityGroup:SecurityGroup default sg-273ycgql3ig3k7fap8t3dyvqx
         ```
 
         :param str resource_name: The name of the resource.

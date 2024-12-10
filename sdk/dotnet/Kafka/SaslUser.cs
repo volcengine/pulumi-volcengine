@@ -91,7 +91,7 @@ namespace Pulumi.Volcengine.Kafka
     /// KafkaSaslUser can be imported using the kafka_id:username, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:kafka/saslUser:SaslUser default kafka-cnngbnntswg1****:tfuser
+    /// $ pulumi import volcengine:kafka/saslUser:SaslUser default kafka-cnngbnntswg1****:tfuser
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:kafka/saslUser:SaslUser")]

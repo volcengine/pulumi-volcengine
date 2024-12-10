@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Direct_connect
     {
         /// <summary>
         /// Use this data source to query detailed information of direct connect gateway routes
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -36,17 +34,13 @@ namespace Pulumi.Volcengine.Direct_connect
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GatewayRoutesResult> InvokeAsync(GatewayRoutesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GatewayRoutesResult>("volcengine:direct_connect/gatewayRoutes:GatewayRoutes", args ?? new GatewayRoutesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of direct connect gateway routes
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -67,8 +61,6 @@ namespace Pulumi.Volcengine.Direct_connect
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GatewayRoutesResult> Invoke(GatewayRoutesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GatewayRoutesResult>("volcengine:direct_connect/gatewayRoutes:GatewayRoutes", args ?? new GatewayRoutesInvokeArgs(), options.WithDefaults());

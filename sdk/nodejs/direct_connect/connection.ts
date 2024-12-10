@@ -38,7 +38,7 @@ import * as utilities from "../utilities";
  * DirectConnectConnection can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:direct_connect/connection:Connection default dcc-7qthudw0ll6jmc****
+ * $ pulumi import volcengine:direct_connect/connection:Connection default dcc-7qthudw0ll6jmc****
  * ```
  */
 export class Connection extends pulumi.CustomResource {

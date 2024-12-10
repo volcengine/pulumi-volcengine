@@ -50,9 +50,7 @@ import (
 // VPC can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:vpc/vpc:Vpc default vpc-mizl7m1kqccg5smt1bdpijuj
-//
+// $ pulumi import volcengine:vpc/vpc:Vpc default vpc-mizl7m1kqccg5smt1bdpijuj
 // ```
 type Vpc struct {
 	pulumi.CustomResourceState

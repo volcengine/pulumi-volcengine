@@ -306,7 +306,7 @@ class CdnDomain(pulumi.CustomResource):
                     value="tfvalue2",
                 ),
             ],
-            domain_config=foo_cdn_certificate.id.apply(lambda id: json.dumps({
+            domain_config=pulumi.Output.json_dumps({
                 "OriginProtocol": "https",
                 "Origin": [{
                     "OriginAction": {
@@ -323,7 +323,7 @@ class CdnDomain(pulumi.CustomResource):
                 }],
                 "HTTPS": {
                     "CertInfo": {
-                        "CertId": id,
+                        "CertId": foo_cdn_certificate.id,
                     },
                     "DisableHttp": False,
                     "HTTP2": True,
@@ -334,7 +334,7 @@ class CdnDomain(pulumi.CustomResource):
                         "tlsv1.2",
                     ],
                 },
-            })))
+            }))
         ```
 
         ## Import
@@ -342,10 +342,9 @@ class CdnDomain(pulumi.CustomResource):
         CdnDomain can be imported using the domain, e.g.
 
         ```sh
-         $ pulumi import volcengine:cdn/cdnDomain:CdnDomain default www.volcengine.com
+        $ pulumi import volcengine:cdn/cdnDomain:CdnDomain default www.volcengine.com
         ```
-
-         Please note that when you execute destroy, we will first take the domain name offline and then delete it.
+        Please note that when you execute destroy, we will first take the domain name offline and then delete it.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -390,7 +389,7 @@ class CdnDomain(pulumi.CustomResource):
                     value="tfvalue2",
                 ),
             ],
-            domain_config=foo_cdn_certificate.id.apply(lambda id: json.dumps({
+            domain_config=pulumi.Output.json_dumps({
                 "OriginProtocol": "https",
                 "Origin": [{
                     "OriginAction": {
@@ -407,7 +406,7 @@ class CdnDomain(pulumi.CustomResource):
                 }],
                 "HTTPS": {
                     "CertInfo": {
-                        "CertId": id,
+                        "CertId": foo_cdn_certificate.id,
                     },
                     "DisableHttp": False,
                     "HTTP2": True,
@@ -418,7 +417,7 @@ class CdnDomain(pulumi.CustomResource):
                         "tlsv1.2",
                     ],
                 },
-            })))
+            }))
         ```
 
         ## Import
@@ -426,10 +425,9 @@ class CdnDomain(pulumi.CustomResource):
         CdnDomain can be imported using the domain, e.g.
 
         ```sh
-         $ pulumi import volcengine:cdn/cdnDomain:CdnDomain default www.volcengine.com
+        $ pulumi import volcengine:cdn/cdnDomain:CdnDomain default www.volcengine.com
         ```
-
-         Please note that when you execute destroy, we will first take the domain name offline and then delete it.
+        Please note that when you execute destroy, we will first take the domain name offline and then delete it.
 
         :param str resource_name: The name of the resource.
         :param CdnDomainArgs args: The arguments to use to populate this resource's properties.

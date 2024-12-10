@@ -84,6 +84,8 @@ export function gatewayRoutes(args?: GatewayRoutesArgs, opts?: pulumi.InvokeOpti
         "ids": args.ids,
         "nextHopId": args.nextHopId,
         "outputFile": args.outputFile,
+        "routeType": args.routeType,
+        "status": args.status,
         "vpnGatewayId": args.vpnGatewayId,
     }, opts);
 }
@@ -109,6 +111,14 @@ export interface GatewayRoutesArgs {
      */
     outputFile?: string;
     /**
+     * The type of the VPN gateway route. Valid values: `Static`, `BGP`, `Cloud`.
+     */
+    routeType?: string;
+    /**
+     * The status of the VPN gateway route.
+     */
+    status?: string;
+    /**
      * An ID of VPN gateway.
      */
     vpnGatewayId?: string;
@@ -132,6 +142,11 @@ export interface GatewayRoutesResult {
      */
     readonly nextHopId?: string;
     readonly outputFile?: string;
+    readonly routeType?: string;
+    /**
+     * The status of the VPN gateway route.
+     */
+    readonly status?: string;
     /**
      * The total count of VPN gateway route query.
      */
@@ -238,6 +253,14 @@ export interface GatewayRoutesOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The type of the VPN gateway route. Valid values: `Static`, `BGP`, `Cloud`.
+     */
+    routeType?: pulumi.Input<string>;
+    /**
+     * The status of the VPN gateway route.
+     */
+    status?: pulumi.Input<string>;
     /**
      * An ID of VPN gateway.
      */

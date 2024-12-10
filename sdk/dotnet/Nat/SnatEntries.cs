@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Nat
     {
         /// <summary>
         /// Use this data source to query detailed information of snat entries
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -83,7 +81,7 @@ namespace Pulumi.Volcengine.Nat
         ///         SourceCidr = "172.16.0.0/24",
         ///     }, new CustomResourceOptions
         ///     {
-        ///         DependsOn = new[]
+        ///         DependsOn =
         ///         {
         ///             fooAssociate,
         ///         },
@@ -97,7 +95,7 @@ namespace Pulumi.Volcengine.Nat
         ///         SourceCidr = "172.16.0.0/16",
         ///     }, new CustomResourceOptions
         ///     {
-        ///         DependsOn = new[]
+        ///         DependsOn =
         ///         {
         ///             fooAssociate,
         ///         },
@@ -114,17 +112,13 @@ namespace Pulumi.Volcengine.Nat
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<SnatEntriesResult> InvokeAsync(SnatEntriesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<SnatEntriesResult>("volcengine:nat/snatEntries:SnatEntries", args ?? new SnatEntriesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of snat entries
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -192,7 +186,7 @@ namespace Pulumi.Volcengine.Nat
         ///         SourceCidr = "172.16.0.0/24",
         ///     }, new CustomResourceOptions
         ///     {
-        ///         DependsOn = new[]
+        ///         DependsOn =
         ///         {
         ///             fooAssociate,
         ///         },
@@ -206,7 +200,7 @@ namespace Pulumi.Volcengine.Nat
         ///         SourceCidr = "172.16.0.0/16",
         ///     }, new CustomResourceOptions
         ///     {
-        ///         DependsOn = new[]
+        ///         DependsOn =
         ///         {
         ///             fooAssociate,
         ///         },
@@ -223,8 +217,6 @@ namespace Pulumi.Volcengine.Nat
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<SnatEntriesResult> Invoke(SnatEntriesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<SnatEntriesResult>("volcengine:nat/snatEntries:SnatEntries", args ?? new SnatEntriesInvokeArgs(), options.WithDefaults());

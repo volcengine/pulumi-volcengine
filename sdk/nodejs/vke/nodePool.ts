@@ -207,7 +207,7 @@ import * as utilities from "../utilities";
  * NodePool can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:vke/nodePool:NodePool default pcabe57vqtofgrbln3dp0
+ * $ pulumi import volcengine:vke/nodePool:NodePool default pcabe57vqtofgrbln3dp0
  * ```
  */
 export class NodePool extends pulumi.CustomResource {

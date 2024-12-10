@@ -295,13 +295,12 @@ class Record(pulumi.CustomResource):
                  __props__=None):
         """
         Provides a resource to manage private zone record
-
         ## Import
 
         PrivateZoneRecord can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:private_zone/record:Record default resource_id
+        $ pulumi import volcengine:private_zone/record:Record default resource_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -323,13 +322,12 @@ class Record(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides a resource to manage private zone record
-
         ## Import
 
         PrivateZoneRecord can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:private_zone/record:Record default resource_id
+        $ pulumi import volcengine:private_zone/record:Record default resource_id
         ```
 
         :param str resource_name: The name of the resource.

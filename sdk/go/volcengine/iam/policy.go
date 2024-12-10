@@ -46,9 +46,7 @@ import (
 // Iam policy can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:iam/policy:Policy default TerraformTestPolicy
-//
+// $ pulumi import volcengine:iam/policy:Policy default TerraformTestPolicy
 // ```
 type Policy struct {
 	pulumi.CustomResourceState

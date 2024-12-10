@@ -581,7 +581,7 @@ class RdsInstanceV2(pulumi.CustomResource):
         RDS Instance can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:rds_v2/rdsInstanceV2:RdsInstanceV2 default mysql-42b38c769c4b
+        $ pulumi import volcengine:rds_v2/rdsInstanceV2:RdsInstanceV2 default mysql-42b38c769c4b
         ```
 
         :param str resource_name: The name of the resource.
@@ -665,7 +665,7 @@ class RdsInstanceV2(pulumi.CustomResource):
         RDS Instance can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:rds_v2/rdsInstanceV2:RdsInstanceV2 default mysql-42b38c769c4b
+        $ pulumi import volcengine:rds_v2/rdsInstanceV2:RdsInstanceV2 default mysql-42b38c769c4b
         ```
 
         :param str resource_name: The name of the resource.
@@ -714,9 +714,6 @@ class RdsInstanceV2(pulumi.CustomResource):
             __props__.__dict__["db_param_group_id"] = db_param_group_id
             __props__.__dict__["db_time_zone"] = db_time_zone
             __props__.__dict__["instance_name"] = instance_name
-            if instance_type is not None and not opts.urn:
-                warnings.warn("""The field instance_type is no longer support.""", DeprecationWarning)
-                pulumi.log.warn("""instance_type is deprecated: The field instance_type is no longer support.""")
             __props__.__dict__["instance_type"] = instance_type
             __props__.__dict__["lower_case_table_names"] = lower_case_table_names
             if node_infos is None and not opts.urn:

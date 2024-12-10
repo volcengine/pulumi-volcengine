@@ -82,7 +82,7 @@ namespace Pulumi.Volcengine.Rds_postgresql
     /// RdsPostgresqlInstance can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:rds_postgresql/instance:Instance default postgres-21a3333b****
+    /// $ pulumi import volcengine:rds_postgresql/instance:Instance default postgres-21a3333b****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:rds_postgresql/instance:Instance")]

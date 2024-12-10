@@ -14,7 +14,7 @@ namespace Pulumi.Volcengine.Alb.Outputs
     public sealed class AlbEipBillingConfig
     {
         /// <summary>
-        /// The peek bandwidth of the Ipv6 EIP which automatically assigned to the Alb. Unit: Mbps.
+        /// The peek bandwidth of the EIP which automatically assigned to the Alb. Unit: Mbps.
         /// </summary>
         public readonly int Bandwidth;
         /// <summary>
@@ -22,7 +22,7 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// </summary>
         public readonly string EipBillingType;
         /// <summary>
-        /// The ISP of the Ipv6 EIP which automatically associated to the Alb, the value can be `BGP`.
+        /// The ISP of the EIP which automatically associated to the Alb, the value can be `BGP`.
         /// </summary>
         public readonly string Isp;
 

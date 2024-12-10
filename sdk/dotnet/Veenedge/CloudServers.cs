@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Veenedge
     {
         /// <summary>
         /// Use this data source to query detailed information of veenedge cloud servers
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -29,17 +27,13 @@ namespace Pulumi.Volcengine.Veenedge
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<CloudServersResult> InvokeAsync(CloudServersArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<CloudServersResult>("volcengine:veenedge/cloudServers:CloudServers", args ?? new CloudServersArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of veenedge cloud servers
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -53,8 +47,6 @@ namespace Pulumi.Volcengine.Veenedge
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<CloudServersResult> Invoke(CloudServersInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<CloudServersResult>("volcengine:veenedge/cloudServers:CloudServers", args ?? new CloudServersInvokeArgs(), options.WithDefaults());

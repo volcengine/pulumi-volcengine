@@ -51,7 +51,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				VpcId:      fooVpc.ID(),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //			})
 //			if err != nil {
@@ -60,7 +60,7 @@ import (
 //			foo2, err := vpc.NewSubnet(ctx, "foo2", &vpc.SubnetArgs{
 //				VpcId:      fooVpc.ID(),
 //				CidrBlock:  pulumi.String("172.16.255.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[1].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[1].Id),
 //				SubnetName: pulumi.String("acc-test-subnet2"),
 //			})
 //			if err != nil {
@@ -103,9 +103,7 @@ import (
 // TransitRouterVpcAttachment can be imported using the transitRouterId:attachmentId, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:transit_router/vpcAttachment:VpcAttachment default tr-2d6fr7mzya2gw58ozfes5g2oh:tr-attach-7qthudw0ll6jmc****
-//
+// $ pulumi import volcengine:transit_router/vpcAttachment:VpcAttachment default tr-2d6fr7mzya2gw58ozfes5g2oh:tr-attach-7qthudw0ll6jmc****
 // ```
 type VpcAttachment struct {
 	pulumi.CustomResourceState

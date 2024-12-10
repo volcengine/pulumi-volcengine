@@ -158,7 +158,7 @@ class IamRoleAttachment(pulumi.CustomResource):
         IamRoleAttachment can be imported using the iam_role_name:instance_id, e.g.
 
         ```sh
-         $ pulumi import volcengine:ecs/iamRoleAttachment:IamRoleAttachment default role_name:instance_id
+        $ pulumi import volcengine:ecs/iamRoleAttachment:IamRoleAttachment default role_name:instance_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -233,7 +233,7 @@ class IamRoleAttachment(pulumi.CustomResource):
         IamRoleAttachment can be imported using the iam_role_name:instance_id, e.g.
 
         ```sh
-         $ pulumi import volcengine:ecs/iamRoleAttachment:IamRoleAttachment default role_name:instance_id
+        $ pulumi import volcengine:ecs/iamRoleAttachment:IamRoleAttachment default role_name:instance_id
         ```
 
         :param str resource_name: The name of the resource.

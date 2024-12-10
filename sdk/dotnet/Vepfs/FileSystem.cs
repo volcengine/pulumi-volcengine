@@ -62,7 +62,7 @@ namespace Pulumi.Volcengine.Vepfs
     /// VepfsFileSystem can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:vepfs/fileSystem:FileSystem default resource_id
+    /// $ pulumi import volcengine:vepfs/fileSystem:FileSystem default resource_id
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vepfs/fileSystem:FileSystem")]

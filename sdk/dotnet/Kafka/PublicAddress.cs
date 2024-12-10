@@ -96,7 +96,7 @@ namespace Pulumi.Volcengine.Kafka
     /// KafkaPublicAddress can be imported using the instance_id:eip_id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:kafka/publicAddress:PublicAddress default instance_id:eip_id
+    /// $ pulumi import volcengine:kafka/publicAddress:PublicAddress default instance_id:eip_id
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:kafka/publicAddress:PublicAddress")]

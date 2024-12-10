@@ -45,9 +45,7 @@ import (
 // Redis State Instance can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:redis/state:State default state:redis-mizl7m1kqccg5smt1bdpijuj
-//
+// $ pulumi import volcengine:redis/state:State default state:redis-mizl7m1kqccg5smt1bdpijuj
 // ```
 type State struct {
 	pulumi.CustomResourceState

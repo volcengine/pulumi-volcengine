@@ -495,7 +495,7 @@ class Rule(pulumi.CustomResource):
         tls rule can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:tls/rule:Rule default fa************
+        $ pulumi import volcengine:tls/rule:Rule default fa************
         ```
 
         :param str resource_name: The name of the resource.
@@ -633,7 +633,7 @@ class Rule(pulumi.CustomResource):
         tls rule can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:tls/rule:Rule default fa************
+        $ pulumi import volcengine:tls/rule:Rule default fa************
         ```
 
         :param str resource_name: The name of the resource.

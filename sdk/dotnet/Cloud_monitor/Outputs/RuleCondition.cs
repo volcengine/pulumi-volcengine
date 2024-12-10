@@ -25,6 +25,9 @@ namespace Pulumi.Volcengine.Cloud_monitor.Outputs
         /// The metric unit of the cloud monitor rule.
         /// </summary>
         public readonly string MetricUnit;
+        /// <summary>
+        /// The period of the cloud monitor rule.
+        /// </summary>
         public readonly string? Period;
         /// <summary>
         /// The statistics of the cloud monitor rule. Valid values: `avg`, `max`, `min`.

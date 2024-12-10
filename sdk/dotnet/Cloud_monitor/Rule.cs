@@ -99,7 +99,7 @@ namespace Pulumi.Volcengine.Cloud_monitor
     /// CloudMonitorRule can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:cloud_monitor/rule:Rule default 174284623567451****
+    /// $ pulumi import volcengine:cloud_monitor/rule:Rule default 174284623567451****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:cloud_monitor/rule:Rule")]

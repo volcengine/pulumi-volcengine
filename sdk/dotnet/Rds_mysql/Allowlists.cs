@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Rds_mysql
     {
         /// <summary>
         /// Use this data source to query detailed information of rds mysql allowlists
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -95,17 +93,13 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<AllowlistsResult> InvokeAsync(AllowlistsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<AllowlistsResult>("volcengine:rds_mysql/allowlists:Allowlists", args ?? new AllowlistsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of rds mysql allowlists
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -185,8 +179,6 @@ namespace Pulumi.Volcengine.Rds_mysql
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<AllowlistsResult> Invoke(AllowlistsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<AllowlistsResult>("volcengine:rds_mysql/allowlists:Allowlists", args ?? new AllowlistsInvokeArgs(), options.WithDefaults());

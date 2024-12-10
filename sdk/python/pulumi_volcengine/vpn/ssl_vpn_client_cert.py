@@ -323,7 +323,7 @@ class SslVpnClientCert(pulumi.CustomResource):
         SSL VPN Client Cert can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vpn/sslVpnClientCert:SslVpnClientCert default vsc-2d6b7gjrzc2yo58ozfcx2****
+        $ pulumi import volcengine:vpn/sslVpnClientCert:SslVpnClientCert default vsc-2d6b7gjrzc2yo58ozfcx2****
         ```
 
         :param str resource_name: The name of the resource.
@@ -386,7 +386,7 @@ class SslVpnClientCert(pulumi.CustomResource):
         SSL VPN Client Cert can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vpn/sslVpnClientCert:SslVpnClientCert default vsc-2d6b7gjrzc2yo58ozfcx2****
+        $ pulumi import volcengine:vpn/sslVpnClientCert:SslVpnClientCert default vsc-2d6b7gjrzc2yo58ozfcx2****
         ```
 
         :param str resource_name: The name of the resource.

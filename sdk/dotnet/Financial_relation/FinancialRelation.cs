@@ -11,13 +11,12 @@ namespace Pulumi.Volcengine.Financial_relation
 {
     /// <summary>
     /// Provides a resource to manage financial relation
-    /// 
     /// ## Import
     /// 
     /// FinancialRelation can be imported using the sub_account_id:relation:relation_id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:financial_relation/financialRelation:FinancialRelation default resource_id
+    /// $ pulumi import volcengine:financial_relation/financialRelation:FinancialRelation default resource_id
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:financial_relation/financialRelation:FinancialRelation")]

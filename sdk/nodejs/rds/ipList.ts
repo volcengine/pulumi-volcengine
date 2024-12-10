@@ -27,7 +27,7 @@ import * as utilities from "../utilities";
  * RDSIPList can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:rds/ipList:IpList default mysql-42b38c769c4b:group_name
+ * $ pulumi import volcengine:rds/ipList:IpList default mysql-42b38c769c4b:group_name
  * ```
  */
 export class IpList extends pulumi.CustomResource {

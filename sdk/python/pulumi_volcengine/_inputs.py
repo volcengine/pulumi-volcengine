@@ -20,6 +20,12 @@ class ProviderAssumeRoleArgs:
                  assume_role_trn: pulumi.Input[str],
                  duration_seconds: pulumi.Input[int],
                  policy: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] assume_role_session_name: The session name to use when making the AssumeRole call.
+        :param pulumi.Input[str] assume_role_trn: The TRN of the role to assume.
+        :param pulumi.Input[int] duration_seconds: The duration of the session when making the AssumeRole call. Its value ranges from 900 to 43200(seconds), and default is 3600 seconds.
+        :param pulumi.Input[str] policy: A more restrictive policy when making the AssumeRole call.
+        """
         pulumi.set(__self__, "assume_role_session_name", assume_role_session_name)
         pulumi.set(__self__, "assume_role_trn", assume_role_trn)
         pulumi.set(__self__, "duration_seconds", duration_seconds)
@@ -29,6 +35,9 @@ class ProviderAssumeRoleArgs:
     @property
     @pulumi.getter(name="assumeRoleSessionName")
     def assume_role_session_name(self) -> pulumi.Input[str]:
+        """
+        The session name to use when making the AssumeRole call.
+        """
         return pulumi.get(self, "assume_role_session_name")
 
     @assume_role_session_name.setter
@@ -38,6 +47,9 @@ class ProviderAssumeRoleArgs:
     @property
     @pulumi.getter(name="assumeRoleTrn")
     def assume_role_trn(self) -> pulumi.Input[str]:
+        """
+        The TRN of the role to assume.
+        """
         return pulumi.get(self, "assume_role_trn")
 
     @assume_role_trn.setter
@@ -47,6 +59,9 @@ class ProviderAssumeRoleArgs:
     @property
     @pulumi.getter(name="durationSeconds")
     def duration_seconds(self) -> pulumi.Input[int]:
+        """
+        The duration of the session when making the AssumeRole call. Its value ranges from 900 to 43200(seconds), and default is 3600 seconds.
+        """
         return pulumi.get(self, "duration_seconds")
 
     @duration_seconds.setter
@@ -56,6 +71,9 @@ class ProviderAssumeRoleArgs:
     @property
     @pulumi.getter
     def policy(self) -> Optional[pulumi.Input[str]]:
+        """
+        A more restrictive policy when making the AssumeRole call.
+        """
         return pulumi.get(self, "policy")
 
     @policy.setter

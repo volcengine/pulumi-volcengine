@@ -62,7 +62,7 @@ namespace Pulumi.Volcengine.Ecs.Outputs
         /// </summary>
         public readonly int Ipv6AddressCount;
         /// <summary>
-        /// The  IPv6 address list of the ECS instance.
+        /// A list of ipv6 addresses.
         /// </summary>
         public readonly ImmutableArray<string> Ipv6Addresses;
         /// <summary>

@@ -24,7 +24,7 @@ import * as utilities from "../utilities";
  * Workspace can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:bioos/workspace:Workspace default *****
+ * $ pulumi import volcengine:bioos/workspace:Workspace default *****
  * ```
  */
 export class Workspace extends pulumi.CustomResource {

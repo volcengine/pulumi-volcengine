@@ -922,7 +922,10 @@ class ResolverRulesRuleBindVpcResult(dict):
                  region: str,
                  region_name: str):
         """
+        :param str account_id: The account id of the bind vpc.
         :param str id: The id of the rule.
+        :param str region: The region of the bind vpc.
+        :param str region_name: The region name of the bind vpc.
         """
         pulumi.set(__self__, "account_id", account_id)
         pulumi.set(__self__, "id", id)
@@ -932,6 +935,9 @@ class ResolverRulesRuleBindVpcResult(dict):
     @property
     @pulumi.getter(name="accountId")
     def account_id(self) -> str:
+        """
+        The account id of the bind vpc.
+        """
         return pulumi.get(self, "account_id")
 
     @property
@@ -945,11 +951,17 @@ class ResolverRulesRuleBindVpcResult(dict):
     @property
     @pulumi.getter
     def region(self) -> str:
+        """
+        The region of the bind vpc.
+        """
         return pulumi.get(self, "region")
 
     @property
     @pulumi.getter(name="regionName")
     def region_name(self) -> str:
+        """
+        The region name of the bind vpc.
+        """
         return pulumi.get(self, "region_name")
 
 

@@ -549,12 +549,16 @@ class CloudServer(pulumi.CustomResource):
         CloudServer can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:veenedge/cloudServer:CloudServer default cloudserver-n769ewmjjqyqh5dv
+        $ pulumi import volcengine:veenedge/cloudServer:CloudServer default cloudserver-n769ewmjjqyqh5dv
         ```
 
-         After the veenedge cloud server is created, a default edge instance will be created, we recommend managing this default instance as follows resource "volcengine_veenedge_instance" "foo1" {
+        After the veenedge cloud server is created, a default edge instance will be created, we recommend managing this default instance as follows
 
-         instance_id = volcengine_veenedge_cloud_server.foo.default_instance_id }
+        resource "volcengine_veenedge_instance" "foo1" {
+
+          instance_id = volcengine_veenedge_cloud_server.foo.default_instance_id
+
+        }
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -625,12 +629,16 @@ class CloudServer(pulumi.CustomResource):
         CloudServer can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:veenedge/cloudServer:CloudServer default cloudserver-n769ewmjjqyqh5dv
+        $ pulumi import volcengine:veenedge/cloudServer:CloudServer default cloudserver-n769ewmjjqyqh5dv
         ```
 
-         After the veenedge cloud server is created, a default edge instance will be created, we recommend managing this default instance as follows resource "volcengine_veenedge_instance" "foo1" {
+        After the veenedge cloud server is created, a default edge instance will be created, we recommend managing this default instance as follows
 
-         instance_id = volcengine_veenedge_cloud_server.foo.default_instance_id }
+        resource "volcengine_veenedge_instance" "foo1" {
+
+          instance_id = volcengine_veenedge_cloud_server.foo.default_instance_id
+
+        }
 
         :param str resource_name: The name of the resource.
         :param CloudServerArgs args: The arguments to use to populate this resource's properties.

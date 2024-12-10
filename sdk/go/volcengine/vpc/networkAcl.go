@@ -27,15 +27,16 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := vpc.NewNetworkAcl(ctx, "foo", &vpc.NetworkAclArgs{
-//				EgressAclEntries: vpc.NetworkAclEgressAclEntryArray{
-//					&vpc.NetworkAclEgressAclEntryArgs{
-//						DestinationCidrIp:   pulumi.String("192.168.0.0/16"),
-//						NetworkAclEntryName: pulumi.String("egress2"),
-//						Policy:              pulumi.String("accept"),
-//						Protocol:            pulumi.String("all"),
-//					},
-//				},
+//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
+//				VpcName:   pulumi.String("acc-test-vpc"),
+//				CidrBlock: pulumi.String("172.16.0.0/16"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = vpc.NewNetworkAcl(ctx, "fooNetworkAcl", &vpc.NetworkAclArgs{
+//				VpcId:          fooVpc.ID(),
+//				NetworkAclName: pulumi.String("tf-test-acl"),
 //				IngressAclEntries: vpc.NetworkAclIngressAclEntryArray{
 //					&vpc.NetworkAclIngressAclEntryArgs{
 //						NetworkAclEntryName: pulumi.String("ingress1"),
@@ -46,14 +47,26 @@ import (
 //					&vpc.NetworkAclIngressAclEntryArgs{
 //						NetworkAclEntryName: pulumi.String("ingress3"),
 //						Policy:              pulumi.String("accept"),
-//						Port:                pulumi.String("80/80"),
 //						Protocol:            pulumi.String("tcp"),
+//						Port:                pulumi.String("80/80"),
 //						SourceCidrIp:        pulumi.String("192.168.0.0/24"),
 //					},
 //				},
-//				NetworkAclName: pulumi.String("tf-test-acl"),
-//				ProjectName:    pulumi.String("default"),
-//				VpcId:          pulumi.String("vpc-2d6jskar243k058ozfdae13ne"),
+//				EgressAclEntries: vpc.NetworkAclEgressAclEntryArray{
+//					&vpc.NetworkAclEgressAclEntryArgs{
+//						NetworkAclEntryName: pulumi.String("egress2"),
+//						Policy:              pulumi.String("accept"),
+//						Protocol:            pulumi.String("all"),
+//						DestinationCidrIp:   pulumi.String("192.168.0.0/16"),
+//					},
+//				},
+//				ProjectName: pulumi.String("default"),
+//				Tags: vpc.NetworkAclTagArray{
+//					&vpc.NetworkAclTagArgs{
+//						Key:   pulumi.String("k1"),
+//						Value: pulumi.String("v1"),
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -69,9 +82,7 @@ import (
 // Network Acl can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:vpc/networkAcl:NetworkAcl default nacl-172leak37mi9s4d1w33pswqkh
-//
+// $ pulumi import volcengine:vpc/networkAcl:NetworkAcl default nacl-172leak37mi9s4d1w33pswqkh
 // ```
 type NetworkAcl struct {
 	pulumi.CustomResourceState
@@ -86,6 +97,8 @@ type NetworkAcl struct {
 	NetworkAclName pulumi.StringOutput `pulumi:"networkAclName"`
 	// The project name of the network acl.
 	ProjectName pulumi.StringOutput `pulumi:"projectName"`
+	// Tags.
+	Tags NetworkAclTagArrayOutput `pulumi:"tags"`
 	// The vpc id of Network Acl.
 	VpcId pulumi.StringOutput `pulumi:"vpcId"`
 }
@@ -133,6 +146,8 @@ type networkAclState struct {
 	NetworkAclName *string `pulumi:"networkAclName"`
 	// The project name of the network acl.
 	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []NetworkAclTag `pulumi:"tags"`
 	// The vpc id of Network Acl.
 	VpcId *string `pulumi:"vpcId"`
 }
@@ -148,6 +163,8 @@ type NetworkAclState struct {
 	NetworkAclName pulumi.StringPtrInput
 	// The project name of the network acl.
 	ProjectName pulumi.StringPtrInput
+	// Tags.
+	Tags NetworkAclTagArrayInput
 	// The vpc id of Network Acl.
 	VpcId pulumi.StringPtrInput
 }
@@ -167,6 +184,8 @@ type networkAclArgs struct {
 	NetworkAclName *string `pulumi:"networkAclName"`
 	// The project name of the network acl.
 	ProjectName *string `pulumi:"projectName"`
+	// Tags.
+	Tags []NetworkAclTag `pulumi:"tags"`
 	// The vpc id of Network Acl.
 	VpcId string `pulumi:"vpcId"`
 }
@@ -183,6 +202,8 @@ type NetworkAclArgs struct {
 	NetworkAclName pulumi.StringPtrInput
 	// The project name of the network acl.
 	ProjectName pulumi.StringPtrInput
+	// Tags.
+	Tags NetworkAclTagArrayInput
 	// The vpc id of Network Acl.
 	VpcId pulumi.StringInput
 }
@@ -297,6 +318,11 @@ func (o NetworkAclOutput) NetworkAclName() pulumi.StringOutput {
 // The project name of the network acl.
 func (o NetworkAclOutput) ProjectName() pulumi.StringOutput {
 	return o.ApplyT(func(v *NetworkAcl) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o NetworkAclOutput) Tags() NetworkAclTagArrayOutput {
+	return o.ApplyT(func(v *NetworkAcl) NetworkAclTagArrayOutput { return v.Tags }).(NetworkAclTagArrayOutput)
 }
 
 // The vpc id of Network Acl.

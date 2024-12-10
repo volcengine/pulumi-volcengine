@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Direct_connect
     {
         /// <summary>
         /// Use this data source to query detailed information of direct connect virtual interfaces
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -32,17 +30,13 @@ namespace Pulumi.Volcengine.Direct_connect
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<VirtualInterfacesResult> InvokeAsync(VirtualInterfacesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<VirtualInterfacesResult>("volcengine:direct_connect/virtualInterfaces:VirtualInterfaces", args ?? new VirtualInterfacesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of direct connect virtual interfaces
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -59,8 +53,6 @@ namespace Pulumi.Volcengine.Direct_connect
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<VirtualInterfacesResult> Invoke(VirtualInterfacesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<VirtualInterfacesResult>("volcengine:direct_connect/virtualInterfaces:VirtualInterfaces", args ?? new VirtualInterfacesInvokeArgs(), options.WithDefaults());

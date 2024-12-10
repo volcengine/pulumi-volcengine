@@ -270,7 +270,7 @@ class ResolverEndpoint(pulumi.CustomResource):
         PrivateZoneResolverEndpoint can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:private_zone/resolverEndpoint:ResolverEndpoint default resource_id
+        $ pulumi import volcengine:private_zone/resolverEndpoint:ResolverEndpoint default resource_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -329,7 +329,7 @@ class ResolverEndpoint(pulumi.CustomResource):
         PrivateZoneResolverEndpoint can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:private_zone/resolverEndpoint:ResolverEndpoint default resource_id
+        $ pulumi import volcengine:private_zone/resolverEndpoint:ResolverEndpoint default resource_id
         ```
 
         :param str resource_name: The name of the resource.

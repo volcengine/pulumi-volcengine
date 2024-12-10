@@ -12,15 +12,27 @@ namespace Pulumi.Volcengine.Inputs
 
     public sealed class ProviderAssumeRoleArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The session name to use when making the AssumeRole call.
+        /// </summary>
         [Input("assumeRoleSessionName", required: true)]
         public Input<string> AssumeRoleSessionName { get; set; } = null!;
 
+        /// <summary>
+        /// The TRN of the role to assume.
+        /// </summary>
         [Input("assumeRoleTrn", required: true)]
         public Input<string> AssumeRoleTrn { get; set; } = null!;
 
+        /// <summary>
+        /// The duration of the session when making the AssumeRole call. Its value ranges from 900 to 43200(seconds), and default is 3600 seconds.
+        /// </summary>
         [Input("durationSeconds", required: true)]
         public Input<int> DurationSeconds { get; set; } = null!;
 
+        /// <summary>
+        /// A more restrictive policy when making the AssumeRole call.
+        /// </summary>
         [Input("policy")]
         public Input<string>? Policy { get; set; }
 

@@ -211,7 +211,7 @@ class Acl(pulumi.CustomResource):
         Acl can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:clb/acl:Acl default acl-mizl7m1kqccg5smt1bdpijuj
+        $ pulumi import volcengine:clb/acl:Acl default acl-mizl7m1kqccg5smt1bdpijuj
         ```
 
         :param str resource_name: The name of the resource.
@@ -255,7 +255,7 @@ class Acl(pulumi.CustomResource):
         Acl can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:clb/acl:Acl default acl-mizl7m1kqccg5smt1bdpijuj
+        $ pulumi import volcengine:clb/acl:Acl default acl-mizl7m1kqccg5smt1bdpijuj
         ```
 
         :param str resource_name: The name of the resource.

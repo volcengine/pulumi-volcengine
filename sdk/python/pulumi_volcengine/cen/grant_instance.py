@@ -214,7 +214,7 @@ class GrantInstance(pulumi.CustomResource):
         Cen grant instance can be imported using the CenId:CenOwnerId:InstanceId:InstanceType:RegionId, e.g.
 
         ```sh
-         $ pulumi import volcengine:cen/grantInstance:GrantInstance default cen-7qthudw0ll6jmc***:210000****:vpc-2fexiqjlgjif45oxruvso****:VPC:cn-beijing
+        $ pulumi import volcengine:cen/grantInstance:GrantInstance default cen-7qthudw0ll6jmc***:210000****:vpc-2fexiqjlgjif45oxruvso****:VPC:cn-beijing
         ```
 
         :param str resource_name: The name of the resource.
@@ -252,7 +252,7 @@ class GrantInstance(pulumi.CustomResource):
         Cen grant instance can be imported using the CenId:CenOwnerId:InstanceId:InstanceType:RegionId, e.g.
 
         ```sh
-         $ pulumi import volcengine:cen/grantInstance:GrantInstance default cen-7qthudw0ll6jmc***:210000****:vpc-2fexiqjlgjif45oxruvso****:VPC:cn-beijing
+        $ pulumi import volcengine:cen/grantInstance:GrantInstance default cen-7qthudw0ll6jmc***:210000****:vpc-2fexiqjlgjif45oxruvso****:VPC:cn-beijing
         ```
 
         :param str resource_name: The name of the resource.

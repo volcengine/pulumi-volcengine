@@ -35,7 +35,7 @@ namespace Pulumi.Volcengine.Tls
     /// Tls Host can be imported using the host_group_id:ip, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:tls/host:Host default edf051ed-3c46-49:1.1.1.1
+    /// $ pulumi import volcengine:tls/host:Host default edf051ed-3c46-49:1.1.1.1
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:tls/host:Host")]

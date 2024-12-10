@@ -13,7 +13,7 @@ namespace Pulumi.Volcengine.Ecs.Inputs
     public sealed class InstanceSecondaryNetworkInterfaceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The private ip address of primary networkInterface.
+        /// The private ip address of secondary networkInterface.
         /// </summary>
         [Input("primaryIpAddress")]
         public Input<string>? PrimaryIpAddress { get; set; }

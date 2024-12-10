@@ -23,6 +23,9 @@ class VolumeArgs:
                  zone_id: pulumi.Input[str],
                  delete_with_instance: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 extra_performance_iops: Optional[pulumi.Input[int]] = None,
+                 extra_performance_throughput_mb: Optional[pulumi.Input[int]] = None,
+                 extra_performance_type_id: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['VolumeTagArgs']]]] = None,
@@ -36,6 +39,9 @@ class VolumeArgs:
         :param pulumi.Input[str] zone_id: The id of the Zone.
         :param pulumi.Input[bool] delete_with_instance: Delete Volume with Attached Instance.
         :param pulumi.Input[str] description: The description of the Volume.
+        :param pulumi.Input[int] extra_performance_iops: The extra IOPS performance size for volume. Unit: times per second. The valid values for `Balance` and `IOPS` is 0~50000.
+        :param pulumi.Input[int] extra_performance_throughput_mb: The extra Throughput performance size for volume. Unit: MB/s. The valid values for ESSD FlexPL volume is 0~650.
+        :param pulumi.Input[str] extra_performance_type_id: The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
         :param pulumi.Input[str] instance_id: The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
                system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
                deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
@@ -53,6 +59,12 @@ class VolumeArgs:
             pulumi.set(__self__, "delete_with_instance", delete_with_instance)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if extra_performance_iops is not None:
+            pulumi.set(__self__, "extra_performance_iops", extra_performance_iops)
+        if extra_performance_throughput_mb is not None:
+            pulumi.set(__self__, "extra_performance_throughput_mb", extra_performance_throughput_mb)
+        if extra_performance_type_id is not None:
+            pulumi.set(__self__, "extra_performance_type_id", extra_performance_type_id)
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
         if project_name is not None:
@@ -147,6 +159,42 @@ class VolumeArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="extraPerformanceIops")
+    def extra_performance_iops(self) -> Optional[pulumi.Input[int]]:
+        """
+        The extra IOPS performance size for volume. Unit: times per second. The valid values for `Balance` and `IOPS` is 0~50000.
+        """
+        return pulumi.get(self, "extra_performance_iops")
+
+    @extra_performance_iops.setter
+    def extra_performance_iops(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "extra_performance_iops", value)
+
+    @property
+    @pulumi.getter(name="extraPerformanceThroughputMb")
+    def extra_performance_throughput_mb(self) -> Optional[pulumi.Input[int]]:
+        """
+        The extra Throughput performance size for volume. Unit: MB/s. The valid values for ESSD FlexPL volume is 0~650.
+        """
+        return pulumi.get(self, "extra_performance_throughput_mb")
+
+    @extra_performance_throughput_mb.setter
+    def extra_performance_throughput_mb(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "extra_performance_throughput_mb", value)
+
+    @property
+    @pulumi.getter(name="extraPerformanceTypeId")
+    def extra_performance_type_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
+        """
+        return pulumi.get(self, "extra_performance_type_id")
+
+    @extra_performance_type_id.setter
+    def extra_performance_type_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "extra_performance_type_id", value)
+
+    @property
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -204,6 +252,9 @@ class _VolumeState:
                  created_at: Optional[pulumi.Input[str]] = None,
                  delete_with_instance: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 extra_performance_iops: Optional[pulumi.Input[int]] = None,
+                 extra_performance_throughput_mb: Optional[pulumi.Input[int]] = None,
+                 extra_performance_type_id: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  kind: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
@@ -220,6 +271,9 @@ class _VolumeState:
         :param pulumi.Input[str] created_at: Creation time of Volume.
         :param pulumi.Input[bool] delete_with_instance: Delete Volume with Attached Instance.
         :param pulumi.Input[str] description: The description of the Volume.
+        :param pulumi.Input[int] extra_performance_iops: The extra IOPS performance size for volume. Unit: times per second. The valid values for `Balance` and `IOPS` is 0~50000.
+        :param pulumi.Input[int] extra_performance_throughput_mb: The extra Throughput performance size for volume. Unit: MB/s. The valid values for ESSD FlexPL volume is 0~650.
+        :param pulumi.Input[str] extra_performance_type_id: The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
         :param pulumi.Input[str] instance_id: The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
                system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
                deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
@@ -241,6 +295,12 @@ class _VolumeState:
             pulumi.set(__self__, "delete_with_instance", delete_with_instance)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if extra_performance_iops is not None:
+            pulumi.set(__self__, "extra_performance_iops", extra_performance_iops)
+        if extra_performance_throughput_mb is not None:
+            pulumi.set(__self__, "extra_performance_throughput_mb", extra_performance_throughput_mb)
+        if extra_performance_type_id is not None:
+            pulumi.set(__self__, "extra_performance_type_id", extra_performance_type_id)
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
         if kind is not None:
@@ -299,6 +359,42 @@ class _VolumeState:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="extraPerformanceIops")
+    def extra_performance_iops(self) -> Optional[pulumi.Input[int]]:
+        """
+        The extra IOPS performance size for volume. Unit: times per second. The valid values for `Balance` and `IOPS` is 0~50000.
+        """
+        return pulumi.get(self, "extra_performance_iops")
+
+    @extra_performance_iops.setter
+    def extra_performance_iops(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "extra_performance_iops", value)
+
+    @property
+    @pulumi.getter(name="extraPerformanceThroughputMb")
+    def extra_performance_throughput_mb(self) -> Optional[pulumi.Input[int]]:
+        """
+        The extra Throughput performance size for volume. Unit: MB/s. The valid values for ESSD FlexPL volume is 0~650.
+        """
+        return pulumi.get(self, "extra_performance_throughput_mb")
+
+    @extra_performance_throughput_mb.setter
+    def extra_performance_throughput_mb(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "extra_performance_throughput_mb", value)
+
+    @property
+    @pulumi.getter(name="extraPerformanceTypeId")
+    def extra_performance_type_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
+        """
+        return pulumi.get(self, "extra_performance_type_id")
+
+    @extra_performance_type_id.setter
+    def extra_performance_type_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "extra_performance_type_id", value)
 
     @property
     @pulumi.getter(name="instanceId")
@@ -443,6 +539,9 @@ class Volume(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  delete_with_instance: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 extra_performance_iops: Optional[pulumi.Input[int]] = None,
+                 extra_performance_throughput_mb: Optional[pulumi.Input[int]] = None,
+                 extra_performance_type_id: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  kind: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
@@ -528,13 +627,16 @@ class Volume(pulumi.CustomResource):
         Volume can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:ebs/volume:Volume default vol-mizl7m1kqccg5smt1bdpijuj
+        $ pulumi import volcengine:ebs/volume:Volume default vol-mizl7m1kqccg5smt1bdpijuj
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] delete_with_instance: Delete Volume with Attached Instance.
         :param pulumi.Input[str] description: The description of the Volume.
+        :param pulumi.Input[int] extra_performance_iops: The extra IOPS performance size for volume. Unit: times per second. The valid values for `Balance` and `IOPS` is 0~50000.
+        :param pulumi.Input[int] extra_performance_throughput_mb: The extra Throughput performance size for volume. Unit: MB/s. The valid values for ESSD FlexPL volume is 0~650.
+        :param pulumi.Input[str] extra_performance_type_id: The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
         :param pulumi.Input[str] instance_id: The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
                system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
                deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
@@ -629,7 +731,7 @@ class Volume(pulumi.CustomResource):
         Volume can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:ebs/volume:Volume default vol-mizl7m1kqccg5smt1bdpijuj
+        $ pulumi import volcengine:ebs/volume:Volume default vol-mizl7m1kqccg5smt1bdpijuj
         ```
 
         :param str resource_name: The name of the resource.
@@ -649,6 +751,9 @@ class Volume(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  delete_with_instance: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 extra_performance_iops: Optional[pulumi.Input[int]] = None,
+                 extra_performance_throughput_mb: Optional[pulumi.Input[int]] = None,
+                 extra_performance_type_id: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  kind: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
@@ -669,6 +774,9 @@ class Volume(pulumi.CustomResource):
 
             __props__.__dict__["delete_with_instance"] = delete_with_instance
             __props__.__dict__["description"] = description
+            __props__.__dict__["extra_performance_iops"] = extra_performance_iops
+            __props__.__dict__["extra_performance_throughput_mb"] = extra_performance_throughput_mb
+            __props__.__dict__["extra_performance_type_id"] = extra_performance_type_id
             __props__.__dict__["instance_id"] = instance_id
             if kind is None and not opts.urn:
                 raise TypeError("Missing required property 'kind'")
@@ -704,6 +812,9 @@ class Volume(pulumi.CustomResource):
             created_at: Optional[pulumi.Input[str]] = None,
             delete_with_instance: Optional[pulumi.Input[bool]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            extra_performance_iops: Optional[pulumi.Input[int]] = None,
+            extra_performance_throughput_mb: Optional[pulumi.Input[int]] = None,
+            extra_performance_type_id: Optional[pulumi.Input[str]] = None,
             instance_id: Optional[pulumi.Input[str]] = None,
             kind: Optional[pulumi.Input[str]] = None,
             project_name: Optional[pulumi.Input[str]] = None,
@@ -725,6 +836,9 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[str] created_at: Creation time of Volume.
         :param pulumi.Input[bool] delete_with_instance: Delete Volume with Attached Instance.
         :param pulumi.Input[str] description: The description of the Volume.
+        :param pulumi.Input[int] extra_performance_iops: The extra IOPS performance size for volume. Unit: times per second. The valid values for `Balance` and `IOPS` is 0~50000.
+        :param pulumi.Input[int] extra_performance_throughput_mb: The extra Throughput performance size for volume. Unit: MB/s. The valid values for ESSD FlexPL volume is 0~650.
+        :param pulumi.Input[str] extra_performance_type_id: The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
         :param pulumi.Input[str] instance_id: The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
                system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
                deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
@@ -747,6 +861,9 @@ class Volume(pulumi.CustomResource):
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["delete_with_instance"] = delete_with_instance
         __props__.__dict__["description"] = description
+        __props__.__dict__["extra_performance_iops"] = extra_performance_iops
+        __props__.__dict__["extra_performance_throughput_mb"] = extra_performance_throughput_mb
+        __props__.__dict__["extra_performance_type_id"] = extra_performance_type_id
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["kind"] = kind
         __props__.__dict__["project_name"] = project_name
@@ -783,6 +900,30 @@ class Volume(pulumi.CustomResource):
         The description of the Volume.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="extraPerformanceIops")
+    def extra_performance_iops(self) -> pulumi.Output[int]:
+        """
+        The extra IOPS performance size for volume. Unit: times per second. The valid values for `Balance` and `IOPS` is 0~50000.
+        """
+        return pulumi.get(self, "extra_performance_iops")
+
+    @property
+    @pulumi.getter(name="extraPerformanceThroughputMb")
+    def extra_performance_throughput_mb(self) -> pulumi.Output[int]:
+        """
+        The extra Throughput performance size for volume. Unit: MB/s. The valid values for ESSD FlexPL volume is 0~650.
+        """
+        return pulumi.get(self, "extra_performance_throughput_mb")
+
+    @property
+    @pulumi.getter(name="extraPerformanceTypeId")
+    def extra_performance_type_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
+        """
+        return pulumi.get(self, "extra_performance_type_id")
 
     @property
     @pulumi.getter(name="instanceId")

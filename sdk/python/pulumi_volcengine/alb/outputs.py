@@ -318,9 +318,9 @@ class AlbEipBillingConfig(dict):
                  eip_billing_type: str,
                  isp: str):
         """
-        :param int bandwidth: The peek bandwidth of the Ipv6 EIP which automatically assigned to the Alb. Unit: Mbps.
+        :param int bandwidth: The peek bandwidth of the EIP which automatically assigned to the Alb. Unit: Mbps.
         :param str eip_billing_type: The billing type of the EIP which automatically assigned to the Alb. Valid values: `PostPaidByBandwidth`, `PostPaidByTraffic`.
-        :param str isp: The ISP of the Ipv6 EIP which automatically associated to the Alb, the value can be `BGP`.
+        :param str isp: The ISP of the EIP which automatically associated to the Alb, the value can be `BGP`.
         """
         pulumi.set(__self__, "bandwidth", bandwidth)
         pulumi.set(__self__, "eip_billing_type", eip_billing_type)
@@ -330,7 +330,7 @@ class AlbEipBillingConfig(dict):
     @pulumi.getter
     def bandwidth(self) -> int:
         """
-        The peek bandwidth of the Ipv6 EIP which automatically assigned to the Alb. Unit: Mbps.
+        The peek bandwidth of the EIP which automatically assigned to the Alb. Unit: Mbps.
         """
         return pulumi.get(self, "bandwidth")
 
@@ -346,7 +346,7 @@ class AlbEipBillingConfig(dict):
     @pulumi.getter
     def isp(self) -> str:
         """
-        The ISP of the Ipv6 EIP which automatically associated to the Alb, the value can be `BGP`.
+        The ISP of the EIP which automatically associated to the Alb, the value can be `BGP`.
         """
         return pulumi.get(self, "isp")
 
@@ -375,11 +375,9 @@ class AlbIpv6EipBillingConfig(dict):
                  billing_type: str,
                  isp: str):
         """
-        :param int bandwidth: The peek bandwidth of the EIP which automatically assigned to the Alb. Unit: Mbps.
+        :param int bandwidth: The peek bandwidth of the Ipv6 EIP which automatically assigned to the Alb. Unit: Mbps.
         :param str billing_type: The billing type of the Tpv6 EIP which automatically assigned to the Alb. Valid values: `PostPaidByBandwidth`, `PostPaidByTraffic`.
-        :param str isp: The ISP of the EIP which automatically associated to the Alb, the value can be `BGP`.
-               
-               The `ipv6_eip_billing_config` object supports the following:
+        :param str isp: The ISP of the Ipv6 EIP which automatically associated to the Alb, the value can be `BGP`.
         """
         pulumi.set(__self__, "bandwidth", bandwidth)
         pulumi.set(__self__, "billing_type", billing_type)
@@ -389,7 +387,7 @@ class AlbIpv6EipBillingConfig(dict):
     @pulumi.getter
     def bandwidth(self) -> int:
         """
-        The peek bandwidth of the EIP which automatically assigned to the Alb. Unit: Mbps.
+        The peek bandwidth of the Ipv6 EIP which automatically assigned to the Alb. Unit: Mbps.
         """
         return pulumi.get(self, "bandwidth")
 
@@ -405,9 +403,7 @@ class AlbIpv6EipBillingConfig(dict):
     @pulumi.getter
     def isp(self) -> str:
         """
-        The ISP of the EIP which automatically associated to the Alb, the value can be `BGP`.
-
-        The `ipv6_eip_billing_config` object supports the following:
+        The ISP of the Ipv6 EIP which automatically associated to the Alb, the value can be `BGP`.
         """
         return pulumi.get(self, "isp")
 
@@ -3244,6 +3240,10 @@ class ServerGroupsServerGroupHealthCheckResult(dict):
         :param str method: The method of health check.
         :param int unhealthy_threshold: The unhealthy threshold of health check.
         :param str uri: The uri of health check.
+        :param str http_code: The normal http status code of health check.
+        :param str http_version: The http version of health check.
+        :param str protocol: The protocol of health check.
+        :param int timeout: The response timeout of health check.
         """
         pulumi.set(__self__, "domain", domain)
         pulumi.set(__self__, "enabled", enabled)
@@ -3320,21 +3320,33 @@ class ServerGroupsServerGroupHealthCheckResult(dict):
     @property
     @pulumi.getter(name="httpCode")
     def http_code(self) -> Optional[str]:
+        """
+        The normal http status code of health check.
+        """
         return pulumi.get(self, "http_code")
 
     @property
     @pulumi.getter(name="httpVersion")
     def http_version(self) -> Optional[str]:
+        """
+        The http version of health check.
+        """
         return pulumi.get(self, "http_version")
 
     @property
     @pulumi.getter
     def protocol(self) -> Optional[str]:
+        """
+        The protocol of health check.
+        """
         return pulumi.get(self, "protocol")
 
     @property
     @pulumi.getter
     def timeout(self) -> Optional[int]:
+        """
+        The response timeout of health check.
+        """
         return pulumi.get(self, "timeout")
 
 

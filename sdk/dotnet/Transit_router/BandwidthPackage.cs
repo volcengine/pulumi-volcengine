@@ -25,6 +25,8 @@ namespace Pulumi.Volcengine.Transit_router
     ///     {
     ///         Bandwidth = 2,
     ///         Description = "acc-test",
+    ///         LocalGeographicRegionSetId = "China",
+    ///         PeerGeographicRegionSetId = "China",
     ///         Period = 1,
     ///         ProjectName = "default",
     ///         RenewType = "Manual",
@@ -47,7 +49,7 @@ namespace Pulumi.Volcengine.Transit_router
     /// TransitRouterBandwidthPackage can be imported using the Id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:transit_router/bandwidthPackage:BandwidthPackage default tbp-cd-2felfww0i6pkw59gp68bq****
+    /// $ pulumi import volcengine:transit_router/bandwidthPackage:BandwidthPackage default tbp-cd-2felfww0i6pkw59gp68bq****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:transit_router/bandwidthPackage:BandwidthPackage")]
@@ -94,6 +96,18 @@ namespace Pulumi.Volcengine.Transit_router
         /// </summary>
         [Output("expiredTime")]
         public Output<string> ExpiredTime { get; private set; } = null!;
+
+        /// <summary>
+        /// The local geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+        /// </summary>
+        [Output("localGeographicRegionSetId")]
+        public Output<string?> LocalGeographicRegionSetId { get; private set; } = null!;
+
+        /// <summary>
+        /// The peer geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+        /// </summary>
+        [Output("peerGeographicRegionSetId")]
+        public Output<string?> PeerGeographicRegionSetId { get; private set; } = null!;
 
         /// <summary>
         /// The period of the transit router bandwidth package, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.The modification of this field only takes effect when the value of the `renew_type` is `Manual`.
@@ -215,6 +229,18 @@ namespace Pulumi.Volcengine.Transit_router
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// The local geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+        /// </summary>
+        [Input("localGeographicRegionSetId")]
+        public Input<string>? LocalGeographicRegionSetId { get; set; }
+
+        /// <summary>
+        /// The peer geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+        /// </summary>
+        [Input("peerGeographicRegionSetId")]
+        public Input<string>? PeerGeographicRegionSetId { get; set; }
+
+        /// <summary>
         /// The period of the transit router bandwidth package, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.The modification of this field only takes effect when the value of the `renew_type` is `Manual`.
         /// </summary>
         [Input("period")]
@@ -317,6 +343,18 @@ namespace Pulumi.Volcengine.Transit_router
         /// </summary>
         [Input("expiredTime")]
         public Input<string>? ExpiredTime { get; set; }
+
+        /// <summary>
+        /// The local geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+        /// </summary>
+        [Input("localGeographicRegionSetId")]
+        public Input<string>? LocalGeographicRegionSetId { get; set; }
+
+        /// <summary>
+        /// The peer geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+        /// </summary>
+        [Input("peerGeographicRegionSetId")]
+        public Input<string>? PeerGeographicRegionSetId { get; set; }
 
         /// <summary>
         /// The period of the transit router bandwidth package, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.The modification of this field only takes effect when the value of the `renew_type` is `Manual`.

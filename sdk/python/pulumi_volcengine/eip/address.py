@@ -431,7 +431,7 @@ class Address(pulumi.CustomResource):
         Eip address can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:eip/address:Address default eip-274oj9a8rs9a87fap8sf9515b
+        $ pulumi import volcengine:eip/address:Address default eip-274oj9a8rs9a87fap8sf9515b
         ```
 
         :param str resource_name: The name of the resource.
@@ -472,7 +472,7 @@ class Address(pulumi.CustomResource):
         Eip address can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:eip/address:Address default eip-274oj9a8rs9a87fap8sf9515b
+        $ pulumi import volcengine:eip/address:Address default eip-274oj9a8rs9a87fap8sf9515b
         ```
 
         :param str resource_name: The name of the resource.

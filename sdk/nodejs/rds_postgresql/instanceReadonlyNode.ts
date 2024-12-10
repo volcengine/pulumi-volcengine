@@ -63,7 +63,7 @@ import * as utilities from "../utilities";
  * RdsPostgresqlInstanceReadonlyNode can be imported using the instance_id:node_id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:rds_postgresql/instanceReadonlyNode:InstanceReadonlyNode default postgres-21a3333b****:postgres-ca7b7019****
+ * $ pulumi import volcengine:rds_postgresql/instanceReadonlyNode:InstanceReadonlyNode default postgres-21a3333b****:postgres-ca7b7019****
  * ```
  */
 export class InstanceReadonlyNode extends pulumi.CustomResource {

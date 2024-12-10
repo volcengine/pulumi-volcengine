@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Cloud_identity
     {
         /// <summary>
         /// Use this data source to query detailed information of cloud identity groups
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -45,17 +43,13 @@ namespace Pulumi.Volcengine.Cloud_identity
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GroupsResult> InvokeAsync(GroupsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GroupsResult>("volcengine:cloud_identity/groups:Groups", args ?? new GroupsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cloud identity groups
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -85,8 +79,6 @@ namespace Pulumi.Volcengine.Cloud_identity
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GroupsResult> Invoke(GroupsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GroupsResult>("volcengine:cloud_identity/groups:Groups", args ?? new GroupsInvokeArgs(), options.WithDefaults());

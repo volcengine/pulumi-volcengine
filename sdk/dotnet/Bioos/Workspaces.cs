@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Bioos
     {
         /// <summary>
         /// Use this data source to query detailed information of bioos workspaces
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -29,17 +27,13 @@ namespace Pulumi.Volcengine.Bioos
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<WorkspacesResult> InvokeAsync(WorkspacesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<WorkspacesResult>("volcengine:bioos/workspaces:Workspaces", args ?? new WorkspacesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of bioos workspaces
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -53,8 +47,6 @@ namespace Pulumi.Volcengine.Bioos
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<WorkspacesResult> Invoke(WorkspacesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<WorkspacesResult>("volcengine:bioos/workspaces:Workspaces", args ?? new WorkspacesInvokeArgs(), options.WithDefaults());

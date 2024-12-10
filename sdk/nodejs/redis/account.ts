@@ -53,7 +53,7 @@ import * as utilities from "../utilities";
  * Redis account can be imported using the instanceId:accountName, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:redis/account:Account default redis-42b38c769c4b:test
+ * $ pulumi import volcengine:redis/account:Account default redis-42b38c769c4b:test
  * ```
  */
 export class Account extends pulumi.CustomResource {

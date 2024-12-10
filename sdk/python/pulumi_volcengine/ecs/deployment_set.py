@@ -200,7 +200,7 @@ class DeploymentSet(pulumi.CustomResource):
         ECS deployment set can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:ecs/deploymentSet:DeploymentSet default i-mizl7m1kqccg5smt1bdpijuj
+        $ pulumi import volcengine:ecs/deploymentSet:DeploymentSet default i-mizl7m1kqccg5smt1bdpijuj
         ```
 
         :param str resource_name: The name of the resource.
@@ -236,7 +236,7 @@ class DeploymentSet(pulumi.CustomResource):
         ECS deployment set can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:ecs/deploymentSet:DeploymentSet default i-mizl7m1kqccg5smt1bdpijuj
+        $ pulumi import volcengine:ecs/deploymentSet:DeploymentSet default i-mizl7m1kqccg5smt1bdpijuj
         ```
 
         :param str resource_name: The name of the resource.

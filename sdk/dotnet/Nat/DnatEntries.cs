@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Nat
     {
         /// <summary>
         /// Use this data source to query detailed information of dnat entries
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -86,7 +84,7 @@ namespace Pulumi.Volcengine.Nat
         ///         Protocol = "tcp",
         ///     }, new CustomResourceOptions
         ///     {
-        ///         DependsOn = new[]
+        ///         DependsOn =
         ///         {
         ///             fooAssociate,
         ///         },
@@ -102,17 +100,13 @@ namespace Pulumi.Volcengine.Nat
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<DnatEntriesResult> InvokeAsync(DnatEntriesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<DnatEntriesResult>("volcengine:nat/dnatEntries:DnatEntries", args ?? new DnatEntriesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of dnat entries
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -183,7 +177,7 @@ namespace Pulumi.Volcengine.Nat
         ///         Protocol = "tcp",
         ///     }, new CustomResourceOptions
         ///     {
-        ///         DependsOn = new[]
+        ///         DependsOn =
         ///         {
         ///             fooAssociate,
         ///         },
@@ -199,8 +193,6 @@ namespace Pulumi.Volcengine.Nat
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<DnatEntriesResult> Invoke(DnatEntriesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<DnatEntriesResult>("volcengine:nat/dnatEntries:DnatEntries", args ?? new DnatEntriesInvokeArgs(), options.WithDefaults());

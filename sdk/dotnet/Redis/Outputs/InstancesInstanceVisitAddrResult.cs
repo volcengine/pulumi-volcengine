@@ -29,6 +29,14 @@ namespace Pulumi.Volcengine.Redis.Outputs
         /// The connection port.
         /// </summary>
         public readonly string Port;
+        /// <summary>
+        /// The ipv4 address of the connection address.
+        /// </summary>
+        public readonly string Vip;
+        /// <summary>
+        /// The ipv6 address of the connection address.
+        /// </summary>
+        public readonly string VipV6;
 
         [OutputConstructor]
         private InstancesInstanceVisitAddrResult(
@@ -38,12 +46,18 @@ namespace Pulumi.Volcengine.Redis.Outputs
 
             string eipId,
 
-            string port)
+            string port,
+
+            string vip,
+
+            string vipV6)
         {
             AddrType = addrType;
             Address = address;
             EipId = eipId;
             Port = port;
+            Vip = vip;
+            VipV6 = vipV6;
         }
     }
 }

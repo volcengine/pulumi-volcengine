@@ -39,7 +39,7 @@ namespace Pulumi.Volcengine.Cr
     /// CR namespace can be imported using the registry:name, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:cr/namespace:Namespace default cr-basic:namespace-1
+    /// $ pulumi import volcengine:cr/namespace:Namespace default cr-basic:namespace-1
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:cr/namespace:Namespace")]

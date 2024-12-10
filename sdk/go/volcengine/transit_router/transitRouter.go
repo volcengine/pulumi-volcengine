@@ -52,9 +52,7 @@ import (
 // TransitRouter can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:transit_router/transitRouter:TransitRouter default tr-2d6fr7mzya2gw58ozfes5g2oh
-//
+// $ pulumi import volcengine:transit_router/transitRouter:TransitRouter default tr-2d6fr7mzya2gw58ozfes5g2oh
 // ```
 type TransitRouter struct {
 	pulumi.CustomResourceState
@@ -69,6 +67,8 @@ type TransitRouter struct {
 	CreationTime pulumi.StringOutput `pulumi:"creationTime"`
 	// The description of the transit router.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// The grant status of the transit router.
+	GrantStatus pulumi.StringOutput `pulumi:"grantStatus"`
 	// The overdue time.
 	OverdueTime pulumi.StringOutput `pulumi:"overdueTime"`
 	// The ProjectName of the transit router.
@@ -127,6 +127,8 @@ type transitRouterState struct {
 	CreationTime *string `pulumi:"creationTime"`
 	// The description of the transit router.
 	Description *string `pulumi:"description"`
+	// The grant status of the transit router.
+	GrantStatus *string `pulumi:"grantStatus"`
 	// The overdue time.
 	OverdueTime *string `pulumi:"overdueTime"`
 	// The ProjectName of the transit router.
@@ -156,6 +158,8 @@ type TransitRouterState struct {
 	CreationTime pulumi.StringPtrInput
 	// The description of the transit router.
 	Description pulumi.StringPtrInput
+	// The grant status of the transit router.
+	GrantStatus pulumi.StringPtrInput
 	// The overdue time.
 	OverdueTime pulumi.StringPtrInput
 	// The ProjectName of the transit router.
@@ -315,6 +319,11 @@ func (o TransitRouterOutput) CreationTime() pulumi.StringOutput {
 // The description of the transit router.
 func (o TransitRouterOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *TransitRouter) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// The grant status of the transit router.
+func (o TransitRouterOutput) GrantStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *TransitRouter) pulumi.StringOutput { return v.GrantStatus }).(pulumi.StringOutput)
 }
 
 // The overdue time.

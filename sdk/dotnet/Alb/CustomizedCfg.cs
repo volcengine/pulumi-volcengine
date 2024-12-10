@@ -37,7 +37,7 @@ namespace Pulumi.Volcengine.Alb
     /// AlbCustomizedCfg can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:alb/customizedCfg:CustomizedCfg default ccfg-3cj44nv0jhhxc6c6rrtet****
+    /// $ pulumi import volcengine:alb/customizedCfg:CustomizedCfg default ccfg-3cj44nv0jhhxc6c6rrtet****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:alb/customizedCfg:CustomizedCfg")]

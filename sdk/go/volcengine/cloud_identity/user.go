@@ -48,9 +48,7 @@ import (
 // CloudIdentityUser can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:cloud_identity/user:User default resource_id
-//
+// $ pulumi import volcengine:cloud_identity/user:User default resource_id
 // ```
 type User struct {
 	pulumi.CustomResourceState

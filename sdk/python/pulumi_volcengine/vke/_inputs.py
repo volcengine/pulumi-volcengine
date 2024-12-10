@@ -114,6 +114,7 @@ class ClusterClusterConfigArgs:
                Cannot support deleting configured subnets.
         :param pulumi.Input['ClusterClusterConfigApiServerPublicAccessConfigArgs'] api_server_public_access_config: Cluster API Server public network access configuration.
         :param pulumi.Input[bool] api_server_public_access_enabled: Cluster API Server public network access configuration, the value is `true` or `false`.
+        :param pulumi.Input[str] ip_family: [SkipDoc]The IpFamily configuration,the value is `Ipv4` or `DualStack`.
         :param pulumi.Input[bool] resource_public_access_default_enabled: Node public network access configuration, the value is `true` or `false`.
         """
         pulumi.set(__self__, "subnet_ids", subnet_ids)
@@ -167,6 +168,9 @@ class ClusterClusterConfigArgs:
     @property
     @pulumi.getter(name="ipFamily")
     def ip_family(self) -> Optional[pulumi.Input[str]]:
+        """
+        [SkipDoc]The IpFamily configuration,the value is `Ipv4` or `DualStack`.
+        """
         return pulumi.get(self, "ip_family")
 
     @ip_family.setter
@@ -633,6 +637,7 @@ class DefaultNodePoolBatchAttachInstanceArgs:
         :param pulumi.Input[str] id: ID of the resource.
         :param pulumi.Input[str] image_id: The Image Id to the ECS Instance.
         :param pulumi.Input[bool] keep_instance_name: The flag of keep instance name, the value is `true` or `false`.Default is `false`.
+        :param pulumi.Input[str] phase: The status phase to the Node.
         """
         pulumi.set(__self__, "instance_id", instance_id)
         if additional_container_storage_enabled is not None:
@@ -723,6 +728,9 @@ class DefaultNodePoolBatchAttachInstanceArgs:
     @property
     @pulumi.getter
     def phase(self) -> Optional[pulumi.Input[str]]:
+        """
+        The status phase to the Node.
+        """
         return pulumi.get(self, "phase")
 
     @phase.setter
@@ -954,8 +962,8 @@ class DefaultNodePoolBatchAttachNodeConfigEcsTagArgs:
                  key: Optional[pulumi.Input[str]] = None,
                  value: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] key: The Key of Labels.
-        :param pulumi.Input[str] value: The Value of Labels.
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
         """
         if key is not None:
             pulumi.set(__self__, "key", key)
@@ -966,7 +974,7 @@ class DefaultNodePoolBatchAttachNodeConfigEcsTagArgs:
     @pulumi.getter
     def key(self) -> Optional[pulumi.Input[str]]:
         """
-        The Key of Labels.
+        The Key of Tags.
         """
         return pulumi.get(self, "key")
 
@@ -978,7 +986,7 @@ class DefaultNodePoolBatchAttachNodeConfigEcsTagArgs:
     @pulumi.getter
     def value(self) -> Optional[pulumi.Input[str]]:
         """
-        The Value of Labels.
+        The Value of Tags.
         """
         return pulumi.get(self, "value")
 
@@ -1087,8 +1095,8 @@ class DefaultNodePoolBatchAttachTagArgs:
                  key: Optional[pulumi.Input[str]] = None,
                  value: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] key: The Key of Labels.
-        :param pulumi.Input[str] value: The Value of Labels.
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
         """
         if key is not None:
             pulumi.set(__self__, "key", key)
@@ -1099,7 +1107,7 @@ class DefaultNodePoolBatchAttachTagArgs:
     @pulumi.getter
     def key(self) -> Optional[pulumi.Input[str]]:
         """
-        The Key of Labels.
+        The Key of Tags.
         """
         return pulumi.get(self, "key")
 
@@ -1111,7 +1119,7 @@ class DefaultNodePoolBatchAttachTagArgs:
     @pulumi.getter
     def value(self) -> Optional[pulumi.Input[str]]:
         """
-        The Value of Labels.
+        The Value of Tags.
         """
         return pulumi.get(self, "value")
 
@@ -1137,6 +1145,7 @@ class DefaultNodePoolInstanceArgs:
         :param pulumi.Input[str] id: ID of the resource.
         :param pulumi.Input[str] image_id: The Image Id to the ECS Instance.
         :param pulumi.Input[bool] keep_instance_name: The flag of keep instance name, the value is `true` or `false`.Default is `false`.
+        :param pulumi.Input[str] phase: The status phase to the Node.
         """
         pulumi.set(__self__, "instance_id", instance_id)
         if additional_container_storage_enabled is not None:
@@ -1227,6 +1236,9 @@ class DefaultNodePoolInstanceArgs:
     @property
     @pulumi.getter
     def phase(self) -> Optional[pulumi.Input[str]]:
+        """
+        The status phase to the Node.
+        """
         return pulumi.get(self, "phase")
 
     @phase.setter

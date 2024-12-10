@@ -21,7 +21,7 @@ import * as utilities from "../utilities";
  * CR namespace can be imported using the registry:name, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:cr/namespace:Namespace default cr-basic:namespace-1
+ * $ pulumi import volcengine:cr/namespace:Namespace default cr-basic:namespace-1
  * ```
  */
 export class Namespace extends pulumi.CustomResource {

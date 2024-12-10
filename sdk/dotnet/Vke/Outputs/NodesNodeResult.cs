@@ -74,7 +74,7 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// </summary>
         public readonly string NodePoolId;
         /// <summary>
-        /// The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
+        /// The Phase of Node.
         /// </summary>
         public readonly string Phase;
         /// <summary>

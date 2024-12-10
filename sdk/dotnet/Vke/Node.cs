@@ -116,8 +116,8 @@ namespace Pulumi.Volcengine.Vke
     ///             },
     ///             ImageId = .Where(image =&gt; image.ImageName == "veLinux 1.0 CentOS兼容版 64位").Select(image =&gt; 
     ///             {
-    ///                 return  image.ImageId;
-    ///             })[0],
+    ///                 return image.ImageId;
+    ///             }).ToList()[0],
     ///             SystemVolume = new Volcengine.Vke.Inputs.NodePoolNodeConfigSystemVolumeArgs
     ///             {
     ///                 Type = "ESSD_PL0",
@@ -197,8 +197,8 @@ namespace Pulumi.Volcengine.Vke
     ///         HostName = "tf-acc-test",
     ///         ImageId = .Where(image =&gt; image.ImageName == "veLinux 1.0 CentOS兼容版 64位").Select(image =&gt; 
     ///         {
-    ///             return  image.ImageId;
-    ///         })[0],
+    ///             return image.ImageId;
+    ///         }).ToList()[0],
     ///         InstanceType = "ecs.g1ie.xlarge",
     ///         Password = "93f0cb0614Aab12",
     ///         InstanceChargeType = "PostPaid",
@@ -244,7 +244,7 @@ namespace Pulumi.Volcengine.Vke
     /// VKE node can be imported using the node id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:vke/node:Node default nc5t5epmrsf****
+    /// $ pulumi import volcengine:vke/node:Node default nc5t5epmrsf****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vke/node:Node")]

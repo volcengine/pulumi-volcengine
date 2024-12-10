@@ -18,7 +18,7 @@ namespace Pulumi.Volcengine.Cr.Outputs
         /// </summary>
         public readonly ImmutableArray<string> Conditions;
         /// <summary>
-        /// The phase of status.
+        /// The phase status of registry.
         /// </summary>
         public readonly string Phase;
 

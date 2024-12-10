@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Vpc
     {
         /// <summary>
         /// Use this data source to query detailed information of network acls
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -32,17 +30,13 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<NetworkAclsResult> InvokeAsync(NetworkAclsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<NetworkAclsResult>("volcengine:vpc/networkAcls:NetworkAcls", args ?? new NetworkAclsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of network acls
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -59,8 +53,6 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<NetworkAclsResult> Invoke(NetworkAclsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<NetworkAclsResult>("volcengine:vpc/networkAcls:NetworkAcls", args ?? new NetworkAclsInvokeArgs(), options.WithDefaults());
@@ -100,10 +92,28 @@ namespace Pulumi.Volcengine.Vpc
         public string? OutputFile { get; set; }
 
         /// <summary>
+        /// The project name of the network acl.
+        /// </summary>
+        [Input("projectName")]
+        public string? ProjectName { get; set; }
+
+        /// <summary>
         /// The subnet id of Network Acl.
         /// </summary>
         [Input("subnetId")]
         public string? SubnetId { get; set; }
+
+        [Input("tags")]
+        private List<Inputs.NetworkAclsTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public List<Inputs.NetworkAclsTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new List<Inputs.NetworkAclsTagArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The vpc id of Network Acl.
@@ -150,10 +160,28 @@ namespace Pulumi.Volcengine.Vpc
         public Input<string>? OutputFile { get; set; }
 
         /// <summary>
+        /// The project name of the network acl.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
         /// The subnet id of Network Acl.
         /// </summary>
         [Input("subnetId")]
         public Input<string>? SubnetId { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.NetworkAclsTagInputArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.NetworkAclsTagInputArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.NetworkAclsTagInputArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The vpc id of Network Acl.
@@ -186,7 +214,15 @@ namespace Pulumi.Volcengine.Vpc
         /// </summary>
         public readonly ImmutableArray<Outputs.NetworkAclsNetworkAclResult> NetworkAcls;
         public readonly string? OutputFile;
+        /// <summary>
+        /// The project name of the network acl.
+        /// </summary>
+        public readonly string? ProjectName;
         public readonly string? SubnetId;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.NetworkAclsTagResult> Tags;
         /// <summary>
         /// The total count of Network Acl query.
         /// </summary>
@@ -210,7 +246,11 @@ namespace Pulumi.Volcengine.Vpc
 
             string? outputFile,
 
+            string? projectName,
+
             string? subnetId,
+
+            ImmutableArray<Outputs.NetworkAclsTagResult> tags,
 
             int totalCount,
 
@@ -222,7 +262,9 @@ namespace Pulumi.Volcengine.Vpc
             NetworkAclName = networkAclName;
             NetworkAcls = networkAcls;
             OutputFile = outputFile;
+            ProjectName = projectName;
             SubnetId = subnetId;
+            Tags = tags;
             TotalCount = totalCount;
             VpcId = vpcId;
         }

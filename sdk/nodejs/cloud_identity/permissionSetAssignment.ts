@@ -52,7 +52,7 @@ import * as utilities from "../utilities";
  * CloudIdentityPermissionSetAssignment can be imported using the permission_set_id:target_id:principal_type:principal_id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:cloud_identity/permissionSetAssignment:PermissionSetAssignment default resource_id
+ * $ pulumi import volcengine:cloud_identity/permissionSetAssignment:PermissionSetAssignment default resource_id
  * ```
  */
 export class PermissionSetAssignment extends pulumi.CustomResource {

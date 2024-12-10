@@ -78,7 +78,7 @@ namespace Pulumi.Volcengine.Redis
     /// Redis Backup Restore can be imported using the restore:instanceId, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:redis/backupRestore:BackupRestore default restore:redis-asdljioeixxxx
+    /// $ pulumi import volcengine:redis/backupRestore:BackupRestore default restore:redis-asdljioeixxxx
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:redis/backupRestore:BackupRestore")]

@@ -13,12 +13,21 @@ namespace Pulumi.Volcengine.Private_zone.Outputs
     [OutputType]
     public sealed class ResolverRulesRuleBindVpcResult
     {
+        /// <summary>
+        /// The account id of the bind vpc.
+        /// </summary>
         public readonly string AccountId;
         /// <summary>
         /// The id of the rule.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The region of the bind vpc.
+        /// </summary>
         public readonly string Region;
+        /// <summary>
+        /// The region name of the bind vpc.
+        /// </summary>
         public readonly string RegionName;
 
         [OutputConstructor]

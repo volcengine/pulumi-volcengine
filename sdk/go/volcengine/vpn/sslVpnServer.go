@@ -43,7 +43,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -90,9 +90,7 @@ import (
 // SSL VPN server can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:vpn/sslVpnServer:SslVpnServer default vss-zm55pqtvk17oq32zd****
-//
+// $ pulumi import volcengine:vpn/sslVpnServer:SslVpnServer default vss-zm55pqtvk17oq32zd****
 // ```
 type SslVpnServer struct {
 	pulumi.CustomResourceState
@@ -118,6 +116,10 @@ type SslVpnServer struct {
 	Description pulumi.StringOutput `pulumi:"description"`
 	// The local network segment of the SSL server. The local network segment is the address segment that the client accesses through the SSL VPN connection.
 	LocalSubnets pulumi.StringArrayOutput `pulumi:"localSubnets"`
+	// The port of the ssl server. Valid values: 1~65535. Default is 1194. The following ports are not supported: 22, 68, 179, 323, 500, 4500.
+	Port pulumi.IntPtrOutput `pulumi:"port"`
+	// The project name of the ssl server.
+	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.
 	Protocol pulumi.StringPtrOutput `pulumi:"protocol"`
 	// The id of the ssl vpn server.
@@ -188,6 +190,10 @@ type sslVpnServerState struct {
 	Description *string `pulumi:"description"`
 	// The local network segment of the SSL server. The local network segment is the address segment that the client accesses through the SSL VPN connection.
 	LocalSubnets []string `pulumi:"localSubnets"`
+	// The port of the ssl server. Valid values: 1~65535. Default is 1194. The following ports are not supported: 22, 68, 179, 323, 500, 4500.
+	Port *int `pulumi:"port"`
+	// The project name of the ssl server.
+	ProjectName *string `pulumi:"projectName"`
 	// The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.
 	Protocol *string `pulumi:"protocol"`
 	// The id of the ssl vpn server.
@@ -220,6 +226,10 @@ type SslVpnServerState struct {
 	Description pulumi.StringPtrInput
 	// The local network segment of the SSL server. The local network segment is the address segment that the client accesses through the SSL VPN connection.
 	LocalSubnets pulumi.StringArrayInput
+	// The port of the ssl server. Valid values: 1~65535. Default is 1194. The following ports are not supported: 22, 68, 179, 323, 500, 4500.
+	Port pulumi.IntPtrInput
+	// The project name of the ssl server.
+	ProjectName pulumi.StringPtrInput
 	// The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.
 	Protocol pulumi.StringPtrInput
 	// The id of the ssl vpn server.
@@ -256,6 +266,10 @@ type sslVpnServerArgs struct {
 	Description *string `pulumi:"description"`
 	// The local network segment of the SSL server. The local network segment is the address segment that the client accesses through the SSL VPN connection.
 	LocalSubnets []string `pulumi:"localSubnets"`
+	// The port of the ssl server. Valid values: 1~65535. Default is 1194. The following ports are not supported: 22, 68, 179, 323, 500, 4500.
+	Port *int `pulumi:"port"`
+	// The project name of the ssl server.
+	ProjectName *string `pulumi:"projectName"`
 	// The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.
 	Protocol *string `pulumi:"protocol"`
 	// The name of the SSL server.
@@ -287,6 +301,10 @@ type SslVpnServerArgs struct {
 	Description pulumi.StringPtrInput
 	// The local network segment of the SSL server. The local network segment is the address segment that the client accesses through the SSL VPN connection.
 	LocalSubnets pulumi.StringArrayInput
+	// The port of the ssl server. Valid values: 1~65535. Default is 1194. The following ports are not supported: 22, 68, 179, 323, 500, 4500.
+	Port pulumi.IntPtrInput
+	// The project name of the ssl server.
+	ProjectName pulumi.StringPtrInput
 	// The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.
 	Protocol pulumi.StringPtrInput
 	// The name of the SSL server.
@@ -419,6 +437,16 @@ func (o SslVpnServerOutput) Description() pulumi.StringOutput {
 // The local network segment of the SSL server. The local network segment is the address segment that the client accesses through the SSL VPN connection.
 func (o SslVpnServerOutput) LocalSubnets() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SslVpnServer) pulumi.StringArrayOutput { return v.LocalSubnets }).(pulumi.StringArrayOutput)
+}
+
+// The port of the ssl server. Valid values: 1~65535. Default is 1194. The following ports are not supported: 22, 68, 179, 323, 500, 4500.
+func (o SslVpnServerOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SslVpnServer) pulumi.IntPtrOutput { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// The project name of the ssl server.
+func (o SslVpnServerOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *SslVpnServer) pulumi.StringOutput { return v.ProjectName }).(pulumi.StringOutput)
 }
 
 // The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.

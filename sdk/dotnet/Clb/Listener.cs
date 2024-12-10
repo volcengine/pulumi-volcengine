@@ -105,7 +105,7 @@ namespace Pulumi.Volcengine.Clb
     /// Listener can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:clb/listener:Listener default lsn-273yv0mhs5xj47fap8sehiiso
+    /// $ pulumi import volcengine:clb/listener:Listener default lsn-273yv0mhs5xj47fap8sehiiso
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:clb/listener:Listener")]
@@ -149,7 +149,7 @@ namespace Pulumi.Volcengine.Clb
         public Output<string?> ConnectionDrainEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// The connection drain timeout of the Listener. Valid value range is `1-900`.
+        /// The connection drain timeout of the Listener. Valid value range is `0-900`.
         /// This filed is required when the value of field `connection_drain_enabled` is `on`.
         /// </summary>
         [Output("connectionDrainTimeout")]
@@ -338,7 +338,7 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? ConnectionDrainEnabled { get; set; }
 
         /// <summary>
-        /// The connection drain timeout of the Listener. Valid value range is `1-900`.
+        /// The connection drain timeout of the Listener. Valid value range is `0-900`.
         /// This filed is required when the value of field `connection_drain_enabled` is `on`.
         /// </summary>
         [Input("connectionDrainTimeout")]
@@ -482,7 +482,7 @@ namespace Pulumi.Volcengine.Clb
         public Input<string>? ConnectionDrainEnabled { get; set; }
 
         /// <summary>
-        /// The connection drain timeout of the Listener. Valid value range is `1-900`.
+        /// The connection drain timeout of the Listener. Valid value range is `0-900`.
         /// This filed is required when the value of field `connection_drain_enabled` is `on`.
         /// </summary>
         [Input("connectionDrainTimeout")]

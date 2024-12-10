@@ -345,6 +345,7 @@ class ClusterClusterConfig(dict):
                Cannot support deleting configured subnets.
         :param 'ClusterClusterConfigApiServerPublicAccessConfigArgs' api_server_public_access_config: Cluster API Server public network access configuration.
         :param bool api_server_public_access_enabled: Cluster API Server public network access configuration, the value is `true` or `false`.
+        :param str ip_family: [SkipDoc]The IpFamily configuration,the value is `Ipv4` or `DualStack`.
         :param bool resource_public_access_default_enabled: Node public network access configuration, the value is `true` or `false`.
         """
         pulumi.set(__self__, "subnet_ids", subnet_ids)
@@ -386,6 +387,9 @@ class ClusterClusterConfig(dict):
     @property
     @pulumi.getter(name="ipFamily")
     def ip_family(self) -> Optional[str]:
+        """
+        [SkipDoc]The IpFamily configuration,the value is `Ipv4` or `DualStack`.
+        """
         return pulumi.get(self, "ip_family")
 
     @property
@@ -1202,6 +1206,7 @@ class ClustersClusterClusterConfigApiServerPublicAccessConfigResult(dict):
                  public_access_network_config: 'outputs.ClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigResult'):
         """
         :param Sequence[str] access_source_ipsv4s: IPv4 public network access whitelist. A null value means all network segments (0.0.0.0/0) are allowed to pass.
+        :param str ip_family: [SkipDoc]The IpFamily configuration,the value is `Ipv4` or `DualStack`.
         :param 'ClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigArgs' public_access_network_config: Public network access network configuration.
         """
         pulumi.set(__self__, "access_source_ipsv4s", access_source_ipsv4s)
@@ -1219,6 +1224,9 @@ class ClustersClusterClusterConfigApiServerPublicAccessConfigResult(dict):
     @property
     @pulumi.getter(name="ipFamily")
     def ip_family(self) -> str:
+        """
+        [SkipDoc]The IpFamily configuration,the value is `Ipv4` or `DualStack`.
+        """
         return pulumi.get(self, "ip_family")
 
     @property
@@ -1731,6 +1739,7 @@ class DefaultNodePoolBatchAttachInstance(dict):
         :param str id: ID of the resource.
         :param str image_id: The Image Id to the ECS Instance.
         :param bool keep_instance_name: The flag of keep instance name, the value is `true` or `false`.Default is `false`.
+        :param str phase: The status phase to the Node.
         """
         pulumi.set(__self__, "instance_id", instance_id)
         if additional_container_storage_enabled is not None:
@@ -1797,6 +1806,9 @@ class DefaultNodePoolBatchAttachInstance(dict):
     @property
     @pulumi.getter
     def phase(self) -> Optional[str]:
+        """
+        The status phase to the Node.
+        """
         return pulumi.get(self, "phase")
 
 
@@ -1997,8 +2009,8 @@ class DefaultNodePoolBatchAttachNodeConfigEcsTag(dict):
                  key: Optional[str] = None,
                  value: Optional[str] = None):
         """
-        :param str key: The Key of Labels.
-        :param str value: The Value of Labels.
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
         """
         if key is not None:
             pulumi.set(__self__, "key", key)
@@ -2009,7 +2021,7 @@ class DefaultNodePoolBatchAttachNodeConfigEcsTag(dict):
     @pulumi.getter
     def key(self) -> Optional[str]:
         """
-        The Key of Labels.
+        The Key of Tags.
         """
         return pulumi.get(self, "key")
 
@@ -2017,7 +2029,7 @@ class DefaultNodePoolBatchAttachNodeConfigEcsTag(dict):
     @pulumi.getter
     def value(self) -> Optional[str]:
         """
-        The Value of Labels.
+        The Value of Tags.
         """
         return pulumi.get(self, "value")
 
@@ -2138,8 +2150,8 @@ class DefaultNodePoolBatchAttachTag(dict):
                  key: Optional[str] = None,
                  value: Optional[str] = None):
         """
-        :param str key: The Key of Labels.
-        :param str value: The Value of Labels.
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
         """
         if key is not None:
             pulumi.set(__self__, "key", key)
@@ -2150,7 +2162,7 @@ class DefaultNodePoolBatchAttachTag(dict):
     @pulumi.getter
     def key(self) -> Optional[str]:
         """
-        The Key of Labels.
+        The Key of Tags.
         """
         return pulumi.get(self, "key")
 
@@ -2158,7 +2170,7 @@ class DefaultNodePoolBatchAttachTag(dict):
     @pulumi.getter
     def value(self) -> Optional[str]:
         """
-        The Value of Labels.
+        The Value of Tags.
         """
         return pulumi.get(self, "value")
 
@@ -2205,6 +2217,7 @@ class DefaultNodePoolInstance(dict):
         :param str id: ID of the resource.
         :param str image_id: The Image Id to the ECS Instance.
         :param bool keep_instance_name: The flag of keep instance name, the value is `true` or `false`.Default is `false`.
+        :param str phase: The status phase to the Node.
         """
         pulumi.set(__self__, "instance_id", instance_id)
         if additional_container_storage_enabled is not None:
@@ -2271,6 +2284,9 @@ class DefaultNodePoolInstance(dict):
     @property
     @pulumi.getter
     def phase(self) -> Optional[str]:
+        """
+        The status phase to the Node.
+        """
         return pulumi.get(self, "phase")
 
 
@@ -3833,7 +3849,7 @@ class NodePoolsNodePoolResult(dict):
         :param str name_prefix: The NamePrefix of NodeConfig.
         :param Sequence['NodePoolsNodePoolNodeStatisticArgs'] node_statistics: The NodeStatistics of NodeConfig.
         :param int period: The period of the PrePaid instance of NodeConfig.
-        :param str phase: The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+        :param str phase: The Phase of Status.
         :param int priority: The Priority of AutoScaling.
         :param Sequence[str] security_group_ids: The SecurityGroupIds of NodeConfig.
         :param Sequence[str] security_strategies: The SecurityStrategies of NodeConfig.
@@ -4115,7 +4131,7 @@ class NodePoolsNodePoolResult(dict):
     @pulumi.getter
     def phase(self) -> str:
         """
-        The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+        The Phase of Status.
         """
         return pulumi.get(self, "phase")
 
@@ -4254,8 +4270,8 @@ class NodePoolsNodePoolEcsTagResult(dict):
                  key: str,
                  value: str):
         """
-        :param str key: The Key of Tags.
-        :param str value: The Value of Tags.
+        :param str key: The Key of Taint.
+        :param str value: The Value of Taint.
         """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
@@ -4264,7 +4280,7 @@ class NodePoolsNodePoolEcsTagResult(dict):
     @pulumi.getter
     def key(self) -> str:
         """
-        The Key of Tags.
+        The Key of Taint.
         """
         return pulumi.get(self, "key")
 
@@ -4272,7 +4288,7 @@ class NodePoolsNodePoolEcsTagResult(dict):
     @pulumi.getter
     def value(self) -> str:
         """
-        The Value of Tags.
+        The Value of Taint.
         """
         return pulumi.get(self, "value")
 
@@ -4283,8 +4299,8 @@ class NodePoolsNodePoolLabelContentResult(dict):
                  key: str,
                  value: str):
         """
-        :param str key: The Key of Tags.
-        :param str value: The Value of Tags.
+        :param str key: The Key of Taint.
+        :param str value: The Value of Taint.
         """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "value", value)
@@ -4293,7 +4309,7 @@ class NodePoolsNodePoolLabelContentResult(dict):
     @pulumi.getter
     def key(self) -> str:
         """
-        The Key of Tags.
+        The Key of Taint.
         """
         return pulumi.get(self, "key")
 
@@ -4301,7 +4317,7 @@ class NodePoolsNodePoolLabelContentResult(dict):
     @pulumi.getter
     def value(self) -> str:
         """
-        The Value of Tags.
+        The Value of Taint.
         """
         return pulumi.get(self, "value")
 
@@ -4498,8 +4514,8 @@ class NodePoolsNodePoolTaintContentResult(dict):
                  value: str):
         """
         :param str effect: The Effect of Taint.
-        :param str key: The Key of Tags.
-        :param str value: The Value of Tags.
+        :param str key: The Key of Taint.
+        :param str value: The Value of Taint.
         """
         pulumi.set(__self__, "effect", effect)
         pulumi.set(__self__, "key", key)
@@ -4517,7 +4533,7 @@ class NodePoolsNodePoolTaintContentResult(dict):
     @pulumi.getter
     def key(self) -> str:
         """
-        The Key of Tags.
+        The Key of Taint.
         """
         return pulumi.get(self, "key")
 
@@ -4525,7 +4541,7 @@ class NodePoolsNodePoolTaintContentResult(dict):
     @pulumi.getter
     def value(self) -> str:
         """
-        The Value of Tags.
+        The Value of Taint.
         """
         return pulumi.get(self, "value")
 
@@ -4629,7 +4645,7 @@ class NodesNodeResult(dict):
         :param Sequence['NodesNodeLabelArgs'] labels: The Label of KubernetesConfig.
         :param str name: The Name of Node.
         :param str node_pool_id: The node pool id.
-        :param str phase: The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
+        :param str phase: The Phase of Node.
         :param Sequence[str] roles: The roles of node.
         :param Sequence['NodesNodeTaintArgs'] taints: The Taint of KubernetesConfig.
         :param str update_time: The update time of Node.
@@ -4780,7 +4796,7 @@ class NodesNodeResult(dict):
     @pulumi.getter
     def phase(self) -> str:
         """
-        The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
+        The Phase of Node.
         """
         return pulumi.get(self, "phase")
 
@@ -4934,6 +4950,7 @@ class SupportAddonsAddonResult(dict):
         :param Sequence[str] pod_network_modes: The container network model, the value is `Flannel` or `VpcCniShared`. Flannel: Flannel network model, an independent Underlay container network solution, combined with the global routing capability of VPC, to achieve a high-performance network experience for the cluster. VpcCniShared: VPC-CNI network model, an Underlay container network solution based on the ENI of the private network elastic network card, with high network communication performance.
         :param Sequence['SupportAddonsAddonVersionArgs'] versions: The version info of addon.
         :param Sequence[str] categories: The categories of addons, the value is `Storage` or `Network` or `Monitor` or `Scheduler` or `Dns` or `Security` or `Gpu` or `Image`.
+        :param str necessary: The necessary of addon.
         """
         pulumi.set(__self__, "deploy_mode", deploy_mode)
         pulumi.set(__self__, "deploy_node_types", deploy_node_types)
@@ -4996,6 +5013,9 @@ class SupportAddonsAddonResult(dict):
     @property
     @pulumi.getter
     def necessary(self) -> Optional[str]:
+        """
+        The necessary of addon.
+        """
         return pulumi.get(self, "necessary")
 
 

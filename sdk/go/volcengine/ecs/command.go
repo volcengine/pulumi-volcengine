@@ -48,9 +48,7 @@ import (
 // EcsCommand can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:ecs/command:Command default cmd-ychkepkhtim0tr3bcsw1
-//
+// $ pulumi import volcengine:ecs/command:Command default cmd-ychkepkhtim0tr3bcsw1
 // ```
 type Command struct {
 	pulumi.CustomResourceState

@@ -47,9 +47,7 @@ import (
 // CloudIdentityGroup can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:cloud_identity/group:Group default resource_id
-//
+// $ pulumi import volcengine:cloud_identity/group:Group default resource_id
 // ```
 type Group struct {
 	pulumi.CustomResourceState

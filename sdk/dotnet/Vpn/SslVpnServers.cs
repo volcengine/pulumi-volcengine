@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Vpn
     {
         /// <summary>
         /// Use this data source to query detailed information of ssl vpn servers
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -80,17 +78,13 @@ namespace Pulumi.Volcengine.Vpn
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<SslVpnServersResult> InvokeAsync(SslVpnServersArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<SslVpnServersResult>("volcengine:vpn/sslVpnServers:SslVpnServers", args ?? new SslVpnServersArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of ssl vpn servers
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -155,8 +149,6 @@ namespace Pulumi.Volcengine.Vpn
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<SslVpnServersResult> Invoke(SslVpnServersInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<SslVpnServersResult>("volcengine:vpn/sslVpnServers:SslVpnServers", args ?? new SslVpnServersInvokeArgs(), options.WithDefaults());

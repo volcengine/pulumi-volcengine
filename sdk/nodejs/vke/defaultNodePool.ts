@@ -116,7 +116,7 @@ import * as utilities from "../utilities";
  * VKE default node can be imported using the node id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:vke/defaultNodePool:DefaultNodePool default nc5t5epmrsf****
+ * $ pulumi import volcengine:vke/defaultNodePool:DefaultNodePool default nc5t5epmrsf****
  * ```
  */
 export class DefaultNodePool extends pulumi.CustomResource {

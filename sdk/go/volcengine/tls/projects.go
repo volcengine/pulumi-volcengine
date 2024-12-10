@@ -26,9 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := tls.Projects(ctx, &tls.ProjectsArgs{
-//				ProjectId: pulumi.StringRef("e020c978-4f05-40e1-9167-0113d3ef****"),
-//			}, nil)
+//			_, err := tls.Projects(ctx, nil, nil)
 //			if err != nil {
 //				return err
 //			}

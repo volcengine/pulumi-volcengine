@@ -848,7 +848,7 @@ class Instance(pulumi.CustomResource):
         RDS Instance can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:rds/instance:Instance default mysql-42b38c769c4b
+        $ pulumi import volcengine:rds/instance:Instance default mysql-42b38c769c4b
         ```
 
         :param str resource_name: The name of the resource.
@@ -941,7 +941,7 @@ class Instance(pulumi.CustomResource):
         RDS Instance can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:rds/instance:Instance default mysql-42b38c769c4b
+        $ pulumi import volcengine:rds/instance:Instance default mysql-42b38c769c4b
         ```
 
         :param str resource_name: The name of the resource.
@@ -1016,9 +1016,6 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["subnet_id"] = subnet_id
             __props__.__dict__["super_account_name"] = super_account_name
             __props__.__dict__["super_account_password"] = super_account_password
-            if supper_account_password is not None and not opts.urn:
-                warnings.warn("""supper_account_password is deprecated, use super_account_password instead""", DeprecationWarning)
-                pulumi.log.warn("""supper_account_password is deprecated: supper_account_password is deprecated, use super_account_password instead""")
             __props__.__dict__["supper_account_password"] = supper_account_password
             __props__.__dict__["used_time"] = used_time
             if vpc_id is None and not opts.urn:

@@ -25,7 +25,7 @@ import * as utilities from "../utilities";
  * CR Registry can be imported using the name, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:cr/registry:Registry default enterprise-x
+ * $ pulumi import volcengine:cr/registry:Registry default enterprise-x
  * ```
  */
 export class Registry extends pulumi.CustomResource {

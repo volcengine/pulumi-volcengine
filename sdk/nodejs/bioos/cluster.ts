@@ -27,7 +27,7 @@ import * as utilities from "../utilities";
  * Cluster can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:bioos/cluster:Cluster default *****
+ * $ pulumi import volcengine:bioos/cluster:Cluster default *****
  * ```
  */
 export class Cluster extends pulumi.CustomResource {
@@ -59,7 +59,7 @@ export class Cluster extends pulumi.CustomResource {
     }
 
     /**
-     * The id of the vke cluster.
+     * The id of the bioos cluster.
      */
     public /*out*/ readonly clusterId!: pulumi.Output<string>;
     /**
@@ -115,7 +115,7 @@ export class Cluster extends pulumi.CustomResource {
  */
 export interface ClusterState {
     /**
-     * The id of the vke cluster.
+     * The id of the bioos cluster.
      */
     clusterId?: pulumi.Input<string>;
     /**

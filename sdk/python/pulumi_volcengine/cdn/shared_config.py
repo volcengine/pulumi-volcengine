@@ -353,7 +353,7 @@ class SharedConfig(pulumi.CustomResource):
         CdnSharedConfig can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:cdn/sharedConfig:SharedConfig default resource_id
+        $ pulumi import volcengine:cdn/sharedConfig:SharedConfig default resource_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -429,7 +429,7 @@ class SharedConfig(pulumi.CustomResource):
         CdnSharedConfig can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:cdn/sharedConfig:SharedConfig default resource_id
+        $ pulumi import volcengine:cdn/sharedConfig:SharedConfig default resource_id
         ```
 
         :param str resource_name: The name of the resource.

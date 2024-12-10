@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Rds_postgresql
     {
         /// <summary>
         /// Use this data source to query detailed information of rds postgresql instances
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -85,17 +83,13 @@ namespace Pulumi.Volcengine.Rds_postgresql
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<InstancesResult> InvokeAsync(InstancesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<InstancesResult>("volcengine:rds_postgresql/instances:Instances", args ?? new InstancesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of rds postgresql instances
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -165,8 +159,6 @@ namespace Pulumi.Volcengine.Rds_postgresql
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<InstancesResult> Invoke(InstancesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<InstancesResult>("volcengine:rds_postgresql/instances:Instances", args ?? new InstancesInvokeArgs(), options.WithDefaults());

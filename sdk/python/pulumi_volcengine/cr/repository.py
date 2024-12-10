@@ -248,7 +248,7 @@ class Repository(pulumi.CustomResource):
         CR Repository can be imported using the registry:namespace:name, e.g.
 
         ```sh
-         $ pulumi import volcengine:cr/repository:Repository default cr-basic:namespace-1:repo-1
+        $ pulumi import volcengine:cr/repository:Repository default cr-basic:namespace-1:repo-1
         ```
 
         :param str resource_name: The name of the resource.
@@ -285,7 +285,7 @@ class Repository(pulumi.CustomResource):
         CR Repository can be imported using the registry:namespace:name, e.g.
 
         ```sh
-         $ pulumi import volcengine:cr/repository:Repository default cr-basic:namespace-1:repo-1
+        $ pulumi import volcengine:cr/repository:Repository default cr-basic:namespace-1:repo-1
         ```
 
         :param str resource_name: The name of the resource.

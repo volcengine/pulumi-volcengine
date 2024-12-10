@@ -156,7 +156,7 @@ class ServiceControlPolicyAttachment(pulumi.CustomResource):
         Service Control policy attachment can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:organization/serviceControlPolicyAttachment:ServiceControlPolicyAttachment default PolicyID:TargetID
+        $ pulumi import volcengine:organization/serviceControlPolicyAttachment:ServiceControlPolicyAttachment default PolicyID:TargetID
         ```
 
         :param str resource_name: The name of the resource.
@@ -198,7 +198,7 @@ class ServiceControlPolicyAttachment(pulumi.CustomResource):
         Service Control policy attachment can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:organization/serviceControlPolicyAttachment:ServiceControlPolicyAttachment default PolicyID:TargetID
+        $ pulumi import volcengine:organization/serviceControlPolicyAttachment:ServiceControlPolicyAttachment default PolicyID:TargetID
         ```
 
         :param str resource_name: The name of the resource.

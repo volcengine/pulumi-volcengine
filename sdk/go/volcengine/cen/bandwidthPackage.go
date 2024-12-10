@@ -56,9 +56,7 @@ import (
 // CenBandwidthPackage can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:cen/bandwidthPackage:BandwidthPackage default cbp-4c2zaavbvh5f42****
-//
+// $ pulumi import volcengine:cen/bandwidthPackage:BandwidthPackage default cbp-4c2zaavbvh5f42****
 // ```
 type BandwidthPackage struct {
 	pulumi.CustomResourceState

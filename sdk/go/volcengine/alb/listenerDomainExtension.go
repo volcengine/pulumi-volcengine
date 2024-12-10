@@ -67,9 +67,7 @@ import (
 // AlbListenerDomainExtension can be imported using the listener id and domain extension id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:alb/listenerDomainExtension:ListenerDomainExtension default listenerId:extensionId
-//
+// $ pulumi import volcengine:alb/listenerDomainExtension:ListenerDomainExtension default listenerId:extensionId
 // ```
 type ListenerDomainExtension struct {
 	pulumi.CustomResourceState

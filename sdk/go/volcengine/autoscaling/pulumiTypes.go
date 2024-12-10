@@ -1234,6 +1234,7 @@ func (o ScalingGroupLaunchTemplateOverrideArrayOutput) Index(i pulumi.IntInput) 
 }
 
 type ScalingGroupServerGroupAttribute struct {
+	// The load balancer id.
 	LoadBalancerId *string `pulumi:"loadBalancerId"`
 	// The port receiving request of the server group. Value range: 1 ~ 65535.
 	Port int `pulumi:"port"`
@@ -1255,6 +1256,7 @@ type ScalingGroupServerGroupAttributeInput interface {
 }
 
 type ScalingGroupServerGroupAttributeArgs struct {
+	// The load balancer id.
 	LoadBalancerId pulumi.StringPtrInput `pulumi:"loadBalancerId"`
 	// The port receiving request of the server group. Value range: 1 ~ 65535.
 	Port pulumi.IntInput `pulumi:"port"`
@@ -1315,6 +1317,7 @@ func (o ScalingGroupServerGroupAttributeOutput) ToScalingGroupServerGroupAttribu
 	return o
 }
 
+// The load balancer id.
 func (o ScalingGroupServerGroupAttributeOutput) LoadBalancerId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ScalingGroupServerGroupAttribute) *string { return v.LoadBalancerId }).(pulumi.StringPtrOutput)
 }

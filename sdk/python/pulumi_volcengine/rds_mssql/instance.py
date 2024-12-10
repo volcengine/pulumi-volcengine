@@ -515,7 +515,7 @@ class Instance(pulumi.CustomResource):
         Rds Mssql Instance can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:rds_mssql/instance:Instance default resource_id
+        $ pulumi import volcengine:rds_mssql/instance:Instance default resource_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -589,7 +589,7 @@ class Instance(pulumi.CustomResource):
         Rds Mssql Instance can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:rds_mssql/instance:Instance default resource_id
+        $ pulumi import volcengine:rds_mssql/instance:Instance default resource_id
         ```
 
         :param str resource_name: The name of the resource.

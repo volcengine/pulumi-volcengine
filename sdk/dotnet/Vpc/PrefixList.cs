@@ -63,7 +63,7 @@ namespace Pulumi.Volcengine.Vpc
     /// VpcPrefixList can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:vpc/prefixList:PrefixList default resource_id
+    /// $ pulumi import volcengine:vpc/prefixList:PrefixList default resource_id
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vpc/prefixList:PrefixList")]

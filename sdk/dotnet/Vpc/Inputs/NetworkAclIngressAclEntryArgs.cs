@@ -18,6 +18,9 @@ namespace Pulumi.Volcengine.Vpc.Inputs
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// The id of entry.
+        /// </summary>
         [Input("networkAclEntryId")]
         public Input<string>? NetworkAclEntryId { get; set; }
 
@@ -39,6 +42,9 @@ namespace Pulumi.Volcengine.Vpc.Inputs
         [Input("port")]
         public Input<string>? Port { get; set; }
 
+        /// <summary>
+        /// The priority of entry.
+        /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
 

@@ -57,8 +57,12 @@ type NetworkAclsArgs struct {
 	NetworkAclName *string `pulumi:"networkAclName"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The project name of the network acl.
+	ProjectName *string `pulumi:"projectName"`
 	// The subnet id of Network Acl.
 	SubnetId *string `pulumi:"subnetId"`
+	// Tags.
+	Tags []NetworkAclsTag `pulumi:"tags"`
 	// The vpc id of Network Acl.
 	VpcId *string `pulumi:"vpcId"`
 }
@@ -74,7 +78,11 @@ type NetworkAclsResult struct {
 	// The collection of Network Acl query.
 	NetworkAcls []NetworkAclsNetworkAcl `pulumi:"networkAcls"`
 	OutputFile  *string                 `pulumi:"outputFile"`
-	SubnetId    *string                 `pulumi:"subnetId"`
+	// The project name of the network acl.
+	ProjectName *string `pulumi:"projectName"`
+	SubnetId    *string `pulumi:"subnetId"`
+	// Tags.
+	Tags []NetworkAclsTag `pulumi:"tags"`
 	// The total count of Network Acl query.
 	TotalCount int `pulumi:"totalCount"`
 	// The vpc id of Network Acl.
@@ -104,8 +112,12 @@ type NetworkAclsOutputArgs struct {
 	NetworkAclName pulumi.StringPtrInput `pulumi:"networkAclName"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The project name of the network acl.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
 	// The subnet id of Network Acl.
 	SubnetId pulumi.StringPtrInput `pulumi:"subnetId"`
+	// Tags.
+	Tags NetworkAclsTagArrayInput `pulumi:"tags"`
 	// The vpc id of Network Acl.
 	VpcId pulumi.StringPtrInput `pulumi:"vpcId"`
 }
@@ -156,8 +168,18 @@ func (o NetworkAclsResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NetworkAclsResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
 }
 
+// The project name of the network acl.
+func (o NetworkAclsResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v NetworkAclsResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
 func (o NetworkAclsResultOutput) SubnetId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NetworkAclsResult) *string { return v.SubnetId }).(pulumi.StringPtrOutput)
+}
+
+// Tags.
+func (o NetworkAclsResultOutput) Tags() NetworkAclsTagArrayOutput {
+	return o.ApplyT(func(v NetworkAclsResult) []NetworkAclsTag { return v.Tags }).(NetworkAclsTagArrayOutput)
 }
 
 // The total count of Network Acl query.

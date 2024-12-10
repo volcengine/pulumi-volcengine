@@ -31,7 +31,7 @@ namespace Pulumi.Volcengine.Organization
     /// Organization can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:organization/organization:Organization default resource_id
+    /// $ pulumi import volcengine:organization/organization:Organization default resource_id
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:organization/organization:Organization")]

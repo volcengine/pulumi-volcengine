@@ -109,6 +109,7 @@ class _TransitRouterState:
                  business_status: Optional[pulumi.Input[str]] = None,
                  creation_time: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 grant_status: Optional[pulumi.Input[str]] = None,
                  overdue_time: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -124,6 +125,7 @@ class _TransitRouterState:
         :param pulumi.Input[str] business_status: The business status of the transit router.
         :param pulumi.Input[str] creation_time: The create time.
         :param pulumi.Input[str] description: The description of the transit router.
+        :param pulumi.Input[str] grant_status: The grant status of the transit router.
         :param pulumi.Input[str] overdue_time: The overdue time.
         :param pulumi.Input[str] project_name: The ProjectName of the transit router.
         :param pulumi.Input[str] status: The status of the transit router.
@@ -143,6 +145,8 @@ class _TransitRouterState:
             pulumi.set(__self__, "creation_time", creation_time)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if grant_status is not None:
+            pulumi.set(__self__, "grant_status", grant_status)
         if overdue_time is not None:
             pulumi.set(__self__, "overdue_time", overdue_time)
         if project_name is not None:
@@ -219,6 +223,18 @@ class _TransitRouterState:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="grantStatus")
+    def grant_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        The grant status of the transit router.
+        """
+        return pulumi.get(self, "grant_status")
+
+    @grant_status.setter
+    def grant_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "grant_status", value)
 
     @property
     @pulumi.getter(name="overdueTime")
@@ -352,7 +368,7 @@ class TransitRouter(pulumi.CustomResource):
         TransitRouter can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:transit_router/transitRouter:TransitRouter default tr-2d6fr7mzya2gw58ozfes5g2oh
+        $ pulumi import volcengine:transit_router/transitRouter:TransitRouter default tr-2d6fr7mzya2gw58ozfes5g2oh
         ```
 
         :param str resource_name: The name of the resource.
@@ -393,7 +409,7 @@ class TransitRouter(pulumi.CustomResource):
         TransitRouter can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:transit_router/transitRouter:TransitRouter default tr-2d6fr7mzya2gw58ozfes5g2oh
+        $ pulumi import volcengine:transit_router/transitRouter:TransitRouter default tr-2d6fr7mzya2gw58ozfes5g2oh
         ```
 
         :param str resource_name: The name of the resource.
@@ -433,6 +449,7 @@ class TransitRouter(pulumi.CustomResource):
             __props__.__dict__["account_id"] = None
             __props__.__dict__["business_status"] = None
             __props__.__dict__["creation_time"] = None
+            __props__.__dict__["grant_status"] = None
             __props__.__dict__["overdue_time"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["transit_router_attachments"] = None
@@ -453,6 +470,7 @@ class TransitRouter(pulumi.CustomResource):
             business_status: Optional[pulumi.Input[str]] = None,
             creation_time: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            grant_status: Optional[pulumi.Input[str]] = None,
             overdue_time: Optional[pulumi.Input[str]] = None,
             project_name: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
@@ -473,6 +491,7 @@ class TransitRouter(pulumi.CustomResource):
         :param pulumi.Input[str] business_status: The business status of the transit router.
         :param pulumi.Input[str] creation_time: The create time.
         :param pulumi.Input[str] description: The description of the transit router.
+        :param pulumi.Input[str] grant_status: The grant status of the transit router.
         :param pulumi.Input[str] overdue_time: The overdue time.
         :param pulumi.Input[str] project_name: The ProjectName of the transit router.
         :param pulumi.Input[str] status: The status of the transit router.
@@ -491,6 +510,7 @@ class TransitRouter(pulumi.CustomResource):
         __props__.__dict__["business_status"] = business_status
         __props__.__dict__["creation_time"] = creation_time
         __props__.__dict__["description"] = description
+        __props__.__dict__["grant_status"] = grant_status
         __props__.__dict__["overdue_time"] = overdue_time
         __props__.__dict__["project_name"] = project_name
         __props__.__dict__["status"] = status
@@ -540,6 +560,14 @@ class TransitRouter(pulumi.CustomResource):
         The description of the transit router.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="grantStatus")
+    def grant_status(self) -> pulumi.Output[str]:
+        """
+        The grant status of the transit router.
+        """
+        return pulumi.get(self, "grant_status")
 
     @property
     @pulumi.getter(name="overdueTime")

@@ -6,13 +6,12 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a resource to manage cloud identity user provisioning
- *
  * ## Import
  *
  * CloudIdentityUserProvisioning can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:cloud_identity/userProvisioning:UserProvisioning default resource_id
+ * $ pulumi import volcengine:cloud_identity/userProvisioning:UserProvisioning default resource_id
  * ```
  */
 export class UserProvisioning extends pulumi.CustomResource {

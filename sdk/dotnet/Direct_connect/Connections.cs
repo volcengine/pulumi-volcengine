@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Direct_connect
     {
         /// <summary>
         /// Use this data source to query detailed information of direct connect connections
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -32,17 +30,13 @@ namespace Pulumi.Volcengine.Direct_connect
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<ConnectionsResult> InvokeAsync(ConnectionsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ConnectionsResult>("volcengine:direct_connect/connections:Connections", args ?? new ConnectionsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of direct connect connections
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -59,8 +53,6 @@ namespace Pulumi.Volcengine.Direct_connect
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<ConnectionsResult> Invoke(ConnectionsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ConnectionsResult>("volcengine:direct_connect/connections:Connections", args ?? new ConnectionsInvokeArgs(), options.WithDefaults());

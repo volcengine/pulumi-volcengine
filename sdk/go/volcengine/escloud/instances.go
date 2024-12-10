@@ -43,7 +43,7 @@ import (
 //				SubnetName:  pulumi.String("acc-test-subnet_new"),
 //				Description: pulumi.String("tfdesc"),
 //				CidrBlock:   pulumi.String("172.16.0.0/24"),
-//				ZoneId:      *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:      pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:       fooVpc.ID(),
 //			})
 //			if err != nil {

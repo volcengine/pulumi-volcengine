@@ -55,9 +55,7 @@ import (
 // Network interface can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:vpc/networkInterface:NetworkInterface default eni-bp1fgnh68xyz9****
-//
+// $ pulumi import volcengine:vpc/networkInterface:NetworkInterface default eni-bp1fgnh68xyz9****
 // ```
 type NetworkInterface struct {
 	pulumi.CustomResourceState

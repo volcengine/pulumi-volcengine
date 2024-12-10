@@ -43,7 +43,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -55,12 +55,12 @@ import (
 //					&rds_v2.RdsInstanceV2NodeInfoArgs{
 //						NodeType: pulumi.String("Primary"),
 //						NodeSpec: pulumi.String("rds.mysql.2c4g"),
-//						ZoneId:   *pulumi.String(fooZones.Zones[0].Id),
+//						ZoneId:   pulumi.String(fooZones.Zones[0].Id),
 //					},
 //					&rds_v2.RdsInstanceV2NodeInfoArgs{
 //						NodeType: pulumi.String("Secondary"),
 //						NodeSpec: pulumi.String("rds.mysql.2c4g"),
-//						ZoneId:   *pulumi.String(fooZones.Zones[0].Id),
+//						ZoneId:   pulumi.String(fooZones.Zones[0].Id),
 //					},
 //				},
 //				StorageType:         pulumi.String("LocalSSD"),
@@ -87,9 +87,7 @@ import (
 // RDS Instance can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:rds_v2/rdsInstanceV2:RdsInstanceV2 default mysql-42b38c769c4b
-//
+// $ pulumi import volcengine:rds_v2/rdsInstanceV2:RdsInstanceV2 default mysql-42b38c769c4b
 // ```
 type RdsInstanceV2 struct {
 	pulumi.CustomResourceState
@@ -112,7 +110,7 @@ type RdsInstanceV2 struct {
 	InstanceName pulumi.StringPtrOutput `pulumi:"instanceName"`
 	// The field instanceType is no longer support. The type of Instance.
 	//
-	// Deprecated: The field instance_type is no longer support.
+	// Deprecated: The field instanceType is no longer support.
 	InstanceType pulumi.StringOutput `pulumi:"instanceType"`
 	// Whether the table name is case sensitive, the default value is 1.
 	// Ranges:
@@ -204,7 +202,7 @@ type rdsInstanceV2State struct {
 	InstanceName *string `pulumi:"instanceName"`
 	// The field instanceType is no longer support. The type of Instance.
 	//
-	// Deprecated: The field instance_type is no longer support.
+	// Deprecated: The field instanceType is no longer support.
 	InstanceType *string `pulumi:"instanceType"`
 	// Whether the table name is case sensitive, the default value is 1.
 	// Ranges:
@@ -249,7 +247,7 @@ type RdsInstanceV2State struct {
 	InstanceName pulumi.StringPtrInput
 	// The field instanceType is no longer support. The type of Instance.
 	//
-	// Deprecated: The field instance_type is no longer support.
+	// Deprecated: The field instanceType is no longer support.
 	InstanceType pulumi.StringPtrInput
 	// Whether the table name is case sensitive, the default value is 1.
 	// Ranges:
@@ -296,7 +294,7 @@ type rdsInstanceV2Args struct {
 	InstanceName *string `pulumi:"instanceName"`
 	// The field instanceType is no longer support. The type of Instance.
 	//
-	// Deprecated: The field instance_type is no longer support.
+	// Deprecated: The field instanceType is no longer support.
 	InstanceType *string `pulumi:"instanceType"`
 	// Whether the table name is case sensitive, the default value is 1.
 	// Ranges:
@@ -340,7 +338,7 @@ type RdsInstanceV2Args struct {
 	InstanceName pulumi.StringPtrInput
 	// The field instanceType is no longer support. The type of Instance.
 	//
-	// Deprecated: The field instance_type is no longer support.
+	// Deprecated: The field instanceType is no longer support.
 	InstanceType pulumi.StringPtrInput
 	// Whether the table name is case sensitive, the default value is 1.
 	// Ranges:
@@ -489,7 +487,7 @@ func (o RdsInstanceV2Output) InstanceName() pulumi.StringPtrOutput {
 
 // The field instanceType is no longer support. The type of Instance.
 //
-// Deprecated: The field instance_type is no longer support.
+// Deprecated: The field instanceType is no longer support.
 func (o RdsInstanceV2Output) InstanceType() pulumi.StringOutput {
 	return o.ApplyT(func(v *RdsInstanceV2) pulumi.StringOutput { return v.InstanceType }).(pulumi.StringOutput)
 }

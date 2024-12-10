@@ -20,10 +20,6 @@ Object.defineProperty(exports, "accessKey", {
     enumerable: true,
 });
 
-/**
- * The ASSUME ROLE block for Volcengine Provider. If provided, terraform will attempt to assume this role using the
- * supplied credentials.
- */
 export declare const assumeRole: outputs.config.AssumeRole | undefined;
 Object.defineProperty(exports, "assumeRole", {
     get() {

@@ -38,14 +38,14 @@ namespace Pulumi.Volcengine.Bioos
     /// Cluster can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:bioos/cluster:Cluster default *****
+    /// $ pulumi import volcengine:bioos/cluster:Cluster default *****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:bioos/cluster:Cluster")]
     public partial class Cluster : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The id of the vke cluster.
+        /// The id of the bioos cluster.
         /// </summary>
         [Output("clusterId")]
         public Output<string> ClusterId { get; private set; } = null!;
@@ -154,7 +154,7 @@ namespace Pulumi.Volcengine.Bioos
     public sealed class ClusterState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The id of the vke cluster.
+        /// The id of the bioos cluster.
         /// </summary>
         [Input("clusterId")]
         public Input<string>? ClusterId { get; set; }

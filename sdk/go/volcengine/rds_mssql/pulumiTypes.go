@@ -477,14 +477,19 @@ func (o BackupsBackupBackupDatabaseDetailArrayOutput) Index(i pulumi.IntInput) B
 
 type InstanceChargeInfo struct {
 	// Whether to enable automatic renewal in the prepaid scenario. This parameter can be set when the ChargeType is `Prepaid`.
-	AutoRenew       *bool   `pulumi:"autoRenew"`
-	ChargeEndTime   *string `pulumi:"chargeEndTime"`
+	AutoRenew *bool `pulumi:"autoRenew"`
+	// Charge end time.
+	ChargeEndTime *string `pulumi:"chargeEndTime"`
+	// Charge start time.
 	ChargeStartTime *string `pulumi:"chargeStartTime"`
-	ChargeStatus    *string `pulumi:"chargeStatus"`
+	// The charge status.
+	ChargeStatus *string `pulumi:"chargeStatus"`
 	// The charge type. Valid values: `PostPaid`, `PrePaid`.
-	ChargeType         string  `pulumi:"chargeType"`
+	ChargeType string `pulumi:"chargeType"`
+	// Expected release time when overdue fees are shut down.
 	OverdueReclaimTime *string `pulumi:"overdueReclaimTime"`
-	OverdueTime        *string `pulumi:"overdueTime"`
+	// Time for Disconnection due to Unpaid Fees.
+	OverdueTime *string `pulumi:"overdueTime"`
 	// Purchase duration in a prepaid scenario. This parameter is required when the ChargeType is `Prepaid`.
 	Period *int `pulumi:"period"`
 }
@@ -502,14 +507,19 @@ type InstanceChargeInfoInput interface {
 
 type InstanceChargeInfoArgs struct {
 	// Whether to enable automatic renewal in the prepaid scenario. This parameter can be set when the ChargeType is `Prepaid`.
-	AutoRenew       pulumi.BoolPtrInput   `pulumi:"autoRenew"`
-	ChargeEndTime   pulumi.StringPtrInput `pulumi:"chargeEndTime"`
+	AutoRenew pulumi.BoolPtrInput `pulumi:"autoRenew"`
+	// Charge end time.
+	ChargeEndTime pulumi.StringPtrInput `pulumi:"chargeEndTime"`
+	// Charge start time.
 	ChargeStartTime pulumi.StringPtrInput `pulumi:"chargeStartTime"`
-	ChargeStatus    pulumi.StringPtrInput `pulumi:"chargeStatus"`
+	// The charge status.
+	ChargeStatus pulumi.StringPtrInput `pulumi:"chargeStatus"`
 	// The charge type. Valid values: `PostPaid`, `PrePaid`.
-	ChargeType         pulumi.StringInput    `pulumi:"chargeType"`
+	ChargeType pulumi.StringInput `pulumi:"chargeType"`
+	// Expected release time when overdue fees are shut down.
 	OverdueReclaimTime pulumi.StringPtrInput `pulumi:"overdueReclaimTime"`
-	OverdueTime        pulumi.StringPtrInput `pulumi:"overdueTime"`
+	// Time for Disconnection due to Unpaid Fees.
+	OverdueTime pulumi.StringPtrInput `pulumi:"overdueTime"`
 	// Purchase duration in a prepaid scenario. This parameter is required when the ChargeType is `Prepaid`.
 	Period pulumi.IntPtrInput `pulumi:"period"`
 }
@@ -596,14 +606,17 @@ func (o InstanceChargeInfoOutput) AutoRenew() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v InstanceChargeInfo) *bool { return v.AutoRenew }).(pulumi.BoolPtrOutput)
 }
 
+// Charge end time.
 func (o InstanceChargeInfoOutput) ChargeEndTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceChargeInfo) *string { return v.ChargeEndTime }).(pulumi.StringPtrOutput)
 }
 
+// Charge start time.
 func (o InstanceChargeInfoOutput) ChargeStartTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceChargeInfo) *string { return v.ChargeStartTime }).(pulumi.StringPtrOutput)
 }
 
+// The charge status.
 func (o InstanceChargeInfoOutput) ChargeStatus() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceChargeInfo) *string { return v.ChargeStatus }).(pulumi.StringPtrOutput)
 }
@@ -613,10 +626,12 @@ func (o InstanceChargeInfoOutput) ChargeType() pulumi.StringOutput {
 	return o.ApplyT(func(v InstanceChargeInfo) string { return v.ChargeType }).(pulumi.StringOutput)
 }
 
+// Expected release time when overdue fees are shut down.
 func (o InstanceChargeInfoOutput) OverdueReclaimTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceChargeInfo) *string { return v.OverdueReclaimTime }).(pulumi.StringPtrOutput)
 }
 
+// Time for Disconnection due to Unpaid Fees.
 func (o InstanceChargeInfoOutput) OverdueTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceChargeInfo) *string { return v.OverdueTime }).(pulumi.StringPtrOutput)
 }
@@ -660,6 +675,7 @@ func (o InstanceChargeInfoPtrOutput) AutoRenew() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
+// Charge end time.
 func (o InstanceChargeInfoPtrOutput) ChargeEndTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InstanceChargeInfo) *string {
 		if v == nil {
@@ -669,6 +685,7 @@ func (o InstanceChargeInfoPtrOutput) ChargeEndTime() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Charge start time.
 func (o InstanceChargeInfoPtrOutput) ChargeStartTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InstanceChargeInfo) *string {
 		if v == nil {
@@ -678,6 +695,7 @@ func (o InstanceChargeInfoPtrOutput) ChargeStartTime() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// The charge status.
 func (o InstanceChargeInfoPtrOutput) ChargeStatus() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InstanceChargeInfo) *string {
 		if v == nil {
@@ -697,6 +715,7 @@ func (o InstanceChargeInfoPtrOutput) ChargeType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Expected release time when overdue fees are shut down.
 func (o InstanceChargeInfoPtrOutput) OverdueReclaimTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InstanceChargeInfo) *string {
 		if v == nil {
@@ -706,6 +725,7 @@ func (o InstanceChargeInfoPtrOutput) OverdueReclaimTime() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
+// Time for Disconnection due to Unpaid Fees.
 func (o InstanceChargeInfoPtrOutput) OverdueTime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InstanceChargeInfo) *string {
 		if v == nil {

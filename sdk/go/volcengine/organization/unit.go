@@ -53,9 +53,7 @@ import (
 // OrganizationUnit can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:organization/unit:Unit default ID
-//
+// $ pulumi import volcengine:organization/unit:Unit default ID
 // ```
 type Unit struct {
 	pulumi.CustomResourceState

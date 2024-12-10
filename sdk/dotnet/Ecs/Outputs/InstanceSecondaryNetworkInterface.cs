@@ -14,7 +14,7 @@ namespace Pulumi.Volcengine.Ecs.Outputs
     public sealed class InstanceSecondaryNetworkInterface
     {
         /// <summary>
-        /// The private ip address of primary networkInterface.
+        /// The private ip address of secondary networkInterface.
         /// </summary>
         public readonly string? PrimaryIpAddress;
         /// <summary>

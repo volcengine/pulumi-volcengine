@@ -13,15 +13,12 @@ import (
 )
 
 // Provides a resource to manage private zone record
-//
 // ## Import
 //
 // PrivateZoneRecord can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:private_zone/record:Record default resource_id
-//
+// $ pulumi import volcengine:private_zone/record:Record default resource_id
 // ```
 type Record struct {
 	pulumi.CustomResourceState

@@ -81,10 +81,18 @@ type GatewaysArgs struct {
 	Ids []string `pulumi:"ids"`
 	// A IP address of the VPN gateway.
 	IpAddress *string `pulumi:"ipAddress"`
+	// Whether IPSec is enabled.
+	IpsecEnabled *bool `pulumi:"ipsecEnabled"`
 	// A Name Regex of VPN gateway.
 	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The project name of the VPN gateway.
+	ProjectName *string `pulumi:"projectName"`
+	// Whether ssl is enabled.
+	SslEnabled *bool `pulumi:"sslEnabled"`
+	// The status of the VPN gateway.
+	Status *string `pulumi:"status"`
 	// A subnet ID of the VPN gateway.
 	SubnetId *string `pulumi:"subnetId"`
 	// Tags.
@@ -101,10 +109,18 @@ type GatewaysResult struct {
 	Id  string   `pulumi:"id"`
 	Ids []string `pulumi:"ids"`
 	// The IP address of the VPN gateway.
-	IpAddress  *string `pulumi:"ipAddress"`
-	NameRegex  *string `pulumi:"nameRegex"`
-	OutputFile *string `pulumi:"outputFile"`
-	SubnetId   *string `pulumi:"subnetId"`
+	IpAddress *string `pulumi:"ipAddress"`
+	// Whether ipsec is enabled.
+	IpsecEnabled *bool   `pulumi:"ipsecEnabled"`
+	NameRegex    *string `pulumi:"nameRegex"`
+	OutputFile   *string `pulumi:"outputFile"`
+	// The name of project.
+	ProjectName *string `pulumi:"projectName"`
+	// Whether ssl is enabled.
+	SslEnabled *bool `pulumi:"sslEnabled"`
+	// The status of the VPN gateway.
+	Status   *string `pulumi:"status"`
+	SubnetId *string `pulumi:"subnetId"`
 	// Tags.
 	Tags []GatewaysTag `pulumi:"tags"`
 	// The total count of VPN gateway query.
@@ -135,10 +151,18 @@ type GatewaysOutputArgs struct {
 	Ids pulumi.StringArrayInput `pulumi:"ids"`
 	// A IP address of the VPN gateway.
 	IpAddress pulumi.StringPtrInput `pulumi:"ipAddress"`
+	// Whether IPSec is enabled.
+	IpsecEnabled pulumi.BoolPtrInput `pulumi:"ipsecEnabled"`
 	// A Name Regex of VPN gateway.
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The project name of the VPN gateway.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
+	// Whether ssl is enabled.
+	SslEnabled pulumi.BoolPtrInput `pulumi:"sslEnabled"`
+	// The status of the VPN gateway.
+	Status pulumi.StringPtrInput `pulumi:"status"`
 	// A subnet ID of the VPN gateway.
 	SubnetId pulumi.StringPtrInput `pulumi:"subnetId"`
 	// Tags.
@@ -182,12 +206,32 @@ func (o GatewaysResultOutput) IpAddress() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GatewaysResult) *string { return v.IpAddress }).(pulumi.StringPtrOutput)
 }
 
+// Whether ipsec is enabled.
+func (o GatewaysResultOutput) IpsecEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GatewaysResult) *bool { return v.IpsecEnabled }).(pulumi.BoolPtrOutput)
+}
+
 func (o GatewaysResultOutput) NameRegex() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GatewaysResult) *string { return v.NameRegex }).(pulumi.StringPtrOutput)
 }
 
 func (o GatewaysResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GatewaysResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
+}
+
+// The name of project.
+func (o GatewaysResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GatewaysResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
+}
+
+// Whether ssl is enabled.
+func (o GatewaysResultOutput) SslEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GatewaysResult) *bool { return v.SslEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// The status of the VPN gateway.
+func (o GatewaysResultOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GatewaysResult) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
 func (o GatewaysResultOutput) SubnetId() pulumi.StringPtrOutput {

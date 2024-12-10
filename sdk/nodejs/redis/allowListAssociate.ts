@@ -55,7 +55,7 @@ import * as utilities from "../utilities";
  * Redis AllowList Association can be imported using the instanceId:allowListId, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:redis/allowListAssociate:AllowListAssociate default redis-asdljioeixxxx:acl-cn03wk541s55c376xxxx
+ * $ pulumi import volcengine:redis/allowListAssociate:AllowListAssociate default redis-asdljioeixxxx:acl-cn03wk541s55c376xxxx
  * ```
  */
 export class AllowListAssociate extends pulumi.CustomResource {

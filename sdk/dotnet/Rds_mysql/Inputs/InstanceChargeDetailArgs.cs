@@ -14,6 +14,8 @@ namespace Pulumi.Volcengine.Rds_mysql.Inputs
     {
         /// <summary>
         /// Whether to automatically renew in prepaid scenarios.
+        /// Autorenew_Enable
+        /// Autorenew_Disable (default).
         /// </summary>
         [Input("autoRenew")]
         public Input<bool>? AutoRenew { get; set; }

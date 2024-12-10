@@ -43,7 +43,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -90,9 +90,7 @@ import (
 // Rds Mssql Instance can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:rds_mssql/instance:Instance default resource_id
-//
+// $ pulumi import volcengine:rds_mssql/instance:Instance default resource_id
 // ```
 type Instance struct {
 	pulumi.CustomResourceState

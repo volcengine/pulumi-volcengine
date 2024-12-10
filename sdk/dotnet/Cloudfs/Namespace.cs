@@ -36,7 +36,7 @@ namespace Pulumi.Volcengine.Cloudfs
     /// CloudfsNamespace can be imported using the FsName:NsId, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:cloudfs/namespace:Namespace default tfname:1801439850948****
+    /// $ pulumi import volcengine:cloudfs/namespace:Namespace default tfname:1801439850948****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:cloudfs/namespace:Namespace")]

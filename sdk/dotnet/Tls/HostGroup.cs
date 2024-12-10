@@ -38,7 +38,7 @@ namespace Pulumi.Volcengine.Tls
     /// Tls Host Group can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:tls/hostGroup:HostGroup default edf052s21s*******dc15
+    /// $ pulumi import volcengine:tls/hostGroup:HostGroup default edf052s21s*******dc15
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:tls/hostGroup:HostGroup")]
@@ -102,7 +102,7 @@ namespace Pulumi.Volcengine.Tls
         /// The project name of iam.
         /// </summary>
         [Output("iamProjectName")]
-        public Output<string?> IamProjectName { get; private set; } = null!;
+        public Output<string> IamProjectName { get; private set; } = null!;
 
         /// <summary>
         /// The modify time of host group.

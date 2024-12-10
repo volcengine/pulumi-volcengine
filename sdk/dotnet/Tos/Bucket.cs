@@ -58,7 +58,7 @@ namespace Pulumi.Volcengine.Tos
     /// Tos Bucket can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:tos/bucket:Bucket default bucketName
+    /// $ pulumi import volcengine:tos/bucket:Bucket default bucketName
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:tos/bucket:Bucket")]

@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Cen
     {
         /// <summary>
         /// Use this data source to query detailed information of cens
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -51,17 +49,13 @@ namespace Pulumi.Volcengine.Cen
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<CensResult> InvokeAsync(CensArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<CensResult>("volcengine:cen/cens:Cens", args ?? new CensArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cens
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -97,8 +91,6 @@ namespace Pulumi.Volcengine.Cen
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<CensResult> Invoke(CensInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<CensResult>("volcengine:cen/cens:Cens", args ?? new CensInvokeArgs(), options.WithDefaults());

@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Cloud_identity
     {
         /// <summary>
         /// Use this data source to query detailed information of cloud identity permission set assignments
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -75,17 +73,13 @@ namespace Pulumi.Volcengine.Cloud_identity
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<PermissionSetAssignmentsResult> InvokeAsync(PermissionSetAssignmentsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<PermissionSetAssignmentsResult>("volcengine:cloud_identity/permissionSetAssignments:PermissionSetAssignments", args ?? new PermissionSetAssignmentsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cloud identity permission set assignments
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -145,8 +139,6 @@ namespace Pulumi.Volcengine.Cloud_identity
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<PermissionSetAssignmentsResult> Invoke(PermissionSetAssignmentsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<PermissionSetAssignmentsResult>("volcengine:cloud_identity/permissionSetAssignments:PermissionSetAssignments", args ?? new PermissionSetAssignmentsInvokeArgs(), options.WithDefaults());

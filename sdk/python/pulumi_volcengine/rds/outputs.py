@@ -396,6 +396,7 @@ class InstancesRdsInstanceResult(dict):
         :param str update_time: The update time of the RDS instance.
         :param str vpc_id: The vpc ID of the RDS instance.
         :param str zone: The available zone of the RDS instance.
+        :param Sequence[str] read_only_instance_ids: The ID list of read only instance.
         """
         pulumi.set(__self__, "charge_status", charge_status)
         pulumi.set(__self__, "charge_type", charge_type)
@@ -556,6 +557,9 @@ class InstancesRdsInstanceResult(dict):
     @property
     @pulumi.getter(name="readOnlyInstanceIds")
     def read_only_instance_ids(self) -> Optional[Sequence[str]]:
+        """
+        The ID list of read only instance.
+        """
         return pulumi.get(self, "read_only_instance_ids")
 
 

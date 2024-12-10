@@ -128,7 +128,7 @@ class BucketPolicy(pulumi.CustomResource):
         Tos Bucket can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:tos/bucketPolicy:BucketPolicy default bucketName:policy
+        $ pulumi import volcengine:tos/bucketPolicy:BucketPolicy default bucketName:policy
         ```
 
         :param str resource_name: The name of the resource.
@@ -170,7 +170,7 @@ class BucketPolicy(pulumi.CustomResource):
         Tos Bucket can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:tos/bucketPolicy:BucketPolicy default bucketName:policy
+        $ pulumi import volcengine:tos/bucketPolicy:BucketPolicy default bucketName:policy
         ```
 
         :param str resource_name: The name of the resource.

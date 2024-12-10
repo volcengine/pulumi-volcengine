@@ -22,13 +22,16 @@ class InstanceTypesResult:
     """
     A collection of values returned by InstanceTypes.
     """
-    def __init__(__self__, id=None, ids=None, instance_types=None, output_file=None, total_count=None):
+    def __init__(__self__, id=None, ids=None, image_id=None, instance_types=None, output_file=None, total_count=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
         if ids and not isinstance(ids, list):
             raise TypeError("Expected argument 'ids' to be a list")
         pulumi.set(__self__, "ids", ids)
+        if image_id and not isinstance(image_id, str):
+            raise TypeError("Expected argument 'image_id' to be a str")
+        pulumi.set(__self__, "image_id", image_id)
         if instance_types and not isinstance(instance_types, list):
             raise TypeError("Expected argument 'instance_types' to be a list")
         pulumi.set(__self__, "instance_types", instance_types)
@@ -51,6 +54,11 @@ class InstanceTypesResult:
     @pulumi.getter
     def ids(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "ids")
+
+    @property
+    @pulumi.getter(name="imageId")
+    def image_id(self) -> Optional[str]:
+        return pulumi.get(self, "image_id")
 
     @property
     @pulumi.getter(name="instanceTypes")
@@ -82,12 +90,14 @@ class AwaitableInstanceTypesResult(InstanceTypesResult):
         return InstanceTypesResult(
             id=self.id,
             ids=self.ids,
+            image_id=self.image_id,
             instance_types=self.instance_types,
             output_file=self.output_file,
             total_count=self.total_count)
 
 
 def instance_types(ids: Optional[Sequence[str]] = None,
+                   image_id: Optional[str] = None,
                    output_file: Optional[str] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableInstanceTypesResult:
     """
@@ -103,10 +113,12 @@ def instance_types(ids: Optional[Sequence[str]] = None,
 
 
     :param Sequence[str] ids: A list of instance type IDs. When the number of ids is greater than 10, only the first 10 are effective.
+    :param str image_id: The id of image.
     :param str output_file: File name where to save data source results.
     """
     __args__ = dict()
     __args__['ids'] = ids
+    __args__['imageId'] = image_id
     __args__['outputFile'] = output_file
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:ecs/instanceTypes:InstanceTypes', __args__, opts=opts, typ=InstanceTypesResult).value
@@ -114,6 +126,7 @@ def instance_types(ids: Optional[Sequence[str]] = None,
     return AwaitableInstanceTypesResult(
         id=pulumi.get(__ret__, 'id'),
         ids=pulumi.get(__ret__, 'ids'),
+        image_id=pulumi.get(__ret__, 'image_id'),
         instance_types=pulumi.get(__ret__, 'instance_types'),
         output_file=pulumi.get(__ret__, 'output_file'),
         total_count=pulumi.get(__ret__, 'total_count'))
@@ -121,6 +134,7 @@ def instance_types(ids: Optional[Sequence[str]] = None,
 
 @_utilities.lift_output_func(instance_types)
 def instance_types_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                          image_id: Optional[pulumi.Input[Optional[str]]] = None,
                           output_file: Optional[pulumi.Input[Optional[str]]] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[InstanceTypesResult]:
     """
@@ -136,6 +150,7 @@ def instance_types_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] =
 
 
     :param Sequence[str] ids: A list of instance type IDs. When the number of ids is greater than 10, only the first 10 are effective.
+    :param str image_id: The id of image.
     :param str output_file: File name where to save data source results.
     """
     ...

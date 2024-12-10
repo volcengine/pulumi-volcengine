@@ -15,6 +15,8 @@ namespace Pulumi.Volcengine.Rds_postgresql.Outputs
     {
         /// <summary>
         /// Whether to automatically renew in prepaid scenarios.
+        /// Autorenew_Enable
+        /// Autorenew_Disable (default).
         /// </summary>
         public readonly bool? AutoRenew;
         /// <summary>

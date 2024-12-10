@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Vke
     {
         /// <summary>
         /// Use this data source to query detailed information of vke support resource types
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -29,17 +27,13 @@ namespace Pulumi.Volcengine.Vke
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<SupportResourceTypesResult> InvokeAsync(SupportResourceTypesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<SupportResourceTypesResult>("volcengine:vke/supportResourceTypes:SupportResourceTypes", args ?? new SupportResourceTypesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of vke support resource types
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -53,8 +47,6 @@ namespace Pulumi.Volcengine.Vke
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<SupportResourceTypesResult> Invoke(SupportResourceTypesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<SupportResourceTypesResult>("volcengine:vke/supportResourceTypes:SupportResourceTypes", args ?? new SupportResourceTypesInvokeArgs(), options.WithDefaults());

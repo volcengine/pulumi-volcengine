@@ -100,7 +100,7 @@ namespace Pulumi.Volcengine.Privatelink
     /// VpcEndpoint can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:privatelink/vpcEndpoint:VpcEndpoint default ep-3rel74u229dz45zsk2i6l****
+    /// $ pulumi import volcengine:privatelink/vpcEndpoint:VpcEndpoint default ep-3rel74u229dz45zsk2i6l****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:privatelink/vpcEndpoint:VpcEndpoint")]

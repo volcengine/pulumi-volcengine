@@ -53,7 +53,7 @@ import * as utilities from "../utilities";
  * SSL VPN server can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:vpn/sslVpnServer:SslVpnServer default vss-zm55pqtvk17oq32zd****
+ * $ pulumi import volcengine:vpn/sslVpnServer:SslVpnServer default vss-zm55pqtvk17oq32zd****
  * ```
  */
 export class SslVpnServer extends pulumi.CustomResource {
@@ -118,6 +118,14 @@ export class SslVpnServer extends pulumi.CustomResource {
      */
     public readonly localSubnets!: pulumi.Output<string[]>;
     /**
+     * The port of the ssl server. Valid values: 1~65535. Default is 1194. The following ports are not supported: 22, 68, 179, 323, 500, 4500.
+     */
+    public readonly port!: pulumi.Output<number | undefined>;
+    /**
+     * The project name of the ssl server.
+     */
+    public readonly projectName!: pulumi.Output<string>;
+    /**
      * The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.
      */
     public readonly protocol!: pulumi.Output<string | undefined>;
@@ -153,6 +161,8 @@ export class SslVpnServer extends pulumi.CustomResource {
             resourceInputs["compress"] = state ? state.compress : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["localSubnets"] = state ? state.localSubnets : undefined;
+            resourceInputs["port"] = state ? state.port : undefined;
+            resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["protocol"] = state ? state.protocol : undefined;
             resourceInputs["sslVpnServerId"] = state ? state.sslVpnServerId : undefined;
             resourceInputs["sslVpnServerName"] = state ? state.sslVpnServerName : undefined;
@@ -174,6 +184,8 @@ export class SslVpnServer extends pulumi.CustomResource {
             resourceInputs["compress"] = args ? args.compress : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["localSubnets"] = args ? args.localSubnets : undefined;
+            resourceInputs["port"] = args ? args.port : undefined;
+            resourceInputs["projectName"] = args ? args.projectName : undefined;
             resourceInputs["protocol"] = args ? args.protocol : undefined;
             resourceInputs["sslVpnServerName"] = args ? args.sslVpnServerName : undefined;
             resourceInputs["vpnGatewayId"] = args ? args.vpnGatewayId : undefined;
@@ -221,6 +233,14 @@ export interface SslVpnServerState {
      * The local network segment of the SSL server. The local network segment is the address segment that the client accesses through the SSL VPN connection.
      */
     localSubnets?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The port of the ssl server. Valid values: 1~65535. Default is 1194. The following ports are not supported: 22, 68, 179, 323, 500, 4500.
+     */
+    port?: pulumi.Input<number>;
+    /**
+     * The project name of the ssl server.
+     */
+    projectName?: pulumi.Input<string>;
     /**
      * The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.
      */
@@ -276,6 +296,14 @@ export interface SslVpnServerArgs {
      * The local network segment of the SSL server. The local network segment is the address segment that the client accesses through the SSL VPN connection.
      */
     localSubnets: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The port of the ssl server. Valid values: 1~65535. Default is 1194. The following ports are not supported: 22, 68, 179, 323, 500, 4500.
+     */
+    port?: pulumi.Input<number>;
+    /**
+     * The project name of the ssl server.
+     */
+    projectName?: pulumi.Input<string>;
     /**
      * The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.
      */

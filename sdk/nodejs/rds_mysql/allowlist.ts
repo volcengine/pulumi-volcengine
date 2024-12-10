@@ -28,7 +28,7 @@ import * as utilities from "../utilities";
  * RDS AllowList can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:rds_mysql/allowlist:Allowlist default acl-d1fd76693bd54e658912e7337d5b****
+ * $ pulumi import volcengine:rds_mysql/allowlist:Allowlist default acl-d1fd76693bd54e658912e7337d5b****
  * ```
  */
 export class Allowlist extends pulumi.CustomResource {

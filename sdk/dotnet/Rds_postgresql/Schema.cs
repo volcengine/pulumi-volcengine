@@ -116,7 +116,7 @@ namespace Pulumi.Volcengine.Rds_postgresql
     /// RdsPostgresqlSchema can be imported using the instance id, database name and schema name, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:rds_postgresql/schema:Schema default instance_id:db_name:schema_name
+    /// $ pulumi import volcengine:rds_postgresql/schema:Schema default instance_id:db_name:schema_name
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:rds_postgresql/schema:Schema")]

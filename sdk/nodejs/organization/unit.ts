@@ -26,7 +26,7 @@ import * as utilities from "../utilities";
  * OrganizationUnit can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:organization/unit:Unit default ID
+ * $ pulumi import volcengine:organization/unit:Unit default ID
  * ```
  */
 export class Unit extends pulumi.CustomResource {

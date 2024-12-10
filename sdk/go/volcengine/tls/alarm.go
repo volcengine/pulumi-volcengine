@@ -69,9 +69,7 @@ import (
 // tls alarm can be imported using the id and project id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:tls/alarm:Alarm default projectId:fc************
-//
+// $ pulumi import volcengine:tls/alarm:Alarm default projectId:fc************
 // ```
 type Alarm struct {
 	pulumi.CustomResourceState

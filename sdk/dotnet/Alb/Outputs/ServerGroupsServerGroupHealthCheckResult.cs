@@ -25,7 +25,13 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// The healthy threshold of health check.
         /// </summary>
         public readonly int HealthyThreshold;
+        /// <summary>
+        /// The normal http status code of health check.
+        /// </summary>
         public readonly string? HttpCode;
+        /// <summary>
+        /// The http version of health check.
+        /// </summary>
         public readonly string? HttpVersion;
         /// <summary>
         /// The interval executing health check.
@@ -35,7 +41,13 @@ namespace Pulumi.Volcengine.Alb.Outputs
         /// The method of health check.
         /// </summary>
         public readonly string Method;
+        /// <summary>
+        /// The protocol of health check.
+        /// </summary>
         public readonly string? Protocol;
+        /// <summary>
+        /// The response timeout of health check.
+        /// </summary>
         public readonly int? Timeout;
         /// <summary>
         /// The unhealthy threshold of health check.

@@ -62,9 +62,7 @@ import (
 // Service Control policy attachment can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:organization/serviceControlPolicyAttachment:ServiceControlPolicyAttachment default PolicyID:TargetID
-//
+// $ pulumi import volcengine:organization/serviceControlPolicyAttachment:ServiceControlPolicyAttachment default PolicyID:TargetID
 // ```
 type ServiceControlPolicyAttachment struct {
 	pulumi.CustomResourceState
