@@ -14,11 +14,11 @@ namespace Pulumi.Volcengine.Direct_connect.Outputs
     public sealed class VirtualInterfacesVirtualInterfaceTagResult
     {
         /// <summary>
-        /// The tag key of cloud resource instance.
+        /// The tag key.
         /// </summary>
         public readonly string Key;
         /// <summary>
-        /// The tag value of cloud resource instance.
+        /// The tag value.
         /// </summary>
         public readonly string Value;
 

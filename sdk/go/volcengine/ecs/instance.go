@@ -41,7 +41,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -66,7 +66,7 @@ import (
 //				InstanceName:       pulumi.String("acc-test-ecs"),
 //				Description:        pulumi.String("acc-test"),
 //				HostName:           pulumi.String("tf-acc-test"),
-//				ImageId:            *pulumi.String(fooImages.Images[0].ImageId),
+//				ImageId:            pulumi.String(fooImages.Images[0].ImageId),
 //				InstanceType:       pulumi.String("ecs.g1.large"),
 //				Password:           pulumi.String("93f0cb0614Aab12"),
 //				InstanceChargeType: pulumi.String("PostPaid"),
@@ -102,12 +102,11 @@ import (
 //
 // ## Import
 //
-// ECS Instance can be imported using the id, e.g. If Import,The data_volumes is sort by volume name
+// ECS Instance can be imported using the id, e.g.
+// If Import,The data_volumes is sort by volume name
 //
 // ```sh
-//
-//	$ pulumi import volcengine:ecs/instance:Instance default i-mizl7m1kqccg5smt1bdpijuj
-//
+// $ pulumi import volcengine:ecs/instance:Instance default i-mizl7m1kqccg5smt1bdpijuj
 // ```
 type Instance struct {
 	pulumi.CustomResourceState
@@ -162,8 +161,8 @@ type Instance struct {
 	KeepImageCredential pulumi.BoolPtrOutput `pulumi:"keepImageCredential"`
 	// The ssh key ID of ECS instance.
 	KeyPairId pulumi.StringOutput `pulumi:"keyPairId"`
-	// The ssh key name of ECS instance.
-	KeyPairName pulumi.StringOutput `pulumi:"keyPairName"`
+	// The ssh key name of ECS instance. This field can be modified only when the `imageId` is modified.
+	KeyPairName pulumi.StringPtrOutput `pulumi:"keyPairName"`
 	// The memory size of ECS instance.
 	MemorySize pulumi.IntOutput `pulumi:"memorySize"`
 	// The ID of primary networkInterface.
@@ -322,7 +321,7 @@ type instanceState struct {
 	KeepImageCredential *bool `pulumi:"keepImageCredential"`
 	// The ssh key ID of ECS instance.
 	KeyPairId *string `pulumi:"keyPairId"`
-	// The ssh key name of ECS instance.
+	// The ssh key name of ECS instance. This field can be modified only when the `imageId` is modified.
 	KeyPairName *string `pulumi:"keyPairName"`
 	// The memory size of ECS instance.
 	MemorySize *int `pulumi:"memorySize"`
@@ -428,7 +427,7 @@ type InstanceState struct {
 	KeepImageCredential pulumi.BoolPtrInput
 	// The ssh key ID of ECS instance.
 	KeyPairId pulumi.StringPtrInput
-	// The ssh key name of ECS instance.
+	// The ssh key name of ECS instance. This field can be modified only when the `imageId` is modified.
 	KeyPairName pulumi.StringPtrInput
 	// The memory size of ECS instance.
 	MemorySize pulumi.IntPtrInput
@@ -526,7 +525,7 @@ type instanceArgs struct {
 	// When the value of this field is true, the Password and KeyPairName cannot be specified.
 	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	KeepImageCredential *bool `pulumi:"keepImageCredential"`
-	// The ssh key name of ECS instance.
+	// The ssh key name of ECS instance. This field can be modified only when the `imageId` is modified.
 	KeyPairName *string `pulumi:"keyPairName"`
 	// The password of ECS instance.
 	Password *string `pulumi:"password"`
@@ -603,7 +602,7 @@ type InstanceArgs struct {
 	// When the value of this field is true, the Password and KeyPairName cannot be specified.
 	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	KeepImageCredential pulumi.BoolPtrInput
-	// The ssh key name of ECS instance.
+	// The ssh key name of ECS instance. This field can be modified only when the `imageId` is modified.
 	KeyPairName pulumi.StringPtrInput
 	// The password of ECS instance.
 	Password pulumi.StringPtrInput
@@ -846,9 +845,9 @@ func (o InstanceOutput) KeyPairId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.KeyPairId }).(pulumi.StringOutput)
 }
 
-// The ssh key name of ECS instance.
-func (o InstanceOutput) KeyPairName() pulumi.StringOutput {
-	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.KeyPairName }).(pulumi.StringOutput)
+// The ssh key name of ECS instance. This field can be modified only when the `imageId` is modified.
+func (o InstanceOutput) KeyPairName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.KeyPairName }).(pulumi.StringPtrOutput)
 }
 
 // The memory size of ECS instance.

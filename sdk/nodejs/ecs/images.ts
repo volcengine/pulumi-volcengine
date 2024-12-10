@@ -27,12 +27,16 @@ export function images(args?: ImagesArgs, opts?: pulumi.InvokeOptions): Promise<
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:ecs/images:Images", {
         "ids": args.ids,
+        "imageName": args.imageName,
         "instanceTypeId": args.instanceTypeId,
         "isSupportCloudInit": args.isSupportCloudInit,
+        "isTls": args.isTls,
         "nameRegex": args.nameRegex,
         "osType": args.osType,
         "outputFile": args.outputFile,
+        "platform": args.platform,
         "statuses": args.statuses,
+        "tags": args.tags,
         "visibility": args.visibility,
     }, opts);
 }
@@ -46,6 +50,10 @@ export interface ImagesArgs {
      */
     ids?: string[];
     /**
+     * The name of Image.
+     */
+    imageName?: string;
+    /**
      * The specification of  Instance.
      */
     instanceTypeId?: string;
@@ -53,6 +61,10 @@ export interface ImagesArgs {
      * Whether the Image support cloud-init.
      */
     isSupportCloudInit?: boolean;
+    /**
+     * Whether the Image maintained for a long time.
+     */
+    isTls?: boolean;
     /**
      * A Name Regex of Image.
      */
@@ -66,9 +78,17 @@ export interface ImagesArgs {
      */
     outputFile?: string;
     /**
+     * The platform of Image.
+     */
+    platform?: string;
+    /**
      * A list of Image status, the value can be `available` or `creating` or `error`.
      */
     statuses?: string[];
+    /**
+     * Tags.
+     */
+    tags?: inputs.ecs.ImagesTag[];
     /**
      * The visibility of Image.
      */
@@ -85,6 +105,10 @@ export interface ImagesResult {
     readonly id: string;
     readonly ids?: string[];
     /**
+     * The name of Image.
+     */
+    readonly imageName?: string;
+    /**
      * The collection of Image query.
      */
     readonly images: outputs.ecs.ImagesImage[];
@@ -93,6 +117,7 @@ export interface ImagesResult {
      * Whether the Image support cloud-init.
      */
     readonly isSupportCloudInit?: boolean;
+    readonly isTls?: boolean;
     readonly nameRegex?: string;
     /**
      * The operating system type of Image.
@@ -100,9 +125,17 @@ export interface ImagesResult {
     readonly osType?: string;
     readonly outputFile?: string;
     /**
+     * The platform of Image.
+     */
+    readonly platform?: string;
+    /**
      * The status of Image.
      */
     readonly statuses?: string[];
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.ecs.ImagesTag[];
     /**
      * The total count of Image query.
      */
@@ -140,6 +173,10 @@ export interface ImagesOutputArgs {
      */
     ids?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * The name of Image.
+     */
+    imageName?: pulumi.Input<string>;
+    /**
      * The specification of  Instance.
      */
     instanceTypeId?: pulumi.Input<string>;
@@ -147,6 +184,10 @@ export interface ImagesOutputArgs {
      * Whether the Image support cloud-init.
      */
     isSupportCloudInit?: pulumi.Input<boolean>;
+    /**
+     * Whether the Image maintained for a long time.
+     */
+    isTls?: pulumi.Input<boolean>;
     /**
      * A Name Regex of Image.
      */
@@ -160,9 +201,17 @@ export interface ImagesOutputArgs {
      */
     outputFile?: pulumi.Input<string>;
     /**
+     * The platform of Image.
+     */
+    platform?: pulumi.Input<string>;
+    /**
      * A list of Image status, the value can be `available` or `creating` or `error`.
      */
     statuses?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.ecs.ImagesTagArgs>[]>;
     /**
      * The visibility of Image.
      */

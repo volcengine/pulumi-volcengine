@@ -548,7 +548,7 @@ class NodePool(pulumi.CustomResource):
         NodePool can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vke/nodePool:NodePool default pcabe57vqtofgrbln3dp0
+        $ pulumi import volcengine:vke/nodePool:NodePool default pcabe57vqtofgrbln3dp0
         ```
 
         :param str resource_name: The name of the resource.
@@ -762,7 +762,7 @@ class NodePool(pulumi.CustomResource):
         NodePool can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vke/nodePool:NodePool default pcabe57vqtofgrbln3dp0
+        $ pulumi import volcengine:vke/nodePool:NodePool default pcabe57vqtofgrbln3dp0
         ```
 
         :param str resource_name: The name of the resource.

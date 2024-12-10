@@ -74,10 +74,16 @@ export function connections(args?: ConnectionsArgs, opts?: pulumi.InvokeOptions)
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("volcengine:vpn/connections:Connections", {
+        "attachStatus": args.attachStatus,
+        "attachType": args.attachType,
         "customerGatewayId": args.customerGatewayId,
         "ids": args.ids,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
+        "projectName": args.projectName,
+        "spec": args.spec,
+        "status": args.status,
+        "transitRouterId": args.transitRouterId,
         "vpnConnectionNames": args.vpnConnectionNames,
         "vpnGatewayId": args.vpnGatewayId,
     }, opts);
@@ -87,6 +93,14 @@ export function connections(args?: ConnectionsArgs, opts?: pulumi.InvokeOptions)
  * A collection of arguments for invoking Connections.
  */
 export interface ConnectionsArgs {
+    /**
+     * The attach status of VPN connection.
+     */
+    attachStatus?: string;
+    /**
+     * The attach type of VPN connection. Valid values: `VpnGateway`, `TransitRouter`.
+     */
+    attachType?: string;
     /**
      * An ID of customer gateway.
      */
@@ -104,6 +118,22 @@ export interface ConnectionsArgs {
      */
     outputFile?: string;
     /**
+     * The project name of VPN connection.
+     */
+    projectName?: string;
+    /**
+     * The spec of IPSec connection. Valid values: `default`, `large`.
+     */
+    spec?: string;
+    /**
+     * The status of IPSec connection. Valid values: `Creating`, `Deleting`, `Pending`, `Available`.
+     */
+    status?: string;
+    /**
+     * An ID of transit router.
+     */
+    transitRouterId?: string;
+    /**
      * A list of VPN connection names.
      */
     vpnConnectionNames?: string[];
@@ -118,6 +148,14 @@ export interface ConnectionsArgs {
  */
 export interface ConnectionsResult {
     /**
+     * The IPsec attach status.
+     */
+    readonly attachStatus?: string;
+    /**
+     * The IPsec attach type.
+     */
+    readonly attachType?: string;
+    /**
      * The ID of the customer gateway.
      */
     readonly customerGatewayId?: string;
@@ -128,10 +166,20 @@ export interface ConnectionsResult {
     readonly ids?: string[];
     readonly nameRegex?: string;
     readonly outputFile?: string;
+    readonly projectName?: string;
+    readonly spec?: string;
+    /**
+     * The status of the VPN connection.
+     */
+    readonly status?: string;
     /**
      * The total count of VPN connection query.
      */
     readonly totalCount: number;
+    /**
+     * The id of transit router, valid when the attach type is 'TransitRouter'.
+     */
+    readonly transitRouterId?: string;
     readonly vpnConnectionNames?: string[];
     /**
      * The collection of VPN connection query.
@@ -214,6 +262,14 @@ export function connectionsOutput(args?: ConnectionsOutputArgs, opts?: pulumi.In
  */
 export interface ConnectionsOutputArgs {
     /**
+     * The attach status of VPN connection.
+     */
+    attachStatus?: pulumi.Input<string>;
+    /**
+     * The attach type of VPN connection. Valid values: `VpnGateway`, `TransitRouter`.
+     */
+    attachType?: pulumi.Input<string>;
+    /**
      * An ID of customer gateway.
      */
     customerGatewayId?: pulumi.Input<string>;
@@ -229,6 +285,22 @@ export interface ConnectionsOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The project name of VPN connection.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * The spec of IPSec connection. Valid values: `default`, `large`.
+     */
+    spec?: pulumi.Input<string>;
+    /**
+     * The status of IPSec connection. Valid values: `Creating`, `Deleting`, `Pending`, `Available`.
+     */
+    status?: pulumi.Input<string>;
+    /**
+     * An ID of transit router.
+     */
+    transitRouterId?: pulumi.Input<string>;
     /**
      * A list of VPN connection names.
      */

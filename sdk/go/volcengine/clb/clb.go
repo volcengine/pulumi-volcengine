@@ -43,12 +43,13 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
+//			// ipv4 public clb
 //			_, err = clb.NewClb(ctx, "publicClb", &clb.ClbArgs{
 //				Type:             pulumi.String("public"),
 //				SubnetId:         fooSubnet.ID(),
@@ -71,6 +72,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// ipv4 private clb
 //			privateClb, err := clb.NewClb(ctx, "privateClb", &clb.ClbArgs{
 //				Type:             pulumi.String("private"),
 //				SubnetId:         fooSubnet.ID(),
@@ -100,6 +102,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// ipv6 private clb
 //			vpcIpv6, err := vpc.NewVpc(ctx, "vpcIpv6", &vpc.VpcArgs{
 //				VpcName:    pulumi.String("acc-test-vpc-ipv6"),
 //				CidrBlock:  pulumi.String("172.16.0.0/16"),
@@ -111,7 +114,7 @@ import (
 //			subnetIpv6, err := vpc.NewSubnet(ctx, "subnetIpv6", &vpc.SubnetArgs{
 //				SubnetName:    pulumi.String("acc-test-subnet-ipv6"),
 //				CidrBlock:     pulumi.String("172.16.0.0/24"),
-//				ZoneId:        *pulumi.String(fooZones.Zones[1].Id),
+//				ZoneId:        pulumi.String(fooZones.Zones[1].Id),
 //				VpcId:         vpcIpv6.ID(),
 //				Ipv6CidrBlock: pulumi.Int(1),
 //			})
@@ -157,9 +160,7 @@ import (
 // CLB can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:clb/clb:Clb default clb-273y2ok6ets007fap8txvf6us
-//
+// $ pulumi import volcengine:clb/clb:Clb default clb-273y2ok6ets007fap8txvf6us
 // ```
 type Clb struct {
 	pulumi.CustomResourceState

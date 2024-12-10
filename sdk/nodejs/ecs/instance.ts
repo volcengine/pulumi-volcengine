@@ -61,10 +61,11 @@ import * as utilities from "../utilities";
  *
  * ## Import
  *
- * ECS Instance can be imported using the id, e.g. If Import,The data_volumes is sort by volume name
+ * ECS Instance can be imported using the id, e.g.
+ * If Import,The data_volumes is sort by volume name
  *
  * ```sh
- *  $ pulumi import volcengine:ecs/instance:Instance default i-mizl7m1kqccg5smt1bdpijuj
+ * $ pulumi import volcengine:ecs/instance:Instance default i-mizl7m1kqccg5smt1bdpijuj
  * ```
  */
 export class Instance extends pulumi.CustomResource {
@@ -192,9 +193,9 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly keyPairId!: pulumi.Output<string>;
     /**
-     * The ssh key name of ECS instance.
+     * The ssh key name of ECS instance. This field can be modified only when the `imageId` is modified.
      */
-    public readonly keyPairName!: pulumi.Output<string>;
+    public readonly keyPairName!: pulumi.Output<string | undefined>;
     /**
      * The memory size of ECS instance.
      */
@@ -533,7 +534,7 @@ export interface InstanceState {
      */
     keyPairId?: pulumi.Input<string>;
     /**
-     * The ssh key name of ECS instance.
+     * The ssh key name of ECS instance. This field can be modified only when the `imageId` is modified.
      */
     keyPairName?: pulumi.Input<string>;
     /**
@@ -714,7 +715,7 @@ export interface InstanceArgs {
      */
     keepImageCredential?: pulumi.Input<boolean>;
     /**
-     * The ssh key name of ECS instance.
+     * The ssh key name of ECS instance. This field can be modified only when the `imageId` is modified.
      */
     keyPairName?: pulumi.Input<string>;
     /**

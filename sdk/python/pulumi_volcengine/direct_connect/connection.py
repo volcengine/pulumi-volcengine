@@ -453,7 +453,7 @@ class Connection(pulumi.CustomResource):
         DirectConnectConnection can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:direct_connect/connection:Connection default dcc-7qthudw0ll6jmc****
+        $ pulumi import volcengine:direct_connect/connection:Connection default dcc-7qthudw0ll6jmc****
         ```
 
         :param str resource_name: The name of the resource.
@@ -508,7 +508,7 @@ class Connection(pulumi.CustomResource):
         DirectConnectConnection can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:direct_connect/connection:Connection default dcc-7qthudw0ll6jmc****
+        $ pulumi import volcengine:direct_connect/connection:Connection default dcc-7qthudw0ll6jmc****
         ```
 
         :param str resource_name: The name of the resource.

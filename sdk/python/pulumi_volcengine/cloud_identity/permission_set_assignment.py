@@ -206,7 +206,7 @@ class PermissionSetAssignment(pulumi.CustomResource):
         CloudIdentityPermissionSetAssignment can be imported using the permission_set_id:target_id:principal_type:principal_id, e.g.
 
         ```sh
-         $ pulumi import volcengine:cloud_identity/permissionSetAssignment:PermissionSetAssignment default resource_id
+        $ pulumi import volcengine:cloud_identity/permissionSetAssignment:PermissionSetAssignment default resource_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -267,7 +267,7 @@ class PermissionSetAssignment(pulumi.CustomResource):
         CloudIdentityPermissionSetAssignment can be imported using the permission_set_id:target_id:principal_type:principal_id, e.g.
 
         ```sh
-         $ pulumi import volcengine:cloud_identity/permissionSetAssignment:PermissionSetAssignment default resource_id
+        $ pulumi import volcengine:cloud_identity/permissionSetAssignment:PermissionSetAssignment default resource_id
         ```
 
         :param str resource_name: The name of the resource.

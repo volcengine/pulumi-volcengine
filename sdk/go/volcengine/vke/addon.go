@@ -48,12 +48,16 @@ import (
 // VkeAddon can be imported using the clusterId:Name, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:vke/addon:Addon default cc9l74mvqtofjnoj5****:nginx-ingress
-//
+// $ pulumi import volcengine:vke/addon:Addon default cc9l74mvqtofjnoj5****:nginx-ingress
 // ```
 //
-//	Notice Some kind of VKEAddon can not be removed from volcengine, and it will make a forbidden error when try to destroy. If you want to remove it from terraform state, please use command $ terraform state rm volcengine_vke_addon.${name}
+// # Notice
+//
+// Some kind of VKEAddon can not be removed from volcengine, and it will make a forbidden error when try to destroy.
+//
+// # If you want to remove it from terraform state, please use command
+//
+// $ terraform state rm volcengine_vke_addon.${name}
 type Addon struct {
 	pulumi.CustomResourceState
 

@@ -328,7 +328,7 @@ class User(pulumi.CustomResource):
         Iam user can be imported using the UserName, e.g.
 
         ```sh
-         $ pulumi import volcengine:iam/user:User default user_name
+        $ pulumi import volcengine:iam/user:User default user_name
         ```
 
         :param str resource_name: The name of the resource.
@@ -364,7 +364,7 @@ class User(pulumi.CustomResource):
         Iam user can be imported using the UserName, e.g.
 
         ```sh
-         $ pulumi import volcengine:iam/user:User default user_name
+        $ pulumi import volcengine:iam/user:User default user_name
         ```
 
         :param str resource_name: The name of the resource.

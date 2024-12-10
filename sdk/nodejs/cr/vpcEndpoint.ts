@@ -34,7 +34,7 @@ import * as utilities from "../utilities";
  * CR Vpc endpoint can be imported using the crVpcEndpoint:registry, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:cr/vpcEndpoint:VpcEndpoint default crVpcEndpoint:cr-basic
+ * $ pulumi import volcengine:cr/vpcEndpoint:VpcEndpoint default crVpcEndpoint:cr-basic
  * ```
  */
 export class VpcEndpoint extends pulumi.CustomResource {

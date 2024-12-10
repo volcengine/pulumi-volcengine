@@ -80,7 +80,7 @@ namespace Pulumi.Volcengine.Rds_mysql
     /// Database can be imported using the instanceId:dbName, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:rds_mysql/database:Database default mysql-42b38c769c4b:dbname
+    /// $ pulumi import volcengine:rds_mysql/database:Database default mysql-42b38c769c4b:dbname
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:rds_mysql/database:Database")]

@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Bandwidth_package
     {
         /// <summary>
         /// Use this data source to query detailed information of bandwidth packages
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -58,17 +56,13 @@ namespace Pulumi.Volcengine.Bandwidth_package
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<BandwidthPackagesResult> InvokeAsync(BandwidthPackagesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<BandwidthPackagesResult>("volcengine:bandwidth_package/bandwidthPackages:BandwidthPackages", args ?? new BandwidthPackagesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of bandwidth packages
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -111,8 +105,6 @@ namespace Pulumi.Volcengine.Bandwidth_package
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<BandwidthPackagesResult> Invoke(BandwidthPackagesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<BandwidthPackagesResult>("volcengine:bandwidth_package/bandwidthPackages:BandwidthPackages", args ?? new BandwidthPackagesInvokeArgs(), options.WithDefaults());

@@ -49,6 +49,8 @@ func InstanceTypes(ctx *pulumi.Context, args *InstanceTypesArgs, opts ...pulumi.
 type InstanceTypesArgs struct {
 	// A list of instance type IDs. When the number of ids is greater than 10, only the first 10 are effective.
 	Ids []string `pulumi:"ids"`
+	// The id of image.
+	ImageId *string `pulumi:"imageId"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
 }
@@ -56,8 +58,9 @@ type InstanceTypesArgs struct {
 // A collection of values returned by InstanceTypes.
 type InstanceTypesResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id  string   `pulumi:"id"`
-	Ids []string `pulumi:"ids"`
+	Id      string   `pulumi:"id"`
+	Ids     []string `pulumi:"ids"`
+	ImageId *string  `pulumi:"imageId"`
 	// The collection of query.
 	InstanceTypes []InstanceTypesInstanceType `pulumi:"instanceTypes"`
 	OutputFile    *string                     `pulumi:"outputFile"`
@@ -82,6 +85,8 @@ func InstanceTypesOutput(ctx *pulumi.Context, args InstanceTypesOutputArgs, opts
 type InstanceTypesOutputArgs struct {
 	// A list of instance type IDs. When the number of ids is greater than 10, only the first 10 are effective.
 	Ids pulumi.StringArrayInput `pulumi:"ids"`
+	// The id of image.
+	ImageId pulumi.StringPtrInput `pulumi:"imageId"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
 }
@@ -112,6 +117,10 @@ func (o InstanceTypesResultOutput) Id() pulumi.StringOutput {
 
 func (o InstanceTypesResultOutput) Ids() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v InstanceTypesResult) []string { return v.Ids }).(pulumi.StringArrayOutput)
+}
+
+func (o InstanceTypesResultOutput) ImageId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InstanceTypesResult) *string { return v.ImageId }).(pulumi.StringPtrOutput)
 }
 
 // The collection of query.

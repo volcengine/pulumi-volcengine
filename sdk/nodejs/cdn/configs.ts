@@ -34,7 +34,7 @@ import * as utilities from "../utilities";
  *             value: "tfvalue2",
  *         },
  *     ],
- *     domainConfig: fooCdnCertificate.id.apply(id => JSON.stringify({
+ *     domainConfig: pulumi.jsonStringify({
  *         OriginProtocol: "https",
  *         Origin: [{
  *             OriginAction: {
@@ -51,7 +51,7 @@ import * as utilities from "../utilities";
  *         }],
  *         HTTPS: {
  *             CertInfo: {
- *                 CertId: id,
+ *                 CertId: fooCdnCertificate.id,
  *             },
  *             DisableHttp: false,
  *             HTTP2: true,
@@ -62,7 +62,7 @@ import * as utilities from "../utilities";
  *                 "tlsv1.2",
  *             ],
  *         },
- *     })),
+ *     }),
  * });
  * const fooConfigs = volcengine.cdn.ConfigsOutput({
  *     domain: fooCdnDomain.id,
@@ -142,7 +142,7 @@ export interface ConfigsResult {
  *             value: "tfvalue2",
  *         },
  *     ],
- *     domainConfig: fooCdnCertificate.id.apply(id => JSON.stringify({
+ *     domainConfig: pulumi.jsonStringify({
  *         OriginProtocol: "https",
  *         Origin: [{
  *             OriginAction: {
@@ -159,7 +159,7 @@ export interface ConfigsResult {
  *         }],
  *         HTTPS: {
  *             CertInfo: {
- *                 CertId: id,
+ *                 CertId: fooCdnCertificate.id,
  *             },
  *             DisableHttp: false,
  *             HTTP2: true,
@@ -170,7 +170,7 @@ export interface ConfigsResult {
  *                 "tlsv1.2",
  *             ],
  *         },
- *     })),
+ *     }),
  * });
  * const fooConfigs = volcengine.cdn.ConfigsOutput({
  *     domain: fooCdnDomain.id,

@@ -116,9 +116,7 @@ import (
 // VpnGatewayRoute can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:vpn/gatewayRoute:GatewayRoute default vgr-3tex2c6c0v844c****
-//
+// $ pulumi import volcengine:vpn/gatewayRoute:GatewayRoute default vgr-3tex2c6c0v844c****
 // ```
 type GatewayRoute struct {
 	pulumi.CustomResourceState

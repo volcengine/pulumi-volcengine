@@ -13,13 +13,13 @@ namespace Pulumi.Volcengine.Vke.Inputs
     public sealed class DefaultNodePoolBatchAttachNodeConfigEcsTagGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The Key of Labels.
+        /// The Key of Tags.
         /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
 
         /// <summary>
-        /// The Value of Labels.
+        /// The Value of Tags.
         /// </summary>
         [Input("value")]
         public Input<string>? Value { get; set; }

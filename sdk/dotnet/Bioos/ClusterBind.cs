@@ -37,7 +37,7 @@ namespace Pulumi.Volcengine.Bioos
     /// Cluster binder can be imported using the workspace id and cluster id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:bioos/clusterBind:ClusterBind default wc*****:uc***
+    /// $ pulumi import volcengine:bioos/clusterBind:ClusterBind default wc*****:uc***
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:bioos/clusterBind:ClusterBind")]

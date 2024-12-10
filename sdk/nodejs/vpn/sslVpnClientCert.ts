@@ -58,7 +58,7 @@ import * as utilities from "../utilities";
  * SSL VPN Client Cert can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:vpn/sslVpnClientCert:SslVpnClientCert default vsc-2d6b7gjrzc2yo58ozfcx2****
+ * $ pulumi import volcengine:vpn/sslVpnClientCert:SslVpnClientCert default vsc-2d6b7gjrzc2yo58ozfcx2****
  * ```
  */
 export class SslVpnClientCert extends pulumi.CustomResource {

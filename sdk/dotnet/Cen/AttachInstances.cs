@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Cen
     {
         /// <summary>
         /// Use this data source to query detailed information of cen attach instances
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -61,17 +59,13 @@ namespace Pulumi.Volcengine.Cen
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<AttachInstancesResult> InvokeAsync(AttachInstancesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<AttachInstancesResult>("volcengine:cen/attachInstances:AttachInstances", args ?? new AttachInstancesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cen attach instances
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -117,8 +111,6 @@ namespace Pulumi.Volcengine.Cen
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<AttachInstancesResult> Invoke(AttachInstancesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<AttachInstancesResult>("volcengine:cen/attachInstances:AttachInstances", args ?? new AttachInstancesInvokeArgs(), options.WithDefaults());

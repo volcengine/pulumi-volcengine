@@ -21,46 +21,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/ecs"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/transit_router"
-//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpc"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/vpn"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooZones, err := ecs.Zones(ctx, nil, nil)
-//			if err != nil {
-//				return err
-//			}
-//			fooVpc, err := vpc.NewVpc(ctx, "fooVpc", &vpc.VpcArgs{
-//				VpcName:   pulumi.String("acc-test-vpc"),
-//				CidrBlock: pulumi.String("172.16.0.0/16"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
-//				SubnetName: pulumi.String("acc-test-subnet"),
-//				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
-//				VpcId:      fooVpc.ID(),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			fooGateway, err := vpn.NewGateway(ctx, "fooGateway", &vpn.GatewayArgs{
-//				VpcId:          fooVpc.ID(),
-//				SubnetId:       fooSubnet.ID(),
-//				Bandwidth:      pulumi.Int(20),
-//				VpnGatewayName: pulumi.String("acc-test"),
-//				Description:    pulumi.String("acc-test"),
-//				Period:         pulumi.Int(2),
-//			})
-//			if err != nil {
-//				return err
-//			}
 //			fooCustomerGateway, err := vpn.NewCustomerGateway(ctx, "fooCustomerGateway", &vpn.CustomerGatewayArgs{
 //				IpAddress:           pulumi.String("192.0.1.3"),
 //				CustomerGatewayName: pulumi.String("acc-test"),
@@ -73,7 +40,6 @@ import (
 //				VpnConnectionName: pulumi.String("acc-tf-test"),
 //				Description:       pulumi.String("acc-tf-test"),
 //				AttachType:        pulumi.String("TransitRouter"),
-//				VpnGatewayId:      fooGateway.ID(),
 //				CustomerGatewayId: fooCustomerGateway.ID(),
 //				LocalSubnets: pulumi.StringArray{
 //					pulumi.String("192.168.0.0/22"),
@@ -148,13 +114,13 @@ import (
 // transit router route entry can be imported using the table and entry id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:transit_router/routeEntry:RouteEntry default tr-rtb-12b7qd3fmzf2817q7y2jkbd55:tr-rte-1i5i8khf9m58gae5kcx6***
-//
+// $ pulumi import volcengine:transit_router/routeEntry:RouteEntry default tr-rtb-12b7qd3fmzf2817q7y2jkbd55:tr-rte-1i5i8khf9m58gae5kcx6***
 // ```
 type RouteEntry struct {
 	pulumi.CustomResourceState
 
+	// The as path of the route entry.
+	AsPath pulumi.StringOutput `pulumi:"asPath"`
 	// The creation time of the route entry.
 	CreationTime pulumi.StringOutput `pulumi:"creationTime"`
 	// Description of the transit router route entry.
@@ -218,6 +184,8 @@ func GetRouteEntry(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RouteEntry resources.
 type routeEntryState struct {
+	// The as path of the route entry.
+	AsPath *string `pulumi:"asPath"`
 	// The creation time of the route entry.
 	CreationTime *string `pulumi:"creationTime"`
 	// Description of the transit router route entry.
@@ -243,6 +211,8 @@ type routeEntryState struct {
 }
 
 type RouteEntryState struct {
+	// The as path of the route entry.
+	AsPath pulumi.StringPtrInput
 	// The creation time of the route entry.
 	CreationTime pulumi.StringPtrInput
 	// Description of the transit router route entry.
@@ -387,6 +357,11 @@ func (o RouteEntryOutput) ToRouteEntryOutput() RouteEntryOutput {
 
 func (o RouteEntryOutput) ToRouteEntryOutputWithContext(ctx context.Context) RouteEntryOutput {
 	return o
+}
+
+// The as path of the route entry.
+func (o RouteEntryOutput) AsPath() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouteEntry) pulumi.StringOutput { return v.AsPath }).(pulumi.StringOutput)
 }
 
 // The creation time of the route entry.

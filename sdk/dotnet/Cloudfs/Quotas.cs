@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Cloudfs
     {
         /// <summary>
         /// Use this data source to query detailed information of cloudfs quotas
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -29,17 +27,13 @@ namespace Pulumi.Volcengine.Cloudfs
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<QuotasResult> InvokeAsync(QuotasArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<QuotasResult>("volcengine:cloudfs/quotas:Quotas", args ?? new QuotasArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cloudfs quotas
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -53,8 +47,6 @@ namespace Pulumi.Volcengine.Cloudfs
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<QuotasResult> Invoke(QuotasInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<QuotasResult>("volcengine:cloudfs/quotas:Quotas", args ?? new QuotasInvokeArgs(), options.WithDefaults());

@@ -18,6 +18,8 @@ class BandwidthPackageArgs:
     def __init__(__self__, *,
                  bandwidth: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 local_geographic_region_set_id: Optional[pulumi.Input[str]] = None,
+                 peer_geographic_region_set_id: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  remain_renew_times: Optional[pulumi.Input[int]] = None,
@@ -29,6 +31,8 @@ class BandwidthPackageArgs:
         The set of arguments for constructing a BandwidthPackage resource.
         :param pulumi.Input[int] bandwidth: The bandwidth peak of the transit router bandwidth package. Unit: Mbps. Valid values: 2-10000. Default is 2 Mbps.
         :param pulumi.Input[str] description: The description of the transit router bandwidth package.
+        :param pulumi.Input[str] local_geographic_region_set_id: The local geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+        :param pulumi.Input[str] peer_geographic_region_set_id: The peer geographic region set ID. Valid values: `China`, `Asia`. Default is China.
         :param pulumi.Input[int] period: The period of the transit router bandwidth package, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.The modification of this field only takes effect when the value of the `renew_type` is `Manual`.
         :param pulumi.Input[str] project_name: The ProjectName of the transit router bandwidth package.
         :param pulumi.Input[int] remain_renew_times: The remaining renewal times of of the transit router bandwidth package. Valid values: -1 or 1~100. Default value is -1, means unlimited renewal.This field is only effective when the value of the `renew_type` is `Auto`.
@@ -41,6 +45,10 @@ class BandwidthPackageArgs:
             pulumi.set(__self__, "bandwidth", bandwidth)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if local_geographic_region_set_id is not None:
+            pulumi.set(__self__, "local_geographic_region_set_id", local_geographic_region_set_id)
+        if peer_geographic_region_set_id is not None:
+            pulumi.set(__self__, "peer_geographic_region_set_id", peer_geographic_region_set_id)
         if period is not None:
             pulumi.set(__self__, "period", period)
         if project_name is not None:
@@ -79,6 +87,30 @@ class BandwidthPackageArgs:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="localGeographicRegionSetId")
+    def local_geographic_region_set_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The local geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+        """
+        return pulumi.get(self, "local_geographic_region_set_id")
+
+    @local_geographic_region_set_id.setter
+    def local_geographic_region_set_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "local_geographic_region_set_id", value)
+
+    @property
+    @pulumi.getter(name="peerGeographicRegionSetId")
+    def peer_geographic_region_set_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The peer geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+        """
+        return pulumi.get(self, "peer_geographic_region_set_id")
+
+    @peer_geographic_region_set_id.setter
+    def peer_geographic_region_set_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "peer_geographic_region_set_id", value)
 
     @property
     @pulumi.getter
@@ -175,6 +207,8 @@ class _BandwidthPackageState:
                  delete_time: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  expired_time: Optional[pulumi.Input[str]] = None,
+                 local_geographic_region_set_id: Optional[pulumi.Input[str]] = None,
+                 peer_geographic_region_set_id: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  remain_renew_times: Optional[pulumi.Input[int]] = None,
@@ -194,6 +228,8 @@ class _BandwidthPackageState:
         :param pulumi.Input[str] delete_time: The delete time of the transit router bandwidth package.
         :param pulumi.Input[str] description: The description of the transit router bandwidth package.
         :param pulumi.Input[str] expired_time: The expired time of the transit router bandwidth package.
+        :param pulumi.Input[str] local_geographic_region_set_id: The local geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+        :param pulumi.Input[str] peer_geographic_region_set_id: The peer geographic region set ID. Valid values: `China`, `Asia`. Default is China.
         :param pulumi.Input[int] period: The period of the transit router bandwidth package, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.The modification of this field only takes effect when the value of the `renew_type` is `Manual`.
         :param pulumi.Input[str] project_name: The ProjectName of the transit router bandwidth package.
         :param pulumi.Input[int] remain_renew_times: The remaining renewal times of of the transit router bandwidth package. Valid values: -1 or 1~100. Default value is -1, means unlimited renewal.This field is only effective when the value of the `renew_type` is `Auto`.
@@ -219,6 +255,10 @@ class _BandwidthPackageState:
             pulumi.set(__self__, "description", description)
         if expired_time is not None:
             pulumi.set(__self__, "expired_time", expired_time)
+        if local_geographic_region_set_id is not None:
+            pulumi.set(__self__, "local_geographic_region_set_id", local_geographic_region_set_id)
+        if peer_geographic_region_set_id is not None:
+            pulumi.set(__self__, "peer_geographic_region_set_id", peer_geographic_region_set_id)
         if period is not None:
             pulumi.set(__self__, "period", period)
         if project_name is not None:
@@ -323,6 +363,30 @@ class _BandwidthPackageState:
     @expired_time.setter
     def expired_time(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "expired_time", value)
+
+    @property
+    @pulumi.getter(name="localGeographicRegionSetId")
+    def local_geographic_region_set_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The local geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+        """
+        return pulumi.get(self, "local_geographic_region_set_id")
+
+    @local_geographic_region_set_id.setter
+    def local_geographic_region_set_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "local_geographic_region_set_id", value)
+
+    @property
+    @pulumi.getter(name="peerGeographicRegionSetId")
+    def peer_geographic_region_set_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The peer geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+        """
+        return pulumi.get(self, "peer_geographic_region_set_id")
+
+    @peer_geographic_region_set_id.setter
+    def peer_geographic_region_set_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "peer_geographic_region_set_id", value)
 
     @property
     @pulumi.getter
@@ -452,6 +516,8 @@ class BandwidthPackage(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bandwidth: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 local_geographic_region_set_id: Optional[pulumi.Input[str]] = None,
+                 peer_geographic_region_set_id: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  remain_renew_times: Optional[pulumi.Input[int]] = None,
@@ -471,6 +537,8 @@ class BandwidthPackage(pulumi.CustomResource):
         foo = volcengine.transit_router.BandwidthPackage("foo",
             bandwidth=2,
             description="acc-test",
+            local_geographic_region_set_id="China",
+            peer_geographic_region_set_id="China",
             period=1,
             project_name="default",
             renew_type="Manual",
@@ -486,13 +554,15 @@ class BandwidthPackage(pulumi.CustomResource):
         TransitRouterBandwidthPackage can be imported using the Id, e.g.
 
         ```sh
-         $ pulumi import volcengine:transit_router/bandwidthPackage:BandwidthPackage default tbp-cd-2felfww0i6pkw59gp68bq****
+        $ pulumi import volcengine:transit_router/bandwidthPackage:BandwidthPackage default tbp-cd-2felfww0i6pkw59gp68bq****
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] bandwidth: The bandwidth peak of the transit router bandwidth package. Unit: Mbps. Valid values: 2-10000. Default is 2 Mbps.
         :param pulumi.Input[str] description: The description of the transit router bandwidth package.
+        :param pulumi.Input[str] local_geographic_region_set_id: The local geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+        :param pulumi.Input[str] peer_geographic_region_set_id: The peer geographic region set ID. Valid values: `China`, `Asia`. Default is China.
         :param pulumi.Input[int] period: The period of the transit router bandwidth package, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.The modification of this field only takes effect when the value of the `renew_type` is `Manual`.
         :param pulumi.Input[str] project_name: The ProjectName of the transit router bandwidth package.
         :param pulumi.Input[int] remain_renew_times: The remaining renewal times of of the transit router bandwidth package. Valid values: -1 or 1~100. Default value is -1, means unlimited renewal.This field is only effective when the value of the `renew_type` is `Auto`.
@@ -518,6 +588,8 @@ class BandwidthPackage(pulumi.CustomResource):
         foo = volcengine.transit_router.BandwidthPackage("foo",
             bandwidth=2,
             description="acc-test",
+            local_geographic_region_set_id="China",
+            peer_geographic_region_set_id="China",
             period=1,
             project_name="default",
             renew_type="Manual",
@@ -533,7 +605,7 @@ class BandwidthPackage(pulumi.CustomResource):
         TransitRouterBandwidthPackage can be imported using the Id, e.g.
 
         ```sh
-         $ pulumi import volcengine:transit_router/bandwidthPackage:BandwidthPackage default tbp-cd-2felfww0i6pkw59gp68bq****
+        $ pulumi import volcengine:transit_router/bandwidthPackage:BandwidthPackage default tbp-cd-2felfww0i6pkw59gp68bq****
         ```
 
         :param str resource_name: The name of the resource.
@@ -553,6 +625,8 @@ class BandwidthPackage(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bandwidth: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 local_geographic_region_set_id: Optional[pulumi.Input[str]] = None,
+                 peer_geographic_region_set_id: Optional[pulumi.Input[str]] = None,
                  period: Optional[pulumi.Input[int]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
                  remain_renew_times: Optional[pulumi.Input[int]] = None,
@@ -571,6 +645,8 @@ class BandwidthPackage(pulumi.CustomResource):
 
             __props__.__dict__["bandwidth"] = bandwidth
             __props__.__dict__["description"] = description
+            __props__.__dict__["local_geographic_region_set_id"] = local_geographic_region_set_id
+            __props__.__dict__["peer_geographic_region_set_id"] = peer_geographic_region_set_id
             __props__.__dict__["period"] = period
             __props__.__dict__["project_name"] = project_name
             __props__.__dict__["remain_renew_times"] = remain_renew_times
@@ -603,6 +679,8 @@ class BandwidthPackage(pulumi.CustomResource):
             delete_time: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             expired_time: Optional[pulumi.Input[str]] = None,
+            local_geographic_region_set_id: Optional[pulumi.Input[str]] = None,
+            peer_geographic_region_set_id: Optional[pulumi.Input[str]] = None,
             period: Optional[pulumi.Input[int]] = None,
             project_name: Optional[pulumi.Input[str]] = None,
             remain_renew_times: Optional[pulumi.Input[int]] = None,
@@ -627,6 +705,8 @@ class BandwidthPackage(pulumi.CustomResource):
         :param pulumi.Input[str] delete_time: The delete time of the transit router bandwidth package.
         :param pulumi.Input[str] description: The description of the transit router bandwidth package.
         :param pulumi.Input[str] expired_time: The expired time of the transit router bandwidth package.
+        :param pulumi.Input[str] local_geographic_region_set_id: The local geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+        :param pulumi.Input[str] peer_geographic_region_set_id: The peer geographic region set ID. Valid values: `China`, `Asia`. Default is China.
         :param pulumi.Input[int] period: The period of the transit router bandwidth package, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.The modification of this field only takes effect when the value of the `renew_type` is `Manual`.
         :param pulumi.Input[str] project_name: The ProjectName of the transit router bandwidth package.
         :param pulumi.Input[int] remain_renew_times: The remaining renewal times of of the transit router bandwidth package. Valid values: -1 or 1~100. Default value is -1, means unlimited renewal.This field is only effective when the value of the `renew_type` is `Auto`.
@@ -649,6 +729,8 @@ class BandwidthPackage(pulumi.CustomResource):
         __props__.__dict__["delete_time"] = delete_time
         __props__.__dict__["description"] = description
         __props__.__dict__["expired_time"] = expired_time
+        __props__.__dict__["local_geographic_region_set_id"] = local_geographic_region_set_id
+        __props__.__dict__["peer_geographic_region_set_id"] = peer_geographic_region_set_id
         __props__.__dict__["period"] = period
         __props__.__dict__["project_name"] = project_name
         __props__.__dict__["remain_renew_times"] = remain_renew_times
@@ -716,6 +798,22 @@ class BandwidthPackage(pulumi.CustomResource):
         The expired time of the transit router bandwidth package.
         """
         return pulumi.get(self, "expired_time")
+
+    @property
+    @pulumi.getter(name="localGeographicRegionSetId")
+    def local_geographic_region_set_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The local geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+        """
+        return pulumi.get(self, "local_geographic_region_set_id")
+
+    @property
+    @pulumi.getter(name="peerGeographicRegionSetId")
+    def peer_geographic_region_set_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The peer geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+        """
+        return pulumi.get(self, "peer_geographic_region_set_id")
 
     @property
     @pulumi.getter

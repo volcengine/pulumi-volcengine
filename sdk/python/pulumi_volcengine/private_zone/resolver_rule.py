@@ -291,7 +291,7 @@ class ResolverRule(pulumi.CustomResource):
         PrivateZoneResolverRule can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:private_zone/resolverRule:ResolverRule default resource_id
+        $ pulumi import volcengine:private_zone/resolverRule:ResolverRule default resource_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -337,7 +337,7 @@ class ResolverRule(pulumi.CustomResource):
         PrivateZoneResolverRule can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:private_zone/resolverRule:ResolverRule default resource_id
+        $ pulumi import volcengine:private_zone/resolverRule:ResolverRule default resource_id
         ```
 
         :param str resource_name: The name of the resource.

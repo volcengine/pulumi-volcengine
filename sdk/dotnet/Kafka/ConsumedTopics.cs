@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Kafka
     {
         /// <summary>
         /// Use this data source to query detailed information of kafka consumed topics
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -127,17 +125,13 @@ namespace Pulumi.Volcengine.Kafka
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<ConsumedTopicsResult> InvokeAsync(ConsumedTopicsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ConsumedTopicsResult>("volcengine:kafka/consumedTopics:ConsumedTopics", args ?? new ConsumedTopicsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of kafka consumed topics
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -249,8 +243,6 @@ namespace Pulumi.Volcengine.Kafka
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<ConsumedTopicsResult> Invoke(ConsumedTopicsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ConsumedTopicsResult>("volcengine:kafka/consumedTopics:ConsumedTopics", args ?? new ConsumedTopicsInvokeArgs(), options.WithDefaults());

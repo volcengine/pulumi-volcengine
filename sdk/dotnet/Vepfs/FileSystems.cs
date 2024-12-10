@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Vepfs
     {
         /// <summary>
         /// Use this data source to query detailed information of vepfs file systems
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -68,17 +66,13 @@ namespace Pulumi.Volcengine.Vepfs
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<FileSystemsResult> InvokeAsync(FileSystemsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<FileSystemsResult>("volcengine:vepfs/fileSystems:FileSystems", args ?? new FileSystemsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of vepfs file systems
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -131,8 +125,6 @@ namespace Pulumi.Volcengine.Vepfs
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<FileSystemsResult> Invoke(FileSystemsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<FileSystemsResult>("volcengine:vepfs/fileSystems:FileSystems", args ?? new FileSystemsInvokeArgs(), options.WithDefaults());

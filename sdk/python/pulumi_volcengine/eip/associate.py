@@ -207,7 +207,7 @@ class Associate(pulumi.CustomResource):
         Eip associate can be imported using the eip allocation_id:instance_id, e.g.
 
         ```sh
-         $ pulumi import volcengine:eip/associate:Associate default eip-274oj9a8rs9a87fap8sf9515b:i-cm9t9ug9lggu79yr5tcw
+        $ pulumi import volcengine:eip/associate:Associate default eip-274oj9a8rs9a87fap8sf9515b:i-cm9t9ug9lggu79yr5tcw
         ```
 
         :param str resource_name: The name of the resource.
@@ -268,7 +268,7 @@ class Associate(pulumi.CustomResource):
         Eip associate can be imported using the eip allocation_id:instance_id, e.g.
 
         ```sh
-         $ pulumi import volcengine:eip/associate:Associate default eip-274oj9a8rs9a87fap8sf9515b:i-cm9t9ug9lggu79yr5tcw
+        $ pulumi import volcengine:eip/associate:Associate default eip-274oj9a8rs9a87fap8sf9515b:i-cm9t9ug9lggu79yr5tcw
         ```
 
         :param str resource_name: The name of the resource.

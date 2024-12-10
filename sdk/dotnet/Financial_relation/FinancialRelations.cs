@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Financial_relation
     {
         /// <summary>
         /// Use this data source to query detailed information of financial relations
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -43,17 +41,13 @@ namespace Pulumi.Volcengine.Financial_relation
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<FinancialRelationsResult> InvokeAsync(FinancialRelationsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<FinancialRelationsResult>("volcengine:financial_relation/financialRelations:FinancialRelations", args ?? new FinancialRelationsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of financial relations
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -81,8 +75,6 @@ namespace Pulumi.Volcengine.Financial_relation
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<FinancialRelationsResult> Invoke(FinancialRelationsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<FinancialRelationsResult>("volcengine:financial_relation/financialRelations:FinancialRelations", args ?? new FinancialRelationsInvokeArgs(), options.WithDefaults());

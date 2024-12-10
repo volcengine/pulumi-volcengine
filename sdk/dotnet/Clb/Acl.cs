@@ -48,7 +48,7 @@ namespace Pulumi.Volcengine.Clb
     /// Acl can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:clb/acl:Acl default acl-mizl7m1kqccg5smt1bdpijuj
+    /// $ pulumi import volcengine:clb/acl:Acl default acl-mizl7m1kqccg5smt1bdpijuj
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:clb/acl:Acl")]

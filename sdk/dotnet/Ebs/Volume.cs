@@ -127,7 +127,7 @@ namespace Pulumi.Volcengine.Ebs
     /// Volume can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:ebs/volume:Volume default vol-mizl7m1kqccg5smt1bdpijuj
+    /// $ pulumi import volcengine:ebs/volume:Volume default vol-mizl7m1kqccg5smt1bdpijuj
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:ebs/volume:Volume")]
@@ -150,6 +150,24 @@ namespace Pulumi.Volcengine.Ebs
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
+
+        /// <summary>
+        /// The extra IOPS performance size for volume. Unit: times per second. The valid values for `Balance` and `IOPS` is 0~50000.
+        /// </summary>
+        [Output("extraPerformanceIops")]
+        public Output<int> ExtraPerformanceIops { get; private set; } = null!;
+
+        /// <summary>
+        /// The extra Throughput performance size for volume. Unit: MB/s. The valid values for ESSD FlexPL volume is 0~650.
+        /// </summary>
+        [Output("extraPerformanceThroughputMb")]
+        public Output<int> ExtraPerformanceThroughputMb { get; private set; } = null!;
+
+        /// <summary>
+        /// The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
+        /// </summary>
+        [Output("extraPerformanceTypeId")]
+        public Output<string?> ExtraPerformanceTypeId { get; private set; } = null!;
 
         /// <summary>
         /// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
@@ -280,6 +298,24 @@ namespace Pulumi.Volcengine.Ebs
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// The extra IOPS performance size for volume. Unit: times per second. The valid values for `Balance` and `IOPS` is 0~50000.
+        /// </summary>
+        [Input("extraPerformanceIops")]
+        public Input<int>? ExtraPerformanceIops { get; set; }
+
+        /// <summary>
+        /// The extra Throughput performance size for volume. Unit: MB/s. The valid values for ESSD FlexPL volume is 0~650.
+        /// </summary>
+        [Input("extraPerformanceThroughputMb")]
+        public Input<int>? ExtraPerformanceThroughputMb { get; set; }
+
+        /// <summary>
+        /// The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
+        /// </summary>
+        [Input("extraPerformanceTypeId")]
+        public Input<string>? ExtraPerformanceTypeId { get; set; }
+
+        /// <summary>
         /// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
         /// system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
         /// deleted by terraform, please use `terraform state rm volcengine_volume.resource_name` command to remove it from
@@ -367,6 +403,24 @@ namespace Pulumi.Volcengine.Ebs
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// The extra IOPS performance size for volume. Unit: times per second. The valid values for `Balance` and `IOPS` is 0~50000.
+        /// </summary>
+        [Input("extraPerformanceIops")]
+        public Input<int>? ExtraPerformanceIops { get; set; }
+
+        /// <summary>
+        /// The extra Throughput performance size for volume. Unit: MB/s. The valid values for ESSD FlexPL volume is 0~650.
+        /// </summary>
+        [Input("extraPerformanceThroughputMb")]
+        public Input<int>? ExtraPerformanceThroughputMb { get; set; }
+
+        /// <summary>
+        /// The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
+        /// </summary>
+        [Input("extraPerformanceTypeId")]
+        public Input<string>? ExtraPerformanceTypeId { get; set; }
 
         /// <summary>
         /// The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the

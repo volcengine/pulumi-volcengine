@@ -213,7 +213,7 @@ class Ipv6Gateway(pulumi.CustomResource):
         Ipv6Gateway can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vpc/ipv6Gateway:Ipv6Gateway default ipv6gw-12bcapllb5ukg17q7y2sd3thx
+        $ pulumi import volcengine:vpc/ipv6Gateway:Ipv6Gateway default ipv6gw-12bcapllb5ukg17q7y2sd3thx
         ```
 
         :param str resource_name: The name of the resource.
@@ -246,7 +246,7 @@ class Ipv6Gateway(pulumi.CustomResource):
         Ipv6Gateway can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vpc/ipv6Gateway:Ipv6Gateway default ipv6gw-12bcapllb5ukg17q7y2sd3thx
+        $ pulumi import volcengine:vpc/ipv6Gateway:Ipv6Gateway default ipv6gw-12bcapllb5ukg17q7y2sd3thx
         ```
 
         :param str resource_name: The name of the resource.

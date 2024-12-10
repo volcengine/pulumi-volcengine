@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Iam
     {
         /// <summary>
         /// Use this data source to query detailed information of iam saml providers
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -29,17 +27,13 @@ namespace Pulumi.Volcengine.Iam
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<SamlProvidersResult> InvokeAsync(SamlProvidersArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<SamlProvidersResult>("volcengine:iam/samlProviders:SamlProviders", args ?? new SamlProvidersArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of iam saml providers
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -53,8 +47,6 @@ namespace Pulumi.Volcengine.Iam
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<SamlProvidersResult> Invoke(SamlProvidersInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<SamlProvidersResult>("volcengine:iam/samlProviders:SamlProviders", args ?? new SamlProvidersInvokeArgs(), options.WithDefaults());

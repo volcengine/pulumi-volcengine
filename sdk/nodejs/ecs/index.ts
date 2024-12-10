@@ -35,10 +35,40 @@ export const deploymentSets: typeof import("./deploymentSets").deploymentSets = 
 export const deploymentSetsOutput: typeof import("./deploymentSets").deploymentSetsOutput = null as any;
 utilities.lazyLoad(exports, ["deploymentSets","deploymentSetsOutput"], () => require("./deploymentSets"));
 
+export { HpcClusterArgs, HpcClusterState } from "./hpcCluster";
+export type HpcCluster = import("./hpcCluster").HpcCluster;
+export const HpcCluster: typeof import("./hpcCluster").HpcCluster = null as any;
+utilities.lazyLoad(exports, ["HpcCluster"], () => require("./hpcCluster"));
+
+export { HpcClustersArgs, HpcClustersResult, HpcClustersOutputArgs } from "./hpcClusters";
+export const hpcClusters: typeof import("./hpcClusters").hpcClusters = null as any;
+export const hpcClustersOutput: typeof import("./hpcClusters").hpcClustersOutput = null as any;
+utilities.lazyLoad(exports, ["hpcClusters","hpcClustersOutput"], () => require("./hpcClusters"));
+
 export { IamRoleAttachmentArgs, IamRoleAttachmentState } from "./iamRoleAttachment";
 export type IamRoleAttachment = import("./iamRoleAttachment").IamRoleAttachment;
 export const IamRoleAttachment: typeof import("./iamRoleAttachment").IamRoleAttachment = null as any;
 utilities.lazyLoad(exports, ["IamRoleAttachment"], () => require("./iamRoleAttachment"));
+
+export { ImageArgs, ImageState } from "./image";
+export type Image = import("./image").Image;
+export const Image: typeof import("./image").Image = null as any;
+utilities.lazyLoad(exports, ["Image"], () => require("./image"));
+
+export { ImageImportArgs, ImageImportState } from "./imageImport";
+export type ImageImport = import("./imageImport").ImageImport;
+export const ImageImport: typeof import("./imageImport").ImageImport = null as any;
+utilities.lazyLoad(exports, ["ImageImport"], () => require("./imageImport"));
+
+export { ImageSharePermissionArgs, ImageSharePermissionState } from "./imageSharePermission";
+export type ImageSharePermission = import("./imageSharePermission").ImageSharePermission;
+export const ImageSharePermission: typeof import("./imageSharePermission").ImageSharePermission = null as any;
+utilities.lazyLoad(exports, ["ImageSharePermission"], () => require("./imageSharePermission"));
+
+export { ImageSharePermissionsArgs, ImageSharePermissionsResult, ImageSharePermissionsOutputArgs } from "./imageSharePermissions";
+export const imageSharePermissions: typeof import("./imageSharePermissions").imageSharePermissions = null as any;
+export const imageSharePermissionsOutput: typeof import("./imageSharePermissions").imageSharePermissionsOutput = null as any;
+utilities.lazyLoad(exports, ["imageSharePermissions","imageSharePermissionsOutput"], () => require("./imageSharePermissions"));
 
 export { ImagesArgs, ImagesResult, ImagesOutputArgs } from "./images";
 export const images: typeof import("./images").images = null as any;
@@ -126,8 +156,16 @@ const _module = {
                 return new DeploymentSet(name, <any>undefined, { urn })
             case "volcengine:ecs/deploymentSetAssociate:DeploymentSetAssociate":
                 return new DeploymentSetAssociate(name, <any>undefined, { urn })
+            case "volcengine:ecs/hpcCluster:HpcCluster":
+                return new HpcCluster(name, <any>undefined, { urn })
             case "volcengine:ecs/iamRoleAttachment:IamRoleAttachment":
                 return new IamRoleAttachment(name, <any>undefined, { urn })
+            case "volcengine:ecs/image:Image":
+                return new Image(name, <any>undefined, { urn })
+            case "volcengine:ecs/imageImport:ImageImport":
+                return new ImageImport(name, <any>undefined, { urn })
+            case "volcengine:ecs/imageSharePermission:ImageSharePermission":
+                return new ImageSharePermission(name, <any>undefined, { urn })
             case "volcengine:ecs/instance:Instance":
                 return new Instance(name, <any>undefined, { urn })
             case "volcengine:ecs/invocation:Invocation":
@@ -148,7 +186,11 @@ const _module = {
 pulumi.runtime.registerResourceModule("volcengine", "ecs/command", _module)
 pulumi.runtime.registerResourceModule("volcengine", "ecs/deploymentSet", _module)
 pulumi.runtime.registerResourceModule("volcengine", "ecs/deploymentSetAssociate", _module)
+pulumi.runtime.registerResourceModule("volcengine", "ecs/hpcCluster", _module)
 pulumi.runtime.registerResourceModule("volcengine", "ecs/iamRoleAttachment", _module)
+pulumi.runtime.registerResourceModule("volcengine", "ecs/image", _module)
+pulumi.runtime.registerResourceModule("volcengine", "ecs/imageImport", _module)
+pulumi.runtime.registerResourceModule("volcengine", "ecs/imageSharePermission", _module)
 pulumi.runtime.registerResourceModule("volcengine", "ecs/instance", _module)
 pulumi.runtime.registerResourceModule("volcengine", "ecs/invocation", _module)
 pulumi.runtime.registerResourceModule("volcengine", "ecs/keyPair", _module)

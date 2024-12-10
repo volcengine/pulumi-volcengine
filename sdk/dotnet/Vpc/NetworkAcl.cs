@@ -21,18 +21,16 @@ namespace Pulumi.Volcengine.Vpc
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var foo = new Volcengine.Vpc.NetworkAcl("foo", new()
+    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
     ///     {
-    ///         EgressAclEntries = new[]
-    ///         {
-    ///             new Volcengine.Vpc.Inputs.NetworkAclEgressAclEntryArgs
-    ///             {
-    ///                 DestinationCidrIp = "192.168.0.0/16",
-    ///                 NetworkAclEntryName = "egress2",
-    ///                 Policy = "accept",
-    ///                 Protocol = "all",
-    ///             },
-    ///         },
+    ///         VpcName = "acc-test-vpc",
+    ///         CidrBlock = "172.16.0.0/16",
+    ///     });
+    /// 
+    ///     var fooNetworkAcl = new Volcengine.Vpc.NetworkAcl("fooNetworkAcl", new()
+    ///     {
+    ///         VpcId = fooVpc.Id,
+    ///         NetworkAclName = "tf-test-acl",
     ///         IngressAclEntries = new[]
     ///         {
     ///             new Volcengine.Vpc.Inputs.NetworkAclIngressAclEntryArgs
@@ -46,14 +44,30 @@ namespace Pulumi.Volcengine.Vpc
     ///             {
     ///                 NetworkAclEntryName = "ingress3",
     ///                 Policy = "accept",
-    ///                 Port = "80/80",
     ///                 Protocol = "tcp",
+    ///                 Port = "80/80",
     ///                 SourceCidrIp = "192.168.0.0/24",
     ///             },
     ///         },
-    ///         NetworkAclName = "tf-test-acl",
+    ///         EgressAclEntries = new[]
+    ///         {
+    ///             new Volcengine.Vpc.Inputs.NetworkAclEgressAclEntryArgs
+    ///             {
+    ///                 NetworkAclEntryName = "egress2",
+    ///                 Policy = "accept",
+    ///                 Protocol = "all",
+    ///                 DestinationCidrIp = "192.168.0.0/16",
+    ///             },
+    ///         },
     ///         ProjectName = "default",
-    ///         VpcId = "vpc-2d6jskar243k058ozfdae13ne",
+    ///         Tags = new[]
+    ///         {
+    ///             new Volcengine.Vpc.Inputs.NetworkAclTagArgs
+    ///             {
+    ///                 Key = "k1",
+    ///                 Value = "v1",
+    ///             },
+    ///         },
     ///     });
     /// 
     /// });
@@ -64,7 +78,7 @@ namespace Pulumi.Volcengine.Vpc
     /// Network Acl can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:vpc/networkAcl:NetworkAcl default nacl-172leak37mi9s4d1w33pswqkh
+    /// $ pulumi import volcengine:vpc/networkAcl:NetworkAcl default nacl-172leak37mi9s4d1w33pswqkh
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vpc/networkAcl:NetworkAcl")]
@@ -99,6 +113,12 @@ namespace Pulumi.Volcengine.Vpc
         /// </summary>
         [Output("projectName")]
         public Output<string> ProjectName { get; private set; } = null!;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableArray<Outputs.NetworkAclTag>> Tags { get; private set; } = null!;
 
         /// <summary>
         /// The vpc id of Network Acl.
@@ -195,6 +215,18 @@ namespace Pulumi.Volcengine.Vpc
         [Input("projectName")]
         public Input<string>? ProjectName { get; set; }
 
+        [Input("tags")]
+        private InputList<Inputs.NetworkAclTagArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.NetworkAclTagArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.NetworkAclTagArgs>());
+            set => _tags = value;
+        }
+
         /// <summary>
         /// The vpc id of Network Acl.
         /// </summary>
@@ -250,6 +282,18 @@ namespace Pulumi.Volcengine.Vpc
         /// </summary>
         [Input("projectName")]
         public Input<string>? ProjectName { get; set; }
+
+        [Input("tags")]
+        private InputList<Inputs.NetworkAclTagGetArgs>? _tags;
+
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public InputList<Inputs.NetworkAclTagGetArgs> Tags
+        {
+            get => _tags ?? (_tags = new InputList<Inputs.NetworkAclTagGetArgs>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// The vpc id of Network Acl.

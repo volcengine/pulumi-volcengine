@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Vpc
     {
         /// <summary>
         /// Use this data source to query detailed information of vpc ipv6 addresses
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -32,17 +30,13 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<Ipv6AddressesResult> InvokeAsync(Ipv6AddressesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<Ipv6AddressesResult>("volcengine:vpc/ipv6Addresses:Ipv6Addresses", args ?? new Ipv6AddressesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of vpc ipv6 addresses
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -59,8 +53,6 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<Ipv6AddressesResult> Invoke(Ipv6AddressesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<Ipv6AddressesResult>("volcengine:vpc/ipv6Addresses:Ipv6Addresses", args ?? new Ipv6AddressesInvokeArgs(), options.WithDefaults());

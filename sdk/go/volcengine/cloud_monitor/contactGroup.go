@@ -47,9 +47,7 @@ import (
 // CloudMonitorContactGroup can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:cloud_monitor/contactGroup:ContactGroup default resource_id
-//
+// $ pulumi import volcengine:cloud_monitor/contactGroup:ContactGroup default resource_id
 // ```
 type ContactGroup struct {
 	pulumi.CustomResourceState

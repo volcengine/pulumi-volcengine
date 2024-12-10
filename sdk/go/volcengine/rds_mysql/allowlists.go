@@ -44,7 +44,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -76,8 +76,8 @@ import (
 //				InstanceName:        pulumi.String("acc-test-rds-mysql"),
 //				DbEngineVersion:     pulumi.String("MySQL_5_7"),
 //				NodeSpec:            pulumi.String("rds.mysql.1c2g"),
-//				PrimaryZoneId:       *pulumi.String(fooZones.Zones[0].Id),
-//				SecondaryZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				PrimaryZoneId:       pulumi.String(fooZones.Zones[0].Id),
+//				SecondaryZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				StorageSpace:        pulumi.Int(80),
 //				SubnetId:            fooSubnet.ID(),
 //				LowerCaseTableNames: pulumi.String("1"),

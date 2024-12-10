@@ -37,7 +37,7 @@ import * as utilities from "../utilities";
  * Nas Permission Group can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:nas/permissionGroup:PermissionGroup default pgroup-1f85db2c****
+ * $ pulumi import volcengine:nas/permissionGroup:PermissionGroup default pgroup-1f85db2c****
  * ```
  */
 export class PermissionGroup extends pulumi.CustomResource {

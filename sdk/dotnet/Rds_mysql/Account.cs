@@ -97,7 +97,7 @@ namespace Pulumi.Volcengine.Rds_mysql
     /// RDS mysql account can be imported using the instance_id:account_name, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:rds_mysql/account:Account default mysql-42b38c769c4b:test
+    /// $ pulumi import volcengine:rds_mysql/account:Account default mysql-42b38c769c4b:test
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:rds_mysql/account:Account")]

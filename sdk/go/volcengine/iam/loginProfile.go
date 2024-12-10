@@ -55,9 +55,7 @@ import (
 // Login profile can be imported using the UserName, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:iam/loginProfile:LoginProfile default user_name
-//
+// $ pulumi import volcengine:iam/loginProfile:LoginProfile default user_name
 // ```
 type LoginProfile struct {
 	pulumi.CustomResourceState

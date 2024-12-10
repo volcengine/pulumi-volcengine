@@ -83,9 +83,7 @@ import (
 // CdnSharedConfig can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:cdn/sharedConfig:SharedConfig default resource_id
-//
+// $ pulumi import volcengine:cdn/sharedConfig:SharedConfig default resource_id
 // ```
 type SharedConfig struct {
 	pulumi.CustomResourceState

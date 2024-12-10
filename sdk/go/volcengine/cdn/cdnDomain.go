@@ -107,12 +107,9 @@ import (
 // CdnDomain can be imported using the domain, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:cdn/cdnDomain:CdnDomain default www.volcengine.com
-//
+// $ pulumi import volcengine:cdn/cdnDomain:CdnDomain default www.volcengine.com
 // ```
-//
-//	Please note that when you execute destroy, we will first take the domain name offline and then delete it.
+// Please note that when you execute destroy, we will first take the domain name offline and then delete it.
 type CdnDomain struct {
 	pulumi.CustomResourceState
 

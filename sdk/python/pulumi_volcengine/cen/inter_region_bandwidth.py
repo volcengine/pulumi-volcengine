@@ -271,7 +271,7 @@ class InterRegionBandwidth(pulumi.CustomResource):
         CenInterRegionBandwidth can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:cen/interRegionBandwidth:InterRegionBandwidth default cirb-3tex2x1cwd4c6c0v****
+        $ pulumi import volcengine:cen/interRegionBandwidth:InterRegionBandwidth default cirb-3tex2x1cwd4c6c0v****
         ```
 
         :param str resource_name: The name of the resource.
@@ -333,7 +333,7 @@ class InterRegionBandwidth(pulumi.CustomResource):
         CenInterRegionBandwidth can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:cen/interRegionBandwidth:InterRegionBandwidth default cirb-3tex2x1cwd4c6c0v****
+        $ pulumi import volcengine:cen/interRegionBandwidth:InterRegionBandwidth default cirb-3tex2x1cwd4c6c0v****
         ```
 
         :param str resource_name: The name of the resource.

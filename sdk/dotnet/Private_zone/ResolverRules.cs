@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Private_zone
     {
         /// <summary>
         /// Use this data source to query detailed information of private zone resolver rules
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -29,17 +27,13 @@ namespace Pulumi.Volcengine.Private_zone
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<ResolverRulesResult> InvokeAsync(ResolverRulesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ResolverRulesResult>("volcengine:private_zone/resolverRules:ResolverRules", args ?? new ResolverRulesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of private zone resolver rules
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -53,8 +47,6 @@ namespace Pulumi.Volcengine.Private_zone
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<ResolverRulesResult> Invoke(ResolverRulesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ResolverRulesResult>("volcengine:private_zone/resolverRules:ResolverRules", args ?? new ResolverRulesInvokeArgs(), options.WithDefaults());

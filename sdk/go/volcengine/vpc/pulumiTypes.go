@@ -748,14 +748,16 @@ type NetworkAclEgressAclEntry struct {
 	Description *string `pulumi:"description"`
 	// The DestinationCidrIp of entry.
 	DestinationCidrIp *string `pulumi:"destinationCidrIp"`
+	// The id of entry.
 	NetworkAclEntryId *string `pulumi:"networkAclEntryId"`
 	// The name of entry.
 	NetworkAclEntryName *string `pulumi:"networkAclEntryName"`
 	// The policy of entry. Default is `accept`. The value can be `accept` or `drop`.
 	Policy *string `pulumi:"policy"`
 	// The port of entry. Default is `-1/-1`. When Protocol is `all`, `icmp` or `gre`, the port range is `-1/-1`, which means no port restriction.When the Protocol is `tcp` or `udp`, the port range is `1~65535`, and the format is `1/200`, `80/80`,which means port 1 to port 200, port 80.
-	Port     *string `pulumi:"port"`
-	Priority *int    `pulumi:"priority"`
+	Port *string `pulumi:"port"`
+	// The priority of entry.
+	Priority *int `pulumi:"priority"`
 	// The protocol of entry. The value can be `icmp` or `gre` or `tcp` or `udp` or `all`. Default is `all`.
 	Protocol *string `pulumi:"protocol"`
 }
@@ -776,14 +778,16 @@ type NetworkAclEgressAclEntryArgs struct {
 	Description pulumi.StringPtrInput `pulumi:"description"`
 	// The DestinationCidrIp of entry.
 	DestinationCidrIp pulumi.StringPtrInput `pulumi:"destinationCidrIp"`
+	// The id of entry.
 	NetworkAclEntryId pulumi.StringPtrInput `pulumi:"networkAclEntryId"`
 	// The name of entry.
 	NetworkAclEntryName pulumi.StringPtrInput `pulumi:"networkAclEntryName"`
 	// The policy of entry. Default is `accept`. The value can be `accept` or `drop`.
 	Policy pulumi.StringPtrInput `pulumi:"policy"`
 	// The port of entry. Default is `-1/-1`. When Protocol is `all`, `icmp` or `gre`, the port range is `-1/-1`, which means no port restriction.When the Protocol is `tcp` or `udp`, the port range is `1~65535`, and the format is `1/200`, `80/80`,which means port 1 to port 200, port 80.
-	Port     pulumi.StringPtrInput `pulumi:"port"`
-	Priority pulumi.IntPtrInput    `pulumi:"priority"`
+	Port pulumi.StringPtrInput `pulumi:"port"`
+	// The priority of entry.
+	Priority pulumi.IntPtrInput `pulumi:"priority"`
 	// The protocol of entry. The value can be `icmp` or `gre` or `tcp` or `udp` or `all`. Default is `all`.
 	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
 }
@@ -849,6 +853,7 @@ func (o NetworkAclEgressAclEntryOutput) DestinationCidrIp() pulumi.StringPtrOutp
 	return o.ApplyT(func(v NetworkAclEgressAclEntry) *string { return v.DestinationCidrIp }).(pulumi.StringPtrOutput)
 }
 
+// The id of entry.
 func (o NetworkAclEgressAclEntryOutput) NetworkAclEntryId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NetworkAclEgressAclEntry) *string { return v.NetworkAclEntryId }).(pulumi.StringPtrOutput)
 }
@@ -868,6 +873,7 @@ func (o NetworkAclEgressAclEntryOutput) Port() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NetworkAclEgressAclEntry) *string { return v.Port }).(pulumi.StringPtrOutput)
 }
 
+// The priority of entry.
 func (o NetworkAclEgressAclEntryOutput) Priority() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v NetworkAclEgressAclEntry) *int { return v.Priority }).(pulumi.IntPtrOutput)
 }
@@ -899,15 +905,17 @@ func (o NetworkAclEgressAclEntryArrayOutput) Index(i pulumi.IntInput) NetworkAcl
 
 type NetworkAclIngressAclEntry struct {
 	// The description of entry.
-	Description       *string `pulumi:"description"`
+	Description *string `pulumi:"description"`
+	// The id of entry.
 	NetworkAclEntryId *string `pulumi:"networkAclEntryId"`
 	// The name of entry.
 	NetworkAclEntryName *string `pulumi:"networkAclEntryName"`
 	// The policy of entry, default is `accept`. The value can be `accept` or `drop`.
 	Policy *string `pulumi:"policy"`
 	// The port of entry. Default is `-1/-1`. When Protocol is `all`, `icmp` or `gre`, the port range is `-1/-1`, which means no port restriction. When the Protocol is `tcp` or `udp`, the port range is `1~65535`, and the format is `1/200`, `80/80`, which means port 1 to port 200, port 80.
-	Port     *string `pulumi:"port"`
-	Priority *int    `pulumi:"priority"`
+	Port *string `pulumi:"port"`
+	// The priority of entry.
+	Priority *int `pulumi:"priority"`
 	// The protocol of entry, default is `all`. The value can be `icmp` or `gre` or `tcp` or `udp` or `all`.
 	Protocol *string `pulumi:"protocol"`
 	// The SourceCidrIp of entry.
@@ -927,15 +935,17 @@ type NetworkAclIngressAclEntryInput interface {
 
 type NetworkAclIngressAclEntryArgs struct {
 	// The description of entry.
-	Description       pulumi.StringPtrInput `pulumi:"description"`
+	Description pulumi.StringPtrInput `pulumi:"description"`
+	// The id of entry.
 	NetworkAclEntryId pulumi.StringPtrInput `pulumi:"networkAclEntryId"`
 	// The name of entry.
 	NetworkAclEntryName pulumi.StringPtrInput `pulumi:"networkAclEntryName"`
 	// The policy of entry, default is `accept`. The value can be `accept` or `drop`.
 	Policy pulumi.StringPtrInput `pulumi:"policy"`
 	// The port of entry. Default is `-1/-1`. When Protocol is `all`, `icmp` or `gre`, the port range is `-1/-1`, which means no port restriction. When the Protocol is `tcp` or `udp`, the port range is `1~65535`, and the format is `1/200`, `80/80`, which means port 1 to port 200, port 80.
-	Port     pulumi.StringPtrInput `pulumi:"port"`
-	Priority pulumi.IntPtrInput    `pulumi:"priority"`
+	Port pulumi.StringPtrInput `pulumi:"port"`
+	// The priority of entry.
+	Priority pulumi.IntPtrInput `pulumi:"priority"`
 	// The protocol of entry, default is `all`. The value can be `icmp` or `gre` or `tcp` or `udp` or `all`.
 	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
 	// The SourceCidrIp of entry.
@@ -998,6 +1008,7 @@ func (o NetworkAclIngressAclEntryOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NetworkAclIngressAclEntry) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// The id of entry.
 func (o NetworkAclIngressAclEntryOutput) NetworkAclEntryId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NetworkAclIngressAclEntry) *string { return v.NetworkAclEntryId }).(pulumi.StringPtrOutput)
 }
@@ -1017,6 +1028,7 @@ func (o NetworkAclIngressAclEntryOutput) Port() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v NetworkAclIngressAclEntry) *string { return v.Port }).(pulumi.StringPtrOutput)
 }
 
+// The priority of entry.
 func (o NetworkAclIngressAclEntryOutput) Priority() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v NetworkAclIngressAclEntry) *int { return v.Priority }).(pulumi.IntPtrOutput)
 }
@@ -1051,6 +1063,112 @@ func (o NetworkAclIngressAclEntryArrayOutput) Index(i pulumi.IntInput) NetworkAc
 	}).(NetworkAclIngressAclEntryOutput)
 }
 
+type NetworkAclTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// NetworkAclTagInput is an input type that accepts NetworkAclTagArgs and NetworkAclTagOutput values.
+// You can construct a concrete instance of `NetworkAclTagInput` via:
+//
+//	NetworkAclTagArgs{...}
+type NetworkAclTagInput interface {
+	pulumi.Input
+
+	ToNetworkAclTagOutput() NetworkAclTagOutput
+	ToNetworkAclTagOutputWithContext(context.Context) NetworkAclTagOutput
+}
+
+type NetworkAclTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (NetworkAclTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkAclTag)(nil)).Elem()
+}
+
+func (i NetworkAclTagArgs) ToNetworkAclTagOutput() NetworkAclTagOutput {
+	return i.ToNetworkAclTagOutputWithContext(context.Background())
+}
+
+func (i NetworkAclTagArgs) ToNetworkAclTagOutputWithContext(ctx context.Context) NetworkAclTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkAclTagOutput)
+}
+
+// NetworkAclTagArrayInput is an input type that accepts NetworkAclTagArray and NetworkAclTagArrayOutput values.
+// You can construct a concrete instance of `NetworkAclTagArrayInput` via:
+//
+//	NetworkAclTagArray{ NetworkAclTagArgs{...} }
+type NetworkAclTagArrayInput interface {
+	pulumi.Input
+
+	ToNetworkAclTagArrayOutput() NetworkAclTagArrayOutput
+	ToNetworkAclTagArrayOutputWithContext(context.Context) NetworkAclTagArrayOutput
+}
+
+type NetworkAclTagArray []NetworkAclTagInput
+
+func (NetworkAclTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NetworkAclTag)(nil)).Elem()
+}
+
+func (i NetworkAclTagArray) ToNetworkAclTagArrayOutput() NetworkAclTagArrayOutput {
+	return i.ToNetworkAclTagArrayOutputWithContext(context.Background())
+}
+
+func (i NetworkAclTagArray) ToNetworkAclTagArrayOutputWithContext(ctx context.Context) NetworkAclTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkAclTagArrayOutput)
+}
+
+type NetworkAclTagOutput struct{ *pulumi.OutputState }
+
+func (NetworkAclTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkAclTag)(nil)).Elem()
+}
+
+func (o NetworkAclTagOutput) ToNetworkAclTagOutput() NetworkAclTagOutput {
+	return o
+}
+
+func (o NetworkAclTagOutput) ToNetworkAclTagOutputWithContext(ctx context.Context) NetworkAclTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o NetworkAclTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v NetworkAclTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o NetworkAclTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v NetworkAclTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type NetworkAclTagArrayOutput struct{ *pulumi.OutputState }
+
+func (NetworkAclTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NetworkAclTag)(nil)).Elem()
+}
+
+func (o NetworkAclTagArrayOutput) ToNetworkAclTagArrayOutput() NetworkAclTagArrayOutput {
+	return o
+}
+
+func (o NetworkAclTagArrayOutput) ToNetworkAclTagArrayOutputWithContext(ctx context.Context) NetworkAclTagArrayOutput {
+	return o
+}
+
+func (o NetworkAclTagArrayOutput) Index(i pulumi.IntInput) NetworkAclTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NetworkAclTag {
+		return vs[0].([]NetworkAclTag)[vs[1].(int)]
+	}).(NetworkAclTagOutput)
+}
+
 type NetworkAclsNetworkAcl struct {
 	// The count of Network acl entry.
 	AclEntryCount int `pulumi:"aclEntryCount"`
@@ -1068,10 +1186,14 @@ type NetworkAclsNetworkAcl struct {
 	NetworkAclId string `pulumi:"networkAclId"`
 	// The name of Network Acl.
 	NetworkAclName string `pulumi:"networkAclName"`
+	// The project name of the network acl.
+	ProjectName string `pulumi:"projectName"`
 	// The resources info of Network Acl.
 	Resources []NetworkAclsNetworkAclResource `pulumi:"resources"`
 	// The Status of Network Acl.
 	Status string `pulumi:"status"`
+	// Tags.
+	Tags []NetworkAclsNetworkAclTag `pulumi:"tags"`
 	// Update time of Network Acl.
 	UpdateTime string `pulumi:"updateTime"`
 	// The vpc id of Network Acl.
@@ -1106,10 +1228,14 @@ type NetworkAclsNetworkAclArgs struct {
 	NetworkAclId pulumi.StringInput `pulumi:"networkAclId"`
 	// The name of Network Acl.
 	NetworkAclName pulumi.StringInput `pulumi:"networkAclName"`
+	// The project name of the network acl.
+	ProjectName pulumi.StringInput `pulumi:"projectName"`
 	// The resources info of Network Acl.
 	Resources NetworkAclsNetworkAclResourceArrayInput `pulumi:"resources"`
 	// The Status of Network Acl.
 	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags NetworkAclsNetworkAclTagArrayInput `pulumi:"tags"`
 	// Update time of Network Acl.
 	UpdateTime pulumi.StringInput `pulumi:"updateTime"`
 	// The vpc id of Network Acl.
@@ -1207,6 +1333,11 @@ func (o NetworkAclsNetworkAclOutput) NetworkAclName() pulumi.StringOutput {
 	return o.ApplyT(func(v NetworkAclsNetworkAcl) string { return v.NetworkAclName }).(pulumi.StringOutput)
 }
 
+// The project name of the network acl.
+func (o NetworkAclsNetworkAclOutput) ProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v NetworkAclsNetworkAcl) string { return v.ProjectName }).(pulumi.StringOutput)
+}
+
 // The resources info of Network Acl.
 func (o NetworkAclsNetworkAclOutput) Resources() NetworkAclsNetworkAclResourceArrayOutput {
 	return o.ApplyT(func(v NetworkAclsNetworkAcl) []NetworkAclsNetworkAclResource { return v.Resources }).(NetworkAclsNetworkAclResourceArrayOutput)
@@ -1215,6 +1346,11 @@ func (o NetworkAclsNetworkAclOutput) Resources() NetworkAclsNetworkAclResourceAr
 // The Status of Network Acl.
 func (o NetworkAclsNetworkAclOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v NetworkAclsNetworkAcl) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Tags.
+func (o NetworkAclsNetworkAclOutput) Tags() NetworkAclsNetworkAclTagArrayOutput {
+	return o.ApplyT(func(v NetworkAclsNetworkAcl) []NetworkAclsNetworkAclTag { return v.Tags }).(NetworkAclsNetworkAclTagArrayOutput)
 }
 
 // Update time of Network Acl.
@@ -1671,6 +1807,218 @@ func (o NetworkAclsNetworkAclResourceArrayOutput) Index(i pulumi.IntInput) Netwo
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NetworkAclsNetworkAclResource {
 		return vs[0].([]NetworkAclsNetworkAclResource)[vs[1].(int)]
 	}).(NetworkAclsNetworkAclResourceOutput)
+}
+
+type NetworkAclsNetworkAclTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// NetworkAclsNetworkAclTagInput is an input type that accepts NetworkAclsNetworkAclTagArgs and NetworkAclsNetworkAclTagOutput values.
+// You can construct a concrete instance of `NetworkAclsNetworkAclTagInput` via:
+//
+//	NetworkAclsNetworkAclTagArgs{...}
+type NetworkAclsNetworkAclTagInput interface {
+	pulumi.Input
+
+	ToNetworkAclsNetworkAclTagOutput() NetworkAclsNetworkAclTagOutput
+	ToNetworkAclsNetworkAclTagOutputWithContext(context.Context) NetworkAclsNetworkAclTagOutput
+}
+
+type NetworkAclsNetworkAclTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (NetworkAclsNetworkAclTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkAclsNetworkAclTag)(nil)).Elem()
+}
+
+func (i NetworkAclsNetworkAclTagArgs) ToNetworkAclsNetworkAclTagOutput() NetworkAclsNetworkAclTagOutput {
+	return i.ToNetworkAclsNetworkAclTagOutputWithContext(context.Background())
+}
+
+func (i NetworkAclsNetworkAclTagArgs) ToNetworkAclsNetworkAclTagOutputWithContext(ctx context.Context) NetworkAclsNetworkAclTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkAclsNetworkAclTagOutput)
+}
+
+// NetworkAclsNetworkAclTagArrayInput is an input type that accepts NetworkAclsNetworkAclTagArray and NetworkAclsNetworkAclTagArrayOutput values.
+// You can construct a concrete instance of `NetworkAclsNetworkAclTagArrayInput` via:
+//
+//	NetworkAclsNetworkAclTagArray{ NetworkAclsNetworkAclTagArgs{...} }
+type NetworkAclsNetworkAclTagArrayInput interface {
+	pulumi.Input
+
+	ToNetworkAclsNetworkAclTagArrayOutput() NetworkAclsNetworkAclTagArrayOutput
+	ToNetworkAclsNetworkAclTagArrayOutputWithContext(context.Context) NetworkAclsNetworkAclTagArrayOutput
+}
+
+type NetworkAclsNetworkAclTagArray []NetworkAclsNetworkAclTagInput
+
+func (NetworkAclsNetworkAclTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NetworkAclsNetworkAclTag)(nil)).Elem()
+}
+
+func (i NetworkAclsNetworkAclTagArray) ToNetworkAclsNetworkAclTagArrayOutput() NetworkAclsNetworkAclTagArrayOutput {
+	return i.ToNetworkAclsNetworkAclTagArrayOutputWithContext(context.Background())
+}
+
+func (i NetworkAclsNetworkAclTagArray) ToNetworkAclsNetworkAclTagArrayOutputWithContext(ctx context.Context) NetworkAclsNetworkAclTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkAclsNetworkAclTagArrayOutput)
+}
+
+type NetworkAclsNetworkAclTagOutput struct{ *pulumi.OutputState }
+
+func (NetworkAclsNetworkAclTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkAclsNetworkAclTag)(nil)).Elem()
+}
+
+func (o NetworkAclsNetworkAclTagOutput) ToNetworkAclsNetworkAclTagOutput() NetworkAclsNetworkAclTagOutput {
+	return o
+}
+
+func (o NetworkAclsNetworkAclTagOutput) ToNetworkAclsNetworkAclTagOutputWithContext(ctx context.Context) NetworkAclsNetworkAclTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o NetworkAclsNetworkAclTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v NetworkAclsNetworkAclTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o NetworkAclsNetworkAclTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v NetworkAclsNetworkAclTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type NetworkAclsNetworkAclTagArrayOutput struct{ *pulumi.OutputState }
+
+func (NetworkAclsNetworkAclTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NetworkAclsNetworkAclTag)(nil)).Elem()
+}
+
+func (o NetworkAclsNetworkAclTagArrayOutput) ToNetworkAclsNetworkAclTagArrayOutput() NetworkAclsNetworkAclTagArrayOutput {
+	return o
+}
+
+func (o NetworkAclsNetworkAclTagArrayOutput) ToNetworkAclsNetworkAclTagArrayOutputWithContext(ctx context.Context) NetworkAclsNetworkAclTagArrayOutput {
+	return o
+}
+
+func (o NetworkAclsNetworkAclTagArrayOutput) Index(i pulumi.IntInput) NetworkAclsNetworkAclTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NetworkAclsNetworkAclTag {
+		return vs[0].([]NetworkAclsNetworkAclTag)[vs[1].(int)]
+	}).(NetworkAclsNetworkAclTagOutput)
+}
+
+type NetworkAclsTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// NetworkAclsTagInput is an input type that accepts NetworkAclsTagArgs and NetworkAclsTagOutput values.
+// You can construct a concrete instance of `NetworkAclsTagInput` via:
+//
+//	NetworkAclsTagArgs{...}
+type NetworkAclsTagInput interface {
+	pulumi.Input
+
+	ToNetworkAclsTagOutput() NetworkAclsTagOutput
+	ToNetworkAclsTagOutputWithContext(context.Context) NetworkAclsTagOutput
+}
+
+type NetworkAclsTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (NetworkAclsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkAclsTag)(nil)).Elem()
+}
+
+func (i NetworkAclsTagArgs) ToNetworkAclsTagOutput() NetworkAclsTagOutput {
+	return i.ToNetworkAclsTagOutputWithContext(context.Background())
+}
+
+func (i NetworkAclsTagArgs) ToNetworkAclsTagOutputWithContext(ctx context.Context) NetworkAclsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkAclsTagOutput)
+}
+
+// NetworkAclsTagArrayInput is an input type that accepts NetworkAclsTagArray and NetworkAclsTagArrayOutput values.
+// You can construct a concrete instance of `NetworkAclsTagArrayInput` via:
+//
+//	NetworkAclsTagArray{ NetworkAclsTagArgs{...} }
+type NetworkAclsTagArrayInput interface {
+	pulumi.Input
+
+	ToNetworkAclsTagArrayOutput() NetworkAclsTagArrayOutput
+	ToNetworkAclsTagArrayOutputWithContext(context.Context) NetworkAclsTagArrayOutput
+}
+
+type NetworkAclsTagArray []NetworkAclsTagInput
+
+func (NetworkAclsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NetworkAclsTag)(nil)).Elem()
+}
+
+func (i NetworkAclsTagArray) ToNetworkAclsTagArrayOutput() NetworkAclsTagArrayOutput {
+	return i.ToNetworkAclsTagArrayOutputWithContext(context.Background())
+}
+
+func (i NetworkAclsTagArray) ToNetworkAclsTagArrayOutputWithContext(ctx context.Context) NetworkAclsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkAclsTagArrayOutput)
+}
+
+type NetworkAclsTagOutput struct{ *pulumi.OutputState }
+
+func (NetworkAclsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkAclsTag)(nil)).Elem()
+}
+
+func (o NetworkAclsTagOutput) ToNetworkAclsTagOutput() NetworkAclsTagOutput {
+	return o
+}
+
+func (o NetworkAclsTagOutput) ToNetworkAclsTagOutputWithContext(ctx context.Context) NetworkAclsTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o NetworkAclsTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v NetworkAclsTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o NetworkAclsTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v NetworkAclsTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type NetworkAclsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (NetworkAclsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]NetworkAclsTag)(nil)).Elem()
+}
+
+func (o NetworkAclsTagArrayOutput) ToNetworkAclsTagArrayOutput() NetworkAclsTagArrayOutput {
+	return o
+}
+
+func (o NetworkAclsTagArrayOutput) ToNetworkAclsTagArrayOutputWithContext(ctx context.Context) NetworkAclsTagArrayOutput {
+	return o
+}
+
+func (o NetworkAclsTagArrayOutput) Index(i pulumi.IntInput) NetworkAclsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NetworkAclsTag {
+		return vs[0].([]NetworkAclsTag)[vs[1].(int)]
+	}).(NetworkAclsTagOutput)
 }
 
 type NetworkInterfaceTag struct {
@@ -5905,6 +6253,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkAclEgressAclEntryArrayInput)(nil)).Elem(), NetworkAclEgressAclEntryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkAclIngressAclEntryInput)(nil)).Elem(), NetworkAclIngressAclEntryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkAclIngressAclEntryArrayInput)(nil)).Elem(), NetworkAclIngressAclEntryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkAclTagInput)(nil)).Elem(), NetworkAclTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkAclTagArrayInput)(nil)).Elem(), NetworkAclTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkAclsNetworkAclInput)(nil)).Elem(), NetworkAclsNetworkAclArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkAclsNetworkAclArrayInput)(nil)).Elem(), NetworkAclsNetworkAclArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkAclsNetworkAclEgressAclEntryInput)(nil)).Elem(), NetworkAclsNetworkAclEgressAclEntryArgs{})
@@ -5913,6 +6263,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkAclsNetworkAclIngressAclEntryArrayInput)(nil)).Elem(), NetworkAclsNetworkAclIngressAclEntryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkAclsNetworkAclResourceInput)(nil)).Elem(), NetworkAclsNetworkAclResourceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkAclsNetworkAclResourceArrayInput)(nil)).Elem(), NetworkAclsNetworkAclResourceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkAclsNetworkAclTagInput)(nil)).Elem(), NetworkAclsNetworkAclTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkAclsNetworkAclTagArrayInput)(nil)).Elem(), NetworkAclsNetworkAclTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkAclsTagInput)(nil)).Elem(), NetworkAclsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkAclsTagArrayInput)(nil)).Elem(), NetworkAclsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkInterfaceTagInput)(nil)).Elem(), NetworkInterfaceTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkInterfaceTagArrayInput)(nil)).Elem(), NetworkInterfaceTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*NetworkInterfacesNetworkInterfaceInput)(nil)).Elem(), NetworkInterfacesNetworkInterfaceArgs{})
@@ -5986,6 +6340,8 @@ func init() {
 	pulumi.RegisterOutputType(NetworkAclEgressAclEntryArrayOutput{})
 	pulumi.RegisterOutputType(NetworkAclIngressAclEntryOutput{})
 	pulumi.RegisterOutputType(NetworkAclIngressAclEntryArrayOutput{})
+	pulumi.RegisterOutputType(NetworkAclTagOutput{})
+	pulumi.RegisterOutputType(NetworkAclTagArrayOutput{})
 	pulumi.RegisterOutputType(NetworkAclsNetworkAclOutput{})
 	pulumi.RegisterOutputType(NetworkAclsNetworkAclArrayOutput{})
 	pulumi.RegisterOutputType(NetworkAclsNetworkAclEgressAclEntryOutput{})
@@ -5994,6 +6350,10 @@ func init() {
 	pulumi.RegisterOutputType(NetworkAclsNetworkAclIngressAclEntryArrayOutput{})
 	pulumi.RegisterOutputType(NetworkAclsNetworkAclResourceOutput{})
 	pulumi.RegisterOutputType(NetworkAclsNetworkAclResourceArrayOutput{})
+	pulumi.RegisterOutputType(NetworkAclsNetworkAclTagOutput{})
+	pulumi.RegisterOutputType(NetworkAclsNetworkAclTagArrayOutput{})
+	pulumi.RegisterOutputType(NetworkAclsTagOutput{})
+	pulumi.RegisterOutputType(NetworkAclsTagArrayOutput{})
 	pulumi.RegisterOutputType(NetworkInterfaceTagOutput{})
 	pulumi.RegisterOutputType(NetworkInterfaceTagArrayOutput{})
 	pulumi.RegisterOutputType(NetworkInterfacesNetworkInterfaceOutput{})

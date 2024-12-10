@@ -34,7 +34,7 @@ import * as utilities from "../utilities";
  * NasFileSystem can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:nas/fileSystem:FileSystem default enas-cnbjd3879745****
+ * $ pulumi import volcengine:nas/fileSystem:FileSystem default enas-cnbjd3879745****
  * ```
  */
 export class FileSystem extends pulumi.CustomResource {

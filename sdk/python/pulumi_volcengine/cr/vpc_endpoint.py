@@ -126,7 +126,7 @@ class VpcEndpoint(pulumi.CustomResource):
         CR Vpc endpoint can be imported using the crVpcEndpoint:registry, e.g.
 
         ```sh
-         $ pulumi import volcengine:cr/vpcEndpoint:VpcEndpoint default crVpcEndpoint:cr-basic
+        $ pulumi import volcengine:cr/vpcEndpoint:VpcEndpoint default crVpcEndpoint:cr-basic
         ```
 
         :param str resource_name: The name of the resource.
@@ -167,7 +167,7 @@ class VpcEndpoint(pulumi.CustomResource):
         CR Vpc endpoint can be imported using the crVpcEndpoint:registry, e.g.
 
         ```sh
-         $ pulumi import volcengine:cr/vpcEndpoint:VpcEndpoint default crVpcEndpoint:cr-basic
+        $ pulumi import volcengine:cr/vpcEndpoint:VpcEndpoint default crVpcEndpoint:cr-basic
         ```
 
         :param str resource_name: The name of the resource.

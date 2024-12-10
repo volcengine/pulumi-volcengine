@@ -317,7 +317,7 @@ class DefaultNodePool(pulumi.CustomResource):
         VKE default node can be imported using the node id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vke/defaultNodePool:DefaultNodePool default nc5t5epmrsf****
+        $ pulumi import volcengine:vke/defaultNodePool:DefaultNodePool default nc5t5epmrsf****
         ```
 
         :param str resource_name: The name of the resource.
@@ -438,7 +438,7 @@ class DefaultNodePool(pulumi.CustomResource):
         VKE default node can be imported using the node id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vke/defaultNodePool:DefaultNodePool default nc5t5epmrsf****
+        $ pulumi import volcengine:vke/defaultNodePool:DefaultNodePool default nc5t5epmrsf****
         ```
 
         :param str resource_name: The name of the resource.

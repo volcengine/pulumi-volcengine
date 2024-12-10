@@ -74,7 +74,7 @@ namespace Pulumi.Volcengine.Vpn
     /// SSL VPN server can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:vpn/sslVpnServer:SslVpnServer default vss-zm55pqtvk17oq32zd****
+    /// $ pulumi import volcengine:vpn/sslVpnServer:SslVpnServer default vss-zm55pqtvk17oq32zd****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vpn/sslVpnServer:SslVpnServer")]
@@ -124,6 +124,18 @@ namespace Pulumi.Volcengine.Vpn
         /// </summary>
         [Output("localSubnets")]
         public Output<ImmutableArray<string>> LocalSubnets { get; private set; } = null!;
+
+        /// <summary>
+        /// The port of the ssl server. Valid values: 1~65535. Default is 1194. The following ports are not supported: 22, 68, 179, 323, 500, 4500.
+        /// </summary>
+        [Output("port")]
+        public Output<int?> Port { get; private set; } = null!;
+
+        /// <summary>
+        /// The project name of the ssl server.
+        /// </summary>
+        [Output("projectName")]
+        public Output<string> ProjectName { get; private set; } = null!;
 
         /// <summary>
         /// The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.
@@ -248,6 +260,18 @@ namespace Pulumi.Volcengine.Vpn
         }
 
         /// <summary>
+        /// The port of the ssl server. Valid values: 1~65535. Default is 1194. The following ports are not supported: 22, 68, 179, 323, 500, 4500.
+        /// </summary>
+        [Input("port")]
+        public Input<int>? Port { get; set; }
+
+        /// <summary>
+        /// The project name of the ssl server.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
+
+        /// <summary>
         /// The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.
         /// </summary>
         [Input("protocol")]
@@ -323,6 +347,18 @@ namespace Pulumi.Volcengine.Vpn
             get => _localSubnets ?? (_localSubnets = new InputList<string>());
             set => _localSubnets = value;
         }
+
+        /// <summary>
+        /// The port of the ssl server. Valid values: 1~65535. Default is 1194. The following ports are not supported: 22, 68, 179, 323, 500, 4500.
+        /// </summary>
+        [Input("port")]
+        public Input<int>? Port { get; set; }
+
+        /// <summary>
+        /// The project name of the ssl server.
+        /// </summary>
+        [Input("projectName")]
+        public Input<string>? ProjectName { get; set; }
 
         /// <summary>
         /// The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.

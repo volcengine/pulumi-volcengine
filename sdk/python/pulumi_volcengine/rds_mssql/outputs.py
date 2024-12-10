@@ -351,6 +351,11 @@ class InstanceChargeInfo(dict):
         """
         :param str charge_type: The charge type. Valid values: `PostPaid`, `PrePaid`.
         :param bool auto_renew: Whether to enable automatic renewal in the prepaid scenario. This parameter can be set when the ChargeType is `Prepaid`.
+        :param str charge_end_time: Charge end time.
+        :param str charge_start_time: Charge start time.
+        :param str charge_status: The charge status.
+        :param str overdue_reclaim_time: Expected release time when overdue fees are shut down.
+        :param str overdue_time: Time for Disconnection due to Unpaid Fees.
         :param int period: Purchase duration in a prepaid scenario. This parameter is required when the ChargeType is `Prepaid`.
         """
         pulumi.set(__self__, "charge_type", charge_type)
@@ -388,26 +393,41 @@ class InstanceChargeInfo(dict):
     @property
     @pulumi.getter(name="chargeEndTime")
     def charge_end_time(self) -> Optional[str]:
+        """
+        Charge end time.
+        """
         return pulumi.get(self, "charge_end_time")
 
     @property
     @pulumi.getter(name="chargeStartTime")
     def charge_start_time(self) -> Optional[str]:
+        """
+        Charge start time.
+        """
         return pulumi.get(self, "charge_start_time")
 
     @property
     @pulumi.getter(name="chargeStatus")
     def charge_status(self) -> Optional[str]:
+        """
+        The charge status.
+        """
         return pulumi.get(self, "charge_status")
 
     @property
     @pulumi.getter(name="overdueReclaimTime")
     def overdue_reclaim_time(self) -> Optional[str]:
+        """
+        Expected release time when overdue fees are shut down.
+        """
         return pulumi.get(self, "overdue_reclaim_time")
 
     @property
     @pulumi.getter(name="overdueTime")
     def overdue_time(self) -> Optional[str]:
+        """
+        Time for Disconnection due to Unpaid Fees.
+        """
         return pulumi.get(self, "overdue_time")
 
     @property

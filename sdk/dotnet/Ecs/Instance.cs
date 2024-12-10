@@ -90,10 +90,11 @@ namespace Pulumi.Volcengine.Ecs
     /// 
     /// ## Import
     /// 
-    /// ECS Instance can be imported using the id, e.g. If Import,The data_volumes is sort by volume name
+    /// ECS Instance can be imported using the id, e.g.
+    /// If Import,The data_volumes is sort by volume name
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:ecs/instance:Instance default i-mizl7m1kqccg5smt1bdpijuj
+    /// $ pulumi import volcengine:ecs/instance:Instance default i-mizl7m1kqccg5smt1bdpijuj
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:ecs/instance:Instance")]
@@ -242,10 +243,10 @@ namespace Pulumi.Volcengine.Ecs
         public Output<string> KeyPairId { get; private set; } = null!;
 
         /// <summary>
-        /// The ssh key name of ECS instance.
+        /// The ssh key name of ECS instance. This field can be modified only when the `image_id` is modified.
         /// </summary>
         [Output("keyPairName")]
-        public Output<string> KeyPairName { get; private set; } = null!;
+        public Output<string?> KeyPairName { get; private set; } = null!;
 
         /// <summary>
         /// The memory size of ECS instance.
@@ -564,7 +565,7 @@ namespace Pulumi.Volcengine.Ecs
         public Input<bool>? KeepImageCredential { get; set; }
 
         /// <summary>
-        /// The ssh key name of ECS instance.
+        /// The ssh key name of ECS instance. This field can be modified only when the `image_id` is modified.
         /// </summary>
         [Input("keyPairName")]
         public Input<string>? KeyPairName { get; set; }
@@ -859,7 +860,7 @@ namespace Pulumi.Volcengine.Ecs
         public Input<string>? KeyPairId { get; set; }
 
         /// <summary>
-        /// The ssh key name of ECS instance.
+        /// The ssh key name of ECS instance. This field can be modified only when the `image_id` is modified.
         /// </summary>
         [Input("keyPairName")]
         public Input<string>? KeyPairName { get; set; }

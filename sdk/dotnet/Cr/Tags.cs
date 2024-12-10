@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Cr
     {
         /// <summary>
         /// Use this data source to query detailed information of cr tags
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -38,17 +36,13 @@ namespace Pulumi.Volcengine.Cr
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<TagsResult> InvokeAsync(TagsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<TagsResult>("volcengine:cr/tags:Tags", args ?? new TagsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cr tags
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -71,8 +65,6 @@ namespace Pulumi.Volcengine.Cr
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<TagsResult> Invoke(TagsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<TagsResult>("volcengine:cr/tags:Tags", args ?? new TagsInvokeArgs(), options.WithDefaults());

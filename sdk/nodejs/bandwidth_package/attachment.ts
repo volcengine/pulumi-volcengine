@@ -105,7 +105,7 @@ import * as utilities from "../utilities";
  * BandwidthPackageAttachment can be imported using the bandwidth package id and eip id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:bandwidth_package/attachment:Attachment default BandwidthPackageId:EipId
+ * $ pulumi import volcengine:bandwidth_package/attachment:Attachment default BandwidthPackageId:EipId
  * ```
  */
 export class Attachment extends pulumi.CustomResource {

@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Alb
     {
         /// <summary>
         /// Use this data source to query detailed information of alb listener domain extensions
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -32,17 +30,13 @@ namespace Pulumi.Volcengine.Alb
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<ListenerDomainExtensionsResult> InvokeAsync(ListenerDomainExtensionsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ListenerDomainExtensionsResult>("volcengine:alb/listenerDomainExtensions:ListenerDomainExtensions", args ?? new ListenerDomainExtensionsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of alb listener domain extensions
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -59,8 +53,6 @@ namespace Pulumi.Volcengine.Alb
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<ListenerDomainExtensionsResult> Invoke(ListenerDomainExtensionsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ListenerDomainExtensionsResult>("volcengine:alb/listenerDomainExtensions:ListenerDomainExtensions", args ?? new ListenerDomainExtensionsInvokeArgs(), options.WithDefaults());

@@ -69,9 +69,7 @@ import (
 // RDS account privilege can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:rds/accountPrivilege:AccountPrivilege default mysql-42b38c769c4b:account_name
-//
+// $ pulumi import volcengine:rds/accountPrivilege:AccountPrivilege default mysql-42b38c769c4b:account_name
 // ```
 type AccountPrivilege struct {
 	pulumi.CustomResourceState

@@ -232,7 +232,7 @@ class Role(pulumi.CustomResource):
         Iam role can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:iam/role:Role default TerraformTestRole
+        $ pulumi import volcengine:iam/role:Role default TerraformTestRole
         ```
 
         :param str resource_name: The name of the resource.
@@ -270,7 +270,7 @@ class Role(pulumi.CustomResource):
         Iam role can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:iam/role:Role default TerraformTestRole
+        $ pulumi import volcengine:iam/role:Role default TerraformTestRole
         ```
 
         :param str resource_name: The name of the resource.

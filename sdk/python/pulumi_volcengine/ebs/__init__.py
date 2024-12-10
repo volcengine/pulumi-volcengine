@@ -5,6 +5,13 @@
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .auto_snapshot_policies import *
+from .auto_snapshot_policy import *
+from .auto_snapshot_policy_attachment import *
+from .snapshot import *
+from .snapshot_group import *
+from .snapshot_groups import *
+from .snapshots import *
 from .volume import *
 from .volume_attach import *
 from .volumes import *

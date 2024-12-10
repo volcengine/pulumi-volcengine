@@ -33,14 +33,13 @@ class GatewayArgs:
         :param pulumi.Input[int] bandwidth: The bandwidth of the VPN gateway. Unit: Mbps. Values: 5, 10, 20, 50, 100, 200, 500.
         :param pulumi.Input[str] subnet_id: The ID of the subnet where you want to create the VPN gateway.
         :param pulumi.Input[str] vpc_id: The ID of the VPC where you want to create the VPN gateway.
-        :param pulumi.Input[str] billing_type: The BillingType of the VPN gateway. Only support `PrePaid`. Terraform will only remove the PrePaid VPN gateway from the
-               state file, not actually remove.
+        :param pulumi.Input[str] billing_type: The BillingType of the VPN gateway. Valid values: `PrePaid`, `PostPaid`.
         :param pulumi.Input[str] description: The description of the VPN gateway.
-        :param pulumi.Input[bool] ipsec_enabled: Whether ipsec is enabled.
+        :param pulumi.Input[bool] ipsec_enabled: Whether ipsec is enabled. Default is true.
         :param pulumi.Input[int] period: The Period of the VPN gateway. Default value is 12. This parameter is only useful when creating vpn gateway. Default period unit is Month.
                Value range: 1~9, 12, 24, 36. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] project_name: The project name of the VPN gateway.
-        :param pulumi.Input[bool] ssl_enabled: Whether ssl is enabled.
+        :param pulumi.Input[bool] ssl_enabled: Whether ssl is enabled. Default is false.
         :param pulumi.Input[int] ssl_max_connections: The max connections of ssl. This parameter can only be passed in when ssl_enabled is true. Default is 5.
         :param pulumi.Input[Sequence[pulumi.Input['GatewayTagArgs']]] tags: Tags.
         :param pulumi.Input[str] vpn_gateway_name: The name of the VPN gateway.
@@ -107,8 +106,7 @@ class GatewayArgs:
     @pulumi.getter(name="billingType")
     def billing_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The BillingType of the VPN gateway. Only support `PrePaid`. Terraform will only remove the PrePaid VPN gateway from the
-        state file, not actually remove.
+        The BillingType of the VPN gateway. Valid values: `PrePaid`, `PostPaid`.
         """
         return pulumi.get(self, "billing_type")
 
@@ -132,7 +130,7 @@ class GatewayArgs:
     @pulumi.getter(name="ipsecEnabled")
     def ipsec_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether ipsec is enabled.
+        Whether ipsec is enabled. Default is true.
         """
         return pulumi.get(self, "ipsec_enabled")
 
@@ -169,7 +167,7 @@ class GatewayArgs:
     @pulumi.getter(name="sslEnabled")
     def ssl_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether ssl is enabled.
+        Whether ssl is enabled. Default is false.
         """
         return pulumi.get(self, "ssl_enabled")
 
@@ -246,8 +244,7 @@ class _GatewayState:
         Input properties used for looking up and filtering Gateway resources.
         :param pulumi.Input[str] account_id: The account ID of the VPN gateway.
         :param pulumi.Input[int] bandwidth: The bandwidth of the VPN gateway. Unit: Mbps. Values: 5, 10, 20, 50, 100, 200, 500.
-        :param pulumi.Input[str] billing_type: The BillingType of the VPN gateway. Only support `PrePaid`. Terraform will only remove the PrePaid VPN gateway from the
-               state file, not actually remove.
+        :param pulumi.Input[str] billing_type: The BillingType of the VPN gateway. Valid values: `PrePaid`, `PostPaid`.
         :param pulumi.Input[str] business_status: The business status of the VPN gateway.
         :param pulumi.Input[int] connection_count: The connection count of the VPN gateway.
         :param pulumi.Input[str] creation_time: The create time of VPN gateway.
@@ -255,14 +252,14 @@ class _GatewayState:
         :param pulumi.Input[str] description: The description of the VPN gateway.
         :param pulumi.Input[str] expired_time: The expired time of the VPN gateway.
         :param pulumi.Input[str] ip_address: The IP address of the VPN gateway.
-        :param pulumi.Input[bool] ipsec_enabled: Whether ipsec is enabled.
+        :param pulumi.Input[bool] ipsec_enabled: Whether ipsec is enabled. Default is true.
         :param pulumi.Input[str] lock_reason: The lock reason of the VPN gateway.
         :param pulumi.Input[int] period: The Period of the VPN gateway. Default value is 12. This parameter is only useful when creating vpn gateway. Default period unit is Month.
                Value range: 1~9, 12, 24, 36. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] project_name: The project name of the VPN gateway.
         :param pulumi.Input[str] renew_type: The renew type of the VPN gateway.
         :param pulumi.Input[int] route_count: The route count of the VPN gateway.
-        :param pulumi.Input[bool] ssl_enabled: Whether ssl is enabled.
+        :param pulumi.Input[bool] ssl_enabled: Whether ssl is enabled. Default is false.
         :param pulumi.Input[int] ssl_max_connections: The max connections of ssl. This parameter can only be passed in when ssl_enabled is true. Default is 5.
         :param pulumi.Input[str] status: The status of the VPN gateway.
         :param pulumi.Input[str] subnet_id: The ID of the subnet where you want to create the VPN gateway.
@@ -351,8 +348,7 @@ class _GatewayState:
     @pulumi.getter(name="billingType")
     def billing_type(self) -> Optional[pulumi.Input[str]]:
         """
-        The BillingType of the VPN gateway. Only support `PrePaid`. Terraform will only remove the PrePaid VPN gateway from the
-        state file, not actually remove.
+        The BillingType of the VPN gateway. Valid values: `PrePaid`, `PostPaid`.
         """
         return pulumi.get(self, "billing_type")
 
@@ -448,7 +444,7 @@ class _GatewayState:
     @pulumi.getter(name="ipsecEnabled")
     def ipsec_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether ipsec is enabled.
+        Whether ipsec is enabled. Default is true.
         """
         return pulumi.get(self, "ipsec_enabled")
 
@@ -521,7 +517,7 @@ class _GatewayState:
     @pulumi.getter(name="sslEnabled")
     def ssl_enabled(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether ssl is enabled.
+        Whether ssl is enabled. Default is false.
         """
         return pulumi.get(self, "ssl_enabled")
 
@@ -674,20 +670,19 @@ class Gateway(pulumi.CustomResource):
         VpnGateway can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vpn/gateway:Gateway default vgw-273zkshb2qayo7fap8t2****
+        $ pulumi import volcengine:vpn/gateway:Gateway default vgw-273zkshb2qayo7fap8t2****
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] bandwidth: The bandwidth of the VPN gateway. Unit: Mbps. Values: 5, 10, 20, 50, 100, 200, 500.
-        :param pulumi.Input[str] billing_type: The BillingType of the VPN gateway. Only support `PrePaid`. Terraform will only remove the PrePaid VPN gateway from the
-               state file, not actually remove.
+        :param pulumi.Input[str] billing_type: The BillingType of the VPN gateway. Valid values: `PrePaid`, `PostPaid`.
         :param pulumi.Input[str] description: The description of the VPN gateway.
-        :param pulumi.Input[bool] ipsec_enabled: Whether ipsec is enabled.
+        :param pulumi.Input[bool] ipsec_enabled: Whether ipsec is enabled. Default is true.
         :param pulumi.Input[int] period: The Period of the VPN gateway. Default value is 12. This parameter is only useful when creating vpn gateway. Default period unit is Month.
                Value range: 1~9, 12, 24, 36. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] project_name: The project name of the VPN gateway.
-        :param pulumi.Input[bool] ssl_enabled: Whether ssl is enabled.
+        :param pulumi.Input[bool] ssl_enabled: Whether ssl is enabled. Default is false.
         :param pulumi.Input[int] ssl_max_connections: The max connections of ssl. This parameter can only be passed in when ssl_enabled is true. Default is 5.
         :param pulumi.Input[str] subnet_id: The ID of the subnet where you want to create the VPN gateway.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['GatewayTagArgs']]]] tags: Tags.
@@ -730,7 +725,7 @@ class Gateway(pulumi.CustomResource):
         VpnGateway can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vpn/gateway:Gateway default vgw-273zkshb2qayo7fap8t2****
+        $ pulumi import volcengine:vpn/gateway:Gateway default vgw-273zkshb2qayo7fap8t2****
         ```
 
         :param str resource_name: The name of the resource.
@@ -844,8 +839,7 @@ class Gateway(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] account_id: The account ID of the VPN gateway.
         :param pulumi.Input[int] bandwidth: The bandwidth of the VPN gateway. Unit: Mbps. Values: 5, 10, 20, 50, 100, 200, 500.
-        :param pulumi.Input[str] billing_type: The BillingType of the VPN gateway. Only support `PrePaid`. Terraform will only remove the PrePaid VPN gateway from the
-               state file, not actually remove.
+        :param pulumi.Input[str] billing_type: The BillingType of the VPN gateway. Valid values: `PrePaid`, `PostPaid`.
         :param pulumi.Input[str] business_status: The business status of the VPN gateway.
         :param pulumi.Input[int] connection_count: The connection count of the VPN gateway.
         :param pulumi.Input[str] creation_time: The create time of VPN gateway.
@@ -853,14 +847,14 @@ class Gateway(pulumi.CustomResource):
         :param pulumi.Input[str] description: The description of the VPN gateway.
         :param pulumi.Input[str] expired_time: The expired time of the VPN gateway.
         :param pulumi.Input[str] ip_address: The IP address of the VPN gateway.
-        :param pulumi.Input[bool] ipsec_enabled: Whether ipsec is enabled.
+        :param pulumi.Input[bool] ipsec_enabled: Whether ipsec is enabled. Default is true.
         :param pulumi.Input[str] lock_reason: The lock reason of the VPN gateway.
         :param pulumi.Input[int] period: The Period of the VPN gateway. Default value is 12. This parameter is only useful when creating vpn gateway. Default period unit is Month.
                Value range: 1~9, 12, 24, 36. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
         :param pulumi.Input[str] project_name: The project name of the VPN gateway.
         :param pulumi.Input[str] renew_type: The renew type of the VPN gateway.
         :param pulumi.Input[int] route_count: The route count of the VPN gateway.
-        :param pulumi.Input[bool] ssl_enabled: Whether ssl is enabled.
+        :param pulumi.Input[bool] ssl_enabled: Whether ssl is enabled. Default is false.
         :param pulumi.Input[int] ssl_max_connections: The max connections of ssl. This parameter can only be passed in when ssl_enabled is true. Default is 5.
         :param pulumi.Input[str] status: The status of the VPN gateway.
         :param pulumi.Input[str] subnet_id: The ID of the subnet where you want to create the VPN gateway.
@@ -921,8 +915,7 @@ class Gateway(pulumi.CustomResource):
     @pulumi.getter(name="billingType")
     def billing_type(self) -> pulumi.Output[Optional[str]]:
         """
-        The BillingType of the VPN gateway. Only support `PrePaid`. Terraform will only remove the PrePaid VPN gateway from the
-        state file, not actually remove.
+        The BillingType of the VPN gateway. Valid values: `PrePaid`, `PostPaid`.
         """
         return pulumi.get(self, "billing_type")
 
@@ -986,7 +979,7 @@ class Gateway(pulumi.CustomResource):
     @pulumi.getter(name="ipsecEnabled")
     def ipsec_enabled(self) -> pulumi.Output[Optional[bool]]:
         """
-        Whether ipsec is enabled.
+        Whether ipsec is enabled. Default is true.
         """
         return pulumi.get(self, "ipsec_enabled")
 
@@ -1035,7 +1028,7 @@ class Gateway(pulumi.CustomResource):
     @pulumi.getter(name="sslEnabled")
     def ssl_enabled(self) -> pulumi.Output[Optional[bool]]:
         """
-        Whether ssl is enabled.
+        Whether ssl is enabled. Default is false.
         """
         return pulumi.get(self, "ssl_enabled")
 

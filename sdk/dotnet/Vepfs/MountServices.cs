@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Vepfs
     {
         /// <summary>
         /// Use this data source to query detailed information of vepfs mount services
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -54,17 +52,13 @@ namespace Pulumi.Volcengine.Vepfs
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<MountServicesResult> InvokeAsync(MountServicesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<MountServicesResult>("volcengine:vepfs/mountServices:MountServices", args ?? new MountServicesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of vepfs mount services
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -103,8 +97,6 @@ namespace Pulumi.Volcengine.Vepfs
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<MountServicesResult> Invoke(MountServicesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<MountServicesResult>("volcengine:vepfs/mountServices:MountServices", args ?? new MountServicesInvokeArgs(), options.WithDefaults());

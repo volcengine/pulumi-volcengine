@@ -39,7 +39,7 @@ namespace Pulumi.Volcengine.Alb
     /// AlbCaCertificate can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:alb/cACertificate:CACertificate default cert-*****
+    /// $ pulumi import volcengine:alb/cACertificate:CACertificate default cert-*****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:alb/cACertificate:CACertificate")]

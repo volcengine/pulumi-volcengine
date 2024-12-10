@@ -45,9 +45,7 @@ import (
 // tls rule applier can be imported using the rule id and host group id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:tls/ruleApplier:RuleApplier default fa************:bcb*******
-//
+// $ pulumi import volcengine:tls/ruleApplier:RuleApplier default fa************:bcb*******
 // ```
 type RuleApplier struct {
 	pulumi.CustomResourceState

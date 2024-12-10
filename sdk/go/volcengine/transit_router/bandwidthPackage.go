@@ -27,11 +27,13 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := transit_router.NewBandwidthPackage(ctx, "foo", &transit_router.BandwidthPackageArgs{
-//				Bandwidth:   pulumi.Int(2),
-//				Description: pulumi.String("acc-test"),
-//				Period:      pulumi.Int(1),
-//				ProjectName: pulumi.String("default"),
-//				RenewType:   pulumi.String("Manual"),
+//				Bandwidth:                  pulumi.Int(2),
+//				Description:                pulumi.String("acc-test"),
+//				LocalGeographicRegionSetId: pulumi.String("China"),
+//				PeerGeographicRegionSetId:  pulumi.String("China"),
+//				Period:                     pulumi.Int(1),
+//				ProjectName:                pulumi.String("default"),
+//				RenewType:                  pulumi.String("Manual"),
 //				Tags: transit_router.BandwidthPackageTagArray{
 //					&transit_router.BandwidthPackageTagArgs{
 //						Key:   pulumi.String("k1"),
@@ -54,9 +56,7 @@ import (
 // TransitRouterBandwidthPackage can be imported using the Id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:transit_router/bandwidthPackage:BandwidthPackage default tbp-cd-2felfww0i6pkw59gp68bq****
-//
+// $ pulumi import volcengine:transit_router/bandwidthPackage:BandwidthPackage default tbp-cd-2felfww0i6pkw59gp68bq****
 // ```
 type BandwidthPackage struct {
 	pulumi.CustomResourceState
@@ -75,6 +75,10 @@ type BandwidthPackage struct {
 	Description pulumi.StringOutput `pulumi:"description"`
 	// The expired time of the transit router bandwidth package.
 	ExpiredTime pulumi.StringOutput `pulumi:"expiredTime"`
+	// The local geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+	LocalGeographicRegionSetId pulumi.StringPtrOutput `pulumi:"localGeographicRegionSetId"`
+	// The peer geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+	PeerGeographicRegionSetId pulumi.StringPtrOutput `pulumi:"peerGeographicRegionSetId"`
 	// The period of the transit router bandwidth package, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.The modification of this field only takes effect when the value of the `renewType` is `Manual`.
 	Period pulumi.IntPtrOutput `pulumi:"period"`
 	// The ProjectName of the transit router bandwidth package.
@@ -141,6 +145,10 @@ type bandwidthPackageState struct {
 	Description *string `pulumi:"description"`
 	// The expired time of the transit router bandwidth package.
 	ExpiredTime *string `pulumi:"expiredTime"`
+	// The local geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+	LocalGeographicRegionSetId *string `pulumi:"localGeographicRegionSetId"`
+	// The peer geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+	PeerGeographicRegionSetId *string `pulumi:"peerGeographicRegionSetId"`
 	// The period of the transit router bandwidth package, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.The modification of this field only takes effect when the value of the `renewType` is `Manual`.
 	Period *int `pulumi:"period"`
 	// The ProjectName of the transit router bandwidth package.
@@ -178,6 +186,10 @@ type BandwidthPackageState struct {
 	Description pulumi.StringPtrInput
 	// The expired time of the transit router bandwidth package.
 	ExpiredTime pulumi.StringPtrInput
+	// The local geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+	LocalGeographicRegionSetId pulumi.StringPtrInput
+	// The peer geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+	PeerGeographicRegionSetId pulumi.StringPtrInput
 	// The period of the transit router bandwidth package, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.The modification of this field only takes effect when the value of the `renewType` is `Manual`.
 	Period pulumi.IntPtrInput
 	// The ProjectName of the transit router bandwidth package.
@@ -209,6 +221,10 @@ type bandwidthPackageArgs struct {
 	Bandwidth *int `pulumi:"bandwidth"`
 	// The description of the transit router bandwidth package.
 	Description *string `pulumi:"description"`
+	// The local geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+	LocalGeographicRegionSetId *string `pulumi:"localGeographicRegionSetId"`
+	// The peer geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+	PeerGeographicRegionSetId *string `pulumi:"peerGeographicRegionSetId"`
 	// The period of the transit router bandwidth package, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.The modification of this field only takes effect when the value of the `renewType` is `Manual`.
 	Period *int `pulumi:"period"`
 	// The ProjectName of the transit router bandwidth package.
@@ -231,6 +247,10 @@ type BandwidthPackageArgs struct {
 	Bandwidth pulumi.IntPtrInput
 	// The description of the transit router bandwidth package.
 	Description pulumi.StringPtrInput
+	// The local geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+	LocalGeographicRegionSetId pulumi.StringPtrInput
+	// The peer geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+	PeerGeographicRegionSetId pulumi.StringPtrInput
 	// The period of the transit router bandwidth package, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.The modification of this field only takes effect when the value of the `renewType` is `Manual`.
 	Period pulumi.IntPtrInput
 	// The ProjectName of the transit router bandwidth package.
@@ -367,6 +387,16 @@ func (o BandwidthPackageOutput) Description() pulumi.StringOutput {
 // The expired time of the transit router bandwidth package.
 func (o BandwidthPackageOutput) ExpiredTime() pulumi.StringOutput {
 	return o.ApplyT(func(v *BandwidthPackage) pulumi.StringOutput { return v.ExpiredTime }).(pulumi.StringOutput)
+}
+
+// The local geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+func (o BandwidthPackageOutput) LocalGeographicRegionSetId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BandwidthPackage) pulumi.StringPtrOutput { return v.LocalGeographicRegionSetId }).(pulumi.StringPtrOutput)
+}
+
+// The peer geographic region set ID. Valid values: `China`, `Asia`. Default is China.
+func (o BandwidthPackageOutput) PeerGeographicRegionSetId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BandwidthPackage) pulumi.StringPtrOutput { return v.PeerGeographicRegionSetId }).(pulumi.StringPtrOutput)
 }
 
 // The period of the transit router bandwidth package, the valid value range in 1~9 or 12 or 36. Default value is 12. The period unit defaults to `Month`.The modification of this field only takes effect when the value of the `renewType` is `Manual`.

@@ -719,7 +719,7 @@ class Instance(pulumi.CustomResource):
         mongodb instance can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:mongodb/instance:Instance default mongo-replica-e405f8e2****
+        $ pulumi import volcengine:mongodb/instance:Instance default mongo-replica-e405f8e2****
         ```
 
         :param str resource_name: The name of the resource.
@@ -778,7 +778,7 @@ class Instance(pulumi.CustomResource):
         mongodb instance can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:mongodb/instance:Instance default mongo-replica-e405f8e2****
+        $ pulumi import volcengine:mongodb/instance:Instance default mongo-replica-e405f8e2****
         ```
 
         :param str resource_name: The name of the resource.

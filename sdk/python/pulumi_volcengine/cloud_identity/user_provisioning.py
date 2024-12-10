@@ -358,13 +358,12 @@ class UserProvisioning(pulumi.CustomResource):
                  __props__=None):
         """
         Provides a resource to manage cloud identity user provisioning
-
         ## Import
 
         CloudIdentityUserProvisioning can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:cloud_identity/userProvisioning:UserProvisioning default resource_id
+        $ pulumi import volcengine:cloud_identity/userProvisioning:UserProvisioning default resource_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -387,13 +386,12 @@ class UserProvisioning(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides a resource to manage cloud identity user provisioning
-
         ## Import
 
         CloudIdentityUserProvisioning can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:cloud_identity/userProvisioning:UserProvisioning default resource_id
+        $ pulumi import volcengine:cloud_identity/userProvisioning:UserProvisioning default resource_id
         ```
 
         :param str resource_name: The name of the resource.

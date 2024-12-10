@@ -43,7 +43,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-subnet-test-2"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -52,8 +52,8 @@ import (
 //			fooInstance, err := rds_postgresql.NewInstance(ctx, "fooInstance", &rds_postgresql.InstanceArgs{
 //				DbEngineVersion: pulumi.String("PostgreSQL_12"),
 //				NodeSpec:        pulumi.String("rds.postgres.1c2g"),
-//				PrimaryZoneId:   *pulumi.String(fooZones.Zones[0].Id),
-//				SecondaryZoneId: *pulumi.String(fooZones.Zones[0].Id),
+//				PrimaryZoneId:   pulumi.String(fooZones.Zones[0].Id),
+//				SecondaryZoneId: pulumi.String(fooZones.Zones[0].Id),
 //				StorageSpace:    pulumi.Int(40),
 //				SubnetId:        fooSubnet.ID(),
 //				InstanceName:    pulumi.String("acc-test-1"),
@@ -130,9 +130,7 @@ import (
 // RdsPostgresqlSchema can be imported using the instance id, database name and schema name, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:rds_postgresql/schema:Schema default instance_id:db_name:schema_name
-//
+// $ pulumi import volcengine:rds_postgresql/schema:Schema default instance_id:db_name:schema_name
 // ```
 type Schema struct {
 	pulumi.CustomResourceState

@@ -18,11 +18,11 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// </summary>
         public readonly string Effect;
         /// <summary>
-        /// The Key of Tags.
+        /// The Key of Taint.
         /// </summary>
         public readonly string Key;
         /// <summary>
-        /// The Value of Tags.
+        /// The Value of Taint.
         /// </summary>
         public readonly string Value;
 

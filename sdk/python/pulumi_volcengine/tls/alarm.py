@@ -446,7 +446,7 @@ class Alarm(pulumi.CustomResource):
         tls alarm can be imported using the id and project id, e.g.
 
         ```sh
-         $ pulumi import volcengine:tls/alarm:Alarm default projectId:fc************
+        $ pulumi import volcengine:tls/alarm:Alarm default projectId:fc************
         ```
 
         :param str resource_name: The name of the resource.
@@ -507,7 +507,7 @@ class Alarm(pulumi.CustomResource):
         tls alarm can be imported using the id and project id, e.g.
 
         ```sh
-         $ pulumi import volcengine:tls/alarm:Alarm default projectId:fc************
+        $ pulumi import volcengine:tls/alarm:Alarm default projectId:fc************
         ```
 
         :param str resource_name: The name of the resource.

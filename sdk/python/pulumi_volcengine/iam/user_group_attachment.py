@@ -123,7 +123,7 @@ class UserGroupAttachment(pulumi.CustomResource):
         IamUserGroupAttachment can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:iam/userGroupAttachment:UserGroupAttachment default user_group_id:user_id
+        $ pulumi import volcengine:iam/userGroupAttachment:UserGroupAttachment default user_group_id:user_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -163,7 +163,7 @@ class UserGroupAttachment(pulumi.CustomResource):
         IamUserGroupAttachment can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:iam/userGroupAttachment:UserGroupAttachment default user_group_id:user_id
+        $ pulumi import volcengine:iam/userGroupAttachment:UserGroupAttachment default user_group_id:user_id
         ```
 
         :param str resource_name: The name of the resource.

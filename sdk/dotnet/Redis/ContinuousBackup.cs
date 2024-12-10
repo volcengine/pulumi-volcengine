@@ -71,7 +71,7 @@ namespace Pulumi.Volcengine.Redis
     /// Redis Continuous Backup can be imported using the continuous:instanceId, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:redis/continuousBackup:ContinuousBackup default continuous:redis-asdljioeixxxx
+    /// $ pulumi import volcengine:redis/continuousBackup:ContinuousBackup default continuous:redis-asdljioeixxxx
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:redis/continuousBackup:ContinuousBackup")]

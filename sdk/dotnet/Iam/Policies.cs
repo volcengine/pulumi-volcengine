@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Iam
     {
         /// <summary>
         /// Use this data source to query detailed information of iam policies
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -39,17 +37,13 @@ namespace Pulumi.Volcengine.Iam
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<PoliciesResult> InvokeAsync(PoliciesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<PoliciesResult>("volcengine:iam/policies:Policies", args ?? new PoliciesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of iam policies
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -73,8 +67,6 @@ namespace Pulumi.Volcengine.Iam
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<PoliciesResult> Invoke(PoliciesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<PoliciesResult>("volcengine:iam/policies:Policies", args ?? new PoliciesInvokeArgs(), options.WithDefaults());

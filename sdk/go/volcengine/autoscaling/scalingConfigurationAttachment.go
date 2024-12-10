@@ -43,7 +43,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -80,7 +80,7 @@ import (
 //				return err
 //			}
 //			fooScalingConfiguration, err := autoscaling.NewScalingConfiguration(ctx, "fooScalingConfiguration", &autoscaling.ScalingConfigurationArgs{
-//				ImageId:      *pulumi.String(fooImages.Images[0].ImageId),
+//				ImageId:      pulumi.String(fooImages.Images[0].ImageId),
 //				InstanceName: pulumi.String("acc-test-instance"),
 //				InstanceTypes: pulumi.StringArray{
 //					pulumi.String("ecs.g1.large"),
@@ -116,12 +116,11 @@ import (
 //
 // ## Import
 //
-// Scaling Configuration attachment can be imported using the scaling_configuration_id e.g. The launch template and scaling configuration cannot take effect at the same time.
+// Scaling Configuration attachment can be imported using the scaling_configuration_id e.g.
+// The launch template and scaling configuration cannot take effect at the same time.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:autoscaling/scalingConfigurationAttachment:ScalingConfigurationAttachment default enable:scc-ybrurj4uw6gh9zecj327
-//
+// $ pulumi import volcengine:autoscaling/scalingConfigurationAttachment:ScalingConfigurationAttachment default enable:scc-ybrurj4uw6gh9zecj327
 // ```
 type ScalingConfigurationAttachment struct {
 	pulumi.CustomResourceState

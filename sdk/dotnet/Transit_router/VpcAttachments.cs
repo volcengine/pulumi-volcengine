@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Transit_router
     {
         /// <summary>
         /// Use this data source to query detailed information of transit router vpc attachments
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -36,17 +34,13 @@ namespace Pulumi.Volcengine.Transit_router
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<VpcAttachmentsResult> InvokeAsync(VpcAttachmentsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<VpcAttachmentsResult>("volcengine:transit_router/vpcAttachments:VpcAttachments", args ?? new VpcAttachmentsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of transit router vpc attachments
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -67,8 +61,6 @@ namespace Pulumi.Volcengine.Transit_router
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<VpcAttachmentsResult> Invoke(VpcAttachmentsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<VpcAttachmentsResult>("volcengine:transit_router/vpcAttachments:VpcAttachments", args ?? new VpcAttachmentsInvokeArgs(), options.WithDefaults());

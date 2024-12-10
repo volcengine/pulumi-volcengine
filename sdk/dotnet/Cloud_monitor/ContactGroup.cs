@@ -39,7 +39,7 @@ namespace Pulumi.Volcengine.Cloud_monitor
     /// CloudMonitorContactGroup can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:cloud_monitor/contactGroup:ContactGroup default resource_id
+    /// $ pulumi import volcengine:cloud_monitor/contactGroup:ContactGroup default resource_id
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:cloud_monitor/contactGroup:ContactGroup")]

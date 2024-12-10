@@ -169,9 +169,7 @@ import (
 // VKE default node can be imported using the node id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:vke/defaultNodePool:DefaultNodePool default nc5t5epmrsf****
-//
+// $ pulumi import volcengine:vke/defaultNodePool:DefaultNodePool default nc5t5epmrsf****
 // ```
 type DefaultNodePool struct {
 	pulumi.CustomResourceState

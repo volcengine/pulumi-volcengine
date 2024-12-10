@@ -46,8 +46,12 @@ export function gateways(args?: GatewaysArgs, opts?: pulumi.InvokeOptions): Prom
     return pulumi.runtime.invoke("volcengine:vpn/gateways:Gateways", {
         "ids": args.ids,
         "ipAddress": args.ipAddress,
+        "ipsecEnabled": args.ipsecEnabled,
         "nameRegex": args.nameRegex,
         "outputFile": args.outputFile,
+        "projectName": args.projectName,
+        "sslEnabled": args.sslEnabled,
+        "status": args.status,
         "subnetId": args.subnetId,
         "tags": args.tags,
         "vpcId": args.vpcId,
@@ -68,6 +72,10 @@ export interface GatewaysArgs {
      */
     ipAddress?: string;
     /**
+     * Whether IPSec is enabled.
+     */
+    ipsecEnabled?: boolean;
+    /**
      * A Name Regex of VPN gateway.
      */
     nameRegex?: string;
@@ -75,6 +83,18 @@ export interface GatewaysArgs {
      * File name where to save data source results.
      */
     outputFile?: string;
+    /**
+     * The project name of the VPN gateway.
+     */
+    projectName?: string;
+    /**
+     * Whether ssl is enabled.
+     */
+    sslEnabled?: boolean;
+    /**
+     * The status of the VPN gateway.
+     */
+    status?: string;
     /**
      * A subnet ID of the VPN gateway.
      */
@@ -106,8 +126,24 @@ export interface GatewaysResult {
      * The IP address of the VPN gateway.
      */
     readonly ipAddress?: string;
+    /**
+     * Whether ipsec is enabled.
+     */
+    readonly ipsecEnabled?: boolean;
     readonly nameRegex?: string;
     readonly outputFile?: string;
+    /**
+     * The name of project.
+     */
+    readonly projectName?: string;
+    /**
+     * Whether ssl is enabled.
+     */
+    readonly sslEnabled?: boolean;
+    /**
+     * The status of the VPN gateway.
+     */
+    readonly status?: string;
     readonly subnetId?: string;
     /**
      * Tags.
@@ -177,6 +213,10 @@ export interface GatewaysOutputArgs {
      */
     ipAddress?: pulumi.Input<string>;
     /**
+     * Whether IPSec is enabled.
+     */
+    ipsecEnabled?: pulumi.Input<boolean>;
+    /**
      * A Name Regex of VPN gateway.
      */
     nameRegex?: pulumi.Input<string>;
@@ -184,6 +224,18 @@ export interface GatewaysOutputArgs {
      * File name where to save data source results.
      */
     outputFile?: pulumi.Input<string>;
+    /**
+     * The project name of the VPN gateway.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
+     * Whether ssl is enabled.
+     */
+    sslEnabled?: pulumi.Input<boolean>;
+    /**
+     * The status of the VPN gateway.
+     */
+    status?: pulumi.Input<string>;
     /**
      * A subnet ID of the VPN gateway.
      */

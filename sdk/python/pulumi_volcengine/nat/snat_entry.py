@@ -263,7 +263,7 @@ class SnatEntry(pulumi.CustomResource):
         Snat entry can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:nat/snatEntry:SnatEntry default snat-3fvhk47kf56****
+        $ pulumi import volcengine:nat/snatEntry:SnatEntry default snat-3fvhk47kf56****
         ```
 
         :param str resource_name: The name of the resource.
@@ -331,7 +331,7 @@ class SnatEntry(pulumi.CustomResource):
         Snat entry can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:nat/snatEntry:SnatEntry default snat-3fvhk47kf56****
+        $ pulumi import volcengine:nat/snatEntry:SnatEntry default snat-3fvhk47kf56****
         ```
 
         :param str resource_name: The name of the resource.

@@ -147,7 +147,7 @@ class MongoAllowListAssociate(pulumi.CustomResource):
         mongodb allow list associate can be imported using the instanceId:allowListId, e.g.
 
         ```sh
-         $ pulumi import volcengine:mongodb/mongoAllowListAssociate:MongoAllowListAssociate default mongo-replica-e405f8e2****:acl-d1fd76693bd54e658912e7337d5b****
+        $ pulumi import volcengine:mongodb/mongoAllowListAssociate:MongoAllowListAssociate default mongo-replica-e405f8e2****:acl-d1fd76693bd54e658912e7337d5b****
         ```
 
         :param str resource_name: The name of the resource.
@@ -211,7 +211,7 @@ class MongoAllowListAssociate(pulumi.CustomResource):
         mongodb allow list associate can be imported using the instanceId:allowListId, e.g.
 
         ```sh
-         $ pulumi import volcengine:mongodb/mongoAllowListAssociate:MongoAllowListAssociate default mongo-replica-e405f8e2****:acl-d1fd76693bd54e658912e7337d5b****
+        $ pulumi import volcengine:mongodb/mongoAllowListAssociate:MongoAllowListAssociate default mongo-replica-e405f8e2****:acl-d1fd76693bd54e658912e7337d5b****
         ```
 
         :param str resource_name: The name of the resource.

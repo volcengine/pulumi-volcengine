@@ -49,7 +49,7 @@ namespace Pulumi.Volcengine.Iam
     /// Iam user policy attachment can be imported using the UserName:PolicyName:PolicyType, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:iam/userPolicyAttachment:UserPolicyAttachment default TerraformTestUser:TerraformTestPolicy:Custom
+    /// $ pulumi import volcengine:iam/userPolicyAttachment:UserPolicyAttachment default TerraformTestUser:TerraformTestPolicy:Custom
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:iam/userPolicyAttachment:UserPolicyAttachment")]

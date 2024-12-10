@@ -95,7 +95,7 @@ namespace Pulumi.Volcengine.Kafka
     /// KafkaInstance can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:kafka/instance:Instance default kafka-insbjwbbwb
+    /// $ pulumi import volcengine:kafka/instance:Instance default kafka-insbjwbbwb
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:kafka/instance:Instance")]

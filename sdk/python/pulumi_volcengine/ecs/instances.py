@@ -23,10 +23,13 @@ class InstancesResult:
     """
     A collection of values returned by Instances.
     """
-    def __init__(__self__, deployment_set_ids=None, hpc_cluster_id=None, id=None, ids=None, instance_charge_type=None, instance_name=None, instances=None, key_pair_name=None, name_regex=None, output_file=None, primary_ip_address=None, project_name=None, status=None, tags=None, total_count=None, vpc_id=None, zone_id=None):
+    def __init__(__self__, deployment_set_ids=None, eip_addresses=None, hpc_cluster_id=None, id=None, ids=None, instance_charge_type=None, instance_name=None, instance_type_families=None, instance_type_ids=None, instances=None, ipv6_addresses=None, key_pair_name=None, name_regex=None, output_file=None, primary_ip_address=None, project_name=None, status=None, tags=None, total_count=None, vpc_id=None, zone_id=None):
         if deployment_set_ids and not isinstance(deployment_set_ids, list):
             raise TypeError("Expected argument 'deployment_set_ids' to be a list")
         pulumi.set(__self__, "deployment_set_ids", deployment_set_ids)
+        if eip_addresses and not isinstance(eip_addresses, list):
+            raise TypeError("Expected argument 'eip_addresses' to be a list")
+        pulumi.set(__self__, "eip_addresses", eip_addresses)
         if hpc_cluster_id and not isinstance(hpc_cluster_id, str):
             raise TypeError("Expected argument 'hpc_cluster_id' to be a str")
         pulumi.set(__self__, "hpc_cluster_id", hpc_cluster_id)
@@ -42,9 +45,18 @@ class InstancesResult:
         if instance_name and not isinstance(instance_name, str):
             raise TypeError("Expected argument 'instance_name' to be a str")
         pulumi.set(__self__, "instance_name", instance_name)
+        if instance_type_families and not isinstance(instance_type_families, list):
+            raise TypeError("Expected argument 'instance_type_families' to be a list")
+        pulumi.set(__self__, "instance_type_families", instance_type_families)
+        if instance_type_ids and not isinstance(instance_type_ids, list):
+            raise TypeError("Expected argument 'instance_type_ids' to be a list")
+        pulumi.set(__self__, "instance_type_ids", instance_type_ids)
         if instances and not isinstance(instances, list):
             raise TypeError("Expected argument 'instances' to be a list")
         pulumi.set(__self__, "instances", instances)
+        if ipv6_addresses and not isinstance(ipv6_addresses, list):
+            raise TypeError("Expected argument 'ipv6_addresses' to be a list")
+        pulumi.set(__self__, "ipv6_addresses", ipv6_addresses)
         if key_pair_name and not isinstance(key_pair_name, str):
             raise TypeError("Expected argument 'key_pair_name' to be a str")
         pulumi.set(__self__, "key_pair_name", key_pair_name)
@@ -82,6 +94,11 @@ class InstancesResult:
         return pulumi.get(self, "deployment_set_ids")
 
     @property
+    @pulumi.getter(name="eipAddresses")
+    def eip_addresses(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "eip_addresses")
+
+    @property
     @pulumi.getter(name="hpcClusterId")
     def hpc_cluster_id(self) -> Optional[str]:
         return pulumi.get(self, "hpc_cluster_id")
@@ -116,12 +133,30 @@ class InstancesResult:
         return pulumi.get(self, "instance_name")
 
     @property
+    @pulumi.getter(name="instanceTypeFamilies")
+    def instance_type_families(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "instance_type_families")
+
+    @property
+    @pulumi.getter(name="instanceTypeIds")
+    def instance_type_ids(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "instance_type_ids")
+
+    @property
     @pulumi.getter
     def instances(self) -> Sequence['outputs.InstancesInstanceResult']:
         """
         The collection of ECS instance query.
         """
         return pulumi.get(self, "instances")
+
+    @property
+    @pulumi.getter(name="ipv6Addresses")
+    def ipv6_addresses(self) -> Optional[Sequence[str]]:
+        """
+        The  IPv6 address list of the ECS instance.
+        """
+        return pulumi.get(self, "ipv6_addresses")
 
     @property
     @pulumi.getter(name="keyPairName")
@@ -205,12 +240,16 @@ class AwaitableInstancesResult(InstancesResult):
             yield self
         return InstancesResult(
             deployment_set_ids=self.deployment_set_ids,
+            eip_addresses=self.eip_addresses,
             hpc_cluster_id=self.hpc_cluster_id,
             id=self.id,
             ids=self.ids,
             instance_charge_type=self.instance_charge_type,
             instance_name=self.instance_name,
+            instance_type_families=self.instance_type_families,
+            instance_type_ids=self.instance_type_ids,
             instances=self.instances,
+            ipv6_addresses=self.ipv6_addresses,
             key_pair_name=self.key_pair_name,
             name_regex=self.name_regex,
             output_file=self.output_file,
@@ -224,10 +263,14 @@ class AwaitableInstancesResult(InstancesResult):
 
 
 def instances(deployment_set_ids: Optional[Sequence[str]] = None,
+              eip_addresses: Optional[Sequence[str]] = None,
               hpc_cluster_id: Optional[str] = None,
               ids: Optional[Sequence[str]] = None,
               instance_charge_type: Optional[str] = None,
               instance_name: Optional[str] = None,
+              instance_type_families: Optional[Sequence[str]] = None,
+              instance_type_ids: Optional[Sequence[str]] = None,
+              ipv6_addresses: Optional[Sequence[str]] = None,
               key_pair_name: Optional[str] = None,
               name_regex: Optional[str] = None,
               output_file: Optional[str] = None,
@@ -290,10 +333,14 @@ def instances(deployment_set_ids: Optional[Sequence[str]] = None,
 
 
     :param Sequence[str] deployment_set_ids: A list of DeploymentSet IDs.
+    :param Sequence[str] eip_addresses: A list of Eip addresses.
     :param str hpc_cluster_id: The hpc cluster ID of ECS instance.
     :param Sequence[str] ids: A list of ECS instance IDs.
     :param str instance_charge_type: The charge type of ECS instance.
     :param str instance_name: The name of ECS instance. This field support fuzzy query.
+    :param Sequence[str] instance_type_families: A list of instance type families.
+    :param Sequence[str] instance_type_ids: A list of instance type IDs.
+    :param Sequence[str] ipv6_addresses: A list of ipv6 addresses.
     :param str key_pair_name: The key pair name of ECS instance.
     :param str name_regex: A Name Regex of ECS instance.
     :param str output_file: File name where to save data source results.
@@ -306,10 +353,14 @@ def instances(deployment_set_ids: Optional[Sequence[str]] = None,
     """
     __args__ = dict()
     __args__['deploymentSetIds'] = deployment_set_ids
+    __args__['eipAddresses'] = eip_addresses
     __args__['hpcClusterId'] = hpc_cluster_id
     __args__['ids'] = ids
     __args__['instanceChargeType'] = instance_charge_type
     __args__['instanceName'] = instance_name
+    __args__['instanceTypeFamilies'] = instance_type_families
+    __args__['instanceTypeIds'] = instance_type_ids
+    __args__['ipv6Addresses'] = ipv6_addresses
     __args__['keyPairName'] = key_pair_name
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
@@ -324,12 +375,16 @@ def instances(deployment_set_ids: Optional[Sequence[str]] = None,
 
     return AwaitableInstancesResult(
         deployment_set_ids=pulumi.get(__ret__, 'deployment_set_ids'),
+        eip_addresses=pulumi.get(__ret__, 'eip_addresses'),
         hpc_cluster_id=pulumi.get(__ret__, 'hpc_cluster_id'),
         id=pulumi.get(__ret__, 'id'),
         ids=pulumi.get(__ret__, 'ids'),
         instance_charge_type=pulumi.get(__ret__, 'instance_charge_type'),
         instance_name=pulumi.get(__ret__, 'instance_name'),
+        instance_type_families=pulumi.get(__ret__, 'instance_type_families'),
+        instance_type_ids=pulumi.get(__ret__, 'instance_type_ids'),
         instances=pulumi.get(__ret__, 'instances'),
+        ipv6_addresses=pulumi.get(__ret__, 'ipv6_addresses'),
         key_pair_name=pulumi.get(__ret__, 'key_pair_name'),
         name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
@@ -344,10 +399,14 @@ def instances(deployment_set_ids: Optional[Sequence[str]] = None,
 
 @_utilities.lift_output_func(instances)
 def instances_output(deployment_set_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                     eip_addresses: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                      hpc_cluster_id: Optional[pulumi.Input[Optional[str]]] = None,
                      ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                      instance_charge_type: Optional[pulumi.Input[Optional[str]]] = None,
                      instance_name: Optional[pulumi.Input[Optional[str]]] = None,
+                     instance_type_families: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                     instance_type_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                     ipv6_addresses: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                      key_pair_name: Optional[pulumi.Input[Optional[str]]] = None,
                      name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                      output_file: Optional[pulumi.Input[Optional[str]]] = None,
@@ -410,10 +469,14 @@ def instances_output(deployment_set_ids: Optional[pulumi.Input[Optional[Sequence
 
 
     :param Sequence[str] deployment_set_ids: A list of DeploymentSet IDs.
+    :param Sequence[str] eip_addresses: A list of Eip addresses.
     :param str hpc_cluster_id: The hpc cluster ID of ECS instance.
     :param Sequence[str] ids: A list of ECS instance IDs.
     :param str instance_charge_type: The charge type of ECS instance.
     :param str instance_name: The name of ECS instance. This field support fuzzy query.
+    :param Sequence[str] instance_type_families: A list of instance type families.
+    :param Sequence[str] instance_type_ids: A list of instance type IDs.
+    :param Sequence[str] ipv6_addresses: A list of ipv6 addresses.
     :param str key_pair_name: The key pair name of ECS instance.
     :param str name_regex: A Name Regex of ECS instance.
     :param str output_file: File name where to save data source results.

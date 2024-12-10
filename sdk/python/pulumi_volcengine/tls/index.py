@@ -262,7 +262,7 @@ class Index(pulumi.CustomResource):
         Tls Index can be imported using the topic id, e.g.
 
         ```sh
-         $ pulumi import volcengine:tls/index:Index default index:edf051ed-3c46-49ba-9339-bea628fe****
+        $ pulumi import volcengine:tls/index:Index default index:edf051ed-3c46-49ba-9339-bea628fe****
         ```
 
         :param str resource_name: The name of the resource.
@@ -342,7 +342,7 @@ class Index(pulumi.CustomResource):
         Tls Index can be imported using the topic id, e.g.
 
         ```sh
-         $ pulumi import volcengine:tls/index:Index default index:edf051ed-3c46-49ba-9339-bea628fe****
+        $ pulumi import volcengine:tls/index:Index default index:edf051ed-3c46-49ba-9339-bea628fe****
         ```
 
         :param str resource_name: The name of the resource.

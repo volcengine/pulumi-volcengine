@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Mongodb
     {
         /// <summary>
         /// Use this data source to query detailed information of mongodb endpoints
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -106,17 +104,13 @@ namespace Pulumi.Volcengine.Mongodb
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<EndpointsResult> InvokeAsync(EndpointsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<EndpointsResult>("volcengine:mongodb/endpoints:Endpoints", args ?? new EndpointsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of mongodb endpoints
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -207,8 +201,6 @@ namespace Pulumi.Volcengine.Mongodb
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<EndpointsResult> Invoke(EndpointsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<EndpointsResult>("volcengine:mongodb/endpoints:Endpoints", args ?? new EndpointsInvokeArgs(), options.WithDefaults());

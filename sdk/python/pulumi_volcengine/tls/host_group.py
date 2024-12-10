@@ -461,7 +461,7 @@ class HostGroup(pulumi.CustomResource):
         Tls Host Group can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:tls/hostGroup:HostGroup default edf052s21s*******dc15
+        $ pulumi import volcengine:tls/hostGroup:HostGroup default edf052s21s*******dc15
         ```
 
         :param str resource_name: The name of the resource.
@@ -503,7 +503,7 @@ class HostGroup(pulumi.CustomResource):
         Tls Host Group can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:tls/hostGroup:HostGroup default edf052s21s*******dc15
+        $ pulumi import volcengine:tls/hostGroup:HostGroup default edf052s21s*******dc15
         ```
 
         :param str resource_name: The name of the resource.
@@ -705,7 +705,7 @@ class HostGroup(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="iamProjectName")
-    def iam_project_name(self) -> pulumi.Output[Optional[str]]:
+    def iam_project_name(self) -> pulumi.Output[str]:
         """
         The project name of iam.
         """

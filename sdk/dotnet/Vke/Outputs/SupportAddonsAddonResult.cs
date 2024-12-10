@@ -29,6 +29,9 @@ namespace Pulumi.Volcengine.Vke.Outputs
         /// The name of the addon.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// The necessary of addon.
+        /// </summary>
         public readonly string? Necessary;
         /// <summary>
         /// The container network model, the value is `Flannel` or `VpcCniShared`. Flannel: Flannel network model, an independent Underlay container network solution, combined with the global routing capability of VPC, to achieve a high-performance network experience for the cluster. VpcCniShared: VPC-CNI network model, an Underlay container network solution based on the ENI of the private network elastic network card, with high network communication performance.

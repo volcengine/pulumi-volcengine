@@ -285,7 +285,7 @@ class SaslUser(pulumi.CustomResource):
         KafkaSaslUser can be imported using the kafka_id:username, e.g.
 
         ```sh
-         $ pulumi import volcengine:kafka/saslUser:SaslUser default kafka-cnngbnntswg1****:tfuser
+        $ pulumi import volcengine:kafka/saslUser:SaslUser default kafka-cnngbnntswg1****:tfuser
         ```
 
         :param str resource_name: The name of the resource.
@@ -360,7 +360,7 @@ class SaslUser(pulumi.CustomResource):
         KafkaSaslUser can be imported using the kafka_id:username, e.g.
 
         ```sh
-         $ pulumi import volcengine:kafka/saslUser:SaslUser default kafka-cnngbnntswg1****:tfuser
+        $ pulumi import volcengine:kafka/saslUser:SaslUser default kafka-cnngbnntswg1****:tfuser
         ```
 
         :param str resource_name: The name of the resource.

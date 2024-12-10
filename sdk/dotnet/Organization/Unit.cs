@@ -29,8 +29,8 @@ namespace Pulumi.Volcengine.Organization
     ///     {
     ///         ParentId = .Where(unit =&gt; unit.ParentId == "0").Select(unit =&gt; 
     ///         {
-    ///             return  unit.Id;
-    ///         })[0],
+    ///             return unit.Id;
+    ///         }).ToList()[0],
     ///         Description = "tf-test",
     ///     });
     /// 
@@ -42,7 +42,7 @@ namespace Pulumi.Volcengine.Organization
     /// OrganizationUnit can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:organization/unit:Unit default ID
+    /// $ pulumi import volcengine:organization/unit:Unit default ID
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:organization/unit:Unit")]

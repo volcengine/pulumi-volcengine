@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Veenedge
     {
         /// <summary>
         /// Use this data source to query detailed information of veenedge instance types
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -29,17 +27,13 @@ namespace Pulumi.Volcengine.Veenedge
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<InstanceTypesResult> InvokeAsync(InstanceTypesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<InstanceTypesResult>("volcengine:veenedge/instanceTypes:InstanceTypes", args ?? new InstanceTypesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of veenedge instance types
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -53,8 +47,6 @@ namespace Pulumi.Volcengine.Veenedge
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<InstanceTypesResult> Invoke(InstanceTypesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<InstanceTypesResult>("volcengine:veenedge/instanceTypes:InstanceTypes", args ?? new InstanceTypesInvokeArgs(), options.WithDefaults());

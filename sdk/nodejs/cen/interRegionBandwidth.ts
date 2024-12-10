@@ -55,7 +55,7 @@ import * as utilities from "../utilities";
  * CenInterRegionBandwidth can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:cen/interRegionBandwidth:InterRegionBandwidth default cirb-3tex2x1cwd4c6c0v****
+ * $ pulumi import volcengine:cen/interRegionBandwidth:InterRegionBandwidth default cirb-3tex2x1cwd4c6c0v****
  * ```
  */
 export class InterRegionBandwidth extends pulumi.CustomResource {

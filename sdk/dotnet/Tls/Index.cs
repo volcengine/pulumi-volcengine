@@ -94,7 +94,7 @@ namespace Pulumi.Volcengine.Tls
     /// Tls Index can be imported using the topic id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:tls/index:Index default index:edf051ed-3c46-49ba-9339-bea628fe****
+    /// $ pulumi import volcengine:tls/index:Index default index:edf051ed-3c46-49ba-9339-bea628fe****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:tls/index:Index")]

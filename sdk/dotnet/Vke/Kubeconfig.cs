@@ -107,7 +107,7 @@ namespace Pulumi.Volcengine.Vke
     /// VkeKubeconfig can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:vke/kubeconfig:Kubeconfig default kce8simvqtofl0l6u4qd0
+    /// $ pulumi import volcengine:vke/kubeconfig:Kubeconfig default kce8simvqtofl0l6u4qd0
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vke/kubeconfig:Kubeconfig")]

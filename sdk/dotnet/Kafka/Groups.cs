@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Kafka
     {
         /// <summary>
         /// Use this data source to query detailed information of kafka groups
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -91,17 +89,13 @@ namespace Pulumi.Volcengine.Kafka
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GroupsResult> InvokeAsync(GroupsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GroupsResult>("volcengine:kafka/groups:Groups", args ?? new GroupsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of kafka groups
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -177,8 +171,6 @@ namespace Pulumi.Volcengine.Kafka
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GroupsResult> Invoke(GroupsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GroupsResult>("volcengine:kafka/groups:Groups", args ?? new GroupsInvokeArgs(), options.WithDefaults());

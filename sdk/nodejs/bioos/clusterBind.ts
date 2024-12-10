@@ -25,7 +25,7 @@ import * as utilities from "../utilities";
  * Cluster binder can be imported using the workspace id and cluster id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:bioos/clusterBind:ClusterBind default wc*****:uc***
+ * $ pulumi import volcengine:bioos/clusterBind:ClusterBind default wc*****:uc***
  * ```
  */
 export class ClusterBind extends pulumi.CustomResource {

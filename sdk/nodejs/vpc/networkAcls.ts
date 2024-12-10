@@ -28,7 +28,9 @@ export function networkAcls(args?: NetworkAclsArgs, opts?: pulumi.InvokeOptions)
         "nameRegex": args.nameRegex,
         "networkAclName": args.networkAclName,
         "outputFile": args.outputFile,
+        "projectName": args.projectName,
         "subnetId": args.subnetId,
+        "tags": args.tags,
         "vpcId": args.vpcId,
     }, opts);
 }
@@ -54,9 +56,17 @@ export interface NetworkAclsArgs {
      */
     outputFile?: string;
     /**
+     * The project name of the network acl.
+     */
+    projectName?: string;
+    /**
      * The subnet id of Network Acl.
      */
     subnetId?: string;
+    /**
+     * Tags.
+     */
+    tags?: inputs.vpc.NetworkAclsTag[];
     /**
      * The vpc id of Network Acl.
      */
@@ -82,7 +92,15 @@ export interface NetworkAclsResult {
      */
     readonly networkAcls: outputs.vpc.NetworkAclsNetworkAcl[];
     readonly outputFile?: string;
+    /**
+     * The project name of the network acl.
+     */
+    readonly projectName?: string;
     readonly subnetId?: string;
+    /**
+     * Tags.
+     */
+    readonly tags?: outputs.vpc.NetworkAclsTag[];
     /**
      * The total count of Network Acl query.
      */
@@ -130,9 +148,17 @@ export interface NetworkAclsOutputArgs {
      */
     outputFile?: pulumi.Input<string>;
     /**
+     * The project name of the network acl.
+     */
+    projectName?: pulumi.Input<string>;
+    /**
      * The subnet id of Network Acl.
      */
     subnetId?: pulumi.Input<string>;
+    /**
+     * Tags.
+     */
+    tags?: pulumi.Input<pulumi.Input<inputs.vpc.NetworkAclsTagArgs>[]>;
     /**
      * The vpc id of Network Acl.
      */

@@ -65,8 +65,8 @@ class ConnectionsVpnConnectionResult(dict):
                  zone_id: str):
         """
         :param str account_id: The account ID of the VPN connection.
-        :param str attach_status: The IPsec attach status.
-        :param str attach_type: The IPsec attach type.
+        :param str attach_status: The attach status of VPN connection.
+        :param str attach_type: The attach type of VPN connection. Valid values: `VpnGateway`, `TransitRouter`.
         :param str business_status: The business status of IPsec connection, valid when the attach type is 'TransitRouter'.
         :param str connect_status: The connect status of the VPN connection.
         :param str creation_time: The create time of VPN connection.
@@ -95,8 +95,8 @@ class ConnectionsVpnConnectionResult(dict):
         :param bool negotiate_instantly: Whether to initiate negotiation mode immediately.
         :param str overdue_time: The overdue time of resource, valid when the attach type is 'TransitRouter'.
         :param Sequence[str] remote_subnets: The remote subnet of the VPN connection.
-        :param str status: The status of the VPN connection.
-        :param str transit_router_id: The id of transit router, valid when the attach type is 'TransitRouter'.
+        :param str status: The status of IPSec connection. Valid values: `Creating`, `Deleting`, `Pending`, `Available`.
+        :param str transit_router_id: An ID of transit router.
         :param str update_time: The update time of VPN connection.
         :param str vpn_connection_id: The ID of the VPN connection.
         :param str vpn_connection_name: The name of the VPN connection.
@@ -154,7 +154,7 @@ class ConnectionsVpnConnectionResult(dict):
     @pulumi.getter(name="attachStatus")
     def attach_status(self) -> str:
         """
-        The IPsec attach status.
+        The attach status of VPN connection.
         """
         return pulumi.get(self, "attach_status")
 
@@ -162,7 +162,7 @@ class ConnectionsVpnConnectionResult(dict):
     @pulumi.getter(name="attachType")
     def attach_type(self) -> str:
         """
-        The IPsec attach type.
+        The attach type of VPN connection. Valid values: `VpnGateway`, `TransitRouter`.
         """
         return pulumi.get(self, "attach_type")
 
@@ -394,7 +394,7 @@ class ConnectionsVpnConnectionResult(dict):
     @pulumi.getter
     def status(self) -> str:
         """
-        The status of the VPN connection.
+        The status of IPSec connection. Valid values: `Creating`, `Deleting`, `Pending`, `Available`.
         """
         return pulumi.get(self, "status")
 
@@ -402,7 +402,7 @@ class ConnectionsVpnConnectionResult(dict):
     @pulumi.getter(name="transitRouterId")
     def transit_router_id(self) -> str:
         """
-        The id of transit router, valid when the attach type is 'TransitRouter'.
+        An ID of transit router.
         """
         return pulumi.get(self, "transit_router_id")
 
@@ -756,9 +756,9 @@ class GatewaysVpnGatewayResult(dict):
         :param str expired_time: The expired time of the VPN gateway.
         :param str id: The ID of the VPN gateway.
         :param str ip_address: A IP address of the VPN gateway.
-        :param bool ipsec_enabled: Whether ipsec is enabled.
+        :param bool ipsec_enabled: Whether IPSec is enabled.
         :param str lock_reason: The lock reason of the VPN gateway.
-        :param str project_name: The name of project.
+        :param str project_name: The project name of the VPN gateway.
         :param int route_count: The route count of the VPN gateway.
         :param bool ssl_enabled: Whether ssl is enabled.
         :param int ssl_max_connections: The max connections of ssl.
@@ -888,7 +888,7 @@ class GatewaysVpnGatewayResult(dict):
     @pulumi.getter(name="ipsecEnabled")
     def ipsec_enabled(self) -> bool:
         """
-        Whether ipsec is enabled.
+        Whether IPSec is enabled.
         """
         return pulumi.get(self, "ipsec_enabled")
 
@@ -904,7 +904,7 @@ class GatewaysVpnGatewayResult(dict):
     @pulumi.getter(name="projectName")
     def project_name(self) -> str:
         """
-        The name of project.
+        The project name of the VPN gateway.
         """
         return pulumi.get(self, "project_name")
 
@@ -1190,6 +1190,8 @@ class SslVpnServersSslVpnServerResult(dict):
                  description: str,
                  id: str,
                  local_subnets: Sequence[str],
+                 port: int,
+                 project_name: str,
                  protocol: str,
                  ssl_vpn_server_id: str,
                  ssl_vpn_server_name: str,
@@ -1214,6 +1216,8 @@ class SslVpnServersSslVpnServerResult(dict):
         :param str description: The description of the ssl server.
         :param str id: The SSL VPN server id.
         :param Sequence[str] local_subnets: The local network segment of the SSL server. The local network segment is the address segment that the client accesses through the SSL VPN connection.
+        :param int port: The port of the ssl server.
+        :param str project_name: The project name of the ssl server.
         :param str protocol: The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.
         :param str ssl_vpn_server_id: The id of the ssl vpn server.
         :param str ssl_vpn_server_name: The name of the ssl vpn server.
@@ -1229,6 +1233,8 @@ class SslVpnServersSslVpnServerResult(dict):
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "local_subnets", local_subnets)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "protocol", protocol)
         pulumi.set(__self__, "ssl_vpn_server_id", ssl_vpn_server_id)
         pulumi.set(__self__, "ssl_vpn_server_name", ssl_vpn_server_name)
@@ -1308,6 +1314,22 @@ class SslVpnServersSslVpnServerResult(dict):
         The local network segment of the SSL server. The local network segment is the address segment that the client accesses through the SSL VPN connection.
         """
         return pulumi.get(self, "local_subnets")
+
+    @property
+    @pulumi.getter
+    def port(self) -> int:
+        """
+        The port of the ssl server.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the ssl server.
+        """
+        return pulumi.get(self, "project_name")
 
     @property
     @pulumi.getter

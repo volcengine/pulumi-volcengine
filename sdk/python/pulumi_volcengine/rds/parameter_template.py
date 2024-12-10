@@ -244,7 +244,7 @@ class ParameterTemplate(pulumi.CustomResource):
         RDS Instance can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:rds/parameterTemplate:ParameterTemplate default mysql-sys-80bb93aa14be22d0
+        $ pulumi import volcengine:rds/parameterTemplate:ParameterTemplate default mysql-sys-80bb93aa14be22d0
         ```
 
         :param str resource_name: The name of the resource.
@@ -298,7 +298,7 @@ class ParameterTemplate(pulumi.CustomResource):
         RDS Instance can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:rds/parameterTemplate:ParameterTemplate default mysql-sys-80bb93aa14be22d0
+        $ pulumi import volcengine:rds/parameterTemplate:ParameterTemplate default mysql-sys-80bb93aa14be22d0
         ```
 
         :param str resource_name: The name of the resource.

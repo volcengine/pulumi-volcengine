@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Cdn
     {
         /// <summary>
         /// Use this data source to query detailed information of cdn certificates
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -40,17 +38,13 @@ namespace Pulumi.Volcengine.Cdn
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<CertificatesResult> InvokeAsync(CertificatesArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<CertificatesResult>("volcengine:cdn/certificates:Certificates", args ?? new CertificatesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cdn certificates
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -75,8 +69,6 @@ namespace Pulumi.Volcengine.Cdn
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<CertificatesResult> Invoke(CertificatesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<CertificatesResult>("volcengine:cdn/certificates:Certificates", args ?? new CertificatesInvokeArgs(), options.WithDefaults());

@@ -21,32 +21,6 @@ namespace Pulumi.Volcengine.Transit_router
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
-    /// 
-    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
-    ///     {
-    ///         VpcName = "acc-test-vpc",
-    ///         CidrBlock = "172.16.0.0/16",
-    ///     });
-    /// 
-    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
-    ///     {
-    ///         SubnetName = "acc-test-subnet",
-    ///         CidrBlock = "172.16.0.0/24",
-    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
-    ///         VpcId = fooVpc.Id,
-    ///     });
-    /// 
-    ///     var fooGateway = new Volcengine.Vpn.Gateway("fooGateway", new()
-    ///     {
-    ///         VpcId = fooVpc.Id,
-    ///         SubnetId = fooSubnet.Id,
-    ///         Bandwidth = 20,
-    ///         VpnGatewayName = "acc-test",
-    ///         Description = "acc-test",
-    ///         Period = 2,
-    ///     });
-    /// 
     ///     var fooCustomerGateway = new Volcengine.Vpn.CustomerGateway("fooCustomerGateway", new()
     ///     {
     ///         IpAddress = "192.0.1.3",
@@ -59,7 +33,6 @@ namespace Pulumi.Volcengine.Transit_router
     ///         VpnConnectionName = "acc-tf-test",
     ///         Description = "acc-tf-test",
     ///         AttachType = "TransitRouter",
-    ///         VpnGatewayId = fooGateway.Id,
     ///         CustomerGatewayId = fooCustomerGateway.Id,
     ///         LocalSubnets = new[]
     ///         {
@@ -127,12 +100,18 @@ namespace Pulumi.Volcengine.Transit_router
     /// transit router route entry can be imported using the table and entry id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:transit_router/routeEntry:RouteEntry default tr-rtb-12b7qd3fmzf2817q7y2jkbd55:tr-rte-1i5i8khf9m58gae5kcx6***
+    /// $ pulumi import volcengine:transit_router/routeEntry:RouteEntry default tr-rtb-12b7qd3fmzf2817q7y2jkbd55:tr-rte-1i5i8khf9m58gae5kcx6***
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:transit_router/routeEntry:RouteEntry")]
     public partial class RouteEntry : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// The as path of the route entry.
+        /// </summary>
+        [Output("asPath")]
+        public Output<string> AsPath { get; private set; } = null!;
+
         /// <summary>
         /// The creation time of the route entry.
         /// </summary>
@@ -290,6 +269,12 @@ namespace Pulumi.Volcengine.Transit_router
 
     public sealed class RouteEntryState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The as path of the route entry.
+        /// </summary>
+        [Input("asPath")]
+        public Input<string>? AsPath { get; set; }
+
         /// <summary>
         /// The creation time of the route entry.
         /// </summary>

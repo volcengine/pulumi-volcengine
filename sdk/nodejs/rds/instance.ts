@@ -34,7 +34,7 @@ import * as utilities from "../utilities";
  * RDS Instance can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:rds/instance:Instance default mysql-42b38c769c4b
+ * $ pulumi import volcengine:rds/instance:Instance default mysql-42b38c769c4b
  * ```
  */
 export class Instance extends pulumi.CustomResource {
@@ -167,7 +167,7 @@ export class Instance extends pulumi.CustomResource {
      * The length needs to be within 8~32 characters.
      * Contains at least 3 of uppercase letters, lowercase letters, numbers or special characters.
      *
-     * @deprecated supper_account_password is deprecated, use super_account_password instead
+     * @deprecated supper_account_password is deprecated, use superAccountPassword instead
      */
     public readonly supperAccountPassword!: pulumi.Output<string | undefined>;
     /**
@@ -377,7 +377,7 @@ export interface InstanceState {
      * The length needs to be within 8~32 characters.
      * Contains at least 3 of uppercase letters, lowercase letters, numbers or special characters.
      *
-     * @deprecated supper_account_password is deprecated, use super_account_password instead
+     * @deprecated supper_account_password is deprecated, use superAccountPassword instead
      */
     supperAccountPassword?: pulumi.Input<string>;
     /**
@@ -496,7 +496,7 @@ export interface InstanceArgs {
      * The length needs to be within 8~32 characters.
      * Contains at least 3 of uppercase letters, lowercase letters, numbers or special characters.
      *
-     * @deprecated supper_account_password is deprecated, use super_account_password instead
+     * @deprecated supper_account_password is deprecated, use superAccountPassword instead
      */
     supperAccountPassword?: pulumi.Input<string>;
     /**

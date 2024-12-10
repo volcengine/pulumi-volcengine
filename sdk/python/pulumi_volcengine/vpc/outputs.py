@@ -17,10 +17,13 @@ __all__ = [
     'Ipv6GatewaysIpv6GatewayResult',
     'NetworkAclEgressAclEntry',
     'NetworkAclIngressAclEntry',
+    'NetworkAclTag',
     'NetworkAclsNetworkAclResult',
     'NetworkAclsNetworkAclEgressAclEntryResult',
     'NetworkAclsNetworkAclIngressAclEntryResult',
     'NetworkAclsNetworkAclResourceResult',
+    'NetworkAclsNetworkAclTagResult',
+    'NetworkAclsTagResult',
     'NetworkInterfaceTag',
     'NetworkInterfacesNetworkInterfaceResult',
     'NetworkInterfacesNetworkInterfacePrivateIpSetResult',
@@ -579,9 +582,11 @@ class NetworkAclEgressAclEntry(dict):
         """
         :param str description: The description of entry.
         :param str destination_cidr_ip: The DestinationCidrIp of entry.
+        :param str network_acl_entry_id: The id of entry.
         :param str network_acl_entry_name: The name of entry.
         :param str policy: The policy of entry. Default is `accept`. The value can be `accept` or `drop`.
         :param str port: The port of entry. Default is `-1/-1`. When Protocol is `all`, `icmp` or `gre`, the port range is `-1/-1`, which means no port restriction.When the Protocol is `tcp` or `udp`, the port range is `1~65535`, and the format is `1/200`, `80/80`,which means port 1 to port 200, port 80.
+        :param int priority: The priority of entry.
         :param str protocol: The protocol of entry. The value can be `icmp` or `gre` or `tcp` or `udp` or `all`. Default is `all`.
         """
         if description is not None:
@@ -620,6 +625,9 @@ class NetworkAclEgressAclEntry(dict):
     @property
     @pulumi.getter(name="networkAclEntryId")
     def network_acl_entry_id(self) -> Optional[str]:
+        """
+        The id of entry.
+        """
         return pulumi.get(self, "network_acl_entry_id")
 
     @property
@@ -649,6 +657,9 @@ class NetworkAclEgressAclEntry(dict):
     @property
     @pulumi.getter
     def priority(self) -> Optional[int]:
+        """
+        The priority of entry.
+        """
         return pulumi.get(self, "priority")
 
     @property
@@ -694,9 +705,11 @@ class NetworkAclIngressAclEntry(dict):
                  source_cidr_ip: Optional[str] = None):
         """
         :param str description: The description of entry.
+        :param str network_acl_entry_id: The id of entry.
         :param str network_acl_entry_name: The name of entry.
         :param str policy: The policy of entry, default is `accept`. The value can be `accept` or `drop`.
         :param str port: The port of entry. Default is `-1/-1`. When Protocol is `all`, `icmp` or `gre`, the port range is `-1/-1`, which means no port restriction. When the Protocol is `tcp` or `udp`, the port range is `1~65535`, and the format is `1/200`, `80/80`, which means port 1 to port 200, port 80.
+        :param int priority: The priority of entry.
         :param str protocol: The protocol of entry, default is `all`. The value can be `icmp` or `gre` or `tcp` or `udp` or `all`.
         :param str source_cidr_ip: The SourceCidrIp of entry.
         """
@@ -728,6 +741,9 @@ class NetworkAclIngressAclEntry(dict):
     @property
     @pulumi.getter(name="networkAclEntryId")
     def network_acl_entry_id(self) -> Optional[str]:
+        """
+        The id of entry.
+        """
         return pulumi.get(self, "network_acl_entry_id")
 
     @property
@@ -757,6 +773,9 @@ class NetworkAclIngressAclEntry(dict):
     @property
     @pulumi.getter
     def priority(self) -> Optional[int]:
+        """
+        The priority of entry.
+        """
         return pulumi.get(self, "priority")
 
     @property
@@ -777,6 +796,35 @@ class NetworkAclIngressAclEntry(dict):
 
 
 @pulumi.output_type
+class NetworkAclTag(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class NetworkAclsNetworkAclResult(dict):
     def __init__(__self__, *,
                  acl_entry_count: int,
@@ -787,8 +835,10 @@ class NetworkAclsNetworkAclResult(dict):
                  ingress_acl_entries: Sequence['outputs.NetworkAclsNetworkAclIngressAclEntryResult'],
                  network_acl_id: str,
                  network_acl_name: str,
+                 project_name: str,
                  resources: Sequence['outputs.NetworkAclsNetworkAclResourceResult'],
                  status: str,
+                 tags: Sequence['outputs.NetworkAclsNetworkAclTagResult'],
                  update_time: str,
                  vpc_id: str):
         """
@@ -800,8 +850,10 @@ class NetworkAclsNetworkAclResult(dict):
         :param Sequence['NetworkAclsNetworkAclIngressAclEntryArgs'] ingress_acl_entries: The ingress entries info of Network Acl.
         :param str network_acl_id: The ID of Network Acl.
         :param str network_acl_name: The name of Network Acl.
+        :param str project_name: The project name of the network acl.
         :param Sequence['NetworkAclsNetworkAclResourceArgs'] resources: The resources info of Network Acl.
         :param str status: The Status of Network Acl.
+        :param Sequence['NetworkAclsNetworkAclTagArgs'] tags: Tags.
         :param str update_time: Update time of Network Acl.
         :param str vpc_id: The vpc id of Network Acl.
         """
@@ -813,8 +865,10 @@ class NetworkAclsNetworkAclResult(dict):
         pulumi.set(__self__, "ingress_acl_entries", ingress_acl_entries)
         pulumi.set(__self__, "network_acl_id", network_acl_id)
         pulumi.set(__self__, "network_acl_name", network_acl_name)
+        pulumi.set(__self__, "project_name", project_name)
         pulumi.set(__self__, "resources", resources)
         pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "tags", tags)
         pulumi.set(__self__, "update_time", update_time)
         pulumi.set(__self__, "vpc_id", vpc_id)
 
@@ -883,6 +937,14 @@ class NetworkAclsNetworkAclResult(dict):
         return pulumi.get(self, "network_acl_name")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> str:
+        """
+        The project name of the network acl.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
     @pulumi.getter
     def resources(self) -> Sequence['outputs.NetworkAclsNetworkAclResourceResult']:
         """
@@ -897,6 +959,14 @@ class NetworkAclsNetworkAclResult(dict):
         The Status of Network Acl.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Sequence['outputs.NetworkAclsNetworkAclTagResult']:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="updateTime")
@@ -1132,6 +1202,64 @@ class NetworkAclsNetworkAclResourceResult(dict):
         The Status of Network Acl.
         """
         return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class NetworkAclsNetworkAclTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class NetworkAclsTagResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type

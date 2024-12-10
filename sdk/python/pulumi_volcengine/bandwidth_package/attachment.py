@@ -182,7 +182,7 @@ class Attachment(pulumi.CustomResource):
         BandwidthPackageAttachment can be imported using the bandwidth package id and eip id, e.g.
 
         ```sh
-         $ pulumi import volcengine:bandwidth_package/attachment:Attachment default BandwidthPackageId:EipId
+        $ pulumi import volcengine:bandwidth_package/attachment:Attachment default BandwidthPackageId:EipId
         ```
 
         :param str resource_name: The name of the resource.
@@ -281,7 +281,7 @@ class Attachment(pulumi.CustomResource):
         BandwidthPackageAttachment can be imported using the bandwidth package id and eip id, e.g.
 
         ```sh
-         $ pulumi import volcengine:bandwidth_package/attachment:Attachment default BandwidthPackageId:EipId
+        $ pulumi import volcengine:bandwidth_package/attachment:Attachment default BandwidthPackageId:EipId
         ```
 
         :param str resource_name: The name of the resource.

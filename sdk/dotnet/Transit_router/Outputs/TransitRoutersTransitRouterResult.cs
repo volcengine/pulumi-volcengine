@@ -34,6 +34,10 @@ namespace Pulumi.Volcengine.Transit_router.Outputs
         /// </summary>
         public readonly string Description;
         /// <summary>
+        /// The grant status of the transit router.
+        /// </summary>
+        public readonly string GrantStatus;
+        /// <summary>
         /// The ID of the transit router.
         /// </summary>
         public readonly string Id;
@@ -82,6 +86,8 @@ namespace Pulumi.Volcengine.Transit_router.Outputs
 
             string description,
 
+            string grantStatus,
+
             string id,
 
             string overdueTime,
@@ -105,6 +111,7 @@ namespace Pulumi.Volcengine.Transit_router.Outputs
             BusinessStatus = businessStatus;
             CreationTime = creationTime;
             Description = description;
+            GrantStatus = grantStatus;
             Id = id;
             OverdueTime = overdueTime;
             ProjectName = projectName;

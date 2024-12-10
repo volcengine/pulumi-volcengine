@@ -46,6 +46,10 @@ namespace Pulumi.Volcengine.Vpc.Outputs
         /// </summary>
         public readonly string NetworkAclName;
         /// <summary>
+        /// The project name of the network acl.
+        /// </summary>
+        public readonly string ProjectName;
+        /// <summary>
         /// The resources info of Network Acl.
         /// </summary>
         public readonly ImmutableArray<Outputs.NetworkAclsNetworkAclResourceResult> Resources;
@@ -53,6 +57,10 @@ namespace Pulumi.Volcengine.Vpc.Outputs
         /// The Status of Network Acl.
         /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.NetworkAclsNetworkAclTagResult> Tags;
         /// <summary>
         /// Update time of Network Acl.
         /// </summary>
@@ -80,9 +88,13 @@ namespace Pulumi.Volcengine.Vpc.Outputs
 
             string networkAclName,
 
+            string projectName,
+
             ImmutableArray<Outputs.NetworkAclsNetworkAclResourceResult> resources,
 
             string status,
+
+            ImmutableArray<Outputs.NetworkAclsNetworkAclTagResult> tags,
 
             string updateTime,
 
@@ -96,8 +108,10 @@ namespace Pulumi.Volcengine.Vpc.Outputs
             IngressAclEntries = ingressAclEntries;
             NetworkAclId = networkAclId;
             NetworkAclName = networkAclName;
+            ProjectName = projectName;
             Resources = resources;
             Status = status;
+            Tags = tags;
             UpdateTime = updateTime;
             VpcId = vpcId;
         }

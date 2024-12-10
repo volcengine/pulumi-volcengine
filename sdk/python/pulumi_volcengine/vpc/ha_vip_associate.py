@@ -179,7 +179,7 @@ class HaVipAssociate(pulumi.CustomResource):
         HaVipAssociate can be imported using the ha_vip_id:instance_id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vpc/haVipAssociate:HaVipAssociate default havip-2byzv8icq1b7k2dx0eegb****:eni-2d5wv84h7onpc58ozfeeu****
+        $ pulumi import volcengine:vpc/haVipAssociate:HaVipAssociate default havip-2byzv8icq1b7k2dx0eegb****:eni-2d5wv84h7onpc58ozfeeu****
         ```
 
         :param str resource_name: The name of the resource.
@@ -243,7 +243,7 @@ class HaVipAssociate(pulumi.CustomResource):
         HaVipAssociate can be imported using the ha_vip_id:instance_id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vpc/haVipAssociate:HaVipAssociate default havip-2byzv8icq1b7k2dx0eegb****:eni-2d5wv84h7onpc58ozfeeu****
+        $ pulumi import volcengine:vpc/haVipAssociate:HaVipAssociate default havip-2byzv8icq1b7k2dx0eegb****:eni-2d5wv84h7onpc58ozfeeu****
         ```
 
         :param str resource_name: The name of the resource.

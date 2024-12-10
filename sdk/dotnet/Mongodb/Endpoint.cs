@@ -119,10 +119,13 @@ namespace Pulumi.Volcengine.Mongodb
     /// 
     /// ## Import
     /// 
-    /// mongodb endpoint can be imported using the instanceId:endpointId `instanceId`represents the instance that endpoint related to. `endpointId`the id of endpoint. e.g.
+    /// mongodb endpoint can be imported using the instanceId:endpointId
+    /// `instanceId`: represents the instance that endpoint related to.
+    /// `endpointId`: the id of endpoint.
+    /// e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:mongodb/endpoint:Endpoint default mongo-replica-e405f8e2****:BRhFA0pDAk0XXkxCZQ
+    /// $ pulumi import volcengine:mongodb/endpoint:Endpoint default mongo-replica-e405f8e2****:BRhFA0pDAk0XXkxCZQ
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:mongodb/endpoint:Endpoint")]

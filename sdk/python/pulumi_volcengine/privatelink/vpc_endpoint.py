@@ -399,7 +399,7 @@ class VpcEndpoint(pulumi.CustomResource):
         VpcEndpoint can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:privatelink/vpcEndpoint:VpcEndpoint default ep-3rel74u229dz45zsk2i6l****
+        $ pulumi import volcengine:privatelink/vpcEndpoint:VpcEndpoint default ep-3rel74u229dz45zsk2i6l****
         ```
 
         :param str resource_name: The name of the resource.
@@ -472,7 +472,7 @@ class VpcEndpoint(pulumi.CustomResource):
         VpcEndpoint can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:privatelink/vpcEndpoint:VpcEndpoint default ep-3rel74u229dz45zsk2i6l****
+        $ pulumi import volcengine:privatelink/vpcEndpoint:VpcEndpoint default ep-3rel74u229dz45zsk2i6l****
         ```
 
         :param str resource_name: The name of the resource.

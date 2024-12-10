@@ -53,9 +53,7 @@ import (
 // Service Control Policy can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:organization/serviceControlPolicy:ServiceControlPolicy default 1000001
-//
+// $ pulumi import volcengine:organization/serviceControlPolicy:ServiceControlPolicy default 1000001
 // ```
 type ServiceControlPolicy struct {
 	pulumi.CustomResourceState

@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Vke
     {
         /// <summary>
         /// Use this data source to query detailed information of vke clusters
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -104,17 +102,13 @@ namespace Pulumi.Volcengine.Vke
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<ClustersResult> InvokeAsync(ClustersArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ClustersResult>("volcengine:vke/clusters:Clusters", args ?? new ClustersArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of vke clusters
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -203,8 +197,6 @@ namespace Pulumi.Volcengine.Vke
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<ClustersResult> Invoke(ClustersInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ClustersResult>("volcengine:vke/clusters:Clusters", args ?? new ClustersInvokeArgs(), options.WithDefaults());

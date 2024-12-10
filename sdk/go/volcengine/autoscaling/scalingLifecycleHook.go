@@ -43,7 +43,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -95,9 +95,7 @@ import (
 // ScalingLifecycleHook can be imported using the ScalingGroupId:LifecycleHookId, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:autoscaling/scalingLifecycleHook:ScalingLifecycleHook default scg-yblfbfhy7agh9zn72iaz:sgh-ybqholahe4gso0ee88sd
-//
+// $ pulumi import volcengine:autoscaling/scalingLifecycleHook:ScalingLifecycleHook default scg-yblfbfhy7agh9zn72iaz:sgh-ybqholahe4gso0ee88sd
 // ```
 type ScalingLifecycleHook struct {
 	pulumi.CustomResourceState

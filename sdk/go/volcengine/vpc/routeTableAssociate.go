@@ -45,9 +45,7 @@ import (
 // Route table associate address can be imported using the route_table_id:subnet_id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:vpc/routeTableAssociate:RouteTableAssociate default vtb-2fdzao4h726f45******:subnet-2fdzaou4liw3k5oxruv******
-//
+// $ pulumi import volcengine:vpc/routeTableAssociate:RouteTableAssociate default vtb-2fdzao4h726f45******:subnet-2fdzaou4liw3k5oxruv******
 // ```
 type RouteTableAssociate struct {
 	pulumi.CustomResourceState

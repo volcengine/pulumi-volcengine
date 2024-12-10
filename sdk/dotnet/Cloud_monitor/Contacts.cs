@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Cloud_monitor
     {
         /// <summary>
         /// Use this data source to query detailed information of cloud monitor contacts
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -36,17 +34,13 @@ namespace Pulumi.Volcengine.Cloud_monitor
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<ContactsResult> InvokeAsync(ContactsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ContactsResult>("volcengine:cloud_monitor/contacts:Contacts", args ?? new ContactsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cloud monitor contacts
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -67,8 +61,6 @@ namespace Pulumi.Volcengine.Cloud_monitor
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<ContactsResult> Invoke(ContactsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ContactsResult>("volcengine:cloud_monitor/contacts:Contacts", args ?? new ContactsInvokeArgs(), options.WithDefaults());

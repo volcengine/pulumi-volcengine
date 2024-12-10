@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Ecs
     {
         /// <summary>
         /// Use this data source to query detailed information of ecs available resources
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -32,17 +30,13 @@ namespace Pulumi.Volcengine.Ecs
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<AvailableResourcesResult> InvokeAsync(AvailableResourcesArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<AvailableResourcesResult>("volcengine:ecs/availableResources:AvailableResources", args ?? new AvailableResourcesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of ecs available resources
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -59,8 +53,6 @@ namespace Pulumi.Volcengine.Ecs
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<AvailableResourcesResult> Invoke(AvailableResourcesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<AvailableResourcesResult>("volcengine:ecs/availableResources:AvailableResources", args ?? new AvailableResourcesInvokeArgs(), options.WithDefaults());

@@ -22,7 +22,13 @@ class ConnectionsResult:
     """
     A collection of values returned by Connections.
     """
-    def __init__(__self__, customer_gateway_id=None, id=None, ids=None, name_regex=None, output_file=None, total_count=None, vpn_connection_names=None, vpn_connections=None, vpn_gateway_id=None):
+    def __init__(__self__, attach_status=None, attach_type=None, customer_gateway_id=None, id=None, ids=None, name_regex=None, output_file=None, project_name=None, spec=None, status=None, total_count=None, transit_router_id=None, vpn_connection_names=None, vpn_connections=None, vpn_gateway_id=None):
+        if attach_status and not isinstance(attach_status, str):
+            raise TypeError("Expected argument 'attach_status' to be a str")
+        pulumi.set(__self__, "attach_status", attach_status)
+        if attach_type and not isinstance(attach_type, str):
+            raise TypeError("Expected argument 'attach_type' to be a str")
+        pulumi.set(__self__, "attach_type", attach_type)
         if customer_gateway_id and not isinstance(customer_gateway_id, str):
             raise TypeError("Expected argument 'customer_gateway_id' to be a str")
         pulumi.set(__self__, "customer_gateway_id", customer_gateway_id)
@@ -38,9 +44,21 @@ class ConnectionsResult:
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if project_name and not isinstance(project_name, str):
+            raise TypeError("Expected argument 'project_name' to be a str")
+        pulumi.set(__self__, "project_name", project_name)
+        if spec and not isinstance(spec, str):
+            raise TypeError("Expected argument 'spec' to be a str")
+        pulumi.set(__self__, "spec", spec)
+        if status and not isinstance(status, str):
+            raise TypeError("Expected argument 'status' to be a str")
+        pulumi.set(__self__, "status", status)
         if total_count and not isinstance(total_count, int):
             raise TypeError("Expected argument 'total_count' to be a int")
         pulumi.set(__self__, "total_count", total_count)
+        if transit_router_id and not isinstance(transit_router_id, str):
+            raise TypeError("Expected argument 'transit_router_id' to be a str")
+        pulumi.set(__self__, "transit_router_id", transit_router_id)
         if vpn_connection_names and not isinstance(vpn_connection_names, list):
             raise TypeError("Expected argument 'vpn_connection_names' to be a list")
         pulumi.set(__self__, "vpn_connection_names", vpn_connection_names)
@@ -50,6 +68,22 @@ class ConnectionsResult:
         if vpn_gateway_id and not isinstance(vpn_gateway_id, str):
             raise TypeError("Expected argument 'vpn_gateway_id' to be a str")
         pulumi.set(__self__, "vpn_gateway_id", vpn_gateway_id)
+
+    @property
+    @pulumi.getter(name="attachStatus")
+    def attach_status(self) -> Optional[str]:
+        """
+        The IPsec attach status.
+        """
+        return pulumi.get(self, "attach_status")
+
+    @property
+    @pulumi.getter(name="attachType")
+    def attach_type(self) -> Optional[str]:
+        """
+        The IPsec attach type.
+        """
+        return pulumi.get(self, "attach_type")
 
     @property
     @pulumi.getter(name="customerGatewayId")
@@ -83,12 +117,38 @@ class ConnectionsResult:
         return pulumi.get(self, "output_file")
 
     @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[str]:
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def spec(self) -> Optional[str]:
+        return pulumi.get(self, "spec")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        """
+        The status of the VPN connection.
+        """
+        return pulumi.get(self, "status")
+
+    @property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> int:
         """
         The total count of VPN connection query.
         """
         return pulumi.get(self, "total_count")
+
+    @property
+    @pulumi.getter(name="transitRouterId")
+    def transit_router_id(self) -> Optional[str]:
+        """
+        The id of transit router, valid when the attach type is 'TransitRouter'.
+        """
+        return pulumi.get(self, "transit_router_id")
 
     @property
     @pulumi.getter(name="vpnConnectionNames")
@@ -118,21 +178,33 @@ class AwaitableConnectionsResult(ConnectionsResult):
         if False:
             yield self
         return ConnectionsResult(
+            attach_status=self.attach_status,
+            attach_type=self.attach_type,
             customer_gateway_id=self.customer_gateway_id,
             id=self.id,
             ids=self.ids,
             name_regex=self.name_regex,
             output_file=self.output_file,
+            project_name=self.project_name,
+            spec=self.spec,
+            status=self.status,
             total_count=self.total_count,
+            transit_router_id=self.transit_router_id,
             vpn_connection_names=self.vpn_connection_names,
             vpn_connections=self.vpn_connections,
             vpn_gateway_id=self.vpn_gateway_id)
 
 
-def connections(customer_gateway_id: Optional[str] = None,
+def connections(attach_status: Optional[str] = None,
+                attach_type: Optional[str] = None,
+                customer_gateway_id: Optional[str] = None,
                 ids: Optional[Sequence[str]] = None,
                 name_regex: Optional[str] = None,
                 output_file: Optional[str] = None,
+                project_name: Optional[str] = None,
+                spec: Optional[str] = None,
+                status: Optional[str] = None,
+                transit_router_id: Optional[str] = None,
                 vpn_connection_names: Optional[Sequence[str]] = None,
                 vpn_gateway_id: Optional[str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableConnectionsResult:
@@ -192,40 +264,64 @@ def connections(customer_gateway_id: Optional[str] = None,
     ```
 
 
+    :param str attach_status: The attach status of VPN connection.
+    :param str attach_type: The attach type of VPN connection. Valid values: `VpnGateway`, `TransitRouter`.
     :param str customer_gateway_id: An ID of customer gateway.
     :param Sequence[str] ids: A list of VPN connection ids.
     :param str name_regex: A Name Regex of VPN connection.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of VPN connection.
+    :param str spec: The spec of IPSec connection. Valid values: `default`, `large`.
+    :param str status: The status of IPSec connection. Valid values: `Creating`, `Deleting`, `Pending`, `Available`.
+    :param str transit_router_id: An ID of transit router.
     :param Sequence[str] vpn_connection_names: A list of VPN connection names.
     :param str vpn_gateway_id: An ID of VPN gateway.
     """
     __args__ = dict()
+    __args__['attachStatus'] = attach_status
+    __args__['attachType'] = attach_type
     __args__['customerGatewayId'] = customer_gateway_id
     __args__['ids'] = ids
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
+    __args__['projectName'] = project_name
+    __args__['spec'] = spec
+    __args__['status'] = status
+    __args__['transitRouterId'] = transit_router_id
     __args__['vpnConnectionNames'] = vpn_connection_names
     __args__['vpnGatewayId'] = vpn_gateway_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('volcengine:vpn/connections:Connections', __args__, opts=opts, typ=ConnectionsResult).value
 
     return AwaitableConnectionsResult(
+        attach_status=pulumi.get(__ret__, 'attach_status'),
+        attach_type=pulumi.get(__ret__, 'attach_type'),
         customer_gateway_id=pulumi.get(__ret__, 'customer_gateway_id'),
         id=pulumi.get(__ret__, 'id'),
         ids=pulumi.get(__ret__, 'ids'),
         name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        project_name=pulumi.get(__ret__, 'project_name'),
+        spec=pulumi.get(__ret__, 'spec'),
+        status=pulumi.get(__ret__, 'status'),
         total_count=pulumi.get(__ret__, 'total_count'),
+        transit_router_id=pulumi.get(__ret__, 'transit_router_id'),
         vpn_connection_names=pulumi.get(__ret__, 'vpn_connection_names'),
         vpn_connections=pulumi.get(__ret__, 'vpn_connections'),
         vpn_gateway_id=pulumi.get(__ret__, 'vpn_gateway_id'))
 
 
 @_utilities.lift_output_func(connections)
-def connections_output(customer_gateway_id: Optional[pulumi.Input[Optional[str]]] = None,
+def connections_output(attach_status: Optional[pulumi.Input[Optional[str]]] = None,
+                       attach_type: Optional[pulumi.Input[Optional[str]]] = None,
+                       customer_gateway_id: Optional[pulumi.Input[Optional[str]]] = None,
                        ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                        name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                        output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                       project_name: Optional[pulumi.Input[Optional[str]]] = None,
+                       spec: Optional[pulumi.Input[Optional[str]]] = None,
+                       status: Optional[pulumi.Input[Optional[str]]] = None,
+                       transit_router_id: Optional[pulumi.Input[Optional[str]]] = None,
                        vpn_connection_names: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                        vpn_gateway_id: Optional[pulumi.Input[Optional[str]]] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[ConnectionsResult]:
@@ -285,10 +381,16 @@ def connections_output(customer_gateway_id: Optional[pulumi.Input[Optional[str]]
     ```
 
 
+    :param str attach_status: The attach status of VPN connection.
+    :param str attach_type: The attach type of VPN connection. Valid values: `VpnGateway`, `TransitRouter`.
     :param str customer_gateway_id: An ID of customer gateway.
     :param Sequence[str] ids: A list of VPN connection ids.
     :param str name_regex: A Name Regex of VPN connection.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of VPN connection.
+    :param str spec: The spec of IPSec connection. Valid values: `default`, `large`.
+    :param str status: The status of IPSec connection. Valid values: `Creating`, `Deleting`, `Pending`, `Available`.
+    :param str transit_router_id: An ID of transit router.
     :param Sequence[str] vpn_connection_names: A list of VPN connection names.
     :param str vpn_gateway_id: An ID of VPN gateway.
     """

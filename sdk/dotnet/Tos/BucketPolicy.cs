@@ -58,7 +58,7 @@ namespace Pulumi.Volcengine.Tos
     /// Tos Bucket can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:tos/bucketPolicy:BucketPolicy default bucketName:policy
+    /// $ pulumi import volcengine:tos/bucketPolicy:BucketPolicy default bucketName:policy
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:tos/bucketPolicy:BucketPolicy")]

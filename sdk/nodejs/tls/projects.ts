@@ -14,9 +14,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.Projects({
- *     projectId: "e020c978-4f05-40e1-9167-0113d3ef****",
- * });
+ * const default = volcengine.tls.Projects({});
  * ```
  */
 export function projects(args?: ProjectsArgs, opts?: pulumi.InvokeOptions): Promise<ProjectsResult> {
@@ -112,9 +110,7 @@ export interface ProjectsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as volcengine from "@pulumi/volcengine";
  *
- * const default = volcengine.tls.Projects({
- *     projectId: "e020c978-4f05-40e1-9167-0113d3ef****",
- * });
+ * const default = volcengine.tls.Projects({});
  * ```
  */
 export function projectsOutput(args?: ProjectsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<ProjectsResult> {

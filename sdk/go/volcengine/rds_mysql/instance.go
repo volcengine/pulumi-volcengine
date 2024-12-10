@@ -43,7 +43,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-subnet-test-2"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -52,8 +52,8 @@ import (
 //			_, err = rds_mysql.NewInstance(ctx, "fooInstance", &rds_mysql.InstanceArgs{
 //				DbEngineVersion:     pulumi.String("MySQL_5_7"),
 //				NodeSpec:            pulumi.String("rds.mysql.1c2g"),
-//				PrimaryZoneId:       *pulumi.String(fooZones.Zones[0].Id),
-//				SecondaryZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				PrimaryZoneId:       pulumi.String(fooZones.Zones[0].Id),
+//				SecondaryZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				StorageSpace:        pulumi.Int(80),
 //				SubnetId:            fooSubnet.ID(),
 //				InstanceName:        pulumi.String("acc-test"),
@@ -93,9 +93,7 @@ import (
 // Rds Mysql Instance can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:rds_mysql/instance:Instance default mysql-72da4258c2c7
-//
+// $ pulumi import volcengine:rds_mysql/instance:Instance default mysql-72da4258c2c7
 // ```
 type Instance struct {
 	pulumi.CustomResourceState

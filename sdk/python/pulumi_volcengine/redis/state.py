@@ -115,7 +115,7 @@ class State(pulumi.CustomResource):
         Redis State Instance can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:redis/state:State default state:redis-mizl7m1kqccg5smt1bdpijuj
+        $ pulumi import volcengine:redis/state:State default state:redis-mizl7m1kqccg5smt1bdpijuj
         ```
 
         :param str resource_name: The name of the resource.
@@ -147,7 +147,7 @@ class State(pulumi.CustomResource):
         Redis State Instance can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:redis/state:State default state:redis-mizl7m1kqccg5smt1bdpijuj
+        $ pulumi import volcengine:redis/state:State default state:redis-mizl7m1kqccg5smt1bdpijuj
         ```
 
         :param str resource_name: The name of the resource.

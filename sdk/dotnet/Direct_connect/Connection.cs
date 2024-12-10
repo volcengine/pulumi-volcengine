@@ -52,7 +52,7 @@ namespace Pulumi.Volcengine.Direct_connect
     /// DirectConnectConnection can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:direct_connect/connection:Connection default dcc-7qthudw0ll6jmc****
+    /// $ pulumi import volcengine:direct_connect/connection:Connection default dcc-7qthudw0ll6jmc****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:direct_connect/connection:Connection")]

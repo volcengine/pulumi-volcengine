@@ -31,7 +31,7 @@ import * as utilities from "../utilities";
  * TransitRouter can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:transit_router/transitRouter:TransitRouter default tr-2d6fr7mzya2gw58ozfes5g2oh
+ * $ pulumi import volcengine:transit_router/transitRouter:TransitRouter default tr-2d6fr7mzya2gw58ozfes5g2oh
  * ```
  */
 export class TransitRouter extends pulumi.CustomResource {
@@ -83,6 +83,10 @@ export class TransitRouter extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * The grant status of the transit router.
+     */
+    public /*out*/ readonly grantStatus!: pulumi.Output<string>;
+    /**
      * The overdue time.
      */
     public /*out*/ readonly overdueTime!: pulumi.Output<string>;
@@ -133,6 +137,7 @@ export class TransitRouter extends pulumi.CustomResource {
             resourceInputs["businessStatus"] = state ? state.businessStatus : undefined;
             resourceInputs["creationTime"] = state ? state.creationTime : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["grantStatus"] = state ? state.grantStatus : undefined;
             resourceInputs["overdueTime"] = state ? state.overdueTime : undefined;
             resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
@@ -151,6 +156,7 @@ export class TransitRouter extends pulumi.CustomResource {
             resourceInputs["accountId"] = undefined /*out*/;
             resourceInputs["businessStatus"] = undefined /*out*/;
             resourceInputs["creationTime"] = undefined /*out*/;
+            resourceInputs["grantStatus"] = undefined /*out*/;
             resourceInputs["overdueTime"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["transitRouterAttachments"] = undefined /*out*/;
@@ -186,6 +192,10 @@ export interface TransitRouterState {
      * The description of the transit router.
      */
     description?: pulumi.Input<string>;
+    /**
+     * The grant status of the transit router.
+     */
+    grantStatus?: pulumi.Input<string>;
     /**
      * The overdue time.
      */

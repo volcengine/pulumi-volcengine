@@ -18,12 +18,21 @@ namespace Pulumi.Volcengine.Rds_mssql.Inputs
         [Input("autoRenew")]
         public Input<bool>? AutoRenew { get; set; }
 
+        /// <summary>
+        /// Charge end time.
+        /// </summary>
         [Input("chargeEndTime")]
         public Input<string>? ChargeEndTime { get; set; }
 
+        /// <summary>
+        /// Charge start time.
+        /// </summary>
         [Input("chargeStartTime")]
         public Input<string>? ChargeStartTime { get; set; }
 
+        /// <summary>
+        /// The charge status.
+        /// </summary>
         [Input("chargeStatus")]
         public Input<string>? ChargeStatus { get; set; }
 
@@ -33,9 +42,15 @@ namespace Pulumi.Volcengine.Rds_mssql.Inputs
         [Input("chargeType", required: true)]
         public Input<string> ChargeType { get; set; } = null!;
 
+        /// <summary>
+        /// Expected release time when overdue fees are shut down.
+        /// </summary>
         [Input("overdueReclaimTime")]
         public Input<string>? OverdueReclaimTime { get; set; }
 
+        /// <summary>
+        /// Time for Disconnection due to Unpaid Fees.
+        /// </summary>
         [Input("overdueTime")]
         public Input<string>? OverdueTime { get; set; }
 

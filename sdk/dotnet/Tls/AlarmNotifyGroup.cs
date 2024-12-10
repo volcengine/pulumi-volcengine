@@ -57,7 +57,7 @@ namespace Pulumi.Volcengine.Tls
     /// tls alarm notify group can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:tls/alarmNotifyGroup:AlarmNotifyGroup default fa************
+    /// $ pulumi import volcengine:tls/alarmNotifyGroup:AlarmNotifyGroup default fa************
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:tls/alarmNotifyGroup:AlarmNotifyGroup")]

@@ -34,7 +34,7 @@ import (
 //			_, err = nas.NewFileSystem(ctx, "fooFileSystem", &nas.FileSystemArgs{
 //				FileSystemName: pulumi.String("acc-test-fs"),
 //				Description:    pulumi.String("acc-test"),
-//				ZoneId:         *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:         pulumi.String(fooZones.Zones[0].Id),
 //				Capacity:       pulumi.Int(103),
 //				ProjectName:    pulumi.String("default"),
 //				Tags: nas.FileSystemTagArray{
@@ -58,9 +58,7 @@ import (
 // NasFileSystem can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:nas/fileSystem:FileSystem default enas-cnbjd3879745****
-//
+// $ pulumi import volcengine:nas/fileSystem:FileSystem default enas-cnbjd3879745****
 // ```
 type FileSystem struct {
 	pulumi.CustomResourceState

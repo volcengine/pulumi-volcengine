@@ -71,7 +71,7 @@ import * as utilities from "../utilities";
  * ServerGroupServer can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:clb/serverGroupServer:ServerGroupServer default rsp-274xltv2*****8tlv3q3s:rs-3ciynux6i1x4w****rszh49sj
+ * $ pulumi import volcengine:clb/serverGroupServer:ServerGroupServer default rsp-274xltv2*****8tlv3q3s:rs-3ciynux6i1x4w****rszh49sj
  * ```
  */
 export class ServerGroupServer extends pulumi.CustomResource {

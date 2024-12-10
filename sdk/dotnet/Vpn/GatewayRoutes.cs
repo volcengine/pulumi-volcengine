@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Vpn
     {
         /// <summary>
         /// Use this data source to query detailed information of vpn gateway routes
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -108,17 +106,13 @@ namespace Pulumi.Volcengine.Vpn
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GatewayRoutesResult> InvokeAsync(GatewayRoutesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GatewayRoutesResult>("volcengine:vpn/gatewayRoutes:GatewayRoutes", args ?? new GatewayRoutesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of vpn gateway routes
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -211,8 +205,6 @@ namespace Pulumi.Volcengine.Vpn
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GatewayRoutesResult> Invoke(GatewayRoutesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GatewayRoutesResult>("volcengine:vpn/gatewayRoutes:GatewayRoutes", args ?? new GatewayRoutesInvokeArgs(), options.WithDefaults());
@@ -250,6 +242,18 @@ namespace Pulumi.Volcengine.Vpn
         /// </summary>
         [Input("outputFile")]
         public string? OutputFile { get; set; }
+
+        /// <summary>
+        /// The type of the VPN gateway route. Valid values: `Static`, `BGP`, `Cloud`.
+        /// </summary>
+        [Input("routeType")]
+        public string? RouteType { get; set; }
+
+        /// <summary>
+        /// The status of the VPN gateway route.
+        /// </summary>
+        [Input("status")]
+        public string? Status { get; set; }
 
         /// <summary>
         /// An ID of VPN gateway.
@@ -296,6 +300,18 @@ namespace Pulumi.Volcengine.Vpn
         public Input<string>? OutputFile { get; set; }
 
         /// <summary>
+        /// The type of the VPN gateway route. Valid values: `Static`, `BGP`, `Cloud`.
+        /// </summary>
+        [Input("routeType")]
+        public Input<string>? RouteType { get; set; }
+
+        /// <summary>
+        /// The status of the VPN gateway route.
+        /// </summary>
+        [Input("status")]
+        public Input<string>? Status { get; set; }
+
+        /// <summary>
         /// An ID of VPN gateway.
         /// </summary>
         [Input("vpnGatewayId")]
@@ -325,6 +341,11 @@ namespace Pulumi.Volcengine.Vpn
         /// </summary>
         public readonly string? NextHopId;
         public readonly string? OutputFile;
+        public readonly string? RouteType;
+        /// <summary>
+        /// The status of the VPN gateway route.
+        /// </summary>
+        public readonly string? Status;
         /// <summary>
         /// The total count of VPN gateway route query.
         /// </summary>
@@ -350,6 +371,10 @@ namespace Pulumi.Volcengine.Vpn
 
             string? outputFile,
 
+            string? routeType,
+
+            string? status,
+
             int totalCount,
 
             string? vpnGatewayId,
@@ -361,6 +386,8 @@ namespace Pulumi.Volcengine.Vpn
             Ids = ids;
             NextHopId = nextHopId;
             OutputFile = outputFile;
+            RouteType = routeType;
+            Status = status;
             TotalCount = totalCount;
             VpnGatewayId = vpnGatewayId;
             VpnGatewayRoutes = vpnGatewayRoutes;

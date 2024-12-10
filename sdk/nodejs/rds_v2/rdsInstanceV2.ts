@@ -57,7 +57,7 @@ import * as utilities from "../utilities";
  * RDS Instance can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:rds_v2/rdsInstanceV2:RdsInstanceV2 default mysql-42b38c769c4b
+ * $ pulumi import volcengine:rds_v2/rdsInstanceV2:RdsInstanceV2 default mysql-42b38c769c4b
  * ```
  */
 export class RdsInstanceV2 extends pulumi.CustomResource {
@@ -119,7 +119,7 @@ export class RdsInstanceV2 extends pulumi.CustomResource {
     /**
      * The field instanceType is no longer support. The type of Instance.
      *
-     * @deprecated The field instance_type is no longer support.
+     * @deprecated The field instanceType is no longer support.
      */
     public readonly instanceType!: pulumi.Output<string>;
     /**
@@ -261,7 +261,7 @@ export interface RdsInstanceV2State {
     /**
      * The field instanceType is no longer support. The type of Instance.
      *
-     * @deprecated The field instance_type is no longer support.
+     * @deprecated The field instanceType is no longer support.
      */
     instanceType?: pulumi.Input<string>;
     /**
@@ -333,7 +333,7 @@ export interface RdsInstanceV2Args {
     /**
      * The field instanceType is no longer support. The type of Instance.
      *
-     * @deprecated The field instance_type is no longer support.
+     * @deprecated The field instanceType is no longer support.
      */
     instanceType?: pulumi.Input<string>;
     /**

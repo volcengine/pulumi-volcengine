@@ -150,7 +150,7 @@ class UserGroup(pulumi.CustomResource):
         IamUserGroup can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:iam/userGroup:UserGroup default user_group_name
+        $ pulumi import volcengine:iam/userGroup:UserGroup default user_group_name
         ```
 
         :param str resource_name: The name of the resource.
@@ -184,7 +184,7 @@ class UserGroup(pulumi.CustomResource):
         IamUserGroup can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:iam/userGroup:UserGroup default user_group_name
+        $ pulumi import volcengine:iam/userGroup:UserGroup default user_group_name
         ```
 
         :param str resource_name: The name of the resource.

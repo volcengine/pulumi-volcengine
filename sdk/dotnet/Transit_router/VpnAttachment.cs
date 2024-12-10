@@ -27,32 +27,6 @@ namespace Pulumi.Volcengine.Transit_router
     ///         Description = "test-tf-acc",
     ///     });
     /// 
-    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
-    /// 
-    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
-    ///     {
-    ///         VpcName = "acc-test-vpc",
-    ///         CidrBlock = "172.16.0.0/16",
-    ///     });
-    /// 
-    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
-    ///     {
-    ///         SubnetName = "acc-test-subnet",
-    ///         CidrBlock = "172.16.0.0/24",
-    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
-    ///         VpcId = fooVpc.Id,
-    ///     });
-    /// 
-    ///     var fooGateway = new Volcengine.Vpn.Gateway("fooGateway", new()
-    ///     {
-    ///         VpcId = fooVpc.Id,
-    ///         SubnetId = fooSubnet.Id,
-    ///         Bandwidth = 20,
-    ///         VpnGatewayName = "acc-test",
-    ///         Description = "acc-test",
-    ///         Period = 2,
-    ///     });
-    /// 
     ///     var fooCustomerGateway = new Volcengine.Vpn.CustomerGateway("fooCustomerGateway", new()
     ///     {
     ///         IpAddress = "192.0.1.3",
@@ -65,7 +39,6 @@ namespace Pulumi.Volcengine.Transit_router
     ///         VpnConnectionName = "acc-tf-test",
     ///         Description = "acc-tf-test",
     ///         AttachType = "TransitRouter",
-    ///         VpnGatewayId = fooGateway.Id,
     ///         CustomerGatewayId = fooCustomerGateway.Id,
     ///         LocalSubnets = new[]
     ///         {
@@ -118,7 +91,7 @@ namespace Pulumi.Volcengine.Transit_router
     /// TransitRouterVpnAttachment can be imported using the transitRouterId:attachmentId, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:transit_router/vpnAttachment:VpnAttachment default tr-2d6fr7mzya2gw58ozfes5g2oh:tr-attach-7qthudw0ll6jmc****
+    /// $ pulumi import volcengine:transit_router/vpnAttachment:VpnAttachment default tr-2d6fr7mzya2gw58ozfes5g2oh:tr-attach-7qthudw0ll6jmc****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:transit_router/vpnAttachment:VpnAttachment")]

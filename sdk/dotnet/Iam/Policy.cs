@@ -36,7 +36,7 @@ namespace Pulumi.Volcengine.Iam
     /// Iam policy can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:iam/policy:Policy default TerraformTestPolicy
+    /// $ pulumi import volcengine:iam/policy:Policy default TerraformTestPolicy
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:iam/policy:Policy")]

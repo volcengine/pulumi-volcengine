@@ -25,7 +25,7 @@ import * as utilities from "../utilities";
  * Instance can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:veenedge/instance:Instance default veenn769ewmjjqyqh5dv
+ * $ pulumi import volcengine:veenedge/instance:Instance default veenn769ewmjjqyqh5dv
  * ```
  */
 export class Instance extends pulumi.CustomResource {

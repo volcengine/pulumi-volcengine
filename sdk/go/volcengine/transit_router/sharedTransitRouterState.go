@@ -21,12 +21,21 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine"
 //	"github.com/volcengine/pulumi-volcengine/sdk/go/volcengine/transit_router"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := volcengine.NewProvider(ctx, "secondAccount", &volcengine.ProviderArgs{
+//				AccessKey: pulumi.String("access_key_2"),
+//				SecretKey: pulumi.String("secret_key_2"),
+//				Region:    pulumi.String("region_2"),
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			fooTransitRouter, err := transit_router.NewTransitRouter(ctx, "fooTransitRouter", &transit_router.TransitRouterArgs{
 //				TransitRouterName: pulumi.String("acc-test-tr"),
 //				Description:       pulumi.String("acc-test"),
@@ -34,10 +43,18 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			_, err = transit_router.NewGrantRule(ctx, "fooGrantRule", &transit_router.GrantRuleArgs{
+//				GrantAccountId:  pulumi.String("2000xxxxx"),
+//				Description:     pulumi.String("acc-test-tf"),
+//				TransitRouterId: fooTransitRouter.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
 //			_, err = transit_router.NewSharedTransitRouterState(ctx, "fooSharedTransitRouterState", &transit_router.SharedTransitRouterStateArgs{
 //				TransitRouterId: fooTransitRouter.ID(),
-//				Action:          pulumi.String("Reject"),
-//			})
+//				Action:          pulumi.String("Accept"),
+//			}, pulumi.Provider(volcengine.Second_account))
 //			if err != nil {
 //				return err
 //			}
@@ -52,14 +69,12 @@ import (
 // SharedTransitRouterState can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:transit_router/sharedTransitRouterState:SharedTransitRouterState default state:transitRouterId
-//
+// $ pulumi import volcengine:transit_router/sharedTransitRouterState:SharedTransitRouterState default state:transitRouterId
 // ```
 type SharedTransitRouterState struct {
 	pulumi.CustomResourceState
 
-	// `Accept` or `Reject` the shared transit router.
+	// `Accept` or `Reject` the shared transit router. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	Action pulumi.StringOutput `pulumi:"action"`
 	// The id of the transit router.
 	TransitRouterId pulumi.StringOutput `pulumi:"transitRouterId"`
@@ -101,14 +116,14 @@ func GetSharedTransitRouterState(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SharedTransitRouterState resources.
 type sharedTransitRouterStateState struct {
-	// `Accept` or `Reject` the shared transit router.
+	// `Accept` or `Reject` the shared transit router. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	Action *string `pulumi:"action"`
 	// The id of the transit router.
 	TransitRouterId *string `pulumi:"transitRouterId"`
 }
 
 type SharedTransitRouterStateState struct {
-	// `Accept` or `Reject` the shared transit router.
+	// `Accept` or `Reject` the shared transit router. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	Action pulumi.StringPtrInput
 	// The id of the transit router.
 	TransitRouterId pulumi.StringPtrInput
@@ -119,7 +134,7 @@ func (SharedTransitRouterStateState) ElementType() reflect.Type {
 }
 
 type sharedTransitRouterStateArgs struct {
-	// `Accept` or `Reject` the shared transit router.
+	// `Accept` or `Reject` the shared transit router. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	Action string `pulumi:"action"`
 	// The id of the transit router.
 	TransitRouterId string `pulumi:"transitRouterId"`
@@ -127,7 +142,7 @@ type sharedTransitRouterStateArgs struct {
 
 // The set of arguments for constructing a SharedTransitRouterState resource.
 type SharedTransitRouterStateArgs struct {
-	// `Accept` or `Reject` the shared transit router.
+	// `Accept` or `Reject` the shared transit router. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	Action pulumi.StringInput
 	// The id of the transit router.
 	TransitRouterId pulumi.StringInput
@@ -220,7 +235,7 @@ func (o SharedTransitRouterStateOutput) ToSharedTransitRouterStateOutputWithCont
 	return o
 }
 
-// `Accept` or `Reject` the shared transit router.
+// `Accept` or `Reject` the shared transit router. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 func (o SharedTransitRouterStateOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v *SharedTransitRouterState) pulumi.StringOutput { return v.Action }).(pulumi.StringOutput)
 }

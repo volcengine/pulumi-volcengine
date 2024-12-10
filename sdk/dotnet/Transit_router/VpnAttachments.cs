@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Transit_router
     {
         /// <summary>
         /// Use this data source to query detailed information of transit router vpn attachments
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -36,17 +34,13 @@ namespace Pulumi.Volcengine.Transit_router
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<VpnAttachmentsResult> InvokeAsync(VpnAttachmentsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<VpnAttachmentsResult>("volcengine:transit_router/vpnAttachments:VpnAttachments", args ?? new VpnAttachmentsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of transit router vpn attachments
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -67,8 +61,6 @@ namespace Pulumi.Volcengine.Transit_router
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<VpnAttachmentsResult> Invoke(VpnAttachmentsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<VpnAttachmentsResult>("volcengine:transit_router/vpnAttachments:VpnAttachments", args ?? new VpnAttachmentsInvokeArgs(), options.WithDefaults());

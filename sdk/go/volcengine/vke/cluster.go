@@ -101,9 +101,7 @@ import (
 // VkeCluster can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:vke/cluster:Cluster default cc9l74mvqtofjnoj5****
-//
+// $ pulumi import volcengine:vke/cluster:Cluster default cc9l74mvqtofjnoj5****
 // ```
 type Cluster struct {
 	pulumi.CustomResourceState

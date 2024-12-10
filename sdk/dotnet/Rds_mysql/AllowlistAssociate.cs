@@ -92,7 +92,7 @@ namespace Pulumi.Volcengine.Rds_mysql
     /// RDS AllowList Associate can be imported using the instance id and allow list id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:rds_mysql/allowlistAssociate:AllowlistAssociate default rds-mysql-h441603c68aaa:acl-d1fd76693bd54e658912e7337d5b****
+    /// $ pulumi import volcengine:rds_mysql/allowlistAssociate:AllowlistAssociate default rds-mysql-h441603c68aaa:acl-d1fd76693bd54e658912e7337d5b****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:rds_mysql/allowlistAssociate:AllowlistAssociate")]

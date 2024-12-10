@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Tls
     {
         /// <summary>
         /// Use this data source to query detailed information of tls topics
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -33,17 +31,13 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<TopicsResult> InvokeAsync(TopicsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<TopicsResult>("volcengine:tls/topics:Topics", args ?? new TopicsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of tls topics
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -61,8 +55,6 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<TopicsResult> Invoke(TopicsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<TopicsResult>("volcengine:tls/topics:Topics", args ?? new TopicsInvokeArgs(), options.WithDefaults());

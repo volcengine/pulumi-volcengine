@@ -60,7 +60,7 @@ import * as utilities from "../utilities";
  * mongodb allow list associate can be imported using the instanceId:allowListId, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:mongodb/mongoAllowListAssociate:MongoAllowListAssociate default mongo-replica-e405f8e2****:acl-d1fd76693bd54e658912e7337d5b****
+ * $ pulumi import volcengine:mongodb/mongoAllowListAssociate:MongoAllowListAssociate default mongo-replica-e405f8e2****:acl-d1fd76693bd54e658912e7337d5b****
  * ```
  */
 export class MongoAllowListAssociate extends pulumi.CustomResource {

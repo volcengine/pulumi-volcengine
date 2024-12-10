@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Cen
     {
         /// <summary>
         /// Use this data source to query detailed information of cen service route entries
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -95,17 +93,13 @@ namespace Pulumi.Volcengine.Cen
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<ServiceRouteEntriesResult> InvokeAsync(ServiceRouteEntriesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ServiceRouteEntriesResult>("volcengine:cen/serviceRouteEntries:ServiceRouteEntries", args ?? new ServiceRouteEntriesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cen service route entries
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -185,8 +179,6 @@ namespace Pulumi.Volcengine.Cen
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<ServiceRouteEntriesResult> Invoke(ServiceRouteEntriesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ServiceRouteEntriesResult>("volcengine:cen/serviceRouteEntries:ServiceRouteEntries", args ?? new ServiceRouteEntriesInvokeArgs(), options.WithDefaults());

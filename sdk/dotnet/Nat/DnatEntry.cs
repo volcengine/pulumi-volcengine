@@ -82,7 +82,7 @@ namespace Pulumi.Volcengine.Nat
     ///         Protocol = "tcp",
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
     ///             fooAssociate,
     ///         },
@@ -96,7 +96,7 @@ namespace Pulumi.Volcengine.Nat
     /// Dnat entry can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:nat/dnatEntry:DnatEntry default dnat-3fvhk47kf56****
+    /// $ pulumi import volcengine:nat/dnatEntry:DnatEntry default dnat-3fvhk47kf56****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:nat/dnatEntry:DnatEntry")]

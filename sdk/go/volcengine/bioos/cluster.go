@@ -46,14 +46,12 @@ import (
 // Cluster can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:bioos/cluster:Cluster default *****
-//
+// $ pulumi import volcengine:bioos/cluster:Cluster default *****
 // ```
 type Cluster struct {
 	pulumi.CustomResourceState
 
-	// The id of the vke cluster.
+	// The id of the bioos cluster.
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
 	// The description of the cluster.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
@@ -95,7 +93,7 @@ func GetCluster(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Cluster resources.
 type clusterState struct {
-	// The id of the vke cluster.
+	// The id of the bioos cluster.
 	ClusterId *string `pulumi:"clusterId"`
 	// The description of the cluster.
 	Description *string `pulumi:"description"`
@@ -108,7 +106,7 @@ type clusterState struct {
 }
 
 type ClusterState struct {
-	// The id of the vke cluster.
+	// The id of the bioos cluster.
 	ClusterId pulumi.StringPtrInput
 	// The description of the cluster.
 	Description pulumi.StringPtrInput
@@ -234,7 +232,7 @@ func (o ClusterOutput) ToClusterOutputWithContext(ctx context.Context) ClusterOu
 	return o
 }
 
-// The id of the vke cluster.
+// The id of the bioos cluster.
 func (o ClusterOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.ClusterId }).(pulumi.StringOutput)
 }

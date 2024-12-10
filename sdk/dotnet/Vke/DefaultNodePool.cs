@@ -178,7 +178,7 @@ namespace Pulumi.Volcengine.Vke
     /// VKE default node can be imported using the node id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:vke/defaultNodePool:DefaultNodePool default nc5t5epmrsf****
+    /// $ pulumi import volcengine:vke/defaultNodePool:DefaultNodePool default nc5t5epmrsf****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:vke/defaultNodePool:DefaultNodePool")]

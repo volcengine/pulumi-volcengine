@@ -45,7 +45,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -93,9 +93,7 @@ import (
 // ScalingGroup can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:autoscaling/scalingGroup:ScalingGroup default scg-mizl7m1kqccg5smt1bdpijuj
-//
+// $ pulumi import volcengine:autoscaling/scalingGroup:ScalingGroup default scg-mizl7m1kqccg5smt1bdpijuj
 // ```
 type ScalingGroup struct {
 	pulumi.CustomResourceState

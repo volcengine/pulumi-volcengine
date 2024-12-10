@@ -61,9 +61,7 @@ import (
 // RDS Instance can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:rds/parameterTemplate:ParameterTemplate default mysql-sys-80bb93aa14be22d0
-//
+// $ pulumi import volcengine:rds/parameterTemplate:ParameterTemplate default mysql-sys-80bb93aa14be22d0
 // ```
 type ParameterTemplate struct {
 	pulumi.CustomResourceState

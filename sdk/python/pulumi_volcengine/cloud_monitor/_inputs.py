@@ -272,6 +272,7 @@ class RuleConditionArgs:
         :param pulumi.Input[str] metric_unit: The metric unit of the cloud monitor rule.
         :param pulumi.Input[str] statistics: The statistics of the cloud monitor rule. Valid values: `avg`, `max`, `min`.
         :param pulumi.Input[str] threshold: The threshold of the cloud monitor rule.
+        :param pulumi.Input[str] period: The period of the cloud monitor rule.
         """
         pulumi.set(__self__, "comparison_operator", comparison_operator)
         pulumi.set(__self__, "metric_name", metric_name)
@@ -344,6 +345,9 @@ class RuleConditionArgs:
     @property
     @pulumi.getter
     def period(self) -> Optional[pulumi.Input[str]]:
+        """
+        The period of the cloud monitor rule.
+        """
         return pulumi.get(self, "period")
 
     @period.setter

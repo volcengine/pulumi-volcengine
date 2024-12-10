@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Vpn
     {
         /// <summary>
         /// Use this data source to query detailed information of ssl vpn client certs
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -88,17 +86,13 @@ namespace Pulumi.Volcengine.Vpn
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<SslVpnClientCertsResult> InvokeAsync(SslVpnClientCertsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<SslVpnClientCertsResult>("volcengine:vpn/sslVpnClientCerts:SslVpnClientCerts", args ?? new SslVpnClientCertsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of ssl vpn client certs
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -171,8 +165,6 @@ namespace Pulumi.Volcengine.Vpn
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<SslVpnClientCertsResult> Invoke(SslVpnClientCertsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<SslVpnClientCertsResult>("volcengine:vpn/sslVpnClientCerts:SslVpnClientCerts", args ?? new SslVpnClientCertsInvokeArgs(), options.WithDefaults());

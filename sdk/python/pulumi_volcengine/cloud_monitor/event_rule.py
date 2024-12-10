@@ -510,7 +510,7 @@ class EventRule(pulumi.CustomResource):
         CloudMonitorEventRule can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:cloud_monitor/eventRule:EventRule default rule_id
+        $ pulumi import volcengine:cloud_monitor/eventRule:EventRule default rule_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -587,7 +587,7 @@ class EventRule(pulumi.CustomResource):
         CloudMonitorEventRule can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:cloud_monitor/eventRule:EventRule default rule_id
+        $ pulumi import volcengine:cloud_monitor/eventRule:EventRule default rule_id
         ```
 
         :param str resource_name: The name of the resource.

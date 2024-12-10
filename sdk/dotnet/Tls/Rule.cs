@@ -157,7 +157,7 @@ namespace Pulumi.Volcengine.Tls
     /// tls rule can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:tls/rule:Rule default fa************
+    /// $ pulumi import volcengine:tls/rule:Rule default fa************
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:tls/rule:Rule")]

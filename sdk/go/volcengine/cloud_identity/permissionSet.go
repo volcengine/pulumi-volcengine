@@ -60,9 +60,7 @@ import (
 // CloudIdentityPermissionSet can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:cloud_identity/permissionSet:PermissionSet default resource_id
-//
+// $ pulumi import volcengine:cloud_identity/permissionSet:PermissionSet default resource_id
 // ```
 type PermissionSet struct {
 	pulumi.CustomResourceState

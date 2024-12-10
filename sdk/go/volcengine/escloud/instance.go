@@ -44,7 +44,7 @@ import (
 //				SubnetName:  pulumi.String("acc-test-subnet_new"),
 //				Description: pulumi.String("tfdesc"),
 //				CidrBlock:   pulumi.String("172.16.0.0/24"),
-//				ZoneId:      *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:      pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:       fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -101,9 +101,7 @@ import (
 // ESCloud Instance can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:escloud/instance:Instance default n769ewmjjqyqh5dv
-//
+// $ pulumi import volcengine:escloud/instance:Instance default n769ewmjjqyqh5dv
 // ```
 type Instance struct {
 	pulumi.CustomResourceState

@@ -46,9 +46,7 @@ import (
 // Database can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:rds/database:Database default mysql-42b38c769c4b:dbname
-//
+// $ pulumi import volcengine:rds/database:Database default mysql-42b38c769c4b:dbname
 // ```
 type Database struct {
 	pulumi.CustomResourceState

@@ -37,7 +37,7 @@ namespace Pulumi.Volcengine.Cloud_identity
     /// CloudIdentityGroup can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:cloud_identity/group:Group default resource_id
+    /// $ pulumi import volcengine:cloud_identity/group:Group default resource_id
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:cloud_identity/group:Group")]

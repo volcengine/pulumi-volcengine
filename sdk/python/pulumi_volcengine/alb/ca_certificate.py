@@ -282,7 +282,7 @@ class CACertificate(pulumi.CustomResource):
         AlbCaCertificate can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:alb/cACertificate:CACertificate default cert-*****
+        $ pulumi import volcengine:alb/cACertificate:CACertificate default cert-*****
         ```
 
         :param str resource_name: The name of the resource.
@@ -320,7 +320,7 @@ class CACertificate(pulumi.CustomResource):
         AlbCaCertificate can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:alb/cACertificate:CACertificate default cert-*****
+        $ pulumi import volcengine:alb/cACertificate:CACertificate default cert-*****
         ```
 
         :param str resource_name: The name of the resource.

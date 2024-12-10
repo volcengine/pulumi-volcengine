@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Cen
     {
         /// <summary>
         /// Use this data source to query detailed information of cen inter region bandwidths
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -75,7 +73,7 @@ namespace Pulumi.Volcengine.Cen
         ///         Bandwidth = 2,
         ///     }, new CustomResourceOptions
         ///     {
-        ///         DependsOn = new[]
+        ///         DependsOn =
         ///         {
         ///             fooBandwidthPackageAssociate,
         ///         },
@@ -91,17 +89,13 @@ namespace Pulumi.Volcengine.Cen
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<InterRegionBandwidthsResult> InvokeAsync(InterRegionBandwidthsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<InterRegionBandwidthsResult>("volcengine:cen/interRegionBandwidths:InterRegionBandwidths", args ?? new InterRegionBandwidthsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of cen inter region bandwidths
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -161,7 +155,7 @@ namespace Pulumi.Volcengine.Cen
         ///         Bandwidth = 2,
         ///     }, new CustomResourceOptions
         ///     {
-        ///         DependsOn = new[]
+        ///         DependsOn =
         ///         {
         ///             fooBandwidthPackageAssociate,
         ///         },
@@ -177,8 +171,6 @@ namespace Pulumi.Volcengine.Cen
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<InterRegionBandwidthsResult> Invoke(InterRegionBandwidthsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<InterRegionBandwidthsResult>("volcengine:cen/interRegionBandwidths:InterRegionBandwidths", args ?? new InterRegionBandwidthsInvokeArgs(), options.WithDefaults());

@@ -50,7 +50,7 @@ namespace Pulumi.Volcengine.Transit_router
     /// transit router route table can be imported using the router id and route table id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:transit_router/routeTable:RouteTable default tr-2ff4v69tkxji859gp684cm14e:tr-rtb-hy13n2l4c6c0v****
+    /// $ pulumi import volcengine:transit_router/routeTable:RouteTable default tr-2ff4v69tkxji859gp684cm14e:tr-rtb-hy13n2l4c6c0v****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:transit_router/routeTable:RouteTable")]

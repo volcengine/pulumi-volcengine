@@ -27,14 +27,14 @@ class SecurityGroupRuleArgs:
         """
         The set of arguments for constructing a SecurityGroupRule resource.
         :param pulumi.Input[str] direction: Direction of rule, ingress (inbound) or egress (outbound).
-        :param pulumi.Input[int] port_end: Port end of egress/ingress Rule.
-        :param pulumi.Input[int] port_start: Port start of egress/ingress Rule.
+        :param pulumi.Input[int] port_end: Port end of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
+        :param pulumi.Input[int] port_start: Port start of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
         :param pulumi.Input[str] protocol: Protocol of the SecurityGroup, the value can be `tcp` or `udp` or `icmp` or `all` or `icmpv6`.
         :param pulumi.Input[str] security_group_id: Id of SecurityGroup.
         :param pulumi.Input[str] cidr_ip: Cidr ip of egress/ingress Rule.
         :param pulumi.Input[str] description: description of a egress rule.
-        :param pulumi.Input[str] policy: Access strategy.
-        :param pulumi.Input[int] priority: Priority of a security group rule.
+        :param pulumi.Input[str] policy: Access strategy. Valid values: `accept`, `drop`. Default is `accept`.
+        :param pulumi.Input[int] priority: Priority of a security group rule. Valid value range: 1~100. Default is 1.
         :param pulumi.Input[str] source_group_id: ID of the source security group whose access permission you want to set.
         """
         pulumi.set(__self__, "direction", direction)
@@ -69,7 +69,7 @@ class SecurityGroupRuleArgs:
     @pulumi.getter(name="portEnd")
     def port_end(self) -> pulumi.Input[int]:
         """
-        Port end of egress/ingress Rule.
+        Port end of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
         """
         return pulumi.get(self, "port_end")
 
@@ -81,7 +81,7 @@ class SecurityGroupRuleArgs:
     @pulumi.getter(name="portStart")
     def port_start(self) -> pulumi.Input[int]:
         """
-        Port start of egress/ingress Rule.
+        Port start of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
         """
         return pulumi.get(self, "port_start")
 
@@ -141,7 +141,7 @@ class SecurityGroupRuleArgs:
     @pulumi.getter
     def policy(self) -> Optional[pulumi.Input[str]]:
         """
-        Access strategy.
+        Access strategy. Valid values: `accept`, `drop`. Default is `accept`.
         """
         return pulumi.get(self, "policy")
 
@@ -153,7 +153,7 @@ class SecurityGroupRuleArgs:
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[int]]:
         """
-        Priority of a security group rule.
+        Priority of a security group rule. Valid value range: 1~100. Default is 1.
         """
         return pulumi.get(self, "priority")
 
@@ -193,10 +193,10 @@ class _SecurityGroupRuleState:
         :param pulumi.Input[str] cidr_ip: Cidr ip of egress/ingress Rule.
         :param pulumi.Input[str] description: description of a egress rule.
         :param pulumi.Input[str] direction: Direction of rule, ingress (inbound) or egress (outbound).
-        :param pulumi.Input[str] policy: Access strategy.
-        :param pulumi.Input[int] port_end: Port end of egress/ingress Rule.
-        :param pulumi.Input[int] port_start: Port start of egress/ingress Rule.
-        :param pulumi.Input[int] priority: Priority of a security group rule.
+        :param pulumi.Input[str] policy: Access strategy. Valid values: `accept`, `drop`. Default is `accept`.
+        :param pulumi.Input[int] port_end: Port end of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
+        :param pulumi.Input[int] port_start: Port start of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
+        :param pulumi.Input[int] priority: Priority of a security group rule. Valid value range: 1~100. Default is 1.
         :param pulumi.Input[str] protocol: Protocol of the SecurityGroup, the value can be `tcp` or `udp` or `icmp` or `all` or `icmpv6`.
         :param pulumi.Input[str] security_group_id: Id of SecurityGroup.
         :param pulumi.Input[str] source_group_id: ID of the source security group whose access permission you want to set.
@@ -265,7 +265,7 @@ class _SecurityGroupRuleState:
     @pulumi.getter
     def policy(self) -> Optional[pulumi.Input[str]]:
         """
-        Access strategy.
+        Access strategy. Valid values: `accept`, `drop`. Default is `accept`.
         """
         return pulumi.get(self, "policy")
 
@@ -277,7 +277,7 @@ class _SecurityGroupRuleState:
     @pulumi.getter(name="portEnd")
     def port_end(self) -> Optional[pulumi.Input[int]]:
         """
-        Port end of egress/ingress Rule.
+        Port end of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
         """
         return pulumi.get(self, "port_end")
 
@@ -289,7 +289,7 @@ class _SecurityGroupRuleState:
     @pulumi.getter(name="portStart")
     def port_start(self) -> Optional[pulumi.Input[int]]:
         """
-        Port start of egress/ingress Rule.
+        Port start of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
         """
         return pulumi.get(self, "port_start")
 
@@ -301,7 +301,7 @@ class _SecurityGroupRuleState:
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[int]]:
         """
-        Priority of a security group rule.
+        Priority of a security group rule. Valid value range: 1~100. Default is 1.
         """
         return pulumi.get(self, "priority")
 
@@ -432,7 +432,7 @@ class SecurityGroupRule(pulumi.CustomResource):
         SecurityGroupRule can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vpc/securityGroupRule:SecurityGroupRule default ID is a string concatenated with colons(SecurityGroupId:Protocol:PortStart:PortEnd:CidrIp:SourceGroupId:Direction:Policy:Priority)
+        $ pulumi import volcengine:vpc/securityGroupRule:SecurityGroupRule default ID is a string concatenated with colons(SecurityGroupId:Protocol:PortStart:PortEnd:CidrIp:SourceGroupId:Direction:Policy:Priority)
         ```
 
         :param str resource_name: The name of the resource.
@@ -440,10 +440,10 @@ class SecurityGroupRule(pulumi.CustomResource):
         :param pulumi.Input[str] cidr_ip: Cidr ip of egress/ingress Rule.
         :param pulumi.Input[str] description: description of a egress rule.
         :param pulumi.Input[str] direction: Direction of rule, ingress (inbound) or egress (outbound).
-        :param pulumi.Input[str] policy: Access strategy.
-        :param pulumi.Input[int] port_end: Port end of egress/ingress Rule.
-        :param pulumi.Input[int] port_start: Port start of egress/ingress Rule.
-        :param pulumi.Input[int] priority: Priority of a security group rule.
+        :param pulumi.Input[str] policy: Access strategy. Valid values: `accept`, `drop`. Default is `accept`.
+        :param pulumi.Input[int] port_end: Port end of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
+        :param pulumi.Input[int] port_start: Port start of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
+        :param pulumi.Input[int] priority: Priority of a security group rule. Valid value range: 1~100. Default is 1.
         :param pulumi.Input[str] protocol: Protocol of the SecurityGroup, the value can be `tcp` or `udp` or `icmp` or `all` or `icmpv6`.
         :param pulumi.Input[str] security_group_id: Id of SecurityGroup.
         :param pulumi.Input[str] source_group_id: ID of the source security group whose access permission you want to set.
@@ -512,7 +512,7 @@ class SecurityGroupRule(pulumi.CustomResource):
         SecurityGroupRule can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vpc/securityGroupRule:SecurityGroupRule default ID is a string concatenated with colons(SecurityGroupId:Protocol:PortStart:PortEnd:CidrIp:SourceGroupId:Direction:Policy:Priority)
+        $ pulumi import volcengine:vpc/securityGroupRule:SecurityGroupRule default ID is a string concatenated with colons(SecurityGroupId:Protocol:PortStart:PortEnd:CidrIp:SourceGroupId:Direction:Policy:Priority)
         ```
 
         :param str resource_name: The name of the resource.
@@ -601,10 +601,10 @@ class SecurityGroupRule(pulumi.CustomResource):
         :param pulumi.Input[str] cidr_ip: Cidr ip of egress/ingress Rule.
         :param pulumi.Input[str] description: description of a egress rule.
         :param pulumi.Input[str] direction: Direction of rule, ingress (inbound) or egress (outbound).
-        :param pulumi.Input[str] policy: Access strategy.
-        :param pulumi.Input[int] port_end: Port end of egress/ingress Rule.
-        :param pulumi.Input[int] port_start: Port start of egress/ingress Rule.
-        :param pulumi.Input[int] priority: Priority of a security group rule.
+        :param pulumi.Input[str] policy: Access strategy. Valid values: `accept`, `drop`. Default is `accept`.
+        :param pulumi.Input[int] port_end: Port end of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
+        :param pulumi.Input[int] port_start: Port start of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
+        :param pulumi.Input[int] priority: Priority of a security group rule. Valid value range: 1~100. Default is 1.
         :param pulumi.Input[str] protocol: Protocol of the SecurityGroup, the value can be `tcp` or `udp` or `icmp` or `all` or `icmpv6`.
         :param pulumi.Input[str] security_group_id: Id of SecurityGroup.
         :param pulumi.Input[str] source_group_id: ID of the source security group whose access permission you want to set.
@@ -655,7 +655,7 @@ class SecurityGroupRule(pulumi.CustomResource):
     @pulumi.getter
     def policy(self) -> pulumi.Output[Optional[str]]:
         """
-        Access strategy.
+        Access strategy. Valid values: `accept`, `drop`. Default is `accept`.
         """
         return pulumi.get(self, "policy")
 
@@ -663,7 +663,7 @@ class SecurityGroupRule(pulumi.CustomResource):
     @pulumi.getter(name="portEnd")
     def port_end(self) -> pulumi.Output[int]:
         """
-        Port end of egress/ingress Rule.
+        Port end of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
         """
         return pulumi.get(self, "port_end")
 
@@ -671,7 +671,7 @@ class SecurityGroupRule(pulumi.CustomResource):
     @pulumi.getter(name="portStart")
     def port_start(self) -> pulumi.Output[int]:
         """
-        Port start of egress/ingress Rule.
+        Port start of egress/ingress Rule. When the `protocol` is `tcp` or `udp`, the valid value range is 1~65535. When the `protocol` is `icmp` or `all` or `icmpv6`, the valid value is -1, indicating no restriction on port values.
         """
         return pulumi.get(self, "port_start")
 
@@ -679,7 +679,7 @@ class SecurityGroupRule(pulumi.CustomResource):
     @pulumi.getter
     def priority(self) -> pulumi.Output[Optional[int]]:
         """
-        Priority of a security group rule.
+        Priority of a security group rule. Valid value range: 1~100. Default is 1.
         """
         return pulumi.get(self, "priority")
 

@@ -101,7 +101,7 @@ import * as utilities from "../utilities";
  * CLB can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:clb/clb:Clb default clb-273y2ok6ets007fap8txvf6us
+ * $ pulumi import volcengine:clb/clb:Clb default clb-273y2ok6ets007fap8txvf6us
  * ```
  */
 export class Clb extends pulumi.CustomResource {

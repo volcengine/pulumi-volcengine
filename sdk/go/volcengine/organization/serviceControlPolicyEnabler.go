@@ -41,9 +41,7 @@ import (
 // ServiceControlPolicy enabler can be imported using the default_id (organization:service_control_policy_enable) , e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:organization/serviceControlPolicyEnabler:ServiceControlPolicyEnabler default organization:service_control_policy_enable
-//
+// $ pulumi import volcengine:organization/serviceControlPolicyEnabler:ServiceControlPolicyEnabler default organization:service_control_policy_enable
 // ```
 type ServiceControlPolicyEnabler struct {
 	pulumi.CustomResourceState

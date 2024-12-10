@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Ecs
     {
         /// <summary>
         /// Use this data source to query detailed information of ecs launch templates
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -51,17 +49,13 @@ namespace Pulumi.Volcengine.Ecs
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<LaunchTemplatesResult> InvokeAsync(LaunchTemplatesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<LaunchTemplatesResult>("volcengine:ecs/launchTemplates:LaunchTemplates", args ?? new LaunchTemplatesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of ecs launch templates
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -97,8 +91,6 @@ namespace Pulumi.Volcengine.Ecs
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<LaunchTemplatesResult> Invoke(LaunchTemplatesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<LaunchTemplatesResult>("volcengine:ecs/launchTemplates:LaunchTemplates", args ?? new LaunchTemplatesInvokeArgs(), options.WithDefaults());

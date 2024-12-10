@@ -497,7 +497,7 @@ class Vpc(pulumi.CustomResource):
         VPC can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vpc/vpc:Vpc default vpc-mizl7m1kqccg5smt1bdpijuj
+        $ pulumi import volcengine:vpc/vpc:Vpc default vpc-mizl7m1kqccg5smt1bdpijuj
         ```
 
         :param str resource_name: The name of the resource.
@@ -540,7 +540,7 @@ class Vpc(pulumi.CustomResource):
         VPC can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vpc/vpc:Vpc default vpc-mizl7m1kqccg5smt1bdpijuj
+        $ pulumi import volcengine:vpc/vpc:Vpc default vpc-mizl7m1kqccg5smt1bdpijuj
         ```
 
         :param str resource_name: The name of the resource.

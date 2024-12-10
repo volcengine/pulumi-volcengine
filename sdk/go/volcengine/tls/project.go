@@ -52,9 +52,7 @@ import (
 // Tls Project can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:tls/project:Project default e020c978-4f05-40e1-9167-0113d3ef****
-//
+// $ pulumi import volcengine:tls/project:Project default e020c978-4f05-40e1-9167-0113d3ef****
 // ```
 type Project struct {
 	pulumi.CustomResourceState

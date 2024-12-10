@@ -54,9 +54,7 @@ import (
 // RDS Instance can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:rds/instance:Instance default mysql-42b38c769c4b
-//
+// $ pulumi import volcengine:rds/instance:Instance default mysql-42b38c769c4b
 // ```
 type Instance struct {
 	pulumi.CustomResourceState
@@ -130,7 +128,7 @@ type Instance struct {
 	// The length needs to be within 8~32 characters.
 	// Contains at least 3 of uppercase letters, lowercase letters, numbers or special characters.
 	//
-	// Deprecated: supper_account_password is deprecated, use super_account_password instead
+	// Deprecated: supper_account_password is deprecated, use superAccountPassword instead
 	SupperAccountPassword pulumi.StringPtrOutput `pulumi:"supperAccountPassword"`
 	// The purchase time of RDS instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	UsedTime pulumi.IntPtrOutput `pulumi:"usedTime"`
@@ -266,7 +264,7 @@ type instanceState struct {
 	// The length needs to be within 8~32 characters.
 	// Contains at least 3 of uppercase letters, lowercase letters, numbers or special characters.
 	//
-	// Deprecated: supper_account_password is deprecated, use super_account_password instead
+	// Deprecated: supper_account_password is deprecated, use superAccountPassword instead
 	SupperAccountPassword *string `pulumi:"supperAccountPassword"`
 	// The purchase time of RDS instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	UsedTime *int `pulumi:"usedTime"`
@@ -346,7 +344,7 @@ type InstanceState struct {
 	// The length needs to be within 8~32 characters.
 	// Contains at least 3 of uppercase letters, lowercase letters, numbers or special characters.
 	//
-	// Deprecated: supper_account_password is deprecated, use super_account_password instead
+	// Deprecated: supper_account_password is deprecated, use superAccountPassword instead
 	SupperAccountPassword pulumi.StringPtrInput
 	// The purchase time of RDS instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	UsedTime pulumi.IntPtrInput
@@ -428,7 +426,7 @@ type instanceArgs struct {
 	// The length needs to be within 8~32 characters.
 	// Contains at least 3 of uppercase letters, lowercase letters, numbers or special characters.
 	//
-	// Deprecated: supper_account_password is deprecated, use super_account_password instead
+	// Deprecated: supper_account_password is deprecated, use superAccountPassword instead
 	SupperAccountPassword *string `pulumi:"supperAccountPassword"`
 	// The purchase time of RDS instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	UsedTime *int `pulumi:"usedTime"`
@@ -507,7 +505,7 @@ type InstanceArgs struct {
 	// The length needs to be within 8~32 characters.
 	// Contains at least 3 of uppercase letters, lowercase letters, numbers or special characters.
 	//
-	// Deprecated: supper_account_password is deprecated, use super_account_password instead
+	// Deprecated: supper_account_password is deprecated, use superAccountPassword instead
 	SupperAccountPassword pulumi.StringPtrInput
 	// The purchase time of RDS instance. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
 	UsedTime pulumi.IntPtrInput
@@ -721,7 +719,7 @@ func (o InstanceOutput) SuperAccountPassword() pulumi.StringPtrOutput {
 // The length needs to be within 8~32 characters.
 // Contains at least 3 of uppercase letters, lowercase letters, numbers or special characters.
 //
-// Deprecated: supper_account_password is deprecated, use super_account_password instead
+// Deprecated: supper_account_password is deprecated, use superAccountPassword instead
 func (o InstanceOutput) SupperAccountPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.SupperAccountPassword }).(pulumi.StringPtrOutput)
 }

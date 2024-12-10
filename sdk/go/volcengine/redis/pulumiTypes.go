@@ -1426,6 +1426,106 @@ func (o BackupsBackupInstanceDetailVpcInfoArrayOutput) Index(i pulumi.IntInput) 
 	}).(BackupsBackupInstanceDetailVpcInfoOutput)
 }
 
+type InstanceConfigureNode struct {
+	// Set the availability zone to which the node belongs. The number of nodes of an instance (i.e., NodeNumber) and the availability zone deployment scheme (i.e., the value of the MultiAZ parameter) will affect the filling of the current parameter. Among them:
+	// When a new instance is a single-node instance (i.e., the value of NodeNumber is 1), only a single availability zone deployment scheme is allowed (i.e., the value of MultiAZ must be disabled). At this time, only one availability zone needs to be passed in AZ, and all nodes in the instance will be deployed in this availability zone. When creating a new instance as a primary-standby instance (that is, when the value of NodeNumber is greater than or equal to 2), the number of availability zones passed in must be equal to the number of nodes in a single shard (that is, the value of the NodeNumber parameter), and the value of AZ must comply with the multi-availability zone deployment scheme rules. The specific rules are as follows: If the primary-standby instance selects the multi-availability zone deployment scheme (that is, the value of MultiAZ is enabled), then at least two different availability zone IDs must be passed in in AZ, and the first availability zone is the availability zone where the primary node is located. If the primary and standby instances choose a single availability zone deployment scheme (that is, the value of MultiAZ is disabled), then the availability zones passed in for each node must be the same.
+	Az string `pulumi:"az"`
+}
+
+// InstanceConfigureNodeInput is an input type that accepts InstanceConfigureNodeArgs and InstanceConfigureNodeOutput values.
+// You can construct a concrete instance of `InstanceConfigureNodeInput` via:
+//
+//	InstanceConfigureNodeArgs{...}
+type InstanceConfigureNodeInput interface {
+	pulumi.Input
+
+	ToInstanceConfigureNodeOutput() InstanceConfigureNodeOutput
+	ToInstanceConfigureNodeOutputWithContext(context.Context) InstanceConfigureNodeOutput
+}
+
+type InstanceConfigureNodeArgs struct {
+	// Set the availability zone to which the node belongs. The number of nodes of an instance (i.e., NodeNumber) and the availability zone deployment scheme (i.e., the value of the MultiAZ parameter) will affect the filling of the current parameter. Among them:
+	// When a new instance is a single-node instance (i.e., the value of NodeNumber is 1), only a single availability zone deployment scheme is allowed (i.e., the value of MultiAZ must be disabled). At this time, only one availability zone needs to be passed in AZ, and all nodes in the instance will be deployed in this availability zone. When creating a new instance as a primary-standby instance (that is, when the value of NodeNumber is greater than or equal to 2), the number of availability zones passed in must be equal to the number of nodes in a single shard (that is, the value of the NodeNumber parameter), and the value of AZ must comply with the multi-availability zone deployment scheme rules. The specific rules are as follows: If the primary-standby instance selects the multi-availability zone deployment scheme (that is, the value of MultiAZ is enabled), then at least two different availability zone IDs must be passed in in AZ, and the first availability zone is the availability zone where the primary node is located. If the primary and standby instances choose a single availability zone deployment scheme (that is, the value of MultiAZ is disabled), then the availability zones passed in for each node must be the same.
+	Az pulumi.StringInput `pulumi:"az"`
+}
+
+func (InstanceConfigureNodeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceConfigureNode)(nil)).Elem()
+}
+
+func (i InstanceConfigureNodeArgs) ToInstanceConfigureNodeOutput() InstanceConfigureNodeOutput {
+	return i.ToInstanceConfigureNodeOutputWithContext(context.Background())
+}
+
+func (i InstanceConfigureNodeArgs) ToInstanceConfigureNodeOutputWithContext(ctx context.Context) InstanceConfigureNodeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceConfigureNodeOutput)
+}
+
+// InstanceConfigureNodeArrayInput is an input type that accepts InstanceConfigureNodeArray and InstanceConfigureNodeArrayOutput values.
+// You can construct a concrete instance of `InstanceConfigureNodeArrayInput` via:
+//
+//	InstanceConfigureNodeArray{ InstanceConfigureNodeArgs{...} }
+type InstanceConfigureNodeArrayInput interface {
+	pulumi.Input
+
+	ToInstanceConfigureNodeArrayOutput() InstanceConfigureNodeArrayOutput
+	ToInstanceConfigureNodeArrayOutputWithContext(context.Context) InstanceConfigureNodeArrayOutput
+}
+
+type InstanceConfigureNodeArray []InstanceConfigureNodeInput
+
+func (InstanceConfigureNodeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceConfigureNode)(nil)).Elem()
+}
+
+func (i InstanceConfigureNodeArray) ToInstanceConfigureNodeArrayOutput() InstanceConfigureNodeArrayOutput {
+	return i.ToInstanceConfigureNodeArrayOutputWithContext(context.Background())
+}
+
+func (i InstanceConfigureNodeArray) ToInstanceConfigureNodeArrayOutputWithContext(ctx context.Context) InstanceConfigureNodeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceConfigureNodeArrayOutput)
+}
+
+type InstanceConfigureNodeOutput struct{ *pulumi.OutputState }
+
+func (InstanceConfigureNodeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceConfigureNode)(nil)).Elem()
+}
+
+func (o InstanceConfigureNodeOutput) ToInstanceConfigureNodeOutput() InstanceConfigureNodeOutput {
+	return o
+}
+
+func (o InstanceConfigureNodeOutput) ToInstanceConfigureNodeOutputWithContext(ctx context.Context) InstanceConfigureNodeOutput {
+	return o
+}
+
+// Set the availability zone to which the node belongs. The number of nodes of an instance (i.e., NodeNumber) and the availability zone deployment scheme (i.e., the value of the MultiAZ parameter) will affect the filling of the current parameter. Among them:
+// When a new instance is a single-node instance (i.e., the value of NodeNumber is 1), only a single availability zone deployment scheme is allowed (i.e., the value of MultiAZ must be disabled). At this time, only one availability zone needs to be passed in AZ, and all nodes in the instance will be deployed in this availability zone. When creating a new instance as a primary-standby instance (that is, when the value of NodeNumber is greater than or equal to 2), the number of availability zones passed in must be equal to the number of nodes in a single shard (that is, the value of the NodeNumber parameter), and the value of AZ must comply with the multi-availability zone deployment scheme rules. The specific rules are as follows: If the primary-standby instance selects the multi-availability zone deployment scheme (that is, the value of MultiAZ is enabled), then at least two different availability zone IDs must be passed in in AZ, and the first availability zone is the availability zone where the primary node is located. If the primary and standby instances choose a single availability zone deployment scheme (that is, the value of MultiAZ is disabled), then the availability zones passed in for each node must be the same.
+func (o InstanceConfigureNodeOutput) Az() pulumi.StringOutput {
+	return o.ApplyT(func(v InstanceConfigureNode) string { return v.Az }).(pulumi.StringOutput)
+}
+
+type InstanceConfigureNodeArrayOutput struct{ *pulumi.OutputState }
+
+func (InstanceConfigureNodeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceConfigureNode)(nil)).Elem()
+}
+
+func (o InstanceConfigureNodeArrayOutput) ToInstanceConfigureNodeArrayOutput() InstanceConfigureNodeArrayOutput {
+	return o
+}
+
+func (o InstanceConfigureNodeArrayOutput) ToInstanceConfigureNodeArrayOutputWithContext(ctx context.Context) InstanceConfigureNodeArrayOutput {
+	return o
+}
+
+func (o InstanceConfigureNodeArrayOutput) Index(i pulumi.IntInput) InstanceConfigureNodeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstanceConfigureNode {
+		return vs[0].([]InstanceConfigureNode)[vs[1].(int)]
+	}).(InstanceConfigureNodeOutput)
+}
+
 type InstanceParamValue struct {
 	// The name of configuration parameter.
 	Name string `pulumi:"name"`
@@ -1645,6 +1745,8 @@ type InstancesInstance struct {
 	Capacity InstancesInstanceCapacity `pulumi:"capacity"`
 	// The charge type of redis instance to query. Valid values: `PostPaid`, `PrePaid`.
 	ChargeType string `pulumi:"chargeType"`
+	// Set the list of available zones to which the node belongs.
+	ConfigureNodes []InstancesInstanceConfigureNode `pulumi:"configureNodes"`
 	// The creation time of the redis instance.
 	CreateTime string `pulumi:"createTime"`
 	// whether enable deletion protection.
@@ -1661,6 +1763,12 @@ type InstancesInstance struct {
 	InstanceName string `pulumi:"instanceName"`
 	// The maintainable time of the redis instance.
 	MaintenanceTime string `pulumi:"maintenanceTime"`
+	// Set the availability zone deployment scheme for the instance. The value range is as follows:
+	// disabled: Single availability zone deployment scheme.
+	// enabled: Multi-availability zone deployment scheme.
+	// Description:
+	// When the newly created instance is a single-node instance (that is, when the value of NodeNumber is 1), only the single availability zone deployment scheme is allowed. At this time, the value of MultiAZ must be disabled.
+	MultiAz string `pulumi:"multiAz"`
 	// The list of redis instance node IDs.
 	NodeIds []string `pulumi:"nodeIds"`
 	// The number of nodes in each shard.
@@ -1711,6 +1819,8 @@ type InstancesInstanceArgs struct {
 	Capacity InstancesInstanceCapacityInput `pulumi:"capacity"`
 	// The charge type of redis instance to query. Valid values: `PostPaid`, `PrePaid`.
 	ChargeType pulumi.StringInput `pulumi:"chargeType"`
+	// Set the list of available zones to which the node belongs.
+	ConfigureNodes InstancesInstanceConfigureNodeArrayInput `pulumi:"configureNodes"`
 	// The creation time of the redis instance.
 	CreateTime pulumi.StringInput `pulumi:"createTime"`
 	// whether enable deletion protection.
@@ -1727,6 +1837,12 @@ type InstancesInstanceArgs struct {
 	InstanceName pulumi.StringInput `pulumi:"instanceName"`
 	// The maintainable time of the redis instance.
 	MaintenanceTime pulumi.StringInput `pulumi:"maintenanceTime"`
+	// Set the availability zone deployment scheme for the instance. The value range is as follows:
+	// disabled: Single availability zone deployment scheme.
+	// enabled: Multi-availability zone deployment scheme.
+	// Description:
+	// When the newly created instance is a single-node instance (that is, when the value of NodeNumber is 1), only the single availability zone deployment scheme is allowed. At this time, the value of MultiAZ must be disabled.
+	MultiAz pulumi.StringInput `pulumi:"multiAz"`
 	// The list of redis instance node IDs.
 	NodeIds pulumi.StringArrayInput `pulumi:"nodeIds"`
 	// The number of nodes in each shard.
@@ -1825,6 +1941,11 @@ func (o InstancesInstanceOutput) ChargeType() pulumi.StringOutput {
 	return o.ApplyT(func(v InstancesInstance) string { return v.ChargeType }).(pulumi.StringOutput)
 }
 
+// Set the list of available zones to which the node belongs.
+func (o InstancesInstanceOutput) ConfigureNodes() InstancesInstanceConfigureNodeArrayOutput {
+	return o.ApplyT(func(v InstancesInstance) []InstancesInstanceConfigureNode { return v.ConfigureNodes }).(InstancesInstanceConfigureNodeArrayOutput)
+}
+
 // The creation time of the redis instance.
 func (o InstancesInstanceOutput) CreateTime() pulumi.StringOutput {
 	return o.ApplyT(func(v InstancesInstance) string { return v.CreateTime }).(pulumi.StringOutput)
@@ -1863,6 +1984,15 @@ func (o InstancesInstanceOutput) InstanceName() pulumi.StringOutput {
 // The maintainable time of the redis instance.
 func (o InstancesInstanceOutput) MaintenanceTime() pulumi.StringOutput {
 	return o.ApplyT(func(v InstancesInstance) string { return v.MaintenanceTime }).(pulumi.StringOutput)
+}
+
+// Set the availability zone deployment scheme for the instance. The value range is as follows:
+// disabled: Single availability zone deployment scheme.
+// enabled: Multi-availability zone deployment scheme.
+// Description:
+// When the newly created instance is a single-node instance (that is, when the value of NodeNumber is 1), only the single availability zone deployment scheme is allowed. At this time, the value of MultiAZ must be disabled.
+func (o InstancesInstanceOutput) MultiAz() pulumi.StringOutput {
+	return o.ApplyT(func(v InstancesInstance) string { return v.MultiAz }).(pulumi.StringOutput)
 }
 
 // The list of redis instance node IDs.
@@ -2134,6 +2264,106 @@ func (o InstancesInstanceCapacityOutput) Total() pulumi.IntOutput {
 // The used memory capacity of the redis instance. Unit: MiB.
 func (o InstancesInstanceCapacityOutput) Used() pulumi.IntOutput {
 	return o.ApplyT(func(v InstancesInstanceCapacity) int { return v.Used }).(pulumi.IntOutput)
+}
+
+type InstancesInstanceConfigureNode struct {
+	// Set the availability zone to which the node belongs. The number of nodes of an instance (i.e., NodeNumber) and the availability zone deployment scheme (i.e., the value of the MultiAZ parameter) will affect the filling of the current parameter. Among them:
+	// When a new instance is a single-node instance (i.e., the value of NodeNumber is 1), only a single availability zone deployment scheme is allowed (i.e., the value of MultiAZ must be disabled). At this time, only one availability zone needs to be passed in AZ, and all nodes in the instance will be deployed in this availability zone. When creating a new instance as a primary-standby instance (that is, when the value of NodeNumber is greater than or equal to 2), the number of availability zones passed in must be equal to the number of nodes in a single shard (that is, the value of the NodeNumber parameter), and the value of AZ must comply with the multi-availability zone deployment scheme rules. The specific rules are as follows: If the primary-standby instance selects the multi-availability zone deployment scheme (that is, the value of MultiAZ is enabled), then at least two different availability zone IDs must be passed in in AZ, and the first availability zone is the availability zone where the primary node is located. If the primary and standby instances choose a single availability zone deployment scheme (that is, the value of MultiAZ is disabled), then the availability zones passed in for each node must be the same.
+	Az string `pulumi:"az"`
+}
+
+// InstancesInstanceConfigureNodeInput is an input type that accepts InstancesInstanceConfigureNodeArgs and InstancesInstanceConfigureNodeOutput values.
+// You can construct a concrete instance of `InstancesInstanceConfigureNodeInput` via:
+//
+//	InstancesInstanceConfigureNodeArgs{...}
+type InstancesInstanceConfigureNodeInput interface {
+	pulumi.Input
+
+	ToInstancesInstanceConfigureNodeOutput() InstancesInstanceConfigureNodeOutput
+	ToInstancesInstanceConfigureNodeOutputWithContext(context.Context) InstancesInstanceConfigureNodeOutput
+}
+
+type InstancesInstanceConfigureNodeArgs struct {
+	// Set the availability zone to which the node belongs. The number of nodes of an instance (i.e., NodeNumber) and the availability zone deployment scheme (i.e., the value of the MultiAZ parameter) will affect the filling of the current parameter. Among them:
+	// When a new instance is a single-node instance (i.e., the value of NodeNumber is 1), only a single availability zone deployment scheme is allowed (i.e., the value of MultiAZ must be disabled). At this time, only one availability zone needs to be passed in AZ, and all nodes in the instance will be deployed in this availability zone. When creating a new instance as a primary-standby instance (that is, when the value of NodeNumber is greater than or equal to 2), the number of availability zones passed in must be equal to the number of nodes in a single shard (that is, the value of the NodeNumber parameter), and the value of AZ must comply with the multi-availability zone deployment scheme rules. The specific rules are as follows: If the primary-standby instance selects the multi-availability zone deployment scheme (that is, the value of MultiAZ is enabled), then at least two different availability zone IDs must be passed in in AZ, and the first availability zone is the availability zone where the primary node is located. If the primary and standby instances choose a single availability zone deployment scheme (that is, the value of MultiAZ is disabled), then the availability zones passed in for each node must be the same.
+	Az pulumi.StringInput `pulumi:"az"`
+}
+
+func (InstancesInstanceConfigureNodeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstancesInstanceConfigureNode)(nil)).Elem()
+}
+
+func (i InstancesInstanceConfigureNodeArgs) ToInstancesInstanceConfigureNodeOutput() InstancesInstanceConfigureNodeOutput {
+	return i.ToInstancesInstanceConfigureNodeOutputWithContext(context.Background())
+}
+
+func (i InstancesInstanceConfigureNodeArgs) ToInstancesInstanceConfigureNodeOutputWithContext(ctx context.Context) InstancesInstanceConfigureNodeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstancesInstanceConfigureNodeOutput)
+}
+
+// InstancesInstanceConfigureNodeArrayInput is an input type that accepts InstancesInstanceConfigureNodeArray and InstancesInstanceConfigureNodeArrayOutput values.
+// You can construct a concrete instance of `InstancesInstanceConfigureNodeArrayInput` via:
+//
+//	InstancesInstanceConfigureNodeArray{ InstancesInstanceConfigureNodeArgs{...} }
+type InstancesInstanceConfigureNodeArrayInput interface {
+	pulumi.Input
+
+	ToInstancesInstanceConfigureNodeArrayOutput() InstancesInstanceConfigureNodeArrayOutput
+	ToInstancesInstanceConfigureNodeArrayOutputWithContext(context.Context) InstancesInstanceConfigureNodeArrayOutput
+}
+
+type InstancesInstanceConfigureNodeArray []InstancesInstanceConfigureNodeInput
+
+func (InstancesInstanceConfigureNodeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstancesInstanceConfigureNode)(nil)).Elem()
+}
+
+func (i InstancesInstanceConfigureNodeArray) ToInstancesInstanceConfigureNodeArrayOutput() InstancesInstanceConfigureNodeArrayOutput {
+	return i.ToInstancesInstanceConfigureNodeArrayOutputWithContext(context.Background())
+}
+
+func (i InstancesInstanceConfigureNodeArray) ToInstancesInstanceConfigureNodeArrayOutputWithContext(ctx context.Context) InstancesInstanceConfigureNodeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstancesInstanceConfigureNodeArrayOutput)
+}
+
+type InstancesInstanceConfigureNodeOutput struct{ *pulumi.OutputState }
+
+func (InstancesInstanceConfigureNodeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstancesInstanceConfigureNode)(nil)).Elem()
+}
+
+func (o InstancesInstanceConfigureNodeOutput) ToInstancesInstanceConfigureNodeOutput() InstancesInstanceConfigureNodeOutput {
+	return o
+}
+
+func (o InstancesInstanceConfigureNodeOutput) ToInstancesInstanceConfigureNodeOutputWithContext(ctx context.Context) InstancesInstanceConfigureNodeOutput {
+	return o
+}
+
+// Set the availability zone to which the node belongs. The number of nodes of an instance (i.e., NodeNumber) and the availability zone deployment scheme (i.e., the value of the MultiAZ parameter) will affect the filling of the current parameter. Among them:
+// When a new instance is a single-node instance (i.e., the value of NodeNumber is 1), only a single availability zone deployment scheme is allowed (i.e., the value of MultiAZ must be disabled). At this time, only one availability zone needs to be passed in AZ, and all nodes in the instance will be deployed in this availability zone. When creating a new instance as a primary-standby instance (that is, when the value of NodeNumber is greater than or equal to 2), the number of availability zones passed in must be equal to the number of nodes in a single shard (that is, the value of the NodeNumber parameter), and the value of AZ must comply with the multi-availability zone deployment scheme rules. The specific rules are as follows: If the primary-standby instance selects the multi-availability zone deployment scheme (that is, the value of MultiAZ is enabled), then at least two different availability zone IDs must be passed in in AZ, and the first availability zone is the availability zone where the primary node is located. If the primary and standby instances choose a single availability zone deployment scheme (that is, the value of MultiAZ is disabled), then the availability zones passed in for each node must be the same.
+func (o InstancesInstanceConfigureNodeOutput) Az() pulumi.StringOutput {
+	return o.ApplyT(func(v InstancesInstanceConfigureNode) string { return v.Az }).(pulumi.StringOutput)
+}
+
+type InstancesInstanceConfigureNodeArrayOutput struct{ *pulumi.OutputState }
+
+func (InstancesInstanceConfigureNodeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstancesInstanceConfigureNode)(nil)).Elem()
+}
+
+func (o InstancesInstanceConfigureNodeArrayOutput) ToInstancesInstanceConfigureNodeArrayOutput() InstancesInstanceConfigureNodeArrayOutput {
+	return o
+}
+
+func (o InstancesInstanceConfigureNodeArrayOutput) ToInstancesInstanceConfigureNodeArrayOutputWithContext(ctx context.Context) InstancesInstanceConfigureNodeArrayOutput {
+	return o
+}
+
+func (o InstancesInstanceConfigureNodeArrayOutput) Index(i pulumi.IntInput) InstancesInstanceConfigureNodeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstancesInstanceConfigureNode {
+		return vs[0].([]InstancesInstanceConfigureNode)[vs[1].(int)]
+	}).(InstancesInstanceConfigureNodeOutput)
 }
 
 type InstancesInstanceParam struct {
@@ -2535,6 +2765,10 @@ type InstancesInstanceVisitAddr struct {
 	EipId string `pulumi:"eipId"`
 	// The connection port.
 	Port string `pulumi:"port"`
+	// The ipv4 address of the connection address.
+	Vip string `pulumi:"vip"`
+	// The ipv6 address of the connection address.
+	VipV6 string `pulumi:"vipV6"`
 }
 
 // InstancesInstanceVisitAddrInput is an input type that accepts InstancesInstanceVisitAddrArgs and InstancesInstanceVisitAddrOutput values.
@@ -2557,6 +2791,10 @@ type InstancesInstanceVisitAddrArgs struct {
 	EipId pulumi.StringInput `pulumi:"eipId"`
 	// The connection port.
 	Port pulumi.StringInput `pulumi:"port"`
+	// The ipv4 address of the connection address.
+	Vip pulumi.StringInput `pulumi:"vip"`
+	// The ipv6 address of the connection address.
+	VipV6 pulumi.StringInput `pulumi:"vipV6"`
 }
 
 func (InstancesInstanceVisitAddrArgs) ElementType() reflect.Type {
@@ -2628,6 +2866,16 @@ func (o InstancesInstanceVisitAddrOutput) EipId() pulumi.StringOutput {
 // The connection port.
 func (o InstancesInstanceVisitAddrOutput) Port() pulumi.StringOutput {
 	return o.ApplyT(func(v InstancesInstanceVisitAddr) string { return v.Port }).(pulumi.StringOutput)
+}
+
+// The ipv4 address of the connection address.
+func (o InstancesInstanceVisitAddrOutput) Vip() pulumi.StringOutput {
+	return o.ApplyT(func(v InstancesInstanceVisitAddr) string { return v.Vip }).(pulumi.StringOutput)
+}
+
+// The ipv6 address of the connection address.
+func (o InstancesInstanceVisitAddrOutput) VipV6() pulumi.StringOutput {
+	return o.ApplyT(func(v InstancesInstanceVisitAddr) string { return v.VipV6 }).(pulumi.StringOutput)
 }
 
 type InstancesInstanceVisitAddrArrayOutput struct{ *pulumi.OutputState }
@@ -2757,9 +3005,12 @@ func (o InstancesTagArrayOutput) Index(i pulumi.IntInput) InstancesTagOutput {
 }
 
 type PitrTimeWindowsPeriod struct {
-	EndTime    string `pulumi:"endTime"`
+	// Recoverable end time (UTC time) supported when restoring data by point in time.
+	EndTime string `pulumi:"endTime"`
+	// The instance id.
 	InstanceId string `pulumi:"instanceId"`
-	StartTime  string `pulumi:"startTime"`
+	// The recoverable start time (in UTC time) supported when restoring data by point in time.
+	StartTime string `pulumi:"startTime"`
 }
 
 // PitrTimeWindowsPeriodInput is an input type that accepts PitrTimeWindowsPeriodArgs and PitrTimeWindowsPeriodOutput values.
@@ -2774,9 +3025,12 @@ type PitrTimeWindowsPeriodInput interface {
 }
 
 type PitrTimeWindowsPeriodArgs struct {
-	EndTime    pulumi.StringInput `pulumi:"endTime"`
+	// Recoverable end time (UTC time) supported when restoring data by point in time.
+	EndTime pulumi.StringInput `pulumi:"endTime"`
+	// The instance id.
 	InstanceId pulumi.StringInput `pulumi:"instanceId"`
-	StartTime  pulumi.StringInput `pulumi:"startTime"`
+	// The recoverable start time (in UTC time) supported when restoring data by point in time.
+	StartTime pulumi.StringInput `pulumi:"startTime"`
 }
 
 func (PitrTimeWindowsPeriodArgs) ElementType() reflect.Type {
@@ -2830,14 +3084,17 @@ func (o PitrTimeWindowsPeriodOutput) ToPitrTimeWindowsPeriodOutputWithContext(ct
 	return o
 }
 
+// Recoverable end time (UTC time) supported when restoring data by point in time.
 func (o PitrTimeWindowsPeriodOutput) EndTime() pulumi.StringOutput {
 	return o.ApplyT(func(v PitrTimeWindowsPeriod) string { return v.EndTime }).(pulumi.StringOutput)
 }
 
+// The instance id.
 func (o PitrTimeWindowsPeriodOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v PitrTimeWindowsPeriod) string { return v.InstanceId }).(pulumi.StringOutput)
 }
 
+// The recoverable start time (in UTC time) supported when restoring data by point in time.
 func (o PitrTimeWindowsPeriodOutput) StartTime() pulumi.StringOutput {
 	return o.ApplyT(func(v PitrTimeWindowsPeriod) string { return v.StartTime }).(pulumi.StringOutput)
 }
@@ -3102,6 +3359,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BackupsBackupInstanceDetailArrayInput)(nil)).Elem(), BackupsBackupInstanceDetailArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackupsBackupInstanceDetailVpcInfoInput)(nil)).Elem(), BackupsBackupInstanceDetailVpcInfoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackupsBackupInstanceDetailVpcInfoArrayInput)(nil)).Elem(), BackupsBackupInstanceDetailVpcInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceConfigureNodeInput)(nil)).Elem(), InstanceConfigureNodeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceConfigureNodeArrayInput)(nil)).Elem(), InstanceConfigureNodeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceParamValueInput)(nil)).Elem(), InstanceParamValueArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceParamValueArrayInput)(nil)).Elem(), InstanceParamValueArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTagInput)(nil)).Elem(), InstanceTagArgs{})
@@ -3110,6 +3369,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesInstanceArrayInput)(nil)).Elem(), InstancesInstanceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesInstanceBackupPlanInput)(nil)).Elem(), InstancesInstanceBackupPlanArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesInstanceCapacityInput)(nil)).Elem(), InstancesInstanceCapacityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstancesInstanceConfigureNodeInput)(nil)).Elem(), InstancesInstanceConfigureNodeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstancesInstanceConfigureNodeArrayInput)(nil)).Elem(), InstancesInstanceConfigureNodeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesInstanceParamInput)(nil)).Elem(), InstancesInstanceParamArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesInstanceParamArrayInput)(nil)).Elem(), InstancesInstanceParamArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancesInstanceParamOptionInput)(nil)).Elem(), InstancesInstanceParamOptionArgs{})
@@ -3144,6 +3405,8 @@ func init() {
 	pulumi.RegisterOutputType(BackupsBackupInstanceDetailArrayOutput{})
 	pulumi.RegisterOutputType(BackupsBackupInstanceDetailVpcInfoOutput{})
 	pulumi.RegisterOutputType(BackupsBackupInstanceDetailVpcInfoArrayOutput{})
+	pulumi.RegisterOutputType(InstanceConfigureNodeOutput{})
+	pulumi.RegisterOutputType(InstanceConfigureNodeArrayOutput{})
 	pulumi.RegisterOutputType(InstanceParamValueOutput{})
 	pulumi.RegisterOutputType(InstanceParamValueArrayOutput{})
 	pulumi.RegisterOutputType(InstanceTagOutput{})
@@ -3152,6 +3415,8 @@ func init() {
 	pulumi.RegisterOutputType(InstancesInstanceArrayOutput{})
 	pulumi.RegisterOutputType(InstancesInstanceBackupPlanOutput{})
 	pulumi.RegisterOutputType(InstancesInstanceCapacityOutput{})
+	pulumi.RegisterOutputType(InstancesInstanceConfigureNodeOutput{})
+	pulumi.RegisterOutputType(InstancesInstanceConfigureNodeArrayOutput{})
 	pulumi.RegisterOutputType(InstancesInstanceParamOutput{})
 	pulumi.RegisterOutputType(InstancesInstanceParamArrayOutput{})
 	pulumi.RegisterOutputType(InstancesInstanceParamOptionOutput{})

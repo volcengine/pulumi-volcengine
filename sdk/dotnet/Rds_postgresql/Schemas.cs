@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Rds_postgresql
     {
         /// <summary>
         /// Use this data source to query detailed information of rds postgresql schemas
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -120,17 +118,13 @@ namespace Pulumi.Volcengine.Rds_postgresql
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<SchemasResult> InvokeAsync(SchemasArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<SchemasResult>("volcengine:rds_postgresql/schemas:Schemas", args ?? new SchemasArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of rds postgresql schemas
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -235,8 +229,6 @@ namespace Pulumi.Volcengine.Rds_postgresql
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<SchemasResult> Invoke(SchemasInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<SchemasResult>("volcengine:rds_postgresql/schemas:Schemas", args ?? new SchemasInvokeArgs(), options.WithDefaults());

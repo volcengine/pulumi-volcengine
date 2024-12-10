@@ -23,7 +23,7 @@ import * as utilities from "../utilities";
  * CR endpoints can be imported using the endpoint:registryName, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:cr/endpoint:Endpoint default endpoint:cr-basic
+ * $ pulumi import volcengine:cr/endpoint:Endpoint default endpoint:cr-basic
  * ```
  */
 export class Endpoint extends pulumi.CustomResource {

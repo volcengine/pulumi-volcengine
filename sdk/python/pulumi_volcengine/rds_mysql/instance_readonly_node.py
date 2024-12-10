@@ -195,7 +195,7 @@ class InstanceReadonlyNode(pulumi.CustomResource):
         Rds Mysql Instance Readonly Node can be imported using the instance_id:node_id, e.g.
 
         ```sh
-         $ pulumi import volcengine:rds_mysql/instanceReadonlyNode:InstanceReadonlyNode default mysql-72da4258c2c7:mysql-72da4258c2c7-r7f93
+        $ pulumi import volcengine:rds_mysql/instanceReadonlyNode:InstanceReadonlyNode default mysql-72da4258c2c7:mysql-72da4258c2c7-r7f93
         ```
 
         :param str resource_name: The name of the resource.
@@ -260,7 +260,7 @@ class InstanceReadonlyNode(pulumi.CustomResource):
         Rds Mysql Instance Readonly Node can be imported using the instance_id:node_id, e.g.
 
         ```sh
-         $ pulumi import volcengine:rds_mysql/instanceReadonlyNode:InstanceReadonlyNode default mysql-72da4258c2c7:mysql-72da4258c2c7-r7f93
+        $ pulumi import volcengine:rds_mysql/instanceReadonlyNode:InstanceReadonlyNode default mysql-72da4258c2c7:mysql-72da4258c2c7-r7f93
         ```
 
         :param str resource_name: The name of the resource.

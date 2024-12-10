@@ -79,7 +79,7 @@ namespace Pulumi.Volcengine.Nat
     ///         SourceCidr = "172.16.0.0/24",
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
     ///             fooAssociate,
     ///         },
@@ -93,7 +93,7 @@ namespace Pulumi.Volcengine.Nat
     /// Snat entry can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:nat/snatEntry:SnatEntry default snat-3fvhk47kf56****
+    /// $ pulumi import volcengine:nat/snatEntry:SnatEntry default snat-3fvhk47kf56****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:nat/snatEntry:SnatEntry")]

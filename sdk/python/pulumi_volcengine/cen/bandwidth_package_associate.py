@@ -137,7 +137,7 @@ class BandwidthPackageAssociate(pulumi.CustomResource):
         Cen bandwidth package associate can be imported using the CenBandwidthPackageId:CenId, e.g.
 
         ```sh
-         $ pulumi import volcengine:cen/bandwidthPackageAssociate:BandwidthPackageAssociate default cbp-4c2zaavbvh5fx****:cen-7qthudw0ll6jmc****
+        $ pulumi import volcengine:cen/bandwidthPackageAssociate:BandwidthPackageAssociate default cbp-4c2zaavbvh5fx****:cen-7qthudw0ll6jmc****
         ```
 
         :param str resource_name: The name of the resource.
@@ -191,7 +191,7 @@ class BandwidthPackageAssociate(pulumi.CustomResource):
         Cen bandwidth package associate can be imported using the CenBandwidthPackageId:CenId, e.g.
 
         ```sh
-         $ pulumi import volcengine:cen/bandwidthPackageAssociate:BandwidthPackageAssociate default cbp-4c2zaavbvh5fx****:cen-7qthudw0ll6jmc****
+        $ pulumi import volcengine:cen/bandwidthPackageAssociate:BandwidthPackageAssociate default cbp-4c2zaavbvh5fx****:cen-7qthudw0ll6jmc****
         ```
 
         :param str resource_name: The name of the resource.

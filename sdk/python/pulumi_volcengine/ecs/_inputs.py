@@ -10,6 +10,9 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
+    'ImageImportTagArgs',
+    'ImageTagArgs',
+    'ImagesTagArgs',
     'InstanceCpuOptionsArgs',
     'InstanceDataVolumeArgs',
     'InstanceGpuDeviceArgs',
@@ -19,6 +22,117 @@ __all__ = [
     'LaunchTemplateNetworkInterfaceArgs',
     'LaunchTemplateVolumeArgs',
 ]
+
+@pulumi.input_type
+class ImageImportTagArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ImageTagArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The Key of Tags.
+        :param pulumi.Input[str] value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class ImagesTagArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 value: str):
+        """
+        :param str key: The Key of Tags.
+        :param str value: The Value of Tags.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The Key of Tags.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        """
+        The Value of Tags.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: str):
+        pulumi.set(self, "value", value)
+
 
 @pulumi.input_type
 class InstanceCpuOptionsArgs:
@@ -192,7 +306,7 @@ class InstanceSecondaryNetworkInterfaceArgs:
         """
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: The security group ID set of secondary networkInterface.
         :param pulumi.Input[str] subnet_id: The subnet ID of secondary networkInterface.
-        :param pulumi.Input[str] primary_ip_address: The private ip address of primary networkInterface.
+        :param pulumi.Input[str] primary_ip_address: The private ip address of secondary networkInterface.
         """
         pulumi.set(__self__, "security_group_ids", security_group_ids)
         pulumi.set(__self__, "subnet_id", subnet_id)
@@ -227,7 +341,7 @@ class InstanceSecondaryNetworkInterfaceArgs:
     @pulumi.getter(name="primaryIpAddress")
     def primary_ip_address(self) -> Optional[pulumi.Input[str]]:
         """
-        The private ip address of primary networkInterface.
+        The private ip address of secondary networkInterface.
         """
         return pulumi.get(self, "primary_ip_address")
 

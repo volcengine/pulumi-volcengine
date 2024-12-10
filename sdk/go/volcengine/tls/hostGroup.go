@@ -48,9 +48,7 @@ import (
 // Tls Host Group can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:tls/hostGroup:HostGroup default edf052s21s*******dc15
-//
+// $ pulumi import volcengine:tls/hostGroup:HostGroup default edf052s21s*******dc15
 // ```
 type HostGroup struct {
 	pulumi.CustomResourceState
@@ -74,7 +72,7 @@ type HostGroup struct {
 	// The ip list of host group.
 	HostIpLists pulumi.StringArrayOutput `pulumi:"hostIpLists"`
 	// The project name of iam.
-	IamProjectName pulumi.StringPtrOutput `pulumi:"iamProjectName"`
+	IamProjectName pulumi.StringOutput `pulumi:"iamProjectName"`
 	// The modify time of host group.
 	ModifyTime pulumi.StringOutput `pulumi:"modifyTime"`
 	// The normal heartbeat status count of host.
@@ -374,8 +372,8 @@ func (o HostGroupOutput) HostIpLists() pulumi.StringArrayOutput {
 }
 
 // The project name of iam.
-func (o HostGroupOutput) IamProjectName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *HostGroup) pulumi.StringPtrOutput { return v.IamProjectName }).(pulumi.StringPtrOutput)
+func (o HostGroupOutput) IamProjectName() pulumi.StringOutput {
+	return o.ApplyT(func(v *HostGroup) pulumi.StringOutput { return v.IamProjectName }).(pulumi.StringOutput)
 }
 
 // The modify time of host group.

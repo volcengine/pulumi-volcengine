@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Ecs
     {
         /// <summary>
         /// Use this data source to query detailed information of ecs deployment sets
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -45,17 +43,13 @@ namespace Pulumi.Volcengine.Ecs
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<DeploymentSetsResult> InvokeAsync(DeploymentSetsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<DeploymentSetsResult>("volcengine:ecs/deploymentSets:DeploymentSets", args ?? new DeploymentSetsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of ecs deployment sets
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -85,8 +79,6 @@ namespace Pulumi.Volcengine.Ecs
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<DeploymentSetsResult> Invoke(DeploymentSetsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<DeploymentSetsResult>("volcengine:ecs/deploymentSets:DeploymentSets", args ?? new DeploymentSetsInvokeArgs(), options.WithDefaults());

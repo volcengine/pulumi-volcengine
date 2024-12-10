@@ -55,6 +55,14 @@ namespace Pulumi.Volcengine.Vpn.Outputs
         /// </summary>
         public readonly ImmutableArray<string> LocalSubnets;
         /// <summary>
+        /// The port of the ssl server.
+        /// </summary>
+        public readonly int Port;
+        /// <summary>
+        /// The project name of the ssl server.
+        /// </summary>
+        public readonly string ProjectName;
+        /// <summary>
         /// The protocol used by the SSL server. Valid values are `TCP`, `UDP`. Default Value: `UDP`.
         /// </summary>
         public readonly string Protocol;
@@ -97,6 +105,10 @@ namespace Pulumi.Volcengine.Vpn.Outputs
 
             ImmutableArray<string> localSubnets,
 
+            int port,
+
+            string projectName,
+
             string protocol,
 
             string sslVpnServerId,
@@ -117,6 +129,8 @@ namespace Pulumi.Volcengine.Vpn.Outputs
             Description = description;
             Id = id;
             LocalSubnets = localSubnets;
+            Port = port;
+            ProjectName = projectName;
             Protocol = protocol;
             SslVpnServerId = sslVpnServerId;
             SslVpnServerName = sslVpnServerName;

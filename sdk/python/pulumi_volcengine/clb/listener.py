@@ -50,7 +50,7 @@ class ListenerArgs:
         :param pulumi.Input[str] certificate_id: The certificate id associated with the listener.
         :param pulumi.Input[str] connection_drain_enabled: Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
                This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
-        :param pulumi.Input[int] connection_drain_timeout: The connection drain timeout of the Listener. Valid value range is `1-900`.
+        :param pulumi.Input[int] connection_drain_timeout: The connection drain timeout of the Listener. Valid value range is `0-900`.
                This filed is required when the value of field `connection_drain_enabled` is `on`.
         :param pulumi.Input[str] cookie: The name of the cookie for session persistence configured on the backend server. When PersistenceType is configured as `server`, this parameter is required. When PersistenceType is configured as any other value, this parameter is not effective.
         :param pulumi.Input[str] description: The description of the Listener.
@@ -229,7 +229,7 @@ class ListenerArgs:
     @pulumi.getter(name="connectionDrainTimeout")
     def connection_drain_timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        The connection drain timeout of the Listener. Valid value range is `1-900`.
+        The connection drain timeout of the Listener. Valid value range is `0-900`.
         This filed is required when the value of field `connection_drain_enabled` is `on`.
         """
         return pulumi.get(self, "connection_drain_timeout")
@@ -395,7 +395,7 @@ class _ListenerState:
         :param pulumi.Input[str] certificate_id: The certificate id associated with the listener.
         :param pulumi.Input[str] connection_drain_enabled: Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
                This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
-        :param pulumi.Input[int] connection_drain_timeout: The connection drain timeout of the Listener. Valid value range is `1-900`.
+        :param pulumi.Input[int] connection_drain_timeout: The connection drain timeout of the Listener. Valid value range is `0-900`.
                This filed is required when the value of field `connection_drain_enabled` is `on`.
         :param pulumi.Input[str] cookie: The name of the cookie for session persistence configured on the backend server. When PersistenceType is configured as `server`, this parameter is required. When PersistenceType is configured as any other value, this parameter is not effective.
         :param pulumi.Input[str] description: The description of the Listener.
@@ -537,7 +537,7 @@ class _ListenerState:
     @pulumi.getter(name="connectionDrainTimeout")
     def connection_drain_timeout(self) -> Optional[pulumi.Input[int]]:
         """
-        The connection drain timeout of the Listener. Valid value range is `1-900`.
+        The connection drain timeout of the Listener. Valid value range is `0-900`.
         This filed is required when the value of field `connection_drain_enabled` is `on`.
         """
         return pulumi.get(self, "connection_drain_timeout")
@@ -826,7 +826,7 @@ class Listener(pulumi.CustomResource):
         Listener can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:clb/listener:Listener default lsn-273yv0mhs5xj47fap8sehiiso
+        $ pulumi import volcengine:clb/listener:Listener default lsn-273yv0mhs5xj47fap8sehiiso
         ```
 
         :param str resource_name: The name of the resource.
@@ -838,7 +838,7 @@ class Listener(pulumi.CustomResource):
         :param pulumi.Input[str] certificate_id: The certificate id associated with the listener.
         :param pulumi.Input[str] connection_drain_enabled: Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
                This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
-        :param pulumi.Input[int] connection_drain_timeout: The connection drain timeout of the Listener. Valid value range is `1-900`.
+        :param pulumi.Input[int] connection_drain_timeout: The connection drain timeout of the Listener. Valid value range is `0-900`.
                This filed is required when the value of field `connection_drain_enabled` is `on`.
         :param pulumi.Input[str] cookie: The name of the cookie for session persistence configured on the backend server. When PersistenceType is configured as `server`, this parameter is required. When PersistenceType is configured as any other value, this parameter is not effective.
         :param pulumi.Input[str] description: The description of the Listener.
@@ -933,7 +933,7 @@ class Listener(pulumi.CustomResource):
         Listener can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:clb/listener:Listener default lsn-273yv0mhs5xj47fap8sehiiso
+        $ pulumi import volcengine:clb/listener:Listener default lsn-273yv0mhs5xj47fap8sehiiso
         ```
 
         :param str resource_name: The name of the resource.
@@ -1057,7 +1057,7 @@ class Listener(pulumi.CustomResource):
         :param pulumi.Input[str] certificate_id: The certificate id associated with the listener.
         :param pulumi.Input[str] connection_drain_enabled: Whether to enable connection drain of the Listener. Valid values: `off`, `on`. Default is `off`.
                This filed is valid only when the value of field `protocol` is `TCP` or `UDP`.
-        :param pulumi.Input[int] connection_drain_timeout: The connection drain timeout of the Listener. Valid value range is `1-900`.
+        :param pulumi.Input[int] connection_drain_timeout: The connection drain timeout of the Listener. Valid value range is `0-900`.
                This filed is required when the value of field `connection_drain_enabled` is `on`.
         :param pulumi.Input[str] cookie: The name of the cookie for session persistence configured on the backend server. When PersistenceType is configured as `server`, this parameter is required. When PersistenceType is configured as any other value, this parameter is not effective.
         :param pulumi.Input[str] description: The description of the Listener.
@@ -1158,7 +1158,7 @@ class Listener(pulumi.CustomResource):
     @pulumi.getter(name="connectionDrainTimeout")
     def connection_drain_timeout(self) -> pulumi.Output[int]:
         """
-        The connection drain timeout of the Listener. Valid value range is `1-900`.
+        The connection drain timeout of the Listener. Valid value range is `0-900`.
         This filed is required when the value of field `connection_drain_enabled` is `on`.
         """
         return pulumi.get(self, "connection_drain_timeout")

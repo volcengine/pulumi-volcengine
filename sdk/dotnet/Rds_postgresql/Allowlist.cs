@@ -41,7 +41,7 @@ namespace Pulumi.Volcengine.Rds_postgresql
     /// RdsPostgresqlAllowlist can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:rds_postgresql/allowlist:Allowlist default resource_id
+    /// $ pulumi import volcengine:rds_postgresql/allowlist:Allowlist default resource_id
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:rds_postgresql/allowlist:Allowlist")]

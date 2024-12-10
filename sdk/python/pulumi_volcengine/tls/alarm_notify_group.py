@@ -217,7 +217,7 @@ class AlarmNotifyGroup(pulumi.CustomResource):
         tls alarm notify group can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:tls/alarmNotifyGroup:AlarmNotifyGroup default fa************
+        $ pulumi import volcengine:tls/alarmNotifyGroup:AlarmNotifyGroup default fa************
         ```
 
         :param str resource_name: The name of the resource.
@@ -264,7 +264,7 @@ class AlarmNotifyGroup(pulumi.CustomResource):
         tls alarm notify group can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:tls/alarmNotifyGroup:AlarmNotifyGroup default fa************
+        $ pulumi import volcengine:tls/alarmNotifyGroup:AlarmNotifyGroup default fa************
         ```
 
         :param str resource_name: The name of the resource.

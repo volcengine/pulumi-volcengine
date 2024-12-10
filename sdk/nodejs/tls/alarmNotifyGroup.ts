@@ -36,7 +36,7 @@ import * as utilities from "../utilities";
  * tls alarm notify group can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:tls/alarmNotifyGroup:AlarmNotifyGroup default fa************
+ * $ pulumi import volcengine:tls/alarmNotifyGroup:AlarmNotifyGroup default fa************
  * ```
  */
 export class AlarmNotifyGroup extends pulumi.CustomResource {

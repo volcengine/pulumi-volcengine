@@ -43,7 +43,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-subnet-test-2"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -52,8 +52,8 @@ import (
 //			fooInstance, err := rds_postgresql.NewInstance(ctx, "fooInstance", &rds_postgresql.InstanceArgs{
 //				DbEngineVersion: pulumi.String("PostgreSQL_12"),
 //				NodeSpec:        pulumi.String("rds.postgres.1c2g"),
-//				PrimaryZoneId:   *pulumi.String(fooZones.Zones[0].Id),
-//				SecondaryZoneId: *pulumi.String(fooZones.Zones[0].Id),
+//				PrimaryZoneId:   pulumi.String(fooZones.Zones[0].Id),
+//				SecondaryZoneId: pulumi.String(fooZones.Zones[0].Id),
 //				StorageSpace:    pulumi.Int(40),
 //				SubnetId:        fooSubnet.ID(),
 //				InstanceName:    pulumi.String("acc-test-1"),
@@ -84,7 +84,7 @@ import (
 //			_, err = rds_postgresql.NewInstanceReadonlyNode(ctx, "fooInstanceReadonlyNode", &rds_postgresql.InstanceReadonlyNodeArgs{
 //				InstanceId: fooInstance.ID(),
 //				NodeSpec:   pulumi.String("rds.postgres.1c2g"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //			})
 //			if err != nil {
 //				return err
@@ -100,9 +100,7 @@ import (
 // RdsPostgresqlInstanceReadonlyNode can be imported using the instance_id:node_id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:rds_postgresql/instanceReadonlyNode:InstanceReadonlyNode default postgres-21a3333b****:postgres-ca7b7019****
-//
+// $ pulumi import volcengine:rds_postgresql/instanceReadonlyNode:InstanceReadonlyNode default postgres-21a3333b****:postgres-ca7b7019****
 // ```
 type InstanceReadonlyNode struct {
 	pulumi.CustomResourceState

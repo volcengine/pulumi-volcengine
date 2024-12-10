@@ -161,7 +161,7 @@ def projects(iam_project_name: Optional[str] = None,
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.projects(project_id="e020c978-4f05-40e1-9167-0113d3ef****")
+    default = volcengine.tls.projects()
     ```
 
 
@@ -214,7 +214,7 @@ def projects_output(iam_project_name: Optional[pulumi.Input[Optional[str]]] = No
     import pulumi
     import pulumi_volcengine as volcengine
 
-    default = volcengine.tls.projects(project_id="e020c978-4f05-40e1-9167-0113d3ef****")
+    default = volcengine.tls.projects()
     ```
 
 

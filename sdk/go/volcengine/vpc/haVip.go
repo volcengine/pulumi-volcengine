@@ -43,7 +43,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -82,9 +82,7 @@ import (
 // HaVip can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:vpc/haVip:HaVip default havip-2byzv8icq1b7k2dx0eegb****
-//
+// $ pulumi import volcengine:vpc/haVip:HaVip default havip-2byzv8icq1b7k2dx0eegb****
 // ```
 type HaVip struct {
 	pulumi.CustomResourceState

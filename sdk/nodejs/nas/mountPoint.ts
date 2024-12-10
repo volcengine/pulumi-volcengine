@@ -6,13 +6,12 @@ import * as utilities from "../utilities";
 
 /**
  * Provides a resource to manage nas mount point
- *
  * ## Import
  *
  * Nas Mount Point can be imported using the file system id and mount point id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:nas/mountPoint:MountPoint default enas-cnbj18bcb923****:mount-a6ee****
+ * $ pulumi import volcengine:nas/mountPoint:MountPoint default enas-cnbj18bcb923****:mount-a6ee****
  * ```
  */
 export class MountPoint extends pulumi.CustomResource {

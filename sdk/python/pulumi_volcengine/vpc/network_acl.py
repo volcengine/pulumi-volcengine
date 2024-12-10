@@ -21,7 +21,8 @@ class NetworkAclArgs:
                  egress_acl_entries: Optional[pulumi.Input[Sequence[pulumi.Input['NetworkAclEgressAclEntryArgs']]]] = None,
                  ingress_acl_entries: Optional[pulumi.Input[Sequence[pulumi.Input['NetworkAclIngressAclEntryArgs']]]] = None,
                  network_acl_name: Optional[pulumi.Input[str]] = None,
-                 project_name: Optional[pulumi.Input[str]] = None):
+                 project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['NetworkAclTagArgs']]]] = None):
         """
         The set of arguments for constructing a NetworkAcl resource.
         :param pulumi.Input[str] vpc_id: The vpc id of Network Acl.
@@ -30,6 +31,7 @@ class NetworkAclArgs:
         :param pulumi.Input[Sequence[pulumi.Input['NetworkAclIngressAclEntryArgs']]] ingress_acl_entries: The ingress entries of Network Acl.
         :param pulumi.Input[str] network_acl_name: The name of Network Acl.
         :param pulumi.Input[str] project_name: The project name of the network acl.
+        :param pulumi.Input[Sequence[pulumi.Input['NetworkAclTagArgs']]] tags: Tags.
         """
         pulumi.set(__self__, "vpc_id", vpc_id)
         if description is not None:
@@ -42,6 +44,8 @@ class NetworkAclArgs:
             pulumi.set(__self__, "network_acl_name", network_acl_name)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="vpcId")
@@ -115,6 +119,18 @@ class NetworkAclArgs:
     def project_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "project_name", value)
 
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NetworkAclTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NetworkAclTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _NetworkAclState:
@@ -124,6 +140,7 @@ class _NetworkAclState:
                  ingress_acl_entries: Optional[pulumi.Input[Sequence[pulumi.Input['NetworkAclIngressAclEntryArgs']]]] = None,
                  network_acl_name: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['NetworkAclTagArgs']]]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering NetworkAcl resources.
@@ -132,6 +149,7 @@ class _NetworkAclState:
         :param pulumi.Input[Sequence[pulumi.Input['NetworkAclIngressAclEntryArgs']]] ingress_acl_entries: The ingress entries of Network Acl.
         :param pulumi.Input[str] network_acl_name: The name of Network Acl.
         :param pulumi.Input[str] project_name: The project name of the network acl.
+        :param pulumi.Input[Sequence[pulumi.Input['NetworkAclTagArgs']]] tags: Tags.
         :param pulumi.Input[str] vpc_id: The vpc id of Network Acl.
         """
         if description is not None:
@@ -144,6 +162,8 @@ class _NetworkAclState:
             pulumi.set(__self__, "network_acl_name", network_acl_name)
         if project_name is not None:
             pulumi.set(__self__, "project_name", project_name)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if vpc_id is not None:
             pulumi.set(__self__, "vpc_id", vpc_id)
 
@@ -208,6 +228,18 @@ class _NetworkAclState:
         pulumi.set(self, "project_name", value)
 
     @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['NetworkAclTagArgs']]]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['NetworkAclTagArgs']]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -230,6 +262,7 @@ class NetworkAcl(pulumi.CustomResource):
                  ingress_acl_entries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NetworkAclIngressAclEntryArgs']]]]] = None,
                  network_acl_name: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NetworkAclTagArgs']]]]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -240,13 +273,12 @@ class NetworkAcl(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.vpc.NetworkAcl("foo",
-            egress_acl_entries=[volcengine.vpc.NetworkAclEgressAclEntryArgs(
-                destination_cidr_ip="192.168.0.0/16",
-                network_acl_entry_name="egress2",
-                policy="accept",
-                protocol="all",
-            )],
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_network_acl = volcengine.vpc.NetworkAcl("fooNetworkAcl",
+            vpc_id=foo_vpc.id,
+            network_acl_name="tf-test-acl",
             ingress_acl_entries=[
                 volcengine.vpc.NetworkAclIngressAclEntryArgs(
                     network_acl_entry_name="ingress1",
@@ -257,14 +289,22 @@ class NetworkAcl(pulumi.CustomResource):
                 volcengine.vpc.NetworkAclIngressAclEntryArgs(
                     network_acl_entry_name="ingress3",
                     policy="accept",
-                    port="80/80",
                     protocol="tcp",
+                    port="80/80",
                     source_cidr_ip="192.168.0.0/24",
                 ),
             ],
-            network_acl_name="tf-test-acl",
+            egress_acl_entries=[volcengine.vpc.NetworkAclEgressAclEntryArgs(
+                network_acl_entry_name="egress2",
+                policy="accept",
+                protocol="all",
+                destination_cidr_ip="192.168.0.0/16",
+            )],
             project_name="default",
-            vpc_id="vpc-2d6jskar243k058ozfdae13ne")
+            tags=[volcengine.vpc.NetworkAclTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -272,7 +312,7 @@ class NetworkAcl(pulumi.CustomResource):
         Network Acl can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vpc/networkAcl:NetworkAcl default nacl-172leak37mi9s4d1w33pswqkh
+        $ pulumi import volcengine:vpc/networkAcl:NetworkAcl default nacl-172leak37mi9s4d1w33pswqkh
         ```
 
         :param str resource_name: The name of the resource.
@@ -282,6 +322,7 @@ class NetworkAcl(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NetworkAclIngressAclEntryArgs']]]] ingress_acl_entries: The ingress entries of Network Acl.
         :param pulumi.Input[str] network_acl_name: The name of Network Acl.
         :param pulumi.Input[str] project_name: The project name of the network acl.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NetworkAclTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] vpc_id: The vpc id of Network Acl.
         """
         ...
@@ -298,13 +339,12 @@ class NetworkAcl(pulumi.CustomResource):
         import pulumi
         import pulumi_volcengine as volcengine
 
-        foo = volcengine.vpc.NetworkAcl("foo",
-            egress_acl_entries=[volcengine.vpc.NetworkAclEgressAclEntryArgs(
-                destination_cidr_ip="192.168.0.0/16",
-                network_acl_entry_name="egress2",
-                policy="accept",
-                protocol="all",
-            )],
+        foo_vpc = volcengine.vpc.Vpc("fooVpc",
+            vpc_name="acc-test-vpc",
+            cidr_block="172.16.0.0/16")
+        foo_network_acl = volcengine.vpc.NetworkAcl("fooNetworkAcl",
+            vpc_id=foo_vpc.id,
+            network_acl_name="tf-test-acl",
             ingress_acl_entries=[
                 volcengine.vpc.NetworkAclIngressAclEntryArgs(
                     network_acl_entry_name="ingress1",
@@ -315,14 +355,22 @@ class NetworkAcl(pulumi.CustomResource):
                 volcengine.vpc.NetworkAclIngressAclEntryArgs(
                     network_acl_entry_name="ingress3",
                     policy="accept",
-                    port="80/80",
                     protocol="tcp",
+                    port="80/80",
                     source_cidr_ip="192.168.0.0/24",
                 ),
             ],
-            network_acl_name="tf-test-acl",
+            egress_acl_entries=[volcengine.vpc.NetworkAclEgressAclEntryArgs(
+                network_acl_entry_name="egress2",
+                policy="accept",
+                protocol="all",
+                destination_cidr_ip="192.168.0.0/16",
+            )],
             project_name="default",
-            vpc_id="vpc-2d6jskar243k058ozfdae13ne")
+            tags=[volcengine.vpc.NetworkAclTagArgs(
+                key="k1",
+                value="v1",
+            )])
         ```
 
         ## Import
@@ -330,7 +378,7 @@ class NetworkAcl(pulumi.CustomResource):
         Network Acl can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vpc/networkAcl:NetworkAcl default nacl-172leak37mi9s4d1w33pswqkh
+        $ pulumi import volcengine:vpc/networkAcl:NetworkAcl default nacl-172leak37mi9s4d1w33pswqkh
         ```
 
         :param str resource_name: The name of the resource.
@@ -353,6 +401,7 @@ class NetworkAcl(pulumi.CustomResource):
                  ingress_acl_entries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NetworkAclIngressAclEntryArgs']]]]] = None,
                  network_acl_name: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NetworkAclTagArgs']]]]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -368,6 +417,7 @@ class NetworkAcl(pulumi.CustomResource):
             __props__.__dict__["ingress_acl_entries"] = ingress_acl_entries
             __props__.__dict__["network_acl_name"] = network_acl_name
             __props__.__dict__["project_name"] = project_name
+            __props__.__dict__["tags"] = tags
             if vpc_id is None and not opts.urn:
                 raise TypeError("Missing required property 'vpc_id'")
             __props__.__dict__["vpc_id"] = vpc_id
@@ -386,6 +436,7 @@ class NetworkAcl(pulumi.CustomResource):
             ingress_acl_entries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NetworkAclIngressAclEntryArgs']]]]] = None,
             network_acl_name: Optional[pulumi.Input[str]] = None,
             project_name: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NetworkAclTagArgs']]]]] = None,
             vpc_id: Optional[pulumi.Input[str]] = None) -> 'NetworkAcl':
         """
         Get an existing NetworkAcl resource's state with the given name, id, and optional extra
@@ -399,6 +450,7 @@ class NetworkAcl(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NetworkAclIngressAclEntryArgs']]]] ingress_acl_entries: The ingress entries of Network Acl.
         :param pulumi.Input[str] network_acl_name: The name of Network Acl.
         :param pulumi.Input[str] project_name: The project name of the network acl.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['NetworkAclTagArgs']]]] tags: Tags.
         :param pulumi.Input[str] vpc_id: The vpc id of Network Acl.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -410,6 +462,7 @@ class NetworkAcl(pulumi.CustomResource):
         __props__.__dict__["ingress_acl_entries"] = ingress_acl_entries
         __props__.__dict__["network_acl_name"] = network_acl_name
         __props__.__dict__["project_name"] = project_name
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["vpc_id"] = vpc_id
         return NetworkAcl(resource_name, opts=opts, __props__=__props__)
 
@@ -452,6 +505,14 @@ class NetworkAcl(pulumi.CustomResource):
         The project name of the network acl.
         """
         return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Sequence['outputs.NetworkAclTag']]]:
+        """
+        Tags.
+        """
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="vpcId")

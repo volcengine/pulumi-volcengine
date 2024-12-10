@@ -18,6 +18,10 @@ namespace Pulumi.Volcengine.Ecs.Outputs
         /// </summary>
         public readonly string Architecture;
         /// <summary>
+        /// The boot mode of Image.
+        /// </summary>
+        public readonly string BootMode;
+        /// <summary>
         /// The create time of Image.
         /// </summary>
         public readonly string CreatedAt;
@@ -66,6 +70,10 @@ namespace Pulumi.Volcengine.Ecs.Outputs
         /// </summary>
         public readonly string Status;
         /// <summary>
+        /// Tags.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.ImagesImageTagResult> Tags;
+        /// <summary>
         /// The update time of Image.
         /// </summary>
         public readonly string UpdatedAt;
@@ -77,6 +85,8 @@ namespace Pulumi.Volcengine.Ecs.Outputs
         [OutputConstructor]
         private ImagesImageResult(
             string architecture,
+
+            string bootMode,
 
             string createdAt,
 
@@ -102,11 +112,14 @@ namespace Pulumi.Volcengine.Ecs.Outputs
 
             string status,
 
+            ImmutableArray<Outputs.ImagesImageTagResult> tags,
+
             string updatedAt,
 
             string visibility)
         {
             Architecture = architecture;
+            BootMode = bootMode;
             CreatedAt = createdAt;
             Description = description;
             ImageId = imageId;
@@ -119,6 +132,7 @@ namespace Pulumi.Volcengine.Ecs.Outputs
             ShareStatus = shareStatus;
             Size = size;
             Status = status;
+            Tags = tags;
             UpdatedAt = updatedAt;
             Visibility = visibility;
         }

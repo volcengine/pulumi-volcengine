@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Rds
     {
         /// <summary>
         /// (Deprecated! Recommend use volcengine_rds_mysql_*** replace) Use this data source to query detailed information of rds parameter templates
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -29,17 +27,13 @@ namespace Pulumi.Volcengine.Rds
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<ParameterTemplatesResult> InvokeAsync(ParameterTemplatesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ParameterTemplatesResult>("volcengine:rds/parameterTemplates:ParameterTemplates", args ?? new ParameterTemplatesArgs(), options.WithDefaults());
 
         /// <summary>
         /// (Deprecated! Recommend use volcengine_rds_mysql_*** replace) Use this data source to query detailed information of rds parameter templates
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -53,8 +47,6 @@ namespace Pulumi.Volcengine.Rds
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<ParameterTemplatesResult> Invoke(ParameterTemplatesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<ParameterTemplatesResult>("volcengine:rds/parameterTemplates:ParameterTemplates", args ?? new ParameterTemplatesInvokeArgs(), options.WithDefaults());

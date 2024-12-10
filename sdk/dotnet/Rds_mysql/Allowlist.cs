@@ -41,7 +41,7 @@ namespace Pulumi.Volcengine.Rds_mysql
     /// RDS AllowList can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:rds_mysql/allowlist:Allowlist default acl-d1fd76693bd54e658912e7337d5b****
+    /// $ pulumi import volcengine:rds_mysql/allowlist:Allowlist default acl-d1fd76693bd54e658912e7337d5b****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:rds_mysql/allowlist:Allowlist")]

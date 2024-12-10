@@ -27,6 +27,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// 创建步骤：terraform init -> pulumi preview -> pulumi up
+//			// 删除步骤: terraform state rm volcengine_scaling_configuration.foo1 -> terraform destroy
+//			// 创建伸缩组
 //			foo, err := autoscaling.NewScalingGroup(ctx, "foo", &autoscaling.ScalingGroupArgs{
 //				ScalingGroupName: pulumi.String("zzm-tf-test"),
 //				SubnetIds: pulumi.StringArray{
@@ -42,6 +45,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// 创建伸缩配置
 //			foo1, err := autoscaling.NewScalingConfiguration(ctx, "foo1", &autoscaling.ScalingConfigurationArgs{
 //				ScalingConfigurationName: pulumi.String("terraform-test"),
 //				ScalingGroupId:           foo.ScalingGroupId,
@@ -77,6 +81,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// 绑定伸缩配置
 //			foo2, err := autoscaling.NewScalingConfigurationAttachment(ctx, "foo2", &autoscaling.ScalingConfigurationAttachmentArgs{
 //				ScalingConfigurationId: foo1.ScalingConfigurationId,
 //			}, pulumi.DependsOn([]pulumi.Resource{
@@ -85,6 +90,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// 启用伸缩组
 //			_, err = autoscaling.NewScalingGroupEnabler(ctx, "foo3", &autoscaling.ScalingGroupEnablerArgs{
 //				ScalingGroupId: foo.ScalingGroupId,
 //			}, pulumi.DependsOn([]pulumi.Resource{
@@ -104,9 +110,7 @@ import (
 // Scaling Group enabler can be imported using the scaling_group_id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:autoscaling/scalingGroupEnabler:ScalingGroupEnabler default enable:scg-mizl7m1kqccg5smt1bdpijuj
-//
+// $ pulumi import volcengine:autoscaling/scalingGroupEnabler:ScalingGroupEnabler default enable:scg-mizl7m1kqccg5smt1bdpijuj
 // ```
 type ScalingGroupEnabler struct {
 	pulumi.CustomResourceState

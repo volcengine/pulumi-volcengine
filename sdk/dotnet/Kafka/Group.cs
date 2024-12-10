@@ -88,7 +88,7 @@ namespace Pulumi.Volcengine.Kafka
     /// KafkaGroup can be imported using the instance_id:group_id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:kafka/group:Group default kafka-****x:groupId
+    /// $ pulumi import volcengine:kafka/group:Group default kafka-****x:groupId
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:kafka/group:Group")]

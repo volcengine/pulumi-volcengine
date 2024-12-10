@@ -215,7 +215,7 @@ class Unit(pulumi.CustomResource):
         OrganizationUnit can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:organization/unit:Unit default ID
+        $ pulumi import volcengine:organization/unit:Unit default ID
         ```
 
         :param str resource_name: The name of the resource.
@@ -250,7 +250,7 @@ class Unit(pulumi.CustomResource):
         OrganizationUnit can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:organization/unit:Unit default ID
+        $ pulumi import volcengine:organization/unit:Unit default ID
         ```
 
         :param str resource_name: The name of the resource.

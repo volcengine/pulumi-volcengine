@@ -286,10 +286,13 @@ class Endpoint(pulumi.CustomResource):
 
         ## Import
 
-        mongodb endpoint can be imported using the instanceId:endpointId `instanceId`represents the instance that endpoint related to. `endpointId`the id of endpoint. e.g.
+        mongodb endpoint can be imported using the instanceId:endpointId
+        `instanceId`: represents the instance that endpoint related to.
+        `endpointId`: the id of endpoint.
+        e.g.
 
         ```sh
-         $ pulumi import volcengine:mongodb/endpoint:Endpoint default mongo-replica-e405f8e2****:BRhFA0pDAk0XXkxCZQ
+        $ pulumi import volcengine:mongodb/endpoint:Endpoint default mongo-replica-e405f8e2****:BRhFA0pDAk0XXkxCZQ
         ```
 
         :param str resource_name: The name of the resource.
@@ -379,10 +382,13 @@ class Endpoint(pulumi.CustomResource):
 
         ## Import
 
-        mongodb endpoint can be imported using the instanceId:endpointId `instanceId`represents the instance that endpoint related to. `endpointId`the id of endpoint. e.g.
+        mongodb endpoint can be imported using the instanceId:endpointId
+        `instanceId`: represents the instance that endpoint related to.
+        `endpointId`: the id of endpoint.
+        e.g.
 
         ```sh
-         $ pulumi import volcengine:mongodb/endpoint:Endpoint default mongo-replica-e405f8e2****:BRhFA0pDAk0XXkxCZQ
+        $ pulumi import volcengine:mongodb/endpoint:Endpoint default mongo-replica-e405f8e2****:BRhFA0pDAk0XXkxCZQ
         ```
 
         :param str resource_name: The name of the resource.

@@ -69,6 +69,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// When the `volcengine_cloud_identity_permission_set` is updated, you can use this resource to provision the permission set.
+//			// When deleting this resource, resource `volcengine_cloud_identity_permission_set_assignment` must be deleted first.
 //			_, err = cloud_identity.NewPermissionSetProvisioning(ctx, "fooPermissionSetProvisioning", &cloud_identity.PermissionSetProvisioningArgs{
 //				PermissionSetId:    fooPermissionSet.ID(),
 //				TargetId:           pulumi.String("210026****"),
@@ -88,9 +90,7 @@ import (
 // CloudIdentityPermissionSetProvisioning can be imported using the permission_set_id:target_id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:cloud_identity/permissionSetProvisioning:PermissionSetProvisioning default resource_id
-//
+// $ pulumi import volcengine:cloud_identity/permissionSetProvisioning:PermissionSetProvisioning default resource_id
 // ```
 type PermissionSetProvisioning struct {
 	pulumi.CustomResourceState

@@ -36,7 +36,7 @@ namespace Pulumi.Volcengine.Iam
     /// Iam user can be imported using the UserName, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:iam/user:User default user_name
+    /// $ pulumi import volcengine:iam/user:User default user_name
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:iam/user:User")]

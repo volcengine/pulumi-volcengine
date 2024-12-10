@@ -24,7 +24,7 @@ import * as utilities from "../utilities";
  * CloudfsNamespace can be imported using the FsName:NsId, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:cloudfs/namespace:Namespace default tfname:1801439850948****
+ * $ pulumi import volcengine:cloudfs/namespace:Namespace default tfname:1801439850948****
  * ```
  */
 export class Namespace extends pulumi.CustomResource {

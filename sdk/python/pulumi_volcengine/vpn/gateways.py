@@ -23,7 +23,7 @@ class GatewaysResult:
     """
     A collection of values returned by Gateways.
     """
-    def __init__(__self__, id=None, ids=None, ip_address=None, name_regex=None, output_file=None, subnet_id=None, tags=None, total_count=None, vpc_id=None, vpn_gateway_names=None, vpn_gateways=None):
+    def __init__(__self__, id=None, ids=None, ip_address=None, ipsec_enabled=None, name_regex=None, output_file=None, project_name=None, ssl_enabled=None, status=None, subnet_id=None, tags=None, total_count=None, vpc_id=None, vpn_gateway_names=None, vpn_gateways=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -33,12 +33,24 @@ class GatewaysResult:
         if ip_address and not isinstance(ip_address, str):
             raise TypeError("Expected argument 'ip_address' to be a str")
         pulumi.set(__self__, "ip_address", ip_address)
+        if ipsec_enabled and not isinstance(ipsec_enabled, bool):
+            raise TypeError("Expected argument 'ipsec_enabled' to be a bool")
+        pulumi.set(__self__, "ipsec_enabled", ipsec_enabled)
         if name_regex and not isinstance(name_regex, str):
             raise TypeError("Expected argument 'name_regex' to be a str")
         pulumi.set(__self__, "name_regex", name_regex)
         if output_file and not isinstance(output_file, str):
             raise TypeError("Expected argument 'output_file' to be a str")
         pulumi.set(__self__, "output_file", output_file)
+        if project_name and not isinstance(project_name, str):
+            raise TypeError("Expected argument 'project_name' to be a str")
+        pulumi.set(__self__, "project_name", project_name)
+        if ssl_enabled and not isinstance(ssl_enabled, bool):
+            raise TypeError("Expected argument 'ssl_enabled' to be a bool")
+        pulumi.set(__self__, "ssl_enabled", ssl_enabled)
+        if status and not isinstance(status, str):
+            raise TypeError("Expected argument 'status' to be a str")
+        pulumi.set(__self__, "status", status)
         if subnet_id and not isinstance(subnet_id, str):
             raise TypeError("Expected argument 'subnet_id' to be a str")
         pulumi.set(__self__, "subnet_id", subnet_id)
@@ -80,6 +92,14 @@ class GatewaysResult:
         return pulumi.get(self, "ip_address")
 
     @property
+    @pulumi.getter(name="ipsecEnabled")
+    def ipsec_enabled(self) -> Optional[bool]:
+        """
+        Whether ipsec is enabled.
+        """
+        return pulumi.get(self, "ipsec_enabled")
+
+    @property
     @pulumi.getter(name="nameRegex")
     def name_regex(self) -> Optional[str]:
         return pulumi.get(self, "name_regex")
@@ -88,6 +108,30 @@ class GatewaysResult:
     @pulumi.getter(name="outputFile")
     def output_file(self) -> Optional[str]:
         return pulumi.get(self, "output_file")
+
+    @property
+    @pulumi.getter(name="projectName")
+    def project_name(self) -> Optional[str]:
+        """
+        The name of project.
+        """
+        return pulumi.get(self, "project_name")
+
+    @property
+    @pulumi.getter(name="sslEnabled")
+    def ssl_enabled(self) -> Optional[bool]:
+        """
+        Whether ssl is enabled.
+        """
+        return pulumi.get(self, "ssl_enabled")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        """
+        The status of the VPN gateway.
+        """
+        return pulumi.get(self, "status")
 
     @property
     @pulumi.getter(name="subnetId")
@@ -141,8 +185,12 @@ class AwaitableGatewaysResult(GatewaysResult):
             id=self.id,
             ids=self.ids,
             ip_address=self.ip_address,
+            ipsec_enabled=self.ipsec_enabled,
             name_regex=self.name_regex,
             output_file=self.output_file,
+            project_name=self.project_name,
+            ssl_enabled=self.ssl_enabled,
+            status=self.status,
             subnet_id=self.subnet_id,
             tags=self.tags,
             total_count=self.total_count,
@@ -153,8 +201,12 @@ class AwaitableGatewaysResult(GatewaysResult):
 
 def gateways(ids: Optional[Sequence[str]] = None,
              ip_address: Optional[str] = None,
+             ipsec_enabled: Optional[bool] = None,
              name_regex: Optional[str] = None,
              output_file: Optional[str] = None,
+             project_name: Optional[str] = None,
+             ssl_enabled: Optional[bool] = None,
+             status: Optional[str] = None,
              subnet_id: Optional[str] = None,
              tags: Optional[Sequence[pulumi.InputType['GatewaysTagArgs']]] = None,
              vpc_id: Optional[str] = None,
@@ -190,8 +242,12 @@ def gateways(ids: Optional[Sequence[str]] = None,
 
     :param Sequence[str] ids: A list of VPN gateway ids.
     :param str ip_address: A IP address of the VPN gateway.
+    :param bool ipsec_enabled: Whether IPSec is enabled.
     :param str name_regex: A Name Regex of VPN gateway.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of the VPN gateway.
+    :param bool ssl_enabled: Whether ssl is enabled.
+    :param str status: The status of the VPN gateway.
     :param str subnet_id: A subnet ID of the VPN gateway.
     :param Sequence[pulumi.InputType['GatewaysTagArgs']] tags: Tags.
     :param str vpc_id: A VPC ID of the VPN gateway.
@@ -200,8 +256,12 @@ def gateways(ids: Optional[Sequence[str]] = None,
     __args__ = dict()
     __args__['ids'] = ids
     __args__['ipAddress'] = ip_address
+    __args__['ipsecEnabled'] = ipsec_enabled
     __args__['nameRegex'] = name_regex
     __args__['outputFile'] = output_file
+    __args__['projectName'] = project_name
+    __args__['sslEnabled'] = ssl_enabled
+    __args__['status'] = status
     __args__['subnetId'] = subnet_id
     __args__['tags'] = tags
     __args__['vpcId'] = vpc_id
@@ -213,8 +273,12 @@ def gateways(ids: Optional[Sequence[str]] = None,
         id=pulumi.get(__ret__, 'id'),
         ids=pulumi.get(__ret__, 'ids'),
         ip_address=pulumi.get(__ret__, 'ip_address'),
+        ipsec_enabled=pulumi.get(__ret__, 'ipsec_enabled'),
         name_regex=pulumi.get(__ret__, 'name_regex'),
         output_file=pulumi.get(__ret__, 'output_file'),
+        project_name=pulumi.get(__ret__, 'project_name'),
+        ssl_enabled=pulumi.get(__ret__, 'ssl_enabled'),
+        status=pulumi.get(__ret__, 'status'),
         subnet_id=pulumi.get(__ret__, 'subnet_id'),
         tags=pulumi.get(__ret__, 'tags'),
         total_count=pulumi.get(__ret__, 'total_count'),
@@ -226,8 +290,12 @@ def gateways(ids: Optional[Sequence[str]] = None,
 @_utilities.lift_output_func(gateways)
 def gateways_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                     ip_address: Optional[pulumi.Input[Optional[str]]] = None,
+                    ipsec_enabled: Optional[pulumi.Input[Optional[bool]]] = None,
                     name_regex: Optional[pulumi.Input[Optional[str]]] = None,
                     output_file: Optional[pulumi.Input[Optional[str]]] = None,
+                    project_name: Optional[pulumi.Input[Optional[str]]] = None,
+                    ssl_enabled: Optional[pulumi.Input[Optional[bool]]] = None,
+                    status: Optional[pulumi.Input[Optional[str]]] = None,
                     subnet_id: Optional[pulumi.Input[Optional[str]]] = None,
                     tags: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GatewaysTagArgs']]]]] = None,
                     vpc_id: Optional[pulumi.Input[Optional[str]]] = None,
@@ -263,8 +331,12 @@ def gateways_output(ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
 
     :param Sequence[str] ids: A list of VPN gateway ids.
     :param str ip_address: A IP address of the VPN gateway.
+    :param bool ipsec_enabled: Whether IPSec is enabled.
     :param str name_regex: A Name Regex of VPN gateway.
     :param str output_file: File name where to save data source results.
+    :param str project_name: The project name of the VPN gateway.
+    :param bool ssl_enabled: Whether ssl is enabled.
+    :param str status: The status of the VPN gateway.
     :param str subnet_id: A subnet ID of the VPN gateway.
     :param Sequence[pulumi.InputType['GatewaysTagArgs']] tags: Tags.
     :param str vpc_id: A VPC ID of the VPN gateway.

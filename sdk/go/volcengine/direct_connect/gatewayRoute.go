@@ -46,9 +46,7 @@ import (
 // DirectConnectGatewayRoute can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:direct_connect/gatewayRoute:GatewayRoute default resource_id
-//
+// $ pulumi import volcengine:direct_connect/gatewayRoute:GatewayRoute default resource_id
 // ```
 type GatewayRoute struct {
 	pulumi.CustomResourceState

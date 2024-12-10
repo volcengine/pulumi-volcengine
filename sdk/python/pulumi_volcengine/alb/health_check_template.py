@@ -456,7 +456,7 @@ class HealthCheckTemplate(pulumi.CustomResource):
         AlbHealthCheckTemplate can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:alb/healthCheckTemplate:HealthCheckTemplate default hctpl-123*****432
+        $ pulumi import volcengine:alb/healthCheckTemplate:HealthCheckTemplate default hctpl-123*****432
         ```
 
         :param str resource_name: The name of the resource.
@@ -508,7 +508,7 @@ class HealthCheckTemplate(pulumi.CustomResource):
         AlbHealthCheckTemplate can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:alb/healthCheckTemplate:HealthCheckTemplate default hctpl-123*****432
+        $ pulumi import volcengine:alb/healthCheckTemplate:HealthCheckTemplate default hctpl-123*****432
         ```
 
         :param str resource_name: The name of the resource.

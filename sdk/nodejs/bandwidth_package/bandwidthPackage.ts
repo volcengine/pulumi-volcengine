@@ -33,7 +33,7 @@ import * as utilities from "../utilities";
  * BandwidthPackage can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:bandwidth_package/bandwidthPackage:BandwidthPackage default bwp-2zeo05qre24nhrqpy****
+ * $ pulumi import volcengine:bandwidth_package/bandwidthPackage:BandwidthPackage default bwp-2zeo05qre24nhrqpy****
  * ```
  */
 export class BandwidthPackage extends pulumi.CustomResource {

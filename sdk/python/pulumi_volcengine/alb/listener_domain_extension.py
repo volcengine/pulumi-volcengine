@@ -179,7 +179,7 @@ class ListenerDomainExtension(pulumi.CustomResource):
         AlbListenerDomainExtension can be imported using the listener id and domain extension id, e.g.
 
         ```sh
-         $ pulumi import volcengine:alb/listenerDomainExtension:ListenerDomainExtension default listenerId:extensionId
+        $ pulumi import volcengine:alb/listenerDomainExtension:ListenerDomainExtension default listenerId:extensionId
         ```
 
         :param str resource_name: The name of the resource.
@@ -228,7 +228,7 @@ class ListenerDomainExtension(pulumi.CustomResource):
         AlbListenerDomainExtension can be imported using the listener id and domain extension id, e.g.
 
         ```sh
-         $ pulumi import volcengine:alb/listenerDomainExtension:ListenerDomainExtension default listenerId:extensionId
+        $ pulumi import volcengine:alb/listenerDomainExtension:ListenerDomainExtension default listenerId:extensionId
         ```
 
         :param str resource_name: The name of the resource.

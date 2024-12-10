@@ -34,32 +34,6 @@ namespace Pulumi.Volcengine.Transit_router
     ///         TransitRouterId = fooTransitRouter.Id,
     ///     });
     /// 
-    ///     var fooZones = Volcengine.Ecs.Zones.Invoke();
-    /// 
-    ///     var fooVpc = new Volcengine.Vpc.Vpc("fooVpc", new()
-    ///     {
-    ///         VpcName = "acc-test-vpc",
-    ///         CidrBlock = "172.16.0.0/16",
-    ///     });
-    /// 
-    ///     var fooSubnet = new Volcengine.Vpc.Subnet("fooSubnet", new()
-    ///     {
-    ///         SubnetName = "acc-test-subnet",
-    ///         CidrBlock = "172.16.0.0/24",
-    ///         ZoneId = fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
-    ///         VpcId = fooVpc.Id,
-    ///     });
-    /// 
-    ///     var fooGateway = new Volcengine.Vpn.Gateway("fooGateway", new()
-    ///     {
-    ///         VpcId = fooVpc.Id,
-    ///         SubnetId = fooSubnet.Id,
-    ///         Bandwidth = 20,
-    ///         VpnGatewayName = "acc-test",
-    ///         Description = "acc-test",
-    ///         Period = 2,
-    ///     });
-    /// 
     ///     var fooCustomerGateway = new Volcengine.Vpn.CustomerGateway("fooCustomerGateway", new()
     ///     {
     ///         IpAddress = "192.0.1.3",
@@ -72,7 +46,6 @@ namespace Pulumi.Volcengine.Transit_router
     ///         VpnConnectionName = "acc-tf-test",
     ///         Description = "acc-tf-test",
     ///         AttachType = "TransitRouter",
-    ///         VpnGatewayId = fooGateway.Id,
     ///         CustomerGatewayId = fooCustomerGateway.Id,
     ///         LocalSubnets = new[]
     ///         {
@@ -123,7 +96,7 @@ namespace Pulumi.Volcengine.Transit_router
     /// TransitRouterRouteTableAssociation can be imported using the TransitRouterAttachmentId:TransitRouterRouteTableId, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:transit_router/routeTableAssociation:RouteTableAssociation default tr-attach-13n2l4c****:tr-rt-1i5i8khf9m58gae5kcx6****
+    /// $ pulumi import volcengine:transit_router/routeTableAssociation:RouteTableAssociation default tr-attach-13n2l4c****:tr-rt-1i5i8khf9m58gae5kcx6****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:transit_router/routeTableAssociation:RouteTableAssociation")]

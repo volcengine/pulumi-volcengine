@@ -255,10 +255,12 @@ class Rule(pulumi.CustomResource):
 
         ## Import
 
-        Rule can be imported using the id, e.g. NoticeresourceId is ruleId, due to the lack of describeRuleAttributes in openapi, for import resources, please use ruleId:listenerId to import. we will fix this problem later.
+        Rule can be imported using the id, e.g.
+        Notice: resourceId is ruleId, due to the lack of describeRuleAttributes in openapi, for import resources, please use ruleId:listenerId to import.
+        we will fix this problem later.
 
         ```sh
-         $ pulumi import volcengine:clb/rule:Rule foo rule-273zb9hzi1gqo7fap8u1k3utb:lsn-273ywvnmiu70g7fap8u2xzg9d
+        $ pulumi import volcengine:clb/rule:Rule foo rule-273zb9hzi1gqo7fap8u1k3utb:lsn-273ywvnmiu70g7fap8u2xzg9d
         ```
 
         :param str resource_name: The name of the resource.
@@ -334,10 +336,12 @@ class Rule(pulumi.CustomResource):
 
         ## Import
 
-        Rule can be imported using the id, e.g. NoticeresourceId is ruleId, due to the lack of describeRuleAttributes in openapi, for import resources, please use ruleId:listenerId to import. we will fix this problem later.
+        Rule can be imported using the id, e.g.
+        Notice: resourceId is ruleId, due to the lack of describeRuleAttributes in openapi, for import resources, please use ruleId:listenerId to import.
+        we will fix this problem later.
 
         ```sh
-         $ pulumi import volcengine:clb/rule:Rule foo rule-273zb9hzi1gqo7fap8u1k3utb:lsn-273ywvnmiu70g7fap8u2xzg9d
+        $ pulumi import volcengine:clb/rule:Rule foo rule-273zb9hzi1gqo7fap8u1k3utb:lsn-273ywvnmiu70g7fap8u2xzg9d
         ```
 
         :param str resource_name: The name of the resource.

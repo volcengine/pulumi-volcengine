@@ -1654,8 +1654,9 @@ type RuleCondition struct {
 	// The metric name of the cloud monitor rule.
 	MetricName string `pulumi:"metricName"`
 	// The metric unit of the cloud monitor rule.
-	MetricUnit string  `pulumi:"metricUnit"`
-	Period     *string `pulumi:"period"`
+	MetricUnit string `pulumi:"metricUnit"`
+	// The period of the cloud monitor rule.
+	Period *string `pulumi:"period"`
 	// The statistics of the cloud monitor rule. Valid values: `avg`, `max`, `min`.
 	Statistics string `pulumi:"statistics"`
 	// The threshold of the cloud monitor rule.
@@ -1679,8 +1680,9 @@ type RuleConditionArgs struct {
 	// The metric name of the cloud monitor rule.
 	MetricName pulumi.StringInput `pulumi:"metricName"`
 	// The metric unit of the cloud monitor rule.
-	MetricUnit pulumi.StringInput    `pulumi:"metricUnit"`
-	Period     pulumi.StringPtrInput `pulumi:"period"`
+	MetricUnit pulumi.StringInput `pulumi:"metricUnit"`
+	// The period of the cloud monitor rule.
+	Period pulumi.StringPtrInput `pulumi:"period"`
 	// The statistics of the cloud monitor rule. Valid values: `avg`, `max`, `min`.
 	Statistics pulumi.StringInput `pulumi:"statistics"`
 	// The threshold of the cloud monitor rule.
@@ -1753,6 +1755,7 @@ func (o RuleConditionOutput) MetricUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v RuleCondition) string { return v.MetricUnit }).(pulumi.StringOutput)
 }
 
+// The period of the cloud monitor rule.
 func (o RuleConditionOutput) Period() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RuleCondition) *string { return v.Period }).(pulumi.StringPtrOutput)
 }

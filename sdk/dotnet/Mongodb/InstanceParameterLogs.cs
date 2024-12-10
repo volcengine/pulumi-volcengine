@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Mongodb
     {
         /// <summary>
         /// Use this data source to query detailed information of mongodb instance parameter logs
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -34,17 +32,13 @@ namespace Pulumi.Volcengine.Mongodb
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<InstanceParameterLogsResult> InvokeAsync(InstanceParameterLogsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<InstanceParameterLogsResult>("volcengine:mongodb/instanceParameterLogs:InstanceParameterLogs", args ?? new InstanceParameterLogsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of mongodb instance parameter logs
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -63,8 +57,6 @@ namespace Pulumi.Volcengine.Mongodb
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<InstanceParameterLogsResult> Invoke(InstanceParameterLogsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<InstanceParameterLogsResult>("volcengine:mongodb/instanceParameterLogs:InstanceParameterLogs", args ?? new InstanceParameterLogsInvokeArgs(), options.WithDefaults());

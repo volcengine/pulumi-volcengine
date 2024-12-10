@@ -45,12 +45,10 @@ import (
 // VPC can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:veenedge/vpc:Vpc default vpc-mizl7m1k
-//
+// $ pulumi import volcengine:veenedge/vpc:Vpc default vpc-mizl7m1k
 // ```
-//
-//	If you need to create a VPC, you need to apply for permission from the administrator in advance. You can only delete the vpc from web consul
+// If you need to create a VPC, you need to apply for permission from the administrator in advance.
+// You can only delete the vpc from web consul
 type Vpc struct {
 	pulumi.CustomResourceState
 

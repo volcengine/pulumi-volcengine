@@ -236,7 +236,7 @@ class ServerGroup(pulumi.CustomResource):
         ServerGroup can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:clb/serverGroup:ServerGroup default rsp-273yv0kir1vk07fap8tt9jtwg
+        $ pulumi import volcengine:clb/serverGroup:ServerGroup default rsp-273yv0kir1vk07fap8tt9jtwg
         ```
 
         :param str resource_name: The name of the resource.
@@ -292,7 +292,7 @@ class ServerGroup(pulumi.CustomResource):
         ServerGroup can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:clb/serverGroup:ServerGroup default rsp-273yv0kir1vk07fap8tt9jtwg
+        $ pulumi import volcengine:clb/serverGroup:ServerGroup default rsp-273yv0kir1vk07fap8tt9jtwg
         ```
 
         :param str resource_name: The name of the resource.

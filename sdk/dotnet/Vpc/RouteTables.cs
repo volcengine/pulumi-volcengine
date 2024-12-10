@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Vpc
     {
         /// <summary>
         /// Use this data source to query detailed information of route tables
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -37,17 +35,13 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<RouteTablesResult> InvokeAsync(RouteTablesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<RouteTablesResult>("volcengine:vpc/routeTables:RouteTables", args ?? new RouteTablesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of route tables
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -69,8 +63,6 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<RouteTablesResult> Invoke(RouteTablesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<RouteTablesResult>("volcengine:vpc/routeTables:RouteTables", args ?? new RouteTablesInvokeArgs(), options.WithDefaults());

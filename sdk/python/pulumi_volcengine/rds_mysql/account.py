@@ -303,7 +303,7 @@ class Account(pulumi.CustomResource):
         RDS mysql account can be imported using the instance_id:account_name, e.g.
 
         ```sh
-         $ pulumi import volcengine:rds_mysql/account:Account default mysql-42b38c769c4b:test
+        $ pulumi import volcengine:rds_mysql/account:Account default mysql-42b38c769c4b:test
         ```
 
         :param str resource_name: The name of the resource.
@@ -391,7 +391,7 @@ class Account(pulumi.CustomResource):
         RDS mysql account can be imported using the instance_id:account_name, e.g.
 
         ```sh
-         $ pulumi import volcengine:rds_mysql/account:Account default mysql-42b38c769c4b:test
+        $ pulumi import volcengine:rds_mysql/account:Account default mysql-42b38c769c4b:test
         ```
 
         :param str resource_name: The name of the resource.

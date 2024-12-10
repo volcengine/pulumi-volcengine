@@ -83,7 +83,7 @@ namespace Pulumi.Volcengine.Rds_mysql
     /// Rds Mysql Instance can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:rds_mysql/instance:Instance default mysql-72da4258c2c7
+    /// $ pulumi import volcengine:rds_mysql/instance:Instance default mysql-72da4258c2c7
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:rds_mysql/instance:Instance")]

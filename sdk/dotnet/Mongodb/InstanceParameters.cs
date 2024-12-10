@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Mongodb
     {
         /// <summary>
         /// Use this data source to query detailed information of mongodb instance parameters
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -83,17 +81,13 @@ namespace Pulumi.Volcengine.Mongodb
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<InstanceParametersResult> InvokeAsync(InstanceParametersArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<InstanceParametersResult>("volcengine:mongodb/instanceParameters:InstanceParameters", args ?? new InstanceParametersArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of mongodb instance parameters
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -161,8 +155,6 @@ namespace Pulumi.Volcengine.Mongodb
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<InstanceParametersResult> Invoke(InstanceParametersInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<InstanceParametersResult>("volcengine:mongodb/instanceParameters:InstanceParameters", args ?? new InstanceParametersInvokeArgs(), options.WithDefaults());

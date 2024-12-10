@@ -730,7 +730,7 @@ class Instance(pulumi.CustomResource):
         RdsPostgresqlInstance can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:rds_postgresql/instance:Instance default postgres-21a3333b****
+        $ pulumi import volcengine:rds_postgresql/instance:Instance default postgres-21a3333b****
         ```
 
         :param str resource_name: The name of the resource.
@@ -803,7 +803,7 @@ class Instance(pulumi.CustomResource):
         RdsPostgresqlInstance can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:rds_postgresql/instance:Instance default postgres-21a3333b****
+        $ pulumi import volcengine:rds_postgresql/instance:Instance default postgres-21a3333b****
         ```
 
         :param str resource_name: The name of the resource.

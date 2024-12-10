@@ -200,7 +200,7 @@ class ServiceControlPolicy(pulumi.CustomResource):
         Service Control Policy can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:organization/serviceControlPolicy:ServiceControlPolicy default 1000001
+        $ pulumi import volcengine:organization/serviceControlPolicy:ServiceControlPolicy default 1000001
         ```
 
         :param str resource_name: The name of the resource.
@@ -237,7 +237,7 @@ class ServiceControlPolicy(pulumi.CustomResource):
         Service Control Policy can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:organization/serviceControlPolicy:ServiceControlPolicy default 1000001
+        $ pulumi import volcengine:organization/serviceControlPolicy:ServiceControlPolicy default 1000001
         ```
 
         :param str resource_name: The name of the resource.

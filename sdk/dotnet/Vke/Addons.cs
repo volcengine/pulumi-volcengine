@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Vke
     {
         /// <summary>
         /// Use this data source to query detailed information of vke addons
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -35,17 +33,13 @@ namespace Pulumi.Volcengine.Vke
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<AddonsResult> InvokeAsync(AddonsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<AddonsResult>("volcengine:vke/addons:Addons", args ?? new AddonsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of vke addons
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -65,8 +59,6 @@ namespace Pulumi.Volcengine.Vke
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<AddonsResult> Invoke(AddonsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<AddonsResult>("volcengine:vke/addons:Addons", args ?? new AddonsInvokeArgs(), options.WithDefaults());

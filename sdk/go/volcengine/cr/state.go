@@ -44,9 +44,7 @@ import (
 // CR registry state can be imported using the state:registry_name, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:cr/state:State default state:cr-basic
-//
+// $ pulumi import volcengine:cr/state:State default state:cr-basic
 // ```
 type State struct {
 	pulumi.CustomResourceState

@@ -5,6 +5,41 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { AutoSnapshotPoliciesArgs, AutoSnapshotPoliciesResult, AutoSnapshotPoliciesOutputArgs } from "./autoSnapshotPolicies";
+export const autoSnapshotPolicies: typeof import("./autoSnapshotPolicies").autoSnapshotPolicies = null as any;
+export const autoSnapshotPoliciesOutput: typeof import("./autoSnapshotPolicies").autoSnapshotPoliciesOutput = null as any;
+utilities.lazyLoad(exports, ["autoSnapshotPolicies","autoSnapshotPoliciesOutput"], () => require("./autoSnapshotPolicies"));
+
+export { AutoSnapshotPolicyArgs, AutoSnapshotPolicyState } from "./autoSnapshotPolicy";
+export type AutoSnapshotPolicy = import("./autoSnapshotPolicy").AutoSnapshotPolicy;
+export const AutoSnapshotPolicy: typeof import("./autoSnapshotPolicy").AutoSnapshotPolicy = null as any;
+utilities.lazyLoad(exports, ["AutoSnapshotPolicy"], () => require("./autoSnapshotPolicy"));
+
+export { AutoSnapshotPolicyAttachmentArgs, AutoSnapshotPolicyAttachmentState } from "./autoSnapshotPolicyAttachment";
+export type AutoSnapshotPolicyAttachment = import("./autoSnapshotPolicyAttachment").AutoSnapshotPolicyAttachment;
+export const AutoSnapshotPolicyAttachment: typeof import("./autoSnapshotPolicyAttachment").AutoSnapshotPolicyAttachment = null as any;
+utilities.lazyLoad(exports, ["AutoSnapshotPolicyAttachment"], () => require("./autoSnapshotPolicyAttachment"));
+
+export { SnapshotArgs, SnapshotState } from "./snapshot";
+export type Snapshot = import("./snapshot").Snapshot;
+export const Snapshot: typeof import("./snapshot").Snapshot = null as any;
+utilities.lazyLoad(exports, ["Snapshot"], () => require("./snapshot"));
+
+export { SnapshotGroupArgs, SnapshotGroupState } from "./snapshotGroup";
+export type SnapshotGroup = import("./snapshotGroup").SnapshotGroup;
+export const SnapshotGroup: typeof import("./snapshotGroup").SnapshotGroup = null as any;
+utilities.lazyLoad(exports, ["SnapshotGroup"], () => require("./snapshotGroup"));
+
+export { SnapshotGroupsArgs, SnapshotGroupsResult, SnapshotGroupsOutputArgs } from "./snapshotGroups";
+export const snapshotGroups: typeof import("./snapshotGroups").snapshotGroups = null as any;
+export const snapshotGroupsOutput: typeof import("./snapshotGroups").snapshotGroupsOutput = null as any;
+utilities.lazyLoad(exports, ["snapshotGroups","snapshotGroupsOutput"], () => require("./snapshotGroups"));
+
+export { SnapshotsArgs, SnapshotsResult, SnapshotsOutputArgs } from "./snapshots";
+export const snapshots: typeof import("./snapshots").snapshots = null as any;
+export const snapshotsOutput: typeof import("./snapshots").snapshotsOutput = null as any;
+utilities.lazyLoad(exports, ["snapshots","snapshotsOutput"], () => require("./snapshots"));
+
 export { VolumeArgs, VolumeState } from "./volume";
 export type Volume = import("./volume").Volume;
 export const Volume: typeof import("./volume").Volume = null as any;
@@ -25,6 +60,14 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "volcengine:ebs/autoSnapshotPolicy:AutoSnapshotPolicy":
+                return new AutoSnapshotPolicy(name, <any>undefined, { urn })
+            case "volcengine:ebs/autoSnapshotPolicyAttachment:AutoSnapshotPolicyAttachment":
+                return new AutoSnapshotPolicyAttachment(name, <any>undefined, { urn })
+            case "volcengine:ebs/snapshot:Snapshot":
+                return new Snapshot(name, <any>undefined, { urn })
+            case "volcengine:ebs/snapshotGroup:SnapshotGroup":
+                return new SnapshotGroup(name, <any>undefined, { urn })
             case "volcengine:ebs/volume:Volume":
                 return new Volume(name, <any>undefined, { urn })
             case "volcengine:ebs/volumeAttach:VolumeAttach":
@@ -34,5 +77,9 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("volcengine", "ebs/autoSnapshotPolicy", _module)
+pulumi.runtime.registerResourceModule("volcengine", "ebs/autoSnapshotPolicyAttachment", _module)
+pulumi.runtime.registerResourceModule("volcengine", "ebs/snapshot", _module)
+pulumi.runtime.registerResourceModule("volcengine", "ebs/snapshotGroup", _module)
 pulumi.runtime.registerResourceModule("volcengine", "ebs/volume", _module)
 pulumi.runtime.registerResourceModule("volcengine", "ebs/volumeAttach", _module)

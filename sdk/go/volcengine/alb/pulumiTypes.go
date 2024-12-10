@@ -537,11 +537,11 @@ func (o AclsAclListenerArrayOutput) Index(i pulumi.IntInput) AclsAclListenerOutp
 }
 
 type AlbEipBillingConfig struct {
-	// The peek bandwidth of the Ipv6 EIP which automatically assigned to the Alb. Unit: Mbps.
+	// The peek bandwidth of the EIP which automatically assigned to the Alb. Unit: Mbps.
 	Bandwidth int `pulumi:"bandwidth"`
 	// The billing type of the EIP which automatically assigned to the Alb. Valid values: `PostPaidByBandwidth`, `PostPaidByTraffic`.
 	EipBillingType string `pulumi:"eipBillingType"`
-	// The ISP of the Ipv6 EIP which automatically associated to the Alb, the value can be `BGP`.
+	// The ISP of the EIP which automatically associated to the Alb, the value can be `BGP`.
 	Isp string `pulumi:"isp"`
 }
 
@@ -557,11 +557,11 @@ type AlbEipBillingConfigInput interface {
 }
 
 type AlbEipBillingConfigArgs struct {
-	// The peek bandwidth of the Ipv6 EIP which automatically assigned to the Alb. Unit: Mbps.
+	// The peek bandwidth of the EIP which automatically assigned to the Alb. Unit: Mbps.
 	Bandwidth pulumi.IntInput `pulumi:"bandwidth"`
 	// The billing type of the EIP which automatically assigned to the Alb. Valid values: `PostPaidByBandwidth`, `PostPaidByTraffic`.
 	EipBillingType pulumi.StringInput `pulumi:"eipBillingType"`
-	// The ISP of the Ipv6 EIP which automatically associated to the Alb, the value can be `BGP`.
+	// The ISP of the EIP which automatically associated to the Alb, the value can be `BGP`.
 	Isp pulumi.StringInput `pulumi:"isp"`
 }
 
@@ -642,7 +642,7 @@ func (o AlbEipBillingConfigOutput) ToAlbEipBillingConfigPtrOutputWithContext(ctx
 	}).(AlbEipBillingConfigPtrOutput)
 }
 
-// The peek bandwidth of the Ipv6 EIP which automatically assigned to the Alb. Unit: Mbps.
+// The peek bandwidth of the EIP which automatically assigned to the Alb. Unit: Mbps.
 func (o AlbEipBillingConfigOutput) Bandwidth() pulumi.IntOutput {
 	return o.ApplyT(func(v AlbEipBillingConfig) int { return v.Bandwidth }).(pulumi.IntOutput)
 }
@@ -652,7 +652,7 @@ func (o AlbEipBillingConfigOutput) EipBillingType() pulumi.StringOutput {
 	return o.ApplyT(func(v AlbEipBillingConfig) string { return v.EipBillingType }).(pulumi.StringOutput)
 }
 
-// The ISP of the Ipv6 EIP which automatically associated to the Alb, the value can be `BGP`.
+// The ISP of the EIP which automatically associated to the Alb, the value can be `BGP`.
 func (o AlbEipBillingConfigOutput) Isp() pulumi.StringOutput {
 	return o.ApplyT(func(v AlbEipBillingConfig) string { return v.Isp }).(pulumi.StringOutput)
 }
@@ -681,7 +681,7 @@ func (o AlbEipBillingConfigPtrOutput) Elem() AlbEipBillingConfigOutput {
 	}).(AlbEipBillingConfigOutput)
 }
 
-// The peek bandwidth of the Ipv6 EIP which automatically assigned to the Alb. Unit: Mbps.
+// The peek bandwidth of the EIP which automatically assigned to the Alb. Unit: Mbps.
 func (o AlbEipBillingConfigPtrOutput) Bandwidth() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AlbEipBillingConfig) *int {
 		if v == nil {
@@ -701,7 +701,7 @@ func (o AlbEipBillingConfigPtrOutput) EipBillingType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The ISP of the Ipv6 EIP which automatically associated to the Alb, the value can be `BGP`.
+// The ISP of the EIP which automatically associated to the Alb, the value can be `BGP`.
 func (o AlbEipBillingConfigPtrOutput) Isp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AlbEipBillingConfig) *string {
 		if v == nil {
@@ -712,13 +712,11 @@ func (o AlbEipBillingConfigPtrOutput) Isp() pulumi.StringPtrOutput {
 }
 
 type AlbIpv6EipBillingConfig struct {
-	// The peek bandwidth of the EIP which automatically assigned to the Alb. Unit: Mbps.
+	// The peek bandwidth of the Ipv6 EIP which automatically assigned to the Alb. Unit: Mbps.
 	Bandwidth int `pulumi:"bandwidth"`
 	// The billing type of the Tpv6 EIP which automatically assigned to the Alb. Valid values: `PostPaidByBandwidth`, `PostPaidByTraffic`.
 	BillingType string `pulumi:"billingType"`
-	// The ISP of the EIP which automatically associated to the Alb, the value can be `BGP`.
-	//
-	// The `ipv6EipBillingConfig` object supports the following:
+	// The ISP of the Ipv6 EIP which automatically associated to the Alb, the value can be `BGP`.
 	Isp string `pulumi:"isp"`
 }
 
@@ -734,13 +732,11 @@ type AlbIpv6EipBillingConfigInput interface {
 }
 
 type AlbIpv6EipBillingConfigArgs struct {
-	// The peek bandwidth of the EIP which automatically assigned to the Alb. Unit: Mbps.
+	// The peek bandwidth of the Ipv6 EIP which automatically assigned to the Alb. Unit: Mbps.
 	Bandwidth pulumi.IntInput `pulumi:"bandwidth"`
 	// The billing type of the Tpv6 EIP which automatically assigned to the Alb. Valid values: `PostPaidByBandwidth`, `PostPaidByTraffic`.
 	BillingType pulumi.StringInput `pulumi:"billingType"`
-	// The ISP of the EIP which automatically associated to the Alb, the value can be `BGP`.
-	//
-	// The `ipv6EipBillingConfig` object supports the following:
+	// The ISP of the Ipv6 EIP which automatically associated to the Alb, the value can be `BGP`.
 	Isp pulumi.StringInput `pulumi:"isp"`
 }
 
@@ -821,7 +817,7 @@ func (o AlbIpv6EipBillingConfigOutput) ToAlbIpv6EipBillingConfigPtrOutputWithCon
 	}).(AlbIpv6EipBillingConfigPtrOutput)
 }
 
-// The peek bandwidth of the EIP which automatically assigned to the Alb. Unit: Mbps.
+// The peek bandwidth of the Ipv6 EIP which automatically assigned to the Alb. Unit: Mbps.
 func (o AlbIpv6EipBillingConfigOutput) Bandwidth() pulumi.IntOutput {
 	return o.ApplyT(func(v AlbIpv6EipBillingConfig) int { return v.Bandwidth }).(pulumi.IntOutput)
 }
@@ -831,9 +827,7 @@ func (o AlbIpv6EipBillingConfigOutput) BillingType() pulumi.StringOutput {
 	return o.ApplyT(func(v AlbIpv6EipBillingConfig) string { return v.BillingType }).(pulumi.StringOutput)
 }
 
-// The ISP of the EIP which automatically associated to the Alb, the value can be `BGP`.
-//
-// The `ipv6EipBillingConfig` object supports the following:
+// The ISP of the Ipv6 EIP which automatically associated to the Alb, the value can be `BGP`.
 func (o AlbIpv6EipBillingConfigOutput) Isp() pulumi.StringOutput {
 	return o.ApplyT(func(v AlbIpv6EipBillingConfig) string { return v.Isp }).(pulumi.StringOutput)
 }
@@ -862,7 +856,7 @@ func (o AlbIpv6EipBillingConfigPtrOutput) Elem() AlbIpv6EipBillingConfigOutput {
 	}).(AlbIpv6EipBillingConfigOutput)
 }
 
-// The peek bandwidth of the EIP which automatically assigned to the Alb. Unit: Mbps.
+// The peek bandwidth of the Ipv6 EIP which automatically assigned to the Alb. Unit: Mbps.
 func (o AlbIpv6EipBillingConfigPtrOutput) Bandwidth() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AlbIpv6EipBillingConfig) *int {
 		if v == nil {
@@ -882,9 +876,7 @@ func (o AlbIpv6EipBillingConfigPtrOutput) BillingType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The ISP of the EIP which automatically associated to the Alb, the value can be `BGP`.
-//
-// The `ipv6EipBillingConfig` object supports the following:
+// The ISP of the Ipv6 EIP which automatically associated to the Alb, the value can be `BGP`.
 func (o AlbIpv6EipBillingConfigPtrOutput) Isp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AlbIpv6EipBillingConfig) *string {
 		if v == nil {
@@ -6115,15 +6107,19 @@ type ServerGroupsServerGroupHealthCheck struct {
 	// The enable status of health check function.
 	Enabled string `pulumi:"enabled"`
 	// The healthy threshold of health check.
-	HealthyThreshold int     `pulumi:"healthyThreshold"`
-	HttpCode         *string `pulumi:"httpCode"`
-	HttpVersion      *string `pulumi:"httpVersion"`
+	HealthyThreshold int `pulumi:"healthyThreshold"`
+	// The normal http status code of health check.
+	HttpCode *string `pulumi:"httpCode"`
+	// The http version of health check.
+	HttpVersion *string `pulumi:"httpVersion"`
 	// The interval executing health check.
 	Interval int `pulumi:"interval"`
 	// The method of health check.
-	Method   string  `pulumi:"method"`
+	Method string `pulumi:"method"`
+	// The protocol of health check.
 	Protocol *string `pulumi:"protocol"`
-	Timeout  *int    `pulumi:"timeout"`
+	// The response timeout of health check.
+	Timeout *int `pulumi:"timeout"`
 	// The unhealthy threshold of health check.
 	UnhealthyThreshold int `pulumi:"unhealthyThreshold"`
 	// The uri of health check.
@@ -6147,15 +6143,19 @@ type ServerGroupsServerGroupHealthCheckArgs struct {
 	// The enable status of health check function.
 	Enabled pulumi.StringInput `pulumi:"enabled"`
 	// The healthy threshold of health check.
-	HealthyThreshold pulumi.IntInput       `pulumi:"healthyThreshold"`
-	HttpCode         pulumi.StringPtrInput `pulumi:"httpCode"`
-	HttpVersion      pulumi.StringPtrInput `pulumi:"httpVersion"`
+	HealthyThreshold pulumi.IntInput `pulumi:"healthyThreshold"`
+	// The normal http status code of health check.
+	HttpCode pulumi.StringPtrInput `pulumi:"httpCode"`
+	// The http version of health check.
+	HttpVersion pulumi.StringPtrInput `pulumi:"httpVersion"`
 	// The interval executing health check.
 	Interval pulumi.IntInput `pulumi:"interval"`
 	// The method of health check.
-	Method   pulumi.StringInput    `pulumi:"method"`
+	Method pulumi.StringInput `pulumi:"method"`
+	// The protocol of health check.
 	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
-	Timeout  pulumi.IntPtrInput    `pulumi:"timeout"`
+	// The response timeout of health check.
+	Timeout pulumi.IntPtrInput `pulumi:"timeout"`
 	// The unhealthy threshold of health check.
 	UnhealthyThreshold pulumi.IntInput `pulumi:"unhealthyThreshold"`
 	// The uri of health check.
@@ -6228,10 +6228,12 @@ func (o ServerGroupsServerGroupHealthCheckOutput) HealthyThreshold() pulumi.IntO
 	return o.ApplyT(func(v ServerGroupsServerGroupHealthCheck) int { return v.HealthyThreshold }).(pulumi.IntOutput)
 }
 
+// The normal http status code of health check.
 func (o ServerGroupsServerGroupHealthCheckOutput) HttpCode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerGroupsServerGroupHealthCheck) *string { return v.HttpCode }).(pulumi.StringPtrOutput)
 }
 
+// The http version of health check.
 func (o ServerGroupsServerGroupHealthCheckOutput) HttpVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerGroupsServerGroupHealthCheck) *string { return v.HttpVersion }).(pulumi.StringPtrOutput)
 }
@@ -6246,10 +6248,12 @@ func (o ServerGroupsServerGroupHealthCheckOutput) Method() pulumi.StringOutput {
 	return o.ApplyT(func(v ServerGroupsServerGroupHealthCheck) string { return v.Method }).(pulumi.StringOutput)
 }
 
+// The protocol of health check.
 func (o ServerGroupsServerGroupHealthCheckOutput) Protocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerGroupsServerGroupHealthCheck) *string { return v.Protocol }).(pulumi.StringPtrOutput)
 }
 
+// The response timeout of health check.
 func (o ServerGroupsServerGroupHealthCheckOutput) Timeout() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServerGroupsServerGroupHealthCheck) *int { return v.Timeout }).(pulumi.IntPtrOutput)
 }

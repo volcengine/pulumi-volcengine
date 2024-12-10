@@ -131,13 +131,12 @@ class RecordWeightEnabler(pulumi.CustomResource):
                  __props__=None):
         """
         Provides a resource to manage private zone record weight enabler
-
         ## Import
 
         PrivateZoneRecordWeightEnabler can be imported using the zid:record_set_id, e.g.
 
         ```sh
-         $ pulumi import volcengine:private_zone/recordWeightEnabler:RecordWeightEnabler default resource_id
+        $ pulumi import volcengine:private_zone/recordWeightEnabler:RecordWeightEnabler default resource_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -154,13 +153,12 @@ class RecordWeightEnabler(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides a resource to manage private zone record weight enabler
-
         ## Import
 
         PrivateZoneRecordWeightEnabler can be imported using the zid:record_set_id, e.g.
 
         ```sh
-         $ pulumi import volcengine:private_zone/recordWeightEnabler:RecordWeightEnabler default resource_id
+        $ pulumi import volcengine:private_zone/recordWeightEnabler:RecordWeightEnabler default resource_id
         ```
 
         :param str resource_name: The name of the resource.

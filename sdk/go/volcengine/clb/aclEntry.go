@@ -53,9 +53,7 @@ import (
 // AclEntry can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:clb/aclEntry:AclEntry default ID is a string concatenated with colons(AclId:Entry)
-//
+// $ pulumi import volcengine:clb/aclEntry:AclEntry default ID is a string concatenated with colons(AclId:Entry)
 // ```
 type AclEntry struct {
 	pulumi.CustomResourceState

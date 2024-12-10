@@ -41,7 +41,7 @@ import * as utilities from "../utilities";
  * Tos Bucket can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:tos/bucket:Bucket default bucketName
+ * $ pulumi import volcengine:tos/bucket:Bucket default bucketName
  * ```
  */
 export class Bucket extends pulumi.CustomResource {

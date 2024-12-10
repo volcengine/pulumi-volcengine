@@ -59,7 +59,7 @@ import * as utilities from "../utilities";
  * CloudIdentityPermissionSetProvisioning can be imported using the permission_set_id:target_id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:cloud_identity/permissionSetProvisioning:PermissionSetProvisioning default resource_id
+ * $ pulumi import volcengine:cloud_identity/permissionSetProvisioning:PermissionSetProvisioning default resource_id
  * ```
  */
 export class PermissionSetProvisioning extends pulumi.CustomResource {

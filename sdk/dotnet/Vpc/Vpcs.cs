@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Vpc
     {
         /// <summary>
         /// Use this data source to query detailed information of vpcs
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -35,17 +33,13 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<VpcsResult> InvokeAsync(VpcsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<VpcsResult>("volcengine:vpc/vpcs:Vpcs", args ?? new VpcsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of vpcs
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -65,8 +59,6 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<VpcsResult> Invoke(VpcsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<VpcsResult>("volcengine:vpc/vpcs:Vpcs", args ?? new VpcsInvokeArgs(), options.WithDefaults());

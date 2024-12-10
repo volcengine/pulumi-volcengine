@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Mongodb
     {
         /// <summary>
         /// Use this data source to query detailed information of mongodb specs
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -29,17 +27,13 @@ namespace Pulumi.Volcengine.Mongodb
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<SpecsResult> InvokeAsync(SpecsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<SpecsResult>("volcengine:mongodb/specs:Specs", args ?? new SpecsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of mongodb specs
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -53,8 +47,6 @@ namespace Pulumi.Volcengine.Mongodb
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<SpecsResult> Invoke(SpecsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<SpecsResult>("volcengine:mongodb/specs:Specs", args ?? new SpecsInvokeArgs(), options.WithDefaults());

@@ -14,6 +14,10 @@ namespace Pulumi.Volcengine.Transit_router.Outputs
     public sealed class RouteEntriesEntryResult
     {
         /// <summary>
+        /// The as path of the route entry.
+        /// </summary>
+        public readonly string AsPath;
+        /// <summary>
         /// The creation time of the route entry.
         /// </summary>
         public readonly string CreationTime;
@@ -56,6 +60,8 @@ namespace Pulumi.Volcengine.Transit_router.Outputs
 
         [OutputConstructor]
         private RouteEntriesEntryResult(
+            string asPath,
+
             string creationTime,
 
             string description,
@@ -76,6 +82,7 @@ namespace Pulumi.Volcengine.Transit_router.Outputs
 
             string updateTime)
         {
+            AsPath = asPath;
             CreationTime = creationTime;
             Description = description;
             DestinationCidrBlock = destinationCidrBlock;

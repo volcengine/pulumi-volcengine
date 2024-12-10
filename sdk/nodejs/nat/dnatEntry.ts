@@ -66,7 +66,7 @@ import * as utilities from "../utilities";
  * Dnat entry can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:nat/dnatEntry:DnatEntry default dnat-3fvhk47kf56****
+ * $ pulumi import volcengine:nat/dnatEntry:DnatEntry default dnat-3fvhk47kf56****
  * ```
  */
 export class DnatEntry extends pulumi.CustomResource {

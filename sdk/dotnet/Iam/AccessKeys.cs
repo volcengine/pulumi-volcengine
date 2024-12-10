@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Iam
     {
         /// <summary>
         /// Use this data source to query detailed information of iam access keys
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -29,17 +27,13 @@ namespace Pulumi.Volcengine.Iam
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<AccessKeysResult> InvokeAsync(AccessKeysArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<AccessKeysResult>("volcengine:iam/accessKeys:AccessKeys", args ?? new AccessKeysArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of iam access keys
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -53,8 +47,6 @@ namespace Pulumi.Volcengine.Iam
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<AccessKeysResult> Invoke(AccessKeysInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<AccessKeysResult>("volcengine:iam/accessKeys:AccessKeys", args ?? new AccessKeysInvokeArgs(), options.WithDefaults());

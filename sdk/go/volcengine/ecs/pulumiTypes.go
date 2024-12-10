@@ -691,9 +691,480 @@ func (o DeploymentSetsDeploymentSetArrayOutput) Index(i pulumi.IntInput) Deploym
 	}).(DeploymentSetsDeploymentSetOutput)
 }
 
+type HpcClustersHpcCluster struct {
+	// The created time of the hpc cluster.
+	CreatedAt string `pulumi:"createdAt"`
+	// The description of the hpc cluster.
+	Description string `pulumi:"description"`
+	// The id of the hpc cluster.
+	HpcClusterId string `pulumi:"hpcClusterId"`
+	// The id of the hpc cluster.
+	Id string `pulumi:"id"`
+	// The name of the hpc cluster.
+	Name string `pulumi:"name"`
+	// The updated time of the hpc cluster.
+	UpdatedAt string `pulumi:"updatedAt"`
+	// The vpc id of the hpc cluster.
+	VpcId string `pulumi:"vpcId"`
+	// The zone id of the hpc cluster.
+	ZoneId string `pulumi:"zoneId"`
+}
+
+// HpcClustersHpcClusterInput is an input type that accepts HpcClustersHpcClusterArgs and HpcClustersHpcClusterOutput values.
+// You can construct a concrete instance of `HpcClustersHpcClusterInput` via:
+//
+//	HpcClustersHpcClusterArgs{...}
+type HpcClustersHpcClusterInput interface {
+	pulumi.Input
+
+	ToHpcClustersHpcClusterOutput() HpcClustersHpcClusterOutput
+	ToHpcClustersHpcClusterOutputWithContext(context.Context) HpcClustersHpcClusterOutput
+}
+
+type HpcClustersHpcClusterArgs struct {
+	// The created time of the hpc cluster.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The description of the hpc cluster.
+	Description pulumi.StringInput `pulumi:"description"`
+	// The id of the hpc cluster.
+	HpcClusterId pulumi.StringInput `pulumi:"hpcClusterId"`
+	// The id of the hpc cluster.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The name of the hpc cluster.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The updated time of the hpc cluster.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// The vpc id of the hpc cluster.
+	VpcId pulumi.StringInput `pulumi:"vpcId"`
+	// The zone id of the hpc cluster.
+	ZoneId pulumi.StringInput `pulumi:"zoneId"`
+}
+
+func (HpcClustersHpcClusterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*HpcClustersHpcCluster)(nil)).Elem()
+}
+
+func (i HpcClustersHpcClusterArgs) ToHpcClustersHpcClusterOutput() HpcClustersHpcClusterOutput {
+	return i.ToHpcClustersHpcClusterOutputWithContext(context.Background())
+}
+
+func (i HpcClustersHpcClusterArgs) ToHpcClustersHpcClusterOutputWithContext(ctx context.Context) HpcClustersHpcClusterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HpcClustersHpcClusterOutput)
+}
+
+// HpcClustersHpcClusterArrayInput is an input type that accepts HpcClustersHpcClusterArray and HpcClustersHpcClusterArrayOutput values.
+// You can construct a concrete instance of `HpcClustersHpcClusterArrayInput` via:
+//
+//	HpcClustersHpcClusterArray{ HpcClustersHpcClusterArgs{...} }
+type HpcClustersHpcClusterArrayInput interface {
+	pulumi.Input
+
+	ToHpcClustersHpcClusterArrayOutput() HpcClustersHpcClusterArrayOutput
+	ToHpcClustersHpcClusterArrayOutputWithContext(context.Context) HpcClustersHpcClusterArrayOutput
+}
+
+type HpcClustersHpcClusterArray []HpcClustersHpcClusterInput
+
+func (HpcClustersHpcClusterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]HpcClustersHpcCluster)(nil)).Elem()
+}
+
+func (i HpcClustersHpcClusterArray) ToHpcClustersHpcClusterArrayOutput() HpcClustersHpcClusterArrayOutput {
+	return i.ToHpcClustersHpcClusterArrayOutputWithContext(context.Background())
+}
+
+func (i HpcClustersHpcClusterArray) ToHpcClustersHpcClusterArrayOutputWithContext(ctx context.Context) HpcClustersHpcClusterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HpcClustersHpcClusterArrayOutput)
+}
+
+type HpcClustersHpcClusterOutput struct{ *pulumi.OutputState }
+
+func (HpcClustersHpcClusterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*HpcClustersHpcCluster)(nil)).Elem()
+}
+
+func (o HpcClustersHpcClusterOutput) ToHpcClustersHpcClusterOutput() HpcClustersHpcClusterOutput {
+	return o
+}
+
+func (o HpcClustersHpcClusterOutput) ToHpcClustersHpcClusterOutputWithContext(ctx context.Context) HpcClustersHpcClusterOutput {
+	return o
+}
+
+// The created time of the hpc cluster.
+func (o HpcClustersHpcClusterOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v HpcClustersHpcCluster) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The description of the hpc cluster.
+func (o HpcClustersHpcClusterOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v HpcClustersHpcCluster) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The id of the hpc cluster.
+func (o HpcClustersHpcClusterOutput) HpcClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v HpcClustersHpcCluster) string { return v.HpcClusterId }).(pulumi.StringOutput)
+}
+
+// The id of the hpc cluster.
+func (o HpcClustersHpcClusterOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v HpcClustersHpcCluster) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The name of the hpc cluster.
+func (o HpcClustersHpcClusterOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v HpcClustersHpcCluster) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The updated time of the hpc cluster.
+func (o HpcClustersHpcClusterOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v HpcClustersHpcCluster) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// The vpc id of the hpc cluster.
+func (o HpcClustersHpcClusterOutput) VpcId() pulumi.StringOutput {
+	return o.ApplyT(func(v HpcClustersHpcCluster) string { return v.VpcId }).(pulumi.StringOutput)
+}
+
+// The zone id of the hpc cluster.
+func (o HpcClustersHpcClusterOutput) ZoneId() pulumi.StringOutput {
+	return o.ApplyT(func(v HpcClustersHpcCluster) string { return v.ZoneId }).(pulumi.StringOutput)
+}
+
+type HpcClustersHpcClusterArrayOutput struct{ *pulumi.OutputState }
+
+func (HpcClustersHpcClusterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]HpcClustersHpcCluster)(nil)).Elem()
+}
+
+func (o HpcClustersHpcClusterArrayOutput) ToHpcClustersHpcClusterArrayOutput() HpcClustersHpcClusterArrayOutput {
+	return o
+}
+
+func (o HpcClustersHpcClusterArrayOutput) ToHpcClustersHpcClusterArrayOutputWithContext(ctx context.Context) HpcClustersHpcClusterArrayOutput {
+	return o
+}
+
+func (o HpcClustersHpcClusterArrayOutput) Index(i pulumi.IntInput) HpcClustersHpcClusterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) HpcClustersHpcCluster {
+		return vs[0].([]HpcClustersHpcCluster)[vs[1].(int)]
+	}).(HpcClustersHpcClusterOutput)
+}
+
+type ImageImportTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// ImageImportTagInput is an input type that accepts ImageImportTagArgs and ImageImportTagOutput values.
+// You can construct a concrete instance of `ImageImportTagInput` via:
+//
+//	ImageImportTagArgs{...}
+type ImageImportTagInput interface {
+	pulumi.Input
+
+	ToImageImportTagOutput() ImageImportTagOutput
+	ToImageImportTagOutputWithContext(context.Context) ImageImportTagOutput
+}
+
+type ImageImportTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (ImageImportTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImageImportTag)(nil)).Elem()
+}
+
+func (i ImageImportTagArgs) ToImageImportTagOutput() ImageImportTagOutput {
+	return i.ToImageImportTagOutputWithContext(context.Background())
+}
+
+func (i ImageImportTagArgs) ToImageImportTagOutputWithContext(ctx context.Context) ImageImportTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImageImportTagOutput)
+}
+
+// ImageImportTagArrayInput is an input type that accepts ImageImportTagArray and ImageImportTagArrayOutput values.
+// You can construct a concrete instance of `ImageImportTagArrayInput` via:
+//
+//	ImageImportTagArray{ ImageImportTagArgs{...} }
+type ImageImportTagArrayInput interface {
+	pulumi.Input
+
+	ToImageImportTagArrayOutput() ImageImportTagArrayOutput
+	ToImageImportTagArrayOutputWithContext(context.Context) ImageImportTagArrayOutput
+}
+
+type ImageImportTagArray []ImageImportTagInput
+
+func (ImageImportTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ImageImportTag)(nil)).Elem()
+}
+
+func (i ImageImportTagArray) ToImageImportTagArrayOutput() ImageImportTagArrayOutput {
+	return i.ToImageImportTagArrayOutputWithContext(context.Background())
+}
+
+func (i ImageImportTagArray) ToImageImportTagArrayOutputWithContext(ctx context.Context) ImageImportTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImageImportTagArrayOutput)
+}
+
+type ImageImportTagOutput struct{ *pulumi.OutputState }
+
+func (ImageImportTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImageImportTag)(nil)).Elem()
+}
+
+func (o ImageImportTagOutput) ToImageImportTagOutput() ImageImportTagOutput {
+	return o
+}
+
+func (o ImageImportTagOutput) ToImageImportTagOutputWithContext(ctx context.Context) ImageImportTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o ImageImportTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v ImageImportTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o ImageImportTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v ImageImportTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type ImageImportTagArrayOutput struct{ *pulumi.OutputState }
+
+func (ImageImportTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ImageImportTag)(nil)).Elem()
+}
+
+func (o ImageImportTagArrayOutput) ToImageImportTagArrayOutput() ImageImportTagArrayOutput {
+	return o
+}
+
+func (o ImageImportTagArrayOutput) ToImageImportTagArrayOutputWithContext(ctx context.Context) ImageImportTagArrayOutput {
+	return o
+}
+
+func (o ImageImportTagArrayOutput) Index(i pulumi.IntInput) ImageImportTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ImageImportTag {
+		return vs[0].([]ImageImportTag)[vs[1].(int)]
+	}).(ImageImportTagOutput)
+}
+
+type ImageSharePermissionsAccount struct {
+	// The shared account id of the image.
+	AccountId string `pulumi:"accountId"`
+}
+
+// ImageSharePermissionsAccountInput is an input type that accepts ImageSharePermissionsAccountArgs and ImageSharePermissionsAccountOutput values.
+// You can construct a concrete instance of `ImageSharePermissionsAccountInput` via:
+//
+//	ImageSharePermissionsAccountArgs{...}
+type ImageSharePermissionsAccountInput interface {
+	pulumi.Input
+
+	ToImageSharePermissionsAccountOutput() ImageSharePermissionsAccountOutput
+	ToImageSharePermissionsAccountOutputWithContext(context.Context) ImageSharePermissionsAccountOutput
+}
+
+type ImageSharePermissionsAccountArgs struct {
+	// The shared account id of the image.
+	AccountId pulumi.StringInput `pulumi:"accountId"`
+}
+
+func (ImageSharePermissionsAccountArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImageSharePermissionsAccount)(nil)).Elem()
+}
+
+func (i ImageSharePermissionsAccountArgs) ToImageSharePermissionsAccountOutput() ImageSharePermissionsAccountOutput {
+	return i.ToImageSharePermissionsAccountOutputWithContext(context.Background())
+}
+
+func (i ImageSharePermissionsAccountArgs) ToImageSharePermissionsAccountOutputWithContext(ctx context.Context) ImageSharePermissionsAccountOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImageSharePermissionsAccountOutput)
+}
+
+// ImageSharePermissionsAccountArrayInput is an input type that accepts ImageSharePermissionsAccountArray and ImageSharePermissionsAccountArrayOutput values.
+// You can construct a concrete instance of `ImageSharePermissionsAccountArrayInput` via:
+//
+//	ImageSharePermissionsAccountArray{ ImageSharePermissionsAccountArgs{...} }
+type ImageSharePermissionsAccountArrayInput interface {
+	pulumi.Input
+
+	ToImageSharePermissionsAccountArrayOutput() ImageSharePermissionsAccountArrayOutput
+	ToImageSharePermissionsAccountArrayOutputWithContext(context.Context) ImageSharePermissionsAccountArrayOutput
+}
+
+type ImageSharePermissionsAccountArray []ImageSharePermissionsAccountInput
+
+func (ImageSharePermissionsAccountArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ImageSharePermissionsAccount)(nil)).Elem()
+}
+
+func (i ImageSharePermissionsAccountArray) ToImageSharePermissionsAccountArrayOutput() ImageSharePermissionsAccountArrayOutput {
+	return i.ToImageSharePermissionsAccountArrayOutputWithContext(context.Background())
+}
+
+func (i ImageSharePermissionsAccountArray) ToImageSharePermissionsAccountArrayOutputWithContext(ctx context.Context) ImageSharePermissionsAccountArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImageSharePermissionsAccountArrayOutput)
+}
+
+type ImageSharePermissionsAccountOutput struct{ *pulumi.OutputState }
+
+func (ImageSharePermissionsAccountOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImageSharePermissionsAccount)(nil)).Elem()
+}
+
+func (o ImageSharePermissionsAccountOutput) ToImageSharePermissionsAccountOutput() ImageSharePermissionsAccountOutput {
+	return o
+}
+
+func (o ImageSharePermissionsAccountOutput) ToImageSharePermissionsAccountOutputWithContext(ctx context.Context) ImageSharePermissionsAccountOutput {
+	return o
+}
+
+// The shared account id of the image.
+func (o ImageSharePermissionsAccountOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v ImageSharePermissionsAccount) string { return v.AccountId }).(pulumi.StringOutput)
+}
+
+type ImageSharePermissionsAccountArrayOutput struct{ *pulumi.OutputState }
+
+func (ImageSharePermissionsAccountArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ImageSharePermissionsAccount)(nil)).Elem()
+}
+
+func (o ImageSharePermissionsAccountArrayOutput) ToImageSharePermissionsAccountArrayOutput() ImageSharePermissionsAccountArrayOutput {
+	return o
+}
+
+func (o ImageSharePermissionsAccountArrayOutput) ToImageSharePermissionsAccountArrayOutputWithContext(ctx context.Context) ImageSharePermissionsAccountArrayOutput {
+	return o
+}
+
+func (o ImageSharePermissionsAccountArrayOutput) Index(i pulumi.IntInput) ImageSharePermissionsAccountOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ImageSharePermissionsAccount {
+		return vs[0].([]ImageSharePermissionsAccount)[vs[1].(int)]
+	}).(ImageSharePermissionsAccountOutput)
+}
+
+type ImageTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// ImageTagInput is an input type that accepts ImageTagArgs and ImageTagOutput values.
+// You can construct a concrete instance of `ImageTagInput` via:
+//
+//	ImageTagArgs{...}
+type ImageTagInput interface {
+	pulumi.Input
+
+	ToImageTagOutput() ImageTagOutput
+	ToImageTagOutputWithContext(context.Context) ImageTagOutput
+}
+
+type ImageTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (ImageTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImageTag)(nil)).Elem()
+}
+
+func (i ImageTagArgs) ToImageTagOutput() ImageTagOutput {
+	return i.ToImageTagOutputWithContext(context.Background())
+}
+
+func (i ImageTagArgs) ToImageTagOutputWithContext(ctx context.Context) ImageTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImageTagOutput)
+}
+
+// ImageTagArrayInput is an input type that accepts ImageTagArray and ImageTagArrayOutput values.
+// You can construct a concrete instance of `ImageTagArrayInput` via:
+//
+//	ImageTagArray{ ImageTagArgs{...} }
+type ImageTagArrayInput interface {
+	pulumi.Input
+
+	ToImageTagArrayOutput() ImageTagArrayOutput
+	ToImageTagArrayOutputWithContext(context.Context) ImageTagArrayOutput
+}
+
+type ImageTagArray []ImageTagInput
+
+func (ImageTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ImageTag)(nil)).Elem()
+}
+
+func (i ImageTagArray) ToImageTagArrayOutput() ImageTagArrayOutput {
+	return i.ToImageTagArrayOutputWithContext(context.Background())
+}
+
+func (i ImageTagArray) ToImageTagArrayOutputWithContext(ctx context.Context) ImageTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImageTagArrayOutput)
+}
+
+type ImageTagOutput struct{ *pulumi.OutputState }
+
+func (ImageTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImageTag)(nil)).Elem()
+}
+
+func (o ImageTagOutput) ToImageTagOutput() ImageTagOutput {
+	return o
+}
+
+func (o ImageTagOutput) ToImageTagOutputWithContext(ctx context.Context) ImageTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o ImageTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v ImageTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o ImageTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v ImageTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type ImageTagArrayOutput struct{ *pulumi.OutputState }
+
+func (ImageTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ImageTag)(nil)).Elem()
+}
+
+func (o ImageTagArrayOutput) ToImageTagArrayOutput() ImageTagArrayOutput {
+	return o
+}
+
+func (o ImageTagArrayOutput) ToImageTagArrayOutputWithContext(ctx context.Context) ImageTagArrayOutput {
+	return o
+}
+
+func (o ImageTagArrayOutput) Index(i pulumi.IntInput) ImageTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ImageTag {
+		return vs[0].([]ImageTag)[vs[1].(int)]
+	}).(ImageTagOutput)
+}
+
 type ImagesImage struct {
 	// The architecture of Image.
 	Architecture string `pulumi:"architecture"`
+	// The boot mode of Image.
+	BootMode string `pulumi:"bootMode"`
 	// The create time of Image.
 	CreatedAt string `pulumi:"createdAt"`
 	// The description of Image.
@@ -718,6 +1189,8 @@ type ImagesImage struct {
 	Size int `pulumi:"size"`
 	// A list of Image status, the value can be `available` or `creating` or `error`.
 	Status string `pulumi:"status"`
+	// Tags.
+	Tags []ImagesImageTag `pulumi:"tags"`
 	// The update time of Image.
 	UpdatedAt string `pulumi:"updatedAt"`
 	// The visibility of Image.
@@ -738,6 +1211,8 @@ type ImagesImageInput interface {
 type ImagesImageArgs struct {
 	// The architecture of Image.
 	Architecture pulumi.StringInput `pulumi:"architecture"`
+	// The boot mode of Image.
+	BootMode pulumi.StringInput `pulumi:"bootMode"`
 	// The create time of Image.
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// The description of Image.
@@ -762,6 +1237,8 @@ type ImagesImageArgs struct {
 	Size pulumi.IntInput `pulumi:"size"`
 	// A list of Image status, the value can be `available` or `creating` or `error`.
 	Status pulumi.StringInput `pulumi:"status"`
+	// Tags.
+	Tags ImagesImageTagArrayInput `pulumi:"tags"`
 	// The update time of Image.
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 	// The visibility of Image.
@@ -824,6 +1301,11 @@ func (o ImagesImageOutput) Architecture() pulumi.StringOutput {
 	return o.ApplyT(func(v ImagesImage) string { return v.Architecture }).(pulumi.StringOutput)
 }
 
+// The boot mode of Image.
+func (o ImagesImageOutput) BootMode() pulumi.StringOutput {
+	return o.ApplyT(func(v ImagesImage) string { return v.BootMode }).(pulumi.StringOutput)
+}
+
 // The create time of Image.
 func (o ImagesImageOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v ImagesImage) string { return v.CreatedAt }).(pulumi.StringOutput)
@@ -884,6 +1366,11 @@ func (o ImagesImageOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v ImagesImage) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// Tags.
+func (o ImagesImageOutput) Tags() ImagesImageTagArrayOutput {
+	return o.ApplyT(func(v ImagesImage) []ImagesImageTag { return v.Tags }).(ImagesImageTagArrayOutput)
+}
+
 // The update time of Image.
 func (o ImagesImageOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v ImagesImage) string { return v.UpdatedAt }).(pulumi.StringOutput)
@@ -912,6 +1399,218 @@ func (o ImagesImageArrayOutput) Index(i pulumi.IntInput) ImagesImageOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ImagesImage {
 		return vs[0].([]ImagesImage)[vs[1].(int)]
 	}).(ImagesImageOutput)
+}
+
+type ImagesImageTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// ImagesImageTagInput is an input type that accepts ImagesImageTagArgs and ImagesImageTagOutput values.
+// You can construct a concrete instance of `ImagesImageTagInput` via:
+//
+//	ImagesImageTagArgs{...}
+type ImagesImageTagInput interface {
+	pulumi.Input
+
+	ToImagesImageTagOutput() ImagesImageTagOutput
+	ToImagesImageTagOutputWithContext(context.Context) ImagesImageTagOutput
+}
+
+type ImagesImageTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (ImagesImageTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImagesImageTag)(nil)).Elem()
+}
+
+func (i ImagesImageTagArgs) ToImagesImageTagOutput() ImagesImageTagOutput {
+	return i.ToImagesImageTagOutputWithContext(context.Background())
+}
+
+func (i ImagesImageTagArgs) ToImagesImageTagOutputWithContext(ctx context.Context) ImagesImageTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImagesImageTagOutput)
+}
+
+// ImagesImageTagArrayInput is an input type that accepts ImagesImageTagArray and ImagesImageTagArrayOutput values.
+// You can construct a concrete instance of `ImagesImageTagArrayInput` via:
+//
+//	ImagesImageTagArray{ ImagesImageTagArgs{...} }
+type ImagesImageTagArrayInput interface {
+	pulumi.Input
+
+	ToImagesImageTagArrayOutput() ImagesImageTagArrayOutput
+	ToImagesImageTagArrayOutputWithContext(context.Context) ImagesImageTagArrayOutput
+}
+
+type ImagesImageTagArray []ImagesImageTagInput
+
+func (ImagesImageTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ImagesImageTag)(nil)).Elem()
+}
+
+func (i ImagesImageTagArray) ToImagesImageTagArrayOutput() ImagesImageTagArrayOutput {
+	return i.ToImagesImageTagArrayOutputWithContext(context.Background())
+}
+
+func (i ImagesImageTagArray) ToImagesImageTagArrayOutputWithContext(ctx context.Context) ImagesImageTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImagesImageTagArrayOutput)
+}
+
+type ImagesImageTagOutput struct{ *pulumi.OutputState }
+
+func (ImagesImageTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImagesImageTag)(nil)).Elem()
+}
+
+func (o ImagesImageTagOutput) ToImagesImageTagOutput() ImagesImageTagOutput {
+	return o
+}
+
+func (o ImagesImageTagOutput) ToImagesImageTagOutputWithContext(ctx context.Context) ImagesImageTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o ImagesImageTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v ImagesImageTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o ImagesImageTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v ImagesImageTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type ImagesImageTagArrayOutput struct{ *pulumi.OutputState }
+
+func (ImagesImageTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ImagesImageTag)(nil)).Elem()
+}
+
+func (o ImagesImageTagArrayOutput) ToImagesImageTagArrayOutput() ImagesImageTagArrayOutput {
+	return o
+}
+
+func (o ImagesImageTagArrayOutput) ToImagesImageTagArrayOutputWithContext(ctx context.Context) ImagesImageTagArrayOutput {
+	return o
+}
+
+func (o ImagesImageTagArrayOutput) Index(i pulumi.IntInput) ImagesImageTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ImagesImageTag {
+		return vs[0].([]ImagesImageTag)[vs[1].(int)]
+	}).(ImagesImageTagOutput)
+}
+
+type ImagesTag struct {
+	// The Key of Tags.
+	Key string `pulumi:"key"`
+	// The Value of Tags.
+	Value string `pulumi:"value"`
+}
+
+// ImagesTagInput is an input type that accepts ImagesTagArgs and ImagesTagOutput values.
+// You can construct a concrete instance of `ImagesTagInput` via:
+//
+//	ImagesTagArgs{...}
+type ImagesTagInput interface {
+	pulumi.Input
+
+	ToImagesTagOutput() ImagesTagOutput
+	ToImagesTagOutputWithContext(context.Context) ImagesTagOutput
+}
+
+type ImagesTagArgs struct {
+	// The Key of Tags.
+	Key pulumi.StringInput `pulumi:"key"`
+	// The Value of Tags.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (ImagesTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImagesTag)(nil)).Elem()
+}
+
+func (i ImagesTagArgs) ToImagesTagOutput() ImagesTagOutput {
+	return i.ToImagesTagOutputWithContext(context.Background())
+}
+
+func (i ImagesTagArgs) ToImagesTagOutputWithContext(ctx context.Context) ImagesTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImagesTagOutput)
+}
+
+// ImagesTagArrayInput is an input type that accepts ImagesTagArray and ImagesTagArrayOutput values.
+// You can construct a concrete instance of `ImagesTagArrayInput` via:
+//
+//	ImagesTagArray{ ImagesTagArgs{...} }
+type ImagesTagArrayInput interface {
+	pulumi.Input
+
+	ToImagesTagArrayOutput() ImagesTagArrayOutput
+	ToImagesTagArrayOutputWithContext(context.Context) ImagesTagArrayOutput
+}
+
+type ImagesTagArray []ImagesTagInput
+
+func (ImagesTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ImagesTag)(nil)).Elem()
+}
+
+func (i ImagesTagArray) ToImagesTagArrayOutput() ImagesTagArrayOutput {
+	return i.ToImagesTagArrayOutputWithContext(context.Background())
+}
+
+func (i ImagesTagArray) ToImagesTagArrayOutputWithContext(ctx context.Context) ImagesTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImagesTagArrayOutput)
+}
+
+type ImagesTagOutput struct{ *pulumi.OutputState }
+
+func (ImagesTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImagesTag)(nil)).Elem()
+}
+
+func (o ImagesTagOutput) ToImagesTagOutput() ImagesTagOutput {
+	return o
+}
+
+func (o ImagesTagOutput) ToImagesTagOutputWithContext(ctx context.Context) ImagesTagOutput {
+	return o
+}
+
+// The Key of Tags.
+func (o ImagesTagOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v ImagesTag) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// The Value of Tags.
+func (o ImagesTagOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v ImagesTag) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type ImagesTagArrayOutput struct{ *pulumi.OutputState }
+
+func (ImagesTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ImagesTag)(nil)).Elem()
+}
+
+func (o ImagesTagArrayOutput) ToImagesTagArrayOutput() ImagesTagArrayOutput {
+	return o
+}
+
+func (o ImagesTagArrayOutput) ToImagesTagArrayOutputWithContext(ctx context.Context) ImagesTagArrayOutput {
+	return o
+}
+
+func (o ImagesTagArrayOutput) Index(i pulumi.IntInput) ImagesTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ImagesTag {
+		return vs[0].([]ImagesTag)[vs[1].(int)]
+	}).(ImagesTagOutput)
 }
 
 type InstanceCpuOptions struct {
@@ -1310,7 +2009,7 @@ func (o InstanceGpuDeviceArrayOutput) Index(i pulumi.IntInput) InstanceGpuDevice
 }
 
 type InstanceSecondaryNetworkInterface struct {
-	// The private ip address of primary networkInterface.
+	// The private ip address of secondary networkInterface.
 	PrimaryIpAddress *string `pulumi:"primaryIpAddress"`
 	// The security group ID set of secondary networkInterface.
 	SecurityGroupIds []string `pulumi:"securityGroupIds"`
@@ -1330,7 +2029,7 @@ type InstanceSecondaryNetworkInterfaceInput interface {
 }
 
 type InstanceSecondaryNetworkInterfaceArgs struct {
-	// The private ip address of primary networkInterface.
+	// The private ip address of secondary networkInterface.
 	PrimaryIpAddress pulumi.StringPtrInput `pulumi:"primaryIpAddress"`
 	// The security group ID set of secondary networkInterface.
 	SecurityGroupIds pulumi.StringArrayInput `pulumi:"securityGroupIds"`
@@ -1389,7 +2088,7 @@ func (o InstanceSecondaryNetworkInterfaceOutput) ToInstanceSecondaryNetworkInter
 	return o
 }
 
-// The private ip address of primary networkInterface.
+// The private ip address of secondary networkInterface.
 func (o InstanceSecondaryNetworkInterfaceOutput) PrimaryIpAddress() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceSecondaryNetworkInterface) *string { return v.PrimaryIpAddress }).(pulumi.StringPtrOutput)
 }
@@ -2752,7 +3451,7 @@ type InstancesInstance struct {
 	InstanceType string `pulumi:"instanceType"`
 	// The number of IPv6 addresses of the ECS instance.
 	Ipv6AddressCount int `pulumi:"ipv6AddressCount"`
-	// The  IPv6 address list of the ECS instance.
+	// A list of ipv6 addresses.
 	Ipv6Addresses []string `pulumi:"ipv6Addresses"`
 	// The Flag of GPU instance.If the instance is GPU,The flag is true.
 	IsGpu bool `pulumi:"isGpu"`
@@ -2826,7 +3525,7 @@ type InstancesInstanceArgs struct {
 	InstanceType pulumi.StringInput `pulumi:"instanceType"`
 	// The number of IPv6 addresses of the ECS instance.
 	Ipv6AddressCount pulumi.IntInput `pulumi:"ipv6AddressCount"`
-	// The  IPv6 address list of the ECS instance.
+	// A list of ipv6 addresses.
 	Ipv6Addresses pulumi.StringArrayInput `pulumi:"ipv6Addresses"`
 	// The Flag of GPU instance.If the instance is GPU,The flag is true.
 	IsGpu pulumi.BoolInput `pulumi:"isGpu"`
@@ -2975,7 +3674,7 @@ func (o InstancesInstanceOutput) Ipv6AddressCount() pulumi.IntOutput {
 	return o.ApplyT(func(v InstancesInstance) int { return v.Ipv6AddressCount }).(pulumi.IntOutput)
 }
 
-// The  IPv6 address list of the ECS instance.
+// A list of ipv6 addresses.
 func (o InstancesInstanceOutput) Ipv6Addresses() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v InstancesInstance) []string { return v.Ipv6Addresses }).(pulumi.StringArrayOutput)
 }
@@ -5318,8 +6017,20 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CommandsCommandArrayInput)(nil)).Elem(), CommandsCommandArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentSetsDeploymentSetInput)(nil)).Elem(), DeploymentSetsDeploymentSetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentSetsDeploymentSetArrayInput)(nil)).Elem(), DeploymentSetsDeploymentSetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HpcClustersHpcClusterInput)(nil)).Elem(), HpcClustersHpcClusterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HpcClustersHpcClusterArrayInput)(nil)).Elem(), HpcClustersHpcClusterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ImageImportTagInput)(nil)).Elem(), ImageImportTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ImageImportTagArrayInput)(nil)).Elem(), ImageImportTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ImageSharePermissionsAccountInput)(nil)).Elem(), ImageSharePermissionsAccountArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ImageSharePermissionsAccountArrayInput)(nil)).Elem(), ImageSharePermissionsAccountArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ImageTagInput)(nil)).Elem(), ImageTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ImageTagArrayInput)(nil)).Elem(), ImageTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ImagesImageInput)(nil)).Elem(), ImagesImageArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ImagesImageArrayInput)(nil)).Elem(), ImagesImageArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ImagesImageTagInput)(nil)).Elem(), ImagesImageTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ImagesImageTagArrayInput)(nil)).Elem(), ImagesImageTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ImagesTagInput)(nil)).Elem(), ImagesTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ImagesTagArrayInput)(nil)).Elem(), ImagesTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceCpuOptionsInput)(nil)).Elem(), InstanceCpuOptionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceCpuOptionsPtrInput)(nil)).Elem(), InstanceCpuOptionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceDataVolumeInput)(nil)).Elem(), InstanceDataVolumeArgs{})
@@ -5392,8 +6103,20 @@ func init() {
 	pulumi.RegisterOutputType(CommandsCommandArrayOutput{})
 	pulumi.RegisterOutputType(DeploymentSetsDeploymentSetOutput{})
 	pulumi.RegisterOutputType(DeploymentSetsDeploymentSetArrayOutput{})
+	pulumi.RegisterOutputType(HpcClustersHpcClusterOutput{})
+	pulumi.RegisterOutputType(HpcClustersHpcClusterArrayOutput{})
+	pulumi.RegisterOutputType(ImageImportTagOutput{})
+	pulumi.RegisterOutputType(ImageImportTagArrayOutput{})
+	pulumi.RegisterOutputType(ImageSharePermissionsAccountOutput{})
+	pulumi.RegisterOutputType(ImageSharePermissionsAccountArrayOutput{})
+	pulumi.RegisterOutputType(ImageTagOutput{})
+	pulumi.RegisterOutputType(ImageTagArrayOutput{})
 	pulumi.RegisterOutputType(ImagesImageOutput{})
 	pulumi.RegisterOutputType(ImagesImageArrayOutput{})
+	pulumi.RegisterOutputType(ImagesImageTagOutput{})
+	pulumi.RegisterOutputType(ImagesImageTagArrayOutput{})
+	pulumi.RegisterOutputType(ImagesTagOutput{})
+	pulumi.RegisterOutputType(ImagesTagArrayOutput{})
 	pulumi.RegisterOutputType(InstanceCpuOptionsOutput{})
 	pulumi.RegisterOutputType(InstanceCpuOptionsPtrOutput{})
 	pulumi.RegisterOutputType(InstanceDataVolumeOutput{})

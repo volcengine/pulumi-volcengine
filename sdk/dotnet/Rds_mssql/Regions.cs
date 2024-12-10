@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Rds_mssql
     {
         /// <summary>
         /// Use this data source to query detailed information of rds mssql regions
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -29,17 +27,13 @@ namespace Pulumi.Volcengine.Rds_mssql
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<RegionsResult> InvokeAsync(RegionsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<RegionsResult>("volcengine:rds_mssql/regions:Regions", args ?? new RegionsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of rds mssql regions
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -53,8 +47,6 @@ namespace Pulumi.Volcengine.Rds_mssql
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<RegionsResult> Invoke(RegionsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<RegionsResult>("volcengine:rds_mssql/regions:Regions", args ?? new RegionsInvokeArgs(), options.WithDefaults());

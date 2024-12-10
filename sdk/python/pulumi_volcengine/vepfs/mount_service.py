@@ -336,7 +336,7 @@ class MountService(pulumi.CustomResource):
         VepfsMountService can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vepfs/mountService:MountService default resource_id
+        $ pulumi import volcengine:vepfs/mountService:MountService default resource_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -380,7 +380,7 @@ class MountService(pulumi.CustomResource):
         VepfsMountService can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vepfs/mountService:MountService default resource_id
+        $ pulumi import volcengine:vepfs/mountService:MountService default resource_id
         ```
 
         :param str resource_name: The name of the resource.

@@ -90,7 +90,7 @@ import * as utilities from "../utilities";
  * Volume can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:ebs/volume:Volume default vol-mizl7m1kqccg5smt1bdpijuj
+ * $ pulumi import volcengine:ebs/volume:Volume default vol-mizl7m1kqccg5smt1bdpijuj
  * ```
  */
 export class Volume extends pulumi.CustomResource {
@@ -133,6 +133,18 @@ export class Volume extends pulumi.CustomResource {
      * The description of the Volume.
      */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * The extra IOPS performance size for volume. Unit: times per second. The valid values for `Balance` and `IOPS` is 0~50000.
+     */
+    public readonly extraPerformanceIops!: pulumi.Output<number>;
+    /**
+     * The extra Throughput performance size for volume. Unit: MB/s. The valid values for ESSD FlexPL volume is 0~650.
+     */
+    public readonly extraPerformanceThroughputMb!: pulumi.Output<number>;
+    /**
+     * The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
+     */
+    public readonly extraPerformanceTypeId!: pulumi.Output<string | undefined>;
     /**
      * The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
      * system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
@@ -197,6 +209,9 @@ export class Volume extends pulumi.CustomResource {
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["deleteWithInstance"] = state ? state.deleteWithInstance : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["extraPerformanceIops"] = state ? state.extraPerformanceIops : undefined;
+            resourceInputs["extraPerformanceThroughputMb"] = state ? state.extraPerformanceThroughputMb : undefined;
+            resourceInputs["extraPerformanceTypeId"] = state ? state.extraPerformanceTypeId : undefined;
             resourceInputs["instanceId"] = state ? state.instanceId : undefined;
             resourceInputs["kind"] = state ? state.kind : undefined;
             resourceInputs["projectName"] = state ? state.projectName : undefined;
@@ -227,6 +242,9 @@ export class Volume extends pulumi.CustomResource {
             }
             resourceInputs["deleteWithInstance"] = args ? args.deleteWithInstance : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["extraPerformanceIops"] = args ? args.extraPerformanceIops : undefined;
+            resourceInputs["extraPerformanceThroughputMb"] = args ? args.extraPerformanceThroughputMb : undefined;
+            resourceInputs["extraPerformanceTypeId"] = args ? args.extraPerformanceTypeId : undefined;
             resourceInputs["instanceId"] = args ? args.instanceId : undefined;
             resourceInputs["kind"] = args ? args.kind : undefined;
             resourceInputs["projectName"] = args ? args.projectName : undefined;
@@ -261,6 +279,18 @@ export interface VolumeState {
      * The description of the Volume.
      */
     description?: pulumi.Input<string>;
+    /**
+     * The extra IOPS performance size for volume. Unit: times per second. The valid values for `Balance` and `IOPS` is 0~50000.
+     */
+    extraPerformanceIops?: pulumi.Input<number>;
+    /**
+     * The extra Throughput performance size for volume. Unit: MB/s. The valid values for ESSD FlexPL volume is 0~650.
+     */
+    extraPerformanceThroughputMb?: pulumi.Input<number>;
+    /**
+     * The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
+     */
+    extraPerformanceTypeId?: pulumi.Input<string>;
     /**
      * The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
      * system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be
@@ -322,6 +352,18 @@ export interface VolumeArgs {
      * The description of the Volume.
      */
     description?: pulumi.Input<string>;
+    /**
+     * The extra IOPS performance size for volume. Unit: times per second. The valid values for `Balance` and `IOPS` is 0~50000.
+     */
+    extraPerformanceIops?: pulumi.Input<number>;
+    /**
+     * The extra Throughput performance size for volume. Unit: MB/s. The valid values for ESSD FlexPL volume is 0~650.
+     */
+    extraPerformanceThroughputMb?: pulumi.Input<number>;
+    /**
+     * The type of extra performance for volume. The valid values for ESSD FlexPL volume are `Throughput`, `Balance`, `IOPS`. The valid value for TSSD_TL0 volume is `Throughput`.
+     */
+    extraPerformanceTypeId?: pulumi.Input<string>;
     /**
      * The ID of the instance to which the created volume is automatically attached. Please note this field needs to ask the
      * system administrator to apply for a whitelist. When use this field to attach ecs instance, the attached volume cannot be

@@ -465,7 +465,7 @@ class FileSystem(pulumi.CustomResource):
         NasFileSystem can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:nas/fileSystem:FileSystem default enas-cnbjd3879745****
+        $ pulumi import volcengine:nas/fileSystem:FileSystem default enas-cnbjd3879745****
         ```
 
         :param str resource_name: The name of the resource.
@@ -510,7 +510,7 @@ class FileSystem(pulumi.CustomResource):
         NasFileSystem can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:nas/fileSystem:FileSystem default enas-cnbjd3879745****
+        $ pulumi import volcengine:nas/fileSystem:FileSystem default enas-cnbjd3879745****
         ```
 
         :param str resource_name: The name of the resource.

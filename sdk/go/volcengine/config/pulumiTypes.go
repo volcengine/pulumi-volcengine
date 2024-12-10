@@ -14,10 +14,14 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type AssumeRole struct {
-	AssumeRoleSessionName string  `pulumi:"assumeRoleSessionName"`
-	AssumeRoleTrn         string  `pulumi:"assumeRoleTrn"`
-	DurationSeconds       int     `pulumi:"durationSeconds"`
-	Policy                *string `pulumi:"policy"`
+	// The session name to use when making the AssumeRole call.
+	AssumeRoleSessionName string `pulumi:"assumeRoleSessionName"`
+	// The TRN of the role to assume.
+	AssumeRoleTrn string `pulumi:"assumeRoleTrn"`
+	// The duration of the session when making the AssumeRole call. Its value ranges from 900 to 43200(seconds), and default is 3600 seconds.
+	DurationSeconds int `pulumi:"durationSeconds"`
+	// A more restrictive policy when making the AssumeRole call.
+	Policy *string `pulumi:"policy"`
 }
 
 // AssumeRoleInput is an input type that accepts AssumeRoleArgs and AssumeRoleOutput values.
@@ -32,10 +36,14 @@ type AssumeRoleInput interface {
 }
 
 type AssumeRoleArgs struct {
-	AssumeRoleSessionName pulumi.StringInput    `pulumi:"assumeRoleSessionName"`
-	AssumeRoleTrn         pulumi.StringInput    `pulumi:"assumeRoleTrn"`
-	DurationSeconds       pulumi.IntInput       `pulumi:"durationSeconds"`
-	Policy                pulumi.StringPtrInput `pulumi:"policy"`
+	// The session name to use when making the AssumeRole call.
+	AssumeRoleSessionName pulumi.StringInput `pulumi:"assumeRoleSessionName"`
+	// The TRN of the role to assume.
+	AssumeRoleTrn pulumi.StringInput `pulumi:"assumeRoleTrn"`
+	// The duration of the session when making the AssumeRole call. Its value ranges from 900 to 43200(seconds), and default is 3600 seconds.
+	DurationSeconds pulumi.IntInput `pulumi:"durationSeconds"`
+	// A more restrictive policy when making the AssumeRole call.
+	Policy pulumi.StringPtrInput `pulumi:"policy"`
 }
 
 func (AssumeRoleArgs) ElementType() reflect.Type {
@@ -64,18 +72,22 @@ func (o AssumeRoleOutput) ToAssumeRoleOutputWithContext(ctx context.Context) Ass
 	return o
 }
 
+// The session name to use when making the AssumeRole call.
 func (o AssumeRoleOutput) AssumeRoleSessionName() pulumi.StringOutput {
 	return o.ApplyT(func(v AssumeRole) string { return v.AssumeRoleSessionName }).(pulumi.StringOutput)
 }
 
+// The TRN of the role to assume.
 func (o AssumeRoleOutput) AssumeRoleTrn() pulumi.StringOutput {
 	return o.ApplyT(func(v AssumeRole) string { return v.AssumeRoleTrn }).(pulumi.StringOutput)
 }
 
+// The duration of the session when making the AssumeRole call. Its value ranges from 900 to 43200(seconds), and default is 3600 seconds.
 func (o AssumeRoleOutput) DurationSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v AssumeRole) int { return v.DurationSeconds }).(pulumi.IntOutput)
 }
 
+// A more restrictive policy when making the AssumeRole call.
 func (o AssumeRoleOutput) Policy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AssumeRole) *string { return v.Policy }).(pulumi.StringPtrOutput)
 }

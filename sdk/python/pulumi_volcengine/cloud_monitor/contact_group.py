@@ -153,7 +153,7 @@ class ContactGroup(pulumi.CustomResource):
         CloudMonitorContactGroup can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:cloud_monitor/contactGroup:ContactGroup default resource_id
+        $ pulumi import volcengine:cloud_monitor/contactGroup:ContactGroup default resource_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -189,7 +189,7 @@ class ContactGroup(pulumi.CustomResource):
         CloudMonitorContactGroup can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:cloud_monitor/contactGroup:ContactGroup default resource_id
+        $ pulumi import volcengine:cloud_monitor/contactGroup:ContactGroup default resource_id
         ```
 
         :param str resource_name: The name of the resource.

@@ -220,7 +220,7 @@ class Allowlist(pulumi.CustomResource):
         RdsPostgresqlAllowlist can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:rds_postgresql/allowlist:Allowlist default resource_id
+        $ pulumi import volcengine:rds_postgresql/allowlist:Allowlist default resource_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -259,7 +259,7 @@ class Allowlist(pulumi.CustomResource):
         RdsPostgresqlAllowlist can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:rds_postgresql/allowlist:Allowlist default resource_id
+        $ pulumi import volcengine:rds_postgresql/allowlist:Allowlist default resource_id
         ```
 
         :param str resource_name: The name of the resource.

@@ -46,9 +46,7 @@ import (
 // IamUserGroup can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:iam/userGroup:UserGroup default user_group_name
-//
+// $ pulumi import volcengine:iam/userGroup:UserGroup default user_group_name
 // ```
 type UserGroup struct {
 	pulumi.CustomResourceState

@@ -38,14 +38,10 @@ namespace Pulumi.Volcengine.Redis
     /// 
     ///     var fooInstance = new Volcengine.Redis.Instance("fooInstance", new()
     ///     {
-    ///         ZoneIds = new[]
-    ///         {
-    ///             fooZones.Apply(zonesResult =&gt; zonesResult.Zones[0]?.Id),
-    ///         },
-    ///         InstanceName = "tf-test",
+    ///         InstanceName = "tf-test2",
     ///         ShardedCluster = 1,
     ///         Password = "1qaz!QAZ12",
-    ///         NodeNumber = 2,
+    ///         NodeNumber = 4,
     ///         ShardCapacity = 1024,
     ///         ShardNumber = 2,
     ///         EngineVersion = "5.0",
@@ -91,8 +87,29 @@ namespace Pulumi.Volcengine.Redis
     ///         BackupActive = true,
     ///         CreateBackup = false,
     ///         ApplyImmediately = true,
+    ///         MultiAz = "enabled",
+    ///         ConfigureNodes = new[]
+    ///         {
+    ///             new Volcengine.Redis.Inputs.InstanceConfigureNodeArgs
+    ///             {
+    ///                 Az = "cn-guilin-a",
+    ///             },
+    ///             new Volcengine.Redis.Inputs.InstanceConfigureNodeArgs
+    ///             {
+    ///                 Az = "cn-guilin-b",
+    ///             },
+    ///             new Volcengine.Redis.Inputs.InstanceConfigureNodeArgs
+    ///             {
+    ///                 Az = "cn-guilin-c",
+    ///             },
+    ///             new Volcengine.Redis.Inputs.InstanceConfigureNodeArgs
+    ///             {
+    ///                 Az = "cn-guilin-b",
+    ///             },
+    ///         },
     ///     });
     /// 
+    ///     //additional_bandwidth = 12
     /// });
     /// ```
     /// 
@@ -101,12 +118,19 @@ namespace Pulumi.Volcengine.Redis
     /// redis instance can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:redis/instance:Instance default redis-n769ewmjjqyqh5dv
+    /// $ pulumi import volcengine:redis/instance:Instance default redis-n769ewmjjqyqh5dv
     /// ```
+    /// Adding or removing nodes and migrating availability zones for multiple AZ instances are not supported to be orchestrated simultaneously, but it is possible for single AZ instances.
     /// </summary>
     [VolcengineResourceType("volcengine:redis/instance:Instance")]
     public partial class Instance : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Modify the single-shard additional bandwidth of the target Redis instance. Set the additional bandwidth of a single shard, that is, the bandwidth that needs to be additionally increased on the basis of the default bandwidth. Unit: MB/s. The value of additional bandwidth needs to meet the following conditions at the same time: It must be greater than or equal to 0. When the value is 0, it means that no additional bandwidth is added, and the bandwidth of a single shard is the default bandwidth. The sum of additional bandwidth and default bandwidth cannot exceed the upper limit of bandwidth that can be modified for the current instance. Different specification nodes have different upper limits of bandwidth that can be modified. For more details, please refer to bandwidth modification range. The upper limits of the total write bandwidth and the total read bandwidth of an instance are both 2048MB/s.
+        /// </summary>
+        [Output("additionalBandwidth")]
+        public Output<int?> AdditionalBandwidth { get; private set; } = null!;
+
         /// <summary>
         /// Whether to apply the instance configuration change operation immediately. The value of this field is false, means that the change operation will be applied within maintenance time.
         /// </summary>
@@ -147,6 +171,12 @@ namespace Pulumi.Volcengine.Redis
         public Output<string?> ChargeType { get; private set; } = null!;
 
         /// <summary>
+        /// Set the list of available zones to which the node belongs.
+        /// </summary>
+        [Output("configureNodes")]
+        public Output<ImmutableArray<Outputs.InstanceConfigureNode>> ConfigureNodes { get; private set; } = null!;
+
+        /// <summary>
         /// Whether to create a final backup when modify the instance configuration or destroy the redis instance.
         /// </summary>
         [Output("createBackup")]
@@ -159,7 +189,7 @@ namespace Pulumi.Volcengine.Redis
         public Output<string?> DeletionProtection { get; private set; } = null!;
 
         /// <summary>
-        /// The engine version of redis instance. Valid value: `4.0`, `5.0`, `6.0`.
+        /// The engine version of redis instance. Valid value: `5.0`, `6.0`, `7.0`.
         /// </summary>
         [Output("engineVersion")]
         public Output<string> EngineVersion { get; private set; } = null!;
@@ -169,6 +199,16 @@ namespace Pulumi.Volcengine.Redis
         /// </summary>
         [Output("instanceName")]
         public Output<string?> InstanceName { get; private set; } = null!;
+
+        /// <summary>
+        /// Set the availability zone deployment scheme for the instance. The value range is as follows: 
+        /// disabled: Single availability zone deployment scheme.
+        /// enabled: Multi-availability zone deployment scheme.
+        /// Description:
+        /// When the newly created instance is a single-node instance (that is, when the value of NodeNumber is 1), only the single availability zone deployment scheme is allowed. At this time, the value of MultiAZ must be disabled.
+        /// </summary>
+        [Output("multiAz")]
+        public Output<string> MultiAz { get; private set; } = null!;
 
         /// <summary>
         /// The number of nodes in each shard, the valid value range is `1-6`. When the value is 1, it means creating a single node instance, and this field can not be modified. When the value is greater than 1, it means creating a primary and secondary instance, and this field can be modified.
@@ -184,10 +224,10 @@ namespace Pulumi.Volcengine.Redis
         public Output<ImmutableArray<Outputs.InstanceParamValue>> ParamValues { get; private set; } = null!;
 
         /// <summary>
-        /// The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields. If this parameter is left blank, it means that no password is set for the default account. At this time, the system will automatically generate a password for the default account to ensure instance access security. No account can obtain this random password. Therefore, before connecting to the instance, you need to reset the password of the default account through the ModifyDBAccount interface.You can also set a new account and password through the CreateDBAccount interface according to business needs. If you need to use password-free access function, you need to enable password-free access first through the ModifyDBInstanceVpcAuthMode interface.
         /// </summary>
         [Output("password")]
-        public Output<string> Password { get; private set; } = null!;
+        public Output<string?> Password { get; private set; } = null!;
 
         /// <summary>
         /// The port of custom define private network address. The valid value range is `1024-65535`. The default value is `6379`.
@@ -245,7 +285,7 @@ namespace Pulumi.Volcengine.Redis
         public Output<string> VpcAuthMode { get; private set; } = null!;
 
         /// <summary>
-        /// The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
+        /// This field has been deprecated after version-0.0.152. Please use multi_az and configure_nodes to specify the availability zone. The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
         /// </summary>
         [Output("zoneIds")]
         public Output<ImmutableArray<string>> ZoneIds { get; private set; } = null!;
@@ -302,6 +342,12 @@ namespace Pulumi.Volcengine.Redis
     public sealed class InstanceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Modify the single-shard additional bandwidth of the target Redis instance. Set the additional bandwidth of a single shard, that is, the bandwidth that needs to be additionally increased on the basis of the default bandwidth. Unit: MB/s. The value of additional bandwidth needs to meet the following conditions at the same time: It must be greater than or equal to 0. When the value is 0, it means that no additional bandwidth is added, and the bandwidth of a single shard is the default bandwidth. The sum of additional bandwidth and default bandwidth cannot exceed the upper limit of bandwidth that can be modified for the current instance. Different specification nodes have different upper limits of bandwidth that can be modified. For more details, please refer to bandwidth modification range. The upper limits of the total write bandwidth and the total read bandwidth of an instance are both 2048MB/s.
+        /// </summary>
+        [Input("additionalBandwidth")]
+        public Input<int>? AdditionalBandwidth { get; set; }
+
+        /// <summary>
         /// Whether to apply the instance configuration change operation immediately. The value of this field is false, means that the change operation will be applied within maintenance time.
         /// </summary>
         [Input("applyImmediately")]
@@ -346,6 +392,18 @@ namespace Pulumi.Volcengine.Redis
         [Input("chargeType")]
         public Input<string>? ChargeType { get; set; }
 
+        [Input("configureNodes")]
+        private InputList<Inputs.InstanceConfigureNodeArgs>? _configureNodes;
+
+        /// <summary>
+        /// Set the list of available zones to which the node belongs.
+        /// </summary>
+        public InputList<Inputs.InstanceConfigureNodeArgs> ConfigureNodes
+        {
+            get => _configureNodes ?? (_configureNodes = new InputList<Inputs.InstanceConfigureNodeArgs>());
+            set => _configureNodes = value;
+        }
+
         /// <summary>
         /// Whether to create a final backup when modify the instance configuration or destroy the redis instance.
         /// </summary>
@@ -359,7 +417,7 @@ namespace Pulumi.Volcengine.Redis
         public Input<string>? DeletionProtection { get; set; }
 
         /// <summary>
-        /// The engine version of redis instance. Valid value: `4.0`, `5.0`, `6.0`.
+        /// The engine version of redis instance. Valid value: `5.0`, `6.0`, `7.0`.
         /// </summary>
         [Input("engineVersion", required: true)]
         public Input<string> EngineVersion { get; set; } = null!;
@@ -369,6 +427,16 @@ namespace Pulumi.Volcengine.Redis
         /// </summary>
         [Input("instanceName")]
         public Input<string>? InstanceName { get; set; }
+
+        /// <summary>
+        /// Set the availability zone deployment scheme for the instance. The value range is as follows: 
+        /// disabled: Single availability zone deployment scheme.
+        /// enabled: Multi-availability zone deployment scheme.
+        /// Description:
+        /// When the newly created instance is a single-node instance (that is, when the value of NodeNumber is 1), only the single availability zone deployment scheme is allowed. At this time, the value of MultiAZ must be disabled.
+        /// </summary>
+        [Input("multiAz")]
+        public Input<string>? MultiAz { get; set; }
 
         /// <summary>
         /// The number of nodes in each shard, the valid value range is `1-6`. When the value is 1, it means creating a single node instance, and this field can not be modified. When the value is greater than 1, it means creating a primary and secondary instance, and this field can be modified.
@@ -389,11 +457,11 @@ namespace Pulumi.Volcengine.Redis
             set => _paramValues = value;
         }
 
-        [Input("password", required: true)]
+        [Input("password")]
         private Input<string>? _password;
 
         /// <summary>
-        /// The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields. If this parameter is left blank, it means that no password is set for the default account. At this time, the system will automatically generate a password for the default account to ensure instance access security. No account can obtain this random password. Therefore, before connecting to the instance, you need to reset the password of the default account through the ModifyDBAccount interface.You can also set a new account and password through the CreateDBAccount interface according to business needs. If you need to use password-free access function, you need to enable password-free access first through the ModifyDBInstanceVpcAuthMode interface.
         /// </summary>
         public Input<string>? Password
         {
@@ -466,12 +534,13 @@ namespace Pulumi.Volcengine.Redis
         [Input("vpcAuthMode")]
         public Input<string>? VpcAuthMode { get; set; }
 
-        [Input("zoneIds", required: true)]
+        [Input("zoneIds")]
         private InputList<string>? _zoneIds;
 
         /// <summary>
-        /// The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
+        /// This field has been deprecated after version-0.0.152. Please use multi_az and configure_nodes to specify the availability zone. The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
         /// </summary>
+        [Obsolete(@"This field has been deprecated after version-0.0.152. Please use multi_az and configure_nodes to specify the availability zone.")]
         public InputList<string> ZoneIds
         {
             get => _zoneIds ?? (_zoneIds = new InputList<string>());
@@ -486,6 +555,12 @@ namespace Pulumi.Volcengine.Redis
 
     public sealed class InstanceState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Modify the single-shard additional bandwidth of the target Redis instance. Set the additional bandwidth of a single shard, that is, the bandwidth that needs to be additionally increased on the basis of the default bandwidth. Unit: MB/s. The value of additional bandwidth needs to meet the following conditions at the same time: It must be greater than or equal to 0. When the value is 0, it means that no additional bandwidth is added, and the bandwidth of a single shard is the default bandwidth. The sum of additional bandwidth and default bandwidth cannot exceed the upper limit of bandwidth that can be modified for the current instance. Different specification nodes have different upper limits of bandwidth that can be modified. For more details, please refer to bandwidth modification range. The upper limits of the total write bandwidth and the total read bandwidth of an instance are both 2048MB/s.
+        /// </summary>
+        [Input("additionalBandwidth")]
+        public Input<int>? AdditionalBandwidth { get; set; }
+
         /// <summary>
         /// Whether to apply the instance configuration change operation immediately. The value of this field is false, means that the change operation will be applied within maintenance time.
         /// </summary>
@@ -531,6 +606,18 @@ namespace Pulumi.Volcengine.Redis
         [Input("chargeType")]
         public Input<string>? ChargeType { get; set; }
 
+        [Input("configureNodes")]
+        private InputList<Inputs.InstanceConfigureNodeGetArgs>? _configureNodes;
+
+        /// <summary>
+        /// Set the list of available zones to which the node belongs.
+        /// </summary>
+        public InputList<Inputs.InstanceConfigureNodeGetArgs> ConfigureNodes
+        {
+            get => _configureNodes ?? (_configureNodes = new InputList<Inputs.InstanceConfigureNodeGetArgs>());
+            set => _configureNodes = value;
+        }
+
         /// <summary>
         /// Whether to create a final backup when modify the instance configuration or destroy the redis instance.
         /// </summary>
@@ -544,7 +631,7 @@ namespace Pulumi.Volcengine.Redis
         public Input<string>? DeletionProtection { get; set; }
 
         /// <summary>
-        /// The engine version of redis instance. Valid value: `4.0`, `5.0`, `6.0`.
+        /// The engine version of redis instance. Valid value: `5.0`, `6.0`, `7.0`.
         /// </summary>
         [Input("engineVersion")]
         public Input<string>? EngineVersion { get; set; }
@@ -554,6 +641,16 @@ namespace Pulumi.Volcengine.Redis
         /// </summary>
         [Input("instanceName")]
         public Input<string>? InstanceName { get; set; }
+
+        /// <summary>
+        /// Set the availability zone deployment scheme for the instance. The value range is as follows: 
+        /// disabled: Single availability zone deployment scheme.
+        /// enabled: Multi-availability zone deployment scheme.
+        /// Description:
+        /// When the newly created instance is a single-node instance (that is, when the value of NodeNumber is 1), only the single availability zone deployment scheme is allowed. At this time, the value of MultiAZ must be disabled.
+        /// </summary>
+        [Input("multiAz")]
+        public Input<string>? MultiAz { get; set; }
 
         /// <summary>
         /// The number of nodes in each shard, the valid value range is `1-6`. When the value is 1, it means creating a single node instance, and this field can not be modified. When the value is greater than 1, it means creating a primary and secondary instance, and this field can be modified.
@@ -578,7 +675,7 @@ namespace Pulumi.Volcengine.Redis
         private Input<string>? _password;
 
         /// <summary>
-        /// The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields.
+        /// The account password. When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignore_changes ignore changes in fields. If this parameter is left blank, it means that no password is set for the default account. At this time, the system will automatically generate a password for the default account to ensure instance access security. No account can obtain this random password. Therefore, before connecting to the instance, you need to reset the password of the default account through the ModifyDBAccount interface.You can also set a new account and password through the CreateDBAccount interface according to business needs. If you need to use password-free access function, you need to enable password-free access first through the ModifyDBInstanceVpcAuthMode interface.
         /// </summary>
         public Input<string>? Password
         {
@@ -655,8 +752,9 @@ namespace Pulumi.Volcengine.Redis
         private InputList<string>? _zoneIds;
 
         /// <summary>
-        /// The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
+        /// This field has been deprecated after version-0.0.152. Please use multi_az and configure_nodes to specify the availability zone. The list of zone IDs of instance. When creating a single node instance, only one zone id can be specified.
         /// </summary>
+        [Obsolete(@"This field has been deprecated after version-0.0.152. Please use multi_az and configure_nodes to specify the availability zone.")]
         public InputList<string> ZoneIds
         {
             get => _zoneIds ?? (_zoneIds = new InputList<string>());

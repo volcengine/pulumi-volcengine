@@ -71,7 +71,7 @@ namespace Pulumi.Volcengine.Cen
     /// Cen bandwidth package associate can be imported using the CenBandwidthPackageId:CenId, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:cen/bandwidthPackageAssociate:BandwidthPackageAssociate default cbp-4c2zaavbvh5fx****:cen-7qthudw0ll6jmc****
+    /// $ pulumi import volcengine:cen/bandwidthPackageAssociate:BandwidthPackageAssociate default cbp-4c2zaavbvh5fx****:cen-7qthudw0ll6jmc****
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:cen/bandwidthPackageAssociate:BandwidthPackageAssociate")]

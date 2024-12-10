@@ -52,7 +52,7 @@ namespace Pulumi.Volcengine.Cloud_identity
     /// CloudIdentityUserAttachment can be imported using the group_id:user_id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:cloud_identity/userAttachment:UserAttachment default resource_id
+    /// $ pulumi import volcengine:cloud_identity/userAttachment:UserAttachment default resource_id
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:cloud_identity/userAttachment:UserAttachment")]

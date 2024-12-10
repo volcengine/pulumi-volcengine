@@ -67,6 +67,8 @@ type CustomerGatewaysArgs struct {
 	NameRegex *string `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile *string `pulumi:"outputFile"`
+	// The project name of the VPN customer gateway.
+	ProjectName *string `pulumi:"projectName"`
 }
 
 // A collection of values returned by CustomerGateways.
@@ -78,9 +80,10 @@ type CustomerGatewaysResult struct {
 	Id  string   `pulumi:"id"`
 	Ids []string `pulumi:"ids"`
 	// The IP address of the customer gateway.
-	IpAddress  *string `pulumi:"ipAddress"`
-	NameRegex  *string `pulumi:"nameRegex"`
-	OutputFile *string `pulumi:"outputFile"`
+	IpAddress   *string `pulumi:"ipAddress"`
+	NameRegex   *string `pulumi:"nameRegex"`
+	OutputFile  *string `pulumi:"outputFile"`
+	ProjectName *string `pulumi:"projectName"`
 	// The total count of customer gateway query.
 	TotalCount int `pulumi:"totalCount"`
 }
@@ -110,6 +113,8 @@ type CustomerGatewaysOutputArgs struct {
 	NameRegex pulumi.StringPtrInput `pulumi:"nameRegex"`
 	// File name where to save data source results.
 	OutputFile pulumi.StringPtrInput `pulumi:"outputFile"`
+	// The project name of the VPN customer gateway.
+	ProjectName pulumi.StringPtrInput `pulumi:"projectName"`
 }
 
 func (CustomerGatewaysOutputArgs) ElementType() reflect.Type {
@@ -160,6 +165,10 @@ func (o CustomerGatewaysResultOutput) NameRegex() pulumi.StringPtrOutput {
 
 func (o CustomerGatewaysResultOutput) OutputFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CustomerGatewaysResult) *string { return v.OutputFile }).(pulumi.StringPtrOutput)
+}
+
+func (o CustomerGatewaysResultOutput) ProjectName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CustomerGatewaysResult) *string { return v.ProjectName }).(pulumi.StringPtrOutput)
 }
 
 // The total count of customer gateway query.

@@ -899,6 +899,7 @@ class RuleCondition(dict):
         :param str metric_unit: The metric unit of the cloud monitor rule.
         :param str statistics: The statistics of the cloud monitor rule. Valid values: `avg`, `max`, `min`.
         :param str threshold: The threshold of the cloud monitor rule.
+        :param str period: The period of the cloud monitor rule.
         """
         pulumi.set(__self__, "comparison_operator", comparison_operator)
         pulumi.set(__self__, "metric_name", metric_name)
@@ -951,6 +952,9 @@ class RuleCondition(dict):
     @property
     @pulumi.getter
     def period(self) -> Optional[str]:
+        """
+        The period of the cloud monitor rule.
+        """
         return pulumi.get(self, "period")
 
 

@@ -76,7 +76,7 @@ namespace Pulumi.Volcengine.Clb
     /// Certificate can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:clb/certificate:Certificate default cert-2fe5k****c16o5oxruvtk3qf5
+    /// $ pulumi import volcengine:clb/certificate:Certificate default cert-2fe5k****c16o5oxruvtk3qf5
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:clb/certificate:Certificate")]

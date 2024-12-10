@@ -12,6 +12,9 @@ namespace Pulumi.Volcengine.Autoscaling.Inputs
 
     public sealed class ScalingGroupServerGroupAttributeGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The load balancer id.
+        /// </summary>
         [Input("loadBalancerId")]
         public Input<string>? LoadBalancerId { get; set; }
 

@@ -55,9 +55,7 @@ import (
 // AlbHealthCheckTemplate can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:alb/healthCheckTemplate:HealthCheckTemplate default hctpl-123*****432
-//
+// $ pulumi import volcengine:alb/healthCheckTemplate:HealthCheckTemplate default hctpl-123*****432
 // ```
 type HealthCheckTemplate struct {
 	pulumi.CustomResourceState

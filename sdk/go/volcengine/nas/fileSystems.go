@@ -40,7 +40,7 @@ import (
 // __res, err := nas.NewFileSystem(ctx, fmt.Sprintf("fooFileSystem-%v", key0), &nas.FileSystemArgs{
 // FileSystemName: pulumi.String(fmt.Sprintf("acc-test-fs-%v", val0)),
 // Description: pulumi.String("acc-test"),
-// ZoneId: *pulumi.String(fooZones.Zones[0].Id),
+// ZoneId: pulumi.String(fooZones.Zones[0].Id),
 // Capacity: pulumi.Int(103),
 // ProjectName: pulumi.String("default"),
 // Tags: nas.FileSystemTagArray{

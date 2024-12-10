@@ -45,7 +45,7 @@ namespace Pulumi.Volcengine.Transit_router
     /// TransitRouter can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:transit_router/transitRouter:TransitRouter default tr-2d6fr7mzya2gw58ozfes5g2oh
+    /// $ pulumi import volcengine:transit_router/transitRouter:TransitRouter default tr-2d6fr7mzya2gw58ozfes5g2oh
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:transit_router/transitRouter:TransitRouter")]
@@ -80,6 +80,12 @@ namespace Pulumi.Volcengine.Transit_router
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
+
+        /// <summary>
+        /// The grant status of the transit router.
+        /// </summary>
+        [Output("grantStatus")]
+        public Output<string> GrantStatus { get; private set; } = null!;
 
         /// <summary>
         /// The overdue time.
@@ -249,6 +255,12 @@ namespace Pulumi.Volcengine.Transit_router
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// The grant status of the transit router.
+        /// </summary>
+        [Input("grantStatus")]
+        public Input<string>? GrantStatus { get; set; }
 
         /// <summary>
         /// The overdue time.

@@ -74,7 +74,7 @@ import * as utilities from "../utilities";
  * CloudMonitorRule can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:cloud_monitor/rule:Rule default 174284623567451****
+ * $ pulumi import volcengine:cloud_monitor/rule:Rule default 174284623567451****
  * ```
  */
 export class Rule extends pulumi.CustomResource {

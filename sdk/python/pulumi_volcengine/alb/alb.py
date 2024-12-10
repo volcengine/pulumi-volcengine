@@ -517,7 +517,7 @@ class Alb(pulumi.CustomResource):
         Alb can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:alb/alb:Alb default resource_id
+        $ pulumi import volcengine:alb/alb:Alb default resource_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -613,7 +613,7 @@ class Alb(pulumi.CustomResource):
         Alb can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:alb/alb:Alb default resource_id
+        $ pulumi import volcengine:alb/alb:Alb default resource_id
         ```
 
         :param str resource_name: The name of the resource.

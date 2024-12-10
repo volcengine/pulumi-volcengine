@@ -363,7 +363,7 @@ class Bucket(pulumi.CustomResource):
         Tos Bucket can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:tos/bucket:Bucket default bucketName
+        $ pulumi import volcengine:tos/bucket:Bucket default bucketName
         ```
 
         :param str resource_name: The name of the resource.
@@ -416,7 +416,7 @@ class Bucket(pulumi.CustomResource):
         Tos Bucket can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:tos/bucket:Bucket default bucketName
+        $ pulumi import volcengine:tos/bucket:Bucket default bucketName
         ```
 
         :param str resource_name: The name of the resource.

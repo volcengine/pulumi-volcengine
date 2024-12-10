@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Vpc
     {
         /// <summary>
         /// Use this data source to query detailed information of subnets
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -35,17 +33,13 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<SubnetsResult> InvokeAsync(SubnetsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<SubnetsResult>("volcengine:vpc/subnets:Subnets", args ?? new SubnetsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of subnets
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -65,8 +59,6 @@ namespace Pulumi.Volcengine.Vpc
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<SubnetsResult> Invoke(SubnetsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<SubnetsResult>("volcengine:vpc/subnets:Subnets", args ?? new SubnetsInvokeArgs(), options.WithDefaults());

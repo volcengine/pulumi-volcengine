@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Ecs
     {
         /// <summary>
         /// Use this data source to query detailed information of ecs instance types
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -29,17 +27,13 @@ namespace Pulumi.Volcengine.Ecs
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<InstanceTypesResult> InvokeAsync(InstanceTypesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<InstanceTypesResult>("volcengine:ecs/instanceTypes:InstanceTypes", args ?? new InstanceTypesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of ecs instance types
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -53,8 +47,6 @@ namespace Pulumi.Volcengine.Ecs
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<InstanceTypesResult> Invoke(InstanceTypesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<InstanceTypesResult>("volcengine:ecs/instanceTypes:InstanceTypes", args ?? new InstanceTypesInvokeArgs(), options.WithDefaults());
@@ -74,6 +66,12 @@ namespace Pulumi.Volcengine.Ecs
             get => _ids ?? (_ids = new List<string>());
             set => _ids = value;
         }
+
+        /// <summary>
+        /// The id of image.
+        /// </summary>
+        [Input("imageId")]
+        public string? ImageId { get; set; }
 
         /// <summary>
         /// File name where to save data source results.
@@ -102,6 +100,12 @@ namespace Pulumi.Volcengine.Ecs
         }
 
         /// <summary>
+        /// The id of image.
+        /// </summary>
+        [Input("imageId")]
+        public Input<string>? ImageId { get; set; }
+
+        /// <summary>
         /// File name where to save data source results.
         /// </summary>
         [Input("outputFile")]
@@ -122,6 +126,7 @@ namespace Pulumi.Volcengine.Ecs
         /// </summary>
         public readonly string Id;
         public readonly ImmutableArray<string> Ids;
+        public readonly string? ImageId;
         /// <summary>
         /// The collection of query.
         /// </summary>
@@ -138,6 +143,8 @@ namespace Pulumi.Volcengine.Ecs
 
             ImmutableArray<string> ids,
 
+            string? imageId,
+
             ImmutableArray<Outputs.InstanceTypesInstanceTypeResult> instanceTypes,
 
             string? outputFile,
@@ -146,6 +153,7 @@ namespace Pulumi.Volcengine.Ecs
         {
             Id = id;
             Ids = ids;
+            ImageId = imageId;
             InstanceTypes = instanceTypes;
             OutputFile = outputFile;
             TotalCount = totalCount;

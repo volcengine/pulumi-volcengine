@@ -80,6 +80,8 @@ if typing.TYPE_CHECKING:
     tos = __tos
     import pulumi_volcengine.transit_router as __transit_router
     transit_router = __transit_router
+    import pulumi_volcengine.vedb_mysql as __vedb_mysql
+    vedb_mysql = __vedb_mysql
     import pulumi_volcengine.veenedge as __veenedge
     veenedge = __veenedge
     import pulumi_volcengine.vepfs as __vepfs
@@ -126,6 +128,7 @@ else:
     tls = _utilities.lazy_import('pulumi_volcengine.tls')
     tos = _utilities.lazy_import('pulumi_volcengine.tos')
     transit_router = _utilities.lazy_import('pulumi_volcengine.transit_router')
+    vedb_mysql = _utilities.lazy_import('pulumi_volcengine.vedb_mysql')
     veenedge = _utilities.lazy_import('pulumi_volcengine.veenedge')
     vepfs = _utilities.lazy_import('pulumi_volcengine.vepfs')
     vke = _utilities.lazy_import('pulumi_volcengine.vke')
@@ -681,6 +684,38 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "ebs/autoSnapshotPolicy",
+  "fqn": "pulumi_volcengine.ebs",
+  "classes": {
+   "volcengine:ebs/autoSnapshotPolicy:AutoSnapshotPolicy": "AutoSnapshotPolicy"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "ebs/autoSnapshotPolicyAttachment",
+  "fqn": "pulumi_volcengine.ebs",
+  "classes": {
+   "volcengine:ebs/autoSnapshotPolicyAttachment:AutoSnapshotPolicyAttachment": "AutoSnapshotPolicyAttachment"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "ebs/snapshot",
+  "fqn": "pulumi_volcengine.ebs",
+  "classes": {
+   "volcengine:ebs/snapshot:Snapshot": "Snapshot"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "ebs/snapshotGroup",
+  "fqn": "pulumi_volcengine.ebs",
+  "classes": {
+   "volcengine:ebs/snapshotGroup:SnapshotGroup": "SnapshotGroup"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "ebs/volume",
   "fqn": "pulumi_volcengine.ebs",
   "classes": {
@@ -721,10 +756,42 @@ _utilities.register(
  },
  {
   "pkg": "volcengine",
+  "mod": "ecs/hpcCluster",
+  "fqn": "pulumi_volcengine.ecs",
+  "classes": {
+   "volcengine:ecs/hpcCluster:HpcCluster": "HpcCluster"
+  }
+ },
+ {
+  "pkg": "volcengine",
   "mod": "ecs/iamRoleAttachment",
   "fqn": "pulumi_volcengine.ecs",
   "classes": {
    "volcengine:ecs/iamRoleAttachment:IamRoleAttachment": "IamRoleAttachment"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "ecs/image",
+  "fqn": "pulumi_volcengine.ecs",
+  "classes": {
+   "volcengine:ecs/image:Image": "Image"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "ecs/imageImport",
+  "fqn": "pulumi_volcengine.ecs",
+  "classes": {
+   "volcengine:ecs/imageImport:ImageImport": "ImageImport"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "ecs/imageSharePermission",
+  "fqn": "pulumi_volcengine.ecs",
+  "classes": {
+   "volcengine:ecs/imageSharePermission:ImageSharePermission": "ImageSharePermission"
   }
  },
  {
@@ -1637,6 +1704,70 @@ _utilities.register(
   "fqn": "pulumi_volcengine.transit_router",
   "classes": {
    "volcengine:transit_router/vpnAttachment:VpnAttachment": "VpnAttachment"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vedb_mysql/account",
+  "fqn": "pulumi_volcengine.vedb_mysql",
+  "classes": {
+   "volcengine:vedb_mysql/account:Account": "Account"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vedb_mysql/allowlist",
+  "fqn": "pulumi_volcengine.vedb_mysql",
+  "classes": {
+   "volcengine:vedb_mysql/allowlist:Allowlist": "Allowlist"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vedb_mysql/allowlistAssociate",
+  "fqn": "pulumi_volcengine.vedb_mysql",
+  "classes": {
+   "volcengine:vedb_mysql/allowlistAssociate:AllowlistAssociate": "AllowlistAssociate"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vedb_mysql/backup",
+  "fqn": "pulumi_volcengine.vedb_mysql",
+  "classes": {
+   "volcengine:vedb_mysql/backup:Backup": "Backup"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vedb_mysql/database",
+  "fqn": "pulumi_volcengine.vedb_mysql",
+  "classes": {
+   "volcengine:vedb_mysql/database:Database": "Database"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vedb_mysql/endpoint",
+  "fqn": "pulumi_volcengine.vedb_mysql",
+  "classes": {
+   "volcengine:vedb_mysql/endpoint:Endpoint": "Endpoint"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vedb_mysql/endpointPublicAddress",
+  "fqn": "pulumi_volcengine.vedb_mysql",
+  "classes": {
+   "volcengine:vedb_mysql/endpointPublicAddress:EndpointPublicAddress": "EndpointPublicAddress"
+  }
+ },
+ {
+  "pkg": "volcengine",
+  "mod": "vedb_mysql/instance",
+  "fqn": "pulumi_volcengine.vedb_mysql",
+  "classes": {
+   "volcengine:vedb_mysql/instance:Instance": "Instance"
   }
  },
  {

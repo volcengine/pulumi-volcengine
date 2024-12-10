@@ -103,7 +103,7 @@ namespace Pulumi.Volcengine.Ebs
     /// VolumeAttach can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:ebs/volumeAttach:VolumeAttach default vol-abc12345:i-abc12345
+    /// $ pulumi import volcengine:ebs/volumeAttach:VolumeAttach default vol-abc12345:i-abc12345
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:ebs/volumeAttach:VolumeAttach")]

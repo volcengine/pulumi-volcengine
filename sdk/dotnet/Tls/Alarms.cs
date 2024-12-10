@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Tls
     {
         /// <summary>
         /// Use this data source to query detailed information of tls alarms
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -32,17 +30,13 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<AlarmsResult> InvokeAsync(AlarmsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<AlarmsResult>("volcengine:tls/alarms:Alarms", args ?? new AlarmsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of tls alarms
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -59,8 +53,6 @@ namespace Pulumi.Volcengine.Tls
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<AlarmsResult> Invoke(AlarmsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<AlarmsResult>("volcengine:tls/alarms:Alarms", args ?? new AlarmsInvokeArgs(), options.WithDefaults());

@@ -59,9 +59,7 @@ import (
 // Tls Topic can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:tls/topic:Topic default edf051ed-3c46-49ba-9339-bea628fe****
-//
+// $ pulumi import volcengine:tls/topic:Topic default edf051ed-3c46-49ba-9339-bea628fe****
 // ```
 type Topic struct {
 	pulumi.CustomResourceState
@@ -76,13 +74,19 @@ type Topic struct {
 	Description pulumi.StringOutput `pulumi:"description"`
 	// Whether to enable WebTracking function of the tls topic.
 	EnableTracking pulumi.BoolOutput `pulumi:"enableTracking"`
+	// The id of shard to be manually split. This field is valid only when modifying the topic.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	ManualSplitShardId pulumi.IntPtrOutput `pulumi:"manualSplitShardId"`
+	// The split number of shard. The valid number should be a non-zero even number, such as 2, 4, 8, or 16. The total number of read-write status shards after splitting cannot exceed 50.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	ManualSplitShardNumber pulumi.IntPtrOutput `pulumi:"manualSplitShardNumber"`
 	// The maximum number of partitions, which is the maximum number of partitions after partition splitting. The value range is 1 to 10, with a default of 10.
 	MaxSplitShard pulumi.IntOutput `pulumi:"maxSplitShard"`
 	// The modify time of the tls topic.
 	ModifyTime pulumi.StringOutput `pulumi:"modifyTime"`
 	// The project id of the tls topic.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// The count of shards in the tls topic. Valid value range: 1-10.
+	// The count of shards in the tls topic. Valid value range: 1-10. This field is only valid when creating tls topic.
 	ShardCount pulumi.IntOutput `pulumi:"shardCount"`
 	// Tags.
 	Tags TopicTagArrayOutput `pulumi:"tags"`
@@ -148,13 +152,19 @@ type topicState struct {
 	Description *string `pulumi:"description"`
 	// Whether to enable WebTracking function of the tls topic.
 	EnableTracking *bool `pulumi:"enableTracking"`
+	// The id of shard to be manually split. This field is valid only when modifying the topic.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	ManualSplitShardId *int `pulumi:"manualSplitShardId"`
+	// The split number of shard. The valid number should be a non-zero even number, such as 2, 4, 8, or 16. The total number of read-write status shards after splitting cannot exceed 50.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	ManualSplitShardNumber *int `pulumi:"manualSplitShardNumber"`
 	// The maximum number of partitions, which is the maximum number of partitions after partition splitting. The value range is 1 to 10, with a default of 10.
 	MaxSplitShard *int `pulumi:"maxSplitShard"`
 	// The modify time of the tls topic.
 	ModifyTime *string `pulumi:"modifyTime"`
 	// The project id of the tls topic.
 	ProjectId *string `pulumi:"projectId"`
-	// The count of shards in the tls topic. Valid value range: 1-10.
+	// The count of shards in the tls topic. Valid value range: 1-10. This field is only valid when creating tls topic.
 	ShardCount *int `pulumi:"shardCount"`
 	// Tags.
 	Tags []TopicTag `pulumi:"tags"`
@@ -179,13 +189,19 @@ type TopicState struct {
 	Description pulumi.StringPtrInput
 	// Whether to enable WebTracking function of the tls topic.
 	EnableTracking pulumi.BoolPtrInput
+	// The id of shard to be manually split. This field is valid only when modifying the topic.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	ManualSplitShardId pulumi.IntPtrInput
+	// The split number of shard. The valid number should be a non-zero even number, such as 2, 4, 8, or 16. The total number of read-write status shards after splitting cannot exceed 50.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	ManualSplitShardNumber pulumi.IntPtrInput
 	// The maximum number of partitions, which is the maximum number of partitions after partition splitting. The value range is 1 to 10, with a default of 10.
 	MaxSplitShard pulumi.IntPtrInput
 	// The modify time of the tls topic.
 	ModifyTime pulumi.StringPtrInput
 	// The project id of the tls topic.
 	ProjectId pulumi.StringPtrInput
-	// The count of shards in the tls topic. Valid value range: 1-10.
+	// The count of shards in the tls topic. Valid value range: 1-10. This field is only valid when creating tls topic.
 	ShardCount pulumi.IntPtrInput
 	// Tags.
 	Tags TopicTagArrayInput
@@ -212,11 +228,17 @@ type topicArgs struct {
 	Description *string `pulumi:"description"`
 	// Whether to enable WebTracking function of the tls topic.
 	EnableTracking *bool `pulumi:"enableTracking"`
+	// The id of shard to be manually split. This field is valid only when modifying the topic.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	ManualSplitShardId *int `pulumi:"manualSplitShardId"`
+	// The split number of shard. The valid number should be a non-zero even number, such as 2, 4, 8, or 16. The total number of read-write status shards after splitting cannot exceed 50.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	ManualSplitShardNumber *int `pulumi:"manualSplitShardNumber"`
 	// The maximum number of partitions, which is the maximum number of partitions after partition splitting. The value range is 1 to 10, with a default of 10.
 	MaxSplitShard *int `pulumi:"maxSplitShard"`
 	// The project id of the tls topic.
 	ProjectId string `pulumi:"projectId"`
-	// The count of shards in the tls topic. Valid value range: 1-10.
+	// The count of shards in the tls topic. Valid value range: 1-10. This field is only valid when creating tls topic.
 	ShardCount int `pulumi:"shardCount"`
 	// Tags.
 	Tags []TopicTag `pulumi:"tags"`
@@ -240,11 +262,17 @@ type TopicArgs struct {
 	Description pulumi.StringPtrInput
 	// Whether to enable WebTracking function of the tls topic.
 	EnableTracking pulumi.BoolPtrInput
+	// The id of shard to be manually split. This field is valid only when modifying the topic.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	ManualSplitShardId pulumi.IntPtrInput
+	// The split number of shard. The valid number should be a non-zero even number, such as 2, 4, 8, or 16. The total number of read-write status shards after splitting cannot exceed 50.
+	// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+	ManualSplitShardNumber pulumi.IntPtrInput
 	// The maximum number of partitions, which is the maximum number of partitions after partition splitting. The value range is 1 to 10, with a default of 10.
 	MaxSplitShard pulumi.IntPtrInput
 	// The project id of the tls topic.
 	ProjectId pulumi.StringInput
-	// The count of shards in the tls topic. Valid value range: 1-10.
+	// The count of shards in the tls topic. Valid value range: 1-10. This field is only valid when creating tls topic.
 	ShardCount pulumi.IntInput
 	// Tags.
 	Tags TopicTagArrayInput
@@ -367,6 +395,18 @@ func (o TopicOutput) EnableTracking() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Topic) pulumi.BoolOutput { return v.EnableTracking }).(pulumi.BoolOutput)
 }
 
+// The id of shard to be manually split. This field is valid only when modifying the topic.
+// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+func (o TopicOutput) ManualSplitShardId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Topic) pulumi.IntPtrOutput { return v.ManualSplitShardId }).(pulumi.IntPtrOutput)
+}
+
+// The split number of shard. The valid number should be a non-zero even number, such as 2, 4, 8, or 16. The total number of read-write status shards after splitting cannot exceed 50.
+// When importing resources, this attribute will not be imported. If this attribute is set, please use lifecycle and ignoreChanges ignore changes in fields.
+func (o TopicOutput) ManualSplitShardNumber() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Topic) pulumi.IntPtrOutput { return v.ManualSplitShardNumber }).(pulumi.IntPtrOutput)
+}
+
 // The maximum number of partitions, which is the maximum number of partitions after partition splitting. The value range is 1 to 10, with a default of 10.
 func (o TopicOutput) MaxSplitShard() pulumi.IntOutput {
 	return o.ApplyT(func(v *Topic) pulumi.IntOutput { return v.MaxSplitShard }).(pulumi.IntOutput)
@@ -382,7 +422,7 @@ func (o TopicOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Topic) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The count of shards in the tls topic. Valid value range: 1-10.
+// The count of shards in the tls topic. Valid value range: 1-10. This field is only valid when creating tls topic.
 func (o TopicOutput) ShardCount() pulumi.IntOutput {
 	return o.ApplyT(func(v *Topic) pulumi.IntOutput { return v.ShardCount }).(pulumi.IntOutput)
 }

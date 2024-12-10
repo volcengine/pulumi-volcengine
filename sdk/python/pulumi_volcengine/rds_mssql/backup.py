@@ -165,7 +165,7 @@ class Backup(pulumi.CustomResource):
         Rds Mssql Backup can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:rds_mssql/backup:Backup default instanceId:backupId
+        $ pulumi import volcengine:rds_mssql/backup:Backup default instanceId:backupId
         ```
 
         :param str resource_name: The name of the resource.
@@ -196,7 +196,7 @@ class Backup(pulumi.CustomResource):
         Rds Mssql Backup can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:rds_mssql/backup:Backup default instanceId:backupId
+        $ pulumi import volcengine:rds_mssql/backup:Backup default instanceId:backupId
         ```
 
         :param str resource_name: The name of the resource.

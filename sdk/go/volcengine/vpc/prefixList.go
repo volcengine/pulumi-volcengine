@@ -67,9 +67,7 @@ import (
 // VpcPrefixList can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:vpc/prefixList:PrefixList default resource_id
-//
+// $ pulumi import volcengine:vpc/prefixList:PrefixList default resource_id
 // ```
 type PrefixList struct {
 	pulumi.CustomResourceState

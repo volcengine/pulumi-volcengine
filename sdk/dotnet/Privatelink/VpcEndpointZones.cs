@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Privatelink
     {
         /// <summary>
         /// Use this data source to query detailed information of privatelink vpc endpoint zones
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -110,17 +108,13 @@ namespace Pulumi.Volcengine.Privatelink
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<VpcEndpointZonesResult> InvokeAsync(VpcEndpointZonesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<VpcEndpointZonesResult>("volcengine:privatelink/vpcEndpointZones:VpcEndpointZones", args ?? new VpcEndpointZonesArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of privatelink vpc endpoint zones
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -215,8 +209,6 @@ namespace Pulumi.Volcengine.Privatelink
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<VpcEndpointZonesResult> Invoke(VpcEndpointZonesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<VpcEndpointZonesResult>("volcengine:privatelink/vpcEndpointZones:VpcEndpointZones", args ?? new VpcEndpointZonesInvokeArgs(), options.WithDefaults());

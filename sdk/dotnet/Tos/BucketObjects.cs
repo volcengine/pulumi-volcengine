@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Tos
     {
         /// <summary>
         /// Use this data source to query detailed information of tos objects
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -32,17 +30,13 @@ namespace Pulumi.Volcengine.Tos
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<BucketObjectsResult> InvokeAsync(BucketObjectsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<BucketObjectsResult>("volcengine:tos/bucketObjects:BucketObjects", args ?? new BucketObjectsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of tos objects
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -59,8 +53,6 @@ namespace Pulumi.Volcengine.Tos
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<BucketObjectsResult> Invoke(BucketObjectsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<BucketObjectsResult>("volcengine:tos/bucketObjects:BucketObjects", args ?? new BucketObjectsInvokeArgs(), options.WithDefaults());

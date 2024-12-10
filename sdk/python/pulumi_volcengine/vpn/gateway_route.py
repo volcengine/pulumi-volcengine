@@ -257,7 +257,7 @@ class GatewayRoute(pulumi.CustomResource):
         VpnGatewayRoute can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vpn/gatewayRoute:GatewayRoute default vgr-3tex2c6c0v844c****
+        $ pulumi import volcengine:vpn/gatewayRoute:GatewayRoute default vgr-3tex2c6c0v844c****
         ```
 
         :param str resource_name: The name of the resource.
@@ -336,7 +336,7 @@ class GatewayRoute(pulumi.CustomResource):
         VpnGatewayRoute can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:vpn/gatewayRoute:GatewayRoute default vgr-3tex2c6c0v844c****
+        $ pulumi import volcengine:vpn/gatewayRoute:GatewayRoute default vgr-3tex2c6c0v844c****
         ```
 
         :param str resource_name: The name of the resource.

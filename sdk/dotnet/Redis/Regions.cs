@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Redis
     {
         /// <summary>
         /// Use this data source to query detailed information of redis regions
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -32,17 +30,13 @@ namespace Pulumi.Volcengine.Redis
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<RegionsResult> InvokeAsync(RegionsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<RegionsResult>("volcengine:redis/regions:Regions", args ?? new RegionsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of redis regions
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -59,8 +53,6 @@ namespace Pulumi.Volcengine.Redis
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<RegionsResult> Invoke(RegionsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<RegionsResult>("volcengine:redis/regions:Regions", args ?? new RegionsInvokeArgs(), options.WithDefaults());

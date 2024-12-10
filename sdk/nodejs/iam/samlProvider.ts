@@ -25,7 +25,7 @@ import * as utilities from "../utilities";
  * IamSamlProvider can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:iam/samlProvider:SamlProvider default SAMLProviderName
+ * $ pulumi import volcengine:iam/samlProvider:SamlProvider default SAMLProviderName
  * ```
  */
 export class SamlProvider extends pulumi.CustomResource {

@@ -26,7 +26,7 @@ import * as utilities from "../utilities";
  * Iam role can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:iam/role:Role default TerraformTestRole
+ * $ pulumi import volcengine:iam/role:Role default TerraformTestRole
  * ```
  */
 export class Role extends pulumi.CustomResource {

@@ -87,7 +87,7 @@ import * as utilities from "../utilities";
  * Alb can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:alb/alb:Alb default resource_id
+ * $ pulumi import volcengine:alb/alb:Alb default resource_id
  * ```
  */
 export class Alb extends pulumi.CustomResource {

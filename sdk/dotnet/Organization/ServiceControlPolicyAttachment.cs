@@ -50,7 +50,7 @@ namespace Pulumi.Volcengine.Organization
     /// Service Control policy attachment can be imported using the id, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import volcengine:organization/serviceControlPolicyAttachment:ServiceControlPolicyAttachment default PolicyID:TargetID
+    /// $ pulumi import volcengine:organization/serviceControlPolicyAttachment:ServiceControlPolicyAttachment default PolicyID:TargetID
     /// ```
     /// </summary>
     [VolcengineResourceType("volcengine:organization/serviceControlPolicyAttachment:ServiceControlPolicyAttachment")]

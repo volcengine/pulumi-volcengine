@@ -187,7 +187,7 @@ class LoginProfile(pulumi.CustomResource):
         Login profile can be imported using the UserName, e.g.
 
         ```sh
-         $ pulumi import volcengine:iam/loginProfile:LoginProfile default user_name
+        $ pulumi import volcengine:iam/loginProfile:LoginProfile default user_name
         ```
 
         :param str resource_name: The name of the resource.
@@ -227,7 +227,7 @@ class LoginProfile(pulumi.CustomResource):
         Login profile can be imported using the UserName, e.g.
 
         ```sh
-         $ pulumi import volcengine:iam/loginProfile:LoginProfile default user_name
+        $ pulumi import volcengine:iam/loginProfile:LoginProfile default user_name
         ```
 
         :param str resource_name: The name of the resource.

@@ -43,7 +43,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-subnet-test-2"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -52,8 +52,8 @@ import (
 //			fooInstance, err := rds_mysql.NewInstance(ctx, "fooInstance", &rds_mysql.InstanceArgs{
 //				DbEngineVersion:     pulumi.String("MySQL_5_7"),
 //				NodeSpec:            pulumi.String("rds.mysql.1c2g"),
-//				PrimaryZoneId:       *pulumi.String(fooZones.Zones[0].Id),
-//				SecondaryZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				PrimaryZoneId:       pulumi.String(fooZones.Zones[0].Id),
+//				SecondaryZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				StorageSpace:        pulumi.Int(80),
 //				SubnetId:            fooSubnet.ID(),
 //				InstanceName:        pulumi.String("acc-test"),
@@ -78,7 +78,7 @@ import (
 //			_, err = rds_mysql.NewInstanceReadonlyNode(ctx, "fooInstanceReadonlyNode", &rds_mysql.InstanceReadonlyNodeArgs{
 //				InstanceId: fooInstance.ID(),
 //				NodeSpec:   pulumi.String("rds.mysql.2c4g"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //			})
 //			if err != nil {
 //				return err
@@ -94,9 +94,7 @@ import (
 // Rds Mysql Instance Readonly Node can be imported using the instance_id:node_id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:rds_mysql/instanceReadonlyNode:InstanceReadonlyNode default mysql-72da4258c2c7:mysql-72da4258c2c7-r7f93
-//
+// $ pulumi import volcengine:rds_mysql/instanceReadonlyNode:InstanceReadonlyNode default mysql-72da4258c2c7:mysql-72da4258c2c7-r7f93
 // ```
 type InstanceReadonlyNode struct {
 	pulumi.CustomResourceState

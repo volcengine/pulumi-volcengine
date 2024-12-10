@@ -149,7 +149,7 @@ class Contact(pulumi.CustomResource):
         CloudMonitor Contact can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:cloud_monitor/contact:Contact default 145258255725730****
+        $ pulumi import volcengine:cloud_monitor/contact:Contact default 145258255725730****
         ```
 
         :param str resource_name: The name of the resource.
@@ -182,7 +182,7 @@ class Contact(pulumi.CustomResource):
         CloudMonitor Contact can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:cloud_monitor/contact:Contact default 145258255725730****
+        $ pulumi import volcengine:cloud_monitor/contact:Contact default 145258255725730****
         ```
 
         :param str resource_name: The name of the resource.

@@ -25,7 +25,7 @@ import * as utilities from "../utilities";
  * CustomerGateway can be imported using the id, e.g.
  *
  * ```sh
- *  $ pulumi import volcengine:vpn/customerGateway:CustomerGateway default cgw-2byswc356dybk2dx0eed2****
+ * $ pulumi import volcengine:vpn/customerGateway:CustomerGateway default cgw-2byswc356dybk2dx0eed2****
  * ```
  */
 export class CustomerGateway extends pulumi.CustomResource {

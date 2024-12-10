@@ -18,7 +18,7 @@ namespace Pulumi.Volcengine.Rds_v2.Outputs
         /// </summary>
         public readonly string? NodeId;
         /// <summary>
-        /// Node type, the value is "Primary", "Secondary", "ReadOnly".
+        /// The type of the node.
         /// </summary>
         public readonly string? NodeType;
         /// <summary>

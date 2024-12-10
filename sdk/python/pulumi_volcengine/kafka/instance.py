@@ -684,7 +684,7 @@ class Instance(pulumi.CustomResource):
         KafkaInstance can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:kafka/instance:Instance default kafka-insbjwbbwb
+        $ pulumi import volcengine:kafka/instance:Instance default kafka-insbjwbbwb
         ```
 
         :param str resource_name: The name of the resource.
@@ -775,7 +775,7 @@ class Instance(pulumi.CustomResource):
         KafkaInstance can be imported using the id, e.g.
 
         ```sh
-         $ pulumi import volcengine:kafka/instance:Instance default kafka-insbjwbbwb
+        $ pulumi import volcengine:kafka/instance:Instance default kafka-insbjwbbwb
         ```
 
         :param str resource_name: The name of the resource.

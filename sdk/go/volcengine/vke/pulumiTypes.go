@@ -468,8 +468,9 @@ type ClusterClusterConfig struct {
 	// Cluster API Server public network access configuration.
 	ApiServerPublicAccessConfig *ClusterClusterConfigApiServerPublicAccessConfig `pulumi:"apiServerPublicAccessConfig"`
 	// Cluster API Server public network access configuration, the value is `true` or `false`.
-	ApiServerPublicAccessEnabled *bool   `pulumi:"apiServerPublicAccessEnabled"`
-	IpFamily                     *string `pulumi:"ipFamily"`
+	ApiServerPublicAccessEnabled *bool `pulumi:"apiServerPublicAccessEnabled"`
+	// [SkipDoc]The IpFamily configuration,the value is `Ipv4` or `DualStack`.
+	IpFamily *string `pulumi:"ipFamily"`
 	// Node public network access configuration, the value is `true` or `false`.
 	ResourcePublicAccessDefaultEnabled *bool `pulumi:"resourcePublicAccessDefaultEnabled"`
 	// The subnet ID for the cluster control plane to communicate within the private network.
@@ -493,8 +494,9 @@ type ClusterClusterConfigArgs struct {
 	// Cluster API Server public network access configuration.
 	ApiServerPublicAccessConfig ClusterClusterConfigApiServerPublicAccessConfigPtrInput `pulumi:"apiServerPublicAccessConfig"`
 	// Cluster API Server public network access configuration, the value is `true` or `false`.
-	ApiServerPublicAccessEnabled pulumi.BoolPtrInput   `pulumi:"apiServerPublicAccessEnabled"`
-	IpFamily                     pulumi.StringPtrInput `pulumi:"ipFamily"`
+	ApiServerPublicAccessEnabled pulumi.BoolPtrInput `pulumi:"apiServerPublicAccessEnabled"`
+	// [SkipDoc]The IpFamily configuration,the value is `Ipv4` or `DualStack`.
+	IpFamily pulumi.StringPtrInput `pulumi:"ipFamily"`
 	// Node public network access configuration, the value is `true` or `false`.
 	ResourcePublicAccessDefaultEnabled pulumi.BoolPtrInput `pulumi:"resourcePublicAccessDefaultEnabled"`
 	// The subnet ID for the cluster control plane to communicate within the private network.
@@ -592,6 +594,7 @@ func (o ClusterClusterConfigOutput) ApiServerPublicAccessEnabled() pulumi.BoolPt
 	return o.ApplyT(func(v ClusterClusterConfig) *bool { return v.ApiServerPublicAccessEnabled }).(pulumi.BoolPtrOutput)
 }
 
+// [SkipDoc]The IpFamily configuration,the value is `Ipv4` or `DualStack`.
 func (o ClusterClusterConfigOutput) IpFamily() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterClusterConfig) *string { return v.IpFamily }).(pulumi.StringPtrOutput)
 }
@@ -652,6 +655,7 @@ func (o ClusterClusterConfigPtrOutput) ApiServerPublicAccessEnabled() pulumi.Boo
 	}).(pulumi.BoolPtrOutput)
 }
 
+// [SkipDoc]The IpFamily configuration,the value is `Ipv4` or `DualStack`.
 func (o ClusterClusterConfigPtrOutput) IpFamily() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClusterClusterConfig) *string {
 		if v == nil {
@@ -2536,7 +2540,8 @@ func (o ClustersClusterClusterConfigApiServerEndpointsPublicIpOutput) Ipv4() pul
 type ClustersClusterClusterConfigApiServerPublicAccessConfig struct {
 	// IPv4 public network access whitelist. A null value means all network segments (0.0.0.0/0) are allowed to pass.
 	AccessSourceIpsv4s []string `pulumi:"accessSourceIpsv4s"`
-	IpFamily           string   `pulumi:"ipFamily"`
+	// [SkipDoc]The IpFamily configuration,the value is `Ipv4` or `DualStack`.
+	IpFamily string `pulumi:"ipFamily"`
 	// Public network access network configuration.
 	PublicAccessNetworkConfig ClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfig `pulumi:"publicAccessNetworkConfig"`
 }
@@ -2555,7 +2560,8 @@ type ClustersClusterClusterConfigApiServerPublicAccessConfigInput interface {
 type ClustersClusterClusterConfigApiServerPublicAccessConfigArgs struct {
 	// IPv4 public network access whitelist. A null value means all network segments (0.0.0.0/0) are allowed to pass.
 	AccessSourceIpsv4s pulumi.StringArrayInput `pulumi:"accessSourceIpsv4s"`
-	IpFamily           pulumi.StringInput      `pulumi:"ipFamily"`
+	// [SkipDoc]The IpFamily configuration,the value is `Ipv4` or `DualStack`.
+	IpFamily pulumi.StringInput `pulumi:"ipFamily"`
 	// Public network access network configuration.
 	PublicAccessNetworkConfig ClustersClusterClusterConfigApiServerPublicAccessConfigPublicAccessNetworkConfigInput `pulumi:"publicAccessNetworkConfig"`
 }
@@ -2591,6 +2597,7 @@ func (o ClustersClusterClusterConfigApiServerPublicAccessConfigOutput) AccessSou
 	return o.ApplyT(func(v ClustersClusterClusterConfigApiServerPublicAccessConfig) []string { return v.AccessSourceIpsv4s }).(pulumi.StringArrayOutput)
 }
 
+// [SkipDoc]The IpFamily configuration,the value is `Ipv4` or `DualStack`.
 func (o ClustersClusterClusterConfigApiServerPublicAccessConfigOutput) IpFamily() pulumi.StringOutput {
 	return o.ApplyT(func(v ClustersClusterClusterConfigApiServerPublicAccessConfig) string { return v.IpFamily }).(pulumi.StringOutput)
 }
@@ -3752,8 +3759,9 @@ type DefaultNodePoolBatchAttachInstance struct {
 	// The instance id.
 	InstanceId string `pulumi:"instanceId"`
 	// The flag of keep instance name, the value is `true` or `false`.Default is `false`.
-	KeepInstanceName *bool   `pulumi:"keepInstanceName"`
-	Phase            *string `pulumi:"phase"`
+	KeepInstanceName *bool `pulumi:"keepInstanceName"`
+	// The status phase to the Node.
+	Phase *string `pulumi:"phase"`
 }
 
 // DefaultNodePoolBatchAttachInstanceInput is an input type that accepts DefaultNodePoolBatchAttachInstanceArgs and DefaultNodePoolBatchAttachInstanceOutput values.
@@ -3779,8 +3787,9 @@ type DefaultNodePoolBatchAttachInstanceArgs struct {
 	// The instance id.
 	InstanceId pulumi.StringInput `pulumi:"instanceId"`
 	// The flag of keep instance name, the value is `true` or `false`.Default is `false`.
-	KeepInstanceName pulumi.BoolPtrInput   `pulumi:"keepInstanceName"`
-	Phase            pulumi.StringPtrInput `pulumi:"phase"`
+	KeepInstanceName pulumi.BoolPtrInput `pulumi:"keepInstanceName"`
+	// The status phase to the Node.
+	Phase pulumi.StringPtrInput `pulumi:"phase"`
 }
 
 func (DefaultNodePoolBatchAttachInstanceArgs) ElementType() reflect.Type {
@@ -3864,6 +3873,7 @@ func (o DefaultNodePoolBatchAttachInstanceOutput) KeepInstanceName() pulumi.Bool
 	return o.ApplyT(func(v DefaultNodePoolBatchAttachInstance) *bool { return v.KeepInstanceName }).(pulumi.BoolPtrOutput)
 }
 
+// The status phase to the Node.
 func (o DefaultNodePoolBatchAttachInstanceOutput) Phase() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DefaultNodePoolBatchAttachInstance) *string { return v.Phase }).(pulumi.StringPtrOutput)
 }
@@ -4417,9 +4427,9 @@ func (o DefaultNodePoolBatchAttachNodeConfigArrayOutput) Index(i pulumi.IntInput
 }
 
 type DefaultNodePoolBatchAttachNodeConfigEcsTag struct {
-	// The Key of Labels.
+	// The Key of Tags.
 	Key *string `pulumi:"key"`
-	// The Value of Labels.
+	// The Value of Tags.
 	Value *string `pulumi:"value"`
 }
 
@@ -4435,9 +4445,9 @@ type DefaultNodePoolBatchAttachNodeConfigEcsTagInput interface {
 }
 
 type DefaultNodePoolBatchAttachNodeConfigEcsTagArgs struct {
-	// The Key of Labels.
+	// The Key of Tags.
 	Key pulumi.StringPtrInput `pulumi:"key"`
-	// The Value of Labels.
+	// The Value of Tags.
 	Value pulumi.StringPtrInput `pulumi:"value"`
 }
 
@@ -4492,12 +4502,12 @@ func (o DefaultNodePoolBatchAttachNodeConfigEcsTagOutput) ToDefaultNodePoolBatch
 	return o
 }
 
-// The Key of Labels.
+// The Key of Tags.
 func (o DefaultNodePoolBatchAttachNodeConfigEcsTagOutput) Key() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DefaultNodePoolBatchAttachNodeConfigEcsTag) *string { return v.Key }).(pulumi.StringPtrOutput)
 }
 
-// The Value of Labels.
+// The Value of Tags.
 func (o DefaultNodePoolBatchAttachNodeConfigEcsTagOutput) Value() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DefaultNodePoolBatchAttachNodeConfigEcsTag) *string { return v.Value }).(pulumi.StringPtrOutput)
 }
@@ -4746,9 +4756,9 @@ func (o DefaultNodePoolBatchAttachNodeConfigSecurityLoginArrayOutput) Index(i pu
 }
 
 type DefaultNodePoolBatchAttachTag struct {
-	// The Key of Labels.
+	// The Key of Tags.
 	Key *string `pulumi:"key"`
-	// The Value of Labels.
+	// The Value of Tags.
 	Value *string `pulumi:"value"`
 }
 
@@ -4764,9 +4774,9 @@ type DefaultNodePoolBatchAttachTagInput interface {
 }
 
 type DefaultNodePoolBatchAttachTagArgs struct {
-	// The Key of Labels.
+	// The Key of Tags.
 	Key pulumi.StringPtrInput `pulumi:"key"`
-	// The Value of Labels.
+	// The Value of Tags.
 	Value pulumi.StringPtrInput `pulumi:"value"`
 }
 
@@ -4821,12 +4831,12 @@ func (o DefaultNodePoolBatchAttachTagOutput) ToDefaultNodePoolBatchAttachTagOutp
 	return o
 }
 
-// The Key of Labels.
+// The Key of Tags.
 func (o DefaultNodePoolBatchAttachTagOutput) Key() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DefaultNodePoolBatchAttachTag) *string { return v.Key }).(pulumi.StringPtrOutput)
 }
 
-// The Value of Labels.
+// The Value of Tags.
 func (o DefaultNodePoolBatchAttachTagOutput) Value() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DefaultNodePoolBatchAttachTag) *string { return v.Value }).(pulumi.StringPtrOutput)
 }
@@ -4863,8 +4873,9 @@ type DefaultNodePoolInstance struct {
 	// The instance id.
 	InstanceId string `pulumi:"instanceId"`
 	// The flag of keep instance name, the value is `true` or `false`.Default is `false`.
-	KeepInstanceName *bool   `pulumi:"keepInstanceName"`
-	Phase            *string `pulumi:"phase"`
+	KeepInstanceName *bool `pulumi:"keepInstanceName"`
+	// The status phase to the Node.
+	Phase *string `pulumi:"phase"`
 }
 
 // DefaultNodePoolInstanceInput is an input type that accepts DefaultNodePoolInstanceArgs and DefaultNodePoolInstanceOutput values.
@@ -4890,8 +4901,9 @@ type DefaultNodePoolInstanceArgs struct {
 	// The instance id.
 	InstanceId pulumi.StringInput `pulumi:"instanceId"`
 	// The flag of keep instance name, the value is `true` or `false`.Default is `false`.
-	KeepInstanceName pulumi.BoolPtrInput   `pulumi:"keepInstanceName"`
-	Phase            pulumi.StringPtrInput `pulumi:"phase"`
+	KeepInstanceName pulumi.BoolPtrInput `pulumi:"keepInstanceName"`
+	// The status phase to the Node.
+	Phase pulumi.StringPtrInput `pulumi:"phase"`
 }
 
 func (DefaultNodePoolInstanceArgs) ElementType() reflect.Type {
@@ -4975,6 +4987,7 @@ func (o DefaultNodePoolInstanceOutput) KeepInstanceName() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v DefaultNodePoolInstance) *bool { return v.KeepInstanceName }).(pulumi.BoolPtrOutput)
 }
 
+// The status phase to the Node.
 func (o DefaultNodePoolInstanceOutput) Phase() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DefaultNodePoolInstance) *string { return v.Phase }).(pulumi.StringPtrOutput)
 }
@@ -8815,7 +8828,7 @@ type NodePoolsNodePool struct {
 	NodeStatistics []NodePoolsNodePoolNodeStatistic `pulumi:"nodeStatistics"`
 	// The period of the PrePaid instance of NodeConfig.
 	Period int `pulumi:"period"`
-	// The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+	// The Phase of Status.
 	Phase string `pulumi:"phase"`
 	// The Priority of AutoScaling.
 	Priority int `pulumi:"priority"`
@@ -8909,7 +8922,7 @@ type NodePoolsNodePoolArgs struct {
 	NodeStatistics NodePoolsNodePoolNodeStatisticArrayInput `pulumi:"nodeStatistics"`
 	// The period of the PrePaid instance of NodeConfig.
 	Period pulumi.IntInput `pulumi:"period"`
-	// The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+	// The Phase of Status.
 	Phase pulumi.StringInput `pulumi:"phase"`
 	// The Priority of AutoScaling.
 	Priority pulumi.IntInput `pulumi:"priority"`
@@ -9126,7 +9139,7 @@ func (o NodePoolsNodePoolOutput) Period() pulumi.IntOutput {
 	return o.ApplyT(func(v NodePoolsNodePool) int { return v.Period }).(pulumi.IntOutput)
 }
 
-// The Phase of Status. The value can be `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Scaling`.
+// The Phase of Status.
 func (o NodePoolsNodePoolOutput) Phase() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolsNodePool) string { return v.Phase }).(pulumi.StringOutput)
 }
@@ -9322,9 +9335,9 @@ func (o NodePoolsNodePoolDataVolumeArrayOutput) Index(i pulumi.IntInput) NodePoo
 }
 
 type NodePoolsNodePoolEcsTag struct {
-	// The Key of Tags.
+	// The Key of Taint.
 	Key string `pulumi:"key"`
-	// The Value of Tags.
+	// The Value of Taint.
 	Value string `pulumi:"value"`
 }
 
@@ -9340,9 +9353,9 @@ type NodePoolsNodePoolEcsTagInput interface {
 }
 
 type NodePoolsNodePoolEcsTagArgs struct {
-	// The Key of Tags.
+	// The Key of Taint.
 	Key pulumi.StringInput `pulumi:"key"`
-	// The Value of Tags.
+	// The Value of Taint.
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -9397,12 +9410,12 @@ func (o NodePoolsNodePoolEcsTagOutput) ToNodePoolsNodePoolEcsTagOutputWithContex
 	return o
 }
 
-// The Key of Tags.
+// The Key of Taint.
 func (o NodePoolsNodePoolEcsTagOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolsNodePoolEcsTag) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// The Value of Tags.
+// The Value of Taint.
 func (o NodePoolsNodePoolEcsTagOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolsNodePoolEcsTag) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -9428,9 +9441,9 @@ func (o NodePoolsNodePoolEcsTagArrayOutput) Index(i pulumi.IntInput) NodePoolsNo
 }
 
 type NodePoolsNodePoolLabelContent struct {
-	// The Key of Tags.
+	// The Key of Taint.
 	Key string `pulumi:"key"`
-	// The Value of Tags.
+	// The Value of Taint.
 	Value string `pulumi:"value"`
 }
 
@@ -9446,9 +9459,9 @@ type NodePoolsNodePoolLabelContentInput interface {
 }
 
 type NodePoolsNodePoolLabelContentArgs struct {
-	// The Key of Tags.
+	// The Key of Taint.
 	Key pulumi.StringInput `pulumi:"key"`
-	// The Value of Tags.
+	// The Value of Taint.
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -9503,12 +9516,12 @@ func (o NodePoolsNodePoolLabelContentOutput) ToNodePoolsNodePoolLabelContentOutp
 	return o
 }
 
-// The Key of Tags.
+// The Key of Taint.
 func (o NodePoolsNodePoolLabelContentOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolsNodePoolLabelContent) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// The Value of Tags.
+// The Value of Taint.
 func (o NodePoolsNodePoolLabelContentOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolsNodePoolLabelContent) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -9944,9 +9957,9 @@ func (o NodePoolsNodePoolTagArrayOutput) Index(i pulumi.IntInput) NodePoolsNodeP
 type NodePoolsNodePoolTaintContent struct {
 	// The Effect of Taint.
 	Effect string `pulumi:"effect"`
-	// The Key of Tags.
+	// The Key of Taint.
 	Key string `pulumi:"key"`
-	// The Value of Tags.
+	// The Value of Taint.
 	Value string `pulumi:"value"`
 }
 
@@ -9964,9 +9977,9 @@ type NodePoolsNodePoolTaintContentInput interface {
 type NodePoolsNodePoolTaintContentArgs struct {
 	// The Effect of Taint.
 	Effect pulumi.StringInput `pulumi:"effect"`
-	// The Key of Tags.
+	// The Key of Taint.
 	Key pulumi.StringInput `pulumi:"key"`
-	// The Value of Tags.
+	// The Value of Taint.
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -10026,12 +10039,12 @@ func (o NodePoolsNodePoolTaintContentOutput) Effect() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolsNodePoolTaintContent) string { return v.Effect }).(pulumi.StringOutput)
 }
 
-// The Key of Tags.
+// The Key of Taint.
 func (o NodePoolsNodePoolTaintContentOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolsNodePoolTaintContent) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// The Value of Tags.
+// The Value of Taint.
 func (o NodePoolsNodePoolTaintContentOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v NodePoolsNodePoolTaintContent) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -10299,7 +10312,7 @@ type NodesNode struct {
 	Name string `pulumi:"name"`
 	// The node pool id.
 	NodePoolId string `pulumi:"nodePoolId"`
-	// The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
+	// The Phase of Node.
 	Phase string `pulumi:"phase"`
 	// The roles of node.
 	Roles []string `pulumi:"roles"`
@@ -10353,7 +10366,7 @@ type NodesNodeArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The node pool id.
 	NodePoolId pulumi.StringInput `pulumi:"nodePoolId"`
-	// The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
+	// The Phase of Node.
 	Phase pulumi.StringInput `pulumi:"phase"`
 	// The roles of node.
 	Roles pulumi.StringArrayInput `pulumi:"roles"`
@@ -10491,7 +10504,7 @@ func (o NodesNodeOutput) NodePoolId() pulumi.StringOutput {
 	return o.ApplyT(func(v NodesNode) string { return v.NodePoolId }).(pulumi.StringOutput)
 }
 
-// The Phase of Node, the value is `Creating` or `Running` or `Updating` or `Deleting` or `Failed` or `Starting` or `Stopping` or `Stopped`.
+// The Phase of Node.
 func (o NodesNodeOutput) Phase() pulumi.StringOutput {
 	return o.ApplyT(func(v NodesNode) string { return v.Phase }).(pulumi.StringOutput)
 }
@@ -10871,7 +10884,8 @@ type SupportAddonsAddon struct {
 	// The deploy node types, the value is `Node` or `VirtualNode`. Only effected when deployMode is `Unmanaged`.
 	DeployNodeTypes []string `pulumi:"deployNodeTypes"`
 	// The name of the addon.
-	Name      string  `pulumi:"name"`
+	Name string `pulumi:"name"`
+	// The necessary of addon.
 	Necessary *string `pulumi:"necessary"`
 	// The container network model, the value is `Flannel` or `VpcCniShared`. Flannel: Flannel network model, an independent Underlay container network solution, combined with the global routing capability of VPC, to achieve a high-performance network experience for the cluster. VpcCniShared: VPC-CNI network model, an Underlay container network solution based on the ENI of the private network elastic network card, with high network communication performance.
 	PodNetworkModes []string `pulumi:"podNetworkModes"`
@@ -10898,7 +10912,8 @@ type SupportAddonsAddonArgs struct {
 	// The deploy node types, the value is `Node` or `VirtualNode`. Only effected when deployMode is `Unmanaged`.
 	DeployNodeTypes pulumi.StringArrayInput `pulumi:"deployNodeTypes"`
 	// The name of the addon.
-	Name      pulumi.StringInput    `pulumi:"name"`
+	Name pulumi.StringInput `pulumi:"name"`
+	// The necessary of addon.
 	Necessary pulumi.StringPtrInput `pulumi:"necessary"`
 	// The container network model, the value is `Flannel` or `VpcCniShared`. Flannel: Flannel network model, an independent Underlay container network solution, combined with the global routing capability of VPC, to achieve a high-performance network experience for the cluster. VpcCniShared: VPC-CNI network model, an Underlay container network solution based on the ENI of the private network elastic network card, with high network communication performance.
 	PodNetworkModes pulumi.StringArrayInput `pulumi:"podNetworkModes"`
@@ -10977,6 +10992,7 @@ func (o SupportAddonsAddonOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SupportAddonsAddon) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The necessary of addon.
 func (o SupportAddonsAddonOutput) Necessary() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v SupportAddonsAddon) *string { return v.Necessary }).(pulumi.StringPtrOutput)
 }

@@ -13,9 +13,7 @@ namespace Pulumi.Volcengine.Nas
     {
         /// <summary>
         /// Use this data source to query detailed information of nas permission groups
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -60,17 +58,13 @@ namespace Pulumi.Volcengine.Nas
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<PermissionGroupsResult> InvokeAsync(PermissionGroupsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<PermissionGroupsResult>("volcengine:nas/permissionGroups:PermissionGroups", args ?? new PermissionGroupsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to query detailed information of nas permission groups
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -115,8 +109,6 @@ namespace Pulumi.Volcengine.Nas
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<PermissionGroupsResult> Invoke(PermissionGroupsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<PermissionGroupsResult>("volcengine:nas/permissionGroups:PermissionGroups", args ?? new PermissionGroupsInvokeArgs(), options.WithDefaults());

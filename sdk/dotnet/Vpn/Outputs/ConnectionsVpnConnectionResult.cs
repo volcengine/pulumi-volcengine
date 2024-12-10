@@ -18,11 +18,11 @@ namespace Pulumi.Volcengine.Vpn.Outputs
         /// </summary>
         public readonly string AccountId;
         /// <summary>
-        /// The IPsec attach status.
+        /// The attach status of VPN connection.
         /// </summary>
         public readonly string AttachStatus;
         /// <summary>
-        /// The IPsec attach type.
+        /// The attach type of VPN connection. Valid values: `VpnGateway`, `TransitRouter`.
         /// </summary>
         public readonly string AttachType;
         /// <summary>
@@ -138,11 +138,11 @@ namespace Pulumi.Volcengine.Vpn.Outputs
         /// </summary>
         public readonly ImmutableArray<string> RemoteSubnets;
         /// <summary>
-        /// The status of the VPN connection.
+        /// The status of IPSec connection. Valid values: `Creating`, `Deleting`, `Pending`, `Available`.
         /// </summary>
         public readonly string Status;
         /// <summary>
-        /// The id of transit router, valid when the attach type is 'TransitRouter'.
+        /// An ID of transit router.
         /// </summary>
         public readonly string TransitRouterId;
         /// <summary>

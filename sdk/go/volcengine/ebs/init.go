@@ -21,6 +21,14 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "volcengine:ebs/autoSnapshotPolicy:AutoSnapshotPolicy":
+		r = &AutoSnapshotPolicy{}
+	case "volcengine:ebs/autoSnapshotPolicyAttachment:AutoSnapshotPolicyAttachment":
+		r = &AutoSnapshotPolicyAttachment{}
+	case "volcengine:ebs/snapshot:Snapshot":
+		r = &Snapshot{}
+	case "volcengine:ebs/snapshotGroup:SnapshotGroup":
+		r = &SnapshotGroup{}
 	case "volcengine:ebs/volume:Volume":
 		r = &Volume{}
 	case "volcengine:ebs/volumeAttach:VolumeAttach":
@@ -38,6 +46,26 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"ebs/autoSnapshotPolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"ebs/autoSnapshotPolicyAttachment",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"ebs/snapshot",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"volcengine",
+		"ebs/snapshotGroup",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"volcengine",
 		"ebs/volume",

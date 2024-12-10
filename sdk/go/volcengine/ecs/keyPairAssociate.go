@@ -57,7 +57,7 @@ import (
 //			fooSubnet, err := vpc.NewSubnet(ctx, "fooSubnet", &vpc.SubnetArgs{
 //				SubnetName: pulumi.String("acc-test-subnet"),
 //				CidrBlock:  pulumi.String("172.16.0.0/24"),
-//				ZoneId:     *pulumi.String(fooZones.Zones[0].Id),
+//				ZoneId:     pulumi.String(fooZones.Zones[0].Id),
 //				VpcId:      fooVpc.ID(),
 //			})
 //			if err != nil {
@@ -71,7 +71,7 @@ import (
 //				return err
 //			}
 //			fooInstance, err := ecs.NewInstance(ctx, "fooInstance", &ecs.InstanceArgs{
-//				ImageId:            *pulumi.String(fooImages.Images[0].ImageId),
+//				ImageId:            pulumi.String(fooImages.Images[0].ImageId),
 //				InstanceType:       pulumi.String("ecs.g1.large"),
 //				InstanceName:       pulumi.String("acc-test-ecs-name"),
 //				Password:           pulumi.String("your password"),
@@ -101,12 +101,14 @@ import (
 //
 // ## Import
 //
-// ECS key pair associate can be imported using the id, e.g. After binding the key pair, the instance needs to be restarted for the key pair to take effect. After the key pair is bound, the password login method will automatically become invalid. If your instance has been set for password login, after the key pair is bound, you will no longer be able to use the password login method.
+// ECS key pair associate can be imported using the id, e.g.
+//
+// After binding the key pair, the instance needs to be restarted for the key pair to take effect.
+//
+// After the key pair is bound, the password login method will automatically become invalid. If your instance has been set for password login, after the key pair is bound, you will no longer be able to use the password login method.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:ecs/keyPairAssociate:KeyPairAssociate default kp-ybti5tkpkv2udbfolrft:i-mizl7m1kqccg5smt1bdpijuj
-//
+// $ pulumi import volcengine:ecs/keyPairAssociate:KeyPairAssociate default kp-ybti5tkpkv2udbfolrft:i-mizl7m1kqccg5smt1bdpijuj
 // ```
 type KeyPairAssociate struct {
 	pulumi.CustomResourceState

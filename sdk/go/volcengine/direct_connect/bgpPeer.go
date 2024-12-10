@@ -46,9 +46,7 @@ import (
 // DirectConnectBgpPeer can be imported using the id, e.g.
 //
 // ```sh
-//
-//	$ pulumi import volcengine:direct_connect/bgpPeer:BgpPeer default bgp-2752hz4teko3k7fap8u4c****
-//
+// $ pulumi import volcengine:direct_connect/bgpPeer:BgpPeer default bgp-2752hz4teko3k7fap8u4c****
 // ```
 type BgpPeer struct {
 	pulumi.CustomResourceState
